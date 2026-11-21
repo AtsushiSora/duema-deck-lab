@@ -2914,6 +2914,15 @@ export function createSixPhotoRules(api){
    (attack.g814Blockers??=[]).push({uid:t.uid,incarnation:t.incarnation||0});
   break;
  }
+ case'g34_KizunaComp1543':{
+  const rows=t.g1543Rows??creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1540P?.length)
+   .map(y=>({uid:y.uid,incarnation:y.incarnation||0,cardId:y.cardId,defs:structuredClone(effective(y,s).g1540P)}));
+  const selected=t.g1543Selected??[],remaining=rows.filter(y=>!selected.includes(y.uid));
+  if(remaining.length)choice(s,{...t,g1543Rows:rows,g1543Selected:selected},'使うP能力を持つ自分のクリーチャーを選ぶ（選択済み '+selected.length+'体）',
+   [...remaining.map(y=>opt(card(y).name,y.uid,10,y.cardId)),opt('選択を終えてP能力を使う',null,0)]);
+  else for(const y of rows.filter(y=>selected.includes(y.uid)))queue(s,t.p,y,y.defs);
+  break;
+ }
  case'g34_Kizuna1540':{
   const rows=creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1540P?.length);
   if(rows.length)choice(s,t,'使うP能力を持つ自分のクリーチャーを選ぶ',rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},10,y.cardId)));
@@ -6105,7 +6114,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_GraveSpell594':{
   const rows=graveSpellOptions594(s,t);
-  if(!t.g1353DLSys)choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',rows);
+  if(!t.g1353DLSys)choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',[...rows,...(t.optional?[skip()]:[])]);
   else if(rows.length)choice(s,t,'DL-Sys：相手の墓地の呪文を唱える？',[...rows,skip()]);
   else put(s,{...t,op:'g34_AuraReattach1353'});
   break;
@@ -6421,6 +6430,11 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_KizunaComp1543':{
+  if(v!=null){if(t.g1543Rows.some(y=>y.uid===v)&&!t.g1543Selected.includes(v))put(s,{...t,g1543Selected:[...t.g1543Selected,v]});}
+  else for(const y of t.g1543Rows.filter(y=>t.g1543Selected.includes(y.uid)))queue(s,t.p,y,y.defs);
+  break;
+ }
  case'g34_Kizuna1540':{
   const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&!y.faceDown&&api.isCreature(s,y));
   const defs=y&&effective(y,s).g1540P;
@@ -6650,7 +6664,7 @@ export function createSixPhotoRules(api){
   const x=foreign?remove(grave,v.uid):grave.find(x=>x.uid===v.uid);
   if(foreign){x.cardOwner=v.owner;x.g5Origin='grave';(own.g34Holding??=[]).push(x);}
   x.finishTo='deck';
-  cast(s,t.p,x.uid,true,null,v.face,null,origin,t.g1353DLSys?'DL-Sys':'スーパー・S・トリガー');
+  cast(s,t.p,x.uid,true,null,v.face,null,origin,t.castLabel||(t.g1353DLSys?'DL-Sys':'スーパー・S・トリガー'));
   break;
  }
  case'g34_AuraReattach1353':{
@@ -8057,7 +8071,7 @@ export function createSixPhotoRules(api){
     (y.powerModifiers??=[]).push({fixedPower:0,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});
     api.powerCleanup(s);
    }
-   if(t.power)(y.powerModifiers??=[]).push({amount:t.power,...(t.g1111PowerUntilLeave?{}:{expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{}),...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})});if(t.g821DrawIfEvolution&&api.isEvolution(y))start(s,t,[{op:'DrawUpTo',n:1}]);if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection&&(!t.g987AfterNewTap||newlyTapped))start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);
+   if(t.g1543FirstEnd)(s.extLimits??=[]).push({kind:'g543Shinka',when:'firstAttackEnd',p:t.p,source:t.source,uid:y.uid,incarnation:y.incarnation||0,expires:'end',who:s.active});if(t.power)(y.powerModifiers??=[]).push({amount:t.power,...(t.g1111PowerUntilLeave?{}:{expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{}),...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})});if(t.g821DrawIfEvolution&&api.isEvolution(y))start(s,t,[{op:'DrawUpTo',n:1}]);if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection&&(!t.g987AfterNewTap||newlyTapped))start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);
   if(t.g1163SecondDestroy)secondDestroy1163(s,t,v?.uid);
   if(t.g1040OtherPower)otherTargetPower1040(s,t,v);
   if(t.g1005ManaArmedFollowup&&v)start(s,t,[{

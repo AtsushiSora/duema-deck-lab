@@ -276671,15 +276671,219 @@
       ],
       "supportBatch": "phase-1542",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-s05",
+      "name": "アラン・クレマン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s05",
+      "limit": 4,
+      "breaker": 2,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaComp1543"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1543",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-s09",
+      "name": "バードリアント",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分の山札の上から２枚を見る。その中から自然のパワー12000以上の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りを自分の手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s09",
+      "limit": 4,
+      "breaker": 3,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaComp1543"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "LookDeploy530",
+          "n": 2,
+          "limit": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "自然",
+            "minPower": 12000
+          },
+          "rest": "hand"
+        }
+      ],
+      "supportBatch": "phase-1543",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-s03",
+      "name": "偉大なる魔術師 コギリーザ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ムートピア",
+      "text": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）Pいずれかの墓地から、コスト７以下の呪文を１枚、コストを支払わずに唱えてもよい。唱えた後、その呪文を墓地に置くかわりに、持ち主の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s03",
+      "limit": 4,
+      "breaker": 2,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaComp1543"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "GraveSpell594",
+          "max": 7,
+          "optional": true,
+          "castLabel": "キズナ"
+        }
+      ],
+      "supportBatch": "phase-1543",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-001",
+      "name": "超越の使い 蒼転",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "メタリカ",
+      "text": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分のクリーチャーを１体選ぶ。そのクリーチャーは、次の自分のターンのはじめまで破壊されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-001",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaComp1543"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g465DestroySafe": "start",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1543",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-007",
+      "name": "ラッシュ“ATK”ワイルド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分のクリーチャーを１体選ぶ。そのクリーチャーのこのターン最初の攻撃の終わりに、それをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-007",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaComp1543"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1543FirstEnd": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1543",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1542,
+    "phase": 1543,
     "checkedAt": "2026-11-21",
-    "baseCount": 8784,
+    "baseCount": 8789,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8789,
+    "totalCount": 8794,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -302046,6 +302250,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8784,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1542,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8784,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8789,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

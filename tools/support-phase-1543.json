@@ -1,0 +1,370 @@
+{
+  "phase": 1543,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8789,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31637/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/31637/": "キズナコンプで使うP能力は発動段階で選択し、後から出たクリーチャーのP能力を追加しない。",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/": "複数P能力はそれぞれ独立して待機し、自分の好きな順番で解決する。"
+  },
+  "implementationNotes": [
+    "自分の有効なP能力を持つクリーチャーを重複なく好きな数選択して全能力を待機。選択後に発生源が離れても待機済み能力を失わない。",
+    "ATKワイルドは付与時点で開始している最初の攻撃も含め、そのターン最初の攻撃終了時だけアンタップ。呪文由来の制限を誤って適用しない専用フラグを使用。",
+    "コギリーザは任意でどちらの墓地の呪文も自分が唱え、唱えた物理カードを持ち主の山札下へ。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-s05",
+      "name": "アラン・クレマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s05",
+      "faces": [
+        {
+          "name": "アラン・クレマン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P相手のクリーチャーを１体破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaComp1543"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "f3719c448e29d4b9d5d4c0d902c464944d427288af47ab59c73aa0b984372f0d",
+        "facesMatched": true,
+        "imageSha256": "d465ebe875429684b74f4fde290b2e3445b428c750dc355c9fc71e78c2e7568a",
+        "imageBytes": 161453
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s05",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-s09",
+      "name": "バードリアント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s09",
+      "faces": [
+        {
+          "name": "バードリアント",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分の山札の上から２枚を見る。その中から自然のパワー12000以上の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りを自分の手札に加える。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaComp1543"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "LookDeploy530",
+            "n": 2,
+            "limit": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然",
+              "minPower": 12000
+            },
+            "rest": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-s09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e4eab448c72da1a5dc4f7e3b2565b7b050d1417f89075b100915352467cb2d12",
+        "facesMatched": true,
+        "imageSha256": "37e00f2cec670544405f78a729aef2564ccf1f77d7e5102ad98f0363424492fe",
+        "imageBytes": 153601
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s09",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-s03",
+      "name": "偉大なる魔術師 コギリーザ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s03",
+      "faces": [
+        {
+          "name": "偉大なる魔術師 コギリーザ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）Pいずれかの墓地から、コスト７以下の呪文を１枚、コストを支払わずに唱えてもよい。唱えた後、その呪文を墓地に置くかわりに、持ち主の山札の一番下に置く。",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaComp1543"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "GraveSpell594",
+            "max": 7,
+            "optional": true,
+            "castLabel": "キズナ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "84a4c70f1a6adb2459abf4b78d0788fb33a87fbbbd0bb86adf99804814683b51",
+        "facesMatched": true,
+        "imageSha256": "200147ee59fb30dcdfd4f891c61ea8e50be91392b0c2ae12a2664bfdcf2f4811",
+        "imageBytes": 181416
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-s03",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-001",
+      "name": "超越の使い 蒼転",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-001",
+      "faces": [
+        {
+          "name": "超越の使い 蒼転",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分のクリーチャーを１体選ぶ。そのクリーチャーは、次の自分のターンのはじめまで破壊されない。",
+          "race": "メタリカ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaComp1543"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g465DestroySafe": "start",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "606e0b42bbbc6597d187dcf6066fd50ea7b8bae1237cbada029b48d82b6b7aeb",
+        "facesMatched": true,
+        "imageSha256": "efd6ed243c43433ca5837d48a5de5b16ba470fafee345050e133588e68594799",
+        "imageBytes": 130670
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-001",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-007",
+      "name": "ラッシュ“ATK”ワイルド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-007",
+      "faces": [
+        {
+          "name": "ラッシュ“ATK”ワイルド",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。\nキズナコンプ（このクリーチャーが攻撃する時、好きな数の自分のクリーチャーのP能力を使う）P自分のクリーチャーを１体選ぶ。そのクリーチャーのこのターン最初の攻撃の終わりに、それをアンタップする。",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaComp1543"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g1543FirstEnd": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "52474664cb6550b6f0bb64eb8998217f602251299767d37e5644fca26a5c442d",
+        "facesMatched": true,
+        "imageSha256": "ae5d5e5c56b17b9ea17308ccfc870053fc7b22a0680c1a31198404feaa98c5a2",
+        "imageBytes": 123693
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-s05": 4,
+      "dmrp04s-s09": 4,
+      "dmrp04s-s03": 4,
+      "dmrp04s-001": 4,
+      "dmrp04s-007": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31637/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31637/",
+      "sha256": "6d8e08b72378302ec1d4b3464aed9f05527e71da574079a5162b0cbffb81b051",
+      "result": "キズナコンプで使うP能力は発動段階で選択し、後から出たクリーチャーのP能力を追加しない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "複数P能力はそれぞれ独立して待機し、自分の好きな順番で解決する。"
+    }
+  ]
+}
