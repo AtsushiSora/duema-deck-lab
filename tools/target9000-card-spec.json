@@ -23122,5 +23122,340 @@
         ]
       }
     }
+  },
+  "dmrp08-040": {
+    "phase": 1584,
+    "faces": [
+      {
+        "name": "凶鬼17号 ザック",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "マフィ・ギャング",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ザクザク十七連打",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このターン、相手のクリーチャーすべてのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "ザクザク十七連打",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "このターン、相手のクリーチャーすべてのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -2000,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmbd22-014": {
+    "phase": 1584,
+    "faces": [
+      {
+        "name": "龍月 ドラグ・スザーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "ムゲンクライム ４（自分のクリーチャーを４体タップし、 [dd04]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーが出た時、GR召喚を４回する。",
+        "race": "ドルスザク・ドラゴン/チーム零",
+        "powerText": "11000",
+        "missingFields": []
+      },
+      {
+        "name": "龍・獄・殺",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "カードを１枚引く。その後、自分の手札を１枚捨てる。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "name": "龍・獄・殺",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "カードを１枚引く。その後、自分の手札を１枚捨てる。\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-131": {
+    "phase": 1584,
+    "faces": [
+      {
+        "name": "味息子サン・グリル",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "千切秘伝ワイルド・ベジタブル",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "アタック・チャンス：ワイルド・ベジーズ（自分のワイルド・ベジーズが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、自分のクリーチャー１体のパワーは+6000され、シールドをさらに１つブレイクする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "smashBurst": true,
+      "spellFace": {
+        "name": "千切秘伝ワイルド・ベジタブル",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "アタック・チャンス：ワイルド・ベジーズ（自分のワイルド・ベジーズが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、自分のクリーチャー１体のパワーは+6000され、シールドをさらに１つブレイクする。",
+        "g417Chance": {
+          "race": "ワイルド・ベジーズ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 6000,
+            "g455ExtraBreak": 1,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmsd06-001": {
+    "phase": 1584,
+    "faces": [
+      {
+        "name": "卍 デ・ルパンサー 卍",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "無月の門：自分の魔導具をバトルゾーンに出した時、自分の魔導具をバトルゾーンと墓地から２つずつ選び、このクリーチャーを自分の手札または墓地からそれら４枚の上にコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のアンタップしているクリーチャーを１体破壊する。",
+        "race": "マフィ・ギャング/ドルスザク",
+        "powerText": "8000",
+        "missingFields": []
+      },
+      {
+        "name": "葬爪",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の山札の上から２枚を墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenGate": 4,
+      "mugenKind": "normal",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "葬爪",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "race": "",
+        "text": "自分の山札の上から２枚を墓地に置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      }
+    }
+  },
+  "dmbd07-b-006": {
+    "phase": 1584,
+    "faces": [
+      {
+        "name": "ハヤブサノ裁徒Ｚ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "サバキZ（裁きの紋章が自分のシールドゾーンから手札に加えられた時、そのカードを捨ててもよい。そうしたら、このクリーチャーをコストを支払わずに召喚する）\nブロッカーブロッカー",
+        "race": "メタリカ/サバキスト",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ヒーリン・マスカラス",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1348Sabaki": true,
+      "blocker": true,
+      "spellFace": {
+        "name": "ヒーリン・マスカラス",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1
+          }
+        ]
+      }
+    }
   }
 }

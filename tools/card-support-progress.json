@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8975,
-  "pendingNames": 2849,
-  "phase": 1583,
-  "added": 4,
+  "supportedNames": 8980,
+  "pendingNames": 2844,
+  "phase": 1584,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 50,
+      "pendingNames": 49,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1624,
+    "クリーチャー": 1619,
     "呪文": 340,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 26,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 643,
+    "複数面・特殊カードタイプまたは情報不足": 638,
     "未対応の能力文": 2058,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -519111,11 +519111,194 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1584,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T04:39:37.590Z",
+      "baseline": "b3e019be89363038a019cb8b664b995b937b15be",
+      "manifest": "tools/support-phase-1584.json",
+      "status": "verified-local",
+      "before": 8975,
+      "supported": 8980,
+      "pending": 2844,
+      "added": [
+        {
+          "id": "dmrp08-040",
+          "name": "凶鬼17号 ザック/ザクザク十七連打"
+        },
+        {
+          "id": "dmbd22-014",
+          "name": "龍月 ドラグ・スザーク / 龍・獄・殺"
+        },
+        {
+          "id": "dmex17-131",
+          "name": "味息子サン・グリル / 千切秘伝ワイルド・ベジタブル"
+        },
+        {
+          "id": "dmsd06-001",
+          "name": "卍 デ・ルパンサー 卍 / 葬爪"
+        },
+        {
+          "id": "dmbd07-b-006",
+          "name": "ハヤブサノ裁徒Ｚ /ヒーリン・マスカラス"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1584-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.254,
+          "log": "tmp/duema-phase-1584/focused.log",
+          "passed": 97,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "--test-skip-pattern=No04 (AI matches|random choices|production worker)",
+            "tests/standard417-effects.test.mjs",
+            "tests/standard1366-effects.test.mjs",
+            "tests/mado-effects.test.mjs",
+            "tests/standard1573-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.967,
+          "log": "tmp/duema-phase-1584/related.log",
+          "passed": 145,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.997,
+          "log": "tmp/duema-phase-1584/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.098,
+          "log": "tmp/duema-phase-1584/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.327,
+          "log": "tmp/duema-phase-1584/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1584-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.702,
+          "log": "tmp/duema-phase-1584/focused.log"
+        },
+        {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard417-effects.test.mjs",
+            "tests/standard1366-effects.test.mjs",
+            "tests/mado-effects.test.mjs",
+            "tests/standard1573-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 92.517,
+          "log": "tmp/duema-phase-1584/related.log"
+        },
+        {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "--test-skip-pattern=No04 AI matches|No04 random choices",
+            "tests/standard417-effects.test.mjs",
+            "tests/standard1366-effects.test.mjs",
+            "tests/mado-effects.test.mjs",
+            "tests/standard1573-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 146.541,
+          "log": "tmp/duema-phase-1584/related.log"
+        },
+        {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 19.052,
+          "log": "tmp/duema-phase-1584/check.log"
+        }
+      ],
+      "testCorrections": [
+        "ドラグ・スザークのクライムは既存のmugenStartアクションで宣言し、4体をタップして検証。",
+        "サバキZは他に処理がない場合の自動実行を検証。",
+        "ハヤブサノ裁徒Zの登録名は再録の空白差ではなく、元のカタログの正規名を維持。"
+      ],
+      "totalTestsPassed": 242,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1583,
-    "nextPhase": 1584,
+    "lastVerifiedPhase": 1584,
+    "nextPhase": 1585,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -519124,7 +519307,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8975種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8980種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -519205,14 +519388,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8975種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8980種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8975種類、残り25種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8980種類、残り20種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -519324,10 +519507,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8975,
-      "remaining": 25,
+      "currentCount": 8980,
+      "remaining": 20,
       "status": "active",
-      "phase": 1583
+      "phase": 1584
     },
     "deferredRegistrationCandidates": [
       {
@@ -519423,12 +519606,6 @@
         "name": "ダイナボルト ＜エタフェニ.Star＞",
         "reason": "公式画像と全文確認。クリーチャー以外のカードを選ぶ対象には進化元や封印なども含むため、エレメントだけの対象処理では部分実装になる。対象選択全体を確認するまで未登録。",
         "phase": 1577
-      },
-      {
-        "id": "dmbd07-b-006",
-        "name": "ハヤブサノ裁徒Z／ヒーリン・マスカラス",
-        "reason": "元の公式ページで呪文側の文明・コスト・能力文が欠落。再録dmex02-024では全文と光5を確認できたが、元画像に基づく欠落補完と再録の照合を残し、このバッチでは未登録。",
-        "phase": 1579
       }
     ],
     "lastExplicitUserAddition": {
@@ -519532,6 +519709,25 @@
         "phase": 1534,
         "resolvedPhase": 1578,
         "kind": "verified-registration"
+      },
+      {
+        "id": "dmbd07-b-006",
+        "name": "ハヤブサノ裁徒Z／ヒーリン・マスカラス",
+        "reason": "元の公式ページで呪文側の文明・コスト・能力文が欠落。再録dmex02-024では全文と光5を確認できたが、元画像に基づく欠落補完と再録の照合を残し、このバッチでは未登録。",
+        "phase": 1579,
+        "status": "resolved",
+        "resolvedPhase": 1584,
+        "kind": "verified-registration"
+      }
+    ],
+    "incompleteLongRunningVerification": [
+      {
+        "phase": 1584,
+        "target": "tests/mado-effects.test.mjs の No04 AI matches / No04 random choices / No04 production worker 260 matches",
+        "status": "中断・合否未確認",
+        "reason": "多数デッキ・シードのAI対戦と260戦のワーカーベンチマークを個別に中断し、3ケースを明示して通常能力回帰から除外。同じ長時間ケースは再実行しない。",
+        "log": "tmp/duema-phase-1584/related-interrupted.json",
+        "measuredSeconds": 92.517
       }
     ]
   },
@@ -571398,10 +571594,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1583,
+    "phase": 1584,
     "threshold": 9000,
-    "supportedNames": 8975,
-    "pendingNames": 2849,
+    "supportedNames": 8980,
+    "pendingNames": 2844,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
