@@ -20997,5 +20997,141 @@
         }
       ]
     }
+  },
+  "dmbd07-a-005": {
+    "phase": 1577,
+    "faces": [
+      {
+        "name": "ニルバーナー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nxB相手のパワー3000以下のクリーチャーをすべて持ち主のマナゾーンに置く。",
+        "race": "ジョーカーズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "untapped": true
+          },
+          "to": "mana"
+        }
+      ],
+      "g493SuperEntry": [
+        {
+          "op": "Sweep",
+          "to": "mana",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ]
+    }
+  },
+  "dmr04-s01": {
+    "phase": 1577,
+    "faces": [
+      {
+        "name": "偽りの名 シャーロック",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、サイキック・クリーチャーをすべて破壊する。\n誰も、サイキック・クリーチャーをバトルゾーンに出すことはできない。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\nバトルゾーンにあるクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+        "race": "アンノウン",
+        "powerText": "23000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 4,
+      "untargetable": true,
+      "g1095PsychicEntryLock": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        }
+      ]
+    }
+  },
+  "dmx13-002": {
+    "phase": 1577,
+    "faces": [
+      {
+        "name": "真実の名 ボルメテウス・ゼロ・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーが相手のシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに自身の山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アーマード・ドラゴン/アンノウン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1577BottomBurn": true
+    }
+  },
+  "dmbd15-008": {
+    "phase": 1577,
+    "faces": [
+      {
+        "name": "エヴォ・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水/火",
+        "civilizations": [
+          "光",
+          "水",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、このクリーチャーから進化できるコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+        "race": "ファイアー・バード",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "SelfHandEvolution1577",
+          "max": 5
+        }
+      ]
+    }
   }
 }

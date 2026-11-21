@@ -1,0 +1,267 @@
+{
+  "phase": 1577,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8942,
+  "description": "既存の処理を用いて全能力を個別に検証し4種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dm24rp3-002",
+      "name": "爆藍月 スケルハンター",
+      "reason": "能力全文を公式で確認。ターン開始時以外の全アンタップ経路に対する継続的な禁止処理を追加する必要があるため未登録。"
+    },
+    {
+      "id": "promoy15-036",
+      "name": "ZEROの暴走 デッドリー・ハイウェイ",
+      "reason": "公式全文を確認。対象が存在しない場合も一度消費できる独立したDスイッチの起動と不使用・使用済み状態の検証が必要なため未登録。"
+    },
+    {
+      "id": "dmrp17-s04",
+      "name": "ダイナボルト ＜エタフェニ.Star＞",
+      "reason": "公式画像と全文確認。クリーチャー以外のカードを選ぶ対象には進化元や封印なども含むため、エレメントだけの対象処理では部分実装になる。対象選択全体を確認するまで未登録。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmbd07-a-005",
+      "name": "ニルバーナー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-005",
+      "faces": [
+        {
+          "name": "ニルバーナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nxB相手のパワー3000以下のクリーチャーをすべて持ち主のマナゾーンに置く。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "untapped": true
+            },
+            "to": "mana"
+          }
+        ],
+        "g493SuperEntry": [
+          {
+            "op": "Sweep",
+            "to": "mana",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-a-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "87f4ada40f9be2e3d3bb64c402d1be364b45ff57b9a64e1d15e9248790e679a3",
+        "facesMatched": true,
+        "imageSha256": "bcaea05ae2c912483c644bf3b8e182d75294028edce1954c21cd234dde2d18a1",
+        "imageBytes": 117481
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック",
+        "DMBD-07 超誕!!ツインヒーローデッキ80 Jの超機兵 VS 聖剣神話†"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-005",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmr04-s01",
+      "name": "偽りの名 シャーロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-s01",
+      "faces": [
+        {
+          "name": "偽りの名 シャーロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、サイキック・クリーチャーをすべて破壊する。\n誰も、サイキック・クリーチャーをバトルゾーンに出すことはできない。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\nバトルゾーンにあるクリーチャーを相手が選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+          "race": "アンノウン",
+          "powerText": "23000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "untargetable": true,
+        "g1095PsychicEntryLock": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "46506ae90a0928bbc0dad6487d03c3c5c6f4494df7fbaab11daaa33eaf641dfd",
+        "facesMatched": true,
+        "imageSha256": "cc8644c0766f963edf9338a149ef3c61e7b9bc67ed28b6ea8f05e57300a58a77",
+        "imageBytes": 142684
+      },
+      "sameNameProducts": [
+        "DMX-25 ファイナル・メモリアル・パック ～Ｅ１・Ｅ２・Ｅ３編～",
+        "DMX-19 スーパーレア100%パック",
+        "DMR-04 エピソード1 ライジング・ホープ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-s01",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx13-002",
+      "name": "真実の名 ボルメテウス・ゼロ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-002",
+      "faces": [
+        {
+          "name": "真実の名 ボルメテウス・ゼロ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手のシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに自身の山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1577BottomBurn": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "7ede41598956d977a66196aa59bbe885d23747e39ec5532719f1a1f929869936",
+        "facesMatched": true,
+        "imageSha256": "1ba9951076d43dfa013e8a3d3d4165a75a8c5d98d82cd0ae25b473cc8c5ff2e5",
+        "imageBytes": 155783
+      },
+      "sameNameProducts": [
+        "DMX-13 エピソード2 ホワイト・ゼニス・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-002",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmbd15-008",
+      "name": "エヴォ・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd15-008",
+      "faces": [
+        {
+          "name": "エヴォ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、このクリーチャーから進化できるコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "SelfHandEvolution1577",
+            "max": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd15-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "b1363e35405f9ed450fb557e24b04d0dc166d16a112af993a978980d0f1810a2",
+        "facesMatched": true,
+        "imageSha256": "010b2711e1612379ddeea4a42cdbf519d9c8d3f5430a10dd7a26a10c7dc76f69",
+        "imageBytes": 97275
+      },
+      "sameNameProducts": [
+        "DM22-BD2 開発部セレクションデッキ 「光水火鬼羅.Star」",
+        "DM22-EX1 黄金戦略!!デュエキングMAX 2022",
+        "DMRP-19 王来篇拡張パック第3弾 禁断龍VS禁断竜",
+        "DMBD-15 レジェンドスーパーデッキ 蒼龍革命"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd15-008",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd07-a-005": 4,
+      "dmr04-s01": 4,
+      "dmx13-002": 4,
+      "dmbd15-008": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

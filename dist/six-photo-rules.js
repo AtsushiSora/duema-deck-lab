@@ -2657,6 +2657,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
+ case'g34_SelfHandEvolution1577':{
+  const host=sourceHost474(s,t)?.x;
+  if(!host||host.sealed||!own.battle.includes(host)||!api.isCreature(s,host))break;
+  const rows=own.hand.filter(y=>{const c=card(y);return c.evolution&&cost(c)<=t.max&&canPut(s,t.p,y,'hand')&&api.evolutionBases(s,t.p,c).some(z=>z.uid===host.uid);});
+  if(rows.length)choice(s,t,'このクリーチャーの上に進化させる手札のクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},20+cost(card(y)),y.cardId)),skip()]);
+  break;
+ }
  case'g34_GoukenEvolution1362':{
   const ids=look(s,{...t,n:7});
   const host=sourceHost474(s,t)?.x;
@@ -4527,7 +4534,7 @@ export function createSixPhotoRules(api){
     ...(triggeredBreaker||t.g909AfterBreak?{incarnation:host?.incarnation??t.incarnation??0}:{}),
     ...(triggeredBreaker&&!host?{g913DepartedBreaker:true}:{}),
     ...(t.g909AfterBreak?{g909RequireBreak:true}:{}),
-    ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
+    ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.g1577BottomBurn?{g1577BottomBurn:true}:{}),...(c.qqLock?{qqBreak:true}:{})}:{})});
   break;
  }
  case'g34_ShieldCardManaDeploy1317':{
@@ -7647,6 +7654,11 @@ export function createSixPhotoRules(api){
    else if(chosen)start(s,t,[deploy]);
   }
   break;
+ case'g34_SelfHandEvolution1577':{
+  const host=sourceHost474(s,t)?.x,y=v&&own.hand.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial),c=y&&card(y);
+  if(host&&!host.sealed&&own.battle.includes(host)&&api.isCreature(s,host)&&c?.evolution&&cost(c)<=t.max&&api.evolutionBases(s,t.p,c).some(z=>z.uid===host.uid))doPut(s,{...t,op:'g34_Put',target:y.uid,origin:'hand'},host.uid);
+  break;
+ }
  case'g34_GoukenEvolution1362':{
   const host=sourceHost474(s,t)?.x;
   put(s,{...t,op:'g34_GoukenShuffle1362'});
