@@ -27605,5 +27605,92 @@
         ]
       }
     }
+  },
+  "dmr02-001": {
+    "phase": 1608,
+    "faces": [
+      {
+        "name": "ガンリキ・インディゴ・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手がクリーチャーを召喚した時または呪文を唱えた時、このターン、相手のクリーチャーは、攻撃またはブロックできない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ブルー・コマンド・ドラゴン/ハンター",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g808SummonWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "FreezeOpponent1608"
+          }
+        ]
+      },
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "FreezeOpponent1608"
+          }
+        ]
+      }
+    }
+  },
+  "dm27-043": {
+    "phase": 1608,
+    "faces": [
+      {
+        "name": "月光電人オボロカゲロウ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある文明ひとつにつき、カードを１枚引いてもよい。その後、引いたカードと同じ枚数の手札を、好きな順序で自分の山札の一番下に置く。",
+        "race": "グレートメカオー",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Oboro1608"
+        }
+      ]
+    }
+  },
+  "dm07-044": {
+    "phase": 1608,
+    "faces": [
+      {
+        "name": "夢幻の影ダーク・バンディット",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、墓地に置くかわりに自分の手札に戻してもよい。そうした場合、自分の手札から１枚選び、自分の墓地に置く。",
+        "race": "ゴースト",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1608GraveReturnDiscard": true
+    }
   }
 }

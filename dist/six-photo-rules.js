@@ -3851,6 +3851,15 @@ export function createSixPhotoRules(api){
   else throw Error('未対応のクリーチャー数効果');
   break;
  }
+ case'g34_Oboro1608':{
+  const left=t.left??manaCivilizationCount(s,t.p),drawn=t.drawn??[];
+  if(left>0)choice(s,{...t,left,drawn},'カードをあと'+left+'枚まで引けます。1枚引く？',[opt('1枚引く',true,own.deck.length>1?10:-100),skip()]);
+  else if(drawn.length)start(s,t,[{op:'Select',origin:'hand',to:'deck',n:drawn.length,title:'引いた枚数の手札を山札の下に置く順に選ぶ'}]);
+  break;
+ }
+ case'g34_FreezeOpponent1608':
+  for(const kind of['attack','block'])(s.extLimits??=[]).push({kind,player:1-t.p,expires:'end',who:s.active});
+  break;
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_DrawAgainstHand1086':{
   const drawn=api.draw(s,t.p,opp.hand.length);
@@ -7887,6 +7896,10 @@ export function createSixPhotoRules(api){
    api.untap(s,t.p,x);
   }
  }break;
+ case'g34_Oboro1608':
+  put(s,{...t,left:v?t.left-1:0});
+  if(v)api.draw(s,t.p,1,{drawn:t.drawn});
+  break;
  case'g34_DrawUpTo':if(t.after){
   if(v){
    if(t.n>1)put(s,{...t,n:t.n-1,drawStarted:true});
@@ -9040,15 +9053,15 @@ export function createSixPhotoRules(api){
   if(c.type==='creature'){
   firstSummonOrSpell1247(s,0);
   useBlockers524(s,p);
-  for(const source of s.players[p].battle){
+  for(const controller of[p,1-p])for(const source of s.players[controller].battle){
    const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;
-   if(!watch||!useColorsMatch(watch,c))continue;
+   if(!watch||controller!==(watch.who==='opponent'?1-p:p)||!useColorsMatch(watch,c))continue;
    // The summon is observed before entry and before incrementing the shared turn counter.
    if(watch.g895FirstSummon&&s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0)continue;
    if(watch.g1268FirstEight&&(cost(c)<8||s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].costEightOrMore))continue;
    // A NEO summon counts only when it was declared with an evolution base.
    if(watch.g816Evolution&&!api.isEvolution(x)&&!((c.neoEvolution||c.g48HandEvolution)&&c.g27BaseUid))continue;
-   queue(s,p,source,watch.defs);
+   queue(s,controller,source,watch.defs);
   }
   if(colors(c).length>1)for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g922GraveMultiSummon)send(s,p,y,'GraveReturn754',{serial:y.zoneSerial||0});
