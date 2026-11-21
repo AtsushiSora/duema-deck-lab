@@ -282592,15 +282592,265 @@
       ],
       "supportBatch": "phase-1577",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-014",
+      "name": "青守銀 シルト/解体事変",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ",
+      "text": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身の手札をそれぞれ１枚選び、裏向きのまま新しいシールドとしてシールドゾーンに加えてもよい。\n【呪文面】\n相手の手札を見て１枚選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "shields",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "解体事変",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "相手の手札を見て１枚選び、捨てさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectOne258"
+          }
+        ]
+      },
+      "supportBatch": "phase-1578",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-008",
+      "name": "ツイン“LES”ポール/「ミュージック・スタァァァト!!!」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ビートジョッキー",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクし、自分の他のクリーチャーを１体アンタップする。\n【呪文面】\n相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-008",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "untap": true
+        }
+      ],
+      "spellFace": {
+        "name": "「ミュージック・スタァァァト!!!」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both"
+          }
+        ]
+      },
+      "supportBatch": "phase-1578",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-003",
+      "name": "遣宮使 ネオンクス / ネオ・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "ムートピア/サイバー・コマンド",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは名前に《ブレイン》とある呪文を唱えた時、自分の山札の上から１枚目を墓地に置く。それが呪文なら、コストを支払わずに唱えてもよい。\n【呪文面】\nS・トリガー S・トリガー\nカードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSpell1578"
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "ブレイン",
+        "defs": [
+          {
+            "op": "MillSpell1578"
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ネオ・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー\nカードを２枚引く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1578",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd6-020",
+      "name": "第六戦街 ラヴ・ガトラー / 漆黒の裏六戦街",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ムートピア/サイバー・コマンド",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-020",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "漆黒の裏六戦街",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 9,
+        "race": "",
+        "text": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1578",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-031",
+      "name": "鉄拳の構え 幻惚/テッケニア・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "メタリカ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーはバトルゾーンを離れない。\n【呪文面】\n相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-031",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g413MoreCreatures": true
+        },
+        "grants": {
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      },
+      "spellFace": {
+        "name": "テッケニア・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g210TapLock": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1578",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1577,
+    "phase": 1578,
     "checkedAt": "2026-11-21",
-    "baseCount": 8942,
-    "newEffectCards": 4,
+    "baseCount": 8946,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8946,
+    "totalCount": 8951,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -308457,6 +308707,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8942,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1577,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8942,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8946,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

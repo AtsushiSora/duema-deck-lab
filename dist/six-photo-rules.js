@@ -2231,7 +2231,7 @@ export function createSixPhotoRules(api){
    if(!rows.length){put(s,{...next,index:index+1});return;}
    const title=t.element?'破壊する自分のエレメントを1つ選ぶ':
     t.keep?'残す自分のクリーチャーを1体選ぶ':t.discard?'捨てる自分の手札を1枚選ぶ':t.origin==='battle'?(t.to==='grave'?'破壊する':'マナに置く')+'自分のクリーチャーを1体選ぶ':(t.to==='mana'?'マナに置く':'山札の上に置く')+'自分の手札を1枚選ぶ';
-   choice(s,next,title,rows.map(r=>opt(card(r.x).name,{p,uid:r.x.uid,incarnation:r.x.incarnation||0,serial:r.x.zoneSerial||0},(t.keep?1:-1)*cost(card(r.x)),r.x.cardId)));return;
+   choice(s,next,title,[...rows.map(r=>opt(card(r.x).name,{p,uid:r.x.uid,incarnation:r.x.incarnation||0,serial:r.x.zoneSerial||0},(t.keep?1:-1)*cost(card(r.x)),r.x.cardId)),...(t.optional?[skip()]:[])]);return;
   }
   const valid=selected.filter(r=>s.players[r.p][t.origin].some(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&(x.zoneSerial||0)===r.serial));
   if(t.origin==='battle'){
@@ -5679,6 +5679,12 @@ export function createSixPhotoRules(api){
  case'g34_EachMill1534':
   put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Mill',p,controller:t.controller??t.p})));
   break;
+ case'g34_MillSpell1578':{
+  const moved=api.mill(s,t.p,1,{together:true}),y=moved?.[0];
+  if(s.winner===null&&y&&own.grave.includes(y)&&faces(card(y)).some(c=>c.type==='spell'))
+   start(s,t,[{op:'Execute',origin:'grave',spellOnly:true,optional:true,g1578Exact:{uid:y.uid,serial:y.zoneSerial||0}}]);
+  break;
+ }
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -6407,6 +6413,7 @@ export function createSixPhotoRules(api){
   const rows=origins.flatMap(origin=>{
    if((t.g555FinishTo||t.g1225SeedOnly)&&!api.canMoveZone(s,t.p,origin))return [];
    return own[origin].flatMap(y=>{
+    if(t.g1578Exact&&(y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial))return [];
     if(!matches(s,t.p,{...y,cardId:y.cardId},t.filter))return [];
     return faces(card(y)).flatMap((c,face)=>{
      const type=c.type;
@@ -6858,7 +6865,7 @@ export function createSixPhotoRules(api){
   else if(t.to==='deck'&&t.order)finishBottomCycle460(s,t,t.selected);
   else finishCycle460(s,t,t.selected);
   break;
- case'g34_EachPlayer459':if(v)put(s,{...t,index:t.index+(t.g1519EachN?0:1),selected:[...t.selected,v]});break;
+ case'g34_EachPlayer459':if(v)put(s,{...t,index:t.index+(t.g1519EachN?0:1),selected:[...t.selected,v]});else if(t.optional)put(s,{...t,index:t.index+1});break;
  case'g34_SpaceCharge454':if(v)start(s,t,t.rules.flatMap((r,i)=>v.includes(i)?r.defs:[]));break;
  case'g34_ManaReveal449':{const c=card(t.source),y=own.hand.find(y=>y.uid===v);if(!y||new Set(faces(card(y)).flatMap(colors)).size<2||api.spellIgnored(s,c))break;api.log(s,t.p,'reveal',c.name+'で公開：'+card(y).name,{cardId:y.cardId});const mana=own.mana.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);if(mana&&api.untap(s,t.p,mana))api.log(s,t.p,'untapMana',c.name+'をアンタップ',{cardId:t.source});break;}
  case'g34_EntryCross728':{

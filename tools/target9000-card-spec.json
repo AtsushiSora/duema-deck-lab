@@ -21133,5 +21133,340 @@
         }
       ]
     }
+  },
+  "dmrp10-014": {
+    "phase": 1578,
+    "faces": [
+      {
+        "name": "青守銀 シルト",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身の手札をそれぞれ１枚選び、裏向きのまま新しいシールドとしてシールドゾーンに加えてもよい。",
+        "race": "メタリカ",
+        "powerText": "3500",
+        "missingFields": []
+      },
+      {
+        "name": "解体事変",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手の手札を見て１枚選び、捨てさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "shields",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "解体事変",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "相手の手札を見て１枚選び、捨てさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectOne258"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-008": {
+    "phase": 1578,
+    "faces": [
+      {
+        "name": "ツイン“LES”ポール",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクし、自分の他のクリーチャーを１体アンタップする。",
+        "race": "ビートジョッキー",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "「ミュージック・スタァァァト!!!」",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "untap": true
+        }
+      ],
+      "spellFace": {
+        "name": "「ミュージック・スタァァァト!!!」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "race": "",
+        "text": "相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both"
+          }
+        ]
+      }
+    }
+  },
+  "dmrp06-003": {
+    "phase": 1578,
+    "faces": [
+      {
+        "name": "遣宮使 ネオンクス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは名前に《ブレイン》とある呪文を唱えた時、自分の山札の上から１枚目を墓地に置く。それが呪文なら、コストを支払わずに唱えてもよい。",
+        "race": "ムートピア/サイバー・コマンド",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "ネオ・ブレイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\nカードを２枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSpell1578"
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "ブレイン",
+        "defs": [
+          {
+            "op": "MillSpell1578"
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ネオ・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー\nカードを２枚引く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd6-020": {
+    "phase": 1578,
+    "faces": [
+      {
+        "name": "第六戦街 ラヴ・ガトラー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "ムートピア/サイバー・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "漆黒の裏六戦街",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "漆黒の裏六戦街",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 9,
+        "race": "",
+        "text": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "toOwnerHand": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-031": {
+    "phase": 1578,
+    "faces": [
+      {
+        "name": "鉄拳の構え 幻惚",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーはバトルゾーンを離れない。",
+        "race": "メタリカ",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "テッケニア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g413MoreCreatures": true
+        },
+        "grants": {
+          "g577Stay": {
+            "anyPower": true
+          }
+        }
+      },
+      "spellFace": {
+        "name": "テッケニア・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g210TapLock": true,
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }

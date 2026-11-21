@@ -1,0 +1,470 @@
+{
+  "phase": 1578,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8946,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dmrp05-s09",
+      "name": "ハイパー・ギガタック／ギガタック・ハイパー・トラップ",
+      "reason": "公式の両面全文を確認。呪文面でバトルゾーンの全カード（進化元・封印などを含む）を同時にマナへ移す挙動を完全に検証する必要があるため未登録。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp10-014",
+      "name": "青守銀 シルト/解体事変",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-014",
+      "faces": [
+        {
+          "name": "青守銀 シルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身の手札をそれぞれ１枚選び、裏向きのまま新しいシールドとしてシールドゾーンに加えてもよい。",
+          "race": "メタリカ",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "解体事変",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の手札を見て１枚選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "shields",
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "name": "解体事変",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "相手の手札を見て１枚選び、捨てさせる。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "InspectOne258"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-014a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0693bc4968a679b5c1905390c9da19a65a6ee4e94c2d598c5be987dc575b2f51",
+        "facesMatched": true,
+        "imageSha256": "077b32b6f3fbb5606db4aae1d0d9cea0627a82a7a79e1a0aa4393abefaaa6eb8",
+        "imageBytes": 131967
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-014",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-008",
+      "name": "ツイン“LES”ポール/「ミュージック・スタァァァト!!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-008",
+      "faces": [
+        {
+          "name": "ツイン“LES”ポール",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、相手のシールドを１つブレイクし、自分の他のクリーチャーを１体アンタップする。",
+          "race": "ビートジョッキー",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "「ミュージック・スタァァァト!!!」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "Break497",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "untap": true
+          }
+        ],
+        "spellFace": {
+          "name": "「ミュージック・スタァァァト!!!」",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "race": "",
+          "text": "相手と自分のクリーチャーを１体ずつ選び、バトルさせる。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "FightPair586",
+              "who": "both"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-008a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "d45b8e018ea70012c3b2cb7f4141f9c0c090f69dbc4435b8c6e16a6a0a92d387",
+        "facesMatched": true,
+        "imageSha256": "e4b0e81eb3d506570beb9b4b9a0f2561423411743162fd0e808dee8f569abcf5",
+        "imageBytes": 168448
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-008",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp06-003",
+      "name": "遣宮使 ネオンクス / ネオ・ブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-003",
+      "faces": [
+        {
+          "name": "遣宮使 ネオンクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは名前に《ブレイン》とある呪文を唱えた時、自分の山札の上から１枚目を墓地に置く。それが呪文なら、コストを支払わずに唱えてもよい。",
+          "race": "ムートピア/サイバー・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        },
+        {
+          "name": "ネオ・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillSpell1578"
+          }
+        ],
+        "g204SpellWatch": {
+          "who": "self",
+          "g1252NameIncludes": "ブレイン",
+          "defs": [
+            {
+              "op": "MillSpell1578"
+            }
+          ]
+        },
+        "spellFace": {
+          "name": "ネオ・ブレイン",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "S・トリガー S・トリガー\nカードを２枚引く。",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-003a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "aa7b750918565d40dedc2cc501f4ee06396557bbb606554ab16d34abaa11757d",
+        "facesMatched": true,
+        "imageSha256": "a905b94e6df886e957456f5e8af6b1eb80ab768522681eb9240fd9476eb341f3",
+        "imageBytes": 150951
+      },
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMRP-06 双極篇 拡張パック第２弾 逆襲のギャラクシー 卍・獄・殺!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-003",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23bd6-020",
+      "name": "第六戦街 ラヴ・ガトラー / 漆黒の裏六戦街",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-020",
+      "faces": [
+        {
+          "name": "第六戦街 ラヴ・ガトラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "ムートピア/サイバー・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "漆黒の裏六戦街",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "spellUntargetable": true,
+        "g40LastBurst": true,
+        "spellFace": {
+          "name": "漆黒の裏六戦街",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "race": "",
+          "text": "相手のクリーチャーをすべて、持ち主の手札に戻す。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "toOwnerHand": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-020a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "995be9f86ae2ee6487e55d5ab0bdef52742fd0815f78a9581d77ff0cd7665bdc",
+        "facesMatched": true,
+        "imageSha256": "fde334654fdb0de38f7fc9f6e1b66c4817fcccdc3b185f0616e50f7322ef2f10",
+        "imageBytes": 159818
+      },
+      "sameNameProducts": [
+        "DM23-BD6 エキサイティング・デュエパ・デッキ 「双極のアカシックZ計画」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-020",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp05-031",
+      "name": "鉄拳の構え 幻惚/テッケニア・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-031",
+      "faces": [
+        {
+          "name": "鉄拳の構え 幻惚",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーはバトルゾーンを離れない。",
+          "race": "メタリカ",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "テッケニア・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g413MoreCreatures": true
+          },
+          "grants": {
+            "g577Stay": {
+              "anyPower": true
+            }
+          }
+        },
+        "spellFace": {
+          "name": "テッケニア・スパーク",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "相手のクリーチャーを２体まで選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Tap": true,
+              "g210TapLock": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-031a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "e9b7d92719f5996b3651a5cc2a686331a2a23d4e121087badad9ca1a34cfa7f1",
+        "facesMatched": true,
+        "imageSha256": "8ec2de58f423564caaed538f03582e9d42d8d2c42f42a51b7f181630919b5385",
+        "imageBytes": 161589
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!",
+        "プロモ限定カード 17期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-031",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-014": 4,
+      "dmrp05-008": 4,
+      "dmrp06-003": 4,
+      "dm23bd6-020": 4,
+      "dmrp05-031": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}
