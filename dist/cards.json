@@ -278357,15 +278357,170 @@
       "g34Omega": true,
       "supportBatch": "phase-1551",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy17-033",
+      "name": "ワ・タンポ－ポ・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033",
+      "limit": 4,
+      "machFighter": true,
+      "destroyToMana": true,
+      "supportBatch": "phase-1552",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-030",
+      "name": "分析請負人 ディスカバリー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中からエグザイル・クリーチャーを１体相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "g1490Exile": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1552",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-s04",
+      "name": "黒神龍ブライゼナーガ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のシールドをすべて自分の手札に加える。(その「S・トリガー」を使ってもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s04",
+      "limit": 1,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": "all",
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "supportBatch": "phase-1552",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd08-017",
+      "name": "偽りの星夜 スター・イン・ザ・ラブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 13000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "このクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊してもよい。そうした場合、自分のシールドをすべて墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-017",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "他のクリーチャーをすべて破壊し、自分のシールドをすべて墓地へ置く？",
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "g179Other": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "ShieldGrave588",
+              "owner": "self",
+              "n": "all",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1552",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd27-016",
+      "name": "轟速 ザ・ゼット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、そのターンこのクリーチャーが攻撃していたら、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-016",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "SelfAttackedEnd1552"
+        }
+      ],
+      "supportBatch": "phase-1552",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1551,
+    "phase": 1552,
     "checkedAt": "2026-11-21",
-    "baseCount": 8826,
-    "newEffectCards": 4,
+    "baseCount": 8830,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8830,
+    "totalCount": 8835,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -303858,6 +304013,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 8826,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1551,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8826,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 8830,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

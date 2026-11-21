@@ -2860,6 +2860,7 @@ export function createSixPhotoRules(api){
  // QA40275: choosing to shield a hand card satisfies 'if you do' even if addition is prohibited.
  case'g34_ShieldExchange446':if(own.hand.length)choice(s,t,'シールドに置く手札を1枚選ぶ'+(t.optional?'（任意）':''),[...own.hand.map(y=>opt(card(y).name,y.uid,faces(card(y)).some(c=>c.trigger)?25:5,y.cardId)),...(t.optional?[skip()]:[])]);else if(!t.optional)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;
  case'g34_UseBlocker524':{const host=sourceHost474(s,t);if(host)(host.x.g34Grants??=[]).push({turn:s.turn,blocker:true});break;}
+ case'g34_SelfAttackedEnd1552':{const host=sourceHost474(s,t);if(host&&s.g481Attackers?.turn===s.turn){const refs=new Set(api.allLayers(host.x).map(y=>key(y)));if(s.g481Attackers.events.some(e=>e.p===t.p&&e.refs.some(ref=>refs.has(ref))))start(s,t,[{op:'SelfDestroy'}]);}break;}
  case'g34_IfNeo563':if(sourceNeo563(s,t)!==!!t.g1059Negate)start(s,t,t.defs);break;
  case'g34_IfSource541':{
   const host=sourceHost474(s,t);
@@ -4316,6 +4317,7 @@ export function createSixPhotoRules(api){
  case'g34_ShieldMove685':
  case'g34_ShieldGrave588':{
   const target=t.owner==='self'?own:opp,side=t.owner==='self'?'自分':'相手';
+  if(t.n==='all')t={...t,n:target.shields.length,required:true};
   const selected=t.selected||[],rows=target.shields.filter(y=>!selected.includes(y.uid)&&
    (t.optionalExact?api.shieldCards(y).every(x=>!x.g37ShieldHeld):api.shieldCards(y).some(x=>!x.g37ShieldHeld)));
   if(t.optionalExact&&selected.length+rows.length<t.n)break;

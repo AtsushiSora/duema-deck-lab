@@ -16497,5 +16497,175 @@
       "reviewedAt": "2026-11-21T01:59:07.678Z",
       "reason": "公式カード画像の下部にマナ5を印刷。ジョーのS-MAX進化デッキ用再録ではなくDMSP02の特別版の印刷値を保持し、HTML表の一般値1と区別。"
     }
+  },
+  "promoy17-033": {
+    "phase": 1552,
+    "faces": [
+      {
+        "name": "ワ・タンポ－ポ・タンク",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+        "race": "グランセクト",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "destroyToMana": true
+    }
+  },
+  "dmx14-030": {
+    "phase": 1552,
+    "faces": [
+      {
+        "name": "分析請負人 ディスカバリー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中からエグザイル・クリーチャーを１体相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。",
+        "race": "アウトレイジ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "g1490Exile": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ],
+          "rest": "bottom"
+        }
+      ]
+    }
+  },
+  "dm10-s04": {
+    "phase": 1552,
+    "faces": [
+      {
+        "name": "黒神龍ブライゼナーガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のシールドをすべて自分の手札に加える。(その「S・トリガー」を使ってもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ドラゴン・ゾンビ",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": "all",
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ]
+    }
+  },
+  "dmd08-017": {
+    "phase": 1552,
+    "faces": [
+      {
+        "name": "偽りの星夜 スター・イン・ザ・ラブ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊してもよい。そうした場合、自分のシールドをすべて墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "他のクリーチャーをすべて破壊し、自分のシールドをすべて墓地へ置く？",
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "g179Other": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "ShieldGrave588",
+              "owner": "self",
+              "n": "all",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmd27-016": {
+    "phase": 1552,
+    "faces": [
+      {
+        "name": "轟速 ザ・ゼット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、そのターンこのクリーチャーが攻撃していたら、破壊する。",
+        "race": "ソニック・コマンド/侵略者",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "SelfAttackedEnd1552"
+        }
+      ]
+    }
   }
 }

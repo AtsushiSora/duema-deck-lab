@@ -1,0 +1,375 @@
+{
+  "phase": 1552,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8830,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36694/",
+    "https://dm.takaratomy.co.jp/rule/qa/34395/",
+    "https://dm.takaratomy.co.jp/rule/qa/34250/",
+    "https://dm.takaratomy.co.jp/rule/qa/34251/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa_old/36694/": "シールド0でもスターインザラブの任意破壊を選べる。",
+    "https://dm.takaratomy.co.jp/rule/qa/34395/": "使用宣言したS・トリガーの召喚を終え、その後に出た時能力を順不同で解決する。",
+    "https://dm.takaratomy.co.jp/rule/qa/34250/": "パンサーベアがいる召喚済みターンはトリガー宣言・実行不可。",
+    "https://dm.takaratomy.co.jp/rule/qa/34251/": "非召喚で出したターンは最初は宣言可、実行ごとに現在の禁止を再判定。"
+  },
+  "implementationNotes": [
+    "ブライゼナーガはDMART20-005の最新の全シールドをブレイクする表記を使用。DM10-s04の保存IDと元画像・全文を維持し、再録を1種類に数えない。",
+    "スターインザラブは破壊を試みれば置換されても自分のシールドを全て墓地へ。0盾でも選択可能。",
+    "ザゼットは現ターンの実際の攻撃履歴と物理カードのincarnationを使い、別個体・前ターンを参照しない。"
+  ],
+  "cards": [
+    {
+      "id": "promoy17-033",
+      "name": "ワ・タンポ－ポ・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033",
+      "faces": [
+        {
+          "name": "ワ・タンポ－ポ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "destroyToMana": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "39a920f94f617d8a5aef6fc2f17da00a926a32e42dea65741e2299230c0e6254",
+        "facesMatched": true,
+        "imageSha256": "9fee01ff3762e2fd91afde93aa945cdec983c8161253327882177ac6729b20bf",
+        "imageBytes": 36770
+      },
+      "sameNameProducts": [
+        "コロコロ・スペシャル デッキ5",
+        "プロモ限定カード 17期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmx14-030",
+      "name": "分析請負人 ディスカバリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-030",
+      "faces": [
+        {
+          "name": "分析請負人 ディスカバリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中からエグザイル・クリーチャーを１体相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に戻す。",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "g1490Exile": true
+                },
+                "optional": true,
+                "reveal": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "6b4af3a5462576d5cf915f4ed69a1b01405b0b4e0f825b1b5cc2c83072b94142",
+        "facesMatched": true,
+        "imageSha256": "5b6ea3b20edb163fe927aa4b27caee769f11c7cbc1591ca858d1ff26bbf9d98c",
+        "imageBytes": 105989
+      },
+      "sameNameProducts": [
+        "DMX-14 最強戦略 パーフェクト12",
+        "プロモ限定カード 12期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-030",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm10-s04",
+      "name": "黒神龍ブライゼナーガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s04",
+      "faces": [
+        {
+          "name": "黒神龍ブライゼナーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のシールドをすべて自分の手札に加える。(その「S・トリガー」を使ってもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": "all",
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmart20-005",
+        "name": "黒神龍ブライゼナーガ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart20-005",
+        "faces": [
+          {
+            "name": "黒神龍ブライゼナーガ",
+            "typeText": "クリーチャー",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ],
+            "cost": 6,
+            "costText": "6",
+            "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、このクリーチャーは自分のシールドをすべてブレイクする。",
+            "race": "ドラゴン・ゾンビ",
+            "powerText": "9000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart20-005.jpg",
+        "sha256": "672b136797cb96b235d85739bce65a42fd208f703dd7861670f89c1a9b57f351",
+        "verification": {
+          "checkedAt": "2026-11-21",
+          "sha256": "240d3b5fdec2f53e42aa84b297ca3347a18ecfb7246b466b2cb37c85008ff137",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "fb4e63bacb1891e71dae2696d2df4a21cc0444e60f792b0a2726e309f78f00c1",
+        "facesMatched": true,
+        "imageSha256": "93c83670ea0113cc0adebc681a63d9216fdc06c5c72e7ecd49119c941279a41a",
+        "imageBytes": 112891
+      },
+      "sameNameProducts": [
+        "DMEX-01 ゴールデン・ベスト",
+        "DMX-19 スーパーレア100%パック",
+        "DMC-55 コロコロ・レジェンド・７",
+        "DM-10 聖拳編(エターナル・アームズ)",
+        "DMART-20 神アート DUELMASTERS「AMAZING COMICS」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s04",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd08-017",
+      "name": "偽りの星夜 スター・イン・ザ・ラブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-017",
+      "faces": [
+        {
+          "name": "偽りの星夜 スター・イン・ザ・ラブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊してもよい。そうした場合、自分のシールドをすべて墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "他のクリーチャーをすべて破壊し、自分のシールドをすべて墓地へ置く？",
+            "defs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "g179Other": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "op": "ShieldGrave588",
+                "owner": "self",
+                "n": "all",
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd08-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "9dccf0ae07df2fd8d4c7e3fbc78aa974597433ada96e44c21054c62c60d812c7",
+        "facesMatched": true,
+        "imageSha256": "fd399345da016ae24d589656608e5c9e488efd600f29910d405f834f888b9e8e",
+        "imageBytes": 162205
+      },
+      "sameNameProducts": [
+        "DMEX-03 ペリッ!! スペシャルだらけのミステリーパック",
+        "DMD-08 変形デッキセット DX鬼エンジェル"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-017",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmd27-016",
+      "name": "轟速 ザ・ゼット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-016",
+      "faces": [
+        {
+          "name": "轟速 ザ・ゼット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、そのターンこのクリーチャーが攻撃していたら、破壊する。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "SelfAttackedEnd1552"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "dd1b1326d942f586f67cd4f51e59730b1e454e7dec93153ab6b12046ad833e7b",
+        "facesMatched": true,
+        "imageSha256": "c4095d5e2130bb56fcd164d976b54df4599b7039602cea1520e4966a664660e0",
+        "imageBytes": 133985
+      },
+      "sameNameProducts": [
+        "DMD-27 カスタム変形デッキ 革命VS侵略 爆熱の火文明",
+        "プロモ限定カード 15期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-016",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy17-033": 4,
+      "dmx14-030": 4,
+      "dm10-s04": 1,
+      "dmd08-017": 4,
+      "dmd27-016": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36694/",
+    "https://dm.takaratomy.co.jp/rule/qa/34395/",
+    "https://dm.takaratomy.co.jp/rule/qa/34250/",
+    "https://dm.takaratomy.co.jp/rule/qa/34251/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36694/",
+      "sha256": "7573a7677942dfd8ee66002099a6ac8c0e022b3cd07a0f96cf356c7e00b6d606",
+      "result": "シールド0でもスターインザラブの任意破壊を選べる。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34395/",
+      "sha256": "770080dcf4a44f579a00799d960cb443cb02701fbf3ba073c8c6c7d3fd58d181",
+      "result": "使用宣言したS・トリガーの召喚を終え、その後に出た時能力を順不同で解決する。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34250/",
+      "sha256": "bedff96a93d477f5fc53b268fd41ff5c528c960fbc0b60eec0fe80ac35f39d8a",
+      "result": "パンサーベアがいる召喚済みターンはトリガー宣言・実行不可。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34251/",
+      "sha256": "d4d8dea269e1d31cba424374c8c35dd651ffb2d7a0cba24a1255ea30c7b50ad2",
+      "result": "非召喚で出したターンは最初は宣言可、実行ごとに現在の禁止を再判定。"
+    }
+  ]
+}
