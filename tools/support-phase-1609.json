@@ -1,0 +1,350 @@
+{
+  "phase": 1609,
+  "checkedAt": "2026-11-21",
+  "baseCount": 9058,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "target": 9500,
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingNotes": {
+    "https://dm.takaratomy.co.jp/rule/qa/33716/": "使用する片面だけの能力を処理する。"
+  },
+  "cards": [
+    {
+      "id": "dmex04-067",
+      "name": "凶鬼12号 ジャーゴン/邪魂創世",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-067",
+      "faces": [
+        {
+          "name": "凶鬼12号 ジャーゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "邪魂創世",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        },
+        "spellFace": {
+          "name": "邪魂創世",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "race": "",
+          "text": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "SacrificeAlly413",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-067a.jpg",
+        "sha256": "8f8144b9c80fc51e34831fc8c8ccc5b72636d9f01bf47b486c155b37d73a6f94",
+        "reviewedAt": "2026-11-21T09:33:00.211Z",
+        "reason": "元版の公式画像の呪文面の闇文明を照合し、HTMLで空欄の文明だけ補完。",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-067a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "4e359ed54c5b10b15f709417134c79c541adc93bbf22a436a6a08bda14232682",
+        "facesMatched": true,
+        "imageSha256": "8f8144b9c80fc51e34831fc8c8ccc5b72636d9f01bf47b486c155b37d73a6f94",
+        "imageBytes": 166336
+      },
+      "sameNameProducts": [
+        "DMEX-04 夢の最＆強!!ツインパクト超No.1パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-067",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp10-007",
+      "name": "スキマ・デ・ミール / こちらにイラッシャ～イ…!!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-007",
+      "faces": [
+        {
+          "name": "スキマ・デ・ミール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。\n相手のターンの終わりに、そのターン、クリーチャーが１体も攻撃していなければ、相手は自身の手札を１枚選んで捨てる。",
+          "race": "マフィ・ギャング/スペシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "こちらにイラッシャ～イ…!!",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "GR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g565NoAttacks": true
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "こちらにイラッシャ～イ…!!",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "race": "",
+          "text": "GR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "GrSummon1498"
+            },
+            {
+              "op": "GrSummon1498"
+            },
+            {
+              "op": "GrSummon1498"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "23ad75c505c16431f535805a37317771e523d2c18e3cb1e019b47e9949eb7393",
+        "facesMatched": true,
+        "imageSha256": "a61ad2179fe1c2464594c2a5e0f952b6ff0e57ade26593612846fdfcc09b2fa4",
+        "imageBytes": 134215
+      },
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-007",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm23ex3-004",
+      "name": "水晶の祈り / クリスタル・ドゥーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-004",
+      "faces": [
+        {
+          "name": "水晶の祈り",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "プレイヤーを１人選ぶ。そのプレイヤーはカードを３枚引き、その後、自身の手札を２枚選んで捨てる。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        },
+        {
+          "name": "クリスタル・ドゥーム",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "カードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+          "race": "ゼニス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PrayerPlayer1609"
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "spellFace": {
+          "name": "クリスタル・ドゥーム",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 11,
+          "race": "ゼニス",
+          "text": "カードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": "all",
+              "deploy": true,
+              "execution": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "raceAny": [
+                  "アンノウン",
+                  "ゼニス"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-004a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "b62517ca7f3c646c77062b052b576c9cc18b3f68f95095503a58d6cec39ba5ba",
+        "facesMatched": true,
+        "imageSha256": "9c0c2e67db8b677ef0fb28237c1a0c560945fc00b57b0c21060d80efd798a641",
+        "imageBytes": 144110
+      },
+      "sameNameProducts": [
+        "DM24-EX4 にじさんじコラボ・マスターズ「異次元の超獣使い」",
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-004",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex04-067": 4,
+      "dmrp10-007": 4,
+      "dm23ex3-004": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "sha256": "0e3296031e1dfb8ceec8afade9c5962b09b58597abcfa218c51dc2bac129a205",
+      "result": "使用する片面だけの能力を処理する。"
+    }
+  ]
+}

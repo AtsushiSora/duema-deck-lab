@@ -3851,6 +3851,10 @@ export function createSixPhotoRules(api){
   else throw Error('未対応のクリーチャー数効果');
   break;
  }
+ case'g34_PrayerPlayer1609':
+  choice(s,t,'カードを3枚引き、手札を2枚捨てるプレイヤーを選ぶ',[
+   opt('自分',t.p,10),opt('相手',1-t.p,0)
+  ]);break;
  case'g34_Oboro1608':{
   const left=t.left??manaCivilizationCount(s,t.p),drawn=t.drawn??[];
   if(left>0)choice(s,{...t,left,drawn},'カードをあと'+left+'枚まで引けます。1枚引く？',[opt('1枚引く',true,own.deck.length>1?10:-100),skip()]);
@@ -7896,6 +7900,9 @@ export function createSixPhotoRules(api){
    api.untap(s,t.p,x);
   }
  }break;
+ case'g34_PrayerPlayer1609':
+  put(s,task('g34_Sequence',v,t.source,{controller:t.controller??t.p,defs:[{op:'Draw',n:3},{op:'Discard',owner:'self',n:2}]}));
+  break;
  case'g34_Oboro1608':
   put(s,{...t,left:v?t.left-1:0});
   if(v)api.draw(s,t.p,1,{drawn:t.drawn});

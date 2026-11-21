@@ -27692,5 +27692,236 @@
     "spec": {
       "g1608GraveReturnDiscard": true
     }
+  },
+  "dmex04-067": {
+    "phase": 1609,
+    "faces": [
+      {
+        "name": "凶鬼12号 ジャーゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。",
+        "race": "マフィ・ギャング",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "邪魂創世",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "邪魂創世",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmrp10-007": {
+    "phase": 1609,
+    "faces": [
+      {
+        "name": "スキマ・デ・ミール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。\n相手のターンの終わりに、そのターン、クリーチャーが１体も攻撃していなければ、相手は自身の手札を１枚選んで捨てる。",
+        "race": "マフィ・ギャング/スペシャルズ",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "こちらにイラッシャ～イ…!!",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "GR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g565NoAttacks": true
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "こちらにイラッシャ～イ…!!",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "GR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498"
+          },
+          {
+            "op": "GrSummon1498"
+          },
+          {
+            "op": "GrSummon1498"
+          }
+        ]
+      }
+    }
+  },
+  "dm23ex3-004": {
+    "phase": 1609,
+    "faces": [
+      {
+        "name": "水晶の祈り",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "プレイヤーを１人選ぶ。そのプレイヤーはカードを３枚引き、その後、自身の手札を２枚選んで捨てる。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      },
+      {
+        "name": "クリスタル・ドゥーム",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "カードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+        "race": "ゼニス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PrayerPlayer1609"
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "spellFace": {
+        "name": "クリスタル・ドゥーム",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 11,
+        "race": "ゼニス",
+        "text": "カードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": "all",
+            "deploy": true,
+            "execution": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "アンノウン",
+                "ゼニス"
+              ]
+            }
+          }
+        ]
+      }
+    }
   }
 }

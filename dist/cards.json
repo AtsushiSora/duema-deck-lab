@@ -287772,15 +287772,195 @@
       "g1608GraveReturnDiscard": true,
       "supportBatch": "phase-1608",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-067",
+      "name": "凶鬼12号 ジャーゴン/邪魂創世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "マフィ・ギャング",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\n【呪文面】\n自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-067",
+      "limit": 4,
+      "blocker": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "邪魂創世",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "自分のクリーチャーを１体破壊してもよい。そうしたら、カードを３枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1609",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-007",
+      "name": "スキマ・デ・ミール / こちらにイラッシャ～イ…!!",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング/スペシャルズ",
+      "text": "自分のクリーチャーすべてに「スレイヤー」を与える。\n相手のターンの終わりに、そのターン、クリーチャーが１体も攻撃していなければ、相手は自身の手札を１枚選んで捨てる。\n【呪文面】\nGR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-007",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g565NoAttacks": true
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "こちらにイラッシャ～イ…!!",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "race": "",
+        "text": "GR召喚を３回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498"
+          },
+          {
+            "op": "GrSummon1498"
+          },
+          {
+            "op": "GrSummon1498"
+          }
+        ]
+      },
+      "supportBatch": "phase-1609",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-004",
+      "name": "水晶の祈り / クリスタル・ドゥーム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "プレイヤーを１人選ぶ。そのプレイヤーはカードを３枚引き、その後、自身の手札を２枚選んで捨てる。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。\n【呪文面】\nカードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PrayerPlayer1609"
+        },
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "spellFace": {
+        "name": "クリスタル・ドゥーム",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 11,
+        "race": "ゼニス",
+        "text": "カードを３枚引く。\n自分の手札からアンノウン・クリーチャーまたはゼニス・クリーチャーを好きな数、コストを支払わずに召喚する。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": "all",
+            "deploy": true,
+            "execution": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "アンノウン",
+                "ゼニス"
+              ]
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1609",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1608,
+    "phase": 1609,
     "checkedAt": "2026-11-21",
-    "baseCount": 9055,
+    "baseCount": 9058,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9058,
+    "totalCount": 9061,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -314071,6 +314251,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9055,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1608,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9055,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9058,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
