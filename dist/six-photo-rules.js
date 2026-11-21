@@ -9329,6 +9329,7 @@ export function createSixPhotoRules(api){
  }
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
  if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if((c.g320Jave||c.g1318Smash)&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);
+ if(!api.selfStopped(s,p))for(const defs of c.g1547ExtraAttacks||[])queue(s,p,x,defs);
  if(c.g34Attack&&!api.selfStopped(s,p)){
   // Attack trigger conditions are checked before any attack effects resolve (QA 42519).
   const defs=c.g34Attack.filter(d=>

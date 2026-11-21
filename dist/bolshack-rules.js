@@ -17,7 +17,14 @@ export function createBolshackRules(api){
  function beginCast(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]);put(s,task('g29_Bases',p,x.cardId,{mode:'cast',uid:x.uid,selected:args[2]?[args[2]]:[],args}));}
  function restoreHeld(s,t){const own=s.players[t.p],x=remove(own.g29Holding||[],t.uid);if(x){const z=x.g29Origin||'hand';delete x.g29Origin;own[z].push(x);}}
  function canSequence(s,p,list){const ids=new Set(list.map(x=>x.uid));let virtual={...s,players:s.players.map((x,i)=>i===p?{...x,battle:[...x.battle],grave:x.grave.filter(x=>!ids.has(x.uid))}:x)},left=[...list];for(let n=0;left.length&&n<list.length;n++){const i=left.findIndex(x=>canPut(virtual,p,x,'grave'));if(i<0)return false;const[x]=left.splice(i,1),c=card(x);if(c.graveEvolution)virtual.players[p].grave.shift();else if(c.evolution){const base=api.evolutionBases(virtual,p,c);let chosen=[];if(c.ultraEvolution){let total=0;for(const b of base){chosen.push(b.uid);total+=cost(effective(b,virtual));if(total>=20)break;}}else chosen=[base[0].uid];virtual.players[p].battle=virtual.players[p].battle.filter(y=>!chosen.includes(y.uid));}const own=virtual.players[p];own.battle.push(x);if(api.isCreature(virtual,x))own.enteredThisTurn=(own.enteredThisTurn||0)+1;}return !left.length;}
+ function neoBadRows1547(s,p,x){
+  if(!x||!card(x).neoEvolution||!api.canCast(s,p,card(x),'hand')||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return [];
+  const c={...card(x),cost:Math.max(1,cost(card(x))-card(x).bad),executionUid:x.uid};
+  return [null,...api.evolutionBases(s,p,card(x))].filter(base=>api.canPay(s,p,{...c,g27BaseUid:base?.uid??null}));
+ }
  function run(s,t){if(!t.op.startsWith('g29_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g29_NeoBad1547':{const x=own.hand.find(y=>y.uid===t.uid);if(x)choice(s,t,'B・A・DでのNEO進化の方法を選ぶ',[
+  ...neoBadRows1547(s,t.p,x).map(base=>opt(base?card(base).name+'の上に進化':'進化させずに召喚',base?.uid??null,20,base?.cardId)),opt('召喚をやめる',false,-1000)]);break;}
  case'g29_Bases':{const list=api.ultraBases(s,t.p,card(t.source)),selected=list.filter(x=>t.selected.includes(x.uid)),total=selected.reduce((n,x)=>n+cost(effective(x,s)),0),valid=selected.length===t.selected.length&&total>=20,payable=t.mode==='put'||t.args[1]||api.canPay(s,t.p,{...card(t.source),summonOrigin:t.args[5]});if(!valid&&!list.some(x=>!t.selected.includes(x.uid))){if(t.mode==='put')restoreHeld(s,t);break;}choice(s,t,'超無限進化：進化元のコスト合計 '+total+'/20',[...list.filter(x=>!t.selected.includes(x.uid)).map(x=>opt(card(x).name+'（コスト'+cost(effective(x,s))+'）',x.uid,10+cost(card(x)),x.cardId)),...(valid&&payable?[opt('この進化元で出す',false,100,t.source)]:[]),...(t.selected.length?[opt('進化元を選び直す','reset',-100)]:[]),...(t.mode==='cast'&&!t.args[1]?[opt('召喚をやめる',null,-100)]:[])]);break;}
  case'g29_BaroOffer':{const x=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&canPut(s,t.p,x,'hand'))choice(s,t,'バロXGXディアスを手札から出す？',[opt('超無限進化で出す',true,60,x.cardId),skip()]);break;}
  case'g29_Destroy':choice(s,t,'破壊する相手クリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
@@ -52,6 +59,9 @@ export function createBolshackRules(api){
  default:throw Error('未実装の画像デッキ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g29_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g29_NeoBad1547':{const x=own.hand.find(y=>y.uid===t.uid);if(v!==false&&neoBadRows1547(s,t.p,x).some(base=>(base?.uid??null)===v)){
+  cast(s,t.p,x.uid,false,v,0,{cost:Math.max(1,cost(card(x))-card(x).bad)});delay(s,t.p,x,'destroy',x.cardId);
+ }break;}
  case'g29_Bases':if(v==='reset')put(s,{...t,selected:[]});else if(v){put(s,{...t,selected:[...t.selected,v]});}else if(v===false){if(t.mode==='cast'){const args=[...t.args];args[2]=t.selected;cast(s,t.p,...args);}else{const x=remove(own.g29Holding,t.uid);if(x){delete x.g29Origin;enter(s,t.p,x,t.selected,t.options);}}}break;
  case'g29_BaroOffer':if(v)put(s,{...t,op:'g29_Deploy',origin:'hand'});break;
  case'g29_Destroy':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
@@ -80,7 +90,7 @@ export function createBolshackRules(api){
  snapshot(s,rows){return rows.filter(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return x&&effective(x,s).g29Arc;}).map(x=>x.uid);},
  leaving(s,p,x,snapshot){if(snapshot?.includes(x.uid))on(s,p,x,'g29_ArcLeave');},
  mainActions(s,p){return s.players[p].hand.filter(x=>(card(x).bad===3||card(x).g175Bad)&&!creatures(s,1-p).some(x=>effective(x,s).noCostReduction)&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})&&api.canPay(s,p,{...card(x),cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,alternative:'bad',cost:api.summonCost(s,p,{...card(x),cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))}),label:card(x).name+'をB・A・D '+card(x).bad+'で召喚（終了時に破壊）'}));},
- alternative(s,p,a){const x=s.players[p].hand.find(x=>x.uid===a.uid);cast(s,p,a.uid,false,null,0,{cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))});delay(s,p,x,'destroy',x.cardId);},
+ alternative(s,p,a){const x=s.players[p].hand.find(x=>x.uid===a.uid);if(card(x).neoEvolution){put(s,task('g29_NeoBad1547',p,x.cardId,{uid:x.uid}));return;}cast(s,p,a.uid,false,null,0,{cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))});delay(s,p,x,'destroy',x.cardId);},
  end(s){const list=(s.g29Delays||[]).filter(x=>x.turn===s.turn);s.g29Delays=(s.g29Delays||[]).filter(x=>x.turn!==s.turn);return list.map(t=>({player:t.p,uid:t.uid,source:t.source,effect:'extended',task:{...t,op:'g29_EndMove'}}));},
  expire(s,when){if(when==='end')s.g29Grants=(s.g29Grants||[]).filter(x=>x.turn!==s.turn);}
  };

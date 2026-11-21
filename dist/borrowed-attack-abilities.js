@@ -86,6 +86,7 @@ export function borrowedAttackAbilities(s,p,x,reference,api){
   if(role==='dogiHyper'&&x.hyperActive)sequence(line(/多色/),[]);
  }
  if(c.g34Attack)sequence(line(/攻撃/),c.g34Attack);
+ for(const defs of c.g1547ExtraAttacks||[])sequence(line(/攻撃/),defs);
  if(c.g691AttackCreature)sequence(line(/クリーチャーを攻撃/),c.g691AttackCreature);
  if(c.g540FirstAttack)sequence(line(/はじめて攻撃/),c.g540FirstAttack);
  if(c.g781ReleaseAll)sequence(line(/ハイパー/),[{op:'ReleaseAllHyper781'}]);

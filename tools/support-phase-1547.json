@@ -1,0 +1,419 @@
+{
+  "phase": 1547,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8809,
+  "description": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "extraRulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "implementationNotes": [
+    "デメタイの攻撃終了時の自己バウンスとキズナプラスは別々の攻撃時誘発として待機し、どちらから解決するかを選べる。攻撃時能力の借用にも同じ2能力を列挙。",
+    "ブルーナはP解決時にターン終了時の選択を予約し、終了時の自分のクリーチャーから好きな数を選んで、それぞれ独立にタップまたはアンタップする。",
+    "セビーチェンの手札6枚条件は継続的に再計算。ギアスターのPによる破壊防止はB・A・Dの終了時破壊にも適用。"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-008",
+      "name": "“烈怒”ギアスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-008",
+      "faces": [
+        {
+          "name": "“烈怒”ギアスター",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "B・A・D ２ （このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nNEO進化：自分の火のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 次の自分のターンのはじめまで、このクリーチャーは破壊されない。",
+          "race": "ビートジョッキー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "bad": 2,
+        "breaker": 2,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "SelfGrant754",
+            "g521UntilStart": true,
+            "grant": {
+              "g465DestroySafe": true
+            }
+          }
+        ],
+        "g175Bad": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "41797c392b33507c849aa79e5c2e29e1e22560efbc7d848e752ea494feaa5ad9",
+        "facesMatched": true,
+        "imageSha256": "6d3f3c513091fb619321fa1f957c2d74d4766a28c67f8c6f4f1367ca41102b2c",
+        "imageBytes": 130971
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-008",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-029",
+      "name": "奇石 ブルーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-029",
+      "faces": [
+        {
+          "name": "奇石 ブルーナ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）Pこのターンの終わりに、自分のクリーチャーを好きな数、タップまたはアンタップする。",
+          "race": "メタリカ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "battle",
+                "n": "all",
+                "optional": true,
+                "g173Targets": true,
+                "g193Select": true,
+                "g187OwnPick": true,
+                "g763TapOrUntap": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "8e10488623b793816cb40fb7466fed7715f48966c46c9bdcc0e83147c811b2db",
+        "facesMatched": true,
+        "imageSha256": "cfb102f6361db29ddd94dd3133079e05c019f8c44d784ebdc7349c7bfb5fefbd",
+        "imageBytes": 110572
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-029",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-015",
+      "name": "鬼動兵 デメタイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-015",
+      "faces": [
+        {
+          "name": "鬼動兵 デメタイ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、攻撃の後、自分の手札に戻す。\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP このターン、自分のクリーチャーはブロックされない。",
+          "race": "ムートピア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1547ExtraAttacks": [
+          [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfHand299"
+                }
+              ]
+            }
+          ]
+        ],
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "95239d64aa69ae70a4f9ad20e50a383cabdb181099340af22505630ea8277b6e",
+        "facesMatched": true,
+        "imageSha256": "fc6aeb33a29708fc3939ea363f50bf7209dd01b376ab4f8fb7db608b03c197f6",
+        "imageBytes": 135752
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-015",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp04s-040",
+      "name": "凶鬼23号 アラクレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-040",
+      "faces": [
+        {
+          "name": "凶鬼23号 アラクレ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）P自分の山札の上から３枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "312aa98312efe77d48cbfa5e3c28d1ba5c51a9863f9eedfbcde8a64c8c53967f",
+        "facesMatched": true,
+        "imageSha256": "67e554f3a81d6f4174b74cad50bfa42eb8979ee44352feb6cbe177854373b00c",
+        "imageBytes": 132481
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスタードラゴン！！～正義ノ裁キ～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-040",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dmrp03-s02",
+      "name": "甲殻鬼動隊 セビーチェン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s02",
+      "faces": [
+        {
+          "name": "甲殻鬼動隊 セビーチェン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\n自分の手札が６枚以上あれば、このクリーチャーのパワーを+2000し、「W・ブレイカー」を与える。\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP カードを２枚引くか、相手のクリーチャーを１体選んで持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 6
+            }
+          },
+          "grants": {
+            "power": 2000,
+            "breaker": 2
+          }
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "KizunaPlus1544"
+          }
+        ],
+        "g1540P": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "カードを2枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手クリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand",
+                    "toOwnerHand": true,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "0107bc61f59d53e87ff19737ffd9ff829c466cb2129983623fbe19d066fb0249",
+        "facesMatched": true,
+        "imageSha256": "03c955e19799b69b9c29220b0fcc6cd44707246ecfda561c0138832fd683d474",
+        "imageBytes": 173703
+      },
+      "sameNameProducts": [
+        "DMRP-03 拡張パック新3弾 気分Ｊ･O･E×２メラ冒険！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s02",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-008": 4,
+      "dmrp04s-029": 4,
+      "dmrp03-015": 4,
+      "dmrp04s-040": 4,
+      "dmrp03-s02": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/",
+    "https://dm.takaratomy.co.jp/rule/qa/31596/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31596/",
+      "sha256": "f93027f8bffda2b665ffc5dcfeeeb964502075a30aee7dc8354a0942666aa142",
+      "result": "関連する公式裁定の本文を取得して照合。"
+    }
+  ]
+}
