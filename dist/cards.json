@@ -286228,15 +286228,153 @@
       ],
       "supportBatch": "phase-1593",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc65-003",
+      "name": "ショーブ・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 このクリーチャーを破壊し、コスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-003",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "color": "火"
+          }
+        }
+      ],
+      "supportBatch": "phase-1594",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-s02",
+      "name": "悪魔神グレイトフル・デッド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "デーモン・コマンド",
+      "text": "進化-自分の「コマンド」と種族にあるクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、クリーチャーを好きな数、自分の墓地から手札に戻してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンを離れた時、コスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-s02",
+      "limit": 4,
+      "evolution": {
+        "race": "コマンド"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7
+          },
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1594",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-005",
+      "name": "悪魔神ザビ・イプシロン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "デーモン・コマンド/エイリアン",
+      "text": "進化ー自分の水または火のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、コスト７以下の水、闇、火いずれかのサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-005",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1594",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1593,
+    "phase": 1594,
     "checkedAt": "2026-11-21",
-    "baseCount": 9012,
-    "newEffectCards": 4,
+    "baseCount": 9016,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9016,
+    "totalCount": 9019,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -312317,6 +312455,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9012,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1593,
+        "checkedAt": "2026-11-21",
+        "baseCount": 9012,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9016,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

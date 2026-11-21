@@ -25906,5 +25906,152 @@
         }
       ]
     }
+  },
+  "dmc65-003": {
+    "phase": 1594,
+    "faces": [
+      {
+        "name": "ショーブ・アイニー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 このクリーチャーを破壊し、コスト７以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。",
+        "race": "ファイアー・バード",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "color": "火"
+          }
+        }
+      ]
+    }
+  },
+  "dm39-s02": {
+    "phase": 1594,
+    "faces": [
+      {
+        "name": "悪魔神グレイトフル・デッド",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "進化-自分の「コマンド」と種族にあるクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、クリーチャーを好きな数、自分の墓地から手札に戻してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンを離れた時、コスト７以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。",
+        "race": "デーモン・コマンド",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "コマンド"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7
+          },
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dmr01-005": {
+    "phase": 1594,
+    "faces": [
+      {
+        "name": "悪魔神ザビ・イプシロン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化ー自分の水または火のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、コスト７以下の水、闇、火いずれかのサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド/エイリアン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ]
+    }
   }
 }
