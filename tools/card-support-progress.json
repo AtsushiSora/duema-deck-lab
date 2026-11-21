@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 8804,
-  "pendingNames": 3020,
-  "phase": 1545,
+  "supportedNames": 8809,
+  "pendingNames": 3015,
+  "phase": 1546,
   "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -157,7 +157,7 @@
     "クリーチャー": 1737,
     "呪文": 364,
     "GRクリーチャー": 19,
-    "NEOクリーチャー": 54,
+    "NEOクリーチャー": 49,
     "G-NEOクリーチャー": 26,
     "タマシード": 37,
     "デュエルメイト呪文": 8,
@@ -223,7 +223,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 687,
-    "未対応の能力文": 2177,
+    "未対応の能力文": 2172,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -513991,11 +513991,125 @@
         "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
       ],
       "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
+    },
+    {
+      "phase": 1546,
+      "kind": "registration-toward-9000",
+      "checkedAt": "2026-11-21T01:27:03.159Z",
+      "baseline": "4f116e149f4600f9b4b522070f7be0ad28eaa3f6",
+      "manifest": "tools/support-phase-1546.json",
+      "status": "verified-local",
+      "before": 8804,
+      "supported": 8809,
+      "pending": 3015,
+      "added": [
+        {
+          "id": "dmrp04s-022",
+          "name": "バクソウ戦車 ラッシュ"
+        },
+        {
+          "id": "dmrp03-012",
+          "name": "音攻銀 バッラード"
+        },
+        {
+          "id": "promoy16-049",
+          "name": "音石 トルコイ"
+        },
+        {
+          "id": "dmrp04s-035",
+          "name": "貝獣 マジュガイ"
+        },
+        {
+          "id": "dmrp03-002",
+          "name": "記憶の紡ぎ 重音"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1546-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.55,
+          "log": "tmp/duema-phase-1546/focused.log",
+          "passed": 88,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1545-effects.test.mjs",
+            "tests/standard1544-effects.test.mjs",
+            "tests/standard1543-effects.test.mjs",
+            "tests/standard210-effects.test.mjs",
+            "tests/standard190-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 37.916,
+          "log": "tmp/duema-phase-1546/related.log",
+          "passed": 159,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.213,
+          "log": "tmp/duema-phase-1546/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.727,
+          "log": "tmp/duema-phase-1546/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target9000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.323,
+          "log": "tmp/duema-phase-1546/invariants.log"
+        }
+      },
+      "totalTestsPassed": 247,
+      "reason": "既存の処理を用いて全能力を個別に検証し5種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標9000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1545,
-    "nextPhase": 1546,
+    "lastVerifiedPhase": 1546,
+    "nextPhase": 1547,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -514004,7 +514118,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ8804種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8809種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -514085,14 +514199,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ8804種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ8809種類・重複0。新目標9000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "再開時は既存プロセス・最新コミット・作業ツリーを確認し、tools/verify-target8500.mjsとtools/target8500-verification.jsonを参照。ユーザー保留項目は既存記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8804種類、残り196種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標9000種類に向けて通常登録を再開。現在8809種類、残り191種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -514204,10 +514318,10 @@
     "registrationTarget": {
       "target": 9000,
       "startCount": 8500,
-      "currentCount": 8804,
-      "remaining": 196,
+      "currentCount": 8809,
+      "remaining": 191,
       "status": "active",
-      "phase": 1545
+      "phase": 1546
     },
     "deferredRegistrationCandidates": [
       {
@@ -566210,10 +566324,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1545,
+    "phase": 1546,
     "threshold": 9000,
-    "supportedNames": 8804,
-    "pendingNames": 3020,
+    "supportedNames": 8809,
+    "pendingNames": 3015,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",

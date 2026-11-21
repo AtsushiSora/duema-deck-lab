@@ -15342,5 +15342,230 @@
         }
       ]
     }
+  },
+  "dmrp04s-022": {
+    "phase": 1546,
+    "faces": [
+      {
+        "name": "バクソウ戦車 ラッシュ",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）Pこのターン、自分のクリーチャー１体はシールドをさらに１つブレイクする。",
+        "race": "ビートジョッキー",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1438ExtraBreak": 1,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp03-012": {
+    "phase": 1546,
+    "faces": [
+      {
+        "name": "音攻銀 バッラード",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP 自分の山札の上から４枚を見る。その中から呪文を１枚選び、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+        "race": "メタリカ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Look",
+          "n": 4,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "spell": true
+              },
+              "reveal": true
+            }
+          ],
+          "rest": "bottom"
+        }
+      ]
+    }
+  },
+  "promoy16-049": {
+    "phase": 1546,
+    "faces": [
+      {
+        "name": "音石 トルコイ",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oB 能力を使う）\noB 相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+        "race": "メタリカ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-035": {
+    "phase": 1546,
+    "faces": [
+      {
+        "name": "貝獣 マジュガイ",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体のP 能力を使う）P相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+        "race": "ムートピア",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Target",
+          "g190Freeze": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp03-002": {
+    "phase": 1546,
+    "faces": [
+      {
+        "name": "記憶の紡ぎ 重音",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nキズナプラス（このクリーチャーが攻撃する時、その下にあるカードを１枚、自分の墓地に置いてもよい。そうしたら、このクリーチャーと自分の他のクリーチャー１体の oP 能力を使う）\noP カードを１枚引く。その後、コスト５以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+        "race": "ドラゴンギルド/メタリカ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "KizunaPlus1544"
+        }
+      ],
+      "g1540P": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "max": 5,
+          "spellOnly": true
+        }
+      ]
+    }
   }
 }
