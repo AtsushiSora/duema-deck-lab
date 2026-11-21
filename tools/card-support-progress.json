@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-21",
   "catalogueNames": 11824,
-  "supportedNames": 9022,
-  "pendingNames": 2802,
-  "phase": 1595,
+  "supportedNames": 9025,
+  "pendingNames": 2799,
+  "phase": 1596,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1579,
-    "呪文": 340,
+    "クリーチャー": 1578,
+    "呪文": 338,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 26,
     "タマシード": 36,
@@ -222,8 +222,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "未対応の能力文": 2048,
-    "複数面・特殊カードタイプまたは情報不足": 606,
+    "未対応の能力文": 2046,
+    "複数面・特殊カードタイプまたは情報不足": 605,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -520836,11 +520836,137 @@
           "reason": "公式表裏を照合。覚醒リンク3枚の能力全体を同時に検証できるよう相方の実装を先行する。カモン・ピッピーの選択検証にも必要。"
         }
       ]
+    },
+    {
+      "phase": 1596,
+      "kind": "registration-toward-10000",
+      "checkedAt": "2026-11-21T07:32:57.020Z",
+      "baseline": "8507d1b3c7ce525ba6de2119e560da49fd94cacb",
+      "manifest": "tools/support-phase-1596.json",
+      "status": "verified-local",
+      "before": 9022,
+      "supported": 9025,
+      "pending": 2799,
+      "added": [
+        {
+          "id": "dmrp07-064",
+          "name": "天樹ノ正裁Z"
+        },
+        {
+          "id": "dmsd07-005",
+          "name": "刻鳥ノ正裁Ｚ"
+        },
+        {
+          "id": "dmex02-024",
+          "name": "ハヤブサノ裁徒Ｚ/ヒーリン・マスカラス"
+        }
+      ],
+      "duplicates": 0,
+      "results": {
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1596-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.57,
+          "log": "tmp/duema-phase-1596/focused.log",
+          "passed": 90,
+          "failed": 0
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1348-effects.test.mjs",
+            "tests/standard1352-effects.test.mjs",
+            "tests/standard1591-effects.test.mjs",
+            "tests/standard1595-effects.test.mjs",
+            "tests/online-app.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.523,
+          "log": "tmp/duema-phase-1596/related.log",
+          "passed": 65,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.11,
+          "log": "tmp/duema-phase-1596/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.947,
+          "log": "tmp/duema-phase-1596/audit.log"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tools/verify-target10000.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.204,
+          "log": "tmp/duema-phase-1596/invariants.log"
+        }
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1596-effects.test.mjs",
+            "tests/standard1379-effects.test.mjs",
+            "tests/standard1381-effects.test.mjs",
+            "tests/standard1382-effects.test.mjs",
+            "tests/standard1383-effects.test.mjs",
+            "tests/standard1326-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.761,
+          "log": "tmp/duema-phase-1596/focused.log"
+        }
+      ],
+      "testCorrections": [],
+      "totalTestsPassed": 155,
+      "reason": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+      "remaining": [
+        "全体npm testの過去の中断・合否未確認、ユーザー保留中の公式照合2件、本番2アカウント対戦の未確認を維持。"
+      ],
+      "next": "目標10000種類まで公式全文照合・固有テストを終えた3〜5種類のバッチを追加。push・Netlify反映は別途指示時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1595,
-    "nextPhase": 1596,
+    "lastVerifiedPhase": 1596,
+    "nextPhase": 1597,
     "workInProgress": null,
     "nextCandidates": [
       "公式照合済みの通常能力を持たないGRクリーチャー",
@@ -520849,7 +520975,7 @@
     ],
     "steps": [
       "開始時にHEAD・作業差分・ステージ・既存プロセス・AGENTS・進捗を確認。",
-      "実データ9022種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ9025種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
       "個別の残件2件はユーザー保留。再開指示まで追加調査・問い合わせ送信をしない。",
       "一括npm testを再実行せず、公開候補の未集約範囲だけ分割検証する。過去の固定ソースの合格と現版の合格を区別する。",
@@ -520930,14 +521056,14 @@
     ],
     "restartSteps": [
       "公開済みの版はb40ae0df (v0.722.1 / engine0.602.1 / 8074種類)。Pages・Netlifyを同じ版に更新済み。最新HEAD・差分・ステージ・既存プロセスを最初に確認。",
-      "実データ9022種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
+      "実データ9025種類・重複0。新目標10000種類まで通常登録を継続。旧8001停止条件は今回のユーザー指示で置き換え。保留2件とautomation PAUSED、Netlify手動更新専用を維持。",
       "追加500種類の117固有テストファイルはengine0.602.107で6分割して合格。旧全体npm test、phase1512・1584長時間AI検証、ユーザー保留2件と本番2アカウント対戦は別の未確認項目として記録を維持。",
       "既存8072定義は深い比較で不変。カードID・保存形式・保存済みデッキ・対戦履歴を維持。",
       "個別の残件2件と問い合わせ案はユーザー指示「後回しにしよう」で保留。再開指示があるまでこの2件の調査・送信を行わない。",
       "No13長時間検証はengine0.601.0の固定ソースで完了済み。今回のengine0.602.0の全面検証には数えない。必要な未集約項目は対象を特定し、細かく分割して確認する。",
       "Netlifyは手動反映専用。workflow_dispatchだけ、GitHub pushフック停止、stop_builds=trueを維持。通常のカード追加pushでは反映しない。今回の公開に保留・未検証の解消は含めない。"
     ],
-    "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9022種類、残り978種類。automationはPAUSEDのまま。",
+    "registrationStatus": "ユーザーの新目標10000種類に向けて通常登録を再開。現在9025種類、残り975種類。automationはPAUSEDのまま。",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -521049,10 +521175,10 @@
     "registrationTarget": {
       "target": 10000,
       "startCount": 9000,
-      "currentCount": 9022,
-      "remaining": 978,
+      "currentCount": 9025,
+      "remaining": 975,
       "status": "active",
-      "phase": 1595
+      "phase": 1596
     },
     "deferredRegistrationCandidates": [
       {
@@ -573202,10 +573328,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1595,
+    "phase": 1596,
     "threshold": 10000,
-    "supportedNames": 9022,
-    "pendingNames": 2802,
+    "supportedNames": 9025,
+    "pendingNames": 2799,
     "checkedAt": "2026-11-21",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
