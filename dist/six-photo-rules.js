@@ -9188,7 +9188,11 @@ export function createSixPhotoRules(api){
    if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
    if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length||watch.g1088EntrantOverMana&&cost(effective(y,s))<=s.players[p].mana.length)continue;
    if(watch.g910HigherPower&&currentPower506(s,y)<=currentPower506(s,x))continue;
-   if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
+   if(watch.g1533RaceRecovery){
+    const races=exactRaces(effective(y,s));
+    if(races.length)queue(s,owner,x,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{creature:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}]);
+   }
+   else if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });
    else if(watch.g762EntrantMach)send(s,owner,x,'EntryMach762',{subject:{uid:y.uid,incarnation:y.incarnation||0}});

@@ -12556,5 +12556,339 @@
         "race": ""
       }
     }
+  },
+  "dmrp08-074": {
+    "phase": 1533,
+    "faces": [
+      {
+        "name": "被売医 タックン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "マフィ・ギャング",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "喉から狙い打ち",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "slayer": true,
+      "smashBurst": true,
+      "spellFace": {
+        "type": "spell",
+        "name": "喉から狙い打ち",
+        "cost": 2,
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex12-060": {
+    "phase": 1533,
+    "faces": [
+      {
+        "name": "カシス・オレンジ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を見る。その中から好きな枚数を山札の一番下に置き、残りを好きな順序で山札の上に置く。",
+        "race": "スプラッシュ・クイーン",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "♥応援してくれるみんなが元気をくれ～る",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを２枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g323Scry": true,
+          "g259OrderTop": true,
+          "rest": "top",
+          "stages": [
+            {
+              "n": "all",
+              "to": "deck",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "♥応援してくれるみんなが元気をくれ～る",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "draw2",
+        "trigger": true
+      }
+    }
+  },
+  "dmex02-071": {
+    "phase": 1533,
+    "faces": [
+      {
+        "name": "怒りの赤髭 ゴセントラス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "G・ゼロ：自分の墓地に呪文が10枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカーブロッカー\nW・ブレイカー",
+        "race": "ムートピア",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "目覚めし鋼牙のブレイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "カードを５枚まで引き、その後、手札を３枚捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g273Grave": {
+              "n": 10,
+              "filter": {
+                "spell": true
+              }
+            }
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "目覚めし鋼牙のブレイン",
+        "cost": 5,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawUpTo",
+            "n": 5,
+            "spell": true
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 3,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm26ex4-056": {
+    "phase": 1533,
+    "faces": [
+      {
+        "name": "凶星王ダーク・ヒドラ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\n自分のクリーチャーが出た時、そのクリーチャーと同じ種族を持つクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+        "race": "ダークロード",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "魂と記憶の盾",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "進化ではないクリーチャーを１体選び、シールド化する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1324IncludeSelf": true,
+        "g1533RaceRecovery": true
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "魂と記憶の盾",
+        "cost": 3,
+        "civ": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "race": "",
+        "effect": "champion",
+        "g58Effect": "Shield"
+      }
+    }
+  },
+  "dm25bd3-015": {
+    "phase": 1533,
+    "faces": [
+      {
+        "name": "龍覇皆伝 スコッチ・フィディック",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、相手のコスト３以下のエレメントをすべて、持ち主のマナゾーンに置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "「勇愛龍、これぞ爆流の神髄なり」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分の山札の上から３枚を表向きにする。その中から、ドラグナー・カードまたはドラゴン・カードを１枚手札に加え、残りを好きな順序で山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "max": 3
+          }
+        }
+      ],
+      "spellFace": {
+        "type": "spell",
+        "name": "「勇愛龍、これぞ爆流の神髄なり」",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "ドラグナー"
+                    },
+                    {
+                      "anyFaceRace": "ドラゴン"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spell": true
+          }
+        ]
+      }
+    }
   }
 }
