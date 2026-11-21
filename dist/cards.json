@@ -277772,15 +277772,204 @@
       ],
       "supportBatch": "phase-1547",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-033",
+      "name": "千切秘伝ワイルド・ベジタブル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "アタック・チャンス-ワイルド・ベジーズ(自分のワイルド・ベジーズが攻撃する時、この呪文をコストを支払わずに唱えてもよい)\nこのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+6000され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-033",
+      "limit": 4,
+      "g417Chance": {
+        "race": "ワイルド・ベジーズ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 6000,
+          "g1438ExtraBreak": 1,
+          "filter": {
+            "creature": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1548",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-022",
+      "name": "俺流秘伝セイント・フラッシュ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "アタック・チャンス-エンジェル・コマンド(自分のエンジェル・コマンドが攻撃する時、この呪文をコストを支払わずに唱えてもよい)バトルゾーンにあるコスト６以下の進化ではないクリーチャーを１体選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-022",
+      "limit": 4,
+      "g417Chance": {
+        "race": "エンジェル・コマンド"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 6
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1548",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd12-011",
+      "name": "黄泉秘伝トリプル・ZERO",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "アタック・チャンス-無色クリーチャー（自分の無色クリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\nバトルゾーンに自分の、コスト６以上の無色クリーチャーがあれば、カードを１枚引き、その後、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-011",
+      "limit": 4,
+      "g417Chance": {
+        "noColor": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1,
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "noColor": true,
+            "min": 6
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "spell": true
+            },
+            {
+              "op": "Ramp",
+              "n": 1,
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1548",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-019",
+      "name": "電融秘伝グリードソレノイド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nアタック・チャンス：火のディスペクター（自分の火のディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、自分のクリーチャー１体のパワーを２倍にし、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-019",
+      "limit": 4,
+      "gStrike": true,
+      "g417Chance": {
+        "race": "ディスペクター",
+        "color": "火"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "powerMultiplier": 2,
+          "grant": {
+            "poweredBreaker": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1548",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-063",
+      "name": "深淵秘伝アビス・インベージョン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "アビスロイヤル",
+      "text": "アタック・チャンスR：アビス（自分のアビスが攻撃する時、この呪文を自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、唱えた後、墓地のかわりに山札の下に置く）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-063",
+      "limit": 4,
+      "g417Chance": {
+        "race": "アビス",
+        "g1548ChanceR": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "filter": {
+            "creature": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1548",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1547,
+    "phase": 1548,
     "checkedAt": "2026-11-21",
-    "baseCount": 8809,
+    "baseCount": 8814,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 8814,
+    "totalCount": 8819,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -303217,6 +303406,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8809,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1547,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8809,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8814,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

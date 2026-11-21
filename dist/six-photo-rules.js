@@ -2350,9 +2350,10 @@ export function createSixPhotoRules(api){
  const ownGraveSource839=(own,t)=>own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
  function chanceCard417(s,t){
   const origin=t.origin??'hand';
-  const y=origin==='deck'?api.visionTop(s,t.p):s.players[t.p].hand.find(v=>v.uid===t.uid);
+  const y=origin==='deck'?api.visionTop(s,t.p):(s.players[t.p][origin]||[]).find(v=>v.uid===t.uid);
   if(y?.uid!==t.uid||(y.zoneSerial||0)!==t.serial)return null;
   const c=faces(card(y))[t.face];
+  if(origin==='grave'&&(!c?.g417Chance?.g1548ChanceR||!api.canMoveZone(s,t.p,'grave')))return null;
   return c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,origin)?c:null;
  }
  function run(s,t){if(fifteen.run(s,t))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.op){
@@ -7477,7 +7478,11 @@ export function createSixPhotoRules(api){
   const y=revengeCard795(s,t);
   if(y&&revengeReady795(s,t.p,y,t.origin))cast(s,t.p,y.uid,true,null,0,null,t.origin||'hand','リベンジ・チャンス');
  }break;
- case'g34_Chance417':if(v&&chanceCard417(s,t))cast(s,t.p,t.uid,true,null,t.face,null,t.origin??'hand','アタック・チャンス');break;
+ case'g34_Chance417':if(v&&chanceCard417(s,t)){
+  const c=chanceCard417(s,t),origin=t.origin??'hand';
+  if(c.g417Chance.g1548ChanceR)s.players[t.p][origin].find(y=>y.uid===t.uid).finishTo='deck';
+  cast(s,t.p,t.uid,true,null,t.face,null,origin,c.g417Chance.g1548ChanceR?'アタック・チャンスR':'アタック・チャンス');
+ }break;
  case'g34_FairyManaExchange828':if(v)put(s,{...t,accepted:true});break;
  case'g34_Offer':if(v){
   if(t.g792Once){
@@ -9359,6 +9364,11 @@ export function createSixPhotoRules(api){
    const w=c.g417Chance;
    if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))
     send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face,...(y===top?{origin:'deck'}:{})});
+  }
+  if(api.canMoveZone(s,p,'grave'))for(const y of s.players[p].grave)for(const [face,c]of faces(card(y)).entries()){
+   const w=c.g417Chance;
+   if(w?.g1548ChanceR&&!api.spellIgnored(s,c)&&chanceMatches419(s,p,x,w))
+    send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face,origin:'grave'});
   }
   for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
  handBattleWins588(s,p,w){
