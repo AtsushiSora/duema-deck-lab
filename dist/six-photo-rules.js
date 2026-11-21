@@ -758,6 +758,8 @@ export function createSixPhotoRules(api){
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
+  if(t.g1606FaceUpShieldCards)return s.players[owner].shields.flatMap(api.shieldCards).filter(x=>x.faceUp).length;
+  if(t.g1606ManaCivilizations)return manaCivilizationCount(s,p);
   if(t.g1143FaceUpShields)
    return s.players[owner].shields.filter(group=>api.shieldCards(group).some(x=>x.faceUp)).length;
   if(t.g1041ColorlessMana)return s.players[p].mana.filter(x=>{

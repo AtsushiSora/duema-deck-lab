@@ -27191,5 +27191,226 @@
       ],
       "g1603Kappa": true
     }
+  },
+  "dmrp09-055": {
+    "phase": 1606,
+    "faces": [
+      {
+        "name": "タラトゥイユ・パンツァー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーまたは自分の他のクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+        "race": "グランセクト",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "デリシャ・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "destroyToMana": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "デリシャ・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LockUntap606",
+            "g1019Tap": true
+          }
+        ]
+      }
+    }
+  },
+  "dmbd07-b-002": {
+    "phase": 1606,
+    "faces": [
+      {
+        "name": "煌メク聖晶 弩楼",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドゾーンにある表向きのカード１枚につき、カードを１枚引いてもよい。",
+        "race": "メタリカ/サバキスト",
+        "powerText": "11500",
+        "missingFields": []
+      },
+      {
+        "name": "ビスティック・マース",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から２枚をマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "g1606FaceUpShieldCards": true,
+          "optional": "each"
+        }
+      ],
+      "spellFace": {
+        "name": "ビスティック・マース",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "text": "S・トリガー S・トリガー\n相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から２枚をマナゾーンに置く。",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmex06-039": {
+    "phase": 1606,
+    "faces": [
+      {
+        "name": "未来妖精ミクル",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\nマナ武装 ４：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに多色カードが４枚以上あれば、自分の山札の上から１枚目をマナゾーンに置く。",
+        "race": "スノーフェアリー/ハンター",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "ミラクル・ブレイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のマナゾーンにある文明１つにつき、カードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "マナ武装4：多色マナ4枚以上なら1枚をマナへ",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g267Mana": {
+                  "n": 4,
+                  "multi": true
+                }
+              },
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "ミラクル・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "race": "",
+        "text": "自分のマナゾーンにある文明１つにつき、カードを１枚引く。",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "g1606ManaCivilizations": true
+          }
+        ]
+      }
+    }
   }
 }
