@@ -49,3 +49,63 @@ test('reorganized lobby joins a friend room with the selected deck and preserves
  assert.equal(h.read('onlineState.room.phase'),'playing');assert.equal(h.read('onlineState.room.seat'),1);assert.equal(h.read('joinedDeck.id'),'second');
  assert.equal(h.read('JSON.stringify(joinedDeck.cards)===JSON.stringify(saved.decks[1].cards)'),true);assert.equal(h.read('JSON.stringify(saved)===savedBefore'),true);h.read('onlineClient.dispose()');
 });
+
+test('account duel pays only chosen mana after confirmation and keeps pending selections private across refresh',async()=>{
+ const h=harness();
+ await h.login();
+ await h.click('online-create');
+ await h.friend();
+ await h.editGame(s=>{
+  s.phase='main';
+  s.active=0;
+  s.decision=null;
+  const card=(cardId,uid)=>({cardId,uid,tapped:false,entered:0});
+  s.players[0].hand=[card('dm06-085','spell')];
+  s.players[0].mana=[
+   card('dm01-083','water-first'),card('dm01-108','nature-a'),
+   card('dm01-108','nature-b'),card('dm01-108','nature-c'),card('dm01-083','water-chosen')
+  ];
+ });
+ const revision=()=>String(h.read('onlineState.room.revision'));
+ const choose=async(kind,uid)=>{
+  const index=String(h.read(`onlineState.room.game.actions.find(a=>a.kind===${JSON.stringify(kind)}${uid?`&&a.uid===${JSON.stringify(uid)}`:''}).id`));
+  await h.click('online-pay-mana',{index,revision:revision()});
+ };
+ const cast=async()=>{
+  await h.click('online-card',{uid:'spell'});
+  await h.click('online-primary',{revision:revision()});
+  assert.match(h.root.innerHTML,/選択 0 \/ 必要 3マナ/);
+  assert.ok(h.game().players[0].mana.every(c=>!c.tapped));
+  assert.deepEqual(h.game().players[0].hand.map(c=>c.uid),['spell']);
+ };
+ await cast();
+ await choose('selectMana','water-first');
+ await choose('cancelMana');
+ assert.equal(h.game().decision,null);
+ assert.ok(h.game().players[0].mana.every(c=>!c.tapped));
+ await cast();
+ for(const uid of ['nature-a','nature-b','nature-c'])await choose('selectMana',uid);
+ assert.match(h.root.innerHTML,/選択 3 \/ 必要 3マナ/);
+ assert.match(h.root.innerHTML,/○ 水/);
+ assert.equal(h.read('onlineState.room.game.actions.some(a=>a.kind==="confirmMana")'),false);
+ const staleRevision=revision();
+ await choose('selectMana','nature-c');
+ const waterIndex=String(h.read('onlineState.room.game.actions.find(a=>a.uid==="water-chosen").id'));
+ await h.dispatch('online-pay-mana',{index:waterIndex,revision:staleRevision});
+ assert.equal(h.read('onlineState.room.game.manaPayment.amount'),2);
+ await choose('selectMana','water-chosen');
+ await h.click('online-refresh');
+ assert.match(h.root.innerHTML,/✓ 水/);
+ const hostView=await h.service.get(h.read('onlineState.room.code'),{uid:'u1'},'u1');
+ const guestView=await h.service.get(hostView.code,{uid:'u2'},'u2');
+ assert.equal(hostView.game.manaPayment.cards.find(c=>c.uid==='water-chosen').selected,true);
+ assert.equal(guestView.game.manaPayment,undefined);
+ assert.deepEqual(guestView.game.actions,[]);
+ assert.deepEqual(guestView.game.players[0].hand,[]);
+ assert.ok(!JSON.stringify(hostView.game.manaPayment).includes('randomTape'));
+ await choose('confirmMana');
+ assert.deepEqual(h.game().players[0].mana.filter(c=>c.tapped).map(c=>c.uid),['nature-a','nature-b','water-chosen']);
+ assert.ok(h.game().players[0].grave.some(c=>c.uid==='spell'));
+ assert.equal(h.read('onlineState.room.game.manaPayment'),undefined);
+ h.read('onlineClient.dispose()');
+});

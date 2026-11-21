@@ -5,7 +5,7 @@ import {shieldCards} from '../dist/shield-state.js';
 import {randomBytes,randomUUID,randomInt,createCipheriv,createDecipheriv} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import cardData from '../dist/cards.json' with {type:'json'};
-import {setCards,setRandomSource,createGame,getLegalActions,gameFinished,step,validateDeck,card,playFaces,effectiveCard,power,peekDeckTop,visibleOpponentHand,ENGINE_VERSION} from '../dist/engine.js';
+import {setCards,setRandomSource,createGame,getLegalActions,gameFinished,step,validateDeck,card,playFaces,effectiveCard,power,peekDeckTop,visibleOpponentHand,manaSelectionStatus,manaValue,manaColors,ENGINE_VERSION} from '../dist/engine.js';
 setCards(cardData.cards);
 // Every online shuffle and random choice uses server-side entropy. Browser simulations keep their seeded RNG.
 setRandomSource(()=>randomInt(0x100000000)/0x100000000);
@@ -22,15 +22,35 @@ function deckInput(d){if(!d||typeof d.name!=='string'||d.name.length>120||!Array
 const profile=user=>({uid:user.uid,name:String(user.name||'プレイヤー').slice(0,80)});
 const indexOf=(s,u)=>s.hostUid===u.uid?0:s.guestUid===u.uid?1:-1;
 function publicCard(s,x,owner,viewer){if(x.sealOf)return {uid:x.uid,hidden:true,sealOf:x.sealOf,...(x.forbiddenCorner!==undefined?{forbiddenCorner:x.forbiddenCorner}:{})};if(x.faceDown&&owner!==viewer)return {uid:x.uid,hidden:true,tapped:!!x.tapped};const c=x.sealed?card(x.cardId):effectiveCard(x,s)||card(x),value=power(x,false,s);return {uid:x.uid,id:c.id||x.cardId,name:c.name,cost:c.cost,type:c.type,...(x.ritualLinked?{ritualLinked:true}:{}),...((x.g1085Awakened||x.startFlipped||x.dragheartFlipped)?{awakened:true}:{}),...(x.auraTo1352?{auraTo:{...x.auraTo1352}}:{}),...(x.weaponTo?{weaponTo:{...x.weaponTo}}:{}),...(x.sealed?{sealed:true,sealCount:(s.players[owner].seals||[]).filter(y=>y.sealOf===x.uid).length}:{}),...(c.newWorld?{worldUsed:!!x.g4WorldUsed}:{}),...(x.crossedTo&&s.players[owner].battle.some(y=>y.uid===x.crossedTo.uid&&(y.incarnation||0)===x.crossedTo.incarnation)?{crossedTo:{...x.crossedTo}}:{}),power:Number.isFinite(value)?value:value<0?'-∞':'∞',tapped:!!x.tapped,under:(x.under||[]).map(y=>publicCard(s,y,owner,viewer))};}
+function manaPaymentView(d){
+ const {amount,cost,colors}=manaSelectionStatus(d);
+ return {
+  amount,cost,colors,
+  source:d.use?.name||null,
+  cards:d.pool.filter(x=>!x.tapped).map(x=>{
+   const definition=card(x);
+   return {
+    uid:x.uid,
+    name:x.faceDown?'裏向きのマナ':definition.name,
+    value:x.paymentValue??manaValue(definition),
+    colors:x.paymentColors??(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaColors(definition)),
+    selected:d.selected.includes(x.uid),
+    fromBattle:!!x.paymentBird
+   };
+  })
+ };
+}
 export function projectRoom(room,user,now=Date.now()){
  const seat=indexOf(room,user),expired=now>=room.expiresAt&&['waiting','playing'].includes(room.phase);
  if(seat<0&&room.phase!=='waiting')fail('room/forbidden','このルームには参加できません。',403);
  const v={schemaVersion:PROTOCOL,engineVersion:room.engineVersion,code:room.code,phase:expired?'expired':room.phase,revision:room.revision,expiresAt:room.expiresAt,updatedAt:room.updatedAt,seat,...(room.decks?.[0]?.format==='advance'?{format:'advance'}:{}),players:room.profiles.map(p=>p?{name:p.name}:null),canJoin:seat<0&&room.phase==='waiting'&&!expired,events:room.events.slice(-40)};
  if(seat<0||!room.game)return v;
  const s=room.game,actions=getLegalActions(s),actor=actions[0]?.player??null;
- const inspection=actor===seat&&!expired&&room.phase==='playing'?s.decision?.task?.g585Peek:null;
+ const canAct=actor===seat&&!expired&&room.phase==='playing';
+ const inspection=canAct?s.decision?.task?.g585Peek:null;
+ const payment=canAct&&s.decision?.type==='manaPayment'?manaPaymentView(s.decision):null;
  const publicHand=actor===seat&&s.decision?.task?.op==='g13_Murder'?s.players[1-seat].hand:visibleOpponentHand(s,seat);
- v.game={turn:s.turn,round:displayTurn(s),phase:s.phase,active:s.active,first:s.first,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target,player:s.players.findIndex(p=>p.battle.some(x=>x.uid===s.attack.attacker))}:null,actor,winner:s.winner,reason:s.reason,draw:room.draw||false,decision:actor===seat?s.decision?.title||'':null,...(publicHand.length||actor===seat&&s.decision?.task?.op==='g13_Murder'?{revealedHand:publicHand.map(x=>publicCard(s,x,1-seat,seat))}:{}),...(inspection?.length?{inspectedCards:inspection.map(({id,label})=>({id,label,name:card(id).name}))}:{}),numberChoice:actor===seat&&s.decision?.task?.op==='g9Number',players:s.players.map((p,i)=>({name:room.profiles[i].name,deckCount:p.deck.length,...(p.gr?{grCount:p.gr.length}:{}),sidewaysPositions:p.deck.flatMap((x,j)=>x.g11Sideways?[j+1]:[]),...(i===seat&&peekDeckTop(s,seat)?{deckTop:publicCard(s,peekDeckTop(s,seat),i,seat)}:{}),handCount:p.hand.length,shieldCount:p.shields.length,shieldGroups:p.shields.map(x=>({cardCount:shieldCards(x).length})),faceUpShields:p.shields.flatMap(shieldCards).filter(x=>x.faceUp).map(x=>publicCard(s,x,i,seat)),hand:i===seat?p.hand.map(x=>publicCard(s,x,i,seat)):[],battle:p.battle.map(x=>publicCard(s,x,i,seat)),mana:p.mana.map(x=>publicCard(s,x,i,seat)),grave:p.grave.map(x=>publicCard(s,x,i,seat)),...(p.abyss?.length?{abyss:p.abyss.map(x=>publicCard(s,x,i,seat))}:{}),extra:(p.extra||[]).map(x=>publicCard(s,x,i,seat)),seals:(p.seals||[]).map(x=>publicCard(s,x,i,seat))})),actions:actor===seat&&!expired&&room.phase==='playing'?actions.map(a=>({id:a.id,kind:a.kind,label:a.label,...(a.kind==='play'?{playType:playFaces(card(a.cardId))[a.face||0].type,...(a.alternative||a.freeSummon||a.g7Payment||a.g18Reducers||a.g26Reducers?{requiresMethod:true}:{})}:{}),uid:a.uid||(['g29_Bases','g29_Destroy','g29_Arc','g29_RevivePick','g29_ReviveNext','g29_Danger','g29_BTSelect','g29_LandPick','g28_PizzaPick','g28_ManaDeploy','g28_GyaiRecover','g28_Dagra','g28_Deploy','g28_ExecuteBase','g28_TapPick','g28_ElementMana','g27_Recover','g27_Untap','g27_HandTop','g27_Shield','g27_KanDeath','g27_Tap','g26_Ever','g26_Tap','g26_Deploy','g23_Unseal','g13_Seal','g13_Sis','g13_Murder','g13_Borrow','g13_JagaRevive','g13_FootRecover','g13_ManaHand'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value:['g29_JuraPick','g29_InvPick','g28_Execute','g28_HandDeck','g13_Lord','g26_Select','g26_Order'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value?.uid:['g4_Airvo','g8_Savak'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value?.uid:null)})):[]};return v;
+ v.game={turn:s.turn,round:displayTurn(s),phase:s.phase,active:s.active,first:s.first,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target,player:s.players.findIndex(p=>p.battle.some(x=>x.uid===s.attack.attacker))}:null,actor,winner:s.winner,reason:s.reason,draw:room.draw||false,decision:actor===seat?s.decision?.title||'':null,...(payment?{manaPayment:payment}:{}),...(publicHand.length||actor===seat&&s.decision?.task?.op==='g13_Murder'?{revealedHand:publicHand.map(x=>publicCard(s,x,1-seat,seat))}:{}),...(inspection?.length?{inspectedCards:inspection.map(({id,label})=>({id,label,name:card(id).name}))}:{}),numberChoice:actor===seat&&s.decision?.task?.op==='g9Number',players:s.players.map((p,i)=>({name:room.profiles[i].name,deckCount:p.deck.length,...(p.gr?{grCount:p.gr.length}:{}),sidewaysPositions:p.deck.flatMap((x,j)=>x.g11Sideways?[j+1]:[]),...(i===seat&&peekDeckTop(s,seat)?{deckTop:publicCard(s,peekDeckTop(s,seat),i,seat)}:{}),handCount:p.hand.length,shieldCount:p.shields.length,shieldGroups:p.shields.map(x=>({cardCount:shieldCards(x).length})),faceUpShields:p.shields.flatMap(shieldCards).filter(x=>x.faceUp).map(x=>publicCard(s,x,i,seat)),hand:i===seat?p.hand.map(x=>publicCard(s,x,i,seat)):[],battle:p.battle.map(x=>publicCard(s,x,i,seat)),mana:p.mana.map(x=>publicCard(s,x,i,seat)),grave:p.grave.map(x=>publicCard(s,x,i,seat)),...(p.abyss?.length?{abyss:p.abyss.map(x=>publicCard(s,x,i,seat))}:{}),extra:(p.extra||[]).map(x=>publicCard(s,x,i,seat)),seals:(p.seals||[]).map(x=>publicCard(s,x,i,seat))})),actions:canAct?actions.map(a=>({id:a.id,kind:a.kind,label:a.label,...(a.kind==='play'?{playType:playFaces(card(a.cardId))[a.face||0].type,...(a.alternative||a.freeSummon||a.g7Payment||a.g18Reducers||a.g26Reducers?{requiresMethod:true}:{})}:{}),uid:a.uid||(['g29_Bases','g29_Destroy','g29_Arc','g29_RevivePick','g29_ReviveNext','g29_Danger','g29_BTSelect','g29_LandPick','g28_PizzaPick','g28_ManaDeploy','g28_GyaiRecover','g28_Dagra','g28_Deploy','g28_ExecuteBase','g28_TapPick','g28_ElementMana','g27_Recover','g27_Untap','g27_HandTop','g27_Shield','g27_KanDeath','g27_Tap','g26_Ever','g26_Tap','g26_Deploy','g23_Unseal','g13_Seal','g13_Sis','g13_Murder','g13_Borrow','g13_JagaRevive','g13_FootRecover','g13_ManaHand'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value:['g29_JuraPick','g29_InvPick','g28_Execute','g28_HandDeck','g13_Lord','g26_Select','g26_Order'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value?.uid:['g4_Airvo','g8_Savak'].includes(s.decision?.task?.op)?s.decision.choices[a.choice]?.value?.uid:null)})):[]};return v;
 }
 export function createDuelService({store,key,now=()=>Date.now(),code=()=>randomBytes(8).toString('hex').toUpperCase(),seed=()=>randomBytes(4).readUInt32LE(),uid=randomUUID}={}){
  if(!key||Buffer.from(key,'base64').length!==32)throw Error('DUEL_STATE_KEY must be configured');
@@ -50,7 +70,34 @@ export function createDuelService({store,key,now=()=>Date.now(),code=()=>randomB
   if(kind==='cancel'){if(s.phase!=='waiting'||seat!==0)fail('room/phase','待機中の自分のルームだけを閉じられます。',409);s.phase='cancelled';}
   else{if(s.phase!=='playing')fail('room/phase','この対戦は終了しています。',409);
    if(kind==='resign'){s.game.winner=1-seat;s.game.reason=s.profiles[seat].name+'が投了しました';s.game.decision=null;s.phase='finished';s.events.push({player:seat,turn:s.game.turn,round:displayTurn(s.game),text:'投了しました。'});}
-   else{const opts=getLegalActions(s.game),a=opts[b.actionId];if(!Number.isSafeInteger(b.actionId)||!a||a.player!==seat)fail('move/illegal','今はこの操作を選べません。',409);let chosen=a;if(b.number!==undefined){if(s.game.decision?.task?.op!=='g9Number'||!(b.number==='∞'||Number.isSafeInteger(b.number)&&b.number>=0))fail('move/number','宣言する数字を確認してください。');chosen={...a,number:b.number};}const actionTurn=s.game.turn,actionRound=displayTurn(s.game),logStart=s.game.log.length;step(s.game,chosen);for(const entry of s.game.log.slice(logStart))if(['g1333PublicHandReturn','vividDraw'].includes(entry.type))s.events.push({player:entry.player,turn:entry.turn,round:entry.round,text:entry.text});s.events.push({player:seat,turn:actionTurn,round:actionRound,text:({charge:'カードをマナに置きました。',play:'カードを使いました。',attack:'攻撃しました。',block:'ブロックしました。',endTurn:'ターンを終了しました。',skipCharge:'マナに置かずに進みました。'})[a.kind]||'効果の選択を進めました。'});s.events=s.events.slice(-80);if(gameFinished(s.game))s.phase='finished';else if(s.game.actions>=2500||s.game.turn>=160){s.phase='finished';s.draw=true;s.game.reason='処理上限による引き分け';}}
+   else{
+    const a=getLegalActions(s.game)[b.actionId];
+    if(!Number.isSafeInteger(b.actionId)||!a||a.player!==seat)fail('move/illegal','今はこの操作を選べません。',409);
+    let chosen=a;
+    if(b.number!==undefined){
+     if(s.game.decision?.task?.op!=='g9Number'||!(b.number==='∞'||Number.isSafeInteger(b.number)&&b.number>=0))
+      fail('move/number','宣言する数字を確認してください。');
+     chosen={...a,number:b.number};
+    }
+    const actionTurn=s.game.turn,actionRound=displayTurn(s.game),logStart=s.game.log.length,actionsBefore=s.game.actions;
+    step(s.game,chosen,{manualMana:true});
+    for(const entry of s.game.log.slice(logStart)){
+     if(['g1333PublicHandReturn','vividDraw'].includes(entry.type))
+      s.events.push({player:entry.player,turn:entry.turn,round:entry.round,text:entry.text});
+    }
+    // Pending payments and their selections are private. Record the operation only after it commits.
+    const paying=s.game.decision?.type==='manaPayment'||['selectMana','confirmMana','cancelMana'].includes(a.kind);
+    if(!paying||s.game.actions>actionsBefore){
+     const text={
+      charge:'カードをマナに置きました。',play:'カードを使いました。',confirmMana:'マナを支払いました。',
+      attack:'攻撃しました。',block:'ブロックしました。',endTurn:'ターンを終了しました。',skipCharge:'マナに置かずに進みました。'
+     }[a.kind]||'効果の選択を進めました。';
+     s.events.push({player:seat,turn:actionTurn,round:actionRound,text});
+    }
+    s.events=s.events.slice(-80);
+    if(gameFinished(s.game))s.phase='finished';
+    else if(s.game.actions>=2500||s.game.turn>=160){s.phase='finished';s.draw=true;s.game.reason='処理上限による引き分け';}
+   }
   }remember(s,b,user);return save(s,row.version,user,token);
  }
  return {resume,create,join,get:async(c,u,t)=>projectRoom((await load(c,u,t)).state,u,now()),move:(b,u,t)=>mutate(b,u,t,'move'),resign:(b,u,t)=>mutate(b,u,t,'resign'),cancel:(b,u,t)=>mutate(b,u,t,'cancel')};
