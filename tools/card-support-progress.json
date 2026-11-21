@@ -524306,41 +524306,65 @@
       "artifact": "tools/online-status-review.json",
       "checkedAt": "2026-11-21T22:12:14.188Z",
       "baseCommit": "5d813494b14433db6dc95eafc0241cf2f3ad86e7",
-      "status": "review-complete-findings-open",
+      "status": "resolved-locally-after-review",
       "productCodeChanged": false,
-      "confirmedOpenFindings": [
-        {
-          "id": "online-number-button-override",
-          "severity": "high",
-          "title": "数字の選択ボタンが入力欄の0で上書きされる"
-        },
-        {
-          "id": "online-number-draft-reset",
-          "severity": "medium",
-          "title": "状況表示を切り替えると入力途中の数字が0へ戻る"
-        },
-        {
-          "id": "online-abyss-first-last-cue",
-          "severity": "medium",
-          "title": "深淵ゾーンの最初と最後のカード移動が状況表示から抜ける"
-        }
-      ],
+      "confirmedOpenFindings": [],
       "improvements": [
         {
           "id": "defense-attack-context",
-          "priority": "medium",
-          "title": "防御時に攻撃元と攻撃先を明示する"
+          "status": "implemented-local",
+          "result": "攻撃中のカード名・攻撃先を帯に表示。攻撃元、クリーチャー対象、シールド対象、ダイレクトアタックのプレイヤーを強調。シールド番号は位置だけを投影し、非公開のカード名やシールドUIDは渡さない。"
         },
         {
           "id": "log-latest-first",
-          "priority": "low",
-          "title": "対戦ログを最新から確認しやすくする"
+          "status": "implemented-local",
+          "result": "対戦ログを開くと新しい行動から表示。元のイベント配列・保存済み対戦履歴・デッキを変更しないことを実アプリのテストで確認。"
         }
       ],
       "existingRegressionCasesPassed": 74,
       "diagnosticCasesConfirmingOpenFindings": 5,
       "uniqueNames": 9070,
-      "next": "数字候補と任意入力の分離を最優先で修正。その後入力保持、深淵ゾーン差分を修正し、再現ケースを期待動作の回帰テストへ変換する。公開は別途のユーザー指示まで行わない。",
+      "next": "この5項目のローカル検証は完了。本番での再確認は公開後。公開・push・Netlify更新は別途のユーザー指示まで行わない。",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "resolvedFindings": [
+        {
+          "id": "online-number-button-override",
+          "status": "fixed-local",
+          "result": "数字候補ボタンは選んだ候補をそのまま送信。任意入力は専用ボタンからのみ送信。0・3・最低値6・∞の候補と、37・全角３７・∞の入力をHTTP/暗号化保存経由で検証。最低値未満や古いrevisionは送信しない。サーバーもminimumを独立検証しmove/numberで拒否。"
+        },
+        {
+          "id": "online-number-draft-reset",
+          "status": "fixed-local",
+          "result": "入力下書きをアカウント・ルーム・座席・revisionに紐付け、同じ選択中の状況表示切替、再接続、ページ切替、パネル開閉で保持。新revision・別アカウント・クリア時には消去。"
+        },
+        {
+          "id": "online-abyss-first-last-cue",
+          "status": "fixed-local",
+          "result": "未指定の配列ゾーンを0枚として比較。両プレイヤーの深淵0→1と1→0を検証。通知にカード名・IDを転記しない。"
+        }
+      ],
+      "resolutionArtifact": "tools/online-status-fixes-verification.json",
+      "resolvedAt": "2026-11-21T22:21:23.159Z"
+    },
+    "latestOnlineStatusFixes": {
+      "artifact": "tools/online-status-fixes-verification.json",
+      "checkedAt": "2026-11-21T22:21:23.159Z",
+      "baseCommit": "ba19506fb4069ccd4c5be4253bbd38696fccdc54",
+      "status": "all-five-items-verified-local-not-published",
+      "fixedDefects": 3,
+      "implementedImprovements": 2,
+      "totalDistinctTestsPassed": 161,
+      "reviewRegressionSubsetPassed": 18,
+      "uniqueNames": 9070,
+      "added": 0,
+      "remaining": [
+        "未公開の修正を含む本番2アカウント対戦の確認は、公開後に必要。Netlifyをまだ更新しないというユーザー指示を継続。",
+        "過去の一括npm testは中断・合否未確認を維持。後回しにした裁定・再録2件とカード登録の次phaseは変更しない。"
+      ],
       "publication": {
         "pushed": false,
         "deployed": false,

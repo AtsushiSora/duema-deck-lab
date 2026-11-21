@@ -1,0 +1,219 @@
+{
+  "checkedAt": "2026-11-21T22:21:23.159Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "ba19506fb4069ccd4c5be4253bbd38696fccdc54",
+  "status": "all-five-items-verified-local-not-published",
+  "review": "tools/online-status-review.json",
+  "fixes": [
+    {
+      "id": "online-number-button-override",
+      "status": "fixed-local",
+      "result": "数字候補ボタンは選んだ候補をそのまま送信。任意入力は専用ボタンからのみ送信。0・3・最低値6・∞の候補と、37・全角３７・∞の入力をHTTP/暗号化保存経由で検証。最低値未満や古いrevisionは送信しない。サーバーもminimumを独立検証しmove/numberで拒否。"
+    },
+    {
+      "id": "online-number-draft-reset",
+      "status": "fixed-local",
+      "result": "入力下書きをアカウント・ルーム・座席・revisionに紐付け、同じ選択中の状況表示切替、再接続、ページ切替、パネル開閉で保持。新revision・別アカウント・クリア時には消去。"
+    },
+    {
+      "id": "online-abyss-first-last-cue",
+      "status": "fixed-local",
+      "result": "未指定の配列ゾーンを0枚として比較。両プレイヤーの深淵0→1と1→0を検証。通知にカード名・IDを転記しない。"
+    }
+  ],
+  "improvements": [
+    {
+      "id": "defense-attack-context",
+      "status": "implemented-local",
+      "result": "攻撃中のカード名・攻撃先を帯に表示。攻撃元、クリーチャー対象、シールド対象、ダイレクトアタックのプレイヤーを強調。シールド番号は位置だけを投影し、非公開のカード名やシールドUIDは渡さない。"
+    },
+    {
+      "id": "log-latest-first",
+      "status": "implemented-local",
+      "result": "対戦ログを開くと新しい行動から表示。元のイベント配列・保存済み対戦履歴・デッキを変更しないことを実アプリのテストで確認。"
+    }
+  ],
+  "results": [
+    {
+      "name": "focused-fixed",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-app.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.924,
+      "log": "tmp/duema-online-fixes/focused-fixed.log",
+      "passed": 89,
+      "failed": 0,
+      "sha256": "48a6872854d0c02695a365305d33ba45721e3f9b5f1e1556d774f578a6c58ccb"
+    },
+    {
+      "name": "server",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating|self-play|a waiting|two accounts|the server|a repeated|concurrent|resignation|HTTP |Firestore |negative infinity|public online|online |Murder |QQ |Viride online choices|Golgy private|historical |Advance |an account session|only the mana|a face-down mana payment)",
+        "tests/online-server.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.831,
+      "log": "tmp/duema-online-fixes/server.log",
+      "passed": 41,
+      "failed": 0,
+      "sha256": "c646ddba3a074796b7d762ce6221b479d45140cbfe5b9c176811edc140de070d"
+    },
+    {
+      "name": "number-rules",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1134-effects.test.mjs",
+        "tests/standard1506-effects.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.406,
+      "log": "tmp/duema-online-fixes/number-rules.log",
+      "passed": 31,
+      "failed": 0,
+      "sha256": "1fd072dcf733b2140e36fe9d8ac790d1513cbaa1ed0a62febdf677f1e399fcce"
+    },
+    {
+      "name": "review-regressions",
+      "command": [
+        "node",
+        "tools/review-online-status.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.48,
+      "log": "tmp/duema-online-fixes/review-regressions.log",
+      "passed": 18,
+      "failed": 0,
+      "sha256": "c1e4007a0df78d6923c6ef57a68b37d962b9da5337ce0837654f6cc62f4bbf37"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.151,
+      "log": "tmp/duema-online-fixes/check.log",
+      "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+    },
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.802,
+      "log": "tmp/duema-online-fixes/audit.log",
+      "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+    }
+  ],
+  "totalDistinctTestsPassed": 161,
+  "reviewRegressionSubsetPassed": 18,
+  "counting": "89操作・表示・クライアント+41サーバー関連+31数字能力・ランタイム=161件。再開コマンド18件は重複する部分集合として別記し二重計上しない。",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-app.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.98,
+      "log": "tmp/duema-online-fixes/focused.log",
+      "reason": "攻撃対象クラスを付けない場合にshield-tile末尾へ空白を付け、既存の厳密なHTML件数テストが失敗した。不要な空白を除去して再検証。",
+      "sha256": "742d71af59f8234fc6331accf61c2b030b150e6aef280e7c61d2d708d21db358"
+    }
+  ],
+  "compatibility": {
+    "cardDefinitionsChanged": false,
+    "canonicalIdsChanged": false,
+    "savedDecksChanged": false,
+    "savedHistoriesChanged": false,
+    "encryptedRoomSchemaChanged": false,
+    "engineVersionUnchanged": true,
+    "projection": "公開レスポンスに数字候補のnumber・数字宣言中のminimum・攻撃中のシールド位置を追加。保存形式は維持。"
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "visualVerification": {
+    "scope": "実際のonlineScreenHTMLを使ったlocalhost上の合成公開盤面。ブラウザーでは表示と入力保持を確認し、実アプリ操作とサーバー保存はVM/HTTPテストで確認。本番のアカウント対戦・デプロイ試験とは区別する。",
+    "checks": [
+      "390×844で37を入力し、前の状況へ切替後も37を表示",
+      "390×844で攻撃元とシールド3への攻撃、対象枠を表示",
+      "320×568と844×390でも攻撃状況・盤面・下部操作が画面内に収まる"
+    ],
+    "screenshots": [
+      "/tmp/duema-online-fixes/number-preserved.jpg",
+      "/tmp/duema-online-fixes/defense.jpg",
+      "/tmp/duema-online-fixes/defense-small.jpg",
+      "/tmp/duema-online-fixes/defense-landscape.jpg"
+    ],
+    "cleanup": "viewport設定を復元。一時サーバーを停止。"
+  },
+  "hashes": {
+    "dist/app.js": "c806b6ce15be40a467bc3ab3c9b55e51f30f95d348ba5b349babe9d6e9e7d27c",
+    "dist/online-feedback.js": "10c827b48008b7ea4c37f8b853c9de8a1e29c650e7ce5b12b175ee7f4c9374c9",
+    "dist/online-ui.js": "cfe081afcb5fa1f303510102c7aab370b920837b2016224908e9d1de0ada67ad",
+    "dist/online.css": "af108f31c95caf3b4c09b53c25d9d596e1c13b663d8c7cd606526cb772968370",
+    "server/duel-core.mjs": "264f47bdb34586ea38b989ad72c3d358b3557727b7f44ae0d35afe4142c2796e",
+    "tests/online-app.test.mjs": "1b1400ecd3f251091a11fee0989e6f86aab2843a6281544bfffd96edf932cd1c",
+    "tests/online-feedback.test.mjs": "467f44a0989e0b41ede14e78a8b560e5c3bbe0f95671c50a6be30955598b6fde",
+    "tests/online-server.test.mjs": "281b1795a308f74110e907f6cc14699cd81c5203f910658387f3ec411eb4720f",
+    "tests/online-ui.test.mjs": "265a97fc63e5de7a89d6f7933c761712d39629f6dfabdec17128fd1d0f0d3b48",
+    "tools/review-online-status.mjs": "4b7035aca9b5f9d9b185130caf0434846965c668b6669ca985a8c7e67c8182a1"
+  },
+  "remaining": [
+    "未公開の修正を含む本番2アカウント対戦の確認は、公開後に必要。Netlifyをまだ更新しないというユーザー指示を継続。",
+    "過去の一括npm testは中断・合否未確認を維持。後回しにした裁定・再録2件とカード登録の次phaseは変更しない。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

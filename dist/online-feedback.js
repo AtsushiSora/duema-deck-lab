@@ -19,7 +19,8 @@ export function updateOnlineFeedback(before,room,current=null){
  room.game.players.forEach((p,player)=>{
   const previous=before.game.players[player];if(!previous)return;
   for(const [zone,label] of Object.entries(counts)){
-   const a=Array.isArray(previous[zone])?previous[zone].length:previous[zone],b=Array.isArray(p[zone])?p[zone].length:p[zone];
+   const count=(value)=>Array.isArray(value)?value.length:value??(zone.endsWith('Count')?undefined:0);
+   const a=count(previous[zone]),b=count(p[zone]);
    if(Number.isFinite(a)&&Number.isFinite(b)&&a!==b)add(player,`${label}が${Math.abs(b-a)}枚${b>a?'増えた':'減った'}`);
   }
   for(const zone of ['mana','battle']){

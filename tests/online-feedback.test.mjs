@@ -64,3 +64,15 @@ test('cue is accessible, escaped and can be reviewed without any move control',(
  assert.match(html,/data-action="online-feedback-next"[^>]*disabled/);
  assert.match(onlineFeedbackHTML(null,0),/操作の結果をここに表示します/);
 });
+
+test('optional abyss arrays compare missing as empty for both first entry and last departure',()=>{
+ for(const player of [0,1]){
+  const a=room();delete a.game.players[player].abyss;
+  const b=structuredClone(a);b.revision++;b.game.players[player].abyss=[{uid:'secret-uid',name:'secret-name',hidden:true}];
+  assert.ok(updateOnlineFeedback(a,b).items.some(e=>e.player===player&&e.text==='深淵ゾーンのカードが1枚増えた'));
+  const c=structuredClone(b);c.revision++;delete c.game.players[player].abyss;
+  const cues=updateOnlineFeedback(b,c);
+  assert.ok(cues.items.some(e=>e.player===player&&e.text==='深淵ゾーンのカードが1枚減った'));
+  assert.doesNotMatch(JSON.stringify(cues),/secret/);
+ }
+});

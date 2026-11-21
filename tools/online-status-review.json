@@ -3,13 +3,13 @@
   "clientDate": "2026-11-22",
   "baseCommit": "5d813494b14433db6dc95eafc0241cf2f3ad86e7",
   "scope": "友達・アカウント対戦の操作、通信、直前の状況表示。ローカルコードと隔離された2アカウント用HTTP/暗号化保存テストによる確認。本番アカウントへの操作は行わない。",
-  "status": "review-complete-findings-open",
+  "status": "resolved-locally-after-review",
   "productCodeChanged": false,
   "findings": [
     {
       "id": "online-number-button-override",
       "severity": "high",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "数字の選択ボタンが入力欄の0で上書きされる",
       "location": "dist/app.js:881",
       "related": [
@@ -29,7 +29,7 @@
     {
       "id": "online-number-draft-reset",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "状況表示を切り替えると入力途中の数字が0へ戻る",
       "location": "dist/online-ui.js:69",
       "related": [
@@ -49,7 +49,7 @@
     {
       "id": "online-abyss-first-last-cue",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "深淵ゾーンの最初と最後のカード移動が状況表示から抜ける",
       "location": "dist/online-feedback.js:22",
       "related": [
@@ -75,7 +75,8 @@
       "recommendation": "攻撃中のカード名と対象を表示し、該当カード・シールドを強調する。防御ルール変更は不要。",
       "proofCases": [
         5
-      ]
+      ],
+      "status": "implemented-local"
     },
     {
       "id": "log-latest-first",
@@ -83,7 +84,8 @@
       "location": "dist/app.js:1044",
       "title": "対戦ログを最新から確認しやすくする",
       "evidence": "静的レビュー:直近40件を古い順のままmapし、ログダイアログを開く。今回この項目の実ブラウザー確認は行っていない。",
-      "recommendation": "最新の行動を上に表示するか、開くときに最新へスクロールする。"
+      "recommendation": "最新の行動を上に表示するか、開くときに最新へスクロールする。",
+      "status": "implemented-local"
     }
   ],
   "verification": {
@@ -180,5 +182,15 @@
     "pushed": false,
     "deployed": false,
     "netlifyUpdated": false
+  },
+  "resolution": {
+    "checkedAt": "2026-11-21T22:21:23.159Z",
+    "artifact": "tools/online-status-fixes-verification.json",
+    "baseCommit": "ba19506fb4069ccd4c5be4253bbd38696fccdc54",
+    "status": "all-five-items-verified-local-not-published",
+    "productCodeChanged": true,
+    "totalDistinctTestsPassed": 161,
+    "reproduce": "node tools/review-online-status.mjs",
+    "note": "元の検出時の再現結果はbaseCommit当時の記録として保持。現在の再開コマンドは修正済み期待動作を検証する。"
   }
 }

@@ -67,3 +67,29 @@ test('ordinary online moves carry their room revision and retain multi-card effe
  const s=fixture();s.room.revision=18;s.room.game.decision='2体を選ぶ';const first=c('target-one'),second=c('target-two');s.room.game.players[1].battle=[first,second];s.room.game.actions=[{id:7,kind:'effect',uid:null,targetUids:[first.uid,second.uid],label:'この2体をタップ'},{id:8,kind:'effect',uid:'other',label:'別の対象'}];
  for(const selected of[first.uid,second.uid]){const html=onlineScreenHTML(s,{user:{},actionsOpen:true,selected});assert.match(html,/data-action="online-move"[^>]*data-index="7"[^>]*data-revision="18"/);assert.doesNotMatch(html,/data-index="8"/);}
 });
+
+for(const seat of [0,1])test('online attack context names and highlights the attacker and creature target at seat '+seat,()=>{
+ const state=fixture(seat),g=state.room.game;g.attack={attacker:'bhost',target:'bguest',player:0};
+ const html=onlineScreenHTML(state,{user:{}});
+ assert.match(html,/aria-label="進行中の攻撃"/);
+ assert.ok(html.includes(`${seat===0?'あなた':'相手'}の「bhost」 → ${seat===1?'あなた':'相手'}の「bguest」`));
+ assert.match(html,/is-attacking[^>]*><button[^>]*data-uid="bhost"[^>]*aria-label="bhostを選ぶ・攻撃中/);
+ assert.match(html,/is-attack-target[^>]*><button[^>]*data-uid="bguest"[^>]*aria-label="bguestを選ぶ・攻撃対象/);
+ const before=html;g.attack.attacker='not-on-board';assert.doesNotMatch(onlineScreenHTML(state,{user:{}}),/aria-label="進行中の攻撃"/);assert.notEqual(before,onlineScreenHTML(state,{user:{}}));
+});
+test('online shield targets and direct attacks are distinguished without revealing hidden identities',()=>{
+ const state=fixture(1),g=state.room.game;g.attack={attacker:'bhost',target:'player',player:0,shieldIndex:2};
+ let html=onlineScreenHTML(state,{user:{}});
+ assert.match(html,/あなたのシールド 3/);assert.equal((html.match(/class="shield-tile is-attack-target"/g)||[]).length,1);
+ g.players[1].shieldCount=0;html=onlineScreenHTML(state,{user:{}});assert.match(html,/あなたへダイレクトアタック/);
+ g.players[0].battle[0].hidden=true;g.players[0].battle[0].name='private-source';
+ html=onlineScreenHTML(state,{user:{}});assert.doesNotMatch(html,/private-source/);assert.match(html,/裏向きのカード/);
+ state.room.phase='finished';assert.doesNotMatch(onlineScreenHTML(state,{user:{}}),/aria-label="進行中の攻撃"/);
+});
+test('numeric entry is separate from legal candidates, shows its server minimum and escapes drafts',()=>{
+ const state=fixture();state.room.revision=10;state.room.game.numberChoice=true;state.room.game.numberMinimum=6;state.room.game.actions=[{id:4,kind:'extended',number:6,label:'6を宣言'}];
+ const html=onlineScreenHTML(state,{user:{},actionsOpen:true,numberValue:'37"<draft>'});
+ assert.match(html,/placeholder="6以上の整数、または∞"/);assert.match(html,/value="37&quot;&lt;draft&gt;"/);
+ assert.match(html,/data-action="online-number-submit"[^>]*data-index="4" data-revision="10"/);
+ assert.match(html,/data-action="online-move"[^>]*data-index="4"/);
+});

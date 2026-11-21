@@ -246,3 +246,24 @@ test('a face-down mana payment identifies the original only to its controller wh
  e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'),{manualMana:true});const own=projectRoom(room,host,room.updatedAt),enemy=projectRoom(room,guest,room.updatedAt),payment=own.game.manaPayment.cards.find(x=>x.uid===hidden.uid);
  assert.ok(payment.name.includes(e.card(hidden.cardId).name));assert.equal(payment.value,1);assert.deepEqual(payment.colors,[]);assert.equal(enemy.game.manaPayment,undefined);assert.equal(enemy.game.players[0].mana.find(x=>x.uid===hidden.uid).privateFace,undefined);
 });
+
+for(const seat of [0,1])test('online numeric declaration projects legal numbers and its minimum only to the acting account '+seat,async()=>{
+ const h=setup(),{code}=await h.start(),raw=h.raw(code),s=raw.game;
+ s.active=seat;s.phase='main';s.decision=null;s.extTasks=[{op:'g9Number',p:seat,source:'dm26ex1-N006',family:'searchCost1134',minNumber:6}];
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='toAttack'));
+ const {projectRoom}=await import('../server/duel-core.mjs');
+ const actor=projectRoom(raw,seat?guest:host,1700000000000),other=projectRoom(raw,seat?host:guest,1700000000000);
+ assert.equal(actor.game.numberChoice,true);assert.equal(actor.game.numberMinimum,6);assert.ok(actor.game.actions.every(a=>a.number==='∞'||a.number>=6));
+ assert.equal(other.game.numberChoice,false);assert.equal(Object.hasOwn(other.game,'numberMinimum'),false);assert.deepEqual(other.game.actions,[]);
+});
+test('online attack projection gives a public shield position without a shield identity',async()=>{
+ const h=setup(),{code}=await h.start(),raw=h.raw(code),s=raw.game;
+ const attacker=s.players[0].hand.pop();s.players[0].battle=[attacker];s.active=0;
+ const shield=s.players[1].shields[2];s.attack={attacker:attacker.uid,target:'player',shield:shield.uid,stage:'block'};
+ const {projectRoom}=await import('../server/duel-core.mjs');
+ for(const user of [host,guest]){
+  const view=projectRoom(raw,user,1700000000000);
+  assert.equal(view.game.attack.shieldIndex,2);assert.equal(view.game.attack.player,0);
+  assert.equal(Object.hasOwn(view.game.attack,'shield'),false);assert.ok(!JSON.stringify(view.game.attack).includes(shield.uid));
+ }
+});
