@@ -1,0 +1,63 @@
+// Diagnostic assertions below describe confirmed current behavior, not fixed behavior.
+import {ONLINE_COMPATIBILITY} from '../dist/online-compatibility.js';
+for(const failure of ['version-mismatch','permission-denied'])test('REPRO: permanent '+failure+' keeps polling every 3 seconds',async()=>{
+ const tasks=new Map();let next=0,reads=0,posts=0;
+ const c=createOnlineClient({getToken:async()=> 'synthetic-token',timer:(fn,delay)=>{const id=++next;tasks.set(id,{fn,delay});return id;},cancel:id=>tasks.delete(id),fetcher:async(_,o)=>{
+  if(o.method==='POST')posts++;else reads++;
+  return failure==='version-mismatch'?Response.json({room:null},{headers:{'X-Duema-Rules':'different-version'}}):Response.json({error:'room/forbidden',message:'このルームには参加できません。'},{status:403,headers:{'X-Duema-Rules':ONLINE_COMPATIBILITY.rulesHash}});
+ }});
+ c.setIdentity('test-user');c.setActive(true);await tick();
+ for(let i=0;i<5;i++){const poll=[...tasks].find(([,t])=>t.delay===3000);assert.ok(poll);tasks.delete(poll[0]);poll[1].fn();await tick();}
+ assert.equal(reads,6);assert.equal(c.getState().connected,false);assert.ok([...tasks.values()].some(t=>t.delay===3000));
+ await c.create(PRESETS[0]);assert.equal(posts,0);
+ console.log('CONFIRMED '+failure+': 6 automatic GETs in 5 simulated 3-second retry intervals; writes blocked');
+ c.dispose();assert.equal(tasks.size,0);
+});
+test('REPRO: an unblurred room code disappears on successful background recovery',async()=>{
+ const h=harness();await h.login();
+ const original=h.service.resume;h.service.resume=async()=>{throw Error('synthetic network interruption');};
+ await h.read('onlineClient.refresh()');assert.equal(h.read('onlineState.connected'),false);
+ h.input('online-code','AABBCCDDEEFF0011');assert.equal(h.nodes['#online-code'].value,'AABBCCDDEEFF0011');
+ h.service.resume=original;await h.read('onlineClient.refresh()');
+ assert.equal(h.read('onlineState.connected'),true);assert.equal(h.nodes['#online-code'].value,'');assert.equal(h.read('onlineCode'),'');
+ console.log('CONFIRMED typed 16-character room code resets to empty during recovery before change/blur');
+ h.read('onlineClient.dispose()');
+});
+test('REPRO: the main button advances the phase while a legal field Hyper ability is selected',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ await h.editGame(s=>{s.phase='main';s.active=0;s.decision=null;s.players[0].battle=[{uid:'field-hyper',cardId:'dm24ex1-028',entered:0,tapped:false},{uid:'donor',cardId:'dm01-108',entered:0,tapped:false}];});
+ assert.equal(h.read('onlineState.room.game.actions.some(a=>a.kind==="hyper"&&a.uid==="field-hyper")'),true);
+ await h.click('online-card',{uid:'field-hyper'});
+ const primary=h.read('onlinePrimaryAction(onlineState.room,onlineSelected,onlinePending)');assert.equal(primary.label,'攻撃へ進む');
+ await h.click('online-primary',{revision:String(h.read('onlineState.room.revision'))});
+ assert.equal(h.game().phase,'attack');assert.ok(!h.game().players[0].battle.find(c=>c.uid==='field-hyper').hyperActive);assert.ok(!e.getLegalActions(h.game()).some(a=>a.kind==='hyper'&&a.uid==='field-hyper'));
+ console.log('CONFIRMED selected field Hyper ability exists in drawer, but primary instead changes main→attack');
+ h.read('onlineClient.dispose()');
+});
+test('CHECK: a response lost after a committed charge reconciles without applying the charge twice',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();
+ const original=h.service.move,uid=h.read('onlineState.room.game.players[0].hand[0].uid'),before=h.game().actions,revision=h.read('onlineState.room.revision');let calls=0;
+ h.service.move=async(...args)=>{calls++;await original(...args);throw Error('synthetic response lost after commit');};
+ await h.click('online-card',{uid});await h.click('online-primary',{revision:String(revision)});
+ assert.equal(h.read('onlineState.connected'),false);assert.equal(h.game().actions,before+1);
+ h.service.move=original;await h.click('online-refresh');
+ assert.equal(h.read('onlineState.connected'),true);assert.equal(h.read('onlineState.room.revision'),revision+1);assert.equal(h.game().actions,before+1);assert.equal(calls,1);
+ assert.ok(h.game().players[0].mana.some(c=>c.uid===uid));assert.ok(!h.game().players[0].hand.some(c=>c.uid===uid));
+ console.log('CHECK PASSED committed charge survives lost response and refresh exactly once');h.read('onlineClient.dispose()');
+});
+test('CHECK: two simultaneous client mutations commit only once',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();const before=h.game().actions,revision=h.read('onlineState.room.revision');
+ const result=await h.read('Promise.all([onlineClient.move(onlineState.room.game.actions.find(a=>a.kind==="charge").id),onlineClient.move(onlineState.room.game.actions.find(a=>a.kind==="charge").id)])');
+ assert.equal(result.filter(Boolean).length,1);assert.equal(h.game().actions,before+1);assert.equal(h.read('onlineState.room.revision'),revision+1);
+ console.log('CHECK PASSED concurrent same-device mutations apply once');h.read('onlineClient.dispose()');
+});
+
+test('CHECK: clearing an ended room does not reopen it on resume or delete its result',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();const code=h.read('onlineState.room.code');
+ await h.click('online-menu');await h.click('online-confirm-resign');await h.click('online-resign');
+ assert.equal(h.read('onlineState.room.phase'),'finished');const history=h.read('JSON.stringify(saved.onlineHistory)');
+ await h.click('online-back');await h.read('onlineClient.refresh()');assert.equal(h.read('onlineState.room'),null);assert.match(h.root.innerHTML,/data-action="online-create"/);
+ const finished=await h.service.get(code,{uid:'u1'},'u1');assert.equal(finished.phase,'finished');assert.equal(finished.game.winner,1);
+ assert.equal(h.read('JSON.stringify(saved.onlineHistory)'),history);
+ console.log('CHECK PASSED ended room remains stored while normal resume returns to lobby');h.read('onlineClient.dispose()');
+});

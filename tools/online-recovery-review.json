@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-11-21T22:28:59.348Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "4b225426ffe8c5bc8f6ffae6239a049c50c26a0f",
+  "status": "additional-review-complete-three-open-findings",
+  "scope": "友達・アカウント対戦のエラー復旧、連続操作、場のカード選択、終了後の再開。実アプリのVM、HTTP境界、暗号化保存と制御したタイマーによる隔離ローカル検証。",
+  "productCodeChanged": false,
+  "findings": [
+    {
+      "id": "online-field-primary-ignores-selection",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "場のハイパー化対象を選んでもメインボタンが攻撃ステップへ進める",
+      "location": "dist/online-ui.js:46",
+      "related": [
+        "dist/battle-controls.js:15",
+        "dist/app.js:1037"
+      ],
+      "reproduction": "メインステップで冥土人形ヴァミリア・バレルとタップできる別のクリーチャーを置き、ヴァミリア・バレルを選択して下部メインボタンを押す。",
+      "expected": "選択したカードの能力・操作を確認できる。",
+      "actual": "合法なhyper操作は操作パネルに存在するが、own.battleがselectedCardの検索対象から外れているため下部は「攻撃へ進む」。押すとphase=attackとなり、ハイパー化の合法操作が消える。",
+      "impact": "選んだカードの操作を進めるつもりで、能力を使わずに攻撃ステップへ移ってしまう。パネル内の明示的なハイパー化ボタンからは使える。",
+      "recommendation": "選択中カードの判定に自分のバトルゾーンを含める。場の起動能力・ギア・タマシード等と通常の攻撃選択の両方を回帰確認する。",
+      "diagnosticCases": [
+        4
+      ]
+    },
+    {
+      "id": "online-room-code-draft-lost-on-recovery",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "通信復旧時に入力途中のルームコードが消える",
+      "location": "dist/app.js:1281",
+      "related": [
+        "dist/app.js:1295",
+        "dist/app.js:877",
+        "dist/online-ui.js:93"
+      ],
+      "reproduction": "ロビーで通信エラーが起きた後、ルームコードを入力し、入力欄からフォーカスを外す前に自動再接続が成功する。",
+      "expected": "入力した16文字のコードを保持する。",
+      "actual": "onlineCodeの保存がchangeイベントのみ。入力中はonlineCodeが空のため、復旧によるルート再描画で入力欄が空になる。16文字入力→復旧→空の値を確認。",
+      "impact": "招待コードの入力・貼り直しが必要になる。",
+      "recommendation": "input時にコードの下書きを保持し、同じアカウントのロビー再描画で引き継ぐ。",
+      "diagnosticCases": [
+        3
+      ]
+    },
+    {
+      "id": "online-permanent-errors-retry-without-backoff",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "版不一致・参加権限エラーでも3秒ごとの自動通信が続く",
+      "location": "dist/online.js:5",
+      "related": [
+        "dist/online.js:8"
+      ],
+      "reproduction": "友達対戦画面を開いたまま、サーバーの対応版が不一致、またはGETが参加権限エラー403を返す状態にする。",
+      "expected": "更新やアカウント変更が必要なエラーは自動再試行を止める。一時的な通信障害には待機時間を増やす。",
+      "actual": "どちらのエラーでも毎回finallyから次の3000msタイマーを予約。時刻を制御したローカル検証で、5回の3秒間隔を進めると最初の1回を含め6回GETし、さらに次のGETも予約された。",
+      "impact": "エラーを解消できないまま通信が続き、不要なサーバー呼び出し・利用枠の消費につながる。実際のNetlify課金額や枠の消費は測定していない。",
+      "recommendation": "エラーの種別を保持し、版不一致・権限等は手動操作待ちにする。再試行可能な障害は上限付きの間隔増加を使う。",
+      "diagnosticCases": [
+        1,
+        2
+      ]
+    }
+  ],
+  "safetyChecksPassed": [
+    "サーバーがマナチャージを保存した直後に応答を失っても、再接続で結果を取得し、二重にチャージしない。",
+    "同一クライアントから2件の操作を同時に送ろうとしても、保存・revision・actionsの増加は1回だけ。",
+    "終了したルームをクリアして再開しても終了画面へ戻らず、保存済みの対戦結果・勝者・履歴は保持される。"
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "diagnostic-final",
+        "command": [
+          "node",
+          "tools/review-online-recovery.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.362,
+        "log": "tmp/duema-online-recovery-review/diagnostic-final.log",
+        "passed": 7,
+        "failed": 0,
+        "sha256": "1a942e4c367dda509bf223b736d4ca911665e1149be5ec72d0660f0124873e97"
+      },
+      {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/battle-controls.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.574,
+        "log": "tmp/duema-online-recovery-review/related.log",
+        "passed": 89,
+        "failed": 0,
+        "sha256": "605ca4b422fb2dc6c4d810583eab4f7414eb7e57cb6a6c41743bb5922dd2e313"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.449,
+        "log": "tmp/duema-online-recovery-review/check.log",
+        "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.955,
+        "log": "tmp/duema-online-recovery-review/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "existingRegressionCasesPassed": 89,
+    "additionalSafetyChecksPassed": 3,
+    "diagnosticCasesConfirmingOpenFindings": 4,
+    "diagnosticNote": "診断7件中、REPRO4件は3件の未修正問題を再現したという意味の合格。CHECK3件は期待する安全な動作の合格。全7件が不具合なしという意味ではない。",
+    "reproduce": "node tools/review-online-recovery.mjs",
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "hashes": {
+    "dist/app.js": "c806b6ce15be40a467bc3ab3c9b55e51f30f95d348ba5b349babe9d6e9e7d27c",
+    "dist/online-ui.js": "cfe081afcb5fa1f303510102c7aab370b920837b2016224908e9d1de0ada67ad",
+    "dist/online.js": "fc4032fb544c6077724ae7375d9a3f81c654789f6450fbe434e5af57e5e90ef7",
+    "dist/battle-controls.js": "97134ba517c79847c514cdb20d61f8a60b7349c9138112f0901876012961254e",
+    "server/duel-core.mjs": "264f47bdb34586ea38b989ad72c3d358b3557727b7f44ae0d35afe4142c2796e",
+    "tools/review-online-recovery.mjs": "da6ef78ebe22df8648a1c2117914ea533807e62bad59b74945047031bf8f7def",
+    "tools/online-recovery-review-cases.txt": "d74761291045b4699a6f6549e9169a6c9987ca69fa43b2c5a5a50817370e5f91"
+  },
+  "limits": [
+    "修正済みの前回3件・改善2件とは別に、今回の3件を新たに未修正として記録する。",
+    "公開中の版で同じ問題が起きるかは確認していない。本番アカウント操作・実機試験・Netlify更新は行っていない。",
+    "全カード・全状況の無欠陥を保証する網羅試験ではない。過去の一括npm testは中断・合否未確認のまま。後回しにした裁定・再録2件は維持。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

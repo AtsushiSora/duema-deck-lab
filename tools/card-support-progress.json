@@ -524348,7 +524348,8 @@
         }
       ],
       "resolutionArtifact": "tools/online-status-fixes-verification.json",
-      "resolvedAt": "2026-11-21T22:21:23.159Z"
+      "resolvedAt": "2026-11-21T22:21:23.159Z",
+      "followUpReview": "tools/online-recovery-review.json"
     },
     "latestOnlineStatusFixes": {
       "artifact": "tools/online-status-fixes-verification.json",
@@ -524365,6 +524366,41 @@
         "未公開の修正を含む本番2アカウント対戦の確認は、公開後に必要。Netlifyをまだ更新しないというユーザー指示を継続。",
         "過去の一括npm testは中断・合否未確認を維持。後回しにした裁定・再録2件とカード登録の次phaseは変更しない。"
       ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
+    },
+    "latestOnlineRecoveryReview": {
+      "artifact": "tools/online-recovery-review.json",
+      "checkedAt": "2026-11-21T22:28:59.348Z",
+      "baseCommit": "4b225426ffe8c5bc8f6ffae6239a049c50c26a0f",
+      "status": "additional-review-complete-three-open-findings",
+      "productCodeChanged": false,
+      "confirmedOpenFindings": [
+        {
+          "id": "online-field-primary-ignores-selection",
+          "severity": "medium",
+          "title": "場のハイパー化対象を選んでもメインボタンが攻撃ステップへ進める"
+        },
+        {
+          "id": "online-room-code-draft-lost-on-recovery",
+          "severity": "medium",
+          "title": "通信復旧時に入力途中のルームコードが消える"
+        },
+        {
+          "id": "online-permanent-errors-retry-without-backoff",
+          "severity": "medium",
+          "title": "版不一致・参加権限エラーでも3秒ごとの自動通信が続く"
+        }
+      ],
+      "existingRegressionCasesPassed": 89,
+      "additionalSafetyChecksPassed": 3,
+      "diagnosticCasesConfirmingOpenFindings": 4,
+      "uniqueNames": 9070,
+      "added": 0,
+      "next": "今回の3件は未修正。場の選択をメインボタンへ反映、コード入力の保持、再試行方針の修正を行い、診断ケースを期待動作の回帰テストに変換する。公開は別途のユーザー指示まで行わない。",
       "publication": {
         "pushed": false,
         "deployed": false,
