@@ -13234,5 +13234,136 @@
         ]
       }
     }
+  },
+  "dm25ex4-064": {
+    "phase": 1535,
+    "faces": [
+      {
+        "name": "次元戴冠プリンプリン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚を見る。それがクリーチャー、デュエリスト、または名前に《ホール》とあるカードなら、表向きにし、手札に加えてもよい。",
+        "race": "ハンター/エイリアン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "creature": true
+                  },
+                  {
+                    "g1535Duelist": true
+                  },
+                  {
+                    "g220NameAny": [
+                      "ホール"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex4-044": {
+    "phase": 1535,
+    "faces": [
+      {
+        "name": "怒流牙 モチヅキ・ダルク",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、コスト４以下のクリーチャーを１体、自分の墓地から出してもよい。",
+        "race": "メカ・デル・ソル/シノビ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "g1085Psychic": true
+              },
+              {
+                "g1535Duelmate": true
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "optional": true,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "max": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy11-083": {
+    "phase": 1535,
+    "faces": [
+      {
+        "name": "堂々終劇 鬼丸「Ｅｎｄ」",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n誰もゼニスを召喚できない。\nゼニスとバトル中、このクリーチャーのパワーは+11000される。",
+        "race": "ヒューマノイド/ハンター/エイリアン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1535ZenithSummonLock": true,
+      "g209BattlePower": {
+        "amount": 11000,
+        "opponentRaces": [
+          "ゼニス"
+        ]
+      }
+    }
   }
 }

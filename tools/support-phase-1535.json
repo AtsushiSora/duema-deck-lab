@@ -1,0 +1,235 @@
+{
+  "phase": 1535,
+  "checkedAt": "2026-11-21",
+  "baseCount": 8753,
+  "description": "既存の処理を用いて全能力を個別に検証し3種類を追加。公式の全文・基本情報・画像・制限・同名収録と関連裁定を照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "deferred": [
+    {
+      "id": "dm09-016",
+      "name": "猿神兵アッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-016",
+      "reason": "破壊限定の既存DeathWatchでは、破壊ではなくバトルゾーンから墓地に置かれた場合・置換後の実際の墓地到着・封印や進化元を区別する全能力の確認が不足。BattleCardGraveの種族付き監視と合わせる別バッチまで登録しない。"
+    },
+    {
+      "id": "dmr12-019",
+      "name": "倍返し アザミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-019",
+      "reason": "既存のmanaAdded通知に手札からの移動と他ゾーンからの移動の区別が渡らない。相手の手札由来だけを除外できる移動元の記録を検証してから実装する。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-064",
+      "name": "次元戴冠プリンプリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064",
+      "faces": [
+        {
+          "name": "次元戴冠プリンプリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚を見る。それがクリーチャー、デュエリスト、または名前に《ホール》とあるカードなら、表向きにし、手札に加えてもよい。",
+          "race": "ハンター/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "top",
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "any": [
+                    {
+                      "creature": true
+                    },
+                    {
+                      "g1535Duelist": true
+                    },
+                    {
+                      "g220NameAny": [
+                        "ホール"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "5dd9687344f55e4e91d18b0db8d1a130b41c42b164b52e9cece05b2383e4c868",
+        "facesMatched": true,
+        "imageSha256": "0aaf2d8f293028ee540c89e939a3cd780db62678bdb89cb390e4f78ea06e8741",
+        "imageBytes": 161824
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-044",
+      "name": "怒流牙 モチヅキ・ダルク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-044",
+      "faces": [
+        {
+          "name": "怒流牙 モチヅキ・ダルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、コスト４以下のクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "メカ・デル・ソル/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "g1085Psychic": true
+                },
+                {
+                  "g1535Duelmate": true
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "optional": true,
+                "deploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 4
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "eba0d19c50777a767cdbf1d88e2a92f44c45c40b62ba339af2c147e1236a00de",
+        "facesMatched": true,
+        "imageSha256": "d598d5898924011fdcef6234b73a36167ad259c98b7bd0eadd980f1b89ec7a98",
+        "imageBytes": 137853
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-044",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    },
+    {
+      "id": "promoy11-083",
+      "name": "堂々終劇 鬼丸「Ｅｎｄ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-083",
+      "faces": [
+        {
+          "name": "堂々終劇 鬼丸「Ｅｎｄ」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n誰もゼニスを召喚できない。\nゼニスとバトル中、このクリーチャーのパワーは+11000される。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1535ZenithSummonLock": true,
+        "g209BattlePower": {
+          "amount": 11000,
+          "opponentRaces": [
+            "ゼニス"
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-083.jpg",
+      "verification": {
+        "checkedAt": "2026-11-21",
+        "sha256": "71be3c81ee734ff56e10f1893e65039e2b0d82879f1ed423562ef6d288414e35",
+        "facesMatched": true,
+        "imageSha256": "2ee71d300f1375fd9b7cf556a91cc590b2a579c9fcd3914b06d013dbcbde9d66",
+        "imageBytes": 127767
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 11期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-083",
+        "result": "公式の同名カード収録商品一覧を照合。別版IDは新規種類に数えず、未照合の別版エイリアスは登録しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-21",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-064": 4,
+      "dm25ex4-044": 4,
+      "promoy11-083": 4
+    }
+  },
+  "rulings": [
+    "https://dm.takaratomy.co.jp/rule/qa/31899/",
+    "https://dm.takaratomy.co.jp/rule/qa/31917/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31899/",
+      "sha256": "bc2960e91cbeaab15f029e7641497f862fb65ce4d8c868f545e1ea972afac467",
+      "result": "超GRは12枚、同名2枚まで。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31917/",
+      "sha256": "61ba7a3e2f299c7d569dff9c8a784a134d31735642b6569d290540b0d6cbc518",
+      "result": "バトルゾーン以外のゾーンにあるGRクリーチャーは超GRの下へ戻る。"
+    }
+  ]
+}

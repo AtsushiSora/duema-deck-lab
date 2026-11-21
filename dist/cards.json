@@ -275361,15 +275361,137 @@
       },
       "supportBatch": "phase-1534",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-064",
+      "name": "次元戴冠プリンプリン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ハンター/エイリアン",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚を見る。それがクリーチャー、デュエリスト、または名前に《ホール》とあるカードなら、表向きにし、手札に加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "creature": true
+                  },
+                  {
+                    "g1535Duelist": true
+                  },
+                  {
+                    "g220NameAny": [
+                      "ホール"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1535",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-044",
+      "name": "怒流牙 モチヅキ・ダルク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "メカ・デル・ソル/シノビ",
+      "text": "このクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、コスト４以下のクリーチャーを１体、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-044",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "g1085Psychic": true
+              },
+              {
+                "g1535Duelmate": true
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "optional": true,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "max": 4
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1535",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy11-083",
+      "name": "堂々終劇 鬼丸「Ｅｎｄ」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n誰もゼニスを召喚できない。\nゼニスとバトル中、このクリーチャーのパワーは+11000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-083",
+      "limit": 4,
+      "breaker": 2,
+      "g1535ZenithSummonLock": true,
+      "g209BattlePower": {
+        "amount": 11000,
+        "opponentRaces": [
+          "ゼニス"
+        ]
+      },
+      "supportBatch": "phase-1535",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1534,
+    "phase": 1535,
     "checkedAt": "2026-11-21",
-    "baseCount": 8748,
-    "newEffectCards": 5,
+    "baseCount": 8753,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 8753,
+    "totalCount": 8756,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -300624,6 +300746,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 8748,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "9000種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。"
+        ]
+      },
+      {
+        "phase": 1534,
+        "checkedAt": "2026-11-21",
+        "baseCount": 8748,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 8753,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

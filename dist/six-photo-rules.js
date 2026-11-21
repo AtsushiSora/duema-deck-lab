@@ -418,6 +418,8 @@ export function createSixPhotoRules(api){
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
   if(f.g1490Exile&&!c.g1490Exile)return false;
+  if(f.g1535Duelist&&!c.g1367Duelist&&c.type!=='duelist')return false;
+  if(f.g1535Duelmate&&!d.g1367Duelmate)return false;
   if(f.multicolor&&colors(d).length<2)return false;
   if(f.g1321ManaCivilizations){
    const present=new Set(s.players[p].mana.flatMap(y=>
@@ -8567,6 +8569,7 @@ export function createSixPhotoRules(api){
   });
  },
  allowedCast(s,p,c){
+  if(c.type==='creature'&&race(c,'ゼニス')&&s.players.some(own=>own.battle.some(x=>!x.sealed&&api.isCreature(s,x)&&effective(x,s).g1535ZenithSummonLock)))return false;
   if(c.type==='spell'&&(s.extLimits||[]).some(l=>l.kind==='g1372ExactSpellLock'&&l.player===p&&cost(c)===(l.cost==='∞'?Infinity:l.cost)))return false;
   if(c.type==='field'&&c.d2Field&&d2Locked1188(s,p))return false;
   const opponent=s.players[1-p];
