@@ -1,0 +1,201 @@
+{
+  "checkedAt": "2026-11-21T21:29:30.432Z",
+  "clientDate": "2026-11-22",
+  "timezone": "Asia/Tokyo",
+  "baseLocalCommit": "54768f79",
+  "scope": "実Googleアカウント2つ・本番Firestoreを使った既存公開版のUI操作確認。ローカル修正済みコミットと同じ公開物であることは照合していない。",
+  "testedUrl": "https://duema-deck-lab.netlify.app/?view=online",
+  "setup": {
+    "sameMac": true,
+    "browsers": [
+      "Chrome",
+      "ChatGPT in-app browser"
+    ],
+    "userCompletedGoogleLogin": true,
+    "passwordsOrTokensRecorded": false,
+    "existingDecksUsed": true,
+    "deckListsUnchanged": true,
+    "controlledMatches": 1,
+    "endedAtTurn": 4,
+    "endedBy": "host-resignation"
+  },
+  "checks": [
+    {
+      "id": "two-real-accounts",
+      "result": "passed",
+      "observed": "同じMacのChromeとアプリ内ブラウザで、別々の実Googleアカウントにログイン。ホスト・参加者の名前が異なることを各画面で確認。"
+    },
+    {
+      "id": "create-and-join",
+      "result": "passed",
+      "observed": "ホストが作成した公開版のルームへ、参加者が自分の既存デッキで参加。両側に同じ先攻・後攻と初期盤面が表示された。"
+    },
+    {
+      "id": "turn-and-charge",
+      "result": "passed",
+      "observed": "両側のマナ配置とターン交代を4ターン目まで操作。相手の手札は枚数のみで、カード名は画面に表示されない。"
+    },
+    {
+      "id": "manual-mana",
+      "result": "passed",
+      "observed": "2マナのクリーチャーに対し、3枚のマナから2枚を手動で選択。初期選択は0枚。選ばなかった火のマナは未タップのまま、指定した自然と別の火のマナだけがタップされた。"
+    },
+    {
+      "id": "reload-during-payment",
+      "result": "passed",
+      "observed": "2枚を選択した支払い確定前に参加者側を再読み込み。再認証済みの同じ対戦へ復帰し、同じ2枚の選択と必要文明の充足を保持。そのまま確定して召喚できた。"
+    },
+    {
+      "id": "payment-privacy-ui",
+      "result": "passed",
+      "observed": "支払い中、相手側にはマナ支払いパネルが表示されず、自分の手札だけが表示された。"
+    },
+    {
+      "id": "summon-and-attack",
+      "result": "passed",
+      "observed": "召喚したターンは攻撃選択なし。次の自分のターンに攻撃先を確認してシールドを攻撃し、防御側でブロックしないを選択。シールド5から4、手札5から6への変化を確認。"
+    },
+    {
+      "id": "tapped-attacker",
+      "result": "passed",
+      "observed": "攻撃後のタップ済みクリーチャーを再選択しても攻撃操作は出なかった。"
+    },
+    {
+      "id": "resign-and-result",
+      "result": "passed",
+      "observed": "相手のターン中にホスト側から投了確認を経て終了。ホストは相手の勝利、参加者はあなたの勝利となり、同じ投了理由が表示された。"
+    }
+  ],
+  "issue": {
+    "id": "online-defense-guidance",
+    "foundOnPublishedBuild": true,
+    "reproducedLocally": true,
+    "before": {
+      "primary": "攻撃するクリーチャーを選ぶ",
+      "panel": "攻撃するクリーチャーを選ぼう"
+    },
+    "after": {
+      "primary": "防御を選ぶ",
+      "panel": "防御方法を選ぼう"
+    },
+    "localStatus": "fixed-and-verified",
+    "publishedStatus": "not-deployed",
+    "source": "dist/online-ui.js",
+    "reproductionBefore": {
+      "file": "tmp/duema-live-two-accounts/defense-before.jsonl",
+      "sha256": "9f19807afd0025ee1c1d3a6603f34df1aa0be61de48935c46a08f7cf7a6b142e"
+    },
+    "reproductionAfter": {
+      "file": "tmp/duema-live-two-accounts/defense-after.jsonl",
+      "sha256": "e0ac7b48532429656a1ac6aba67510f2835df8b20560f2d4856405e043804f1e"
+    },
+    "note": "ブロックの有無の両方を実エンジンとサーバー投影で描画確認。合法手や操作ID、対戦ルールは変更しない。"
+  },
+  "validation": [
+    {
+      "name": "online-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/online-ui.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/battle-controls.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.152,
+      "log": "tmp/duema-live-two-accounts/online-related.log",
+      "logHash": "ebf6c0cb521991858be452709a919f76ccd56060caabfb997c834498d8fcef87",
+      "passed": 51
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.457,
+      "log": "tmp/duema-live-two-accounts/check.log",
+      "logHash": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca",
+      "passed": 0
+    },
+    {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.797,
+      "log": "tmp/duema-live-two-accounts/audit.log",
+      "logHash": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a",
+      "passed": 0
+    }
+  ],
+  "invariants": {
+    "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+    "target": 9500,
+    "originalDefinitionsUnchanged": 9043,
+    "added": 27,
+    "uniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicateNames": 0,
+    "partialNewDefinitions": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "remaining": 430
+  },
+  "screenshots": [
+    {
+      "file": "/tmp/duema-two-accounts/resignation-synced.jpg",
+      "sha256": "daae78cc875c787a18027f39f1b94b5e3f581737769c4834f6ec4d2e2ddf39eb"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/mana-selected.jpg",
+      "sha256": "d781748b10d3dfa89d0f078589c1b31235ccd62a0bea3fbfff34568cf9682e9a"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/mana-restored.jpg",
+      "sha256": "e7e3183e960e401115f2fd664de9f85bad3c8d741378cbf1e815e8338f7eb8b4"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/mana-paid-exactly.jpg",
+      "sha256": "e7cb4a77f3cb4650a2d8a9787dc65969b6c7cb2c0eb7bac2085e8a263899bc21"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/tapped-attacker-blocked.jpg",
+      "sha256": "25318c2591d918214d84a8ad35be83dd585461891fe91362c8d03a4177f1355e"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/shield-break-synced.jpg",
+      "sha256": "d67d53cf6a8d40099f7213d8aae318f897e4fc29ca29303cc62623e3b162ec72"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/host-finished.jpg",
+      "sha256": "3cfa918df1cfd3bc984c3bcbf09ba42a9a70868db27bcb892994e8ac31d3d0c4"
+    },
+    {
+      "file": "/tmp/duema-two-accounts/guest-finished.jpg",
+      "sha256": "b3b60b289ba7ba60ff3868ffc5da84609dfc239ea7d747a90ee4f8c307d853b8"
+    }
+  ],
+  "sourceHashes": {
+    "dist/online-ui.js": "8fccbddbefb6f786d9d8bee4b2b344753342acff6984fe9f31d22a8765500f11",
+    "dist/engine.js": "d162b069e8220ec669822799842e11e8a1b955ea3ff8b347e295e537525d1532",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "limitations": [
+    "未公開のローカル修正4件と今回の防御案内修正は、公開後の版で本番再確認していない。Netlifyの更新は行わないというユーザー指示を継続。",
+    "墓地召喚・裏向きマナ・同一アカウントの同時入室競合・遅延通信のケースは今回の実機試験に含めない。ローカル検証結果と区別。",
+    "一括npm testの過去の中断・合否未確認と、ユーザーが後回しにした裁定・再録2件は維持。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

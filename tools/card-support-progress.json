@@ -524228,7 +524228,7 @@
       "resumeCommand": "node tools/verify-pending-games.mjs",
       "resumeNote": "Resume only the unchanged-source pending cases from tmp/duema-pending-games/results.json. Do not run npm test or publish.",
       "remaining": [
-        "実Googleアカウント2つと本番Firestoreによる確認は未実施。今回はNetlifyを更新しないため、修正後の本番確認は未公開のまま。",
+        "実Googleアカウント2つによる既存公開版の基本操作を確認。未公開の修正済み版を使った本番確認は未実施。詳細は tools/real-account-duel-verification.json を参照。",
         "全体npm testは再実行していない。過去の中断・合否未確認を保持し、今回の分割検証と区別。",
         "ユーザーが後回しにしたキング・ナイト・マジックの包含裁定とドラン・ゴルギーニ金箔版は再開・問い合わせ送信を行っていない。"
       ],
@@ -524236,7 +524236,8 @@
         "pushed": false,
         "deployed": false,
         "netlifyUpdated": false
-      }
+      },
+      "liveCheckArtifact": "tools/real-account-duel-verification.json"
     },
     "resolvedLongRunningVerification": [
       {
@@ -524261,7 +524262,27 @@
         "resolutionArtifact": "tools/pending-game-verification.json",
         "verifiedEngineVersion": "0.602.129"
       }
-    ]
+    ],
+    "latestRealAccountVerification": {
+      "artifact": "tools/real-account-duel-verification.json",
+      "checkedAt": "2026-11-21T21:29:30.432Z",
+      "clientDate": "2026-11-22",
+      "status": "published-build-basic-flow-passed-local-guidance-fix-not-deployed",
+      "sameMac": true,
+      "checksPassed": 9,
+      "localTestsPassed": 51,
+      "uniqueNames": 9070,
+      "remaining": [
+        "未公開のローカル修正4件と今回の防御案内修正は、公開後の版で本番再確認していない。Netlifyの更新は行わないというユーザー指示を継続。",
+        "墓地召喚・裏向きマナ・同一アカウントの同時入室競合・遅延通信のケースは今回の実機試験に含めない。ローカル検証結果と区別。",
+        "一括npm testの過去の中断・合否未確認と、ユーザーが後回しにした裁定・再録2件は維持。"
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
+    }
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",

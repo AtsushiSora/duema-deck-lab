@@ -6,6 +6,7 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const button=(action,text,disabled=false,extra='',primary=false)=>`<button class="btn ${primary?'primary':''}" data-action="${action}" ${disabled?'disabled':''} ${extra}>${text}</button>`;
 const phase={charge:'マナ',main:'召喚・呪文',attack:'攻撃'};
 const actionMatchesCard=(a,uid)=>a.uid===uid||!!a.targetUids?.includes(uid);
+const hasDefenseChoice=actions=>actions.some(a=>['noBlock','block','guardman','defendMany'].includes(a.kind));
 const inspectionId=c=>c.privateFace?.id||c.id;
 const inspectionName=c=>c.privateFace?c.name+'（'+c.privateFace.name+'）':c.name;
 export function onlinePendingMove(room,pending){
@@ -37,6 +38,7 @@ export function onlinePrimaryAction(room,selected=null,pending=null){
   const confirm=actions.find(a=>a.kind==='confirmMana');
   return {label:confirm?'このマナで使う':'支払うマナを選ぶ',command:confirm?'move':'choices',move:confirm??null,disabled:false};
  }
+ if(room.phase==='playing'&&g.actor===room.seat&&hasDefenseChoice(actions))return {label:'防御を選ぶ',command:'choices',disabled:false,move:null};
  return battlePrimaryAction({actions,human:g.actor===room.seat,finished:['finished','expired'].includes(room.phase),decision:!!g.decision,phase:g.phase,
   selected:!!selectedCard,selectedMoves:moves,selectedType:selectedCard?.type,attacker:moves.some(a=>a.kind==='attack'),attackChoice:review?.kind==='attack'?review:null,endReview:review?.kind==='endTurn'});
 }
@@ -49,7 +51,7 @@ export function onlineScreenHTML(state,{user,decks=[],selectedDeckId,code='',sel
  const seat=room.seat,own=game.players[seat],opp=game.players[1-seat],finished=['finished','expired'].includes(room.phase),mine=game.actor===seat&&!finished,all=game.actions||[],cards=[...(game.revealedHand||[]),...own.hand,...own.battle,...own.mana,...own.grave,...(own.abyss||[]),...(own.extra||[]),...(own.seals||[]),...opp.battle,...opp.mana,...opp.grave,...(opp.abyss||[]),...(opp.extra||[]),...(opp.seals||[])],card=cards.find(x=>x.uid===selected),actions=card?all.filter(a=>actionMatchesCard(a,selected)||cards.some(x=>x.uid===a.uid&&x.sealOf===selected)):all,pages=Math.max(1,Math.ceil(actions.length/8)),current=Math.max(0,Math.min(page,pages-1));
  const payment=mine?game.manaPayment:null;
  const status=finished?room.phase==='expired'?'ルームの有効期限が切れました':game.phase==='rematch'?'再試合':game.draw?'引き分け':game.winner===seat?'あなたの勝利！':'相手の勝利':!state.connected?'再接続してください':busy?'送信・更新中…':mine?'あなたの操作':'相手の操作を待っています';
- const title=finished?'対戦終了':game.decision||({charge:'マナに置くカードを選ぼう',main:'召喚・呪文を使おう',attack:'攻撃するクリーチャーを選ぼう'})[game.phase]||'操作を選ぶ';
+ const title=finished?'対戦終了':game.decision||(hasDefenseChoice(all)?'防御方法を選ぼう':({charge:'マナに置くカードを選ぼう',main:'召喚・呪文を使おう',attack:'攻撃するクリーチャーを選ぼう'})[game.phase])||'操作を選ぶ';
  const primary=onlinePrimaryAction(room,selected,pending),review=onlinePendingMove(room,pending);
  const inspected=mine?game.inspectedCards||[]:[];
  const inspection=inspected.length?`<div class="stack hand-inspection" aria-label="確認したカード">${inspected.map(c=>`<div class="deck-detail-row">${art?art(c.id):''}<div class="grow"><strong>${esc(c.name)}</strong><small>${esc(c.label)}</small></div>${button('card-detail','詳細',false,`data-id="${esc(c.id)}"`)}</div>`).join('')}</div>`:'';
