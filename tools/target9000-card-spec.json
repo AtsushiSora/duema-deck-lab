@@ -20602,5 +20602,218 @@
         }
       ]
     }
+  },
+  "dm06-s01": {
+    "phase": 1575,
+    "faces": [
+      {
+        "name": "聖天使クラウゼ・バルキューラ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化ー自分のイニシエート１体の上に置く。\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにある相手のクリーチャーを２体まで選び、タップしてもよい。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "イニシエート",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "イニシエート"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true
+        }
+      ]
+    }
+  },
+  "dmr01-035": {
+    "phase": 1575,
+    "faces": [
+      {
+        "name": "合体の化身",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "バトルゾーンに自分の光のクリーチャーがあれば、このクリーチャーのパワーは+4000され、シールドをさらにもう１枚ブレイクする。\nバトルゾーンに自分の火のクリーチャーがあれば、このクリーチャーのパワーは+4000され、シールドをさらにもう１枚ブレイクする。",
+        "race": "ミステリー・トーテム",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "grants": {
+          "power": 4000,
+          "g1575ExtraBreak": 1
+        }
+      },
+      "g268ManaGrants": [
+        {
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "grants": {
+            "power": 4000,
+            "g1575ExtraBreak": 1
+          }
+        }
+      ]
+    }
+  },
+  "dmc34-011": {
+    "phase": 1575,
+    "faces": [
+      {
+        "name": "白虎の剣皇ダーク・サラマンダス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自分自身の手札を１枚選んで捨てる。バトルゾーンに自分の《ヘリオス・ティガ・ドラゴン》が１体でもあれば、相手は手札を１枚ではなくすべて捨てる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "g201ExactName": "ヘリオス・ティガ・ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "g756All": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmc34-015": {
+    "phase": 1575,
+    "faces": [
+      {
+        "name": "ヘリオス・ティガ・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、相手のパワー2000以下のクリーチャーをすべて破壊する。バトルゾーンに自分の 《白虎の剣皇ダーク・サラマンダス》が１体でもあれば、パワー2000以下のかわりに4000以下の相手のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする。)",
+        "race": "アーマード・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "g201ExactName": "白虎の剣皇ダーク・サラマンダス"
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true,
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex1-025": {
+    "phase": 1575,
+    "faces": [
+      {
+        "name": "挑戦の決闘",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ストライク・バック S・バック：サイバー（サイバー・カードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを２枚まで引く。",
+        "race": "サイバー・ワード",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "strikeBack": true,
+      "strikeBackRace": "サイバー",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand"
+        },
+        {
+          "op": "DrawUpTo",
+          "n": 2
+        }
+      ]
+    }
   }
 }
