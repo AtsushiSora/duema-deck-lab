@@ -10,6 +10,19 @@ const actionMatchesCard=(a,uid)=>a.uid===uid||!!a.targetUids?.includes(uid);
 const hasDefenseChoice=actions=>actions.some(a=>['noBlock','block','guardman','defendMany'].includes(a.kind));
 const inspectionId=c=>c.privateFace?.id||c.id;
 const inspectionName=c=>c.privateFace?c.name+'（'+c.privateFace.name+'）':c.name;
+export function onlineDialogContent(room,{kind,player,zone},{connected=true}={}){
+ const game=room?.game;if(!game||![0,1].includes(room.seat))return null;
+ const notice=connected?'':'<p class="small" role="status">通信が切れています。最後に確認した内容です。</p>';
+ if(kind==='log')return {title:'オンライン対戦ログ',html:notice+([...(room.events||[])].reverse().map(x=>`<p class="online-history-line"><span class="badge">T${displayTurn(x)}</span> ${esc(room.players?.[x.player]?.name||game.players[x.player]?.name)}：${esc(x.text)}</p>`).join('')||'<p>まだログはありません。</p>')};
+ if(![0,1].includes(player))return null;
+ const p=game.players[player];if(!p)return null;
+ if(kind==='field')return {title:`${p.name}のバトルゾーン`,html:notice+`<div class="online-zone-list">${p.battle.map(c=>button('online-pick-card',`${esc(c.hidden?'裏向きのカード':c.name)}${c.tapped?' · タップ中':''}${c.hidden?'':` · ${esc(c.power??'')} ${c.under?.length?' · 下に '+sourceCardCount(c)+'枚':''}`}`,false,`data-uid="${esc(c.uid)}"`)).join('')||'<p>クリーチャーはまだいません。</p>'}</div>`};
+ const labels={mana:'マナ',grave:'墓地',extra:'超次元ゾーン',seals:'封印',abyss:'深淵ゾーン',faceUpShields:'表向きシールド',revealedHand:'確認中の手札'};
+ if(kind!=='zone'||!Object.hasOwn(labels,zone))return null;
+ if(zone==='revealedHand'&&(player!==1-room.seat||!game.revealedHand))return null;
+ const cards=zone==='revealedHand'?game.revealedHand:p[zone]||[];
+ return {title:`${p.name}の${labels[zone]}`,html:notice+`<div class="online-zone-list">${cards.map(c=>button(['mana','grave','extra','seals','abyss','revealedHand'].includes(zone)?'online-pick-card':'card-detail',`${esc(c.hidden?'裏向き':c.privateFace?c.name+'（'+c.privateFace.name+'）':c.name)}${c.tapped?' · タップ中':''}`,c.hidden&&zone!=='seals'&&!game.actions?.some(a=>a.uid===c.uid||a.targetUids?.includes(c.uid)),`data-uid="${esc(c.uid)}" data-id="${esc(c.hidden?'':c.id||'')}"`)).join('')||'<p>カードはありません。</p>'}</div>`};
+}
 function numberChoiceHTML(game,revision,disabled,value){
  if(!game.numberChoice)return '';
  const min=game.numberMinimum??0,template=game.actions?.find(a=>a.number!==undefined)||game.actions?.[0];

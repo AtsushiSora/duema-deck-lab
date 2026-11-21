@@ -2,14 +2,14 @@
   "checkedAt": "2026-11-21T22:45:04.307Z",
   "clientDate": "2026-11-22",
   "baseCommit": "bae8f49d9a906138ab73ee2bb35bd4e56a7944bc",
-  "status": "additional-dialog-review-complete-two-open-findings",
+  "status": "resolved-locally-after-review",
   "scope": "友達・アカウント対戦のダイアログ、認証解除時の表示、相手の実操作後の盤面更新、効果によるバトルのカード選択。実アプリVM・HTTPサービス・暗号化保存を用いた隔離ローカル検証。",
   "productCodeChanged": false,
   "findings": [
     {
       "id": "online-dialog-stale-context",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "対戦ダイアログがアカウント解除・盤面更新へ追従しない",
       "locations": [
         "dist/app.js:889",
@@ -40,7 +40,7 @@
     {
       "id": "online-fight-target-reference-missing",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local",
       "title": "効果によるバトルの合法な対象カードをタップすると操作がないと表示する",
       "locations": [
         "server/duel-core.mjs:50",
@@ -189,12 +189,28 @@
   },
   "limits": [
     "今回確認したのはローカルの現行コミット。本番アカウントの操作、実機確認、Netlify更新は行っていない。",
-    "前回までの修正完了記録を保持し、今回の2件を新たな未修正として記録する。",
+    "前回までの修正記録と今回の検出根拠を保持。今回の2件はローカルで修正・検証済み。",
     "全カード・全対戦状況を保証する網羅試験ではない。一括npm testは中断・合否未確認のまま。後回しにした裁定・再録2件は維持。"
   ],
   "publication": {
     "pushed": false,
     "deployed": false,
     "netlifyUpdated": false
+  },
+  "resolution": {
+    "checkedAt": "2026-11-21T22:58:00.681Z",
+    "artifact": "tools/online-dialog-fixes-verification.json",
+    "baseCommit": "0da19090e4862344e9e7f493d8da07a82f166c08",
+    "status": "two-dialog-and-target-defects-verified-local-not-published",
+    "productCodeChanged": true,
+    "resolvedDefects": 2,
+    "totalDistinctTestsPassed": 196,
+    "currentRegressionCommand": "node tools/review-online-dialogs.mjs",
+    "historicalReproductions": "元の診断とログは修正前の検出根拠として保持。tools/online-dialog-review-cases.txtに修正前コミットを明記。現行コマンドは修正後の期待動作を確認する。",
+    "publication": {
+      "pushed": false,
+      "deployed": false,
+      "netlifyUpdated": false
+    }
   }
 }

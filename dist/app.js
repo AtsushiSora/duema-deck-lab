@@ -29,7 +29,7 @@ import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.722.3';
 import {createOnlineClient} from './online.js';
-import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove} from './online-ui.js';
+import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove,onlineDialogContent} from './online-ui.js';
 import {createAccountClient} from './account.js';
 import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
@@ -65,7 +65,7 @@ const card=id=>id?.faceDown?battleCard(id):registry?.get(id)||battleCard(id),reg
 let cards=[],metadata={},view='home',edit=null,editRole='mine',editTab='cards',query='',civ='',costFilter='',typeFilter='',page=0,opponentQuery='',selectedOpp=null,mode='auto',count=1000,first='random',allOpp=false,practice=true,activeRun=null,running=null,worker=null,comparisonId=null,battle=null,battleUndo=[],battleTimer=null,selectedHand=null,photo=null,ocrWorker=null,ocrPromise=null,ocrBusy=false,replayData=null,replayIndex=0,replayTimer=null;
 let accountClient=null,accountState={phase:'idle',user:null,cloud:null,loaded:false,busy:null,error:null},accountDialog=null,accountImportPreview=null;
 let deckDeletion=null;
-let onlineClient=null,onlineState={room:null,busy:false,connected:false,error:null,loaded:false},onlineDeckId='',onlineCode='',onlineSelected=null,onlinePage=0,onlineActionsOpen=false,onlinePending=null,onlineNumberDraft={context:null,value:''};
+let onlineClient=null,onlineState={room:null,busy:false,connected:false,error:null,loaded:false},onlineDeckId='',onlineCode='',onlineSelected=null,onlinePage=0,onlineActionsOpen=false,onlinePending=null,onlineNumberDraft={context:null,value:''},onlineDialog=null;
 let homeTag='',homeQuery='',homeOrder='selected',environmentYearFilter='all',environmentPickerRole=null;
 let deckViewId=null,deckReturnView='decks',editorReturnView='decks',deckQuery='',deckSort='cost',deckDisplay='grid',editHistory=[];
 let appUpdates=null,updateResumeRecovery=null,playtime=null,playtimeSync=null;
@@ -193,8 +193,8 @@ function updateDisplaySetting(el){
  const status=$('[data-display-status]');if(status)status.textContent='設定をこの端末に保存しました。';
 }
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
-function showDialog(title,html,footer=''){logCardReturnActive=false;dialog.classList?.remove('screenshot-report-dialog');detailsDialogToken=null;manualLogDialogOpen=false;cancelTournamentAutoAdvance();aiPlayback?.suspend();starterPickerRole=null;environmentPickerRole=null;dialog.innerHTML=`<div class="dialog-head"><h2>${esc(title)}</h2><button class="icon-btn" data-action="close-dialog" aria-label="閉じる">${icon('close')}</button></div><div class="dialog-content">${html}</div>${footer?`<div class="dialog-actions">${footer}</div>`:''}`;if(!dialog.open)dialog.showModal();applyTextSize(dialog,displayPreferences.textSize);}
-function closeDialog(){if(logCardReturnActive){returnToManualLog();return;}detailsDialogToken=null;manualLogDialogOpen=false;accountDialog=null;accountImportPreview=null;deckDeletion=null;starterPickerRole=null;environmentPickerRole=null;dialog.close();aiPlayback?.start();syncTournamentAutoAdvance();}
+function showDialog(title,html,footer=''){onlineDialog=null;logCardReturnActive=false;dialog.classList?.remove('screenshot-report-dialog');detailsDialogToken=null;manualLogDialogOpen=false;cancelTournamentAutoAdvance();aiPlayback?.suspend();starterPickerRole=null;environmentPickerRole=null;dialog.innerHTML=`<div class="dialog-head"><h2>${esc(title)}</h2><button class="icon-btn" data-action="close-dialog" aria-label="閉じる">${icon('close')}</button></div><div class="dialog-content">${html}</div>${footer?`<div class="dialog-actions">${footer}</div>`:''}`;if(!dialog.open)dialog.showModal();applyTextSize(dialog,displayPreferences.textSize);}
+function closeDialog(){if(logCardReturnActive){returnToManualLog();return;}const clearOnline=!!onlineDialog;onlineDialog=null;detailsDialogToken=null;manualLogDialogOpen=false;accountDialog=null;accountImportPreview=null;deckDeletion=null;starterPickerRole=null;environmentPickerRole=null;dialog.close();if(clearOnline)dialog.innerHTML='';aiPlayback?.start();syncTournamentAutoAdvance();}
 function navItem(v,label){return `<button class="nav-btn ${view===v||(view==='deck'&&v==='decks'||view==='editor'&&v===(editRole==='opponent'?'battle':'decks'))||(v==='analysis'&&view==='replay')||(v==='battle'&&['manual','online','challenge'].includes(view))?'active':''}" data-action="nav" data-view="${v}">${icon(v)}<span>${label}</span></button>`;}
 function navigationParent(){return view==='deck'?deckReturnView:view==='editor'?editorReturnView:({home:'home',decks:'home',duel:'home',records:'home',account:'home',battle:'duel',challenge:'duel',strongest:'duel',tournament:'duel',online:'duel',analysis:'records',history:'records',replay:'analysis',manual:'battle'}[view]||'home');}
 function navigationTitle(){return ({home:'デュエマ・デッキラボ',decks:'マイデッキ',duel:'対戦する',records:'戦績・分析',account:'アカウント',battle:mode==='spectate'?'CPU同士を観戦':mode==='manual'?'CPUと手動対戦':'自動シミュレーション',editor:'デッキを編集',deck:'デッキの内容',challenge:'レジェンドデュエル',strongest:'最強CPU戦',tournament:'トーナメント',online:'友達と対戦',analysis:'自動対戦の分析',history:'自動対戦の履歴',manual:'対戦中',replay:'対戦リプレイ'}[view]||'デッキラボ');}
@@ -872,10 +872,28 @@ function selectDeckDialog(){const savedOnly=view==='strongest';showDialog(savedO
 
 function onlineEntryHTML(){return '<section class="panel online-lobby"><div class="row spread"><div><strong>友達とオンライン対戦</strong><p class="small">ルームコードで参加して、アカウント同士で対戦。</p></div><button class="btn primary" data-action="nav" data-view="online">友達と対戦する</button></div></section>';}
 function onlineDeck(){return saved.decks.find(d=>d.id===onlineDeckId&&!validateDeck(d).length)||saved.decks.find(d=>!validateDeck(d).length);}
+function showOnlineDialog(kind,options={}){
+ const room=onlineState.room,content=onlineDialogContent(room,{kind,...options},{connected:onlineState.connected});
+ if(!accountState.user||!content)return false;
+ showDialog(content.title,content.html);
+ onlineDialog={uid:accountState.user.uid,code:room.code,kind,...options,title:content.title,html:content.html};return true;
+}
+function syncOnlineDialog(){
+ const scope=onlineDialog;if(!scope)return;
+ if(!dialog.open||view!=='online'||scope.uid!==accountState.user?.uid||scope.code!==onlineState.room?.code){closeDialog();return;}
+ const content=onlineDialogContent(onlineState.room,scope,{connected:onlineState.connected});
+ if(!content){closeDialog();return;}
+ if(scope.title===content.title&&scope.html===content.html)return;
+ const scroll=$('#dialog .dialog-content')?.scrollTop||0,focused=dialog.contains?.(document.activeElement)?document.activeElement:null;
+ const focusKey=focused?{uid:focused.dataset?.uid,action:focused.dataset?.action,id:focused.dataset?.id}:null;
+ showOnlineDialog(scope.kind,{player:scope.player,zone:scope.zone});
+ if(focusKey){const buttons=Array.from(dialog.querySelectorAll?.('[data-action]')||[]),target=buttons.find(el=>el.dataset.action===focusKey.action&&el.dataset.uid===focusKey.uid&&el.dataset.id===focusKey.id)||buttons.find(el=>el.dataset.action==='close-dialog');target?.focus?.({preventScroll:true});}
+ const area=$('#dialog .dialog-content');if(area)area.scrollTop=scroll;
+}
 function onlineNumberContext(){const r=onlineState.room;return r?.phase==='playing'&&r.game?.numberChoice&&r.game.actor===r.seat?JSON.stringify([accountState.user?.uid,r.code,r.seat,r.revision]):null;}
 function syncOnlineNumberDraft(){const context=onlineNumberContext();if(context!==onlineNumberDraft.context)onlineNumberDraft={context,value:''};else if(context){const input=$('#online-number');if(input)onlineNumberDraft.value=input.value;}}
 function renderOnline(){syncOnlineNumberDraft();if(location.origin==='https://atsushisora.github.io'){const invite='https://duema-deck-lab.netlify.app/?view=online'+(onlineCode?'&room='+encodeURIComponent(onlineCode):'');shell(`${pageHead('友達と対戦','アカウント同士の対戦は、専用ページで開きます。')}<section class="panel"><h3>対戦用ページを開く</h3><p class="small mt16">Googleアカウントでログインして、ルームを作成・参加できます。専用ページで対応カードの一致を確認します。版が異なる場合は、アプリと対戦サーバーの更新が必要です。</p><p class="small mt16">デッキはアカウント画面で保存し、対戦用ページで同じアカウントへログインして取り込めます。このURLでコンピュータとの手動・自動対戦は利用できます。</p><div class="row wrap gap12 mt24"><a class="btn primary" href="${esc(invite)}" target="_blank" rel="noopener">対戦用ページを開く ↗</a></div></section>`);return;}const track=$('.online-hand-track'),scroll=track?.scrollLeft||0;const paymentScroll=$('.online-mana-payment')?$('.online-action-drawer')?.scrollTop:null;const current=onlineDeck();if(current)onlineDeckId=current.id;shell(onlineScreenHTML(onlineState,{user:accountState.user,decks:saved.decks,selectedDeckId:onlineDeckId,code:onlineCode,selected:onlineSelected,page:onlinePage,art,actionsOpen:onlineActionsOpen,pending:onlinePending,numberValue:onlineNumberDraft.value,valid:d=>!validateDeck(d).length,evolutionCard:c=>!c.hidden&&!c.sealed&&!!c.id&&isEvolution({cardId:c.id,under:c.under}),history:(saved.onlineHistory||[]).filter(x=>x.uid===accountState.user?.uid)}));const next=$('.online-hand-track');if(next)next.scrollLeft=scroll;const drawer=$('.online-action-drawer');if(drawer&&paymentScroll!=null&&$('.online-mana-payment'))drawer.scrollTop=paymentScroll;manualVisualCleanup=bindFittedBoard($('.online-board'),window);}
-async function initOnline(){await initAccount();if(location.origin==='https://atsushisora.github.io')return;if(!onlineClient)onlineClient=createOnlineClient({getToken:()=>accountClient.getIdToken(),onChange:state=>{const old=onlineState.room;onlineState=state;if(old?.revision!==state.room?.revision||old?.code!==state.room?.code){onlinePage=0;onlineSelected=null;onlinePending=null;onlineActionsOpen=!!state.room?.game?.decision&&state.room?.game?.actor===state.room?.seat||['finished','expired'].includes(state.room?.phase);}const room=state.room;if(room?.phase==='finished'&&room.game&&room.seat>=0){saved.onlineHistory||=[];if(!saved.onlineHistory.some(x=>x.code===room.code&&x.uid===accountState.user?.uid)){saved.onlineHistory.unshift({code:room.code,uid:accountState.user.uid,result:room.game.draw?'引き分け':room.game.winner===room.seat?'勝ち':'負け',opponent:room.players[1-room.seat].name,turn:room.game.turn,round:displayTurn(room.game),date:new Date().toISOString()});saved.onlineHistory=saved.onlineHistory.slice(0,30);persist();}}if(view==='online')renderOnline();}});onlineClient.setIdentity(accountState.user?.uid);onlineClient.setActive(view==='online');}
+async function initOnline(){await initAccount();if(location.origin==='https://atsushisora.github.io')return;if(!onlineClient)onlineClient=createOnlineClient({getToken:()=>accountClient.getIdToken(),onChange:state=>{const old=onlineState.room;onlineState=state;if(old?.revision!==state.room?.revision||old?.code!==state.room?.code){onlinePage=0;onlineSelected=null;onlinePending=null;onlineActionsOpen=!!state.room?.game?.decision&&state.room?.game?.actor===state.room?.seat||['finished','expired'].includes(state.room?.phase);}const room=state.room;if(room?.phase==='finished'&&room.game&&room.seat>=0){saved.onlineHistory||=[];if(!saved.onlineHistory.some(x=>x.code===room.code&&x.uid===accountState.user?.uid)){saved.onlineHistory.unshift({code:room.code,uid:accountState.user.uid,result:room.game.draw?'引き分け':room.game.winner===room.seat?'勝ち':'負け',opponent:room.players[1-room.seat].name,turn:room.game.turn,round:displayTurn(room.game),date:new Date().toISOString()});saved.onlineHistory=saved.onlineHistory.slice(0,30);persist();}}if(view==='online')renderOnline();syncOnlineDialog();}});onlineClient.setIdentity(accountState.user?.uid);onlineClient.setActive(view==='online');}
 async function onlineMove(index,confirmed=false,number){
  const room=onlineState.room,g=room?.game,a=g?.actions?.find(a=>a.id===Number(index));
  if(!a||room.phase!=='playing'||g.actor!==room.seat||onlineState.busy||!onlineState.connected)return;
@@ -886,7 +904,7 @@ function onlineMenu(){const r=onlineState.room;if(!r?.game)return;showDialog('�
 
 function renderAccount(){shell(accountScreenHTML(accountState,saved,playtimeSnapshot()));}
 async function initAccount(){
- if(!accountClient)accountClient=createAccountClient({registry,onChange:state=>{if(accountState.user?.uid!==state.user?.uid){playtime?.flush();if(accountDialog)closeDialog();}accountState=state;playtimeSync?.setUser(state.user?.uid);onlineClient?.setIdentity(state.user?.uid);if(view==='online')renderOnline();if(view==='account')renderAccount();else if(['decks','deck','editor'].includes(view))render();else{const label=$('[data-account-label]');if(label)label.textContent=state.user?.name||'アカウント';}}});
+ if(!accountClient)accountClient=createAccountClient({registry,onChange:state=>{if(accountState.user?.uid!==state.user?.uid){playtime?.flush();if(accountDialog||onlineDialog)closeDialog();}accountState=state;playtimeSync?.setUser(state.user?.uid);onlineClient?.setIdentity(state.user?.uid);if(view==='online')renderOnline();if(view==='account')renderAccount();else if(['decks','deck','editor'].includes(view))render();else{const label=$('[data-account-label]');if(label)label.textContent=state.user?.name||'アカウント';}}});
  await accountClient.init();
 }
 function confirmAccountSave(){
@@ -1016,7 +1034,7 @@ document.addEventListener('click',async event=>{
  else if(action==='online-card'){onlinePending=null;onlineActionsOpen=true;onlineSelected=onlineSelected===el.dataset.uid?null:el.dataset.uid;onlinePage=0;render();}
  else if(action==='online-actions-close'){onlineActionsOpen=false;render();}
  else if(action==='online-pick-card'){closeDialog();onlinePending=null;onlineSelected=el.dataset.uid;onlineActionsOpen=true;onlinePage=0;render();}
- else if(action==='online-field'){const p=onlineState.room?.game?.players[Number(el.dataset.player)];if(p)showDialog(`${p.name}のバトルゾーン`,`<div class="online-zone-list">${p.battle.map(c=>`<button class="btn" data-action="online-pick-card" data-uid="${esc(c.uid)}">${esc(c.hidden?'裏向きのカード':c.name)}${c.tapped?' · タップ中':''}${c.hidden?'':` · ${esc(c.power??'')} ${c.under?.length?' · 下に '+sourceCardCount(c)+'枚':''}`}</button>`).join('')||'<p>クリーチャーはまだいません。</p>'}</div>`);}
+ else if(action==='online-field')showOnlineDialog('field',{player:Number(el.dataset.player)});
  else if(action==='online-actions-toggle'){onlineActionsOpen=!onlineActionsOpen;render();}
  else if(action==='online-all-actions'){closeDialog();onlinePending=null;onlineActionsOpen=true;onlineSelected=null;onlinePage=0;render();}
  else if(action==='online-page'){onlinePage=Math.max(0,Number(el.dataset.page)||0);render();}
@@ -1050,8 +1068,8 @@ document.addEventListener('click',async event=>{
  else if(action==='online-confirm-resign'){showDialog('投了しますか？','<p>投了すると相手の勝利になります。</p>','<button class="btn" data-action="close-dialog">対戦を続ける</button><button class="btn primary" data-action="online-resign">投了する</button>');}
  else if(action==='online-resign'){closeDialog();await onlineClient?.resign();}
  else if(action==='online-back'){onlineClient?.clear();onlineSelected=null;render();}
- else if(action==='online-log'){showDialog('オンライン対戦ログ',[...(onlineState.room?.events||[])].reverse().map(x=>`<p class="online-history-line"><span class="badge">T${displayTurn(x)}</span> ${esc(onlineState.room.players[x.player]?.name)}：${esc(x.text)}</p>`).join(''));}
- else if(action==='online-zone'){const game=onlineState.room?.game,p=game?.players[Number(el.dataset.player)],zone=el.dataset.zone;if(p&&['mana','grave','extra','seals','abyss','faceUpShields','revealedHand'].includes(zone)){showDialog(`${p.name}の${zone==='mana'?'マナ':zone==='grave'?'墓地':zone==='extra'?'超次元ゾーン':zone==='seals'?'封印':zone==='abyss'?'深淵ゾーン':zone==='revealedHand'?'確認中の手札':'表向きシールド'}`,`<div class="online-zone-list">${(zone==='revealedHand'?game.revealedHand||[]:p[zone]||[]).map(c=>`<button class="btn" data-action="${['mana','grave','extra','seals','abyss','revealedHand'].includes(zone)?'online-pick-card':'card-detail'}" data-uid="${esc(c.uid)}" data-id="${esc(c.id||'')}" ${c.hidden&&zone!=='seals'&&!game.actions?.some(a=>a.uid===c.uid||a.targetUids?.includes(c.uid))?'disabled':''}>${esc(c.hidden?'裏向き':c.privateFace?c.name+'（'+c.privateFace.name+'）':c.name)}${c.tapped?' · タップ中':''}</button>`).join('')||'<p>カードはありません。</p>'}</div>`);}}
+ else if(action==='online-log')showOnlineDialog('log');
+ else if(action==='online-zone')showOnlineDialog('zone',{player:Number(el.dataset.player),zone:el.dataset.zone});
  else if(action==='account-login')await accountClient?.signIn();
  else if(action==='account-check-login')await accountClient?.resumeSignIn();
  else if(action==='account-cancel-login')accountClient?.cancelSignIn();
@@ -1301,7 +1319,7 @@ if(e.id==='deck-tag-filter'){homeTag=e.value;render();return;}if(e.dataset?.issu
  if(e.matches('.ocr-confirm')){photo.rows[Number(e.dataset.index)].confirmed=e.checked;render();}
 });
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"]')){e.preventDefault();e.target.click();}});
-dialog.addEventListener('close',()=>{if(logCardReturnActive){returnToManualLog();return;}if(!dialog.open){accountDialog=null;accountImportPreview=null;deckDeletion=null;aiPlayback?.start();}});
+dialog.addEventListener('close',()=>{if(logCardReturnActive){returnToManualLog();return;}if(!dialog.open){if(onlineDialog){onlineDialog=null;dialog.innerHTML='';}accountDialog=null;accountImportPreview=null;deckDeletion=null;aiPlayback?.start();}});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 window.addEventListener('pagehide',()=>flushEditorDraft());
 window.addEventListener('beforeunload',e=>{flushEditorDraft();if(edit&&!draftOK||running||(battle&&!gameFinished(battle.state))){e.preventDefault();e.returnValue='';}});

@@ -267,3 +267,13 @@ test('online attack projection gives a public shield position without a shield i
   assert.equal(Object.hasOwn(view.game.attack,'shield'),false);assert.ok(!JSON.stringify(view.game.attack).includes(shield.uid));
  }
 });
+
+for(const seat of [0,1])test('online single fight targets include source and public target without leaking private cards at seat '+seat,async()=>{
+ const h=setup(),{code}=await h.start(),raw=h.raw(code),s=raw.game,{inst}=await import('./target-fixture.mjs'),{projectRoom}=await import('../server/duel-core.mjs');
+ s.phase='main';s.active=seat;s.decision=null;s.players[seat].battle=[];const source=inst('dmr21-092'),target=inst('dm01-108'),secret=inst('dm01-027');
+ s.players[seat].hand=[source];s.players[seat].mana=Array.from({length:15},(_,i)=>inst(i%2?'dm01-027':'dm01-097'));s.players[1-seat].battle=[target];s.players[seat].deck.unshift(secret);
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'&&a.uid===source.uid));assert.equal(s.decision.type,'fight');
+ const view=projectRoom(raw,seat?guest:host,1700000000000),other=projectRoom(raw,seat?host:guest,1700000000000),a=view.game.actions.find(a=>a.kind==='fight');
+ assert.deepEqual(a.targetUids,[source.uid,target.uid]);assert.ok(!JSON.stringify(view).includes(secret.uid));assert.deepEqual(other.game.actions,[]);
+ const resumed=JSON.parse(JSON.stringify(s));e.step(resumed,e.getLegalActions(resumed).find(a=>a.kind==='fight'&&a.target===target.uid));assert.ok(!resumed.players[1-seat].battle.some(c=>c.uid===target.uid));
+});

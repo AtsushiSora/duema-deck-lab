@@ -12,3 +12,4 @@ export * from '../dist/release-notes.js';
 export * from '../dist/log-card-links.js';
 export * from '../dist/strongest-cpu.js';
 export * from '../dist/deck-format.js';
+export {onlineDialogContent} from '../dist/online-ui.js';

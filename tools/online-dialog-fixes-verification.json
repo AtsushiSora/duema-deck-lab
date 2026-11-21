@@ -1,0 +1,211 @@
+{
+  "checkedAt": "2026-11-21T22:58:00.681Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "0da19090e4862344e9e7f493d8da07a82f166c08",
+  "status": "two-dialog-and-target-defects-verified-local-not-published",
+  "fixes": [
+    {
+      "id": "online-dialog-stale-context",
+      "status": "fixed-local",
+      "behavior": "一覧・対戦ログを取得済みの最新盤面へ追従。アカウント・ルーム・画面の変更、ネイティブの閉じる操作で対戦用ダイアログの内容を消去。通信切断を表示し、手札公開終了時は確認を閉じる。一般の公開カード詳細は独立して扱い、更新時はスクロールと可能な範囲でフォーカスを保持。",
+      "cases": "online dialog で始まる7件の実アプリ回帰テスト、およびrendererの不正scope・非公開カード保護テスト。"
+    },
+    {
+      "id": "online-fight-target-reference-missing",
+      "status": "fixed-local",
+      "behavior": "単数a.targetも公開参照フィルターを通してtargetUidsへ含める。相手の対象カードから合法なfightを選び、実行できる。非公開UIDは除外し、非操作側のactionsは公開しない。",
+      "cases": "バグ丸くんの登場時バトルを実アプリ・HTTPサービス・暗号化保存経由で解決。座席0/1の公開参照、非公開UID除外、JSON復元後の同一操作を検証。"
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "focused-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/battle-controls.test.mjs",
+          "tests/account-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.301,
+        "log": "tmp/duema-online-dialog-fixes/focused-final.log",
+        "passed": 146,
+        "failed": 0,
+        "sha256": "c27fd854b9a042ee2a8c951950557b094089b606549def00eb55892b5d251cc1"
+      },
+      {
+        "name": "server",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(room storage|creating|self-play|a waiting|two accounts|the server|a repeated|concurrent|resignation|HTTP |Firestore |negative infinity|public online|online |Murder |QQ |Viride online choices|Golgy private|historical |Advance |an account session|only the mana|a face-down mana payment)",
+          "tests/online-server.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.317,
+        "log": "tmp/duema-online-dialog-fixes/server.log",
+        "passed": 43,
+        "failed": 0,
+        "sha256": "edd740cbaf7a786b7ff69c0e794919e35e807ed6a62dfca12415714308be8c71"
+      },
+      {
+        "name": "manual-dialog-regression",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(real app retains hint|initial human log|phone menu retains|Surfer/Boil face tabs|Bolshack top-deck choice|the actual zone dialog|mobile number declaration)",
+          "tests/manual-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 5.193,
+        "log": "tmp/duema-online-dialog-fixes/manual-dialog-regression.log",
+        "passed": 7,
+        "failed": 0,
+        "sha256": "582879a31173736e39a7a0b133c8b6e1fb8f2faa6ded339b07770d9c90e8004d"
+      },
+      {
+        "name": "regression-entry",
+        "command": [
+          "node",
+          "tools/review-online-dialogs.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.071,
+        "log": "tmp/duema-online-dialog-fixes/regression-entry.log",
+        "passed": 10,
+        "failed": 0,
+        "sha256": "89e0947461d3f6cba1148b451e259dba75eebae379393aaa55a4a37cf22be864"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.628,
+        "log": "tmp/duema-online-dialog-fixes/check.log",
+        "sha256": "fd00ef4548eb506e6a627320f0f81809e69c765639f8bb9b2831989aba13f5ca"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 16.537,
+        "log": "tmp/duema-online-dialog-fixes/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "totalDistinctTestsPassed": 196,
+    "regressionEntrySubsetPassed": 10,
+    "regressionEntrySubsetOverlaps": true,
+    "supersededPassingRun": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-app.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-feedback.test.mjs",
+        "tests/battle-controls.test.mjs",
+        "tests/account-app.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.155,
+      "log": "tmp/duema-online-dialog-fixes/focused.log"
+    },
+    "failedAttempts": 0,
+    "reproduce": "node tools/review-online-dialogs.mjs",
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570,
+    "coverageNotes": [
+      "server実行は指定した名前に一致する43件。online-runtimeの長時間テストは名前に一致せず、今回の43件には含めない。",
+      "VM内の実アプリとローカルHTTPサービスのテストで認証解除、相手の合法な攻撃後のタップ更新、バトル対象選択を検証。本番アカウントの操作ではない。"
+    ]
+  },
+  "visualVerification": {
+    "method": "localhostで実際のonlineScreenHTMLとonlineDialogContentに合成状態を渡して表示。見た目の確認であり本番2アカウントの接続確認ではない。",
+    "viewports": [
+      "390x844",
+      "320x568"
+    ],
+    "checked": [
+      "タップ中のクリーチャーが一覧に表示される",
+      "対象カードからバトル操作が表示される",
+      "320x568で操作欄が表示範囲に収まる"
+    ],
+    "screenshots": [
+      "/tmp/duema-online-dialog-fixes/field-tapped.jpg",
+      "/tmp/duema-online-dialog-fixes/fight-target.jpg",
+      "/tmp/duema-online-dialog-fixes/fight-small.jpg"
+    ],
+    "viewportReset": true
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "compatibility": {
+    "cardIdsChanged": false,
+    "savedDecksChanged": false,
+    "historyFormatChanged": false,
+    "storageFormatChanged": false,
+    "engineRulesChanged": false
+  },
+  "hashes": {
+    "dist/app.js": "1f9cdd4528ecf71f2eae29136573bf0fb95dc6235373a6429aa5290285e16c37",
+    "dist/online-ui.js": "a8616d7be78358c9f8f6cf387a7b32767e20fc58c653e70a02f6ee78a2d45cc1",
+    "server/duel-core.mjs": "4d83b04f01194f3d458d91e3de0a160e7e68971f8c8e77da5001fbf57d8b95f4",
+    "tests/app-features-fixture.mjs": "a8ec2f033ac56ec8e5d0f55b01e34edd2544921c17f2f127053c2a9208a713ea",
+    "tests/online-app.test.mjs": "d05e3dfa0ff45067a1259ac14fd452ffa898bc020187588c5ef1f40f80a27bd6",
+    "tests/online-server.test.mjs": "805c08ad1dc5ed5db3fe3fd5327b2e9659ad5a56604b72aef19c635cf5391e72",
+    "tests/online-ui.test.mjs": "7fda634e90de92f4875d259d341c7c533194cb34b47fe84d04a1593d43c4800d",
+    "tools/review-online-dialogs.mjs": "f422a5b990c1c737a58bf98933182a949ab53f491cce7de89cef0e456633d779",
+    "tools/online-dialog-review-cases.txt": "90630197eb93bd69ab0877a38685cc30274ef50a65508c00426b531979bb0ad2"
+  },
+  "remaining": [
+    "今回の2件と前回までの修正は未公開。本番2アカウント対戦での確認は公開後。Netlifyはまだ更新しないという指示を継続。",
+    "一括npm testの中断・合否未確認と、後回しにした裁定・再録2件は維持。次のカード登録phaseは変更しない。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

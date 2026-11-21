@@ -49,7 +49,7 @@ function visibleActionCards(s,seat,publicHand){
 }
 function actionCardRefs(a,decision,visible){
  const choice=decision?.choices?.[a.choice]?.value;
- const refs=[a.uid,...(a.targets||[]).map(x=>x.uid),typeof choice==='string'?choice:choice?.uid];
+ const refs=[a.uid,a.target,...(a.targets||[]).map(x=>x.uid),typeof choice==='string'?choice:choice?.uid];
  return [...new Set(refs.filter(uid=>typeof uid==='string'&&visible.has(uid)))];
 }
 export function projectRoom(room,user,now=Date.now()){

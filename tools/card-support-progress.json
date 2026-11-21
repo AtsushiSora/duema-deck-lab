@@ -524435,9 +524435,21 @@
       "artifact": "tools/online-dialog-review.json",
       "checkedAt": "2026-11-21T22:45:04.307Z",
       "baseCommit": "bae8f49d9a906138ab73ee2bb35bd4e56a7944bc",
-      "status": "additional-dialog-review-complete-two-open-findings",
+      "status": "resolved-locally-after-review",
       "productCodeChanged": false,
-      "confirmedOpenFindings": [
+      "confirmedOpenFindings": [],
+      "existingRegressionCasesPassed": 138,
+      "diagnosticCasesConfirmingOpenFindings": 3,
+      "uniqueNames": 9070,
+      "added": 0,
+      "next": "今回の2件をローカルで修正・検証済み。公開は別途のユーザー指示まで行わない。",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAt": "2026-11-21T22:58:00.681Z",
+      "resolvedFindings": [
         {
           "id": "online-dialog-stale-context",
           "severity": "medium",
@@ -524449,11 +524461,22 @@
           "title": "効果によるバトルの合法な対象カードをタップすると操作がないと表示する"
         }
       ],
-      "existingRegressionCasesPassed": 138,
-      "diagnosticCasesConfirmingOpenFindings": 3,
+      "resolutionArtifact": "tools/online-dialog-fixes-verification.json"
+    },
+    "latestOnlineDialogFixes": {
+      "artifact": "tools/online-dialog-fixes-verification.json",
+      "checkedAt": "2026-11-21T22:58:00.681Z",
+      "baseCommit": "0da19090e4862344e9e7f493d8da07a82f166c08",
+      "status": "two-dialog-and-target-defects-verified-local-not-published",
+      "resolvedDefects": 2,
+      "totalDistinctTestsPassed": 196,
+      "regressionEntrySubsetPassed": 10,
       "uniqueNames": 9070,
       "added": 0,
-      "next": "今回の2件は未修正。対戦ダイアログのアカウント・ルーム・盤面更新への追従と、公開された単数対象UIDの参照を修正し、再現ケースを期待動作の回帰テストへ変換する。公開は別途のユーザー指示まで行わない。",
+      "remaining": [
+        "今回の2件と前回までの修正は未公開。本番2アカウント対戦での確認は公開後。Netlifyはまだ更新しないという指示を継続。",
+        "一括npm testの中断・合否未確認と、後回しにした裁定・再録2件は維持。次のカード登録phaseは変更しない。"
+      ],
       "publication": {
         "pushed": false,
         "deployed": false,

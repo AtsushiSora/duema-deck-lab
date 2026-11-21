@@ -105,3 +105,16 @@ test('a permanent connection error explains that automatic retries are paused wh
  const state=fixture();state.connected=false;state.error='更新してから再接続してください。';state.retry={automatic:false,delay:6000};
  const html=onlineScreenHTML(state,{user:{}});assert.match(html,/自動再接続を停止中/);assert.match(html,/data-action="online-refresh"/);
 });
+
+test('online dialog renderer rejects invalid scopes, protects hidden faces and labels stale data',async()=>{
+ const {onlineDialogContent}=await import('../dist/online-ui.js'),state=fixture(),room=state.room;
+ room.game.players[0].mana=[{uid:'hidden-mana',hidden:true,name:'secret-face',id:'secret-id'}];
+ let content=onlineDialogContent(room,{kind:'zone',player:0,zone:'mana'},{connected:false});
+ assert.match(content.html,/最後に確認した内容/);assert.match(content.html,/裏向き/);assert.doesNotMatch(content.html,/secret-face|secret-id/);
+ assert.equal(onlineDialogContent(room,{kind:'zone',player:0,zone:'deck'}),null);
+ assert.equal(onlineDialogContent(room,{kind:'zone',player:1,zone:'revealedHand'}),null);
+ assert.equal(onlineDialogContent({...room,seat:-1},{kind:'field',player:0}),null);
+ assert.equal(onlineDialogContent(room,{kind:'field',player:3}),null);
+ room.game.revealedHand=[c('known-hand')];assert.match(onlineDialogContent(room,{kind:'zone',player:1,zone:'revealedHand'}).html,/known-hand/);
+ assert.equal(onlineDialogContent(room,{kind:'zone',player:0,zone:'revealedHand'}),null);
+});
