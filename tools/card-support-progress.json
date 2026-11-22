@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9219,
-  "pendingNames": 2606,
-  "phase": 1660,
-  "added": 4,
+  "supportedNames": 9224,
+  "pendingNames": 2601,
+  "phase": 1661,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1461,
+    "クリーチャー": 1456,
     "呪文": 297,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1875,
+    "未対応の能力文": 1870,
     "複数面・特殊カードタイプまたは情報不足": 591,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -531334,27 +531334,233 @@
       "validationNotes": [
         "最初の回帰指定がprivateを含む既存の長時間対戦ケースにも一致したため、その今回起動分を106.503秒でSIGKILL停止。旧プロセスには触れていない。カード処理の短い回帰とオンライン投影の明示的な短い対象を分割して再検証。既存の長時間3群・全体npm testの未確認は解消扱いにしない。"
       ]
+    },
+    {
+      "phase": 1661,
+      "checkedAt": "2026-11-22T12:07:09.804Z",
+      "baseline": "30ec615a92c08ba986ef1ab7deb903ca88dafe97",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9219,
+      "currentNames": 9224,
+      "remainingNames": 276,
+      "added": [
+        {
+          "id": "dmrp04s-090",
+          "name": "とまとん"
+        },
+        {
+          "id": "dmrp04s-083",
+          "name": "ナッコー・チュリス"
+        },
+        {
+          "id": "dmrp04s-070",
+          "name": "貝獣 リガイト"
+        },
+        {
+          "id": "dmrp04s-076",
+          "name": "骨滴医 ホルモン"
+        },
+        {
+          "id": "dmrp04s-060",
+          "name": "緑知銀 サムニダ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "30ec615a92c08ba986ef1ab7deb903ca88dafe97",
+        "originalDefinitionsUnchanged": 9219,
+        "added": 5,
+        "uniqueNames": 9224,
+        "uniqueIds": 9224,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9219,
+        "existingImageReferenceRowsUnchanged": 11411
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1661.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.761,
+          "log": "tmp/duema-phase-1661/official.log",
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1661-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.917,
+          "log": "tmp/duema-phase-1661/final-focused.log",
+          "passed": 93,
+          "failed": 0,
+          "logSha256": "ace66b43f4c67c57ea87a0fc55fb3155e29adb8e4008d33e6264f4744a074344"
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard977-effects.test.mjs",
+            "tests/standard731-effects.test.mjs",
+            "tests/standard1129-effects.test.mjs",
+            "tests/standard1358-effects.test.mjs",
+            "tests/standard1641-effects.test.mjs",
+            "tests/standard720-effects.test.mjs",
+            "tests/online-runtime.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.074,
+          "log": "tmp/duema-phase-1661/final-related.log",
+          "passed": 117,
+          "failed": 0,
+          "logSha256": "aac575cd905efa08cac9e43183ea8a9e7ef4a515238d87658db1234d92c038f2"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.192,
+          "log": "tmp/duema-phase-1661/check.log",
+          "logSha256": "06442a4ca063d5a0dcef04eaf43662acdd66c4eb6923c5801d12a392d711a4c9"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.443,
+          "log": "tmp/duema-phase-1661/audit.log",
+          "logSha256": "2e1da9fdc4d4293f08f35b63de8194fd4885d3364e577223fd97aa62fd721702"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.266,
+          "log": "tmp/duema-phase-1661/target9500.log",
+          "logSha256": "f81ebd3147de4215995bd9901222832033b9a2581e75adbb76917d170ad3d19c"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1661/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.32,
+          "log": "tmp/duema-phase-1661/invariants.log",
+          "logSha256": "d777463ef81a7a191a8392566bc511a21a1ba69edeec25adb6843a6df660ab2e"
+        }
+      },
+      "totalTestsPassed": 210,
+      "hashes": {
+        "dist/cards.json": "b2a1fa3a093e12e017746d70d12d1e1fdf76966eeae29db51fa57638fb4dcefc",
+        "dist/engine.js": "7125d1e1e4e7cce455ada752db4c5c813ab4ff1034b895043e021b4a4ec8356b",
+        "dist/online-compatibility.js": "3b405ab8e64892c72b01704a33b05af5df42e684ab51daf5ea5064b5e3c7e07d",
+        "dist/card-images.js": "000865cbc154641dfad5d56e24e0152ad513f1edcb09b8ecfc6da7ff98b84fdc",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
+        "tools/target9000-card-spec.json": "689b14e6ba47789a327cb240cbca4142ea1ba08bf53c099ecbbe9fbcf006f764"
+      },
+      "engineVersion": "0.602.177",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1661.json",
+      "supported": 9224,
+      "pending": 2601,
+      "reason": "破壊を自軍NEOクリーチャーの下への移動に置き換える5種と各固有能力を対応。進化元条件に拘束されず、NEO非進化・進化状態の双方を許可し、通常の破壊・非破壊移動・他置換・同時除去との区別を検証。",
+      "resolvedAttempts": [
+        {
+          "name": "focused-first",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1661-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 20.378,
+          "log": "tmp/duema-phase-1661/focused-first.log"
+        },
+        {
+          "name": "replacement-edges",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "Panesko|zero-power|AI chooses",
+            "tests/standard1661-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.779,
+          "log": "tmp/duema-phase-1661/replacement-edges.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群、ユーザー保留の公式照合2件、登録済みカードの裁定再現待ち1件は別に保持。今回5種類の能力全文の固有検証は完了。"
+      ],
+      "next": "phase1662で公式照合から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新は行わない。",
+      "validationNotes": [
+        "最初の固有テストではログ配列の誤参照と、実際の封印カードを伴わない封印fixtureを修正。追加のパワー0テストは攻撃用buffではなく実際のpowerModifiersを使うfixtureへ修正。全対象93件を最終版で通過。",
+        "カード画像の追記形式を同じ対応表のJSON表現へ統合。元の9,219画像URLがすべて同一であることを独立して検証した。",
+        "NEOの進化元条件とは無関係に置ける点はQA31621の一般原理を適用し、5種そのものの個別裁定と混同しない。",
+        "全体npm test・既存長時間群・保留の公式照合は実行せず、履歴の未確認状態を維持。今回の5種に未完了の固有検証はない。"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1660,
-    "nextPhase": 1661,
+    "lastVerifiedPhase": 1661,
+    "nextPhase": 1662,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm14-014",
-        "name": "巡霊者メスタポ",
-        "reason": "山札閲覧だけを止める禁止とドロー・公開の区別、破壊時手札置換を調査。"
+        "id": "dmx06-003",
+        "name": "THE 不死身・カイザー",
+        "reason": "ドラゴン攻撃時の任意マナ追加と、破壊時だけのマナ3枚置換を照合。"
       },
       {
-        "id": "dm16-006",
-        "name": "円舞の使徒ラストル",
-        "reason": "相手ターンの手札破棄を丸ごと置換する能力を一括破棄の処理と照合。"
+        "id": "dm35-031",
+        "name": "ボルコフ・紫苑",
+        "reason": "他の火クリーチャーへのスピードアタッカーと、紫電・ドラゴン限定の任意山札置換を照合。"
       },
       {
-        "id": "dm31-024",
-        "name": "T2・オガプー",
-        "reason": "通常の城とG城を区別し、城配置後の任意ドロー・バウンスを照合。"
+        "id": "dmr03-030",
+        "name": "強欲ジェラシー・シャン",
+        "reason": "攻撃禁止・ブロッカー・スレイヤーと、光のカード全般を捨てる破壊置換を照合。"
       }
     ],
     "steps": [
@@ -532101,23 +532307,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1660,
-      "baseline": "0b4f247ba87fdf802437069dbee6b857fb86597b",
-      "supportedNames": 9219,
-      "artifact": "tools/target9500-registration-checkpoint-1660.json",
-      "checkedAt": "2026-11-22T11:26:42.593Z"
+      "phase": 1661,
+      "baseline": "30ec615a92c08ba986ef1ab7deb903ca88dafe97",
+      "supportedNames": 9224,
+      "artifact": "tools/target9500-registration-checkpoint-1661.json",
+      "checkedAt": "2026-11-22T12:07:09.804Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T11:26:42.593Z",
+      "checkedAt": "2026-11-22T12:07:09.804Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9219,
-      "remainingNames": 281,
+      "currentNames": 9224,
+      "remainingNames": 276,
       "duplicateNames": 0,
-      "engineVersion": "0.602.176",
+      "engineVersion": "0.602.177",
       "added": [
         {
           "id": "dmr12-008",
@@ -532714,6 +532920,26 @@
         {
           "id": "dmd33-011",
           "name": "大地と悪魔の神域"
+        },
+        {
+          "id": "dmrp04s-090",
+          "name": "とまとん"
+        },
+        {
+          "id": "dmrp04s-083",
+          "name": "ナッコー・チュリス"
+        },
+        {
+          "id": "dmrp04s-070",
+          "name": "貝獣 リガイト"
+        },
+        {
+          "id": "dmrp04s-076",
+          "name": "骨滴医 ホルモン"
+        },
+        {
+          "id": "dmrp04s-060",
+          "name": "緑知銀 サムニダ"
         }
       ],
       "results": {
@@ -532829,14 +533055,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "ea014ea7c14c0cf74f5e0c08b6e8d280569d6e6ab4523ccd34118cc51ef3d404",
-        "dist/engine.js": "6ae11b06c8e09c5514edbf97fb19cc6f6c5d95c81115113d1811a8ba043b82bb",
-        "dist/six-photo-rules.js": "ba6052ba7858fcdb2288172a8519ac5f5bc185809a58d8e7e10845edf0062f71",
-        "dist/online-compatibility.js": "b42f8cbead8a26aba552bb3b1b6a85899e7fa68a544f7f7f3ff765f0424bfee0",
+        "dist/cards.json": "b2a1fa3a093e12e017746d70d12d1e1fdf76966eeae29db51fa57638fb4dcefc",
+        "dist/engine.js": "7125d1e1e4e7cce455ada752db4c5c813ab4ff1034b895043e021b4a4ec8356b",
+        "dist/online-compatibility.js": "3b405ab8e64892c72b01704a33b05af5df42e684ab51daf5ea5064b5e3c7e07d",
+        "dist/card-images.js": "000865cbc154641dfad5d56e24e0152ad513f1edcb09b8ecfc6da7ff98b84fdc",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
-        "dist/gransect-rules.js": "e3fd7a846fef01fe7288d1b5a3bd333eb6dc1366c23aa96bdbd6ba59a2d4d4d1",
-        "dist/manual-ui.js": "4f6a7f3c7d2a34b970069ffb0be45f83d97d95b170286bfbcb0f3f95fe629d1b",
-        "server/duel-core.mjs": "da0209ad47970b596e5646cc21e7626120d4ac1689287407cbd8b5c7fe2b31bb"
+        "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
+        "tools/target9000-card-spec.json": "689b14e6ba47789a327cb240cbca4142ea1ba08bf53c099ecbbe9fbcf006f764"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -532900,10 +533125,10 @@
       },
       "phaseRange": [
         1614,
-        1660
+        1661
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 149,
+      "addedNames": 154,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -532915,10 +533140,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.531,
-        "log": "tmp/duema-publish-7226/check.log",
-        "status": "passed",
-        "sha256": "342aa9385fd52e6bb4fd8fcb459fc6be063d941e38e9240148eaef0230c27153"
+        "seconds": 22.192,
+        "log": "tmp/duema-phase-1661/check.log",
+        "logSha256": "06442a4ca063d5a0dcef04eaf43662acdd66c4eb6923c5801d12a392d711a4c9"
       },
       "latestAudit": {
         "name": "audit",
@@ -532928,10 +533152,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.383,
-        "log": "tmp/duema-phase-1660/audit.log"
+        "seconds": 11.443,
+        "log": "tmp/duema-phase-1661/audit.log",
+        "logSha256": "2e1da9fdc4d4293f08f35b63de8194fd4885d3364e577223fd97aa62fd721702"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1660.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1661.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -534020,11 +534245,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9219,
-      "remaining": 281,
+      "currentNames": 9224,
+      "remaining": 276,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T11:26:42.593Z"
+      "checkedAt": "2026-11-22T12:07:09.804Z"
     },
     "resolvedRegistrationValidations": [
       {
