@@ -835,7 +835,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
    discardToMana(s,t,x);return;
   }
   remove(s.players[t.p].hand,x.uid);
-  enter(s,t.p,x,null,{origin:'hand',execution:false,...(c.g591Discard?{replacement:true}:{})});
+  enter(s,t.p,x,null,{origin:'hand',execution:false,...(c.g591Discard||c.discardDeploy||c.enemyDiscardDeploy?{replacement:true}:{})});
   afterDiscard(s,t,x,false);
   if(c.discardBounce)put(s,task('bounceAny',t.p,x.cardId));
   if(c.g591Discard==='drawTwo')put(s,task('draw',t.p,x.cardId,{n:2,controller:t.p}));

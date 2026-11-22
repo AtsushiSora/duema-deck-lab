@@ -8673,6 +8673,11 @@ export function createSixPhotoRules(api){
    if(Array.isArray(watch))queue(s,player,source,watch);
    else if(watch&&player===p&&matches(s,p,x,watch.filter))queue(s,player,source,watch.defs);
   }
+  if(a&&!a.sealed&&api.isCreature(s,a))for(const source of s.players[owner].battle){
+   if(source.sealed||source.faceDown||!effective(source,s).g1619PeachCastle)continue;
+   send(s,owner,source,'Break497',{uid:a.uid,incarnation:a.incarnation||0,n:1,
+    g747CreatureBreak:true,g830BlockBreaker:a.cardId});
+  }
   const attacker=a&&!a.sealed&&effective(a,s);
   const blocked=attacker?.g559Blocked;
   if(attacker?.g756TurboRush==='blockedBreak'&&s.attack.target==='player'&&s.players[p].shields.length&&turboReady756(s,owner,a))

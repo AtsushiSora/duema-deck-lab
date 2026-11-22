@@ -288850,17 +288850,127 @@
       ],
       "supportBatch": "phase-1618",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-040",
+      "name": "弩闘！桃天守閣",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このD２フィールドを [fn02]支払って展開してもよい）\n自分のクリーチャーがブロックされた時、そのクリーチャーは相手のシールドを１つブレイクする。\n相手の呪文またはクリーチャーの能力によって、自分のクリーチャーはタップされない。\n自分のクリーチャーがタップして出る時、かわりにアンタップして出る。\n（他のD２フィールドが出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-040",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "g1619PeachCastle": true,
+      "d2Field": true,
+      "supportBatch": "phase-1619",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-015",
+      "name": "ゴウケンオー～剣々轟々～",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 17,
+      "power": 16000,
+      "race": "フレイム・モンスター",
+      "text": "進化 - 名前に《ケンゴウグレンオー》とあるクリーチャー１体の上に置く。\nソウルシフト\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。相手の「ブロッカー」を持つクリーチャーをすべて破壊する。自分の山札を見る。その中から名前に《ケンゲキオージャ》とあるクリーチャーを１体選び、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。\nT・ブレイカー(このクリーチャ―はシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-015",
+      "limit": 4,
+      "evolution": {
+        "nameIncludes": "ケンゴウグレンオー"
+      },
+      "g1362SoulShift": true,
+      "breaker": 3,
+      "g439Tap": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        },
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ケンゲキオージャ"
+        }
+      ],
+      "supportBatch": "phase-1619",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-v02",
+      "name": "勝利皇帝Guy-R",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 25,
+      "power": 25000,
+      "race": "アウトレイジMAX",
+      "text": "超無限進化-自分のアウトレイジ１体以上の上に置く。\n∞ (インフィニティ）ソウルシフト（このクリーチャーを召喚する時、このクリーチャーの進化元クリーチャーを好きな数選ぶ。このクリーチャーのコストは、その選んだクリーチャーのコストの合計分少なくなる。ただし、このクリーチャーのコストは１より少なくならない）\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-v02",
+      "limit": 4,
+      "evolution": {
+        "race": "アウトレイジ"
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "アウトレイジ"
+          }
+        ],
+        "variable": true
+      },
+      "g1362SoulShift": true,
+      "breaker": "∞",
+      "worldBreaker": true,
+      "g34Attack": [
+        {
+          "op": "TargetBelowSource692",
+          "g745Sweep": "opponent"
+        }
+      ],
+      "supportBatch": "phase-1619",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1618,
+    "phase": 1619,
     "checkedAt": "2026-11-22",
-    "baseCount": 9083,
-    "newEffectCards": 4,
+    "baseCount": 9087,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9087,
+    "totalCount": 9090,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/39412/",
+      "https://dm.takaratomy.co.jp/rule/qa/39413/",
+      "https://dm.takaratomy.co.jp/rule/qa/39415/",
+      "https://dm.takaratomy.co.jp/rule/qa/40969/",
+      "https://dm.takaratomy.co.jp/rule/qa/40968/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36946/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36947/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -315289,6 +315399,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9083,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1618,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9083,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9087,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

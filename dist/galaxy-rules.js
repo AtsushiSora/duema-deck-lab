@@ -31,7 +31,7 @@ export function createGalaxyRules(api){
   case'g22ManaPermit':choice(s,t,'このターン、マナから召喚できるクリーチャーを選ぶ',own.mana.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,cost(card(x)),card(x).id)));break;
   case'g22Speed':if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))choice(s,t,'スピードアタッカーを与える他のクリーチャーを選ぶ',creatures(s,t.p).filter(x=>x.uid!==t.uid).map(x=>opt(card(x).name,x.uid,x.entered===s.turn?20:0,x.cardId)));break;
   case'g22BounceEnd':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x)move(s,[{player:t.p,uid:x.uid,to:'hand'}]);break;}
-  case'g22Replace':{const e=t.entryUid?s.g22Entries?.find(e=>e.inst.uid===t.entryUid):s.g22Entry;if(!e)break;choice(s,t,'バトルゾーンに出ることを置き換える効果を選ぶ',e.choices.map((x,i)=>opt(card(x.source).name+'：'+(x.to==='mana'?'マナへ':x.to==='hand'?'手札へ':'墓地へ'),i,x.to==='grave'?5:10,x.source)));break;}
+  case'g22Replace':{const e=t.entryUid?s.g22Entries?.find(e=>e.inst.uid===t.entryUid):s.g22Entry;if(!e)break;choice(s,t,'バトルゾーンに出ることを置き換える効果を選ぶ',e.choices.map((x,i)=>opt(card(x.source).name+'：'+(x.to==='mana'?'マナへ':x.to==='hand'?'手札へ':x.to==='untap1619'?'アンタップして出す':'墓地へ'),i,x.to==='grave'?5:10,x.source)));break;}
   default:throw Error('未実装のギャラクシー効果：'+t.op);
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p];switch(t.op){
@@ -60,6 +60,12 @@ export function createGalaxyRules(api){
  function applyReplacement(s,index,uid=null,immediate=null){
   const e=immediate||(uid?s.g22Entries?.find(e=>e.inst.uid===uid):s.g22Entry);if(!e)return;
   const r=e.choices[index],own=s.players[e.p],x=e.inst,origins=new Map([[x.uid,{zone:e.options.origin,serial:x.zoneSerial,tapped:x.tapped}]]);
+  if(r.to==='untap1619'){
+   if(s.g22Entry===e)delete s.g22Entry;
+   if(s.g22Entries){s.g22Entries=s.g22Entries.filter(v=>v!==e);if(!s.g22Entries.length)delete s.g22Entries;}
+   api.enter(s,e.p,x,e.baseUid,{...e.options,replacement:true,g1619Untapped:true,tapped:false});
+   return;
+  }
   if(s.g22Entry===e)delete s.g22Entry;if(s.g22Entries){s.g22Entries=s.g22Entries.filter(v=>v!==e);if(!s.g22Entries.length)delete s.g22Entries;}
   // 409.2a: held cards returning to their original zone have not entered it anew.
   // Mugen materials retain their own origins, including nested battlefield layers.
@@ -116,6 +122,8 @@ export function createGalaxyRules(api){
    const manaCount=mana.length-(c.manaEvolution&&mana.some(x=>x.uid===baseUid)?1:0);
    const all=api.withEffect(s,options.effectController??api.effectActor(s),()=>
     replacementOptions(s,p,{...c,g34FreeCast:options.costPaid===false},options.origin||'hand',options.execution,manaCount));
+   const peach=options.g1619InitialTap&&api.wouldEnterCreature(s,p,c)&&api.peachCastle1619(s,p);
+   if(peach)all.push({source:peach.cardId,owner:p,to:'untap1619'});
    if(!all.length)return false;
    const owner=all.some(x=>x.owner===s.active)?s.active:1-s.active,choices=all.filter(x=>x.owner===owner);
    const entry={p,inst,baseUid,options,choices};

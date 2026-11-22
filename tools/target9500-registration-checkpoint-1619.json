@@ -1,0 +1,193 @@
+{
+  "phase": 1619,
+  "checkedAt": "2026-11-22T03:23:39.925Z",
+  "baseline": "7d820821b09007b67880a8e4c8640b4827b03db3",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9087,
+  "currentNames": 9090,
+  "remainingNames": 410,
+  "added": [
+    {
+      "id": "dmex14-040",
+      "name": "弩闘！桃天守閣"
+    },
+    {
+      "id": "dm34-015",
+      "name": "ゴウケンオー～剣々轟々～"
+    },
+    {
+      "id": "dmx15-v02",
+      "name": "勝利皇帝Guy-R"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9087,
+    "uniqueNames": 9090,
+    "uniqueIds": 9090,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1619.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.008,
+      "log": "tmp/duema-phase-1619/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1619-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.117,
+      "log": "tmp/duema-phase-1619/final-focused.log",
+      "passed": 45,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1618-effects.test.mjs",
+        "tests/standard1362-effects.test.mjs",
+        "tests/standard609-effects.test.mjs",
+        "tests/standard591-effects.test.mjs",
+        "tests/standard1436-effects.test.mjs",
+        "tests/standard402-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 39.062,
+      "log": "tmp/duema-phase-1619/final-related.log",
+      "passed": 281,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 32.777,
+      "log": "tmp/duema-phase-1619/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 18.127,
+      "log": "tmp/duema-phase-1619/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.506,
+      "log": "tmp/duema-phase-1619/target9500.log"
+    },
+    "related-deterministic": {
+      "name": "related-deterministic",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "--test-name-pattern=^(?:twelve\\ official\\ card\\ definitions\\ and\\ refreshed\\ texts\\ make\\ No22\\ ready\\ alongside\\ No05\\ and\\ No06|reverse\\ Brand\\ GGG\\ counts\\ itself\\ at\\ declaration\\ and\\ keeps\\ printed7\\ while\\ paying1\\ only\\ with\\ one\\ hand\\ card|reverse\\ Brand\\ destroys\\ a\\ selectable\\ power6000\\-or\\-less\\ enemy\\ while\\ Onikamas\\ remains\\ untargetable|Master\\ GGG\\ is\\ free\\ with\\ only\\ itself\\ in\\ hand\\ even\\ under\\ Diamond\\ and\\ uses\\ actual\\ fire\\ mana\\ for\\ its\\ draw|Master\\ GGG\\ discards\\ a\\ chosen\\ number\\ then\\ destroys\\ that\\ many\\ power6000\\ enemies|Crossfire\\ G\\-zero\\ checks\\ four\\ creatures\\ and\\ no\\ existing\\ Crossfire,\\ and\\ costs\\ no\\ actual\\ mana|Crossfire\\ attack\\ grants\\ speed\\ to\\ one\\ other\\ creature\\ only\\ with\\ a\\ fire\\ card\\ in\\ real\\ mana|Snow\\ discount\\ is\\ optional,\\ once\\ per\\ instance\\ per\\ turn,\\ and\\ applies\\ only\\ to\\ the\\ executed\\ face|Saepoyo\\ hyper\\ permits\\ one\\ mana\\ summon\\ per\\ source\\ each\\ turn|Polykichi\\ permission\\ is\\ tied\\ to\\ the\\ selected\\ physical\\ mana\\ card\\ and\\ spent\\ even\\ if\\ Segare\\ keeps\\ it\\ in\\ mana|Drive\\ gains\\ speed\\ only\\ while\\ its\\ controller\\ hand\\ is\\ at\\ most\\ one\\ and\\ bounces\\ only\\ if\\ untapped\\ at\\ own\\ end|Blaze\\ requires\\ two\\ already\\ tapped\\ own\\ creatures\\ and\\ discards\\ before\\ drawing\\ only\\ in\\ hyper\\ mode|Bird\\ pays\\ one\\ mana\\ of\\ any\\ color\\ on\\ its\\ entry\\ turn\\ without\\ counting\\ as\\ a\\ real\\ mana\\ card|flying\\ prevents\\ attacks\\ and\\ grounded\\ blocks,\\ cannot\\ break\\ shields,\\ but\\ can\\ attack\\ directly|grounded\\ creatures\\ cannot\\ attack\\ a\\ tapped\\ Bird\\ but\\ effects\\ can\\ still\\ select\\ it|crystal\\ charger\\ shuffles\\ a\\ chosen\\ grave\\ then\\ becomes\\ faceDown\\ mana\\ with\\ cost0,\\ no\\ colors\\ and\\ mana1|returning\\ faceDown\\ mana\\ to\\ hand\\ restores\\ its\\ actual\\ characteristics\\ and\\ clears\\ hidden\\ state|Inca\\ forbids\\ any\\ creature\\ entry\\ from\\ outside\\ hand,\\ before\\ a\\ replacement\\ can\\ move\\ Segare|Tokoshie\\ replaces\\ nonhand\\ creature\\ or\\ seed\\ entry\\ with\\ mana\\ and\\ does\\ not\\ trigger\\ entry\\ effects|Segare\\ redirects\\ an\\ oversized\\ hand\\ summon\\ and\\ moves\\ itself\\ only\\ after\\ the\\ entry\\ was\\ replaced|revolution\\ change\\ fails\\ without\\ moving\\ either\\ creature\\ or\\ Segare\\ if\\ Segare\\ would\\ replace\\ the\\ arrival|entry\\ replacement\\ prioritizes\\ the\\ active\\ player\\ controller\\ and\\ never\\ chains\\ BlackStatue\\ with\\ Tokoshie|Eール\\ untaps\\ up\\ to\\ two\\ mana\\ and\\ its\\ spell\\ destroys\\ twice\\ only\\ for\\ an\\ actually\\ discarded\\ SnowFairy|Bird\\ mana\\ and\\ Mugen\\ Crime\\ reserve\\ disjoint\\ creatures\\ so\\ no\\ creature\\ pays\\ both\\ tap\\ costs|a\\ replaced\\ mana\\ summon\\ consumes\\ Saepoyo\\ once\\ per\\ turn\\ even\\ when\\ the\\ card\\ remains\\ in\\ the\\ same\\ mana\\ zone|mana\\ creature\\ permission\\ supports\\ evolution\\ summons\\ and\\ retains\\ the\\ selected\\ source\\ zone|a\\ free\\ summon\\ does\\ not\\ spend\\ an\\ optional\\ SnowFairy\\ discount,\\ and\\ Genmu\\ suppresses\\ the\\ reducer\\ itself|G\\-zero\\ can\\ combine\\ with\\ Saepoyo\\ permission\\ to\\ summon\\ Crossfire\\ from\\ mana\\ while\\ Master\\ GGG\\ cannot|photo\\ contains\\ eighteen\\ independently\\ transcribed\\ identities\\ and\\ forty\\ usable\\ cards\\ with\\ sixteen\\ complete\\ additions|Zero\\ needs\\ two\\ distinct\\ bases\\ with\\ dark\\ and\\ fire;\\ one\\ multicolor\\ creature\\ is\\ insufficient|Dark\\ King\\ requires\\ Dragon\\ Zombie\\ and\\ Fire\\ Bird\\ and\\ inherits\\ tapped\\ evolution\\ bases|Poppo\\ permits\\ mixed\\ battle/grave\\ evolution\\ bases\\ on\\ a\\ summon|Destroy\\ needs\\ exactly\\ two\\ dark\\ or\\ fire\\ grave\\ creatures,\\ Pluto\\ exactly\\ three\\ of\\ any\\ civilization|Apollo\\ attaches\\ three\\ hidden\\ deck\\ cards\\ and\\ its\\ meteor\\ reduces\\ all\\ opponents\\ by4000\\ per\\ payment|opponent\\ choosing\\ Apollo\\ triggers\\ a\\ two\\-shield\\ trash\\ even\\ if\\ Apollo\\ is\\ removed|Reverse\\ Rapia\\ may\\ decline\\ milling,\\ or\\ mills\\ three\\ before\\ the\\ strict\\ cost\\ threshold|Abusodo\\ mills\\ two,\\ requires\\ cost\\ strictly\\ below\\ grave\\ count\\ and\\ has\\ dynamic\\ power|Reverse\\ spell\\ recovers\\ a\\ Phoenix\\ optionally\\ then\\ physically\\ charges\\ as\\ a\\ single\\-color\\ mana|Reload\\ optional\\ discard\\ draws\\ one\\ and\\ becomes\\ tapped\\ multicolor\\ mana;\\ Xeno\\ spell\\ discards\\ before\\ drawing2|Universe\\ Gate\\ leaves\\ the\\ top\\ three\\ in\\ original\\ order\\ and\\ schedules\\ one\\ extra\\ turn\\ per\\ Phoenix|Death\\ Fel\\ has\\ EX\\ life,\\ sacrifices\\ two\\ together,\\ discards2\\ and\\ grants\\ a\\ turn\\ only\\ for\\ real\\ destruction\\ outside\\ extra\\ turns|Garuzark\\ gains\\ T\\ breaker\\ and\\ attack\\ power\\ only\\ with\\ another\\ Dragon\\ and\\ cannot\\ be\\ attacked|Heavy\\ and\\ Metal\\ link\\ into\\ one\\ creature\\ with\\ summed\\ stats\\ and\\ the\\ owner\\ chooses\\ only\\ one\\ to\\ leave|linked\\ Heavy\\ forces\\ attacks\\ only\\ when\\ a\\ legal\\ attack\\ toward\\ it\\ is\\ possible|Xeno\\ evolves\\ ignoring\\ conditions\\ and\\ the\\ evolved\\ creature\\ is\\ destroyed\\ at\\ that\\ turn\\ end|Pluto\\ meteor\\ is\\ optional\\ and\\ its\\ three\\ mills\\ plus\\ destruction\\ require\\ payment|Zero\\ departure\\ makes\\ the\\ opponent\\ discard\\ two\\ then\\ allows\\ zero\\ through\\ two\\ mana\\ cards|Death\\ Fel\\ destruction\\ during\\ an\\ extra\\ turn\\ adds\\ no\\ new\\ extra\\ turn|Oni\\ returns\\ a\\ shield\\ without\\ its\\ trigger\\ and\\ optionally\\ reduces\\ only\\ the\\ next\\ dark\\ or\\ fire\\ summon|Oni\\ reduction\\ cannot\\ make\\ a\\ cost\\ zero\\ and\\ expires\\ at\\ turn\\ end|Pluto\\ alternative\\ requires\\ five\\ qualifying\\ elements\\ or\\ mana\\ and\\ two\\ different\\ dark\\ mana\\ cards|Xeno\\ grave\\ recovery\\ checks\\ two\\ Phoenix\\ cards\\ on\\ its\\ owner\\ start|Genmu\\ prevents\\ incoming\\ Heavy\\ entry\\ even\\ when\\ its\\ link\\ gives\\ combined\\ cost10,\\ but\\ does\\ not\\ stop\\ linking|Metal\\ optionally\\ destroys\\ exactly\\ one\\ enemy\\ mana\\ and\\ one\\ enemy\\ noncreature\\ card|Genmu\\ suppresses\\ Abusodo\\ power\\ and\\ Gar\\ checks\\ two\\ Dragons\\ without\\ recursion|deck\\-evolution\\ face\\-down\\ sources\\ cannot\\ survive\\ reconstruction\\ when\\ only\\ Apollo\\ moves|worker\\ fetches\\ the\\ versioned\\ Phoenix\\ module\\ without\\ a\\ page\\ import\\ map\\ and\\ hidden\\ sources\\ have\\ no\\ front\\ artwork|AI\\ observation\\ never\\ exposes\\ Apollo\\ hidden\\ source\\ identities,\\ to\\ either\\ player|Savak\\ can\\ select\\ a\\ specific\\ linked\\ God\\ card\\ without\\ losing\\ or\\ moving\\ the\\ other\\ half|V\\ evolution\\ lets\\ the\\ controller\\ order\\ bases\\ independently\\ of\\ the\\ civilization\\ requirements|Xeno\\ delayed\\ destruction\\ follows\\ the\\ same\\ creature\\ after\\ reconstruction\\ and\\ never\\ a\\ new\\ incarnation)$",
+        "tests/galaxy-effects.test.mjs",
+        "tests/phoenix-photo.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.553,
+      "log": "tmp/duema-phase-1619/related-deterministic.log",
+      "passed": 61,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 387,
+  "hashes": {
+    "dist/cards.json": "94d4d61157dafb78edebf91654b8990e97c02fbfbbce3656f9cb4d324634a0ca",
+    "dist/engine.js": "7ac7ef83ea527ceb228db73bc0f267d332b56d6880bb503a8a8efccd377bcfd1",
+    "dist/six-photo-rules.js": "ec38c73a511eb85ad08be61e91c2469f93809e5c2f0b8cb5c3098fa24f36bd75",
+    "dist/online-compatibility.js": "a0fca1ac3740c1698a8bbe61e18850d39fb8bcd1b1aa83cc994e3e30e65ad0c2",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.135",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "rulingResults": [
+    {
+      "target": "QA39412",
+      "result": "進化系列4種類×両プレイヤーの8例をJSON再開込みで検証し、アンタップ登場を確認。",
+      "tests": "tests/standard1619-effects.test.mjs"
+    },
+    {
+      "target": "QA40969",
+      "result": "進化元のタップ置換後に可憐の状態定義が適用され、タップ登場する2例を検証。"
+    },
+    {
+      "target": "QA39415",
+      "result": "公式と同じ桃天守閣・デジルムカデを付けたGR・ゴーストタッチ・バイケンの盤面でタップ登場を確認。"
+    }
+  ],
+  "resolvedPriorRegistrationValidations": [
+    {
+      "phase": 1618,
+      "cardIds": [
+        "dm33-026",
+        "dm32-060",
+        "dm34-010",
+        "dm33-016"
+      ],
+      "target": "QA39412: 弩闘！桃天守閣によるタップ能力からのアンタップ進化",
+      "dependency": "dmex14-040",
+      "reason": "進化系列4種類の全能力実装・固有34件・回帰134件は通過。未対応の桃天守閣を含む公式裁定の実カード再現は次バッチに継続。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39412/",
+      "status": "verified",
+      "resolvedByPhase": 1619,
+      "artifact": "tools/target9500-registration-checkpoint-1619.json",
+      "evidence": {
+        "target": "QA39412",
+        "result": "進化系列4種類×両プレイヤーの8例をJSON再開込みで検証し、アンタップ登場を確認。",
+        "tests": "tests/standard1619-effects.test.mjs"
+      }
+    }
+  ],
+  "longRegressionStatus": {
+    "phase": 1619,
+    "status": "中断・合否未確認",
+    "reason": "多数対戦相手・多数seedを含む2モジュールの一括実行を123.466秒で中止。関連する決定的61件は別分割で通過。旧全体npm test・長時間群の合格を推定しない。",
+    "log": "tmp/duema-phase-1619/final-related.log",
+    "scope": "tmp/duema-phase-1619/long-regression-scope.json",
+    "completedDeterministic": 61
+  }
+}
