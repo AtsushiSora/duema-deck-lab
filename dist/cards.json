@@ -294522,19 +294522,150 @@
       ],
       "supportBatch": "phase-1670",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-013",
+      "name": "Dの楽園 サイケデリック・ガーデン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーすべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドをひとつ手札に加えてもよい。ただし、その「S・トリガー」は使えない）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札を２枚まで裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-013",
+      "limit": 4,
+      "d2Field": true,
+      "hades": true,
+      "g174End": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1671",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-014",
+      "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "このＤ２フィールドが出た時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、このD２フィールドがある間アンタップしない。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：相手のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のクリーチャーをすべてアンタップし、このターン、それらに「ブロッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-014",
+      "limit": 4,
+      "d2Field": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g1671NirvanaLock": true
+        }
+      ],
+      "g1669D2Start": true,
+      "g179OpponentStart": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "GroupUntap"
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "grant": {
+                "blocker": true
+              },
+              "g1106ExternalUntilEnd": true,
+              "g1058FollowUnit": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1671",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-014",
+      "name": "Dの博才 サイバーダイス・ベガス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のターンの終わりに、カードを１枚引いてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：相手のクリーチャーが自分を攻撃する時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、水のコスト７以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-014",
+      "limit": 4,
+      "d2Field": true,
+      "trigger": true,
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Execute",
+                "origin": "hand",
+                "spellOnly": true,
+                "max": 7,
+                "g556SpellColor": "水",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1671",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1670,
+    "phase": 1671,
     "checkedAt": "2026-11-22",
-    "baseCount": 9248,
+    "baseCount": 9251,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9251,
+    "totalCount": 9254,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38584/",
-      "https://dm.takaratomy.co.jp/rule/qa/38585/"
+      "https://dm.takaratomy.co.jp/rule/qa/44599/",
+      "https://dm.takaratomy.co.jp/rule/qa/41283/",
+      "https://dm.takaratomy.co.jp/rule/qa/40177/",
+      "https://dm.takaratomy.co.jp/rule/qa/41991/",
+      "https://dm.takaratomy.co.jp/rule/qa/42935/",
+      "https://dm.takaratomy.co.jp/rule/qa/39849/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -321887,6 +322018,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
           "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1670,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9248,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9251,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38584/",
+          "https://dm.takaratomy.co.jp/rule/qa/38585/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

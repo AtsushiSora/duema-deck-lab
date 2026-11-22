@@ -1245,6 +1245,13 @@ export function createSixPhotoRules(api){
  }
  function dSwitchScore1669(s,t){
   const own=s.players[t.p];
+  if(t.defs[0]?.op==='Select'&&t.defs[0].to==='shields')return own.hand.length?10:-1;
+  if(t.defs[0]?.op==='GroupUntap'&&t.defs[1]?.op==='GroupGrant364')return creatures(s,t.p).some(x=>!x.sealed)?10:-1;
+  if(t.defs[0]?.op==='Execute'){
+   const d=t.defs[0];
+   return own.hand.some(x=>faces(card(x)).some(c=>c.type==='spell'&&cost(c)<=d.max&&colors(c).includes(d.g556SpellColor)&&
+    api.canCast(s,t.p,c,'hand')&&api.canExecuteUnpaid(s,t.p,c)))?20:-1;
+  }
   if(t.defs[0]?.op==='TenderBlock1670')return creatures(s,1-t.p).some(x=>!x.sealed&&effective(x,s).blocker)?12:-1;
   if(t.defs[0]?.op==='AlchemistShuffle1670')return own.deck.length+own.hand.length+own.grave.length<=5?-1000:own.hand.length<4?20:-1;
   if(t.defs[0]?.op==='HandCycle460')return own.hand.some(x=>matches(s,t.p,x,t.defs[0].filter))&&creatures(s,1-t.p).some(x=>!x.sealed)?15:-1;
@@ -8760,6 +8767,8 @@ export function createSixPhotoRules(api){
     kind:'g1116CreatureUntapLock',ref:key(y),who:t.p,expires:'start',
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))
    });
+   if(t.g1671NirvanaLock)(s.extLimits??=[]).push({kind:'g1671NirvanaLock',
+    ref:{uid:y.uid,incarnation:y.incarnation||0},host:key(t),g1058FollowUnit:true});
    if(t.g1198UntapLock)(s.extLimits??=[]).push({kind:'g1198CreatureUntapLock',ref:key(y),host:key(t),...(t.g1580HostTapped?{g1580HostTapped:true}:{})});
    if(t.g446BattleOnly)grantBattlePower446(s,t,y,t.g446BattleOnly);
    if(t.powerMultiplier)(y.powerModifiers??=[]).push({amount:0,multiplier:t.powerMultiplier,expires:'end',who:s.active});
@@ -9241,6 +9250,9 @@ export function createSixPhotoRules(api){
   if(p<0||!api.isCreature(s,x))return false;
   if(s.extLimits?.some(l=>l.kind==='g1116CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
+  // This resolved duration ends only when that exact D2 field leaves the battlefield.
+  if(s.extLimits?.some(l=>l.kind==='g1671NirvanaLock'&&api.allLayers(x).some(y=>key(y)===key(l.ref))&&
+   s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&card(host).d2Field))))return true;
   if(s.extLimits?.some(l=>l.kind==='g1198CreatureUntapLock'&&api.allLayers(x).some(y=>key(y)===l.ref)&&
    s.players.some(owner=>owner.battle.some(host=>key(host)===l.host&&!host.sealed&&!host.faceDown&&(!l.g1580HostTapped||host.tapped)&&
     card(host).g34Tasks?.some(d=>d.g1198UntapLock)&&!api.ignored(s,host)&&api.isCreature(s,host)))))return true;

@@ -1,0 +1,262 @@
+{
+  "phase": 1671,
+  "checkedAt": "2026-11-22T14:57:26.512Z",
+  "baseline": "adb32ab4",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9251,
+  "currentNames": 9254,
+  "remainingNames": 246,
+  "added": [
+    {
+      "id": "dmr21-013",
+      "name": "Dの楽園 サイケデリック・ガーデン"
+    },
+    {
+      "id": "dm23ex3-014",
+      "name": "Dの頂点 ニルヴァーナ・ゼニシア"
+    },
+    {
+      "id": "dmr23-014",
+      "name": "Dの博才 サイバーダイス・ベガス"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "adb32ab4",
+    "originalDefinitionsUnchanged": 9251,
+    "added": 3,
+    "uniqueNames": 9254,
+    "uniqueIds": 9254,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9251,
+    "existingImageReferenceRowsUnchanged": 11447
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1671.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.36,
+      "log": "tmp/duema-phase-1671/official.log",
+      "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+    },
+    "focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.611,
+      "log": "tmp/duema-phase-1671/final-focused.log",
+      "passed": 103,
+      "failed": 0,
+      "logSha256": "0d7b48c06d098a72253df741542b46716ec98f5eccd1add27213d43917128037"
+    },
+    "related-d2-untap": {
+      "name": "related-d2-untap",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs",
+        "tests/standard1670-effects.test.mjs",
+        "tests/standard1198-effects.test.mjs",
+        "tests/standard364-effects.test.mjs",
+        "tests/standard1188-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 31.776,
+      "log": "tmp/duema-phase-1671/related-d2-untap.log",
+      "passed": 352,
+      "failed": 0,
+      "logSha256": "c17f2454a9af586b4a1ee0ea5b55a2de116756e9ad98df2428d7db99e871370f"
+    },
+    "related-attack": {
+      "name": "related-attack",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1176-effects.test.mjs",
+        "tests/standard906-effects.test.mjs",
+        "tests/champion-combat-effects.test.mjs",
+        "tests/standard482-effects.test.mjs",
+        "tests/standard1295-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.26,
+      "log": "tmp/duema-phase-1671/related-attack.log",
+      "passed": 164,
+      "failed": 0,
+      "logSha256": "98cc96266d63712c3d5fd58db88dfa0e9919fb4057f25985854d84333768afd0"
+    },
+    "related-escape": {
+      "name": "related-escape",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Hades grants escape|Genmu removes escape|Oil’s Escape applies",
+        "tests/gate-effects.test.mjs",
+        "tests/standard1199-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.088,
+      "log": "tmp/duema-phase-1671/related-escape.log",
+      "passed": 3,
+      "failed": 0,
+      "logSha256": "2c92e3e6119f7d14d4e7c314f59574135f2eaed21dec279faebd3e5a5c42c103"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.732,
+      "log": "tmp/duema-phase-1671/check.log",
+      "logSha256": "99b40d9967ca2fe750430dc42dd10063e3d383ce06f9e0b651a700c311d1cbf9"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.088,
+      "log": "tmp/duema-phase-1671/audit.log",
+      "logSha256": "532a8f328c79cd41990509391730c80aefd905f525538116d14e430f416eb9e2"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.257,
+      "log": "tmp/duema-phase-1671/target9500.log",
+      "logSha256": "6f8d3f14aa1fa5e12aae5dd417c32758563a3a795f030ba87c21084eb18d64a8"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1671/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.472,
+      "log": "tmp/duema-phase-1671/invariants.log",
+      "logSha256": "2e24a63bb20c8f8edf26397b3f41d056cabc185574479196cf891fdcbb470a0f"
+    }
+  },
+  "totalTestsPassed": 622,
+  "hashes": {
+    "dist/cards.json": "f21bc6372abdfce7c61c61ce8090577a4473594d968d1dd172aff49b8373fed3",
+    "dist/engine.js": "bf4b58849587c1c0908d7024ba27e4f4d42c99d1a3a721f754069e124c7e8f24",
+    "dist/six-photo-rules.js": "a130f8cb4a2e42b98a6effdf07ffa59aadc00cdd625b251ab87baebafb5e5c66",
+    "dist/online-compatibility.js": "404b3b3ef3cfccbbbb620ca27ecd576b54c212c0199aaeacbcee6de759826ddc",
+    "dist/card-images.js": "011a8689ca5c35a5fe86b3ff9e3b5de379346d501e3f1927c762e4d04187cd72",
+    "tools/target9000-card-spec.json": "2e180c17be85a68e607dd401328d75796f85d9a1c0ec339e20fa4c9800c4b0c6",
+    "tests/standard1671-effects.test.mjs": "92e2ead09f56971a2f27a94115ec120a8dc6ceec88ce64b9f3a504d0803d6a81"
+  },
+  "engineVersion": "0.602.187",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 14.758,
+      "log": "tmp/duema-phase-1671/focused.log"
+    },
+    {
+      "name": "fixture-corrections",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Vegas never|QA41991|QA40177",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.841,
+      "log": "tmp/duema-phase-1671/fixture-corrections.log"
+    },
+    {
+      "name": "extra-scope",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA42935|Vegas free spell|Vegas actually|Vegas may turn|D2 World Stop|actual Fuujin|original field identity|never reapplies|actual untargetability|Losing creature status",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.593,
+      "log": "tmp/duema-phase-1671/extra-scope.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1671.json",
+  "supported": 9254,
+  "pending": 2571,
+  "reason": "全自軍へのエスケープ・終了時手札シールド化、場の存続期間のアンタップ禁止と相手開始時ブロッカー付与、攻撃宣言時の無料水呪文とSトリガーを全文対応。",
+  "validationNotes": [
+    "固有103件、D2・アンタップ関連352件、攻撃・侵略・ジャシン関連164件、既存エスケープ3件の計622件が通過。npm run check、audit、target9500と既存9251定義・全ID・詳細・別名・画像参照の不変を確認。",
+    "公式の能力全文・基本情報・マナ値・現行制限と原版3枚・同名再録2枚の画像を照合。公式の同名収録一覧はガーデン2商品、ニルヴァーナ1商品、ベガス6商品。ガーデンDMEX06とベガスDMBD13の全文と画像も比較し、原版IDを保持。再録や呪文面の重複加算なし。",
+    "ガーデンは既存の全自軍エスケープをフィールドから供給し、Sトリガーを使わない任意の破壊置換を検証。能力無視・離脱・非破壊移動・フィールド自身は対象外。終了時Dスイッチの0～2枚の個別シールド化・手札秘匿・実フウジンによる追加禁止を検証。",
+    "ニルヴァーナは選んだ相手だけをタップし、そのD2の正確なUIDと位相が場にある間だけ全てのアンタップを禁止。解決後の能力無視で期限を誤解除せず、進化を追跡し、元のフィールドまたは対象の再登場には古い効果を復活させない。QA44599の既にアンタップした味方にもブロッカーを与え、後発を除外してターン末で失効することを確認。",
+    "ベガスは相手のプレイヤー攻撃の宣言時に場にいる時だけDスイッチを誘発。無料水呪文の7以下・多色・ツイン呪文面・任意性と実デルフィンの禁止、終了時任意ドロー、Sトリガー、場に出た後から過去の攻撃を拾わないことを確認。",
+    "公式QA41283/39849は実ウラミ入道の自己破壊と実バイロンの攻撃中止後も公開ゾーンのベガスが解決すること、QA40177は実ホーガンからギガンディダノスが出ても宣言済み攻撃が続くこと、QA42935は実アポロヌスの侵略・メテオバーンからSトリガーで出たベガスはその攻撃に反応しないことを両者で再現。",
+    "QA41991の実ベガス→スパイラル・ゲート→ジャシン非クリーチャー化で、共通エンジンが攻撃を続けていた不具合を修正。攻撃継続・解決時に攻撃側と攻撃先の現在のクリーチャー種別を確認し、タマシードに戻った攻撃側はブレイクせず、攻撃先はバトルをしない。通常の攻撃禁止の後付けは既に宣言した攻撃を止めず、公開済み誘発は解決し続ける。関連回帰164件が通過。",
+    "途中のfixture誤り（タップ済み自軍での攻撃、闇クリーチャーの代わりに火呪文を配置、ホーガンの任意展開を辞退、実際のブレイクで増える手札、ワールドストップの期限、別カードIDの選択不能性）を訂正。ワールドストップはガーデン・ベガスを有効期間中に止め、ニルヴァーナの次の相手開始時より前に期限切れになることを確認。実装不具合の2種類の非クリーチャー化も修正し、最終固有103件が通過。",
+    "手動マナ選択、暗号化ルーム再開と相手への非公開情報の秘匿、AIの純粋性と未知情報への非依存、両先後の40枚デッキ実対戦の80物理カード保存と終局を検証。今回3種類の未完了検証なし。過去の一括npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。本バッチはローカルのみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm23ex3-042",
+      "name": "Dの魔城 ブリティッシュ・パビリオン",
+      "reason": "全自軍スレイヤーと当ターン破壊された自軍の終了時Dスイッチ回収を全文照合する。"
+    },
+    {
+      "id": "dmr23-018",
+      "name": "Dの爆撃 ランチャー・ゲバラベース",
+      "reason": "Sトリガー・相手攻撃時の相手選択破壊、開始時ランプしたカードと相手マナ数比較からの登場を照合する。"
+    },
+    {
+      "id": "dm26rp2-015",
+      "name": "Dの機動 ヴァイス・ヴァーチュー",
+      "reason": "Gストライク・終了時任意ドロー・攻撃時Dスイッチのマナ文明を満たす非クリーチャー実行を全文照合する。"
+    }
+  ],
+  "next": "phase1672で次の3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
+}

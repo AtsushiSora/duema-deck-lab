@@ -1,0 +1,668 @@
+{
+  "phase": 1671,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9251,
+  "target": 9500,
+  "description": "全自軍へのエスケープ・終了時手札シールド化、場の存続期間のアンタップ禁止と相手開始時ブロッカー付与、攻撃宣言時の無料水呪文とSトリガーを全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/44599/",
+    "https://dm.takaratomy.co.jp/rule/qa/41283/",
+    "https://dm.takaratomy.co.jp/rule/qa/40177/",
+    "https://dm.takaratomy.co.jp/rule/qa/41991/",
+    "https://dm.takaratomy.co.jp/rule/qa/42935/",
+    "https://dm.takaratomy.co.jp/rule/qa/39849/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-013",
+      "name": "Dの楽園 サイケデリック・ガーデン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-013",
+      "faces": [
+        {
+          "name": "Dの楽園 サイケデリック・ガーデン",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーすべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドをひとつ手札に加えてもよい。ただし、その「S・トリガー」は使えない）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札を２枚まで裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-013.jpg",
+      "sameNameProducts": [
+        "DMEX-06 絶対王者!! デュエキングパック",
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "spec": {
+        "d2Field": true,
+        "hades": true,
+        "g174End": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "shields",
+                "n": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-013",
+        "result": "同名の公式収録一覧と既存ID・正規名を照合し、原版IDを保持。再録を追加種類に数えない。 同名再録の基本情報・能力全文・画像も比較。",
+        "referenceSource": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-059"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "b539c5bd581ce8e591e42e70ccdb6064370e07d6ad7001f83193bf3c65a1532a",
+        "facesMatched": true,
+        "imageSha256": "d12b7ea1d205cf6d2ecb0780d057cdd75efbd6d3ffa66d7e03e4b27edfd07f26",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:48:56.053Z",
+        "imageNotes": "公式画像で正規名・文明・コスト・マナ1・D2種別・能力全文とカード番号を目視照合。原版と再録で配置・表記差のみ。"
+      }
+    },
+    {
+      "id": "dm23ex3-014",
+      "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-014",
+      "faces": [
+        {
+          "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このＤ２フィールドが出た時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、このD２フィールドがある間アンタップしない。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：相手のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のクリーチャーをすべてアンタップし、このターン、それらに「ブロッカー」を与える。",
+          "race": "ゼニス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-014.jpg",
+      "sameNameProducts": [
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "spec": {
+        "d2Field": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g1671NirvanaLock": true
+          }
+        ],
+        "g1669D2Start": true,
+        "g179OpponentStart": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "GroupUntap"
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "grant": {
+                  "blocker": true
+                },
+                "g1106ExternalUntilEnd": true,
+                "g1058FollowUnit": true
+              }
+            ]
+          }
+        ]
+      },
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-014",
+        "result": "同名の公式収録一覧と既存ID・正規名を照合し、原版IDを保持。再録を追加種類に数えない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "3e5b7e9a88f8d03b4f866c73becf13947851de75838b3294fcf52508a778398d",
+        "facesMatched": true,
+        "imageSha256": "a7b54c24c385f85c1b7c0386cca071c8780cdbb8d1970b8fc02a2f171fb30e84",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:48:56.060Z",
+        "imageNotes": "公式画像で正規名・文明・コスト・マナ1・D2種別・能力全文とカード番号を目視照合。原版と再録で配置・表記差のみ。"
+      }
+    },
+    {
+      "id": "dmr23-014",
+      "name": "Dの博才 サイバーダイス・ベガス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-014",
+      "faces": [
+        {
+          "name": "Dの博才 サイバーダイス・ベガス",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のターンの終わりに、カードを１枚引いてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：相手のクリーチャーが自分を攻撃する時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、水のコスト７以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-014.jpg",
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMBD-13 クロニクル最終決戦デッキ 覚醒流星譚",
+        "DMEX-08 謎のブラックボックスパック",
+        "DMEX-06 絶対王者!! デュエキングパック",
+        "DMR-23 革命ファイナル 拡張パック最終章 ドギラゴールデン vs. ドルマゲドンＸ",
+        "プロモ限定カード 16期"
+      ],
+      "spec": {
+        "d2Field": true,
+        "trigger": true,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "DSwitch1669",
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "hand",
+                  "spellOnly": true,
+                  "max": 7,
+                  "g556SpellColor": "水",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-014",
+        "result": "同名の公式収録一覧と既存ID・正規名を照合し、原版IDを保持。再録を追加種類に数えない。 同名再録の基本情報・能力全文・画像も比較。",
+        "referenceSource": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-017"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "8a0933c1d11580108d988a556737c0ab53d1351a0d439b0bae7ed5810f01b17f",
+        "facesMatched": true,
+        "imageSha256": "b1b8873411146bf431dc6525de025617531666528e26a86bf4db5979cb1dd963",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:48:56.060Z",
+        "imageNotes": "公式画像で正規名・文明・コスト・マナ1・D2種別・能力全文とカード番号を目視照合。原版と再録で配置・表記差のみ。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "printAliases": [
+    {
+      "id": "dmex06-059",
+      "name": "Dの楽園 サイケデリック・ガーデン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-059",
+      "faces": [
+        {
+          "name": "Dの楽園 サイケデリック・ガーデン",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーすべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札を２枚まで裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-059.jpg",
+      "sameNameProducts": [
+        "DMEX-06 絶対王者!! デュエキングパック",
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "canonicalId": "dmr21-013",
+      "spec": {
+        "d2Field": true,
+        "hades": true,
+        "g174End": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "shields",
+                "n": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "1402c307cfacce5e20917a8672babbf1d244b7baea365c03b29c62653bf35e62",
+        "facesMatched": true,
+        "imageSha256": "466e084f0af20dfac042a9e1c1f859a0232a4ac7925a0cabf4bdb165c33f0bcb",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:48:56.060Z",
+        "imageNotes": "公式画像で正規名・文明・コスト・マナ1・D2種別・能力全文とカード番号を目視照合。原版と再録で配置・表記差のみ。"
+      }
+    },
+    {
+      "id": "dmbd13-017",
+      "name": "Dの博才 サイバーダイス・ベガス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd13-017",
+      "faces": [
+        {
+          "name": "Dの博才 サイバーダイス・ベガス",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分のターンの終わりに、カードを１枚引いてもよい。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：相手のクリーチャーが自分を攻撃する時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、水のコスト７以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd13-017.jpg",
+      "sameNameProducts": [
+        "DMEX-17 20周年超感謝メモリアルパック 究極の章 デュエキングMAX",
+        "DMBD-13 クロニクル最終決戦デッキ 覚醒流星譚",
+        "DMEX-08 謎のブラックボックスパック",
+        "DMEX-06 絶対王者!! デュエキングパック",
+        "DMR-23 革命ファイナル 拡張パック最終章 ドギラゴールデン vs. ドルマゲドンＸ",
+        "プロモ限定カード 16期"
+      ],
+      "canonicalId": "dmr23-014",
+      "spec": {
+        "d2Field": true,
+        "trigger": true,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "DSwitch1669",
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "hand",
+                  "spellOnly": true,
+                  "max": 7,
+                  "g556SpellColor": "水",
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "32d2253878c3ea59851e72a411dd25f3e8e9fcf0f01e50e4e43336d39ef640ab",
+        "facesMatched": true,
+        "imageSha256": "30d7f64cedcd379221ae459e6d362080f9dd5fdef21f4c919c2fbfb2c1648a09",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:48:56.061Z",
+        "imageNotes": "公式画像で正規名・文明・コスト・マナ1・D2種別・能力全文とカード番号を目視照合。原版と再録で配置・表記差のみ。"
+      }
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44599/",
+      "checkedAt": "2026-11-22T14:47:57.888Z",
+      "sha256": "ad8fa2f3860ee96b729b3c44384f9941688b324194799ac58a6e8aaf0a057476",
+      "questionAnswer": "よくある質問 Q《Dの頂点 ニルヴァーナ・ゼニシア》の「Dスイッチ」を使った際にアンタップしていた自分のクリーチャーにも「ブロッカー」は与えられますか？ 類似例：《勝首領龍 カツドン》(«最終勝首領 カツマスター»の「ファイナル・ドロン」) Aはい、与えられます。アンタップ状態の自分のクリーチャーにも「ブロッカー」が与えられます。 ただし、「Dスイッチ」の効果を解決した後に出た自分のクリーチャーには「ブロッカー」は与えられません。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA44599 Nirvana untaps existing allies",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41283/",
+      "checkedAt": "2026-11-22T14:47:57.898Z",
+      "sha256": "c8eef130b8577ebba80a1439fb7d6763f88d2bf5e4ffdc9b707dee7988baee23",
+      "questionAnswer": "よくある質問 Q相手の《ウラミ入道》の「攻撃する時」の能力で、相手はその《ウラミ入道》自身を破壊しました。攻撃クリーチャーがバトルゾーンを離れてしまいましたが、自分は《Dの博才 サイバーダイス・ベガス》の「Dスイッチ」を使えますか？ 類似例：《ガロウズ・セブ・カイザー》の「相手のクリーチャーが攻撃する時」の能力 Aはい、使えます。公開ゾーンにあるカードの「相手のクリーチャーが攻撃する時」の能力がすでにトリガーしている場合、攻撃クリーチャーもしくは攻撃先のクリーチャーがバトルゾーンを離れても、その能力を解決できます。 （総合ルール 505.6a） ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA41283 Vegas retains its declared trigger",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40177/",
+      "checkedAt": "2026-11-22T14:47:57.900Z",
+      "sha256": "de7902d82a068a8dfe35868f7c01f873f464b04be44ed6efcd9b8b91d076a6e1",
+      "questionAnswer": "よくある質問 Q相手のクリーチャーが自分を攻撃する時、自分の《Dの博才 サイバーダイス・ベガス》の「Dスイッチ」を使って、手札から《ホーガン・ブラスター》を唱えました。効果で《大樹王 ギガンディダノス》がバトルゾーンに出ましたが、相手の攻撃は中止されますか？ Aいいえ、中止されません。攻撃中に「攻撃されない」状態になっても、攻撃は継続されます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA40177 actual Hogan deploys Gigandidanos",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41991/",
+      "checkedAt": "2026-11-22T14:47:57.902Z",
+      "sha256": "54e8029ed3684117ef5c7ffa2f3902ab7f9783bb5f8d4a58815ebea874ee97ce",
+      "questionAnswer": "よくある質問 Q自分の闇のクリーチャーが他に３体いて、《深淵の支配者 ジャシン》がクリーチャーになっている状況です。 《深淵の支配者 ジャシン》が相手を攻撃した時、相手は《Dの博才 サイバーダイス・ベガス》の「Dスイッチ」によって《スパイラル・ゲート》を唱えて、攻撃していない自分の闇のクリーチャーを手札に戻しました。闇のクリーチャーまたはタマシードが３つ以下になってしまいましたが、この攻撃中の《深淵の支配者 ジャシン》は相手のシールドをブレイクできますか？ Aいいえ、攻撃中にクリーチャーではなくなった場合、その攻撃は中止されます。 そのため、シールドを１つもブレイクできずに攻撃が終了します。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA41991 Vegas can remove a dark ally",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/42935/",
+      "checkedAt": "2026-11-22T14:47:57.903Z",
+      "sha256": "5c4ec8b6af54aa840d2f28f673d2b267442ba4b5addff24ee3b0a556782956c9",
+      "questionAnswer": "よくある質問 Q相手が《超神羅星アポロヌス・ドラゲリオン》の「メテオバーン」で自分のシールドをすべてブレイクした際に、自分は《Dの博才 サイバーダイス・ベガス》を「S・トリガー」で展開しました。自分は《Dの博才 サイバーダイス・ベガス》の「Dスイッチ」を使えますか？ 類似例：《ガロウズ・セブ・カイザー》の「相手のクリーチャーが攻撃する時」の能力 Aいいえ、使えません。《超神羅星アポロヌス・ドラゲリオン》が攻撃した時点で、《Dの博才 サイバーダイス・ベガス》がバトルゾーンに無いため、「Dスイッチ」がトリガーしていません。 公開ゾーンでトリガーする能力は、トリガーする時点で公開ゾーンになければトリガーしません。 （総合ルール 603.2） ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA42935 Vegas entering as a real S-trigger",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39849/",
+      "checkedAt": "2026-11-22T14:47:57.905Z",
+      "sha256": "992083f2064441fa433ea227540c3c6ea0b7731cbecb4aaba9a27abbd513d70c",
+      "questionAnswer": "よくある質問 Q自分の《ウェイボール ＜バイロン.Star＞》の「攻撃する時」の能力でカードを２枚引きましたが、手札が６枚以下だったので攻撃を中止しました。この場合、相手の「相手のクリーチャーが攻撃する時」の能力を持つカードの能力は使えますか？ A《Dの博才 サイバーダイス・ベガス》のような、公開ゾーンでトリガーする能力は使えます。ですが、「ニンジャ・ストライク」のような使用宣言が必要なカードは、攻撃が中止された場合は使用宣言が行えず、使うこともできません。 （総合ルール 505.6a） ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1671-effects.test.mjs",
+      "testNamePrefix": "QA39849 Vegas resolves its public trigger",
+      "bothPlayersVerified": true
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T14:47:57.905Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule/qa サイケデリック・ガーデン",
+      "site:dm.takaratomy.co.jp/rule/qa ニルヴァーナ・ゼニシア",
+      "site:dm.takaratomy.co.jp/rule/qa サイバーダイス・ベガス"
+    ],
+    "result": "ガーデン固有QAは見つからず、既存エスケープとシールド追加処理を使用。ニルヴァーナはQA44599、ベガスは攻撃中止・非クリーチャー化・後発登場のQAを取得本文で照合。"
+  },
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-013": 4,
+      "dm23ex3-014": 4,
+      "dmr23-014": 4,
+      "dmex06-059": 4,
+      "dmbd13-017": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T14:57:26.512Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1671.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.36,
+        "log": "tmp/duema-phase-1671/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1671-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 16.611,
+        "log": "tmp/duema-phase-1671/final-focused.log",
+        "passed": 103,
+        "failed": 0,
+        "logSha256": "0d7b48c06d098a72253df741542b46716ec98f5eccd1add27213d43917128037"
+      },
+      "related-d2-untap": {
+        "name": "related-d2-untap",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1669-effects.test.mjs",
+          "tests/standard1670-effects.test.mjs",
+          "tests/standard1198-effects.test.mjs",
+          "tests/standard364-effects.test.mjs",
+          "tests/standard1188-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 31.776,
+        "log": "tmp/duema-phase-1671/related-d2-untap.log",
+        "passed": 352,
+        "failed": 0,
+        "logSha256": "c17f2454a9af586b4a1ee0ea5b55a2de116756e9ad98df2428d7db99e871370f"
+      },
+      "related-attack": {
+        "name": "related-attack",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1176-effects.test.mjs",
+          "tests/standard906-effects.test.mjs",
+          "tests/champion-combat-effects.test.mjs",
+          "tests/standard482-effects.test.mjs",
+          "tests/standard1295-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.26,
+        "log": "tmp/duema-phase-1671/related-attack.log",
+        "passed": 164,
+        "failed": 0,
+        "logSha256": "98cc96266d63712c3d5fd58db88dfa0e9919fb4057f25985854d84333768afd0"
+      },
+      "related-escape": {
+        "name": "related-escape",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Hades grants escape|Genmu removes escape|Oil’s Escape applies",
+          "tests/gate-effects.test.mjs",
+          "tests/standard1199-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.088,
+        "log": "tmp/duema-phase-1671/related-escape.log",
+        "passed": 3,
+        "failed": 0,
+        "logSha256": "2c92e3e6119f7d14d4e7c314f59574135f2eaed21dec279faebd3e5a5c42c103"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.732,
+        "log": "tmp/duema-phase-1671/check.log",
+        "logSha256": "99b40d9967ca2fe750430dc42dd10063e3d383ce06f9e0b651a700c311d1cbf9"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.088,
+        "log": "tmp/duema-phase-1671/audit.log",
+        "logSha256": "532a8f328c79cd41990509391730c80aefd905f525538116d14e430f416eb9e2"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.257,
+        "log": "tmp/duema-phase-1671/target9500.log",
+        "logSha256": "6f8d3f14aa1fa5e12aae5dd417c32758563a3a795f030ba87c21084eb18d64a8"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1671/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.472,
+        "log": "tmp/duema-phase-1671/invariants.log",
+        "logSha256": "2e24a63bb20c8f8edf26397b3f41d056cabc185574479196cf891fdcbb470a0f"
+      }
+    },
+    "totalTestsPassed": 622,
+    "focusedTestsPassed": 103,
+    "relatedTestsPassed": 519
+  },
+  "validationNotes": [
+    "固有103件、D2・アンタップ関連352件、攻撃・侵略・ジャシン関連164件、既存エスケープ3件の計622件が通過。npm run check、audit、target9500と既存9251定義・全ID・詳細・別名・画像参照の不変を確認。",
+    "公式の能力全文・基本情報・マナ値・現行制限と原版3枚・同名再録2枚の画像を照合。公式の同名収録一覧はガーデン2商品、ニルヴァーナ1商品、ベガス6商品。ガーデンDMEX06とベガスDMBD13の全文と画像も比較し、原版IDを保持。再録や呪文面の重複加算なし。",
+    "ガーデンは既存の全自軍エスケープをフィールドから供給し、Sトリガーを使わない任意の破壊置換を検証。能力無視・離脱・非破壊移動・フィールド自身は対象外。終了時Dスイッチの0～2枚の個別シールド化・手札秘匿・実フウジンによる追加禁止を検証。",
+    "ニルヴァーナは選んだ相手だけをタップし、そのD2の正確なUIDと位相が場にある間だけ全てのアンタップを禁止。解決後の能力無視で期限を誤解除せず、進化を追跡し、元のフィールドまたは対象の再登場には古い効果を復活させない。QA44599の既にアンタップした味方にもブロッカーを与え、後発を除外してターン末で失効することを確認。",
+    "ベガスは相手のプレイヤー攻撃の宣言時に場にいる時だけDスイッチを誘発。無料水呪文の7以下・多色・ツイン呪文面・任意性と実デルフィンの禁止、終了時任意ドロー、Sトリガー、場に出た後から過去の攻撃を拾わないことを確認。",
+    "公式QA41283/39849は実ウラミ入道の自己破壊と実バイロンの攻撃中止後も公開ゾーンのベガスが解決すること、QA40177は実ホーガンからギガンディダノスが出ても宣言済み攻撃が続くこと、QA42935は実アポロヌスの侵略・メテオバーンからSトリガーで出たベガスはその攻撃に反応しないことを両者で再現。",
+    "QA41991の実ベガス→スパイラル・ゲート→ジャシン非クリーチャー化で、共通エンジンが攻撃を続けていた不具合を修正。攻撃継続・解決時に攻撃側と攻撃先の現在のクリーチャー種別を確認し、タマシードに戻った攻撃側はブレイクせず、攻撃先はバトルをしない。通常の攻撃禁止の後付けは既に宣言した攻撃を止めず、公開済み誘発は解決し続ける。関連回帰164件が通過。",
+    "途中のfixture誤り（タップ済み自軍での攻撃、闇クリーチャーの代わりに火呪文を配置、ホーガンの任意展開を辞退、実際のブレイクで増える手札、ワールドストップの期限、別カードIDの選択不能性）を訂正。ワールドストップはガーデン・ベガスを有効期間中に止め、ニルヴァーナの次の相手開始時より前に期限切れになることを確認。実装不具合の2種類の非クリーチャー化も修正し、最終固有103件が通過。",
+    "手動マナ選択、暗号化ルーム再開と相手への非公開情報の秘匿、AIの純粋性と未知情報への非依存、両先後の40枚デッキ実対戦の80物理カード保存と終局を検証。今回3種類の未完了検証なし。過去の一括npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。本バッチはローカルのみ。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 14.758,
+      "log": "tmp/duema-phase-1671/focused.log"
+    },
+    {
+      "name": "fixture-corrections",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Vegas never|QA41991|QA40177",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.841,
+      "log": "tmp/duema-phase-1671/fixture-corrections.log"
+    },
+    {
+      "name": "jashin-correction",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA41991|QA40177|QA39849|QA41283",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.846,
+      "log": "tmp/duema-phase-1671/jashin-correction.log"
+    },
+    {
+      "name": "extra-scope",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA42935|Vegas free spell|Vegas actually|Vegas may turn|D2 World Stop|actual Fuujin|original field identity|never reapplies|actual untargetability|Losing creature status",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.593,
+      "log": "tmp/duema-phase-1671/extra-scope.log"
+    },
+    {
+      "name": "expanded-corrections",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA42935|Vegas free spell|Vegas actually|Vegas may turn|World Stop|actual Fuujin|original field identity|never reapplies|actual untargetability|Losing creature status",
+        "tests/standard1671-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.236,
+      "log": "tmp/duema-phase-1671/expanded-corrections.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm23ex3-042",
+      "name": "Dの魔城 ブリティッシュ・パビリオン",
+      "reason": "全自軍スレイヤーと当ターン破壊された自軍の終了時Dスイッチ回収を全文照合する。"
+    },
+    {
+      "id": "dmr23-018",
+      "name": "Dの爆撃 ランチャー・ゲバラベース",
+      "reason": "Sトリガー・相手攻撃時の相手選択破壊、開始時ランプしたカードと相手マナ数比較からの登場を照合する。"
+    },
+    {
+      "id": "dm26rp2-015",
+      "name": "Dの機動 ヴァイス・ヴァーチュー",
+      "reason": "Gストライク・終了時任意ドロー・攻撃時Dスイッチのマナ文明を満たす非クリーチャー実行を全文照合する。"
+    }
+  ]
+}
