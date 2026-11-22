@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9191,
-  "pendingNames": 2634,
-  "phase": 1652,
+  "supportedNames": 9194,
+  "pendingNames": 2631,
+  "phase": 1653,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1477,
+    "クリーチャー": 1474,
     "呪文": 307,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1902,
+    "未対応の能力文": 1899,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -529768,34 +529768,246 @@
           "lastReviewedPhase": 1652
         }
       ]
+    },
+    {
+      "phase": 1653,
+      "checkedAt": "2026-11-22T09:44:23.031Z",
+      "baseline": "e0abff302d97e7a4a6ea60d4e824b1a4520680d5",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9191,
+      "currentNames": 9194,
+      "remainingNames": 306,
+      "added": [
+        {
+          "id": "dm39-015",
+          "name": "穿神兵ジェットドリル"
+        },
+        {
+          "id": "dmrp04m-018",
+          "name": "グングン☆マグネットマン"
+        },
+        {
+          "id": "dmr12-019",
+          "name": "倍返し アザミ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9191,
+        "uniqueNames": 9194,
+        "uniqueIds": 9194,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1653.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.412,
+          "log": "tmp/duema-phase-1653/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1653-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 42.039,
+          "log": "tmp/duema-phase-1653/final-focused.log",
+          "passed": 142,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=mana|Mana|shield|Shield|grave|Grave|origin|Origin|Charger|charger|charge|Charge|simultaneous|JSON|entry|Entry",
+            "tests/standard449-effects.test.mjs",
+            "tests/standard575-effects.test.mjs",
+            "tests/standard581-effects.test.mjs",
+            "tests/standard918-effects.test.mjs",
+            "tests/standard1205-effects.test.mjs",
+            "tests/standard1282-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1632-effects.test.mjs",
+            "tests/standard1647-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 42.28,
+          "log": "tmp/duema-phase-1653/final-related.log",
+          "passed": 154,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.766,
+          "log": "tmp/duema-phase-1653/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.346,
+          "log": "tmp/duema-phase-1653/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.312,
+          "log": "tmp/duema-phase-1653/target9500.log"
+        },
+        "legacy-differential-repro": {
+          "name": "legacy-differential-repro",
+          "command": [
+            "node",
+            "--test",
+            "tools/verify-mana-origin-compatibility.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 56.186,
+          "log": "tmp/duema-phase-1653/legacy-differential-repro.log",
+          "passed": 3,
+          "failed": 0
+        },
+        "extra-zone-cases": {
+          "name": "extra-zone-cases",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Extra-zone|Individual.evolution",
+            "tests/standard1653-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.9,
+          "log": "tmp/duema-phase-1653/extra-zone-cases.log",
+          "passed": 24,
+          "failed": 0
+        }
+      },
+      "totalTestsPassed": 323,
+      "hashes": {
+        "dist/cards.json": "dd3cfac9f70e28e2f98b9361849be1bb33d756c004cde591d93ea2ef6c0794a5",
+        "dist/engine.js": "3e289a877d8d9ca3fb5f1045e87aa259418dbf4caf8b29020c0141146e4695bf",
+        "dist/six-photo-rules.js": "3581c0439cc7c109018beaaa2144713d933d956211566a2cac2149f996fbfd0b",
+        "dist/online-compatibility.js": "355e137a61d55f41fa48716a669b139bee0e8f6144d2b960f6af802e44741c7e",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/mana-origin1653.js": "99862d153c9550eadd9c5b37290fbc7df43702613c04ca1ba12a2ab4159715f7"
+      },
+      "engineVersion": "0.602.169",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1653.json",
+      "supported": 9194,
+      "pending": 2631,
+      "reason": "移動元とそのプレイヤーを保存形式の変更なく追跡し、ジェットドリルの相手山札/墓地到着、マグネットマンの持ち主の手札以外からの到着、アザミの相手マナへの手札以外からの到着をカード1枚ずつ誘発させる。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1653-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 29.796,
+          "log": "tmp/duema-phase-1653/focused.log"
+        },
+        {
+          "name": "edge-cases",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=QA36254|can.stop|same.action|Natural.Trap|Genmu.simultaneously|mandatory.mana|queued.Azami",
+            "tests/standard1653-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.076,
+          "log": "tmp/duema-phase-1653/edge-cases.log"
+        },
+        {
+          "name": "extra-zone-cases",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Extra-zone|Individual.evolution",
+            "tests/standard1653-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.839,
+          "log": "tmp/duema-phase-1653/extra-zone-cases.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1654から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1652,
-    "nextPhase": 1653,
+    "lastVerifiedPhase": 1653,
+    "nextPhase": 1654,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm39-015",
-        "name": "穿神兵ジェットドリル",
-        "reason": "次バッチで公式全文・画像・制限・再録・裁定をライブ照合。相手の山札/墓地からのマナ到着を監視し、相手本人が選ぶマナの山札底移動を既存マナ到着経路に組み込む。"
+        "id": "dm23rp1-044",
+        "name": "破壊兵タクヤ",
+        "reason": "マナ到着の既存イベント処理を拡張できる候補。公式能力全文と全裁定を次バッチで確認。"
       },
       {
-        "id": "dmrp04m-018",
-        "name": "グングン☆マグネットマン",
-        "reason": "次バッチで公式照合。手札以外からの両者のマナ到着を1枚ごとに監視し、実際に置かれたカードと置換を区別して、その持ち主がマナ1枚を選び墓地に置く。"
+        "id": "dmrp04m-s04",
+        "name": "凶鬼07号 ジャバランガ",
+        "reason": "既存の破壊誘発と墓地展開を再利用する候補。任意・闇・コストちょうどの条件と自己破壊時を照合。"
       },
       {
-        "id": "dmr12-019",
-        "name": "倍返し アザミ",
-        "reason": "次バッチで公式照合。相手マナに手札以外からカードが置かれたイベントに任意1ブースト。タップマナ、同時複数枚、置換で置かれない場合、他のマナ到着監視との誘発順まで同じ基盤で検証する。"
+        "id": "dm28-006",
+        "name": "黒神龍アマデウス",
+        "reason": "同名カードの状態判定を既存の状況起因処理で実現できるか調査。難しい場合は別候補へ進む。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9191種類・重複0、9500まで残り309。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1652とtools/target9500-registration-checkpoint-1652.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1653で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9194種類・重複0、9500まで残り306。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1653とtools/target9500-registration-checkpoint-1653.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1654で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -529875,9 +530087,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9191種類・重複0、9500まで残り309。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1652とtools/target9500-registration-checkpoint-1652.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1653で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9194種類・重複0、9500まで残り306。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1653とtools/target9500-registration-checkpoint-1653.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1654で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -530008,10 +530220,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9191,
-      "remaining": 309,
+      "currentCount": 9194,
+      "remaining": 306,
       "status": "active",
-      "phase": 1652
+      "phase": 1653
     },
     "deferredRegistrationCandidates": [
       {
@@ -530479,23 +530691,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1652,
-      "baseline": "84c47d62d17ec19daa56996fbf39ea481c410a0f",
-      "supportedNames": 9191,
-      "artifact": "tools/target9500-registration-checkpoint-1652.json",
-      "checkedAt": "2026-11-22T09:20:18.935Z"
+      "phase": 1653,
+      "baseline": "e0abff302d97e7a4a6ea60d4e824b1a4520680d5",
+      "supportedNames": 9194,
+      "artifact": "tools/target9500-registration-checkpoint-1653.json",
+      "checkedAt": "2026-11-22T09:44:23.031Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T09:20:18.935Z",
+      "checkedAt": "2026-11-22T09:44:23.031Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9191,
-      "remainingNames": 309,
+      "currentNames": 9194,
+      "remainingNames": 306,
       "duplicateNames": 0,
-      "engineVersion": "0.602.168",
+      "engineVersion": "0.602.169",
       "added": [
         {
           "id": "dmr12-008",
@@ -530980,6 +531192,18 @@
         {
           "id": "dm22sd1-013",
           "name": "深淵の食卓"
+        },
+        {
+          "id": "dm39-015",
+          "name": "穿神兵ジェットドリル"
+        },
+        {
+          "id": "dmrp04m-018",
+          "name": "グングン☆マグネットマン"
+        },
+        {
+          "id": "dmr12-019",
+          "name": "倍返し アザミ"
         }
       ],
       "results": {
@@ -531095,11 +531319,12 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "d6c686f80bb9054857b5f0f046abfc0caed12c002e03f9c2ebca5a8f11e69dc2",
-        "dist/engine.js": "0118925e4425c7dd28bd1dfdbcb98581d0be7dead0eaaa5175401762a2bbfdd0",
-        "dist/six-photo-rules.js": "b957ed11e399eff2d3c656b5c02b90a4df9e3ea5016be5ebff8222f7f0255266",
-        "dist/online-compatibility.js": "8d6ca360f11d90d87df3943423ee39ae6e74bed877e26b1b01d77f30bf81ce2d",
-        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+        "dist/cards.json": "dd3cfac9f70e28e2f98b9361849be1bb33d756c004cde591d93ea2ef6c0794a5",
+        "dist/engine.js": "3e289a877d8d9ca3fb5f1045e87aa259418dbf4caf8b29020c0141146e4695bf",
+        "dist/six-photo-rules.js": "3581c0439cc7c109018beaaa2144713d933d956211566a2cac2149f996fbfd0b",
+        "dist/online-compatibility.js": "355e137a61d55f41fa48716a669b139bee0e8f6144d2b960f6af802e44741c7e",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/mana-origin1653.js": "99862d153c9550eadd9c5b37290fbc7df43702613c04ca1ba12a2ab4159715f7"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -531163,10 +531388,10 @@
       },
       "phaseRange": [
         1614,
-        1652
+        1653
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 121,
+      "addedNames": 124,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -531178,8 +531403,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 22.174,
-        "log": "tmp/duema-phase-1652/check.log"
+        "seconds": 30.766,
+        "log": "tmp/duema-phase-1653/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -531189,10 +531414,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.308,
-        "log": "tmp/duema-phase-1652/audit.log"
+        "seconds": 11.346,
+        "log": "tmp/duema-phase-1653/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1652.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1653.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -532281,11 +532506,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9191,
-      "remaining": 309,
+      "currentNames": 9194,
+      "remaining": 306,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T09:20:18.935Z"
+      "checkedAt": "2026-11-22T09:44:23.031Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -584296,33 +584521,20 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1652,
+      "phase": 1653,
       "added": 3,
-      "supportedNames": 9191,
+      "supportedNames": 9194,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1652.json",
-      "relatedRulingVerificationPending": [],
-      "resolvedRelatedRulingVerification": [
-        {
-          "target": "Crim-31638-exact-source",
-          "cardIds": [
-            "dmex16-026"
-          ],
-          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
-          "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
-          "status": "verified",
-          "resolvedPhase": 1652,
-          "evidence": "tests/standard1652-effects.test.mjs：Prison bounces then randomly discards a real same-name card and burns one shield even when Crim prevents the bounce / Change31638 Prison remembers every linked God name before moving it。両プレイヤー・通常戻し・クリム禁止・リンクしたゴッドの全名前で再現。"
-        }
-      ]
+      "artifact": "tools/target9500-registration-checkpoint-1653.json",
+      "relatedRulingVerificationPending": []
     }
   },
   "registrationStop": {
-    "phase": 1652,
+    "phase": 1653,
     "threshold": 9500,
-    "supportedNames": 9191,
-    "pendingNames": 2634,
-    "checkedAt": "2026-11-22T09:20:18.935Z",
+    "supportedNames": 9194,
+    "pendingNames": 2631,
+    "checkedAt": "2026-11-22T09:44:23.031Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

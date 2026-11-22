@@ -4666,6 +4666,7 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_ManaArrival1653':{const p=t.affected;start(s,{...t,p,controller:t.controller??t.p},[{op:'Select',origin:'mana',to:t.mode==='jet'?'deck':'grave',n:1,g187OwnPick:true,title:t.mode==='jet'?'山札の下に置く自分のマナを1枚選ぶ':'墓地に置く自分のマナを1枚選ぶ'}]);break;}
  case'g34_Prison1652':{
   const rows=targetOptions(s,t.p,creatures(s,1-t.p).filter(y=>!y.sealed));
   if(rows.length)choice(s,t,'手札に戻す相手のクリーチャーを1体選ぶ',rows);
@@ -8639,6 +8640,18 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs);
+ function manaWatch1653(s,events){
+  for(const owner of[s.active,1-s.active])for(const source of s.players[owner].battle){
+   if(source.sealed||source.faceDown||!api.isCreature(s,source))continue;const mode=effective(source,s).g1653ManaWatch;if(!mode)continue;
+   for(const e of events){
+    const nonHand=e.zone!=='hand';let affected;
+    if(mode==='jet'&&e.p===1-owner&&['deck','grave'].includes(e.zone))affected=1-owner;
+    if(mode==='magnet'&&!(e.zone==='hand'&&e.p===e.cardOwner))affected=e.cardOwner;
+    if(mode==='azami'&&e.destination===1-owner&&nonHand){queue(s,owner,source,[{op:'Offer',title:'相手のマナ追加：山札の上から1枚をマナに置く？',defs:[{op:'Ramp',n:1}]}]);continue;}
+    if(affected!==undefined)send(s,owner,source,'ManaArrival1653',{affected,mode,controller:owner});
+   }
+  }
+ }
  function queue(s,p,x,defs,source=x.cardId,elementOrigin1411){
   const more={defs,...(elementOrigin1411===undefined?{}:{elementOrigin1411})};
   if(defs?.some(d=>d.op==='AttackLookDeploy1317')){
@@ -9293,6 +9306,8 @@ export function createSixPhotoRules(api){
   if(root&&c.g876ShieldTriggerCondition&&ownCondition(s,p,c.g876ShieldTriggerCondition))return true;
   if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
+ manaAdded1653(s,p,cards,origins){const events=cards.flatMap((x,i)=>{const o=origins?.[i];return o?.zone&&!(o.zone==='mana'&&o.p===p)?[{...o,destination:p,cardOwner:x.cardOwner??o.p??p}]:[];});if(s.leaving&&s.g20LeavingUids)(s.leaving.g1653ManaArrivals??=[]).push(...events);else manaWatch1653(s,events);},
+ flushMana1653(s,batch){manaWatch1653(s,batch.g1653ManaArrivals||[]);},
  manaAdded449(s,p,cards){
   if(s.g1205ManaPlacements?.turn!==s.turn)s.g1205ManaPlacements={turn:s.turn,counts:[0,0]};
   const counts=s.g1205ManaPlacements.counts,before=counts[p];

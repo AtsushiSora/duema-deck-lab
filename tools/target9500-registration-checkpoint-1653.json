@@ -1,0 +1,163 @@
+{
+  "phase": 1653,
+  "checkedAt": "2026-11-22T09:44:23.031Z",
+  "baseline": "e0abff302d97e7a4a6ea60d4e824b1a4520680d5",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9191,
+  "currentNames": 9194,
+  "remainingNames": 306,
+  "added": [
+    {
+      "id": "dm39-015",
+      "name": "穿神兵ジェットドリル"
+    },
+    {
+      "id": "dmrp04m-018",
+      "name": "グングン☆マグネットマン"
+    },
+    {
+      "id": "dmr12-019",
+      "name": "倍返し アザミ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9191,
+    "uniqueNames": 9194,
+    "uniqueIds": 9194,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1653.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.412,
+      "log": "tmp/duema-phase-1653/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1653-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 42.039,
+      "log": "tmp/duema-phase-1653/final-focused.log",
+      "passed": 142,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=mana|Mana|shield|Shield|grave|Grave|origin|Origin|Charger|charger|charge|Charge|simultaneous|JSON|entry|Entry",
+        "tests/standard449-effects.test.mjs",
+        "tests/standard575-effects.test.mjs",
+        "tests/standard581-effects.test.mjs",
+        "tests/standard918-effects.test.mjs",
+        "tests/standard1205-effects.test.mjs",
+        "tests/standard1282-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1632-effects.test.mjs",
+        "tests/standard1647-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 42.28,
+      "log": "tmp/duema-phase-1653/final-related.log",
+      "passed": 154,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 30.766,
+      "log": "tmp/duema-phase-1653/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.346,
+      "log": "tmp/duema-phase-1653/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.312,
+      "log": "tmp/duema-phase-1653/target9500.log"
+    },
+    "legacy-differential-repro": {
+      "name": "legacy-differential-repro",
+      "command": [
+        "node",
+        "--test",
+        "tools/verify-mana-origin-compatibility.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 56.186,
+      "log": "tmp/duema-phase-1653/legacy-differential-repro.log",
+      "passed": 3,
+      "failed": 0
+    },
+    "extra-zone-cases": {
+      "name": "extra-zone-cases",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Extra-zone|Individual.evolution",
+        "tests/standard1653-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.9,
+      "log": "tmp/duema-phase-1653/extra-zone-cases.log",
+      "passed": 24,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 323,
+  "hashes": {
+    "dist/cards.json": "dd3cfac9f70e28e2f98b9361849be1bb33d756c004cde591d93ea2ef6c0794a5",
+    "dist/engine.js": "3e289a877d8d9ca3fb5f1045e87aa259418dbf4caf8b29020c0141146e4695bf",
+    "dist/six-photo-rules.js": "3581c0439cc7c109018beaaa2144713d933d956211566a2cac2149f996fbfd0b",
+    "dist/online-compatibility.js": "355e137a61d55f41fa48716a669b139bee0e8f6144d2b960f6af802e44741c7e",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/mana-origin1653.js": "99862d153c9550eadd9c5b37290fbc7df43702613c04ca1ba12a2ab4159715f7"
+  },
+  "engineVersion": "0.602.169",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
