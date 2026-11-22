@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9269,
-  "pendingNames": 2556,
-  "phase": 1676,
+  "supportedNames": 9272,
+  "pendingNames": 2553,
+  "phase": 1677,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1444,
+    "クリーチャー": 1441,
     "呪文": 288,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1847,
+    "未対応の能力文": 1844,
     "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -535207,34 +535207,327 @@
         }
       ],
       "next": "phase1677で候補の公式照合から再開。9500まで3〜5種類ずつ全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+    },
+    {
+      "phase": 1677,
+      "checkedAt": "2026-11-22T17:19:55.378Z",
+      "baseline": "6677b041",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9269,
+      "currentNames": 9272,
+      "remainingNames": 228,
+      "added": [
+        {
+          "id": "dm29-049",
+          "name": "不死火フウタ・ドラグーン"
+        },
+        {
+          "id": "dmrp08-027",
+          "name": "アークティック・ハッチャー"
+        },
+        {
+          "id": "dmrp04m-032",
+          "name": "マイケル・ギャンドル"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "6677b041",
+        "originalDefinitionsUnchanged": 9269,
+        "added": 3,
+        "uniqueNames": 9272,
+        "uniqueIds": 9272,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9269,
+        "existingImageReferenceRowsUnchanged": 11467
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1677.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.474,
+          "log": "tmp/duema-phase-1677/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 44.462,
+          "log": "tmp/duema-phase-1677/final-focused.log",
+          "passed": 73,
+          "failed": 0,
+          "logSha256": "7a3276edd9c40369ad68e6996098e66c08873e31aba39278fb6c23713a14d113"
+        },
+        "focused-boundaries": {
+          "name": "extra-boundaries",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=actual New World|ability-ignored Gransect|nested Mado layers",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.772,
+          "log": "tmp/duema-phase-1677/extra-boundaries.log",
+          "passed": 6,
+          "failed": 0,
+          "logSha256": "a32e2f250ae03d1e29facd483195a2a6f2d6db90814b49ce34cb1cb70a6193fb"
+        },
+        "focused-mana-lock": {
+          "name": "extra-mana-lock",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Fuuta actual Apul",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.611,
+          "log": "tmp/duema-phase-1677/extra-mana-lock.log",
+          "passed": 2,
+          "failed": 0,
+          "logSha256": "ebf2e10d09d672b076bef89d5c501e0ab88bd13b6bce56911582a8400574d34a"
+        },
+        "related-under-grave": {
+          "name": "related-under-grave",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard823-effects.test.mjs",
+            "tests/standard1126-effects.test.mjs",
+            "tests/standard1345-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.011,
+          "log": "tmp/duema-phase-1677/related-under-grave.log",
+          "passed": 33,
+          "failed": 0,
+          "logSha256": "f515824bcba891f8b3bab9af432745cdf437afc535e256f7709e25ea2158d950"
+        },
+        "related-ninja-mana": {
+          "name": "related-ninja-mana",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard1158-effects.test.mjs",
+            "tests/standard1662-effects.test.mjs",
+            "tests/standard1676-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 36.242,
+          "log": "tmp/duema-phase-1677/related-ninja-mana.log",
+          "passed": 215,
+          "failed": 0,
+          "logSha256": "a00d2adf6264f29ad8655f31a5e6ed24b8049f8742262e1e6a6912338bfebf3e"
+        },
+        "related-tap-savers": {
+          "name": "related-tap-savers",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1068-effects.test.mjs",
+            "tests/mana-payment.test.mjs",
+            "tests/online-runtime.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 29.406,
+          "log": "tmp/duema-phase-1677/related-tap-savers.log",
+          "passed": 324,
+          "failed": 0,
+          "logSha256": "7b0f05b2926aac4312daffad8fe6dcad2e5a865d5c22bd926bc48b7f7d0c7e07"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.594,
+          "log": "tmp/duema-phase-1677/check.log",
+          "logSha256": "f4a19a8d9f4abd4cf4512a685712c3504b1b86bd9c113459183ea227ffa134cf"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.203,
+          "log": "tmp/duema-phase-1677/audit.log",
+          "logSha256": "8c568629c68e8ab0dfd82d75d782b6de70fbb74b4ea2611f28ff62006fab6cc2"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.303,
+          "log": "tmp/duema-phase-1677/target9500.log",
+          "logSha256": "75d1d05cc5348e80c80aa525442b57eb368f080cab2abe13988be0430aa13f0e"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1677/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.358,
+          "log": "tmp/duema-phase-1677/invariants.log",
+          "logSha256": "211271896653ae87486ba9c550e1c728a09eab17b711548d0e6d3f63e22bdba6"
+        }
+      },
+      "totalTestsPassed": 653,
+      "hashes": {
+        "dist/cards.json": "f4ff5b54774930ed2098c41c6a2c434c5bb74d9977b130b3585169a58c99d5e3",
+        "dist/engine.js": "637f6bae236b441c11837d831d21d92841aa36229c26dd158ab6cbc7d6788ff6",
+        "dist/six-photo-rules.js": "4476c3ffae55482364576ba8ea1302051942254c708a188c49dd15b3e0396a81",
+        "dist/online-compatibility.js": "7b8ea815238aed53a465c6c058f7953a5bed8db138c021ad1b685912cb5bb688",
+        "dist/card-images.js": "119b7e166e83ea7783ad88c1a7adf717d297becbaa6ec0fd3a7d59a38bff855a",
+        "tools/target9000-card-spec.json": "d52a6b96dfb571ff1a02cf78dcdb12f7fbfd060456bca70abaadc94dd75183ef",
+        "tests/standard1677-effects.test.mjs": "9648141e9216b68ca4eab1a31b72f8b03ddcb47473924403946e1a81bf448d78"
+      },
+      "engineVersion": "0.602.193",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.93,
+          "log": "tmp/duema-phase-1677/focused.log"
+        },
+        {
+          "name": "focused-corrected",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.44,
+          "log": "tmp/duema-phase-1677/focused-corrected.log"
+        },
+        {
+          "name": "expanded-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1677-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.169,
+          "log": "tmp/duema-phase-1677/expanded-focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1677.json",
+      "supported": 9272,
+      "pending": 2553,
+      "reason": "シノビの山札下帰還をマナ犠牲へ置換、他グランセクト離脱をタップへ置換、魔導具の破壊と下からの墓地到着のドローを全文対応。",
+      "validationNotes": [
+        "固有73件と境界条件6件・実アプルのマナ禁止2件、計81件。下カード/墓地33件、シノビ/マナ/前バッチ215件、セイバー/離脱/手動マナ/ランタイム324件、関連572件、合計653件を通過。check、audit、target9500、既存9269定義・ID・詳細・別名・画像参照の不変を実測確認。",
+        "3種類の公式全文・基本情報・マナ値・画像・現行制限と全同名収録一覧を照合。フウタとハッチャーは各1商品、マイケルは2商品。元IDdmrp04m-032を保持し、再録dmsd06-012の全文・基本情報・画像も一致。全4画像を目視確認し、再録は種類数に加算しない。",
+        "フウタは既存の離脱置換とマナ犠牲planを再利用し、山札下に移動する自分のシノビを1枚のマナ犠牲で残す選択を追加。自身も対象になるが、山札上/手札/マナ/墓地、相手や非シノビには使わず、発生源の能力無視・封印・マナ0・実アプルの移動禁止も尊重。複数同時保護では物理マナの予約を共有し、同じカードを二重に支払わない。既存のマナ3枚能力は別の選択として保持。",
+        "QA35699を通常の山札下移動と自身の保護、QA35698を実ハヤブサマルのニンジャ・ストライク→終了時帰還の置換と後続3ターンでの帰還なしで確認。QA32473は通常Targetの山札下選択と自身の保護を類例として再現し、未登録のアルカディア・スパークそのものの固有再現とは数えない。ジンナイと両方の選択が出ることと、一つの置換を他の置換で置き換えないことを確認。",
+        "ハッチャーはガードマン・プレイヤー攻撃不可と、自分の他のグランセクトの全離脱を発生源のタップで置換する。手札/マナ/墓地/山札上/下の各移動、本人/非グランセクト/相手の除外、タップ済み・能力無視・封印元の非適用、能力無視された保護先への適用と任意拒否を確認。2体なら互いに保護できるが1体のタップを同時の複数置換には使えない。",
+        "タップの支払いは同時の主移動より前に確定し、保護元自身が同時に手札へ戻っても無支払いで保護しない。通常ガードマンによる攻撃先変更/タップ/実バトルと対プレイヤー攻撃不可、0パワーの保護先は一度タップしても次の状態確認で破壊されることを検証。",
+        "マイケルは既存の種族付き破壊誘発と、実際の墓地到着までのWeakMap監視を再利用。自軍魔導具の破壊で任意1ドローし、他種族・相手・手札/マナ/山札への非破壊移動・通常の魔導具呪文解決では誘発しない。クリーチャーの下にある魔導具は進化でなくても監視し、実際に墓地へ着いた各物理カードにつき1回誘発する。",
+        "QA31687を実デスザークの下に魔導具クリーチャーと呪文4枚を置いて破壊し4ドローで再現。G-NEO本体が残って下2枚だけ墓地へ移る場合と、入れ子の下カードが墓地へ移る場合も各1回。非クリーチャーの実新世壊フィールドの下から墓地へ移る場合、手札/マナ/山札に移る場合、能力無視とマイケル自身の同時離脱にはドローしない。実ティーゾリスは魔導具破壊分だけを倍にし、下から墓地への到着分は倍にしない。",
+        "両プレイヤーで選択中の暗号化ルーム/JSON再開、操作側だけの選択肢公開、AI計画の純粋性と未知カード非依存、手動で選んだ物理マナだけの支払い、両先後の合法40枚デッキの終局と80物理カード保存を確認。fixtureの未登録グランセクトID、Targetのowner指定、任意ドローを常に拒否していた共通finish、G-NEOの自動置換、攻撃フェーズからの呪文使用を訂正済み。今回3種類の未完了検証はなし。",
+        "一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.13/9266種類は更新せず、本バッチは検証済みローカルコミットのみ。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm01-024",
+          "name": "ギガベロス",
+          "reason": "登場時に他の自軍2体を墓地へ置き、足りなければ自身を置く全文と裁定を既存の任意ではない自軍選択で検証する。"
+        },
+        {
+          "id": "dmsd04-001",
+          "name": "ガンバトラーG７",
+          "reason": "ジョーカーズ4体の軽減、登場時+7000、登場ターンのプレイヤー攻撃許可を動的な種族判定で照合する。"
+        },
+        {
+          "id": "dmrp13-s11",
+          "name": "オーシャン・ズーラシマ",
+          "reason": "キリフダッシュと、任意の手札全マナ移動から3ドローを既存処理で全文照合する。"
+        }
+      ],
+      "next": "phase1678で候補の公式照合から再開。9500まで3〜5種類ずつ全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1676,
-    "nextPhase": 1677,
+    "lastVerifiedPhase": 1677,
+    "nextPhase": 1678,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm29-049",
-        "name": "不死火フウタ・ドラグーン",
-        "reason": "シノビの山札下移動をマナ犠牲で置換する全文と裁定を照合し、既存のマナ置換選択を優先する。"
+        "id": "dm01-024",
+        "name": "ギガベロス",
+        "reason": "登場時に他の自軍2体を墓地へ置き、足りなければ自身を置く全文と裁定を既存の任意ではない自軍選択で検証する。"
       },
       {
-        "id": "dmrp08-027",
-        "name": "アークティック・ハッチャー",
-        "reason": "ガードマン・プレイヤー攻撃不可と他のグランセクト離脱のタップ置換を公式照合する。"
+        "id": "dmsd04-001",
+        "name": "ガンバトラーG７",
+        "reason": "ジョーカーズ4体の軽減、登場時+7000、登場ターンのプレイヤー攻撃許可を動的な種族判定で照合する。"
       },
       {
-        "id": "dmrp04m-032",
-        "name": "マイケル・ギャンドル",
-        "reason": "魔導具破壊とクリーチャー下から墓地への移動の任意ドローを、既存の破壊/下カード誘発で検証する。"
+        "id": "dmrp13-s11",
+        "name": "オーシャン・ズーラシマ",
+        "reason": "キリフダッシュと、任意の手札全マナ移動から3ドローを既存処理で全文照合する。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗とテスト/プロセスを確認し、実行中なら重複しない。",
-      "実データnameKey集計9269種類・重複0、9500まで残り231種類。公開済みv0.722.13は9266種類であり、この登録は未公開。",
-      "phase1676の固有77件・関連775件・check/audit/target9500/不変条件とtools/target9500-registration-checkpoint-1676.jsonの実測を確認。",
-      "phase1677で未対応3〜5種類の公式全文・基本情報・画像・制限・再録・裁定を照合し、固有/関連テスト・check・audit・nameKey再集計と進捗更新後に検証済み差分のみローカルコミット。",
+      "実データnameKey集計9272種類・重複0、9500まで残り228種類。公開済みv0.722.13は9266種類であり、この登録は未公開。",
+      "phase1677の固有81件・関連572件・check/audit/target9500/不変条件とtools/target9500-registration-checkpoint-1677.jsonの実測を確認。",
+      "phase1678で未対応3〜5種類の公式全文・基本情報・画像・制限・再録・裁定を照合し、固有/関連テスト・check・audit・nameKey再集計と進捗更新後に検証済み差分のみローカルコミット。",
       "全体npm testと中断済み長時間群を再実行せず、過去の未確認・ユーザー保留を今回の検証で解消扱いにしない。",
       "9500到達で件数増加の登録を停止。通常登録ではpush・公開・Netlify更新を行わず、別の明示指示がある時だけ。"
     ],
@@ -536030,23 +536323,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1676,
-      "baseline": "63e6811b",
-      "supportedNames": 9269,
-      "artifact": "tools/target9500-registration-checkpoint-1676.json",
-      "checkedAt": "2026-11-22T17:08:09.140Z"
+      "phase": 1677,
+      "baseline": "6677b041",
+      "supportedNames": 9272,
+      "artifact": "tools/target9500-registration-checkpoint-1677.json",
+      "checkedAt": "2026-11-22T17:19:55.378Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T17:08:09.140Z",
+      "checkedAt": "2026-11-22T17:19:55.378Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9269,
-      "remainingNames": 231,
+      "currentNames": 9272,
+      "remainingNames": 228,
       "duplicateNames": 0,
-      "engineVersion": "0.602.192",
+      "engineVersion": "0.602.193",
       "added": [
         {
           "id": "dmr12-008",
@@ -536843,6 +537136,18 @@
         {
           "id": "dm29-028",
           "name": "威牙忍ジンナイ"
+        },
+        {
+          "id": "dm29-049",
+          "name": "不死火フウタ・ドラグーン"
+        },
+        {
+          "id": "dmrp08-027",
+          "name": "アークティック・ハッチャー"
+        },
+        {
+          "id": "dmrp04m-032",
+          "name": "マイケル・ギャンドル"
         }
       ],
       "results": {
@@ -536958,13 +537263,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "95fc304312d413781de37ca6d5a4d3b5e0e35833f5335b34fef918a0b7b11fc8",
-        "dist/engine.js": "b3d521b124caac90e62c1c1c5fcb006543bdb579cf72bb12ef9926954736de8f",
+        "dist/cards.json": "f4ff5b54774930ed2098c41c6a2c434c5bb74d9977b130b3585169a58c99d5e3",
+        "dist/engine.js": "637f6bae236b441c11837d831d21d92841aa36229c26dd158ab6cbc7d6788ff6",
         "dist/six-photo-rules.js": "4476c3ffae55482364576ba8ea1302051942254c708a188c49dd15b3e0396a81",
-        "dist/online-compatibility.js": "8e572c97f0318c0544b888b09951f130462288b67d406d0cba70f740c4eb1a9c",
-        "dist/card-images.js": "273f0373b7b2e959dc6923896635a68df7604078177f9d7529660cd34ab5c8f7",
-        "tools/target9000-card-spec.json": "62f431c756cc630457ec4af14af3c7916161260cd56adc7f4b2efd58f47e089a",
-        "tests/standard1676-effects.test.mjs": "aa72d27626308f6fb90035c7accfa78ef3e9be39c7ba8d287d686c7a24704cf4"
+        "dist/online-compatibility.js": "7b8ea815238aed53a465c6c058f7953a5bed8db138c021ad1b685912cb5bb688",
+        "dist/card-images.js": "119b7e166e83ea7783ad88c1a7adf717d297becbaa6ec0fd3a7d59a38bff855a",
+        "tools/target9000-card-spec.json": "d52a6b96dfb571ff1a02cf78dcdb12f7fbfd060456bca70abaadc94dd75183ef",
+        "tests/standard1677-effects.test.mjs": "9648141e9216b68ca4eab1a31b72f8b03ddcb47473924403946e1a81bf448d78"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -537028,10 +537333,10 @@
       },
       "phaseRange": [
         1614,
-        1676
+        1677
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 199,
+      "addedNames": 202,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -537043,9 +537348,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.441,
-        "log": "tmp/duema-phase-1676/check.log",
-        "logSha256": "f711670cd37112380c0cd1beeda4ba7c4542fadec7e0864b96b08b38f8b0ffcb"
+        "seconds": 20.594,
+        "log": "tmp/duema-phase-1677/check.log",
+        "logSha256": "f4a19a8d9f4abd4cf4512a685712c3504b1b86bd9c113459183ea227ffa134cf"
       },
       "latestAudit": {
         "name": "audit",
@@ -537055,11 +537360,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 13.165,
-        "log": "tmp/duema-phase-1676/audit.log",
-        "logSha256": "8ed5ef8fe7031fd03d7d830bf9db25fd7c5ef30d40b9d045f12c303f093e9f61"
+        "seconds": 12.203,
+        "log": "tmp/duema-phase-1677/audit.log",
+        "logSha256": "8c568629c68e8ab0dfd82d75d782b6de70fbb74b4ea2611f28ff62006fab6cc2"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1676.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1677.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -538176,11 +538481,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9269,
-      "remaining": 231,
+      "currentNames": 9272,
+      "remaining": 228,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T17:08:09.140Z"
+      "checkedAt": "2026-11-22T17:19:55.378Z"
     },
     "resolvedRegistrationValidations": [
       {
