@@ -1,7 +1,7 @@
 import {STRONGEST_BUILD_VERSION,strongestDeckKey,buildStrongestCPU,validStrongestBuild,arrangeStrongestCPU,normalizeStrongestLearning,learnStrongestDefeat} from './strongest-cpu.js?v=0.722.4';
 import {normalizeDeckTags,deckHasTag} from './deck-tags.js?v=0.722.3';
 import {lastMatchSetup,resolveLastMatch} from './recent-match.js?v=0.722.3';
-import {RELEASE_NOTES} from './release-notes.js?v=0.722.4';
+import {RELEASE_NOTES} from './release-notes.js?v=0.722.5';
 import {logCardReferences} from './log-card-links.js?v=0.722.4';
 import {captureScreenshotReport,screenshotReportFields,screenshotReportFormHTML,screenshotReportPreviewHTML} from './screenshot-report.js?v=0.722.4';
 import {createCardDetailsLoader} from './card-details-loader.js?v=0.722.3';
@@ -19,7 +19,7 @@ import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './p
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.722.3';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.722.4';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.722.4';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.722.5';
 import {createCardArt} from './card-art.js?v=0.722.4';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';

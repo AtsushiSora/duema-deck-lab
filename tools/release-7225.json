@@ -1,0 +1,147 @@
+{
+  "checkedAt": "2026-11-22T01:22:30.540856+00:00",
+  "baseCommit": "61883329de448c9c2f5cbbdac3aae0a540233cf9",
+  "status": "validated-awaiting-publication",
+  "version": "0.722.5",
+  "engineVersion": "0.602.129",
+  "userAuthorization": "Latest user instruction: thank you, update it. Publish the saved changes to Pages and the Netlify friend-battle site; keep future automatic Netlify deploys stopped.",
+  "changes": [
+    "Live room revision notifications fetch opponent updates without the fixed three-second poll wait; polling remains as fallback.",
+    "Account- and screen-scoped resignation and move controls reject stale actions.",
+    "Friend lobby creature art restored; strongest CPU art distinct; tournament image aligned right."
+  ],
+  "validation": {
+    "results": [
+      {
+        "name": "online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 9.4,
+        "log": "tmp/duema-publish-7225/online.log",
+        "status": "passed",
+        "sha256": "5445dc4e1ee48dfc8f605b5bca80263785281efd7111e76ccc951fad4520d82d",
+        "passed": 190
+      },
+      {
+        "name": "account-menu",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/account-ios.test.mjs",
+          "tests/account-app.test.mjs",
+          "tests/play-time-sync.test.mjs",
+          "tests/app-updates.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs",
+          "tests/home-navigation.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.892,
+        "log": "tmp/duema-publish-7225/account-menu.log",
+        "status": "passed",
+        "sha256": "516f480aa1ae344ddeeb01116a33a4cbd8856e5eac4822a915c92d153568679e",
+        "passed": 117
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 16.812,
+        "log": "tmp/duema-publish-7225/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.147,
+        "log": "tmp/duema-publish-7225/check.log",
+        "status": "passed",
+        "sha256": "f227ed1fbead82e495b0c70cee6a7833564456017fa70558761ee4665a8e9d33"
+      }
+    ],
+    "testsPassed": 307,
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570,
+    "cacheModules": [
+      "account.js",
+      "app-updates.js",
+      "app.js",
+      "online-ui.js",
+      "online.js",
+      "release-notes.js"
+    ],
+    "onlineCssVersion": "0.722.5"
+  },
+  "automaticUpdates": {
+    "netlifyBefore": {
+      "id": "bd2b701e-0687-4ded-bdf6-f8c18e04d3f9",
+      "name": "duema-deck-lab",
+      "stop_builds": true,
+      "functions_region": "us-east-2",
+      "published_deploy": {
+        "id": "6b022d57eaa91086fac3a1be",
+        "state": "ready",
+        "published_at": "2026-11-21T23:46:52.785Z"
+      }
+    },
+    "githubHooksBefore": [
+      {
+        "id": 701628730,
+        "active": false,
+        "host": "api.netlify.com"
+      }
+    ],
+    "workflowDispatchOnly": true
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/index.html": "85773de2361f928a5d904cdf7b4469b46a95f9537453784a5f793806de318fa4",
+    "dist/app.js": "1edf29aa220b4ccdc11c4294676fb936ad42af808bf4e366b558cd82de933f0e",
+    "dist/account.js": "44c4cdde58946d22248b64323e42c1f531cf80b28e6a019fbf4cef929d505351",
+    "dist/online.js": "85a9ecdfa7f17180ae76fc36b540b7822de96174dfd8aa9a72237862083232e9",
+    "dist/online-ui.js": "8e4df422a662b3bcf720f6c714509e4010280577a583986bb4b2abf1e85d79ed",
+    "dist/online.css": "bc80a346669a0c2a1eeee3abec95839b9d6e66c552ebf2f17e5da71c8a6d6fbf",
+    "dist/app-updates.js": "23b1902c2c5dd1348748c2450a046e78b3bb07aa198ced243e11fa7fd29d95eb",
+    "dist/release-notes.js": "ba2d9636dd4763e3df23bec0f57f8118a8180f5b56b01b64fe684fa62a423302",
+    "dist/release.json": "fbf7c0a026e797509d3b2187e5a0d32bbebd3db58439a661e5b7b1364fff159f",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "preserved": [
+    "Historical whole npm test interrupted/unconfirmed status.",
+    "Two user-deferred ruling/reprint checks; no card data changes."
+  ],
+  "publication": {
+    "pushed": false,
+    "pagesPublished": false,
+    "netlifyUpdated": false,
+    "liveVerification": "pending publication"
+  }
+}
