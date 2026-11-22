@@ -1,0 +1,588 @@
+{
+  "phase": 1676,
+  "checkedAt": "2026-11-22T16:38:06.735Z",
+  "baseCount": 9266,
+  "target": 9500,
+  "description": "侵略ZEROと開始時のタップ相手破壊、自軍の手札戻りに反応するGR召喚、他のシノビ離脱を自軍破壊へ置換するジンナイを全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/32498/",
+    "https://dm.takaratomy.co.jp/rule/qa/34411/",
+    "https://dm.takaratomy.co.jp/rule/qa/33067/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35689/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35690/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35691/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35692/"
+  ],
+  "cards": [
+    {
+      "id": "promoy15-036",
+      "name": "ZEROの暴走 デッドリー・ハイウェイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-036",
+      "faces": [
+        {
+          "name": "ZEROの暴走 デッドリー・ハイウェイ",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のタップしているクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1315InvasionZero": true,
+        "g1563InvasionDeploy": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-036.jpg",
+      "sameNameProducts": [
+        "DMR-22 革命ファイナル 第2章 世界は0だ!!ブラックアウト!!",
+        "DMD-35 DXデュエガチャデッキ 禁星の壊者ドキンダム",
+        "プロモ限定カード 15期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-036",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "dmr22-035",
+          "dmd35-011"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T16:38:06.735Z",
+        "sha256": "5e4551dec91857c16c9c27826a62ae581dca4f6e3faac27ae8a4f86f51231f57",
+        "facesMatched": true,
+        "imageSha256": "22f9b550dbe79287d931fa221f9cd1c95335db6ceb3d2a736650d3b96b696f99",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dmsd13-014",
+      "name": "魚籠びっくん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-014",
+      "faces": [
+        {
+          "name": "魚籠びっくん",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーまたは自分の他のクリーチャーがバトルゾーンから手札に戻された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g1676BounceLeaves": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-014.jpg",
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!",
+        "DMSD-13 超GRメガスタートデッキ ジョーの超ジョーカーズ旋風"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-014",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "dmrp11-041"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T16:38:06.735Z",
+        "sha256": "03d71f850a22ce8e9d50476818f1b998fea00c650a5aade81f9bf3aba2417453",
+        "facesMatched": true,
+        "imageSha256": "014dd4870d25a419d12597e0cf13f0c36948c8f8f90ae4886e2ef0db241c27e6",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dm29-028",
+      "name": "威牙忍ジンナイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-028",
+      "faces": [
+        {
+          "name": "威牙忍ジンナイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\n自分の他のシノビがバトルゾーンを離れる時、かわりに自分のクリーチャーを１体破壊してもよい。",
+          "race": "ダークロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1676Jinnai": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-028.jpg",
+      "sameNameProducts": [
+        "DM-29 戦国編 第2弾 戦国英雄伝(ロックオン・ヒーローズ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-028",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T16:38:06.735Z",
+        "sha256": "3c4b492183b570b735efa2b635f7ee170f89f464f14fb4f17c41cf00143cb9ce",
+        "facesMatched": true,
+        "imageSha256": "07b8294d47f730159d23e0ac7421146435d0dc367c28df44ff77e93b55b8f3dc",
+        "imageReviewed": true
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "reprintEvidence": [
+    {
+      "id": "dmr22-035",
+      "name": "ZEROの暴走 デッドリー・ハイウェイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-035",
+      "faces": [
+        {
+          "name": "ZEROの暴走 デッドリー・ハイウェイ",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のタップしているクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-035.jpg",
+      "htmlSha256": "6e35c420c70d8310c208bca01ec15755fda3ad4c7745626e62d9ea6475131e54",
+      "imageSha256": "3554dd995cb121230ebd169cbcc9aa50e975938fd90aedce511c9a76ed98cdbc",
+      "sameNameProducts": [
+        "DMR-22 革命ファイナル 第2章 世界は0だ!!ブラックアウト!!",
+        "DMD-35 DXデュエガチャデッキ 禁星の壊者ドキンダム",
+        "プロモ限定カード 15期"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmd35-011",
+      "name": "ZEROの暴走 デッドリー・ハイウェイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd35-011",
+      "faces": [
+        {
+          "name": "ZEROの暴走 デッドリー・ハイウェイ",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のタップしているクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd35-011.jpg",
+      "htmlSha256": "8b7187996b6231f56ea9cdb397c2562111733ee56aaf4d34b4d17bbce4aebd96",
+      "imageSha256": "03f2df0314d5264a57cbeda1b61713e43ad07f48e8836710bc59d10f67fc3977",
+      "sameNameProducts": [
+        "DMR-22 革命ファイナル 第2章 世界は0だ!!ブラックアウト!!",
+        "DMD-35 DXデュエガチャデッキ 禁星の壊者ドキンダム",
+        "プロモ限定カード 15期"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmrp11-041",
+      "name": "魚籠びっくん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-041",
+      "faces": [
+        {
+          "name": "魚籠びっくん",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーまたは自分の他のクリーチャーがバトルゾーンから手札に戻された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-041.jpg",
+      "htmlSha256": "ba8435e6416b49b09ccadd85123c4632b5e2223d8e6922adfbe0adee558ea164",
+      "imageSha256": "b17a7fd7842aade3aa0a76af7f3ea411edc4fa716455f43d0c48ed14ed299eb0",
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!",
+        "DMSD-13 超GRメガスタートデッキ ジョーの超ジョーカーズ旋風"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32498/",
+      "checkedAt": "2026-11-22T16:38:02.756Z",
+      "sha256": "8b3bfa9eca64a798e6497eb460131db2ff3cb4d8d145ca8c54cbf3c97d7d2b20",
+      "questionAnswer": "よくある質問 Qカードを手札に戻す効果で、封印から手札に《魚籠びっくん》が戻ると能力は使えますか？ A使えません。《魚籠びっくん》の能力は、バトルゾーンにクリーチャーとして存在する場合に、このカードがバトルゾーンから手札に戻された時に能力が使えます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Fish QA32498",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Generic native seal-to-hand selection reproduces the ruling without inventing a creature state for the seal."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34411/",
+      "checkedAt": "2026-11-22T16:38:03.470Z",
+      "sha256": "3bd29d28eada972122ed301e19f66b79aab7187c4e2786cfda43c2c2f586ef00",
+      "questionAnswer": "よくある質問 Q自分の《魚籠びっくん》がバトルゾーンにいる状態で《瞬閃と疾駆と双撃の決断》を唱えて《パラディソ・シエル》と《アクア・ガード》をバトルゾーンに出しました。《パラディソ・シエル》の「出た時」能力で《魚籠びっくん》と《アクア・ガード》を手札に戻したら《魚籠びっくん》の「手札に戻された時」の能力は2回発動しますか？ Aいいえ、《魚籠びっくん》の能力は1回発動します。 （総合ルール 603.5c） ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Fish QA34411",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named card interactions reproduced through native engine operations."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33067/",
+      "checkedAt": "2026-11-22T16:38:04.187Z",
+      "sha256": "99b2845a909efb618da8ed7ab8f2183880a65ece7efd92f1cbd9328a9e75967c",
+      "questionAnswer": "よくある質問 Q《帝神龍装 ティーゾリス》が持つ「自分のクリーチャーが破壊された時〜」の能力で、《魚籠びっくん》が持つ「このクリーチャーまたは自分の他のクリーチャーがバトルゾーンから手札に戻された時」の能力を2回使うことは出来ますか？ Aはい、バトルゾーンから離れた時にトリガーする能力なので、2回使うことが出来ます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Fish QA33067",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named card interactions reproduced through native engine operations."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35689/",
+      "checkedAt": "2026-11-22T16:38:04.907Z",
+      "sha256": "7f3ce0921f6253ed9818705f931e7a55ac1eab81111aaa6e2a05b551149d1715",
+      "questionAnswer": "過去のよくある質問 Q《威牙忍ジンナイ》がバトルゾーンにいて、 自分の他のシノビがバトルゾーンを離れる時、そのシノビ自身をバトルゾーンから移動させるかわりに破壊してもいいですか？ Aはい、そのシノビを含めて、自分のクリーチャーならどれでも破壊できます。バトルゾーンを離れようとしているシノビの行き先が墓地ではなく、例えば山札の一番下で、墓地に置いたほうがメリットがある場合など、そのシノビを選ぶとよいかもしれません。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Jinnai QA35689 and QA35690",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named card interactions reproduced through native engine operations."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35690/",
+      "checkedAt": "2026-11-22T16:38:05.520Z",
+      "sha256": "ca907d5c587e0e395fa65c849454b22d5274765c253a754d64c1ab5bcb29aaf9",
+      "questionAnswer": "過去のよくある質問 Q《威牙忍ジンナイ》がバトルゾーンにいて、自分の他のシノビがバトルゾーンを離れる時、そのシノビ自身を破壊しました。どうなりますか？ Aそのシノビは墓地に置かれます。「～するかわりに」という能力はひとつしか使えないので、それからまた続きで《威牙忍ジンナイ》の能力を使うということはできません。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Jinnai QA35689 and QA35690",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named card interactions reproduced through native engine operations."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35691/",
+      "checkedAt": "2026-11-22T16:38:06.098Z",
+      "sha256": "65254cdcfa747c035a427bf8be40005175ffa11dd896f61e08a7950d34d27aeb",
+      "questionAnswer": "過去のよくある質問 Q《威牙忍ジンナイ》がバトルゾーンにいるとき、「ニンジャ・ストライク」能力を使ってシノビを１体場に出しました。 そのターンの終わりに、そのシノビを山札の一番下に置くかわりに別のクリーチャーを破壊しました。 このターン山札に戻されなかったそのシノビは、次のターンの終わりに山札に置かねばなりませんか？ Aいいえ、そのままバトルゾーンに置いておくことができます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Jinnai QA35691",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named card interactions reproduced through native engine operations."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35692/",
+      "checkedAt": "2026-11-22T16:38:06.734Z",
+      "sha256": "d0c7b6e290ef671e4991ac64be50894cb09bdf9d8bb64bd35d49e201ff2d8828",
+      "questionAnswer": "過去のよくある質問 Q《威牙忍ジンナイ》がいて、《JK人形ボッコグー》の効果によって、自分のパワー3000以下のシノビのパワーが「-3000」された時、他のクリーチャー１体を破壊することで、対象となったシノビをバトルゾーンにとどまらせることは出来ますか？ Aいいえ、できません。《威牙忍ジンナイ》の効果によって、他のクリーチャーを１体破壊しても、《JK人形ボッコグー》の「-3000」の対象となったクリーチャーは引き続き「-3000」され続けるためです。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1676-effects.test.mjs",
+      "testNamePrefix": "Jinnai QA35692 analogue",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Actual Vikari -3000 reproduces continuous zero-power destruction; JK Bokkogu itself is unregistered, so this is an explicit analogue rather than exact-source reproduction."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T16:38:06.735Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy15-036": 4,
+      "dmsd13-014": 4,
+      "dm29-028": 4
+    }
+  },
+  "deferredCandidates": [
+    {
+      "id": "dm25ex2-057",
+      "name": "Dの駅舎 カエリバンホーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-057",
+      "reason": "通常のExecuteにはウエポンの無料実行/装備経路がなく、公式QA47464・47508の武器/フォートレス/裏面QEDの召喚までを同一経路で再現する検証が未完了。通常カードだけの部分登録は行わない。",
+      "rulings": [
+        "https://dm.takaratomy.co.jp/rule/qa/47464/",
+        "https://dm.takaratomy.co.jp/rule/qa/47508/"
+      ],
+      "phase": 1676
+    },
+    {
+      "id": "dmex08-140",
+      "name": "Eのスポーツ JKスタジアム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-140",
+      "reason": "じゃんけんの勝敗を決める既存の対戦経路と、能力文にジャンケンを持つ対戦対応クリーチャーがない。公式QA33221の敗北時ドローを含む全経路の実装/検証まで保留。",
+      "rulings": [
+        "https://dm.takaratomy.co.jp/rule/qa/33221/"
+      ],
+      "phase": 1676
+    },
+    {
+      "id": "dm31-024",
+      "name": "T2・オガプー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-024",
+      "reason": "公式QA35756は旧来の城を要塞化した時だけの誘発。現在の城対応はG城中心で、旧城の要塞化と単なるシールド化を区別する通常経路の全検証ができないため、固有能力を部分登録せず保留。",
+      "rulings": [
+        "https://dm.takaratomy.co.jp/rule/qa_old/35756/"
+      ],
+      "phase": 1676
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-22T17:08:09.140Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1676.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.406,
+        "log": "tmp/duema-phase-1676/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "complete-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1676-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 29.819,
+        "log": "tmp/duema-phase-1676/complete-focused.log",
+        "passed": 77,
+        "failed": 0,
+        "logSha256": "12ac4a640f5bc5d6c6b1dc52768749e2d08181e5f904cba95c3fb50f03aaa8cc"
+      },
+      "related-d2-invasion": {
+        "name": "related-d2-invasion",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1315-effects.test.mjs",
+          "tests/standard1563-effects.test.mjs",
+          "tests/standard1674-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 16.881,
+        "log": "tmp/duema-phase-1676/related-d2-invasion.log",
+        "passed": 116,
+        "failed": 0,
+        "logSha256": "05213be7af13bed7bc346cb2f020ec8d10e64b36e850af61dc1dd526a35cec51"
+      },
+      "related-leave-gr": {
+        "name": "related-leave-gr",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard891-effects.test.mjs",
+          "tests/standard1345-effects.test.mjs",
+          "tests/standard1068-effects.test.mjs",
+          "tests/standard1158-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.154,
+        "log": "tmp/duema-phase-1676/related-leave-gr.log",
+        "passed": 61,
+        "failed": 0,
+        "logSha256": "1504d9273bd706733db55fbc57cb44b11560a8fea087869ba0b9d4eb3669bad3"
+      },
+      "related-savers": {
+        "name": "related-savers",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard571-effects.test.mjs",
+          "tests/standard1664-effects.test.mjs",
+          "tests/standard1665-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 51.372,
+        "log": "tmp/duema-phase-1676/related-savers.log",
+        "passed": 559,
+        "failed": 0,
+        "logSha256": "e1d2b7fa5ad1280ad6325cf8d1a4dd162200aaf4516eb0375a3dcd1ce6f7f8a9"
+      },
+      "related-mana-runtime": {
+        "name": "related-mana-runtime",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.847,
+        "log": "tmp/duema-phase-1676/related-mana-runtime.log",
+        "passed": 39,
+        "failed": 0,
+        "logSha256": "ea228ea71e112ea3f708b23c7671189ee588b67567fccd85ad13d8b9da09adff"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.441,
+        "log": "tmp/duema-phase-1676/check.log",
+        "logSha256": "f711670cd37112380c0cd1beeda4ba7c4542fadec7e0864b96b08b38f8b0ffcb"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.165,
+        "log": "tmp/duema-phase-1676/audit.log",
+        "logSha256": "8ed5ef8fe7031fd03d7d830bf9db25fd7c5ef30d40b9d045f12c303f093e9f61"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.309,
+        "log": "tmp/duema-phase-1676/target9500.log",
+        "logSha256": "ea8f47ba5a06bfb15e2e7854946929e3b076e4201de620de998e695b07f6d5ff"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1676/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.417,
+        "log": "tmp/duema-phase-1676/invariants.log",
+        "logSha256": "3864d2c54119be0b0a160408d9b41aaa3183590f86934f5f12370899e3285bd0"
+      }
+    },
+    "totalTestsPassed": 852,
+    "focusedTestsPassed": 77,
+    "relatedTestsPassed": 775
+  },
+  "validationNotes": [
+    "固有77件、D2・侵略ZERO116件、離脱・GR・シノビ61件、セイバーと置換559件、手動マナ・通信ランタイム/ライブ同期39件、計852件が通過。npm run check、audit、target9500と既存9266定義・ID・詳細・別名・画像参照の不変を実測確認。",
+    "3種類の公式全文・基本情報・マナ値・画像・制限と同名収録一覧を照合。デッドリー・ハイウェイは元IDpromoy15-036を保持し、dmr22-035/dmd35-011の画像・全文も照合。魚籠びっくんは元IDdmsd13-014を保持しdmrp11-041を照合。ジンナイはdm29-028のみ。再録やHTMLの強調記号・空白違いは種類数に加算しない。",
+    "デッドリー・ハイウェイは既存の侵略ZERO宣言/無料展開と開始時Dスイッチを再利用。実ヘブンズ・ゲートの無料登場、通常有料登場との区別、自分のターンの非適用、登場後手札へ戻った履歴、複数宣言とD2相互排他、マナを払わないこと、墓地を増やさないことを確認。スイッチは相手のタップしたクリーチャーだけを強制選択し、拒否・空振り・同じ入場での一回制限を確認。",
+    "魚籠びっくんは既存g891OwnCreatureLeavesに手札への帰還条件だけを加え、既存GR召喚を使う。自身と他のクリーチャーの同時バウンスでは自身分だけ、場に残る別の監視者は両方を見る。実瞬閃と疾駆と双撃の決断→パラディソ・シエルとアクア・ガードの公式QA34411を両側で再現。QA33067は実ティーゾリスで2回、QA32498は物理封印からの手札移動で0回。相手の帰還、墓地/マナへの移動、能力無視、空の超GR、とこしえ/キラルルの禁止・置換とGRカードが超GRへ戻ることを確認。",
+    "ジンナイは既存の離脱置換・replaceUltra選択・犠牲カード予約を再利用し、他のシノビの離脱を自分の任意クリーチャー破壊で置き換える。自分自身は自身だけの能力では守れず、別のジンナイで守れる。離れるシノビ自身、発生源、能力無視された自軍を犠牲にでき、非クリーチャー/封印/破壊不能/他の置換で予約済みの犠牲は選べない。手札/マナ/山札/墓地への離脱を確認。",
+    "QA35689・35690は離れるシノビ自身を破壊して墓地へ置き、さらに置換しない。QA35691は実ハヤブサマルをニンジャ・ストライクで召喚し、その終了時帰還を置換すると後続3ターンの終了時にも再帰還しないことを確認。QA35692は実ビカリの継続-3000を類例として使い、一度犠牲にしても0パワーのシノビは再度破壊されることを確認。未登録のJK人形ボッコグーそのものを固有再現したとは数えない。ブロッカーと攻撃不能も通常バトルで確認。",
+    "両プレイヤーで手動マナの指定した物理カードだけを支払う。スイッチ、複数GR誘発順、シノビの離脱置換が暗号化ルームとJSON再開を通して保存され、選択肢は操作側だけへ届く。AI選択/評価は状態を変更せず未知の相手手札・山札・シールドに依存しない。合法40枚+合法6種類各2枚の超GRを持つアドバンスデッキで両先後の終局、JSON再開と92物理カード保存を確認。",
+    "初回試行のfixtureで離脱decision名、GR移動時の超GRへの復帰、物理封印の存在、超GRの同名2枚制限を訂正済み。最終固有77件は失敗0。今回3種類の未完了検証なし。過去の一括npm test、登録済み裁定待ち、長時間群の未確認、ユーザー保留は維持。公開済みv0.722.13・9266種類は変更せず、本バッチはローカルのみ。",
+    "カエリバンホームは通常Executeでのウエポン装備・フォートレス/裏面QEDの全経路、JKスタジアムはじゃんけん処理と該当実クリーチャー、T2・オガプーは旧城の要塞化と単なるシールド化の区別が未検証のため登録せず保留。理由と公式裁定をdeferredCandidatesに保存。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm29-049",
+      "name": "不死火フウタ・ドラグーン",
+      "reason": "シノビの山札下移動をマナ犠牲で置換する全文と裁定を照合し、既存のマナ置換選択を優先する。"
+    },
+    {
+      "id": "dmrp08-027",
+      "name": "アークティック・ハッチャー",
+      "reason": "ガードマン・プレイヤー攻撃不可と他のグランセクト離脱のタップ置換を公式照合する。"
+    },
+    {
+      "id": "dmrp04m-032",
+      "name": "マイケル・ギャンドル",
+      "reason": "魔導具破壊とクリーチャー下から墓地への移動の任意ドローを、既存の破壊/下カード誘発で検証する。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T17:08:09.140Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule デッドリー・ハイウェイ",
+      "site:dm.takaratomy.co.jp/rule 魚籠びっくん",
+      "site:dm.takaratomy.co.jp/rule 威牙忍ジンナイ"
+    ],
+    "result": "魚籠びっくんの固有QA32498/34411/33067、ジンナイQA35689–35692の公式全文を保存。35692のみ未登録のJKボッコグーに代えて実ビカリを使う継続-3000の類例と明示。デッドリー・ハイウェイに固有QAは見つからず、公式全文と既存の侵略ZERO/D2共通経路を検証。"
+  }
+}

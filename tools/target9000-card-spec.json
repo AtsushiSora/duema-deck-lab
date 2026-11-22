@@ -36397,5 +36397,96 @@
         }
       ]
     }
+  },
+  "promoy15-036": {
+    "phase": 1676,
+    "faces": [
+      {
+        "name": "ZEROの暴走 デッドリー・ハイウェイ",
+        "typeText": "D2フィールド",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のタップしているクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd13-014": {
+    "phase": 1676,
+    "faces": [
+      {
+        "name": "魚籠びっくん",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーまたは自分の他のクリーチャーがバトルゾーンから手札に戻された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g1676BounceLeaves": true
+    }
+  },
+  "dm29-028": {
+    "phase": 1676,
+    "faces": [
+      {
+        "name": "威牙忍ジンナイ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\n自分の他のシノビがバトルゾーンを離れる時、かわりに自分のクリーチャーを１体破壊してもよい。",
+        "race": "ダークロード/シノビ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1676Jinnai": true
+    }
   }
 }

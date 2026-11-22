@@ -295127,21 +295127,106 @@
       ],
       "supportBatch": "phase-1675",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-036",
+      "name": "ZEROの暴走 デッドリー・ハイウェイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のタップしているクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-036",
+      "limit": 4,
+      "d2Field": true,
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1676",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-014",
+      "name": "魚籠びっくん",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "このクリーチャーまたは自分の他のクリーチャーがバトルゾーンから手札に戻された時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-014",
+      "limit": 4,
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g1676BounceLeaves": true,
+      "supportBatch": "phase-1676",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-028",
+      "name": "威牙忍ジンナイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ダークロード/シノビ",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\n自分の他のシノビがバトルゾーンを離れる時、かわりに自分のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-028",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1676Jinnai": true,
+      "supportBatch": "phase-1676",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1675,
-    "checkedAt": "2026-11-22T16:09:10.245Z",
-    "baseCount": 9263,
+    "phase": 1676,
+    "checkedAt": "2026-11-22T16:38:06.735Z",
+    "baseCount": 9266,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9266,
+    "totalCount": 9269,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35852/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35853/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35854/",
-      "https://dm.takaratomy.co.jp/rule/qa/34384/"
+      "https://dm.takaratomy.co.jp/rule/qa/32498/",
+      "https://dm.takaratomy.co.jp/rule/qa/34411/",
+      "https://dm.takaratomy.co.jp/rule/qa/33067/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35689/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35690/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35691/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35692/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -322579,6 +322664,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/38587/",
           "https://dm.takaratomy.co.jp/rule/qa/38588/",
           "https://dm.takaratomy.co.jp/rule/qa/42510/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1675,
+        "checkedAt": "2026-11-22T16:09:10.245Z",
+        "baseCount": 9263,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9266,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35852/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35853/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35854/",
+          "https://dm.takaratomy.co.jp/rule/qa/34384/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

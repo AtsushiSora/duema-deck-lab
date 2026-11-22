@@ -10563,7 +10563,7 @@ export function createSixPhotoRules(api){
  }),g1672CreatureRefs:s.players.flatMap((own,p)=>own.battle
   .filter(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x))
   .flatMap(x=>[x,...(x.godLinks||[])].map(y=>({p,uid:y.uid,incarnation:y.incarnation||0})))),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,g1674GodParts:(x.godLinks||[]).map(y=>({uid:y.uid,incarnation:y.incarnation||0})),
-   ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
+   ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves,...(c.g1676BounceLeaves?{g1676BounceLeaves:true}:{})}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
    ...(g1256HandEvolutionWatch[p].length&&api.isEvolution(x)?{g1256Evolution:true}:{}),
    ...(c.g1248DragonLeaves?{g1248DragonLeaves:true}:{}),
@@ -10630,7 +10630,7 @@ export function createSixPhotoRules(api){
      queueBattle(s,p,watcher,watcher.jingi);
    // A source leaving in the same batch sees its own departure only (QA33591).
    if(victim.creature||victim.g1248DragonElement)for(const watcher of before)
-    if(watcher.p===p&&watcher.leaveDraw891&&(watcher.g1248DragonLeaves?victim.g1248DragonElement:victim.creature)&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
+    if(watcher.p===p&&watcher.leaveDraw891&&(!watcher.g1676BounceLeaves||to==='hand')&&(watcher.g1248DragonLeaves?victim.g1248DragonElement:victim.creature)&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
      (!(watcher.g891OnlySelf||watcher.leaveDraw891[0]?.g792Once&&s.g20LeavingUids?.includes(watcher.uid))||key(watcher)===key(victim))&&
      (!watcher.g965OtherOwnLeave||s.active===p&&key(watcher)!==key(victim)))
      {const defs=watcher.leaveDraw891;
