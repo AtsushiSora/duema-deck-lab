@@ -32705,5 +32705,105 @@
         }
       ]
     }
+  },
+  "dmr11-002": {
+    "phase": 1646,
+    "faces": [
+      {
+        "name": "マントラ教皇 バラモン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nバトルゾーンにある自分の他のオラクル１体につき、このクリーチャーのパワーは+5000され、シールドをさらに１枚ブレイクする。\nこのクリーチャーが破壊される時、かわりに自分の他のオラクルを１体、破壊してもよい。",
+        "race": "オラクル",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "race": "オラクル"
+        },
+        "amount": 5000
+      },
+      "g876BreakPerCount": true,
+      "g1645DestroyGuard": "オラクル"
+    }
+  },
+  "dmex07-029": {
+    "phase": 1646,
+    "faces": [
+      {
+        "name": "ヤッタレ塾長",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分のジョーカーズ１体に「Jチェンジ８」を与える。（「Jチェンジ８」を持つクリーチャーが攻撃する時、そのクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）",
+        "race": "ジョーカーズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "race": "ジョーカーズ"
+          },
+          "grant": {
+            "g1646JChange": 8
+          }
+        }
+      ]
+    }
+  },
+  "dm23bd4-004": {
+    "phase": 1646,
+    "faces": [
+      {
+        "name": "ドラゴカリプス・デイ",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このゲームが２人以上の相手がいる状態で始まっていて、この呪文がシールドゾーンにあれば、この呪文に「S・トリガー」を与える。\nドラゴンではないクリーチャーをすべて破壊する。",
+        "race": "ドラゴン",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ドラゴン"
+          },
+          "spell": true
+        }
+      ]
+    }
   }
 }

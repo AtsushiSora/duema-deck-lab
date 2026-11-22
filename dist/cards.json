@@ -291859,20 +291859,110 @@
       ],
       "supportBatch": "phase-1645",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-002",
+      "name": "マントラ教皇 バラモン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "オラクル",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nバトルゾーンにある自分の他のオラクル１体につき、このクリーチャーのパワーは+5000され、シールドをさらに１枚ブレイクする。\nこのクリーチャーが破壊される時、かわりに自分の他のオラクルを１体、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-002",
+      "limit": 4,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "race": "オラクル"
+        },
+        "amount": 5000
+      },
+      "g876BreakPerCount": true,
+      "g1645DestroyGuard": "オラクル",
+      "supportBatch": "phase-1646",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex07-029",
+      "name": "ヤッタレ塾長",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、そのターン、自分のジョーカーズ１体に「Jチェンジ８」を与える。（「Jチェンジ８」を持つクリーチャーが攻撃する時、そのクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "race": "ジョーカーズ"
+          },
+          "grant": {
+            "g1646JChange": 8
+          }
+        }
+      ],
+      "supportBatch": "phase-1646",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd4-004",
+      "name": "ドラゴカリプス・デイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "ドラゴン",
+      "text": "このゲームが２人以上の相手がいる状態で始まっていて、この呪文がシールドゾーンにあれば、この呪文に「S・トリガー」を与える。\nドラゴンではないクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notRace": "ドラゴン"
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1646",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1645,
+    "phase": 1646,
     "checkedAt": "2026-11-22",
-    "baseCount": 9167,
+    "baseCount": 9170,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9170,
+    "totalCount": 9173,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31546/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36345/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316675/",
+      "https://dm.takaratomy.co.jp/battleclip/episode-dmrp09/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318764,6 +318854,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45567/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1645,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9167,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9170,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31546/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36345/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

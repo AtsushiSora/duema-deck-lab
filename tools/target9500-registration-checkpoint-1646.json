@@ -1,0 +1,130 @@
+{
+  "phase": 1646,
+  "checkedAt": "2026-11-22T07:53:47.597Z",
+  "baseline": "b9df01062acbec994abbb704df76172b3bf1d8a1",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9170,
+  "currentNames": 9173,
+  "remainingNames": 327,
+  "added": [
+    {
+      "id": "dmr11-002",
+      "name": "マントラ教皇 バラモン"
+    },
+    {
+      "id": "dmex07-029",
+      "name": "ヤッタレ塾長"
+    },
+    {
+      "id": "dm23bd4-004",
+      "name": "ドラゴカリプス・デイ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9170,
+    "uniqueNames": 9173,
+    "uniqueIds": 9173,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1646.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.414,
+      "log": "tmp/duema-phase-1646/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1646-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 31.728,
+      "log": "tmp/duema-phase-1646/final-focused.log",
+      "passed": 41,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Dope DBL|Tobibako|Nia|Siries sacrifices|J-change|swap|MAX-G",
+        "tests/standard1645-effects.test.mjs",
+        "tests/standard876-effects.test.mjs",
+        "tests/standard1199-effects.test.mjs",
+        "tests/standard1175-effects.test.mjs",
+        "tests/standard399-effects.test.mjs",
+        "tests/requested393-change.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.942,
+      "log": "tmp/duema-phase-1646/final-related.log",
+      "passed": 55,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.637,
+      "log": "tmp/duema-phase-1646/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.409,
+      "log": "tmp/duema-phase-1646/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.265,
+      "log": "tmp/duema-phase-1646/target9500.log"
+    }
+  },
+  "totalTestsPassed": 96,
+  "hashes": {
+    "dist/cards.json": "46002f6bdcac90aada96250c75c00e46598ad794b08bad215ae2c3749c48bde4",
+    "dist/engine.js": "3ec45c82323518c36cd479604579e24449db5d91891b13e0173dcefd4339cf4d",
+    "dist/six-photo-rules.js": "c717e5c9669635d815917adabac391cba776269e18673e7fde20be7c11bd7f4d",
+    "dist/online-compatibility.js": "624d90875b1d1cf82293ae58efeff5176a9ee71b9ddc8c64bd86cde3a2f387cf",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.162",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

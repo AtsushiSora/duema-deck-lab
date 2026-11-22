@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9170,
-  "pendingNames": 2655,
-  "phase": 1645,
+  "supportedNames": 9173,
+  "pendingNames": 2652,
+  "phase": 1646,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1486,
-    "呪文": 315,
+    "クリーチャー": 1484,
+    "呪文": 314,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 35,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1922,
+    "未対応の能力文": 1919,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -528518,34 +528518,187 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1646から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1646,
+      "checkedAt": "2026-11-22T07:53:47.597Z",
+      "baseline": "b9df01062acbec994abbb704df76172b3bf1d8a1",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9170,
+      "currentNames": 9173,
+      "remainingNames": 327,
+      "added": [
+        {
+          "id": "dmr11-002",
+          "name": "マントラ教皇 バラモン"
+        },
+        {
+          "id": "dmex07-029",
+          "name": "ヤッタレ塾長"
+        },
+        {
+          "id": "dm23bd4-004",
+          "name": "ドラゴカリプス・デイ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9170,
+        "uniqueNames": 9173,
+        "uniqueIds": 9173,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1646.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.414,
+          "log": "tmp/duema-phase-1646/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1646-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 31.728,
+          "log": "tmp/duema-phase-1646/final-focused.log",
+          "passed": 41,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Dope DBL|Tobibako|Nia|Siries sacrifices|J-change|swap|MAX-G",
+            "tests/standard1645-effects.test.mjs",
+            "tests/standard876-effects.test.mjs",
+            "tests/standard1199-effects.test.mjs",
+            "tests/standard1175-effects.test.mjs",
+            "tests/standard399-effects.test.mjs",
+            "tests/requested393-change.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.942,
+          "log": "tmp/duema-phase-1646/final-related.log",
+          "passed": 55,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.637,
+          "log": "tmp/duema-phase-1646/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.409,
+          "log": "tmp/duema-phase-1646/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.265,
+          "log": "tmp/duema-phase-1646/target9500.log"
+        }
+      },
+      "totalTestsPassed": 96,
+      "hashes": {
+        "dist/cards.json": "46002f6bdcac90aada96250c75c00e46598ad794b08bad215ae2c3749c48bde4",
+        "dist/engine.js": "3ec45c82323518c36cd479604579e24449db5d91891b13e0173dcefd4339cf4d",
+        "dist/six-photo-rules.js": "c717e5c9669635d815917adabac391cba776269e18673e7fde20be7c11bd7f4d",
+        "dist/online-compatibility.js": "624d90875b1d1cf82293ae58efeff5176a9ee71b9ddc8c64bd86cde3a2f387cf",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.162",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1646.json",
+      "supported": 9173,
+      "pending": 2652,
+      "reason": "バラモンの他の自分のオラクルに応じた強化・追加ブレイクと破壊時限定のオラクル身代わり、ヤッタレ塾長の一時的Jチェンジ8付与、ドラゴカリプス・デイの非ドラゴン全破壊を対応する。既存ゲームは二人対戦なので、相手2人以上で開始した場合だけのSトリガー条件は満たさない。",
+      "resolvedAttempts": [
+        {
+          "name": "focused-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1646-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 31.908,
+          "log": "tmp/duema-phase-1646/focused-initial.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1647から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1645,
-    "nextPhase": 1646,
+    "lastVerifiedPhase": 1646,
+    "nextPhase": 1647,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr11-002",
-        "name": "マントラ教皇 バラモン",
-        "reason": "他のオラクルの動的枚数によるパワー・追加ブレイクとオラクル限定破壊身代わりを共通化。"
+        "id": "dmrp08-046",
+        "name": "バイクロ・チュリス",
+        "reason": "相手自身のターン中のシールド追加置換を共通処理で照合する。"
       },
       {
-        "id": "dmex07-029",
-        "name": "ヤッタレ塾長",
-        "reason": "ジョーカーズ1体へのターン中Jチェンジ8付与を既存Jチェンジ処理と照合。"
+        "id": "dm23rp4-036",
+        "name": "ピッピ・修・ピヨッコ",
+        "reason": "バイクロと共通のシールド追加置換を種族・基本情報と合わせて検証する。"
       },
       {
-        "id": "dm03-023",
-        "name": "ライト・ブーメラン",
-        "reason": "処理中の呪文自身を先にマナへ置いてからマナ1枚を手札へ戻す順序を照合。"
+        "id": "dm15-047",
+        "name": "リアリティ・ヴォイド",
+        "reason": "手札由来だけのマナ移動禁止を既存のマナ移動と手札保持経路で照合する。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9170種類・重複0、9500まで残り330。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1645とtools/target9500-registration-checkpoint-1645.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1646で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9173種類・重複0、9500まで残り327。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1646とtools/target9500-registration-checkpoint-1646.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1647で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528625,9 +528778,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9170種類・重複0、9500まで残り330。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1645とtools/target9500-registration-checkpoint-1645.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1646で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9173種類・重複0、9500まで残り327。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1646とtools/target9500-registration-checkpoint-1646.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1647で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528758,10 +528911,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9170,
-      "remaining": 330,
+      "currentCount": 9173,
+      "remaining": 327,
       "status": "active",
-      "phase": 1645
+      "phase": 1646
     },
     "deferredRegistrationCandidates": [
       {
@@ -529024,6 +529177,13 @@
         "reason": "固定枚数軽減とは異なる捨てたカードのコスト選択と軽減下限2の処理が必要。ツインパクトの両面、コスト無限大、他軽減との合成を固有検証してから登録する。部分実装は追加しない。",
         "phase": 1642,
         "status": "not-registered"
+      },
+      {
+        "id": "dm03-023",
+        "name": "ライト・ブーメラン",
+        "reason": "解決途中で物理呪文をマナへ置き、そのカードも含めた必須マナ回収を行う必要がある。既存SpellFinish416は解決終了時の移動先指定であり、途中移動と唱え終わりフックの時機を分離して実装・検証する必要があるため、部分実装せず保留。",
+        "phase": 1646,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -529189,23 +529349,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1645,
-      "baseline": "bc4f71482e113549ee8b8b2de581198b74273e43",
-      "supportedNames": 9170,
-      "artifact": "tools/target9500-registration-checkpoint-1645.json",
-      "checkedAt": "2026-11-22T07:41:27.386Z"
+      "phase": 1646,
+      "baseline": "b9df01062acbec994abbb704df76172b3bf1d8a1",
+      "supportedNames": 9173,
+      "artifact": "tools/target9500-registration-checkpoint-1646.json",
+      "checkedAt": "2026-11-22T07:53:47.597Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T07:41:27.386Z",
+      "checkedAt": "2026-11-22T07:53:47.597Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9170,
-      "remainingNames": 330,
+      "currentNames": 9173,
+      "remainingNames": 327,
       "duplicateNames": 0,
-      "engineVersion": "0.602.161",
+      "engineVersion": "0.602.162",
       "added": [
         {
           "id": "dmr12-008",
@@ -529606,6 +529766,18 @@
         {
           "id": "dm26ex4-068",
           "name": "トップギ・ラ・ヒツヤシ"
+        },
+        {
+          "id": "dmr11-002",
+          "name": "マントラ教皇 バラモン"
+        },
+        {
+          "id": "dmex07-029",
+          "name": "ヤッタレ塾長"
+        },
+        {
+          "id": "dm23bd4-004",
+          "name": "ドラゴカリプス・デイ"
         }
       ],
       "results": {
@@ -529721,10 +529893,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "199437b1e3b7e8ed16c7b3344a0dbbd5c7169f4df36196b6f1ab43fab74616bc",
-        "dist/engine.js": "6fc8c93d2c5cca83f46146bcad5a8aafffb9b09a96d34a330d6d30a9c87f4798",
-        "dist/six-photo-rules.js": "95bec2cd759ad9b50d9e9333fbdf59367b3e67785aefca52085df6b9ebedcc31",
-        "dist/online-compatibility.js": "7aa159a2ff818949713c0c5590b31a5a82e0e0ad5be5f84ecde9276302edc4b6",
+        "dist/cards.json": "46002f6bdcac90aada96250c75c00e46598ad794b08bad215ae2c3749c48bde4",
+        "dist/engine.js": "3ec45c82323518c36cd479604579e24449db5d91891b13e0173dcefd4339cf4d",
+        "dist/six-photo-rules.js": "c717e5c9669635d815917adabac391cba776269e18673e7fde20be7c11bd7f4d",
+        "dist/online-compatibility.js": "624d90875b1d1cf82293ae58efeff5176a9ee71b9ddc8c64bd86cde3a2f387cf",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -529789,10 +529961,10 @@
       },
       "phaseRange": [
         1614,
-        1645
+        1646
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 100,
+      "addedNames": 103,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -529804,8 +529976,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.192,
-        "log": "tmp/duema-phase-1645/check.log"
+        "seconds": 19.637,
+        "log": "tmp/duema-phase-1646/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -529815,10 +529987,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.284,
-        "log": "tmp/duema-phase-1645/audit.log"
+        "seconds": 11.409,
+        "log": "tmp/duema-phase-1646/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1645.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1646.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -530907,11 +531079,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9170,
-      "remaining": 330,
+      "currentNames": 9173,
+      "remaining": 327,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T07:41:27.386Z"
+      "checkedAt": "2026-11-22T07:53:47.597Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -582879,20 +583051,20 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1645,
+      "phase": 1646,
       "added": 3,
-      "supportedNames": 9170,
+      "supportedNames": 9173,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1645.json",
+      "artifact": "tools/target9500-registration-checkpoint-1646.json",
       "relatedRulingVerificationPending": []
     }
   },
   "registrationStop": {
-    "phase": 1645,
+    "phase": 1646,
     "threshold": 9500,
-    "supportedNames": 9170,
-    "pendingNames": 2655,
-    "checkedAt": "2026-11-22T07:41:27.386Z",
+    "supportedNames": 9173,
+    "pendingNames": 2652,
+    "checkedAt": "2026-11-22T07:53:47.597Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",
