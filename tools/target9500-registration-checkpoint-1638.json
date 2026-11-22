@@ -1,0 +1,128 @@
+{
+  "phase": 1638,
+  "checkedAt": "2026-11-22T06:32:09.373Z",
+  "baseline": "2a9a8ea40ec1c693eb71c14e859578aa6d89ef7c",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9146,
+  "currentNames": 9149,
+  "remainingNames": 351,
+  "added": [
+    {
+      "id": "dm04-011",
+      "name": "ハイドロ・ハリケーン"
+    },
+    {
+      "id": "dmex12-050",
+      "name": "パーロック・スマイリーストーリー"
+    },
+    {
+      "id": "dm06-s04",
+      "name": "クリスタル・ジャベリン"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9146,
+    "uniqueNames": 9149,
+    "uniqueIds": 9149,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1638.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.626,
+      "log": "tmp/duema-phase-1638/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1638-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.377,
+      "log": "tmp/duema-phase-1638/final-focused.log",
+      "passed": 45,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Bocco|Coltior|Apache|Princess|Starman|Romeel|Shadow Love|Milzam",
+        "tests/standard538-effects.test.mjs",
+        "tests/standard1113-effects.test.mjs",
+        "tests/standard700-effects.test.mjs",
+        "tests/standard1637-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.521,
+      "log": "tmp/duema-phase-1638/final-related.log",
+      "passed": 48,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.053,
+      "log": "tmp/duema-phase-1638/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.494,
+      "log": "tmp/duema-phase-1638/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.254,
+      "log": "tmp/duema-phase-1638/target9500.log"
+    }
+  },
+  "totalTestsPassed": 93,
+  "hashes": {
+    "dist/cards.json": "9a1d0f8cd4abc2862556eff9833b91b49c5150cac5220dde0f690d80ded02309",
+    "dist/engine.js": "1d00f87ebd3167ed909c550f28c833f8e932e72585085e6e5dbba127a1baca49",
+    "dist/six-photo-rules.js": "d47f00be49109146403a185507e13e645563efc4d97b952ad0e14ff6c93b5f2d",
+    "dist/online-compatibility.js": "e10afc651d29f9ebba6951fe6637e4519355effea442d6ee528ed4d8c01f6982",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.154",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

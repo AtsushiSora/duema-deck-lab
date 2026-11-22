@@ -1,0 +1,270 @@
+{
+  "phase": 1638,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9146,
+  "target": 9500,
+  "description": "光闇の自軍数に応じた二段階バウンス、D2フィールドの自軍攻撃時ドローとバニラ展開、後発公式表記に従うクリスタル・ジャベリンの進化と破壊置換を全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
+    "https://dm.takaratomy.co.jp/rule/qa/38597/"
+  ],
+  "cards": [
+    {
+      "id": "dm04-011",
+      "name": "ハイドロ・ハリケーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-011",
+      "faces": [
+        {
+          "name": "ハイドロ・ハリケーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある自分の闇のクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nバトルゾーンにある自分の光のクリーチャー１体につき、相手のマナゾーンから１枚選び、持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "to": "hand",
+              "toOwnerHand": true,
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "手札に戻す相手のクリーチャーを選ぶ（闇の自軍クリーチャーの数まで）"
+            }
+          },
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "color": "光"
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "hand",
+              "toOwnerHand": true,
+              "optional": true,
+              "title": "手札に戻す相手のマナを選ぶ（光の自軍クリーチャーの数まで）"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "df19b09f58c2643276e501a3523d0013699b9ae29324e890b71c763f133636a3",
+        "facesMatched": true,
+        "imageSha256": "fd8e5c3940e4e33a899e05f6772eec3936287d925f1d12a2fd96c2c15720592f",
+        "imageBytes": 106169,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナを照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DMC-27 コロコロ・ドリーム・パック",
+        "DM-04 闇騎士団の逆襲(チャレンジ・オブ・ブラックシャドウ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-011",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmex12-050",
+      "name": "パーロック・スマイリーストーリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-050",
+      "faces": [
+        {
+          "name": "パーロック・スマイリーストーリー",
+          "typeText": "D2フィールド",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。その後、カードに能力が書かれていないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "DrawUpTo",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "g990PrintedNoAbilities": true,
+                "g1113LegacyManaText": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "36f6a2ba0a770289225c59799986969ee1d9b98a91cf583dc069461bb49fa7a6",
+        "facesMatched": true,
+        "imageSha256": "5488d74ea10266b1da9e09558210c332ff4eec9b7555b775fde12ff80193e20f",
+        "imageBytes": 90933,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナを照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-12 最強戦略!!ドラリンパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-050",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm06-s04",
+      "name": "クリスタル・ジャベリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s04",
+      "faces": [
+        {
+          "name": "クリスタル・ジャベリン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化ー自分のリキッド・ピープル１体の上に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンから自分の墓地に置かれた場合、このクリーチャーを自分の手札に戻す。",
+          "race": "リキッド・ピープル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "リキッド・ピープル"
+        },
+        "breaker": 2,
+        "destroyToHand": true
+      },
+      "currentPrint": {
+        "id": "dmc27-s02",
+        "name": "クリスタル・ジャベリン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-s02",
+        "faces": [
+          {
+            "name": "クリスタル・ジャベリン",
+            "typeText": "進化クリーチャー",
+            "civilizationText": "水",
+            "civilizations": [
+              "水"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "進化-自分のリキッド・ピープル１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+            "race": "リキッド・ピープル",
+            "powerText": "7000",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "reason": "同名の後発公式表記で最後の能力が「破壊される時、墓地に置くかわりに手札」に訂正されているため、この全文を採用。初出の元IDを維持。",
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "d1322bf77e455fe2ddaa5945c795611d4b8722674cd911d8ba3526bab170d6d1",
+          "facesMatched": true,
+          "imageSha256": "b1a1b233a812023541e087e997e17117f965d3ed866925f6cc5db5bc57f24b69",
+          "imageBytes": 115858,
+          "imageReviewed": true,
+          "imageReview": "後発公式画像の全文を照合。最後の能力は破壊時の手札への置換。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-s02.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "6218bf19bb24c45456cc4ac9c34bdea65d535f094b0db867483822f29407576f",
+        "facesMatched": true,
+        "imageSha256": "7043e68fe0ef597d8d3fc11640b57d5021f1b4656e358e2071cf026e8a3f46ed",
+        "imageBytes": 91780,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナを照合。"
+      },
+      "sameNameProducts": [
+        "DMC-27 コロコロ・ドリーム・パック",
+        "DM-06 闘魂編(インビンシブル・ソウル)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s04",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "implementationNotes": [
+    "ハイドロ・ハリケーンは既存のCountOwn538と選択移動を二段階で使用。各段階の解決時に自軍の該当文明のクリーチャーを数え、任意の数を選ぶ。",
+    "スマイリーストーリーはフィールドから既存攻撃監視を使用。ドローを断ってもバニラ展開は行える。",
+    "クリスタル・ジャベリンは後発DMC-27版を照合し、破壊置換として実装する。旧ID・データ形式を変更しない。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm04-011": 1,
+      "dmex12-050": 4,
+      "dm06-s04": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
+      "checkedAt": "2026-11-22",
+      "sha256": "582a3a661155b9b731dde802cd25d1c1e3d64195bc8db1b1cf0c5a304845f6f3"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38597/",
+      "checkedAt": "2026-11-22",
+      "sha256": "eb8f75f8e23b0595ebece18047a4aca4430b86b907ea02def5d002d7e572778e"
+    }
+  ]
+}

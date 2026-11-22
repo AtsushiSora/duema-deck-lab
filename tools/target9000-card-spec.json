@@ -31680,5 +31680,165 @@
         ]
       }
     }
+  },
+  "dm04-011": {
+    "phase": 1638,
+    "faces": [
+      {
+        "name": "ハイドロ・ハリケーン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "バトルゾーンにある自分の闇のクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nバトルゾーンにある自分の光のクリーチャー１体につき、相手のマナゾーンから１枚選び、持ち主の手札に戻してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "手札に戻す相手のクリーチャーを選ぶ（闇の自軍クリーチャーの数まで）"
+          }
+        },
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "opponent",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "title": "手札に戻す相手のマナを選ぶ（光の自軍クリーチャーの数まで）"
+          }
+        }
+      ]
+    }
+  },
+  "dmex12-050": {
+    "phase": 1638,
+    "faces": [
+      {
+        "name": "パーロック・スマイリーストーリー",
+        "typeText": "D2フィールド",
+        "civilizationText": "水/火/自然",
+        "civilizations": [
+          "水",
+          "火",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。その後、カードに能力が書かれていないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "DrawUpTo",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g990PrintedNoAbilities": true,
+              "g1113LegacyManaText": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dm06-s04": {
+    "phase": 1638,
+    "faces": [
+      {
+        "name": "クリスタル・ジャベリン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "進化ー自分のリキッド・ピープル１体の上に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンから自分の墓地に置かれた場合、このクリーチャーを自分の手札に戻す。",
+        "race": "リキッド・ピープル",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "リキッド・ピープル"
+      },
+      "breaker": 2,
+      "destroyToHand": true
+    }
+  },
+  "dmc27-s02": {
+    "phase": 1638,
+    "faces": [
+      {
+        "name": "クリスタル・ジャベリン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "進化-自分のリキッド・ピープル１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+        "race": "リキッド・ピープル",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "リキッド・ピープル"
+      },
+      "breaker": 2,
+      "destroyToHand": true
+    }
   }
 }

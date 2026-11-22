@@ -290936,19 +290936,144 @@
       },
       "supportBatch": "phase-1637",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm04-011",
+      "name": "ハイドロ・ハリケーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分の闇のクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nバトルゾーンにある自分の光のクリーチャー１体につき、相手のマナゾーンから１枚選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-011",
+      "limit": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "手札に戻す相手のクリーチャーを選ぶ（闇の自軍クリーチャーの数まで）"
+          }
+        },
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "opponent",
+            "to": "hand",
+            "toOwnerHand": true,
+            "optional": true,
+            "title": "手札に戻す相手のマナを選ぶ（光の自軍クリーチャーの数まで）"
+          }
+        }
+      ],
+      "supportBatch": "phase-1638",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-050",
+      "name": "パーロック・スマイリーストーリー",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。その後、カードに能力が書かれていないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-050",
+      "limit": 4,
+      "d2Field": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "DrawUpTo",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g990PrintedNoAbilities": true,
+              "g1113LegacyManaText": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1638",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-s04",
+      "name": "クリスタル・ジャベリン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "リキッド・ピープル",
+      "text": "進化-自分のリキッド・ピープル１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s04",
+      "limit": 4,
+      "evolution": {
+        "race": "リキッド・ピープル"
+      },
+      "breaker": 2,
+      "destroyToHand": true,
+      "supportBatch": "phase-1638",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1637,
+    "phase": 1638,
     "checkedAt": "2026-11-22",
-    "baseCount": 9143,
+    "baseCount": 9146,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9146,
+    "totalCount": 9149,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
+      "https://dm.takaratomy.co.jp/rule/qa/38597/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -317704,6 +317829,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1637,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9143,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9146,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
         ],
         "next": [
