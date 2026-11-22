@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9199,
-  "pendingNames": 2626,
-  "phase": 1654,
-  "added": 5,
+  "supportedNames": 9202,
+  "pendingNames": 2623,
+  "phase": 1655,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1469,
+    "クリーチャー": 1466,
     "呪文": 307,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1894,
+    "未対応の能力文": 1891,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -530193,34 +530193,201 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1655から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1655,
+      "checkedAt": "2026-11-22T10:03:56.262Z",
+      "baseline": "2397c432d4aebbf222d40c8ae8c028ca600c032c",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9199,
+      "currentNames": 9202,
+      "remainingNames": 298,
+      "added": [
+        {
+          "id": "dm38-015",
+          "name": "次元院のディメンジョン・ホーン"
+        },
+        {
+          "id": "dm28-009",
+          "name": "緑神龍ガムス・謙信"
+        },
+        {
+          "id": "promoy7-023",
+          "name": "魔光大帝ガイウス"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9199,
+        "uniqueNames": 9202,
+        "uniqueIds": 9202,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1655.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.629,
+          "log": "tmp/duema-phase-1655/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1655-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 33.723,
+          "log": "tmp/duema-phase-1655/final-focused.log",
+          "passed": 108,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=tap|Tap|budget|Budget|search|Search|gear|Gear|Gaius|Knight|death|Death|Flute|psychic|Psychic|simultaneous|generate|Generate|Jabbaranga",
+            "tests/standard439-effects.test.mjs",
+            "tests/standard550-effects.test.mjs",
+            "tests/standard852-effects.test.mjs",
+            "tests/standard1095-effects.test.mjs",
+            "tests/standard1531-effects.test.mjs",
+            "tests/standard1558-effects.test.mjs",
+            "tests/standard1594-effects.test.mjs",
+            "tests/standard1654-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.651,
+          "log": "tmp/duema-phase-1655/final-related.log",
+          "passed": 128,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.389,
+          "log": "tmp/duema-phase-1655/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.259,
+          "log": "tmp/duema-phase-1655/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.263,
+          "log": "tmp/duema-phase-1655/target9500.log"
+        }
+      },
+      "totalTestsPassed": 236,
+      "hashes": {
+        "dist/cards.json": "dfd802efeb8a085ef515f7cca5a1b42dfde7ffa9008b8ec6a98ea778fba338ca",
+        "dist/engine.js": "68377471088eb807186b9260a20f115682a77274a9172c0406cebf1fc069d4f5",
+        "dist/six-photo-rules.js": "a904fb7afa07bfba771a8cb8063e044444be65c043a6445376cad33beb2c6085",
+        "dist/online-compatibility.js": "5f50ba17e856c72ba145a40a22c1e5a1bb3ab418f156f4131fb78356961ae9a6",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.171",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1655.json",
+      "supported": 9202,
+      "pending": 2623,
+      "reason": "タップ能力の自壊後のマナ枚数を上限とする自然サイキック2体展開、侍流ジェネレートと墓地クロスギアの非実行登場、自己を含むナイト破壊時の任意呪文サーチを既存処理で実装する。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1655-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.979,
+          "log": "tmp/duema-phase-1655/focused.log"
+        },
+        {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1655-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.746,
+          "log": "tmp/duema-phase-1655/final-focused.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1656から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1654,
-    "nextPhase": 1655,
+    "lastVerifiedPhase": 1655,
+    "nextPhase": 1656,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm38-015",
-        "name": "次元院のディメンジョン・ホーン",
-        "reason": "タップ能力とマナ枚数によるサイキック合計コスト展開を既存処理で再現できるか確認。"
+        "id": "dm30-003",
+        "name": "黒騎士ザールフェルドII世",
+        "reason": "自分のターンの呪文使用監視、厳密に小さいコストの手札呪文、ナイト進化を既存処理で確認。"
       },
       {
-        "id": "dm28-009",
-        "name": "緑神龍ガムス・謙信",
-        "reason": "侍流ジェネレートと破壊時のクロスギア復帰を通常の登場・墓地展開処理で照合。"
+        "id": "dm14-062",
+        "name": "ドリル・ボウガン",
+        "reason": "クロスギアの移動と、外れた後の元の装備先のパワーを確認する専用処理の候補。"
       },
       {
-        "id": "promoy7-023",
-        "name": "魔光大帝ガイウス",
-        "reason": "既存のナイト破壊監視と山札の呪文任意サーチを利用できる候補。"
+        "id": "dm23ex2-070",
+        "name": "魔導プログラム",
+        "reason": "任意のクロスギア破壊と条件付きの連続公開、非進化ギア展開、残りのシャッフルを既存処理で確認。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9199種類・重複0、9500まで残り301。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1654とtools/target9500-registration-checkpoint-1654.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1655で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9202種類・重複0、9500まで残り298。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1655とtools/target9500-registration-checkpoint-1655.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1656で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -530300,9 +530467,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9199種類・重複0、9500まで残り301。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1654とtools/target9500-registration-checkpoint-1654.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1655で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9202種類・重複0、9500まで残り298。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1655とtools/target9500-registration-checkpoint-1655.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1656で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -530433,10 +530600,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9199,
-      "remaining": 301,
+      "currentCount": 9202,
+      "remaining": 298,
       "status": "active",
-      "phase": 1654
+      "phase": 1655
     },
     "deferredRegistrationCandidates": [
       {
@@ -530916,23 +531083,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1654,
-      "baseline": "d5fc077bd80072240471a22ee1af0b4150fbd48a",
-      "supportedNames": 9199,
-      "artifact": "tools/target9500-registration-checkpoint-1654.json",
-      "checkedAt": "2026-11-22T09:55:21.016Z"
+      "phase": 1655,
+      "baseline": "2397c432d4aebbf222d40c8ae8c028ca600c032c",
+      "supportedNames": 9202,
+      "artifact": "tools/target9500-registration-checkpoint-1655.json",
+      "checkedAt": "2026-11-22T10:03:56.262Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T09:55:21.016Z",
+      "checkedAt": "2026-11-22T10:03:56.262Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9199,
-      "remainingNames": 301,
+      "currentNames": 9202,
+      "remainingNames": 298,
       "duplicateNames": 0,
-      "engineVersion": "0.602.170",
+      "engineVersion": "0.602.171",
       "added": [
         {
           "id": "dmr12-008",
@@ -531449,6 +531616,18 @@
         {
           "id": "dm38-037",
           "name": "次元院の霊騎アスファル"
+        },
+        {
+          "id": "dm38-015",
+          "name": "次元院のディメンジョン・ホーン"
+        },
+        {
+          "id": "dm28-009",
+          "name": "緑神龍ガムス・謙信"
+        },
+        {
+          "id": "promoy7-023",
+          "name": "魔光大帝ガイウス"
         }
       ],
       "results": {
@@ -531564,10 +531743,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "5bb95a05d1673fe87fc3eae6b08e2d58c178102dce6194884b054b981074ae9f",
-        "dist/engine.js": "466b680151338f6be41bb561bac3b5a9f08e51a7e9f1cb96cd638af4f9a76641",
-        "dist/six-photo-rules.js": "a26344d8159cff59812c2898d9da8dab5dcbff478dfb0b3f320929d61ff01c50",
-        "dist/online-compatibility.js": "51442767622e55fdec03c99ab72b25551a5c8ada1937e94033bce1054df804b5",
+        "dist/cards.json": "dfd802efeb8a085ef515f7cca5a1b42dfde7ffa9008b8ec6a98ea778fba338ca",
+        "dist/engine.js": "68377471088eb807186b9260a20f115682a77274a9172c0406cebf1fc069d4f5",
+        "dist/six-photo-rules.js": "a904fb7afa07bfba771a8cb8063e044444be65c043a6445376cad33beb2c6085",
+        "dist/online-compatibility.js": "5f50ba17e856c72ba145a40a22c1e5a1bb3ab418f156f4131fb78356961ae9a6",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -531632,10 +531811,10 @@
       },
       "phaseRange": [
         1614,
-        1654
+        1655
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 129,
+      "addedNames": 132,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -531647,8 +531826,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.022,
-        "log": "tmp/duema-phase-1654/check.log"
+        "seconds": 20.389,
+        "log": "tmp/duema-phase-1655/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -531658,10 +531837,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.313,
-        "log": "tmp/duema-phase-1654/audit.log"
+        "seconds": 11.259,
+        "log": "tmp/duema-phase-1655/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1654.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1655.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -532750,11 +532929,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9199,
-      "remaining": 301,
+      "currentNames": 9202,
+      "remaining": 298,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T09:55:21.016Z"
+      "checkedAt": "2026-11-22T10:03:56.262Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -584765,20 +584944,20 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1654,
-      "added": 5,
-      "supportedNames": 9199,
+      "phase": 1655,
+      "added": 3,
+      "supportedNames": 9202,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1654.json",
+      "artifact": "tools/target9500-registration-checkpoint-1655.json",
       "relatedRulingVerificationPending": []
     }
   },
   "registrationStop": {
-    "phase": 1654,
+    "phase": 1655,
     "threshold": 9500,
-    "supportedNames": 9199,
-    "pendingNames": 2626,
-    "checkedAt": "2026-11-22T09:55:21.016Z",
+    "supportedNames": 9202,
+    "pendingNames": 2623,
+    "checkedAt": "2026-11-22T10:03:56.262Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

@@ -1,0 +1,132 @@
+{
+  "phase": 1655,
+  "checkedAt": "2026-11-22T10:03:56.262Z",
+  "baseline": "2397c432d4aebbf222d40c8ae8c028ca600c032c",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9199,
+  "currentNames": 9202,
+  "remainingNames": 298,
+  "added": [
+    {
+      "id": "dm38-015",
+      "name": "次元院のディメンジョン・ホーン"
+    },
+    {
+      "id": "dm28-009",
+      "name": "緑神龍ガムス・謙信"
+    },
+    {
+      "id": "promoy7-023",
+      "name": "魔光大帝ガイウス"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9199,
+    "uniqueNames": 9202,
+    "uniqueIds": 9202,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1655.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.629,
+      "log": "tmp/duema-phase-1655/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1655-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 33.723,
+      "log": "tmp/duema-phase-1655/final-focused.log",
+      "passed": 108,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=tap|Tap|budget|Budget|search|Search|gear|Gear|Gaius|Knight|death|Death|Flute|psychic|Psychic|simultaneous|generate|Generate|Jabbaranga",
+        "tests/standard439-effects.test.mjs",
+        "tests/standard550-effects.test.mjs",
+        "tests/standard852-effects.test.mjs",
+        "tests/standard1095-effects.test.mjs",
+        "tests/standard1531-effects.test.mjs",
+        "tests/standard1558-effects.test.mjs",
+        "tests/standard1594-effects.test.mjs",
+        "tests/standard1654-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 5.651,
+      "log": "tmp/duema-phase-1655/final-related.log",
+      "passed": 128,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.389,
+      "log": "tmp/duema-phase-1655/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.259,
+      "log": "tmp/duema-phase-1655/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.263,
+      "log": "tmp/duema-phase-1655/target9500.log"
+    }
+  },
+  "totalTestsPassed": 236,
+  "hashes": {
+    "dist/cards.json": "dfd802efeb8a085ef515f7cca5a1b42dfde7ffa9008b8ec6a98ea778fba338ca",
+    "dist/engine.js": "68377471088eb807186b9260a20f115682a77274a9172c0406cebf1fc069d4f5",
+    "dist/six-photo-rules.js": "a904fb7afa07bfba771a8cb8063e044444be65c043a6445376cad33beb2c6085",
+    "dist/online-compatibility.js": "5f50ba17e856c72ba145a40a22c1e5a1bb3ab418f156f4131fb78356961ae9a6",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.171",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

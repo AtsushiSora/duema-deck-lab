@@ -292697,22 +292697,127 @@
       "noPlayerAttack": true,
       "supportBatch": "phase-1654",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm38-015",
+      "name": "次元院のディメンジョン・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ホーン・ビースト",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊する。その後、コストの合計が自分のマナゾーンにあるカードの枚数以下になるよう、自然のサイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-015",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "ManaBudgetDeploy1655"
+        }
+      ],
+      "supportBatch": "phase-1655",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-009",
+      "name": "緑神龍ガムス・謙信",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アース・ドラゴン/サムライ",
+      "text": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nこのクリーチャーが破壊された時、クロスギアを１枚、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-009",
+      "limit": 4,
+      "samuraiGenerate": true,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1655",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy7-023",
+      "name": "魔光大帝ガイウス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "エンジェル・コマンド/ダークロード/ナイト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のナイト・クリーチャーが破壊された時、自分の山札を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy7-023",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "selfFilter": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "race": "ナイト"
+      },
+      "supportBatch": "phase-1655",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1654,
+    "phase": 1655,
     "checkedAt": "2026-11-22",
-    "baseCount": 9194,
-    "newEffectCards": 5,
+    "baseCount": 9199,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9199,
+    "totalCount": 9202,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43051/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37494/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37495/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37496/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
-      "https://dm.takaratomy.co.jp/rule/qa/40903/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37753/"
+      "https://dm.takaratomy.co.jp/rule/qa/40412/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -319776,6 +319881,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36256/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36257/",
           "https://dm.takaratomy.co.jp/rule/qa/31688/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1654,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9194,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9199,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43051/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+          "https://dm.takaratomy.co.jp/rule/qa/40903/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37753/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

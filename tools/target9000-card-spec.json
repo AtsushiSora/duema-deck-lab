@@ -33718,5 +33718,119 @@
       ],
       "noPlayerAttack": true
     }
+  },
+  "dm38-015": {
+    "phase": 1655,
+    "faces": [
+      {
+        "name": "次元院のディメンジョン・ホーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊する。その後、コストの合計が自分のマナゾーンにあるカードの枚数以下になるよう、自然のサイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+        "race": "ホーン・ビースト",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "ManaBudgetDeploy1655"
+        }
+      ]
+    }
+  },
+  "dm28-009": {
+    "phase": 1655,
+    "faces": [
+      {
+        "name": "緑神龍ガムス・謙信",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nこのクリーチャーが破壊された時、クロスギアを１枚、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "アース・ドラゴン/サムライ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "samuraiGenerate": true,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          }
+        }
+      ]
+    }
+  },
+  "promoy7-023": {
+    "phase": 1655,
+    "faces": [
+      {
+        "name": "魔光大帝ガイウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のナイト・クリーチャーが破壊された時、自分の山札を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "エンジェル・コマンド/ダークロード/ナイト",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "selfFilter": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "race": "ナイト"
+      }
+    }
   }
 }

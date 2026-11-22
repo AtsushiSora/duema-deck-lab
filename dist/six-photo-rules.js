@@ -4666,6 +4666,7 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_ManaBudgetDeploy1655':{start(s,t,[manaBudgetDeploy1655(s,t.p)]);break;}
  case'g34_TakuyaPenalty1654':{start(s,{...t,p:t.affected,controller:t.controller??t.p},[{op:'Select',zones:['battle','mana'],to:'grave',n:1,g187OwnPick:true,g1654CreatureOrMana:true,title:'墓地に置く自分のクリーチャー1体かマナ1枚を選ぶ'}]);break;}
  case'g34_ManaArrival1653':{const p=t.affected;start(s,{...t,p,controller:t.controller??t.p},[{op:'Select',origin:'mana',to:t.mode==='jet'?'deck':'grave',n:1,g187OwnPick:true,title:t.mode==='jet'?'山札の下に置く自分のマナを1枚選ぶ':'墓地に置く自分のマナを1枚選ぶ'}]);break;}
  case'g34_Prison1652':{
@@ -8641,6 +8642,7 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs);
+ function manaBudgetDeploy1655(s,p){return {op:'Select',origin:'extra',n:2,deploy:true,optional:true,g1104PsychicFaces:true,g550CostBudget:s.players[p].mana.length,filter:{g1085Psychic:true,color:'自然'},title:'マナ枚数以下の合計コストになるよう自然のサイキックを2体まで選ぶ'};}
  function secondManaPenalty1654(s,events){
   for(const {p,ordinal} of events)if(ordinal>=2)for(const source of creatures(s,1-p))
    if(!source.sealed&&!source.faceDown&&effective(source,s).g1654SecondManaPenalty)send(s,1-p,source,'TakuyaPenalty1654',{affected:p,controller:1-p});
@@ -10589,7 +10591,7 @@ export function createSixPhotoRules(api){
  crewBreak444(s,p,x,c){const rule=c.g444Crew,f=rule.filter;return 1+s.players[p].battle.filter(y=>!y.sealed&&api.isCreature(s,y)&&(!rule.other||y.uid!==x.uid)).filter(y=>{const d=effective(y,s,true);return(!f.race||race(d,f.race))&&(!f.multi||colors(d).length>1)&&(!f.blocker||d.blocker);}).length;},
  tapScore439(s,p,x,sourceDefs=null){
   const activeDefs=defs=>defs.flatMap(d=>d.op==='IfOwn'?activeDefs(ownCondition(s,p,d.filter,x.uid)?d.defs:d.elseDefs||[]):[d]),defs=activeDefs(sourceDefs||effective(x,s).g439Tap||[]),own=s.players[p],opp=s.players[1-p],t=task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0});
-  let score=modeScore(s,t,defs.filter(d=>!(d.op==='Target'&&d.owner==='self')))-2;
+  let score=modeScore(s,t,defs.map(d=>d.op==='ManaBudgetDeploy1655'?manaBudgetDeploy1655(s,p):d).filter(d=>!(d.op==='Target'&&d.owner==='self')))-2;
   for(const d of defs){
    if(d.op==='Look'&&!api.deckLocked(s,p)&&(own.deck?.length??own.deckCount)>1)score+=d.g201Search?10:d.g259OrderTop?4:0;
    if(d.op==='OpponentSelect'){const rows=creatures(s,1-p).filter(y=>!y.sealed&&matches(s,1-p,y,d.filter));if(rows.length)score+=8+Math.min(...rows.map(y=>cost(effective(y,s))*2));}
