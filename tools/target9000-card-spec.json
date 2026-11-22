@@ -29964,5 +29964,141 @@
         }
       ]
     }
+  },
+  "dmd05-005": {
+    "phase": 1626,
+    "faces": [
+      {
+        "name": "友情の炎獄ゲット",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のハンターを数える。その数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+        "race": "ヒューマノイド/ハンター/エイリアン",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Tasks": [
+        {
+          "op": "CountCost553",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "g1626TargetCost": true,
+          "def": {
+            "op": "Target",
+            "to": "grave"
+          }
+        }
+      ],
+      "effect": "sixPhoto"
+    }
+  },
+  "dmd08-019": {
+    "phase": 1626,
+    "faces": [
+      {
+        "name": "結杯の堕天カチャマサングン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、相手のコマンドを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノイズ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave",
+          "optional": true,
+          "then": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "race": "コマンド"
+              }
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto"
+    }
+  },
+  "dm31-025": {
+    "phase": 1626,
+    "faces": [
+      {
+        "name": "フォース・アゲイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分のクリーチャーを１体破壊する。その後、そのクリーチャーを自分の墓地からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1626ForceAgain": true
+        }
+      ]
+    }
+  },
+  "dmex08-279": {
+    "phase": 1626,
+    "faces": [
+      {
+        "name": "フォース・アゲイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n自分のクリーチャーを１体破壊する。その後、そのクリーチャーを自分の墓地からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1626ForceAgain": true
+        }
+      ]
+    }
   }
 }

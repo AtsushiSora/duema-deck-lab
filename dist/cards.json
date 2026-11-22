@@ -289661,19 +289661,116 @@
       ],
       "supportBatch": "phase-1625",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd05-005",
+      "name": "友情の炎獄ゲット",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のハンターを数える。その数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd05-005",
+      "limit": 4,
+      "g34Tasks": [
+        {
+          "op": "CountCost553",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "g1626TargetCost": true,
+          "def": {
+            "op": "Target",
+            "to": "grave"
+          }
+        }
+      ],
+      "effect": "sixPhoto",
+      "supportBatch": "phase-1626",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd08-019",
+      "name": "結杯の堕天カチャマサングン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アンノイズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、相手のコマンドを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-019",
+      "limit": 4,
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave",
+          "optional": true,
+          "then": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "race": "コマンド"
+              }
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "supportBatch": "phase-1626",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-025",
+      "name": "フォース・アゲイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n自分のクリーチャーを１体破壊する。その後、そのクリーチャーを自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-025",
+      "limit": 0,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1626ForceAgain": true
+        }
+      ],
+      "supportBatch": "phase-1626",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1625,
+    "phase": 1626,
     "checkedAt": "2026-11-22",
-    "baseCount": 9107,
+    "baseCount": 9110,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9110,
+    "totalCount": 9113,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36261/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35755/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316223,6 +316320,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36496/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1625,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9107,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9110,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36261/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

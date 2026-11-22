@@ -3841,7 +3841,11 @@ export function createSixPhotoRules(api){
  case'g34_ThrillSearch443':{const root=(s.extTasks||[]).find(q=>q.g443Root===t.batch),publicIds=root?.ids.length?t.ids:[];for(const uid of t.ids)release(s,t.p,uid);if(root)root.ids=[];start(s,t,[{...t.search,g443PublicIds:publicIds}]);break;}
  // Count once while resolving; later mana or battlefield changes do not rewrite the boost.
  case'g34_ManaColorBoost515':{const n=manaCivilizationCount(s,t.p);start(s,t,[{op:'Target',owner:'self',power:t.amount*n}]);break;}
- case'g34_CountCost553':{const n=s.players[t.p][t.zone].filter(y=>matches(s,t.p,y,t.filter)).length;start(s,t,[{...t.def,g513CostBudget:n,title:'合計コスト'+n+'以下になるよう2体まで選ぶ'}]);break;}
+ case'g34_CountCost553':{
+  const n=s.players[t.p][t.zone].filter(y=>matches(s,t.p,y,t.filter)).length;
+  start(s,t,[t.g1626TargetCost?{...t.def,filter:{...t.def.filter,max:n}}:
+   {...t.def,g513CostBudget:n,title:'合計コスト'+n+'以下になるよう2体まで選ぶ'}]);break;
+ }
  case'g34_SplitDeck1247':{
   const count=t.rows.length;
   choice(s,t,'先に選んだカードから何枚を山札の上に置く？',Array.from({length:count+1},(_,n)=>
@@ -8327,6 +8331,14 @@ export function createSixPhotoRules(api){
    move(s,[{player:t.p,uid:y.uid,to:'mana',toOwnerMana:true,tapped:true,controller:t.p}]);
    start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,
     filter:{creature:true,faceUp:true,belowCost:limit===Infinity?'∞':limit}}]);
+   break;
+  }
+  if(t.g1626ForceAgain){
+   const y=v&&own.battle.find(y=>y.uid===v.uid);if(!y)break;
+   // The same physical top card (or departing God part), never its evolution bases or a namesake.
+   const refs=[y,...(y.godLinks||[])].map(x=>({uid:x.uid,serial:(x.zoneSerial||0)+1}));
+   move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
+   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true},g960FormerBases:refs}]);
    break;
   }
   if(t.g786ReviveAtCost){

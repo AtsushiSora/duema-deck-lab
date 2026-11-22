@@ -1,0 +1,240 @@
+{
+  "phase": 1626,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9110,
+  "target": 9500,
+  "description": "ハンターの現数によるコスト上限、任意のシールド墓地化からコマンド破壊、破壊した同一カードの墓地からの再登場を実装。進化元・置換・使用制限を公式情報と実カードで検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35755/"
+  ],
+  "cards": [
+    {
+      "id": "dmd05-005",
+      "name": "友情の炎獄ゲット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd05-005",
+      "faces": [
+        {
+          "name": "友情の炎獄ゲット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のハンターを数える。その数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Tasks": [
+          {
+            "op": "CountCost553",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "g1626TargetCost": true,
+            "def": {
+              "op": "Target",
+              "to": "grave"
+            }
+          }
+        ],
+        "effect": "sixPhoto"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd05-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "48db4c6187e46eeb3f9cac4ddf5f65651c0efe61d20015de3b4ecffd83399d72",
+        "facesMatched": true,
+        "imageSha256": "e8a89a37011d4f1c3a4cac7ca83a83601c52ee2381defa370900584b4e36df0d",
+        "imageBytes": 120288,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力全文を確認し、公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DMD-05 ライジング・ダッシュ・デッキ 無限アタック!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd05-005",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmd08-019",
+      "name": "結杯の堕天カチャマサングン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-019",
+      "faces": [
+        {
+          "name": "結杯の堕天カチャマサングン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、相手のコマンドを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "race": "コマンド"
+                }
+              }
+            ]
+          }
+        ],
+        "effect": "sixPhoto"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd08-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "d5d79899809dc3d4f6849d2b2227e5b9851f808a5e1672f8cf462c95aaaf7686",
+        "facesMatched": true,
+        "imageSha256": "73b3ba93c62134cbc68bf15712390386f66fcc883f458379f4f36537a1a00775",
+        "imageBytes": 138891,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力全文を確認し、公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DMD-08 変形デッキセット DX鬼エンジェル"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-019",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm31-025",
+      "name": "フォース・アゲイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-025",
+      "faces": [
+        {
+          "name": "フォース・アゲイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分のクリーチャーを１体破壊する。その後、そのクリーチャーを自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g1626ForceAgain": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmex08-279",
+        "name": "フォース・アゲイン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-279",
+        "faces": [
+          {
+            "name": "フォース・アゲイン",
+            "typeText": "呪文",
+            "civilizationText": "水",
+            "civilizations": [
+              "水"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "S・トリガー S・トリガー\n自分のクリーチャーを１体破壊する。その後、そのクリーチャーを自分の墓地からバトルゾーンに出す。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "b2a3fb68b1cf24863e9fc15cec8440569f9eba70fea9e9366673103e6636c1be",
+          "facesMatched": true,
+          "imageSha256": "7067a177311b0b4aa46d15362102e763ad6f425746d309e06aded221d295ae94",
+          "imageBytes": 134768,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式再録画像の基本情報と全文を元版と照合。一致。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-279.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "eec53a2cd69319ff7e5b72d6f8d98b052298258f134c7abbf7dc67347bcbc7c1",
+        "facesMatched": true,
+        "imageSha256": "aab42e43ad03d149a814c0c454660042759d00afb12055a9f7fc55b275afbd88",
+        "imageBytes": 100670,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力全文を確認し、公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DMX-22 革命 超ブラック・ボックス・パック",
+        "DM-31 戦国編 第4弾 戦国武闘会(グレイテスト・チャンピオン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-025",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存処理を再利用できる未対応カード3〜5種類を公式全文から選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd05-005": 4,
+      "dmd08-019": 4,
+      "dm31-025": 0
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+      "checkedAt": "2026-11-22",
+      "sha256": "5a8ad99067eaa052edb7092e2be31be26bc2a1893e947aebdad2aba2607c3b91"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35755/",
+      "checkedAt": "2026-11-22",
+      "sha256": "b5a1f09fda2c3eaeddbd2817a199abbd29a5a7a03642dc1f99bc3242599aa9da"
+    }
+  ]
+}
