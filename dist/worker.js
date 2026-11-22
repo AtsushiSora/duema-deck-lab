@@ -1,6 +1,6 @@
 import {copyExtraDeck} from './deck-format.js';
 import {historicalMetadata} from './historical-regulations.js';
-import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.722.6';
+import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.722.7';
 self.onmessage=async({data})=>{
  try{setCards(data.cards);const results=[];
  for(let oi=0;oi<data.opponents.length;oi++){

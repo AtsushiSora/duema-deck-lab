@@ -1,0 +1,130 @@
+{
+  "version": "0.722.7",
+  "baseCommit": "1757ea87e71de915d3b6d1b57733e0764e43a513",
+  "scope": "Verified phases 1661 and 1662; unverified phase 1663 working changes excluded and preserved.",
+  "actualCards": {
+    "uniqueNames": 9227,
+    "uniqueIds": 9227,
+    "duplicateNames": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "validation": {
+    "runs": [
+      {
+        "name": "online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.528,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/online.log"
+      },
+      {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.429,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/target9500.log"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.103,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/check.log"
+      },
+      {
+        "name": "cards",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1661-effects.test.mjs",
+          "tests/standard1662-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.8,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/cards.log"
+      },
+      {
+        "name": "updates",
+        "command": [
+          "node",
+          "--test",
+          "tests/app-updates.test.mjs",
+          "tests/home-navigation.test.mjs",
+          "tests/mana-payment.test.mjs",
+          "tests/mana-summon-ui.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 8.497,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/updates.log"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.801,
+        "log": "tmp/duema-publish-7227/snapshot/tmp/duema-publish-7227/audit.log"
+      }
+    ],
+    "testsPassed": 481,
+    "noWholeNpmTest": true,
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "card-art.js",
+      "card-images.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "hand-ui.js",
+      "log-card-links.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online.js",
+      "release-notes.js",
+      "screenshot-report.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "worker.js"
+    ]
+  },
+  "automaticNetlifyUpdatesStopped": true,
+  "preserved": [
+    "Existing card IDs, saved decks, histories and save format.",
+    "Historical full npm test remains interrupted/unconfirmed; long-test and held ruling items are not marked complete."
+  ],
+  "publication": {
+    "status": "prepared"
+  }
+}
