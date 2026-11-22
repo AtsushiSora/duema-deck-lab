@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.16';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.197';
+export const ENGINE_VERSION='0.602.198';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -2210,7 +2210,7 @@ function leaveOptions(s,row){
  const alreadyMilling=batch.rows.filter(r=>r.player===row.player&&r.plan?.kind==='millStay1351').length;
  const millStay1351=!row.replacement&&isCreature(s,host)&&current.g1351MillStay&&
   graveMillAvailable1351(s,row.player)>=(alreadyMilling+1)*current.g1351MillStay;
- return {jinnai,neoUnder:neoDeathHosts1661(s,row,sacrifices),kappaMana:kappaMana1603(s,row),millStay1351,graveBottomStay:graveBottomPayment1202(s,row).length>=row.g1202GraveBottomStay,skullMoon,battleBottomSource:row.battleBottomSource,ninjaToMana,hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!zoneLocked&&!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!zoneLocked&&!!(row.destroyToMana||row.g575TappedMana),crystalMana:!zoneLocked&&!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:!zoneLocked&&(row.yamata||row.destroyToMana||row.g575OptionalMana),omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,allyLeaveHand:row.g1294AllyLeaveHand,
+ return {jinnai,neoUnder:neoDeathHosts1661(s,row,sacrifices),kappaMana:kappaMana1603(s,row),millStay1351,graveBottomStay:graveBottomPayment1202(s,row).length>=row.g1202GraveBottomStay,skullMoon,battleBottomSource:row.battleBottomSource,battleTapSource1682:row.battleTapSource1682,ninjaToMana,hachi:hunterSavers1138(s,row,host,sacrifices),psychicRelease:row.psychicRelease,lGate:lGateOptions955(s,row),g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathShield:!zoneLocked&&!!row.g842DestroyShield,deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!zoneLocked&&!!(row.destroyToMana||row.g575TappedMana),crystalMana:!zoneLocked&&!!row.crystalMana,tappedMana:row.g575TappedMana,yamata:!zoneLocked&&(row.yamata||row.destroyToMana||row.g575OptionalMana),omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand||row.g1088LeaveToHand,allyLeaveHand:row.g1294AllyLeaveHand,
   attachShields,takonchu1274:row.takonchu1274,dokindamSeal,driverMana,returnDiscard1156:row.g1156ReturnDiscard,handSave1157:handSaveOptions1157(s,row,batch),
   kent:[...shieldSavers,...(!row.replacement&&String(effectiveCard(host,s).race).includes('ジョーカーズ')?
    own.battle.flatMap(x=>{
@@ -2322,7 +2322,7 @@ function moveCreatures(s,moves,after=null){
  const returnToOwner=handRule==='owner'&&!shevaProtection(s,m.player);
  const handReturn=handRule==='owner'?returnToOwner:handRule;
  // Use the normal replacement choice when Caddy has competing destinations.
- const caddyManaReplacement=!!(c.caddy&&isDestruction&&(battleBottomSource||armorStay||handReturn));
+ const caddyManaReplacement=!!(c.caddy&&isDestruction&&(battleBottomSource||m.battleTapSource1682||armorStay||handReturn));
  const returnDiscard=!m.replacement&&(isDestruction&&c.g1156ReturnDiscard||(m.to||'grave')==='grave'&&(!m.toOwnerGrave||(top.cardOwner??m.player)===m.player)&&c.g1608GraveReturnDiscard);
  const handSave=isDestruction&&!m.replacement&&c.g1157HandSave;
  const manaMoves=isDestruction&&!m.replacement?extra.six.deathMana575(s,m.player,top):null;
@@ -2373,7 +2373,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  for(const who of [s.active,1-s.active])for(const row of s.leaving.rows.filter(x=>x.player===who&&!x.plan)){
   const opts=leaveOptions(s,row),foreign=opts.g47.filter(x=>x.controller!==who),ownSeed=opts.g47.filter(x=>x.controller===who);
   if(s.active!==who){
-   if(opts.battleBottomSource&&!foreign.length){row.plan={kind:'battleBottom1190'};continue;}
+   if((opts.battleBottomSource||opts.battleTapSource1682)&&!foreign.length){row.plan={kind:opts.battleTapSource1682?'battleTap1682':'battleBottom1190'};continue;}
    if(foreign.length){s.decision={type:'leaveReplace',player:s.active,owner:who,uid:row.uid,foreignOnly:true};return;}
   }
   // Keep both choices when a replacement specifies tapped mana and another does not.
@@ -2391,7 +2391,8 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(!row.abyssSend&&row.plan?.kind==='leave'){
    const opts=leaveOptions(s,row),foreign=opts.g47.filter(x=>x.controller!==row.player);
    if(foreign.length){delete row.plan;s.decision={type:'leaveReplace',player:1-row.player,owner:row.player,uid:row.uid,foreignOnly:true,ownerPassed:true};return;}
-   if(opts.battleBottomSource)row.plan={kind:'battleBottom1190'};
+   if(opts.battleTapSource1682)row.plan={kind:'battleTap1682'};
+   else if(opts.battleBottomSource)row.plan={kind:'battleBottom1190'};
   }
   const top=ownCardForRow(s,row);
   const mustUnlink=['leave','battleBottom1190'].includes(row.plan.kind)||row.plan.kind==='omega'&&(row.jagglaReturn1190||row.plan.allyLeaveHand)||
@@ -2629,6 +2630,12 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(plan.kind==='millStay1351'){
    mill(s,row.player,5,{together:true,replacement:true});
    log(s,row.player,'stay',card(top).name+'を残すかわりに山札から5枚を墓地へ',{cardId:top.cardId});
+   continue;
+  }
+  if(plan.kind==='battleTap1682'){
+   tapCard(s,row.player,top,1-row.player);
+   top.skipUntap=true;
+   log(s,row.player,'battleTap',card(row.battleTapSource1682).name+'で破壊するかわりにタップし、次のターン開始にアンタップしない',{cardId:row.battleTapSource1682});
    continue;
   }
   if(plan.kind==='dokindam1276')continue;
@@ -4563,7 +4570,8 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
   if(effectiveCard(unit,s).g1550LossBounce)late.push({controller:player,source:unit.cardId,g1155Bounce:[battleRefs1155(opponent)]});
   if(extra.firebird.battleSafe(s,unit)||extra.six.battleSafe(s,unit,opponent,otherPower))return;
   const bottom=player!==opponentPlayer&&effectiveCard(opponent,s).g1190OpponentBattleLossToBottom;
-  moves.push({player,uid:unit.uid,battlePower:ownPower,...(bottom?{battleBottomSource:opponent.cardId}:{})});
+  const tap=player!==opponentPlayer&&effectiveCard(opponent,s).g1682OpponentBattleTap;
+  moves.push({player,uid:unit.uid,battlePower:ownPower,...(bottom?{battleBottomSource:opponent.cardId}:{}),...(tap?{battleTapSource1682:opponent.cardId}:{})});
  };
  if(!aw)battleLoss(pa,a,ap,pd,b,bp);
  if(!bw)battleLoss(pd,b,bp,pa,a,ap);
@@ -5393,7 +5401,8 @@ function legalActionsCore1363(s){
    if(!d.foreignOnly&&v.kappaMana.length>=3)out.push(option('replaceKappa1603',name+'のエターナル・Κ：裏向きのマナ3枚を表向きにして残す'));
    for(const x of v.g47.filter(x=>x.controller===p))out.push(option('g47Replace',x.label,{choice:x.value,cardId:x.cardId}));
    if(d.foreignOnly){
-    if(v.battleBottomSource)out.push(option('replaceBattleBottom1190',name+'をかわりに山札の一番下に置く',{cardId:v.battleBottomSource}));
+    if(v.battleTapSource1682)out.push(option('replaceBattleTap1682',name+'を破壊するかわりにタップする',{cardId:v.battleTapSource1682}));
+    else if(v.battleBottomSource)out.push(option('replaceBattleBottom1190',name+'をかわりに山札の一番下に置く',{cardId:v.battleBottomSource}));
     else out.push(option('g47Decline','ストラトバッグの置換を使わない'));
     return out.map(a=>({...a,player:p}));
    }
@@ -5792,6 +5801,10 @@ function applyStepCore1363(s,action){
  if(a.kind==='g1088Kent'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'g1088Kent',...a.choice};s.decision=null;}
  if(a.kind==='g393JWD'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p);row.plan={kind:'g393JWD',...a.choice};s.decision=null;}
  if(a.kind==='g47Replace'){const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===(d.owner??p));s.decision=null;extra.seed.beginReplacement(s,row,a.choice);}
+ if(a.kind==='replaceBattleTap1682'){
+  s.leaving.rows.find(x=>x.uid===d.uid&&x.player===d.owner).plan={kind:'battleTap1682'};
+  s.decision=null;
+ }
  if(a.kind==='replaceBattleBottom1190'){
   s.leaving.rows.find(x=>x.uid===d.uid&&x.player===d.owner).plan={kind:'battleBottom1190'};
   s.decision=null;

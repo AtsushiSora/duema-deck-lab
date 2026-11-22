@@ -1406,10 +1406,16 @@ export function createSixPhotoRules(api){
   const seen=rows.flatMap(r=>r.seen.map(x=>({id:x.cardId,label:r.label})));
   if(t.hand)seen.push(...s.players[1-t.p].hand.map(x=>({id:x.cardId,label:'相手の手札'})));
   if(!seen.length)return;
-  const uid=t.swap||t.g1262GroupSwap?rows[0]?.x.uid:null;
+  const uid=t.swap||t.g1262GroupSwap||t.g1682MiniRobo?rows[0]?.x.uid:null;
   const swap=uid&&(t.g1262GroupSwap?api.canSwapShieldGroup1262(s,t.p,uid):api.canSwapShield585(s,t.p,uid));
   const zone=t.opponentDeckTop?(t.hand?'相手の山札の上と手札':'相手の山札の上'):t.hand?'手札とシールド':'シールド';
   api.log(s,t.p,'look',card(t.source).name+'で'+zone+'を確認（内容は非公開）',{cardId:t.source});
+  if(t.g1682MiniRobo){
+   choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,shieldUid:uid,shieldOwner:rows[0].p},
+    '確認したシールドを持ち主の山札の一番下に置かせますか？',
+    [opt('山札の下に置かせ、新しいシールドを追加する',true,seen.some(r=>faces(card(r.id)).some(c=>c.trigger))?10:0),opt('確認を終える',null,1)]);
+   return;
+  }
   if(t.g1166RevealShield){
    const cards=rows[0].seen;
    choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,g1166ShieldCards:cards.map(x=>x.uid)},
@@ -5162,6 +5168,23 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_MiniOrder1682':{
+  const root=api.findShield(s.players[t.shieldOwner],t.shieldUid);
+  if(!root)break;
+  const cards=api.shieldCards(root),ordered=t.ordered||[],order=[s.active,1-s.active];
+  const chooser=order.find(p=>cards.filter(x=>(x.cardOwner??t.shieldOwner)===p).some(x=>!ordered.includes(x.uid)));
+  if(chooser===undefined){
+   const {g585Peek,...next}=t,follow={...next,op:'g34_ShieldTop',p:t.shieldOwner,n:1};
+   api.moveShields(s,t.shieldOwner,[t.shieldUid],'deck',{toOwnerDeck:true,g1659DeckOrder:ordered});
+   if(!api.deferShieldMove1352(s,follow))put(s,follow);
+   break;
+  }
+  const remaining=cards.filter(x=>(x.cardOwner??t.shieldOwner)===chooser&&!ordered.includes(x.uid));
+  if(remaining.length===1){put(s,{...t,ordered:[...ordered,remaining[0].uid]});break;}
+  choice(s,{...t,g585Peek:remaining.map(x=>({id:x.cardId,label:'自分の山札の下に置くカード'}))},
+   '自分の山札の下に置くカードを上から順に選ぶ',remaining.map(x=>opt(card(x).name,x.uid,0,x.cardId)),chooser);
+  break;
+ }
  case'g34_OrderShield1262':{
   const root=api.findShield(own,t.shieldUid);
   const remaining=api.shieldCards(root).filter(x=>!api.shieldLeavesToGrave(s,t.p,x)&&!t.ordered.includes(x.uid));
@@ -6037,6 +6060,24 @@ export function createSixPhotoRules(api){
    controller:t.controller??t.p
   })));
   break;
+ case'g34_DisMin1682':{
+  const order=[s.active,1-s.active],chosen=t.chosen||[];
+  if(chosen.length<order.length){
+   const p=order[chosen.length];
+   choice(s,t,'山札の上から1枚をタップしてマナに置きますか？',
+    [...(api.hasAvailableDeckCard(s,p)?[opt('マナに置く',true,s.players[p].deck.length>1?5:-100)]:[]),opt('置かない',false,0)],p);
+   break;
+  }
+  // QA44371: decide in turn order before moving either player's card.
+  // Snapshot replacement destinations before this simultaneous movement.
+  const rows=order.flatMap((p,i)=>chosen[i]?[{p,dest:api.deckDestination1365(s,p,'mana',api.deckRedirect(s,p)||api.manaRedirect(s,p)?'grave':'mana')}]:[]);
+  for(const row of rows)row.x=api.takeTop(s,row.p);
+  for(const {p,dest,x} of rows){if(!x)continue;clear(x,dest);if(dest==='mana')x.tapped=true;api.addZone(s,p,dest,x);}
+  const opponentPlaced=rows.some(({p,dest,x})=>p!==t.p&&x&&dest==='mana'&&!api.deckWasShuffled1365(s,x)&&s.players[p].mana.some(y=>y.uid===x.uid));
+  if(opponentPlaced)start(s,t,[{op:'Ramp',n:1,tapped:true}]);
+  for(const {p,x} of rows)if(x)api.deckCheck(s,p);
+  break;
+ }
  case'g34_EachRamp1532':
   put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Ramp',p,controller:t.controller??t.p})));
   break;
@@ -7758,6 +7799,7 @@ export function createSixPhotoRules(api){
   else if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}
   break;
  case'g34_PeekRead585':
+  if(t.g1682MiniRobo){if(v)put(s,{...t,op:'g34_MiniOrder1682',ordered:[]});break;}
   if(t.g1166RevealShield){
    if(v){
     const cards=own.shields.flatMap(api.shieldCards).filter(x=>t.g1166ShieldCards.includes(x.uid));
@@ -7774,6 +7816,8 @@ export function createSixPhotoRules(api){
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;
+ case'g34_DisMin1682':put(s,{...t,chosen:[...(t.chosen||[]),!!v]});break;
+ case'g34_MiniOrder1682':put(s,{...t,ordered:[...(t.ordered||[]),v]});break;
  case'g34_OrderShield1262':
   if(v){const {g585Peek,...next}=t;put(s,{...next,ordered:[...t.ordered,v]});}
   break;
