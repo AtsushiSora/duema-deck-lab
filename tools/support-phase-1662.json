@@ -1,0 +1,398 @@
+{
+  "phase": 1662,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9224,
+  "target": 9500,
+  "description": "ドラゴン攻撃時の任意マナ追加、破壊時のみのマナ3枚置換、自分の他の火クリーチャーへのスピードアタッカー、紫電・ドラゴン名限定の任意山札シャッフル置換、光のカード全般を捨てる破壊置換を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36473/"
+  ],
+  "cards": [
+    {
+      "id": "dmx06-003",
+      "name": "THE 不死身・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-003",
+      "faces": [
+        {
+          "name": "THE 不死身・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分のマナゾーンから墓地に置いてもよい。",
+          "race": "レインボー・コマンド・ドラゴン/ハンター",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g1662DestroyManaGuard": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx06-003.jpg",
+      "sameNameProducts": [
+        "DMX-06 大乱闘!ヒーローズ・ビクトリー・パック 燃えるド根性大作戦"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-003",
+        "result": "公式の同名収録一覧を確認。元のIDを維持し、別版の未照合エイリアスは追加しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "d60c8824c42d1dd2d7b9c9bb46d60f1fe5b8e4b19256711774e13844ddf82dfb",
+        "facesMatched": true,
+        "imageSha256": "2016c1fc68168f02a3f90cf037eb9b9041cd8f0ff7b88f180e042cb39f72c246",
+        "imageBytes": 120273,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ1・全能力文を目視照合。"
+      },
+      "catalogueNameMatches": [
+        "dmx06-003"
+      ]
+    },
+    {
+      "id": "dm35-031",
+      "name": "ボルコフ・紫苑",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-031",
+      "faces": [
+        {
+          "name": "ボルコフ・紫苑",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分の他の火のクリーチャーはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分の、名前に《紫電・ドラゴン》とあるクリーチャーが破壊される時、そのクリーチャーを墓地に置くかわりに山札に戻してシャッフルしてもよい。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "color": "火"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g1662ShidenShuffle": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-031.jpg",
+      "sameNameProducts": [
+        "DM-35 神化編 第4弾 超極竜 VS 六体神 (ネバーエンディング・サーガ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-031",
+        "result": "公式の同名収録一覧を確認。元のIDを維持し、別版の未照合エイリアスは追加しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "4c3b6b4c3554cd0f3f203b80d903d678a439793c5f859ad11d49a525f39c401c",
+        "facesMatched": true,
+        "imageSha256": "d3cd404383634a4e4412deed6d3115ba930876988cac278fb681dbb079cd5860",
+        "imageBytes": 125053,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ1・全能力文を目視照合。"
+      },
+      "catalogueNameMatches": [
+        "dm35-031"
+      ]
+    },
+    {
+      "id": "dmr03-030",
+      "name": "強欲ジェラシー・シャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-030",
+      "faces": [
+        {
+          "name": "強欲ジェラシー・シャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊される時、かわりに光のカードを１枚、自分の手札から捨ててもよい。",
+          "race": "イニシエート/ヘドリアン/ハンター",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "slayer": true,
+        "g845LightDiscard": "card"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-030.jpg",
+      "sameNameProducts": [
+        "DMR-03 エピソード1 ガイアール・ビクトリー",
+        "プロモ限定カード 10期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-030",
+        "result": "公式の同名収録一覧を確認。元のIDを維持し、別版の未照合エイリアスは追加しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "cd60bebd3f6a94097e55300f9f0e23eb473b037b2ab80e16182af274eb228afe",
+        "facesMatched": true,
+        "imageSha256": "ece9ba7abf2179ec62daabf1a5ae3719a8c1e6bc9126b2a5128ec775dc33acff",
+        "imageBytes": 141620,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ1・全能力文を目視照合。"
+      },
+      "catalogueNameMatches": [
+        "dmr03-030"
+      ]
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
+      "checkedAt": "2026-11-22T12:11:17.993Z",
+      "sha256": "40e81c41272490cfc0ca03db571ba54bb9530deecd58430a7808684178a494b4",
+      "bytes": 92628
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36473/",
+      "checkedAt": "2026-11-22T12:11:17.994Z",
+      "sha256": "043e135b3f6125bf28ead112e1fc86bbff21ad0a49e2cdc70fddf8f90f6be48a",
+      "bytes": 92552
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx06-003": 4,
+      "dm35-031": 4,
+      "dmr03-030": 4
+    }
+  },
+  "rulingNotes": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
+      "result": "QA36488：マナが2枚だけなら3枚の置換は使えない。任意でちょうど3枚を支払う。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36473/",
+      "result": "QA36473：光のカードを捨てると破壊せずバトルゾーンにとどまる。既存の光クリーチャー限定のシャン・ベルとは条件を分ける。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-031",
+      "result": "紫電・ドラゴンを名前に含む自分のクリーチャーだけに破壊時の任意置換を適用。火のSAは他の自軍クリーチャーだけ。公式ページに個別QAのリンクはないため、既存の同時移動・任意シャッフルと一般置換の処理を用いて固有テストする。"
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-22T12:19:16.833Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1662.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.353,
+        "log": "tmp/duema-phase-1662/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "final-focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1662-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.499,
+        "log": "tmp/duema-phase-1662/final-focused.log",
+        "passed": 121,
+        "failed": 0,
+        "logSha256": "bb18756e1b3b311455ec0baec763512e08e7e5995f109be3ed363b0f3d922a65"
+      },
+      "final-edge-completion": {
+        "name": "final-edge-completion",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "library lock|zero-power resource",
+          "tests/standard1662-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.728,
+        "log": "tmp/duema-phase-1662/final-edge-completion.log",
+        "passed": 6,
+        "failed": 0,
+        "logSha256": "6ff2e024d263f212f95b1390c9451bc5d8884d76ab642d910696c542a69e26b0"
+      },
+      "final-related": {
+        "name": "final-related",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=4",
+          "tests/vegeta.test.mjs",
+          "tests/standard845-effects.test.mjs",
+          "tests/standard831-effects.test.mjs",
+          "tests/standard1614-effects.test.mjs",
+          "tests/standard731-effects.test.mjs",
+          "tests/standard252-effects.test.mjs",
+          "tests/standard1661-effects.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.688,
+        "log": "tmp/duema-phase-1662/final-related.log",
+        "passed": 205,
+        "failed": 0,
+        "logSha256": "deb40ed061b8e2d45084324394aae407cf1fcbb4d17ff8e75d324edf340a5669"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.992,
+        "log": "tmp/duema-phase-1662/check.log",
+        "logSha256": "26908cc50035949148a295a2758e5262ef64fb921706968705e8908d388219b7"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.334,
+        "log": "tmp/duema-phase-1662/audit.log",
+        "logSha256": "42f040e802bb91fb243be2a0e470d10bea126f4b3e45d2118f9c1dbbfecdb823"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.314,
+        "log": "tmp/duema-phase-1662/target9500.log",
+        "logSha256": "d640e2a5a76f280356cbcd71911716f2f4b667138b64e8774cc38890c73a804f"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1662/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.366,
+        "log": "tmp/duema-phase-1662/invariants.log",
+        "logSha256": "519da449626de36e7e00c8458c529b111fbfb28b9092443cecd0651c0cb67a8e"
+      }
+    },
+    "totalTestsPassed": 332,
+    "focusedTestsPassed": 127,
+    "relatedTestsPassed": 205,
+    "disjointAdditionalCases": true
+  },
+  "validationNotes": [
+    "固有検証121件に加え、後から追加した山札ロック・パワー0の資源保護6件を別の肯定名フィルターで検証した。重複なく固有127件と関連205件の計332件が通過。",
+    "初回テストの効果順序アクション名・シャッフルの確認方法を修正した。非破壊移動は実際のg815PutInGrave、先行置換はパネスコの実際の身代わり破壊を使うfixtureへ修正。外から付与したSAも能力無視の対象となるため、能力無視中のクリーチャーは攻撃不可という期待値で検証した。",
+    "強欲ジェラシー・シャンのプロモ限定カード10期の収録情報は公式の同名一覧で確認。未確認の版ID・画像のエイリアスは作らず、照合したDMR03版の正規IDだけを登録。",
+    "今回3種に未完了の固有検証はない。過去の全体npm test・既存長時間群・保留中の公式照合と裁定再現の状態は維持する。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr06-035",
+      "name": "救済の精霊ニャッタラモン",
+      "reason": "アンノウン限定のセイバーとブロッカー・プレイヤー攻撃禁止を公式照合して既存の身代わり破壊で実装。"
+    },
+    {
+      "id": "dmx02-003",
+      "name": "スーパー・サイチェン・ピッピー",
+      "reason": "ハンター限定セイバーと、相手ターンに実際に手札から捨てられた時のガイアール・カイザー展開を照合。"
+    },
+    {
+      "id": "dm23bd4-009",
+      "name": "龍の世界 龍幻郷",
+      "reason": "フィールドの登場時タップマナ追加、ドラゴンへのSA、フィールドを使うウルトラ・セイバーの全文を照合。"
+    }
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "focused-first",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1662-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 13.176,
+      "log": "tmp/duema-phase-1662/focused-first.log"
+    },
+    {
+      "name": "corrected-edges",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "twoSources|putGrave|replacement|Bolkof grants|Bolkof protects",
+        "tests/standard1662-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.279,
+      "log": "tmp/duema-phase-1662/corrected-edges.log"
+    }
+  ]
+}

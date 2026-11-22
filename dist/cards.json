@@ -293480,20 +293480,107 @@
       "g1661DestroyUnderNeo": true,
       "supportBatch": "phase-1661",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx06-003",
+      "name": "THE 不死身・カイザー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "レインボー・コマンド・ドラゴン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分のマナゾーンから墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-003",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1662DestroyManaGuard": true,
+      "supportBatch": "phase-1662",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-031",
+      "name": "ボルコフ・紫苑",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "バトルゾーンにある自分の他の火のクリーチャーはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分の、名前に《紫電・ドラゴン》とあるクリーチャーが破壊される時、そのクリーチャーを墓地に置くかわりに山札に戻してシャッフルしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-031",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "color": "火"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g1662ShidenShuffle": true,
+      "supportBatch": "phase-1662",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-030",
+      "name": "強欲ジェラシー・シャン",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1500,
+      "race": "イニシエート/ヘドリアン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊される時、かわりに光のカードを１枚、自分の手札から捨ててもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-030",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "slayer": true,
+      "g845LightDiscard": "card",
+      "supportBatch": "phase-1662",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1661,
+    "phase": 1662,
     "checkedAt": "2026-11-22",
-    "baseCount": 9219,
-    "newEffectCards": 5,
+    "baseCount": 9224,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9224,
+    "totalCount": 9227,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31621/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36473/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -320700,6 +320787,23 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1661,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9219,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9224,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31621/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
         ]
       }
     ]

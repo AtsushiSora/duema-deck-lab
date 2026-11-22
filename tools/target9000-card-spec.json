@@ -34624,5 +34624,102 @@
       "noPlayerAttack": true,
       "g1661DestroyUnderNeo": true
     }
+  },
+  "dmx06-003": {
+    "phase": 1662,
+    "faces": [
+      {
+        "name": "THE 不死身・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分のマナゾーンから墓地に置いてもよい。",
+        "race": "レインボー・コマンド・ドラゴン/ハンター",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "g1662DestroyManaGuard": true
+    }
+  },
+  "dm35-031": {
+    "phase": 1662,
+    "faces": [
+      {
+        "name": "ボルコフ・紫苑",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "バトルゾーンにある自分の他の火のクリーチャーはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分の、名前に《紫電・ドラゴン》とあるクリーチャーが破壊される時、そのクリーチャーを墓地に置くかわりに山札に戻してシャッフルしてもよい。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "color": "火"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g1662ShidenShuffle": true
+    }
+  },
+  "dmr03-030": {
+    "phase": 1662,
+    "faces": [
+      {
+        "name": "強欲ジェラシー・シャン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊される時、かわりに光のカードを１枚、自分の手札から捨ててもよい。",
+        "race": "イニシエート/ヘドリアン/ハンター",
+        "powerText": "1500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "slayer": true,
+      "g845LightDiscard": "card"
+    }
   }
 }
