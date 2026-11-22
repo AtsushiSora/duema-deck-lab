@@ -292802,21 +292802,129 @@
       },
       "supportBatch": "phase-1655",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm30-003",
+      "name": "黒騎士ザールフェルドII世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "デーモン・コマンド/パラサイトワーム/ナイト",
+      "text": "進化-自分のナイト・クリーチャー１体の上に置く。\n自分のターンに呪文を唱えた時、その呪文よりコストが小さい呪文を自分の手札から１枚選び、コストを支払わずに唱えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-003",
+      "limit": 4,
+      "evolution": {
+        "race": "ナイト"
+      },
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "self",
+        "ownTurn": true,
+        "defs": [
+          {
+            "op": "CastCostSpell1656"
+          }
+        ]
+      },
+      "supportBatch": "phase-1656",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-062",
+      "name": "ドリル・ボウガン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置く。その後、選んだクロスギアをクロスしていたクリーチャーのパワーが2000以下なら、そのクリーチャーも破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-062",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DrillBow1656"
+        }
+      ],
+      "supportBatch": "phase-1656",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-070",
+      "name": "魔導プログラム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分のクロスギアを１つ破壊してもよい。そうしたら、自分の山札の上から、進化ではないクロスギアが出るまで、カードを表向きにする。そのクロスギアを出し、こうして表向きにした残りのカードをすべてシャッフルし、山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "self",
+          "origin": "battle",
+          "to": "grave",
+          "n": 1,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "title": "破壊して魔導プログラムを使う自分のクロスギアを1つ選ぶ（任意）",
+          "afterBattleSelect": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "n": "all",
+              "public": true,
+              "g1603UntilFilter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "filter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "limit": 1,
+              "g749Required": true,
+              "rest": "randomBottom1520",
+              "title": "最初に公開した進化ではないクロスギアを出す"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1656",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1655,
+    "phase": 1656,
     "checkedAt": "2026-11-22",
-    "baseCount": 9199,
+    "baseCount": 9202,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9202,
+    "totalCount": 9205,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37494/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37495/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37496/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35729/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
       "https://dm.takaratomy.co.jp/rule/qa/40412/"
     ],
     "next": [
@@ -319900,6 +320008,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/40903/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37753/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1655,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9199,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9202,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37494/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37495/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37496/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+          "https://dm.takaratomy.co.jp/rule/qa/40412/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

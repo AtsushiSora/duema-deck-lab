@@ -9210,3 +9210,7 @@ CARD_IMAGES["dm38-037"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/d
 CARD_IMAGES["dm38-015"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-015.jpg";
 CARD_IMAGES["dm28-009"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-009.jpg";
 CARD_IMAGES["promoy7-023"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy7-023.jpg";
+
+CARD_IMAGES["dm30-003"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-003.jpg";
+CARD_IMAGES["dm14-062"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-062.jpg";
+CARD_IMAGES["dm23ex2-070"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-070.jpg";

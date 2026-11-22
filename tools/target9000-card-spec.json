@@ -33832,5 +33832,124 @@
         "race": "ナイト"
       }
     }
+  },
+  "dm30-003": {
+    "phase": 1656,
+    "faces": [
+      {
+        "name": "黒騎士ザールフェルドII世",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分のナイト・クリーチャー１体の上に置く。\n自分のターンに呪文を唱えた時、その呪文よりコストが小さい呪文を自分の手札から１枚選び、コストを支払わずに唱えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド/パラサイトワーム/ナイト",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ナイト"
+      },
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "self",
+        "ownTurn": true,
+        "defs": [
+          {
+            "op": "CastCostSpell1656"
+          }
+        ]
+      }
+    }
+  },
+  "dm14-062": {
+    "phase": 1656,
+    "faces": [
+      {
+        "name": "ドリル・ボウガン",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置く。その後、選んだクロスギアをクロスしていたクリーチャーのパワーが2000以下なら、そのクリーチャーも破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DrillBow1656"
+        }
+      ]
+    }
+  },
+  "dm23ex2-070": {
+    "phase": 1656,
+    "faces": [
+      {
+        "name": "魔導プログラム",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のクロスギアを１つ破壊してもよい。そうしたら、自分の山札の上から、進化ではないクロスギアが出るまで、カードを表向きにする。そのクロスギアを出し、こうして表向きにした残りのカードをすべてシャッフルし、山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "self",
+          "origin": "battle",
+          "to": "grave",
+          "n": 1,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "title": "破壊して魔導プログラムを使う自分のクロスギアを1つ選ぶ（任意）",
+          "afterBattleSelect": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "n": "all",
+              "public": true,
+              "g1603UntilFilter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "filter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "limit": 1,
+              "g749Required": true,
+              "rest": "randomBottom1520",
+              "title": "最初に公開した進化ではないクロスギアを出す"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

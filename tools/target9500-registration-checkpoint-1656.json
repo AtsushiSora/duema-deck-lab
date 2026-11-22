@@ -1,0 +1,132 @@
+{
+  "phase": 1656,
+  "checkedAt": "2026-11-22T10:16:01.823Z",
+  "baseline": "845cbad7697d07d2582765e743a512972970059c",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9202,
+  "currentNames": 9205,
+  "remainingNames": 295,
+  "added": [
+    {
+      "id": "dm30-003",
+      "name": "黒騎士ザールフェルドII世"
+    },
+    {
+      "id": "dm14-062",
+      "name": "ドリル・ボウガン"
+    },
+    {
+      "id": "dm23ex2-070",
+      "name": "魔導プログラム"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9202,
+    "uniqueNames": 9205,
+    "uniqueIds": 9205,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1656.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.777,
+      "log": "tmp/duema-phase-1656/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1656-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.571,
+      "log": "tmp/duema-phase-1656/final-focused.log",
+      "passed": 73,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=spell|Spell|Sirix|Royal|Franz|gear|Gear|Screw|Saver|shuffle|Shuffle|cost|Cost|reveal|Reveal|search|Search",
+        "tests/standard485-effects.test.mjs",
+        "tests/standard766-effects.test.mjs",
+        "tests/standard931-effects.test.mjs",
+        "tests/standard1008-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1520-effects.test.mjs",
+        "tests/standard1603-effects.test.mjs",
+        "tests/standard1655-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.936,
+      "log": "tmp/duema-phase-1656/final-related.log",
+      "passed": 111,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.582,
+      "log": "tmp/duema-phase-1656/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.29,
+      "log": "tmp/duema-phase-1656/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.313,
+      "log": "tmp/duema-phase-1656/target9500.log"
+    }
+  },
+  "totalTestsPassed": 184,
+  "hashes": {
+    "dist/cards.json": "fd409c2531ef172a4c3534cea92bf3550aacb517c4a8a6225e60e73ca4f6a428",
+    "dist/engine.js": "cbf0a65e5123477bea7556901380bbb3b944a8cd17caed1e49351d12e01094dc",
+    "dist/six-photo-rules.js": "91f334e80b1ea628250ca92836dfeb8361607452a2f277449ae786ec8d8a3294",
+    "dist/online-compatibility.js": "f61ab7d5fb7f426c500eea16175a59fe9daf19c6be0a47a854c1ae7b8a119b4a",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.172",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

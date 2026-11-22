@@ -4666,6 +4666,9 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_CastCostSpell1656':start(s,t,[{op:'Execute',origin:'hand',spellOnly:true,g1656BelowCastCost:t.castCost,title:'唱えた呪文よりコストの小さい呪文を手札から唱える（任意）'}]);break;
+ case'g34_DrillBow1656':{const rows=s.players[1-t.p].battle.filter(y=>!y.sealed&&!y.faceDown&&card(y).type==='gear');choice(s,t,'墓地に置く相手のクロスギアを1枚選ぶ',targetOptions(s,t.p,rows));break;}
+ case'g34_DrillAfter1656':{const {p,uid,incarnation}=t.host,y=s.players[p].battle.find(y=>y.uid===uid&&(y.incarnation||0)===incarnation);if(y&&!y.sealed&&api.isCreature(s,y)&&currentPower506(s,y)<=2000)move(s,[{player:p,uid,to:'grave',destroy:true,controller:t.p}]);break;}
  case'g34_ManaBudgetDeploy1655':{start(s,t,[manaBudgetDeploy1655(s,t.p)]);break;}
  case'g34_TakuyaPenalty1654':{start(s,{...t,p:t.affected,controller:t.controller??t.p},[{op:'Select',zones:['battle','mana'],to:'grave',n:1,g187OwnPick:true,g1654CreatureOrMana:true,title:'墓地に置く自分のクリーチャー1体かマナ1枚を選ぶ'}]);break;}
  case'g34_ManaArrival1653':{const p=t.affected;start(s,{...t,p,controller:t.controller??t.p},[{op:'Select',origin:'mana',to:t.mode==='jet'?'deck':'grave',n:1,g187OwnPick:true,title:t.mode==='jet'?'山札の下に置く自分のマナを1枚選ぶ':'墓地に置く自分のマナを1枚選ぶ'}]);break;}
@@ -6737,6 +6740,7 @@ export function createSixPhotoRules(api){
     return faces(card(y)).flatMap((c,face)=>{
      const type=c.type;
      if(!api.canExecuteUnpaid(s,t.p,c))return [];
+     if(t.g1656BelowCastCost!==undefined&&cost(c)>=(t.g1656BelowCastCost==='∞'?Infinity:t.g1656BelowCastCost))return [];
      if(t.g1650VividOnly&&c.g1335VividDraw===undefined)return [];
      if(t.g1568KnightMagic&&!hasKnightMagic(c))return [];
      if(t.g1324ExecuteRace&&!race(c,t.g1324ExecuteRace)&&!(type==='spell'&&cost(c)<=t.g1324SpellMax))return [];
@@ -7814,6 +7818,7 @@ export function createSixPhotoRules(api){
   if(!t.g857ReturnRequired)start(s,t,defs);
   break;
  }
+ case'g34_DrillBow1656':{const p=1-t.p,gear=s.players[p].battle.find(y=>y.uid===v&&!y.sealed&&!y.faceDown&&card(y).type==='gear');if(!gear)break;const host=gear.crossedTo&&s.players[p].battle.find(y=>y.uid===gear.crossedTo.uid&&(y.incarnation||0)===gear.crossedTo.incarnation&&!y.sealed&&api.isCreature(s,y));if(host)put(s,{...t,op:'g34_DrillAfter1656',host:{p,uid:host.uid,incarnation:host.incarnation||0}});move(s,[{player:p,uid:gear.uid,to:'grave',destroy:false,controller:t.p,toOwnerGrave:true}]);break;}
  case'g34_SacrificeAlly413':{
   if(!v||t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
   const selected=[...(t.selected??[]),v],targets=selected.map(ref=>own.battle.find(y=>
@@ -9446,7 +9451,7 @@ export function createSixPhotoRules(api){
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
   for(const {owner,x,watch}of spellWatches(s,p,c,origin))
    if(!watch.g965FirstSpell||firstSpell)
-    queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));
+    queue(s,owner,x,watch.defs.map(d=>['CastCostDeploy595','CastCostSpell1656'].includes(d.op)?{...d,castCost:c.cost}:d));
   if(race(c,'魔導具'))magicToolUse976(s,p);
   for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g847SpellGraveReturn)
    send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
