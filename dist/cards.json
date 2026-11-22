@@ -296598,28 +296598,101 @@
       ],
       "supportBatch": "phase-1689",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx25-s10",
+      "name": "「覇道」の頂 シュラ・ベートーベン",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "キング・コマンド・ドラゴン/ゼニス",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nT・ブレイカー\n自分のドラゴンが召喚によってバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\n自分のドラゴンすべてに「スピードアタッカー」と「スレイヤー」を与える。\n自分のマナゾーンからドラゴンを召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-s10",
+      "limit": 4,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true,
+            "slayer": true
+          }
+        }
+      ],
+      "g297ManaAura": {
+        "race": "ドラゴン"
+      },
+      "g1690SummonEntryFilter": {
+        "race": "ドラゴン"
+      },
+      "g1244SummonEntry": [
+        {
+          "op": "Offer",
+          "title": "ドラゴンの召喚登場：山札の上から2枚をマナに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1690",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-008",
+      "name": "「獅子」の頂 ライオネル・フィナーレ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "エンジェル・コマンド/アンノウン/ゼニス",
+      "text": "このクリーチャーを召喚してバトルゾーンに出した時、自分のシールドを好きな数、手札に加えてもよい。その後、自分の手札を５枚まで、新しいシールドとして自分のシールドゾーンに裏向きにして加える。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-008",
+      "limit": 4,
+      "breaker": 3,
+      "g34Omega": true,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FinaleBreak1690"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 5,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1690",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1689,
-    "checkedAt": "2026-11-22T22:41:19.762Z",
-    "baseCount": 9303,
-    "newEffectCards": 3,
+    "phase": 1690,
+    "checkedAt": "2026-11-22T23:01:55.830Z",
+    "baseCount": 9306,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9306,
+    "totalCount": 9308,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa/42962/",
-      "https://dm.takaratomy.co.jp/rule/qa/40220/",
-      "https://dm.takaratomy.co.jp/rule/qa/44113/",
-      "https://dm.takaratomy.co.jp/rule/qa/41989/",
-      "https://dm.takaratomy.co.jp/rule/qa/42959/",
-      "https://dm.takaratomy.co.jp/rule/qa/42961/",
-      "https://dm.takaratomy.co.jp/rule/qa/43447/",
-      "https://dm.takaratomy.co.jp/rule/qa/40221/",
-      "https://dm.takaratomy.co.jp/rule/qa/40222/",
-      "https://dm.takaratomy.co.jp/rule/qa/40223/",
-      "https://dm.takaratomy.co.jp/rule/qa/40224/",
-      "https://dm.takaratomy.co.jp/rule/qa/40225/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36765/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36766/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -324293,6 +324366,31 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/qa/42962/",
           "https://dm.takaratomy.co.jp/rule/qa/40220/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1689,
+        "checkedAt": "2026-11-22T22:41:19.762Z",
+        "baseCount": 9303,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9306,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/42962/",
+          "https://dm.takaratomy.co.jp/rule/qa/40220/",
+          "https://dm.takaratomy.co.jp/rule/qa/44113/",
+          "https://dm.takaratomy.co.jp/rule/qa/41989/",
+          "https://dm.takaratomy.co.jp/rule/qa/42959/",
+          "https://dm.takaratomy.co.jp/rule/qa/42961/",
+          "https://dm.takaratomy.co.jp/rule/qa/43447/",
+          "https://dm.takaratomy.co.jp/rule/qa/40221/",
+          "https://dm.takaratomy.co.jp/rule/qa/40222/",
+          "https://dm.takaratomy.co.jp/rule/qa/40223/",
+          "https://dm.takaratomy.co.jp/rule/qa/40224/",
+          "https://dm.takaratomy.co.jp/rule/qa/40225/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

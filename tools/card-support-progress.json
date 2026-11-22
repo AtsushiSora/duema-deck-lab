@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9306,
-  "pendingNames": 2519,
-  "phase": 1689,
-  "added": 3,
+  "supportedNames": 9308,
+  "pendingNames": 2517,
+  "phase": 1690,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1421,
+    "クリーチャー": 1419,
     "呪文": 280,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,10 +221,10 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1819,
+    "未対応の能力文": 1818,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 11,
-    "未対応の召喚時能力": 16,
+    "未対応の召喚時能力": 15,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 10,
     "複雑な進化条件": 11,
@@ -301,8 +301,8 @@
         "name": "「黒幕」"
       },
       {
-        "id": "dmx13-008",
-        "name": "「獅子」の頂 ライオネル・フィナーレ"
+        "id": "dmx25-s02",
+        "name": "「獅星」の頂 ザ・ライオネル"
       }
     ],
     "未対応のシンカパワー": [
@@ -539087,32 +539087,291 @@
         }
       ],
       "next": "phase1690は候補を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1690,
+      "checkedAt": "2026-11-22T23:05:25.297Z",
+      "baseline": "78f7e7a9",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9306,
+      "currentNames": 9308,
+      "remainingNames": 192,
+      "added": [
+        {
+          "id": "dmx25-s10",
+          "name": "「覇道」の頂 シュラ・ベートーベン"
+        },
+        {
+          "id": "dmx13-008",
+          "name": "「獅子」の頂 ライオネル・フィナーレ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "78f7e7a9",
+        "originalDefinitionsUnchanged": 9306,
+        "added": 2,
+        "uniqueNames": 9308,
+        "uniqueIds": 9308,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9306,
+        "existingImageReferenceRowsUnchanged": 11516,
+        "officialPrintsReviewed": 7,
+        "officialImagesReviewed": 7,
+        "existingPinsUnchanged": 826
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1690.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.332,
+          "log": "tmp/duema-phase-1690/official.log",
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "focused-final": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1690-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.033,
+          "log": "tmp/duema-phase-1690/focused-final.log",
+          "passed": 25,
+          "failed": 0,
+          "logSha256": "0279780a2a1de69a8078fabbb8711ae727b65b80e169ac2f7ff8f202adf6957f"
+        },
+        "related-summons": {
+          "name": "related-summons",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard208-effects.test.mjs",
+            "tests/standard297-effects.test.mjs",
+            "tests/standard450-effects.test.mjs",
+            "tests/standard1244-effects.test.mjs",
+            "tests/standard1689-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 46.917,
+          "log": "tmp/duema-phase-1690/related-summons.log",
+          "passed": 278,
+          "failed": 0,
+          "logSha256": "4553662856d4e60843b9679a60a4758e8868384c4f97d505c7addb15629ab101"
+        },
+        "related-shields": {
+          "name": "related-shields",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard535-effects.test.mjs",
+            "tests/standard1562-effects.test.mjs",
+            "tests/standard1659-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-feedback.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.355,
+          "log": "tmp/duema-phase-1690/related-shields.log",
+          "passed": 258,
+          "failed": 0,
+          "logSha256": "e6a3a8c0cc5bdf6ecc5f64eeb9578f0b83cd04140c7d093d92882d0496d50aad"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.875,
+          "log": "tmp/duema-phase-1690/check.log",
+          "logSha256": "bf713e7c7a1924ebd9c32991479e35c26be7e069055f7674261e8cc401dc52e0"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.835,
+          "log": "tmp/duema-phase-1690/audit.log",
+          "logSha256": "f4bb79974d84b9d46deb4c4a6675afa0e762017d54897b5dfa4c5844fbbfcd1c"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.391,
+          "log": "tmp/duema-phase-1690/target9500.log",
+          "logSha256": "d6161a652660779b8787b5de07cfa3b79729deb527fef1a759566dbdca98da42"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1690/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.445,
+          "log": "tmp/duema-phase-1690/invariants.log",
+          "logSha256": "d8700163735af6ede14aff6738094af0491593596b2c181e292d81eaac01a0c2"
+        }
+      },
+      "totalTestsPassed": 561,
+      "hashes": {
+        "dist/cards.json": "c3d780cc43dabc50f3d91ceed45dfaf66644108388597d18c7b8247077a11546",
+        "dist/engine.js": "d58d53ddab7c9d2f3422c4c36f15b11fa5529a39fef77e2accad52047d12fd48",
+        "dist/six-photo-rules.js": "f6f1466f7d264c6f6e5722a71a00250aada4c080861402cc780be161a1ca961c",
+        "dist/online-compatibility.js": "2558b08c76e572a99237b24ff523b6bf574947dc65c51bc0fbe854bdcedf82eb",
+        "dist/card-images.js": "06cc17aca2cef4e8bfa12f5ba998eb98c33f097f663872e3acc8cfcbfc9791d3",
+        "tools/target9000-card-spec.json": "87594106cd4c5ec74d2dade6aba55cf2f7cf08d69ac21f443a769c1e0f9f115c",
+        "tests/standard1690-effects.test.mjs": "9119739ff54c4f8353e328d0d182d916934b5b60fc14d0a631fb1bbd0cbdaae5"
+      },
+      "engineVersion": "0.602.206",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 36765,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36765/",
+          "sha256": "6587416ad2d5a33f15fb76dd6a2e8bea4aa9e9dc6ad1bcef158bf2e7030a75e5",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1690-effects.test.mjs"
+        },
+        {
+          "id": 36766,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36766/",
+          "sha256": "17568febd4b87ce3c63d3b4c5b0723f00cb235a3ba42a572323473cb4aa2a0ea",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1690-effects.test.mjs"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1690-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 12.891,
+          "log": "tmp/duema-phase-1690/focused.log"
+        },
+        {
+          "name": "focused-fixed",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1690-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 15.473,
+          "log": "tmp/duema-phase-1690/focused-fixed.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1690.json",
+      "supported": 9308,
+      "pending": 2517,
+      "reason": "シュラベートーベンのドラゴン召喚登場と任意2枚マナ・SA/スレイヤー全体付与・ドラゴンのマナ召喚、ライオネルフィナーレの召喚時任意自己ブレイクと手札5枚までシールド化・Ω・Tを全能力対応。",
+      "validationNotes": [
+        "開始時HEAD78f7e7a9、作業ツリー/ステージは空、nameKey9306種類。phase1689の408件とcheck/audit、既存AGENTSと未確認事項を確認し次バッチへ進んだ。",
+        "候補3種を公式資料で調査し、物理カードの同時移動やGJ置換の追加確認を要するインフェル星樹/ヒッポポさんは部分登録せず理由を記録した。フィナーレを代替に選び、今回は能力全体を確認できた2種類を登録。原本2版と同名再録5版、全7版の公式全文・基本情報・画像7枚・使用制限を照合。",
+        "シュラは既存g208全体付与とg297のマナ召喚許可を再利用し、ドラゴン・クリーチャーへのSA/スレイヤーを自身も含めて付与。マナからのドラゴン召喚は通常のマナ支払・移動制限を適用し、繰り返し可能。元のIDと現行のドラゴン・クリーチャー表記を照合。登場後の実召喚を監視するg1244へ種族フィルタだけを追加し、自身/他の実ドラゴン召喚時に0または2枚の任意マナ追加。効果登場・他種族・相手側・封印/無視の提供者では発動しない。",
+        "フィナーレは召喚登場時のみ、0から好きな数の自分のシールドを選択し一括で自己ブレイク。その後は取った枚数に依存せず0〜5枚の手札を各々裏向きの新シールドに置く。DM24-BD6の最新再録は自身がブレイクする表記のため、単なる手札移動ではなく既存Break497のクリーチャーによるブレイク処理を利用する。旧版の手札へ加える表記でも公式QA36765が認めるS・トリガーを使える。",
+        "QA36766は0シールドでも手札から追加でき、取る枚数と戻す枚数が独立。QA36765は実S・トリガーを宣言して使い、その後シールド追加を継続。T・ブレイカーとエターナルΩは既存処理を利用。手札から効果登場した場合に召喚能力が起動しないこと、非召喚でもΩは有効なことを確認。",
+        "固有25件・召喚/全体付与/マナ許可の回帰278件・シールド/自己ブレイク/通信の回帰258件、合計561件を通過。合法40枚2seedの実対戦で全物理UIDとJSON合法手を維持。初回の失敗は、テストでドラゴンでないグランギューレを使ったID違い、7コストのメテオを6と扱ったID違い、効果登場後に更新されたincarnationを0と固定したfixtureが原因。実ボルシャック・ドラゴンdm01-008と更新済みincarnationで修正して通過。",
+        "check/audit/target9500/不変条件を通過。nameKey9308種類、重複0、既存9306定義・画像・カタログ・ピンと保存形式を保持。過去の全体テスト中断、長時間未確認、ユーザー保留は解消扱いにしない。通常登録でpush・公開・Netlify更新なし。"
+      ],
+      "held": [
+        {
+          "id": "dmrp21-007",
+          "name": "インフェル星樹",
+          "reason": "非クリーチャーの物理カード2枚（進化元・封印を含む）の同時移動、持ち主へのタップマナ移動、移動枚数ごとの誘発と離脱時の参照を共通処理に接続する検証が必要。部分登録せず保留。"
+        },
+        {
+          "id": "dmr07-016",
+          "name": "おやすみヒッポポさん",
+          "reason": "勝者を確定する前の山札下移動を登場へ置換するため、ガチンコ・ジャッジの双方の勝敗・マナ移動置換・入れ子の裁定を含む共通処理の追加検証が必要。部分登録せず保留。"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex14-s08",
+          "name": "「修羅」の鬼 アシュラ天狗",
+          "reason": "シールド手札移動の結果参照と破壊、鬼タイム中の破壊禁止を既存処理と公式照合。"
+        },
+        {
+          "id": "dmrp14-s09",
+          "name": "「陰陽」の鬼 ヨミノ晴明",
+          "reason": "鬼タイムのターン開始蘇生/SAと、パワー正値での強制5枚ミル置換を公式照合。"
+        },
+        {
+          "id": "dmr21-s09",
+          "name": "D2V2 禁断のギガトロン",
+          "reason": "攻撃時の公開カードの手札移動またはD2条件下の登場置換を照合。"
+        }
+      ],
+      "next": "phase1691は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1689,
-    "nextPhase": 1690,
+    "lastVerifiedPhase": 1690,
+    "nextPhase": 1691,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmx25-s10",
-        "name": "「覇道」の頂 シュラ・ベートーベン",
-        "reason": "既存のドラゴン召喚登場・マナ召喚・全体付与処理との適合を公式照合する。"
+        "id": "dmex14-s08",
+        "name": "「修羅」の鬼 アシュラ天狗",
+        "reason": "シールド手札移動の結果参照と破壊、鬼タイム中の破壊禁止を既存処理と公式照合。"
       },
       {
-        "id": "dmrp21-007",
-        "name": "インフェル星樹",
-        "reason": "非クリーチャーカードの双方選択とマナ移動誘発を既存処理で全能力対応できるか確認。"
+        "id": "dmrp14-s09",
+        "name": "「陰陽」の鬼 ヨミノ晴明",
+        "reason": "鬼タイムのターン開始蘇生/SAと、パワー正値での強制5枚ミル置換を公式照合。"
       },
       {
-        "id": "dmr07-016",
-        "name": "おやすみヒッポポさん",
-        "reason": "実ガチンコジャッジで見せた勝者カードの登場置換を既存処理と照合。"
+        "id": "dmr21-s09",
+        "name": "D2V2 禁断のギガトロン",
+        "reason": "攻撃時の公開カードの手札移動またはD2条件下の登場置換を照合。"
       }
     ],
     "steps": [
       "ユーザーの明示指示で登録再開。変更の影響に合わせた検証方針を適用。",
-      "phase1690は候補を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
+      "phase1691は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
       "過去の未確認・保留を解消扱いにしない。"
     ],
     "knownIssues": [
@@ -539810,6 +540069,13 @@
         "reason": "呪文だけの墓地→手札移動禁止を、ツインパクト・複数回収・各直接移動経路に適用する確認が必要。墓地を丸ごと禁止する部分実装は行わない。",
         "phase": 1688,
         "status": "not-registered"
+      },
+      {
+        "id": "dmr07-016",
+        "name": "おやすみヒッポポさん",
+        "reason": "勝者を確定する前の山札下移動を登場へ置換するため、ガチンコ・ジャッジの双方の勝敗・マナ移動置換・入れ子の裁定を含む共通処理の追加検証が必要。部分登録せず保留。",
+        "phase": 1690,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -539986,23 +540252,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1689,
-      "baseline": "41261d2d",
-      "supportedNames": 9306,
-      "artifact": "tools/target9500-registration-checkpoint-1689.json",
-      "checkedAt": "2026-11-22T22:55:11.237Z"
+      "phase": 1690,
+      "baseline": "78f7e7a9",
+      "supportedNames": 9308,
+      "artifact": "tools/target9500-registration-checkpoint-1690.json",
+      "checkedAt": "2026-11-22T23:05:25.297Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T22:55:11.237Z",
+      "checkedAt": "2026-11-22T23:05:25.297Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9306,
-      "remainingNames": 194,
+      "currentNames": 9308,
+      "remainingNames": 192,
       "duplicateNames": 0,
-      "engineVersion": "0.602.205",
+      "engineVersion": "0.602.206",
       "added": [
         {
           "id": "dmr12-008",
@@ -540947,6 +541213,14 @@
         {
           "id": "dmex01-072",
           "name": "ドルマゲドン・ビッグバン"
+        },
+        {
+          "id": "dmx25-s10",
+          "name": "「覇道」の頂 シュラ・ベートーベン"
+        },
+        {
+          "id": "dmx13-008",
+          "name": "「獅子」の頂 ライオネル・フィナーレ"
         }
       ],
       "results": {
@@ -541062,14 +541336,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "92873f907d4d50b0a0b66865afbdf3b8b4895a6bca39fd247c3f5c5896accb2e",
-        "dist/engine.js": "cb5b77bebf118e63e57027cfebc74fe5ea7298199d559ec83e92f3aab2781de0",
-        "dist/six-photo-rules.js": "501bddecda5ae1ab9a778ab82f4baea289304e79955a04344226e91a29c4ca82",
-        "dist/fifteen-photo-rules.js": "49225c56ec7b79a224d3eb0c6bbfdc0786da26446f7715067e3e14cd3ae418b1",
-        "dist/online-compatibility.js": "87c9d924722093b076e6e1923db8e82f246b601e7d3aae0239fd2924f884264d",
-        "dist/card-images.js": "9668db0ae05f11d11c080c0d22bda7fbe41216762255aa566c630ffacba19c1a",
-        "tools/target9000-card-spec.json": "f3f70c82ee9b3dc32f4540da3ff07ecf5ba12104fbd9530c5cbbd26824034416",
-        "tests/standard1689-effects.test.mjs": "5a9df62882d26bdc38cbfd5b5d8c787884d0ad228561717e48e8169ab827aee1"
+        "dist/cards.json": "c3d780cc43dabc50f3d91ceed45dfaf66644108388597d18c7b8247077a11546",
+        "dist/engine.js": "d58d53ddab7c9d2f3422c4c36f15b11fa5529a39fef77e2accad52047d12fd48",
+        "dist/six-photo-rules.js": "f6f1466f7d264c6f6e5722a71a00250aada4c080861402cc780be161a1ca961c",
+        "dist/online-compatibility.js": "2558b08c76e572a99237b24ff523b6bf574947dc65c51bc0fbe854bdcedf82eb",
+        "dist/card-images.js": "06cc17aca2cef4e8bfa12f5ba998eb98c33f097f663872e3acc8cfcbfc9791d3",
+        "tools/target9000-card-spec.json": "87594106cd4c5ec74d2dade6aba55cf2f7cf08d69ac21f443a769c1e0f9f115c",
+        "tests/standard1690-effects.test.mjs": "9119739ff54c4f8353e328d0d182d916934b5b60fc14d0a631fb1bbd0cbdaae5"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -541133,10 +541406,10 @@
       },
       "phaseRange": [
         1614,
-        1689
+        1690
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 236,
+      "addedNames": 238,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -541148,9 +541421,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.403,
-        "log": "tmp/duema-phase-1689/check.log",
-        "logSha256": "6280e68787fab989d3428cd2bd69826b6a6bde92fade18b51ebaa5259789b249"
+        "seconds": 20.875,
+        "log": "tmp/duema-phase-1690/check.log",
+        "logSha256": "bf713e7c7a1924ebd9c32991479e35c26be7e069055f7674261e8cc401dc52e0"
       },
       "latestAudit": {
         "name": "audit",
@@ -541160,11 +541433,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.657,
-        "log": "tmp/duema-phase-1689/audit.log",
-        "logSha256": "1c49aae64281a3fb5921b03f03438feb3775f6ffd062bd7bf901ea534368cdc9"
+        "seconds": 11.835,
+        "log": "tmp/duema-phase-1690/audit.log",
+        "logSha256": "f4bb79974d84b9d46deb4c4a6675afa0e762017d54897b5dfa4c5844fbbfcd1c"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1689.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1690.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -542282,11 +542555,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9306,
-      "remaining": 194,
+      "currentNames": 9308,
+      "remaining": 192,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T22:55:11.237Z",
+      "checkedAt": "2026-11-22T23:05:25.297Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -594388,11 +594661,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1689,
+    "phase": 1690,
     "threshold": 9500,
-    "supportedNames": 9306,
-    "pendingNames": 2519,
-    "checkedAt": "2026-11-22T22:55:11.237Z",
+    "supportedNames": 9308,
+    "pendingNames": 2517,
+    "checkedAt": "2026-11-22T23:05:25.297Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -594401,7 +594674,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1689.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1690.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

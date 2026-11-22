@@ -38087,5 +38087,96 @@
         }
       ]
     }
+  },
+  "dmx25-s10": {
+    "phase": 1690,
+    "faces": [
+      {
+        "name": "「覇道」の頂 シュラ・ベートーベン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nT・ブレイカー\n自分のドラゴンが召喚によってバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\n自分のドラゴンすべてに「スピードアタッカー」と「スレイヤー」を与える。\n自分のマナゾーンからドラゴンを召喚してもよい。",
+        "race": "キング・コマンド・ドラゴン/ゼニス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true,
+            "slayer": true
+          }
+        }
+      ],
+      "g297ManaAura": {
+        "race": "ドラゴン"
+      },
+      "g1690SummonEntryFilter": {
+        "race": "ドラゴン"
+      },
+      "g1244SummonEntry": [
+        {
+          "op": "Offer",
+          "title": "ドラゴンの召喚登場：山札の上から2枚をマナに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx13-008": {
+    "phase": 1690,
+    "faces": [
+      {
+        "name": "「獅子」の頂 ライオネル・フィナーレ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、自分のシールドを好きな数、手札に加えてもよい。その後、自分の手札を５枚まで、新しいシールドとして自分のシールドゾーンに裏向きにして加える。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+        "race": "エンジェル・コマンド/アンノウン/ゼニス",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g34Omega": true,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FinaleBreak1690"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 5,
+          "optional": true
+        }
+      ]
+    }
   }
 }

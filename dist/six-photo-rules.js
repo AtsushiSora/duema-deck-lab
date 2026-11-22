@@ -6181,6 +6181,12 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
   break;
  }
+ case'g34_FinaleBreak1690':{
+  const selected=t.selected||[],rows=own.shields.filter(x=>!selected.includes(x.uid));
+  if(rows.length)choice(s,{...t,selected},'ブレイクする自分のシールドを好きな数選ぶ（'+selected.length+'つ選択済み）',[...rows.map((x,i)=>opt('シールド '+(own.shields.indexOf(x)+1),x.uid,rows.length>2?5:-5)),skip()]);
+  else if(selected.length)start(s,t,[{op:'Break497',owner:'self',n:selected.length,selected,g747CreatureBreak:true,g913DepartedBreaker:true}]);
+  break;
+ }
  case'g34_DrawAfterDiscard1689':api.draw(s,t.p,t.n+1);break;
  case'g34_SealAll1689':api.resolveForbiddenSeal(s,t.p);break;
  case'g34_Draw':
@@ -8298,6 +8304,7 @@ export function createSixPhotoRules(api){
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});
   break;
+ case'g34_FinaleBreak1690':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else if(t.selected?.length)start(s,t,[{op:'Break497',owner:'self',n:t.selected.length,selected:t.selected,g747CreatureBreak:true,g913DepartedBreaker:true}]);break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldCardManaDeploy1317':
   // An attempted move still satisfies the continuation under a replacement (QA 42955).
@@ -10084,7 +10091,9 @@ export function createSixPhotoRules(api){
     if(g997SummonEntry&&(watcher===y||commandDragon))queue(s,p,watcher,g997SummonEntry);
     if(g1244SummonEntry){
      const firstEntryCall=effective(watcher,s).g1689FirstEntrySpell;
-     if(firstEntryCall&&(options.selfMuted||options.allEntryMuted))continue;
+     const summonFilter=effective(watcher,s).g1690SummonEntryFilter;
+     if((firstEntryCall||summonFilter)&&(options.selfMuted||options.allEntryMuted))continue;
+     if(summonFilter&&!matches(s,p,y,summonFilter))continue;
      if(!firstEntryCall||s.players[p].enteredThisTurn===1)queue(s,p,watcher,firstEntryCall?g1244SummonEntry.map(d=>({...d,max:cost(effective(y,s))})):g1244SummonEntry);
     }
    }
