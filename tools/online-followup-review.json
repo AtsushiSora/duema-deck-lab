@@ -1,0 +1,166 @@
+{
+  "checkedAt": "2026-11-22T00:28:02.364942+00:00",
+  "baseCommit": "f7c6a87c9e8a9048e7b0f09a1b14e96f2da9624e",
+  "status": "review-complete-one-open-defensive-race-gap",
+  "productCodeChanged": false,
+  "findings": [
+    {
+      "id": "online-stale-action-context",
+      "severity": "low",
+      "status": "confirmed-open",
+      "title": "Queued ordinary moves are not bound to their originating room or current view",
+      "locations": [
+        "dist/app.js:910",
+        "dist/app.js:1053"
+      ],
+      "rootCause": "online-move compares revision only; onlineMove checks actor and connection but does not bind the event to its original room, UID or active view. Revisions and action IDs repeat in different rooms.",
+      "reproductionVariants": [
+        {
+          "id": "stale-move-after-leaving-view",
+          "old": {
+            "action": "online-move",
+            "index": "0",
+            "revision": "1",
+            "room": "0000000000000001",
+            "kind": "charge"
+          },
+          "before": 1,
+          "after": 2,
+          "currentView": "account",
+          "reproduced": true
+        },
+        {
+          "id": "stale-move-in-another-room",
+          "old": {
+            "action": "online-move",
+            "index": "0",
+            "revision": "1",
+            "room": "0000000000000001",
+            "kind": "charge"
+          },
+          "newRoom": "0000000000000002",
+          "before": 1,
+          "after": 2,
+          "reproduced": true
+        }
+      ],
+      "controls": [
+        {
+          "freshVisibleActionAccepted": true,
+          "staleRevisionInSameRoomRejected": true
+        }
+      ],
+      "impact": "A delayed event from a formerly visible mana-charge action can charge in the background after leaving the match, or in a different match when its revision and action ID match.",
+      "limits": "Reproduced by explicitly delivering an old button event in the actual-app VM with real HTTP handler and encrypted isolated persistence. Not observed during ordinary manual browser use; no estimate of real-world frequency. This is a client UI race guard gap, not a server authorization bypass.",
+      "nextFix": "Bind mutating action elements to UID and room context and require the online view. Validate that context before dispatching every ordinary, primary, number, mana-payment and confirmed move. Preserve same-context legal moves and add regression cases."
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "online-server",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(room storage|creating|self-play|a waiting|two accounts|the server|a repeated|concurrent|resignation|HTTP |Firestore |negative infinity|public online|online |Murder |QQ |Viride online choices|Golgy private|historical |Advance |an account session|only the mana|a face-down mana payment)",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.901,
+        "log": "tmp/duema-followup-review/online-server.log",
+        "sha256": "8df68be51155a62b4215451f74c760d251b23beb5d6ff8cb8fbdbd19657363b0",
+        "status": "passed",
+        "passed": 42
+      },
+      {
+        "name": "client-app",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-feedback.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.937,
+        "log": "tmp/duema-followup-review/client-app.log",
+        "sha256": "c650923365f38c07b7aeedaa36edd2245cd7f284c6a3ed05d8f96f341177bd70",
+        "status": "passed",
+        "passed": 93
+      },
+      {
+        "name": "diagnostic-controls",
+        "command": [
+          "node",
+          "tools/review-online-stale-actions.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.724,
+        "log": "tmp/duema-followup-review/diagnostic-controls.log",
+        "sha256": "0053d8747246f106241d97b1ff8dae740a249710282cffb5187532a77160b5cd",
+        "status": "passed"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.011,
+        "log": "tmp/duema-followup-review/check.log",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134",
+        "status": "passed"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.669,
+        "log": "tmp/duema-followup-review/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a",
+        "status": "passed"
+      }
+    ],
+    "testsPassed": 135,
+    "diagnosticReproductions": 2,
+    "diagnosticMeaning": "Diagnostic reproductions, not fixed-behavior acceptance tests.",
+    "incompleteRuns": [],
+    "reproduce": "node tools/review-online-stale-actions.mjs",
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/app.js": "8f2070b12f3c726105963b0dbd728d8517bb771ac8550a154dcfd8560b3fbadb",
+    "dist/online.js": "f95525477c683c515f581d086e3acbd6f9c9513a13a2f656230563664a4f64f2",
+    "tools/review-online-stale-actions.mjs": "132e05ccdbd172dff5eaa43a0e5f1805f919e33019e7a1f66d436876e40927ee",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "limits": [
+    "Not exhaustive coverage of all cards, browsers or game states.",
+    "Two user-deferred ruling/reprint items and historical interrupted whole-suite status retained.",
+    "Previous resignation fix remains local and not deployed."
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
