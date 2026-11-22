@@ -294649,23 +294649,140 @@
       },
       "supportBatch": "phase-1671",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-042",
+      "name": "Dの魔城 ブリティッシュ・パビリオン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 2,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン破壊された自分のクリーチャーをすべて、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-042",
+      "limit": 4,
+      "d2Field": true,
+      "g208Auras": [
+        {
+          "filter": {},
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "BritishReturn1672"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1672",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-018",
+      "name": "Dの爆撃 ランチャー・ゲバラベース",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n相手のクリーチャーが攻撃する時、相手は自身のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の山札の上から１枚目をマナゾーンに置く。そのコストが、相手のマナゾーンにあるカードの枚数より小さいクリーチャーなら、バトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-018",
+      "limit": 4,
+      "d2Field": true,
+      "trigger": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "LauncherRamp1672"
+            }
+          ]
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "LauncherVictim1672"
+          }
+        ]
+      },
+      "supportBatch": "phase-1672",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-015",
+      "name": "Dの機動 ヴァイス・ヴァーチュー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターンの終わりに、カードを１枚引いてもよい。\n（他のD2フィールドが出た時、このD2フィールドを破壊する）\n**Dスイッチ：クリーチャーが自分を攻撃する時、このD2フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、コスト５以下でその文明がすべて自分のマナゾーンにある、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-015",
+      "limit": 4,
+      "d2Field": true,
+      "gStrike": true,
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Execute",
+                "origin": "hand",
+                "nonCreature": true,
+                "max": 5,
+                "g1672ManaCivilizations": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1672",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1671,
-    "checkedAt": "2026-11-22",
-    "baseCount": 9251,
+    "phase": 1672,
+    "checkedAt": "2026-11-23",
+    "baseCount": 9254,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9254,
+    "totalCount": 9257,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/44599/",
-      "https://dm.takaratomy.co.jp/rule/qa/41283/",
-      "https://dm.takaratomy.co.jp/rule/qa/40177/",
-      "https://dm.takaratomy.co.jp/rule/qa/41991/",
-      "https://dm.takaratomy.co.jp/rule/qa/42935/",
-      "https://dm.takaratomy.co.jp/rule/qa/39849/"
+      "https://dm.takaratomy.co.jp/rule/qa/49151/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -322034,6 +322151,26 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/38584/",
           "https://dm.takaratomy.co.jp/rule/qa/38585/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1671,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9251,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9254,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/44599/",
+          "https://dm.takaratomy.co.jp/rule/qa/41283/",
+          "https://dm.takaratomy.co.jp/rule/qa/40177/",
+          "https://dm.takaratomy.co.jp/rule/qa/41991/",
+          "https://dm.takaratomy.co.jp/rule/qa/42935/",
+          "https://dm.takaratomy.co.jp/rule/qa/39849/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

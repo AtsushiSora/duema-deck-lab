@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9254,
-  "pendingNames": 2571,
-  "phase": 1671,
+  "supportedNames": 9257,
+  "pendingNames": 2568,
+  "phase": 1672,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -169,7 +169,7 @@
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "D2フィールド": 22,
+    "D2フィールド": 19,
     "禁断フィールド": 1,
     "クロスギア": 52,
     "進化クリーチャー(進化GV)": 12,
@@ -226,7 +226,7 @@
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
-    "未対応のD2フィールド能力": 22,
+    "未対応のD2フィールド能力": 19,
     "複雑な進化条件": 11,
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 10,
@@ -533820,27 +533820,317 @@
         }
       ],
       "next": "phase1672で次の3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
+    },
+    {
+      "phase": 1672,
+      "checkedAt": "2026-11-22T15:17:31.040Z",
+      "baseline": "78cb28bd",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9254,
+      "currentNames": 9257,
+      "remainingNames": 243,
+      "added": [
+        {
+          "id": "dm23ex3-042",
+          "name": "Dの魔城 ブリティッシュ・パビリオン"
+        },
+        {
+          "id": "dmr23-018",
+          "name": "Dの爆撃 ランチャー・ゲバラベース"
+        },
+        {
+          "id": "dm26rp2-015",
+          "name": "Dの機動 ヴァイス・ヴァーチュー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "78cb28bd",
+        "originalDefinitionsUnchanged": 9254,
+        "added": 3,
+        "uniqueNames": 9257,
+        "uniqueIds": 9257,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9254,
+        "existingImageReferenceRowsUnchanged": 11452
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1672.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.39,
+          "log": "tmp/duema-phase-1672/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.343,
+          "log": "tmp/duema-phase-1672/final-focused.log",
+          "passed": 119,
+          "failed": 0,
+          "logSha256": "967352ab5d41a686f7e2f6288e6d7ee0d8a155806a21e979484611bba44b38ad"
+        },
+        "related-d2-execution": {
+          "name": "related-d2-execution",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1669-effects.test.mjs",
+            "tests/standard1670-effects.test.mjs",
+            "tests/standard1671-effects.test.mjs",
+            "tests/standard1188-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.756,
+          "log": "tmp/duema-phase-1672/related-d2-execution.log",
+          "passed": 396,
+          "failed": 0,
+          "logSha256": "85412000e706f3ee06217803c6a3d39351e3565e85a968f42de4ad5c2959a8e8"
+        },
+        "related-death-slayer": {
+          "name": "related-death-slayer",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1225-effects.test.mjs",
+            "tests/standard1263-effects.test.mjs",
+            "tests/standard693-effects.test.mjs",
+            "tests/standard208-effects.test.mjs",
+            "tests/standard1281-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.877,
+          "log": "tmp/duema-phase-1672/related-death-slayer.log",
+          "passed": 102,
+          "failed": 0,
+          "logSha256": "72645116d981591338b9a6dfd51bb346eb985b2ea3199c94a8c859c9623bf124"
+        },
+        "related-mana": {
+          "name": "related-mana",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1363-effects.test.mjs",
+            "tests/standard972-effects.test.mjs",
+            "tests/standard1261-effects.test.mjs",
+            "tests/standard1317-effects.test.mjs",
+            "tests/standard411-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.787,
+          "log": "tmp/duema-phase-1672/related-mana.log",
+          "passed": 92,
+          "failed": 0,
+          "logSha256": "0ad71fd9eba065c04c8a17250c4ba27dd589377cac0dc4bb79ef62da7ed9017f"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.99,
+          "log": "tmp/duema-phase-1672/check.log",
+          "logSha256": "bed098cb5eafa319a32647b4dc34886b1f08af3286e31bcdcbf33d0c285cacc8"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.259,
+          "log": "tmp/duema-phase-1672/audit.log",
+          "logSha256": "cefe6a4bcd2d25f155cbab147d247c6397d22726f02ffa40b75f0bfba4e316fb"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.268,
+          "log": "tmp/duema-phase-1672/target9500.log",
+          "logSha256": "62f67b23ffdaa1833916c2d69045f87cd24baaeaaf30ac98ea28f2f0697fe131"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1672/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.814,
+          "log": "tmp/duema-phase-1672/invariants.log",
+          "logSha256": "78c8c983f23185630da4d751656757a1162018b7b508ae5720ec74cc6e926efe"
+        }
+      },
+      "totalTestsPassed": 709,
+      "hashes": {
+        "dist/cards.json": "1a23f69adb6eb22f498af7fb89d9b9e74091cdc4e5fe692138877df6276ed233",
+        "dist/engine.js": "b9ee68fe932be362ef080198276a04b836a9d8d9f196e983a909f40560649165",
+        "dist/six-photo-rules.js": "36c3ae2872f1381f8d676a35a45bfa89b8c8c1372606569f5d4b5daead533a52",
+        "dist/online-compatibility.js": "189ac195624b0f751873e7faf2ae72d72969fda8be73f006de411fd5cdea20f3",
+        "dist/card-images.js": "228b614b9df574bddcd941f3bc69c116e55a93249a4b7499670c7218739687d6",
+        "tools/target9000-card-spec.json": "e281a88681e2ca160774714935853fa98ac183994c97f1c4135e0faba87719e8",
+        "tests/standard1672-effects.test.mjs": "9042faa813567fa8546e3046ba669eb03e8c5034b2aa2b0054c31be347252713"
+      },
+      "engineVersion": "0.602.188",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 16.987,
+          "log": "tmp/duema-phase-1672/focused.log"
+        },
+        {
+          "name": "fixture-corrections",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=British excludes|stale destruction|actual G-strike",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.952,
+          "log": "tmp/duema-phase-1672/fixture-corrections.log"
+        },
+        {
+          "name": "exclusion-debug",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=British excludes",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.707,
+          "log": "tmp/duema-phase-1672/exclusion-debug.log"
+        },
+        {
+          "name": "expanded",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=British excludes|real Aura|Courtney|actual Delfin|Attack watches|grave destination|once for that field",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.257,
+          "log": "tmp/duema-phase-1672/expanded.log"
+        },
+        {
+          "name": "linked-destruction-audit",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=exact destroyed God part|QA49418 analogue",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.121,
+          "log": "tmp/duema-phase-1672/linked-destruction-audit.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1672.json",
+      "supported": 9257,
+      "pending": 2568,
+      "reason": "自軍スレイヤーと当ターン破壊されたクリーチャーの一括回収、相手の攻撃時の相手選択マナ送りと開始時の山札1枚からの展開、マナ文明を満たす非クリーチャー無料実行を全文対応。",
+      "validationNotes": [
+        "固有119件、D2・無料実行396件、破壊・スレイヤー・リンク102件、マナ・文明関連92件の計709件が通過。npm run check、audit、target9500、既存9254定義・全ID・詳細・別名・画像参照の不変を確認。",
+        "公式の能力全文・基本情報・マナ値・現行制限と原版画像3枚を照合。各公式ページの同名収録一覧は1商品。既存の正規名・IDを維持し、再録や部分実装の重複加算なし。ランチャーの通常能力は相手が自身のアンタップしているクリーチャーを選んでマナに置く能力で、破壊とは区別して検証。",
+        "ブリティッシュは既存のD2対応常在オーラで自軍全クリーチャーにスレイヤーを供給。実バトルの勝敗とスレイヤー、能力無視・場の離脱を検証。終了時Dスイッチは実際にクリーチャーとして破壊された正確な物理ID・墓地位相の全件を必須回収し、山札から墓地・捨て札・以前のターン・相手・非クリーチャーACE・置換でマナに行ったキャディを除外する。",
+        "破壊直前にクリーチャーのルートとリンク各部品を記録し、リンク解除で非ルートのゴッドを選んだ場合も実際に墓地へ破壊されたその部品を回収。初回のルートだけの捕捉では非ルート2例が失敗したため、移動前の部品参照を含めるよう修正して両プレイヤー×両部品の4例とJSON保存・物理カード不変を確認。進化元・封印は記録対象に含めない。",
+        "公式QA40254・49417・49418の当ターン破壊履歴の原則を取得本文で照合。ブリティッシュを用いた類似再現として、墓地の同名別UIDを戻さず、実自然コマンドによる封印外しを破壊に数えず、破壊された進化の下のカードを回収しないことを確認。対象やフィールドの新たな登場・墓地再入場で古い位相を使わない。",
+        "ランチャーはプレイヤー・クリーチャーへの相手の攻撃を観測し、相手が自身のアンタップ中のクリーチャーを必須選択。既にタップされた攻撃者・全タップ盤面を区別し、自分でオニカマスを選ぶ場合とマナ送りを検証。Sトリガーで後から出た時は進行中の攻撃に反応せず、次の攻撃から働く。",
+        "ランチャーDスイッチは山札の正確な1枚を通常のマナ移動処理に渡し、クリーチャー自身のコストを相手の現在のマナ枚数と厳密な未満で比較して同じ物理カードを展開。等しい・超過・呪文・無限コスト・ツイン・合法進化元・実アプルの移動禁止・とこしえの登場置換・最後の山札1枚での敗北を確認。",
+        "ヴァイスはGストライク、終了時任意ドロー、プレイヤー攻撃時Dスイッチを実装。現在のマナの文明をタップ状態と独立して確認し、各面ごとに5以下の非クリーチャーを選択。呪文・クロスギア・タマシード・D2・オーラの実無料実行、ツインの呪文面、裏向きマナ・不足文明・コスト6・デルフィンの禁止・実コートニーの全色化を検証。実行前に文明を再確認する。",
+        "公式QA49151を実ガラワルド・玉男・屑男・ヴァイスで両プレイヤーから再現。効果バトル、勝利と墓地移動のターン側誘発、相手の破壊時能力、スレイヤーでの攻撃者破壊、屑男の後続誘発、待機中Dスイッチの順に処理し、攻撃中止でも公開ゾーンのDスイッチは残ることを確認。",
+        "途中のfixture誤り（既存Discardの相手指定、自軍の手札循環でドローした後のミル対象、GSの宣言選択、Aura検証前に追加した攻撃者、キャディのID）を訂正し最終119件が通過。リンク部品の実装漏れも修正済み。手動マナ・暗号化ルーム再開・秘匿・AIの純粋性と未知情報非依存、両先後の合法40枚デッキの80物理カード保存と終局を検証。今回3種類の未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定待ち1件は維持。ローカルのみ。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmr23-030",
+          "name": "Dの牢閣 メメント守神宮",
+          "reason": "Sトリガー・全自軍ブロッカーと各ターンの最初のドローでのDスイッチ全体タップを照合する。"
+        },
+        {
+          "id": "dmr22-022",
+          "name": "Dの揺籠 メリーボーイラウンド",
+          "reason": "コスト1への攻撃制限と自分の最初のドロー時のDスイッチ全自軍アンタップを照合する。"
+        },
+        {
+          "id": "dmex12-046",
+          "name": "Dの森域 フィオナ・ザ・ハート",
+          "reason": "自軍への攻撃時ランプとドリームメイトによる中止、相手開始時Dスイッチの可能ならクリーチャー攻撃を照合する。"
+        }
+      ],
+      "next": "phase1673で次の3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1671,
-    "nextPhase": 1672,
+    "lastVerifiedPhase": 1672,
+    "nextPhase": 1673,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm23ex3-042",
-        "name": "Dの魔城 ブリティッシュ・パビリオン",
-        "reason": "全自軍スレイヤーと当ターン破壊された自軍の終了時Dスイッチ回収を全文照合する。"
+        "id": "dmr23-030",
+        "name": "Dの牢閣 メメント守神宮",
+        "reason": "Sトリガー・全自軍ブロッカーと各ターンの最初のドローでのDスイッチ全体タップを照合する。"
       },
       {
-        "id": "dmr23-018",
-        "name": "Dの爆撃 ランチャー・ゲバラベース",
-        "reason": "Sトリガー・相手攻撃時の相手選択破壊、開始時ランプしたカードと相手マナ数比較からの登場を照合する。"
+        "id": "dmr22-022",
+        "name": "Dの揺籠 メリーボーイラウンド",
+        "reason": "コスト1への攻撃制限と自分の最初のドロー時のDスイッチ全自軍アンタップを照合する。"
       },
       {
-        "id": "dm26rp2-015",
-        "name": "Dの機動 ヴァイス・ヴァーチュー",
-        "reason": "Gストライク・終了時任意ドロー・攻撃時Dスイッチのマナ文明を満たす非クリーチャー実行を全文照合する。"
+        "id": "dmex12-046",
+        "name": "Dの森域 フィオナ・ザ・ハート",
+        "reason": "自軍への攻撃時ランプとドリームメイトによる中止、相手開始時Dスイッチの可能ならクリーチャー攻撃を照合する。"
       }
     ],
     "steps": [
@@ -534613,23 +534903,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1671,
-      "baseline": "adb32ab4",
-      "supportedNames": 9254,
-      "artifact": "tools/target9500-registration-checkpoint-1671.json",
-      "checkedAt": "2026-11-22T14:57:26.512Z"
+      "phase": 1672,
+      "baseline": "78cb28bd",
+      "supportedNames": 9257,
+      "artifact": "tools/target9500-registration-checkpoint-1672.json",
+      "checkedAt": "2026-11-22T15:17:31.040Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T14:57:26.512Z",
+      "checkedAt": "2026-11-22T15:17:31.040Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9254,
-      "remainingNames": 246,
+      "currentNames": 9257,
+      "remainingNames": 243,
       "duplicateNames": 0,
-      "engineVersion": "0.602.187",
+      "engineVersion": "0.602.188",
       "added": [
         {
           "id": "dmr12-008",
@@ -535366,6 +535656,18 @@
         {
           "id": "dmr23-014",
           "name": "Dの博才 サイバーダイス・ベガス"
+        },
+        {
+          "id": "dm23ex3-042",
+          "name": "Dの魔城 ブリティッシュ・パビリオン"
+        },
+        {
+          "id": "dmr23-018",
+          "name": "Dの爆撃 ランチャー・ゲバラベース"
+        },
+        {
+          "id": "dm26rp2-015",
+          "name": "Dの機動 ヴァイス・ヴァーチュー"
         }
       ],
       "results": {
@@ -535481,13 +535783,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "f21bc6372abdfce7c61c61ce8090577a4473594d968d1dd172aff49b8373fed3",
-        "dist/engine.js": "bf4b58849587c1c0908d7024ba27e4f4d42c99d1a3a721f754069e124c7e8f24",
-        "dist/six-photo-rules.js": "a130f8cb4a2e42b98a6effdf07ffa59aadc00cdd625b251ab87baebafb5e5c66",
-        "dist/online-compatibility.js": "404b3b3ef3cfccbbbb620ca27ecd576b54c212c0199aaeacbcee6de759826ddc",
-        "dist/card-images.js": "011a8689ca5c35a5fe86b3ff9e3b5de379346d501e3f1927c762e4d04187cd72",
-        "tools/target9000-card-spec.json": "2e180c17be85a68e607dd401328d75796f85d9a1c0ec339e20fa4c9800c4b0c6",
-        "tests/standard1671-effects.test.mjs": "92e2ead09f56971a2f27a94115ec120a8dc6ceec88ce64b9f3a504d0803d6a81"
+        "dist/cards.json": "1a23f69adb6eb22f498af7fb89d9b9e74091cdc4e5fe692138877df6276ed233",
+        "dist/engine.js": "b9ee68fe932be362ef080198276a04b836a9d8d9f196e983a909f40560649165",
+        "dist/six-photo-rules.js": "36c3ae2872f1381f8d676a35a45bfa89b8c8c1372606569f5d4b5daead533a52",
+        "dist/online-compatibility.js": "189ac195624b0f751873e7faf2ae72d72969fda8be73f006de411fd5cdea20f3",
+        "dist/card-images.js": "228b614b9df574bddcd941f3bc69c116e55a93249a4b7499670c7218739687d6",
+        "tools/target9000-card-spec.json": "e281a88681e2ca160774714935853fa98ac183994c97f1c4135e0faba87719e8",
+        "tests/standard1672-effects.test.mjs": "9042faa813567fa8546e3046ba669eb03e8c5034b2aa2b0054c31be347252713"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -535551,10 +535853,10 @@
       },
       "phaseRange": [
         1614,
-        1671
+        1672
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 184,
+      "addedNames": 187,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -535566,9 +535868,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.732,
-        "log": "tmp/duema-phase-1671/check.log",
-        "logSha256": "99b40d9967ca2fe750430dc42dd10063e3d383ce06f9e0b651a700c311d1cbf9"
+        "seconds": 23.99,
+        "log": "tmp/duema-phase-1672/check.log",
+        "logSha256": "bed098cb5eafa319a32647b4dc34886b1f08af3286e31bcdcbf33d0c285cacc8"
       },
       "latestAudit": {
         "name": "audit",
@@ -535578,11 +535880,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 13.088,
-        "log": "tmp/duema-phase-1671/audit.log",
-        "logSha256": "532a8f328c79cd41990509391730c80aefd905f525538116d14e430f416eb9e2"
+        "seconds": 15.259,
+        "log": "tmp/duema-phase-1672/audit.log",
+        "logSha256": "cefe6a4bcd2d25f155cbab147d247c6397d22726f02ffa40b75f0bfba4e316fb"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1671.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1672.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -536699,11 +537001,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9254,
-      "remaining": 246,
+      "currentNames": 9257,
+      "remaining": 243,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T14:57:26.512Z"
+      "checkedAt": "2026-11-22T15:17:31.040Z"
     },
     "resolvedRegistrationValidations": [
       {

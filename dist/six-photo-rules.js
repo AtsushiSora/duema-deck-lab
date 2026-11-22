@@ -1243,12 +1243,22 @@ export function createSixPhotoRules(api){
    if(!x.sealed&&!x.faceDown&&card(x).g1670Alchemist&&effective(x,s).g1670Alchemist)
     queue(s,owner,x,[{op:'AlchemistDraw1670',drawPlayer:player}]);
  }
+ function manaCivilizations1672(s,p,c){
+  const available=new Set(s.players[p].mana.filter(x=>!x.faceDown)
+   .flatMap(x=>api.manaColors(api.zoneCard(s,p,x,'mana'),s,p)));
+  return colors(c).every(color=>available.has(color));
+ }
  function dSwitchScore1669(s,t){
   const own=s.players[t.p];
   if(t.defs[0]?.op==='Select'&&t.defs[0].to==='shields')return own.hand.length?10:-1;
   if(t.defs[0]?.op==='GroupUntap'&&t.defs[1]?.op==='GroupGrant364')return creatures(s,t.p).some(x=>!x.sealed)?10:-1;
+  if(t.defs[0]?.op==='BritishReturn1672')return s.g1672Destroyed?.turn===s.turn&&own.grave.some(x=>
+   s.g1672Destroyed.cards[t.p].some(r=>r.uid===x.uid&&r.serial===(x.zoneSerial||0)))?15:-1;
+  if(t.defs[0]?.op==='LauncherRamp1672')return own.deck.length>1?12:-1000;
   if(t.defs[0]?.op==='Execute'){
    const d=t.defs[0];
+   if(d.g1672ManaCivilizations)return own.hand.some(x=>faces(card(x)).some(c=>c.type!=='creature'&&cost(c)<=d.max&&
+    manaCivilizations1672(s,t.p,c)&&api.canCast(s,t.p,c,'hand')&&api.canExecuteUnpaid(s,t.p,c)))?20:-1;
    return own.hand.some(x=>faces(card(x)).some(c=>c.type==='spell'&&cost(c)<=d.max&&colors(c).includes(d.g556SpellColor)&&
     api.canCast(s,t.p,c,'hand')&&api.canExecuteUnpaid(s,t.p,c)))?20:-1;
   }
@@ -3590,6 +3600,28 @@ export function createSixPhotoRules(api){
   const mana=own.mana.find(y=>y.uid===t.target&&!y.faceDown&&(y.zoneSerial||0)===t.serial);
   if(mana&&!used792(s,t,t))choice(s,t,card(mana).name+'をマナゾーンで裏向きにする？',
    [opt('裏向きにする',true,manaDownScore426(s,t,mana),mana.cardId),skip()]);
+  break;
+ }
+ case'g34_BritishReturn1672':{
+  const history=s.g1672Destroyed;
+  if(history?.turn===s.turn)start(s,t,[{op:'Select',origin:'grave',to:'hand',g1009SelectAll:true,
+   filter:{creature:true},g960FormerBases:history.cards[t.p]}]);
+  break;
+ }
+ case'g34_LauncherVictim1672':
+  start(s,{...t,p:1-t.p,controller:t.controller??t.p},[{op:'Select',origin:'battle',to:'mana',n:1,
+   filter:{creature:true,untapped:true},g187OwnPick:true,toOwnerMana:true,
+   title:'マナゾーンに置く自分のアンタップしているクリーチャーを1体選ぶ'}]);
+  break;
+ case'g34_LauncherRamp1672':{
+  const y=api.takeTop(s,t.p);
+  if(!y){api.deckCheck(s,t.p);break;}
+  const c=api.zoneCard(s,t.p,y),qualifies=c.type==='creature'&&cost(c)<opp.mana.length;
+  const dest=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');
+  clear(y,dest);api.addZone(s,t.p,dest,y);
+  if(qualifies&&!api.deckWasShuffled1365(s,y)&&own[dest]?.some(x=>x.uid===y.uid)&&api.canMoveZone(s,t.p,dest)&&canPut(s,t.p,y,dest))
+   start(s,t,[{op:'Put',origin:dest,target:y.uid}]);
+  api.deckCheck(s,t.p);
   break;
  }
  case'g34_TenderBlock1670':
@@ -6917,7 +6949,7 @@ export function createSixPhotoRules(api){
     if(!matches(s,t.p,{...y,cardId:y.cardId},t.filter))return [];
     return faces(card(y)).flatMap((c,face)=>{
      const type=c.type;
-     if(!api.canExecuteUnpaid(s,t.p,c))return [];
+     if(!api.canExecuteUnpaid(s,t.p,c)||t.g1672ManaCivilizations&&!manaCivilizations1672(s,t.p,c))return [];
      if(t.g1656BelowCastCost!==undefined&&cost(c)>=(t.g1656BelowCastCost==='∞'?Infinity:t.g1656BelowCastCost))return [];
      if(t.g1650VividOnly&&c.g1335VividDraw===undefined)return [];
      if(t.g1568KnightMagic&&!hasKnightMagic(c))return [];
@@ -8793,7 +8825,7 @@ export function createSixPhotoRules(api){
   if(v){const y=own.grave.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)zoneMove(s,t.p,'grave',y.uid,'hand',t);}
   else start(s,t,[{op:'SpellFinish416',to:'hand'}]);
   break;
- case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_FirstDiscardUse1268':
   if(v&&firstDiscardOptions1268(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face)){
    if(v.type==='spell')cast(s,t.p,v.uid,true,null,v.face,null,'grave','カードの能力');
@@ -10485,7 +10517,9 @@ export function createSixPhotoRules(api){
   if(!x)return [];
   const related=[x,...s.players[player].battle.filter(a=>a.auraTo1352?.uid===x.uid&&a.auraTo1352.incarnation===(x.incarnation||0))];
   return related.filter(y=>!y.sealed&&card(y).g838AnyGrave&&!api.ignored(s,y)).map(key);
- }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,
+ }),g1672CreatureRefs:s.players.flatMap((own,p)=>own.battle
+  .filter(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x))
+  .flatMap(x=>[x,...(x.godLinks||[])].map(y=>({p,uid:y.uid,incarnation:y.incarnation||0})))),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
    ...(g1256HandEvolutionWatch[p].length&&api.isEvolution(x)?{g1256Evolution:true}:{}),
@@ -10522,6 +10556,10 @@ export function createSixPhotoRules(api){
   }
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
+  if(to==='grave'&&destroy&&snapshot?.g1672CreatureRefs?.some(ref=>ref.p===p&&key(ref)===key(x))){
+   if(s.g1672Destroyed?.turn!==s.turn)s.g1672Destroyed={turn:s.turn,cards:[[],[]]};
+   s.g1672Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
+  }
   if(victim){
    // Battle-result destruction is finalized before victory effects and Slayer (Q&A 42495–42496).
    if(to==='grave'&&destroy&&victim.creature&&

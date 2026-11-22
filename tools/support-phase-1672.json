@@ -1,0 +1,537 @@
+{
+  "phase": 1672,
+  "checkedAt": "2026-11-23",
+  "baseCount": 9254,
+  "target": 9500,
+  "description": "自軍スレイヤーと当ターン破壊されたクリーチャーの一括回収、相手の攻撃時の相手選択マナ送りと開始時の山札1枚からの展開、マナ文明を満たす非クリーチャー無料実行を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49151/",
+    "https://dm.takaratomy.co.jp/rule/qa/40254/",
+    "https://dm.takaratomy.co.jp/rule/qa/49417/",
+    "https://dm.takaratomy.co.jp/rule/qa/49418/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-042",
+      "name": "Dの魔城 ブリティッシュ・パビリオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-042",
+      "faces": [
+        {
+          "name": "Dの魔城 ブリティッシュ・パビリオン",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン破壊された自分のクリーチャーをすべて、自分の墓地から手札に戻す。",
+          "race": "ゼニス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g208Auras": [
+          {
+            "filter": {},
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "g174End": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "BritishReturn1672"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-042.jpg",
+      "sameNameProducts": [
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-042",
+        "result": "公式の同名収録一覧・既存ID・正規名を照合。各1商品で再録の重複登録なし。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "9b1c6388413f8e219509e12a7c8516405e149e2efdf33d638ad3e36b4908292b",
+        "facesMatched": true,
+        "imageSha256": "70ae7ba0f371079bd72376d0fe56915f6ddc9a6971687fa7b646c20a3dab1c12",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T15:03:25.764Z",
+        "imageNotes": "公式画像で正規名・番号・全文・コスト・文明・マナ1・D2種別とゼニス種族の有無、Sトリガー/Gストライクを目視照合。"
+      }
+    },
+    {
+      "id": "dmr23-018",
+      "name": "Dの爆撃 ランチャー・ゲバラベース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-018",
+      "faces": [
+        {
+          "name": "Dの爆撃 ランチャー・ゲバラベース",
+          "typeText": "D2フィールド",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n相手のクリーチャーが攻撃する時、相手は自身のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の山札の上から１枚目をマナゾーンに置く。そのコストが、相手のマナゾーンにあるカードの枚数より小さいクリーチャーなら、バトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "trigger": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "LauncherRamp1672"
+              }
+            ]
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "LauncherVictim1672"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-018.jpg",
+      "sameNameProducts": [
+        "DMR-23 革命ファイナル 拡張パック最終章 ドギラゴールデン vs. ドルマゲドンＸ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-018",
+        "result": "公式の同名収録一覧・既存ID・正規名を照合。各1商品で再録の重複登録なし。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "6cc39536103557792a31c2aca26c668c095ffb2f8c8b66cb13212346cdd86f15",
+        "facesMatched": true,
+        "imageSha256": "02b749fa71293628dbb9c0e234ea108a5ee220292edb7cceea2b82ecb33e5f41",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T15:03:25.765Z",
+        "imageNotes": "公式画像で正規名・番号・全文・コスト・文明・マナ1・D2種別とゼニス種族の有無、Sトリガー/Gストライクを目視照合。"
+      }
+    },
+    {
+      "id": "dm26rp2-015",
+      "name": "Dの機動 ヴァイス・ヴァーチュー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-015",
+      "faces": [
+        {
+          "name": "Dの機動 ヴァイス・ヴァーチュー",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターンの終わりに、カードを１枚引いてもよい。\n（他のD2フィールドが出た時、このD2フィールドを破壊する）\n**Dスイッチ：クリーチャーが自分を攻撃する時、このD2フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、コスト５以下でその文明がすべて自分のマナゾーンにある、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "gStrike": true,
+        "g174End": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "DSwitch1669",
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "hand",
+                  "nonCreature": true,
+                  "max": 5,
+                  "g1672ManaCivilizations": true,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-015.jpg",
+      "sameNameProducts": [
+        "DM26-RP2 逆札篇 第2弾 燃えろ禁断！逆転のドギラゴン革命!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-015",
+        "result": "公式の同名収録一覧・既存ID・正規名を照合。各1商品で再録の重複登録なし。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "9b7301899f2efcfa2790e4422e3300b86dd04bfd81f57e386ff56e73d627ff9d",
+        "facesMatched": true,
+        "imageSha256": "b0eb9a741b40a4d86832cba30c476c228f48da04d10368a5dac1b4a74638feb9",
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T15:03:25.765Z",
+        "imageNotes": "公式画像で正規名・番号・全文・コスト・文明・マナ1・D2種別とゼニス種族の有無、Sトリガー/Gストライクを目視照合。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "printAliases": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49151/",
+      "checkedAt": "2026-11-22T15:01:24.712Z",
+      "sha256": "6999398853f9eab2a75daa49baece3063efc4b9d3fd336787a543f44c127007f",
+      "questionAnswer": "よくある質問 Q相手の《Dの機動 ヴァイス・ヴァーチュー》と《玉男》、自分の《屑男》がバトルゾーンにある状況です。 自分のターン中、自分の《ボルシャック・ガラワルド》が相手を攻撃し、その「攻撃する時」の能力で、相手の《玉男》をバトルするクリーチャーとして選びました。 この際、効果の処理順はどうなりますか？ A効果でバトルが行われる際、そのバトルの結果によって誘発する能力を優先して解決した後、「バトルの後」に解決される能力を解決し、その後でバトルが行われる前から待機している別の効果を解決します。 そのため、以下の順番で効果が解決されます。 １. 《ボルシャック・ガラワルド》と《玉男》が効果でバトルを行い、バトルの結果《玉男》が破壊。これにより自分の《ボルシャック・ガラワルド》の「バトルに勝った時」の能力と《屑男》の「他のクリーチャーが破壊された時」の能力、相手の《玉男》の「破壊された時」の能力が同時にトリガーします。 ２. 同時に待機した能力はターン・プレイヤーから解決するので、まず《ボルシャック・ガラワルド》の「バトルに勝った時」の能力と《屑男》の「他のクリーチャーが破壊された時」の能力を好きな順番で解決し、その後《玉男》の「破壊された時」の能力を解決し、バトルが終了します。 3. 《玉男》の「スレイヤー」を解決し《ボルシャック・ガラワルド》が破壊され、「バトルの後」の処理が終了します。また、これにより自分の《屑男》の「他のクリーチャーが破壊された時」の能力がトリガーします。 ４. 待機している自分の《屑男》の「他のクリーチャーが破壊された時」の能力と相手の《Dの機動 ヴァイス・ヴァーチュー》の「Dスイッチ」を解決。ターン・プレイヤーのカードである《屑男》の能力から順番に解決します。 ５. 待機している効果の解決が終わった後、攻撃した《ボルシャック・ガラワルド》がバトルゾーンを離れているため即座に攻撃が終了します。 （総合ルール 505.6a, 701.13.） ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1672-effects.test.mjs",
+      "testNamePrefix": "QA49151 actual effect-battle loss",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40254/",
+      "checkedAt": "2026-11-22T15:11:51.123Z",
+      "sha256": "fe48f1ad5c4dc2e0fd8b49504ac811e5a00bbc960700a4bf1eb5ae804048d84f",
+      "questionAnswer": "よくある質問 Qバトルゾーンと自分の墓地に《天翼 クリティブ-１》がある状況で、自分は《フォース・アゲイン》を唱えて、《天翼 クリティブ-１》を破壊し、バトルゾーンに出しました。自分のターンの終わりに《祈跡連結 ミルザビ・ミラ》の効果で墓地にある別の《天翼 クリティブ-１》をバトルゾーンに出せますか？ Aいいえ、出せません。墓地にある《天翼 クリティブ-１》は、このターン中に破壊された《天翼 クリティブ-１》ではありません。 ",
+      "analogue": true,
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1672-effects.test.mjs",
+      "testNamePrefix": "QA40254 analogue British",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49417/",
+      "checkedAt": "2026-11-22T15:11:51.719Z",
+      "sha256": "f211c7ddb4cd742e0ef9e6443441ecd88b17ef80eaf50ac6e209264fd4b32447",
+      "questionAnswer": "よくある質問 Qこのターン、自分の封印を１つ外して墓地に置きました。 そのカードがクリーチャーだった場合、《羅明逆夢 アシュノムカメイ》の「自分のターンの終わりに」の能力で、墓地からバトルゾーンに出せますか？ Aいいえ、封印として墓地に置かれたカードはバトルゾーンに出せません。 この能力で出せるのは、エレメントとしてバトルゾーンに置かれている状態で破壊されたエレメントのみです。 例えば、バトルゾーンにいたクリーチャーやタマシードが破壊されていた場合、それらを墓地から出すことができます。 ",
+      "analogue": true,
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1672-effects.test.mjs",
+      "testNamePrefix": "QA49417 analogue a real Nature Command",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49418/",
+      "checkedAt": "2026-11-22T15:11:52.394Z",
+      "sha256": "6b60697f4a36acbc2a0f6df82626fd074657038014d93e01667eec2bc430ee15",
+      "questionAnswer": "よくある質問 Qこのターン、自分の《天災 デドダム》を進化元にした《SSS級天災 デッドダムド》が破壊されました。 《羅明逆夢 アシュノムカメイ》の「自分のターンの終わりに」の能力で、墓地から《天災 デドダム》と《SSS級天災 デッドダムド》を両方出せますか？ Aいいえ、出せるのは《SSS級天災 デッドダムド》のみです。 進化元に置かれていた《天災 デドダム》はエレメントとしてバトルゾーンにいたわけではないので、出せません。 また、《SSS級天災 デッドダムド》は進化クリーチャーなので、その進化元になるクリーチャーの上に進化して出す必要があります。 ",
+      "analogue": true,
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1672-effects.test.mjs",
+      "testNamePrefix": "QA49418 analogue British",
+      "bothPlayersVerified": true
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T15:01:24.715Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule/qa ブリティッシュ・パビリオン",
+      "site:dm.takaratomy.co.jp/rule/qa ランチャー・ゲバラベース",
+      "site:dm.takaratomy.co.jp/rule/qa ヴァイス・ヴァーチュー"
+    ],
+    "result": "ヴァイスのカードページから公式QA49151を取得し、効果バトル・破壊・スレイヤー・待機Dスイッチの処理順を確認。他2種の固有QAは検索では見つからず、全文と既存の移動・破壊履歴・特性参照の共通処理を使用。"
+  },
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-042": 4,
+      "dmr23-018": 4,
+      "dm26rp2-015": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T15:17:31.040Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1672.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.39,
+        "log": "tmp/duema-phase-1672/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1672-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.343,
+        "log": "tmp/duema-phase-1672/final-focused.log",
+        "passed": 119,
+        "failed": 0,
+        "logSha256": "967352ab5d41a686f7e2f6288e6d7ee0d8a155806a21e979484611bba44b38ad"
+      },
+      "related-d2-execution": {
+        "name": "related-d2-execution",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1669-effects.test.mjs",
+          "tests/standard1670-effects.test.mjs",
+          "tests/standard1671-effects.test.mjs",
+          "tests/standard1188-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.756,
+        "log": "tmp/duema-phase-1672/related-d2-execution.log",
+        "passed": 396,
+        "failed": 0,
+        "logSha256": "85412000e706f3ee06217803c6a3d39351e3565e85a968f42de4ad5c2959a8e8"
+      },
+      "related-death-slayer": {
+        "name": "related-death-slayer",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1225-effects.test.mjs",
+          "tests/standard1263-effects.test.mjs",
+          "tests/standard693-effects.test.mjs",
+          "tests/standard208-effects.test.mjs",
+          "tests/standard1281-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 30.877,
+        "log": "tmp/duema-phase-1672/related-death-slayer.log",
+        "passed": 102,
+        "failed": 0,
+        "logSha256": "72645116d981591338b9a6dfd51bb346eb985b2ea3199c94a8c859c9623bf124"
+      },
+      "related-mana": {
+        "name": "related-mana",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1363-effects.test.mjs",
+          "tests/standard972-effects.test.mjs",
+          "tests/standard1261-effects.test.mjs",
+          "tests/standard1317-effects.test.mjs",
+          "tests/standard411-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.787,
+        "log": "tmp/duema-phase-1672/related-mana.log",
+        "passed": 92,
+        "failed": 0,
+        "logSha256": "0ad71fd9eba065c04c8a17250c4ba27dd589377cac0dc4bb79ef62da7ed9017f"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.99,
+        "log": "tmp/duema-phase-1672/check.log",
+        "logSha256": "bed098cb5eafa319a32647b4dc34886b1f08af3286e31bcdcbf33d0c285cacc8"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 15.259,
+        "log": "tmp/duema-phase-1672/audit.log",
+        "logSha256": "cefe6a4bcd2d25f155cbab147d247c6397d22726f02ffa40b75f0bfba4e316fb"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.268,
+        "log": "tmp/duema-phase-1672/target9500.log",
+        "logSha256": "62f67b23ffdaa1833916c2d69045f87cd24baaeaaf30ac98ea28f2f0697fe131"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1672/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.814,
+        "log": "tmp/duema-phase-1672/invariants.log",
+        "logSha256": "78c8c983f23185630da4d751656757a1162018b7b508ae5720ec74cc6e926efe"
+      }
+    },
+    "totalTestsPassed": 709,
+    "focusedTestsPassed": 119,
+    "relatedTestsPassed": 590
+  },
+  "validationNotes": [
+    "固有119件、D2・無料実行396件、破壊・スレイヤー・リンク102件、マナ・文明関連92件の計709件が通過。npm run check、audit、target9500、既存9254定義・全ID・詳細・別名・画像参照の不変を確認。",
+    "公式の能力全文・基本情報・マナ値・現行制限と原版画像3枚を照合。各公式ページの同名収録一覧は1商品。既存の正規名・IDを維持し、再録や部分実装の重複加算なし。ランチャーの通常能力は相手が自身のアンタップしているクリーチャーを選んでマナに置く能力で、破壊とは区別して検証。",
+    "ブリティッシュは既存のD2対応常在オーラで自軍全クリーチャーにスレイヤーを供給。実バトルの勝敗とスレイヤー、能力無視・場の離脱を検証。終了時Dスイッチは実際にクリーチャーとして破壊された正確な物理ID・墓地位相の全件を必須回収し、山札から墓地・捨て札・以前のターン・相手・非クリーチャーACE・置換でマナに行ったキャディを除外する。",
+    "破壊直前にクリーチャーのルートとリンク各部品を記録し、リンク解除で非ルートのゴッドを選んだ場合も実際に墓地へ破壊されたその部品を回収。初回のルートだけの捕捉では非ルート2例が失敗したため、移動前の部品参照を含めるよう修正して両プレイヤー×両部品の4例とJSON保存・物理カード不変を確認。進化元・封印は記録対象に含めない。",
+    "公式QA40254・49417・49418の当ターン破壊履歴の原則を取得本文で照合。ブリティッシュを用いた類似再現として、墓地の同名別UIDを戻さず、実自然コマンドによる封印外しを破壊に数えず、破壊された進化の下のカードを回収しないことを確認。対象やフィールドの新たな登場・墓地再入場で古い位相を使わない。",
+    "ランチャーはプレイヤー・クリーチャーへの相手の攻撃を観測し、相手が自身のアンタップ中のクリーチャーを必須選択。既にタップされた攻撃者・全タップ盤面を区別し、自分でオニカマスを選ぶ場合とマナ送りを検証。Sトリガーで後から出た時は進行中の攻撃に反応せず、次の攻撃から働く。",
+    "ランチャーDスイッチは山札の正確な1枚を通常のマナ移動処理に渡し、クリーチャー自身のコストを相手の現在のマナ枚数と厳密な未満で比較して同じ物理カードを展開。等しい・超過・呪文・無限コスト・ツイン・合法進化元・実アプルの移動禁止・とこしえの登場置換・最後の山札1枚での敗北を確認。",
+    "ヴァイスはGストライク、終了時任意ドロー、プレイヤー攻撃時Dスイッチを実装。現在のマナの文明をタップ状態と独立して確認し、各面ごとに5以下の非クリーチャーを選択。呪文・クロスギア・タマシード・D2・オーラの実無料実行、ツインの呪文面、裏向きマナ・不足文明・コスト6・デルフィンの禁止・実コートニーの全色化を検証。実行前に文明を再確認する。",
+    "公式QA49151を実ガラワルド・玉男・屑男・ヴァイスで両プレイヤーから再現。効果バトル、勝利と墓地移動のターン側誘発、相手の破壊時能力、スレイヤーでの攻撃者破壊、屑男の後続誘発、待機中Dスイッチの順に処理し、攻撃中止でも公開ゾーンのDスイッチは残ることを確認。",
+    "途中のfixture誤り（既存Discardの相手指定、自軍の手札循環でドローした後のミル対象、GSの宣言選択、Aura検証前に追加した攻撃者、キャディのID）を訂正し最終119件が通過。リンク部品の実装漏れも修正済み。手動マナ・暗号化ルーム再開・秘匿・AIの純粋性と未知情報非依存、両先後の合法40枚デッキの80物理カード保存と終局を検証。今回3種類の未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定待ち1件は維持。ローカルのみ。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 16.987,
+      "log": "tmp/duema-phase-1672/focused.log"
+    },
+    {
+      "name": "fixture-corrections",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=British excludes|stale destruction|actual G-strike",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.952,
+      "log": "tmp/duema-phase-1672/fixture-corrections.log"
+    },
+    {
+      "name": "exclusion-debug",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=British excludes",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.707,
+      "log": "tmp/duema-phase-1672/exclusion-debug.log"
+    },
+    {
+      "name": "expanded",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=British excludes|real Aura|Courtney|actual Delfin|Attack watches|grave destination|once for that field",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.257,
+      "log": "tmp/duema-phase-1672/expanded.log"
+    },
+    {
+      "name": "extended-corrections",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=real Aura|grave destination|British excludes",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.082,
+      "log": "tmp/duema-phase-1672/extended-corrections.log"
+    },
+    {
+      "name": "linked-destruction-audit",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=exact destroyed God part|QA49418 analogue",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.121,
+      "log": "tmp/duema-phase-1672/linked-destruction-audit.log"
+    },
+    {
+      "name": "linked-destruction-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=exact destroyed God part|QA49418 analogue|destruction-time creature",
+        "tests/standard1672-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.174,
+      "log": "tmp/duema-phase-1672/linked-destruction-fixed.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr23-030",
+      "name": "Dの牢閣 メメント守神宮",
+      "reason": "Sトリガー・全自軍ブロッカーと各ターンの最初のドローでのDスイッチ全体タップを照合する。"
+    },
+    {
+      "id": "dmr22-022",
+      "name": "Dの揺籠 メリーボーイラウンド",
+      "reason": "コスト1への攻撃制限と自分の最初のドロー時のDスイッチ全自軍アンタップを照合する。"
+    },
+    {
+      "id": "dmex12-046",
+      "name": "Dの森域 フィオナ・ザ・ハート",
+      "reason": "自軍への攻撃時ランプとドリームメイトによる中止、相手開始時Dスイッチの可能ならクリーチャー攻撃を照合する。"
+    }
+  ]
+}

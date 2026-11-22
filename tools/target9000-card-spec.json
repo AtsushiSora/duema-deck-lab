@@ -35883,5 +35883,136 @@
         ]
       }
     }
+  },
+  "dm23ex3-042": {
+    "phase": 1672,
+    "faces": [
+      {
+        "name": "Dの魔城 ブリティッシュ・パビリオン",
+        "typeText": "D2フィールド",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン破壊された自分のクリーチャーをすべて、自分の墓地から手札に戻す。",
+        "race": "ゼニス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g208Auras": [
+        {
+          "filter": {},
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "BritishReturn1672"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr23-018": {
+    "phase": 1672,
+    "faces": [
+      {
+        "name": "Dの爆撃 ランチャー・ゲバラベース",
+        "typeText": "D2フィールド",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n相手のクリーチャーが攻撃する時、相手は自身のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の山札の上から１枚目をマナゾーンに置く。そのコストが、相手のマナゾーンにあるカードの枚数より小さいクリーチャーなら、バトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "trigger": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "LauncherRamp1672"
+            }
+          ]
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "LauncherVictim1672"
+          }
+        ]
+      }
+    }
+  },
+  "dm26rp2-015": {
+    "phase": 1672,
+    "faces": [
+      {
+        "name": "Dの機動 ヴァイス・ヴァーチュー",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターンの終わりに、カードを１枚引いてもよい。\n（他のD2フィールドが出た時、このD2フィールドを破壊する）\n**Dスイッチ：クリーチャーが自分を攻撃する時、このD2フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、コスト５以下でその文明がすべて自分のマナゾーンにある、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "gStrike": true,
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "Execute",
+                "origin": "hand",
+                "nonCreature": true,
+                "max": 5,
+                "g1672ManaCivilizations": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
