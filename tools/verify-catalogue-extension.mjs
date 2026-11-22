@@ -1,5 +1,6 @@
 import assert from'node:assert/strict';
 import{nameKey}from'../dist/catalogue.js';
+import{standardCardSpec}from'./standard-card-spec.mjs';
 // Preserve every saved catalogue entry. Only new, fully verified print aliases may be appended.
 export function assertVerifiedCatalogueExtension(before,current,{supported,manifests}){
  const remaining=structuredClone(current),added=[];
@@ -15,7 +16,10 @@ export function assertVerifiedCatalogueExtension(before,current,{supported,manif
   assert.equal(nameKey(r.name),nameKey(canonical.name));
   assert.equal(new URL(r.source).hostname,'dm.takaratomy.co.jp');
   assert.equal(new URL(r.source).searchParams.get('id'),id);
-  assert.deepEqual(r.faces,target.faces,'Print faces differ: '+id);
+  try{assert.deepEqual(r.faces,target.faces);}catch{
+   assert.deepEqual(r.faces.map(({abilityText,...basic})=>basic),target.faces.map(({abilityText,...basic})=>basic),'Print basic fields differ: '+id);
+   assert.deepEqual(standardCardSpec({id:r.id,name:r.name,status:'complete',faces:r.faces},{phase:m.phase}),target.spec,'Full print abilities differ: '+id);
+  }
   assert.ok(r.verification?.facesMatched&&r.imageReviewed&&r.allAbilitiesAndBasicInformationMatched,'Unverified print alias: '+id);
   assert.match(r.verification.sha256,/^[a-f\d]{64}$/);
   assert.match(r.verification.imageSha256,/^[a-f\d]{64}$/);

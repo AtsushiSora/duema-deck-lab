@@ -6060,6 +6060,34 @@ export function createSixPhotoRules(api){
    controller:t.controller??t.p
   })));
   break;
+ case'g34_BlackSlayer1683':
+  (s.extLimits??=[]).push({kind:'g1683BlackSlayer',player:t.p,source:t.source,expires:'end',who:s.active});
+  break;
+ case'g34_Roto1683':{
+  const p=1-t.p;
+  put(s,{...t,p,controller:t.controller??t.p,op:'g34_RotoReveal1683'});break;
+ }
+ case'g34_RotoReveal1683':{
+  const filter={creature:true,nonEvolution:true},ids=look(s,{...t,n:own.deck.length,public:true,g1603UntilFilter:filter}),last=ids.at(-1),found=own.deck.find(x=>x.uid===last);
+  const hit=found&&matches(s,t.p,found,filter);
+  if(hit)release(s,t.p,last);
+  start(s,t,[...(hit?[{op:'Put',origin:'deck',target:last,noEvolve:true}]:[]),
+   {op:'Order',ids:ids.filter(uid=>!hit||uid!==last),rest:'bottom',ordered:[]}]);
+  break;
+ }
+ case'g34_Patrol1683':
+  choice(s,t,'シールドを山札に戻して置き直すプレイヤーを選ぶ',[
+   opt('自分',t.p,own.shields.length?0:1),opt('相手',1-t.p,opp.shields.length?0:1)]);break;
+ case'g34_PatrolMove1683':{
+  const target=s.players[t.owner],follow={...t,op:'g34_PatrolRefill1683',count:target.shields.length};
+  api.moveShields(s,t.owner,target.shields.map(api.shieldGroup),'deck');
+  if(!api.deferShieldMove1352(s,follow))put(s,follow);
+  break;
+ }
+ case'g34_PatrolRefill1683':
+  api.shuffleLibrary(s,t.owner,[],t.source);
+  if(t.count)api.shieldTop(s,t.owner,card(t.source),null,{count:t.count});
+  break;
  case'g34_DisMin1682':{
   const order=[s.active,1-s.active],chosen=t.chosen||[];
   if(chosen.length<order.length){
@@ -7816,6 +7844,7 @@ export function createSixPhotoRules(api){
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;
+ case'g34_Patrol1683':put(s,{...t,op:'g34_PatrolMove1683',owner:v});break;
  case'g34_DisMin1682':put(s,{...t,chosen:[...(t.chosen||[]),!!v]});break;
  case'g34_MiniOrder1682':put(s,{...t,ordered:[...(t.ordered||[]),v]});break;
  case'g34_OrderShield1262':

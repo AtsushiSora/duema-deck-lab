@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9286,
-  "pendingNames": 2539,
-  "phase": 1682,
+  "supportedNames": 9289,
+  "pendingNames": 2536,
+  "phase": 1683,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1433,
-    "呪文": 284,
+    "クリーチャー": 1431,
+    "呪文": 283,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1832,
+    "未対応の能力文": 1829,
     "複数面・特殊カードタイプまたは情報不足": 589,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -536930,34 +536930,321 @@
         }
       ],
       "next": "phase1683で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+    },
+    {
+      "phase": 1683,
+      "checkedAt": "2026-11-22T19:26:41.627Z",
+      "baseline": "bf957d73",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9286,
+      "currentNames": 9289,
+      "remainingNames": 211,
+      "added": [
+        {
+          "id": "dm01-028",
+          "name": "ブラック・スレイヤー"
+        },
+        {
+          "id": "dm15-002",
+          "name": "アクア・パトロール"
+        },
+        {
+          "id": "promoy5-015",
+          "name": "コマンダー・ラッキーロトファイブ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "bf957d73",
+        "originalDefinitionsUnchanged": 9286,
+        "added": 3,
+        "uniqueNames": 9289,
+        "uniqueIds": 9289,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9286,
+        "existingImageReferenceRowsUnchanged": 11494
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1683.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.315,
+          "log": "tmp/duema-phase-1683/official.log",
+          "logSha256": "e787de5995bc0dd9dc6f0b87c22d5eedbf29004abdeace4c8df42da20cc1ecf7"
+        },
+        "focused": {
+          "name": "ownership-final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1683-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.869,
+          "log": "tmp/duema-phase-1683/ownership-final-focused.log",
+          "passed": 76,
+          "failed": 0,
+          "logSha256": "b934c993547c8a8d2166a650443dd2434d0e51ffe52d924db09cf2b791947bb3"
+        },
+        "related-block": {
+          "name": "ownership-related-block",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard532-effects.test.mjs",
+            "tests/standard695-effects.test.mjs",
+            "tests/standard699-effects.test.mjs",
+            "tests/standard715-effects.test.mjs",
+            "tests/standard938-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 29.537,
+          "log": "tmp/duema-phase-1683/ownership-related-block.log",
+          "passed": 146,
+          "failed": 0,
+          "logSha256": "68fb9493852ae52be506802c08902cd15de38e310b51cf9502d095885a329024"
+        },
+        "related-deck": {
+          "name": "related-deck",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard1603-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1275-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.385,
+          "log": "tmp/duema-phase-1683/related-deck.log",
+          "passed": 59,
+          "failed": 0,
+          "logSha256": "ff48edabf44dd5e403674605abf00c16830fd448f91b45d326c28cfd7c64f53c"
+        },
+        "related-shield": {
+          "name": "related-shield",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard1659-effects.test.mjs",
+            "tests/standard1352-effects.test.mjs",
+            "tests/standard1682-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 27.525,
+          "log": "tmp/duema-phase-1683/related-shield.log",
+          "passed": 230,
+          "failed": 0,
+          "logSha256": "fdfbb8a73121f3b2e97243ce160a9bfe86c73f5346be17f58552acb0b4bae4d9"
+        },
+        "related-mana-online": {
+          "name": "related-mana-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/mana-payment.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-live.test.mjs",
+            "tests/target9500-verification.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.564,
+          "log": "tmp/duema-phase-1683/related-mana-online.log",
+          "passed": 54,
+          "failed": 0,
+          "logSha256": "9abd963c9c6812fc200b902507076ed4c6e7fb6d0bd50670aa6de42de439bcb8"
+        },
+        "check": {
+          "name": "ownership-check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.803,
+          "log": "tmp/duema-phase-1683/ownership-check.log",
+          "logSha256": "080a9c8accf4a5bb4774487dcf5f4c830a1c8d3eb405c2f6a6c7e87d183fb46c"
+        },
+        "audit": {
+          "name": "final-audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.396,
+          "log": "tmp/duema-phase-1683/final-audit.log",
+          "logSha256": "71dacf3587fffe6e214e77de47794392f7cb6a09db38031e5076b401081f4d05"
+        },
+        "target9500": {
+          "name": "final-target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.377,
+          "log": "tmp/duema-phase-1683/final-target9500.log",
+          "logSha256": "15eebb14eca68cf2a8ce2db4d4b665f7c2bf8bd9270afa18a5eae2d0591dfdbe"
+        },
+        "invariants": {
+          "name": "final-invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1683/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.379,
+          "log": "tmp/duema-phase-1683/final-invariants.log",
+          "logSha256": "362b7433205fadf72de5e335850b811af94fa67c7bcbd21ac9b68049db2ad634"
+        }
+      },
+      "totalTestsPassed": 565,
+      "hashes": {
+        "dist/cards.json": "40f920a1c9434243859b10dd6b35f15acc52fb43f8d75fd402531d2831e75df7",
+        "dist/catalogue.json": "1a0bf9148e0ba45d3a49a5458791d2648559773b8fc136dde0eeb24d80eacf3d",
+        "dist/engine.js": "27fa5fc8f15a827a9153dc165b6e4d47ed5616f30041fcf488cc6e3fee1ae0ab",
+        "dist/six-photo-rules.js": "252522f654bf3454a5332c405e518af686d0e2e647f199e89b962fa357af65be",
+        "dist/online-compatibility.js": "fe2967fbba66ea9d1556f2ff55d67fae59079a8c7b4bdd2c2fcf251c82488740",
+        "dist/card-images.js": "49c99ffd93cb99bd161ee3d4ffe31d4cb214406abc70d67a3842404d33a1a41b",
+        "tools/target9000-card-spec.json": "d06961fdceeb357f46fd89756f1b5eb31d547e7f4b790ce6887e29ffb4474798",
+        "tests/standard1683-effects.test.mjs": "4f1cc34f74c64ae9dd0ff5cc02cf53031e962e7189d3d91ce5b1a296ae8982e1",
+        "tools/verify-catalogue-extension.mjs": "1cb96d1612f47f74097069b84fb6685acce8e93ab070714b7724870b9840d7e2",
+        "tools/verify-target9500.mjs": "c3d9d4c99be362e3b24f97ae4883b7d292ea0f0feb76e43c29894f4414b01d98",
+        "tests/target9500-verification.test.mjs": "88a7a766562fa68265372426ef56a4627e6fffc1be5bca58b032fca1c723b705"
+      },
+      "engineVersion": "0.602.199",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1683-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.956,
+          "log": "tmp/duema-phase-1683/focused.log"
+        },
+        {
+          "name": "corrected-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1683-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 18.338,
+          "log": "tmp/duema-phase-1683/corrected-focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1683.json",
+      "supported": 9289,
+      "pending": 2536,
+      "reason": "ブロックした相手をバトル後に破壊する継続呪文、プレイヤーの全シールドの山札シャッフルと同数再配置、相手山札から非進化クリーチャーが出るまで公開し強制登場して残りを任意順で山札下へ戻す能力を全文対応。",
+      "validationNotes": [
+        "固有76件、遅延移動・ブロック後の効果/選択と相互作用146件、公開停止/山札移動置換/出せるゾーンの禁止59件、シールド束とザハ・前バッチ回帰230件、手動マナ・通信同期と別名保護54件、合計565件を通過。最終check、audit、target9500、不変条件も通過。",
+        "ブラック・スレイヤー、アクア・パトロール、コマンダー・ラッキーロトファイブの3原本と、後2種の2再録を公式能力全文・基本情報・マナ値・画像・現行制限で照合。全5画像を目視確認。同名検索の結果は各1/2/2件で、すべて正規名と個別全文を照合。アクア・パトロールは現在プレミアム殿堂0枚制限を原本・再録とも維持し、登録によって使用可能枚数を変更しない。",
+        "ブラック・スレイヤーはそのターンに自軍をブロックした相手の実ブロッカーを記録し、バトル後に既存の遅延移動処理で破壊する。自軍へスレイヤー能力を付与する処理ではなく、その後に出た自軍や能力を無視された自軍をブロックした場合も適用。通常のクリーチャーへの攻撃や効果バトルには適用しない。複数回の詠唱/ブロック、ターン終了での失効、攻撃側とブロッカーの相打ち/強いブロッカーが勝った場合、破壊不能/バトル破壊不能とキャディのマナ置換を検証。",
+        "QA45909の一般則により、バトルゾーンから墓地へ置く効果は破壊として扱い、実キャディ・ビートルの置換を適用。元QAの鬼ヶ覇覇覇ジャオウガそのものを直接検証したとは数えない。ブラック・スレイヤーは呪文による効果として処理し、実ゲンムエンペラーが詠唱時にいる場合だけでなく、詠唱後に出て解決前に呪文の効果が無視された場合も適用しない。後者の初回失敗は今回の専用処理へ解決時の無視判定を追加して修正。",
+        "バトルの後の破壊は、バトル結果の誘発/選択を既存ルール通り先に解決する。実ブロッカーの物理参照とincarnationを保持し、既存DelayedMove532を使って同じ個体を追跡し、持ち主の墓地へ移す。現在のコントローラーと物理カードの持ち主が違うブロッカーでも持ち主の墓地へ移ることを両側で検証し、従来の遅延移動・進化・コントロール変更などの回帰102件を追加して146件を通過。",
+        "アクア・パトロールは両プレイヤーのどちらかを選択でき、解決時に数えたシールドの束の数を固定する。束に含まれる全物理カードをそのプレイヤーの山札へ入れてシャッフルし、同じ数の新しい裏向きシールドを追加する。束の中身を別のシールド枚数として数えず、0シールドでもシャッフルする。ザハで元のシールドがとどまる場合もその後の補充を行い、カレイコによる山札からの移動置換は補充分に適用する。物理カード数と相手の山札不変・非公開性を検証。",
+        "ラッキーロトファイブは相手の山札を初めて非進化クリーチャーが現れる所まで公開し、その個体を任意選択なしで出す。その後、公開したそれ以外のカードを相手が選ぶ順番で山札下へ戻す。進化カードと呪文は通過し、最初の該当個体より下は公開しない。該当なしは公開分すべてを戻し、ドローや山札切れにしない。検問の守り輝羅で出せない場合は選んだ個体を山札に残し、とこしえの登場置換は通常どおり適用。ツインパクトは1個体のクリーチャーとして出し、NEOを進化させる選択肢を出さない。6000の印刷パワーから未印刷のW・ブレイカーを推測しない。",
+        "再録dmx22b-053→dm15-002、dm25ex2-Cho027→promoy5-015の2別名だけを追記。基本情報は一致し、旧版と新しい表記の各能力全文を個別に固定して同じ実装仕様になることを検証。別名保護は既存カタログのカード・メタデータ・全旧別名を維持し、表記差がある新規別名は基本情報一致に加えて全能力の厳密なspec一致を要求する。再録に未対応能力を追加した場合は拒否。保存済みデッキの原本と再録を同じIDへまとめ、再録を種類数へ加算しない。",
+        "初回のゲンム検証は低コストのブロッカー自体が能力を無視されてブロックできないfixtureだったため、6コストの実シーマインへ訂正。登場禁止のIDはルドルフ・カルナックから実検問の守り輝羅へ訂正。アクア・パトロールは現行禁止なので、合法40枚デッキの終局試験から除外し、制限を偽る履歴データでも禁止を解除しない専用試験を追加。旧版/再録の意味照合呼び出しには完了状態の属性を正しく渡し、修正後の未対応能力拒否を通過。",
+        "手動物理マナ選択とJSON再開、相手の未知カードに依存しない純粋なAI、暗号化ルームでの意思決定者だけのアクション提示、合法40枚デッキ両先後の終局と80枚の物理カード保存を確認。今回の追加3種類に未完了の検証はなし。ギガスタンドとプロジェクト・ゴッドの保留理由と再開条件はheldへ記録し、仮の旧版1体リンク処理は登録前に撤去。過去の未完了検証/ユーザー保留/中断全体npm test・長時間群は維持。公開済みv0.722.16/9283種類を変更しない。"
+      ],
+      "held": [
+        {
+          "id": "dm02-044",
+          "name": "ギガスタンド",
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35021/",
+          "reason": "手札0でアクア・ソルジャーと妖姫シルフィによる同時破壊から、先にソルジャーを手札に戻して捨てるQA35021の順序が必要。既存returnDiscard1156は自身を先に戻してから捨てる別能力であり部分転用しない。専用の同時置換/事前破棄バッチへ保留。"
+        },
+        {
+          "id": "dm36-052",
+          "name": "プロジェクト・ゴッド",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-057",
+          "reason": "最新DM26-EX2では1体から「好きな数リンクして出す」へ能力が変更。原本IDを維持して最新全文に対応するにはリンク配置の競合を含む複数体同時登場とQA43748が必要。旧1体だけの仮実装は撤去し、専用バッチへ保留。"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmx01-023",
+          "name": "サイチェン・ピッピー",
+          "reason": "ビクトリーのセイバー条件と、相手ターンの手札破棄から実ガイアール・カイザーの任意登場を全文照合。"
+        },
+        {
+          "id": "dmx02-003",
+          "name": "スーパー・サイチェン・ピッピー",
+          "reason": "ハンターのセイバーと相手ターン手札破棄誘発を元ID・再録・関連裁定で照合。"
+        },
+        {
+          "id": "dmrp14-016",
+          "name": "ジャストアイデア・ステートメント",
+          "reason": "相手手札の非公開確認、任意の相手クリーチャー登場、試行後5ドロー、登場により起こる効果の無視を全文照合。"
+        }
+      ],
+      "next": "phase1684で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1682,
-    "nextPhase": 1683,
+    "lastVerifiedPhase": 1683,
+    "nextPhase": 1684,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm02-044",
-        "name": "ギガスタンド",
-        "reason": "手札1枚の任意破棄を条件とした墓地からの移動置換を既存手札返却処理で全文照合。"
+        "id": "dmx01-023",
+        "name": "サイチェン・ピッピー",
+        "reason": "ビクトリーのセイバー条件と、相手ターンの手札破棄から実ガイアール・カイザーの任意登場を全文照合。"
       },
       {
-        "id": "dm01-028",
-        "name": "ブラック・スレイヤー",
-        "reason": "自軍をブロックしてバトルに勝った敵だけの後続墓地移動をバトル履歴と照合。"
+        "id": "dmx02-003",
+        "name": "スーパー・サイチェン・ピッピー",
+        "reason": "ハンターのセイバーと相手ターン手札破棄誘発を元ID・再録・関連裁定で照合。"
       },
       {
-        "id": "dm36-052",
-        "name": "プロジェクト・ゴッド",
-        "reason": "5枚墓地移動、リンク可能なゴッド1体の任意登場とリンク、置換/禁止時の条件を全文照合。"
+        "id": "dmrp14-016",
+        "name": "ジャストアイデア・ステートメント",
+        "reason": "相手手札の非公開確認、任意の相手クリーチャー登場、試行後5ドロー、登場により起こる効果の無視を全文照合。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗とテスト/プロセスを確認し、実行中なら重複しない。",
-      "実データnameKey集計9286種類・重複0、9500まで残り214種類。公開済みv0.722.16は9283種類で、この登録は未公開。",
-      "phase1682の固有92件・関連363件・check/audit/target9500/不変条件とtools/target9500-registration-checkpoint-1682.jsonの実測を確認。",
-      "phase1683で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、固有/関連テスト・check・audit・nameKey再集計と進捗更新後に検証済み差分のみローカルコミット。",
+      "実データnameKey集計9289種類・重複0、9500まで残り211種類。公開済みv0.722.16は9283種類で、この登録は未公開。",
+      "phase1683の固有76件・関連489件・check/audit/target9500/不変条件とtools/target9500-registration-checkpoint-1683.jsonの実測を確認。",
+      "phase1684で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、固有/関連テスト・check・audit・nameKey再集計と進捗更新後に検証済み差分のみローカルコミット。",
       "全体npm testと中断済み長時間群を再実行せず、過去の未確認・ユーザー保留を今回の検証で解消扱いにしない。",
       "9500到達で件数増加の登録を停止。通常登録ではpush・公開・Netlify更新を行わず、別の明示指示がある時だけ。"
     ],
@@ -537481,14 +537768,6 @@
         "status": "not-registered"
       },
       {
-        "id": "dm02-044",
-        "name": "ギガスタンド",
-        "reason": "公式QA旧35021では同時破壊されるアクア・ソルジャーを先に手札へ戻し、そのカードを捨てて置換可能。既存returnDiscard1156は戻した後に捨てる別能力で、単純流用不可。同時離脱の置換順と手札支払いの原子的処理を検証するまで未登録。",
-        "source": "https://dm.takaratomy.co.jp/rule/qa_old/35021/",
-        "phase": 1657,
-        "status": "not-registered"
-      },
-      {
         "id": "dmex18-032",
         "name": "Library of Alexandria",
         "reason": "公式QA40866によりメインだけでなく開始時能力後・通常ドロー後・チャージ前後の優先タイミングでも起動可能。土地の非実行カード扱いと各ステップの待機効果がない時の起動を検証するまで未登録。",
@@ -537601,6 +537880,20 @@
         "reason": "公式全文・基本情報・再録一覧とQA40220を保存。全クリーチャーを無視するドルマゲドン・ビッグバンと戦霊混成ウルボランスが未対応で、名指し裁定の召喚時誘発順/無視状態での勝利を再現できない。検証に必要な2種類を全文対応する専用バッチへ保留。",
         "source": "https://dm.takaratomy.co.jp/rule/qa/40220/",
         "lastReviewedPhase": 1681
+      },
+      {
+        "id": "dm02-044",
+        "name": "ギガスタンド",
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/35021/",
+        "reason": "手札0でアクア・ソルジャーと妖姫シルフィによる同時破壊から、先にソルジャーを手札に戻して捨てるQA35021の順序が必要。既存returnDiscard1156は自身を先に戻してから捨てる別能力であり部分転用しない。専用の同時置換/事前破棄バッチへ保留。",
+        "lastReviewedPhase": 1683
+      },
+      {
+        "id": "dm36-052",
+        "name": "プロジェクト・ゴッド",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-057",
+        "reason": "最新DM26-EX2では1体から「好きな数リンクして出す」へ能力が変更。原本IDを維持して最新全文に対応するにはリンク配置の競合を含む複数体同時登場とQA43748が必要。旧1体だけの仮実装は撤去し、専用バッチへ保留。",
+        "lastReviewedPhase": 1683
       }
     ],
     "lastExplicitUserAddition": {
@@ -537777,23 +538070,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1682,
-      "baseline": "5c7a2f63",
-      "supportedNames": 9286,
-      "artifact": "tools/target9500-registration-checkpoint-1682.json",
-      "checkedAt": "2026-11-22T19:06:49.971Z"
+      "phase": 1683,
+      "baseline": "bf957d73",
+      "supportedNames": 9289,
+      "artifact": "tools/target9500-registration-checkpoint-1683.json",
+      "checkedAt": "2026-11-22T19:26:41.627Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T19:06:49.971Z",
+      "checkedAt": "2026-11-22T19:26:41.627Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9286,
-      "remainingNames": 214,
+      "currentNames": 9289,
+      "remainingNames": 211,
       "duplicateNames": 0,
-      "engineVersion": "0.602.198",
+      "engineVersion": "0.602.199",
       "added": [
         {
           "id": "dmr12-008",
@@ -538658,6 +538951,18 @@
         {
           "id": "dm23bd5-008",
           "name": "Disミン"
+        },
+        {
+          "id": "dm01-028",
+          "name": "ブラック・スレイヤー"
+        },
+        {
+          "id": "dm15-002",
+          "name": "アクア・パトロール"
+        },
+        {
+          "id": "promoy5-015",
+          "name": "コマンダー・ラッキーロトファイブ"
         }
       ],
       "results": {
@@ -538773,15 +539078,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "d4d9f3334abbbf660b722ebde5cb928c08282069168f15e26cd23cdc8a8939df",
-        "dist/catalogue.json": "5d8499ed4db9d4e5c29cd83e6ecb9d7e8085e710387cadbbb7db14149411a258",
-        "dist/engine.js": "15d6f5d3946a010b6f70928ba2c5287b8beab9dd7e6ad57e331d0e9b81add555",
-        "dist/six-photo-rules.js": "0130abcc104703242666c6c9724311a39bd8a8b546a2199081a6030b972e0461",
-        "dist/online-compatibility.js": "607d63f5975db795f9e90b813a5ccd2429143b1e9d3b2db9db54466332ea5593",
-        "dist/card-images.js": "ab5d28f5cbe324ef71a0cecfd2834d16db58350849f2613822b4a65b5ed7dcd8",
-        "tools/target9000-card-spec.json": "2b93ff380d2eae6dee91939c626e135f152b9cc76835f42dbc74f0834c7b0897",
-        "tests/standard1682-effects.test.mjs": "df387ff0119b26b31632631fc2c980b99f496b725b88b176c6532bed2a22690e",
-        "tools/verify-catalogue-extension.mjs": "058c3016139729e3c201f3fdb36a8bbc289b2fb4a921afda34ce8910181a3a8e",
+        "dist/cards.json": "40f920a1c9434243859b10dd6b35f15acc52fb43f8d75fd402531d2831e75df7",
+        "dist/catalogue.json": "1a0bf9148e0ba45d3a49a5458791d2648559773b8fc136dde0eeb24d80eacf3d",
+        "dist/engine.js": "27fa5fc8f15a827a9153dc165b6e4d47ed5616f30041fcf488cc6e3fee1ae0ab",
+        "dist/six-photo-rules.js": "252522f654bf3454a5332c405e518af686d0e2e647f199e89b962fa357af65be",
+        "dist/online-compatibility.js": "fe2967fbba66ea9d1556f2ff55d67fae59079a8c7b4bdd2c2fcf251c82488740",
+        "dist/card-images.js": "49c99ffd93cb99bd161ee3d4ffe31d4cb214406abc70d67a3842404d33a1a41b",
+        "tools/target9000-card-spec.json": "d06961fdceeb357f46fd89756f1b5eb31d547e7f4b790ce6887e29ffb4474798",
+        "tests/standard1683-effects.test.mjs": "4f1cc34f74c64ae9dd0ff5cc02cf53031e962e7189d3d91ce5b1a296ae8982e1",
+        "tools/verify-catalogue-extension.mjs": "1cb96d1612f47f74097069b84fb6685acce8e93ab070714b7724870b9840d7e2",
         "tools/verify-target9500.mjs": "c3d9d4c99be362e3b24f97ae4883b7d292ea0f0feb76e43c29894f4414b01d98",
         "tests/target9500-verification.test.mjs": "88a7a766562fa68265372426ef56a4627e6fffc1be5bca58b032fca1c723b705"
       },
@@ -538847,14 +539152,14 @@
       },
       "phaseRange": [
         1614,
-        1682
+        1683
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 216,
+      "addedNames": 219,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "final-check",
+        "name": "ownership-check",
         "command": [
           "npm",
           "run",
@@ -538862,23 +539167,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.57,
-        "log": "tmp/duema-phase-1682/final-check.log",
-        "logSha256": "6174a653cbc450aeae2d73947ddb9a207b7dd8db6e80bdb2994049d0f1d0aa13"
+        "seconds": 19.803,
+        "log": "tmp/duema-phase-1683/ownership-check.log",
+        "logSha256": "080a9c8accf4a5bb4774487dcf5f4c830a1c8d3eb405c2f6a6c7e87d183fb46c"
       },
       "latestAudit": {
-        "name": "audit",
+        "name": "final-audit",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.186,
-        "log": "tmp/duema-phase-1682/audit.log",
-        "logSha256": "f7c9c83c10513f38ef413eafc349afae29445d72e44441862cbd56758830cc04"
+        "seconds": 11.396,
+        "log": "tmp/duema-phase-1683/final-audit.log",
+        "logSha256": "71dacf3587fffe6e214e77de47794392f7cb6a09db38031e5076b401081f4d05"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1682.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1683.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -539995,11 +540300,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9286,
-      "remaining": 214,
+      "currentNames": 9289,
+      "remaining": 211,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T19:06:49.971Z"
+      "checkedAt": "2026-11-22T19:26:41.627Z"
     },
     "resolvedRegistrationValidations": [
       {
