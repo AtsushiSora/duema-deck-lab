@@ -177,7 +177,7 @@ test('Zentuu can react to a Shield Trigger summon during its controller’s turn
  drain(s);
 });
 
-test('Zentuu sees a zero-cost summon and an entry with its own trigger suppressed',()=>{
+test('Zentuu sees a zero-cost summon but not an entry that ignores all entry effects (QA44182)',()=>{
  const s=setup();
  const watcher=put(s,0,'battle',ZEN);
  s.active=1;
@@ -188,8 +188,8 @@ test('Zentuu sees a zero-cost summon and an entry with its own trigger suppresse
  const entrant=put(s,1,'grave',MAGIC);
  const handSize=s.players[1].hand.length;
  task(s,'g29_Deploy',1,{origin:'grave',uid:entrant.uid,ignoreEntry:true});
- assert.equal(s.decision.task.op,'g34_Zentuu767');
- pick(s,null);
+ assert.ok(!s.decision);
+ // All entry effects are ignored; a self-only ETB silence is a separate rule.
  assert.equal(s.players[1].hand.length,handSize);
  assert.ok(has(s,1,'battle',entrant));
 });
