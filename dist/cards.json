@@ -290660,22 +290660,190 @@
       },
       "supportBatch": "phase-1635",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-010",
+      "name": "神淵のカノン 愛染",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "オラクル",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体タップしてもよい。そうした場合、クリーチャーを２体まで、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-010",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "墓地から手札に戻すクリーチャーを2体まで選ぶ"
+            }
+          ],
+          "title": "墓地回収のためにタップする自分のクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1636",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-048",
+      "name": "蓄積された魔力の渦",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選ぶ。そのクリーチャーと、同じ名前を持つ他のクリーチャーをすべて、バトルゾーンから持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-048",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g1526BounceNames": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1636",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12b-001",
+      "name": "逆転の精霊ヘブンイレブン8210式",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 11000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nバトルゾーンに自分の光のクリーチャーが11体以上あれば、自分のクリーチャーすべてのパワーは+11000され、シールドをさらに11枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "g258Civil": 11
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true
+            },
+            "power": 11000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "creature": true,
+            "color": "光",
+            "g258Civil": 11
+          },
+          "grants": {
+            "extraBreak": 11
+          }
+        }
+      ],
+      "supportBatch": "phase-1636",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-008",
+      "name": "神聖斬 アシッド",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "オラクリオン",
+      "text": "ブロッカー ブロッカー\n自分のターンの終わりに、タップしている自分のクリーチャーを２体まで破壊してもよい。そうした場合、自分の山札を見る。こうして破壊したクリーチャー１体につき、コスト７以下の無色クリーチャーを１体、自分の手札または山札からバトルゾーンに出してもよい。その後、山札をシャッフルする。\n相手のターン中に、相手がバトルゾーンにある自分のクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃してもよい）\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-008",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g1114OpponentTurn": true
+        },
+        "grants": {
+          "untargetable": true
+        }
+      },
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "g173Targets": true,
+          "g187OwnPick": true,
+          "g1114AcidDeploy": true,
+          "title": "破壊する自分のタップしたクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1636",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1635,
+    "phase": 1636,
     "checkedAt": "2026-11-22",
-    "baseCount": 9136,
-    "newEffectCards": 3,
+    "baseCount": 9139,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9139,
+    "totalCount": 9143,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41443/",
-      "https://dm.takaratomy.co.jp/rule/qa/41444/",
-      "https://dm.takaratomy.co.jp/rule/qa/45058/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37149/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36810/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -317393,6 +317561,25 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40882/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1635,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9136,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9139,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41443/",
+          "https://dm.takaratomy.co.jp/rule/qa/41444/",
+          "https://dm.takaratomy.co.jp/rule/qa/45058/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37149/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
         ],
         "next": [

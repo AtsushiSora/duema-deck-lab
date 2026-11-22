@@ -1052,7 +1052,7 @@ export function createSixPhotoRules(api){
      try{ready=ownCondition(s,p,condition,source.uid);}finally{civilAuraReading.delete(s);}
      if(!ready)continue;
     }else if(condition&&!ownCondition(s,p,condition,source.uid))continue;
-    for(const [key,value]of Object.entries(aura.grants)){if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
+    for(const [key,value]of Object.entries(aura.grants)){if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='extraBreak')out.extraBreak=(out.extraBreak||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
    }
   }
   if(!racesOnly&&!goatRaceReading.has(s)){

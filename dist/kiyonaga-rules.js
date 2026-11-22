@@ -22,7 +22,7 @@ export function createKiyonagaRules(api){
    else if(n)put(s,task('g21BreakChoose',t.p,t.source,{selected:[],n}));
    break;
   }
-  case'g21BreakChoose':choice(s,t,'効果でブレイクする'+t.n+'つのシールドを選ぶ',opp.shields.filter(x=>!t.selected.includes(x.uid)).map((x,i)=>opt('シールド'+(opp.shields.indexOf(x)+1),x.uid,1)));break;
+  case'g21BreakChoose':choice(s,t,t.g1636AttackBreak?'ブレイクするシールドを選ぶ（'+t.selected.length+'/'+t.n+'）':'効果でブレイクする'+t.n+'つのシールドを選ぶ',opp.shields.filter(x=>!t.selected.includes(x.uid)).map(x=>{const ex=t.g1636ExLife?.includes(x.uid);return opt('シールド'+(opp.shields.indexOf(x)+1)+(ex?'（EXライフ）':''),x.uid,1+(ex?2:0));}));break;
   case'g21ZenonRamp':if(creatures(s,t.p).some(twin))ramp(s,t.p,1);break;
   case'g21Zenon':if((s.g21ZenonUsed||{})[t.key]!==s.turn&&api.canCast(s,t.p,faces(card(t.attackerSource))[1]))choice(s,t,'ゼノンで攻撃中のツインパクトの呪文側を唱える？',[opt('呪文側を唱える',true,15,t.attackerSource),skip()]);break;
   case'g21CobaltDraw':choice(s,t,'メヂカラでカードを2枚引く？',[opt('2枚引く',true,own.deck.length>2?10:-10),skip()]);break;

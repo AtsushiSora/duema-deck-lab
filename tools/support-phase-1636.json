@@ -1,0 +1,327 @@
+{
+  "phase": 1636,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9139,
+  "target": 9500,
+  "description": "任意タップによる墓地回収、同名クリーチャーの一括バウンス、光11体で全自軍に加わるパワーと11追加ブレイクを実装。愛染に関連する公式裁定の再現に必要な神聖斬 アシッドも、既存の同時破壊・手札山札展開・終了時スナップショットを使って全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36810/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dmx14-010",
+      "name": "神淵のカノン 愛染",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-010",
+      "faces": [
+        {
+          "name": "神淵のカノン 愛染",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体タップしてもよい。そうした場合、クリーチャーを２体まで、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "オラクル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "tap": true,
+            "optional": true,
+            "g1044ImplicitTap": true,
+            "g587AfterSelection": true,
+            "g987AfterNewTap": true,
+            "after": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 2,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "title": "墓地から手札に戻すクリーチャーを2体まで選ぶ"
+              }
+            ],
+            "title": "墓地回収のためにタップする自分のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "1e976b6382539e273f6b4387fc1d3dafb4f847922007791bb21dd53997e6f6b2",
+        "facesMatched": true,
+        "imageSha256": "0ddc5307ad3f066bd539e8b87eecf17f3e77582875715957f796b42df5ce24cc",
+        "imageBytes": 108538,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名称・能力全文・文明・コスト・パワー・種族・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMX-14 最強戦略 パーフェクト12"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-010",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-048",
+      "name": "蓄積された魔力の渦",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-048",
+      "faces": [
+        {
+          "name": "蓄積された魔力の渦",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選ぶ。そのクリーチャーと、同じ名前を持つ他のクリーチャーをすべて、バトルゾーンから持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g1526BounceNames": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "8fd0a2e704f65b6a69ccef472be599d926b60965e9d32f5de34aba2f213e4bd3",
+        "facesMatched": true,
+        "imageSha256": "b73e3b2d62ee8d3143b6d2bbb3f5c4ebaf04e15cc96747f5c5fe7f61224c229c",
+        "imageBytes": 127179,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名称・能力全文・文明・コスト・パワー・種族・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-048",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmx12b-001",
+      "name": "逆転の精霊ヘブンイレブン8210式",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-001",
+      "faces": [
+        {
+          "name": "逆転の精霊ヘブンイレブン8210式",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ブロッカー\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nバトルゾーンに自分の光のクリーチャーが11体以上あれば、自分のクリーチャーすべてのパワーは+11000され、シールドをさらに11枚ブレイクする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "g258Civil": 11
+          },
+          "grants": {
+            "g205Aura": {
+              "filter": {
+                "creature": true
+              },
+              "power": 11000
+            }
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "creature": true,
+              "color": "光",
+              "g258Civil": 11
+            },
+            "grants": {
+              "extraBreak": 11
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "2163925d2e8dfb3c220927473d1dffe77776112bb5f7d14ff057f4f78d6086f3",
+        "facesMatched": true,
+        "imageSha256": "cf50bb0578d426b12b165a262dbe41b744da3807fa61523f10d27bee1efc184a",
+        "imageBytes": 133526,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名称・能力全文・文明・コスト・パワー・種族・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMX-12 エピソード2 ブラック・ボックス・パック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-001",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmx14-008",
+      "name": "神聖斬 アシッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-008",
+      "faces": [
+        {
+          "name": "神聖斬 アシッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\n自分のターンの終わりに、タップしている自分のクリーチャーを２体まで破壊してもよい。そうした場合、自分の山札を見る。こうして破壊したクリーチャー１体につき、コスト７以下の無色クリーチャーを１体、自分の手札または山札からバトルゾーンに出してもよい。その後、山札をシャッフルする。\n相手のターン中に、相手がバトルゾーンにある自分のクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃してもよい）\nW・ブレイカー",
+          "race": "オラクリオン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g1114OpponentTurn": true
+          },
+          "grants": {
+            "untargetable": true
+          }
+        },
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "g173Targets": true,
+            "g187OwnPick": true,
+            "g1114AcidDeploy": true,
+            "title": "破壊する自分のタップしたクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "d1a7d0e6dbefccb7aa851a38d5f9373066d3906564f29bb24ab8788da5ed04db",
+        "facesMatched": true,
+        "imageSha256": "e3848ebf14caa328981f1ec215b61ab66fd7b97ad8ebe7dd669d88508bfa11dc",
+        "imageBytes": 204911,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名称・能力全文・文明・コスト・パワー・種族・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMX-14 最強戦略 パーフェクト12"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-008",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx14-010": 4,
+      "dmrp04m-048": 4,
+      "dmx12b-001": 4,
+      "dmx14-008": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36810/",
+      "checkedAt": "2026-11-22",
+      "sha256": "3072056635cf4a061f41eeab9324218579ba74414381040960c8862c47acea21",
+      "reviewed": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
+      "checkedAt": "2026-11-22",
+      "sha256": "88efd62fb68686bb1ef8682d1d4c14817ef5cf03145d161549883e33004efbfe",
+      "reviewed": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
+      "checkedAt": "2026-11-22",
+      "sha256": "8aa0a10ecec8efd19eae02678e27ac776ca448db5adb808f4bebdb59527395b3",
+      "reviewed": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+      "checkedAt": "2026-11-22",
+      "sha256": "72ae1af74b30cab71f892285f08a2dff570f24a54fbd03ce552fb9d36e728388",
+      "reviewed": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "checkedAt": "2026-11-22",
+      "sha256": "4119694839ccb44dd9af475860afd2b20c620e25766ffb3c54111ce324b1ec26",
+      "reviewed": true
+    }
+  ],
+  "implementationNotes": {
+    "additionalRegressionFix": "大量の数値ブレイクで全組み合わせ列挙がメモリ不足になる問題を修正。4096候補を超える場合は既存g21BreakChooseで各シールドを選び、最後に同時ブレイクする。通常の小さい選択は元のbreakChoiceを維持。AIは隠し情報を参照せず、公開EXライフだけを優先する。",
+    "compatibility": "元のカード定義・ID・catalogueと再録エイリアス・デッキ/履歴/保存形式を維持。既存のシリアライズ可能なg21選択タスクを再利用。",
+    "attempts": "初回のメモリ不足と、改善途中の選択検証125.663秒の中断はruns.jsonlに保持。最終実装に対して固有・関連回帰・静的検査をやり直す。"
+  }
+}

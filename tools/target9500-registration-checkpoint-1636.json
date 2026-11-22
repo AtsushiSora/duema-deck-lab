@@ -1,0 +1,128 @@
+{
+  "phase": 1636,
+  "checkedAt": "2026-11-22T06:13:41.847Z",
+  "baseline": "860689e6bf83aa9d610c7fbf90539da08745e1a8",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9139,
+  "currentNames": 9143,
+  "remainingNames": 357,
+  "added": [
+    {
+      "id": "dmx14-010",
+      "name": "神淵のカノン 愛染"
+    },
+    {
+      "id": "dmrp04m-048",
+      "name": "蓄積された魔力の渦"
+    },
+    {
+      "id": "dmx12b-001",
+      "name": "逆転の精霊ヘブンイレブン8210式"
+    },
+    {
+      "id": "dmx14-008",
+      "name": "神聖斬 アシッド"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9139,
+    "uniqueNames": 9143,
+    "uniqueIds": 9143,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1636.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.3,
+      "log": "tmp/duema-phase-1636/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1636-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 161.759,
+      "log": "tmp/duema-phase-1636/final-focused.log",
+      "passed": 40,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "aggregate-verified-runs",
+        "related-core",
+        "related-shields"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 31.046,
+      "log": "tmp/duema-phase-1636/final-related-aggregate.log",
+      "passed": 119,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.307,
+      "log": "tmp/duema-phase-1636/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.277,
+      "log": "tmp/duema-phase-1636/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.268,
+      "log": "tmp/duema-phase-1636/target9500.log"
+    }
+  },
+  "totalTestsPassed": 159,
+  "hashes": {
+    "dist/cards.json": "b90a3bdd1ec6d6188831f3f8918377aca6acbffc61dce44f7560959c071856d0",
+    "dist/engine.js": "bcfa092336179af57c36fd1ac765e660c115eeb98bfa105f53e3c9be9c565063",
+    "dist/six-photo-rules.js": "373206b326afcf08f805d2f16bc317c862f4f38b45ff40fa2738eec5bf411b4b",
+    "dist/online-compatibility.js": "04f4fb5927a505c6e1265d25916bc6abd535a96ab5b79a0cea617e37fe47cd64",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.152",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

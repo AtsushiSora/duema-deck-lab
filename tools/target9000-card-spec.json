@@ -31379,5 +31379,189 @@
         ]
       }
     }
+  },
+  "dmx14-010": {
+    "phase": 1636,
+    "faces": [
+      {
+        "name": "神淵のカノン 愛染",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体タップしてもよい。そうした場合、クリーチャーを２体まで、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "オラクル",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "tap": true,
+          "optional": true,
+          "g1044ImplicitTap": true,
+          "g587AfterSelection": true,
+          "g987AfterNewTap": true,
+          "after": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "墓地から手札に戻すクリーチャーを2体まで選ぶ"
+            }
+          ],
+          "title": "墓地回収のためにタップする自分のクリーチャーを選ぶ（任意）"
+        }
+      ]
+    }
+  },
+  "dmrp04m-048": {
+    "phase": 1636,
+    "faces": [
+      {
+        "name": "蓄積された魔力の渦",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選ぶ。そのクリーチャーと、同じ名前を持つ他のクリーチャーをすべて、バトルゾーンから持ち主の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g1526BounceNames": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmx12b-001": {
+    "phase": 1636,
+    "faces": [
+      {
+        "name": "逆転の精霊ヘブンイレブン8210式",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "ブロッカー\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nバトルゾーンに自分の光のクリーチャーが11体以上あれば、自分のクリーチャーすべてのパワーは+11000され、シールドをさらに11枚ブレイクする。",
+        "race": "エンジェル・コマンド",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "g258Civil": 11
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true
+            },
+            "power": 11000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "creature": true,
+            "color": "光",
+            "g258Civil": 11
+          },
+          "grants": {
+            "extraBreak": 11
+          }
+        }
+      ]
+    }
+  },
+  "dmx14-008": {
+    "phase": 1636,
+    "faces": [
+      {
+        "name": "神聖斬 アシッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー ブロッカー\n自分のターンの終わりに、タップしている自分のクリーチャーを２体まで破壊してもよい。そうした場合、自分の山札を見る。こうして破壊したクリーチャー１体につき、コスト７以下の無色クリーチャーを１体、自分の手札または山札からバトルゾーンに出してもよい。その後、山札をシャッフルする。\n相手のターン中に、相手がバトルゾーンにある自分のクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃してもよい）\nW・ブレイカー",
+        "race": "オラクリオン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g1114OpponentTurn": true
+        },
+        "grants": {
+          "untargetable": true
+        }
+      },
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "g173Targets": true,
+          "g187OwnPick": true,
+          "g1114AcidDeploy": true,
+          "title": "破壊する自分のタップしたクリーチャーを2体まで選ぶ"
+        }
+      ]
+    }
   }
 }
