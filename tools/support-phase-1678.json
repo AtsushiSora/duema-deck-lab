@@ -1,0 +1,450 @@
+{
+  "phase": 1678,
+  "checkedAt": "2026-11-22T17:42:22.081Z",
+  "baseCount": 9272,
+  "target": 9500,
+  "description": "ジョーカーズ4体の召喚軽減・登場時強化・登場ターンの対プレイヤー攻撃許可と、キリフダッシュ・任意の手札全マナ移動から3ドローを全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/33423/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd04-001",
+      "name": "ガンバトラーG７",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-001",
+      "faces": [
+        {
+          "name": "ガンバトラーG７",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンに自分のジョーカーズが４体以上あれば、このクリーチャーを召喚するコストは５少なくなる。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャー１体のパワーを+7000する。\n自分のジョーカーズは、バトルゾーンに出たターンの間、相手プレイヤーを攻撃できる。",
+          "race": "ジョーカーズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ジョーカーズ",
+                "faceUp": true
+              },
+              "min": 4
+            }
+          },
+          "amount": 5
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 7000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g1678GamboPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-001.jpg",
+      "sameNameProducts": [
+        "DMEX-07 必殺!!マキシマム・ザ・マスターパック",
+        "DMSD-04 ジョーカーズ・弾銃炸裂・スタートデッキ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-001",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "dmex07-s01"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T17:42:22.081Z",
+        "sha256": "d8e269b254ff07c5d6c1aee7ed9d179cb0d1180f6e9765dae10262fc520dfa4a",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageSha256": "8269097c90f29904416623e9bfb67c91390a4141b45fd06ca8432ca0216dbf98"
+      }
+    },
+    {
+      "id": "dmrp13-s11",
+      "name": "オーシャン・ズーラシマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s11",
+      "faces": [
+        {
+          "name": "オーシャン・ズーラシマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "キリフダッシュ [fn05]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn05]支払って召喚してもよい）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべてマナゾーンに置いてもよい。そうしたら、カードを３枚引く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 5,
+        "g402DashColors": [
+          "火",
+          "自然"
+        ],
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "手札をすべてマナゾーンに置いて3枚引く？",
+            "defs": [
+              {
+                "op": "HandAllToMana",
+                "after": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-s11.jpg",
+      "sameNameProducts": [
+        "DMRP-13 十王篇拡張パック第1弾 切札x鬼札 キングウォーズ!!!",
+        "プロモ限定カード 19期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s11",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "promoy19-044"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T17:42:22.081Z",
+        "sha256": "57885db3a2af55aaef5018a210ae7c7484d4737d5c17d2bc28cddeb6006251c6",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageSha256": "670a65cc3fcb1d501347f7b81d92028a8322560c8aad2bde7be070ca422015e9"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js"
+  ],
+  "reprintEvidence": [
+    {
+      "id": "dmex07-s01",
+      "name": "ガンバトラーG７",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-s01",
+      "faces": [
+        {
+          "name": "ガンバトラーG７",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンに自分のジョーカーズが４体以上あれば、このクリーチャーを召喚するコストは５少なくなる。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャー１体のパワーを+7000する。\n自分のジョーカーズは、バトルゾーンに出たターンの間、相手プレイヤーを攻撃できる。",
+          "race": "ジョーカーズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-s01.jpg",
+      "htmlSha256": "59f3d265f8a67bea14f06db92f50a1332cf2b7ac87a8cbcf6ff2ab39d8acf615",
+      "imageSha256": "b8ff5513c2a9c2572ff448e801615eb3d91dac526ba22df8dd787174d5093782",
+      "sameNameProducts": [
+        "DMEX-07 必殺!!マキシマム・ザ・マスターパック",
+        "DMSD-04 ジョーカーズ・弾銃炸裂・スタートデッキ"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "promoy19-044",
+      "name": "オーシャン・ズーラシマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-044",
+      "faces": [
+        {
+          "name": "オーシャン・ズーラシマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "キリフダッシュ [fn05]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn05]支払って召喚してもよい）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべてマナゾーンに置いてもよい。そうしたら、カードを３枚引く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "10000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-044.jpg",
+      "htmlSha256": "9370714d0617c361308591ca5987c70602c0f74bdbcf758e6068a7bb598d7243",
+      "imageSha256": "088515b9b840eefee0273c9dc0c9fce2338251bc82ec5e75a1c281dbd8bf442e",
+      "sameNameProducts": [
+        "DMRP-13 十王篇拡張パック第1弾 切札x鬼札 キングウォーズ!!!",
+        "プロモ限定カード 19期"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33423/",
+      "checkedAt": "2026-11-22T17:42:22.074Z",
+      "sha256": "0731e683d935f8c06cea7eff792a8c6f04aad3caac6cda033d77ea617cca65ac",
+      "questionAnswer": "よくある質問 Q《オーシャン・ズーラシマ》を「キリフダッシュ」で召喚し、「バトルゾーンに出た時」の能力で手札をマナゾーンに置き、カードを3枚引きました。この3枚のうちに「キリフダッシュ」を持つカードがあった場合、続けてその「キリフダッシュ」を使うことはできますか？ Aいいえ、できません。攻撃の終わりに誘発する効果の解決中に「キリフダッシュ」を持つカードを引いたとしても、それを使用することはできません。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1678-effects.test.mjs",
+      "testNamePrefix": "Ocean QA33423",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Actual Ocean summoned through native Kirifuda Dash; its entry sends hand to mana and draws a real Dash card which cannot be declared during the same attack."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T17:42:22.081Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd04-001": 4,
+      "dmrp13-s11": 4
+    }
+  },
+  "deferredCandidates": [
+    {
+      "id": "dm01-024",
+      "name": "ギガベロス",
+      "reason": "他の自軍2体を墓地へ置けない場合と置換がある場合の「そうしなければ」条件を公式情報と既存処理で確認しきれず、部分登録を保留。",
+      "lastReviewedPhase": 1678
+    },
+    {
+      "id": "dmrp21-007",
+      "name": "インフェル星樹",
+      "reason": "封印・下カード等を含む同時2枚移動と、移動前の有効な監視元を保持した誘発の一括評価が未実装。QA42538/41320を満たす専用バッチへ保留。",
+      "lastReviewedPhase": 1678
+    },
+    {
+      "id": "promoy15-078",
+      "name": "終断デルタ ドルハカバ",
+      "reason": "公式QA32408で終断Δ ドルハカバと同一カード。既存dmr23-043で対応済みのため追加・件数加算をしない。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32408/",
+      "lastReviewedPhase": 1678
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-22T17:49:35.043Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1678.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.179,
+        "log": "tmp/duema-phase-1678/official.log",
+        "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1678-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.039,
+        "log": "tmp/duema-phase-1678/final-focused.log",
+        "passed": 66,
+        "failed": 0,
+        "logSha256": "a8eace273c62dd4d11b61da924194d1d5375e8b2a83cdcb55c84f21acac37c6e"
+      },
+      "related-hand-mana": {
+        "name": "related-hand-mana",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1004-effects.test.mjs",
+          "tests/standard1202-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.133,
+        "log": "tmp/duema-phase-1678/related-hand-mana.log",
+        "passed": 30,
+        "failed": 0,
+        "logSha256": "371faa96028608cbdbb082af36a77a3fce0f807a877426ae3697691b8065c79b"
+      },
+      "related-dash": {
+        "name": "related-dash",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=dash|Dash|Hosu|CPU analysis",
+          "tests/standard402-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.676,
+        "log": "tmp/duema-phase-1678/related-dash.log",
+        "passed": 47,
+        "failed": 0,
+        "logSha256": "4b36be510835a4f5223ac28c52d6b84196f5cfe40989c2bbe629a55d8be080ee"
+      },
+      "related-discount-permission": {
+        "name": "related-discount-permission",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1207-effects.test.mjs",
+          "tests/standard1639-effects.test.mjs",
+          "tests/standard1508-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.302,
+        "log": "tmp/duema-phase-1678/related-discount-permission.log",
+        "passed": 71,
+        "failed": 0,
+        "logSha256": "8dca95d59c2577e012d616bac148a743b33bf98f73a7068c9f154d95e44538bf"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.727,
+        "log": "tmp/duema-phase-1678/related-online.log",
+        "passed": 39,
+        "failed": 0,
+        "logSha256": "32229cee8fa53f4157d098758ac3272f9495fd0ff3d61c68ee02ce8b873de39d"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.803,
+        "log": "tmp/duema-phase-1678/check.log",
+        "logSha256": "a81f6a376d33af2746127ee68472e5d2d32ec4d24bfecae5e7ab6583093e6167"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.219,
+        "log": "tmp/duema-phase-1678/audit.log",
+        "logSha256": "0b3fa36fb0631aeca7612da7986d097edbdb57809b8395c830b041dd6995e0dd"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.302,
+        "log": "tmp/duema-phase-1678/target9500.log",
+        "logSha256": "a6b577712dcfdc3ad907513d5b850d4af0fbd37a549ce688434bc808837a9f66"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1678/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.383,
+        "log": "tmp/duema-phase-1678/invariants.log",
+        "logSha256": "2ff951d48dc4d311bc8cbd4617241efc8734a6c2ab266198d45f8c639b88c7a2"
+      }
+    },
+    "totalTestsPassed": 253,
+    "focusedTestsPassed": 66,
+    "relatedTestsPassed": 187
+  },
+  "validationNotes": [
+    "固有66件、手札全マナ30件、キリフダッシュ47件、軽減・攻撃許可・防御71件、手動マナ・通信ランタイム/ライブ同期39件、計253件を通過。check、audit、target9500と既存9272定義・ID・詳細・別名・画像参照の不変を実測確認。",
+    "2種類の公式能力全文・基本情報・マナ値・画像・現行制限と同名商品一覧を照合。ガンバトラーG７の元IDdmsd04-001と再録dmex07-s01、オーシャンの元IDdmrp13-s11とプロモpromoy19-044の全4画像を目視し、全文・基本情報も一致。再録は種類数に加算しない。",
+    "ガンバトラーG７は既存の条件付き召喚軽減、任意ではない自軍対象+7000、登場ターンの対プレイヤー攻撃許可を再利用。4体の閾値、敵軍/封印の除外、能力無視されたジョーカーズの計数、ヤッタレマンとの軽減併用と最小1を確認。強化は自分自身も選べて、ターン終了で消える。",
+    "対プレイヤー攻撃許可はスピードアタッカーを与えず、新しく出たジョーカーズがクリーチャーへ攻撃することは許可しない。非ジョーカーズ/敵軍、タップ/封印、元の攻撃不可能力を尊重。発生源の能力無視/封印/実際の離脱で許可が消え、許可先の能力無視では消えない。実ゲンムエンペラーによる低コスト能力無視、実際のダイレクトアタックも両側で確認。",
+    "オーシャンは既存のキリフダッシュ5（火/自然）、スピードアタッカー、W・ブレイカーと任意の手札全マナ移動から3ドローを再利用。手札0でも受諾で3枚引き、拒否では移動もドローもしない。クリーチャー/呪文をすべて移し、単色はアンタップ、多色はタップして置く。山札不足による敗北でも物理カードを保存する。",
+    "実際の攻撃ブレイクから宣言→5マナ支払い→登場→任意交換を確認し、支払い文明不足/枚数不足/拒否では無料登場しない。墓地・マナからの不正なダッシュ、ブロックされた攻撃での宣言を許さない。QA33423は実オーシャンのキリフダッシュ後にTheブレー漢ズを引き、同じ攻撃の宣言に加わらないことを両側で再現。",
+    "両プレイヤーで手動選択した物理マナだけの支払い、選択中のJSON/暗号化ルーム再開、操作側にだけ選択肢を公開、AI計画の純粋性と未知カード非依存、両先後の合法40枚デッキ終局と80物理カード保存を確認。初期fixtureのGR種族、power引数順、シールド位置ごとに出る攻撃候補数を修正してから固有全件を再実行し通過。",
+    "バッチ数をそろえるための部分登録はしない。ギガベロスの条件判定とインフェル星樹の移動前監視は専用バッチへ保留。終断デルタ ドルハカバは公式QA32408で既存の終断Δと同一であり、重複登録をしない。",
+    "今回2種類の未完了検証はなし。一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.14/9272種類は更新せず、本バッチは検証済みローカルコミットのみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm13-012",
+      "name": "スピリチュアルスター・ドラゴン",
+      "reason": "進化条件がドラゴンを含むカードを探す全文とQA35253を照合。必要なら未登録の龍炎鳳エターナル・フェニックスも通常手順で追加して正確に再現する。"
+    },
+    {
+      "id": "dmrp12-055",
+      "name": "轟怒プレスユー",
+      "reason": "自軍の火のクリーチャーがそのターン最初以外に攻撃する時の無料呪文を、通常支払いと区別して全能力を検証する。"
+    },
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "ブレイカー能力の無視について固有裁定と通常ブレイク、付与/置換/同時の効果を照合してから実装する。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T17:49:35.043Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule ガンバトラーG７",
+      "site:dm.takaratomy.co.jp/rule ガンバトラーG7",
+      "site:dm.takaratomy.co.jp/rule オーシャン・ズーラシマ"
+    ],
+    "result": "オーシャン固有QA33423の公式全文を保存し正確に再現。ガンバトラー個別QAは検索で見つからず、公式全文と既存の登場ターン対プレイヤー攻撃許可/禁止判定を使用。公式商品ページに掲載された実在の25カードだけを照合して再録dmex07-s01を特定。"
+  }
+}

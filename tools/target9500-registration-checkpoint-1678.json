@@ -1,0 +1,290 @@
+{
+  "phase": 1678,
+  "checkedAt": "2026-11-22T17:49:35.043Z",
+  "baseline": "6d2fa86c",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9272,
+  "currentNames": 9274,
+  "remainingNames": 226,
+  "added": [
+    {
+      "id": "dmsd04-001",
+      "name": "ガンバトラーG７"
+    },
+    {
+      "id": "dmrp13-s11",
+      "name": "オーシャン・ズーラシマ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "6d2fa86c",
+    "originalDefinitionsUnchanged": 9272,
+    "added": 2,
+    "uniqueNames": 9274,
+    "uniqueIds": 9274,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9272,
+    "existingImageReferenceRowsUnchanged": 11471
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1678.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.179,
+      "log": "tmp/duema-phase-1678/official.log",
+      "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+    },
+    "focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1678-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.039,
+      "log": "tmp/duema-phase-1678/final-focused.log",
+      "passed": 66,
+      "failed": 0,
+      "logSha256": "a8eace273c62dd4d11b61da924194d1d5375e8b2a83cdcb55c84f21acac37c6e"
+    },
+    "related-hand-mana": {
+      "name": "related-hand-mana",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard1004-effects.test.mjs",
+        "tests/standard1202-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.133,
+      "log": "tmp/duema-phase-1678/related-hand-mana.log",
+      "passed": 30,
+      "failed": 0,
+      "logSha256": "371faa96028608cbdbb082af36a77a3fce0f807a877426ae3697691b8065c79b"
+    },
+    "related-dash": {
+      "name": "related-dash",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=dash|Dash|Hosu|CPU analysis",
+        "tests/standard402-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.676,
+      "log": "tmp/duema-phase-1678/related-dash.log",
+      "passed": 47,
+      "failed": 0,
+      "logSha256": "4b36be510835a4f5223ac28c52d6b84196f5cfe40989c2bbe629a55d8be080ee"
+    },
+    "related-discount-permission": {
+      "name": "related-discount-permission",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard1207-effects.test.mjs",
+        "tests/standard1639-effects.test.mjs",
+        "tests/standard1508-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.302,
+      "log": "tmp/duema-phase-1678/related-discount-permission.log",
+      "passed": 71,
+      "failed": 0,
+      "logSha256": "8dca95d59c2577e012d616bac148a743b33bf98f73a7068c9f154d95e44538bf"
+    },
+    "related-online": {
+      "name": "related-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/mana-payment.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-live.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.727,
+      "log": "tmp/duema-phase-1678/related-online.log",
+      "passed": 39,
+      "failed": 0,
+      "logSha256": "32229cee8fa53f4157d098758ac3272f9495fd0ff3d61c68ee02ce8b873de39d"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.803,
+      "log": "tmp/duema-phase-1678/check.log",
+      "logSha256": "a81f6a376d33af2746127ee68472e5d2d32ec4d24bfecae5e7ab6583093e6167"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.219,
+      "log": "tmp/duema-phase-1678/audit.log",
+      "logSha256": "0b3fa36fb0631aeca7612da7986d097edbdb57809b8395c830b041dd6995e0dd"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.302,
+      "log": "tmp/duema-phase-1678/target9500.log",
+      "logSha256": "a6b577712dcfdc3ad907513d5b850d4af0fbd37a549ce688434bc808837a9f66"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1678/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.383,
+      "log": "tmp/duema-phase-1678/invariants.log",
+      "logSha256": "2ff951d48dc4d311bc8cbd4617241efc8734a6c2ab266198d45f8c639b88c7a2"
+    }
+  },
+  "totalTestsPassed": 253,
+  "hashes": {
+    "dist/cards.json": "2ab90c1c94b16a579941b9783481f5069f08bb228069d2405bb49b4dc41d7d17",
+    "dist/engine.js": "3a190543a97752bfb0c6307ca79d7bec61e4307fad5f08809bdca6d9dbb0f2dd",
+    "dist/online-compatibility.js": "6b7c41129e81b0bd1404ae50f9298de2c4233905da8389fc0c8319d0c85e0529",
+    "dist/card-images.js": "2a58d0f2da4bbb5ab72fc00a56d4389c07ecf8cd6abb2bb5316029ff417b8d71",
+    "tools/target9000-card-spec.json": "827eff393ee59257a07e79db89cad19272f375091d28261da79faac34672e4b4",
+    "tests/standard1678-effects.test.mjs": "ab797637e91ee2591c819e3aec7c2838543c063eda5717d9c683b207ae49265d"
+  },
+  "engineVersion": "0.602.194",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1678-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 22.361,
+      "log": "tmp/duema-phase-1678/focused.log"
+    },
+    {
+      "name": "focused-corrected",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1678-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 22.98,
+      "log": "tmp/duema-phase-1678/focused-corrected.log"
+    },
+    {
+      "name": "focused-boundaries",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=actual Genmu|insufficient library",
+        "tests/standard1678-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.59,
+      "log": "tmp/duema-phase-1678/focused-boundaries.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1678.json",
+  "supported": 9274,
+  "pending": 2551,
+  "reason": "ジョーカーズ4体の召喚軽減・登場時強化・登場ターンの対プレイヤー攻撃許可と、キリフダッシュ・任意の手札全マナ移動から3ドローを全文対応。",
+  "validationNotes": [
+    "固有66件、手札全マナ30件、キリフダッシュ47件、軽減・攻撃許可・防御71件、手動マナ・通信ランタイム/ライブ同期39件、計253件を通過。check、audit、target9500と既存9272定義・ID・詳細・別名・画像参照の不変を実測確認。",
+    "2種類の公式能力全文・基本情報・マナ値・画像・現行制限と同名商品一覧を照合。ガンバトラーG７の元IDdmsd04-001と再録dmex07-s01、オーシャンの元IDdmrp13-s11とプロモpromoy19-044の全4画像を目視し、全文・基本情報も一致。再録は種類数に加算しない。",
+    "ガンバトラーG７は既存の条件付き召喚軽減、任意ではない自軍対象+7000、登場ターンの対プレイヤー攻撃許可を再利用。4体の閾値、敵軍/封印の除外、能力無視されたジョーカーズの計数、ヤッタレマンとの軽減併用と最小1を確認。強化は自分自身も選べて、ターン終了で消える。",
+    "対プレイヤー攻撃許可はスピードアタッカーを与えず、新しく出たジョーカーズがクリーチャーへ攻撃することは許可しない。非ジョーカーズ/敵軍、タップ/封印、元の攻撃不可能力を尊重。発生源の能力無視/封印/実際の離脱で許可が消え、許可先の能力無視では消えない。実ゲンムエンペラーによる低コスト能力無視、実際のダイレクトアタックも両側で確認。",
+    "オーシャンは既存のキリフダッシュ5（火/自然）、スピードアタッカー、W・ブレイカーと任意の手札全マナ移動から3ドローを再利用。手札0でも受諾で3枚引き、拒否では移動もドローもしない。クリーチャー/呪文をすべて移し、単色はアンタップ、多色はタップして置く。山札不足による敗北でも物理カードを保存する。",
+    "実際の攻撃ブレイクから宣言→5マナ支払い→登場→任意交換を確認し、支払い文明不足/枚数不足/拒否では無料登場しない。墓地・マナからの不正なダッシュ、ブロックされた攻撃での宣言を許さない。QA33423は実オーシャンのキリフダッシュ後にTheブレー漢ズを引き、同じ攻撃の宣言に加わらないことを両側で再現。",
+    "両プレイヤーで手動選択した物理マナだけの支払い、選択中のJSON/暗号化ルーム再開、操作側にだけ選択肢を公開、AI計画の純粋性と未知カード非依存、両先後の合法40枚デッキ終局と80物理カード保存を確認。初期fixtureのGR種族、power引数順、シールド位置ごとに出る攻撃候補数を修正してから固有全件を再実行し通過。",
+    "バッチ数をそろえるための部分登録はしない。ギガベロスの条件判定とインフェル星樹の移動前監視は専用バッチへ保留。終断デルタ ドルハカバは公式QA32408で既存の終断Δと同一であり、重複登録をしない。",
+    "今回2種類の未完了検証はなし。一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.14/9272種類は更新せず、本バッチは検証済みローカルコミットのみ。"
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dm01-024",
+      "name": "ギガベロス",
+      "reason": "他の自軍2体を墓地へ置けない場合と置換がある場合の「そうしなければ」条件を公式情報と既存処理で確認しきれず、部分登録を保留。",
+      "lastReviewedPhase": 1678
+    },
+    {
+      "id": "dmrp21-007",
+      "name": "インフェル星樹",
+      "reason": "封印・下カード等を含む同時2枚移動と、移動前の有効な監視元を保持した誘発の一括評価が未実装。QA42538/41320を満たす専用バッチへ保留。",
+      "lastReviewedPhase": 1678
+    },
+    {
+      "id": "promoy15-078",
+      "name": "終断デルタ ドルハカバ",
+      "reason": "公式QA32408で終断Δ ドルハカバと同一カード。既存dmr23-043で対応済みのため追加・件数加算をしない。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32408/",
+      "lastReviewedPhase": 1678
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm13-012",
+      "name": "スピリチュアルスター・ドラゴン",
+      "reason": "進化条件がドラゴンを含むカードを探す全文とQA35253を照合。必要なら未登録の龍炎鳳エターナル・フェニックスも通常手順で追加して正確に再現する。"
+    },
+    {
+      "id": "dmrp12-055",
+      "name": "轟怒プレスユー",
+      "reason": "自軍の火のクリーチャーがそのターン最初以外に攻撃する時の無料呪文を、通常支払いと区別して全能力を検証する。"
+    },
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "ブレイカー能力の無視について固有裁定と通常ブレイク、付与/置換/同時の効果を照合してから実装する。"
+    }
+  ],
+  "next": "phase1679で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+}
