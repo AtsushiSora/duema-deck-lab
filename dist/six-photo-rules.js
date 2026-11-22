@@ -758,6 +758,12 @@ export function createSixPhotoRules(api){
  const canPut=(s,p,x,origin,execution=false)=>(['creature','seed','field','gear','aura','duelist'].includes(card(x).type)||card(x).gCastle)&&(!execution||api.canCast(s,p,card(x),origin))&&api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x),card(x).g31Evolution?.minCards?{origin,execution,exclude:x.uid}:undefined).some(y=>y.uid!==x.uid));
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
+ function battleColorDefs1630(s,t){
+  const n=countBattleCivilizations(s,s.players[t.p].battle);
+  return t.mode==='minus'?[{op:'Target',power:-2000*n,g242PowerMinus:true}]:
+   [{op:'Select',owner:'opponent',origin:'battle',n,filter:{creature:true},
+    g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを'+n+'体選ぶ'}];
+ }
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
   if(t.g1606FaceUpShieldCards)return s.players[owner].shields.flatMap(api.shieldCards).filter(x=>x.faceUp).length;
   if(t.g1606ManaCivilizations)return manaCivilizationCount(s,p);
@@ -2056,6 +2062,7 @@ export function createSixPhotoRules(api){
   return options;
  }
  function modeScore(s,t,defs){const own=s.players[t.p],opp=s.players[1-t.p],deckCount=own.deck?.length??own.deckCount??0;let score=0,drainCount=0;for(const d of defs){
+  if(d.op==='BattleColors1630'){score+=modeScore(s,t,battleColorDefs1630(s,{...t,...d}));continue;}
   if(d.op==='HatchHunter841'){
    const x=own.grave.find(y=>y.uid===d.target&&(y.zoneSerial||0)===d.serial);
    if(x&&canPut(s,t.p,x,'grave'))score+=8+2*cost(card(x));
@@ -3888,6 +3895,7 @@ export function createSixPhotoRules(api){
  case'g34_FreezeOpponent1608':
   for(const kind of['attack','block'])(s.extLimits??=[]).push({kind,player:1-t.p,expires:'end',who:s.active});
   break;
+ case'g34_BattleColors1630':start(s,t,battleColorDefs1630(s,t));break;
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_DrawAgainstHand1086':{
   const drawn=api.draw(s,t.p,opp.hand.length);

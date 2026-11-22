@@ -9121,4 +9121,6 @@ export const CARD_IMAGES={
   "dm04-034":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-034.jpg",
   "dmr06-012":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-012.jpg",
   "dmx11-022":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-022.jpg",
+  "dmr04-008":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-008.jpg",
+  "dmr04-021":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-021.jpg",
 };
