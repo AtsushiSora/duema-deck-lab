@@ -34957,5 +34957,134 @@
       "breaker": 2,
       "g1664PhoenixSaverAura": true
     }
+  },
+  "dm23rp1-OR1": {
+    "phase": 1665,
+    "faces": [
+      {
+        "name": "覇炎竜 ボルシャック・ライダー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スピードアタッカー\nW・ブレイカー\n自分のファイアー・バードすべてに「セイバー：ドラゴン」を与える。（自分のドラゴンが破壊される時、「セイバー：ドラゴン」を持つクリーチャーを１体、かわりに破壊してもよい）\nこのクリーチャーの各ブレイクの前に、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+        "race": "アーマード・ドラゴン",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1665SaverAura": {
+        "filter": {
+          "race": "ファイアー・バード"
+        },
+        "saver": {
+          "filter": {
+            "race": "ドラゴン"
+          }
+        }
+      },
+      "g1136BeforeBreak": [
+        {
+          "op": "Raid767",
+          "race": "アーマード",
+          "max": 5
+        }
+      ]
+    }
+  },
+  "dmr16s-s01": {
+    "phase": 1665,
+    "faces": [
+      {
+        "name": "聖英雄 ゴール・ド・レイユ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nバトルゾーンにある自分の光のクリーチャーはすべて「セイバー：エンジェル・コマンド」を得る。（自分のエンジェル・コマンドが破壊される時、「セイバー：エンジェル・コマンド」を持つクリーチャーをかわりに破壊してもよい）\nマナ武装 ７：自分のマナゾーンに光のカードが７枚以上あれば、自分の手札に加える光のクリーチャーのシールドカードはすべて「S・トリガー」を得る。",
+        "race": "エンジェル・コマンド・ドラゴン",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1665SaverAura": {
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "saver": {
+          "filter": {
+            "race": "エンジェル・コマンド"
+          }
+        }
+      },
+      "g1557ShieldTrigger": {
+        "civs": [
+          "光"
+        ],
+        "creature": true,
+        "condition": {
+          "g267Mana": {
+            "n": 7,
+            "color": "光"
+          }
+        }
+      }
+    }
+  },
+  "dmrp10-003": {
+    "phase": 1665,
+    "faces": [
+      {
+        "name": "エンペラー土偶郎",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき１回、GR召喚する。\n自分のGRクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）",
+        "race": "メタリカ/ワンダフォース/スペシャルズ",
+        "powerText": "6500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountGR1464",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "g1428Gr": true
+          },
+          "grants": {
+            "g401ShieldSaver": true
+          }
+        }
+      ]
+    }
   }
 }

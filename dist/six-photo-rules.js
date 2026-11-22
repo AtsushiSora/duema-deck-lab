@@ -9402,7 +9402,7 @@ export function createSixPhotoRules(api){
  destroyStay1193:(s,p)=>(s.extLimits||[]).some(l=>l.kind==='g1193DestroyStay'&&l.player===p&&
   !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
  shieldTrigger(s,p,x,c){
-  if(s.players[p].battle.some(y=>{if(y.sealed||y.faceDown||s.g20LeavingUids?.includes(y.uid)||!api.isCreature(s,y))return false;const r=effective(y,s).g1557ShieldTrigger;return !!r&&(!r.blocker||c.blocker)&&(!r.civs||r.civs.some(color=>colors(c).includes(color)))&&(!r.nameIncludes||String(c.name).includes(r.nameIncludes))&&(!r.race||race(c,r.race))&&(r.max===undefined||cost(c)<=r.max);}))return true;
+  if(s.players[p].battle.some(y=>{if(y.sealed||y.faceDown||s.g20LeavingUids?.includes(y.uid)||!api.isCreature(s,y))return false;const r=effective(y,s).g1557ShieldTrigger;return !!r&&(!r.condition||ownCondition(s,p,r.condition,y.uid))&&(!r.creature||c.type==='creature')&&(!r.blocker||c.blocker)&&(!r.civs||r.civs.some(color=>colors(c).includes(color)))&&(!r.nameIncludes||String(c.name).includes(r.nameIncludes))&&(!r.race||race(c,r.race))&&(r.max===undefined||cost(c)<=r.max);}))return true;
   if(colors(c).includes('光')&&(s.extLimits||[]).some(l=>l.kind==='g1538LightShieldTriggers'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   if(c.type==='creature'&&colors(c).includes('光')&&s.players[p].battle.some(y=>{
    if(y.sealed||y.faceDown||!card(y).g1266LightCreatureShieldTrigger||s.g20LeavingUids?.includes(y.uid))return false;

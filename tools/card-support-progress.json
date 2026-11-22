@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9233,
-  "pendingNames": 2592,
-  "phase": 1664,
+  "supportedNames": 9236,
+  "pendingNames": 2589,
+  "phase": 1665,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 41,
+      "pendingNames": 40,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -82,7 +82,7 @@
     },
     {
       "ability": "メクレイド",
-      "pendingNames": 13,
+      "pendingNames": 12,
       "examples": [
         {
           "id": "dm24ex1-025",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1449,
+    "クリーチャー": 1446,
     "呪文": 297,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1862,
+    "未対応の能力文": 1859,
     "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -532233,32 +532233,220 @@
         "公式QA36049とQA35620を実カードで再現。初回のGenmuを使うfixtureではカード総数の基準を追加前に取得していたため、追加後を基準に修正。修正後の全固有126件が通過。",
         "今回3種類に未完了の固有検証はない。過去の一括npm test、既存長時間群、ユーザー保留の公式照合と登録済み裁定再現待ちは維持。push・公開・Netlify更新は行わない。"
       ]
+    },
+    {
+      "phase": 1665,
+      "checkedAt": "2026-11-22T13:13:56.317Z",
+      "baseline": "d048053f",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9233,
+      "currentNames": 9236,
+      "remainingNames": 264,
+      "added": [
+        {
+          "id": "dm23rp1-OR1",
+          "name": "覇炎竜 ボルシャック・ライダー"
+        },
+        {
+          "id": "dmr16s-s01",
+          "name": "聖英雄 ゴール・ド・レイユ"
+        },
+        {
+          "id": "dmrp10-003",
+          "name": "エンペラー土偶郎"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "d048053f",
+        "originalDefinitionsUnchanged": 9233,
+        "added": 3,
+        "uniqueNames": 9236,
+        "uniqueIds": 9236,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9233,
+        "existingImageReferenceRowsUnchanged": 11425
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1665.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.59,
+          "log": "tmp/duema-phase-1665/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1665-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.936,
+          "log": "tmp/duema-phase-1665/final-focused.log",
+          "passed": 138,
+          "failed": 0,
+          "logSha256": "59cf89a1dff0bf775350d9853d4b84795ec139b90bc45be6503f5806e902f34c"
+        },
+        "related-savers": {
+          "name": "related-savers",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1555-effects.test.mjs",
+            "tests/standard1664-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 28.893,
+          "log": "tmp/duema-phase-1665/related-savers.log",
+          "passed": 445,
+          "failed": 0,
+          "logSha256": "ab0c797b660a6d31c9e0235471b3ba15c9a32eae5a56ca6bbd6896da1d93dda9"
+        },
+        "related-trigger-raid-gr": {
+          "name": "related-trigger-raid-gr",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1557-effects.test.mjs",
+            "tests/standard1464-effects.test.mjs",
+            "tests/standard1136-effects.test.mjs",
+            "tests/standard767-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.996,
+          "log": "tmp/duema-phase-1665/related-trigger-raid-gr.log",
+          "passed": 109,
+          "failed": 0,
+          "logSha256": "1c8796e660bc2cec9c9f385163440cd4edf93c99dc1dc49aa00b8524317b4bc5"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.459,
+          "log": "tmp/duema-phase-1665/check.log",
+          "logSha256": "4e8bf7cc811b9539ed1bce797a1b2f6205e9d1180533e0e3ecdc012244ed36b7"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.921,
+          "log": "tmp/duema-phase-1665/audit.log",
+          "logSha256": "2e239dd77c17e7df1be0e3188d645098f721046f1facef2dc9ed4f52098a0dfe"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.585,
+          "log": "tmp/duema-phase-1665/target9500.log",
+          "logSha256": "33ff0afd5555e62544337e3cb59270ece321f8dbac3a929c1930120b5e8b946e"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1665/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.368,
+          "log": "tmp/duema-phase-1665/invariants.log",
+          "logSha256": "746f0146086fd6ea3ed49db7435a1d716f97bbb1c1746edaa6abb99d62f8d7ae"
+        }
+      },
+      "totalTestsPassed": 692,
+      "hashes": {
+        "dist/cards.json": "a466c8b6986e0d2a5be2495af5c3f4648dd28652973163c4d01222c4069bef47",
+        "dist/engine.js": "0ccbaf90866a5151745b7cc5d97c98939b6fbf01b230b1553cb6f3b6698d37ad",
+        "dist/six-photo-rules.js": "727bca56c1a20625430562f0f6d95ea91665dcf71b9db5ef52147af696be819f",
+        "dist/online-compatibility.js": "aeba5dd4aea40b05369565c42dc4178ad37cae8d329b643c59d8e6385bc1c5fc",
+        "dist/card-images.js": "9b6945c4f68d3434a33b1226d14dfbb81ef7e285535c33d6385a9f5b3903dfb4",
+        "tools/target9000-card-spec.json": "a33e0db9db8579b0b3b29a86c427825d570502e835b8de96969e8e1e76ac324d",
+        "tests/standard1665-effects.test.mjs": "1c13f3b070ad962cc460b8a84adc626cd23c8092994ce1861b51bed29f950245"
+      },
+      "engineVersion": "0.602.181",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false,
+        "explicitReleaseRequested": true
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1665.json",
+      "supported": 9236,
+      "pending": 2589,
+      "reason": "ファイアー・バードへのドラゴンのセイバーと各ブレイク前のアーマード・メクレイド5、光クリーチャーへのAngel Commandのセイバーとマナ武装7のSトリガー、ブロッカー数のGR召喚とGRへのシールドセイバー付与を全文対応。",
+      "resolvedAttempts": [
+        {
+          "name": "initial-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1665-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 21.699,
+          "log": "tmp/duema-phase-1665/initial-focused.log"
+        }
+      ],
+      "validationNotes": [
+        "固有138件、セイバー関連445件、Sトリガー・GR・メクレイド関連109件の計692件が通過。公式画像3点を目視照合し、規制と関連裁定を確認。",
+        "初回のダブルブレイク用fixtureが実際にはトリプルブレイカーだった2件を修正。製品処理を変更せず、W・ブレイカーの実カードに変更した全138件が通過。",
+        "元のセイバーと付与セイバーを併用。付与元・受け手の能力無視、封印、コピー、物理カード保存、メクレイド2回と登場時能力の順序、マナ武装6/7/8、GRの枚数と予約を両プレイヤーで検証。",
+        "既存9233定義、既存ID・詳細・別名・画像参照は不変。今回3種類の未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は保持。",
+        "ユーザーの新しい公開指示に従い、このバッチの確定後、v0.722.8としてGitHub PagesとNetlifyを同じコミットで公開する。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmx02-003",
+          "name": "スーパー・サイチェン・ピッピー",
+          "reason": "ガイアール関連の全置換処理が整うまで未登録で保留。次回は既存処理で全文再現できる別の3〜5種類を公式照合して選ぶ。"
+        }
+      ],
+      "next": "今回の明示的な公開を完了後、9500目標のカード登録を継続。通常追加でNetlifyを自動更新しない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1664,
-    "nextPhase": 1665,
+    "lastVerifiedPhase": 1665,
+    "nextPhase": 1666,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr01-v02",
-        "name": "ガイアール・カイザー",
-        "reason": "既存の勝利版と別名の本体。シールドを確認して墓地に置く任意置換と実際の同コストのハンターサイキック展開を、関連3枚の覚醒リンク・リンク解除まで含む4枚バッチで照合。"
-      },
-      {
-        "id": "dmr01-060",
-        "name": "ブーストグレンオー",
-        "reason": "登場時に現在パワーを比較する破壊、裏面の激竜王ガイアール・オウドラゴンの能力全文と物理3枚のリンクを照合。"
-      },
-      {
-        "id": "dmr01-062",
-        "name": "ドラゴニック・ピッピー",
-        "reason": "ハンティングと自ターン開始の覚醒リンクを実装し、3枚すべての裏面・解除を検証。"
-      },
-      {
         "id": "dmx02-003",
         "name": "スーパー・サイチェン・ピッピー",
-        "reason": "Hunterのセイバーと相手ターンに実際に捨てられた場合のガイアール展開。呼び出し先の3枚を先に全文対応し、部分登録をしない。"
+        "reason": "ガイアール関連の全置換処理が整うまで未登録で保留。次回は既存処理で全文再現できる別の3〜5種類を公式照合して選ぶ。"
       }
     ],
     "steps": [
@@ -532463,13 +532651,12 @@
       "netlify": "更新しない。自動ビルド停止・GitHubフック無効を実測確認。"
     },
     "currentUserRelease": {
-      "artifact": "tools/release-netlify-7224.json",
-      "commit": "db055e2b2d528da0f315e8f2af42017f1a664e1e",
-      "version": "0.722.4",
-      "status": "published",
-      "pagesUrl": "https://atsushisora.github.io/duema-deck-lab/",
-      "netlifyUrl": "https://duema-deck-lab.netlify.app",
-      "netlifyDeployId": "6b022d57eaa91086fac3a1be"
+      "version": "0.722.8",
+      "status": "prepared",
+      "artifact": "tools/release-7228.json",
+      "supportedNames": 9236,
+      "checkedAt": "2026-11-22T13:17:14.091Z",
+      "explicitNetlifyPublication": true
     },
     "latestPagesEntryImprovement": {
       "phase": 1378,
@@ -532837,6 +533024,19 @@
         "reason": "実際の呼び出し先ガイアール・カイザー(dmr01-v02)は未登録。シールドブレイク置換と、ブーストグレンオー(dmr01-060)・ドラゴニック・ピッピー(dmr01-062)の全能力・覚醒リンク・リンク解除を含む専用バッチで対応する。別名の勝利のガイアール・カイザーでは代用せず、部分登録はしない。",
         "phase": 1663,
         "status": "not-registered"
+      },
+      {
+        "id": "dmr01-v02",
+        "name": "ガイアール・カイザー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-v02",
+        "reason": "公式QA39982はシールドを墓地に置く置換と超次元展開全体を1つの置換と扱い、モモキング旅丸の展開置換を適用しない。既存の単純な展開では再現できない。複数シールド・DG・城・Shield Saver併用時の同時移動と非公開確認、Sトリガーの一括宣言を維持する専用の置換計画が必要。関連3枚とスーパー・サイチェン・ピッピーも未登録のまま保留し、部分登録はしない。",
+        "relatedIds": [
+          "dmr01-060",
+          "dmr01-062",
+          "dmx02-003"
+        ],
+        "ruling": "https://dm.takaratomy.co.jp/rule/qa/39982/",
+        "phase": 1665
       }
     ],
     "lastExplicitUserAddition": {
@@ -533013,23 +533213,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1664,
-      "baseline": "2b91b3259b6b4ae2279beb7fdd6f89a410bb6b8e",
-      "supportedNames": 9233,
-      "artifact": "tools/target9500-registration-checkpoint-1664.json",
-      "checkedAt": "2026-11-22T12:57:45.601Z"
+      "phase": 1665,
+      "baseline": "d048053f",
+      "supportedNames": 9236,
+      "artifact": "tools/target9500-registration-checkpoint-1665.json",
+      "checkedAt": "2026-11-22T13:13:56.317Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T12:57:45.601Z",
+      "checkedAt": "2026-11-22T13:13:56.317Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9233,
-      "remainingNames": 267,
+      "currentNames": 9236,
+      "remainingNames": 264,
       "duplicateNames": 0,
-      "engineVersion": "0.602.180",
+      "engineVersion": "0.602.181",
       "added": [
         {
           "id": "dmr12-008",
@@ -533682,6 +533882,18 @@
         {
           "id": "dm24-031",
           "name": "鋼流星ペングカイザー"
+        },
+        {
+          "id": "dm23rp1-OR1",
+          "name": "覇炎竜 ボルシャック・ライダー"
+        },
+        {
+          "id": "dmr16s-s01",
+          "name": "聖英雄 ゴール・ド・レイユ"
+        },
+        {
+          "id": "dmrp10-003",
+          "name": "エンペラー土偶郎"
         }
       ],
       "results": {
@@ -533797,17 +534009,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "7b9c6f72a5d7b41b30e0dfe92813487cb395f9fe55cefe7346f10e9d25f128fb",
-        "dist/details.json": "990fde0e431e25cd98de0828d6db1c6bf75507850e47c8f62dc2b4f5dd157add",
-        "dist/engine.js": "63686d532a463893331da3b118def4c24b10b4dbb8699d5e7a66007a6671e0ca",
-        "dist/extended-rules.js": "00ef9bf06f76050c2700ddef3567fd06dbc0989a5e21c371a087d643b721eeeb",
-        "dist/six-photo-rules.js": "683c9397ca724aef2ed97eb64afd066a036f6f40b301f0b7f38b01eefe530f2d",
-        "dist/online-compatibility.js": "4cdf12f66644156ba528c242a7692a0f14a4115974f886f069785936ae7bfe5d",
-        "dist/card-images.js": "d24186523544d4d331d5f313ce4271689381dfab1a570a2826bb5cc6df4e85ec",
-        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
-        "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
-        "tools/target9000-card-spec.json": "684ffb51a350c191c63f759159e25aff49590eb20521501c700c7f83da3eb48f",
-        "tests/standard1664-effects.test.mjs": "8dae82d9cf91110a4161d44fc7774dd741e2cc7d18f7e173e47f7aff3f3e6e05"
+        "dist/cards.json": "a466c8b6986e0d2a5be2495af5c3f4648dd28652973163c4d01222c4069bef47",
+        "dist/engine.js": "0ccbaf90866a5151745b7cc5d97c98939b6fbf01b230b1553cb6f3b6698d37ad",
+        "dist/six-photo-rules.js": "727bca56c1a20625430562f0f6d95ea91665dcf71b9db5ef52147af696be819f",
+        "dist/online-compatibility.js": "aeba5dd4aea40b05369565c42dc4178ad37cae8d329b643c59d8e6385bc1c5fc",
+        "dist/card-images.js": "9b6945c4f68d3434a33b1226d14dfbb81ef7e285535c33d6385a9f5b3903dfb4",
+        "tools/target9000-card-spec.json": "a33e0db9db8579b0b3b29a86c427825d570502e835b8de96969e8e1e76ac324d",
+        "tests/standard1665-effects.test.mjs": "1c13f3b070ad962cc460b8a84adc626cd23c8092994ce1861b51bed29f950245"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -533871,10 +534079,10 @@
       },
       "phaseRange": [
         1614,
-        1664
+        1665
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 163,
+      "addedNames": 166,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -533886,9 +534094,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.952,
-        "log": "tmp/duema-phase-1664/check.log",
-        "logSha256": "4927305bc9cab0555c62c4b68ccb615cef59646f432a9d3c158e993c9ef31ab3"
+        "seconds": 21.459,
+        "log": "tmp/duema-phase-1665/check.log",
+        "logSha256": "4e8bf7cc811b9539ed1bce797a1b2f6205e9d1180533e0e3ecdc012244ed36b7"
       },
       "latestAudit": {
         "name": "audit",
@@ -533898,11 +534106,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.603,
-        "log": "tmp/duema-phase-1664/audit.log",
-        "logSha256": "7e2109967a8ca09ba54f4449589ca2af7079260b7d524ce1ab88cec0e768813b"
+        "seconds": 11.921,
+        "log": "tmp/duema-phase-1665/audit.log",
+        "logSha256": "2e239dd77c17e7df1be0e3188d645098f721046f1facef2dc9ed4f52098a0dfe"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1664.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1665.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -534991,11 +535199,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9233,
-      "remaining": 267,
+      "currentNames": 9236,
+      "remaining": 264,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T12:57:45.601Z"
+      "checkedAt": "2026-11-22T13:13:56.317Z"
     },
     "resolvedRegistrationValidations": [
       {

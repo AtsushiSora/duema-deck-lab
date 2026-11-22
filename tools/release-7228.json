@@ -1,0 +1,129 @@
+{
+  "version": "0.722.8",
+  "checkedAt": "2026-11-22T13:17:14.091Z",
+  "baseCommit": "d048053f",
+  "scope": "Verified phases 1663–1665, nine cards since v0.722.7. The last three cards were finalized before this release.",
+  "actualCards": {
+    "uniqueNames": 9236,
+    "uniqueIds": 9236,
+    "duplicateNames": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "validation": {
+    "runs": [
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.975,
+        "log": "tmp/duema-publish-7228/check.log",
+        "sha256": "7860775b6e0a32c9894f46e7d072247e41848b81610615bbf1269f00524b0589"
+      },
+      {
+        "name": "release-ui",
+        "command": [
+          "node",
+          "--test",
+          "tests/app-updates.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/mana-payment.test.mjs",
+          "tests/mana-summon-ui.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.096,
+        "log": "tmp/duema-publish-7228/release-ui.log",
+        "passed": 230,
+        "sha256": "10535d4dc38b42aafd507a1ebacc85c1401c45742baed4493cd6efa6252025c6"
+      },
+      {
+        "name": "server-focused",
+        "command": [
+          "node",
+          "--test",
+          "--test-skip-pattern=a complete two-account game|new No[0-9]+|No08 accepts|No04 accepts",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 51.54,
+        "log": "tmp/duema-publish-7228/server-focused.log",
+        "passed": 48,
+        "sha256": "d078ed9ca70ef35e450f3b8ee6732f373bf8301b1505509dfce66302740ca847"
+      }
+    ],
+    "testsPassed": 278,
+    "cardBatch": "tools/target9500-registration-checkpoint-1665.json",
+    "cardBatchPassed": 692,
+    "noWholeNpmTest": true,
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "card-art.js",
+      "card-images.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "extended-rules.js",
+      "hand-ui.js",
+      "log-card-links.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online.js",
+      "release-notes.js",
+      "screenshot-report.js",
+      "six-photo-rules.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "worker.js"
+    ]
+  },
+  "historicalVerificationPending": {
+    "fullSuite": "中断・合否未確認",
+    "registeredCardExactRuling": "Crim-QA39975-exact-source remains pending; unchanged by publication",
+    "longRuns": "Previously interrupted seed/opponent groups remain unconfirmed.",
+    "thisReleaseInterruptedRun": {
+      "name": "release-tests",
+      "command": [
+        "node",
+        "--test",
+        "tests/app-updates.test.mjs",
+        "tests/online-app.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-server.test.mjs",
+        "tests/online-live.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 175.747,
+      "log": "tmp/duema-publish-7228/release-tests.log",
+      "reason": "Complete game simulations stopped in 175.747 seconds; separate UI and focused server checks passed. No whole-suite pass claimed."
+    }
+  },
+  "publication": {
+    "status": "prepared",
+    "pages": "https://atsushisora.github.io/duema-deck-lab/",
+    "netlify": "https://duema-deck-lab.netlify.app",
+    "explicitUserInstruction": "プッシュして公開して、Netlifyも公開して",
+    "automaticNetlifyUpdatesStopped": true
+  }
+}

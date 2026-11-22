@@ -1,0 +1,389 @@
+{
+  "phase": 1665,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9233,
+  "target": 9500,
+  "description": "ファイアー・バードへのドラゴンのセイバーと各ブレイク前のアーマード・メクレイド5、光クリーチャーへのAngel Commandのセイバーとマナ武装7のSトリガー、ブロッカー数のGR召喚とGRへのシールドセイバー付与を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43085/",
+    "https://dm.takaratomy.co.jp/rule/qa/43086/",
+    "https://dm.takaratomy.co.jp/rule/qa/41187/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-OR1",
+      "name": "覇炎竜 ボルシャック・ライダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-OR1",
+      "faces": [
+        {
+          "name": "覇炎竜 ボルシャック・ライダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\n自分のファイアー・バードすべてに「セイバー：ドラゴン」を与える。（自分のドラゴンが破壊される時、「セイバー：ドラゴン」を持つクリーチャーを１体、かわりに破壊してもよい）\nこのクリーチャーの各ブレイクの前に、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g1665SaverAura": {
+          "filter": {
+            "race": "ファイアー・バード"
+          },
+          "saver": {
+            "filter": {
+              "race": "ドラゴン"
+            }
+          }
+        },
+        "g1136BeforeBreak": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-OR1.jpg",
+      "sameNameProducts": [
+        "DM23-RP1 アビス・レボリューション 第1弾 「双竜戦記」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-OR1",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "6d018ea9e906a2ae22d91c40fe975f6df00ead49c3711681c01609201404cdbe",
+        "facesMatched": true,
+        "imageSha256": "67374eef1b90b9af70e0d29a74f53ec1ba3d923ac757ad115e4f72107f78880e",
+        "imageBytes": 222130,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ・全能力を確認。原版の印刷全文と現在の同名収録一覧を照合。"
+      }
+    },
+    {
+      "id": "dmr16s-s01",
+      "name": "聖英雄 ゴール・ド・レイユ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-s01",
+      "faces": [
+        {
+          "name": "聖英雄 ゴール・ド・レイユ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nバトルゾーンにある自分の光のクリーチャーはすべて「セイバー：エンジェル・コマンド」を得る。（自分のエンジェル・コマンドが破壊される時、「セイバー：エンジェル・コマンド」を持つクリーチャーをかわりに破壊してもよい）\nマナ武装 ７：自分のマナゾーンに光のカードが７枚以上あれば、自分の手札に加える光のクリーチャーのシールドカードはすべて「S・トリガー」を得る。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1665SaverAura": {
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "saver": {
+            "filter": {
+              "race": "エンジェル・コマンド"
+            }
+          }
+        },
+        "g1557ShieldTrigger": {
+          "civs": [
+            "光"
+          ],
+          "creature": true,
+          "condition": {
+            "g267Mana": {
+              "n": 7,
+              "color": "光"
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-s01.jpg",
+      "sameNameProducts": [
+        "DMR-16真 ドラゴン・サーガ 拡張パック第4章 超戦ガイネクスト×真"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-s01",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "896fe0d7e8f71491cff35d417d9e5e0d89d5cc0472a9579c76580262aaa5e523",
+        "facesMatched": true,
+        "imageSha256": "2adf603b2119d960655e2666f8ede91aead5980a334db2c5bde528209036009d",
+        "imageBytes": 168752,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ・全能力を確認。原版の印刷全文と現在の同名収録一覧を照合。"
+      }
+    },
+    {
+      "id": "dmrp10-003",
+      "name": "エンペラー土偶郎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-003",
+      "faces": [
+        {
+          "name": "エンペラー土偶郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき１回、GR召喚する。\n自分のGRクリーチャーすべてに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを１体破壊してもよい）",
+          "race": "メタリカ/ワンダフォース/スペシャルズ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountGR1464",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "g1428Gr": true
+            },
+            "grants": {
+              "g401ShieldSaver": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-003.jpg",
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-003",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "6c30e699c99add82aac8a161e0906b679fc43819110fa1bdfc38feea17f0b35a",
+        "facesMatched": true,
+        "imageSha256": "e880f8a466d07243342e3cea93cd13abd07f8a4f71061944eef88f70001b2650",
+        "imageBytes": 140583,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・文明・コスト・種族・パワー・マナ・全能力を確認。原版の印刷全文と現在の同名収録一覧を照合。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dmr01-v02",
+      "name": "ガイアール・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-v02",
+      "reason": "公式QA39982はシールドを墓地に置く置換と超次元展開全体を1つの置換と扱い、モモキング旅丸の展開置換を適用しない。既存の単純な展開では再現できない。複数シールド・DG・城・Shield Saver併用時の同時移動と非公開確認、Sトリガーの一括宣言を維持する専用の置換計画が必要。関連3枚とスーパー・サイチェン・ピッピーも未登録のまま保留し、部分登録はしない。",
+      "relatedIds": [
+        "dmr01-060",
+        "dmr01-062",
+        "dmx02-003"
+      ],
+      "ruling": "https://dm.takaratomy.co.jp/rule/qa/39982/"
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43085/",
+      "checkedAt": "2026-11-22T13:03:37.180Z",
+      "sha256": "3ff1df110f444e47dbb996284778b5d927ec4aabcc5dc8aeb93d2dd075faa8f6"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43086/",
+      "checkedAt": "2026-11-22T13:03:37.795Z",
+      "sha256": "138fe8ee8f34445bd50c9acf8dc993bdc5ffa0ddb92a1fcbc66f8eaf0b1ce7a6"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41187/",
+      "checkedAt": "2026-11-22T13:03:38.414Z",
+      "sha256": "776a23d1fb883697fa2b881404800b90160624ec2d9bef69a0c08b53dc40fc52"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-OR1": 4,
+      "dmr16s-s01": 4,
+      "dmrp10-003": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T13:13:56.317Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1665.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.59,
+        "log": "tmp/duema-phase-1665/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "final-focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1665-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.936,
+        "log": "tmp/duema-phase-1665/final-focused.log",
+        "passed": 138,
+        "failed": 0,
+        "logSha256": "59cf89a1dff0bf775350d9853d4b84795ec139b90bc45be6503f5806e902f34c"
+      },
+      "related-savers": {
+        "name": "related-savers",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard571-effects.test.mjs",
+          "tests/standard1555-effects.test.mjs",
+          "tests/standard1664-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 28.893,
+        "log": "tmp/duema-phase-1665/related-savers.log",
+        "passed": 445,
+        "failed": 0,
+        "logSha256": "ab0c797b660a6d31c9e0235471b3ba15c9a32eae5a56ca6bbd6896da1d93dda9"
+      },
+      "related-trigger-raid-gr": {
+        "name": "related-trigger-raid-gr",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1557-effects.test.mjs",
+          "tests/standard1464-effects.test.mjs",
+          "tests/standard1136-effects.test.mjs",
+          "tests/standard767-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.996,
+        "log": "tmp/duema-phase-1665/related-trigger-raid-gr.log",
+        "passed": 109,
+        "failed": 0,
+        "logSha256": "1c8796e660bc2cec9c9f385163440cd4edf93c99dc1dc49aa00b8524317b4bc5"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.459,
+        "log": "tmp/duema-phase-1665/check.log",
+        "logSha256": "4e8bf7cc811b9539ed1bce797a1b2f6205e9d1180533e0e3ecdc012244ed36b7"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.921,
+        "log": "tmp/duema-phase-1665/audit.log",
+        "logSha256": "2e239dd77c17e7df1be0e3188d645098f721046f1facef2dc9ed4f52098a0dfe"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.585,
+        "log": "tmp/duema-phase-1665/target9500.log",
+        "logSha256": "33ff0afd5555e62544337e3cb59270ece321f8dbac3a929c1930120b5e8b946e"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1665/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.368,
+        "log": "tmp/duema-phase-1665/invariants.log",
+        "logSha256": "746f0146086fd6ea3ed49db7435a1d716f97bbb1c1746edaa6abb99d62f8d7ae"
+      }
+    },
+    "totalTestsPassed": 692,
+    "focusedTestsPassed": 138,
+    "relatedTestsPassed": 554
+  },
+  "validationNotes": [
+    "固有138件、セイバー関連445件、Sトリガー・GR・メクレイド関連109件の計692件が通過。公式画像3点を目視照合し、規制と関連裁定を確認。",
+    "初回のダブルブレイク用fixtureが実際にはトリプルブレイカーだった2件を修正。製品処理を変更せず、W・ブレイカーの実カードに変更した全138件が通過。",
+    "元のセイバーと付与セイバーを併用。付与元・受け手の能力無視、封印、コピー、物理カード保存、メクレイド2回と登場時能力の順序、マナ武装6/7/8、GRの枚数と予約を両プレイヤーで検証。",
+    "既存9233定義、既存ID・詳細・別名・画像参照は不変。今回3種類の未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は保持。",
+    "ユーザーの新しい公開指示に従い、このバッチの確定後、v0.722.8としてGitHub PagesとNetlifyを同じコミットで公開する。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "initial-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1665-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 21.699,
+      "log": "tmp/duema-phase-1665/initial-focused.log"
+    }
+  ]
+}
