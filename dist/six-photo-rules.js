@@ -917,7 +917,8 @@ export function createSixPhotoRules(api){
    if(moved.length)start(s,t,[{op:'ShieldTop',p:owner,n:1}]);
   }else if(kind==='ownGrave'){
    api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
-   if(moved.length&&t.then)start(s,t,t.then);
+   // QA39424: attempting the shield move satisfies the follow-up even when replaced.
+   if(t.then)start(s,t,t.then);
   }else if(kind==='mana'){
    api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});
    const mana=t.g795DeployBelow&&moved.filter(y=>own.mana.includes(y));

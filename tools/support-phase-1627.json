@@ -1,0 +1,340 @@
+{
+  "phase": 1627,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9113,
+  "target": 9500,
+  "description": "墓地展開への速攻付与、任意シールド墓地化からの期限付きブロッカー、パワー6000の全体破壊と追加ターン・追加ターン中の詠唱禁止を実装。シールド移動が置換されても後続効果を行う共通処理を公式QA39424に修正し、既存6種類を回帰検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31625/",
+    "https://dm.takaratomy.co.jp/rule/qa/31626/",
+    "https://dm.takaratomy.co.jp/rule/qa/39422/",
+    "https://dm.takaratomy.co.jp/rule/qa/39423/",
+    "https://dm.takaratomy.co.jp/rule/qa/39424/"
+  ],
+  "cards": [
+    {
+      "id": "dmd25-007",
+      "name": "煉獄と魔弾の印",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd25-007",
+      "faces": [
+        {
+          "name": "煉獄と魔弾の印",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト７以下の進化ではない闇か火のクリーチャーを１体、自分の墓地からバトルゾーンに出す。そのターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "g771DeploySpeed": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmpcd03-b05",
+        "name": "煉獄と魔弾の印",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd03-b05",
+        "faces": [
+          {
+            "name": "煉獄と魔弾の印",
+            "typeText": "呪文",
+            "civilizationText": "闇/火",
+            "civilizations": [
+              "闇",
+              "火"
+            ],
+            "cost": 6,
+            "costText": "6",
+            "abilityText": "闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地から出す。そのターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+            "race": "ナイト",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "65467f91d4f232bf68b35f51109acbbe0de0899899a1256b1d2f2abb926da13e",
+          "facesMatched": true,
+          "imageSha256": "e050cb74099b580fc4d7521bc6547fe9031e01469b364201b78747913d6137ce",
+          "imageBytes": 122785,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式再録画像の基本情報・能力全文を元版と照合。一致。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd03-b05.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd25-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "5d4b577bbf0de2a80725612dc0476f93ae46200f364ba7e6619f30d3daa2b814",
+        "facesMatched": true,
+        "imageSha256": "59c9de464420af67c3a6675211fd123bb25ec55a43883d9cdac459c80b0a77ab",
+        "imageBytes": 131628,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の基本情報・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMPCD-03 デュエマプレイス・コラボデッキ 激竜の英雄＆邪眼の始祖",
+        "DMD-35 DXデュエガチャデッキ 禁星の壊者ドキンダム",
+        "DMD-25 マスターズ・クロニクル・デッキ ロマノフ 煉獄からの復活"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd25-007",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmex14-023",
+      "name": "魔王と天使のサイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-023",
+      "faces": [
+        {
+          "name": "魔王と天使のサイン",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光または闇の、コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n自分のシールドを１つ、墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 6,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            }
+          },
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "blocker": true
+                },
+                "g521UntilStart": true,
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "f56cd07e1ea6aa70860efb6181a5214203f88f4c713007f08fecf2bbd45e2906",
+        "facesMatched": true,
+        "imageSha256": "00960004282448c27f80ed66a094406cd0d13f9af0338df4f4c96de2ccb5794e",
+        "imageBytes": 94698,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の基本情報・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-14 弩闘×十王超ファイナルウォーズ!!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-023",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmex01-013",
+      "name": "無双と竜機の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-013",
+      "faces": [
+        {
+          "name": "無双と竜機の伝説",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nパワー6000のクリーチャーをすべて破壊する。\nこのターンの後にもう一度自分のターンを行う。\n追加ターンにこの呪文を唱えることはできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g1627NoExtraTurnCast": true,
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "minPower": 6000,
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25rp1-TD01",
+        "name": "無双と竜機の伝説",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-TD01",
+        "faces": [
+          {
+            "name": "無双と竜機の伝説",
+            "typeText": "呪文",
+            "civilizationText": "火/自然",
+            "civilizations": [
+              "火",
+              "自然"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "パワー6000のクリーチャーをすべて破壊する。\nこのターンの後に自分のターンを追加する。\n追加ターンにこの呪文を唱えられない。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "b700fb9b13092dd3430c481887675fd25704814f0b7524afc39757f3cfa31db5",
+          "facesMatched": true,
+          "imageSha256": "1220aec5ab60116ff125b3e4f2c59cd942313940ff58df3bb8299a24b5b21041",
+          "imageBytes": 189458,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式再録画像の基本情報・能力全文を元版と照合。一致。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-TD01.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "bd9b58e40bfeeb0d44f391cecace4169075fb5a2069acfff318790bd1b391612",
+        "facesMatched": true,
+        "imageSha256": "079011fd504d3329eca36f93cc84e03cf3e58beb03e1988996cd31fb55b3d6bb",
+        "imageBytes": 117963,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の基本情報・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DM26-EX3 キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!!ドラ娘100％パック",
+        "DM25-RP1 王道W 第1弾 邪神vs邪神 ～ソウル・オブ・ジ・アビス～",
+        "DMEX-15 20周年超感謝メモリアルパック 魂の章 名場面BEST",
+        "DMEX-01 ゴールデン・ベスト"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-013",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存処理を再利用できる未対応カード3〜5種類を公式全文から選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd25-007": 4,
+      "dmex14-023": 4,
+      "dmex01-013": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31625/",
+      "checkedAt": "2026-11-22",
+      "sha256": "94ec5dac52a010bf3353787ee5875fc00f5edcbb54ead2b3c6467ee259db5b2b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31626/",
+      "checkedAt": "2026-11-22",
+      "sha256": "dad22018e59f803167212efd0825385685385f6f26c4b11e9ec9acd060cf80f6"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39422/",
+      "checkedAt": "2026-11-22",
+      "sha256": "dcf3c636e3e53c8733cb54c8020b2252a0d4d6100d61ecb9045f4acf6fdeddad"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39423/",
+      "checkedAt": "2026-11-22",
+      "sha256": "eacb71082a3c49bbaf4f8dd4abcea0e5489595b1a915d2630104b700d591d491"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39424/",
+      "checkedAt": "2026-11-22",
+      "sha256": "b911dc345d12b1fbe0aef34860b0a8d363f4e741dbebb7d8d2cb254b411f424c"
+    }
+  ]
+}

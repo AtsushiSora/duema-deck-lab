@@ -1,0 +1,131 @@
+{
+  "phase": 1627,
+  "checkedAt": "2026-11-22T04:27:42.071Z",
+  "baseline": "8ab6817f99fe3639aae6a2214ccefd1c62ad674a",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9113,
+  "currentNames": 9116,
+  "remainingNames": 384,
+  "added": [
+    {
+      "id": "dmd25-007",
+      "name": "煉獄と魔弾の印"
+    },
+    {
+      "id": "dmex14-023",
+      "name": "魔王と天使のサイン"
+    },
+    {
+      "id": "dmex01-013",
+      "name": "無双と竜機の伝説"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9113,
+    "uniqueNames": 9116,
+    "uniqueIds": 9116,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1627.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.856,
+      "log": "tmp/duema-phase-1627/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1627-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 18.195,
+      "log": "tmp/duema-phase-1627/final-focused.log",
+      "passed": 29,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard476-effects.test.mjs",
+        "tests/standard521-effects.test.mjs",
+        "tests/standard771-effects.test.mjs",
+        "tests/standard1085-effects.test.mjs",
+        "tests/standard1352-effects.test.mjs",
+        "tests/standard1505-effects.test.mjs",
+        "tests/standard1626-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 38.985,
+      "log": "tmp/duema-phase-1627/final-related.log",
+      "passed": 241,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 28.736,
+      "log": "tmp/duema-phase-1627/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.383,
+      "log": "tmp/duema-phase-1627/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.324,
+      "log": "tmp/duema-phase-1627/target9500.log"
+    }
+  },
+  "totalTestsPassed": 270,
+  "hashes": {
+    "dist/cards.json": "7020cadc30a061580e43ed1ebcc02ef0e4c739d692d2787ab5acc9b0580a0c8d",
+    "dist/engine.js": "2fe7cafb7ef5f11fa0864e19fae7481681502aaa1bb6f83a736bfa29ad20d50e",
+    "dist/six-photo-rules.js": "b6bb22417c1a35302ea558e3abd3081b43f8b3afd5d1d9550fc4f84848e54195",
+    "dist/online-compatibility.js": "1d95e4d7db49ce3cc5403bd6b231f373462883820f5e23f82e8c2e9085cf7801",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.143",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

@@ -289758,19 +289758,162 @@
       ],
       "supportBatch": "phase-1626",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd25-007",
+      "name": "煉獄と魔弾の印",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ナイト",
+      "text": "闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地から出す。そのターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd25-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "g771DeploySpeed": true
+        }
+      ],
+      "supportBatch": "phase-1627",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-023",
+      "name": "魔王と天使のサイン",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "月光王国",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光または闇の、コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。\n自分のシールドを１つ、墓地に置いてもよい。そうしたら、次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-023",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 6,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          }
+        },
+        {
+          "op": "ShieldGrave",
+          "optional": true,
+          "then": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "grant": {
+                "blocker": true
+              },
+              "g521UntilStart": true,
+              "spell": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1627",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-013",
+      "name": "無双と竜機の伝説",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "パワー6000のクリーチャーをすべて破壊する。\nこのターンの後に自分のターンを追加する。\n追加ターンにこの呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1627NoExtraTurnCast": true,
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "minPower": 6000,
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Custom",
+          "name": "extraTurn"
+        }
+      ],
+      "supportBatch": "phase-1627",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1626,
+    "phase": 1627,
     "checkedAt": "2026-11-22",
-    "baseCount": 9110,
+    "baseCount": 9113,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9113,
+    "totalCount": 9116,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35755/"
+      "https://dm.takaratomy.co.jp/rule/qa/31625/",
+      "https://dm.takaratomy.co.jp/rule/qa/31626/",
+      "https://dm.takaratomy.co.jp/rule/qa/39422/",
+      "https://dm.takaratomy.co.jp/rule/qa/39423/",
+      "https://dm.takaratomy.co.jp/rule/qa/39424/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316336,6 +316479,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36261/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1626,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9110,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9113,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35755/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
