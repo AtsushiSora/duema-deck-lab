@@ -295367,18 +295367,141 @@
       ],
       "supportBatch": "phase-1678",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-012",
+      "name": "スピリチュアルスター・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、種族にドラゴンとあるクリーチャーから進化するクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-012",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "g1679DragonEvolution": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1679",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-s01",
+      "name": "龍炎鳳エターナル・フェニックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 11000,
+      "race": "フェニックス",
+      "text": "進化V - 自分のファイアー・バード１体とアーマード・ドラゴン１体を重ねた上に置く。\nW・ブレイカー\nバトルゾーンにある、種族にドラゴンまたはフェニックスとある自分のクリーチャーはすべて、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがバトルゾーンを離れた時、進化クリーチャーではない火のクリーチャーをすべて自分の墓地から自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s01",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "ファイアー・バード"
+          },
+          {
+            "race": "アーマード・ドラゴン"
+          }
+        ],
+        "allowShinkalize": true
+      },
+      "breaker": 2,
+      "g1679EternalAttackUntapped": true,
+      "g172Leave": [
+        {
+          "op": "RecoverAll326",
+          "origin": "grave",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "火"
+          }
+        }
+      ],
+      "supportBatch": "phase-1679",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-055",
+      "name": "轟怒プレスユー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の火のクリーチャーが攻撃する時、それがそのターンはじめての攻撃でなければ、この呪文をコストを支払わずに唱えてもよい。\n相手のパワー4000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-055",
+      "limit": 4,
+      "g417Chance": {
+        "color": "火",
+        "g1679LaterAttack": true,
+        "label": "攻撃時の無料詠唱"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 4000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1679",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1678,
-    "checkedAt": "2026-11-22T17:42:22.081Z",
-    "baseCount": 9272,
-    "newEffectCards": 2,
+    "phase": 1679,
+    "checkedAt": "2026-11-22T17:54:23.276Z",
+    "baseCount": 9274,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9274,
+    "totalCount": 9277,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33423/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35393/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -322873,6 +322996,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/32473/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35698/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35699/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1678,
+        "checkedAt": "2026-11-22T17:42:22.081Z",
+        "baseCount": 9272,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9274,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33423/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

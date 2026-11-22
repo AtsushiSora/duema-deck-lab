@@ -1,0 +1,543 @@
+{
+  "phase": 1679,
+  "checkedAt": "2026-11-22T17:54:23.276Z",
+  "baseCount": 9274,
+  "target": 9500,
+  "description": "ドラゴンを進化条件に含むクリーチャーの検索、進化V・自軍ドラゴン/フェニックスのアンタップ攻撃・離脱時の火の非進化全回収、2回目以降の火の攻撃時に唱える除去呪文を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35393/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-012",
+      "name": "スピリチュアルスター・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-012",
+      "faces": [
+        {
+          "name": "スピリチュアルスター・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、種族にドラゴンとあるクリーチャーから進化するクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "g1679DragonEvolution": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-012.jpg",
+      "sameNameProducts": [
+        "DMC-34 コロコロ・ドリーム・パックII",
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-012",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "dmc34-014"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T17:54:23.276Z",
+        "sha256": "1728698655cde429e8c7b406c81456b4955f3c107892317fbe9747d7be068d78",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageSha256": "fadfd4e5d8bee8ccae3f427901cc33118c1d7f5129b490131f4f2dd2133e6a09"
+      }
+    },
+    {
+      "id": "dm13-s01",
+      "name": "龍炎鳳エターナル・フェニックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s01",
+      "faces": [
+        {
+          "name": "龍炎鳳エターナル・フェニックス",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化V - 自分のファイアー・バード１体とアーマード・ドラゴン１体を重ねた上に置く。\nW・ブレイカー\nバトルゾーンにある、種族にドラゴンまたはフェニックスとある自分のクリーチャーはすべて、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがバトルゾーンを離れた時、進化クリーチャーではない火のクリーチャーをすべて自分の墓地から自分の手札に戻す。",
+          "race": "フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "ファイアー・バード"
+            },
+            {
+              "race": "アーマード・ドラゴン"
+            }
+          ],
+          "allowShinkalize": true
+        },
+        "breaker": 2,
+        "g1679EternalAttackUntapped": true,
+        "g172Leave": [
+          {
+            "op": "RecoverAll326",
+            "origin": "grave",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "火"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-s01.jpg",
+      "sameNameProducts": [
+        "DMC-53 レジェンド・クロニクル 勝舞編",
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s01",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": [
+          "dmc53-009"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T17:54:23.276Z",
+        "sha256": "693a30f81dbbd8acab91538d779c9eb29107669ffa35c61fc4724f97651c0f60",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageSha256": "303cb5f6660079d46a39ec1005adb1ef8c0d6b332f1a184a000b27946cad0af9"
+      }
+    },
+    {
+      "id": "dmrp12-055",
+      "name": "轟怒プレスユー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-055",
+      "faces": [
+        {
+          "name": "轟怒プレスユー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の火のクリーチャーが攻撃する時、それがそのターンはじめての攻撃でなければ、この呪文をコストを支払わずに唱えてもよい。\n相手のパワー4000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "color": "火",
+          "g1679LaterAttack": true,
+          "label": "攻撃時の無料詠唱"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-055.jpg",
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-055",
+        "result": "原版と指定再録の公式全文・基本情報・画像を保存し、元IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T17:54:23.276Z",
+        "sha256": "5f59c60c3b53a3139ea5a80efc76303b05b043e85b921a32274e4be667ea6990",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageSha256": "d62f542c7f82006752335a79d69953a00e3f1451c4320a7765d398a4ef56fae3"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "reprintEvidence": [
+    {
+      "id": "dmc34-014",
+      "name": "スピリチュアルスター・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-014",
+      "faces": [
+        {
+          "name": "スピリチュアルスター・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、ドラゴンから進化するクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-014.jpg",
+      "htmlSha256": "3c03903135157f900346c98a26d47d5478d18ffc80850595feb95f4da220d609",
+      "imageSha256": "b13d51fc8de0b32af70c6c2d24e2dc20a565803e4076018b6d7f5e3507341fde",
+      "sameNameProducts": [
+        "DMC-34 コロコロ・ドリーム・パックII",
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "wordingComparison": "「種族にドラゴンとある」等の旧表記と新表記、主語と手札先の表記差だけを正規化して全文一致。能力の増減なし。"
+    },
+    {
+      "id": "dmc53-009",
+      "name": "龍炎鳳エターナル・フェニックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-009",
+      "faces": [
+        {
+          "name": "龍炎鳳エターナル・フェニックス",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化V - 自分のファイアー・バード１体とアーマード・ドラゴン１体を重ねた上に置く。\nW・ブレイカー\nバトルゾーンにある自分の、ドラゴンまたはフェニックスはすべて、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがバトルゾーンを離れた時、進化クリーチャーではない火のクリーチャーをすべて、自分の墓地から手札に戻す。",
+          "race": "フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc53-009.jpg",
+      "htmlSha256": "bc2d53672fd1c0d0bfccfb49affd4425deeb40fdca8f79d02897cec6a7dae2da",
+      "imageSha256": "fc5bb0ac4ea950c7f35012108416340cd7eff5e998848183a7aba1993fe1ef0b",
+      "sameNameProducts": [
+        "DMC-53 レジェンド・クロニクル 勝舞編",
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "wordingComparison": "「種族にドラゴンとある」等の旧表記と新表記、主語と手札先の表記差だけを正規化して全文一致。能力の増減なし。"
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
+      "checkedAt": "2026-11-22T17:54:22.271Z",
+      "sha256": "aa70365d447a34406037ce3998a18a6fc3df520c8d3ab546d3b4ba8a64f681d1",
+      "questionAnswer": "過去のよくある質問 Q《スピリチュアルスター・ドラゴン》の効果で、ドラゴンから進化する進化V《龍炎鳳エターナル・フェニックス》を山札から手札に持ってくることはできますか？ Aはい、できます。 《龍炎鳳エターナル・フェニックス》は、種族にドラゴンとあるクリーチャーから進化するクリーチャーなので、手札に持ってくることが可能です。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1679-effects.test.mjs",
+      "testNamePrefix": "Spiritual QA35253",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named real cards and native search, evolution V and power calculation reproduce the complete question and answer."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
+      "checkedAt": "2026-11-22T17:54:22.793Z",
+      "sha256": "0a9cc38addc2dd953cd48b3406c313b78b6ea7572b96965617130986204a15a8",
+      "questionAnswer": "過去のよくある質問 Q《龍炎鳳エターナル・フェニックス》は多色クリーチャーではありませんが、第12弾「魔封魂の融合」に登場した進化Vクリーチャーと同じように使用していいのですか？ Aはい、進化元となる種族が同じ文明のものだという点を除き、他はすべて同じです。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1679-effects.test.mjs",
+      "testNamePrefix": "Eternal QA35255",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named real cards and native search, evolution V and power calculation reproduce the complete question and answer."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35393/",
+      "checkedAt": "2026-11-22T17:54:23.275Z",
+      "sha256": "056649e89b6185f51fc9079772e68c516af7dffdce6946c1ce117433f3396450",
+      "questionAnswer": "過去のよくある質問 Qバトルゾーンに、《進化の化身》と《龍炎鳳エターナル・フェニックス》があります。この時、《進化の化身》のパワーは+3000されますか？ Aはい。《進化の化身》のパワーは+3000されます。 進化Vクリーチャーも進化クリーチャーの一種なので、+3000されます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1679-effects.test.mjs",
+      "testNamePrefix": "Eternal QA35393",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Named real cards and native search, evolution V and power calculation reproduce the complete question and answer."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T17:54:23.276Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-012": 4,
+      "dm13-s01": 4,
+      "dmrp12-055": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T18:05:36.260Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1679.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.252,
+        "log": "tmp/duema-phase-1679/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1679-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.156,
+        "log": "tmp/duema-phase-1679/final-focused.log",
+        "passed": 96,
+        "failed": 0,
+        "logSha256": "3e04c0ec82c80c3b5f98c41fe9bfe5b9c32ce4213fe448759272acc77d434e03"
+      },
+      "focused-pool-neo": {
+        "name": "additional-pool-neo",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=thirty-eight|unevolved NEO",
+          "tests/standard1679-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.707,
+        "log": "tmp/duema-phase-1679/additional-pool-neo.log",
+        "passed": 4,
+        "failed": 0,
+        "logSha256": "ebcf38c5760413d2dc2ad9b648f636e74a3c93bdb572f7586690f0b3f2a74416"
+      },
+      "related-attack-chance": {
+        "name": "related-attack-chance",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard418-effects.test.mjs",
+          "tests/standard1548-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.713,
+        "log": "tmp/duema-phase-1679/related-attack-chance.log",
+        "passed": 132,
+        "failed": 0,
+        "logSha256": "04e6a66490acdef6016e94d2e651456977d4527bf431ab0f2d2568ecf75c849f"
+      },
+      "related-search-recovery": {
+        "name": "related-search-recovery",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard531-effects.test.mjs",
+          "tests/standard326-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.228,
+        "log": "tmp/duema-phase-1679/related-search-recovery.log",
+        "passed": 176,
+        "failed": 0,
+        "logSha256": "4a9e07b4d19f280bf70db896c8f13a5ba9e4ea1c03e2c39360cec638805ac243"
+      },
+      "related-evolution": {
+        "name": "related-evolution",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=GV|Screw|evolution",
+          "tests/standard721-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.898,
+        "log": "tmp/duema-phase-1679/related-evolution.log",
+        "passed": 2,
+        "failed": 0,
+        "logSha256": "756a80beda4ca0ec4e96e98802d338ee9c8069f2cf578d247e0870123e6d282e"
+      },
+      "related-permission": {
+        "name": "related-permission",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1639-effects.test.mjs",
+          "tests/standard1678-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.038,
+        "log": "tmp/duema-phase-1679/related-permission.log",
+        "passed": 107,
+        "failed": 0,
+        "logSha256": "56c9f449b02a0a265af6a091c23e0bdaea6b3ccb4509eca2ffb621686a727eba"
+      },
+      "related-mana-online": {
+        "name": "related-mana-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.606,
+        "log": "tmp/duema-phase-1679/related-mana-online.log",
+        "passed": 39,
+        "failed": 0,
+        "logSha256": "60c0e8dc067fe39e5db13885774040dbe791a7ef6f16032ad388c65b99ca8cb9"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.826,
+        "log": "tmp/duema-phase-1679/check.log",
+        "logSha256": "c48a7c0dcb31cea01523d19fac0ad4045a62d08fea7fab5f7876a9b2f0c253c8"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.164,
+        "log": "tmp/duema-phase-1679/audit.log",
+        "logSha256": "af42fe3b711f2a36be1b75f3463c2e680937d85d961b4804d4de2c7f960f1c2e"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.259,
+        "log": "tmp/duema-phase-1679/target9500.log",
+        "logSha256": "990e011f8d36f7cebdb625dd698a489e87d824f3eb361a12bbdb7ae81ed10329"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1679/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.384,
+        "log": "tmp/duema-phase-1679/invariants.log",
+        "logSha256": "64e020815b4b326edc4007875e77af8c927026fdabac32234337c46c44e11e4e"
+      }
+    },
+    "totalTestsPassed": 556,
+    "focusedTestsPassed": 100,
+    "relatedTestsPassed": 456
+  },
+  "validationNotes": [
+    "固有96件と全登録検索対象/NEO回収4件で計100件、アタック・チャンス132件、検索・回収176件、GV関連2件、攻撃許可と前バッチ107件、手動マナ・通信ランタイム/ライブ同期39件、関連456件、合計556件を通過。check、audit、target9500と既存9274定義・ID・詳細・別名・画像参照の不変を実測確認。",
+    "3種類の公式能力全文・基本情報・マナ値・画像・現行制限を照合。公式カード名検索（同名再録を表示）でスピリチュアルスターはdm13-012/dmc34-014、エターナルはdm13-s01/dmc53-009の各2件、轟怒プレスユーはdmrp12-055の1件を確認。元IDを保持し、旧表記と新表記の意味が同じ全文を画像でも目視確認した。全5画像と基本情報一致、再録は件数加算しない。",
+    "スピリチュアルスターは既存の任意1枚検索・公開・山札シャッフルを再利用し、検索先自身の種族ではなく進化条件のドラゴン指定を判定する。種族カテゴリ/選択条件/進化V/墓地GV/NEOを含め、登録済み38種類の進化条件を全文で確認し、実際の山札選択肢も全件一致。単にドラゴンの通常クリーチャー、光/火だけの進化条件、非ドラゴン進化、呪文は除外。拒否と1枚上限、山札シャッフル、保存済み構成情報の維持、非公開の選択肢を敵に送らないことを確認。",
+    "QA35253の正確な再現に必要な龍炎鳳エターナル・フェニックスを同じバッチで全文実装し、実スピリチュアルスターで山札から手札へ検索できることを両側で確認。QA35255は単色の進化Vを異なる物理カード2枚（ファイアー・バードとアーマード・ドラゴン）から通常有料進化して再現。片方不足/相手/封印/1枚の両種族では進化できず、現行シンカライズの火鳥タマシードも進化元にできる。",
+    "エターナルは自軍ドラゴン/フェニックスだけのアンタップ相手への攻撃許可を既存判定に追加し、召喚酔い・タップ・攻撃不可を無視しない。進化V自身は進化の通常ルールで直ちに攻撃できる。敵軍/他種族は許可せず、発生源の能力無視/封印/離脱で許可が消え、対象の能力無視では消えない。実バトルとW・ブレイカーも確認。QA35393は実進化の化身のパワーが進化V1体分だけ+3000されることを再現。",
+    "エターナルの実際の墓地/手札/マナ/山札上/下への離脱で、火を含む自軍の非進化クリーチャーを墓地からすべて手札へ戻す。進化/他文明/呪文/敵軍は除外。破壊された自身の進化元と同時破壊された火のクリーチャーも回収し、墓地の未進化NEOも回収する。能力無視/封印/場に残る置換では回収せず、実アプルの墓地移動禁止も尊重する。",
+    "轟怒プレスユーは既存の攻撃開始時手札能力と無料詠唱を再利用し、そのターンに自軍がすでに攻撃した履歴がある場合だけ、火を含む攻撃クリーチャーで誘発する。攻撃開始時の手札誘発は現在の攻撃の履歴追加より前なので、直前までに1件以上の自軍攻撃があるかを判定する。最初の攻撃、後続の非火攻撃、敵手札/自分の墓地、新しい自分のターンの最初では誘発しない。前の攻撃は非火でもよく、同じクリーチャーの2回目や多色の火でも使える。",
+    "轟怒プレスユーは拒否可能、無料なら0マナで通常のパワー4000以下除去を行う。現在パワー4000/4001の境界と自軍/大型の除外、複数の手札コピーの独立解決、使用前の物理シリアル再確認、実ゲンムの呪文無視と実バロXGXの呪文禁止を検証。通常使用は印刷どおり2マナ。画面とログにはカードにないキーワードを付けず「攻撃時の無料詠唱」と表示する。",
+    "両プレイヤーで、進化元を選ぶ各操作を含む手動の物理マナ支払い、選択中のJSON/暗号化ルーム再開、操作側にだけ選択肢を公開、AI計画の純粋性と未知カード非依存、両先後の合法40枚デッキ終局と80物理カード保存を確認。fixtureのknownDeckを山札順と取り違えた主張、powerModifiersの代わりに旧buffを書いた境界テスト、進化元選択でmanualMana指定を省いていた点を訂正し、最終検証を通過した。",
+    "今回3種類の未完了検証はなし。一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.14/9272種類は更新せず、本バッチは検証済みローカルコミットのみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "ブレイカー能力の無視の固有裁定を照合し、通常ブレイク・付与・置換の対象を確認する。"
+    },
+    {
+      "id": "dm13-034",
+      "name": "剛勇傀儡ガシガシ",
+      "reason": "バトル敗北時の墓地移動をバトル中の2体のマナ移動へ置き換える全文を、同時移動と禁止/置換を含めて照合する。"
+    },
+    {
+      "id": "dm31-002",
+      "name": "超銀河弾 HELL",
+      "reason": "合計9000以下の選択と実際に破壊された体数によるシールド墓地移動を、既存の合計パワー選択と離脱結果で照合する。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T18:05:36.260Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule スピリチュアルスター",
+      "site:dm.takaratomy.co.jp/rule エターナル・フェニックス",
+      "site:dm.takaratomy.co.jp/rule 轟怒プレスユー"
+    ],
+    "result": "スピリチュアルスターQA35253、エターナルQA35255・関連の実進化の化身QA35393を公式全文で保存し、名指しの実カードで再現。轟怒プレスユー固有QAは検索で見つからず、公式全文と既存の攻撃開始/手札無料使用タイミングを使う。"
+  }
+}

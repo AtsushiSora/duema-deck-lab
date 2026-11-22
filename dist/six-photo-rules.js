@@ -350,7 +350,8 @@ export function createSixPhotoRules(api){
   return condition&&api.canCast(s,p,c,origin)&&api.canEnter(s,p,c,{origin,execution:true});
  }
  const revengeDeclare795=(p,y,origin)=>task('g34_RevengeDeclare795',p,y.cardId,{uid:y.uid,serial:y.zoneSerial||0,...(origin?{origin}:{})});
- function chanceMatches419(s,p,x,w){const name=creatureFaceName(effective(x,s));return(!w.name||name.includes(w.name))&&(!w.g201ExactName||exactName(name)===exactName(w.g201ExactName))&&matches(s,p,x,{...w,g199Power:true});}
+ // Attack-start hand triggers run before this attack is added to g481Attackers.
+ function chanceMatches419(s,p,x,w){if(w.g1679LaterAttack&&(s.g481Attackers?.turn!==s.turn||s.g481Attackers.events.filter(e=>e.p===p).length<1))return false;const name=creatureFaceName(effective(x,s));return(!w.name||name.includes(w.name))&&(!w.g201ExactName||exactName(name)===exactName(w.g201ExactName))&&matches(s,p,x,{...w,g199Power:true});}
  function graveCreatureName614(s,p,c){
   const name=exactName(creatureFaceName(c));
   return s.players[p].grave.some(x=>!x.faceDown&&faces(api.zoneCard(s,p,x,'grave')).some(f=>f.type==='creature'&&exactName(creatureFaceName(f))===name));
@@ -442,6 +443,8 @@ export function createSixPhotoRules(api){
     /^(?:このカードを)?マナゾーンに置く時、?(?:このカードは)?タップして置く。?$/.test(abilities.normalize('NFKC'));
    if(abilities&&abilities!=='能力なし'&&!legacyMana)return false;
   }
+  // Match the printed evolution requirement, not the searched card's own race.
+  if(f.g1679DragonEvolution){const hasDragon=r=>!!r&&(String(r.race||r.category||'').includes('ドラゴン')||(r.any||[]).some(hasDragon));if(![c.evolution,c.neoEvolution,...(c.g31Evolution?.conditions||[])].some(hasDragon))return false;}
   if(f.g1264RevealedMin!==undefined&&api.revealedPower(x,s)<f.g1264RevealedMin)return false;
   if(f.g1264RevealedMax!==undefined&&api.revealedPower(x,s)>f.g1264RevealedMax)return false;
   if(f.g717Silent&&!d.g496Silent)return false;
@@ -4019,7 +4022,7 @@ export function createSixPhotoRules(api){
    [opt('コストを支払わずに召喚する',true,25,y.cardId),skip()]);
   break;
  }
- case'g34_Chance417':{const c=chanceCard417(s,t);if(c)choice(s,t,'アタック・チャンス：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),t.source),skip()]);break;}
+ case'g34_Chance417':{const c=chanceCard417(s,t);if(c)choice(s,t,(c.g417Chance.label||'アタック・チャンス')+'：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),t.source),skip()]);break;}
  case'g34_SelfSpellMana1647':api.moveSpellMana1647(s,t.p,t.uid);break;
  case'g34_HandManaStop1647':(s.extLimits??=[]).push({kind:'g1647HandManaStop',player:1-t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});break;
  case'g34_SpellFinish416':{const frame=(s.extSpells||[]).find(f=>f.inst.uid===t.uid&&f.caster===t.p&&(!f.virtual||f.shieldCast));if(frame){frame.to=t.to;frame.g416SelfFinish=true;if(frame.shieldCast)frame.inst.finishTo=t.to;}break;}
@@ -8139,7 +8142,7 @@ export function createSixPhotoRules(api){
  case'g34_Chance417':if(v&&chanceCard417(s,t)){
   const c=chanceCard417(s,t),origin=t.origin??'hand';
   if(c.g417Chance.g1548ChanceR)s.players[t.p][origin].find(y=>y.uid===t.uid).finishTo='deck';
-  cast(s,t.p,t.uid,true,null,t.face,null,origin,c.g417Chance.g1548ChanceR?'アタック・チャンスR':'アタック・チャンス');
+  cast(s,t.p,t.uid,true,null,t.face,null,origin,c.g417Chance.g1548ChanceR?'アタック・チャンスR':c.g417Chance.label||'アタック・チャンス');
  }break;
  case'g34_FairyManaExchange828':if(v)put(s,{...t,accepted:true});break;
  case'g34_HaridelReturn1675':if(v){const selection=haridelSelection1675(s,t),refs=selection.g960FormerBases;start(s,t,[{op:'GraveArmy',filter:{creature:true},ids:refs.map(r=>r.uid),n:refs.length,g960FormerBases:refs,g1675All:true,title:'戻すクリーチャーの順番を選ぶ（すべて戻す）'}]);}break;

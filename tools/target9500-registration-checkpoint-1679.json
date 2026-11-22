@@ -1,0 +1,295 @@
+{
+  "phase": 1679,
+  "checkedAt": "2026-11-22T18:05:36.260Z",
+  "baseline": "f07c9446",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9274,
+  "currentNames": 9277,
+  "remainingNames": 223,
+  "added": [
+    {
+      "id": "dm13-012",
+      "name": "スピリチュアルスター・ドラゴン"
+    },
+    {
+      "id": "dm13-s01",
+      "name": "龍炎鳳エターナル・フェニックス"
+    },
+    {
+      "id": "dmrp12-055",
+      "name": "轟怒プレスユー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "f07c9446",
+    "originalDefinitionsUnchanged": 9274,
+    "added": 3,
+    "uniqueNames": 9277,
+    "uniqueIds": 9277,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9274,
+    "existingImageReferenceRowsUnchanged": 11475
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1679.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.252,
+      "log": "tmp/duema-phase-1679/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1679-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.156,
+      "log": "tmp/duema-phase-1679/final-focused.log",
+      "passed": 96,
+      "failed": 0,
+      "logSha256": "3e04c0ec82c80c3b5f98c41fe9bfe5b9c32ce4213fe448759272acc77d434e03"
+    },
+    "focused-pool-neo": {
+      "name": "additional-pool-neo",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=thirty-eight|unevolved NEO",
+        "tests/standard1679-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.707,
+      "log": "tmp/duema-phase-1679/additional-pool-neo.log",
+      "passed": 4,
+      "failed": 0,
+      "logSha256": "ebcf38c5760413d2dc2ad9b648f636e74a3c93bdb572f7586690f0b3f2a74416"
+    },
+    "related-attack-chance": {
+      "name": "related-attack-chance",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard418-effects.test.mjs",
+        "tests/standard1548-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.713,
+      "log": "tmp/duema-phase-1679/related-attack-chance.log",
+      "passed": 132,
+      "failed": 0,
+      "logSha256": "04e6a66490acdef6016e94d2e651456977d4527bf431ab0f2d2568ecf75c849f"
+    },
+    "related-search-recovery": {
+      "name": "related-search-recovery",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard531-effects.test.mjs",
+        "tests/standard326-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.228,
+      "log": "tmp/duema-phase-1679/related-search-recovery.log",
+      "passed": 176,
+      "failed": 0,
+      "logSha256": "4a9e07b4d19f280bf70db896c8f13a5ba9e4ea1c03e2c39360cec638805ac243"
+    },
+    "related-evolution": {
+      "name": "related-evolution",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=GV|Screw|evolution",
+        "tests/standard721-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.898,
+      "log": "tmp/duema-phase-1679/related-evolution.log",
+      "passed": 2,
+      "failed": 0,
+      "logSha256": "756a80beda4ca0ec4e96e98802d338ee9c8069f2cf578d247e0870123e6d282e"
+    },
+    "related-permission": {
+      "name": "related-permission",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard1639-effects.test.mjs",
+        "tests/standard1678-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.038,
+      "log": "tmp/duema-phase-1679/related-permission.log",
+      "passed": 107,
+      "failed": 0,
+      "logSha256": "56c9f449b02a0a265af6a091c23e0bdaea6b3ccb4509eca2ffb621686a727eba"
+    },
+    "related-mana-online": {
+      "name": "related-mana-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/mana-payment.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-live.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.606,
+      "log": "tmp/duema-phase-1679/related-mana-online.log",
+      "passed": 39,
+      "failed": 0,
+      "logSha256": "60c0e8dc067fe39e5db13885774040dbe791a7ef6f16032ad388c65b99ca8cb9"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.826,
+      "log": "tmp/duema-phase-1679/check.log",
+      "logSha256": "c48a7c0dcb31cea01523d19fac0ad4045a62d08fea7fab5f7876a9b2f0c253c8"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.164,
+      "log": "tmp/duema-phase-1679/audit.log",
+      "logSha256": "af42fe3b711f2a36be1b75f3463c2e680937d85d961b4804d4de2c7f960f1c2e"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.259,
+      "log": "tmp/duema-phase-1679/target9500.log",
+      "logSha256": "990e011f8d36f7cebdb625dd698a489e87d824f3eb361a12bbdb7ae81ed10329"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1679/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.384,
+      "log": "tmp/duema-phase-1679/invariants.log",
+      "logSha256": "64e020815b4b326edc4007875e77af8c927026fdabac32234337c46c44e11e4e"
+    }
+  },
+  "totalTestsPassed": 556,
+  "hashes": {
+    "dist/cards.json": "903d73420c58437b0846a0346472585bb7de87b30849329275524f5c8a1d39e3",
+    "dist/engine.js": "3e349d0db8b25389a98c7dd4fb7bb471e5c1e1baff53948743a7cccc3b79f3c7",
+    "dist/six-photo-rules.js": "da5fc46d4ae0aff9f2af57b768f2a2cd3ddbb1e459302e4ded1db54acfddf276",
+    "dist/online-compatibility.js": "75c28652521b7a0210ad493ba65a32fa4c7d95fd8c0b6743db036e6212176327",
+    "dist/card-images.js": "0453808ed690d006f2f89f0c12f6a56d34b8b1e4518a071a33fb4f50a8df52dc",
+    "tools/target9000-card-spec.json": "ebfc06f87fb106f8c19328cbab3f18b512c28f12aab2ce20d5163f2e0706b3c4",
+    "tests/standard1679-effects.test.mjs": "bb8643287be87c19ab0a34b17fc1816a873566d5f2e2802c0c667c568fcea814"
+  },
+  "engineVersion": "0.602.195",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1679-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 19.644,
+      "log": "tmp/duema-phase-1679/focused.log"
+    },
+    {
+      "name": "corrected-core",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Press You|Spiritual chooses|manual payment|pending choice survives.*dmrp12-055",
+        "tests/standard1679-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.49,
+      "log": "tmp/duema-phase-1679/corrected-core.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1679.json",
+  "supported": 9277,
+  "pending": 2548,
+  "reason": "ドラゴンを進化条件に含むクリーチャーの検索、進化V・自軍ドラゴン/フェニックスのアンタップ攻撃・離脱時の火の非進化全回収、2回目以降の火の攻撃時に唱える除去呪文を全文対応。",
+  "validationNotes": [
+    "固有96件と全登録検索対象/NEO回収4件で計100件、アタック・チャンス132件、検索・回収176件、GV関連2件、攻撃許可と前バッチ107件、手動マナ・通信ランタイム/ライブ同期39件、関連456件、合計556件を通過。check、audit、target9500と既存9274定義・ID・詳細・別名・画像参照の不変を実測確認。",
+    "3種類の公式能力全文・基本情報・マナ値・画像・現行制限を照合。公式カード名検索（同名再録を表示）でスピリチュアルスターはdm13-012/dmc34-014、エターナルはdm13-s01/dmc53-009の各2件、轟怒プレスユーはdmrp12-055の1件を確認。元IDを保持し、旧表記と新表記の意味が同じ全文を画像でも目視確認した。全5画像と基本情報一致、再録は件数加算しない。",
+    "スピリチュアルスターは既存の任意1枚検索・公開・山札シャッフルを再利用し、検索先自身の種族ではなく進化条件のドラゴン指定を判定する。種族カテゴリ/選択条件/進化V/墓地GV/NEOを含め、登録済み38種類の進化条件を全文で確認し、実際の山札選択肢も全件一致。単にドラゴンの通常クリーチャー、光/火だけの進化条件、非ドラゴン進化、呪文は除外。拒否と1枚上限、山札シャッフル、保存済み構成情報の維持、非公開の選択肢を敵に送らないことを確認。",
+    "QA35253の正確な再現に必要な龍炎鳳エターナル・フェニックスを同じバッチで全文実装し、実スピリチュアルスターで山札から手札へ検索できることを両側で確認。QA35255は単色の進化Vを異なる物理カード2枚（ファイアー・バードとアーマード・ドラゴン）から通常有料進化して再現。片方不足/相手/封印/1枚の両種族では進化できず、現行シンカライズの火鳥タマシードも進化元にできる。",
+    "エターナルは自軍ドラゴン/フェニックスだけのアンタップ相手への攻撃許可を既存判定に追加し、召喚酔い・タップ・攻撃不可を無視しない。進化V自身は進化の通常ルールで直ちに攻撃できる。敵軍/他種族は許可せず、発生源の能力無視/封印/離脱で許可が消え、対象の能力無視では消えない。実バトルとW・ブレイカーも確認。QA35393は実進化の化身のパワーが進化V1体分だけ+3000されることを再現。",
+    "エターナルの実際の墓地/手札/マナ/山札上/下への離脱で、火を含む自軍の非進化クリーチャーを墓地からすべて手札へ戻す。進化/他文明/呪文/敵軍は除外。破壊された自身の進化元と同時破壊された火のクリーチャーも回収し、墓地の未進化NEOも回収する。能力無視/封印/場に残る置換では回収せず、実アプルの墓地移動禁止も尊重する。",
+    "轟怒プレスユーは既存の攻撃開始時手札能力と無料詠唱を再利用し、そのターンに自軍がすでに攻撃した履歴がある場合だけ、火を含む攻撃クリーチャーで誘発する。攻撃開始時の手札誘発は現在の攻撃の履歴追加より前なので、直前までに1件以上の自軍攻撃があるかを判定する。最初の攻撃、後続の非火攻撃、敵手札/自分の墓地、新しい自分のターンの最初では誘発しない。前の攻撃は非火でもよく、同じクリーチャーの2回目や多色の火でも使える。",
+    "轟怒プレスユーは拒否可能、無料なら0マナで通常のパワー4000以下除去を行う。現在パワー4000/4001の境界と自軍/大型の除外、複数の手札コピーの独立解決、使用前の物理シリアル再確認、実ゲンムの呪文無視と実バロXGXの呪文禁止を検証。通常使用は印刷どおり2マナ。画面とログにはカードにないキーワードを付けず「攻撃時の無料詠唱」と表示する。",
+    "両プレイヤーで、進化元を選ぶ各操作を含む手動の物理マナ支払い、選択中のJSON/暗号化ルーム再開、操作側にだけ選択肢を公開、AI計画の純粋性と未知カード非依存、両先後の合法40枚デッキ終局と80物理カード保存を確認。fixtureのknownDeckを山札順と取り違えた主張、powerModifiersの代わりに旧buffを書いた境界テスト、進化元選択でmanualMana指定を省いていた点を訂正し、最終検証を通過した。",
+    "今回3種類の未完了検証はなし。一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.14/9272種類は更新せず、本バッチは検証済みローカルコミットのみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "ブレイカー能力の無視の固有裁定を照合し、通常ブレイク・付与・置換の対象を確認する。"
+    },
+    {
+      "id": "dm13-034",
+      "name": "剛勇傀儡ガシガシ",
+      "reason": "バトル敗北時の墓地移動をバトル中の2体のマナ移動へ置き換える全文を、同時移動と禁止/置換を含めて照合する。"
+    },
+    {
+      "id": "dm31-002",
+      "name": "超銀河弾 HELL",
+      "reason": "合計9000以下の選択と実際に破壊された体数によるシールド墓地移動を、既存の合計パワー選択と離脱結果で照合する。"
+    }
+  ],
+  "next": "phase1680で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+}
