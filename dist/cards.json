@@ -295488,20 +295488,173 @@
       ],
       "supportBatch": "phase-1679",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-002",
+      "name": "超銀河弾 HELL",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 10,
+      "power": 0,
+      "race": "ナイト",
+      "text": "相手のクリーチャーをパワーの合計が9000以下になるように好きな数選び、破壊する。その後、こうして破壊したクリーチャー１体につき、相手のシールドをひとつ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 9000,
+          "g1680Hell": true,
+          "spell": true,
+          "title": "合計パワー9000以下になるように破壊する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1680",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-072",
+      "name": "爆獣マチュー・スチュアート / 超銀河弾 HELL",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ドリームメイト/ナイト",
+      "text": "自分が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\n【呪文面】\n相手のクリーチャーをパワーの合計が9000以下になるように好きな数選び、破壊する。その後、こうして破壊したクリーチャー１体につき、相手のシールドを１つ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-072",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "超銀河弾 HELL",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 9000,
+            "g1680Hell": true,
+            "spell": true,
+            "title": "合計パワー9000以下になるように破壊する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1680",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc46-004",
+      "name": "魔弾アルカディア・エッグ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ナイト",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n相手のタップされていないクリーチャーを１体破壊する。\n《魔弾グローリー・ゲート》が自分の墓地にあれば、《魔光大帝ネロ・グリフィス》を１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc46-004",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          },
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "g201ExactName": "魔弾グローリー・ゲート"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "g201ExactName": "魔光大帝ネロ・グリフィス"
+              },
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1680",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1679,
-    "checkedAt": "2026-11-22T17:54:23.276Z",
-    "baseCount": 9274,
+    "phase": 1680,
+    "checkedAt": "2026-11-22T18:20:26.478Z",
+    "baseCount": 9277,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9277,
+    "totalCount": 9280,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35393/"
+      "https://dm.takaratomy.co.jp/rule/qa/39991/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -323011,6 +323164,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/33423/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1679,
+        "checkedAt": "2026-11-22T17:54:23.276Z",
+        "baseCount": 9274,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9277,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35393/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

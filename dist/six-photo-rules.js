@@ -1875,6 +1875,12 @@ export function createSixPhotoRules(api){
    if(t.rows?.length)put(s,{...t,op:'g34_SplitDeck1247'});
    return;
   }
+  if(t.g1680Hell){
+   // QA39991 counts destruction attempts, including replaced destruction.
+   // Freeze the chosen count before simultaneous leaving/replacement choices.
+   const n=(t.rows||[]).filter(r=>s.players[r.p].battle.some(x=>x.uid===r.uid)).length;
+   if(n)t.after=[...(t.after||[]),{op:'ShieldMove685',n,to:'grave',toOwnerGrave:true,required:true,spell:t.spell}];
+  }
   if(t.g553Destinations&&t.rows?.length){put(s,{...t,op:'g34_Destination553',destinations:t.g553Destinations,g553Destinations:false});return;}const rows=t.g183Return&&t.to==='deckTop'?[...(t.rows||[])].reverse():t.rows||[];if(t.g899RampTapped){
   let n=0;
   for(const r of rows){

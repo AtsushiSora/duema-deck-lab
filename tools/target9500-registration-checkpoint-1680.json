@@ -1,0 +1,275 @@
+{
+  "phase": 1680,
+  "checkedAt": "2026-11-22T18:27:42.723Z",
+  "baseline": "3e8bb68a",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9277,
+  "currentNames": 9280,
+  "remainingNames": 220,
+  "added": [
+    {
+      "id": "dm31-002",
+      "name": "超銀河弾 HELL"
+    },
+    {
+      "id": "dmex17-072",
+      "name": "爆獣マチュー・スチュアート / 超銀河弾 HELL"
+    },
+    {
+      "id": "dmc46-004",
+      "name": "魔弾アルカディア・エッグ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "3e8bb68a",
+    "originalDefinitionsUnchanged": 9277,
+    "added": 3,
+    "uniqueNames": 9280,
+    "uniqueIds": 9280,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9277,
+    "existingImageReferenceRowsUnchanged": 11480
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1680.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 5.465,
+      "log": "tmp/duema-phase-1680/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1680-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.355,
+      "log": "tmp/duema-phase-1680/final-focused.log",
+      "passed": 86,
+      "failed": 0,
+      "logSha256": "a71959f568ccf3f79712d00f6835a5c93d3ad6a7ee6f3d75612fdf67bea2225c"
+    },
+    "focused-persistence": {
+      "name": "additional-persistence",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=partial shield|tapped multicolor|pins the full twin",
+        "tests/standard1680-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.662,
+      "log": "tmp/duema-phase-1680/additional-persistence.log",
+      "passed": 5,
+      "failed": 0,
+      "logSha256": "5e0a436a753bd66de2980a36a6ae30f699d8ce747c55b854c2dec16c02ee031d"
+    },
+    "related-selection-shields": {
+      "name": "related-selection-shields",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard506-effects.test.mjs",
+        "tests/standard685-effects.test.mjs",
+        "tests/standard1226-effects.test.mjs",
+        "tests/standard1354-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 27.966,
+      "log": "tmp/duema-phase-1680/related-selection-shields.log",
+      "passed": 135,
+      "failed": 0,
+      "logSha256": "2132dd2697596bb02e6cb53cf786d434517c380a3d16a91989e0f3de9b3d1b45"
+    },
+    "related-knights-savers": {
+      "name": "related-knights-savers",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard573-effects.test.mjs",
+        "tests/standard1531-effects.test.mjs",
+        "tests/standard204-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.019,
+      "log": "tmp/duema-phase-1680/related-knights-savers.log",
+      "passed": 117,
+      "failed": 0,
+      "logSha256": "ddc13a23b82b086571d9b9298601e55e34b245bc9a843c474ebdbfbcde7f6838"
+    },
+    "related-mana-online": {
+      "name": "related-mana-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/mana-payment.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-live.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.819,
+      "log": "tmp/duema-phase-1680/related-mana-online.log",
+      "passed": 39,
+      "failed": 0,
+      "logSha256": "e4f0cff35513443a35dfb896e7e55d89a2fce744b5ea2ae8b23fdce7be4ac168"
+    },
+    "check": {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.998,
+      "log": "tmp/duema-phase-1680/final-check.log",
+      "logSha256": "2a56968011804b08dda997398893816b232c2f1d8d6694b37ff0ff211c9f716d"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.375,
+      "log": "tmp/duema-phase-1680/audit.log",
+      "logSha256": "db0eacc2bcdc1b4ae28687c3762f9fafef00e3c48a8d3e779ee6d4fdc17fce5f"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.312,
+      "log": "tmp/duema-phase-1680/target9500.log",
+      "logSha256": "390e872fd24147319725c30223ef3b9368e98a8d01518d2abae6ecbd924cd3b4"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1680/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.419,
+      "log": "tmp/duema-phase-1680/invariants.log",
+      "logSha256": "56727b900d1cfc8f5a5fa02f235605b6c7b913e7d152ce5ce55b90dde6fad40a"
+    }
+  },
+  "totalTestsPassed": 382,
+  "hashes": {
+    "dist/cards.json": "9c24561c8627393498a3fce6f39488e97329ab547b92fa7fb0ef758b5c366383",
+    "dist/engine.js": "faaf4bca717f9ae6169f88e1911bc847fafdeacf0491fa42baed2d1d3d0359ec",
+    "dist/six-photo-rules.js": "7d3bde5e0772037116c5447beb994760cedf219ca4ae0cd38e052d5cb11669cb",
+    "dist/online-compatibility.js": "90ae3de9ccf91dec5ae84e2effc8d3e1cdefc77cdd487eba11e9c6d68aed416b",
+    "dist/card-images.js": "7d4678e92feaaa8ac0274ae946f27daa0d8cc592cd82a071dd24228e761d8ffd",
+    "tools/target9000-card-spec.json": "3fbe7c3f985fc46737b0db4d05b953428370fb984dbcb229b2e25383965b7da4",
+    "tests/standard1680-effects.test.mjs": "5b4737eab67aaf3fde6eebfa536a777a6ad01cec59750b7dcd090f09da5a157d"
+  },
+  "engineVersion": "0.602.196",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1680-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 17.439,
+      "log": "tmp/duema-phase-1680/focused.log"
+    },
+    {
+      "name": "corrected-core",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA39991|infinity|shield movement|wrong-name Nero|actual shield trigger",
+        "tests/standard1680-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.141,
+      "log": "tmp/duema-phase-1680/corrected-core.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1680.json",
+  "supported": 9280,
+  "pending": 2545,
+  "reason": "超銀河弾HELLの合計パワー選択と破壊行為数によるシールド墓地移動、マチューの両面、単独アルカディア・エッグを全文対応。",
+  "validationNotes": [
+    "固有86件と選択途中の保存・多色マナ・両面の厳密な定義検証5件、計91件を通過。合計パワー/シールド移動135件、セイバー/ナイト/呪文監視117件、手動マナ・通信ランタイム/ライブ同期39件の関連291件、合計382件。check、audit、target9500、既存9277定義・ID・詳細・別名・画像参照の不変条件を通過。",
+    "公式原版3件と同名再録3件の全能力・基本情報・マナ値・画像を照合。HELL単独dm31-002とdmc64-014、全両面マチュー/HELL dmex17-072とdm23bd6-041、エッグ単独dmc46-004とdmpcd02-b03を区別し、3種類だけ加算。全文一致または同義の旧新表記を画像で目視確認。検索のHELL別名ボロフは別カード、既存単独マチューと既存アヴァラルド/エッグも別の全体カードとして扱い、元IDを維持。",
+    "HELLは既存の合計パワー上限選択・同時破壊・シールドグループ移動を再利用。現在パワーの4000+5000=9000、9000/9001境界と∞、任意0体、4体、選択対象の途中不移動、実オニカマスと非クリーチャー種除外を検証。QA39991どおり破壊行為の対象数を離脱置換より前に固定し、実際の墓地移動数は使わない。2体の実西南ドラゴンで片方のセイバーをもう片方へ使い、場1体・墓地1体・シールド墓地2つを両プレイヤー・単独/ツイン呪文で再現。残存置換も対象1体分を数え、下カード枚数を加算しない。",
+    "HELLのシールド移動は必須だが残りが少なければ残り全て。重ねたシールドを1グループとして数え、S・トリガーを使わせず、全構成カードを各持ち主の墓地へ送る。選択途中のJSON保存で最初のシールドを二重選択できず、物理カード総数も保存される。最初の試験で持ち主の指定が足りないことを検出し、新規HELLの後続タスクだけにtoOwnerGraveを加えて修正。",
+    "マチューのクリーチャー面は既存単独版の呪文監視を再利用。自分の呪文解決後に任意の山札上1枚マナ、拒否、敵の詠唱/クリーチャー召喚/発生源の能力無視/封印を検証。通常4マナ・2000・ドリームメイト/ナイト、同一物理カードの10マナHELL面、火/自然の多色タップマナ・マナ値1も確認。",
+    "単独エッグは既存アヴァラルド/エッグ呪文面の全処理を再利用。相手アンタップ1体だけ破壊し、後続で自軍墓地の正確なグローリー・ゲート（単独または全ツイン）を確認し、自分の手札の正確なネロ・グリフィス1体だけ任意で出す。タップ/自軍/違う名/手札以外/相手墓地/裏向きの条件不一致と任意拒否、対象なしや破壊置換後の後続、実とこしえが手札からの登場を許すこと、実ゲンムのコスト5呪文無視、通常5マナ、相手ターンの実S・トリガー0マナを検証。",
+    "両プレイヤー・全4面の手動物理マナ選択、JSON/暗号化ルーム保存、操作側のみの合法アクション、AI計画の純粋性と未知カード非依存、両先後の合法40枚デッキ終局と80物理カード保存を検証。初回試験で置換選択のtype、無限パワーの実カード、トリガーaction、先行する除去選択を誤ったfixtureを訂正。QAでは自分自身をセイバーの犠牲に選ぶと両方破壊されるため、公式どおりもう一方を選ぶよう明示して再現。",
+    "今回3種類の未完了検証はなし。終わりポンの助とガシガシは本文と関連裁定を保存し、ブレイカー全種類の無視・同時2体離脱置換の検証を要するため部分実装せず保留。一括npm testと過去の長時間群、登録済み裁定待ち・ユーザー保留は維持。公開済みv0.722.15/9277種類を更新せず、ローカルコミットのみ。"
+  ],
+  "held": [
+    {
+      "id": "dmex19-054",
+      "name": "終わりポンの助",
+      "reason": "全文・基本情報・単一収録を確認済み。通常枚数だけでなくG/∞/ワールド/マスターなど各ブレイカー固有処理と付与の無視を共通処理全域で検証する必要があり、部分実装せず保留。"
+    },
+    {
+      "id": "dm13-034",
+      "name": "剛勇傀儡ガシガシ",
+      "reason": "公式QA35273/35274/35275と全文を確認済み。敗北時の墓地移動の置換を同時2体のマナ移動にする処理が必要。ほかの離脱置換との競合・同パワー・スレイヤー解決順を共通離脱処理で検証するまで保留。"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm31-020",
+      "name": "魔弾ベター・トゥモロー",
+      "reason": "全自軍へのパワーアタッカーと追加ブレイク、ナイト・マジックの再適用を公式全文・再録・期間で照合する。"
+    },
+    {
+      "id": "dmr23-l01",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "reason": "召喚による登場条件、敵軍不在での勝利とそれ以外の他全体破壊、SA/Qブレイカーを既存処理で照合する。"
+    },
+    {
+      "id": "dmex10-s03",
+      "name": "「是空」の鬼 ゲドウ権現",
+      "reason": "鬼タイムの軽減と自己破壊による敗北/相手勝利置換を既存処理で照合し、全能力を検証する。"
+    }
+  ],
+  "next": "phase1681で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+}

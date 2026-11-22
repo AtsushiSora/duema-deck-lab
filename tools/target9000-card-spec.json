@@ -36793,5 +36793,183 @@
         }
       ]
     }
+  },
+  "dm31-002": {
+    "phase": 1680,
+    "faces": [
+      {
+        "name": "超銀河弾 HELL",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "相手のクリーチャーをパワーの合計が9000以下になるように好きな数選び、破壊する。その後、こうして破壊したクリーチャー１体につき、相手のシールドをひとつ選び、持ち主の墓地に置く。",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 9000,
+          "g1680Hell": true,
+          "spell": true,
+          "title": "合計パワー9000以下になるように破壊する相手のクリーチャーを選ぶ"
+        }
+      ]
+    }
+  },
+  "dmex17-072": {
+    "phase": 1680,
+    "faces": [
+      {
+        "name": "爆獣マチュー・スチュアート",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+        "race": "ドリームメイト/ナイト",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "超銀河弾 HELL",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "相手のクリーチャーをパワーの合計が9000以下になるように好きな数選び、破壊する。その後、こうして破壊したクリーチャー１体につき、相手のシールドを１つ選び、持ち主の墓地に置く。",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "超銀河弾 HELL",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "race": "ナイト",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 9000,
+            "g1680Hell": true,
+            "spell": true,
+            "title": "合計パワー9000以下になるように破壊する相手のクリーチャーを選ぶ"
+          }
+        ]
+      }
+    }
+  },
+  "dmc46-004": {
+    "phase": 1680,
+    "faces": [
+      {
+        "name": "魔弾アルカディア・エッグ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n相手のタップされていないクリーチャーを１体破壊する。\n《魔弾グローリー・ゲート》が自分の墓地にあれば、《魔光大帝ネロ・グリフィス》を１体、自分の手札からバトルゾーンに出してもよい。",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          },
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "g201ExactName": "魔弾グローリー・ゲート"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "g201ExactName": "魔光大帝ネロ・グリフィス"
+              },
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ]
+    }
   }
 }
