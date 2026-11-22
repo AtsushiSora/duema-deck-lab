@@ -51,6 +51,7 @@ export function createUtilityControlRules(api){
     const shared=both&&['creature','spell'].includes(c.type)&&colors.includes(both.color)?both.amount:0;
     const applies=execution&&owner!==p&&(
      execution.kind==='multicolor'&&colors.length>1||
+     execution.kind==='nonMulticolor'&&colors.length<=1||
      execution.kind==='spellOrSeed'&&(c.type==='spell'||c.type==='seed'&&!c.seedCreature)||
      execution.kind==='noncreature'&&c.type!=='creature'&&!c.seedCreature);
     n+=applies?execution.amount:0;
@@ -58,7 +59,7 @@ export function createUtilityControlRules(api){
      const summonTax=colors.includes('闇')?source.g718DarkSummonTax:source.g715NonDarkSummonTax;
      return n+shared+(c.type==='creature'?(summonTax||0):0);
     }
-    return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.perOtherCreature?api.creatures(s,owner).filter(y=>!y.sealed&&y.uid!==x.uid).length:tax.amount);
+    return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.exceptMulticolor&&colors.length>1||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.perOtherCreature?api.creatures(s,owner).filter(y=>!y.sealed&&y.uid!==x.uid).length:tax.amount);
    },0),0);
   },
   firstSpellDiscount(s,p,c){return c.type==='spell'&&!(s.players[p].spellsThisTurn||0)?api.creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const source=api.effective(x,s),f=source.g285FirstSpellMana;return n+(!f||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(f.color)).length>=f.n?source.g279FirstSpellDiscount||0:0);},0):0;},

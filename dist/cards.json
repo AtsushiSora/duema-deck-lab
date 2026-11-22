@@ -290434,18 +290434,123 @@
       ],
       "supportBatch": "phase-1633",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd01-002",
+      "name": "闇鎧亜クイーン・アルカディアス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "エンジェル・コマンド/ロスト・クルセイダー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化：自分の多色クリーチャー１体の上に置く。\nW・ブレイカー\n相手は、コストを支払わずに呪文を唱えられない。\n相手の多色ではない呪文を唱えるコストは５多くなる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd01-002",
+      "limit": 4,
+      "evolution": {
+        "multicolor": true
+      },
+      "breaker": 2,
+      "g1634UnpaidSpellLock": true,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 5,
+        "exceptMulticolor": true
+      },
+      "supportBatch": "phase-1634",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd1-006",
+      "name": "鎧道接続 キング・マルバディアス",
+      "civ": "光/闇/自然",
+      "civilizations": [
+        "光",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ディスペクター/エンジェル・コマンド/デーモン・コマンド/アンノウン",
+      "text": "EXライフ\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚を見る。その中から、コスト６以下のディスタスを２枚まで出す。残りを好きな順序で山札の下に置く。\n相手の、多色ではないカードを使うコストを２多くする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-006",
+      "limit": 4,
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "limit": 2,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ディスタス",
+            "max": 6
+          }
+        }
+      ],
+      "g619Tax": {
+        "kind": "nonMulticolor",
+        "amount": 2
+      },
+      "supportBatch": "phase-1634",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-021",
+      "name": "採菌医 ウォンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが破壊された時、それよりコストが小さいクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-021",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g1634VictimCost": true,
+            "title": "破壊された相手のクリーチャーよりコストが小さいクリーチャーを墓地から出す"
+          }
+        ]
+      },
+      "supportBatch": "phase-1634",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1633,
+    "phase": 1634,
     "checkedAt": "2026-11-22",
-    "baseCount": 9129,
-    "newEffectCards": 4,
+    "baseCount": 9133,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9133,
+    "totalCount": 9136,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31714/",
+      "https://dm.takaratomy.co.jp/rule/qa/40882/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
     ],
     "next": [
@@ -317133,6 +317238,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
           "https://dm.takaratomy.co.jp/rule/qa/40183/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1633,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9129,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9133,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31714/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

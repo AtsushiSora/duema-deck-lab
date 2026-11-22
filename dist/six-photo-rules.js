@@ -10129,6 +10129,7 @@ export function createSixPhotoRules(api){
     const defs=watcher.watch.defs.map(d=>{
      if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
      if(d.g1192VictimPower)return {...d,filter:{belowPower:victim.g1192Power,g199Power:true}};
+     if(d.g1634VictimCost)return {...d,filter:{...d.filter,belowCost:victim.g1145Cost}};
      if(d.op==='StackDestroyed1130')return {...d,victim:{uid:x.uid,serial:(x.zoneSerial||0)+1}};
      return d;
     });

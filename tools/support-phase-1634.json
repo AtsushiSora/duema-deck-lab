@@ -1,0 +1,211 @@
+{
+  "phase": 1634,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9133,
+  "target": 9500,
+  "description": "無料詠唱禁止と非多色へのコスト増加、EXライフと上5枚からディスタス2体までの展開、相手の破壊時コストを参照する墓地展開を公式能力全文で実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40882/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd01-002",
+      "name": "闇鎧亜クイーン・アルカディアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd01-002",
+      "faces": [
+        {
+          "name": "闇鎧亜クイーン・アルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化：自分の多色クリーチャー１体の上に置く。\nW・ブレイカー\n相手は、コストを支払わずに呪文を唱えられない。\n相手の多色ではない呪文を唱えるコストは５多くなる。",
+          "race": "エンジェル・コマンド/ロスト・クルセイダー",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "breaker": 2,
+        "g1634UnpaidSpellLock": true,
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 5,
+          "exceptMulticolor": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd01-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "e4d00116032169340e2f2a015699c197397610ca78ea2868a240676ebde2592d",
+        "facesMatched": true,
+        "imageSha256": "68b59c813da0913027bf22c6eb50ddd182156b663a68f698ebdda7befceacab4",
+        "imageBytes": 135132,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・基本情報・多色のタップイン・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMBD-01 クロニクル・レガシー・デッキ アルカディアス鎮魂歌"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd01-002",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm23bd1-006",
+      "name": "鎧道接続 キング・マルバディアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-006",
+      "faces": [
+        {
+          "name": "鎧道接続 キング・マルバディアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚を見る。その中から、コスト６以下のディスタスを２枚まで出す。残りを好きな順序で山札の下に置く。\n相手の、多色ではないカードを使うコストを２多くする。",
+          "race": "ディスペクター/エンジェル・コマンド/デーモン・コマンド/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 5,
+            "limit": 2,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "race": "ディスタス",
+              "max": 6
+            }
+          }
+        ],
+        "g619Tax": {
+          "kind": "nonMulticolor",
+          "amount": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd1-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "bb3a4014a819a7a2103982f2a2e9ab8b9905635f55f23fc08a9678a6c8b2e17e",
+        "facesMatched": true,
+        "imageSha256": "cdb3f83646a2dab1a78c450a5cc65fff6bb6e37c181b4f7b2fae2fced6bc8c63",
+        "imageBytes": 206459,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・基本情報・多色のタップイン・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DM23-BD1 レジェンドスーパーデッキ 禁王創来"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-006",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp05-021",
+      "name": "採菌医 ウォンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-021",
+      "faces": [
+        {
+          "name": "採菌医 ウォンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが破壊された時、それよりコストが小さいクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "opponent": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g1634VictimCost": true,
+              "title": "破壊された相手のクリーチャーよりコストが小さいクリーチャーを墓地から出す"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "00c70f93c6e6f0480e4d7eef9d1263c4f9b3cbad56cc7225859799323aba672c",
+        "facesMatched": true,
+        "imageSha256": "607f78b48622ef02703330f89100c99f1b0c5ab5287ea8b421f8c4853673b52d",
+        "imageBytes": 110186,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・基本情報・多色のタップイン・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-021",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd01-002": 4,
+      "dm23bd1-006": 4,
+      "dmrp05-021": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40882/",
+      "checkedAt": "2026-11-22",
+      "sha256": "350cefed602aea837406a5941f9a4190d1d4019bf3a4c97b1054c770be3cd963",
+      "reviewed": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
+      "checkedAt": "2026-11-22",
+      "sha256": "1f40dee33f42480e88c1793376c80537ad86d5d0c36a10e1bb8bbd253d58a88b",
+      "reviewed": true
+    }
+  ]
+}

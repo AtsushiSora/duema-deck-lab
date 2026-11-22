@@ -31135,5 +31135,119 @@
         }
       ]
     }
+  },
+  "dmbd01-002": {
+    "phase": 1634,
+    "faces": [
+      {
+        "name": "闇鎧亜クイーン・アルカディアス",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化：自分の多色クリーチャー１体の上に置く。\nW・ブレイカー\n相手は、コストを支払わずに呪文を唱えられない。\n相手の多色ではない呪文を唱えるコストは５多くなる。",
+        "race": "エンジェル・コマンド/ロスト・クルセイダー",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "multicolor": true
+      },
+      "breaker": 2,
+      "g1634UnpaidSpellLock": true,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 5,
+        "exceptMulticolor": true
+      }
+    }
+  },
+  "dm23bd1-006": {
+    "phase": 1634,
+    "faces": [
+      {
+        "name": "鎧道接続 キング・マルバディアス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇/自然",
+        "civilizations": [
+          "光",
+          "闇",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "EXライフ\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚を見る。その中から、コスト６以下のディスタスを２枚まで出す。残りを好きな順序で山札の下に置く。\n相手の、多色ではないカードを使うコストを２多くする。",
+        "race": "ディスペクター/エンジェル・コマンド/デーモン・コマンド/アンノウン",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "limit": 2,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ディスタス",
+            "max": 6
+          }
+        }
+      ],
+      "g619Tax": {
+        "kind": "nonMulticolor",
+        "amount": 2
+      }
+    }
+  },
+  "dmrp05-021": {
+    "phase": 1634,
+    "faces": [
+      {
+        "name": "採菌医 ウォンド",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが破壊された時、それよりコストが小さいクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "マフィ・ギャング",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g1634VictimCost": true,
+            "title": "破壊された相手のクリーチャーよりコストが小さいクリーチャーを墓地から出す"
+          }
+        ]
+      }
+    }
   }
 }
