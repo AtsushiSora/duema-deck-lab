@@ -118,3 +118,18 @@ test('online dialog renderer rejects invalid scopes, protects hidden faces and l
  room.game.revealedHand=[c('known-hand')];assert.match(onlineDialogContent(room,{kind:'zone',player:1,zone:'revealedHand'}).html,/known-hand/);
  assert.equal(onlineDialogContent(room,{kind:'zone',player:0,zone:'revealedHand'}),null);
 });
+
+for(const kind of ['ordinary','confirm','number','mana','lobby','waiting'])test('online action context '+kind+' renders the same opaque scope on every mutating control',()=>{
+ const state=fixture();state.room.revision=7;state.room.code='1122334455667788';const g=state.room.game;let pending=null,expected;
+ if(kind==='ordinary')expected=['online-primary','online-move'];
+ if(kind==='confirm'){g.actions=[{id:9,kind:'attack',label:'攻撃する',uid:'bhost',target:'player'}];pending={revision:7,action:g.actions[0]};expected=['online-primary','online-confirm-move'];}
+ if(kind==='number'){g.numberChoice=true;g.actions=[{id:11,kind:'choose',number:3,label:'3を宣言'}];expected=['online-primary','online-move','online-number-submit'];}
+ if(kind==='mana'){g.manaPayment={amount:0,cost:1,colors:[],cards:[{uid:'mana1',name:'mana',colors:[],value:1,selected:false}]};g.actions=[{id:12,kind:'selectMana',uid:'mana1'},{id:13,kind:'confirmMana'},{id:14,kind:'cancelMana'}];expected=['online-primary','online-pay-mana'];}
+ if(kind==='lobby'){state.room=null;expected=['online-create','online-join'];}
+ if(kind==='waiting'){state.room.phase='waiting';delete state.room.game;expected=['online-cancel'];}
+ const html=onlineScreenHTML(state,{user:{uid:'current'},actionContext:'scope-123',decks:[{id:'d',name:'deck'}],actionsOpen:true,pending});
+ for(const action of expected){const buttons=[...html.matchAll(/<button\b([^>]*)>/g)].filter(m=>m[1].includes(`data-action="${action}"`));assert.ok(buttons.length,action);for(const [,attrs]of buttons)assert.match(attrs,/data-context="scope-123"/);}
+});
+test('online action context is escaped without exposing an account identifier in the markup',()=>{
+ const html=onlineScreenHTML(fixture(),{user:{uid:'private-account-id'},actionContext:'scope"<&',actionsOpen:true});assert.match(html,/data-context="scope&quot;&lt;&amp;"/);assert.doesNotMatch(html,/private-account-id/);
+});

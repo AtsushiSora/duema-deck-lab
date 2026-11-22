@@ -524641,20 +524641,45 @@
       "artifact": "tools/online-followup-review.json",
       "checkedAt": "2026-11-22T00:28:02.364942+00:00",
       "baseCommit": "f7c6a87c9e8a9048e7b0f09a1b14e96f2da9624e",
-      "status": "review-complete-one-open-defensive-race-gap",
+      "status": "resolved-locally-after-review",
       "productCodeChanged": false,
       "passedTests": 135,
       "diagnosticReproductions": 2,
-      "confirmedOpenFindings": [
+      "confirmedOpenFindings": [],
+      "uniqueNames": 9070,
+      "added": 0,
+      "next": "Action context fix and 177 regression cases verified locally. Await explicit instruction before push or any deployment.",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAt": "2026-11-22T00:35:45.410542+00:00",
+      "resolvedFindings": [
         {
           "id": "online-stale-action-context",
           "severity": "low",
           "title": "Queued ordinary moves are not bound to their originating room or current view"
         }
       ],
+      "resolutionArtifact": "tools/online-action-context-fix-verification.json"
+    },
+    "latestOnlineActionContextFix": {
+      "artifact": "tools/online-action-context-fix-verification.json",
+      "checkedAt": "2026-11-22T00:35:45.410542+00:00",
+      "baseCommit": "6457ef7e13fd56caee5130af197b10a34e40fc74",
+      "status": "verified-local-not-published",
+      "resolvedDefects": 1,
+      "totalDistinctTestsPassed": 177,
+      "newAcceptanceCasesIncludedInRegression": 25,
       "uniqueNames": 9070,
       "added": 0,
-      "next": "Bind mutating action elements to UID and room context and require the online view. Validate that context before dispatching every ordinary, primary, number, mana-payment and confirmed move. Preserve same-context legal moves and add regression cases.",
+      "remaining": [
+        "This fix was verified using the actual-app VM, real HTTP handler and encrypted isolated storage, plus renderer and client regressions; no new real-browser session was run for this fix.",
+        "Not exhaustive testing of every card, game state or browser.",
+        "Production verification awaits an explicitly authorized release.",
+        "Two user-deferred ruling/reprint items and interrupted historical whole-suite status retained."
+      ],
       "publication": {
         "pushed": false,
         "deployed": false,

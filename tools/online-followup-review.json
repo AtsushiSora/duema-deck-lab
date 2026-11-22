@@ -1,13 +1,13 @@
 {
   "checkedAt": "2026-11-22T00:28:02.364942+00:00",
   "baseCommit": "f7c6a87c9e8a9048e7b0f09a1b14e96f2da9624e",
-  "status": "review-complete-one-open-defensive-race-gap",
+  "status": "resolved-locally-after-review",
   "productCodeChanged": false,
   "findings": [
     {
       "id": "online-stale-action-context",
       "severity": "low",
-      "status": "confirmed-open",
+      "status": "fixed-local-not-published",
       "title": "Queued ordinary moves are not bound to their originating room or current view",
       "locations": [
         "dist/app.js:910",
@@ -52,7 +52,9 @@
       ],
       "impact": "A delayed event from a formerly visible mana-charge action can charge in the background after leaving the match, or in a different match when its revision and action ID match.",
       "limits": "Reproduced by explicitly delivering an old button event in the actual-app VM with real HTTP handler and encrypted isolated persistence. Not observed during ordinary manual browser use; no estimate of real-world frequency. This is a client UI race guard gap, not a server authorization bypass.",
-      "nextFix": "Bind mutating action elements to UID and room context and require the online view. Validate that context before dispatching every ordinary, primary, number, mana-payment and confirmed move. Preserve same-context legal moves and add regression cases."
+      "nextFix": "Local fix and acceptance regressions complete. Release and production verification await explicit authorization.",
+      "resolvedAt": "2026-11-22T00:35:45.410542+00:00",
+      "resolutionArtifact": "tools/online-action-context-fix-verification.json"
     }
   ],
   "verification": {
@@ -136,9 +138,10 @@
     "diagnosticReproductions": 2,
     "diagnosticMeaning": "Diagnostic reproductions, not fixed-behavior acceptance tests.",
     "incompleteRuns": [],
-    "reproduce": "node tools/review-online-stale-actions.mjs",
+    "reproduce": "Historical diagnostic is in commit 6457ef7e13fd56caee5130af197b10a34e40fc74. Current node tools/review-online-stale-actions.mjs checks fixed behavior.",
     "noWholeNpmTest": true,
-    "maxProcessSeconds": 570
+    "maxProcessSeconds": 570,
+    "historicalDiagnosticCommit": "6457ef7e13fd56caee5130af197b10a34e40fc74"
   },
   "actualCards": {
     "startUniqueNames": 9070,
@@ -162,5 +165,7 @@
     "pushed": false,
     "deployed": false,
     "netlifyUpdated": false
-  }
+  },
+  "resolvedAt": "2026-11-22T00:35:45.410542+00:00",
+  "resolutionArtifact": "tools/online-action-context-fix-verification.json"
 }

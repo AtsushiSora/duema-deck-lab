@@ -1,0 +1,141 @@
+{
+  "checkedAt": "2026-11-22T00:35:45.410542+00:00",
+  "baseCommit": "6457ef7e13fd56caee5130af197b10a34e40fc74",
+  "status": "verified-local-not-published",
+  "finding": "online-stale-action-context",
+  "resolvedDefects": 1,
+  "implementation": [
+    "Every rendered set of online controls receives an opaque, memory-only token bound to UID, room and seat. Selection-only redraws also replace the token.",
+    "The event dispatcher validates that token and context and requires the online view before sending ordinary, primary, numeric, mana-payment and confirmed moves, or creating, joining and cancelling rooms.",
+    "Navigation outside the online screen and identity changes revoke the current scope. Existing revision, turn, connection and busy guards remain.",
+    "onlineMove also refuses calls outside the online view. No request payload, server schema, persistence format, card ID, deck or historical match data changed."
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "dedicated-final",
+        "command": [
+          "node",
+          "tools/review-online-stale-actions.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.693,
+        "log": "tmp/duema-action-context-fix/dedicated-final.log",
+        "status": "passed",
+        "sha256": "25297878d0fd9608efb5068b00916ae13a686821aa94eea7ecc909b8ecafa959",
+        "passed": 25
+      },
+      {
+        "name": "online-regression",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.753,
+        "log": "tmp/duema-action-context-fix/online-regression.log",
+        "status": "passed",
+        "sha256": "9e697e2381c0372382b9f590949e5f6fd6744595928978eb74bcea4a2999d824",
+        "passed": 155
+      },
+      {
+        "name": "navigation-regression",
+        "command": [
+          "node",
+          "--test",
+          "tests/account-app.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.098,
+        "log": "tmp/duema-action-context-fix/navigation-regression.log",
+        "status": "passed",
+        "sha256": "feb81a3b049d9755e69e35967d68f2ab4439df5a80d98351aa557e25428a5a03",
+        "passed": 22
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.773,
+        "log": "tmp/duema-action-context-fix/check.log",
+        "status": "passed",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 14.288,
+        "log": "tmp/duema-action-context-fix/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "distinctTestsPassed": 177,
+    "newAcceptanceCasesIncludedInRegression": 25,
+    "incompleteRuns": [],
+    "dedicatedCommand": "node tools/review-online-stale-actions.mjs",
+    "diagnosticConvertedToAcceptance": true,
+    "historicReproductionEvidence": "tools/online-followup-review.json",
+    "noWholeNpmTest": true,
+    "historicalFullSuiteStatusPreserved": true,
+    "maxProcessSeconds": 570,
+    "formatOnlyAfterCheck": "The dispatcher declaration was moved to a separate line after the passing checks; node --check app.js and online-ui.js passed afterwards."
+  },
+  "coverage": [
+    "Delayed ordinary, primary, number, mana and confirmed events after leaving and returning to the same match are rejected; fresh controls still commit.",
+    "Matching action IDs and revisions in another room cannot reuse an old control.",
+    "Logout/login to the same UID and switching to another account and match invalidate old actions.",
+    "Missing or incorrect context tokens cannot send mutations.",
+    "Old primary and ordinary controls after a selection-only change at the same revision are rejected.",
+    "Create, join and waiting-room cancellation controls require the currently rendered lobby context.",
+    "All specialized renderers carry escaped opaque context and do not expose the account UID.",
+    "Existing revision-only negative tests now explicitly supply the current context so their original revision validation coverage is retained.",
+    "Existing resignation, offline result panel, uncertain-response recovery, mana selection, numeric validation, account persistence and navigation regressions pass."
+  ],
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/app.js": "92a9191a09db4aedd95e7167392b6238e5fffe4817f021808339f85fa76f9f42",
+    "dist/online-ui.js": "b5e843d3a91dbf67b89585fad437eb3c6beb155da30c788c708e2484b8e2dab6",
+    "tests/online-app.test.mjs": "433e57c30a01c4cfdaf79ebb95bab8bc79d23955aa3d04b42d7e3f22931d35bc",
+    "tests/online-ui.test.mjs": "c1723f9f84f788e71e639384b3d06c12d773a6f5b7786913ecf3e7ff9378d8dc",
+    "tools/review-online-stale-actions.mjs": "2ec6686dba4e933cf3c0db8184233ff7711bb135f945b8a27d82cf730d8932cc",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "limits": [
+    "This fix was verified using the actual-app VM, real HTTP handler and encrypted isolated storage, plus renderer and client regressions; no new real-browser session was run for this fix.",
+    "Not exhaustive testing of every card, game state or browser.",
+    "Production verification awaits an explicitly authorized release.",
+    "Two user-deferred ruling/reprint items and interrupted historical whole-suite status retained."
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
