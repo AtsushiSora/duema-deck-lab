@@ -103,7 +103,7 @@ export function createDuelService({store,key,now=()=>Date.now(),code=()=>randomB
     const actionTurn=s.game.turn,actionRound=displayTurn(s.game),logStart=s.game.log.length,actionsBefore=s.game.actions;
     step(s.game,chosen,{manualMana:true});
     for(const entry of s.game.log.slice(logStart)){
-     if(['g1333PublicHandReturn','vividDraw'].includes(entry.type))
+     if(['g1333PublicHandReturn','vividDraw','g1686ZeroReveal'].includes(entry.type))
       s.events.push({player:entry.player,turn:entry.turn,round:entry.round,text:entry.text});
     }
     // Pending payments and their selections are private. Record the operation only after it commits.

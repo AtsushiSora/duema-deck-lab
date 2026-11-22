@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9294,
-  "pendingNames": 2531,
-  "phase": 1685,
+  "supportedNames": 9297,
+  "pendingNames": 2528,
+  "phase": 1686,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1431,
+    "クリーチャー": 1428,
     "呪文": 281,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1827,
+    "未対応の能力文": 1824,
     "複数面・特殊カードタイプまたは情報不足": 586,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -537847,36 +537847,331 @@
         }
       ],
       "next": "phase1686でサイチェン2種とガイアールゼロの公式照合から再開。3〜5種類は目安とし、同名再録や部分対応を数えず9500へ継続。通常登録ではpush・公開・Netlify更新を行わない。"
+    },
+    {
+      "phase": 1686,
+      "checkedAt": "2026-11-22T20:52:27.203Z",
+      "baseline": "4c2ac424",
+      "status": "verified-local-registration-paused",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9294,
+      "currentNames": 9297,
+      "remainingNames": 203,
+      "added": [
+        {
+          "id": "dmx01-023",
+          "name": "サイチェン・ピッピー"
+        },
+        {
+          "id": "dmx02-003",
+          "name": "スーパー・サイチェン・ピッピー"
+        },
+        {
+          "id": "dmd18-007",
+          "name": "ガイアール・ゼロ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "4c2ac424",
+        "originalDefinitionsUnchanged": 9294,
+        "added": 3,
+        "uniqueNames": 9297,
+        "uniqueIds": 9297,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9294,
+        "existingImageReferenceRowsUnchanged": 11504,
+        "officialPrintsReviewed": 7,
+        "officialImagesReviewed": 7,
+        "existingPinsUnchanged": 814
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1686.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.269,
+          "log": "tmp/duema-phase-1686/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "focused-verified",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1686-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.552,
+          "log": "tmp/duema-phase-1686/focused-verified.log",
+          "passed": 81,
+          "failed": 0,
+          "logSha256": "82c986543c8b2206e3e316100b3105e6dd403250855eec9b6fcae8fb5e3ad359"
+        },
+        "related-saver": {
+          "name": "related-saver",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1555-effects.test.mjs",
+            "tests/standard1664-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 34.115,
+          "log": "tmp/duema-phase-1686/related-saver.log",
+          "passed": 445,
+          "failed": 0,
+          "logSha256": "9c304ed300e2a12ecfb839364e2ad14306675b93e7d972a8d53c6b995eed6c38"
+        },
+        "related-discard": {
+          "name": "related-discard",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard591-effects.test.mjs",
+            "tests/standard607-effects.test.mjs",
+            "tests/standard1207-effects.test.mjs",
+            "tests/standard1315-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.236,
+          "log": "tmp/duema-phase-1686/related-discard.log",
+          "passed": 56,
+          "failed": 0,
+          "logSha256": "83469f13efe963e48d718d30d5bd9451549697b8d7c4ff5e3e0fd93a9e30ac31"
+        },
+        "related-shields": {
+          "name": "related-shields",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard1685-effects.test.mjs",
+            "tests/standard1344-effects.test.mjs",
+            "tests/standard1356-effects.test.mjs",
+            "tests/standard1659-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 35.314,
+          "log": "tmp/duema-phase-1686/related-shields.log",
+          "passed": 231,
+          "failed": 0,
+          "logSha256": "e957939299dcd485e0c565a92bb91f8c0e608014554e6d889a047f1cfccfdaeb"
+        },
+        "related-public": {
+          "name": "related-public",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1660-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-ui.test.mjs",
+            "tests/online-live.test.mjs",
+            "tests/online-feedback.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.091,
+          "log": "tmp/duema-phase-1686/related-public.log",
+          "passed": 175,
+          "failed": 0,
+          "logSha256": "7488f7ea569eef6585135e501d6543b36fd744d7c14319a8adb4a27170f90881"
+        },
+        "related-server": {
+          "name": "related-server",
+          "command": [
+            "node",
+            "--test",
+            "--test-skip-pattern=a complete two-account game|new No[0-9]+|No08 accepts|No04 accepts",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 56.421,
+          "log": "tmp/duema-phase-1686/related-server.log",
+          "passed": 48,
+          "failed": 0,
+          "logSha256": "fa88e4e3004b727542e5d98c5d1d4d8e4f1182f99bd206254aa9084d21beb56e"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.538,
+          "log": "tmp/duema-phase-1686/check.log",
+          "logSha256": "d18bdb7dc66aee87eee893dbde36b07fa10445da56c90d313d54f7e721899501"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.028,
+          "log": "tmp/duema-phase-1686/audit.log",
+          "logSha256": "420c7eb0469f226f5b2b5070ec7936f10d338f15cbfffac86004ba55291bdc57"
+        },
+        "target9500": {
+          "name": "target9500-fixed",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.456,
+          "log": "tmp/duema-phase-1686/target9500-fixed.log",
+          "logSha256": "bb639564c7e7912fd4345519ec3960d35f20746a91bbe90b474c97dfa2d264fc"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1686/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.487,
+          "log": "tmp/duema-phase-1686/invariants.log",
+          "logSha256": "2e6025822f93717a50ef58a9c7734cb6a49e708349637c82d0ea451980bc8c5f"
+        }
+      },
+      "totalTestsPassed": 1036,
+      "hashes": {
+        "dist/cards.json": "ad9d8fd534bd77d484fb11d10ace9e4778cba0272db9c9bcbb0d5ec023491c0b",
+        "dist/engine.js": "26447cf702b810997d802924906bbcf70a9f97c581178efd9d65272cd1e24548",
+        "dist/extended-rules.js": "00a0d8279f0051ff29bab0e09013039d2e52812e05df91b725be7758d8f12f80",
+        "dist/six-photo-rules.js": "3a5d7ddbc5b12748637f0115796e7fb80a1af77aebf5978e32508fe67d518b25",
+        "dist/victory-cards.js": "c6bded65974cd96d095398474ef12ed4cc5ca255c0bbc704b60de395d0be71c9",
+        "dist/online-compatibility.js": "91690c0e8fe3632e6c41d693f3ecd07c7c56010a2dcfc66fbde67da27b5dd912",
+        "dist/card-images.js": "3ec1b43bac5f8d0f9a20991358c5b93337b991b8342c7726bd7f588a311e8836",
+        "server/duel-core.mjs": "8e2e217b6ac404b9286464346791b5eeec767f6e8a1b2ca06d7cd32b925735e0",
+        "tools/target9000-card-spec.json": "aec388c142368a47725995f2b89a95d4ee7669363f057cabce6454041e7aa6c3",
+        "tools/victory-card-evidence.json": "f2e34c5501d39420c460c7bc955f71cac186f3ddbd58b44a653e2376cf170079",
+        "tests/standard1686-effects.test.mjs": "8d2e4d3e720bc6057560b75842fe15d815f7b6e075055e33a390bd6cc56c96bf"
+      },
+      "engineVersion": "0.602.202",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1686-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.204,
+          "log": "tmp/duema-phase-1686/focused.log"
+        },
+        {
+          "name": "focused-fixed",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1686-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.311,
+          "log": "tmp/duema-phase-1686/focused-fixed.log"
+        },
+        {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1686-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 25.402,
+          "log": "tmp/duema-phase-1686/focused-final.log"
+        },
+        {
+          "name": "focused-public",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1686-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 21.053,
+          "log": "tmp/duema-phase-1686/focused-public.log"
+        },
+        {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.376,
+          "log": "tmp/duema-phase-1686/target9500.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1686.json",
+      "supported": 9297,
+      "pending": 2528,
+      "reason": "サイチェン2種のセイバーと相手ターン破棄による元ガイアール登場、ガイアールゼロの各シールド公開と小さいコストのサイキック任意登場・再置換しないブレイクを全文対応。",
+      "validationNotes": [
+        "原本3枚と同名再録4枚の公式全文・種族・文明・コスト・パワー・マナ・画像7枚・現行使用制限を照合。dmd18-007の既存正規IDを維持し、プロモIDへの置換や再録の重複加算、print aliasの追加をしない。サイチェン原本のHTMLで欠落するVアイコンは公式画像と再録に従い表示を補完した。",
+        "サイチェン2種は既存セイバーを再利用。ビクトリー対象は公式rarity=vi/vv検索276版（VIC239/WVC37）と各詳細HTMLの面ごとのレアリティに基づく。名前にビクトリーを含むだけでは対象にせず、物理カードのレアリティを特性コピーで変えない。リンク後の面/神リンクの各物理構成/無視/封印を検証。QA39642のVIC/WVC共通則は実登録の鬼丸覇・ジャガイスト・元ガイアール等で確認。未登録の当該モルトNEXT版を実配置した完全再現とは数えない。",
+        "2種とも実際に相手ターン中に手札から捨てられた時のみ、元ガイアール1体までを任意登場。自分の能力による破棄も対象、手札保護で捨てなかった時は誘発せず、自分ターンは不発。複数破棄の各1回、辞退、超次元の別名/不足、輝羅の禁止、とこしえの超人の登場置換を実カードで両支配者確認。",
+        "ガイアールゼロはWブレイカーとブレイク置換を全文対応。全シールド群を公開し群ごと1体、ツインパクトのいずれかとシールドプラスのカードの最大コストより厳密に小さいサイキックを、種族を問わず任意登場。その後の同時ブレイクは再置換不可。QA36309/37300の元配置、QA37298の実デーモンハンドによる最初のトリガー破壊でも残りの確定ブレイクが継続することを確認。能動側優先/防御側ガイアール辞退、直接攻撃・ブロック・通常手札戻し・無視・封印を区別。",
+        "公開シールドは既存publicInspection表示へ接続。暗号化された実ルームサービスの双方への公開イベントと検査カードを検証し、相手手札の秘密は渡さない。一般のrevealログを無差別転送せずガイアールゼロ専用公開イベントのみを許可。",
+        "合法40枚+超次元4枚の2seedを各2回JSON保存越しに対戦し、物理カード/UID保存と決定性を確認。固有81件、セイバー445件、破棄56件、シールド231件、公開/オンライン175件、サーバー48件の計1036件が通過。npm run check・audit・target9500・既存9294定義/画像/ピン/カタログの不変条件が通過。",
+        "途中の失敗は破棄owner/同時トリガー選択順/サービスrequestId長のfixture誤り、公開表示への接続欠落、manifest検証欄への画像SHA転記不足。修正後の対象検証を通過。過去の全体npm test中断・長時間群・登録済み未検証・ユーザー保留は保持し、解消扱いにしない。",
+        "ユーザーの「この登録が終わったら一旦登録を止めて」に従いphase1686を最後に一時停止。9500目標まで残り203種類を残し、次バッチは開始しない。自動化duema-deck-labは既にPAUSEDであることを読み取り確認。push/公開/Netlify更新は行わない。"
+      ],
+      "held": [],
+      "next": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
+      "registrationStop": {
+        "userInstruction": "この登録が終わったら一旦登録を止めて",
+        "status": "paused-by-user"
+      }
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1685,
-    "nextPhase": 1686,
+    "lastVerifiedPhase": 1686,
+    "nextPhase": 1687,
     "workInProgress": null,
-    "nextCandidates": [
-      {
-        "id": "dmx01-023",
-        "name": "サイチェン・ピッピー",
-        "reason": "ガイアール系列の依存が解消。相手ターンの手札破棄と勝利サイキックのセイバーを公式照合して再開。"
-      },
-      {
-        "id": "dmx02-003",
-        "name": "スーパー・サイチェン・ピッピー",
-        "reason": "同じく元ガイアール登場の手札破棄とハンターのセイバーを全能力対応。"
-      },
-      {
-        "id": "dmd18-007",
-        "name": "ガイアール・ゼロ",
-        "reason": "既存カタログ/詳細の正規ID dmd18-007 を保持し、プロモ2版を再録として扱う。ブレイク前の公開・厳密に小さいコストのサイキック任意登場・その後の置換済みブレイクを全文実装して旧QA36309を実カード再現する。"
-      }
-    ],
+    "nextCandidates": [],
     "steps": [
-      "開始時にHEAD・差分・ステージ・AGENTS・進捗・前回テスト/実行プロセスを確認し、実行中なら重複しない。",
-      "実データnameKeyで9294種類・重複0、9500まで残り206種類。公開済みPages9291/Netlify9283を保持。",
-      "phase1685の固有92件・関連514件とcheck/audit/target9500/不変条件の実測およびcheckpointを確認。",
-      "phase1686は依存が解消したサイチェン2種とガイアールゼロを公式全文・基本情報・画像・制限・再録・裁定に照合し、全能力実装・固有/関連テスト・check/audit/nameKey再集計・進捗更新後に検証済み差分のみローカルコミット。",
-      "全体npm testと中断した長時間群を再実行せず、過去の未確認やユーザー保留を解消扱いにしない。",
-      "9500到達で件数を増やす登録を停止。通常登録でpush・公開・Netlify更新は行わず、別の明示指示がある時だけ。"
+      "ユーザーの指示でphase1686終了後に登録を一時停止。明示的な再開指示があるまで登録を開始しない。",
+      "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
+      "固有81件・関連955件、check/audit/target9500/既存データ維持は通過。過去の未確認と保留はそのまま保持。",
+      "通常登録ではpush・公開・Netlify更新を行わない。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -538695,23 +538990,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1685,
-      "baseline": "2475164c",
-      "supportedNames": 9294,
-      "artifact": "tools/target9500-registration-checkpoint-1685.json",
-      "checkedAt": "2026-11-22T20:30:21.081Z"
+      "phase": 1686,
+      "baseline": "4c2ac424",
+      "supportedNames": 9297,
+      "artifact": "tools/target9500-registration-checkpoint-1686.json",
+      "checkedAt": "2026-11-22T20:52:27.203Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T20:30:21.081Z",
-      "status": "in-progress",
+      "checkedAt": "2026-11-22T20:52:27.203Z",
+      "status": "paused-by-user",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9294,
-      "remainingNames": 206,
+      "currentNames": 9297,
+      "remainingNames": 203,
       "duplicateNames": 0,
-      "engineVersion": "0.602.201",
+      "engineVersion": "0.602.202",
       "added": [
         {
           "id": "dmr12-008",
@@ -539608,6 +539903,18 @@
         {
           "id": "dmr01-060",
           "name": "ブーストグレンオー"
+        },
+        {
+          "id": "dmx01-023",
+          "name": "サイチェン・ピッピー"
+        },
+        {
+          "id": "dmx02-003",
+          "name": "スーパー・サイチェン・ピッピー"
+        },
+        {
+          "id": "dmd18-007",
+          "name": "ガイアール・ゼロ"
         }
       ],
       "results": {
@@ -539723,16 +540030,17 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "6fca023f6210e30dd1e63e6eb3182e4a96e24a6397e38fd5ebf295b19f7896e4",
-        "dist/catalogue.json": "1a0bf9148e0ba45d3a49a5458791d2648559773b8fc136dde0eeb24d80eacf3d",
-        "dist/engine.js": "fd67ba8d6ef60c85a7dbeb82c2adee52863e6a8b61e4f955dda1829ae409c7c3",
-        "dist/six-photo-rules.js": "7ba5bcf05ccdb6f8e8f982ce9c4fb14f532199cded9be71c255d89a202fb726f",
-        "dist/environment-rules.js": "09def6f184a77f4220fbbc56b1240b28f0e87ccba71bb9e533ada5a5756aab45",
-        "dist/online-compatibility.js": "b30a73ca6c9c1937ad377b2437faff4a9921e314bc6446d2f23f3bf547e0d313",
-        "dist/card-images.js": "1c3cd28a8a24ca62cf131d0b9857ff71b278e97790fa40de6d12a5bad26ab1b5",
-        "tools/champion-definition.mjs": "d159b04febde6a360956a42431fbff4ea04dc05c3947aa6a8de46ab945715658",
-        "tools/target9000-card-spec.json": "78a233db8efae7fffbf04ba91aadcc10525e5fc871e900e599eb9666a7e4e39d",
-        "tests/standard1685-effects.test.mjs": "13cd30cbcf759caab84abd5143683962eb121e8748a2ee24e92781f3d4d2a74a"
+        "dist/cards.json": "ad9d8fd534bd77d484fb11d10ace9e4778cba0272db9c9bcbb0d5ec023491c0b",
+        "dist/engine.js": "26447cf702b810997d802924906bbcf70a9f97c581178efd9d65272cd1e24548",
+        "dist/extended-rules.js": "00a0d8279f0051ff29bab0e09013039d2e52812e05df91b725be7758d8f12f80",
+        "dist/six-photo-rules.js": "3a5d7ddbc5b12748637f0115796e7fb80a1af77aebf5978e32508fe67d518b25",
+        "dist/victory-cards.js": "c6bded65974cd96d095398474ef12ed4cc5ca255c0bbc704b60de395d0be71c9",
+        "dist/online-compatibility.js": "91690c0e8fe3632e6c41d693f3ecd07c7c56010a2dcfc66fbde67da27b5dd912",
+        "dist/card-images.js": "3ec1b43bac5f8d0f9a20991358c5b93337b991b8342c7726bd7f588a311e8836",
+        "server/duel-core.mjs": "8e2e217b6ac404b9286464346791b5eeec767f6e8a1b2ca06d7cd32b925735e0",
+        "tools/target9000-card-spec.json": "aec388c142368a47725995f2b89a95d4ee7669363f057cabce6454041e7aa6c3",
+        "tools/victory-card-evidence.json": "f2e34c5501d39420c460c7bc955f71cac186f3ddbd58b44a653e2376cf170079",
+        "tests/standard1686-effects.test.mjs": "8d2e4d3e720bc6057560b75842fe15d815f7b6e075055e33a390bd6cc56c96bf"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -539796,10 +540104,10 @@
       },
       "phaseRange": [
         1614,
-        1685
+        1686
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 224,
+      "addedNames": 227,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -539811,9 +540119,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.285,
-        "log": "tmp/duema-phase-1685/check.log",
-        "logSha256": "5a47771974c24b4f153ba88b1bd68d08e35d28c50ccd12669353e40dcc2c5436"
+        "seconds": 22.538,
+        "log": "tmp/duema-phase-1686/check.log",
+        "logSha256": "d18bdb7dc66aee87eee893dbde36b07fa10445da56c90d313d54f7e721899501"
       },
       "latestAudit": {
         "name": "audit",
@@ -539823,11 +540131,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.199,
-        "log": "tmp/duema-phase-1685/audit.log",
-        "logSha256": "7989621a548df385fb67075bb43d6ce7d5194dfc3ca4f775de4cd1e88ef4b2df"
+        "seconds": 11.028,
+        "log": "tmp/duema-phase-1686/audit.log",
+        "logSha256": "420c7eb0469f226f5b2b5070ec7936f10d338f15cbfffac86004ba55291bdc57"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1685.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1686.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -540944,11 +541252,12 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9294,
-      "remaining": 206,
-      "status": "active",
+      "currentNames": 9297,
+      "remaining": 203,
+      "status": "paused",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T20:30:21.081Z"
+      "checkedAt": "2026-11-22T20:52:27.203Z",
+      "pauseInstruction": "この登録が終わったら一旦登録を止めて"
     },
     "resolvedRegistrationValidations": [
       {
@@ -541123,7 +541432,7 @@
     "nextBatchResearch": {
       "phase": 1686,
       "baseline": "b8de67b1",
-      "status": "official-research-only-no-implementation",
+      "status": "completed-verified",
       "directory": "tmp/duema-phase-1686",
       "exactPrints": 7,
       "candidates": [
@@ -541152,7 +541461,9 @@
         "https://dm.takaratomy.co.jp/rule/qa_old/36308/",
         "https://dm.takaratomy.co.jp/rule/qa_old/37298/"
       ],
-      "supportedNamesUnchanged": 9294
+      "supportedNamesUnchanged": 9294,
+      "manifest": "tools/support-phase-1686.json",
+      "checkpoint": "tools/target9500-registration-checkpoint-1686.json"
     }
   },
   "registeredCardVerification": {
@@ -593026,27 +593337,44 @@
     }
   },
   "registrationStop": {
-    "phase": 1660,
+    "phase": 1686,
     "threshold": 9500,
-    "supportedNames": 9219,
-    "pendingNames": 2606,
-    "checkedAt": "2026-11-22T11:26:42.593Z",
-    "registrationStopped": false,
+    "supportedNames": 9297,
+    "pendingNames": 2528,
+    "checkedAt": "2026-11-22T20:52:27.203Z",
+    "registrationStopped": true,
+    "status": "paused-by-user",
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",
+    "automationStatusVerifiedAt": "2026-11-22T20:52:27.203Z",
     "mode": "manual-current-session",
-    "userInstruction": "9500種類までカードを増やして",
+    "userInstruction": "この登録が終わったら一旦登録を止めて",
+    "registrationCommit": null,
+    "checkpoint": "tools/target9500-registration-checkpoint-1686.json",
+    "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
-      "phase": 1324,
-      "threshold": 8001,
-      "supportedNames": 8001,
-      "pendingNames": 3826,
-      "checkedAt": "2026-11-15",
-      "registrationStopped": true,
+      "phase": 1660,
+      "threshold": 9500,
+      "supportedNames": 9219,
+      "pendingNames": 2606,
+      "checkedAt": "2026-11-22T11:26:42.593Z",
+      "registrationStopped": false,
       "automationId": "duema-deck-lab",
-      "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
       "automationStatus": "PAUSED",
-      "automationStatusVerifiedAt": "2026-11-15"
+      "mode": "manual-current-session",
+      "userInstruction": "9500種類までカードを増やして",
+      "previousStop": {
+        "phase": 1324,
+        "threshold": 8001,
+        "supportedNames": 8001,
+        "pendingNames": 3826,
+        "checkedAt": "2026-11-15",
+        "registrationStopped": true,
+        "automationId": "duema-deck-lab",
+        "registrationCommit": "321f79fe0a07f6115583906f8392aaf2085fb8ea",
+        "automationStatus": "PAUSED",
+        "automationStatusVerifiedAt": "2026-11-15"
+      }
     }
   }
 }
