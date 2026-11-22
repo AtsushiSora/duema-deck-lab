@@ -1243,6 +1243,9 @@ export function createSixPhotoRules(api){
    if(!x.sealed&&!x.faceDown&&card(x).g1670Alchemist&&effective(x,s).g1670Alchemist)
     queue(s,owner,x,[{op:'AlchemistDraw1670',drawPlayer:player}]);
  }
+ // Linked Gods are one creature before departure. A chosen part retains that
+ // creature's last-known characteristics even when it is not the stored root.
+ const deathVictim1674=(rows,p,x)=>rows?.find(y=>y.p===p&&(key(y)===key(x)||y.g1674GodParts?.some(ref=>key(ref)===key(x))));
  function manaCivilizations1672(s,p,c){
   const available=new Set(s.players[p].mana.filter(x=>!x.faceDown)
    .flatMap(x=>api.manaColors(api.zoneCard(s,p,x,'mana'),s,p)));
@@ -1253,6 +1256,8 @@ export function createSixPhotoRules(api){
   if(t.defs[0]?.op==='Select'&&t.defs[0].to==='shields')return own.hand.length?10:-1;
   if(t.defs[0]?.op==='GroupUntap'&&t.defs[1]?.op==='GroupGrant364')return creatures(s,t.p).some(x=>!x.sealed)?10:-1;
   if(t.defs[0]?.op==='GroupUntap')return creatures(s,t.p).some(x=>x.tapped&&api.canUntap(x))?15:-1;
+  if(t.defs[0]?.op==='FunkyMinus1674')return own.grave.some(y=>!y.faceDown&&api.zoneCard(s,t.p,y,'grave').type==='creature')&&creatures(s,1-t.p).some(y=>!y.sealed)?20:-1;
+  if(t.defs[0]?.op==='Put')return list(s,{...t,...t.defs[0],deploy:true}).length?20:-1;
   if(t.defs[0]?.op==='FionaAttackPreference1673')return creatures(s,1-t.p).some(x=>!x.sealed)&&creatures(s,t.p).some(x=>x.tapped)?10:-1;
   if(t.defs[0]?.op==='TapAll')return creatures(s,1-t.p).some(x=>!x.tapped)?15:-1;
   if(t.defs[0]?.op==='BritishReturn1672')return s.g1672Destroyed?.turn===s.turn&&own.grave.some(x=>
@@ -3603,6 +3608,11 @@ export function createSixPhotoRules(api){
   const mana=own.mana.find(y=>y.uid===t.target&&!y.faceDown&&(y.zoneSerial||0)===t.serial);
   if(mana&&!used792(s,t,t))choice(s,t,card(mana).name+'をマナゾーンで裏向きにする？',
    [opt('裏向きにする',true,manaDownScore426(s,t,mana),mana.cardId),skip()]);
+  break;
+ }
+ case'g34_FunkyMinus1674':{
+  const n=own.grave.filter(y=>!y.faceDown&&api.zoneCard(s,t.p,y,'grave').type==='creature').length;
+  if(n)start(s,t,[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-1000*n}]);
   break;
  }
  case'g34_FionaAttackPreference1673':{
@@ -10537,7 +10547,7 @@ export function createSixPhotoRules(api){
   return related.filter(y=>!y.sealed&&card(y).g838AnyGrave&&!api.ignored(s,y)).map(key);
  }),g1672CreatureRefs:s.players.flatMap((own,p)=>own.battle
   .filter(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x))
-  .flatMap(x=>[x,...(x.godLinks||[])].map(y=>({p,uid:y.uid,incarnation:y.incarnation||0})))),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,
+  .flatMap(x=>[x,...(x.godLinks||[])].map(y=>({p,uid:y.uid,incarnation:y.incarnation||0})))),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,g1674GodParts:(x.godLinks||[]).map(y=>({uid:y.uid,incarnation:y.incarnation||0})),
    ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
    ...(g1256HandEvolutionWatch[p].length&&api.isEvolution(x)?{g1256Evolution:true}:{}),
@@ -10573,7 +10583,7 @@ export function createSixPhotoRules(api){
    s.g1225Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
   }
   const before=snapshot?.death303;
-  const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
+  const candidate=deathVictim1674(before,p,x),victim=candidate?.element?candidate:null;
   if(to==='grave'&&destroy&&snapshot?.g1672CreatureRefs?.some(ref=>ref.p===p&&key(ref)===key(x))){
    if(s.g1672Destroyed?.turn!==s.turn)s.g1672Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1672Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
@@ -10624,7 +10634,7 @@ export function createSixPhotoRules(api){
     else hooks.flushElementLeaves617(s,watchers);
    }
   }
-  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=death?.find(y=>y.p===p&&key(y)===key(x));const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
+  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=deathVictim1674(death,p,x);const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
    (victim.creature||victim.element&&y.watch.g1311Element)&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&
    (y.watch.both||y.p===(y.watch.opponent?1-p:p)))){const self=key(watcher)===key(victim);
    // Rule 603.5d: a source that leaves in this batch can see only itself.
@@ -10857,6 +10867,10 @@ export function createSixPhotoRules(api){
   if(!defs)return;
   if(defs.some(d=>d.op==='ShinkaHost544'&&d.mode==='belowCost'))send(s,p,x,'Sequence',{defs,g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,cost:null}});
   else queue(s,p,x,defs);
+ },
+ spellChoiceProtected1674(s,chooser,owner,x){
+  return chooser!==owner&&api.isSpellChoice(s)&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&
+   s.players[owner].battle.some(field=>!field.sealed&&!field.faceDown&&effective(field,s).g1674SpellProtection);
  },
  forced546,jokerCount539,gravePermits294,manaPermits297,protects608,gravePermits1226,consumeGraveUse1226,blockerAura1226,
  permitLabel450(s,p,permit){

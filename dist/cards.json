@@ -294876,20 +294876,142 @@
       },
       "supportBatch": "phase-1673",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-025",
+      "name": "革命のD ビッグバン・フェスライブ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のクリーチャーすべてのパワーを+5000する。\n呪文の効果によって相手がクリーチャーを選ぶ時、自分のクリーチャーは選べない。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：相手のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン相手のクリーチャーが攻撃する時、可能であればクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-025",
+      "limit": 4,
+      "d2Field": true,
+      "g205Aura": {
+        "filter": {},
+        "power": 5000
+      },
+      "g1674SpellProtection": true,
+      "g1669D2Start": true,
+      "g179OpponentStart": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "FionaAttackPreference1673"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1674",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-036",
+      "name": "Dの夜街 ファンキー・ファンキー・タウン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "このD２フィールドを展開する時、自分の手札を１枚捨ててもよい。そうしたら、このD２フィールドを展開するコストを２少なくする。\n自分のクリーチャーが破壊された時、カードを１枚引く。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン、自分の墓地にあるクリーチャー１体につき、相手のクリーチャーすべてのパワーを－1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-036",
+      "limit": 4,
+      "d2Field": true,
+      "g1240DiscardReduction": 2,
+      "g303DeathWatch": {
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "FunkyMinus1674"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1674",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-035",
+      "name": "禁断の月 ドキンダムーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このD２フィールドを自分の手札からバトルゾーンに出してもよい。\nこの D２フィールドがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、ソニック・コマンドを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-035",
+      "limit": 4,
+      "d2Field": true,
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true,
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "race": "ソニック・コマンド"
+              },
+              "optional": false
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "supportBatch": "phase-1674",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1673,
+    "phase": 1674,
     "checkedAt": "2026-11-23",
-    "baseCount": 9257,
+    "baseCount": 9260,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9260,
+    "totalCount": 9263,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38586/",
-      "https://dm.takaratomy.co.jp/rule/qa/43356/",
-      "https://dm.takaratomy.co.jp/rule/qa/34384/"
+      "https://dm.takaratomy.co.jp/rule/qa/38587/",
+      "https://dm.takaratomy.co.jp/rule/qa/38588/",
+      "https://dm.takaratomy.co.jp/rule/qa/42510/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -322296,6 +322418,23 @@
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1673,
+        "checkedAt": "2026-11-23",
+        "baseCount": 9257,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9260,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38586/",
+          "https://dm.takaratomy.co.jp/rule/qa/43356/",
+          "https://dm.takaratomy.co.jp/rule/qa/34384/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
         ]
       }
     ]

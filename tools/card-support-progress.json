@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9260,
-  "pendingNames": 2565,
-  "phase": 1673,
+  "supportedNames": 9263,
+  "pendingNames": 2562,
+  "phase": 1674,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -169,7 +169,7 @@
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "D2フィールド": 16,
+    "D2フィールド": 13,
     "禁断フィールド": 1,
     "クロスギア": 52,
     "進化クリーチャー(進化GV)": 12,
@@ -226,7 +226,7 @@
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
-    "未対応のD2フィールド能力": 16,
+    "未対応のD2フィールド能力": 13,
     "複雑な進化条件": 11,
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 10,
@@ -534388,27 +534388,281 @@
         }
       ],
       "next": "phase1674で候補の公式照合から再開。9500に達するまでは3〜5種類を検証してローカルコミット。公開は別指示の時だけ。"
+    },
+    {
+      "phase": 1674,
+      "checkedAt": "2026-11-22T15:54:45.554Z",
+      "baseline": "b415d287",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9260,
+      "currentNames": 9263,
+      "remainingNames": 237,
+      "added": [
+        {
+          "id": "dmr22-025",
+          "name": "革命のD ビッグバン・フェスライブ"
+        },
+        {
+          "id": "dmex12-036",
+          "name": "Dの夜街 ファンキー・ファンキー・タウン"
+        },
+        {
+          "id": "promoy15-035",
+          "name": "禁断の月 ドキンダムーン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "b415d287",
+        "originalDefinitionsUnchanged": 9260,
+        "added": 3,
+        "uniqueNames": 9263,
+        "uniqueIds": 9263,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9260,
+        "existingImageReferenceRowsUnchanged": 11458
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1674.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.445,
+          "log": "tmp/duema-phase-1674/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1674-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.391,
+          "log": "tmp/duema-phase-1674/final-focused.log",
+          "passed": 80,
+          "failed": 0,
+          "logSha256": "f91800b127e5f4e1cd7a83f6f231f78dd6cc893cc7e3ad64ed97538170c8d480"
+        },
+        "related-payment-invasion": {
+          "name": "related-payment-invasion",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1240-effects.test.mjs",
+            "tests/standard1315-effects.test.mjs",
+            "tests/standard1563-effects.test.mjs",
+            "tests/mana-payment.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 7.506,
+          "log": "tmp/duema-phase-1674/related-payment-invasion.log",
+          "passed": 63,
+          "failed": 0,
+          "logSha256": "7a358939afab9d2367d25ce591dab555213c446f37e1270347d57c6e928503c4"
+        },
+        "related-death-gods": {
+          "name": "related-death-gods",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard303-effects.test.mjs",
+            "tests/standard693-effects.test.mjs",
+            "tests/standard1281-effects.test.mjs",
+            "tests/standard1225-effects.test.mjs",
+            "tests/standard1672-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 31.798,
+          "log": "tmp/duema-phase-1674/related-death-gods.log",
+          "passed": 225,
+          "failed": 0,
+          "logSha256": "fcd962c75680c3ddff3f7809e6f5afbd2c5aedd29ee02726e923d0cec5e8ec2d"
+        },
+        "related-field-choice": {
+          "name": "related-field-choice",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1671-effects.test.mjs",
+            "tests/standard1673-effects.test.mjs",
+            "tests/standard1369-effects.test.mjs",
+            "tests/standard1370-effects.test.mjs",
+            "tests/standard1188-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.513,
+          "log": "tmp/duema-phase-1674/related-field-choice.log",
+          "passed": 258,
+          "failed": 0,
+          "logSha256": "9d3975241dcb40a0bf7090c61a53bf901d7b919b91b91c4f47fe3dfff80c0e6e"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.564,
+          "log": "tmp/duema-phase-1674/check.log",
+          "logSha256": "779977324d547037cee9c0c1f6880a9bc545196aed0c377a14e27b9d88b28dd8"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 16.834,
+          "log": "tmp/duema-phase-1674/audit.log",
+          "logSha256": "f41efb3c345eb6e29f0b50855161fc3efcc070658f31c1b4c410e63b9d335cd1"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.5,
+          "log": "tmp/duema-phase-1674/target9500.log",
+          "logSha256": "ba836a0209db73dcc7e66aeea5d0245217cdb869b8d625de5f7dae49fc32bc51"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1674/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.613,
+          "log": "tmp/duema-phase-1674/invariants.log",
+          "logSha256": "044d9c5c521d681fc6f9f99740052b5d73d9a46672b7dae16c9603d4426ec96f"
+        }
+      },
+      "totalTestsPassed": 626,
+      "hashes": {
+        "dist/cards.json": "f6f0bed341e808a4a9cfa1fa87973c843dc02772f9fefe6d222c4192922b9426",
+        "dist/engine.js": "c0923d73d826d412334fdb291647097b27c1d5938efb5a0f425faf488019c9d3",
+        "dist/six-photo-rules.js": "32bdede923dbf96d3e081e5eb42fe7043ab12895462b851ed4bd4905703e1fbd",
+        "dist/extended-rules.js": "42f4c01f16f8b78020a53e9a804ebe3416afaac9ceb25144323dfc48bcb49882",
+        "dist/online-compatibility.js": "d90378777ed5cda18a9f268bb85bea8afbeb5e07a085598fa07ce5bfec5ed898",
+        "dist/card-images.js": "3991882fb984c1db23e3bba7eb9c932c86be14ff8196276990e693cb50bb3c8a",
+        "tools/target9000-card-spec.json": "90643d08e3a44101af0fc93a661a37f8a344cc15551a7b40ba568d6387836773",
+        "tests/standard1674-effects.test.mjs": "fd538c657e691e26395dbc9c235c7d894beff5b9adbe6e6cfd13df5387df4099"
+      },
+      "engineVersion": "0.602.190",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1674-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 11.203,
+          "log": "tmp/duema-phase-1674/focused.log"
+        },
+        {
+          "name": "fixes",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Bigbang spell|Bigbang ignored|Bigbang charge|Funky manual|exact God part|QA38587|zero grave|Dokindamoon paid|actual Invasion|mandatory switch|evolution Sonic|QA42510",
+            "tests/standard1674-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.434,
+          "log": "tmp/duema-phase-1674/fixes.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1674.json",
+      "supported": 9263,
+      "pending": 2562,
+      "reason": "全自軍強化と呪文選択保護・攻撃先優先、展開時の任意捨て札軽減と破壊時ドロー・墓地枚数固定のパワー低下、D2侵略ZEROと登場時ミル・ソニックコマンド蘇生を全文対応。",
+      "validationNotes": [
+        "固有80件、支払い・侵略ZERO63件、破壊誘発・リンク225件、D2・選択者・能力借用258件の計626件が通過。npm run check、audit、target9500、既存9260定義・全ID・詳細・別名・画像参照の不変を確認。",
+        "3種類の公式全文・基本情報・マナ値・画像・現行制限を照合。各4枚制限・各公式同名収録一覧は1商品。既存の正規名・原版IDを保持し、再録を追加種類へ加算しない。",
+        "ビッグバンの+5000は既存のD2対応パワー常在オーラを再利用し、能力無視された自軍にも加算する。相手やフィールド・タマシードは対象外。呪文の効果で実際に選ぶプレイヤーを共通選択者判定の後で確認し、相手による選択だけを禁止する。自身の呪文やクリーチャー能力による選択、相手の死の宣告で自分が自身のクリーチャーを選ぶ場合は可能。常在能力の発生源の無視・タップインを確認。",
+        "ビッグバンのDスイッチはphase1673のフィオナと同じ解決時のクリーチャー参照を使用し、可能ならクリーチャーを攻撃するだけで攻撃宣言は強制しない。後から出たスピードアタッカー・JSON再開を確認。",
+        "ファンキーの展開時の手札1枚による任意2軽減は既存g1240支払いを再利用し、手札選択後にマナを支払う。通常6・軽減4・自分自身を捨てられない・不足マナ・ダイヤモン星の軽減禁止と、各操作で手動マナ指定するUIの支払いとJSON再開を確認。公式QA38588を実キャロルで再現し、捨てる移動が手札への置換になっても軽減する。",
+        "ファンキーの破壊時ドローは共通g303DeathWatchを使用。自軍の実際の破壊のたびに1枚を必須ドローし、相手・非クリーチャー・非破壊・キャディのマナ置換を除外する。複数体の同時破壊・発生源の無視・ゲンム下でもフィールドは無視されないことを確認。",
+        "初回のリンク非ルート破壊2例は共通の破壊前参照がルートUIDのみで、誘発を落としていた。破壊前のゴッドの構成部品を記録し、実際に選ばれた部品から同じ1体のクリーチャーの直前特性へ戻って参照するよう共通処理を修正。公式QA40117を実ヘヴィ・非ドラゴンのデス・ダークルピア・デーモンハンドで両プレイヤーから再現し、ドラゴン特性を持って破壊されたため誘発することを確認。ルート・非ルートのどちらを選んでもファンキーのドローは1回。",
+        "ファンキーのDスイッチは解決時の墓地のクリーチャーを数えて、共通GroupPowerで相手の現在のクリーチャーへ-1000×枚数を固定適用する。公式QA38587に従い、後から墓地枚数が増減しても効果量を変更せず、新たな登場には適用しない。ツインのクリーチャー面・非クリーチャー除外・ゼロ枚・無視中の相手・パワー0の同時破壊・発生源離脱を確認。",
+        "ドキンダムーンの侵略ZEROは既存の非ターン側の終了時宣言と、使用とは区別する展開経路を利用する。実ヘブンズゲートによる相手の無料クリーチャー登場、その後そのクリーチャーが手札へ戻った場合、拒否・複数枚の個別宣言とD2交代・自分のターン・通常の支払済み登場・呪文だけの無料実行を検証。宣言でマナを支払わない。登場時の2枚墓地は既存のsixPhoto登場能力を明示して実行する。",
+        "ドキンダムーンの開始時Dスイッチは自分の墓地のソニックコマンド1体を必須選択して既存の合法な展開処理へ渡す。通常・進化元がある実進化クリーチャー・アプルの墓地移動禁止・とこしえのマナへの置換を確認。公式QA42510を実マーダンロウのシビルカウント3で再現し、相手の墓地のフィールドの登場時ミルを借用して実行できることを確認。",
+        "途中のfixture誤りは訂正済み：旧形式のスパイラルゲートのeffect選択、チャージフェイズの指定、手動マナ指定を捨て札選択の操作にも渡すこと、シャウナの元パワー9500からの計算、Put単体でなく必須Select後に展開するカード設定、アプルの既存ID、借用対象の後に能力そのものを選ぶ手順。初回に不足したドキンダムーンの登場時effect宣言と、共通のリンク部品の破壊誘発参照も修正して最終80件が通過。",
+        "AI計画の純粋性と未知情報非依存、暗号化ルームの保留Dスイッチと操作側だけへの選択肢公開、両先後の合法40枚デッキと80物理カードの保存・JSON再開・終局を確認。今回3種類に未完了検証なし。過去の全体npm test・長時間群・ユーザー保留と登録済み裁定待ち1件を維持。ローカル登録のみ。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "promoy15-034",
+          "name": "Dの地獄 ハリデルベルグ",
+          "reason": "共通破壊誘発の-4000と当ターン破壊された物理カードの全蘇生を、既存ID・原版と再録・裁定まで照合する。"
+        },
+        {
+          "id": "dmbd21-017",
+          "name": "Dの終断 ドルマゲドン・エリア",
+          "reason": "全コマンドへのスレイヤーと、墓地・超次元の闇火コスト6以下コマンドの無料召喚を照合する。"
+        },
+        {
+          "id": "dm33-006",
+          "name": "白騎士の開眼者ウッズ",
+          "reason": "ブロッカー進化・攻撃できない効果の無効化・白騎士の終了時全アンタップを照合し、QA34384の固有再現も確認する。"
+        }
+      ],
+      "next": "phase1675で候補の公式照合から再開。9500に達するまでは3〜5種類を検証してローカルコミット。公開は別指示の時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1673,
-    "nextPhase": 1674,
+    "lastVerifiedPhase": 1674,
+    "nextPhase": 1675,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr22-025",
-        "name": "革命のD ビッグバン・フェスライブ",
-        "reason": "全自軍+5000・相手呪文による選択不可、相手開始時の攻撃先優先を公式再録・裁定込みで照合する。"
+        "id": "promoy15-034",
+        "name": "Dの地獄 ハリデルベルグ",
+        "reason": "共通破壊誘発の-4000と当ターン破壊された物理カードの全蘇生を、既存ID・原版と再録・裁定まで照合する。"
       },
       {
-        "id": "dmex12-036",
-        "name": "Dの夜街 ファンキー・ファンキー・タウン",
-        "reason": "展開時の任意捨て札軽減、破壊時ドローと墓地クリーチャー数に応じたDスイッチ全体パワー低下を照合する。"
+        "id": "dmbd21-017",
+        "name": "Dの終断 ドルマゲドン・エリア",
+        "reason": "全コマンドへのスレイヤーと、墓地・超次元の闇火コスト6以下コマンドの無料召喚を照合する。"
       },
       {
-        "id": "promoy15-035",
-        "name": "禁断の月 ドキンダムーン",
-        "reason": "既存IDの侵略ZERO・D2登場時ミルと開始時のソニック・コマンド蘇生を正規版・再録と照合する。"
+        "id": "dm33-006",
+        "name": "白騎士の開眼者ウッズ",
+        "reason": "ブロッカー進化・攻撃できない効果の無効化・白騎士の終了時全アンタップを照合し、QA34384の固有再現も確認する。"
       }
     ],
     "steps": [
@@ -535181,23 +535435,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1673,
-      "baseline": "9e5c8e86",
-      "supportedNames": 9260,
-      "artifact": "tools/target9500-registration-checkpoint-1673.json",
-      "checkedAt": "2026-11-22T15:39:31.926Z"
+      "phase": 1674,
+      "baseline": "b415d287",
+      "supportedNames": 9263,
+      "artifact": "tools/target9500-registration-checkpoint-1674.json",
+      "checkedAt": "2026-11-22T15:54:45.554Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T15:39:31.926Z",
+      "checkedAt": "2026-11-22T15:54:45.554Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9260,
-      "remainingNames": 240,
+      "currentNames": 9263,
+      "remainingNames": 237,
       "duplicateNames": 0,
-      "engineVersion": "0.602.189",
+      "engineVersion": "0.602.190",
       "added": [
         {
           "id": "dmr12-008",
@@ -535958,6 +536212,18 @@
         {
           "id": "dmex12-046",
           "name": "Dの森域 フィオナ・ザ・ハート"
+        },
+        {
+          "id": "dmr22-025",
+          "name": "革命のD ビッグバン・フェスライブ"
+        },
+        {
+          "id": "dmex12-036",
+          "name": "Dの夜街 ファンキー・ファンキー・タウン"
+        },
+        {
+          "id": "promoy15-035",
+          "name": "禁断の月 ドキンダムーン"
         }
       ],
       "results": {
@@ -536073,13 +536339,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "78c0aa2a09c4a61e285588e43f971fd1d6b86b20dc26a967187228b9bf421615",
-        "dist/engine.js": "dc922d2086ed0a04dd7d8645b1e60e418c5b47a52ff44e9f0aada9248b2ebe23",
-        "dist/six-photo-rules.js": "b08fe9934487a3bb22d802b666a7cd83082dc2ff633cd67c0f70020d05ec197d",
-        "dist/online-compatibility.js": "8597b1ea826eed4c1edb48403125c6b86cdbdac270a031c0aa1474326c92d91b",
-        "dist/card-images.js": "6376eee35ba1aec62245426e5fb4e0a122ac61af015c4d1bcb7a564ea89c5b0e",
-        "tools/target9000-card-spec.json": "95dee9691dc03a18d3a9aed1e1ddd52871a5830e1946408b90a21f25285023c7",
-        "tests/standard1673-effects.test.mjs": "6de4befe02ac7e0e3e50523e61e86b618a943a86e103c786b99e7a16b984555e"
+        "dist/cards.json": "f6f0bed341e808a4a9cfa1fa87973c843dc02772f9fefe6d222c4192922b9426",
+        "dist/engine.js": "c0923d73d826d412334fdb291647097b27c1d5938efb5a0f425faf488019c9d3",
+        "dist/six-photo-rules.js": "32bdede923dbf96d3e081e5eb42fe7043ab12895462b851ed4bd4905703e1fbd",
+        "dist/extended-rules.js": "42f4c01f16f8b78020a53e9a804ebe3416afaac9ceb25144323dfc48bcb49882",
+        "dist/online-compatibility.js": "d90378777ed5cda18a9f268bb85bea8afbeb5e07a085598fa07ce5bfec5ed898",
+        "dist/card-images.js": "3991882fb984c1db23e3bba7eb9c932c86be14ff8196276990e693cb50bb3c8a",
+        "tools/target9000-card-spec.json": "90643d08e3a44101af0fc93a661a37f8a344cc15551a7b40ba568d6387836773",
+        "tests/standard1674-effects.test.mjs": "fd538c657e691e26395dbc9c235c7d894beff5b9adbe6e6cfd13df5387df4099"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -536143,10 +536410,10 @@
       },
       "phaseRange": [
         1614,
-        1673
+        1674
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 190,
+      "addedNames": 193,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -536158,9 +536425,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 45.28,
-        "log": "tmp/duema-phase-1673/check.log",
-        "logSha256": "8135944ea7da0e225e0f817ae56b8c8ef2b2dbc42c63de768729aad72d098038"
+        "seconds": 26.564,
+        "log": "tmp/duema-phase-1674/check.log",
+        "logSha256": "779977324d547037cee9c0c1f6880a9bc545196aed0c377a14e27b9d88b28dd8"
       },
       "latestAudit": {
         "name": "audit",
@@ -536170,11 +536437,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 23.147,
-        "log": "tmp/duema-phase-1673/audit.log",
-        "logSha256": "a97327daec989fe8d857d9d551e39f9c0f31de7d708bdcc5401b3527184a0cd6"
+        "seconds": 16.834,
+        "log": "tmp/duema-phase-1674/audit.log",
+        "logSha256": "f41efb3c345eb6e29f0b50855161fc3efcc070658f31c1b4c410e63b9d335cd1"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1673.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1674.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -537291,11 +537558,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9260,
-      "remaining": 240,
+      "currentNames": 9263,
+      "remaining": 237,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T15:39:31.926Z"
+      "checkedAt": "2026-11-22T15:54:45.554Z"
     },
     "resolvedRegistrationValidations": [
       {
