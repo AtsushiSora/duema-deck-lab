@@ -1,0 +1,281 @@
+{
+  "version": "0.722.13",
+  "checkedAt": "2026-11-22T16:53:55.752Z",
+  "baseCommit": "15537b81a0517f840fa1e66c2647853e85393920",
+  "scope": "Publish verified phase 1675 only. Preserve phase 1676 uncommitted implementation separately; excluded from release.",
+  "actualCards": {
+    "uniqueNames": 9266,
+    "uniqueIds": 9266,
+    "duplicateNames": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "validation": {
+    "runs": [
+      {
+        "name": "final-check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.831,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/final-check.log",
+        "sha256": "00bd107018d1571b963f429076b7940c9571e3417bd80b95e04b2a47b8b5ca52"
+      },
+      {
+        "name": "release-ui",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-ui.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/mana-summon-ui.test.mjs",
+          "tests/online-feedback.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.524,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/release-ui.log",
+        "passed": 141,
+        "sha256": "ef695bdbb2b3107cd61739c7637fe2ab2603012fd213a42f271eaaf562c0f287"
+      },
+      {
+        "name": "server-filtered",
+        "command": [
+          "node",
+          "--test",
+          "--test-skip-pattern=a complete two-account game|new No[0-9]+|No08 accepts|No04 accepts",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 56.839,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/server-filtered.log",
+        "passed": 48,
+        "sha256": "1437a00455bd5954d09eabbf5b6ebc8324f40086b4bab773858e1e455e98dfb6"
+      },
+      {
+        "name": "added-cards",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1675-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.227,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/added-cards.log",
+        "passed": 110,
+        "sha256": "4b5cbe403b0a8cfd94ef8c3f46294f6f9012b2098e12d54cf87c85e8e038e6cb"
+      },
+      {
+        "name": "live-sync",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs",
+          "tests/online-feedback.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.196,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/live-sync.log",
+        "passed": 30,
+        "sha256": "6da34246f88631ec159585b9308446a73774a01c06bc61d8623349521525b3f1"
+      },
+      {
+        "name": "runtime-and-cache",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/app-updates.test.mjs",
+          "tests/mana-payment.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.147,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/runtime-and-cache.log",
+        "passed": 66,
+        "sha256": "d92d26b1dd7bb9164497dd5922747e231659697b8f9cadd8bd53c7927c2b3fde"
+      },
+      {
+        "name": "support-audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.409,
+        "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/support-audit.log",
+        "sha256": "917daffdc38d3ace289fa2eee4d375faded74ad5f8cb07781123cd925e9d0649"
+      }
+    ],
+    "testsPassed": 395,
+    "cardBatches": [
+      {
+        "phase": 1675,
+        "artifact": "tools/target9500-registration-checkpoint-1675.json",
+        "passed": 710
+      }
+    ],
+    "noWholeNpmTest": true,
+    "interruptedAttempt": {
+      "name": "server-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-server.test.mjs"
+      ],
+      "code": -9,
+      "timedout": false,
+      "seconds": 114.908,
+      "log": "/Users/soratokushi/Documents/duema-deck-lab-github/tmp/duema-publish-72213/server-focused.log",
+      "reason": "Isolated release worktree lacked firebase-admin. Stopped only this test group; connected existing dependencies, then passed server-filtered and runtime-and-cache. Complete-game cases remain outside publication regression scope."
+    },
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "card-art.js",
+      "card-images.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "extended-rules.js",
+      "hand-ui.js",
+      "log-card-links.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online.js",
+      "release-notes.js",
+      "screenshot-report.js",
+      "six-photo-rules.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "worker.js"
+    ]
+  },
+  "historicalVerificationPending": {
+    "fullSuite": "中断・合否未確認",
+    "registeredCardExactRuling": [
+      {
+        "target": "Crim-QA39975-exact-source",
+        "cardIds": [
+          "dmex16-026"
+        ],
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+        "reason": "QA39975の公式本文とphase1651の同時Sweepは検証済み。テック団の波壊Go！の全カード一括移動には進化元・付属・封印・リンク構成を含む移動前状態の禁止・置換評価が必要なため、phase1652では部分登録をせず専用バッチへ保留。固有実装のないものを対応済みには数えない。",
+        "status": "pending-exact-source-reproduction",
+        "lastReviewedPhase": 1652
+      }
+    ],
+    "longRuns": [
+      {
+        "phase": 1619,
+        "status": "中断・合否未確認",
+        "reason": "多数対戦相手・多数seedを含む2モジュールの一括実行を123.466秒で中止。関連する決定的61件は別分割で通過。旧全体npm test・長時間群の合格を推定しない。",
+        "log": "tmp/duema-phase-1619/final-related.log",
+        "scope": "tmp/duema-phase-1619/long-regression-scope.json",
+        "completedDeterministic": 61
+      },
+      {
+        "phase": 1635,
+        "status": "interrupted-unconfirmed",
+        "targets": [
+          {
+            "file": "tests/abyss-effects.test.mjs",
+            "names": [
+              "No13 AI matches all28 ready opponents with deterministic replay and80 physical cards",
+              "No13 random choices preserve80 unique cards and legal decisions through JSON",
+              "every supported borrowed entry ability preserves physical cards and resolves serializable decisions"
+            ]
+          }
+        ],
+        "reason": "負の先読みを用いた除外指定が親のファイル名に一致し、意図しない長時間群まで実行。240.198秒で今回のプロセスグループだけを強制終了。合否は数えない。新規カードと必要な共通回帰は related-core 286件、related-borrow 4件、固有44件で別に検証。",
+        "execution": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "--test-name-pattern=^(?!every supported borrowed entry|No13 AI matches|No13 random choices)",
+            "tests/standard1275-effects.test.mjs",
+            "tests/standard1451-effects.test.mjs",
+            "tests/standard560-effects.test.mjs",
+            "tests/standard1613-effects.test.mjs",
+            "tests/abyss-effects.test.mjs",
+            "tests/standard1634-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 240.198,
+          "log": "tmp/duema-phase-1635/final-related.log"
+        },
+        "resume": "この一括実行は繰り返さない。全件の借用はoriginal IDとability label、No13は相手デッキ・seed・先後単位で対象一覧を固定し、独立に分割して実測結果を集約する。",
+        "newCardSpecificValidationPending": false
+      },
+      {
+        "phase": 1636,
+        "status": "interrupted-unconfirmed",
+        "targets": [
+          {
+            "file": "tests/kiyonaga-effects.test.mjs",
+            "names": [
+              "No21 AI replay: <opponent id> (6 seeds each)",
+              "No21 random legal choices: seed 1..40",
+              "No21 production worker: <opponent id> (20 games each)"
+            ]
+          }
+        ],
+        "reason": "既存No21の長時間群を含む回帰モジュールを実行してしまったため、今回のプロセスグループだけを61.059秒で強制終了。どの長時間ケースまで進行したかは確定できず合否を数えない。必要な短いケースは名前を明示して33件を独立に通過、ほか共通回帰86件と新規固有40件も通過。",
+        "execution": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1114-effects.test.mjs",
+            "tests/standard1526-effects.test.mjs",
+            "tests/standard208-effects.test.mjs",
+            "tests/standard987-effects.test.mjs",
+            "tests/kiyonaga-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 61.059,
+          "log": "tmp/duema-phase-1636/final-related.log"
+        },
+        "resume": "一括実行を繰り返さない。相手ID・seed・先後・ワーカーゲーム数を小さい単位で固定し、実行時間とカード保存の検証結果を集約する。",
+        "newCardSpecificValidationPending": false
+      }
+    ],
+    "userDeferredOfficial": [
+      {
+        "id": "dm22rp1-2B",
+        "name": "ドラン・ゴルギーニ",
+        "reason": "金箔2Sの個別公式ページと公式画像を特定できなかった。2BとOR2の個別ページと画像は照合済み。"
+      }
+    ],
+    "publicationDoesNotResolveHistoricalItems": true
+  },
+  "publication": {
+    "status": "prepared",
+    "pages": "https://atsushisora.github.io/duema-deck-lab/",
+    "netlify": "https://duema-deck-lab.netlify.app",
+    "explicitUserInstruction": "プッシュして公開して、Netlifyも公開して",
+    "automaticNetlifyUpdatesStopped": true
+  }
+}
