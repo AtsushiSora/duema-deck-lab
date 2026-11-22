@@ -1,0 +1,155 @@
+{
+  "phase": 1660,
+  "checkedAt": "2026-11-22T11:26:42.593Z",
+  "baseline": "0b4f247ba87fdf802437069dbee6b857fb86597b",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9215,
+  "currentNames": 9219,
+  "remainingNames": 281,
+  "added": [
+    {
+      "id": "dm20-035",
+      "name": "ビックリ・イリュージョン"
+    },
+    {
+      "id": "dm11-005",
+      "name": "調和と繁栄の罠"
+    },
+    {
+      "id": "dm26-049",
+      "name": "ミラクルとミステリーの扉"
+    },
+    {
+      "id": "dmd33-011",
+      "name": "大地と悪魔の神域"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9215,
+    "uniqueNames": 9219,
+    "uniqueIds": 9219,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-reprints": {
+      "name": "official-reprints",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1660.json",
+        "--resume"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.267,
+      "log": "tmp/duema-phase-1660/official-reprints.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1660-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 28.608,
+      "log": "tmp/duema-phase-1660/final-focused.log",
+      "passed": 93,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "race|Race|grant|Grant|player|Player|attack|Attack|Look|look|evolution|Evolution|mana|Mana|shield|Shield|private|public|hidden|inspect|reveal",
+        "tests/standard567-effects.test.mjs",
+        "tests/standard724-effects.test.mjs",
+        "tests/standard805-effects.test.mjs",
+        "tests/standard960-effects.test.mjs",
+        "tests/standard1659-effects.test.mjs",
+        "tests/manual-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.955,
+      "log": "tmp/duema-phase-1660/final-related.log",
+      "passed": 212,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.138,
+      "log": "tmp/duema-phase-1660/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.383,
+      "log": "tmp/duema-phase-1660/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.315,
+      "log": "tmp/duema-phase-1660/target9500.log"
+    },
+    "online-projection": {
+      "name": "online-projection",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(Murder hand inspection|online play labels|online seals|public online gears|only the mana controller|a face-down mana payment|online attack projection|online single fight targets|online numeric declaration|creating, joining and refreshing)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.929,
+      "log": "tmp/duema-phase-1660/online-projection.log",
+      "passed": 13,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 318,
+  "hashes": {
+    "dist/cards.json": "ea014ea7c14c0cf74f5e0c08b6e8d280569d6e6ab4523ccd34118cc51ef3d404",
+    "dist/engine.js": "36afaedda1e295968307ef63e655f18d2ab46292d869609eb67ea26f967e0d06",
+    "dist/six-photo-rules.js": "4e83fbfd02cdaf3669fe25df0be508a95aff734e27e4de965bffbb1a7f6fd513",
+    "dist/online-compatibility.js": "b42f8cbead8a26aba552bb3b1b6a85899e7fa68a544f7f7f3ff765f0424bfee0",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/gransect-rules.js": "e3fd7a846fef01fe7288d1b5a3bd333eb6dc1366c23aa96bdbd6ba59a2d4d4d1",
+    "dist/manual-ui.js": "6a413a771fdb2a8b2be142d49f1c3c8acd28d982e2fb5935867517d57709f69b",
+    "server/duel-core.mjs": "48085c4c472040040aa2b3da227311b72714e5294139ad1affe52cbe84987f6e"
+  },
+  "engineVersion": "0.602.176",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

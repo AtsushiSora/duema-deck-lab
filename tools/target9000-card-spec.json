@@ -34296,5 +34296,206 @@
         }
       ]
     }
+  },
+  "dm20-035": {
+    "phase": 1660,
+    "faces": [
+      {
+        "name": "ビックリ・イリュージョン",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。このターンの終わりまで、バトルゾーンにある自分のクリーチャーはすべて、その種族を追加する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g1660Illusion": true
+        }
+      ]
+    }
+  },
+  "dm11-005": {
+    "phase": 1660,
+    "faces": [
+      {
+        "name": "調和と繁栄の罠",
+        "typeText": "呪文",
+        "civilizationText": "光/自然",
+        "civilizations": [
+          "光",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー\nマナゾーンに置く時、このカードはタップして置く。\n文明をひとつ選ぶ。次の自分のターンのはじめまで、その文明のクリーチャーは自分を攻撃することができない。(この呪文を唱えた後にバトルゾーンに出たクリーチャーも含まれる)",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "g1660TrapReading": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseCivilization805",
+          "g1660Harmony": true
+        }
+      ]
+    }
+  },
+  "dm26-049": {
+    "phase": 1660,
+    "faces": [
+      {
+        "name": "ミラクルとミステリーの扉",
+        "typeText": "呪文",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\n自分の山札の上から４枚を表向きにする。その中から進化クリーチャー以外のクリーチャーを１体相手に選ばせ、バトルゾーンに出す。残りを好きな順序で自分の山札の一番下に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "battle",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              },
+              "g1660OpponentChooses": true
+            }
+          ],
+          "g1660PublicReveal": true
+        }
+      ]
+    }
+  },
+  "dmd33-011": {
+    "phase": 1660,
+    "faces": [
+      {
+        "name": "大地と悪魔の神域",
+        "typeText": "呪文",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分のクリーチャーをすべて、マナゾーンに置く。その後、進化ではないデーモン・コマンドと進化デーモン・コマンドを１体ずつ、自分のマナゾーンからバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "owner": "self",
+          "to": "mana",
+          "filter": {
+            "creature": true
+          },
+          "g1660CreatureOnly": true
+        },
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "進化でないデーモン・コマンドから出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "battle",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "デーモン・コマンド",
+                    "nonEvolution": true
+                  }
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "battle",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "デーモン・コマンド",
+                    "evolution": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "進化デーモン・コマンドから出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "battle",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "デーモン・コマンド",
+                    "evolution": true
+                  }
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "to": "battle",
+                  "n": 1,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "デーモン・コマンド",
+                    "nonEvolution": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

@@ -4562,6 +4562,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ChooseCivilization805':{
+  if(t.g1660Harmony){choice(s,t,'攻撃を止める文明を選ぶ',civilizations805.map(color=>opt(color,color,creatures(s,1-t.p).filter(y=>colors(effective(y,s)).includes(color)).length*10)));break;}
   if(t.g1642OpponentReveal){
    choice(s,t,'相手が手札に加えられる文明を選ぶ',civilizations805.map(color=>opt(color,color,0)),1-t.p);
    break;
@@ -5757,7 +5758,7 @@ export function createSixPhotoRules(api){
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(!t.g467RequireLook&&t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
   if(t.g1164Miss&&ids.length&&!own.deck.some(y=>ids.includes(y.uid)&&matches(s,t.p,y,t.stages[0].filter)))
    t={...t,after:t.g1164Miss};
-  const inspection=t.g841DeckPeek?deckPeek841(own,ids):{};
+  const inspection=t.g1660PublicReveal?{g1660PublicPeek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'公開した山札'}))}:t.g841DeckPeek?deckPeek841(own,ids):{};
   put(s,{...t,...inspection,op:'g34_LookPick',ids,stage:0,chosen:[]});
   break;
  }
@@ -5863,7 +5864,7 @@ export function createSixPhotoRules(api){
    }
    put(s,{...t,ids:t.ids.filter(uid=>!moved.includes(uid)),stage:t.stage+1,chosen:[],...(after!==t.after?{after}:{}),moved:(t.moved||0)+moved.length});break;
   }
-  choice(s,t,stage.title||(stage.g467Destinations?'移動するカードを1枚選ぶ':null)||('山札から'+(stage.n==='all'?'条件に合うカード':stage.n+'枚')+'を'+({hand:'手札',mana:'マナ',grave:'墓地',shields:'シールド'}[stage.to]||stage.to)+'へ'),[...rows.map(y=>opt(t.g467Blind?'山札の上から'+(t.ids.indexOf(y.uid)+1)+'枚目（裏向き）':card(y).name,y.uid,t.g467Blind?0:t.g323Scry?scryScore323(s,t,y):t.g255Search&&stage.optional&&selected.length+1>=own.deck.length?-1000:t.g200Search&&stage.to==='hand'&&selected.length+1>=own.deck.length?-1000:t.g185Search&&stage.to==='hand'&&own.deck.length===1?-1000:stage.to==='grave'||t.g200Search&&stage.to==='deck'?-cost(card(y)):10+cost(card(y)),t.g467Blind?undefined:y.cardId)),...(stage.optional?[skip()]:[])]);break;}
+  choice(s,t,stage.title||(stage.g467Destinations?'移動するカードを1枚選ぶ':null)||('山札から'+(stage.n==='all'?'条件に合うカード':stage.n+'枚')+'を'+({hand:'手札',mana:'マナ',grave:'墓地',shields:'シールド'}[stage.to]||stage.to)+'へ'),[...rows.map(y=>opt(t.g467Blind?'山札の上から'+(t.ids.indexOf(y.uid)+1)+'枚目（裏向き）':card(y).name,y.uid,t.g467Blind?0:stage.g1660OpponentChooses?-10-cost(card(y)):t.g323Scry?scryScore323(s,t,y):t.g255Search&&stage.optional&&selected.length+1>=own.deck.length?-1000:t.g200Search&&stage.to==='hand'&&selected.length+1>=own.deck.length?-1000:t.g185Search&&stage.to==='hand'&&own.deck.length===1?-1000:stage.to==='grave'||t.g200Search&&stage.to==='deck'?-cost(card(y)):10+cost(card(y)),t.g467Blind?undefined:y.cardId)),...(stage.optional?[skip()]:[])],stage.g1660OpponentChooses?1-t.p:t.p);break;}
  case'g34_Order':{const ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(t.rest==='randomBottom1520'){const rest=ids.map(uid=>{release(s,t.p,uid);return remove(own.deck,uid);}).filter(Boolean);for(const y of rest)delete y.g11Sideways;if(rest.length)own.deck.push(...api.shuffled(rest,Math.floor(api.random(s)*4294967296)));if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='shuffle'){for(const uid of ids)release(s,t.p,uid);api.shuffleLibrary(s,t.p);if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='top'){if(t.g259OrderTop&&ids.length>1){choice(s,{...t,ids},'山札の上から置く順序を選ぶ',ids.map(uid=>opt(card(own.deck.find(x=>x.uid===uid)).name,uid,0,own.deck.find(x=>x.uid===uid).cardId)));break;}const xs=(t.g259OrderTop?[...(t.ordered||[]),...ids]:ids).map(uid=>remove(own.deck,uid)).filter(Boolean);for(const uid of t.g259OrderTop?[...(t.ordered||[]),...ids]:ids)release(s,t.p,uid);own.deck.unshift(...xs);if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='grave'||t.rest==='mana'||t.rest==='hand'){for(const uid of ids)zoneMove(s,t.p,'deck',uid,t.rest,{...t,tapped:!!t.restTapped});if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(ids.length>1)choice(s,{...t,ids},'残りを山札の下に置く順序を選ぶ',ids.map(uid=>{const y=own.deck.find(x=>x.uid===uid);return opt(card(y).name,uid,0,y.cardId);}));else{for(const uid of [...(t.ordered||[]),...ids]){const y=remove(own.deck,uid);release(s,t.p,uid);if(y)own.deck.push(y);}if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);}break;}
  // Movement uses the normal ramp replacements; the second card never repeats the test.
  case'g34_RampMatch516':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const dest=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');clear(y,dest);if(dest==='mana')y.tapped=true;api.addZone(s,t.p,dest,y);const matched=!api.deckWasShuffled1365(s,y)&&matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner===null)start(s,t,[...(matched?[{op:'Ramp',n:1,tapped:true}]:t.elseDraw?[{op:'Draw',n:1}]:[]),...(t.after||[])]);break;}
@@ -6122,7 +6123,7 @@ export function createSixPhotoRules(api){
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave';
   const rows=players.flatMap(p=>s.players[p].battle
-   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&!t.excludeUids?.includes(y.uid)
+   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&(!t.g1660CreatureOnly||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&!t.excludeUids?.includes(y.uid)
     &&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r)))
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
@@ -7632,6 +7633,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ChooseCivilization805':
+  if(t.g1660Harmony){(s.extLimits??=[]).push({kind:'g567PlayerStop',player:1-t.p,controller:t.p,g1660Color:v,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});break;}
   if(t.g1642OpponentReveal){
    start(s,t,[{op:'Look',n:6,public:true,rest:'bottom',stages:[{n:'all',optional:true,to:'hand',filter:{anyFaceColor:v}}]}]);
    break;
@@ -8055,7 +8057,9 @@ export function createSixPhotoRules(api){
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
-  if(t.g1658SoulCall)
+  if(t.g1660Illusion)
+   start(s,t,[{op:'GroupGrant364',owner:'self',filter:{creature:true},spell:true,grant:{raceAdd:[v]}}]);
+  else if(t.g1658SoulCall)
    start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,n:'all',rest:'shuffle',g1658SoulTop:true,
     stages:[{n:3,to:'deckTop',optional:!api.lookPublic(s,t.p),reveal:true,g1658DistinctNames:true,filter:chosen}]}]);
   else if(t.g1657Pokira)
@@ -10930,7 +10934,7 @@ attackPower593(s,p,x,playerOnly){
   return !!host&&!host.sealed&&api.isCreature(s,host)&&attackerPower<api.power(host,false,s);
  });
 },
-playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
+playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>(!l.g1660Color||colors(effective(x,s)).includes(l.g1660Color))&&(l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)));}finally{playerStopReading567.delete(s);}},
 externalProtection565,
  manaValue1282(s,p){
   return s.players[p].battle.some(x=>{

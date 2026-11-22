@@ -59,7 +59,7 @@ export function projectRoom(room,user,now=Date.now()){
  if(seat<0||!room.game)return v;
  const s=room.game,actions=getLegalActions(s),actor=actions[0]?.player??null;
  const canAct=actor===seat&&!expired&&room.phase==='playing';
- const inspection=canAct?s.decision?.task?.g585Peek:null;
+ const inspection=s.decision?.task?.g1660PublicPeek||(canAct?s.decision?.task?.g585Peek:null);
  const payment=canAct&&s.decision?.type==='manaPayment'?manaPaymentView(s.decision):null;
  const publicHand=actor===seat&&s.decision?.task?.op==='g13_Murder'?s.players[1-seat].hand:visibleOpponentHand(s,seat);
  const publicRefs=visibleActionCards(s,seat,publicHand);

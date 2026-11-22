@@ -9228,3 +9228,9 @@ CARD_IMAGES["dm29-009"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/d
 CARD_IMAGES["dm06-021"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-021.jpg";
 
 CARD_IMAGES["dmex06-010"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-010.jpg";
+
+// Verified official images: phase 1660.
+CARD_IMAGES["dm20-035"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-035.jpg";
+CARD_IMAGES["dm11-005"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-005.jpg";
+CARD_IMAGES["dm26-049"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-049.jpg";
+CARD_IMAGES["dmd33-011"]="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd33-011.jpg";
