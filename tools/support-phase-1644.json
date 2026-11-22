@@ -1,0 +1,261 @@
+{
+  "phase": 1644,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9164,
+  "target": 9500,
+  "description": "ザオヴァナイン・カイザーの登場・攻撃時のガチンコ勝利によるターン中の呪文禁止、ジャスト・ラビリンスの任意タップ後のタップ中全クリーチャー数ドロー、ザンジェットW７の登場ターンのプレイヤー攻撃とジョーカーズ捨て札コスト未満の相手カードを山札下へ送る能力を全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45567/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd09-003",
+      "name": "ザオヴァナイン・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-003",
+      "faces": [
+        {
+          "name": "ザオヴァナイン・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、相手はこのターン、呪文を唱えられない。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellLock489",
+                "expires": "end"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellLock489",
+                "expires": "end"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd09-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "33a7e728bbcbf2b3a3311df358acd4b254525a30b475319646b3b25bcaf69677",
+        "facesMatched": true,
+        "imageSha256": "e320eb8be1dd02440bf247097b1bff72bc58725039df4b9dde70fb9195a81c33",
+        "imageBytes": 127687,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文と名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMBD-09 アルティメット・クロニクル・デッキ 2019 必勝!! 闘将ブレードオーガ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-003",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp01-016",
+      "name": "ジャスト・ラビリンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-016",
+      "faces": [
+        {
+          "name": "ジャスト・ラビリンス",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。\n自分のタップしているクリーチャー１体につき１枚、カードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "untapped": true
+            },
+            "g193Tap": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "after": [
+              {
+                "op": "CountDraw",
+                "zone": "battle",
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "19d16f5238bbbbb0ffa879be63f65d74fb14456522852487c610003ac3f2d1c6",
+        "facesMatched": true,
+        "imageSha256": "14356555693278bd86467bb8c62c46e234259aed83d108989cc52e690c10be3f",
+        "imageBytes": 127816,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文と名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DM22-RP2X ゴッド・オブ・アビス 第2弾「轟炎の竜皇」超刺激パック",
+        "DM22-RP2 ゴッド・オブ・アビス 第2弾「轟炎の竜皇」",
+        "DM22-RP1 ゴッド・オブ・アビス 第１弾「伝説の邪神」",
+        "DMSD-10 超GRスタートデッキ キラのギラミリオン・ギラクシー",
+        "DMRP-01 拡張パック新1弾 ジョーカーズ参上！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-016",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmex02-008",
+      "name": "ザンジェットW７",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-008",
+      "faces": [
+        {
+          "name": "ザンジェットW７",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーは、バトルゾーンに出たターンに相手プレイヤーを攻撃できる。\nこのクリーチャーがバトルゾーンに出た時、または攻撃する時、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、それよりコストが小さい相手のカードを１枚バトルゾーンから選び、持ち主の山札の一番下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "entryPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g539JokerCard": true
+            },
+            "title": "ジョーカーズを1枚捨てて能力を使う？",
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "to": "deck",
+                "toOwnerDeck": true
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g539JokerCard": true
+            },
+            "title": "ジョーカーズを1枚捨てて能力を使う？",
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "to": "deck",
+                "toOwnerDeck": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "8780989b895f65b6845c81d07ba58cdd6db0077cac3b0c0cbdb2207b8c64468a",
+        "facesMatched": true,
+        "imageSha256": "8b42f21779c88fdcd0b0fd7959d76d147f97b642dfa7583cf7755e65c16cb6f9",
+        "imageBytes": 162304,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文と名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-02 デュエマクエスト・パック ～伝説の最強戦略12～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-008",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd09-003": 4,
+      "dmrp01-016": 4,
+      "dmex02-008": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45567/",
+      "checkedAt": "2026-11-22",
+      "sha256": "e27246db70ba40f18bec07cecb7968f936a867caed22c25b0b7427ca3064ef0e"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp01-s08",
+      "name": "ドープ“DBL”ボーダー",
+      "reason": "既存の勝利時アンタップ・パワー倍化・任意ブレイク・破壊置換を組み合わせ、バトルの後続処理を確認する。"
+    },
+    {
+      "id": "dmr01-069",
+      "name": "トリコロール・ブーメラン",
+      "reason": "ターン中の受け手を追跡する勝利時の同じ物理呪文の墓地回収を照合。"
+    },
+    {
+      "id": "dm26ex4-068",
+      "name": "トップギ・ラ・ヒツヤシ",
+      "reason": "種族・文明限定の各ターン一度の任意召喚軽減と、手札を捨てた時の任意ブレイクを照合。"
+    }
+  ]
+}

@@ -291610,24 +291610,158 @@
       ],
       "supportBatch": "phase-1643",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd09-003",
+      "name": "ザオヴァナイン・カイザー",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9000,
+      "race": "キング・コマンド・ドラゴン/ハンター",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、相手はこのターン、呪文を唱えられない。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "SpellLock489",
+              "expires": "end"
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "SpellLock489",
+              "expires": "end"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1644",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-016",
+      "name": "ジャスト・ラビリンス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。\n自分のタップしているクリーチャー１体につき１枚、カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-016",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "g193Tap": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "after": [
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1644",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex02-008",
+      "name": "ザンジェットW７",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジョーカーズ",
+      "text": "W・ブレイカー\nこのクリーチャーは、バトルゾーンに出たターンに相手プレイヤーを攻撃できる。\nこのクリーチャーがバトルゾーンに出た時、または攻撃する時、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、それよりコストが小さい相手のカードを１枚バトルゾーンから選び、持ち主の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-008",
+      "limit": 4,
+      "breaker": 2,
+      "entryPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "title": "ジョーカーズを1枚捨てて能力を使う？",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "to": "deck",
+              "toOwnerDeck": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "title": "ジョーカーズを1枚捨てて能力を使う？",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "to": "deck",
+              "toOwnerDeck": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1644",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1643,
+    "phase": 1644,
     "checkedAt": "2026-11-22",
-    "baseCount": 9161,
+    "baseCount": 9164,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9164,
+    "totalCount": 9167,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39749/",
-      "https://dm.takaratomy.co.jp/rule/qa/39750/",
-      "https://dm.takaratomy.co.jp/rule/qa/39751/",
-      "https://dm.takaratomy.co.jp/rule/qa/39752/",
-      "https://dm.takaratomy.co.jp/rule/qa/39753/",
-      "https://dm.takaratomy.co.jp/rule/qa/39754/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+      "https://dm.takaratomy.co.jp/rule/qa/45567/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318483,6 +318617,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36480/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36481/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36482/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1643,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9161,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9164,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39749/",
+          "https://dm.takaratomy.co.jp/rule/qa/39750/",
+          "https://dm.takaratomy.co.jp/rule/qa/39751/",
+          "https://dm.takaratomy.co.jp/rule/qa/39752/",
+          "https://dm.takaratomy.co.jp/rule/qa/39753/",
+          "https://dm.takaratomy.co.jp/rule/qa/39754/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

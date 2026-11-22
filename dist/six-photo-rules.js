@@ -622,7 +622,7 @@ export function createSixPhotoRules(api){
   return [...new Set(options.map(c=>cost(c)===Infinity?'∞':cost(c)))];
  }
  const discardCostFilter655=(limit,inclusive)=>inclusive?(limit==='∞'?{}:{max:limit}):{belowCost:limit};
- const destroyBelowCost655=(limit,{g835Creature,inclusive})=>({op:'Target',element:!g835Creature,to:'grave',filter:discardCostFilter655(limit,inclusive)});
+ const destroyBelowCost655=(limit,{g835Creature,inclusive,to='grave',toOwnerDeck})=>({op:'Target',element:!g835Creature,to,filter:discardCostFilter655(limit,inclusive),...(toOwnerDeck?{toOwnerDeck:true}:{})});
  function discardDefs248(s,t,y){
   return t.defs.map(d=>d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:

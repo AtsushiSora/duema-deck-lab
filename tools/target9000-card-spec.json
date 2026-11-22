@@ -32436,5 +32436,156 @@
         }
       ]
     }
+  },
+  "dmbd09-003": {
+    "phase": 1644,
+    "faces": [
+      {
+        "name": "ザオヴァナイン・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、相手はこのターン、呪文を唱えられない。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）",
+        "race": "キング・コマンド・ドラゴン/ハンター",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "SpellLock489",
+              "expires": "end"
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "SpellLock489",
+              "expires": "end"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp01-016": {
+    "phase": 1644,
+    "faces": [
+      {
+        "name": "ジャスト・ラビリンス",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。\n自分のタップしているクリーチャー１体につき１枚、カードを引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "g193Tap": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "after": [
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex02-008": {
+    "phase": 1644,
+    "faces": [
+      {
+        "name": "ザンジェットW７",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーは、バトルゾーンに出たターンに相手プレイヤーを攻撃できる。\nこのクリーチャーがバトルゾーンに出た時、または攻撃する時、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、それよりコストが小さい相手のカードを１枚バトルゾーンから選び、持ち主の山札の一番下に置く。",
+        "race": "ジョーカーズ",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "entryPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "title": "ジョーカーズを1枚捨てて能力を使う？",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "to": "deck",
+              "toOwnerDeck": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "title": "ジョーカーズを1枚捨てて能力を使う？",
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "to": "deck",
+              "toOwnerDeck": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
