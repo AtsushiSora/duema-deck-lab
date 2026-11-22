@@ -2,14 +2,14 @@
   "checkedAt": "2026-11-22T00:08:47.218Z",
   "clientDate": "2026-11-22",
   "baseCommit": "f2be4db6c99794c41ca93ab511d6836d8a2b49d2",
-  "status": "broad-review-complete-one-confirmed-open-defect",
+  "status": "resolved-locally-after-review",
   "scope": "友達対戦の認証・通信・同時操作・支払い・情報公開、アカウント保存・取り込み・履歴、手動対戦と画面回転・配置、実CPUワーカーを分割検証。",
   "productCodeChanged": false,
   "findings": [
     {
       "id": "online-resignation-stale-consent",
       "severity": "medium",
-      "status": "confirmed-open",
+      "status": "fixed-local-not-published",
       "title": "投了確認がアカウント切替で無効化されず、新しいアカウントを投了させる",
       "locations": [
         "dist/app.js:907",
@@ -50,7 +50,9 @@
       "impact": "別タブでアカウントを切り替えた場合、切替前の確認が切替後の対戦操作として残る。",
       "scope": "実アプリVM、認証監視通知、HTTPハンドラ、暗号化保存を用いた隔離ローカル再現。本番アカウントやルームの状態は変更していない。",
       "workaround": "アカウントを切り替える前に投了確認を閉じる。",
-      "nextFix": "確認を開いたUIDとルームを保持し、変更時に閉じる。確定時も現在のコンテキストを照合し、古い確認を拒否する。再現ケースを修正後の期待動作の回帰テストへ変換する。"
+      "nextFix": "Local fix, regression and two real-account browser verification complete. Await explicit release instruction.",
+      "resolutionArtifact": "tools/online-resignation-fix-verification.json",
+      "resolvedAt": "2026-11-22T00:24:08.132107+00:00"
     }
   ],
   "verification": {
@@ -229,7 +231,9 @@
       "note": "最終版は実際のログアウト→別アカウントログインの通知順でも同じ結果を再現。診断は不具合を確認するもので、修正済みの合格ではない。"
     },
     "noWholeNpmTest": true,
-    "maxProcessSeconds": 570
+    "maxProcessSeconds": 570,
+    "historicalDiagnosticCommit": "d681860763cf1b4d72d23cd649ecb4b14000f1a3",
+    "historicalDiagnosticNote": "Original diagnostic evidence above is historical. Current entry point runs fixed-behavior regression cases."
   },
   "publicApiChecks": {
     "release": {
@@ -313,11 +317,13 @@
     "全カード・全対戦状況を網羅した検証ではない。",
     "iOSの認証復帰はSDKモックでの自動試験であり、今回iPhone実機を操作したものではない。",
     "一括npm testの過去の中断・合否未確認と、ユーザー保留の裁定・再録2件は維持。",
-    "投了確認の1件は発見・再現までで未修正。公開版にも同じ該当コードが含まれる。"
+    "Resignation finding resolved in subsequent local fix; production remains unchanged."
   ],
   "publication": {
     "pushed": false,
     "deployed": false,
     "netlifyUpdated": false
-  }
+  },
+  "resolvedAt": "2026-11-22T00:24:08.132107+00:00",
+  "resolutionArtifact": "tools/online-resignation-fix-verification.json"
 }

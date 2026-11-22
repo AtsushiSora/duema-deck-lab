@@ -1,0 +1,164 @@
+{
+  "checkedAt": "2026-11-22T00:24:08.132107+00:00",
+  "baseCommit": "d681860763cf1b4d72d23cd649ecb4b14000f1a3",
+  "status": "verified-local-not-published",
+  "finding": "online-resignation-stale-consent",
+  "resolvedDefects": 1,
+  "changes": [
+    "Bind confirmation to UID, room, seat and one-use UI nonce; never persist the nonce.",
+    "Revoke on identity, room, connection or dialog changes.",
+    "Revalidate context and nonce before resigning. Ignore old events without closing fresh confirmation or unrelated details.",
+    "Preserve confirmation across ordinary opponent moves in the same room; send current revision."
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "dedicated-opponent",
+        "command": [
+          "node",
+          "tools/review-online-session-confirmation.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.301,
+        "log": "tmp/duema-resign-fix/dedicated-opponent.log",
+        "status": "passed",
+        "sha256": "2c155c6062c91c8004a29a14914940ec47bca8fa6951fe0ce27c81f3cd88c4aa",
+        "passed": 10
+      },
+      {
+        "name": "online-regression-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.262,
+        "log": "tmp/duema-resign-fix/online-regression-final.log",
+        "status": "passed",
+        "sha256": "0177ffba7b513f7674a65aa9288fabe5178143acb8e8a59b0b834fc3bcb72f39",
+        "passed": 130
+      },
+      {
+        "name": "dialog-regression",
+        "command": [
+          "node",
+          "--test",
+          "tests/account-app.test.mjs",
+          "tests/manual-app.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.633,
+        "log": "tmp/duema-resign-fix/dialog-regression.log",
+        "status": "passed",
+        "sha256": "55d7f0ce6fc8b543ba9e13a5b719b61babad1acce333e24dfcef6ea56a37dfc9",
+        "passed": 121
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.805,
+        "log": "tmp/duema-resign-fix/check.log",
+        "status": "passed",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.335,
+        "log": "tmp/duema-resign-fix/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "distinctTestsPassed": 251,
+    "dedicatedCasesIncludedInRegression": 10,
+    "incompleteRuns": [],
+    "initialTestHarnessFailures": {
+      "count": 2,
+      "cause": "New tests called nonexistent resume method and omitted revision. Corrected to refresh and current revision.",
+      "log": "tmp/duema-resign-fix/dedicated.log",
+      "sha256": "6f23efa76e7d1e166ebe86e06d79bde05c62f2f427e6c8dd9bcbfcdba1312419"
+    },
+    "noWholeNpmTest": true,
+    "fullSuiteHistoricalStatusPreserved": true,
+    "maxProcessSeconds": 570
+  },
+  "localRealAccounts": {
+    "status": "passed",
+    "realGoogleAccounts": 2,
+    "sameMac": true,
+    "browsers": [
+      "Chrome",
+      "ChatGPT in-app browser"
+    ],
+    "origin": "http://localhost:4175",
+    "method": "Real Google authentication, firebase-admin token validation, encrypted in-memory room storage, browser UI interactions.",
+    "checks": [
+      "Open A confirmation. Sign out in another tab; auth notification closes confirmation.",
+      "Sign into B in the other tab. Original tab resumes B seat in same room, dialog closed and DOM empty.",
+      "Open a fresh confirmation as B and cancel; match continues.",
+      "Return to A, open a fresh confirmation and resign. A displays opponent victory; B in the other browser displays own victory."
+    ],
+    "roomMutations": {
+      "waitingRevision": 0,
+      "joinRevision": 1,
+      "finalResignationRevision": 2,
+      "interveningUnexpectedMutations": 0
+    },
+    "serverEventsLog": "tmp/duema-resign-fix/events.json",
+    "serverEventsSha256": "3cc6a9e3da9dca4b7e95d974ebdb276f16d75d1779dae8e4d863f47a25386669",
+    "screenshot": "/tmp/duema-resign-fix/account-switched.jpg",
+    "screenshotSha256": "81f6bd49209fb99f0f296acf8b30ee2059c1335f9b01a9eb13a60eb80c1f74d0",
+    "productionRoomsModified": false,
+    "cloudDeckSaveOrImportPerformed": false,
+    "accountSideEffects": "Ordinary authentication, account reading and automatic playtime synchronization used real services.",
+    "localServerStopped": true
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/app.js": "8f2070b12f3c726105963b0dbd728d8517bb771ac8550a154dcfd8560b3fbadb",
+    "tests/online-app.test.mjs": "1d1dcd6871b2b2c6dcedabc84694e851f8bf1450b72103fa89310f9f15261e12",
+    "tools/review-online-session-confirmation.mjs": "2ed80174aa8f0f2e48f27bbe44ec920e924fdba3b399fafeae1a780a27a3300b",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "preserved": [
+    "Card IDs, decks, history and persistence format unchanged.",
+    "Two user-deferred ruling/reprint items and interrupted historical whole-suite status retained."
+  ],
+  "limits": [
+    "Fix not deployed; production verification of this fix remains pending explicit release authorization.",
+    "Not exhaustive coverage of all cards and game states."
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
