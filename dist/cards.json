@@ -293663,20 +293663,142 @@
       "g1663RapiaRecover": true,
       "supportBatch": "phase-1663",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-097",
+      "name": "チャイ・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード",
+      "text": "【K・ソウル】\nセイバー：ドラゴン(自分のドラゴンが破壊される時、かわりにこのクリーチャーを破壊してもよい)\n相手がバトルゾーンにある自分のクリーチャーを選ぶ時、名前に《XX》とあるクリーチャーを選ぶことはできない。(ただし、選べないクリーチャーを攻撃またはブロックしてもよい)\nこのクリーチャーが破壊された時、そのターン、バトルゾーンにある自分のドラゴンはアンタップされているクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-097",
+      "limit": 4,
+      "g571Saver": {
+        "filter": {
+          "race": "ドラゴン"
+        }
+      },
+      "g1664XXProtect": true,
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1629OwnTurn": true
+          },
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              },
+              "grant": {
+                "attackUntapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1664",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx04-010",
+      "name": "予言者ヨーデル・ワイス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 500,
+      "race": "ライトブリンガー/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト６以下の光のハンター・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nセイバー：サイキック・クリーチャー(自分のサイキック・クリーチャーが破壊される時、かわりにこのクリーチャーを破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "color": "光",
+            "race": "ハンター",
+            "max": 6
+          },
+          "title": "超次元ゾーンからコスト6以下の光のハンター・サイキックを1体出す"
+        }
+      ],
+      "g571Saver": {
+        "filter": {
+          "creature": true,
+          "g1085Psychic": true
+        }
+      },
+      "supportBatch": "phase-1664",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-031",
+      "name": "鋼流星ペングカイザー",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "フェニックス/グレートメカオー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分の光のクリーチャー１体と水のクリーチャー１体を重ねた上に置く。\nバトルゾーンにある自分の他の「ブロッカー」を持つクリーチャーはすべて、「セイバー: フェニックス」を得る。(自分のフェニックスが破壊される時、かわりに「セイバー: フェニックス」を得たクリーチャーを破壊してもよい)\nブロッカー ブロッカー\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-031",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1664PhoenixSaverAura": true,
+      "supportBatch": "phase-1664",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1663,
+    "phase": 1664,
     "checkedAt": "2026-11-22",
-    "baseCount": 9227,
+    "baseCount": 9230,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9230,
+    "totalCount": 9233,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316658/",
-      "https://dm.takaratomy.co.jp/rule/qa/38631/",
-      "https://dm.takaratomy.co.jp/rule/qa/46826/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36049/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35620/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -320913,6 +321035,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36473/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1663,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9227,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9230,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316658/",
+          "https://dm.takaratomy.co.jp/rule/qa/38631/",
+          "https://dm.takaratomy.co.jp/rule/qa/46826/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

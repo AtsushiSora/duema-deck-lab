@@ -34825,5 +34825,137 @@
       "g575OptionalMana": true,
       "g1663RapiaRecover": true
     }
+  },
+  "dm36-097": {
+    "phase": 1664,
+    "faces": [
+      {
+        "name": "チャイ・アイニー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "【K・ソウル】\nセイバー：ドラゴン(自分のドラゴンが破壊される時、かわりにこのクリーチャーを破壊してもよい)\n相手がバトルゾーンにある自分のクリーチャーを選ぶ時、名前に《XX》とあるクリーチャーを選ぶことはできない。(ただし、選べないクリーチャーを攻撃またはブロックしてもよい)\nこのクリーチャーが破壊された時、そのターン、バトルゾーンにある自分のドラゴンはアンタップされているクリーチャーを攻撃できる。",
+        "race": "ファイアー・バード",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g571Saver": {
+        "filter": {
+          "race": "ドラゴン"
+        }
+      },
+      "g1664XXProtect": true,
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1629OwnTurn": true
+          },
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              },
+              "grant": {
+                "attackUntapped": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx04-010": {
+    "phase": 1664,
+    "faces": [
+      {
+        "name": "予言者ヨーデル・ワイス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト６以下の光のハンター・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nセイバー：サイキック・クリーチャー(自分のサイキック・クリーチャーが破壊される時、かわりにこのクリーチャーを破壊してもよい)",
+        "race": "ライトブリンガー/ハンター",
+        "powerText": "500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "color": "光",
+            "race": "ハンター",
+            "max": 6
+          },
+          "title": "超次元ゾーンからコスト6以下の光のハンター・サイキックを1体出す"
+        }
+      ],
+      "g571Saver": {
+        "filter": {
+          "creature": true,
+          "g1085Psychic": true
+        }
+      }
+    }
+  },
+  "dm24-031": {
+    "phase": 1664,
+    "faces": [
+      {
+        "name": "鋼流星ペングカイザー",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分の光のクリーチャー１体と水のクリーチャー１体を重ねた上に置く。\nバトルゾーンにある自分の他の「ブロッカー」を持つクリーチャーはすべて、「セイバー: フェニックス」を得る。(自分のフェニックスが破壊される時、かわりに「セイバー: フェニックス」を得たクリーチャーを破壊してもよい)\nブロッカー ブロッカー\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "フェニックス/グレートメカオー",
+        "powerText": "9500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1664PhoenixSaverAura": true
+    }
   }
 }

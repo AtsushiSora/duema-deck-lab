@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9230,
-  "pendingNames": 2595,
-  "phase": 1663,
+  "supportedNames": 9233,
+  "pendingNames": 2592,
+  "phase": 1664,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,14 +154,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1451,
+    "クリーチャー": 1449,
     "呪文": 297,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 33,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 215,
+    "進化クリーチャー": 214,
     "スター進化クリーチャー": 53,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 42,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1865,
+    "未対応の能力文": 1862,
     "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -531996,27 +531996,269 @@
           "reason": "実際の呼び出し先ガイアール・カイザー(dmr01-v02)は未登録。シールドブレイク置換と、ブーストグレンオー(dmr01-060)・ドラゴニック・ピッピー(dmr01-062)の全能力・覚醒リンク・リンク解除を含む専用バッチで対応する。別名の勝利のガイアール・カイザーでは代用せず、部分登録はしない。"
         }
       ]
+    },
+    {
+      "phase": 1664,
+      "checkedAt": "2026-11-22T12:57:45.601Z",
+      "baseline": "2b91b3259b6b4ae2279beb7fdd6f89a410bb6b8e",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9230,
+      "currentNames": 9233,
+      "remainingNames": 267,
+      "added": [
+        {
+          "id": "dm36-097",
+          "name": "チャイ・アイニー"
+        },
+        {
+          "id": "dmx04-010",
+          "name": "予言者ヨーデル・ワイス"
+        },
+        {
+          "id": "dm24-031",
+          "name": "鋼流星ペングカイザー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "2b91b325",
+        "originalDefinitionsUnchanged": 9230,
+        "added": 3,
+        "uniqueNames": 9233,
+        "uniqueIds": 9233,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9230,
+        "existingImageReferenceRowsUnchanged": 11422,
+        "detailRowsUnchanged": 11826,
+        "unregisteredOfficialSoulCorrection": "dm36-097"
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1664.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.366,
+          "log": "tmp/duema-phase-1664/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1664-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.698,
+          "log": "tmp/duema-phase-1664/final-focused.log",
+          "passed": 126,
+          "failed": 0,
+          "logSha256": "d51b4a1fe5285cb91f2429ac24b17ad1fbd51453d9f7afa16b03c12143dcddfa"
+        },
+        "related-savers": {
+          "name": "related-savers",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1555-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.574,
+          "log": "tmp/duema-phase-1664/related-savers.log",
+          "passed": 319,
+          "failed": 0,
+          "logSha256": "8f985fb4875a9752c94e412351d7b106557ba91c2c21a85e5a1e60faf157e76a"
+        },
+        "related-targeting-evolution": {
+          "name": "related-targeting-evolution",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1256-effects.test.mjs",
+            "tests/standard862-effects.test.mjs",
+            "tests/standard1554-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.518,
+          "log": "tmp/duema-phase-1664/related-targeting-evolution.log",
+          "passed": 39,
+          "failed": 0,
+          "logSha256": "d8d80d08c1c63985c57ff9673899179181aa25d1a5ad2ca6903ad81324cf3d08"
+        },
+        "related-innocent": {
+          "name": "related-innocent",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Draginnocent enters|Draginnocent under)",
+            "tests/standard950-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.26,
+          "log": "tmp/duema-phase-1664/related-innocent.log",
+          "passed": 2,
+          "failed": 0,
+          "logSha256": "1f4dc344c6ff6825d3e3146fc992766885fe156e80e5013e51d0b22f146c1a3e"
+        },
+        "related-psychic": {
+          "name": "related-psychic",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Dravita uses|Dravita can skip|Raiden offers|Raiden still gets)",
+            "tests/standard1104-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.606,
+          "log": "tmp/duema-phase-1664/related-psychic.log",
+          "passed": 4,
+          "failed": 0,
+          "logSha256": "3304911a558ce2b10cea96bafa8f4a489a4237b9c67f740ecd056375bc28af48"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.952,
+          "log": "tmp/duema-phase-1664/check.log",
+          "logSha256": "4927305bc9cab0555c62c4b68ccb615cef59646f432a9d3c158e993c9ef31ab3"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.603,
+          "log": "tmp/duema-phase-1664/audit.log",
+          "logSha256": "7e2109967a8ca09ba54f4449589ca2af7079260b7d524ce1ab88cec0e768813b"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.299,
+          "log": "tmp/duema-phase-1664/target9500.log",
+          "logSha256": "70c9fb84f12135e7a85c2511ee080bff5a461fdf15b875d4bbf07466aa2e3d53"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1664/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.424,
+          "log": "tmp/duema-phase-1664/invariants.log",
+          "logSha256": "8621f8d06d39d50974319e5a2ba14fdf71249eb989ea8edda1362dc52e884948"
+        }
+      },
+      "totalTestsPassed": 490,
+      "hashes": {
+        "dist/cards.json": "7b9c6f72a5d7b41b30e0dfe92813487cb395f9fe55cefe7346f10e9d25f128fb",
+        "dist/details.json": "990fde0e431e25cd98de0828d6db1c6bf75507850e47c8f62dc2b4f5dd157add",
+        "dist/engine.js": "63686d532a463893331da3b118def4c24b10b4dbb8699d5e7a66007a6671e0ca",
+        "dist/extended-rules.js": "00ef9bf06f76050c2700ddef3567fd06dbc0989a5e21c371a087d643b721eeeb",
+        "dist/six-photo-rules.js": "683c9397ca724aef2ed97eb64afd066a036f6f40b301f0b7f38b01eefe530f2d",
+        "dist/online-compatibility.js": "4cdf12f66644156ba528c242a7692a0f14a4115974f886f069785936ae7bfe5d",
+        "dist/card-images.js": "d24186523544d4d331d5f313ce4271689381dfab1a570a2826bb5cc6df4e85ec",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
+        "tools/target9000-card-spec.json": "684ffb51a350c191c63f759159e25aff49590eb20521501c700c7f83da3eb48f",
+        "tests/standard1664-effects.test.mjs": "8dae82d9cf91110a4161d44fc7774dd741e2cc7d18f7e173e47f7aff3f3e6e05"
+      },
+      "engineVersion": "0.602.180",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1664.json",
+      "supported": 9233,
+      "pending": 2592,
+      "reason": "ドラゴンのセイバー・XX名の選択防止・破壊時の自軍ドラゴンへの攻撃許可、光ハンターサイキックの展開とセイバー、光水の進化Vと他ブロッカーへのフェニックスのセイバー付与を全文対応。",
+      "resolvedAttempts": [
+        {
+          "name": "initial-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1664-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 24.936,
+          "log": "tmp/duema-phase-1664/initial-focused.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存長時間群、ユーザー保留の公式照合2件、登録済みカードの裁定再現待ち1件は別に保持。今回3種類の全文・固有検証は完了。"
+      ],
+      "next": "phase1665で4枚のガイアール連結バッチを公式照合・全文実装・固有回帰から進め、難しい場合は理由を残し他の3〜5種類へ進む。9500到達で登録を止める。push・公開・Netlify更新は行わない。",
+      "validationNotes": [
+        "最終の固有126件と関連364件の計490件が通過。別実行したBlocker常在付与2件は最終126件にも含まれるため二重加算しない。関連はセイバー319件、選択保護・ソウル・複数進化39件、ドラグイノセント2件、超次元展開4件。",
+        "公式画像と現行パーサーでチャイ・アイニーのK・ソウル表示を確認し、未登録だった元版の詳細全文にだけ補完。能力無視中でもK・ソウルの進化元として使えることを実測。既存登録定義9230件、他の詳細11826行は不変。",
+        "ペングカイザーは既存の複数セイバー処理を拡張し、解決時の完全なBlocker状態を参照。受け手が元々持つUnknownのセイバーとPhoenixの付与セイバーを併用でき、常在Blockerの投入順・一時付与・コピー・同時離脱・JSONを検証。",
+        "チャイのXX名判定は既存のバトルゾーンの名前取得を再利用し、効果を使った人ではなく実際の選択者が相手の場合だけ制限。攻撃・ブロックは許可し、対象の能力無視と元の保護能力の無視を区別。",
+        "公式QA36049とQA35620を実カードで再現。初回のGenmuを使うfixtureではカード総数の基準を追加前に取得していたため、追加後を基準に修正。修正後の全固有126件が通過。",
+        "今回3種類に未完了の固有検証はない。過去の一括npm test、既存長時間群、ユーザー保留の公式照合と登録済み裁定再現待ちは維持。push・公開・Netlify更新は行わない。"
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1663,
-    "nextPhase": 1664,
+    "lastVerifiedPhase": 1664,
+    "nextPhase": 1665,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm36-097",
-        "name": "チャイ・アイニー",
-        "reason": "ドラゴンのセイバー、XX名を持つ自軍への選択防止、破壊時のドラゴン全体へのアンタップクリーチャー攻撃付与を公式照合。"
+        "id": "dmr01-v02",
+        "name": "ガイアール・カイザー",
+        "reason": "既存の勝利版と別名の本体。シールドを確認して墓地に置く任意置換と実際の同コストのハンターサイキック展開を、関連3枚の覚醒リンク・リンク解除まで含む4枚バッチで照合。"
       },
       {
-        "id": "dmx04-010",
-        "name": "予言者ヨーデル・ワイス",
-        "reason": "光のハンター・サイキック限定の超次元展開とサイキックのセイバーを照合し、呼び出し先の実装状況も確認。"
+        "id": "dmr01-060",
+        "name": "ブーストグレンオー",
+        "reason": "登場時に現在パワーを比較する破壊、裏面の激竜王ガイアール・オウドラゴンの能力全文と物理3枚のリンクを照合。"
       },
       {
-        "id": "dm24-031",
-        "name": "鋼流星ペングカイザー",
-        "reason": "光と水の2体による進化V、他のブロッカーへのフェニックスのセイバー付与・多色タップ・Wブレイカーを照合。"
+        "id": "dmr01-062",
+        "name": "ドラゴニック・ピッピー",
+        "reason": "ハンティングと自ターン開始の覚醒リンクを実装し、3枚すべての裏面・解除を検証。"
+      },
+      {
+        "id": "dmx02-003",
+        "name": "スーパー・サイチェン・ピッピー",
+        "reason": "Hunterのセイバーと相手ターンに実際に捨てられた場合のガイアール展開。呼び出し先の3枚を先に全文対応し、部分登録をしない。"
       }
     ],
     "steps": [
@@ -532771,23 +533013,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1663,
-      "baseline": "75bbe231",
-      "supportedNames": 9230,
-      "artifact": "tools/target9500-registration-checkpoint-1663.json",
-      "checkedAt": "2026-11-22T12:42:36.505Z"
+      "phase": 1664,
+      "baseline": "2b91b3259b6b4ae2279beb7fdd6f89a410bb6b8e",
+      "supportedNames": 9233,
+      "artifact": "tools/target9500-registration-checkpoint-1664.json",
+      "checkedAt": "2026-11-22T12:57:45.601Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T12:42:36.505Z",
+      "checkedAt": "2026-11-22T12:57:45.601Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9230,
-      "remainingNames": 270,
+      "currentNames": 9233,
+      "remainingNames": 267,
       "duplicateNames": 0,
-      "engineVersion": "0.602.179",
+      "engineVersion": "0.602.180",
       "added": [
         {
           "id": "dmr12-008",
@@ -533428,6 +533670,18 @@
         {
           "id": "dmc51-005",
           "name": "ルピア・ラピア"
+        },
+        {
+          "id": "dm36-097",
+          "name": "チャイ・アイニー"
+        },
+        {
+          "id": "dmx04-010",
+          "name": "予言者ヨーデル・ワイス"
+        },
+        {
+          "id": "dm24-031",
+          "name": "鋼流星ペングカイザー"
         }
       ],
       "results": {
@@ -533543,14 +533797,17 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "4494c8d0964db14ce9c5539898714eb307530de93be28b47cc5f67decfb77250",
-        "dist/engine.js": "aba1148c62bbaf48abf20ed54f261a1c635925e76b2357563d6e3d296869a277",
-        "dist/online-compatibility.js": "58cbb0032fe4d6fadeaafb6ea358f7e1a7149c62e71b9e644874e0af432436cf",
-        "dist/card-images.js": "68efaf4c9eb6c030b646ad4e8c6be486c59bb80cdf344388d9b05a7bf601a4b7",
+        "dist/cards.json": "7b9c6f72a5d7b41b30e0dfe92813487cb395f9fe55cefe7346f10e9d25f128fb",
+        "dist/details.json": "990fde0e431e25cd98de0828d6db1c6bf75507850e47c8f62dc2b4f5dd157add",
+        "dist/engine.js": "63686d532a463893331da3b118def4c24b10b4dbb8699d5e7a66007a6671e0ca",
+        "dist/extended-rules.js": "00ef9bf06f76050c2700ddef3567fd06dbc0989a5e21c371a087d643b721eeeb",
+        "dist/six-photo-rules.js": "683c9397ca724aef2ed97eb64afd066a036f6f40b301f0b7f38b01eefe530f2d",
+        "dist/online-compatibility.js": "4cdf12f66644156ba528c242a7692a0f14a4115974f886f069785936ae7bfe5d",
+        "dist/card-images.js": "d24186523544d4d331d5f313ce4271689381dfab1a570a2826bb5cc6df4e85ec",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
         "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
-        "tools/target9000-card-spec.json": "97742f3661a244b7d92367563943a3e38c5c21e3a94a671f62e89e3a216ad227",
-        "tests/standard1663-effects.test.mjs": "00d5fcddf29df938a5c37826220afee8099448a8b89a1a8b2f0bf66b497cec8b"
+        "tools/target9000-card-spec.json": "684ffb51a350c191c63f759159e25aff49590eb20521501c700c7f83da3eb48f",
+        "tests/standard1664-effects.test.mjs": "8dae82d9cf91110a4161d44fc7774dd741e2cc7d18f7e173e47f7aff3f3e6e05"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -533614,10 +533871,10 @@
       },
       "phaseRange": [
         1614,
-        1663
+        1664
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 160,
+      "addedNames": 163,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -533629,9 +533886,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.436,
-        "log": "tmp/duema-phase-1663/check.log",
-        "logSha256": "e26a7fb3b630735e2f04a30aedc6ba11182ebdcb371be98cb007e1436a1d1e49"
+        "seconds": 20.952,
+        "log": "tmp/duema-phase-1664/check.log",
+        "logSha256": "4927305bc9cab0555c62c4b68ccb615cef59646f432a9d3c158e993c9ef31ab3"
       },
       "latestAudit": {
         "name": "audit",
@@ -533641,11 +533898,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.65,
-        "log": "tmp/duema-phase-1663/audit.log",
-        "logSha256": "342fb49a794846e26e6495a378199fc30b316077166191d53115f1bbbfb3059a"
+        "seconds": 11.603,
+        "log": "tmp/duema-phase-1664/audit.log",
+        "logSha256": "7e2109967a8ca09ba54f4449589ca2af7079260b7d524ce1ab88cec0e768813b"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1663.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1664.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -534734,11 +534991,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9230,
-      "remaining": 270,
+      "currentNames": 9233,
+      "remaining": 267,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T12:42:36.505Z"
+      "checkedAt": "2026-11-22T12:57:45.601Z"
     },
     "resolvedRegistrationValidations": [
       {

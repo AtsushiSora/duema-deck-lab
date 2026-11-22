@@ -9265,6 +9265,7 @@ export function createSixPhotoRules(api){
    (!l.nextOnly||s.active===p&&s.players[p].turns>l.afterTurns)&&(!l.color||colors(c).includes(l.color))))return false;
   if(c.type==='spell'&&!colors(c).includes('光')&&(active(s,0,'alca').length||active(s,1,'alca').length))return false;if(c.type==='creature'||c.type==='spell'){if(active(s,1-p,'perfect').length&&s.g34Executions?.[p]?.turn===s.turn&&s.g34Executions[p].n>=3)return false;if(!colors(c).includes('光')&&(active(s,0,'alphadios').length||active(s,1,'alphadios').length))return false;}return c.type!=='spell'||!active(s,1-p,'hAlka').some(x=>x.hyperActive&&creatures(s,1-p).some(y=>y.tapped));},
  allowedEntry(s,p,c,options){if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},
+ battleNames1664:battleNames676,
  namedEntryLocked1643:(s,p,c)=>namedLock1643(s,p,[exactName(creatureFaceName(c))]),
  namedCombatLocked1643:(s,p,x)=>namedLock1643(s,p,battleNames676(s,x)),
  canLeave(s,p,x,context={}){

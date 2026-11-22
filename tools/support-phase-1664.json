@@ -1,0 +1,450 @@
+{
+  "phase": 1664,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9230,
+  "target": 9500,
+  "description": "ドラゴンのセイバー・XX名の選択防止・破壊時の自軍ドラゴンへの攻撃許可、光ハンターサイキックの展開とセイバー、光水の進化Vと他ブロッカーへのフェニックスのセイバー付与を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36049/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35620/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-097",
+      "name": "チャイ・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-097",
+      "faces": [
+        {
+          "name": "チャイ・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "【K・ソウル】\nセイバー：ドラゴン(自分のドラゴンが破壊される時、かわりにこのクリーチャーを破壊してもよい)\n相手がバトルゾーンにある自分のクリーチャーを選ぶ時、名前に《XX》とあるクリーチャーを選ぶことはできない。(ただし、選べないクリーチャーを攻撃またはブロックしてもよい)\nこのクリーチャーが破壊された時、そのターン、バトルゾーンにある自分のドラゴンはアンタップされているクリーチャーを攻撃できる。",
+          "race": "ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g571Saver": {
+          "filter": {
+            "race": "ドラゴン"
+          }
+        },
+        "g1664XXProtect": true,
+        "g172Death": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1629OwnTurn": true
+            },
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン"
+                },
+                "grant": {
+                  "attackUntapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-097.jpg",
+      "sameNameProducts": [
+        "DM-36 覚醒編(サイキック･ショック) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-097",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "32d54e175eee834dc2493d3f4b3c8b0b7897b333422ce3234549ff43a82805ec",
+        "facesMatched": true,
+        "imageSha256": "935a12be8a319fedc48bd969ad93a81c324a063e7a95ec35f6b3770332f4823f",
+        "imageBytes": 102470,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・コスト・文明・種族・パワー・マナ・能力全文を確認。チャイ・アイニーのK・ソウル表示を含む。"
+      }
+    },
+    {
+      "id": "dmx04-010",
+      "name": "予言者ヨーデル・ワイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-010",
+      "faces": [
+        {
+          "name": "予言者ヨーデル・ワイス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト６以下の光のハンター・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\nセイバー：サイキック・クリーチャー(自分のサイキック・クリーチャーが破壊される時、かわりにこのクリーチャーを破壊してもよい)",
+          "race": "ライトブリンガー/ハンター",
+          "powerText": "500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "g1104PsychicFaces": true,
+            "filter": {
+              "creature": true,
+              "g1085Psychic": true,
+              "color": "光",
+              "race": "ハンター",
+              "max": 6
+            },
+            "title": "超次元ゾーンからコスト6以下の光のハンター・サイキックを1体出す"
+          }
+        ],
+        "g571Saver": {
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-010.jpg",
+      "sameNameProducts": [
+        "DMX-04 フルホイルパック リバイバル・ヒーロー ザ・ハンター"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-010",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "98a51ae0928c10e711f2c2c58f3bf36ee04fdb5547393a8922522911c8b36ed6",
+        "facesMatched": true,
+        "imageSha256": "3af4d693149e9f402ff902973fb1aa7d291008a7bd21dbf76c052a477d08208e",
+        "imageBytes": 137840,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・コスト・文明・種族・パワー・マナ・能力全文を確認。チャイ・アイニーのK・ソウル表示を含む。"
+      }
+    },
+    {
+      "id": "dm24-031",
+      "name": "鋼流星ペングカイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-031",
+      "faces": [
+        {
+          "name": "鋼流星ペングカイザー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分の光のクリーチャー１体と水のクリーチャー１体を重ねた上に置く。\nバトルゾーンにある自分の他の「ブロッカー」を持つクリーチャーはすべて、「セイバー: フェニックス」を得る。(自分のフェニックスが破壊される時、かわりに「セイバー: フェニックス」を得たクリーチャーを破壊してもよい)\nブロッカー ブロッカー\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス/グレートメカオー",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g1664PhoenixSaverAura": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-031.jpg",
+      "sameNameProducts": [
+        "DM-24 極神編(バイオレンス・ヘヴン) 第1弾"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-031",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "b065bcd91a399a4820d827e49b3f907b4144be507461e7fbe3340722f068494a",
+        "facesMatched": true,
+        "imageSha256": "efca6c310db5e0959981e68d21fc3be820b5b157a771072640992a10d7f93299",
+        "imageBytes": 115355,
+        "imageReviewed": true,
+        "imageReview": "公式画像のカード名・コスト・文明・種族・パワー・マナ・能力全文を確認。チャイ・アイニーのK・ソウル表示を含む。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/extended-rules.js",
+    "dist/six-photo-rules.js"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36049/",
+      "checkedAt": "2026-11-22T12:46:33.259Z",
+      "sha256": "310b1721ba851f5132e50d20a31655a36a47000fdbe19edc5cc6f73444a952d5"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
+      "checkedAt": "2026-11-22T12:46:33.900Z",
+      "sha256": "2659cc9a9878ddc430dcf7134bfbbc0556f42996f0ad4ab6389ed66bf6dedf96"
+    }
+  ],
+  "detailCorrections": [
+    {
+      "id": "dm36-097",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-097",
+      "reason": "公式画像右欄と現行パーサーで確認したK・ソウルの表示を、未登録の元版の全文に補完。既存の登録済み定義は変更しない。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-097": 4,
+      "dmx04-010": 4,
+      "dm24-031": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T12:57:45.601Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1664.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.366,
+        "log": "tmp/duema-phase-1664/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "final-focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1664-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.698,
+        "log": "tmp/duema-phase-1664/final-focused.log",
+        "passed": 126,
+        "failed": 0,
+        "logSha256": "d51b4a1fe5285cb91f2429ac24b17ad1fbd51453d9f7afa16b03c12143dcddfa"
+      },
+      "related-savers": {
+        "name": "related-savers",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard571-effects.test.mjs",
+          "tests/standard1555-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.574,
+        "log": "tmp/duema-phase-1664/related-savers.log",
+        "passed": 319,
+        "failed": 0,
+        "logSha256": "8f985fb4875a9752c94e412351d7b106557ba91c2c21a85e5a1e60faf157e76a"
+      },
+      "related-targeting-evolution": {
+        "name": "related-targeting-evolution",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1256-effects.test.mjs",
+          "tests/standard862-effects.test.mjs",
+          "tests/standard1554-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.518,
+        "log": "tmp/duema-phase-1664/related-targeting-evolution.log",
+        "passed": 39,
+        "failed": 0,
+        "logSha256": "d8d80d08c1c63985c57ff9673899179181aa25d1a5ad2ca6903ad81324cf3d08"
+      },
+      "related-innocent": {
+        "name": "related-innocent",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(Draginnocent enters|Draginnocent under)",
+          "tests/standard950-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.26,
+        "log": "tmp/duema-phase-1664/related-innocent.log",
+        "passed": 2,
+        "failed": 0,
+        "logSha256": "1f4dc344c6ff6825d3e3146fc992766885fe156e80e5013e51d0b22f146c1a3e"
+      },
+      "related-psychic": {
+        "name": "related-psychic",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(Dravita uses|Dravita can skip|Raiden offers|Raiden still gets)",
+          "tests/standard1104-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.606,
+        "log": "tmp/duema-phase-1664/related-psychic.log",
+        "passed": 4,
+        "failed": 0,
+        "logSha256": "3304911a558ce2b10cea96bafa8f4a489a4237b9c67f740ecd056375bc28af48"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.952,
+        "log": "tmp/duema-phase-1664/check.log",
+        "logSha256": "4927305bc9cab0555c62c4b68ccb615cef59646f432a9d3c158e993c9ef31ab3"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.603,
+        "log": "tmp/duema-phase-1664/audit.log",
+        "logSha256": "7e2109967a8ca09ba54f4449589ca2af7079260b7d524ce1ab88cec0e768813b"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.299,
+        "log": "tmp/duema-phase-1664/target9500.log",
+        "logSha256": "70c9fb84f12135e7a85c2511ee080bff5a461fdf15b875d4bbf07466aa2e3d53"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1664/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.424,
+        "log": "tmp/duema-phase-1664/invariants.log",
+        "logSha256": "8621f8d06d39d50974319e5a2ba14fdf71249eb989ea8edda1362dc52e884948"
+      }
+    },
+    "totalTestsPassed": 490,
+    "focusedTestsPassed": 126,
+    "relatedTestsPassed": 364,
+    "supplementalCasesIncludedInFinalFocused": true
+  },
+  "validationNotes": [
+    "最終の固有126件と関連364件の計490件が通過。別実行したBlocker常在付与2件は最終126件にも含まれるため二重加算しない。関連はセイバー319件、選択保護・ソウル・複数進化39件、ドラグイノセント2件、超次元展開4件。",
+    "公式画像と現行パーサーでチャイ・アイニーのK・ソウル表示を確認し、未登録だった元版の詳細全文にだけ補完。能力無視中でもK・ソウルの進化元として使えることを実測。既存登録定義9230件、他の詳細11826行は不変。",
+    "ペングカイザーは既存の複数セイバー処理を拡張し、解決時の完全なBlocker状態を参照。受け手が元々持つUnknownのセイバーとPhoenixの付与セイバーを併用でき、常在Blockerの投入順・一時付与・コピー・同時離脱・JSONを検証。",
+    "チャイのXX名判定は既存のバトルゾーンの名前取得を再利用し、効果を使った人ではなく実際の選択者が相手の場合だけ制限。攻撃・ブロックは許可し、対象の能力無視と元の保護能力の無視を区別。",
+    "公式QA36049とQA35620を実カードで再現。初回のGenmuを使うfixtureではカード総数の基準を追加前に取得していたため、追加後を基準に修正。修正後の全固有126件が通過。",
+    "今回3種類に未完了の固有検証はない。過去の一括npm test、既存長時間群、ユーザー保留の公式照合と登録済み裁定再現待ちは維持。push・公開・Netlify更新は行わない。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr01-v02",
+      "name": "ガイアール・カイザー",
+      "reason": "既存の勝利版と別名の本体。シールドを確認して墓地に置く任意置換と実際の同コストのハンターサイキック展開を、関連3枚の覚醒リンク・リンク解除まで含む4枚バッチで照合。"
+    },
+    {
+      "id": "dmr01-060",
+      "name": "ブーストグレンオー",
+      "reason": "登場時に現在パワーを比較する破壊、裏面の激竜王ガイアール・オウドラゴンの能力全文と物理3枚のリンクを照合。"
+    },
+    {
+      "id": "dmr01-062",
+      "name": "ドラゴニック・ピッピー",
+      "reason": "ハンティングと自ターン開始の覚醒リンクを実装し、3枚すべての裏面・解除を検証。"
+    },
+    {
+      "id": "dmx02-003",
+      "name": "スーパー・サイチェン・ピッピー",
+      "reason": "Hunterのセイバーと相手ターンに実際に捨てられた場合のガイアール展開。呼び出し先の3枚を先に全文対応し、部分登録をしない。"
+    }
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "initial-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1664-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 24.936,
+      "log": "tmp/duema-phase-1664/initial-focused.log"
+    },
+    {
+      "name": "final-edge-completion",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^A real continuous Blocker aura",
+        "tests/standard1664-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.875,
+      "log": "tmp/duema-phase-1664/final-edge-completion.log"
+    }
+  ]
+}
