@@ -292212,23 +292212,101 @@
       },
       "supportBatch": "phase-1649",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-028",
+      "name": "エンドブリンガー・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ティラノ・ドレイク",
+      "text": "このクリーチャーがクリーチャーを攻撃する時、そのクリーチャーを破壊する。(バトルは行われない)\nこのクリーチャーが攻撃された時、このクリーチャーを破壊する。(バトルは行われない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-028",
+      "limit": 4,
+      "g691AttackCreature": [
+        {
+          "op": "DestroyDefender1650"
+        }
+      ],
+      "g447Attacked": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "supportBatch": "phase-1650",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-057",
+      "name": "スープリンス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンにある自分のGRクリーチャーの数以下のコストを持つ相手のカードを１枚、バトルゾーンから選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-057",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "SoupTarget1650"
+        }
+      ],
+      "supportBatch": "phase-1650",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-009",
+      "name": "N・S・Y",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "サイバー・コマンド/美孔麗王国/スペシャルズ",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが「ビビッドロー」を持つカードなら、コストを支払わずに使ってもよい。そうしないなら、手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-009",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "NsyPeek1650"
+        }
+      ],
+      "supportBatch": "phase-1650",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1649,
+    "phase": 1650,
     "checkedAt": "2026-11-22",
-    "baseCount": 9179,
+    "baseCount": 9182,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9182,
+    "totalCount": 9185,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/32320/",
-      "https://dm.takaratomy.co.jp/rule/qa/32321/",
-      "https://dm.takaratomy.co.jp/rule/qa/31774/",
-      "https://dm.takaratomy.co.jp/rule/qa/31775/",
-      "https://dm.takaratomy.co.jp/rule/qa/31776/",
-      "https://dm.takaratomy.co.jp/rule/qa/39340/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35449/",
+      "https://dm.takaratomy.co.jp/rule/qa/38767/",
+      "https://dm.takaratomy.co.jp/rule/qa/40465/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -319196,6 +319274,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45930/",
           "https://dm.takaratomy.co.jp/rule/qa/46065/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36817/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1649,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9179,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9182,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/32320/",
+          "https://dm.takaratomy.co.jp/rule/qa/32321/",
+          "https://dm.takaratomy.co.jp/rule/qa/31774/",
+          "https://dm.takaratomy.co.jp/rule/qa/31775/",
+          "https://dm.takaratomy.co.jp/rule/qa/31776/",
+          "https://dm.takaratomy.co.jp/rule/qa/39340/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

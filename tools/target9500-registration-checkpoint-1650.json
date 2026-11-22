@@ -1,0 +1,133 @@
+{
+  "phase": 1650,
+  "checkedAt": "2026-11-22T08:48:11.220Z",
+  "baseline": "2e3d8196118cf5019522d5d0f0181c364d9c6181",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9182,
+  "currentNames": 9185,
+  "remainingNames": 315,
+  "added": [
+    {
+      "id": "dm20-028",
+      "name": "エンドブリンガー・ドラグーン"
+    },
+    {
+      "id": "dmrp10-057",
+      "name": "スープリンス"
+    },
+    {
+      "id": "dmrp16-009",
+      "name": "N・S・Y"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9182,
+    "uniqueNames": 9185,
+    "uniqueIds": 9185,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1650.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.474,
+      "log": "tmp/duema-phase-1650/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1650-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 27.579,
+      "log": "tmp/duema-phase-1650/final-focused.log",
+      "passed": 65,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=attack|Attack|attacked|Attacked|GR|Gr|grave|Grave|card|Card|vivid|Vivid|Kung|draw|Draw|peek|Peek",
+        "tests/standard579-effects.test.mjs",
+        "tests/standard581-effects.test.mjs",
+        "tests/standard691-effects.test.mjs",
+        "tests/standard688-effects.test.mjs",
+        "tests/standard714-effects.test.mjs",
+        "tests/standard801-effects.test.mjs",
+        "tests/standard1335-effects.test.mjs",
+        "tests/standard1450-effects.test.mjs",
+        "tests/standard1464-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.092,
+      "log": "tmp/duema-phase-1650/final-related.log",
+      "passed": 92,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.867,
+      "log": "tmp/duema-phase-1650/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.129,
+      "log": "tmp/duema-phase-1650/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.42,
+      "log": "tmp/duema-phase-1650/target9500.log"
+    }
+  },
+  "totalTestsPassed": 157,
+  "hashes": {
+    "dist/cards.json": "5db1dd0aaa92d255106f1d5d4ad7669db57bc9d91d06ff37b4385daf3eeb8134",
+    "dist/engine.js": "e4267edb07fa9504d3ba0913b7bffcc8fab90c78294a0b06dcaf6798f8b7d2d9",
+    "dist/six-photo-rules.js": "4d8a3975c896ca41a47a45b5af94ef6b30b1bc594a7778e1a26b22a350c13cf5",
+    "dist/online-compatibility.js": "adafffef231839f72881357ed97f22e3d95ef7711e5ec97dafa551e52284e697",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.166",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

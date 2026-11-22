@@ -33182,5 +33182,95 @@
         }
       }
     }
+  },
+  "dm20-028": {
+    "phase": 1650,
+    "faces": [
+      {
+        "name": "エンドブリンガー・ドラグーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがクリーチャーを攻撃する時、そのクリーチャーを破壊する。(バトルは行われない)\nこのクリーチャーが攻撃された時、このクリーチャーを破壊する。(バトルは行われない)",
+        "race": "ティラノ・ドレイク",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g691AttackCreature": [
+        {
+          "op": "DestroyDefender1650"
+        }
+      ],
+      "g447Attacked": [
+        {
+          "op": "SelfDestroy"
+        }
+      ]
+    }
+  },
+  "dmrp10-057": {
+    "phase": 1650,
+    "faces": [
+      {
+        "name": "スープリンス",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンにある自分のGRクリーチャーの数以下のコストを持つ相手のカードを１枚、バトルゾーンから選び、持ち主の墓地に置く。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        },
+        {
+          "op": "SoupTarget1650"
+        }
+      ]
+    }
+  },
+  "dmrp16-009": {
+    "phase": 1650,
+    "faces": [
+      {
+        "name": "N・S・Y",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが「ビビッドロー」を持つカードなら、コストを支払わずに使ってもよい。そうしないなら、手札に加える。",
+        "race": "サイバー・コマンド/美孔麗王国/スペシャルズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "NsyPeek1650"
+        }
+      ]
+    }
   }
 }
