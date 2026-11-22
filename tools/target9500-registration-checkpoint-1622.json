@@ -1,0 +1,129 @@
+{
+  "phase": 1622,
+  "checkedAt": "2026-11-22T03:50:08.208Z",
+  "baseline": "c9c9d1671c878e5f5607fe5ea53e494c43936011",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9098,
+  "currentNames": 9101,
+  "remainingNames": 399,
+  "added": [
+    {
+      "id": "dmr07-030",
+      "name": "早撃人形マグナム"
+    },
+    {
+      "id": "dmpcd02-a09",
+      "name": "鍛冶の行商"
+    },
+    {
+      "id": "dmr04-007",
+      "name": "ミセス・アクア"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9098,
+    "uniqueNames": 9101,
+    "uniqueIds": 9101,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1622.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.799,
+      "log": "tmp/duema-phase-1622/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1622-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.27,
+      "log": "tmp/duema-phase-1622/final-focused.log",
+      "passed": 40,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1163-effects.test.mjs",
+        "tests/standard601-effects.test.mjs",
+        "tests/standard1479-effects.test.mjs",
+        "tests/standard1618-effects.test.mjs",
+        "tests/standard728-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.364,
+      "log": "tmp/duema-phase-1622/final-related.log",
+      "passed": 89,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.54,
+      "log": "tmp/duema-phase-1622/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.876,
+      "log": "tmp/duema-phase-1622/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.711,
+      "log": "tmp/duema-phase-1622/target9500.log"
+    }
+  },
+  "totalTestsPassed": 129,
+  "hashes": {
+    "dist/cards.json": "8b349f65032221daff49a6197c46ef52b35896b2e67a22cf22660c7e257dcfd8",
+    "dist/engine.js": "0d0e8a876d65bd77200183a5564e1843c28d071cb9d5a8ec7b24a50d9b328fd3",
+    "dist/six-photo-rules.js": "740275b8566d9975f09d8afab39c8fb4afe06b9052fb2360e46b89102d3d9973",
+    "dist/online-compatibility.js": "f0722b8f60a4636c99e0f803eba435e01d7cce15988daed48f4b046d5efadfdd",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.138",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

@@ -5575,6 +5575,17 @@ export function createSixPhotoRules(api){
   ]}]);
   break;
  }
+ case'g34_LookSameCosts1622':{
+  const ids=look(s,{...t,n:t.n??3}),rows=own.deck.filter(y=>ids.includes(y.uid));
+  if(!rows.length)break;
+  const costs=rows.map(y=>new Set(faces(api.zoneCard(s,t.p,y,'deck')).map(c=>cost(c))));
+  const same=[...costs[0]].some(n=>costs.every(set=>set.has(n)));
+  if(same)choice(s,{...t,...deckPeek841(own,ids),ids},'確認したカードを公開し、すべて手札に加える？',[
+   opt('公開してすべて手札へ',true,rows.length>=own.deck.length?-1000:rows.length*12),skip()
+  ]);
+  else put(s,{...t,...deckPeek841(own,ids),op:'g34_Order',ids,rest:'top',g259OrderTop:true,ordered:[]});
+  break;
+ }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(!t.g467RequireLook&&t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
   if(t.g1164Miss&&ids.length&&!own.deck.some(y=>ids.includes(y.uid)&&matches(s,t.p,y,t.stages[0].filter)))
    t={...t,after:t.g1164Miss};
@@ -7882,6 +7893,11 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,opponent);
   break;
  }
+ case'g34_LookSameCosts1622':
+  if(v)put(s,{...t,op:'g34_LookPick',stage:0,chosen:t.ids,
+   stages:[{n:'all',to:'hand',reveal:true}],rest:'keep'});
+  else for(const uid of t.ids)release(s,t.p,uid);
+  break;
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
  case'g34_ManaDownUpTo1604':{
   const remaining=t.remaining??[0,1],chosen=t.chosen??[],selected=t.selected??[];
@@ -9468,6 +9484,14 @@ export function createSixPhotoRules(api){
    for(const watcher of creatures(s,1-p))if(!watcher.sealed&&effective(watcher,s).g598UnpaidBottom)
     queue(s,1-p,watcher,[{op:'ExactMove',to:'deck',owner:p,g403Refs:refs}]);
   }
+  // Watch actual mana taps, for either player, including this source's own free entry.
+  if(creature&&!y.sealed&&!options.paidMana)for(const owner of [s.active,1-s.active])
+   for(const watcher of creatures(s,owner)){
+    if(watcher.sealed||!card(watcher).g1622UnpaidEntryDestroy||!effective(watcher,s).g1622UnpaidEntryDestroy)continue;
+    queue(s,owner,watcher,[{op:'ExactMove',owner:p,to:'grave',filter:{creature:true},
+     g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0})),
+     followEvolution:'evolutionOnly',target:y.uid,targetIncarnation:y.incarnation||0}]);
+   }
   // Retain all linked parts so removing one God does not lose the watched unit (QA43748).
   if(creature)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed)continue;

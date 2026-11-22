@@ -289274,17 +289274,105 @@
       ],
       "supportBatch": "phase-1621",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-030",
+      "name": "早撃人形マグナム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "デスパペット/エイリアン",
+      "text": "スピードアタッカー\nいずれかのプレイヤーが、マナゾーンのカードをタップせずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-030",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1622UnpaidEntryDestroy": true,
+      "supportBatch": "phase-1622",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd02-a09",
+      "name": "鍛冶の行商",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビーストフォーク/サムライ",
+      "text": "このクリーチャーが出た時、自分の山札を見る。その中からクロスギアを１枚、相手に見せてもよい。その後、自分の山札をシャッフルし、そのクロスギアを山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a09",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "g1163TopAfterShuffle": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "deckTop",
+              "optional": true,
+              "reveal": true,
+              "g1081ConfirmEmpty": true,
+              "title": "シャッフル後に山札の上に置くクロスギアを1枚選ぶ（任意）",
+              "filter": {
+                "g201Gear": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1622",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-007",
+      "name": "ミセス・アクア",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から３枚を見る。それがすべて同じコストであれば、すべてのプレイヤーに見せてから自分の手札に加えてもよい。同じコストでなければ、好きな順序で山札の上に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-007",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "LookSameCosts1622",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-1622",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1621,
+    "phase": 1622,
     "checkedAt": "2026-11-22",
-    "baseCount": 9093,
-    "newEffectCards": 5,
+    "baseCount": 9098,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9098,
+    "totalCount": 9101,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36730/",
+      "https://dm.takaratomy.co.jp/rule/qa/48117/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36518/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -315768,6 +315856,20 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36903/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36904/",
           "https://dm.takaratomy.co.jp/rule/qa/43466/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1621,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9093,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9098,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
