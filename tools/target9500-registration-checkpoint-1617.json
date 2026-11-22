@@ -1,0 +1,131 @@
+{
+  "phase": 1617,
+  "checkedAt": "2026-11-22T02:56:39.630Z",
+  "baseline": "78985d1a86d9dde1f6ba00751fa3e1dd56abaa23",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9080,
+  "currentNames": 9083,
+  "remainingNames": 417,
+  "added": [
+    {
+      "id": "dmx11-050",
+      "name": "真実の大神秘 星飯"
+    },
+    {
+      "id": "dm32-071",
+      "name": "白騎士の聖霊王ウルファス"
+    },
+    {
+      "id": "dm32-017",
+      "name": "超電磁マクスウェル Z"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9080,
+    "uniqueNames": 9083,
+    "uniqueIds": 9083,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1617.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.365,
+      "log": "tmp/duema-phase-1617/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1617-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.742,
+      "log": "tmp/duema-phase-1617/final-focused.log",
+      "passed": 32,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1362-effects.test.mjs",
+        "tests/standard1239-effects.test.mjs",
+        "tests/standard1363-effects.test.mjs",
+        "tests/standard614-effects.test.mjs",
+        "tests/standard595-effects.test.mjs",
+        "tests/standard1616-effects.test.mjs",
+        "tests/standard1614-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.228,
+      "log": "tmp/duema-phase-1617/final-related.log",
+      "passed": 111,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 27.708,
+      "log": "tmp/duema-phase-1617/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.889,
+      "log": "tmp/duema-phase-1617/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.383,
+      "log": "tmp/duema-phase-1617/target9500.log"
+    }
+  },
+  "totalTestsPassed": 143,
+  "hashes": {
+    "dist/cards.json": "637d09131199bd56af71e845d38f41bc254555cf7c23c15a5afe0882f37bee56",
+    "dist/engine.js": "30838285b560a66125bd0fcc5ca4f32cb823e38e062040d112a53de6f52c6c97",
+    "dist/six-photo-rules.js": "a178c7a11aeea47a7e6725e0caed93691b088f5977f0632734091e8daebe5e6c",
+    "dist/online-compatibility.js": "f8af48b854c4309f89efc3de0f26b8043ea96ba82cfeed3862fe167474e93178",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.133",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
