@@ -1,0 +1,176 @@
+{
+  "phase": 1629,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9119,
+  "target": 9500,
+  "description": "光を持たないエンジェル・コマンドの双方攻撃からの同名一括破壊、自分のターンの最初のタップ時だけ行う盾墓地化とアンタップ、攻撃時の手札破棄を既存処理で実装・検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36639/",
+    "https://dm.takaratomy.co.jp/rule/qa/39424/"
+  ],
+  "cards": [
+    {
+      "id": "dmr06-012",
+      "name": "偽りの星夜 ライス・シャワー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-012",
+      "faces": [
+        {
+          "name": "偽りの星夜 ライス・シャワー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "光以外のエンジェル・コマンドが攻撃する時、自分のシールドをひとつ自分の墓地に置いてもよい。そうした場合、相手のクリーチャー１体と、そのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "both",
+          "filter": {
+            "creature": true,
+            "race": "エンジェル・コマンド",
+            "notColor": "光"
+          },
+          "defs": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "ChainDestroy838"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "eaa8e1159ee9658b805f2d18210651ca1576588aaa7cf7797c47d48e0d27c143",
+        "facesMatched": true,
+        "imageSha256": "c4ca48729ea171b23705267bb5153fee447253bfb3e6fa0e61ba0d2e2d5c4c39",
+        "imageBytes": 87835,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の正規名・文明・コスト・パワー・種族・マナ数・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMR-06 エピソード2 ビクトリー・ラッシュ",
+        "プロモ限定カード 11期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-012",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmx11-022",
+      "name": "偽りの星夜 ジューン・ブライド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-022",
+      "faces": [
+        {
+          "name": "偽りの星夜 ジューン・ブライド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札から２枚選んで捨てる。\nこのクリーチャーが、自分のターン中はじめてタップされた時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ],
+        "g219FirstTap": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1629OwnTurn": true
+            },
+            "defs": [
+              {
+                "op": "ShieldGrave",
+                "optional": true,
+                "then": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "ee1643d4d776810b0643e3da28fd8d1481ae676118d02144f04c6a90a5eace25",
+        "facesMatched": true,
+        "imageSha256": "d67283b67e8221e7e0503e2d912945ae890d8f76ba11f57ad52e6bd5de2affdb",
+        "imageBytes": 167892,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の正規名・文明・コスト・パワー・種族・マナ数・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMX-11 大決戦オールスター12"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-022",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dmx22a-003",
+      "name": "告白の堕天 ゼクシィ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-003",
+      "reason": "盾を好きな数墓地に置いた結果に応じる相手選択の破壊数は、束のカード枚数ではなく盾の個数で数える必要がある。移動が置換された場合の結果参照と、同時に複数の盾を処理した時の一括選択を検証するまで登録しない。公式画像・再録照合も未実施。"
+    }
+  ],
+  "nextCandidates": [
+    "同時移動・再録を確認して能力全体を実装できる未対応3〜5種類を選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr06-012": 4,
+      "dmx11-022": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36639/",
+      "checkedAt": "2026-11-22",
+      "sha256": "2f6af37bc714b4dd4554c6f8b33e844c34a5df92e732de1b862c51a66c88b027"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39424/",
+      "checkedAt": "2026-11-22",
+      "sha256": "b911dc345d12b1fbe0aef34860b0a8d363f4e741dbebb7d8d2cb254b411f424c"
+    }
+  ]
+}

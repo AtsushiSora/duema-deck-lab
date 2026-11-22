@@ -658,6 +658,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1629OwnTurn)return s.active===p;
   if(f.g1564Opponent)return s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&matches(s,1-p,x,f.g1564Opponent));
   if(f.g1486ShieldForce){const x=s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation));return !!x&&!!api.findShield(s.players[p],x.g35ShieldForce);}
   if(f.g1485BattleName){const r=f.g1485BattleName,found=s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&battleNames676(s,x).includes(exactName(r.name)));return r.absent?!found:found;}

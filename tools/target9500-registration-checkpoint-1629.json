@@ -1,0 +1,124 @@
+{
+  "phase": 1629,
+  "checkedAt": "2026-11-22T04:42:32.372Z",
+  "baseline": "fb01209bbbefda7b324f000966cb7aa60fa71924",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9119,
+  "currentNames": 9121,
+  "remainingNames": 379,
+  "added": [
+    {
+      "id": "dmr06-012",
+      "name": "偽りの星夜 ライス・シャワー"
+    },
+    {
+      "id": "dmx11-022",
+      "name": "偽りの星夜 ジューン・ブライド"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9119,
+    "uniqueNames": 9121,
+    "uniqueIds": 9121,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1629.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.301,
+      "log": "tmp/duema-phase-1629/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1629-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.389,
+      "log": "tmp/duema-phase-1629/final-focused.log",
+      "passed": 29,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard219-effects.test.mjs",
+        "tests/standard838-effects.test.mjs",
+        "tests/standard1081-effects.test.mjs",
+        "tests/standard1628-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.701,
+      "log": "tmp/duema-phase-1629/final-related.log",
+      "passed": 84,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.182,
+      "log": "tmp/duema-phase-1629/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.28,
+      "log": "tmp/duema-phase-1629/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.314,
+      "log": "tmp/duema-phase-1629/target9500.log"
+    }
+  },
+  "totalTestsPassed": 113,
+  "hashes": {
+    "dist/cards.json": "b10a565a355350ac67483af56a054b06f7bbfa1447122a3029f2f661c8bacf0a",
+    "dist/engine.js": "97239dd952d794fb682964f099cf00a68579527bf5ea2fbd4453f618463036ac",
+    "dist/six-photo-rules.js": "42f9db5a69049139d852272c7e37d245522117ed9424fb4b33fdaa276639052d",
+    "dist/online-compatibility.js": "f1748c785d962e2a9042c476c154b15bc139b91506716e2a9cd4a4ebfae7e3a4",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.145",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

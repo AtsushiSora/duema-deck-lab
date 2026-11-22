@@ -30463,5 +30463,94 @@
       "noAttack": true,
       "g1628GraveStartShield": true
     }
+  },
+  "dmr06-012": {
+    "phase": 1629,
+    "faces": [
+      {
+        "name": "偽りの星夜 ライス・シャワー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "光以外のエンジェル・コマンドが攻撃する時、自分のシールドをひとつ自分の墓地に置いてもよい。そうした場合、相手のクリーチャー１体と、そのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "both",
+        "filter": {
+          "creature": true,
+          "race": "エンジェル・コマンド",
+          "notColor": "光"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "ChainDestroy838"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmx11-022": {
+    "phase": 1629,
+    "faces": [
+      {
+        "name": "偽りの星夜 ジューン・ブライド",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札から２枚選んで捨てる。\nこのクリーチャーが、自分のターン中はじめてタップされた時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "g219FirstTap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1629OwnTurn": true
+          },
+          "defs": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

@@ -289993,23 +289993,102 @@
       ],
       "supportBatch": "phase-1628",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-012",
+      "name": "偽りの星夜 ライス・シャワー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "光以外のエンジェル・コマンドが攻撃する時、自分のシールドをひとつ自分の墓地に置いてもよい。そうした場合、相手のクリーチャー１体と、そのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-012",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "both",
+        "filter": {
+          "creature": true,
+          "race": "エンジェル・コマンド",
+          "notColor": "光"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "ChainDestroy838"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1629",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-022",
+      "name": "偽りの星夜 ジューン・ブライド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "このクリーチャーが攻撃する時、相手は自身の手札から２枚選んで捨てる。\nこのクリーチャーが、自分のターン中はじめてタップされた時、自分のシールドをひとつ墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-022",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "g219FirstTap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1629OwnTurn": true
+          },
+          "defs": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1629",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1628,
+    "phase": 1629,
     "checkedAt": "2026-11-22",
-    "baseCount": 9116,
-    "newEffectCards": 3,
+    "baseCount": 9119,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9119,
+    "totalCount": 9121,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36413/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37284/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37285/",
-      "https://dm.takaratomy.co.jp/rule/qa/33476/",
-      "https://dm.takaratomy.co.jp/rule/qa/39424/",
-      "https://dm.takaratomy.co.jp/rule/qa/31771/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36639/",
+      "https://dm.takaratomy.co.jp/rule/qa/39424/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316610,6 +316689,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/39422/",
           "https://dm.takaratomy.co.jp/rule/qa/39423/",
           "https://dm.takaratomy.co.jp/rule/qa/39424/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1628,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9116,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9119,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36413/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37284/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37285/",
+          "https://dm.takaratomy.co.jp/rule/qa/33476/",
+          "https://dm.takaratomy.co.jp/rule/qa/39424/",
+          "https://dm.takaratomy.co.jp/rule/qa/31771/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
