@@ -1230,7 +1230,7 @@ export function createSixPhotoRules(api){
   const c=card(x);
   return !x.faceDown&&c.type==='creature'&&t.g960DeathNames.includes(exactName(creatureFaceName(c)));
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1633ExtraOrigins?.includes(origin)||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(origin!=='battle'||!t.g1654CreatureOrMana||api.isCreature(s,x))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1633ExtraOrigins?.includes(origin)||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.g1121RepeatTarget&&t.selected.includes(x.uid))return -20;
@@ -4666,6 +4666,7 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_TakuyaPenalty1654':{start(s,{...t,p:t.affected,controller:t.controller??t.p},[{op:'Select',zones:['battle','mana'],to:'grave',n:1,g187OwnPick:true,g1654CreatureOrMana:true,title:'墓地に置く自分のクリーチャー1体かマナ1枚を選ぶ'}]);break;}
  case'g34_ManaArrival1653':{const p=t.affected;start(s,{...t,p,controller:t.controller??t.p},[{op:'Select',origin:'mana',to:t.mode==='jet'?'deck':'grave',n:1,g187OwnPick:true,title:t.mode==='jet'?'山札の下に置く自分のマナを1枚選ぶ':'墓地に置く自分のマナを1枚選ぶ'}]);break;}
  case'g34_Prison1652':{
   const rows=targetOptions(s,t.p,creatures(s,1-t.p).filter(y=>!y.sealed));
@@ -8640,6 +8641,10 @@ export function createSixPhotoRules(api){
   }
  }
  const sourceDefs=(s,t,defs)=>start(s,t,defs);
+ function secondManaPenalty1654(s,events){
+  for(const {p,ordinal} of events)if(ordinal>=2)for(const source of creatures(s,1-p))
+   if(!source.sealed&&!source.faceDown&&effective(source,s).g1654SecondManaPenalty)send(s,1-p,source,'TakuyaPenalty1654',{affected:p,controller:1-p});
+ }
  function manaWatch1653(s,events){
   for(const owner of[s.active,1-s.active])for(const source of s.players[owner].battle){
    if(source.sealed||source.faceDown||!api.isCreature(s,source))continue;const mode=effective(source,s).g1653ManaWatch;if(!mode)continue;
@@ -9307,11 +9312,13 @@ export function createSixPhotoRules(api){
   if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded1653(s,p,cards,origins){const events=cards.flatMap((x,i)=>{const o=origins?.[i];return o?.zone&&!(o.zone==='mana'&&o.p===p)?[{...o,destination:p,cardOwner:x.cardOwner??o.p??p}]:[];});if(s.leaving&&s.g20LeavingUids)(s.leaving.g1653ManaArrivals??=[]).push(...events);else manaWatch1653(s,events);},
- flushMana1653(s,batch){manaWatch1653(s,batch.g1653ManaArrivals||[]);},
+ flushMana1653(s,batch){manaWatch1653(s,batch.g1653ManaArrivals||[]);secondManaPenalty1654(s,batch.g1654ManaArrivals||[]);},
  manaAdded449(s,p,cards){
   if(s.g1205ManaPlacements?.turn!==s.turn)s.g1205ManaPlacements={turn:s.turn,counts:[0,0]};
   const counts=s.g1205ManaPlacements.counts,before=counts[p];
   counts[p]+=cards.length;
+  const events1654=cards.map((_,i)=>({p,ordinal:before+i+1}));
+  if(s.g20LeavingUids&&s.leaving)(s.leaving.g1654ManaArrivals??=[]).push(...events1654);else secondManaPenalty1654(s,events1654);
   if(before<2&&counts[p]>=2){
    // Zone-entry triggers see the board after the entire simultaneous move (2026-07-09 ruling).
    if(s.g20LeavingUids&&s.leaving){
@@ -10346,9 +10353,11 @@ export function createSixPhotoRules(api){
    const victimRace=String(victim.race||'');
    const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
    if((!watcher.watch.g1518NonGR||self||!card(victim.cardId).gr)&&(!watcher.watch.g1469Blocker||victim.g1469Blocker)&&(!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
-    const defs=watcher.watch.defs.map(d=>{
+    if(watcher.watch.defs.some(d=>d.g1654VictimCostPlusOne)&&!Number.isFinite(victim.g1145Cost))continue;
+   const defs=watcher.watch.defs.map(d=>{
      if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
      if(d.g1192VictimPower)return {...d,filter:{belowPower:victim.g1192Power,g199Power:true}};
+     if(d.g1654VictimCostPlusOne)return {...d,filter:{...d.filter,exactCost:victim.g1145Cost+1}};
      if(d.g1634VictimCost)return {...d,filter:{...d.filter,belowCost:victim.g1145Cost}};
      if(d.op==='StackDestroyed1130')return {...d,victim:{uid:x.uid,serial:(x.zoneSerial||0)+1}};
      return d;

@@ -1,0 +1,396 @@
+{
+  "phase": 1654,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9194,
+  "target": 9500,
+  "description": "マナ2枚目以降の相手によるクリーチャーまたはマナ選択、破壊されたクリーチャーのコスト+1の闇の墓地展開と自己同時破壊時の制約、次元院3種類の強制サイキック展開を既存処理で実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43051/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+    "https://dm.takaratomy.co.jp/rule/qa/40903/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37753/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-044",
+      "name": "破壊兵タクヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-044",
+      "faces": [
+        {
+          "name": "破壊兵タクヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手がこのターンで２枚目以降のカードをマナゾーンに置いた時、相手は自身のクリーチャー１体または自身のマナゾーンにあるカードを１枚選び、墓地に置く。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1654SecondManaPenalty": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "06a3ef1f22d0b29e14c849f6430987b39fc127a546468d1e9a5bbf40ca356aa5",
+        "facesMatched": true,
+        "imageSha256": "2872db1c7e5478bddbeade26d725a3ac5b9fa4ba4f8bffc670477a818a19b2a4",
+        "imageBytes": 135395,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名前、文明、コスト、種族、パワー、マナ1と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM23-RP1 アビス・レボリューション 第1弾 「双竜戦記」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-044",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp04m-s04",
+      "name": "凶鬼07号 ジャバランガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s04",
+      "faces": [
+        {
+          "name": "凶鬼07号 ジャバランガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、それよりコストが１だけ大きい闇のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "マフィ・ギャング/デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "g236GraveDeploy": true,
+              "filter": {
+                "creature": true,
+                "color": "闇"
+              },
+              "g1654VictimCostPlusOne": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "3daec3a7fe5f13b2f720e42e4d369fbeb77c3d3908aa987775c99abd03d2d1b6",
+        "facesMatched": true,
+        "imageSha256": "a224b6ddb6ab807ffe86c0f2b5537894cf5c58c71ad803c0d60d455999b2ba2d",
+        "imageBytes": 166784,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名前、文明、コスト、種族、パワー、マナ1と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-04 拡張パック新4弾 誕ジョー！マスター・ドルスザク！！～無月の魔凰～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s04",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm38-041",
+      "name": "次元院のヤヌス・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-041",
+      "faces": [
+        {
+          "name": "次元院のヤヌス・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーはブロックされない。\nこのクリーチャーが破壊された時、コスト５以下の水または火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "アースイーター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5,
+              "any": [
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "title": "超次元ゾーンからコスト5以下の水または火のサイキックを1体出す",
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "ce7c51d9d73a75adc7005cf9e5919f7f946547e4972ad403c6a9e8a136d1d1b6",
+        "facesMatched": true,
+        "imageSha256": "56ac741fb2fa56bcbc2bda5aacf682c872884b26e913bb92c29e4f7f4297620b",
+        "imageBytes": 113420,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名前、文明、コスト、種族、パワー、マナ1と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM-38 覚醒編 第3弾 超竜VS悪魔 (エンジェリック・ウォーズ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-041",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm38-049",
+      "name": "次元院の研究員ピーカプ・ヤヌス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-049",
+      "faces": [
+        {
+          "name": "次元院の研究員ピーカプ・ヤヌス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "パワーアタッカー+2000(攻撃中、このクリーチャーのパワーは+2000される)\nこのクリーチャーが破壊された時、コスト５以下の水または火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "マシン・イーター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 2000,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5,
+              "any": [
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "title": "超次元ゾーンからコスト5以下の水または火のサイキックを1体出す",
+            "g1104PsychicFaces": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "c31ec2d851e6d606e00a1d8d3278f0b6ab1fda90f8d813c89d37caa20d03e165",
+        "facesMatched": true,
+        "imageSha256": "b65cd8f68436a8fb307b7f3490e2c42fbe7c0ba2820e713b5b8e5aadc5997ce3",
+        "imageBytes": 118599,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名前、文明、コスト、種族、パワー、マナ1と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM-38 覚醒編 第3弾 超竜VS悪魔 (エンジェリック・ウォーズ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-049",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm38-037",
+      "name": "次元院の霊騎アスファル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-037",
+      "faces": [
+        {
+          "name": "次元院の霊騎アスファル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、コスト５以下の光または闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "アーク・セラフィム",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "extra",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "g1085Psychic": true,
+              "max": 5,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "title": "超次元ゾーンからコスト5以下の光または闇のサイキックを1体出す",
+            "g1104PsychicFaces": true
+          }
+        ],
+        "noPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "9263f023b11676bde8165c4f8c477f9d56887d851918dfd7ae01fb99243788b7",
+        "facesMatched": true,
+        "imageSha256": "b9d46f371688db0607620e23ab9494866f8fce70e4f4796d8576d1dd34205b20",
+        "imageBytes": 116475,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名前、文明、コスト、種族、パワー、マナ1と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM-38 覚醒編 第3弾 超竜VS悪魔 (エンジェリック・ウォーズ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-037",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dm28-006",
+      "name": "黒神龍アマデウス",
+      "reason": "同名判定の旧QA39756/39757と現行総合ルール202.7のツインパクト片側選択の関係、および常在自壊の割込みタイミングが未解決。部分実装せず次元院3種類へ切替。公式の能力全文・基本情報は確認したが未登録。",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/39756/",
+        "https://dm.takaratomy.co.jp/rule/qa/39757/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/35648/"
+      ]
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-044": 4,
+      "dmrp04m-s04": 4,
+      "dm38-041": 4,
+      "dm38-049": 4,
+      "dm38-037": 4
+    }
+  },
+  "unavailableHistoricalRulings": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43050/",
+      "result": "公式URLが404。検索に残る質問を根拠に完了扱いしない。移動後に場に残る誘発元だけを参照する仕様は総合ルール603.5と固有テストで確認する。"
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43051/",
+      "checkedAt": "2026-11-22",
+      "sha256": "0ef2440807d4ef4fc80c9b63b0d1febfef3d114bb862bf704e0a6af2f7deefb6"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+      "checkedAt": "2026-11-22",
+      "sha256": "a858561eea4a2175e7bbeba9bb13d0e7685468d3564d62cccd686ba97e9c6f84"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40903/",
+      "checkedAt": "2026-11-22",
+      "sha256": "de6ce13c99b34c4441b8b70f98ebd82a4e8e6921e55c746b2ab27717421fbf57"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+      "checkedAt": "2026-11-22",
+      "sha256": "7aadb965e6e0036f376ad380f737e13e31f3e007fb0dd0887d00ccb90b27b2d1"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37753/",
+      "checkedAt": "2026-11-22",
+      "sha256": "ef83baa3a0ea39dd188dc07ebd8cf319502a18504bfc25c936694cc8868239eb"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+      "checkedAt": "2026-11-22",
+      "sections": [
+        "603.5c",
+        "603.5d",
+        "805.4"
+      ],
+      "result": "同時破壊時に離れるジャバランガは自身の破壊1回のみを参照する。サイキックは超次元から効果で出て、バトル以外への移動後は超次元へ戻る。",
+      "reusedFromPhase": 1653
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm38-015",
+      "name": "次元院のディメンジョン・ホーン",
+      "reason": "タップ能力とマナ枚数によるサイキック合計コスト展開を既存処理で再現できるか確認。"
+    },
+    {
+      "id": "dm28-009",
+      "name": "緑神龍ガムス・謙信",
+      "reason": "侍流ジェネレートと破壊時のクロスギア復帰を通常の登場・墓地展開処理で照合。"
+    },
+    {
+      "id": "promoy7-023",
+      "name": "魔光大帝ガイウス",
+      "reason": "既存のナイト破壊監視と山札の呪文任意サーチを利用できる候補。"
+    }
+  ]
+}

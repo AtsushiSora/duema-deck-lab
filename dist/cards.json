@@ -292516,22 +292516,203 @@
       "g1653ManaWatch": "azami",
       "supportBatch": "phase-1653",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-044",
+      "name": "破壊兵タクヤ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ヒューマノイド",
+      "text": "相手がこのターンで２枚目以降のカードをマナゾーンに置いた時、相手は自身のクリーチャー１体または自身のマナゾーンにあるカードを１枚選び、墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-044",
+      "limit": 4,
+      "g1654SecondManaPenalty": true,
+      "supportBatch": "phase-1654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-s04",
+      "name": "凶鬼07号 ジャバランガ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "マフィ・ギャング/デーモン・コマンド",
+      "text": "W・ブレイカー\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、それよりコストが１だけ大きい闇のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s04",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "g1654VictimCostPlusOne": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-041",
+      "name": "次元院のヤヌス・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アースイーター",
+      "text": "このクリーチャーはブロックされない。\nこのクリーチャーが破壊された時、コスト５以下の水または火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-041",
+      "limit": 4,
+      "unblockable": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "title": "超次元ゾーンからコスト5以下の水または火のサイキックを1体出す",
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-049",
+      "name": "次元院の研究員ピーカプ・ヤヌス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "マシン・イーター",
+      "text": "パワーアタッカー+2000(攻撃中、このクリーチャーのパワーは+2000される)\nこのクリーチャーが破壊された時、コスト５以下の水または火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-049",
+      "limit": 4,
+      "attackBonus": 2000,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "title": "超次元ゾーンからコスト5以下の水または火のサイキックを1体出す",
+          "g1104PsychicFaces": true
+        }
+      ],
+      "supportBatch": "phase-1654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-037",
+      "name": "次元院の霊騎アスファル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1500,
+      "race": "アーク・セラフィム",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、コスト５以下の光または闇のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-037",
+      "limit": 4,
+      "blocker": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "title": "超次元ゾーンからコスト5以下の光または闇のサイキックを1体出す",
+          "g1104PsychicFaces": true
+        }
+      ],
+      "noPlayerAttack": true,
+      "supportBatch": "phase-1654",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1653,
+    "phase": 1654,
     "checkedAt": "2026-11-22",
-    "baseCount": 9191,
-    "newEffectCards": 3,
+    "baseCount": 9194,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9194,
+    "totalCount": 9199,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36254/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36255/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36256/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36257/",
-      "https://dm.takaratomy.co.jp/rule/qa/31688/"
+      "https://dm.takaratomy.co.jp/rule/qa/43051/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+      "https://dm.takaratomy.co.jp/rule/qa/40903/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36374/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37753/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -319576,6 +319757,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
           "https://dm.takaratomy.co.jp/rule/qa/31611/",
           "https://dm.takaratomy.co.jp/rule/qa/40461/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1653,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9191,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9194,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36254/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36255/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36256/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36257/",
+          "https://dm.takaratomy.co.jp/rule/qa/31688/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
