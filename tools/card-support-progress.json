@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-21",
+  "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
   "supportedNames": 9070,
   "pendingNames": 2755,
@@ -524579,6 +524579,32 @@
         "墓地召喚・裏向きマナ・同一アカウントの同時入室競合・遅延通信のケースは今回の実機試験に含めない。ローカル検証結果と区別。",
         "一括npm testの過去の中断・合否未確認と、ユーザーが後回しにした裁定・再録2件は維持。"
       ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
+    },
+    "latestOnlineBroadReview": {
+      "artifact": "tools/online-broad-review.json",
+      "checkedAt": "2026-11-22T00:08:47.218Z",
+      "baseCommit": "f2be4db6c99794c41ca93ab511d6836d8a2b49d2",
+      "status": "broad-review-complete-one-confirmed-open-defect",
+      "productCodeChanged": false,
+      "passedTests": 441,
+      "additionalPublicApiCasesPassed": 4,
+      "diagnosticReproductions": 2,
+      "confirmedOpenFindings": [
+        {
+          "id": "online-resignation-stale-consent",
+          "severity": "medium",
+          "title": "投了確認がアカウント切替で無効化されず、新しいアカウントを投了させる"
+        }
+      ],
+      "incompleteRuns": [],
+      "uniqueNames": 9070,
+      "added": 0,
+      "next": "確認を開いたUIDとルームを保持し、変更時に閉じる。確定時も現在のコンテキストを照合し、古い確認を拒否する。再現ケースを修正後の期待動作の回帰テストへ変換する。",
       "publication": {
         "pushed": false,
         "deployed": false,

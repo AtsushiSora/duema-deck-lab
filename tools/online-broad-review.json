@@ -1,0 +1,323 @@
+{
+  "checkedAt": "2026-11-22T00:08:47.218Z",
+  "clientDate": "2026-11-22",
+  "baseCommit": "f2be4db6c99794c41ca93ab511d6836d8a2b49d2",
+  "status": "broad-review-complete-one-confirmed-open-defect",
+  "scope": "友達対戦の認証・通信・同時操作・支払い・情報公開、アカウント保存・取り込み・履歴、手動対戦と画面回転・配置、実CPUワーカーを分割検証。",
+  "productCodeChanged": false,
+  "findings": [
+    {
+      "id": "online-resignation-stale-consent",
+      "severity": "medium",
+      "status": "confirmed-open",
+      "title": "投了確認がアカウント切替で無効化されず、新しいアカウントを投了させる",
+      "locations": [
+        "dist/app.js:907",
+        "dist/app.js:1068",
+        "dist/app.js:1069"
+      ],
+      "reproduction": [
+        "ホストAで対戦メニューから投了確認を開く。",
+        "別タブ等からのログアウト・ログイン通知として、アカウントをBへ切り替える。Bは同じ対戦の参加者。",
+        "Bの盤面が読み込まれた後も、Aが開いた投了確認が残る。",
+        "その古い確認の投了するを押すと、Bの認証で投了が送信され、Bが負ける。"
+      ],
+      "expected": "アカウントまたは対象ルームが変わった時点で確認を閉じる。古い確認からは対戦を変更できない。",
+      "actual": [
+        {
+          "id": "stale-resign-confirmation",
+          "confirmed": true,
+          "before": {
+            "uid": "u1",
+            "seat": 0
+          },
+          "after": {
+            "uid": "u2",
+            "seat": 1,
+            "winner": 0,
+            "reason": "友達が投了しました"
+          },
+          "evidence": "前のアカウントが開いた投了確認が残り、切替後のアカウントが投了する。"
+        },
+        {
+          "id": "stale-resign-confirmation",
+          "variant": "sign-out",
+          "confirmed": true,
+          "evidence": "ログアウト後も投了確認だけが開いたまま残る。"
+        }
+      ],
+      "rootCause": "UID変更時に閉じるのはaccountDialogまたはonlineDialogのみ。投了確認は通常のshowDialogで開かれ、その2つに紐付かない。実行時も確認を開いたUID・ルームを検証せず現在のonlineClient.resignを呼ぶ。",
+      "impact": "別タブでアカウントを切り替えた場合、切替前の確認が切替後の対戦操作として残る。",
+      "scope": "実アプリVM、認証監視通知、HTTPハンドラ、暗号化保存を用いた隔離ローカル再現。本番アカウントやルームの状態は変更していない。",
+      "workaround": "アカウントを切り替える前に投了確認を閉じる。",
+      "nextFix": "確認を開いたUIDとルームを保持し、変更時に閉じる。確定時も現在のコンテキストを照合し、古い確認を拒否する。再現ケースを修正後の期待動作の回帰テストへ変換する。"
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "accounts-storage",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/account-ios.test.mjs",
+          "tests/account-app.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs",
+          "tests/app-updates.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.206,
+        "log": "tmp/duema-wide-review/accounts-storage.log",
+        "status": "passed",
+        "passed": 75,
+        "failed": 0,
+        "sha256": "c28c02bdb2338bd083a31a95eb5ca1d98d30461233871369bef1745c48a6ccda"
+      },
+      {
+        "name": "online-ui-client",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.58,
+        "log": "tmp/duema-wide-review/online-ui-client.log",
+        "status": "passed",
+        "passed": 120,
+        "failed": 0,
+        "sha256": "76c933c57b95f9da91a2f2f342e932adb92bd1f5a2c283b236dc2d7c036ce180"
+      },
+      {
+        "name": "online-protocol",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(room storage|creating|self-play|a waiting|two accounts|the server|a repeated|concurrent|resignation|HTTP |Firestore |negative infinity|public online|online |Murder |QQ |Viride online choices|Golgy private|historical |Advance |an account session|only the mana|a face-down mana payment)",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.893,
+        "log": "tmp/duema-wide-review/online-protocol.log",
+        "status": "passed",
+        "passed": 42,
+        "failed": 0,
+        "sha256": "3e157de7e6acb8bf967d17ea79b7c7286e930c421da257b8e4ada0dd864c182f"
+      },
+      {
+        "name": "local-play-storage",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/board-fit.test.mjs",
+          "tests/local-tournament.test.mjs",
+          "tests/battle-controls.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.842,
+        "log": "tmp/duema-wide-review/local-play-storage.log",
+        "status": "passed",
+        "passed": 88,
+        "failed": 0,
+        "sha256": "3231bfa68e55bfb0cec10c5fef68cf52ceff3e71fbc1b9972d12672a356da52b"
+      },
+      {
+        "name": "manual-and-layout",
+        "command": [
+          "node",
+          "--test",
+          "tests/manual-app.test.mjs",
+          "tests/battle-zoom.test.mjs",
+          "tests/turn-count.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.133,
+        "log": "tmp/duema-wide-review/manual-and-layout.log",
+        "status": "passed",
+        "passed": 106,
+        "failed": 0,
+        "sha256": "b71710b0fb53a0b6b5402e5cbe4c01421314de66f8834eae53d8175b0a118664"
+      },
+      {
+        "name": "real-workers",
+        "command": [
+          "node",
+          "--test",
+          "tests/ai-decision.test.mjs",
+          "tests/worker-batch.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 265.027,
+        "log": "tmp/duema-wide-review/real-workers.log",
+        "status": "passed",
+        "passed": 10,
+        "failed": 0,
+        "sha256": "ff6ab323832b65be4943d6d5de43f842676201862984dfcd6173e52e81cbf078"
+      }
+    ],
+    "validation": [
+      {
+        "name": "diagnostic-final",
+        "command": [
+          "node",
+          "tools/review-online-session-confirmation.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.789,
+        "log": "tmp/duema-wide-review/diagnostic-final.log",
+        "sha256": "c18e5a27ab77224d35d8db1beb3cf8f9053ffd12ab4553c9826a3298009521fb"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.629,
+        "log": "tmp/duema-wide-review/check.log",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.852,
+        "log": "tmp/duema-wide-review/audit.log",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "totalDistinctTestsPassed": 441,
+    "partialPassedNotIncluded": 0,
+    "uniqueTestFiles": 22,
+    "incompleteRuns": [],
+    "diagnosticReproductions": 2,
+    "diagnosticMeaning": "合格は不具合の再現を確認したという意味。修正後の期待動作ではない。",
+    "reproduce": "node tools/review-online-session-confirmation.mjs",
+    "initialDiagnostic": {
+      "name": "diagnostic",
+      "command": [
+        "node",
+        "tmp/duema-wide-review/diagnose.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.65,
+      "log": "tmp/duema-wide-review/diagnostic.log",
+      "note": "最終版は実際のログアウト→別アカウントログインの通知順でも同じ結果を再現。診断は不具合を確認するもので、修正済みの合格ではない。"
+    },
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570
+  },
+  "publicApiChecks": {
+    "release": {
+      "version": "0.722.4",
+      "engineVersion": "0.602.129",
+      "aiVersion": "2.3.437"
+    },
+    "negativeRequests": [
+      {
+        "id": "anonymous",
+        "status": 401,
+        "error": "auth/required",
+        "passed": true,
+        "rulesHash": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+      },
+      {
+        "id": "invalid-token",
+        "status": 401,
+        "error": "auth/invalid",
+        "passed": true,
+        "rulesHash": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+      },
+      {
+        "id": "cross-origin",
+        "status": 403,
+        "error": "origin",
+        "passed": true,
+        "rulesHash": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+      },
+      {
+        "id": "unsupported-method",
+        "status": 405,
+        "error": "method",
+        "passed": true,
+        "rulesHash": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+      }
+    ],
+    "productionRoomsModified": false,
+    "deployed": false,
+    "additionalNegativeCasesPassed": 4,
+    "notIncludedInNodeTestCount": true
+  },
+  "workerCoverage": {
+    "completeMatchViaWorker": true,
+    "batchContract": "42試合の進捗・先後・シード・集計と基準結果を確認。別途、実AIワーカーの1試合を80個のカードIDを保持して勝敗まで確認。"
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey",
+    "invariants": {
+      "baseline": "4801e7b369aca914bf44d719ceede4c6d589df09",
+      "target": 9500,
+      "originalDefinitionsUnchanged": 9043,
+      "added": 27,
+      "uniqueNames": 9070,
+      "uniqueIds": 9070,
+      "duplicateNames": 0,
+      "partialNewDefinitions": 0,
+      "catalogueAndAliasesUnchanged": true,
+      "remaining": 430
+    }
+  },
+  "hashes": {
+    "dist/app.js": "5e65de4a23c3284ca3b09bde033a388b528995cc86b923c4d4da8a458132d42a",
+    "dist/online.js": "f95525477c683c515f581d086e3acbd6f9c9513a13a2f656230563664a4f64f2",
+    "dist/online-ui.js": "a8616d7be78358c9f8f6cf387a7b32767e20fc58c653e70a02f6ee78a2d45cc1",
+    "dist/account.js": "29b8d8c3e3f411a9b6c10761d2c9cd3b8b5994965be74ba371292c664d4bd21a",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/engine.js": "2a3e92cf3407833542eb94fd45ba8d535c209b593b4288406b57aceb14d929a6",
+    "server/duel-core.mjs": "4d83b04f01194f3d458d91e3de0a160e7e68971f8c8e77da5001fbf57d8b95f4",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "server/duel-store.mjs": "87e63c20c15e80207362f217829c9390b6e778ebb72032dbe6a2633d248b15ce",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40",
+    "tools/review-online-session-confirmation.mjs": "7afb81bf4124916d3509e9f5f9a4a2e0a40b271edd488d7dfd3fe6f8ff59e9aa"
+  },
+  "limits": [
+    "全カード・全対戦状況を網羅した検証ではない。",
+    "iOSの認証復帰はSDKモックでの自動試験であり、今回iPhone実機を操作したものではない。",
+    "一括npm testの過去の中断・合否未確認と、ユーザー保留の裁定・再録2件は維持。",
+    "投了確認の1件は発見・再現までで未修正。公開版にも同じ該当コードが含まれる。"
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
