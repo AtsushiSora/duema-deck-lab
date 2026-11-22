@@ -4666,6 +4666,26 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_MarshalExchange1648':{
+  const selected=t.selected||[],rows=own.hand.filter(y=>!selected.some(r=>r.uid===y.uid)),max=t.max==='all'?Infinity:t.max;
+  if(!t.done&&selected.length<max&&rows.length){
+   choice(s,{...t,selected},'シールド化する手札を'+(t.max==='all'?'好きな枚数':t.max+'枚まで')+'選ぶ（'+selected.length+'枚選択済み）',[
+    ...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},faces(card(y)).some(c=>c.trigger||c.triggerPlus||c.superTrigger)?25:2,y.cardId)),
+    opt('この'+selected.length+'枚で確定',null,selected.length?5:0)
+   ]);
+   break;
+  }
+  // The attempted count is retained even when placement is prohibited (QA45904).
+  const attempted=selected.filter(r=>own.hand.some(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial));
+  for(const r of attempted)zoneMove(s,t.p,'hand',r.uid,'shields',t);
+  if(attempted.length)start(s,t,[{op:'Break497',owner:'self',n:attempted.length,
+   ...(t.creatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);
+  break;
+ }
+ case'g34_FirstDrawHandMana1648':
+  if(api.canHandMana(s,t.player))start(s,{...t,p:t.player},[{op:'Select',origin:'hand',to:'mana',n:1,optional:true,
+   title:'最初のドロー：自分の手札を1枚、マナゾーンに置く？'}]);
+  break;
  case'g34_BreakEither1612':{
   const rows=[t.p,1-t.p].flatMap(p=>s.players[p].shields.map((x,i)=>opt((p===t.p?'自分':'相手')+'のシールド'+(i+1),{p,uid:x.uid},p===t.p?-5:10)));
   if(rows.length)choice(s,t,'ブレイクするシールドを選ぶ',rows);break;
@@ -7800,6 +7820,10 @@ export function createSixPhotoRules(api){
   else start(s,t,[{op:'Draw',n:2}]);
   break;
  case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid],...(t.g1645CreatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);break;
+ case'g34_MarshalExchange1648':
+  if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
+  else put(s,{...t,done:true});
+  break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldCardManaDeploy1317':
   // An attempted move still satisfies the continuation under a replacement (QA 42955).
@@ -10043,6 +10067,11 @@ export function createSixPhotoRules(api){
  },
  drawn676(s,p,n,before,turnDraw){
   if(!n)return;
+  if(before===0&&s.active===p)for(const owner of [0,1])for(const source of s.players[owner].battle){
+   if(source.sealed||source.faceDown||api.ignored(s,source)||!effective(source,s).g1648FirstOwnDrawMana)continue;
+   // The ability belongs to the seed's controller, but the player who drew chooses their hand card.
+   queue(s,owner,source,[{op:'FirstDrawHandMana1648',player:p}]);
+  }
   for(const source of creatures(s,p)){const defs=!source.sealed&&effective(source,s).g1528OwnDraw;if(defs)for(let i=0;i<n;i++)queue(s,p,source,defs);}
   if(n>Number(turnDraw))for(const source of creatures(s,p)){
    if(!card(source).g1154EffectDraw||api.ignored(s,source))continue;
