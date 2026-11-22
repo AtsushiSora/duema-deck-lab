@@ -1,10 +1,10 @@
 import {trackManaOrigins1653,noteZone1653,removedZone1653,manaOrigins1653} from './mana-origin1653.js';
 import {overdriveEntry1439} from './overdrive1439-rules.js?v=0.722.3';
 import {borrowedAttackAbilities} from './borrowed-attack-abilities.js';
-import {replacementSacrifices} from './kenji-rules.js?v=0.722.3';
+import {replacementSacrifices} from './kenji-rules.js?v=0.722.6';
 import {decorateSurvivor406} from './survivor-rules.js?v=0.722.3';
 import {inheritSoul404} from './super-soul.js?v=0.722.3';
-import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.722.3';
+import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.722.6';
 import {displayTurn,completeDisplayTurn} from './turn-count.js';
 export {displayTurn} from './turn-count.js';
 import {ADVANCE,deckFormat,sameDeckFormat,extraDeckErrors,extraDeckZone,EXTRA_DECK_ZONES} from './deck-format.js';
@@ -13,7 +13,7 @@ import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
 import {sinActions1432} from './aura1432-rules.js?v=0.722.3';
 import {buzzAdditional1411,tunePayment1411,buzzEntry1411,buzzVariants1411} from './requested1411-rules.js?v=0.722.3';
-import {createExtendedRules} from './extended-rules.js?v=0.722.4';
+import {createExtendedRules} from './extended-rules.js?v=0.722.6';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';

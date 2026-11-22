@@ -1,0 +1,239 @@
+{
+  "checkedAt": "2026-11-22T11:42:45.149Z",
+  "baseCommit": "7e2ce743b5c0739ce5d9b07502fbfe12fd143b04",
+  "status": "prepared-verified",
+  "version": "0.722.6",
+  "engineVersion": "0.602.176",
+  "userAuthorization": "プッシュして公開して、Netlifyも公開して",
+  "changes": [
+    "友達対戦のマナ一覧・支払いのカード画像、盤面マナボタンの画像プレビュー。",
+    "対応カード9,219種類と同じルール・対戦サーバーを公開。",
+    "効果で公開された山札のカードを待機側のアカウントも確認できる表示を追加。"
+  ],
+  "validation": {
+    "results": [
+      {
+        "name": "online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.062,
+        "log": "tmp/duema-publish-7226/online.log",
+        "status": "passed",
+        "sha256": "a6fc25b39cc7596763c678585fce846ec9055bfd0854af967621af02a9260f09",
+        "passed": 198
+      },
+      {
+        "name": "updates",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/account-ios.test.mjs",
+          "tests/account-app.test.mjs",
+          "tests/play-time-sync.test.mjs",
+          "tests/app-updates.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs",
+          "tests/home-navigation.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 8.711,
+        "log": "tmp/duema-publish-7226/updates.log",
+        "status": "passed",
+        "sha256": "3f11dded2257f4397d5747736a7c73acde8ecca82bce2ed44c40cea48a51ba62",
+        "passed": 117
+      },
+      {
+        "name": "projections",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^(Murder hand inspection|online play labels|online seals|public online gears|only the mana controller|a face-down mana payment|online attack projection|online single fight targets|online numeric declaration|creating, joining and refreshing|The Door publishes|Poker inspection|Al Babylon inspection)",
+          "tests/online-server.test.mjs",
+          "tests/standard1659-effects.test.mjs",
+          "tests/standard1660-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.021,
+        "log": "tmp/duema-publish-7226/projections.log",
+        "status": "passed",
+        "sha256": "e5c94e848fd4e63cce97ff122dfc17cdcf7dfddaa1831f78e181defa5685aac1",
+        "passed": 19
+      },
+      {
+        "name": "public-source",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "The Door publishes",
+          "tests/standard1660-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.725,
+        "log": "tmp/duema-publish-7226/public-source.log",
+        "status": "passed",
+        "sha256": "43421a4883a4207b7bb263ce9188ce2fe86797e3cc08a8388022475510cba851",
+        "passed": 2
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.966,
+        "log": "tmp/duema-publish-7226/audit.log",
+        "status": "passed",
+        "sha256": "acc228ff6cc580126865021d2bad6e03232de519833b98f37b6bb90eccb7476c"
+      },
+      {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.3,
+        "log": "tmp/duema-publish-7226/target9500.log",
+        "status": "passed",
+        "sha256": "f2d9099327e1147bf74292ea99e3cc6f6f976523e283bd7927c9edd4cd15b152"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.531,
+        "log": "tmp/duema-publish-7226/check.log",
+        "status": "passed",
+        "sha256": "342aa9385fd52e6bb4fd8fcb459fc6be063d941e38e9240148eaef0230c27153"
+      }
+    ],
+    "testsPassed": 334,
+    "publicSourceFollowupPassed": 2,
+    "publicSourceFollowupOverlapsProjectionTests": true,
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570,
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "borrowed-attack-abilities.js",
+      "card-art.js",
+      "card-images.js",
+      "champion-seed-rules.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "extended-rules.js",
+      "fifteen-photo-rules.js",
+      "galaxy-rules.js",
+      "giant-rules.js",
+      "gospel-rules.js",
+      "gransect-rules.js",
+      "hachi-rules.js",
+      "hand-ui.js",
+      "kenji-rules.js",
+      "kiyonaga-rules.js",
+      "log-card-links.js",
+      "mana-origin1653.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online-ui.js",
+      "online.js",
+      "photo159-combat-rules.js",
+      "photo159-rules.js",
+      "release-notes.js",
+      "requested393-change-rules.js",
+      "requested393-dispector-rules.js",
+      "requested393-joker-rules.js",
+      "screenshot-report.js",
+      "six-photo-rules.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "utility-control-rules.js",
+      "utility-exchange-rules.js",
+      "utility-expansion-rules.js",
+      "utility-shield-spells.js",
+      "worker.js"
+    ],
+    "onlineCssVersion": "0.722.6"
+  },
+  "actualCards": {
+    "uniqueNames": 9219,
+    "uniqueIds": 9219,
+    "duplicateNames": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "automaticUpdates": {
+    "netlifyBefore": {
+      "id": "bd2b701e-0687-4ded-bdf6-f8c18e04d3f9",
+      "name": "duema-deck-lab",
+      "stop_builds": true,
+      "functions_region": "us-east-2",
+      "published_deploy": {
+        "id": "6b02442f58f0a642c29b5b24",
+        "state": "ready"
+      }
+    },
+    "githubHooksBefore": [
+      {
+        "id": 701628730,
+        "active": false,
+        "host": "api.netlify.com"
+      }
+    ],
+    "workflowDispatchOnly": true,
+    "keepAutomaticNetlifyUpdatesStopped": true
+  },
+  "hashes": {
+    "dist/cards.json": "ea014ea7c14c0cf74f5e0c08b6e8d280569d6e6ab4523ccd34118cc51ef3d404",
+    "dist/engine.js": "6ae11b06c8e09c5514edbf97fb19cc6f6c5d95c81115113d1811a8ba043b82bb",
+    "dist/six-photo-rules.js": "ba6052ba7858fcdb2288172a8519ac5f5bc185809a58d8e7e10845edf0062f71",
+    "dist/online-compatibility.js": "b42f8cbead8a26aba552bb3b1b6a85899e7fa68a544f7f7f3ff765f0424bfee0",
+    "dist/online-ui.js": "2e44b6830f8a1324e23226d48303ab9f3b50ac1f88e51588ecaa72104c7f9b0b",
+    "dist/online.css": "2f7c0bccfc9c9327009ad370deac71fa9d825195a5a828c367fd651131d67bac",
+    "server/duel-core.mjs": "da0209ad47970b596e5646cc21e7626120d4ac1689287407cbd8b5c7fe2b31bb",
+    "dist/app.js": "fc7a5a0df48216e60e375635004a8a638ffe7420ce712370fea3ede6f05af754",
+    "dist/index.html": "4d791335023611a9951b52deb1bbf2a4dca13d00ff719d22bee61098c5805ff6"
+  },
+  "preserved": [
+    "全体npm testの過去の中断・合否未確認。",
+    "既存長時間テストの未確認、ユーザー保留の公式照合2件、登録済みカードの裁定再現待ち1件は公開により解消扱いにしない。",
+    "既存ID・保存済みデッキ・対戦履歴・保存形式。"
+  ],
+  "publication": {
+    "pushed": false,
+    "pagesPublished": false,
+    "netlifyUpdated": false,
+    "pagesUrl": "https://atsushisora.github.io/duema-deck-lab/",
+    "netlifyUrl": "https://duema-deck-lab.netlify.app"
+  }
+}
