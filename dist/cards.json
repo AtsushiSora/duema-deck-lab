@@ -290539,18 +290539,142 @@
       },
       "supportBatch": "phase-1634",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-s06",
+      "name": "断影龍 ユスティーツァ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13500,
+      "race": "メカ・デル・ソル・ドラゴン/月光王国",
+      "text": "T・ブレイカー\n自分のドラゴンがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。\n相手のクリーチャーが破壊された時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s06",
+      "limit": 4,
+      "breaker": 3,
+      "g1635DragonWatch": true,
+      "g250EntryDraw": {
+        "self": true,
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ]
+      },
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1635",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-022",
+      "name": "静謐の翼 ラーブラショク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ジャスティス・ウイング",
+      "text": "自分のドラグハートをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-022",
+      "limit": 4,
+      "g250EntryDraw": {
+        "filter": {
+          "g1451Dragheart": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1635",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-061",
+      "name": "惑星生命体 ラムーン",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の進化クリーチャーの召喚コストを２少なくしてもよい。ただし、コストは０以下にはならない。\n各ターン、はじめて自分の進化クリーチャーが出た時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-061",
+      "limit": 4,
+      "g1635Lunar": true,
+      "g290SummonAura": {
+        "g1635Lunar": true,
+        "g560Optional": true,
+        "amount": 2,
+        "filter": {
+          "evolution": true
+        }
+      },
+      "g314OtherEntry": {
+        "who": "self",
+        "g1635FirstEvolution": true,
+        "filter": {
+          "evolution": true
+        },
+        "defs": [
+          {
+            "op": "DrawUpTo",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1635",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1634,
+    "phase": 1635,
     "checkedAt": "2026-11-22",
-    "baseCount": 9133,
+    "baseCount": 9136,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9136,
+    "totalCount": 9139,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40882/",
+      "https://dm.takaratomy.co.jp/rule/qa/41443/",
+      "https://dm.takaratomy.co.jp/rule/qa/41444/",
+      "https://dm.takaratomy.co.jp/rule/qa/45058/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37149/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
     ],
     "next": [
@@ -317253,6 +317377,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31714/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1634,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9133,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9136,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40882/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
         ],
         "next": [

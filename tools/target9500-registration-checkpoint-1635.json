@@ -1,0 +1,124 @@
+{
+  "phase": 1635,
+  "checkedAt": "2026-11-22T05:55:34.408Z",
+  "baseline": "212b65c28e3eeb94867a5338df7d06c94060c1a9",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9136,
+  "currentNames": 9139,
+  "remainingNames": 361,
+  "added": [
+    {
+      "id": "dmrp16-s06",
+      "name": "断影龍 ユスティーツァ"
+    },
+    {
+      "id": "dmr14-022",
+      "name": "静謐の翼 ラーブラショク"
+    },
+    {
+      "id": "dm23ex2-061",
+      "name": "惑星生命体 ラムーン"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9136,
+    "uniqueNames": 9139,
+    "uniqueIds": 9139,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-last": {
+      "name": "official-last",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1635.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.42,
+      "log": "tmp/duema-phase-1635/official-last.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1635-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.822,
+      "log": "tmp/duema-phase-1635/final-focused.log",
+      "passed": 44,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "aggregate-verified-runs",
+        "related-core",
+        "related-borrow"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 39.016,
+      "log": "tmp/duema-phase-1635/final-related-aggregate.log",
+      "passed": 290,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.186,
+      "log": "tmp/duema-phase-1635/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.22,
+      "log": "tmp/duema-phase-1635/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.252,
+      "log": "tmp/duema-phase-1635/target9500.log"
+    }
+  },
+  "totalTestsPassed": 334,
+  "hashes": {
+    "dist/cards.json": "798ad1bb071d63507d858dead8d5d372fcc4d05bfef252d1d47b6c3f2a612a04",
+    "dist/engine.js": "6916ed7dd242f9299eca642a66d48b30c693b1b3791e34db1671474f922d7f05",
+    "dist/six-photo-rules.js": "c497d05aa0b5d504c5176d02e6667a21eb88f499b195293633f67321fed7a67a",
+    "dist/online-compatibility.js": "4fae42b4c861f607fe77c80ef797618e1170dccd4a6f539eef49f5da38aba1c4",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.151",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

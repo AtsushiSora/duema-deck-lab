@@ -159,7 +159,7 @@ export function createSixPhotoRules(api){
  // New optional auras choose their combined reduction independently for each summon.
  function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroMandatory:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>
   (!f.g990PrintedNoAbilities||matches(s,p,{cardId:c.id,uid:c.executionUid},{g990PrintedNoAbilities:true}))&&(!f.g1123ManaBirthFromMana||c.summonOrigin==='mana'&&c.g296ManaBirth!==undefined&&cost(c)>0)&&(!f.g836NameIds||f.g836NameIds.includes(c.id)||c.g1059DoubleCross)&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
-  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')&&!(r.g560D2Field&&d.type==='field'&&d.d2Field)&&!(r.g1480Fortress&&d.type==='field'&&d.dragheart)||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
+  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')&&!(r.g560D2Field&&d.type==='field'&&d.d2Field)&&!(r.g1480Fortress&&d.type==='field'&&d.dragheart)&&!(r.g1635Lunar&&d.type==='field'&&d.g1635Lunar)||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
    const count=r.g912CountRace?creatures(s,who).filter(y=>!y.sealed&&race(effective(y,s),r.g912CountRace)).length:1;
    const amount=r.amount*count;
    out[r.g560Optional?'optional':'mandatory']+=amount;
@@ -9311,6 +9311,8 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&api.isEvolution(y)&&s.g1635EvolutionEntries?.[p]?.turn!==s.turn)
+   (s.g1635EvolutionEntries??=[null,null])[p]={turn:s.turn,uid:y.uid,incarnation:y.incarnation||0};
   if(!y.sealed&&!y.faceDown&&['creature','seed','gear','field','duelist'].includes(eventType))hooks.rokka1372(s,p,options.paidMana);
   if(options.execution===false&&options.origin==='hand'&&(y.cardOwner??p)===p&&
      !y.sealed&&!y.faceDown&&api.isCreature(s,y)){
@@ -9567,11 +9569,12 @@ export function createSixPhotoRules(api){
    if(g600OverManaEntry)queue(s,1-p,watcher,[{...exact,to:'hand',optional:true,filter:{creature:true,g600OverMana:true}}]);
   }
   if(creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))for(const rule of[c.g260Self,...(c.g268ManaGrants||[])].filter(Boolean))if((rule.filter?.g466DistinctCosts||rule.filter?.g400Wave||rule.filter?.g334ZoneCount?.atLeastOpponent||rule.filter?.g272ManaCount!==undefined)&&rule.grants.g34Tasks&&ownCondition(s,p,rule.filter,y.uid))queue(s,p,y,rule.grants.g34Tasks);if(creature&&!y.sealed&&!options.costPaid)for(const watcher of creatures(s,1-p))if(!watcher.sealed&&effective(watcher,s).g321Katsu)queue(s,1-p,watcher,[{op:'KatsuFight321',enemy:{uid:y.uid,incarnation:y.incarnation||0}}]);if(c.g320Next&&options.ddd&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))queue(s,p,y,[{op:'Next320'}]);
-  if(!y.sealed)for(const owner of [0,1])for(const x of s.players[owner].battle.filter(x=>api.isCreature(s,x)||!x.sealed&&card(x).g1613D2PrintedEntry&&card(x).type==='field'&&card(x).d2Field)){
+  if(!y.sealed)for(const owner of [0,1])for(const x of s.players[owner].battle.filter(x=>api.isCreature(s,x)||!x.sealed&&((card(x).g1613D2PrintedEntry&&card(x).d2Field)||card(x).g1635Lunar)&&card(x).type==='field')){
    if(!creature&&!card(x).g314OtherEntry?.g765Element)continue;
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid&&
     (!watch.g1324IncludeSelf||options.selfMuted||api.selfStopped(s,p))||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
+   if(watch.g1635FirstEvolution){const first=s.g1635EvolutionEntries?.[p];if(first?.turn!==s.turn||first.uid!==y.uid||first.incarnation!==(y.incarnation||0))continue;}
    if(watch.g1175OutsideHand&&(!options.origin||options.origin==='hand'))continue;
    if(watch.entryCount!==undefined&&s.players[p].enteredThisTurn!==watch.entryCount)continue;
    if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
