@@ -9152,4 +9152,7 @@ export const CARD_IMAGES={
 "dmr01-011":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-011.jpg",
 "dm27+1d-001":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27+1d-001.jpg",
 "dmsd01-001":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd01-001.jpg",
+"dmr09-004":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-004.jpg",
+"dmr09-010":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-010.jpg",
+"dm16-001":"https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-001.jpg",
 };

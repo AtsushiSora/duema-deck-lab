@@ -1855,6 +1855,12 @@ export function createSixPhotoRules(api){
    else start(s,t,t.after);
    return;
   }
+  if(t.g1640CrossToSource){
+   const row=rows[0],gear=row&&s.players[row.p][row.origin].find(y=>y.uid===row.uid);
+   if(gear)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:row.uid},
+    {...t,op:'g34_CrossDeployed1640',gear:row.uid,gearInc:(gear.incarnation||0)+1});
+   return;
+  }
   if(t.g1106OnDeploy){
    const [row]=rows;
    if(!row)return;
@@ -3071,6 +3077,11 @@ export function createSixPhotoRules(api){
   if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
   const n=own.battle.filter(y=>y.uid!==host.x.uid&&!y.sealed&&!y.faceDown&&race(effective(y,s,true),'ジョーカーズ')).length;
   start(s,t,[{op:'SelfGrant754',grant:{entryPlayerAttack:true}},...(n?[{op:'SelfExtraBreak444',amount:n,g969FollowControl:true}]:[])]);
+  break;
+ }
+ case'g34_CrossDeployed1640':{
+  const host=sourceHost474(s,t),gear=own.battle.find(y=>y.uid===t.gear&&(y.incarnation||0)===t.gearInc&&card(y).type==='gear'&&!y.sealed&&!y.faceDown);
+  if(gear&&host&&host.p===t.p&&!host.x.sealed&&api.isCreature(s,host.x))api.crossGearGroup(s,t.p,host.x,[gear.uid]);
   break;
  }
  case'g34_GraveReturn754':{

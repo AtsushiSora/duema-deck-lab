@@ -1,0 +1,129 @@
+{
+  "phase": 1640,
+  "checkedAt": "2026-11-22T06:47:37.454Z",
+  "baseline": "f17c0093d893b5c02a36100d143a7755c1fd9101",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9152,
+  "currentNames": 9155,
+  "remainingNames": 345,
+  "added": [
+    {
+      "id": "dmr09-004",
+      "name": "剛鉄突破 アイアンローズ"
+    },
+    {
+      "id": "dmr09-010",
+      "name": "護蓮妖精ミスティーナ"
+    },
+    {
+      "id": "dm16-001",
+      "name": "神武の精霊オルテギア"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9152,
+    "uniqueNames": 9155,
+    "uniqueIds": 9155,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1640.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.636,
+      "log": "tmp/duema-phase-1640/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1640-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.741,
+      "log": "tmp/duema-phase-1640/final-focused.log",
+      "passed": 45,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Diablost|Hurricane|all required blockers|optional blockers|Tribal|Medusa|Reencarnel|opponent Apul|suppressed entries",
+        "tests/standard1270-effects.test.mjs",
+        "tests/standard577-effects.test.mjs",
+        "tests/standard725-effects.test.mjs",
+        "tests/standard929-effects.test.mjs",
+        "tests/standard228-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.953,
+      "log": "tmp/duema-phase-1640/final-related.log",
+      "passed": 18,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.24,
+      "log": "tmp/duema-phase-1640/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.451,
+      "log": "tmp/duema-phase-1640/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.256,
+      "log": "tmp/duema-phase-1640/target9500.log"
+    }
+  },
+  "totalTestsPassed": 63,
+  "hashes": {
+    "dist/cards.json": "cc9ad9cef1c5af996db949a1c42e4179e46bc124c8c47d32afda0a89665e0307",
+    "dist/engine.js": "2bb4304bf447b4f1ad4e4150a10e483f54e4e743543d80fda2eb1e5872a25462",
+    "dist/six-photo-rules.js": "ff8a1bda9baf0cddb12cd8dbabef2aee8e627072594d3018cb778152c47e1b32",
+    "dist/online-compatibility.js": "5f8e990b829d1ad70d54ff2e95c8a12ba7f79a9001bcb120d06b3be2dbb995eb",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.156",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

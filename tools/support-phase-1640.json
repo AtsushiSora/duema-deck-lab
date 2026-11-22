@@ -1,0 +1,274 @@
+{
+  "phase": 1640,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9152,
+  "target": 9500,
+  "description": "アイアンローズの敵軍ブロッカー化とブロック強制、ミスティーナの自軍5体からのターン限定強化、オルテギアのマナ・墓地クロスギア展開と当該ギアの自身への無料クロスを全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36830/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-004",
+      "name": "剛鉄突破 アイアンローズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-004",
+      "faces": [
+        {
+          "name": "剛鉄突破 アイアンローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンにある相手のクリーチャーはすべて「ブロッカー」を得、可能であればブロックする。\nこのクリーチャーのパワーは、バトルゾーンにある相手のクリーチャー１体につき+2000される。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "opponentsOnly": true,
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "blocker": true,
+              "mustBlock": true
+            }
+          }
+        ],
+        "g207CountPower": {
+          "zone": "battle",
+          "opponent": true,
+          "amount": 2000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "7069bd4b49204fd47ef2c66994015e0c5d40ff264052c540ccb3d9b0fdd476ef",
+        "facesMatched": true,
+        "imageSha256": "d7cd99ff60db50c7afc9c20b7da22b8040d64f50a2d8450c9cdb0da758f4e981",
+        "imageBytes": 197870,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・基本情報・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMR-09 エピソード３ レイジVSゴッド"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-004",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmr09-010",
+      "name": "護蓮妖精ミスティーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-010",
+      "faces": [
+        {
+          "name": "護蓮妖精ミスティーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンに自分のクリーチャーが５体以上あれば、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+5000され、パワー5000以下のクリーチャーにブロックされず、シールドをさらに１枚ブレイクする。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 5
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "power": 5000
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "g725NoBlockMaxPower": 5000
+                }
+              },
+              {
+                "op": "GroupLasting412",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "extraBreak": 1,
+                "g969FollowControl": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "d9eb895547923d4ad94bf2ec4a006ba4841d2acb40baa5d9b08f56a46ab1dcc3",
+        "facesMatched": true,
+        "imageSha256": "cf8022d50e79128f9a31711098797fa8e177c916b7dcfbc3f838ddf7e5db09e6",
+        "imageBytes": 146975,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・基本情報・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMR-09 エピソード３ レイジVSゴッド"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-010",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm16-001",
+      "name": "神武の精霊オルテギア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-001",
+      "faces": [
+        {
+          "name": "神武の精霊オルテギア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、クロスギアを１枚、自分のマナゾーンまたは墓地からバトルゾーンに出してもよい。そのクロスギアをこのクリーチャーに、コストを支払わずにクロスする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "gear"
+              }
+            },
+            "g1640CrossToSource": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "4789533d685fa171e9b85f653f60b8f659687d78e6738f8223dc3a9b71d3cf09",
+        "facesMatched": true,
+        "imageSha256": "d8a59974a6d382d6503e01cfd5419673968a978492f725299d98e33b099539c8",
+        "imageBytes": 114988,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・基本情報・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMC-42 コロコロ・ドリーム・パックIII",
+        "DM-16 転生編 第3弾 魔導黙示録(オリジン・オブ・パーフェクトギア)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-001",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dm15-s05",
+      "name": "アクテリオン・フォース",
+      "reason": "現行の登録済みクロスギアにはS・トリガーXの宣言・ジェネレート後の無料クロス処理がなく、新規キーワード対応を要する。部分登録は行わず、今回の3種類に切り替える。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-004": 4,
+      "dmr09-010": 4,
+      "dm16-001": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
+      "checkedAt": "2026-11-22",
+      "sha256": "de8f7a5256923bfbcb5a522286d5100520b3e9fa3904125783d7780a3145d3b4"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
+      "checkedAt": "2026-11-22",
+      "sha256": "115caad46c11bfe428b96aa8f797822245061efbdb7daa2d20f096225e544d6b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36830/",
+      "checkedAt": "2026-11-22",
+      "sha256": "8b194773bdb6cef85d6f71173905d65895bb3451043f9a8a63ab67c70dea3f2d"
+    }
+  ],
+  "implementationNotes": [
+    "オルテギアは既存の複数ゾーン選択・出す処理を利用し、出した同一UIDと新しい在場世代を確認して既存の無料クロス処理を自身に適用する。",
+    "ミスティーナは5体以上を解決時に確認し、当時の自軍に既存のパワー修正・ブロック制限・追加ブレイクをそのターン付与する。",
+    "アイアンローズは既存の対戦相手向け継続的な能力付与と相手の体数カウントを利用する。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr03-010",
+      "name": "悪魔神ザビ・リブラ",
+      "reason": "光・自然の進化条件と、他の味方への対相手呪文離脱置換を照合。既存の進化OR条件と継続付与を優先。"
+    },
+    {
+      "id": "dmex08-184",
+      "name": "百獣世界の探究者 はじめしゃちょー",
+      "reason": "マナからのコスト3以下2体展開と、他の自軍登場時の任意バトルを照合。"
+    },
+    {
+      "id": "dm31-010",
+      "name": "蒼狼の始祖アマテラス",
+      "reason": "山札からの呪文またはクロスギアの実行前シャッフルと、現在の使用制限を照合。"
+    }
+  ]
+}

@@ -291157,18 +291157,154 @@
       ],
       "supportBatch": "phase-1639",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-004",
+      "name": "剛鉄突破 アイアンローズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "バトルゾーンにある相手のクリーチャーはすべて「ブロッカー」を得、可能であればブロックする。\nこのクリーチャーのパワーは、バトルゾーンにある相手のクリーチャー１体につき+2000される。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-004",
+      "limit": 4,
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "opponentsOnly": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "blocker": true,
+            "mustBlock": true
+          }
+        }
+      ],
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "amount": 2000
+      },
+      "supportBatch": "phase-1640",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-010",
+      "name": "護蓮妖精ミスティーナ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンに自分のクリーチャーが５体以上あれば、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+5000され、パワー5000以下のクリーチャーにブロックされず、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-010",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "power": 5000
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "grant": {
+                "g725NoBlockMaxPower": 5000
+              }
+            },
+            {
+              "op": "GroupLasting412",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "extraBreak": 1,
+              "g969FollowControl": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1640",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-001",
+      "name": "神武の精霊オルテギア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 6000,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、クロスギアを１枚、自分のマナゾーンまたは墓地からバトルゾーンに出してもよい。そのクロスギアをこのクリーチャーに、コストを支払わずにクロスする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "gear"
+            }
+          },
+          "g1640CrossToSource": true
+        }
+      ],
+      "supportBatch": "phase-1640",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1639,
+    "phase": 1640,
     "checkedAt": "2026-11-22",
-    "baseCount": 9149,
+    "baseCount": 9152,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9152,
+    "totalCount": 9155,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36830/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -317957,6 +318093,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
           "https://dm.takaratomy.co.jp/rule/qa/38597/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1639,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9149,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9152,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
