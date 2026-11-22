@@ -1,0 +1,146 @@
+{
+  "checkedAt": "2026-11-22T00:46:04.775080+00:00",
+  "baseCommit": "1e9270b9e9418a9f29f9245adc712b79ae75b357",
+  "status": "no-additional-confirmed-defects-in-tested-scope",
+  "productCodeChanged": false,
+  "confirmedOpenFindings": [],
+  "scope": [
+    "Online token acquisition and account changes while requests are pending.",
+    "Late operation responses after account switch; lost resignation and cancellation acknowledgements.",
+    "Background polling pause and recovery, existing UI contexts, payment and numeric operations.",
+    "Account login recovery, deck copying/history, local and cloud playtime synchronization."
+  ],
+  "newRegressionCases": {
+    "count": 10,
+    "file": "tests/online-client.test.mjs",
+    "prefix": "postfix race review:",
+    "cases": [
+      "Token wait cancelled before HTTP dispatch for GET or move during logout, account switch or signout/signin to same UID (six cases).",
+      "Lost resignation and cancellation acknowledgement reconcile with GET without another POST (two cases).",
+      "A late committed operation response cannot restore the previous account room.",
+      "Leaving the view during a failing read prevents retries until return; normal polling resumes afterwards."
+    ]
+  },
+  "verification": {
+    "results": [
+      {
+        "name": "final-races",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^postfix race review:",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.533,
+        "log": "tmp/duema-postfix-review/final-races.log",
+        "status": "passed",
+        "sha256": "01c150de9546e2bfbe07b8f41a6e3150583f0af1637a636cb7623818d7b227b3",
+        "passed": 10
+      },
+      {
+        "name": "online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.889,
+        "log": "tmp/duema-postfix-review/online.log",
+        "status": "passed",
+        "sha256": "ad8920fd781622f634b28a376089490b62cd0be719554ecae297b37b026916a9",
+        "passed": 165
+      },
+      {
+        "name": "account-storage",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/account-ios.test.mjs",
+          "tests/account-app.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs",
+          "tests/play-time.test.mjs",
+          "tests/play-time-sync.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.322,
+        "log": "tmp/duema-postfix-review/account-storage.log",
+        "status": "passed",
+        "sha256": "913bd906a952841d8708692a1eeafdd9795537842cafed3e482b5ced8837089e",
+        "passed": 101
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.805,
+        "log": "tmp/duema-postfix-review/check.log",
+        "status": "passed",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 14.583,
+        "log": "tmp/duema-postfix-review/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "distinctTestsPassed": 266,
+    "newCasesIncludedInTotal": 10,
+    "incompleteRuns": [],
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570,
+    "testRefinement": "After full groups passed, six token-wait cases gained assertions that token acquisition actually started and HTTP had not run. All ten new cases were rerun successfully; only test assertions changed."
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "tests/online-client.test.mjs": "13f6420471916b6cf6d0fab4d4ee76f46d1df1f62301a36ab3f8f3c8266a3c49",
+    "dist/app.js": "92a9191a09db4aedd95e7167392b6238e5fffe4817f021808339f85fa76f9f42",
+    "dist/online-ui.js": "b5e843d3a91dbf67b89585fad437eb3c6beb155da30c788c708e2484b8e2dab6",
+    "dist/online.js": "f95525477c683c515f581d086e3acbd6f9c9513a13a2f656230563664a4f64f2",
+    "dist/account.js": "29b8d8c3e3f411a9b6c10761d2c9cd3b8b5994965be74ba371292c664d4bd21a",
+    "dist/play-time-sync.js": "44cea78818572fe7fac8f737ec050019328e83b41e7ec1923fff8484221a546e",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "limits": [
+    "No new real-browser or real-device session was run in this review; delayed communication used controlled promises, SDK fixtures and the actual app/HTTP/encrypted storage regression harnesses.",
+    "Not exhaustive coverage of every card, game state or browser; absence of further confirmed findings does not guarantee zero bugs.",
+    "Recent resignation and action-context fixes remain local; production verification awaits an explicitly authorized release.",
+    "Historical interrupted whole npm test and two user-deferred ruling/reprint checks remain unchanged."
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
