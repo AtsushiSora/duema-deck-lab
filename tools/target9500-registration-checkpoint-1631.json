@@ -1,0 +1,127 @@
+{
+  "phase": 1631,
+  "checkedAt": "2026-11-22T05:01:50.986Z",
+  "baseline": "105df3cdb386943ad0893ddf7d9450e9249d285f",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9123,
+  "currentNames": 9126,
+  "remainingNames": 374,
+  "added": [
+    {
+      "id": "dm03-003",
+      "name": "絶望の魔黒ジャックバイパー"
+    },
+    {
+      "id": "dm03-005",
+      "name": "大昆虫ギガマンティス"
+    },
+    {
+      "id": "dm08-020",
+      "name": "ライフ・チャージャー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9123,
+    "uniqueNames": 9126,
+    "uniqueIds": 9126,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-final": {
+      "name": "official-final",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1631.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.795,
+      "log": "tmp/duema-phase-1631/official-final.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1631-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.992,
+      "log": "tmp/duema-phase-1631/final-focused.log",
+      "passed": 37,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=3",
+        "tests/standard575-effects.test.mjs",
+        "tests/standard720-effects.test.mjs",
+        "tests/standard1628-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.157,
+      "log": "tmp/duema-phase-1631/final-related.log",
+      "passed": 93,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 25.157,
+      "log": "tmp/duema-phase-1631/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.523,
+      "log": "tmp/duema-phase-1631/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.703,
+      "log": "tmp/duema-phase-1631/target9500.log"
+    }
+  },
+  "totalTestsPassed": 130,
+  "hashes": {
+    "dist/cards.json": "e1a0163cefe1645e149e081a01017c445cb79a0a88feadf4ad12d5cceb187c72",
+    "dist/engine.js": "0c8df759c7f6a10868ffd2e7b64763bd65004e26fe89edc2564611c6e74f4d63",
+    "dist/six-photo-rules.js": "bf35a8190d64edfb2651a2b9c863dd7322f8534a2615b5572d629864a8d16ff9",
+    "dist/online-compatibility.js": "55ca56f52b23605c3a7fce3d693a130ecaf3566f04f7cbe6af985191e75d8ac4",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.147",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

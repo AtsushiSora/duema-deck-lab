@@ -3895,6 +3895,7 @@ export function createSixPhotoRules(api){
  case'g34_FreezeOpponent1608':
   for(const kind of['attack','block'])(s.extLimits??=[]).push({kind,player:1-t.p,expires:'end',who:s.active});
   break;
+ case'g34_LifeCharger1631':(s.extLimits??=[]).push({kind:'g1631LifeCharger',player:t.p,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;
  case'g34_BattleColors1630':start(s,t,battleColorDefs1630(s,t));break;
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_DrawAgainstHand1086':{
@@ -9017,7 +9018,7 @@ export function createSixPhotoRules(api){
  },
  // This replacement belongs to its source, so an ignored recipient is still protected.
  deathMana575(s,p,target){
-  const moves={untapped:false,tapped:false,optional:false};
+  const moves={untapped:api.isCreature(s,target)&&(s.extLimits||[]).some(l=>l.kind==='g1631LifeCharger'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&!api.manaMoveForbidden(s,p),tapped:false,optional:false};
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const rule=effective(source,s).g575ManaAura;
@@ -9050,7 +9051,7 @@ export function createSixPhotoRules(api){
  optionalDestroyToHand720(s,p,x){
   return creatures(s,p).some(source=>{
    const filter=!source.sealed&&effective(source,s).g720OptionalDestroyToHand;
-   return filter&&matches(s,p,x,filter);
+   return filter&&(!filter.g1631Other||source.uid!==x.uid)&&matches(s,p,x,filter);
   });
  },
  noLose(s,p){
