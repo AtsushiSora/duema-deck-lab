@@ -291501,20 +291501,133 @@
       },
       "supportBatch": "phase-1642",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-032",
+      "name": "†正義†と「正義」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：クリーチャー（この呪文を唱えるコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\n次の相手のターン中、自分のクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-032",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextOpponentStay1643"
+        }
+      ],
+      "supportBatch": "phase-1643",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b024",
+      "name": "「殺した人間の名くらい、おぼえているよ!!」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊する。次の自分のターンのはじめまで、相手はそれと同じ名前のクリーチャーを出せず、同じ名前のクリーチャーで攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b024",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "g1643NameLock": true
+        }
+      ],
+      "supportBatch": "phase-1643",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy22-073",
+      "name": "COMPLEX VORTEX",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、破壊する。\n自分のクリーチャーを１体破壊してもよい。そうしたら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-073",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "spell": true
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "optional": true,
+          "spell": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "SpellFinish416",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1643",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1642,
+    "phase": 1643,
     "checkedAt": "2026-11-22",
-    "baseCount": 9158,
+    "baseCount": 9161,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9161,
+    "totalCount": 9164,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36480/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36481/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36482/"
+      "https://dm.takaratomy.co.jp/rule/qa/39749/",
+      "https://dm.takaratomy.co.jp/rule/qa/39750/",
+      "https://dm.takaratomy.co.jp/rule/qa/39751/",
+      "https://dm.takaratomy.co.jp/rule/qa/39752/",
+      "https://dm.takaratomy.co.jp/rule/qa/39753/",
+      "https://dm.takaratomy.co.jp/rule/qa/39754/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318353,6 +318466,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35776/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35777/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35778/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1642,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9158,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9161,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36480/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36481/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36482/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

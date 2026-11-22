@@ -153,6 +153,7 @@ export function createExtendedRules(api){
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if((kind==='attack'||kind==='block')&&pairedCombatLocked(s,x))return true;
+  if((kind==='attack'||kind==='block')&&six.namedCombatLocked1643(s,p,x))return true;
   if((kind==='attack'||kind==='block')&&(s.extLimits||[]).some(l=>l.kind==='g1315ParityCombat'&&l.player===p&&
    l.refs.some(ref=>matchesRef(x,ref))&&cost(effective(x,s,true))%2===l.parity))return true;
   if(kind==='attack'&&utilityLightControl.locked(s,x))return true;

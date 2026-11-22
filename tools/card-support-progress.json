@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9161,
-  "pendingNames": 2664,
-  "phase": 1642,
+  "supportedNames": 9164,
+  "pendingNames": 2661,
+  "phase": 1643,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1490,
-    "呪文": 320,
+    "呪文": 317,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 35,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1931,
+    "未対応の能力文": 1928,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -528018,34 +528018,214 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1643から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1643,
+      "checkedAt": "2026-11-22T07:22:34.547Z",
+      "baseline": "b7edd11977d1b145381728b79a4449b2271b1999",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9161,
+      "currentNames": 9164,
+      "remainingNames": 336,
+      "added": [
+        {
+          "id": "dmrp19-032",
+          "name": "†正義†と「正義」"
+        },
+        {
+          "id": "dmex15-b024",
+          "name": "「殺した人間の名くらい、おぼえているよ!!」"
+        },
+        {
+          "id": "promoy22-073",
+          "name": "COMPLEX VORTEX"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9161,
+        "uniqueNames": 9164,
+        "uniqueIds": 9164,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1643.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.403,
+          "log": "tmp/duema-phase-1643/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1643-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 17.434,
+          "log": "tmp/duema-phase-1643/final-focused.log",
+          "passed": 45,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Apocalypse|the spell limits|Genmu suppresses|Devil Link|replacement|winning return|losing grave finish|Spark applies all names|Shadow Love|shadow|destroy|Momo|Momomugen|Marriage Blue|All five auras|separately added civilization",
+            "tests/standard1087-effects.test.mjs",
+            "tests/standard627-effects.test.mjs",
+            "tests/standard937-effects.test.mjs",
+            "tests/standard416-effects.test.mjs",
+            "tests/standard676-effects.test.mjs",
+            "tests/standard1637-effects.test.mjs",
+            "tests/kenji-photo.test.mjs",
+            "tests/standard920-effects.test.mjs",
+            "tests/standard1188-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.509,
+          "log": "tmp/duema-phase-1643/final-related.log",
+          "passed": 60,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.958,
+          "log": "tmp/duema-phase-1643/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.745,
+          "log": "tmp/duema-phase-1643/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.242,
+          "log": "tmp/duema-phase-1643/target9500.log"
+        }
+      },
+      "totalTestsPassed": 105,
+      "hashes": {
+        "dist/cards.json": "8c534e6942a0eca24261bff11f6f52f999df1bef0a6e5f968fd4fb7cdfb7f1c6",
+        "dist/engine.js": "48e7a7d304dcafc944b6b5ef0825c283f62a5222382a616ad0de75c776f15be9",
+        "dist/six-photo-rules.js": "84f2130466c33773d4fdb355254e2837adb5762a17b315abf3549f6c1be8ab9c",
+        "dist/online-compatibility.js": "de5485e864742c1d0c1176e865b0ccdc03a5806f3cb2fe5bf62295f4ad21ac1b",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.159",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1643.json",
+      "supported": 9164,
+      "pending": 2661,
+      "reason": "†正義†と「正義」のシンパシーと次の相手ターンの離脱禁止、「殺した人間の名くらい、おぼえているよ!!」の破壊対象の完全同名による登場・攻撃・ブロック禁止、COMPLEX VORTEXの条件破壊と自己犠牲による終了時手札回収を全文対応する。",
+      "resolvedAttempts": [
+        {
+          "name": "focused-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1643-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 14.317,
+          "log": "tmp/duema-phase-1643/focused-initial.log"
+        },
+        {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1643-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 16.467,
+          "log": "tmp/duema-phase-1643/final-focused.log"
+        },
+        {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1643-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 16.125,
+          "log": "tmp/duema-phase-1643/final-focused.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1644から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1642,
-    "nextPhase": 1643,
+    "lastVerifiedPhase": 1643,
+    "nextPhase": 1644,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp19-032",
-        "name": "†正義†と「正義」",
-        "reason": "クリーチャー数シンパシーと次の相手ターンだけの離脱禁止を既存処理で照合。"
+        "id": "dmbd09-003",
+        "name": "ザオヴァナイン・カイザー",
+        "reason": "登場・攻撃時のガチンコ勝利と当該ターンの呪文ロック。"
       },
       {
-        "id": "dmex15-b024",
-        "name": "「殺した人間の名くらい、おぼえているよ!!」",
-        "reason": "破壊した対象の名前を参照する登場・攻撃・ブロック制限を照合。"
+        "id": "dmrp01-016",
+        "name": "ジャスト・ラビリンス",
+        "reason": "任意タップ後のタップ中クリーチャー数の強制ドロー。"
       },
       {
-        "id": "promoy22-073",
-        "name": "COMPLEX VORTEX",
-        "reason": "アンタップ相手破壊と任意の自己破壊による呪文回収を照合。"
+        "id": "dmex02-008",
+        "name": "ザンジェットW７",
+        "reason": "登場ターンのプレイヤー攻撃とジョーカーズ手札コスト参照による山札下送り。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9161種類・重複0、9500まで残り339。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1642とtools/target9500-registration-checkpoint-1642.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1643で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9164種類・重複0、9500まで残り336。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1643とtools/target9500-registration-checkpoint-1643.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1644で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528125,9 +528305,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9161種類・重複0、9500まで残り339。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1642とtools/target9500-registration-checkpoint-1642.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1643で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9164種類・重複0、9500まで残り336。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1643とtools/target9500-registration-checkpoint-1643.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1644で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528258,10 +528438,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9161,
-      "remaining": 339,
+      "currentCount": 9164,
+      "remaining": 336,
       "status": "active",
-      "phase": 1642
+      "phase": 1643
     },
     "deferredRegistrationCandidates": [
       {
@@ -528689,23 +528869,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1642,
-      "baseline": "da354c029c3aeecd169cc2da72e90ec4db354f5a",
-      "supportedNames": 9161,
-      "artifact": "tools/target9500-registration-checkpoint-1642.json",
-      "checkedAt": "2026-11-22T07:11:33.998Z"
+      "phase": 1643,
+      "baseline": "b7edd11977d1b145381728b79a4449b2271b1999",
+      "supportedNames": 9164,
+      "artifact": "tools/target9500-registration-checkpoint-1643.json",
+      "checkedAt": "2026-11-22T07:22:34.547Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T07:11:33.998Z",
+      "checkedAt": "2026-11-22T07:22:34.547Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9161,
-      "remainingNames": 339,
+      "currentNames": 9164,
+      "remainingNames": 336,
       "duplicateNames": 0,
-      "engineVersion": "0.602.158",
+      "engineVersion": "0.602.159",
       "added": [
         {
           "id": "dmr12-008",
@@ -529070,6 +529250,18 @@
         {
           "id": "dmx06-s01",
           "name": "ガイアール・アバレ・カイザー"
+        },
+        {
+          "id": "dmrp19-032",
+          "name": "†正義†と「正義」"
+        },
+        {
+          "id": "dmex15-b024",
+          "name": "「殺した人間の名くらい、おぼえているよ!!」"
+        },
+        {
+          "id": "promoy22-073",
+          "name": "COMPLEX VORTEX"
         }
       ],
       "results": {
@@ -529185,10 +529377,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "65d5e2e6873af52804c20b0a6780962fa640b555f878025e4ad62e67c031b6ab",
-        "dist/engine.js": "71e43ea1a7be1f7dc97cd296f0684b5ade8392b5b2e7e052bb0cba6f4f05afb5",
-        "dist/six-photo-rules.js": "e9fd9344f7b7a58d28fe9295d57ba00449eb482a2cbeecb0f88292d75332a067",
-        "dist/online-compatibility.js": "c0f8c817070d57e4c21cf47682c18817ceea63fcf763ed4fd4972ed9dc1150fe",
+        "dist/cards.json": "8c534e6942a0eca24261bff11f6f52f999df1bef0a6e5f968fd4fb7cdfb7f1c6",
+        "dist/engine.js": "48e7a7d304dcafc944b6b5ef0825c283f62a5222382a616ad0de75c776f15be9",
+        "dist/six-photo-rules.js": "84f2130466c33773d4fdb355254e2837adb5762a17b315abf3549f6c1be8ab9c",
+        "dist/online-compatibility.js": "de5485e864742c1d0c1176e865b0ccdc03a5806f3cb2fe5bf62295f4ad21ac1b",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -529253,10 +529445,10 @@
       },
       "phaseRange": [
         1614,
-        1642
+        1643
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 91,
+      "addedNames": 94,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -529268,8 +529460,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.247,
-        "log": "tmp/duema-phase-1642/check.log"
+        "seconds": 20.958,
+        "log": "tmp/duema-phase-1643/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -529279,10 +529471,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.284,
-        "log": "tmp/duema-phase-1642/audit.log"
+        "seconds": 12.745,
+        "log": "tmp/duema-phase-1643/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1642.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1643.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -530371,11 +530563,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9161,
-      "remaining": 339,
+      "currentNames": 9164,
+      "remaining": 336,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T07:11:33.998Z"
+      "checkedAt": "2026-11-22T07:22:34.547Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -582343,20 +582535,20 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1642,
+      "phase": 1643,
       "added": 3,
-      "supportedNames": 9161,
+      "supportedNames": 9164,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1642.json",
+      "artifact": "tools/target9500-registration-checkpoint-1643.json",
       "relatedRulingVerificationPending": []
     }
   },
   "registrationStop": {
-    "phase": 1642,
+    "phase": 1643,
     "threshold": 9500,
-    "supportedNames": 9161,
-    "pendingNames": 2664,
-    "checkedAt": "2026-11-22T07:11:33.998Z",
+    "supportedNames": 9164,
+    "pendingNames": 2661,
+    "checkedAt": "2026-11-22T07:22:34.547Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

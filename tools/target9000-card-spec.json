@@ -32318,5 +32318,123 @@
         ]
       }
     }
+  },
+  "dmrp19-032": {
+    "phase": 1643,
+    "faces": [
+      {
+        "name": "†正義†と「正義」",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "シンパシー：クリーチャー（この呪文を唱えるコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\n次の相手のターン中、自分のクリーチャーは離れない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NextOpponentStay1643"
+        }
+      ]
+    }
+  },
+  "dmex15-b024": {
+    "phase": 1643,
+    "faces": [
+      {
+        "name": "「殺した人間の名くらい、おぼえているよ!!」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊する。次の自分のターンのはじめまで、相手はそれと同じ名前のクリーチャーを出せず、同じ名前のクリーチャーで攻撃もブロックもできない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "g1643NameLock": true
+        }
+      ]
+    }
+  },
+  "promoy22-073": {
+    "phase": 1643,
+    "faces": [
+      {
+        "name": "COMPLEX VORTEX",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、破壊する。\n自分のクリーチャーを１体破壊してもよい。そうしたら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "spell": true
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "optional": true,
+          "spell": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "SpellFinish416",
+              "to": "hand"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

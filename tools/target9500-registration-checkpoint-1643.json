@@ -1,0 +1,133 @@
+{
+  "phase": 1643,
+  "checkedAt": "2026-11-22T07:22:34.547Z",
+  "baseline": "b7edd11977d1b145381728b79a4449b2271b1999",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9161,
+  "currentNames": 9164,
+  "remainingNames": 336,
+  "added": [
+    {
+      "id": "dmrp19-032",
+      "name": "†正義†と「正義」"
+    },
+    {
+      "id": "dmex15-b024",
+      "name": "「殺した人間の名くらい、おぼえているよ!!」"
+    },
+    {
+      "id": "promoy22-073",
+      "name": "COMPLEX VORTEX"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9161,
+    "uniqueNames": 9164,
+    "uniqueIds": 9164,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1643.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.403,
+      "log": "tmp/duema-phase-1643/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1643-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.434,
+      "log": "tmp/duema-phase-1643/final-focused.log",
+      "passed": 45,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Apocalypse|the spell limits|Genmu suppresses|Devil Link|replacement|winning return|losing grave finish|Spark applies all names|Shadow Love|shadow|destroy|Momo|Momomugen|Marriage Blue|All five auras|separately added civilization",
+        "tests/standard1087-effects.test.mjs",
+        "tests/standard627-effects.test.mjs",
+        "tests/standard937-effects.test.mjs",
+        "tests/standard416-effects.test.mjs",
+        "tests/standard676-effects.test.mjs",
+        "tests/standard1637-effects.test.mjs",
+        "tests/kenji-photo.test.mjs",
+        "tests/standard920-effects.test.mjs",
+        "tests/standard1188-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.509,
+      "log": "tmp/duema-phase-1643/final-related.log",
+      "passed": 60,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.958,
+      "log": "tmp/duema-phase-1643/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.745,
+      "log": "tmp/duema-phase-1643/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.242,
+      "log": "tmp/duema-phase-1643/target9500.log"
+    }
+  },
+  "totalTestsPassed": 105,
+  "hashes": {
+    "dist/cards.json": "8c534e6942a0eca24261bff11f6f52f999df1bef0a6e5f968fd4fb7cdfb7f1c6",
+    "dist/engine.js": "48e7a7d304dcafc944b6b5ef0825c283f62a5222382a616ad0de75c776f15be9",
+    "dist/six-photo-rules.js": "84f2130466c33773d4fdb355254e2837adb5762a17b315abf3549f6c1be8ab9c",
+    "dist/online-compatibility.js": "de5485e864742c1d0c1176e865b0ccdc03a5806f3cb2fe5bf62295f4ad21ac1b",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.159",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
