@@ -281,14 +281,14 @@ export function createExtendedRules(api){
  function neoDiscardHosts977(s,p){
   return creatures(s,p).filter(y=>!y.sealed&&!y.faceDown&&api.zoneCard(s,p,y,'battle').neoEvolution);
  }
- function discardManaSource(s,p){
+ function discardManaSource(s,p){if(!api.canHandMana(s,p))return null;
   return s.players[p].battle.find(x=>card(x).g1090DiscardToMana&&!api.ignored(s,x)&&api.isCreature(s,x));
  }
  function canUseCardDiscardReplacement(s,t,x){
   const c=card(x);
   if(c.carolReturns)return api.carolReturns(s,t.p,x)&&!api.handAbilityIgnored(s,x);
   if(c.g977DiscardUnderNeo)return neoDiscardHosts977(s,t.p).length>0;
-  return c.g843DiscardToMana||canEnter(s,t.p,c,{origin:'hand',execution:false});
+  return c.g843DiscardToMana?api.canHandMana(s,t.p):canEnter(s,t.p,c,{origin:'hand',execution:false});
  }
  function canReplaceDiscard(s,t,x){
   return !!discardManaSource(s,t.p)||canUseCardDiscardReplacement(s,t,x);
@@ -322,7 +322,7 @@ export function createExtendedRules(api){
   const c=card(x),enemyTurn=t.p!==s.active;
   if(c.carolReturns&&api.carolReturns(s,t.p,x)&&!api.handAbilityIgnored(s,x))return 'mandatory';
   if(c.g977DiscardUnderNeo&&!api.handAbilityIgnored(s,x))return 'optional';
-  if(c.g843DiscardToMana&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
+  if(c.g843DiscardToMana&&api.canHandMana(s,t.p)&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
   if(c.g591Discard==='opponentEffect607'||c.g591Discard==='opponentElement1114'){
    return !api.handAbilityIgnored(s,x)&&!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&
     ['spell','creature','seed','gear','field','aura','artifact','land'].includes(card(t.source)?.type)?(c.g591Discard==='opponentEffect607'?'mandatory':'optional'):null;
@@ -623,9 +623,11 @@ export function createExtendedRules(api){
     break;
    }
    case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const f=s.extSpells[i];
+    if(f.g1647EarlyMoved){s.extSpells.splice(i,1);combat.finishSpell(s,f);six.afterSpell566(s,f);break;}
+    if(f.to==='mana'&&f.spell?.summonOrigin==='hand'&&!api.canHandMana(s,f.caster)){f.to='grave';delete f.inst.normalFinish;delete f.inst.crystalFinish;f.g416SelfFinish=false;}
     if(api.duelistSpellFinish1367(s,f,t))break;
     if(f.g1339Creature&&finishBenzoSide(s,f)){six.afterSpell566(s,f);break;}
-if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish?f.to:null);six.afterSpell566(s,f);break;}
+if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416SelfFinish=true;}if(f.shieldCast){const ownFinish=f.g416SelfFinish||f.spell?.normalCharger||f.spell?.crystalCharger||f.spell?.g393PAfterExtra;if(!ownFinish&&six.spellManaFinish1647(s,t,f))break;s.extSpells.splice(i,1);api.finishShieldSpell(s,f,f.g416SelfFinish||f.g1647ExternalFinish?f.to:null);six.afterSpell566(s,f);break;}
     // A spell's own destination replacement precedes an external one (609.8a).
     if(!f.virtual&&f.spell?.g1027Crest&&f.spell.summonOrigin==='hand'&&
        !api.spellIgnored(s,f.spell)&&api.canAddShield(s,f.caster)){
@@ -645,7 +647,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
       break;
      }
     }
-    const selfFinish=f.g416SelfFinish||f.inst.normalFinish||f.inst.crystalFinish||f.spell?.graveCast&&f.to==='deck';if(!selfFinish&&!f.g159FinishResolved&&mado.finishSpell(s,t,f))break;
+    const selfFinish=f.g416SelfFinish||f.g1647ExternalFinish||f.inst.normalFinish||f.inst.crystalFinish||f.spell?.graveCast&&f.to==='deck';if(!selfFinish&&!f.g159FinishResolved&&mado.finishSpell(s,t,f))break;if(!selfFinish&&six.spellManaFinish1647(s,t,f))break;
     if(!f.virtual&&!selfFinish&&f.to==='grave'&&f.spell?.summonOrigin==='hand'&&
        !f.spell.g393PAfterExtra&&f.owner===f.caster&&t.g1338Choice!==null){
      const hosts=s.players[f.caster].battle.filter(x=>!x.sealed&&!x.faceDown&&
@@ -842,6 +844,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   if(c.g591Discard==='drawTwo')put(s,task('draw',t.p,x.cardId,{n:2,controller:t.p}));
  }
  function discardToMana(s,t,x){
+  if(!api.canHandMana(s,t.p)){discardCard(s,t,x);return;}
   remove(s.players[t.p].hand,x.uid);
   clear(x,'mana');
   api.addZone(s,t.p,'mana',x);

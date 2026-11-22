@@ -18,7 +18,7 @@ export function createSeedChampionRules(api){
   if(!list.length){queue(s,t,'LookPick',{stage:stage+1});return;}
   choice(s,t,t.mode==='blue'?(stage===0?'クリーチャーを1枚まで手札に加える':'クリーチャーではないカードを1枚まで手札に加える'):t.mode==='blueprint'?'クリーチャーを1体まで公開して手札に加える':'1枚を手札に加える',[...list.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),...(t.mode!=='kerora'?[skip()]:[])]);
  }
- function handMana(s,t){choice(s,t,'手札を1枚マナゾーンに置いてもよい',[...s.players[t.p].hand.map(x=>{const c=card(x);return opt(c.name,x.uid,8+cost(c)-(c.g47Vanilla||c.g47Teacher||c.g47Dokkoi?30:0),x.cardId);}),skip()]);}
+ function handMana(s,t){if(!api.canHandMana(s,t.p))return;choice(s,t,'手札を1枚マナゾーンに置いてもよい',[...s.players[t.p].hand.map(x=>{const c=card(x);return opt(c.name,x.uid,8+cost(c)-(c.g47Vanilla||c.g47Teacher||c.g47Dokkoi?30:0),x.cardId);}),skip()]);}
  const deploy=(s,t)=>{if(movable(s,t.p,'mana'))put(s,task('g34_Select',t.p,t.source,{origin:'mana',n:1,optional:true,deploy:true,filter:{creatureOrSeed:true,max:3},title:'マナからコスト3以下のクリーチャーかタマシードを1枚まで出す'}));};
  function shinka(s,p,x){const type=effective(x,s).g47Shinka;if(type&&!api.ignored(s,x))on(s,p,x,type==='Party'?'PartyShinka':'Leviya');}
  function attach(s,t,ordered){const own=s.players[t.p],x=findRef(s,t.p,t.targetRef),host=own.battle.find(x=>key(x)===key(t.host));if(!x||!host||x===host||!api.isCreature(s,host)||!neo(s,host))return;
@@ -69,7 +69,7 @@ export function createSeedChampionRules(api){
  case'g47_ManaHand':if(v&&movable(s,t.p,'mana')){const x=api.remove(own.mana,v);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
  case'g47_Manhattan':queue(s,t,'ManhattanEnemy',{self:v});break;
  case'g47_ManhattanEnemy':manhattan(s,{...t,enemy:v});break;
- case'g47_HandMana':if(v){const x=api.remove(own.hand,v);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);}}break;
+ case'g47_HandMana':if(v&&api.canHandMana(s,t.p)){const x=api.remove(own.hand,v);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);}}break;
  case'g47_Attach':if(v)queue(s,t,'AttachOrder',{host:v,ordered:[]});break;
  case'g47_AttachOrder':queue(s,t,'AttachOrder',{ordered:[...t.ordered,v]});break;
  case'g47_StrataCards':if(v){strataCards(s,{...t,selected:[...t.selected,v]});}else{const row=s.leaving?.rows.find(r=>r.uid===t.rowUid&&r.player===t.owner);if(row){if(t.selected.length)row.plan={kind:'g47',replacement:'strato',source:t.source,cards:t.selected};else{row.g47StratoDeclined=true;delete row.plan;}}}break;

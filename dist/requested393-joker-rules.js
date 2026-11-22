@@ -31,7 +31,7 @@ export function createRequested393JokerRules(api){
  function copyCard(s,p,x,source){if(!x||!source)return;const c=card(source);if(!['creature','seed'].includes(c.type)||!['ジョーカーズ','レクスターズ'].some(q=>race(c,q)))return;(x.g393JCopies??=[]).push({key:x.uid+'@'+(x.incarnation||0)+':copy:'+(s.g393JCopySerial=(s.g393JCopySerial||0)+1),cardId:source.cardId,expiresPlayer:1-p});api.log(s,p,'abilityGrant',card(x).name+'が'+c.name+'の能力を次の相手のターンの終わりまで得る',{cardId:x.cardId});}
  function run(s,t){if(!t.op.startsWith('g393J_'))return false;const own=s.players[t.p];switch(t.op){
   case'g393J_MaxG':put(s,{...t,op:'g393J_MaxGMana'});draw(s,t.p,1);break;
-  case'g393J_MaxGMana':if(own.hand.length)choice(s,t,'マナに置く自分の手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,5,card(x).id)));break;
+  case'g393J_MaxGMana':if(api.canHandMana(s,t.p)&&own.hand.length)choice(s,t,'マナに置く自分の手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,5,card(x).id)));break;
   case'g393J_ZeroTarget':choice(s,t,'パワーを0にする相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
   case'g393J_ZeroExact':{const y=live(s,t.owner,t.target);if(y)y.g393JZero={turn:s.turn};break;}
   case'g393J_WDStart':if(!own.shields.length)break;choice(s,t,'シールド1つを墓地へ置いて1枚引き、次の召喚を2軽減する？',[opt('使う',true,own.deck.length>1?12:-1000),skip()]);break;
@@ -43,7 +43,7 @@ export function createRequested393JokerRules(api){
   default:throw Error('未実装の追加ジョーカーズ処理：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g393J_'))return false;switch(t.op){
-  case'g393J_MaxGMana':{const x=remove(s.players[t.p].hand,v);if(x){clear(x,'mana');const dest=api.manaRedirect(s,t.p)?'grave':'mana';api.addZone(s,t.p,dest,x);if(dest==='mana'){api.handMana(s,t.p,x);copyCard(s,t.p,live(s,t.p,t),x);}}break;}
+  case'g393J_MaxGMana':{if(!api.canHandMana(s,t.p))break;const x=remove(s.players[t.p].hand,v);if(x){clear(x,'mana');const dest=api.manaRedirect(s,t.p)?'grave':'mana';api.addZone(s,t.p,dest,x);if(dest==='mana'){api.handMana(s,t.p,x);copyCard(s,t.p,live(s,t.p,t),x);}}break;}
   case'g393J_ZeroTarget':{const owner=1-t.p,x=live(s,owner,{uid:v,incarnation:s.players[owner].battle.find(y=>y.uid===v)?.incarnation||0});if(x)x.g393JZero={turn:s.turn};break;}
   case'g393J_WDStart':if(v)put(s,{...t,op:'g393J_WDShield'});break;
   case'g393J_WDShield':if(v){const moved=api.moveShield(s,t.p,v,'grave');if(!api.deferShieldMove1352(s,{...t,op:'g393J_WDShieldDone'})&&moved.length)put(s,{...t,op:'g393J_WDDraw'});}break;

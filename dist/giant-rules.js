@@ -40,7 +40,7 @@ export function createGiantRules(api){
  case'g17_Touch':choice(s,t,'マナに置く相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g17_TouchDeploy':choice(s,t,'選んだ相手より小さいコストをマナから出す',[...own.mana.filter(x=>canPut(s,t.p,x,'mana')&&(t.max==='∞'||cost(card(x))<t.max)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g17_YukiReturn':choice(s,t,'マナからクリーチャーを3体まで手札へ（'+t.selected.length+'/3）',[...own.mana.filter(x=>!x.faceDown&&card(x).type==='creature'&&!t.selected.includes(x.uid)&&t.selected.length<3).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),opt('この選択で戻す',null,t.selected.length?20:0)]);break;
- case'g17_YukiCharge':choice(s,t,'手札を3枚までタップしてマナへ（'+t.selected.length+'/3）',[...own.hand.filter(x=>!t.selected.includes(x.uid)&&t.selected.length<3).map(x=>opt(card(x).name,x.uid,own.mana.length<6?10:-2,x.cardId)),opt('この選択でマナへ',null,t.selected.length?20:0)]);break;
+ case'g17_YukiCharge':if(!api.canHandMana(s,t.p))break;choice(s,t,'手札を3枚までタップしてマナへ（'+t.selected.length+'/3）',[...own.hand.filter(x=>!t.selected.includes(x.uid)&&t.selected.length<3).map(x=>opt(card(x).name,x.uid,own.mana.length<6?10:-2,x.cardId)),opt('この選択でマナへ',null,t.selected.length?20:0)]);break;
  case'g17_Space':{const uids=protect(s,t.p,2);if(uids.length)choice(s,{...t,uids},'上2枚から手札に加えるカードを選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;}
  case'g17_WinRamp':choice(s,t,'バトル勝利：山札の上1枚をマナに置きますか？',[opt('1枚をマナへ',true,own.deck.length>1?10:-20),skip()]);break;
  case'g17_ReturnMana':choice(s,t,'マナを1枚手札に戻しますか？',[...own.mana.map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,own.hand.length<3?10:cost(card(x))-5,x.cardId)),skip()]);break;
@@ -69,7 +69,7 @@ export function createGiantRules(api){
  case'g17_OrbShield':if(v)api.shieldTo(s,1-t.p,v,'mana');break;
  case'g17_Touch':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x){put(s,task('g17_TouchDeploy',t.p,t.source,{max:cost(card(x))===Infinity?'∞':cost(card(x))}));move(s,[{player:1-t.p,uid:v,to:'mana'}]);}break;}
  case'g17_YukiReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,t.p,'mana',uid,api);if(x){clear(x,'hand');own.hand.push(x);}}put(s,task('g17_YukiCharge',t.p,t.source,{selected:[]}));}break;
- case'g17_YukiCharge':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=remove(own.hand,uid);if(x){clear(x,'mana');x.tapped=true;api.addZone(s,own,'mana',x);}}break;
+ case'g17_YukiCharge':if(!api.canHandMana(s,t.p))break;else if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=remove(own.hand,uid);if(x){clear(x,'mana');x.tapped=true;api.addZone(s,own,'mana',x);}}break;
  case'g17_Space':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}for(const uid of t.uids.filter(uid=>uid!==v)){const x=remove(own.deck,uid);if(x){const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)?'grave':'mana');clear(x,to);api.addZone(s,own,to,x);}}unprotect(own,t.uids);api.deckCheck(s,t.p);break;}
  case'g17_WinRamp':if(v)ramp(s,t.p,1);put(s,task('g17_ReturnMana',t.p,t.source));break;
  case'g17_ReturnMana':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;

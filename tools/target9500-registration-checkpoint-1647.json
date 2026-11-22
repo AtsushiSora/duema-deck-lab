@@ -1,0 +1,163 @@
+{
+  "phase": 1647,
+  "checkedAt": "2026-11-22T08:13:25.091Z",
+  "baseline": "b1c9d262140e14aa002db63bff9120386445619d",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9173,
+  "currentNames": 9176,
+  "remainingNames": 324,
+  "added": [
+    {
+      "id": "dm03-023",
+      "name": "ライト・ブーメラン"
+    },
+    {
+      "id": "dm15-047",
+      "name": "リアリティ・ヴォイド"
+    },
+    {
+      "id": "dmrp08-050",
+      "name": "ブロッケン・ヴォーン"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9173,
+    "uniqueNames": 9176,
+    "uniqueIds": 9176,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1647.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.686,
+      "log": "tmp/duema-phase-1647/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1647-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 32.363,
+      "log": "tmp/duema-phase-1647/final-focused.log",
+      "passed": 65,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Siren|Shibire|Yuki|Dida|Cycl|Clan|Space|space|Jingi|Amode|Hurricane|MAX-G|Charger|charger|mana|Mana",
+        "tests/gospel-effects.test.mjs",
+        "tests/hachi-effects.test.mjs",
+        "tests/giant-effects.test.mjs",
+        "tests/standard843-effects.test.mjs",
+        "tests/standard1090-effects.test.mjs",
+        "tests/standard771-effects.test.mjs",
+        "tests/standard1338-effects.test.mjs",
+        "tests/standard555-effects.test.mjs",
+        "tests/standard454-effects.test.mjs",
+        "tests/standard1124-effects.test.mjs",
+        "tests/requested393-joker.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.223,
+      "log": "tmp/duema-phase-1647/final-related.log",
+      "passed": 134,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.1,
+      "log": "tmp/duema-phase-1647/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.828,
+      "log": "tmp/duema-phase-1647/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.256,
+      "log": "tmp/duema-phase-1647/target9500.log"
+    },
+    "related-extension": {
+      "name": "related-extension",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Gigandidanos|Dokkoi|Zombie summons|Hurricane|ハリケーン|Crawler|mana|Mana|Lucky Darts|stacked Lucky Darts|Darts handles|Watch resolves",
+        "tests/kenji-effects.test.mjs",
+        "tests/champion-seed-effects.test.mjs",
+        "tests/utility66-effects.test.mjs",
+        "tests/environment-effects.test.mjs",
+        "tests/maruru-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.174,
+      "log": "tmp/duema-phase-1647/related-extension.log",
+      "passed": 33,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 232,
+  "hashes": {
+    "dist/cards.json": "3f86d8600693d21991d20b612b4f795f0f91adb6f8ba09d4a08ec6f49477e1c6",
+    "dist/engine.js": "cd07ec45326b72df9dfde7f46a062626c67ee7cd1aef09b99aa997aa085b0e23",
+    "dist/six-photo-rules.js": "aedc8f7eabebff52b9116b83e8229e8f155d3248ddc73ff78923393448236ab9",
+    "dist/online-compatibility.js": "8b95ebd5a8636650b0469cf588153e487c5eb482ff5b50f6ad52dd5d71965d05",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/card-images.js": "385680e60d48b28a1b980d836d23a3f647b12db2b507c8720b9eb6ec150e0281",
+    "dist/champion-seed-rules.js": "f79c7b1498d7ff3cb24359f048e4d8d947b602ef93a6d3d021e0c9da39ef7f55",
+    "dist/extended-rules.js": "248130feeb2ba4a9ff57673b7d1e81bacf81498f0b272f630130d3df95ef10ec",
+    "dist/giant-rules.js": "47fc5eea31dfb5355b777e18f1a80a70dd94cd80810660fb3b288224bab29665",
+    "dist/gospel-rules.js": "af7d0e8166e8a80becd14dcc77697ff86d222cef2190dd906ff20aaf26b95712",
+    "dist/hachi-rules.js": "3a30a2cd576dde9f61e83bda07d449c79549149c602ee1c5e0276c7896ad462b",
+    "dist/kenji-rules.js": "1a0a87ed25af480afa013c8f3bc958fe25a1667fca5f4ad8e43379e091035e34",
+    "dist/requested393-joker-rules.js": "7c9ad5d194f485dd44caec4f9befcad0b23a5d577eb9b4605ad1e90cd76220b5",
+    "dist/utility-exchange-rules.js": "041958c5d356c9d9ab93b1ddf587b327f56a268cc8b32c43265793fc40ecb7ea"
+  },
+  "engineVersion": "0.602.163",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

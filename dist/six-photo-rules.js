@@ -1153,7 +1153,7 @@ export function createSixPhotoRules(api){
   return(zero?10:synergy?12:0)-lost.length*30+(synergy&&y.tapped?1:0);
  }
  const release=(s,p,uid)=>{for(const k of['g34Protected','g35Protected'])s.players[p][k]=(s.players[p][k]||[]).filter(x=>x!==uid);};
- function zoneMove(s,p,from,uid,to,t={}){if(!api.canMoveZone(s,p,from))return;const shieldOwner=t.g904ShieldOwner??p;if(to==='shields'&&!api.canAddShield(s,shieldOwner)){if(from==='deck')release(s,p,uid);return;}const own=s.players[p];if(from==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??p}]);return;}if(from==='mana'&&to==='grave')api.markCarolFromMana(s,p,own.mana.find(x=>x.uid===uid));const x=remove(own[from],uid);if(!x)return;if(from==='deck')release(s,p,uid);let dest=to;if(from==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p))dest='grave';if(to==='mana'&&!(from==='hand'&&t.g182HandMana)&&api.manaRedirect(s,p))dest='grave';if(from==='deck')dest=api.deckDestination1365(s,p,to,dest);clear(x,dest);if(dest==='shields'&&t.g657FaceUp)x.faceUp=true;if(dest==='mana'){if(t.faceDown){x.faceDown=true;x.tapped=!!t.tapped;}else if(t.tapped)x.tapped=true;}if(t.g183Return&&dest==='deckTop')own.deck.unshift(x);else api.addZone(s,dest==='shields'?shieldOwner:dest==='hand'&&t.toOwnerHand?(x.cardOwner??p):p,dest,x);if(from==='hand'&&dest==='mana')api.handMana(s,p,x);if(dest==='shields')api.notifyShieldAdded(s,shieldOwner,x);return dest!=='grave'||own.grave.includes(x);}
+ function zoneMove(s,p,from,uid,to,t={}){if(!api.canMoveZone(s,p,from)||from==='hand'&&to==='mana'&&!api.canHandMana(s,p))return;const shieldOwner=t.g904ShieldOwner??p;if(to==='shields'&&!api.canAddShield(s,shieldOwner)){if(from==='deck')release(s,p,uid);return;}const own=s.players[p];if(from==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??p}]);return;}if(from==='mana'&&to==='grave')api.markCarolFromMana(s,p,own.mana.find(x=>x.uid===uid));const x=remove(own[from],uid);if(!x)return;if(from==='deck')release(s,p,uid);let dest=to;if(from==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p))dest='grave';if(to==='mana'&&!(from==='hand'&&t.g182HandMana)&&api.manaRedirect(s,p))dest='grave';if(from==='deck')dest=api.deckDestination1365(s,p,to,dest);clear(x,dest);if(dest==='shields'&&t.g657FaceUp)x.faceUp=true;if(dest==='mana'){if(t.faceDown){x.faceDown=true;x.tapped=!!t.tapped;}else if(t.tapped)x.tapped=true;}if(t.g183Return&&dest==='deckTop')own.deck.unshift(x);else api.addZone(s,dest==='shields'?shieldOwner:dest==='hand'&&t.toOwnerHand?(x.cardOwner??p):p,dest,x);if(from==='hand'&&dest==='mana')api.handMana(s,p,x);if(dest==='shields')api.notifyShieldAdded(s,shieldOwner,x);return dest!=='grave'||own.grave.includes(x);}
  const attacking587=(s,x)=>x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
  const currentPower506=(s,x)=>api.power(x,attacking587(s,x),s);
  function lowestPower741(s,rows){
@@ -1526,7 +1526,7 @@ export function createSixPhotoRules(api){
  }
  // Publish the complete movement before its zone triggers or matching draw.
  function moveZoneSelection583(s,t,rows,owner=t.p){
-  if(!api.canMoveZone(s,owner,t.origin))return [];
+  if(!api.canMoveZone(s,owner,t.origin)||t.origin==='hand'&&t.to==='mana'&&!api.canHandMana(s,owner))return [];
   const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,owner)?'grave':t.to;
   if(dest===t.origin)return [];
   const origin=s.players[owner][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
@@ -1542,7 +1542,7 @@ export function createSixPhotoRules(api){
  function finishGraveHandMana771(s,t){
   const own=s.players[t.p];
   const moved=graveHandManaOrigins771.map((origin,i)=>{
-   if(!t.picks[i]||!api.canMoveZone(s,t.p,origin)||origin==='grave'&&api.manaRedirect(s,t.p))return null;
+   if(!t.picks[i]||!api.canMoveZone(s,t.p,origin)||origin==='hand'&&!api.canHandMana(s,t.p)||origin==='grave'&&api.manaRedirect(s,t.p))return null;
    return remove(own[origin],t.picks[i]);
   });
   for(const x of moved.filter(Boolean)){clear(x,'mana');x.tapped=true;}
@@ -3873,6 +3873,8 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Chance417':{const c=chanceCard417(s,t);if(c)choice(s,t,'アタック・チャンス：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),t.source),skip()]);break;}
+ case'g34_SelfSpellMana1647':api.moveSpellMana1647(s,t.p,t.uid);break;
+ case'g34_HandManaStop1647':(s.extLimits??=[]).push({kind:'g1647HandManaStop',player:1-t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});break;
  case'g34_SpellFinish416':{const frame=(s.extSpells||[]).find(f=>f.inst.uid===t.uid&&f.caster===t.p&&(!f.virtual||f.shieldCast));if(frame){frame.to=t.to;frame.g416SelfFinish=true;if(frame.shieldCast)frame.inst.finishTo=t.to;}break;}
  case'g34_Judge318':api.singleJudge(s,t.p,t.source,t.uid,{...t,op:'g34_Sequence',defs:t.defs});break;
  case'g34_Thrill443':{const ids=look(s,{...t,n:3,public:true}),n=ids.filter(uid=>{const y=own.deck.find(y=>y.uid===uid);return y&&matches(s,t.p,y,{creature:true,raceAny:t.races});}).length,batch=String(s.g443Serial=(s.g443Serial||0)+1),defs=t.defs.map(d=>d.op==='Look'&&d.g201Search?{op:'ThrillSearch443',batch,ids,search:d}:d);for(const uid of ids)release(s,t.p,uid);put(s,...tasks(t.p,t.source,Array.from({length:n},(_,i)=>({op:'Offer',title:'スリリング・スリー '+(i+1)+'/'+n+'：能力を使う？',defs})),{uid:t.uid,incarnation:t.incarnation}),{...t,op:'g34_Order',g443Root:batch,ids,rest:'bottom',ordered:[]});break;}
@@ -8176,6 +8178,11 @@ export function createSixPhotoRules(api){
   const entry=host&&api.attackAbilities(s,t.p,host,t)[v.index];
   if(entry){api.log(s,t.p,'borrowAttack',card(t.source).name+'で'+card(host).name+'の攻撃時能力を１つ使う',{cardId:t.source});api.resolveBorrowedAttack1370(s,entry);}break;
  }
+ case'g34_SpellManaFinish1647':{
+  const f=s.extSpells?.find(f=>f.inst.uid===t.uid);
+  if(f){f.g1647ManaDecided=true;if(v===true){f.to='mana';f.g1647ExternalFinish=true;}}
+  put(s,t.resume);break;
+ }
  case'g34_Target':
   if(used792(s,t,t))break;
   if(t.g1357Become){
@@ -8888,6 +8895,15 @@ export function createSixPhotoRules(api){
  if(changes1646.length)d.g393CChangeCopies=[...(d.g393CChangeCopies||c.g393CChangeCopies||[]),...changes1646];
  const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker&&
   (g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource})));if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
+ spellManaFinish1647(s,t,f){
+  if(f.virtual&&!f.shieldCast||f.g1647ManaDecided||f.g1647EarlyMoved||f.spell?.g44ManaSpell&&f.spell?.summonOrigin==='mana'||
+   f.spell?.summonOrigin==='hand'&&!api.canHandMana(s,f.caster)||
+   !creatures(s,f.caster).some(x=>!x.sealed&&!x.faceDown&&effective(x,s).g1647SpellMana))return false;
+  choice(s,task('g34_SpellManaFinish1647',f.caster,f.spell.id,{uid:f.inst.uid,resume:t}),
+   'ブロッケン・ヴォーン：唱え終えた呪文をマナゾーンに置く？',[
+    opt('マナゾーンに置く',true,15,f.inst.cardId),opt('元の移動先に置く',null,0,f.inst.cardId)]);
+  return true;
+ },
  selectGrantedBreaker633(s,p,x){
   if(s.attack.g633Breaker!==undefined||!s.players[1-p].shields.length)return false;
   const c=effective(x,s),counts=c.g633BreakerChoices;

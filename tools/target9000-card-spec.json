@@ -32805,5 +32805,117 @@
         }
       ]
     }
+  },
+  "dm03-023": {
+    "phase": 1647,
+    "faces": [
+      {
+        "name": "ライト・ブーメラン",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ使ってよい)\nこの呪文を、自分の墓地ではなく自分のマナゾーンに置く。その後、自分のマナゾーンからカードを１枚選び、自分の手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfSpellMana1647"
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dm15-047": {
+    "phase": 1647,
+    "faces": [
+      {
+        "name": "リアリティ・ヴォイド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "次の自分のターンのはじめまで、相手は自分自身の手札をマナゾーンに置くことができない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandManaStop1647"
+        }
+      ]
+    }
+  },
+  "dmrp08-050": {
+    "phase": 1647,
+    "faces": [
+      {
+        "name": "ブロッケン・ヴォーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "パワーアタッカー+2000（攻撃中、このクリーチャーのパワーを+2000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の呪文を唱えた時、唱えた後で墓地に置くかわりにマナゾーンに置いてもよい。",
+        "race": "グランセクト",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1647SpellMana": true,
+      "attackBonus": 2000
+    }
+  },
+  "dm25ex2-Cho050": {
+    "phase": 1647,
+    "faces": [
+      {
+        "name": "リアリティ・ヴォイド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "次の自分のターンのはじめまで、相手は自身の手札をマナゾーンに置けない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandManaStop1647"
+        }
+      ]
+    }
   }
 }

@@ -20,7 +20,7 @@ export function createGospelRules(api){
   case'g5Triple':choice(s,t,'T・T・Tの効果を選ぶ',[opt('相手を3体までタップ',0,creatures(s,1-t.p).filter(x=>!x.tapped).length*8),opt('カードを3枚引く',1,own.deck.length>3?20:-30),opt('次の召喚を3軽減し、スピードアタッカーを与える',2,own.hand.some(x=>card(x).type==='creature')?30:0)]);break;
   case'g5TapThree':{const list=creatures(s,1-t.p).filter(x=>!t.uids.includes(x.uid));if(t.uids.length<3&&list.length)choice(s,t,'タップする相手を3体まで選ぶ',[...targetOptions(s,t.p,list),opt('ここまでで確定',null,0)]);else for(const uid of t.uids){const x=opp.battle.find(x=>x.uid===uid);if(x)api.tap(s,1-t.p,x);}break;}
   case'g5Siren':choice(s,t,'手札に戻す自分のマナを1枚選ぶ',own.mana.map(x=>opt(card(x).name,x.uid,x.tapped?10:0,x.cardId)));if(!own.mana.length)put(s,task('g5HandMana',t.p,t.source));break;
-  case'g5HandMana':choice(s,t,'マナに置く手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));break;
+  case'g5HandMana':if(!api.canHandMana(s,t.p))break;choice(s,t,'マナに置く手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));break;
   case'g5Courage':choice(s,t,'勇愛の天秤の効果を選ぶ',[opt('手札を1枚捨て、2枚引く',0,own.deck.length>2?15:-30),opt('パワー2000以下の相手を破壊',1,creatures(s,1-t.p).some(x=>power(x,false,s)<=2000)?30:0)]);break;
   case'g5Burning':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}),...(t.plus?[task('g5DestroyElement',t.p,t.source,{max:6})]:[]));break;
   case'g5LastFlame':discardThen(s,t,'g5AfterFlame');break;
@@ -37,7 +37,7 @@ export function createGospelRules(api){
   case'g5Triple':if(value===0)put(s,task('g5TapThree',t.p,t.source,{uids:[]}));if(value===1)draw(s,t.p,3);if(value===2&&!oppNoReduce(s,t.p))discount(s,t.p,t.source,3);break;
   case'g5TapThree':if(value)put(s,{...t,uids:[...t.uids,value]});else for(const uid of t.uids){const x=s.players[1-t.p].battle.find(x=>x.uid===uid);if(x)api.tap(s,1-t.p,x);}break;
   case'g5Siren':{const x=policyRemove(s,t.p,'mana',value,api);if(x){clear(x,'hand');own.hand.push(x);}put(s,task('g5HandMana',t.p,t.source));break;}
-  case'g5HandMana':{const x=remove(own.hand,value);if(x){clear(x,'mana');api.addZone(s,own,'mana',x);api.handMana(s,t.p,x);}break;}
+  case'g5HandMana':{if(!api.canHandMana(s,t.p))break;const x=remove(own.hand,value);if(x){clear(x,'mana');api.addZone(s,own,'mana',x);api.handMana(s,t.p,x);}break;}
   case'g5Courage':if(value===0)put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}));else put(s,task('destroyPower',t.p,t.source,{max:2000}));break;
   case'g5DestroyElement':if(value.zone==='battle')move(s,[{player:1-t.p,uid:value.uid,to:'grave'}]);else{api.moveShield(s,1-t.p,value.uid,'grave',{cardOnly:true});}break;
   case'g5AltPay':if(value)put(s,{...t,selected:[...t.selected,value]});break;

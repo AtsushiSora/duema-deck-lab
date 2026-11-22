@@ -1,0 +1,351 @@
+{
+  "phase": 1647,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9173,
+  "target": 9500,
+  "description": "ライト・ブーメランの解決途中の物理呪文移動と同じマナの必須回収、リアリティ・ヴォイドの手札からマナへの移動禁止、ブロッケン・ヴォーンの解決後の任意マナ置換を全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38768/",
+    "https://dm.takaratomy.co.jp/rule/qa/38769/",
+    "https://dm.takaratomy.co.jp/rule/qa/38770/",
+    "https://dm.takaratomy.co.jp/rule/qa/38771/",
+    "https://dm.takaratomy.co.jp/rule/qa/38772/",
+    "https://dm.takaratomy.co.jp/rule/qa/38773/",
+    "https://dm.takaratomy.co.jp/rule/qa/32915/",
+    "https://dm.takaratomy.co.jp/rule/qa/42927/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35334/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31618/"
+  ],
+  "cards": [
+    {
+      "id": "dm03-023",
+      "name": "ライト・ブーメラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-023",
+      "faces": [
+        {
+          "name": "ライト・ブーメラン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ使ってよい)\nこの呪文を、自分の墓地ではなく自分のマナゾーンに置く。その後、自分のマナゾーンからカードを１枚選び、自分の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSpellMana1647"
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "8ebba4bf5e42963d260330a649e90931fd43b6422141ef140ab98d5f0f3b57c6",
+        "facesMatched": true,
+        "imageSha256": "e9055ed5ec218edc7ca61abf645bff0ac338235c4ce1d0333a49eb468913864c",
+        "imageBytes": 87851,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・名称・文明・種族・コスト・パワー・マナ1を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM-03 超戦士襲撃(マスター・オブ・デストラクション)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-023",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm15-047",
+      "name": "リアリティ・ヴォイド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-047",
+      "faces": [
+        {
+          "name": "リアリティ・ヴォイド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "次の自分のターンのはじめまで、相手は自分自身の手札をマナゾーンに置くことができない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandManaStop1647"
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25ex2-Cho050",
+        "name": "リアリティ・ヴォイド",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho050",
+        "faces": [
+          {
+            "name": "リアリティ・ヴォイド",
+            "typeText": "呪文",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ],
+            "cost": 3,
+            "costText": "3",
+            "abilityText": "次の自分のターンのはじめまで、相手は自身の手札をマナゾーンに置けない。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "e3f4e05018f816842e97013d5f89fab32f29b625c9b7957b255ee8969110b53f",
+          "facesMatched": true,
+          "imageSha256": "742d17db30eaecf228056b2654ef8ae823622c9c4ddf61cc14efd164aad6469a",
+          "imageBytes": 112301,
+          "imageReviewed": true,
+          "imageReview": "2025再録の短縮表記と元の基本情報の一致を画像で確認。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho050.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "78896e4b03bbf09aca42563efe5be734e83dbc4971468d35d14860c04d6ee762",
+        "facesMatched": true,
+        "imageSha256": "4ed07c0bfe27172db51e9e8883dfa4c4c1e34f40e603fa83530f8686e4ddf078",
+        "imageBytes": 73312,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・名称・文明・種族・コスト・パワー・マナ1を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM25-EX2 王道vs邪道 デュエキングWDreaM 2025",
+        "DM-15 転生編 第2弾 神滅奥義継承(シークレット・オブ・ヒドゥン･ギア)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-047",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp08-050",
+      "name": "ブロッケン・ヴォーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-050",
+      "faces": [
+        {
+          "name": "ブロッケン・ヴォーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "パワーアタッカー+2000（攻撃中、このクリーチャーのパワーを+2000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の呪文を唱えた時、唱えた後で墓地に置くかわりにマナゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1647SpellMana": true,
+        "attackBonus": 2000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "9b1ebf60d7424568bb7fead0f19fb0727196ffbbacbc22a3b00fd2e5fd9bd6fa",
+        "facesMatched": true,
+        "imageSha256": "371aa576e3e5c545f53c2d9958b370459e1a23a2f0c1e85e29b1da467fd22dc8",
+        "imageBytes": 110930,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文・名称・文明・種族・コスト・パワー・マナ1を目視照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-08 双極篇 拡張パック第４弾 超決戦!バラギアラ!!無敵オラオラ輪廻∞"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-050",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "reason": "シールド追加の全経路での置換、既存の置換効果と連鎖しないこと、バトルゾーンからの移動時の置換選択まで一貫した実装が必要。部分的なaddZoneの差し替えでは全文対応とせず、今回未登録。"
+    },
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "reason": "QA44186/44187/46059を確認。裁きの紋章には連鎖せず、通常のシールド下への追加には適用し、マーシャル・クイーンは置換後も試みた数をブレイクする。関連経路とマーシャルを含めた再現を要するため今回未登録。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm03-023": 4,
+      "dm15-047": 4,
+      "dmrp08-050": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38768/",
+      "checkedAt": "2026-11-22",
+      "sha256": "dccea13241ec9fbc9add4b5fff2214ae8738d84bf0ff80863f4a224d859d892b",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38769/",
+      "checkedAt": "2026-11-22",
+      "sha256": "369c704ab33f83d9b7620263a9cf1ff085658b15303978b0b2c54157e02370fd",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38770/",
+      "checkedAt": "2026-11-22",
+      "sha256": "e1bdacb2f4e08211b05601128eee1aeddebdd245c173e67d5faf2d1c580845f3",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38771/",
+      "checkedAt": "2026-11-22",
+      "sha256": "e972ab69c0f0692b83e22e5d7cebdaa0caf49bf0236ea63ccd20124ea9d8841f",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38772/",
+      "checkedAt": "2026-11-22",
+      "sha256": "a18a4f021f965d7aff8ee2ce90fe503aed65c5a3870dc03c815c852bfa8439b0",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38773/",
+      "checkedAt": "2026-11-22",
+      "sha256": "3cfa80f61b2d246708ec1eeee58eea8ccf4dbdc2ca5aafdde7dd475e2a8a24a9",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32915/",
+      "checkedAt": "2026-11-22",
+      "sha256": "658cd587fa86302a7cb3d308ec63b37c7853c188f7bf256465aadc57930db249",
+      "result": "外部の唱え終わり置換との選択を照合。同じ「山札の下／マナ」の競合を実在の目的不明の作戦で、「手札／マナ」をスペルサイクリカで検証。ダンダルダ自体を追加・検証したとはしない。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/42927/",
+      "checkedAt": "2026-11-22",
+      "sha256": "cf53a59e9950f5a0e74019174f4283abef810294941d54295111ff55218c0d18",
+      "result": "置換元は唱え終わり時点に必要。ブロッケンを解決途中にバウンスした場合に置換選択が出ないことを実測。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35334/",
+      "checkedAt": "2026-11-22",
+      "sha256": "9f66f38c2a270c739cd1113ff869a1e6f74a6f6bb0af0f7f85231c1658b51c51",
+      "result": "カード固有テストで該当の実カード処理を再現。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+      "checkedAt": "2026-11-22",
+      "sha256": "546cf95db3257170047c02becf9be6b566324b5936e800fa1f1faff74132b75d",
+      "result": "609.8aの自己移動優先をチャージャーと、マナから唱えた生命と大地と轟破の決断で実測。"
+    }
+  ],
+  "runtimeFiles": [
+    "dist/card-images.js",
+    "dist/champion-seed-rules.js",
+    "dist/engine.js",
+    "dist/extended-rules.js",
+    "dist/giant-rules.js",
+    "dist/gospel-rules.js",
+    "dist/hachi-rules.js",
+    "dist/kenji-rules.js",
+    "dist/online-compatibility.js",
+    "dist/requested393-joker-rules.js",
+    "dist/six-photo-rules.js",
+    "dist/utility-exchange-rules.js"
+  ],
+  "extraValidationRuns": [
+    "related-extension"
+  ],
+  "implementationNotes": [
+    "呪文を解決途中で移動した場合も継続フレームだけは残し、物理カードの列挙・通常の唱え終わり・ターン中断で二重移動しない。JSON後もUIDで追跡する。",
+    "リアリティ・ヴォイドは手札とマナの移動だけを止め、マナ回収、山札・墓地・バトルゾーンからのマナ移動は止めない。手札にある保留中のチャージャーも対象。",
+    "ブロッケンは呪文が唱え終わる時点の実際の場を見て置換を選び、自己置換より優先しない。シールドで保留されたラッキー・ダーツの物理呪文にも適用する。",
+    "既存の直接手札マナ移動にも同じ禁止判定を移動前に追加し、禁止時に捨て札へ変換しない。捨てる時のマナ置換だけは、禁止で選べないため元の破棄処理を行う。"
+  ],
+  "resolvedPriorDeferrals": [
+    {
+      "id": "dm03-023",
+      "fromPhase": 1646,
+      "result": "実物を回収選択前にマナへ移し、その後は重複移動しない形で実装。関連公式6裁定を、スペルサイクリカ・目的不明の作戦・クランヴィア・リアリティヴォイド・スペースチャージ・仁義で検証する。"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm16-009",
+      "name": "マーシャル・クイーン",
+      "reason": "QA46059の再現に必要。後発のブレイク表記を公式照合し、先に試みたシールド化枚数と実際の配置成功数を分けて扱う。"
+    },
+    {
+      "id": "dmr09-s04",
+      "name": "マーシャル・クロウラー",
+      "reason": "任意の手札枚数をシールドに置き、同じ数をSトリガー可で戻す流れをクイーンと共通化する。"
+    },
+    {
+      "id": "dm22ex1-095",
+      "name": "ミルメルの地版",
+      "reason": "自分のターンの最初のドローを各プレイヤーで追跡し、今回の手札マナ移動禁止も使って検証する。"
+    }
+  ],
+  "deferredRulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44186/",
+      "checkedAt": "2026-11-22",
+      "sha256": "31f70a55c8d6f1a43151dce13b03b958c24c410d78f513bbce462e6faedf26c3",
+      "status": "official-text-checked-not-yet-implemented"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44187/",
+      "checkedAt": "2026-11-22",
+      "sha256": "acc7b15969913e4c3059da63673fe355d9eb8ee02c0a870b61459f5777783904",
+      "status": "official-text-checked-not-yet-implemented"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/46059/",
+      "checkedAt": "2026-11-22",
+      "sha256": "2500fa2ef0ebf9b84f5efbf7869a8df23986d00bcae6a392cd0df63fe2abbd23",
+      "status": "official-text-checked-not-yet-implemented"
+    }
+  ],
+  "testAttemptResolution": "初回の2件はナチュラル・トラップの所有者指定と実際の封印カードがないテスト前提、次の1件は実行を伴わないSelect指定を修正した。追加のテストで実際のExecuteによるマナからの呪文使用、ラッキー・ダーツの保留シールドからの使用とターン中断を検証。最終の固有65件・関連134件・追加回帰33件はすべて通過。"
+}
