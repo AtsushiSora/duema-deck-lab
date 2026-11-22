@@ -119,3 +119,25 @@
 .theme-online .online-lobby-head.creature-head{display:grid;grid-template-columns:minmax(0,1fr);justify-content:stretch;align-content:center;gap:12px;min-height:200px}
 .online-lobby-head.creature-head>.online-account{position:relative;z-index:1;justify-self:start;max-width:100%}
 @media(max-width:850px){.theme-online .online-lobby-head.creature-head{min-height:190px;gap:10px}}
+
+/* Mana illustrations use only the card faces supplied by the online projection. */
+.online-mana-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}
+.online-mana-grid .online-mana-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;min-height:44px;gap:7px;padding:10px;white-space:normal;text-align:left}
+.online-mana-art{display:block;position:relative;flex-shrink:0;aspect-ratio:5/7;overflow:hidden;border-radius:5px;background:#17384b}
+.online-mana-art>.art-card{display:block;width:100%;height:100%;margin:0;border-radius:inherit}
+.online-mana-back{display:grid;place-items:center;width:100%;height:100%;border:2px solid #a58d52;border-radius:inherit;background:repeating-linear-gradient(135deg,#153047,#153047 8px,#1c4660 8px,#1c4660 10px);color:#e2cb87;font-size:24px}
+.online-mana-card .online-mana-art{width:100%;max-width:112px;align-self:center}
+.online-mana-card strong{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.online-mana-card small{font-size:11px;color:var(--muted)}
+.online-mana-card.is-tapped{border-style:dashed}
+.online-mana-card.is-tapped .online-mana-art{opacity:.6}
+.online-mana-card.is-tapped .online-mana-art>.art-card{transform:rotate(90deg) scale(.71)}
+.online-mana-payment .online-actions .btn{display:flex;align-items:center;gap:10px;min-width:0}
+.online-mana-payment .online-mana-art{width:56px;max-width:34%;align-self:center}
+.online-mana-copy{min-width:0;overflow-wrap:anywhere}
+.online-mana-summary{display:flex;align-items:center;justify-content:center}
+.online-mana-preview{display:flex;align-items:center;padding-left:7px;pointer-events:none}
+.online-mana-preview>.online-mana-art{width:18px;height:26px;margin-left:-7px;aspect-ratio:auto;border:1px solid #7e9b94;border-radius:2px;box-shadow:-1px 0 2px #14242f66}
+.online-mana-preview .online-mana-back{border-width:1px;font-size:9px}
+@media(max-width:400px){.online-mana-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.online-mana-payment .online-mana-art{width:46px}.online-mana-payment .online-actions .btn{gap:7px;padding:8px}}
+.online-mana-payment .btn.primary .online-mana-copy small{color:inherit;opacity:.9}

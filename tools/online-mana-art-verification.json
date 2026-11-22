@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-11-22T11:35:00.731Z",
+  "baseCommit": "977018647bb5375a965c0a5176717b6359d01e13",
+  "status": "verified-local-not-published",
+  "change": "友だち対戦のマナ一覧・支払い選択に公式カード画像を表示し、盤面のマナボタンに最大3枚の画像プレビューを追加。タップ・選択状態と既存の操作IDを維持。",
+  "privacy": "サーバーから既に公開されているカードのIDだけを画像に使用。裏向きマナ・privateFace付きマナの画像は要求しない。API・保存形式・カード定義は変更なし。",
+  "validation": {
+    "results": [
+      {
+        "name": "ui-tests",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-ui.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-feedback.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 5.145,
+        "log": "tmp/online-mana-art/ui-tests.log"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.469,
+        "log": "tmp/online-mana-art/check.log"
+      }
+    ],
+    "testsPassed": 129,
+    "browser": {
+      "method": "実際のonlineDialogContent/onlineScreenHTMLと共通カード画像レンダラー・現在のCSSを使ったローカルfixture。画像は照合済みの公式画像をローカルで使用。アカウントやルームの操作なし。",
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "screenshot": "/tmp/online-mana-mobile.jpg",
+        "paymentScreenshot": "/tmp/online-mana-payment-mobile.jpg"
+      },
+      "desktop": {
+        "width": 1280,
+        "height": 800
+      },
+      "observed": "カード画像・名称・タップ状態を確認。スマホで2列、PCで4列表示。支払い中の選択・文字を確認。裏向きはカード背面表示。",
+      "viewportRestored": true
+    },
+    "cards": {
+      "uniqueNames": 9219,
+      "added": 0,
+      "definitionsUnchanged": true
+    }
+  },
+  "hashes": {
+    "dist/app.js": "f21277b0387120b09108e8cbdaff34dda363a55ba59c86690bfe044bf3d4ec88",
+    "dist/online-ui.js": "7bdd0b4fd2f56aaee4e603d974d99b4b6cef2a81ebfa08b8eada4238d2d78a8c",
+    "dist/online.css": "2cac551cd1c25d82756df609e6d6a3b8adedb1255eed7d15a793f34c41acd8b5",
+    "tests/online-ui.test.mjs": "124d5e4c980d9b4c4397650061cdcd80fcd629ddb452749bca784f9e6f115bc3",
+    "dist/cards.json": "ea014ea7c14c0cf74f5e0c08b6e8d280569d6e6ab4523ccd34118cc51ef3d404",
+    "/tmp/online-mana-mobile.jpg": "25c475ea8c6c94626bee8f20f83ff54a450abfd2562eb141c199a17ebfb62959",
+    "/tmp/online-mana-payment-mobile.jpg": "c5d373b64506b2b4b7b2e1deb1a3f13764fae2342a970da9c448ff1bad4e2b45"
+  },
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

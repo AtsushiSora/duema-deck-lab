@@ -874,7 +874,7 @@ function selectDeckDialog(){const savedOnly=view==='strongest';showDialog(savedO
 function onlineEntryHTML(){return '<section class="panel online-lobby"><div class="row spread"><div><strong>友達とオンライン対戦</strong><p class="small">ルームコードで参加して、アカウント同士で対戦。</p></div><button class="btn primary" data-action="nav" data-view="online">友達と対戦する</button></div></section>';}
 function onlineDeck(){return saved.decks.find(d=>d.id===onlineDeckId&&!validateDeck(d).length)||saved.decks.find(d=>!validateDeck(d).length);}
 function showOnlineDialog(kind,options={}){
- const room=onlineState.room,content=onlineDialogContent(room,{kind,...options},{connected:onlineState.connected});
+ const room=onlineState.room,content=onlineDialogContent(room,{kind,...options},{connected:onlineState.connected,art});
  if(!accountState.user||!content)return false;
  showDialog(content.title,content.html);
  onlineDialog={uid:accountState.user.uid,code:room.code,kind,...options,title:content.title,html:content.html};return true;
@@ -882,7 +882,7 @@ function showOnlineDialog(kind,options={}){
 function syncOnlineDialog(){
  const scope=onlineDialog;if(!scope)return;
  if(!dialog.open||view!=='online'||scope.uid!==accountState.user?.uid||scope.code!==onlineState.room?.code){closeDialog();return;}
- const content=onlineDialogContent(onlineState.room,scope,{connected:onlineState.connected});
+ const content=onlineDialogContent(onlineState.room,scope,{connected:onlineState.connected,art});
  if(!content){closeDialog();return;}
  if(scope.title===content.title&&scope.html===content.html)return;
  const scroll=$('#dialog .dialog-content')?.scrollTop||0,focused=dialog.contains?.(document.activeElement)?document.activeElement:null;
