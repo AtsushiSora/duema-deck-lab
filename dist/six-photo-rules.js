@@ -877,6 +877,13 @@ export function createSixPhotoRules(api){
     task:task('g34_RondoUntap946',controller,source,{...ref,spellCost,...(rule.g962EveryWin?{g962EveryWin:true}:{})})}];
   });
  }
+ function boomerangWins1645(s,winner){
+  if(!winner)return [];
+  return (s.extLimits||[]).flatMap(rule=>{
+   if(rule.kind!=='g1645Boomerang'||rule.turn!==s.turn||!api.allLayers(winner).some(y=>key(y)===key(rule.ref))||api.spellIgnored(s,{type:'spell',spellSource:rule.source,cost:cost(card(rule.source))}))return [];
+   return [{player:rule.controller,uid:rule.spellRef.uid,source:rule.source,effect:'extended',task:task('g34_SelfGraveHand476',rule.controller,rule.source,{...rule.spellRef})}];
+  });
+ }
  function opponentAddedShields618(s,p){
   const owner=1-p,prior=s.players[owner].turns-Number(s.active===owner);
   return (s.g618ShieldTurns?.[owner]||[]).includes(prior);
@@ -3777,7 +3784,7 @@ export function createSixPhotoRules(api){
   if(y&&!y.sealed)(y.powerModifiers??=[]).push({amount:0,multiplier:t.multiplier,expires:'end',who:s.active});
   break;
  }
- case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,...(t.g1258UntilStart?{expires:'start',who:t.p}:{expires:'end',who:s.active}),...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
+ case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,...(t.g1645PowerMultiplier?{multiplier:t.g1645PowerMultiplier}:{}),...(t.g1258UntilStart?{expires:'start',who:t.p}:{expires:'end',who:s.active}),...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
   if(host)api.tap(s,host.p,host.x);
@@ -5062,7 +5069,7 @@ export function createSixPhotoRules(api){
    break;
   }
   if(t.g1042LookFirst&&(!own.deck.length||api.deckLocked(s,t.p)))break;
-  if(t.g792Once&&(used792(s,t,t)||!own.deck.length))break;
+  if(t.g792Once&&(used792(s,t,t)||!own.deck.length&&!t.g1645NoDeckRequirement))break;
   if(t.g790CreatureBreak){
    const host=sourceHost474(s,t)?.x;
    if(!host||host.sealed||!api.isCreature(s,host)||!opp.shields.length)break;
@@ -7790,7 +7797,7 @@ export function createSixPhotoRules(api){
   if(v)start(s,{...t,p:1-t.p},[t.recovery]);
   else start(s,t,[{op:'Draw',n:2}]);
   break;
- case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid]}]);break;
+ case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid],...(t.g1645CreatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldCardManaDeploy1317':
   // An attempted move still satisfies the continuation under a replacement (QA 42955).
@@ -8205,6 +8212,10 @@ export function createSixPhotoRules(api){
   if(t.g959MoveTop){
    if(v)api.moveBattleCard(s,v.p,v.uid,t.to,{controller:t.controller??t.p});
    break;
+  }
+  if(t.g1645Boomerang&&v){
+   const target=own.battle.find(y=>y.uid===v.uid),frame=s.extSpells?.find(f=>f.inst.uid===t.uid&&f.caster===t.p&&!f.virtual);
+   if(target&&frame)(s.extLimits??=[]).push({kind:'g1645Boomerang',source:t.source,controller:t.p,ref:{uid:target.uid,incarnation:target.incarnation||0},spellRef:{uid:t.uid,incarnation:frame.inst.incarnation||0,serial:(frame.inst.zoneSerial||0)+1},turn:s.turn,expires:'end',who:s.active});
   }
   if(t.g946BattleWinUntap&&v){
    const target=own.battle.find(y=>y.uid===v.uid);
@@ -9781,7 +9792,7 @@ export function createSixPhotoRules(api){
   const defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);
   return [...(defs?.length?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',
    task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),
-   ...winWatches252(s,p,w),...rondoWins946(s,x,w)];
+   ...winWatches252(s,p,w),...rondoWins946(s,x,w),...boomerangWins1645(s,x)];
  },
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){

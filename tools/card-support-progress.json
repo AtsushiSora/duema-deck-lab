@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9167,
-  "pendingNames": 2658,
-  "phase": 1644,
+  "supportedNames": 9170,
+  "pendingNames": 2655,
+  "phase": 1645,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1488,
-    "呪文": 316,
+    "クリーチャー": 1486,
+    "呪文": 315,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 35,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1925,
+    "未対応の能力文": 1922,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -528351,34 +528351,201 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1645から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1645,
+      "checkedAt": "2026-11-22T07:41:27.386Z",
+      "baseline": "bc4f71482e113549ee8b8b2de581198b74273e43",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9167,
+      "currentNames": 9170,
+      "remainingNames": 330,
+      "added": [
+        {
+          "id": "dmrp01-s08",
+          "name": "ドープ“DBL”ボーダー"
+        },
+        {
+          "id": "dmr01-069",
+          "name": "トリコロール・ブーメラン"
+        },
+        {
+          "id": "dm26ex4-068",
+          "name": "トップギ・ラ・ヒツヤシ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9167,
+        "uniqueNames": 9170,
+        "uniqueIds": 9170,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1645.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.393,
+          "log": "tmp/duema-phase-1645/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1645-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.528,
+          "log": "tmp/duema-phase-1645/final-focused.log",
+          "passed": 54,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Shiden|Rondo|reduction|canceling|each turn|one-mana floor|physical|delayed self-return|Dokkandeyer|EITHER|sacrifices|replace|break",
+            "tests/standard1147-effects.test.mjs",
+            "tests/standard946-effects.test.mjs",
+            "tests/standard464-effects.test.mjs",
+            "tests/standard476-effects.test.mjs",
+            "tests/standard1500-effects.test.mjs",
+            "tests/standard1612-effects.test.mjs",
+            "tests/standard1175-effects.test.mjs",
+            "tests/standard1199-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.698,
+          "log": "tmp/duema-phase-1645/final-related.log",
+          "passed": 77,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.192,
+          "log": "tmp/duema-phase-1645/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.284,
+          "log": "tmp/duema-phase-1645/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.251,
+          "log": "tmp/duema-phase-1645/target9500.log"
+        }
+      },
+      "totalTestsPassed": 131,
+      "hashes": {
+        "dist/cards.json": "199437b1e3b7e8ed16c7b3344a0dbbd5c7169f4df36196b6f1ab43fab74616bc",
+        "dist/engine.js": "6fc8c93d2c5cca83f46146bcad5a8aafffb9b09a96d34a330d6d30a9c87f4798",
+        "dist/six-photo-rules.js": "95bec2cd759ad9b50d9e9333fbdf59367b3e67785aefca52085df6b9ebedcc31",
+        "dist/online-compatibility.js": "7aa159a2ff818949713c0c5590b31a5a82e0e0ad5be5f84ecde9276302edc4b6",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.161",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1645.json",
+      "supported": 9170,
+      "pending": 2655,
+      "reason": "ドープ“DBL”ボーダーの勝利時アンタップ・倍化・任意ブレイクと破壊時だけの身代わり、トリコロール・ブーメランの一時強化と同じ物理呪文の勝利時回収、トップギ・ラ・ヒツヤシのターンごと一度の任意軽減・任意ブレイクを全文対応する。",
+      "resolvedAttempts": [
+        {
+          "name": "focused-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1645-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 12.93,
+          "log": "tmp/duema-phase-1645/focused-initial.log"
+        },
+        {
+          "name": "focused-corrected",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1645-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 13.072,
+          "log": "tmp/duema-phase-1645/focused-corrected.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1646から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1644,
-    "nextPhase": 1645,
+    "lastVerifiedPhase": 1645,
+    "nextPhase": 1646,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp01-s08",
-        "name": "ドープ“DBL”ボーダー",
-        "reason": "既存の勝利時アンタップ・パワー倍化・任意ブレイク・破壊置換を組み合わせ、バトルの後続処理を確認する。"
+        "id": "dmr11-002",
+        "name": "マントラ教皇 バラモン",
+        "reason": "他のオラクルの動的枚数によるパワー・追加ブレイクとオラクル限定破壊身代わりを共通化。"
       },
       {
-        "id": "dmr01-069",
-        "name": "トリコロール・ブーメラン",
-        "reason": "ターン中の受け手を追跡する勝利時の同じ物理呪文の墓地回収を照合。"
+        "id": "dmex07-029",
+        "name": "ヤッタレ塾長",
+        "reason": "ジョーカーズ1体へのターン中Jチェンジ8付与を既存Jチェンジ処理と照合。"
       },
       {
-        "id": "dm26ex4-068",
-        "name": "トップギ・ラ・ヒツヤシ",
-        "reason": "種族・文明限定の各ターン一度の任意召喚軽減と、手札を捨てた時の任意ブレイクを照合。"
+        "id": "dm03-023",
+        "name": "ライト・ブーメラン",
+        "reason": "処理中の呪文自身を先にマナへ置いてからマナ1枚を手札へ戻す順序を照合。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9167種類・重複0、9500まで残り333。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1644とtools/target9500-registration-checkpoint-1644.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1645で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9170種類・重複0、9500まで残り330。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1645とtools/target9500-registration-checkpoint-1645.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1646で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528458,9 +528625,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9167種類・重複0、9500まで残り333。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1644とtools/target9500-registration-checkpoint-1644.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1645で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9170種類・重複0、9500まで残り330。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1645とtools/target9500-registration-checkpoint-1645.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1646で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -528591,10 +528758,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9167,
-      "remaining": 333,
+      "currentCount": 9170,
+      "remaining": 330,
       "status": "active",
-      "phase": 1644
+      "phase": 1645
     },
     "deferredRegistrationCandidates": [
       {
@@ -529022,23 +529189,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1644,
-      "baseline": "1a494364d740a8b0bd86cbc0014df543f97aa6b5",
-      "supportedNames": 9167,
-      "artifact": "tools/target9500-registration-checkpoint-1644.json",
-      "checkedAt": "2026-11-22T07:27:35.974Z"
+      "phase": 1645,
+      "baseline": "bc4f71482e113549ee8b8b2de581198b74273e43",
+      "supportedNames": 9170,
+      "artifact": "tools/target9500-registration-checkpoint-1645.json",
+      "checkedAt": "2026-11-22T07:41:27.386Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T07:27:35.974Z",
+      "checkedAt": "2026-11-22T07:41:27.386Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9167,
-      "remainingNames": 333,
+      "currentNames": 9170,
+      "remainingNames": 330,
       "duplicateNames": 0,
-      "engineVersion": "0.602.160",
+      "engineVersion": "0.602.161",
       "added": [
         {
           "id": "dmr12-008",
@@ -529427,6 +529594,18 @@
         {
           "id": "dmex02-008",
           "name": "ザンジェットW７"
+        },
+        {
+          "id": "dmrp01-s08",
+          "name": "ドープ“DBL”ボーダー"
+        },
+        {
+          "id": "dmr01-069",
+          "name": "トリコロール・ブーメラン"
+        },
+        {
+          "id": "dm26ex4-068",
+          "name": "トップギ・ラ・ヒツヤシ"
         }
       ],
       "results": {
@@ -529542,10 +529721,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "2884ce9e6ab3da5b1bdfa0317c04d91f4885ee2706e0499cfd3c0900b20a2fc1",
-        "dist/engine.js": "409d96dc095cb2ea1c6cacc85d508aff74320011d8ecddb7f4e3e1098aefd369",
-        "dist/six-photo-rules.js": "6bcf18d5198d22573504510a7279c4c9409d289ff3b6419311d9ba8c781c8df4",
-        "dist/online-compatibility.js": "c2244b5dd7510de46094c52630f83e274c40f79d9949cc2d3842887f80df4e21",
+        "dist/cards.json": "199437b1e3b7e8ed16c7b3344a0dbbd5c7169f4df36196b6f1ab43fab74616bc",
+        "dist/engine.js": "6fc8c93d2c5cca83f46146bcad5a8aafffb9b09a96d34a330d6d30a9c87f4798",
+        "dist/six-photo-rules.js": "95bec2cd759ad9b50d9e9333fbdf59367b3e67785aefca52085df6b9ebedcc31",
+        "dist/online-compatibility.js": "7aa159a2ff818949713c0c5590b31a5a82e0e0ad5be5f84ecde9276302edc4b6",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -529610,10 +529789,10 @@
       },
       "phaseRange": [
         1614,
-        1644
+        1645
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 97,
+      "addedNames": 100,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -529625,8 +529804,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.156,
-        "log": "tmp/duema-phase-1644/check.log"
+        "seconds": 20.192,
+        "log": "tmp/duema-phase-1645/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -529636,10 +529815,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.285,
-        "log": "tmp/duema-phase-1644/audit.log"
+        "seconds": 12.284,
+        "log": "tmp/duema-phase-1645/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1644.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1645.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -530728,11 +530907,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9167,
-      "remaining": 333,
+      "currentNames": 9170,
+      "remaining": 330,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T07:27:35.974Z"
+      "checkedAt": "2026-11-22T07:41:27.386Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -582700,20 +582879,20 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1644,
+      "phase": 1645,
       "added": 3,
-      "supportedNames": 9167,
+      "supportedNames": 9170,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1644.json",
+      "artifact": "tools/target9500-registration-checkpoint-1645.json",
       "relatedRulingVerificationPending": []
     }
   },
   "registrationStop": {
-    "phase": 1644,
+    "phase": 1645,
     "threshold": 9500,
-    "supportedNames": 9167,
-    "pendingNames": 2658,
-    "checkedAt": "2026-11-22T07:27:35.974Z",
+    "supportedNames": 9170,
+    "pendingNames": 2655,
+    "checkedAt": "2026-11-22T07:41:27.386Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

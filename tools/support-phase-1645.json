@@ -1,0 +1,254 @@
+{
+  "phase": 1645,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9167,
+  "target": 9500,
+  "description": "ドープ“DBL”ボーダーの勝利時アンタップ・倍化・任意ブレイクと破壊時だけの身代わり、トリコロール・ブーメランの一時強化と同じ物理呪文の勝利時回収、トップギ・ラ・ヒツヤシのターンごと一度の任意軽減・任意ブレイクを全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31546/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36345/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-s08",
+      "name": "ドープ“DBL”ボーダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+      "faces": [
+        {
+          "name": "ドープ“DBL”ボーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーがバトルに勝った時、アンタップし、そのターン、このクリーチャーのパワーを２倍する。その後、相手のシールドを１つブレイクしてもよい。\nこのクリーチャーが破壊される時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g1645DestroyGuard": true,
+        "g189BattleWin": [
+          {
+            "op": "Untap",
+            "g191First": true
+          },
+          {
+            "op": "SelfBoost313",
+            "power": 0,
+            "g536Source": true,
+            "g1645PowerMultiplier": 2
+          },
+          {
+            "op": "Break497",
+            "n": 1,
+            "optional": true,
+            "g747CreatureBreak": true,
+            "g828BattleBreaker": "dmrp01-s08"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "67ebf3ce8905abedcfd4713a7523daf2fc9b25550a0f23238ba0ce8ac9bcc002",
+        "facesMatched": true,
+        "imageSha256": "db3b5081226fbcc10293a22b204f570db50c440c6c636630ed01568f787fa402",
+        "imageBytes": 148912,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文、名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-07 必殺!!マキシマム・ザ・マスターパック",
+        "DMRP-01 拡張パック新1弾 ジョーカーズ参上！！"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmr01-069",
+      "name": "トリコロール・ブーメラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-069",
+      "faces": [
+        {
+          "name": "トリコロール・ブーメラン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+5000され、「W・ブレイカー」を得る。このターン、そのクリーチャーがバトルに勝った時、このカードを墓地から手札に戻す。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000,
+            "grant": {
+              "g313Breaker": 2
+            },
+            "spell": true,
+            "g1645Boomerang": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "3b5f898911dc6b3d3d6f41c2aeca108b1429f66c6d16a97a2022c5eecbe71a65",
+        "facesMatched": true,
+        "imageSha256": "d6a02c9e9c86277169fd263748cdbe61b300faaa218919e85a37f260f934edc4",
+        "imageBytes": 107333,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文、名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMR-01 エピソード1 ファースト・コンタクト"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-069",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm26ex4-068",
+      "name": "トップギ・ラ・ヒツヤシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-068",
+      "faces": [
+        {
+          "name": "トップギ・ラ・ヒツヤシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各ターンに１度、自分の火のロスト・クルセイダー・クリーチャーの召喚コストを２少なくしてもよい。ただしコストは０以下にならない。\n各ターンに１度、自分の手札を捨てた時、このクリーチャーはシールドを１つブレイクしてもよい。",
+          "race": "ヒノガミ/ロスト・クルセイダー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g464OnceSummon": {
+          "amount": 2,
+          "race": "ロスト・クルセイダー",
+          "colors": [
+            "火"
+          ]
+        },
+        "g1500SelfDiscard": [
+          {
+            "op": "Offer",
+            "g792Once": "hitsuyashiBreak",
+            "g1645NoDeckRequirement": true,
+            "title": "このクリーチャーでシールドを1つブレイクする？",
+            "defs": [
+              {
+                "op": "BreakEither1612",
+                "g1645CreatureBreak": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "fec9b9c6ebdcfa6af3068a5bc7b2c68e00076387754360873a79c8d00c52d66a",
+        "facesMatched": true,
+        "imageSha256": "2c3797b8b374f45807db9560910c80d9b671dc4f4ba6c1f7b999a910f7dd05e6",
+        "imageBytes": 73325,
+        "imageReviewed": true,
+        "imageReview": "公式画像で能力全文、名称・種族・文明・コスト・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DM26-EX4 切札不滅!! デュエキング FOREVER 2026"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-068",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-s08": 4,
+      "dmr01-069": 4,
+      "dm26ex4-068": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31546/",
+      "checkedAt": "2026-11-22",
+      "sha256": "a4cb41789f0375db46d0fc41b75080bc8a21be2ba7d819869963fb6fac887e8b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36345/",
+      "checkedAt": "2026-11-22",
+      "sha256": "b8637a70dfe47083a41b187a77e83dc9ce0fd1e8c3b41f7aed4ac2c79e185c77"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "checkedAt": "2026-11-22",
+      "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+      "reviewedSections": [
+        "206.4",
+        "400.5",
+        "400.8",
+        "603.6",
+        "701.13b",
+        "701.13c",
+        "701.13d",
+        "701.13e"
+      ],
+      "review": "パワー倍化は他の増減の後に適用。領域移動後は新しいカードとして扱うため、同じ物理呪文の初回墓地移動は追跡し、後に指定外の領域へ動いた場合は以前の追跡を継続しない。バトル勝利時の能力はスレイヤー前に解決する。"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr11-002",
+      "name": "マントラ教皇 バラモン",
+      "reason": "他のオラクルの動的枚数によるパワー・追加ブレイクとオラクル限定破壊身代わりを共通化。"
+    },
+    {
+      "id": "dmex07-029",
+      "name": "ヤッタレ塾長",
+      "reason": "ジョーカーズ1体へのターン中Jチェンジ8付与を既存Jチェンジ処理と照合。"
+    },
+    {
+      "id": "dm03-023",
+      "name": "ライト・ブーメラン",
+      "reason": "処理中の呪文自身を先にマナへ置いてからマナ1枚を手札へ戻す順序を照合。"
+    }
+  ],
+  "implementationNotes": [
+    "パワー倍化は総合ルール206.4に従い、他の増減の後に適用する既存multiplierを再利用。",
+    "破壊身代わりはisDestructionの場合だけ候補化し、手札・マナへの通常離脱では適用しない。",
+    "トリコロールは呪文自身の最初の墓地移動をUID・incarnation・zoneSerialで追跡し、受け手は進化を通じて追跡する。",
+    "トップギはシールドの所有者を指定していない能力文に対応し、既存BreakEither選択からクリーチャーによるブレイクへ委譲する。軽減とブレイクの一度使用は別の既存の使用記録を使う。"
+  ]
+}

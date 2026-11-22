@@ -291750,18 +291750,129 @@
       ],
       "supportBatch": "phase-1644",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s08",
+      "name": "ドープ“DBL”ボーダー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "スピードアタッカー\nこのクリーチャーがバトルに勝った時、アンタップし、そのターン、このクリーチャーのパワーを２倍する。その後、相手のシールドを１つブレイクしてもよい。\nこのクリーチャーが破壊される時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1645DestroyGuard": true,
+      "g189BattleWin": [
+        {
+          "op": "Untap",
+          "g191First": true
+        },
+        {
+          "op": "SelfBoost313",
+          "power": 0,
+          "g536Source": true,
+          "g1645PowerMultiplier": 2
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "optional": true,
+          "g747CreatureBreak": true,
+          "g828BattleBreaker": "dmrp01-s08"
+        }
+      ],
+      "supportBatch": "phase-1645",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-069",
+      "name": "トリコロール・ブーメラン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+5000され、「W・ブレイカー」を得る。このターン、そのクリーチャーがバトルに勝った時、このカードを墓地から手札に戻す。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-069",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 5000,
+          "grant": {
+            "g313Breaker": 2
+          },
+          "spell": true,
+          "g1645Boomerang": true
+        }
+      ],
+      "supportBatch": "phase-1645",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-068",
+      "name": "トップギ・ラ・ヒツヤシ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ヒノガミ/ロスト・クルセイダー",
+      "text": "各ターンに１度、自分の火のロスト・クルセイダー・クリーチャーの召喚コストを２少なくしてもよい。ただしコストは０以下にならない。\n各ターンに１度、自分の手札を捨てた時、このクリーチャーはシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-068",
+      "limit": 4,
+      "g464OnceSummon": {
+        "amount": 2,
+        "race": "ロスト・クルセイダー",
+        "colors": [
+          "火"
+        ]
+      },
+      "g1500SelfDiscard": [
+        {
+          "op": "Offer",
+          "g792Once": "hitsuyashiBreak",
+          "g1645NoDeckRequirement": true,
+          "title": "このクリーチャーでシールドを1つブレイクする？",
+          "defs": [
+            {
+              "op": "BreakEither1612",
+              "g1645CreatureBreak": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1645",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1644,
+    "phase": 1645,
     "checkedAt": "2026-11-22",
-    "baseCount": 9164,
+    "baseCount": 9167,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9167,
+    "totalCount": 9170,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45567/"
+      "https://dm.takaratomy.co.jp/rule/qa/31546/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36345/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318638,6 +318749,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/39753/",
           "https://dm.takaratomy.co.jp/rule/qa/39754/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1644,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9164,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9167,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45567/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

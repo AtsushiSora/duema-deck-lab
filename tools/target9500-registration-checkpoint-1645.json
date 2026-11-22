@@ -1,0 +1,132 @@
+{
+  "phase": 1645,
+  "checkedAt": "2026-11-22T07:41:27.386Z",
+  "baseline": "bc4f71482e113549ee8b8b2de581198b74273e43",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9167,
+  "currentNames": 9170,
+  "remainingNames": 330,
+  "added": [
+    {
+      "id": "dmrp01-s08",
+      "name": "ドープ“DBL”ボーダー"
+    },
+    {
+      "id": "dmr01-069",
+      "name": "トリコロール・ブーメラン"
+    },
+    {
+      "id": "dm26ex4-068",
+      "name": "トップギ・ラ・ヒツヤシ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9167,
+    "uniqueNames": 9170,
+    "uniqueIds": 9170,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1645.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.393,
+      "log": "tmp/duema-phase-1645/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1645-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 14.528,
+      "log": "tmp/duema-phase-1645/final-focused.log",
+      "passed": 54,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Shiden|Rondo|reduction|canceling|each turn|one-mana floor|physical|delayed self-return|Dokkandeyer|EITHER|sacrifices|replace|break",
+        "tests/standard1147-effects.test.mjs",
+        "tests/standard946-effects.test.mjs",
+        "tests/standard464-effects.test.mjs",
+        "tests/standard476-effects.test.mjs",
+        "tests/standard1500-effects.test.mjs",
+        "tests/standard1612-effects.test.mjs",
+        "tests/standard1175-effects.test.mjs",
+        "tests/standard1199-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.698,
+      "log": "tmp/duema-phase-1645/final-related.log",
+      "passed": 77,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.192,
+      "log": "tmp/duema-phase-1645/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.284,
+      "log": "tmp/duema-phase-1645/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.251,
+      "log": "tmp/duema-phase-1645/target9500.log"
+    }
+  },
+  "totalTestsPassed": 131,
+  "hashes": {
+    "dist/cards.json": "199437b1e3b7e8ed16c7b3344a0dbbd5c7169f4df36196b6f1ab43fab74616bc",
+    "dist/engine.js": "6fc8c93d2c5cca83f46146bcad5a8aafffb9b09a96d34a330d6d30a9c87f4798",
+    "dist/six-photo-rules.js": "95bec2cd759ad9b50d9e9333fbdf59367b3e67785aefca52085df6b9ebedcc31",
+    "dist/online-compatibility.js": "7aa159a2ff818949713c0c5590b31a5a82e0e0ad5be5f84ecde9276302edc4b6",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.161",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

@@ -32587,5 +32587,123 @@
         }
       ]
     }
+  },
+  "dmrp01-s08": {
+    "phase": 1645,
+    "faces": [
+      {
+        "name": "ドープ“DBL”ボーダー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー\nこのクリーチャーがバトルに勝った時、アンタップし、そのターン、このクリーチャーのパワーを２倍する。その後、相手のシールドを１つブレイクしてもよい。\nこのクリーチャーが破壊される時、かわりに自分の他のクリーチャーを１体破壊してもよい。",
+        "race": "ビートジョッキー",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g1645DestroyGuard": true,
+      "g189BattleWin": [
+        {
+          "op": "Untap",
+          "g191First": true
+        },
+        {
+          "op": "SelfBoost313",
+          "power": 0,
+          "g536Source": true,
+          "g1645PowerMultiplier": 2
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "optional": true,
+          "g747CreatureBreak": true,
+          "g828BattleBreaker": "dmrp01-s08"
+        }
+      ]
+    }
+  },
+  "dmr01-069": {
+    "phase": 1645,
+    "faces": [
+      {
+        "name": "トリコロール・ブーメラン",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+5000され、「W・ブレイカー」を得る。このターン、そのクリーチャーがバトルに勝った時、このカードを墓地から手札に戻す。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 5000,
+          "grant": {
+            "g313Breaker": 2
+          },
+          "spell": true,
+          "g1645Boomerang": true
+        }
+      ]
+    }
+  },
+  "dm26ex4-068": {
+    "phase": 1645,
+    "faces": [
+      {
+        "name": "トップギ・ラ・ヒツヤシ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "各ターンに１度、自分の火のロスト・クルセイダー・クリーチャーの召喚コストを２少なくしてもよい。ただしコストは０以下にならない。\n各ターンに１度、自分の手札を捨てた時、このクリーチャーはシールドを１つブレイクしてもよい。",
+        "race": "ヒノガミ/ロスト・クルセイダー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g464OnceSummon": {
+        "amount": 2,
+        "race": "ロスト・クルセイダー",
+        "colors": [
+          "火"
+        ]
+      },
+      "g1500SelfDiscard": [
+        {
+          "op": "Offer",
+          "g792Once": "hitsuyashiBreak",
+          "g1645NoDeckRequirement": true,
+          "title": "このクリーチャーでシールドを1つブレイクする？",
+          "defs": [
+            {
+              "op": "BreakEither1612",
+              "g1645CreatureBreak": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
