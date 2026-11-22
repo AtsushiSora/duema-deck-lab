@@ -288523,15 +288523,111 @@
       ],
       "supportBatch": "phase-1615",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd25-001",
+      "name": "邪眼教皇ロマノフⅡ世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ダークロード/ドラゴン・ゾンビ/ナイト",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を墓地に置く。その中から、コスト６以下の呪文を１枚、コストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd25-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 5,
+          "max": 6
+        }
+      ],
+      "supportBatch": "phase-1616",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy21-036",
+      "name": "斬札ウィン＆ジャシン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から３枚を墓地に置く。その中から好きなカードを１枚選び、「このカード、気にいったぜ！」と言ってもよい。そうしたら、そのカードを手札に加える。そうしなければ、この呪文を、唱えた後で墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-036",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 3,
+          "recover": true
+        }
+      ],
+      "supportBatch": "phase-1616",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy9-056",
+      "name": "凰翔竜機 G・クロス・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/ファイアー・バード",
+      "text": "進化-自分のアーマード・ドラゴンまたはファイアー・バード１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。そのカードが、名前に《超次元》とある火の呪文であれば、自分の墓地からコストを支払わずに唱えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-056",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "アーマード・ドラゴン"
+          },
+          {
+            "race": "ファイアー・バード"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MillSequence1616",
+          "n": 1,
+          "spellColorsAny": [
+            "火"
+          ],
+          "filter": {
+            "g220NameAny": [
+              "超次元"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1616",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1615,
+    "phase": 1616,
     "checkedAt": "2026-11-22",
-    "baseCount": 9073,
-    "newEffectCards": 4,
+    "baseCount": 9077,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9077,
+    "totalCount": 9080,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -314920,6 +315016,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9073,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1615,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9073,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9077,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

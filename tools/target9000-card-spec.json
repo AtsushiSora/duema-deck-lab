@@ -28591,5 +28591,110 @@
         }
       ]
     }
+  },
+  "dmd25-001": {
+    "phase": 1616,
+    "faces": [
+      {
+        "name": "邪眼教皇ロマノフⅡ世",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を墓地に置く。その中から、コスト６以下の呪文を１枚、コストを支払わずに唱えてもよい。",
+        "race": "ダークロード/ドラゴン・ゾンビ/ナイト",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 5,
+          "max": 6
+        }
+      ]
+    }
+  },
+  "promoy21-036": {
+    "phase": 1616,
+    "faces": [
+      {
+        "name": "斬札ウィン＆ジャシン",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の山札の上から３枚を墓地に置く。その中から好きなカードを１枚選び、「このカード、気にいったぜ！」と言ってもよい。そうしたら、そのカードを手札に加える。そうしなければ、この呪文を、唱えた後で墓地に置くかわりに手札に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 3,
+          "recover": true
+        }
+      ]
+    }
+  },
+  "promoy9-056": {
+    "phase": 1616,
+    "faces": [
+      {
+        "name": "凰翔竜機 G・クロス・アイニー",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分のアーマード・ドラゴンまたはファイアー・バード１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。そのカードが、名前に《超次元》とある火の呪文であれば、自分の墓地からコストを支払わずに唱えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アーマード・ドラゴン/ファイアー・バード",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "アーマード・ドラゴン"
+          },
+          {
+            "race": "ファイアー・バード"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MillSequence1616",
+          "n": 1,
+          "spellColorsAny": [
+            "火"
+          ],
+          "filter": {
+            "g220NameAny": [
+              "超次元"
+            ]
+          }
+        }
+      ]
+    }
   }
 }

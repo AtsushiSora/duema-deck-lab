@@ -1,0 +1,130 @@
+{
+  "phase": 1616,
+  "checkedAt": "2026-11-22T02:49:59.976Z",
+  "baseline": "e236ed0b94bd121bceaf651481c8e66d761bc3c0",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9077,
+  "currentNames": 9080,
+  "remainingNames": 420,
+  "added": [
+    {
+      "id": "dmd25-001",
+      "name": "邪眼教皇ロマノフⅡ世"
+    },
+    {
+      "id": "promoy21-036",
+      "name": "斬札ウィン＆ジャシン"
+    },
+    {
+      "id": "promoy9-056",
+      "name": "凰翔竜機 G・クロス・アイニー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9077,
+    "uniqueNames": 9080,
+    "uniqueIds": 9080,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1616.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.657,
+      "log": "tmp/duema-phase-1616/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1616-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.831,
+      "log": "tmp/duema-phase-1616/final-focused.log",
+      "passed": 27,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1346-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1578-effects.test.mjs",
+        "tests/standard791-effects.test.mjs",
+        "tests/standard1615-effects.test.mjs",
+        "tests/standard1550-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.989,
+      "log": "tmp/duema-phase-1616/final-related.log",
+      "passed": 130,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.538,
+      "log": "tmp/duema-phase-1616/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.031,
+      "log": "tmp/duema-phase-1616/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.318,
+      "log": "tmp/duema-phase-1616/target9500.log"
+    }
+  },
+  "totalTestsPassed": 157,
+  "hashes": {
+    "dist/cards.json": "aa28b8ded1a0111b668ca8889fa3ac84b041d80ff90f17ccfb0e79882bec6702",
+    "dist/engine.js": "a7471f5bf501b88ba495ce719859c4a5186dfaa6a1804439ccdb30c997e309aa",
+    "dist/six-photo-rules.js": "a178c7a11aeea47a7e6725e0caed93691b088f5977f0632734091e8daebe5e6c",
+    "dist/online-compatibility.js": "5a628f6ea6188179805fa15e024e152c226c85ee74a55dd78fe4c5ff96f59a6f",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.132",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
