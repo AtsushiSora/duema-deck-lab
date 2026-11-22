@@ -292980,24 +292980,130 @@
       ],
       "supportBatch": "phase-1657",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm05-020",
+      "name": "ビースト・チャージ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターンの終わりに、自分の山札を見る。その中から、このターンに自分のクリーチャーがブレイクした相手のシールド１枚につきクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "spell": true,
+          "defs": [
+            {
+              "op": "BeastCharge1658"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1658",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-035",
+      "name": "魂の呼び声",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "種族をひとつ選ぶ。自分の山札を見て、その中から選んだ種族を持ち名前が異なるクリーチャーを３体選んで相手に見せる。山札をシャッフルしてからその３体を好きな順序で山札の一番上に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g1658SoulCall": true
+        }
+      ],
+      "supportBatch": "phase-1658",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-051",
+      "name": "大勇者「ふたつ牙」/ビースト・チャージ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ビーストフォーク",
+      "text": "進化：自分のビーストフォーク１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、 自分の山札の上から２枚をマナゾーンに置く。\n【呪文面】\nこのターンの終わりに、自分の山札を見る。その中から、このターンに自分のクリーチャーがブレイクした相手のシールド１つにつき、クリーチャーを１体、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-051",
+      "limit": 4,
+      "evolution": {
+        "race": "ビーストフォーク"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2
+        }
+      ],
+      "spellFace": {
+        "name": "ビースト・チャージ",
+        "type": "spell",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "spell": true,
+            "defs": [
+              {
+                "op": "BeastCharge1658"
+              }
+            ]
+          }
+        ],
+        "civ": "自然",
+        "race": "",
+        "power": 0
+      },
+      "supportBatch": "phase-1658",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1657,
+    "phase": 1658,
     "checkedAt": "2026-11-22",
-    "baseCount": 9205,
+    "baseCount": 9208,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9208,
+    "totalCount": 9211,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35425/",
-      "https://dm.takaratomy.co.jp/rule/qa/38617/",
-      "https://dm.takaratomy.co.jp/rule/qa/38616/",
-      "https://dm.takaratomy.co.jp/rule/qa/40826/",
-      "https://dm.takaratomy.co.jp/cls/creatorsletter43/",
-      "https://dm.takaratomy.co.jp/rule/rulechange_info/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35426/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35415/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+      "https://dm.takaratomy.co.jp/rule/qa/42400/",
+      "https://dm.takaratomy.co.jp/rule/qa/46813/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -320116,6 +320222,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35729/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/rule/qa/40412/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1657,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9205,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9208,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35425/",
+          "https://dm.takaratomy.co.jp/rule/qa/38617/",
+          "https://dm.takaratomy.co.jp/rule/qa/38616/",
+          "https://dm.takaratomy.co.jp/rule/qa/40826/",
+          "https://dm.takaratomy.co.jp/cls/creatorsletter43/",
+          "https://dm.takaratomy.co.jp/rule/rulechange_info/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35426/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

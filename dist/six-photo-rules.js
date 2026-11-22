@@ -5813,6 +5813,20 @@ export function createSixPhotoRules(api){
   const blocked=stage.g657FaceUp&&stage.to==='shields'&&!api.canAddShield(s,t.p);
   const selected=blocked?[]:t.chosen||[];
   let rows=blocked?[]:xs.filter(y=>!selected.includes(y.uid)&&matches(s,t.p,y,stage.filter));
+  if(stage.g1658DistinctNames&&selected.length){
+   const names=new Set(xs.filter(y=>selected.includes(y.uid)).map(y=>exactName(creatureFaceName(card(y)))));
+   rows=rows.filter(y=>!names.has(exactName(creatureFaceName(card(y)))));
+  }
+  if(t.g1658SoulTop&&(selected.length>=stage.n||!rows.length)){
+   const top=selected.map(uid=>remove(own.deck,uid)).filter(Boolean);
+   for(const y of top)api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
+   for(const uid of t.ids)release(s,t.p,uid);
+   api.shuffleLibrary(s,t.p);
+   for(const y of top)delete y.g11Sideways;
+   own.deck.push(...top);
+   put(s,{...t,op:'g34_Order',ids:top.map(y=>y.uid),rest:'top',g259OrderTop:true,ordered:[]});
+   break;
+  }
   if(stage.g994DistinctCreatureCosts&&selected.length){
    const creatureCost=y=>cost(faces(card(y)).find(face=>face.type==='creature'));
    const selectedCosts=new Set(xs.filter(y=>selected.includes(y.uid)).map(creatureCost));
@@ -6428,6 +6442,12 @@ export function createSixPhotoRules(api){
  case'g34_LightShieldTrigger1538':
   (s.extLimits??=[]).push({kind:'g1538LightShieldTriggers',player:t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});
   break;
+ case'g34_BeastCharge1658':{
+  const n=s.g1658CreatureBreaks?.turn===s.turn?s.g1658CreatureBreaks.players[t.p]:0;
+  start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,n:'all',rest:'shuffle',
+   stages:[{n,to:'hand',optional:true,reveal:true,filter:{creature:true}}]}]);
+  break;
+ }
  case'g34_StarMemory1657':{
   // QA38617: capture the existing shield cards, not future shields or later visits.
   (s.extLimits??=[]).push({kind:'g1193ShieldTrigger',player:t.p,expires:'end',who:t.p,
@@ -7978,7 +7998,10 @@ export function createSixPhotoRules(api){
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
-  if(t.g1657Pokira)
+  if(t.g1658SoulCall)
+   start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,n:'all',rest:'shuffle',g1658SoulTop:true,
+    stages:[{n:3,to:'deckTop',optional:!api.lookPublic(s,t.p),reveal:true,g1658DistinctNames:true,filter:chosen}]}]);
+  else if(t.g1657Pokira)
    (s.extLimits??=[]).push({kind:'g1657RaceGraveHand',player:t.p,filter:chosen,expires:'end',who:s.active});
   else if(t.g961TrapCommune)
    start(s,t,[{op:'Select',origin:'battle',to:'grave',n:'all',optional:true,filter:chosen,g173Targets:true,
@@ -10033,6 +10056,12 @@ export function createSixPhotoRules(api){
   const x=s.players[context.player]?.battle.find(y=>y.uid===context.sourceUid&&
    (context.incarnation===undefined||(y.incarnation||0)===context.incarnation));
   return x&&!x.sealed&&api.isCreature(s,x)?api.allLayers(x).map(key):null;
+ },
+ recordBeastBreak1658(s,context,defender,count){
+  const p=context?.player;
+  if(!count||!context?.g756Breaker?.length||defender!==1-p)return;
+  if(s.g1658CreatureBreaks?.turn!==s.turn)s.g1658CreatureBreaks={turn:s.turn,players:[0,0]};
+  s.g1658CreatureBreaks.players[p]+=count;
  },
  recordBreak756(s,context,count){
   const refs=context?.g756Breaker;

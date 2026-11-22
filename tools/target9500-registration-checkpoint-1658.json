@@ -1,0 +1,147 @@
+{
+  "phase": 1658,
+  "checkedAt": "2026-11-22T10:46:09.995Z",
+  "baseline": "9b1b706a351ad3e1762d21e2699545e6d2a7cc44",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9208,
+  "currentNames": 9211,
+  "remainingNames": 289,
+  "added": [
+    {
+      "id": "dm05-020",
+      "name": "ビースト・チャージ"
+    },
+    {
+      "id": "dm21-035",
+      "name": "魂の呼び声"
+    },
+    {
+      "id": "dmex04-051",
+      "name": "大勇者「ふたつ牙」/ビースト・チャージ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9208,
+    "uniqueNames": 9211,
+    "uniqueIds": 9211,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1658.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.914,
+      "log": "tmp/duema-phase-1658/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1658-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 28.267,
+      "log": "tmp/duema-phase-1658/final-focused.log",
+      "passed": 84,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Turbo|turbo|Beast|break|Break|top|Top|race|Race|shuffle|Shuffle|Search|search",
+        "tests/standard756-effects.test.mjs",
+        "tests/standard1163-effects.test.mjs",
+        "tests/standard1339-effects.test.mjs",
+        "tests/standard724-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1657-effects.test.mjs",
+        "tests/standard728-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.262,
+      "log": "tmp/duema-phase-1658/final-related.log",
+      "passed": 27,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.243,
+      "log": "tmp/duema-phase-1658/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.206,
+      "log": "tmp/duema-phase-1658/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.259,
+      "log": "tmp/duema-phase-1658/target9500.log"
+    },
+    "curfew-scope": {
+      "name": "curfew-scope",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Curfew cannot",
+        "tests/standard1658-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.671,
+      "log": "tmp/duema-phase-1658/curfew-scope.log",
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 113,
+  "hashes": {
+    "dist/cards.json": "8815a3d74167343c2492d5773d4bf176331ef56f46c660e8bd148a05ec414a68",
+    "dist/engine.js": "4a17a99209282fabed130efcf8a6f0816d76b91290625f15d35beb6e8bfce33e",
+    "dist/six-photo-rules.js": "ba79eaa2c6627070ad24943949fd7e041eb9ce06d7993984549bda995cb2385d",
+    "dist/online-compatibility.js": "64c9c1447e5b3407ff8a8b5f852f3120d2854be82460dcdd86c9e33b1bc632c2",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/details.json": "64ace95954f2b14c086c8444c780129672036b8e51cd0a695450696d86464b20"
+  },
+  "engineVersion": "0.602.174",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
