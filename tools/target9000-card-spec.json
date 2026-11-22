@@ -35086,5 +35086,123 @@
         }
       ]
     }
+  },
+  "dmrp12-028": {
+    "phase": 1666,
+    "faces": [
+      {
+        "name": "CLIMAX-ARMOR!",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。このターン、そのクリーチャーに「スピードアタッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        },
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp10-016": {
+    "phase": 1666,
+    "faces": [
+      {
+        "name": "♪奏でよグローリー",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n次の自分のターンのはじめまで、自分のGRクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp12-071": {
+    "phase": 1666,
+    "faces": [
+      {
+        "name": "♪シンプルな真古",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "blocker": true
+          },
+          "untilStart": true,
+          "spell": true
+        }
+      ]
+    }
   }
 }

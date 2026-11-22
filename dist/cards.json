@@ -293906,20 +293906,128 @@
       ],
       "supportBatch": "phase-1665",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-028",
+      "name": "CLIMAX-ARMOR!",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。このターン、そのクリーチャーに「スピードアタッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-028",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        },
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1666",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-016",
+      "name": "♪奏でよグローリー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n次の自分のターンのはじめまで、自分のGRクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-016",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1666",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-071",
+      "name": "♪シンプルな真古",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-071",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "blocker": true
+          },
+          "untilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1666",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1665,
+    "phase": 1666,
     "checkedAt": "2026-11-22",
-    "baseCount": 9233,
+    "baseCount": 9236,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9236,
+    "totalCount": 9239,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43085/",
-      "https://dm.takaratomy.co.jp/rule/qa/43086/",
-      "https://dm.takaratomy.co.jp/rule/qa/41187/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -321189,6 +321297,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36049/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35620/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1665,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9233,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9236,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43085/",
+          "https://dm.takaratomy.co.jp/rule/qa/43086/",
+          "https://dm.takaratomy.co.jp/rule/qa/41187/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

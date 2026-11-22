@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9236,
-  "pendingNames": 2589,
-  "phase": 1665,
+  "supportedNames": 9239,
+  "pendingNames": 2586,
+  "phase": 1666,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 40,
+      "pendingNames": 37,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1446,
-    "呪文": 297,
+    "呪文": 294,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 33,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1859,
+    "未対応の能力文": 1856,
     "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -532436,17 +532436,223 @@
         }
       ],
       "next": "今回の明示的な公開を完了後、9500目標のカード登録を継続。通常追加でNetlifyを自動更新しない。"
+    },
+    {
+      "phase": 1666,
+      "checkedAt": "2026-11-22T13:27:54.783Z",
+      "baseline": "1a9f0c2b",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9236,
+      "currentNames": 9239,
+      "remainingNames": 261,
+      "added": [
+        {
+          "id": "dmrp12-028",
+          "name": "CLIMAX-ARMOR!"
+        },
+        {
+          "id": "dmrp10-016",
+          "name": "♪奏でよグローリー"
+        },
+        {
+          "id": "dmrp12-071",
+          "name": "♪シンプルな真古"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "1a9f0c2b",
+        "originalDefinitionsUnchanged": 9236,
+        "added": 3,
+        "uniqueNames": 9239,
+        "uniqueIds": 9239,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9236,
+        "existingImageReferenceRowsUnchanged": 11428
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1666.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.041,
+          "log": "tmp/duema-phase-1666/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "final-focused-with-trigger-expiry": {
+          "name": "final-focused-with-trigger-expiry",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1666-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.615,
+          "log": "tmp/duema-phase-1666/final-focused-with-trigger-expiry.log",
+          "passed": 94,
+          "failed": 0,
+          "logSha256": "d39388e719cb7f9811982354c76687901879bf1be77db6cd14d98e114e1e9c95"
+        },
+        "related-gr": {
+          "name": "related-gr",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1498-effects.test.mjs",
+            "tests/standard1464-effects.test.mjs",
+            "tests/standard1665-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.578,
+          "log": "tmp/duema-phase-1666/related-gr.log",
+          "passed": 173,
+          "failed": 0,
+          "logSha256": "c8377cdfe2a126af70e94288f24043883429ac05f529d53f9308f0b16a633836"
+        },
+        "related-gr-duration": {
+          "name": "related-gr-duration",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1497-effects.test.mjs",
+            "tests/standard1402-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.376,
+          "log": "tmp/duema-phase-1666/related-gr-duration.log",
+          "passed": 43,
+          "failed": 0,
+          "logSha256": "e378004440e3d8d2308da8396c5656ebd0b4326bba91799cc18d135cb6f83ad1"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.394,
+          "log": "tmp/duema-phase-1666/check.log",
+          "logSha256": "e8297b0f28708eee30c8cf0f5200a06ca059997ae6f24eed120d80d44ba8bdc4"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.543,
+          "log": "tmp/duema-phase-1666/audit.log",
+          "logSha256": "dcaf88e26fbf74a78ff23b42ae2058db44492f96a428599db2fb5b83ddf3bcd5"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.331,
+          "log": "tmp/duema-phase-1666/target9500.log",
+          "logSha256": "1fc6023859e70a581d09c78f5dede1ab32560558bca982a2741f06dcb97b7dab"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1666/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.44,
+          "log": "tmp/duema-phase-1666/invariants.log",
+          "logSha256": "f13e271ac07364ec64c08a4c4e5825c663e5b38d94034f948a76e89f7479e1e1"
+        }
+      },
+      "totalTestsPassed": 310,
+      "hashes": {
+        "dist/cards.json": "ced6f226ddabcb3379ff18322af7331daa2a9f6f4bfc944adaaa4afa6d8f8847",
+        "dist/engine.js": "38225171dbd6de1244f0d4ad1fbc9763f8f4c0356a1e5ab23880e9e320b60588",
+        "dist/six-photo-rules.js": "7c7f5c1ec53ff88a05fda4e854c3bacf87c8bc5ff2b654a60c21ee1d33127141",
+        "dist/online-compatibility.js": "cf4fe803542c857c26dca71f1411621aecbfeb2dff72c94e776d209329d22381",
+        "dist/card-images.js": "bb43ba25398677a7846ccc1c5ee6ed2ba31c54171cd83cb42c753bdd304776ef",
+        "tools/target9000-card-spec.json": "be971a175b6075a43c3d0b7e52d8f3ecc4c6567b781f9045bac1b087bd3b866e",
+        "tests/standard1666-effects.test.mjs": "bb40c81a92628fc8d3f26be9dab308d7ab60a40bd81d5f8deea7932dd71f3c30"
+      },
+      "engineVersion": "0.602.182",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1666.json",
+      "supported": 9239,
+      "pending": 2586,
+      "reason": "GR召喚2回と当ターン中の実際に召喚した各個体へのSA付与、GR召喚2回後の自分のGRクリーチャー全体への次自分ターン開始までのBlocker付与、GR召喚1回とその個体への同期限のBlocker付与を全文対応。",
+      "validationNotes": [
+        "固有94件、GR召喚・付与の関連173件、GR全体付与・期限・マナドライブ関連43件の計310件が通過。補助の既存30件も通過したがこの合計へは含めない。",
+        "超GRが0/1/2/5枚、GR召喚禁止、元からいるGR・通常クリーチャー・相手GRの区別、実際に出た個体と後続のマーチスによる追加GRの区別を両プレイヤーで検証。",
+        "Blockerの期限は自分のターンに唱えた場合と相手ターンのSトリガーの両方を確認。実際のブロック・攻撃、オンライン投影、JSON途中保存、手動マナ選択、GR帰還後の再登場による付与消去、92枚の実デッキ対戦2件とAIの非公開情報の独立性を確認。",
+        "共通のGR付与処理に次の自分のターン開始までの期限を追加。既存の当ターン・無期限・遅延破壊の経路は維持し、元9236定義とID・詳細・別名・画像参照は不変。",
+        "今回3種類に未完了検証なし。全体npm test・既存長時間群・ユーザー保留の公式照合・登録済み裁定再現待ち1件は保持。今回の登録はローカルのみでpush・公開・Netlify更新をしない。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp11-061",
+          "name": "ガチャリーフ・チャージャー",
+          "reason": "GR召喚した個体への期限付きGuardmanとチャージャーを既存処理で全文対応。"
+        },
+        {
+          "id": "dmrp11-062",
+          "name": "ANZENカプセル",
+          "reason": "実際のGR個体へのMach FighterとGR数3の境界を照合。"
+        },
+        {
+          "id": "dmrp11-015",
+          "name": "♪お眠りララバイ",
+          "reason": "GR召喚後に3体以上を再判定して全体タップと次相手ターンのアンタップ停止を照合。"
+        }
+      ],
+      "next": "phase1667のGR支援3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1665,
-    "nextPhase": 1666,
+    "lastVerifiedPhase": 1666,
+    "nextPhase": 1667,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmx02-003",
-        "name": "スーパー・サイチェン・ピッピー",
-        "reason": "ガイアール関連の全置換処理が整うまで未登録で保留。次回は既存処理で全文再現できる別の3〜5種類を公式照合して選ぶ。"
+        "id": "dmrp11-061",
+        "name": "ガチャリーフ・チャージャー",
+        "reason": "GR召喚した個体への期限付きGuardmanとチャージャーを既存処理で全文対応。"
+      },
+      {
+        "id": "dmrp11-062",
+        "name": "ANZENカプセル",
+        "reason": "実際のGR個体へのMach FighterとGR数3の境界を照合。"
+      },
+      {
+        "id": "dmrp11-015",
+        "name": "♪お眠りララバイ",
+        "reason": "GR召喚後に3体以上を再判定して全体タップと次相手ターンのアンタップ停止を照合。"
       }
     ],
     "steps": [
@@ -533218,23 +533424,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1665,
-      "baseline": "d048053f",
-      "supportedNames": 9236,
-      "artifact": "tools/target9500-registration-checkpoint-1665.json",
-      "checkedAt": "2026-11-22T13:13:56.317Z"
+      "phase": 1666,
+      "baseline": "1a9f0c2b",
+      "supportedNames": 9239,
+      "artifact": "tools/target9500-registration-checkpoint-1666.json",
+      "checkedAt": "2026-11-22T13:27:54.783Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T13:13:56.317Z",
+      "checkedAt": "2026-11-22T13:27:54.783Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9236,
-      "remainingNames": 264,
+      "currentNames": 9239,
+      "remainingNames": 261,
       "duplicateNames": 0,
-      "engineVersion": "0.602.181",
+      "engineVersion": "0.602.182",
       "added": [
         {
           "id": "dmr12-008",
@@ -533899,6 +534105,18 @@
         {
           "id": "dmrp10-003",
           "name": "エンペラー土偶郎"
+        },
+        {
+          "id": "dmrp12-028",
+          "name": "CLIMAX-ARMOR!"
+        },
+        {
+          "id": "dmrp10-016",
+          "name": "♪奏でよグローリー"
+        },
+        {
+          "id": "dmrp12-071",
+          "name": "♪シンプルな真古"
         }
       ],
       "results": {
@@ -534014,13 +534232,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "a466c8b6986e0d2a5be2495af5c3f4648dd28652973163c4d01222c4069bef47",
-        "dist/engine.js": "0ccbaf90866a5151745b7cc5d97c98939b6fbf01b230b1553cb6f3b6698d37ad",
-        "dist/six-photo-rules.js": "727bca56c1a20625430562f0f6d95ea91665dcf71b9db5ef52147af696be819f",
-        "dist/online-compatibility.js": "aeba5dd4aea40b05369565c42dc4178ad37cae8d329b643c59d8e6385bc1c5fc",
-        "dist/card-images.js": "9b6945c4f68d3434a33b1226d14dfbb81ef7e285535c33d6385a9f5b3903dfb4",
-        "tools/target9000-card-spec.json": "a33e0db9db8579b0b3b29a86c427825d570502e835b8de96969e8e1e76ac324d",
-        "tests/standard1665-effects.test.mjs": "1c13f3b070ad962cc460b8a84adc626cd23c8092994ce1861b51bed29f950245"
+        "dist/cards.json": "ced6f226ddabcb3379ff18322af7331daa2a9f6f4bfc944adaaa4afa6d8f8847",
+        "dist/engine.js": "38225171dbd6de1244f0d4ad1fbc9763f8f4c0356a1e5ab23880e9e320b60588",
+        "dist/six-photo-rules.js": "7c7f5c1ec53ff88a05fda4e854c3bacf87c8bc5ff2b654a60c21ee1d33127141",
+        "dist/online-compatibility.js": "cf4fe803542c857c26dca71f1411621aecbfeb2dff72c94e776d209329d22381",
+        "dist/card-images.js": "bb43ba25398677a7846ccc1c5ee6ed2ba31c54171cd83cb42c753bdd304776ef",
+        "tools/target9000-card-spec.json": "be971a175b6075a43c3d0b7e52d8f3ecc4c6567b781f9045bac1b087bd3b866e",
+        "tests/standard1666-effects.test.mjs": "bb40c81a92628fc8d3f26be9dab308d7ab60a40bd81d5f8deea7932dd71f3c30"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -534084,10 +534302,10 @@
       },
       "phaseRange": [
         1614,
-        1665
+        1666
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 166,
+      "addedNames": 169,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -534099,9 +534317,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.459,
-        "log": "tmp/duema-phase-1665/check.log",
-        "logSha256": "4e8bf7cc811b9539ed1bce797a1b2f6205e9d1180533e0e3ecdc012244ed36b7"
+        "seconds": 20.394,
+        "log": "tmp/duema-phase-1666/check.log",
+        "logSha256": "e8297b0f28708eee30c8cf0f5200a06ca059997ae6f24eed120d80d44ba8bdc4"
       },
       "latestAudit": {
         "name": "audit",
@@ -534111,11 +534329,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.921,
-        "log": "tmp/duema-phase-1665/audit.log",
-        "logSha256": "2e239dd77c17e7df1be0e3188d645098f721046f1facef2dc9ed4f52098a0dfe"
+        "seconds": 11.543,
+        "log": "tmp/duema-phase-1666/audit.log",
+        "logSha256": "dcaf88e26fbf74a78ff23b42ae2058db44492f96a428599db2fb5b83ddf3bcd5"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1665.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1666.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -535232,11 +535450,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9236,
-      "remaining": 264,
+      "currentNames": 9239,
+      "remaining": 261,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T13:13:56.317Z"
+      "checkedAt": "2026-11-22T13:27:54.783Z"
     },
     "resolvedRegistrationValidations": [
       {

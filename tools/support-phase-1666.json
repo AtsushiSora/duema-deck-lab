@@ -1,0 +1,407 @@
+{
+  "phase": 1666,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9236,
+  "target": 9500,
+  "description": "GR召喚2回と当ターン中の実際に召喚した各個体へのSA付与、GR召喚2回後の自分のGRクリーチャー全体への次自分ターン開始までのBlocker付与、GR召喚1回とその個体への同期限のBlocker付与を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp12-028",
+      "name": "CLIMAX-ARMOR!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-028",
+      "faces": [
+        {
+          "name": "CLIMAX-ARMOR!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。このターン、そのクリーチャーに「スピードアタッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          },
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-028.jpg",
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-028",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "edc9073efc71900c3712c50915d92ab5d11b1048f26fbc0a1e8cbb9270da1676",
+        "facesMatched": true,
+        "imageSha256": "bf24450886d5572742b9e00e47382c4fcad9d44920c62782e68e46a78997fccf",
+        "imageBytes": 116863,
+        "imageReviewed": true,
+        "imageReview": "公式画像でカード名、文明、コスト、呪文、Sトリガー、GR回数、付与対象・期間、印刷マナ1を目視照合。"
+      }
+    },
+    {
+      "id": "dmrp10-016",
+      "name": "♪奏でよグローリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-016",
+      "faces": [
+        {
+          "name": "♪奏でよグローリー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚を２回する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n次の自分のターンのはじめまで、自分のGRクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353",
+            "spell": true
+          },
+          {
+            "op": "AuraGr1353",
+            "spell": true
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            },
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-016.jpg",
+      "sameNameProducts": [
+        "DMRP-10 超天篇 拡張パック第2弾 青きC.A.P.と漆黒の大卍罪"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-016",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "6880bedcab048e9eed0639c948c34bc6ac3c07af2866e33606d201465cdfaf28",
+        "facesMatched": true,
+        "imageSha256": "4027f4158faee415c6e4365c884289472cebc974af194996d7c04e88196fd88d",
+        "imageBytes": 148812,
+        "imageReviewed": true,
+        "imageReview": "公式画像でカード名、文明、コスト、呪文、Sトリガー、GR回数、付与対象・期間、印刷マナ1を目視照合。"
+      }
+    },
+    {
+      "id": "dmrp12-071",
+      "name": "♪シンプルな真古",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-071",
+      "faces": [
+        {
+          "name": "♪シンプルな真古",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "blocker": true
+            },
+            "untilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-071.jpg",
+      "sameNameProducts": [
+        "DMRP-12 超天篇 拡張パック第4弾 超超超天！覚醒ジョギラゴン vs. 零龍卍誕"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-071",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "43b38436321977d415c3c64691a087435d5fb939dd81b95574f50329b9755c0a",
+        "facesMatched": true,
+        "imageSha256": "2fafa2d9f66b9ecfc4ce779a8aa994b88454e8b0e603f27fba429545db07a99f",
+        "imageBytes": 114293,
+        "imageReviewed": true,
+        "imageReview": "公式画像でカード名、文明、コスト、呪文、Sトリガー、GR回数、付与対象・期間、印刷マナ1を目視照合。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+      "checkedAt": "2026-11-22T13:23:13.148Z",
+      "sha256": "2d96c65ee3b41d8edb606db6ec205823bfb9c3f67b0e1917c8c9758480d1bf5b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "checkedAt": "2026-11-22T13:23:13.266Z",
+      "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T13:23:12.441Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule/qa/ CLIMAX-ARMOR",
+      "site:dm.takaratomy.co.jp/rule/qa/ シンプルな真古",
+      "site:dm.takaratomy.co.jp/rule/qa/ 奏でよグローリー"
+    ],
+    "result": "対象固有QAは見つからず。公式カード本文と総合ルールのGR召喚・誘発待機・期限の規定を基準に検証。"
+  },
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-028": 4,
+      "dmrp10-016": 4,
+      "dmrp12-071": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T13:27:54.783Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1666.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.041,
+        "log": "tmp/duema-phase-1666/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "final-focused-with-trigger-expiry": {
+        "name": "final-focused-with-trigger-expiry",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1666-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.615,
+        "log": "tmp/duema-phase-1666/final-focused-with-trigger-expiry.log",
+        "passed": 94,
+        "failed": 0,
+        "logSha256": "d39388e719cb7f9811982354c76687901879bf1be77db6cd14d98e114e1e9c95"
+      },
+      "related-gr": {
+        "name": "related-gr",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1498-effects.test.mjs",
+          "tests/standard1464-effects.test.mjs",
+          "tests/standard1665-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.578,
+        "log": "tmp/duema-phase-1666/related-gr.log",
+        "passed": 173,
+        "failed": 0,
+        "logSha256": "c8377cdfe2a126af70e94288f24043883429ac05f529d53f9308f0b16a633836"
+      },
+      "related-gr-duration": {
+        "name": "related-gr-duration",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1497-effects.test.mjs",
+          "tests/standard1402-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.376,
+        "log": "tmp/duema-phase-1666/related-gr-duration.log",
+        "passed": 43,
+        "failed": 0,
+        "logSha256": "e378004440e3d8d2308da8396c5656ebd0b4326bba91799cc18d135cb6f83ad1"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.394,
+        "log": "tmp/duema-phase-1666/check.log",
+        "logSha256": "e8297b0f28708eee30c8cf0f5200a06ca059997ae6f24eed120d80d44ba8bdc4"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.543,
+        "log": "tmp/duema-phase-1666/audit.log",
+        "logSha256": "dcaf88e26fbf74a78ff23b42ae2058db44492f96a428599db2fb5b83ddf3bcd5"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.331,
+        "log": "tmp/duema-phase-1666/target9500.log",
+        "logSha256": "1fc6023859e70a581d09c78f5dede1ab32560558bca982a2741f06dcb97b7dab"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1666/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.44,
+        "log": "tmp/duema-phase-1666/invariants.log",
+        "logSha256": "f13e271ac07364ec64c08a4c4e5825c663e5b38d94034f948a76e89f7479e1e1"
+      }
+    },
+    "totalTestsPassed": 310,
+    "focusedTestsPassed": 94,
+    "relatedTestsPassed": 216
+  },
+  "validationNotes": [
+    "固有94件、GR召喚・付与の関連173件、GR全体付与・期限・マナドライブ関連43件の計310件が通過。補助の既存30件も通過したがこの合計へは含めない。",
+    "超GRが0/1/2/5枚、GR召喚禁止、元からいるGR・通常クリーチャー・相手GRの区別、実際に出た個体と後続のマーチスによる追加GRの区別を両プレイヤーで検証。",
+    "Blockerの期限は自分のターンに唱えた場合と相手ターンのSトリガーの両方を確認。実際のブロック・攻撃、オンライン投影、JSON途中保存、手動マナ選択、GR帰還後の再登場による付与消去、92枚の実デッキ対戦2件とAIの非公開情報の独立性を確認。",
+    "共通のGR付与処理に次の自分のターン開始までの期限を追加。既存の当ターン・無期限・遅延破壊の経路は維持し、元9236定義とID・詳細・別名・画像参照は不変。",
+    "今回3種類に未完了検証なし。全体npm test・既存長時間群・ユーザー保留の公式照合・登録済み裁定再現待ち1件は保持。今回の登録はローカルのみでpush・公開・Netlify更新をしない。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "initial-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1666-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.699,
+      "log": "tmp/duema-phase-1666/initial-focused.log"
+    },
+    {
+      "name": "related-duration",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1459-effects.test.mjs",
+        "tests/standard1505-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.354,
+      "log": "tmp/duema-phase-1666/related-duration.log"
+    },
+    {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1666-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.745,
+      "log": "tmp/duema-phase-1666/final-focused.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp11-061",
+      "name": "ガチャリーフ・チャージャー",
+      "reason": "GR召喚した個体への期限付きGuardmanとチャージャーを既存処理で全文対応。"
+    },
+    {
+      "id": "dmrp11-062",
+      "name": "ANZENカプセル",
+      "reason": "実際のGR個体へのMach FighterとGR数3の境界を照合。"
+    },
+    {
+      "id": "dmrp11-015",
+      "name": "♪お眠りララバイ",
+      "reason": "GR召喚後に3体以上を再判定して全体タップと次相手ターンのアンタップ停止を照合。"
+    }
+  ]
+}
