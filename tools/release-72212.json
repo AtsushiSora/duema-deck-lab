@@ -1,0 +1,245 @@
+{
+  "version": "0.722.12",
+  "checkedAt": "2026-11-22T16:01:48.861Z",
+  "baseCommit": "ce37918e",
+  "scope": "Verified phases 1673–1674: six cards since v0.722.11. No additional card implementation during publication.",
+  "actualCards": {
+    "uniqueNames": 9263,
+    "uniqueIds": 9263,
+    "duplicateNames": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "validation": {
+    "runs": [
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.1,
+        "log": "tmp/duema-publish-72212/check.log",
+        "sha256": "9fb5dcb34e4bc8c793f13d658b9e42e4dee186948683f582a5b80a343727948d"
+      },
+      {
+        "name": "release-ui",
+        "command": [
+          "node",
+          "--test",
+          "tests/app-updates.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/mana-payment.test.mjs",
+          "tests/mana-summon-ui.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.489,
+        "log": "tmp/duema-publish-72212/release-ui.log",
+        "passed": 230,
+        "sha256": "77444ffce198e45a5456684c7c0e6a04a78586e45f872c925214137c09412455"
+      },
+      {
+        "name": "server-focused",
+        "command": [
+          "node",
+          "--test",
+          "--test-skip-pattern=a complete two-account game|new No[0-9]+|No08 accepts|No04 accepts",
+          "tests/online-server.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 58.563,
+        "log": "tmp/duema-publish-72212/server-focused.log",
+        "passed": 48,
+        "sha256": "39bc6970a47a26f1368cc11f234371ff446e574ea6a9eb74b6305010c1208442"
+      },
+      {
+        "name": "added-cards",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1673-effects.test.mjs",
+          "tests/standard1674-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.654,
+        "log": "tmp/duema-publish-72212/added-cards.log",
+        "passed": 183,
+        "sha256": "0a5521d87199d68284e80fe07ce174b47011049e61921b9dd997c8a356c537cd"
+      },
+      {
+        "name": "support-audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.411,
+        "log": "tmp/duema-publish-72212/support-audit.log",
+        "sha256": "f41efb3c345eb6e29f0b50855161fc3efcc070658f31c1b4c410e63b9d335cd1"
+      }
+    ],
+    "testsPassed": 461,
+    "cardBatches": [
+      {
+        "phase": 1673,
+        "artifact": "tools/target9500-registration-checkpoint-1673.json",
+        "passed": 829
+      },
+      {
+        "phase": 1674,
+        "artifact": "tools/target9500-registration-checkpoint-1674.json",
+        "passed": 626
+      }
+    ],
+    "noWholeNpmTest": true,
+    "cacheModules": [
+      "ai-decision-worker.js",
+      "ai-decision.js",
+      "ai-playback.js",
+      "app-updates.js",
+      "app.js",
+      "battle-insights.js",
+      "battle-visuals.js",
+      "card-art.js",
+      "card-images.js",
+      "choice-summary.js",
+      "draw.js",
+      "engine.js",
+      "extended-rules.js",
+      "hand-ui.js",
+      "log-card-links.js",
+      "manual-ui.js",
+      "online-compatibility.js",
+      "online.js",
+      "release-notes.js",
+      "screenshot-report.js",
+      "six-photo-rules.js",
+      "strongest-cpu-worker.js",
+      "strongest-cpu.js",
+      "tournament-simulation.js",
+      "tournament-worker.js",
+      "worker.js"
+    ]
+  },
+  "historicalVerificationPending": {
+    "fullSuite": "中断・合否未確認",
+    "registeredCardExactRuling": [
+      {
+        "target": "Crim-QA39975-exact-source",
+        "cardIds": [
+          "dmex16-026"
+        ],
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+        "reason": "QA39975の公式本文とphase1651の同時Sweepは検証済み。テック団の波壊Go！の全カード一括移動には進化元・付属・封印・リンク構成を含む移動前状態の禁止・置換評価が必要なため、phase1652では部分登録をせず専用バッチへ保留。固有実装のないものを対応済みには数えない。",
+        "status": "pending-exact-source-reproduction",
+        "lastReviewedPhase": 1652
+      }
+    ],
+    "longRuns": [
+      {
+        "phase": 1619,
+        "status": "中断・合否未確認",
+        "reason": "多数対戦相手・多数seedを含む2モジュールの一括実行を123.466秒で中止。関連する決定的61件は別分割で通過。旧全体npm test・長時間群の合格を推定しない。",
+        "log": "tmp/duema-phase-1619/final-related.log",
+        "scope": "tmp/duema-phase-1619/long-regression-scope.json",
+        "completedDeterministic": 61
+      },
+      {
+        "phase": 1635,
+        "status": "interrupted-unconfirmed",
+        "targets": [
+          {
+            "file": "tests/abyss-effects.test.mjs",
+            "names": [
+              "No13 AI matches all28 ready opponents with deterministic replay and80 physical cards",
+              "No13 random choices preserve80 unique cards and legal decisions through JSON",
+              "every supported borrowed entry ability preserves physical cards and resolves serializable decisions"
+            ]
+          }
+        ],
+        "reason": "負の先読みを用いた除外指定が親のファイル名に一致し、意図しない長時間群まで実行。240.198秒で今回のプロセスグループだけを強制終了。合否は数えない。新規カードと必要な共通回帰は related-core 286件、related-borrow 4件、固有44件で別に検証。",
+        "execution": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "--test-name-pattern=^(?!every supported borrowed entry|No13 AI matches|No13 random choices)",
+            "tests/standard1275-effects.test.mjs",
+            "tests/standard1451-effects.test.mjs",
+            "tests/standard560-effects.test.mjs",
+            "tests/standard1613-effects.test.mjs",
+            "tests/abyss-effects.test.mjs",
+            "tests/standard1634-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 240.198,
+          "log": "tmp/duema-phase-1635/final-related.log"
+        },
+        "resume": "この一括実行は繰り返さない。全件の借用はoriginal IDとability label、No13は相手デッキ・seed・先後単位で対象一覧を固定し、独立に分割して実測結果を集約する。",
+        "newCardSpecificValidationPending": false
+      },
+      {
+        "phase": 1636,
+        "status": "interrupted-unconfirmed",
+        "targets": [
+          {
+            "file": "tests/kiyonaga-effects.test.mjs",
+            "names": [
+              "No21 AI replay: <opponent id> (6 seeds each)",
+              "No21 random legal choices: seed 1..40",
+              "No21 production worker: <opponent id> (20 games each)"
+            ]
+          }
+        ],
+        "reason": "既存No21の長時間群を含む回帰モジュールを実行してしまったため、今回のプロセスグループだけを61.059秒で強制終了。どの長時間ケースまで進行したかは確定できず合否を数えない。必要な短いケースは名前を明示して33件を独立に通過、ほか共通回帰86件と新規固有40件も通過。",
+        "execution": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1114-effects.test.mjs",
+            "tests/standard1526-effects.test.mjs",
+            "tests/standard208-effects.test.mjs",
+            "tests/standard987-effects.test.mjs",
+            "tests/kiyonaga-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 61.059,
+          "log": "tmp/duema-phase-1636/final-related.log"
+        },
+        "resume": "一括実行を繰り返さない。相手ID・seed・先後・ワーカーゲーム数を小さい単位で固定し、実行時間とカード保存の検証結果を集約する。",
+        "newCardSpecificValidationPending": false
+      }
+    ],
+    "userDeferredOfficial": [
+      {
+        "id": "dm22rp1-2B",
+        "name": "ドラン・ゴルギーニ",
+        "reason": "金箔2Sの個別公式ページと公式画像を特定できなかった。2BとOR2の個別ページと画像は照合済み。"
+      }
+    ],
+    "publicationDoesNotResolveHistoricalItems": true
+  },
+  "publication": {
+    "status": "prepared",
+    "pages": "https://atsushisora.github.io/duema-deck-lab/",
+    "netlify": "https://duema-deck-lab.netlify.app",
+    "explicitUserInstruction": "プッシュして公開して、Netlifyも公開して",
+    "automaticNetlifyUpdatesStopped": true
+  }
+}

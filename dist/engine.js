@@ -13,7 +13,7 @@ import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
 import {sinActions1432} from './aura1432-rules.js?v=0.722.3';
 import {buzzAdditional1411,tunePayment1411,buzzEntry1411,buzzVariants1411} from './requested1411-rules.js?v=0.722.3';
-import {createExtendedRules} from './extended-rules.js?v=0.722.11';
+import {createExtendedRules} from './extended-rules.js?v=0.722.12';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
