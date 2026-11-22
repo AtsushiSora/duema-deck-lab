@@ -1,0 +1,128 @@
+{
+  "phase": 1632,
+  "checkedAt": "2026-11-22T05:10:32.096Z",
+  "baseline": "815bf7e242e02f500f1d0c98ba480eff8561a8d3",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9126,
+  "currentNames": 9129,
+  "remainingNames": 371,
+  "added": [
+    {
+      "id": "dm20-027",
+      "name": "封魔フォラス"
+    },
+    {
+      "id": "dmr10-s04",
+      "name": "奈落の葬儀人デス・シュテロン"
+    },
+    {
+      "id": "dm22ex2-056",
+      "name": "闇鍋男"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9126,
+    "uniqueNames": 9129,
+    "uniqueIds": 9129,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-final": {
+      "name": "official-final",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1632.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.919,
+      "log": "tmp/duema-phase-1632/official-final.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1632-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 24.897,
+      "log": "tmp/duema-phase-1632/final-focused.log",
+      "passed": 47,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard211-effects.test.mjs",
+        "tests/standard807-effects.test.mjs",
+        "tests/standard314-effects.test.mjs",
+        "tests/standard461-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 44.793,
+      "log": "tmp/duema-phase-1632/final-related.log",
+      "passed": 238,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 31.204,
+      "log": "tmp/duema-phase-1632/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.669,
+      "log": "tmp/duema-phase-1632/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.414,
+      "log": "tmp/duema-phase-1632/target9500.log"
+    }
+  },
+  "totalTestsPassed": 285,
+  "hashes": {
+    "dist/cards.json": "cb4fee9b154f07d7de7804346370b0ef19cac3e4a0215a7bcb809868d33f3dae",
+    "dist/engine.js": "5236df8ecf5a76c3f466331ac4e74be49640bb6687a1110aa9f464a7ce9239a9",
+    "dist/six-photo-rules.js": "600c1c3880709634565a1e1f25023daa7d9ae3a9bf844e84ac14c71fb2a87e26",
+    "dist/online-compatibility.js": "8af379dd099b722eb08de694f4b040e0b1ca63dcc4aa55c27eafc992cb3ecb18",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.148",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

@@ -225,6 +225,7 @@ export function createSixPhotoRules(api){
  function sympathyAmount500(s,p,c){
   const r=c.g211Sympathy;
   if(!r)return 0;
+  if(r.g1632SameRace)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&sharesRace(effective(x,s,true),c)).length*r.amount;
   return s.players[p].battle.filter(x=>!x.sealed&&(r.filter.seed?(card(x).type==='seed'||card(x).natureAce4):
    (r.elements?!x.faceDown:api.isCreature(s,x))&&matches(s,p,x,r.filter))).length*r.amount;
  }
@@ -3895,6 +3896,7 @@ export function createSixPhotoRules(api){
  case'g34_FreezeOpponent1608':
   for(const kind of['attack','block'])(s.extLimits??=[]).push({kind,player:1-t.p,expires:'end',who:s.active});
   break;
+ case'g34_ManaEntryGrave1632':{const y=own.mana.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);if(y)zoneMove(s,t.p,'mana',y.uid,'grave',t);break;}
  case'g34_LifeCharger1631':(s.extLimits??=[]).push({kind:'g1631LifeCharger',player:t.p,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;
  case'g34_BattleColors1630':start(s,t,battleColorDefs1630(s,t));break;
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
@@ -9104,11 +9106,11 @@ export function createSixPhotoRules(api){
   const firstMulti=s.g1160FirstMultiManaTurn?.[p]!==s.turn;
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
-   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
+   const {g1632ManaEntryGrave:manaEntryGrave,g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
     g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti,
     g1182FirstMultiManaUntap:firstMultiUntap,g1520TwinMana:twinOnly,g1520TwinManaUntap:twinUntap}=effective(x,s);
-   return rules||untap||defs||firstMultiDraw||recycle||firstMultiUntap||twinUntap
-    ?[{x,rules:rules||[],untap,defs:s.g20LeavingUids?.includes(x.uid)&&twinOnly?undefined:defs,entryRace,firstMultiDraw,recycle,entryMulti,firstMultiUntap,twinOnly,twinUntap:!s.g20LeavingUids?.includes(x.uid)&&twinUntap}]:[];
+   return manaEntryGrave||rules||untap||defs||firstMultiDraw||recycle||firstMultiUntap||twinUntap
+    ?[{x,manaEntryGrave,rules:rules||[],untap,defs:s.g20LeavingUids?.includes(x.uid)&&twinOnly?undefined:defs,entryRace,firstMultiDraw,recycle,entryMulti,firstMultiUntap,twinOnly,twinUntap:!s.g20LeavingUids?.includes(x.uid)&&twinUntap}]:[];
   });
   const crystalSources=s.players[p].battle.filter(x=>!x.sealed&&card(x).g1175CrystalField&&effective(x,s).g1175CrystalField);
   for(const x of cards){
@@ -9124,6 +9126,7 @@ export function createSixPhotoRules(api){
    // Each qualifying card in a simultaneous first placement triggers (QA48286).
    if(firstMulti&&actual.length>1)(s.g1160FirstMultiManaTurn??=[null,null])[p]=s.turn;
    for(const source of sources){
+    if(source.manaEntryGrave)send(s,p,source.x,'ManaEntryGrave1632',{target:x.uid,serial:x.zoneSerial||0});
     if(source.twinUntap&&manaCard.spellFace)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});
     if(firstMulti&&source.firstMultiDraw&&actual.length>1)
      send(s,p,source.x,'FirstMultiManaDraw1160',{target:x.uid,serial:x.zoneSerial||0});
@@ -9572,6 +9575,7 @@ export function createSixPhotoRules(api){
     const races=exactRaces(effective(y,s));
     if(races.length)queue(s,owner,x,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{creature:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}]);
    }
+   else if(watch.g1632DestroyEntrant)queue(s,owner,x,[{op:'ExactMove',owner:p,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0,g403Refs:api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})),followEvolution:true}]);
    else if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });

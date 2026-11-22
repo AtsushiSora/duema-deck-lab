@@ -30725,5 +30725,147 @@
         }
       ]
     }
+  },
+  "dm20-027": {
+    "phase": 1632,
+    "faces": [
+      {
+        "name": "封魔フォラス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の他のクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。\n自分のマナゾーンにカードを置いた時、そのカードを墓地に置く。\nW・ブレイカー",
+        "race": "グランド・デビル",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1632DestroyEntrant": true
+      },
+      "g1632ManaEntryGrave": true
+    }
+  },
+  "dmr10-s04": {
+    "phase": 1632,
+    "faces": [
+      {
+        "name": "奈落の葬儀人デス・シュテロン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "各ターンの終わりに、プレイヤーは自身の手札をすべて捨てる。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、クリーチャーをすべて破壊する。",
+        "race": "デーモン・コマンド",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dm22ex2-056": {
+    "phase": 1632,
+    "faces": [
+      {
+        "name": "闇鍋男",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーと同じ種族を１つでも持つ自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "デーモン・コマンド/ソニック・コマンド/ドラゴン・ゾンビ/ゴッド/オリジン/ヘドリアン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {},
+        "g1632SameRace": true
+      }
+    }
+  },
+  "dm24rp2-TR04": {
+    "phase": 1632,
+    "faces": [
+      {
+        "name": "奈落の葬儀人デス・シュテロン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\n各ターンの終わりに、各プレイヤーは自身の手札をすべて捨てる。\nこのクリーチャーが離れた時、クリーチャーをすべて破壊する。",
+        "race": "デーモン・コマンド",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
   }
 }

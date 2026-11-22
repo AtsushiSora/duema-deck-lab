@@ -1,0 +1,241 @@
+{
+  "phase": 1632,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9126,
+  "target": 9500,
+  "description": "自軍の後続クリーチャーと追加マナへの誘発、ターン終了時の手札破棄と離脱時全体破壊、同じ種族を持つ自軍クリーチャーの数に応じた召喚軽減を実装・検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
+    "https://dm.takaratomy.co.jp/rule/qa/40183/"
+  ],
+  "cards": [
+    {
+      "id": "dm20-027",
+      "name": "封魔フォラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-027",
+      "faces": [
+        {
+          "name": "封魔フォラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の他のクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。\n自分のマナゾーンにカードを置いた時、そのカードを墓地に置く。\nW・ブレイカー",
+          "race": "グランド・デビル",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "g1632DestroyEntrant": true
+        },
+        "g1632ManaEntryGrave": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "0007b4ff23d67a97416ab668e90c708761f6b48ba2254b878ee306e9c4645b53",
+        "facesMatched": true,
+        "imageSha256": "ac5912cb54eadd9e6d4acc8719827424e40adcc154aece3cd29e0fcdceef7a65",
+        "imageBytes": 74656,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像の名称・全文・基本情報・マナ数字を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM-20 不死鳥編 第2弾 魔闘竜×機兵団(ジ・アルティメット・ノヴァ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-027",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmr10-s04",
+      "name": "奈落の葬儀人デス・シュテロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s04",
+      "faces": [
+        {
+          "name": "奈落の葬儀人デス・シュテロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "各ターンの終わりに、プレイヤーは自身の手札をすべて捨てる。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、クリーチャーをすべて破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g174End": [
+          {
+            "op": "PlayersDiscardDraw461",
+            "n": 0
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "PlayersDiscardDraw461",
+            "n": 0
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "15a2165ce571fb077aa02cd77c51f3b089052ebba00488d22c4501e4cf9914d5",
+        "facesMatched": true,
+        "imageSha256": "36b43163451e5504a767e480044e5617bf4e3b650fc499434b80a0f740043683",
+        "imageBytes": 164696,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像の名称・全文・基本情報・マナ数字を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM24-EX3 刺激爆発デュエナマイトパック",
+        "DM24-RP2 王道篇 第2弾 「カイザー・オブ・ハイパードラゴン」",
+        "DMEX-02 デュエマクエスト・パック ～伝説の最強戦略12～",
+        "DMR-10 エピソード3 デッド＆ビート"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s04",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      },
+      "currentPrint": {
+        "id": "dm24rp2-TR04",
+        "name": "奈落の葬儀人デス・シュテロン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-TR04",
+        "faces": [
+          {
+            "name": "奈落の葬儀人デス・シュテロン",
+            "typeText": "クリーチャー",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ],
+            "cost": 9,
+            "costText": "9",
+            "abilityText": "T・ブレイカー\n各ターンの終わりに、各プレイヤーは自身の手札をすべて捨てる。\nこのクリーチャーが離れた時、クリーチャーをすべて破壊する。",
+            "race": "デーモン・コマンド",
+            "powerText": "13000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "1a1bbb579cf350f8fba3953f134129f5fb2b486fe72f7fd1b81b558c9fbad197",
+          "facesMatched": true,
+          "imageSha256": "c10b89b3185dd5677784aab8adbf620b097eddf3dfccfa4534868103c3bc42ce",
+          "imageBytes": 196322,
+          "imageReviewed": true,
+          "imageReview": "最新の参照再録画像で各ターンの終わりに各プレイヤーが捨てる全文と、離れた時の全体破壊を確認。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-TR04.jpg"
+      }
+    },
+    {
+      "id": "dm22ex2-056",
+      "name": "闇鍋男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-056",
+      "faces": [
+        {
+          "name": "闇鍋男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーと同じ種族を１つでも持つ自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "デーモン・コマンド/ソニック・コマンド/ドラゴン・ゾンビ/ゴッド/オリジン/ヘドリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 1,
+          "filter": {},
+          "g1632SameRace": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "a146be6b44dc1ce4bcb9f3167e0535bf7212e8abca27106fa561ea3a8f125151",
+        "facesMatched": true,
+        "imageSha256": "8080d407c0edd6a4abf5eee937d57e39082f718946c0f630631354bede6ccd14",
+        "imageBytes": 96290,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像の名称・全文・基本情報・マナ数字を目視照合。"
+      },
+      "sameNameProducts": [
+        "DM22-EX2 ヒーローズ・ダークサイド・パック ～闇のキリフダたち～"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-056",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "封魔ラベリーズ（dm19-019）: 既存サイクロンを共有する。効果解決中に能力付与元が離れた場合と、呪文本来の移動先との競合を公式資料で照合。",
+    "ブブンド・タンク（dmrp02-026）: 同名2体を山札/マナから選ぶ既存処理を確認。ドドンブブの既存対応と全ての移動元を実データで検証。",
+    "巡霊者メスタポ（dm14-014）: 見る禁止と引く/公開する処理を区別し、QQの山札移動禁止を流用して誤ってドローまで止めない。",
+    "公式全文を照合し、難しい候補は保留して別候補へ進み、9500まで通常登録を続ける。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-027": 4,
+      "dmr10-s04": 4,
+      "dm22ex2-056": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
+      "checkedAt": "2026-11-22",
+      "sha256": "61f862bcb07820d7e6fd4b3e9fcf54d8d6a90cb3704dc49c95c54587896155a8"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40183/",
+      "checkedAt": "2026-11-22",
+      "sha256": "c2b91b5512113466474dea83d8c9089ecf4ef94ad423ab8c12202cee794452fe"
+    }
+  ],
+  "rulingReview": [
+    "QA35456: フォラスの破壊と出たクリーチャー自身の登場時能力は選んだ順序で解決できる。",
+    "QA40183: フシギバースのマナ化でデス・シュテロンが離れた場合、ギガンディダノスが出てから離脱誘発を解決し、新しく出たギガンディダノスも破壊する。",
+    "DM24RP2 TR4の公式再録全文で、各ターンの終了時に各プレイヤーが手札すべてを捨てることを照合。"
+  ]
+}

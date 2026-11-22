@@ -290206,22 +290206,108 @@
       ],
       "supportBatch": "phase-1631",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-027",
+      "name": "封魔フォラス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "グランド・デビル",
+      "text": "自分の他のクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。\n自分のマナゾーンにカードを置いた時、そのカードを墓地に置く。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-027",
+      "limit": 4,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1632DestroyEntrant": true
+      },
+      "g1632ManaEntryGrave": true,
+      "supportBatch": "phase-1632",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-s04",
+      "name": "奈落の葬儀人デス・シュテロン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 13000,
+      "race": "デーモン・コマンド",
+      "text": "T・ブレイカー\n各ターンの終わりに、各プレイヤーは自身の手札をすべて捨てる。\nこのクリーチャーが離れた時、クリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s04",
+      "limit": 4,
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "PlayersDiscardDraw461",
+          "n": 0
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1632",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-056",
+      "name": "闇鍋男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デーモン・コマンド/ソニック・コマンド/ドラゴン・ゾンビ/ゴッド/オリジン/ヘドリアン",
+      "text": "このクリーチャーと同じ種族を１つでも持つ自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-056",
+      "limit": 4,
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {},
+        "g1632SameRace": true
+      },
+      "supportBatch": "phase-1632",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1631,
+    "phase": 1632,
     "checkedAt": "2026-11-22",
-    "baseCount": 9123,
+    "baseCount": 9126,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9126,
+    "totalCount": 9129,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35024/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35025/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35040/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35079/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35399/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
+      "https://dm.takaratomy.co.jp/rule/qa/40183/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316873,6 +316959,25 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36519/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1631,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9123,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9126,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35024/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35025/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35040/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35079/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35399/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
