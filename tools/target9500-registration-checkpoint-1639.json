@@ -1,0 +1,129 @@
+{
+  "phase": 1639,
+  "checkedAt": "2026-11-22T06:39:57.756Z",
+  "baseline": "7b2a830f8a0611ed1942adfe2416226fadf0449a",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9149,
+  "currentNames": 9152,
+  "remainingNames": 348,
+  "added": [
+    {
+      "id": "dmr01-011",
+      "name": "聖霊王リケ"
+    },
+    {
+      "id": "dm27+1d-001",
+      "name": "アルティメット・影虎・ドラゴン"
+    },
+    {
+      "id": "dmsd01-001",
+      "name": "超特Q ダンガンオー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9149,
+    "uniqueNames": 9152,
+    "uniqueIds": 9152,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1639.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.336,
+      "log": "tmp/duema-phase-1639/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1639-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 18.011,
+      "log": "tmp/duema-phase-1639/final-focused.log",
+      "passed": 41,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Tobibako|Baham|Demon Sword|Mei|Sigma|Kagutts|Biwa|temporary extra breaks|additional breaks",
+        "tests/standard876-effects.test.mjs",
+        "tests/standard1075-effects.test.mjs",
+        "tests/standard561-effects.test.mjs",
+        "tests/standard754-effects.test.mjs",
+        "tests/standard444-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.693,
+      "log": "tmp/duema-phase-1639/final-related.log",
+      "passed": 37,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.458,
+      "log": "tmp/duema-phase-1639/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.45,
+      "log": "tmp/duema-phase-1639/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.25,
+      "log": "tmp/duema-phase-1639/target9500.log"
+    }
+  },
+  "totalTestsPassed": 78,
+  "hashes": {
+    "dist/cards.json": "58e747fbb7777e05d97eb32426ee813aab93c2dbb2ef9dddee77391c9cb228fa",
+    "dist/engine.js": "35e2c0bcd738a9ef30de810badbdf76e0af7b0b857d909d6d6ce7a79bb0da8a3",
+    "dist/six-photo-rules.js": "a9234ac20f9cca31be7e2987d8e12871ff8aee77dd8d2122c806feb01beb3bfe",
+    "dist/online-compatibility.js": "8f23edbd991ec7b98407147044ad3aa8a643772a139040031d839cbb6f142745",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.155",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

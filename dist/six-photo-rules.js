@@ -1025,6 +1025,7 @@ export function createSixPhotoRules(api){
    if(f.g228Face&&(y.faceDown||!matches(s,p,y,{g228Face:f.g228Face})))return false;
    if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
+   if(f.gear&&api.zoneCard(s,p,y,t.zone).type!=='gear')return false;
    if(!Object.keys(f).length)return true;
    const d=t.zone==='battle'?effective(y,s,true):card(y),printed=t.zone==='battle'?[d]:faces(d);
    return (!f.g561CreatureRace||printed.some(d=>d.type==='creature'&&race(d,f.g561CreatureRace)))&&(!f.seed||(()=>{const raw=api.zoneCard(s,p,y,'battle');return raw.type==='seed'||!!raw.seedCreature||!!raw.natureAce4;})())&&(!f.creature||printed.some(d=>d.type==='creature'))&&(!f.multi||printed.some(d=>colors(d).length>1))&&(!f.spell||printed.some(d=>d.type==='spell'))&&(!f.color||printed.some(d=>colors(d).includes(f.color)))&&(!f.colorsAny||printed.some(d=>f.colorsAny.some(q=>colors(d).includes(q))))&&(!f.race||printed.some(d=>race(d,f.race)))&&(!f.evolution||api.isEvolution(y)||d.g48HandEvolution)&&(!f.blocker||d.blocker)&&(!f.tapped||y.tapped)&&(!f.untapped||!y.tapped);
@@ -3065,6 +3066,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_SelfGrant754':{const host=sourceHost474(s,t);if(host&&(!t.g770LiveCreature||!host.x.sealed&&api.isCreature(s,host.x)))applyGrant(s,t,host.x);break;}
+ case'g34_Dangan1639':{
+  const host=sourceHost474(s,t);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  const n=own.battle.filter(y=>y.uid!==host.x.uid&&!y.sealed&&!y.faceDown&&race(effective(y,s,true),'ジョーカーズ')).length;
+  start(s,t,[{op:'SelfGrant754',grant:{entryPlayerAttack:true}},...(n?[{op:'SelfExtraBreak444',amount:n,g969FollowControl:true}]:[])]);
+  break;
+ }
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(!y)break;

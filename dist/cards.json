@@ -291061,19 +291061,114 @@
       "destroyToHand": true,
       "supportBatch": "phase-1638",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-011",
+      "name": "聖霊王リケ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "エンジェル・コマンド",
+      "text": "進化ー自分の水または自然のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引く。その後、カードを１枚、自分の手札からマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-011",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "g182HandMana": true
+        }
+      ],
+      "supportBatch": "phase-1639",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27+1d-001",
+      "name": "アルティメット・影虎・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "パワーアタッカー+6000(攻撃中、このクリーチャーのパワーは+6000される)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーは、バトルゾーンにある自分のクロスギア１枚につき、さらに１枚シールドをブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27+1d-001",
+      "limit": 4,
+      "attackBonus": 6000,
+      "breaker": 2,
+      "g876BreakPerCount": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "g561Elements": true,
+        "filter": {
+          "gear": true
+        },
+        "amount": 0
+      },
+      "supportBatch": "phase-1639",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd01-001",
+      "name": "超特Q ダンガンオー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーは相手プレイヤーを攻撃でき、バトルゾーンにある自分の他のジョーカーズ１枚につきシールドをさらに１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Dangan1639"
+        }
+      ],
+      "supportBatch": "phase-1639",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1638,
+    "phase": 1639,
     "checkedAt": "2026-11-22",
-    "baseCount": 9146,
+    "baseCount": 9149,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9149,
+    "totalCount": 9152,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
-      "https://dm.takaratomy.co.jp/rule/qa/38597/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -317846,6 +317941,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1638,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9146,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9149,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35059/",
+          "https://dm.takaratomy.co.jp/rule/qa/38597/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
