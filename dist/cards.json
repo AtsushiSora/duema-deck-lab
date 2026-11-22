@@ -289436,21 +289436,128 @@
       "g1468TappedNoLose": true,
       "supportBatch": "phase-1623",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-038",
+      "name": "弐天炎明 ガンリュウ・ムサシ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アウトレイジMAX",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt バトルゾーンにある自分のアウトレイジを１体、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-038",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "filter": {
+            "race": "アウトレイジ"
+          },
+          "title": "アンタップする自分のアウトレイジを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1624",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx06-008",
+      "name": "偽りの名 イーサン",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "アンノウン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにクリーチャーが６体以上あれば、それらをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-008",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "sumBoth": true,
+              "min": 6,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1624",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-061",
+      "name": "荒法師ミガサ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヒューマノイド",
+      "text": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分の火のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、そのクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-061",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "color": "火"
+          },
+          "grant": {
+            "g313Breaker": 2,
+            "g633DoubleBreaker": true
+          },
+          "title": "W・ブレイカーを与える自分の火のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1624",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1623,
+    "phase": 1624,
     "checkedAt": "2026-11-22",
-    "baseCount": 9101,
+    "baseCount": 9104,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9104,
+    "totalCount": 9107,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35087/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36650/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36651/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36656/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36496/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -315965,6 +316072,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36730/",
           "https://dm.takaratomy.co.jp/rule/qa/48117/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36518/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1623,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9101,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9104,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35087/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36650/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36651/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36656/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

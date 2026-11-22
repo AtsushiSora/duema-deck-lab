@@ -1,0 +1,257 @@
+{
+  "phase": 1624,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9104,
+  "target": 9500,
+  "description": "既存タップ能力・種族選択・Wブレイカー付与・同時破壊を再利用し、両プレイヤーのクリーチャー数による条件を追加。召喚酔い・付与期限・リンク解除と破壊置換を実カードで検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36496/"
+  ],
+  "cards": [
+    {
+      "id": "promoy12-038",
+      "name": "弐天炎明 ガンリュウ・ムサシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-038",
+      "faces": [
+        {
+          "name": "弐天炎明 ガンリュウ・ムサシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt バトルゾーンにある自分のアウトレイジを１体、アンタップする。",
+          "race": "アウトレイジMAX",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "アウトレイジ"
+            },
+            "title": "アンタップする自分のアウトレイジを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "49d137161244a1bbb55bf7832ec2af7db31334eed0be1267bcfb7a90c866150b",
+        "facesMatched": true,
+        "imageSha256": "f85fe7b59a17dc0c1ba1c4ba24e4b78e386c0ea64711620f44c0e6b4b6fe20ba",
+        "imageBytes": 171649,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数と能力欄を確認。全文は公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 12期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-038",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmx06-008",
+      "name": "偽りの名 イーサン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-008",
+      "faces": [
+        {
+          "name": "偽りの名 イーサン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにクリーチャーが６体以上あれば、それらをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アンノウン",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g439Tap": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "sumBoth": true,
+                "min": 6,
+                "filter": {
+                  "creature": true
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmx12b-084",
+        "name": "偽りの名 イーサン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-084",
+        "faces": [
+          {
+            "name": "偽りの名 イーサン",
+            "typeText": "クリーチャー",
+            "civilizationText": "光/火",
+            "civilizations": [
+              "光",
+              "火"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにクリーチャーが６体以上あれば、それらをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+            "race": "アンノウン",
+            "powerText": "7500",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "fa6a33dece42522f314a2e7e3f8f094e0cad9b0173d11f55276da75f3ac24813",
+          "facesMatched": true,
+          "imageSha256": "c3ddb7650480d4a00b3dc3eb5c02d3cf24d4f1b9a717cd5b989cacf163a0fc52",
+          "imageBytes": 139675,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式再録画像の基本情報と能力全文を初版・HTMLに照合。一致。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-084.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx06-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "051b44a74f0ddeb8ed0317507353ce2b5a3a80c64bd56924d9b87f15042f5826",
+        "facesMatched": true,
+        "imageSha256": "0937012696df8f65a8711460682a64abe9d452c1d7d8d74f3c0d9f24c27a5290",
+        "imageBytes": 119282,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数と能力欄を確認。全文は公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DMX-12 エピソード2 ブラック・ボックス・パック",
+        "DMX-06 大乱闘!ヒーローズ・ビクトリー・パック 燃えるド根性大作戦"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-008",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm06-061",
+      "name": "荒法師ミガサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-061",
+      "faces": [
+        {
+          "name": "荒法師ミガサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分の火のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、そのクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "color": "火"
+            },
+            "grant": {
+              "g313Breaker": 2,
+              "g633DoubleBreaker": true
+            },
+            "title": "W・ブレイカーを与える自分の火のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "80d7d964a3942d2f042d2fb6f3b7b17d48790d01d41f89b15fbd18e95a654bec",
+        "facesMatched": true,
+        "imageSha256": "c485dffde5018278e2f1231b51aed1f077521689af18d8393e03f92b08697d2a",
+        "imageBytes": 86058,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の名前・火文明・コスト3・パワー2000・種族・マナ数を確認。能力欄は低解像度のため公式HTML全文とも照合。"
+      },
+      "sameNameProducts": [
+        "DM-06 闘魂編(インビンシブル・ソウル)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-061",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存処理を再利用できる未対応カード3〜5種類を公式全文から選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy12-038": 4,
+      "dmx06-008": 4,
+      "dm06-061": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
+      "checkedAt": "2026-11-22",
+      "sha256": "3e8396151300fd8e3c8d09cdb62ab4c9e4d49184f57f0a6cc547d5f26627549e"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
+      "checkedAt": "2026-11-22",
+      "sha256": "f529bc8c972c76373b06372cf97337707476d0c932e882c18594e06d068fbc30"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36496/",
+      "checkedAt": "2026-11-22",
+      "sha256": "cca1aa48c065fd6ea48d97b36d0c60db96bd45f8487cc5ca02b6ba41d534d889"
+    }
+  ]
+}

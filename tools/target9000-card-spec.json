@@ -29673,5 +29673,170 @@
       "breaker": 2,
       "g1468TappedNoLose": true
     }
+  },
+  "promoy12-038": {
+    "phase": 1624,
+    "faces": [
+      {
+        "name": "弐天炎明 ガンリュウ・ムサシ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt バトルゾーンにある自分のアウトレイジを１体、アンタップする。",
+        "race": "アウトレイジMAX",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "filter": {
+            "race": "アウトレイジ"
+          },
+          "title": "アンタップする自分のアウトレイジを1体選ぶ"
+        }
+      ]
+    }
+  },
+  "dmx06-008": {
+    "phase": 1624,
+    "faces": [
+      {
+        "name": "偽りの名 イーサン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにクリーチャーが６体以上あれば、それらをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "アンノウン",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "sumBoth": true,
+              "min": 6,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm06-061": {
+    "phase": 1624,
+    "faces": [
+      {
+        "name": "荒法師ミガサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分の火のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、そのクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ヒューマノイド",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "color": "火"
+          },
+          "grant": {
+            "g313Breaker": 2,
+            "g633DoubleBreaker": true
+          },
+          "title": "W・ブレイカーを与える自分の火のクリーチャーを1体選ぶ"
+        }
+      ]
+    }
+  },
+  "dmx12b-084": {
+    "phase": 1624,
+    "faces": [
+      {
+        "name": "偽りの名 イーサン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにクリーチャーが６体以上あれば、それらをすべて破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アンノウン",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "sumBoth": true,
+              "min": 6,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }
