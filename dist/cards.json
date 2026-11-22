@@ -289898,22 +289898,118 @@
       ],
       "supportBatch": "phase-1627",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-s03",
+      "name": "ザビメテウス・武者・BLACK",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/エイリアン",
+      "text": "エイリアンが攻撃する時、自分のシールドをひとつ、自分の墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s03",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "both",
+        "filter": {
+          "creature": true,
+          "race": "エイリアン"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1628",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-035",
+      "name": "暗黒鎧 ザロスト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ダーク・ナイトメア/革命軍",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のシールドを１つ墓地に置いてもよい。そうしたら、このクリーチャーを出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-035",
+      "limit": 1,
+      "blocker": true,
+      "noAttack": true,
+      "g1628GraveStartShield": true,
+      "supportBatch": "phase-1628",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-034",
+      "name": "スリーアイズ・ドラゴンフライ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャイアント・インセクト",
+      "text": "このクリーチャーが攻撃するとき、相手がブロックする前に、バトルゾーンにある自分の他のクリーチャーを１体選び、墓地に置いてもよい。そうした場合、このターン、このクリーチャーのパワーは+2000され、「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、シールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-034",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "SacrificeAlly413",
+          "other": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1628",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1627,
+    "phase": 1628,
     "checkedAt": "2026-11-22",
-    "baseCount": 9113,
+    "baseCount": 9116,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9116,
+    "totalCount": 9119,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31625/",
-      "https://dm.takaratomy.co.jp/rule/qa/31626/",
-      "https://dm.takaratomy.co.jp/rule/qa/39422/",
-      "https://dm.takaratomy.co.jp/rule/qa/39423/",
-      "https://dm.takaratomy.co.jp/rule/qa/39424/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36413/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37284/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37285/",
+      "https://dm.takaratomy.co.jp/rule/qa/33476/",
+      "https://dm.takaratomy.co.jp/rule/qa/39424/",
+      "https://dm.takaratomy.co.jp/rule/qa/31771/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316495,6 +316591,25 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35755/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1627,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9113,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9116,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31625/",
+          "https://dm.takaratomy.co.jp/rule/qa/31626/",
+          "https://dm.takaratomy.co.jp/rule/qa/39422/",
+          "https://dm.takaratomy.co.jp/rule/qa/39423/",
+          "https://dm.takaratomy.co.jp/rule/qa/39424/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

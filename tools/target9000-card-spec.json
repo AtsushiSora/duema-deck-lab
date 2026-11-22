@@ -30335,5 +30335,133 @@
         }
       ]
     }
+  },
+  "dmx05-s03": {
+    "phase": 1628,
+    "faces": [
+      {
+        "name": "ザビメテウス・武者・BLACK",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "エイリアンが攻撃する時、自分のシールドをひとつ、自分の墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "アーマード・ドラゴン/エイリアン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "both",
+        "filter": {
+          "creature": true,
+          "race": "エイリアン"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmr18-035": {
+    "phase": 1628,
+    "faces": [
+      {
+        "name": "暗黒鎧 ザロスト",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のシールドをひとつ墓地に置いてもよい。そうしたら、このクリーチャーをバトルゾーンに出す。",
+        "race": "ダーク・ナイトメア/革命軍",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1628GraveStartShield": true
+    }
+  },
+  "dm04-034": {
+    "phase": 1628,
+    "faces": [
+      {
+        "name": "スリーアイズ・ドラゴンフライ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが攻撃するとき、相手がブロックする前に、バトルゾーンにある自分の他のクリーチャーを１体選び、墓地に置いてもよい。そうした場合、このターン、このクリーチャーのパワーは+2000され、「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、シールドを２枚ブレイクする)",
+        "race": "ジャイアント・インセクト",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "SacrificeAlly413",
+          "other": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmbd22-021": {
+    "phase": 1628,
+    "faces": [
+      {
+        "name": "暗黒鎧 ザロスト",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のシールドを１つ墓地に置いてもよい。そうしたら、このクリーチャーを出す。",
+        "race": "ダーク・ナイトメア/革命軍",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1628GraveStartShield": true
+    }
   }
 }

@@ -1,0 +1,262 @@
+{
+  "phase": 1628,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9116,
+  "target": 9500,
+  "description": "双方のエイリアン攻撃監視、ターン開始時に墓地にある個体のシールド消費による再登場、他の自軍の墓地移動と攻撃強化を実カードと公式裁定で検証。保存形式・元IDを維持。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36413/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37284/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37285/",
+    "https://dm.takaratomy.co.jp/rule/qa/33476/",
+    "https://dm.takaratomy.co.jp/rule/qa/39424/",
+    "https://dm.takaratomy.co.jp/rule/qa/31771/"
+  ],
+  "cards": [
+    {
+      "id": "dmx05-s03",
+      "name": "ザビメテウス・武者・BLACK",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s03",
+      "faces": [
+        {
+          "name": "ザビメテウス・武者・BLACK",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "エイリアンが攻撃する時、自分のシールドをひとつ、自分の墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "both",
+          "filter": {
+            "creature": true,
+            "race": "エイリアン"
+          },
+          "defs": [
+            {
+              "op": "ShieldGrave",
+              "optional": true,
+              "then": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx05-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "46c12ecd65c0e13de885df59a3511889a182a6bde73a2e20633cd1b70da039b5",
+        "facesMatched": true,
+        "imageSha256": "971aabae411046053c0ddb5c9f1e14b3f79578e0e6c9621f959221480438f08c",
+        "imageBytes": 142404,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の正規名・文明・コスト・パワー・種族・マナ数・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMX-05 フルホイルパック リバイバル・ヒーロー ザ・エイリアン"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-s03",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmr18-035",
+      "name": "暗黒鎧 ザロスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-035",
+      "faces": [
+        {
+          "name": "暗黒鎧 ザロスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のシールドをひとつ墓地に置いてもよい。そうしたら、このクリーチャーをバトルゾーンに出す。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1628GraveStartShield": true
+      },
+      "currentPrint": {
+        "id": "dmbd22-021",
+        "name": "暗黒鎧 ザロスト",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd22-021",
+        "faces": [
+          {
+            "name": "暗黒鎧 ザロスト",
+            "typeText": "クリーチャー",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、このクリーチャーが自分の墓地にあれば、自分のシールドを１つ墓地に置いてもよい。そうしたら、このクリーチャーを出す。",
+            "race": "ダーク・ナイトメア/革命軍",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "ea31267d01769ceb25cd4420e9e2512b228f0276180bb0e9838e0832260bb74f",
+          "facesMatched": true,
+          "imageSha256": "ccfa522500280c6fb4e324cccda1ef031f2baec2aa7c92e33e74745ab3f01e1d",
+          "imageBytes": 137980,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式再録画像の基本情報・能力全文を元版・HTMLと照合。一致。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd22-021.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "324e2891ea7ea4a74ee2b084cea282d534d25f2829e3e612e237d9565b74d667",
+        "facesMatched": true,
+        "imageSha256": "38cd861b63b09866cf6465bc728fb1d4f5010f9ce3e5fe60c80c84eac8b0ef72",
+        "imageBytes": 129240,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の正規名・文明・コスト・パワー・種族・マナ数・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DMBD-22 クロニクル・ダークサイド・デッキ 「零誕」",
+        "DMEX-10 W王国ドッキングパック 鬼札王国＆不死樹王国",
+        "DMR-18 革命 拡張パック第2章 時よ止まれミラダンテ!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-035",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm04-034",
+      "name": "スリーアイズ・ドラゴンフライ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-034",
+      "faces": [
+        {
+          "name": "スリーアイズ・ドラゴンフライ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃するとき、相手がブロックする前に、バトルゾーンにある自分の他のクリーチャーを１体選び、墓地に置いてもよい。そうした場合、このターン、このクリーチャーのパワーは+2000され、「W(ダブル)・ブレイカー」を得る。(シールドを攻撃したとき、シールドを２枚ブレイクする)",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "other": true,
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 2000,
+                "breaker": 2,
+                "g633DoubleBreaker": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "81174f9738aeb909dfe063221f8bec6ff69e8c637fef93031a389487f85a5fd8",
+        "facesMatched": true,
+        "imageSha256": "ea0d765f434e841f2c627ed8351e60d606f104055a228ed8a692dd42fd33a089",
+        "imageBytes": 129046,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像の正規名・文明・コスト・パワー・種族・マナ数・能力全文を公式HTMLと照合。"
+      },
+      "sameNameProducts": [
+        "DM-04 闇騎士団の逆襲(チャレンジ・オブ・ブラックシャドウ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-034",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存処理を再利用できる未対応カード3〜5種類を公式全文から選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx05-s03": 4,
+      "dmr18-035": 1,
+      "dm04-034": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36413/",
+      "checkedAt": "2026-11-22",
+      "sha256": "9b96b2484efcf495cbb793fec9c57f3647bea7fa221b27c346abb7e89abd9a6b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37284/",
+      "checkedAt": "2026-11-22",
+      "sha256": "13788acf1a257b830c059126637a46dc8400b9800d56143781066e4bef52fcb7"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37285/",
+      "checkedAt": "2026-11-22",
+      "sha256": "72cf213fb3583ee4413cd95b4848403aa16959c0da02765d389eb31b824f4a17"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33476/",
+      "checkedAt": "2026-11-22",
+      "sha256": "448a50d5d5204cb52b96521df3a1b89ad7d4997b394bcdd15c51adf22a963074"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39424/",
+      "checkedAt": "2026-11-22",
+      "sha256": "b911dc345d12b1fbe0aef34860b0a8d363f4e741dbebb7d8d2cb254b411f424c"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31771/",
+      "checkedAt": "2026-11-22",
+      "sha256": "4280176d9494b08c16c99bb0cab474c857080e94ee233c23150a753cff38ec48"
+    }
+  ]
+}
