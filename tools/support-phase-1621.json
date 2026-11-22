@@ -1,0 +1,392 @@
+{
+  "phase": 1621,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9093,
+  "target": 9500,
+  "description": "既存の攻撃時選択・他クリーチャー破壊後の強化・全体タップ・スピード付与・攻撃先制約・手札移動を再利用して5種類の能力全体を実装し、固有盤面とJSON再開・40枚デッキで検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "promoy5-037",
+      "name": "封魔ダイダロギヌス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-037",
+      "faces": [
+        {
+          "name": "封魔ダイダロギヌス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分の他のグランド・デビルを１体破壊してもよい。そうした場合、そのターンの終わりまで、このクリーチャーのパワーは+8000され、「Ｗ・ブレイカー」を得る。",
+          "race": "グランド・デビル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "other": true,
+            "filter": {
+              "race": "グランド・デビル"
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 8000,
+                "breaker": 2,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "ea53b3c133225a7e72eb947a21fc681063d6ee7d8dcb4c46f0cc48ead653dae0",
+        "facesMatched": true,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。",
+        "imageSha256": "f4166916cdfb9b57749b35529766aa5bf9491a6dbedf6b84c2aec853a1ce4d25",
+        "imageBytes": 108244
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 5期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-037",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "promoy8-009",
+      "name": "勇者ベッカムＺ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy8-009",
+      "faces": [
+        {
+          "name": "勇者ベッカムＺ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nこのクリーチャーが攻撃する時、「すべっカム」と言ってもよい。そうした場合、バトルゾーンにあるクリーチャーをすべてタップする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド/ドリームメイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "「すべっカム」と宣言して、すべてのクリーチャーをタップする？",
+            "defs": [
+              {
+                "op": "TapAll",
+                "both": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy8-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "b6ce02281472a778b27f05ca6471877848afd0546f0c4ed4d635d6daa3acf1d4",
+        "facesMatched": true,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像は137×191の低解像度。正規名・コスト7・パワー6000・マナ1と絵柄を確認。能力全文と種族は公式HTML全文を照合し、矛盾なし。",
+        "imageSha256": "0f277bf2f2fdb35f13d12c9dd9603dc98386284ed0b3ac9bdffd9ac4134509c6",
+        "imageBytes": 11779
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 8期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy8-009",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmbd18-006",
+      "name": "暴嵐竜 Susano-O-Dragon",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-006",
+      "faces": [
+        {
+          "name": "暴嵐竜 Susano-O-Dragon",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "Q・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\n相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\n呪文によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+          "race": "キング・コマンド・ドラゴン/オリジン",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g1128CreatureAttackTarget": true,
+        "spellUntargetable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd18-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "ff2cf5606b8eca3870f891b2bb38cb844318d2b26f9210d936bbfa34e6a6a6ea",
+        "facesMatched": true,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。",
+        "imageSha256": "d4f8a5393dcaf9d79dfacad7ca8b08ca7d63ff804401177419fb4aeef48fb453",
+        "imageBytes": 190560
+      },
+      "sameNameProducts": [
+        "DM24-EX2 天下夢双!!デュエキングDreaM 2024",
+        "DM24-SP1 キャラプレミアムデッキ「ドラゴン娘になりたくないっ！」 イェーイめっちゃドラゴン!!",
+        "DMBD-18 レジェンドスーパーデッキ 神歌繚嵐"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-006",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      },
+      "currentPrint": {
+        "id": "dm24ex2-020",
+        "name": "暴嵐竜 Susano-O-Dragon",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-020",
+        "faces": [
+          {
+            "name": "暴嵐竜 Susano-O-Dragon",
+            "typeText": "クリーチャー",
+            "civilizationText": "水/火/自然",
+            "civilizations": [
+              "水",
+              "火",
+              "自然"
+            ],
+            "cost": 10,
+            "costText": "10",
+            "abilityText": "Q・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\n相手のクリーチャーが攻撃する時、可能ならクリーチャーを攻撃する。\n相手はこのクリーチャーを呪文で選べない。",
+            "race": "キング・コマンド・ドラゴン/オリジン",
+            "powerText": "21000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "4228771f2324b7159cbdc22c3d654da7cc8aca0c28360698c7f6691e4af47101",
+          "facesMatched": true,
+          "imageSha256": "d91dd1839533e1ef827028095cf114bc8d3d351f6d8285728ce80846ee75cb21",
+          "imageBytes": 171955,
+          "imageReviewedAt": "2026-11-22",
+          "imageReview": "公式の現行再録画像で基本情報と全4能力を目視照合。表記変更は機能を変えず、元のIDを維持。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-020.jpg"
+      }
+    },
+    {
+      "id": "dm25ex4-050",
+      "name": "怒魂長の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-050",
+      "faces": [
+        {
+          "name": "怒魂長の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、自分の山札の上から２枚をマナゾーンに置く。",
+          "race": "ジャイアント/ビーストフォーク/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "any": [
+                    {
+                      "g1085Psychic": true
+                    },
+                    {
+                      "g1535Duelmate": true
+                    }
+                  ]
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "6fb9b8a73047b96abdc194f56e2e2ed8caf55b07d930aba1be6f04c2c1998ac3",
+        "facesMatched": true,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。",
+        "imageSha256": "20eacc914cb0e681c831fe57a6c260b4d77b28feae6310e096379cffbbae638d",
+        "imageBytes": 133858
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-050",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm13-005",
+      "name": "放出のゲッチェル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-005",
+      "faces": [
+        {
+          "name": "放出のゲッチェル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、自分の手札を１枚、自分のマナゾーンか自分のシールドゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "スピリット・クォーツ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Choose",
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "手札を1枚マナゾーンに置く",
+                    "defs": [
+                      {
+                        "op": "Select",
+                        "origin": "hand",
+                        "to": "mana",
+                        "n": 1
+                      }
+                    ]
+                  },
+                  {
+                    "label": "手札を1枚シールドに置く",
+                    "defs": [
+                      {
+                        "op": "Select",
+                        "origin": "hand",
+                        "to": "shields",
+                        "n": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "44c70cc07ba9d7276f7d103ea762b43d699f36bfb38f7cf0dbb153d79ef41521",
+        "facesMatched": true,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。",
+        "imageSha256": "51a3ad2de7875e234cc873c3ff4db323d4a45af12ed6835488b565b113b52fb7",
+        "imageBytes": 96900
+      },
+      "sameNameProducts": [
+        "DM-13 聖拳編 第4弾 龍炎鳳神誕(エターナル・フェニックス)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-005",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "早撃人形マグナム：両プレイヤーのマナをタップしないクリーチャー登場を、実際の支払い記録から判定する既存監視処理を調査。",
+    "鍛冶の行商：既存ID・再録を再確認後、クロスギアを選択してシャッフル後に山札上に置く順序を実装。",
+    "ミセス・アクア：上3枚のコスト一致・任意公開手札化と不一致時の上戻しを調査。",
+    "各カードの能力全体が確認できなければ保留理由を残し、別の3〜5種類へ進む。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy5-037": 4,
+      "promoy8-009": 4,
+      "dmbd18-006": 4,
+      "dm25ex4-050": 4,
+      "dm13-005": 4
+    }
+  },
+  "rulingResearch": {
+    "checkedAt": "2026-11-22",
+    "result": "5種類の公式カード詳細と関連裁定を検索。Susanoの現行再録表記を二重照合。個別に直接該当する公式Q&Aは検索結果・カード詳細に見当たらず、既存の同じ処理を再利用して固有境界条件と回帰を検証。",
+    "cardPageQALinks": {
+      "promoy5-037": [],
+      "promoy8-009": [],
+      "dmbd18-006": [],
+      "dm25ex4-050": [],
+      "dm13-005": []
+    }
+  }
+}
