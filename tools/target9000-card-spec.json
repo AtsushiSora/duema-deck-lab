@@ -36971,5 +36971,129 @@
         }
       ]
     }
+  },
+  "dm31-020": {
+    "phase": 1681,
+    "faces": [
+      {
+        "name": "魔弾ベター・トゥモロー",
+        "typeText": "呪文",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべては「パワーアタッカー+3000」を得、シールドをさらに１枚ブレイクする。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+        "race": "ナイト",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "attackBonus": 3000
+          },
+          "spell": true
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "extraBreak": 1,
+          "spell": true
+        },
+        {
+          "op": "KnightMagic1118",
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "grant": {
+                "attackBonus": 3000
+              },
+              "spell": true
+            },
+            {
+              "op": "GroupLasting412",
+              "owner": "self",
+              "extraBreak": 1,
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmex10-s03": {
+    "phase": 1681,
+    "faces": [
+      {
+        "name": "「是空」の鬼 ゲドウ権現",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを４少なくする。\nスピードアタッカー\nスレイヤー\nW・ブレイカー\n自分がゲームに負ける時または相手が勝つ時、かわりにこのクリーチャーを破壊する。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "slayer": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "amount": 4
+      },
+      "g1681LossDestroy": true
+    }
+  },
+  "dm26ex1-N016": {
+    "phase": 1681,
+    "faces": [
+      {
+        "name": "「正義の記念碑」",
+        "typeText": "タマシード",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、エレメントが６つ以上あれば、他の進化ではないエレメントをすべて破壊する。",
+        "race": "メタリカ/エンジェル・コマンド/レクスターズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Monument1681"
+        }
+      ]
+    }
   }
 }

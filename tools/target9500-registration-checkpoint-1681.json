@@ -1,0 +1,261 @@
+{
+  "phase": 1681,
+  "checkedAt": "2026-11-22T18:43:38.984Z",
+  "baseline": "dbfbfc90",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9280,
+  "currentNames": 9283,
+  "remainingNames": 217,
+  "added": [
+    {
+      "id": "dm31-020",
+      "name": "魔弾ベター・トゥモロー"
+    },
+    {
+      "id": "dmex10-s03",
+      "name": "「是空」の鬼 ゲドウ権現"
+    },
+    {
+      "id": "dm26ex1-N016",
+      "name": "「正義の記念碑」"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "dbfbfc90",
+    "originalDefinitionsUnchanged": 9280,
+    "added": 3,
+    "uniqueNames": 9283,
+    "uniqueIds": 9283,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9280,
+    "existingImageReferenceRowsUnchanged": 11486
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1681.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.165,
+      "log": "tmp/duema-phase-1681/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused": {
+      "name": "protected-final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1681-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.399,
+      "log": "tmp/duema-phase-1681/protected-final-focused.log",
+      "passed": 106,
+      "failed": 0,
+      "logSha256": "732ce2b92535a62acc32b1a2736123f71c193e9a640de27d8779d9420a042465"
+    },
+    "related-loss": {
+      "name": "protected-related-loss",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Diehard|Hitsuzenn|loss-replacement|Shako|ordinary alternate|end-of-turn immunity",
+        "tests/hunter-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.209,
+      "log": "tmp/duema-phase-1681/protected-related-loss.log",
+      "passed": 12,
+      "failed": 0,
+      "logSha256": "66fea0f283c22b4b0de608b42601ed62b4ebf817307d66da0ca9a28363daa91f"
+    },
+    "related-knight-buff": {
+      "name": "related-knight-buff",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard337-effects.test.mjs",
+        "tests/standard1118-effects.test.mjs",
+        "tests/standard874-effects.test.mjs",
+        "tests/standard421-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 49.984,
+      "log": "tmp/duema-phase-1681/related-knight-buff.log",
+      "passed": 175,
+      "failed": 0,
+      "logSha256": "ab9b6bfccb1981cdf7d0642a454439823f301f0dcd468e7fbe40a23c43a6340f"
+    },
+    "related-elements": {
+      "name": "related-elements",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=2",
+        "tests/standard753-effects.test.mjs",
+        "tests/standard1352-effects.test.mjs",
+        "tests/standard1201-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.103,
+      "log": "tmp/duema-phase-1681/related-elements.log",
+      "passed": 44,
+      "failed": 0,
+      "logSha256": "666dca22a18ae88406fb7fa9ab9c9dd93cfacea08032020480806f59fa325ab1"
+    },
+    "related-mana-online": {
+      "name": "related-mana-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/mana-payment.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-live.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.653,
+      "log": "tmp/duema-phase-1681/related-mana-online.log",
+      "passed": 39,
+      "failed": 0,
+      "logSha256": "00c3b100d54979c6e349b80c4d9ff7fadcc2b533c33d1b1c73bb2a696c1c3f10"
+    },
+    "check": {
+      "name": "protected-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.027,
+      "log": "tmp/duema-phase-1681/protected-check.log",
+      "logSha256": "17897e14e8042607bb9ef47d3143c3815caa7df1b21f00adffc9863ebe089411"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.171,
+      "log": "tmp/duema-phase-1681/audit.log",
+      "logSha256": "c4fdc2bb42529c2ad135048a05dcd8f0e766a6aeb6d650f54ffd085dfa5a4311"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.308,
+      "log": "tmp/duema-phase-1681/target9500.log",
+      "logSha256": "4b9d7ceda81e02a3b95a81b556ab5598ac22ff3a73d829e15b27ab172bdd6aa4"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1681/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.414,
+      "log": "tmp/duema-phase-1681/invariants.log",
+      "logSha256": "7ccd1f8e881f0ca26eb24b29a8be11c93fa020a53459a9c129d2da39f8642c42"
+    }
+  },
+  "totalTestsPassed": 376,
+  "hashes": {
+    "dist/cards.json": "37f83038a118333861de4ac6ab726f33a4f45da89667f595e02c4a94028ec4de",
+    "dist/engine.js": "d2c79cfad5cbaf93ebdfee4a7c8178a8848662e42cf609bcd4a604b6aaea7627",
+    "dist/six-photo-rules.js": "533e81f15e4001daa466685183b14422ccc586792b9341cde252746fe117a94c",
+    "dist/hunter-rules.js": "5df6218c7c416f58dbb38d66050ad91672102905b0c421c10f449393f2c810c2",
+    "dist/online-compatibility.js": "0faa9dcff42c276c483a9a7d12bd343d4cb2c1274efa7dd02de3dd037c70922f",
+    "dist/card-images.js": "8bde52aa05fbce786798f7e11ce3c30da15f2b8d20198a43d7292b748c7ff4ad",
+    "tools/target9000-card-spec.json": "ccfa5827fe8eca45f44c4e84c072446cde45fadc4463fe979d6f48de8dfb96d8",
+    "tests/standard1681-effects.test.mjs": "911ebf74be39d11641efb7a2a364392883acd6b611ef67196eb43337e5cd88b3"
+  },
+  "engineVersion": "0.602.197",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1681-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 21.192,
+      "log": "tmp/duema-phase-1681/focused.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1681.json",
+  "supported": 9283,
+  "pending": 2542,
+  "reason": "ナイト・マジックのパワーアタッカー/追加ブレイク累積、鬼タイム軽減と強制自己破壊敗北置換、6エレメント以上での非進化全体破壊を全文対応。",
+  "validationNotes": [
+    "固有88件・追加相互作用16件・破壊不可2件を最終版で合わせて106件通過。強制/任意敗北置換12件、ナイト・マジック/パワーアタッカー/鬼タイム/特殊勝利175件、エレメント/オーラ/進化/離脱44件、手動マナ・通信ランタイム/ライブ同期39件の関連270件、合計376件。check、audit、target9500、既存9280定義・ID・詳細・別名・画像URL/参照の不変条件を通過。",
+    "3種類の公式能力全文・基本情報・マナ値・画像・現行制限を照合。公式の同名再録表示検索でベター・トゥモローとゲドウ権現は各1件、正義の記念碑は通常/シークレットの2件。全4画像を目視確認し、記念碑のシンカライズ注釈省略とHTMLラベルの全半角・重複を同義として明記。元IDを保持し、シークレットを件数加算しない。",
+    "ベター・トゥモローは既存の全自軍への能力付与と追加ブレイク、ナイト・マジックを再利用。QA34889を実ナイトで再現し、2回分で攻撃時+6000・追加2ブレイクになることを確認。ナイト不在/敵軍のみ/封印では繰り返さず、能力無視のナイトでも種族条件は満たす。通常1回、任意拒否、複数詠唱の累積、印刷済みWブレイカーへの加算、防御時パワー不変、後から出た個体への非適用・離脱再登場/ターン終了での失効を確認。対象の能力を無視した場合、付与パワーアタッカーは消えるが追加ブレイクは残る。",
+    "ゲドウ権現は既存鬼タイム条件でシールド合計6以下なら必ず4軽減（通常6/軽減2マナ）。7との境界、シールド束を1つと数えること、条件の再計算、SA/W・ブレイカー/実バトルで大型を倒すスレイヤー、各種マナ支払いと多色タップマナを確認。",
+    "ゲドウの敗北置換は既存の強制自己破壊を再利用し、ダイハード固有の破壊後無敗効果やドラゴン攻撃時効果を与えない独立フラグとした。ダイレクトアタック1回を防ぎ、後続の攻撃は防げない。通常破壊でも無敗効果は発生しない。強制選択には敗北を任意で受け入れる選択肢がなく、2体から1体を選択可能。能力無視/封印/離れない状態では適用不可。実バラドとの選択競合ではバラドも選べるが任意敗北を選べず、後続で残ったゲドウを使える。",
+    "QA36823は実不敗のダイハード・リュウセイで山札切れ→置換破壊→死亡時無敗誘発前の再敗北を再現し、ゲドウも同じ状態起因敗北となる。実iFormula Xのターン終了時勝利はゲドウで置換できる。QA41149は実シャコガイルと実一王二命三眼槍で置換による勝利を再置換できないことを再現し、ゲドウでも同じ勝利を防げないことを確認。",
+    "QA40629が示す一般則に従い、破壊されない状態のゲドウは敗北置換を適用できない。実カラフルベルの登場能力で破壊不可を付与して相手ターンのダイレクトアタックを受けると、ゲドウは場に残るがゲームには負けることを両側で検証。この追加制約は新規ゲドウの独立フラグだけに適用し、既存ダイハード/ハンターの処理は維持。元QAの未登録ノワールを直接検証したとは数えない。",
+    "正義の記念碑は既存エレメント分類と同時離脱を使う専用タスクで、解決時に両プレイヤーの現在のエレメントを数える。自身を含む5/6境界、クリーチャー/タマシード/クロス済みギア/フィールド/装着オーラを含む同時破壊、進化は残して進化していないNEOは破壊、進化元/封印/Gリンク部分を別エレメントとして数えないこと、破壊置換後に閾値を数え直さないことを確認。登場元が先に離れた場合は現在の5/6で判定する。原本自身は破壊せず、実シンカライズによるアルカディアスへの進化、実S・トリガーで0マナ登場して同時破壊も確認。",
+    "両プレイヤーで物理マナの手動選択・JSON再開、ナイト・マジック/敗北置換/全体破壊の選択中の暗号化ルーム再開と操作側限定のアクション、AI計画の純粋性と未知カード非依存、合法40枚デッキの両先後終局と80物理カード保存を確認。初回固有試験の離脱後再召喚はテスト用タスクで攻撃フェイズへ進んでいたため、メインへ戻すfixtureに訂正し、最終106件を通過。",
+    "今回追加3種類の未完了検証はなし。JoeはQA40220の名指し再現に未対応の戦霊混成ウルボランス/ドルマゲドン・ビッグバンが必要なため部分実装せず保留。過去の未検証・中断長時間群・一括npm test・ユーザー保留は維持。公開済みv0.722.15/9277種類は更新せず、ローカルコミットのみ。"
+  ],
+  "held": [
+    {
+      "id": "dmr23-l01",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "reason": "公式全文・基本情報・再録一覧とQA40220を保存。全クリーチャーを無視するドルマゲドン・ビッグバンと戦霊混成ウルボランスが未対応で、名指し裁定の召喚時誘発順/無視状態での勝利を再現できない。検証に必要な2種類を全文対応する専用バッチへ保留。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40220/"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr19-061",
+      "name": "ガチャンコ ミニロボ３号",
+      "reason": "シールドを見る・任意の持ち主山札下移動・成功時の補充を公式本文とシールドグループ処理で照合する。"
+    },
+    {
+      "id": "dmrp03-011",
+      "name": "コーディネイ人",
+      "reason": "相手がこのクリーチャーとのバトルで破壊される時のタップ/次ターンのアンタップ停止への置換を照合する。"
+    },
+    {
+      "id": "dm23bd5-008",
+      "name": "Disミン",
+      "reason": "各プレイヤー任意タップマナと実際に相手が置いた分の後続マナ増加を同時選択/移動禁止を含めて照合する。"
+    }
+  ],
+  "next": "phase1682で候補の公式照合から再開。9500まで3〜5種類を目安に全能力を検証し、検証済み差分のみローカルコミット。通常登録ではpush・公開・Netlify更新を行わない。"
+}

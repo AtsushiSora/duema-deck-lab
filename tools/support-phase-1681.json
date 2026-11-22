@@ -1,0 +1,533 @@
+{
+  "phase": 1681,
+  "checkedAt": "2026-11-22T18:32:34.117Z",
+  "baseCount": 9280,
+  "target": 9500,
+  "description": "ナイト・マジックのパワーアタッカー/追加ブレイク累積、鬼タイム軽減と強制自己破壊敗北置換、6エレメント以上での非進化全体破壊を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34889/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36823/",
+    "https://dm.takaratomy.co.jp/rule/qa/41149/",
+    "https://dm.takaratomy.co.jp/rule/qa/40629/"
+  ],
+  "cards": [
+    {
+      "id": "dm31-020",
+      "name": "魔弾ベター・トゥモロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-020",
+      "faces": [
+        {
+          "name": "魔弾ベター・トゥモロー",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべては「パワーアタッカー+3000」を得、シールドをさらに１枚ブレイクする。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "grant": {
+              "attackBonus": 3000
+            },
+            "spell": true
+          },
+          {
+            "op": "GroupLasting412",
+            "owner": "self",
+            "extraBreak": 1,
+            "spell": true
+          },
+          {
+            "op": "KnightMagic1118",
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "grant": {
+                  "attackBonus": 3000
+                },
+                "spell": true
+              },
+              {
+                "op": "GroupLasting412",
+                "owner": "self",
+                "extraBreak": 1,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-020.jpg",
+      "sameNameProducts": [
+        "DM-31 戦国編 第4弾 戦国武闘会(グレイテスト・チャンピオン)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-020",
+        "result": "公式同名検索と全能力/基本情報/画像を照合し、元IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T18:32:34.117Z",
+        "sha256": "699b54430b44ceda0ce302aedcb0894724aff9c354f6480421de21068ac5feec",
+        "facesMatched": true,
+        "imageSha256": "029a941b3967fcedad0acd6d7d7571f934e8f47d4c05deade180b596c6ac2cf8",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dmex10-s03",
+      "name": "「是空」の鬼 ゲドウ権現",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-s03",
+      "faces": [
+        {
+          "name": "「是空」の鬼 ゲドウ権現",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを４少なくする。\nスピードアタッカー\nスレイヤー\nW・ブレイカー\n自分がゲームに負ける時または相手が勝つ時、かわりにこのクリーチャーを破壊する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "slayer": true,
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "amount": 4
+        },
+        "g1681LossDestroy": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-s03.jpg",
+      "sameNameProducts": [
+        "DMEX-10 W王国ドッキングパック 鬼札王国＆不死樹王国"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-s03",
+        "result": "公式同名検索と全能力/基本情報/画像を照合し、元IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T18:32:34.117Z",
+        "sha256": "f3d2412d64d1bbaea21be03fa52219b3f9c9424a16a375a6cfcce863443fec88",
+        "facesMatched": true,
+        "imageSha256": "017ec64a951c86bde4951c1925e5fc059ac56c2a1e34e9ca32d0a629a988378f",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dm26ex1-N016",
+      "name": "「正義の記念碑」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N016",
+      "faces": [
+        {
+          "name": "「正義の記念碑」",
+          "typeText": "タマシード",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、エレメントが６つ以上あれば、他の進化ではないエレメントをすべて破壊する。",
+          "race": "メタリカ/エンジェル・コマンド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Monument1681"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-N016.jpg",
+      "sameNameProducts": [
+        "DM26-EX1 ますますつよいパック 25の援軍"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N016",
+        "result": "公式同名検索と全能力/基本情報/画像を照合し、元IDを保持。",
+        "prints": [
+          "dm26ex1-SECN016"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T18:32:34.117Z",
+        "sha256": "d205d8c6495119819f5502041877653adcefb76c5a991debb7d0442a2c9856c9",
+        "facesMatched": true,
+        "imageSha256": "59e4575459ad210f3c0e42e60d776f874b49999501c19bae7f2901fc18142907",
+        "imageReviewed": true
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/hunter-rules.js",
+    "dist/six-photo-rules.js"
+  ],
+  "reprintEvidence": [
+    {
+      "id": "dm26ex1-SECN016",
+      "name": "「正義の記念碑」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-SECN016",
+      "faces": [
+        {
+          "name": "「正義の記念碑」",
+          "typeText": "タマシード",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー Ｓ・トリガー\nシンカライズ\nこのタマシードが出た時、エレメントが６つ以上あれば、他の進化ではないエレメントをすべて破壊する。",
+          "race": "メタリカ/エンジェル・コマンド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-SECN016.jpg",
+      "htmlSha256": "d8bba2597e7fa1545753bc4757f538e6a4aa697dfa146af5a385a31d6625fc03",
+      "imageSha256": "1e378e26ff5bf25fa738d197be1173371df6e992b680a13d7c3042a68f4758cc",
+      "sameNameProducts": [
+        "DM26-EX1 ますますつよいパック 25の援軍"
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "wordingComparison": "通常版はシンカライズの注釈を記載、シークレット版では省略。S・トリガーのHTMLラベル重複と全半角を正規化し、全3能力と基本情報の一致を画像でも確認。"
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/34889/",
+      "checkedAt": "2026-11-22T18:32:32.162Z",
+      "sha256": "d36aa6b2e999fdba692e9487fb5ecb7d0e47514697fa54ff909400bf86e6e9d6",
+      "questionAnswer": "よくある質問 Qバトルゾーンに自分のナイトがある時、《魔弾ベター・トゥモロー》を唱えました。どうなりますか？ A効果をもう一度使えます。そうした場合、バトルゾーンにある自分のクリーチャーはすべて、「パワーアタッカー+3000」を２回分得ることになり、「パワーアタッカー+6000」されます。そして、シールドをさらに２枚ブレイクすることになります。 ",
+      "scope": "implemented-card-or-related-rule",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1681-effects.test.mjs",
+      "testNamePrefix": "Better Tomorrow QA34889",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Real own Knight and Better Tomorrow give +6000 attacking power and two extra breaks."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36823/",
+      "checkedAt": "2026-11-22T18:32:32.776Z",
+      "sha256": "e1f14c586118869ae7a7b8d69df65944dc273de2b3137c76f8894cba972bc565",
+      "questionAnswer": "よくある質問 Q《不敗のダイハード・リュウセイ》がバトルゾーンにある状態で、山札にカードがなくなり負けそうになっています。どうなりますか？ A山札がなくなることで負けになるので、《不敗のダイハード・リュウセイ》の「自分がゲームに負ける時、または相手が勝つ時、かわりにこのクリーチャーを破壊する。」の能力が発動します。しかし、この能力を使ったとしても山札がないことにかわりはないので、「このクリーチャーが破壊された時、そのターン、自分はゲームに負けず、相手は勝てない。」という能力を使う前にゲームに負けてしまいます。 ",
+      "scope": "implemented-card-or-related-rule",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1681-effects.test.mjs",
+      "testNamePrefix": "QA36823",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Real Diehard Ryusei is destroyed by its mandatory loss replacement when the library empties, but loses before its death trigger can protect; Gedou is checked with the same state rule."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41149/",
+      "checkedAt": "2026-11-22T18:32:33.392Z",
+      "sha256": "bc2e2a452886ad1f71629b56ebb03dacbe695d43d1c9aea4e489697737e08119",
+      "questionAnswer": "よくある質問 Q相手のターン中、相手が《水上第九院 シャコガイル》の効果によってゲームに勝つ時、かわりに《一王二命三眼槍》の「自分がゲームに負ける時」の置換効果で敗北を回避できますか？ Aいいえ、できません。《水上第九院 シャコガイル》のゲームに勝つ効果は、負けるかわりに勝つ置換効果です。《一王二命三眼槍》の「自分がゲームに負ける時」の効果も置換効果ですので、置換効果に対してさらに別の置換効果を適用することはできず、自分はゲームに負けます。 ",
+      "scope": "implemented-card-or-related-rule",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1681-effects.test.mjs",
+      "testNamePrefix": "QA41149",
+      "bothPlayersVerified": true,
+      "reproductionScope": "Real Shaco and real Baba reproduce a replacement win that cannot be replaced again; Gedou also cannot replace that same event."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40220/",
+      "checkedAt": "2026-11-22T18:32:34.105Z",
+      "sha256": "757daf92edaae72cfe9e5cf01474a9d837819e9a629657dc3f7effa97c929073",
+      "questionAnswer": "よくある質問 Q自分の《戦霊混成 ウルボランス》がバトルゾーンにいる状況で、《ジョリー・ザ・ジョニー Joe》が召喚によってバトルゾーンに出た時、先に《戦霊混成 ウルボランス》の「各ターン、自分の最初のクリーチャーが召喚によって出た時」の能力で、手札から《ドルマゲドン・ビッグバン》を唱えてから、《ジョリー・ザ・ジョニー Joe》の「召喚によってバトルゾーンに出た時」の能力を使えますか？ Aはい、これらの能力は好きな順番で使えます。この場合、相手のクリーチャーがすべて無視されますので、《ジョリー・ザ・ジョニー Joe》の効果でゲームに勝ちます。 ",
+      "scope": "deferred-candidate-Joe",
+      "verified": false,
+      "reason": "Named setup requires two unsupported cards; candidate remains unregistered and deferred."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40629/",
+      "checkedAt": "2026-11-22T18:42:09.314Z",
+      "sha256": "57eda23c66aca74aa11cc785f50e1e79af0386b35252652439da3d54f9448f38",
+      "scope": "implemented-card-general-replacement-rule",
+      "questionAnswer": "よくある質問 Q《覇王ノワールモナーク》の「自分がゲームに負ける時または相手が勝つ時、自分のシールドが１つもなければ、かわりに」の置換効果で≪零龍≫のような「離れない」クリーチャーを破壊できますか？ 参照：《滅亡の起源 零無》 Aいいえ、破壊できません。自分のクリーチャーが《覇王ノワールモナーク》以外には「離れない(破壊されない)」クリーチャーしかいない場合、自分はそのままゲームに負けます。置換効果は置換後のイベントを一部でも実行できない場合は適用できませんので、「破壊されない」や「離れない」能力を持つクリーチャーをこの効果で破壊しようとすることはできません。 ",
+      "generalRulePrincipleVerified": true,
+      "originalNamedSetupReproduced": false,
+      "verifiedBy": "tests/standard1681-effects.test.mjs",
+      "testNamePrefix": "QA40629",
+      "bothPlayersVerified": true,
+      "reproductionScope": "The general prerequisite is reproduced with actual Gedou under actual Colorfulbell indestructibility; Gedou cannot destroy itself and therefore cannot replace defeat. The original named Noir is unregistered and is not claimed as tested."
+    }
+  ],
+  "searchVerification": [
+    {
+      "id": "dm31-020",
+      "source": "https://dm.takaratomy.co.jp/card/",
+      "method": "POST",
+      "sameName": "show",
+      "total": 1,
+      "ids": [
+        "dm31-020"
+      ],
+      "sha256": "b9af9a9899b8cf7368cc79902b193e26976f97baac2562d276a7cea7ac4bc8bd"
+    },
+    {
+      "id": "dmex10-s03",
+      "source": "https://dm.takaratomy.co.jp/card/",
+      "method": "POST",
+      "sameName": "show",
+      "total": 1,
+      "ids": [
+        "dmex10-s03"
+      ],
+      "sha256": "92ad9a6aaa4588672e6fdaad223baab3f92bb63cb5f925aed0fca32b4322cd33"
+    },
+    {
+      "id": "dm26ex1-N016",
+      "source": "https://dm.takaratomy.co.jp/card/",
+      "method": "POST",
+      "sameName": "show",
+      "total": 2,
+      "ids": [
+        "dm26ex1-SECN016",
+        "dm26ex1-N016"
+      ],
+      "sha256": "50a247fceb870060c4ccd7c1b9f27257a6dc6df5591e3f4356169ce1c2fa579f"
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr23-l01",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "reason": "公式全文・基本情報・再録一覧とQA40220を保存。全クリーチャーを無視するドルマゲドン・ビッグバンと戦霊混成ウルボランスが未対応で、名指し裁定の召喚時誘発順/無視状態での勝利を再現できない。検証に必要な2種類を全文対応する専用バッチへ保留。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40220/"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T18:32:34.117Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm31-020": 4,
+      "dmex10-s03": 4,
+      "dm26ex1-N016": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T18:43:38.984Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1681.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.165,
+        "log": "tmp/duema-phase-1681/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "protected-final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1681-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.399,
+        "log": "tmp/duema-phase-1681/protected-final-focused.log",
+        "passed": 106,
+        "failed": 0,
+        "logSha256": "732ce2b92535a62acc32b1a2736123f71c193e9a640de27d8779d9420a042465"
+      },
+      "related-loss": {
+        "name": "protected-related-loss",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Diehard|Hitsuzenn|loss-replacement|Shako|ordinary alternate|end-of-turn immunity",
+          "tests/hunter-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.209,
+        "log": "tmp/duema-phase-1681/protected-related-loss.log",
+        "passed": 12,
+        "failed": 0,
+        "logSha256": "66fea0f283c22b4b0de608b42601ed62b4ebf817307d66da0ca9a28363daa91f"
+      },
+      "related-knight-buff": {
+        "name": "related-knight-buff",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard337-effects.test.mjs",
+          "tests/standard1118-effects.test.mjs",
+          "tests/standard874-effects.test.mjs",
+          "tests/standard421-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 49.984,
+        "log": "tmp/duema-phase-1681/related-knight-buff.log",
+        "passed": 175,
+        "failed": 0,
+        "logSha256": "ab9b6bfccb1981cdf7d0642a454439823f301f0dcd468e7fbe40a23c43a6340f"
+      },
+      "related-elements": {
+        "name": "related-elements",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard753-effects.test.mjs",
+          "tests/standard1352-effects.test.mjs",
+          "tests/standard1201-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.103,
+        "log": "tmp/duema-phase-1681/related-elements.log",
+        "passed": 44,
+        "failed": 0,
+        "logSha256": "666dca22a18ae88406fb7fa9ab9c9dd93cfacea08032020480806f59fa325ab1"
+      },
+      "related-mana-online": {
+        "name": "related-mana-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.653,
+        "log": "tmp/duema-phase-1681/related-mana-online.log",
+        "passed": 39,
+        "failed": 0,
+        "logSha256": "00c3b100d54979c6e349b80c4d9ff7fadcc2b533c33d1b1c73bb2a696c1c3f10"
+      },
+      "check": {
+        "name": "protected-check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.027,
+        "log": "tmp/duema-phase-1681/protected-check.log",
+        "logSha256": "17897e14e8042607bb9ef47d3143c3815caa7df1b21f00adffc9863ebe089411"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.171,
+        "log": "tmp/duema-phase-1681/audit.log",
+        "logSha256": "c4fdc2bb42529c2ad135048a05dcd8f0e766a6aeb6d650f54ffd085dfa5a4311"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.308,
+        "log": "tmp/duema-phase-1681/target9500.log",
+        "logSha256": "4b9d7ceda81e02a3b95a81b556ab5598ac22ff3a73d829e15b27ab172bdd6aa4"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1681/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.414,
+        "log": "tmp/duema-phase-1681/invariants.log",
+        "logSha256": "7ccd1f8e881f0ca26eb24b29a8be11c93fa020a53459a9c129d2da39f8642c42"
+      }
+    },
+    "totalTestsPassed": 376,
+    "focusedTestsPassed": 106,
+    "relatedTestsPassed": 270
+  },
+  "validationNotes": [
+    "固有88件・追加相互作用16件・破壊不可2件を最終版で合わせて106件通過。強制/任意敗北置換12件、ナイト・マジック/パワーアタッカー/鬼タイム/特殊勝利175件、エレメント/オーラ/進化/離脱44件、手動マナ・通信ランタイム/ライブ同期39件の関連270件、合計376件。check、audit、target9500、既存9280定義・ID・詳細・別名・画像URL/参照の不変条件を通過。",
+    "3種類の公式能力全文・基本情報・マナ値・画像・現行制限を照合。公式の同名再録表示検索でベター・トゥモローとゲドウ権現は各1件、正義の記念碑は通常/シークレットの2件。全4画像を目視確認し、記念碑のシンカライズ注釈省略とHTMLラベルの全半角・重複を同義として明記。元IDを保持し、シークレットを件数加算しない。",
+    "ベター・トゥモローは既存の全自軍への能力付与と追加ブレイク、ナイト・マジックを再利用。QA34889を実ナイトで再現し、2回分で攻撃時+6000・追加2ブレイクになることを確認。ナイト不在/敵軍のみ/封印では繰り返さず、能力無視のナイトでも種族条件は満たす。通常1回、任意拒否、複数詠唱の累積、印刷済みWブレイカーへの加算、防御時パワー不変、後から出た個体への非適用・離脱再登場/ターン終了での失効を確認。対象の能力を無視した場合、付与パワーアタッカーは消えるが追加ブレイクは残る。",
+    "ゲドウ権現は既存鬼タイム条件でシールド合計6以下なら必ず4軽減（通常6/軽減2マナ）。7との境界、シールド束を1つと数えること、条件の再計算、SA/W・ブレイカー/実バトルで大型を倒すスレイヤー、各種マナ支払いと多色タップマナを確認。",
+    "ゲドウの敗北置換は既存の強制自己破壊を再利用し、ダイハード固有の破壊後無敗効果やドラゴン攻撃時効果を与えない独立フラグとした。ダイレクトアタック1回を防ぎ、後続の攻撃は防げない。通常破壊でも無敗効果は発生しない。強制選択には敗北を任意で受け入れる選択肢がなく、2体から1体を選択可能。能力無視/封印/離れない状態では適用不可。実バラドとの選択競合ではバラドも選べるが任意敗北を選べず、後続で残ったゲドウを使える。",
+    "QA36823は実不敗のダイハード・リュウセイで山札切れ→置換破壊→死亡時無敗誘発前の再敗北を再現し、ゲドウも同じ状態起因敗北となる。実iFormula Xのターン終了時勝利はゲドウで置換できる。QA41149は実シャコガイルと実一王二命三眼槍で置換による勝利を再置換できないことを再現し、ゲドウでも同じ勝利を防げないことを確認。",
+    "QA40629が示す一般則に従い、破壊されない状態のゲドウは敗北置換を適用できない。実カラフルベルの登場能力で破壊不可を付与して相手ターンのダイレクトアタックを受けると、ゲドウは場に残るがゲームには負けることを両側で検証。この追加制約は新規ゲドウの独立フラグだけに適用し、既存ダイハード/ハンターの処理は維持。元QAの未登録ノワールを直接検証したとは数えない。",
+    "正義の記念碑は既存エレメント分類と同時離脱を使う専用タスクで、解決時に両プレイヤーの現在のエレメントを数える。自身を含む5/6境界、クリーチャー/タマシード/クロス済みギア/フィールド/装着オーラを含む同時破壊、進化は残して進化していないNEOは破壊、進化元/封印/Gリンク部分を別エレメントとして数えないこと、破壊置換後に閾値を数え直さないことを確認。登場元が先に離れた場合は現在の5/6で判定する。原本自身は破壊せず、実シンカライズによるアルカディアスへの進化、実S・トリガーで0マナ登場して同時破壊も確認。",
+    "両プレイヤーで物理マナの手動選択・JSON再開、ナイト・マジック/敗北置換/全体破壊の選択中の暗号化ルーム再開と操作側限定のアクション、AI計画の純粋性と未知カード非依存、合法40枚デッキの両先後終局と80物理カード保存を確認。初回固有試験の離脱後再召喚はテスト用タスクで攻撃フェイズへ進んでいたため、メインへ戻すfixtureに訂正し、最終106件を通過。",
+    "今回追加3種類の未完了検証はなし。JoeはQA40220の名指し再現に未対応の戦霊混成ウルボランス/ドルマゲドン・ビッグバンが必要なため部分実装せず保留。過去の未検証・中断長時間群・一括npm test・ユーザー保留は維持。公開済みv0.722.15/9277種類は更新せず、ローカルコミットのみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr19-061",
+      "name": "ガチャンコ ミニロボ３号",
+      "reason": "シールドを見る・任意の持ち主山札下移動・成功時の補充を公式本文とシールドグループ処理で照合する。"
+    },
+    {
+      "id": "dmrp03-011",
+      "name": "コーディネイ人",
+      "reason": "相手がこのクリーチャーとのバトルで破壊される時のタップ/次ターンのアンタップ停止への置換を照合する。"
+    },
+    {
+      "id": "dm23bd5-008",
+      "name": "Disミン",
+      "reason": "各プレイヤー任意タップマナと実際に相手が置いた分の後続マナ増加を同時選択/移動禁止を含めて照合する。"
+    }
+  ]
+}

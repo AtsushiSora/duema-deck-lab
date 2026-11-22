@@ -295643,18 +295643,135 @@
       ],
       "supportBatch": "phase-1680",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-020",
+      "name": "魔弾ベター・トゥモロー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ナイト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべては「パワーアタッカー+3000」を得、シールドをさらに１枚ブレイクする。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "attackBonus": 3000
+          },
+          "spell": true
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "extraBreak": 1,
+          "spell": true
+        },
+        {
+          "op": "KnightMagic1118",
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "grant": {
+                "attackBonus": 3000
+              },
+              "spell": true
+            },
+            {
+              "op": "GroupLasting412",
+              "owner": "self",
+              "extraBreak": 1,
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1681",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-s03",
+      "name": "「是空」の鬼 ゲドウ権現",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "デモニオ/鬼札王国",
+      "text": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを４少なくする。\nスピードアタッカー\nスレイヤー\nW・ブレイカー\n自分がゲームに負ける時または相手が勝つ時、かわりにこのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-s03",
+      "limit": 4,
+      "speedAttacker": true,
+      "slayer": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "amount": 4
+      },
+      "g1681LossDestroy": true,
+      "supportBatch": "phase-1681",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex1-N016",
+      "name": "「正義の記念碑」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 8,
+      "power": 0,
+      "race": "メタリカ/エンジェル・コマンド/レクスターズ",
+      "text": "S・トリガー S・トリガー\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、エレメントが６つ以上あれば、他の進化ではないエレメントをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N016",
+      "limit": 4,
+      "trigger": true,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Monument1681"
+        }
+      ],
+      "supportBatch": "phase-1681",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1680,
-    "checkedAt": "2026-11-22T18:20:26.478Z",
-    "baseCount": 9277,
+    "phase": 1681,
+    "checkedAt": "2026-11-22T18:32:34.117Z",
+    "baseCount": 9280,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9280,
+    "totalCount": 9283,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39991/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34889/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36823/",
+      "https://dm.takaratomy.co.jp/rule/qa/41149/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -323181,6 +323298,21 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35253/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35255/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35393/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1680,
+        "checkedAt": "2026-11-22T18:20:26.478Z",
+        "baseCount": 9277,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9280,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39991/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

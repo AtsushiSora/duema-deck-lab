@@ -6275,6 +6275,15 @@ export function createSixPhotoRules(api){
   if(moves.length)move(s,moves);
   break;
  }
+ case'g34_Monument1681':{
+  const elements=[0,1].flatMap(p=>s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown&&
+   exchangeElement753(api.zoneCard(s,p,x,'battle'))).map(x=>({p,x})));
+  // The entry source counts; evolution bases, seals and linked parts do not.
+  if(elements.length>=6)move(s,elements.filter(({x})=>!api.isEvolution(x)&&
+   !api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))
+   .map(({p,x})=>({player:p,uid:x.uid,to:'grave',destroy:true,controller:t.p})));
+  break;
+ }
  case'g34_Sweep':{
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave';
