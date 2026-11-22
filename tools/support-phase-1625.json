@@ -1,0 +1,224 @@
+{
+  "phase": 1625,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9107,
+  "target": 9500,
+  "description": "山札からの紫電ドラゴン展開、破壊した自軍の直前コスト+1以下の手札展開、超次元支援中の任意エレメント破壊を既存共通処理で実装し、実カードと公式裁定で検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36261/"
+  ],
+  "cards": [
+    {
+      "id": "dm30-016",
+      "name": "バルルン・紫蔵",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-016",
+      "faces": [
+        {
+          "name": "バルルン・紫蔵",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊して、自分の山札を見る。その中から《ボルバルザーク・紫電・ドラゴン》を１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "g201ExactName": "ボルバルザーク・紫電・ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "99dfd1808de4435f81168a6c423d4370c8188862dafc2b5f6724bb01acf38cf8",
+        "facesMatched": true,
+        "imageSha256": "0f2057429f444f1020866e283b7787105de8c588a0d148b0a68e54604b1d5198",
+        "imageBytes": 124950,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力欄を確認し、全文は公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DM-30 戦国編 第3弾 戦極魂(ウルトラ・デュエル)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-016",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm39-016",
+      "name": "G・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-016",
+      "faces": [
+        {
+          "name": "G・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分のファイアー・バードまたはドラゴンを１体破壊する。その破壊したクリーチャーよりコストが１大きいかそれ以下の、ファイアー・バードまたはドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "raceAny": [
+                "ファイアー・バード",
+                "ドラゴン"
+              ]
+            },
+            "g786ReviveAtCost": true,
+            "g1625HandUpgrade": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "4c57ebfef883b6387339cd0e8fb25f578c31f3925c2a1deaf5dbf91c75c00d9e",
+        "facesMatched": true,
+        "imageSha256": "0dd82d96431120a2e78b2cea0235af657704dc91a468dab2c106d46a970eb45d",
+        "imageBytes": 118006,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力欄を確認し、全文は公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DM-39 覚醒編 第4弾 覚醒爆発(サイキック・スプラッシュ)"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-016",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dm25ex4-047",
+      "name": "粉砕鉄拳オニナグリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-047",
+      "faces": [
+        {
+          "name": "粉砕鉄拳オニナグリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトル中、このクリーチャーのパワーを+4000する。\nこのクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、相手のコスト３以下のエレメントを１つ選び、破壊してもよい。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g38BattleBonus": 4000,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "min": 1,
+                "filter": {
+                  "creature": true,
+                  "any": [
+                    {
+                      "g1085Psychic": true
+                    },
+                    {
+                      "g1535Duelmate": true
+                    }
+                  ]
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "element": true,
+                "filter": {
+                  "max": 3
+                },
+                "to": "grave",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "dd3f328eeef41e553e80d3af79a66dee61ebffc3185f0fecfedf8bdd45bc66a0",
+        "facesMatched": true,
+        "imageSha256": "730e5faa983c802eb247676becc71dd4c605ea0493fe36bb78e5d7c2e79c4f23",
+        "imageBytes": 161206,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式画像で名前・文明・コスト・パワー・種族・マナ数・能力欄を確認し、全文は公式HTMLとも照合。"
+      },
+      "sameNameProducts": [
+        "DM25-EX4 エピソード4 パンドラ・ウォーズ"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-047",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存処理を再利用できる未対応カード3〜5種類を公式全文から選定。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm30-016": 4,
+      "dm39-016": 4,
+      "dm25ex4-047": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
+      "checkedAt": "2026-11-22",
+      "sha256": "8d0f213b2ebd52a52da1aba1e2aa6b67fd6b42606171cec9f7c202ad4346dc10"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36261/",
+      "checkedAt": "2026-11-22",
+      "sha256": "25e4796175cb9e2b598fe0475b77f5faadb36da5589bbb1ba4f5439cdbcb6db9"
+    }
+  ]
+}

@@ -29838,5 +29838,131 @@
         }
       ]
     }
+  },
+  "dm30-016": {
+    "phase": 1625,
+    "faces": [
+      {
+        "name": "バルルン・紫蔵",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊して、自分の山札を見る。その中から《ボルバルザーク・紫電・ドラゴン》を１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "g201ExactName": "ボルバルザーク・紫電・ドラゴン"
+          }
+        }
+      ]
+    }
+  },
+  "dm39-016": {
+    "phase": 1625,
+    "faces": [
+      {
+        "name": "G・アイニー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分のファイアー・バードまたはドラゴンを１体破壊する。その破壊したクリーチャーよりコストが１大きいかそれ以下の、ファイアー・バードまたはドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+        "race": "ファイアー・バード",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "raceAny": [
+              "ファイアー・バード",
+              "ドラゴン"
+            ]
+          },
+          "g786ReviveAtCost": true,
+          "g1625HandUpgrade": true
+        }
+      ]
+    }
+  },
+  "dm25ex4-047": {
+    "phase": 1625,
+    "faces": [
+      {
+        "name": "粉砕鉄拳オニナグリ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "バトル中、このクリーチャーのパワーを+4000する。\nこのクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、相手のコスト３以下のエレメントを１つ選び、破壊してもよい。",
+        "race": "ヒューマノイド/ハンター/エイリアン",
+        "powerText": "2000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g38BattleBonus": 4000,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 1,
+              "filter": {
+                "creature": true,
+                "any": [
+                  {
+                    "g1085Psychic": true
+                  },
+                  {
+                    "g1535Duelmate": true
+                  }
+                ]
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "element": true,
+              "filter": {
+                "max": 3
+              },
+              "to": "grave",
+              "optional": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

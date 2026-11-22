@@ -289544,20 +289544,136 @@
       ],
       "supportBatch": "phase-1624",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm30-016",
+      "name": "バルルン・紫蔵",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊して、自分の山札を見る。その中から《ボルバルザーク・紫電・ドラゴン》を１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-016",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "g201ExactName": "ボルバルザーク・紫電・ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1625",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-016",
+      "name": "G・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分のファイアー・バードまたはドラゴンを１体破壊する。その破壊したクリーチャーよりコストが１大きいかそれ以下の、ファイアー・バードまたはドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-016",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "raceAny": [
+              "ファイアー・バード",
+              "ドラゴン"
+            ]
+          },
+          "g786ReviveAtCost": true,
+          "g1625HandUpgrade": true
+        }
+      ],
+      "supportBatch": "phase-1625",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-047",
+      "name": "粉砕鉄拳オニナグリ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "バトル中、このクリーチャーのパワーを+4000する。\nこのクリーチャーが攻撃する時、自分の、サイキック・クリーチャーまたはデュエルメイト・クリーチャーがあれば、相手のコスト３以下のエレメントを１つ選び、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-047",
+      "limit": 4,
+      "g38BattleBonus": 4000,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 1,
+              "filter": {
+                "creature": true,
+                "any": [
+                  {
+                    "g1085Psychic": true
+                  },
+                  {
+                    "g1535Duelmate": true
+                  }
+                ]
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "element": true,
+              "filter": {
+                "max": 3
+              },
+              "to": "grave",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1625",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1624,
+    "phase": 1625,
     "checkedAt": "2026-11-22",
-    "baseCount": 9104,
+    "baseCount": 9107,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9107,
+    "totalCount": 9110,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36496/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35732/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36261/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316090,6 +316206,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36650/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36651/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36656/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1624,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9104,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9107,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36494/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36495/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36496/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
