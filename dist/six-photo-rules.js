@@ -862,7 +862,7 @@ export function createSixPhotoRules(api){
     if(watch.g814ShieldBroken&&!s.players[owner].brokenThisTurn)continue;
     if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.g1222FirstDragon||firstDragon)&&(!watch.g1236FirstAbyss||firstAbyss)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){
      if(watch.defs.some(d=>d.g1197Attacker)&&s.attack)s.attack.g1197Watched=true;
-     if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+     if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798'||d.op==='AttackGraveDeploy1652')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
    }
   }
  }
@@ -4666,10 +4666,30 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_Prison1652':{
+  const rows=targetOptions(s,t.p,creatures(s,1-t.p).filter(y=>!y.sealed));
+  if(rows.length)choice(s,t,'手札に戻す相手のクリーチャーを1体選ぶ',rows);
+  else put(s,{...t,op:'g34_PrisonDiscard1652',names:[]});
+  break;
+ }
+ case'g34_PrisonDiscard1652':{
+  const p=1-t.p,y=s.players[p].hand[Math.floor(api.random(s)*s.players[p].hand.length)];
+  if(!y)break;
+  const names=faces(api.zoneCard(s,p,y,'hand')).flatMap(c=>[...String(c.name||'').split(/\s*[/／]\s*/),...(c.additionalNames||[])]).map(exactName);
+  api.discardSelected(s,p,[y.uid],t.source,t.controller??t.p,null,{...t,op:'g34_PrisonFinish1652',matched:names.some(n=>t.names.includes(n))});
+  break;
+ }
+ case'g34_PrisonFinish1652':if(t.discarded&&t.matched)start(s,t,[{op:'ShieldGrave588',n:1,required:true}]);break;
+ case'g34_AttackGraveDeploy1652':{
+  const host=sourceHost474(s,t.g399Attacker)?.x,ceiling=host?cost(effective(host,s)):t.g399Attacker.cost;
+  if(ceiling!==undefined)start(s,t,[{op:'Select',origin:'grave',n:1,optional:true,deploy:true,
+   filter:{creatureOrSeed:true,belowCost:ceiling},title:'最初の攻撃：よりコストが小さいクリーチャーかタマシードを墓地から出す？'}]);
+  break;
+ }
  case'g34_NightmareBoth1651':{
   // Rule 409.1f: remove the entire simultaneous group from both graves before any entry.
   const refs=[];for(const p of[s.active,1-s.active])if(api.canMoveZone(s,p,'grave'))for(const y of [...s.players[p].grave]){
-   const c=card(y);if(c.type!=='creature'||!['ナイトメア','デスパペット','デビルマスク','ゴースト'].some(r=>race(c,r)))continue;
+   const c=card(y),fits=t.g1652Ancient?c.g400Wave||race(c,'サバイバー')||race(c,'ダイナモ'):['ナイトメア','デスパペット','デビルマスク','ゴースト'].some(r=>race(c,r));if(c.type!=='creature'||!fits)continue;
    refs.push({p,uid:y.uid,serial:y.zoneSerial||0});remove(s.players[p].grave,y.uid);y.g5Origin='grave';(s.players[p].g34Holding??=[]).push(y);
   }
   if(refs.length){s.g34DeployBatch=true;put(s,{...t,op:'g34_NightmareOrder1651',refs,remaining:refs,order:[s.active,1-s.active],index:0});}
@@ -7873,6 +7893,7 @@ export function createSixPhotoRules(api){
   else start(s,t,[{op:'Draw',n:2}]);
   break;
  case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid],...(t.g1645CreatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);break;
+ case'g34_Prison1652':{const y=s.players[1-t.p].battle.find(y=>y.uid===v);if(y){put(s,{...t,op:'g34_PrisonDiscard1652',names:battleNames676(s,y)});move(s,[{player:1-t.p,uid:y.uid,to:'hand',destroy:false,controller:t.controller??t.p}]);}break;}
  case'g34_NightmareOrder1651':if(v&&t.remaining.some(r=>r.uid===v.uid&&r.p===v.p&&r.serial===v.serial))put(s,{...t,p:v.p,op:'g34_Put',origin:'grave',target:v.uid,g1651Held:true,g1651Serial:v.serial,execution:false},{...t,op:'g34_NightmareRelease1651',owner1651:v.p,target:v.uid,serial:v.serial},{...t,remaining:t.remaining.filter(r=>r.uid!==v.uid)});break;
  case'g34_GetFuture1649':{
   const y=own.hand.find(y=>y.uid===v);

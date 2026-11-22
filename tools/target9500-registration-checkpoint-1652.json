@@ -1,0 +1,156 @@
+{
+  "phase": 1652,
+  "checkedAt": "2026-11-22T09:20:18.935Z",
+  "baseline": "84c47d62d17ec19daa56996fbf39ea481c410a0f",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9188,
+  "currentNames": 9191,
+  "remainingNames": 309,
+  "added": [
+    {
+      "id": "dm26-034",
+      "name": "執拗なる鎧亜の牢獄"
+    },
+    {
+      "id": "dm22ex1-050",
+      "name": "漂流大陸の復活"
+    },
+    {
+      "id": "dm22sd1-013",
+      "name": "深淵の食卓"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9188,
+    "uniqueNames": 9191,
+    "uniqueIds": 9191,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1652.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.468,
+      "log": "tmp/duema-phase-1652/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1652-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 32.603,
+      "log": "tmp/duema-phase-1652/final-focused.log",
+      "passed": 56,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Crim|Jiraiya|Saturday|QA|exchange|attacker|first|grave|Grave|replac|discard|Discard|Wave|wave|Surviv|surviv|Dynamo|dynamo|attack|Attack",
+        "tests/standard1651-effects.test.mjs",
+        "tests/standard399-effects.test.mjs",
+        "tests/standard400-effects.test.mjs",
+        "tests/standard406-effects.test.mjs",
+        "tests/standard798-effects.test.mjs",
+        "tests/standard1280-effects.test.mjs",
+        "tests/requested393-change.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.287,
+      "log": "tmp/duema-phase-1652/final-related.log",
+      "passed": 188,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.174,
+      "log": "tmp/duema-phase-1652/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.308,
+      "log": "tmp/duema-phase-1652/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.268,
+      "log": "tmp/duema-phase-1652/target9500.log"
+    }
+  },
+  "totalTestsPassed": 244,
+  "hashes": {
+    "dist/cards.json": "d6c686f80bb9054857b5f0f046abfc0caed12c002e03f9c2ebca5a8f11e69dc2",
+    "dist/engine.js": "0118925e4425c7dd28bd1dfdbcb98581d0be7dead0eaaa5175401762a2bbfdd0",
+    "dist/six-photo-rules.js": "b957ed11e399eff2d3c656b5c02b90a4df9e3ea5016be5ebff8222f7f0255266",
+    "dist/online-compatibility.js": "8d6ca360f11d90d87df3943423ee39ae6e74bed877e26b1b01d77f30bf81ce2d",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.168",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "resolvedRelatedRulingVerification": [
+    {
+      "target": "Crim-31638-exact-source",
+      "cardIds": [
+        "dmex16-026"
+      ],
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+      "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
+      "status": "verified",
+      "resolvedPhase": 1652,
+      "evidence": "tests/standard1652-effects.test.mjs：Prison bounces then randomly discards a real same-name card and burns one shield even when Crim prevents the bounce / Change31638 Prison remembers every linked God name before moving it。両プレイヤー・通常戻し・クリム禁止・リンクしたゴッドの全名前で再現。"
+    }
+  ],
+  "relatedRulingVerificationStillPending": [
+    {
+      "target": "Crim-QA39975-exact-source",
+      "cardIds": [
+        "dmex16-026"
+      ],
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+      "reason": "QA39975の公式本文とphase1651の同時Sweepは検証済み。テック団の波壊Go！の全カード一括移動には進化元・付属・封印・リンク構成を含む移動前状態の禁止・置換評価が必要なため、phase1652では部分登録をせず専用バッチへ保留。固有実装のないものを対応済みには数えない。",
+      "status": "pending-exact-source-reproduction",
+      "lastReviewedPhase": 1652
+    }
+  ]
+}
