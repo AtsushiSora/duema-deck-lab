@@ -296451,18 +296451,175 @@
       ],
       "supportBatch": "phase-1688",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-OR2",
+      "name": "邪龍 ジャブラッド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 9000,
+      "race": "アビスドラゴン/ACE",
+      "text": "W・ブレイカー\nこのタマシードが出た時、または自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\n自分のアビスが離れる時、かわりにカードを４枚自分の墓地から選び、シャッフルして山札の下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-OR2",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "闇",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "アビス"
+        },
+        "defs": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "optional": true,
+            "g1042Together": true
+          }
+        ]
+      },
+      "g1689JabloodStay": true,
+      "supportBatch": "phase-1689",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-s07",
+      "name": "戦霊混成 ウルボランス",
+      "civ": "光/水/火",
+      "civilizations": [
+        "光",
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11500,
+      "race": "ディスペクター/エンジェル・コマンド/アースイーター",
+      "text": "EXライフ\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の手札を２枚まで捨てる。その後、こうして捨てた手札の枚数より１枚多くカードを引く。\n各ターン、自分の最初のクリーチャーが召喚によって出た時、そのクリーチャーのコスト以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-s07",
+      "limit": 4,
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "afterDiscardCount": {
+            "op": "g34_DrawAfterDiscard1689",
+            "g1528AllowZero": true
+          }
+        }
+      ],
+      "g1689FirstEntrySpell": true,
+      "g1244SummonEntry": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1689",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-072",
+      "name": "ドルマゲドン・ビッグバン",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 9,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n相手は自身のクリーチャーすべてに封印を１つ付ける。\n闇または火の、進化ではないコマンドまたはイニシャルズを１体、自分の墓地からバトルゾーンに出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドがバトルゾーンに出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。クリーチャーが封印されている間、両プレイヤーはそのクリーチャーを無視する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-072",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SealAll1689"
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": false,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "any": [
+              {
+                "color": "闇",
+                "raceAny": [
+                  "コマンド",
+                  "イニシャルズ"
+                ]
+              },
+              {
+                "color": "火",
+                "raceAny": [
+                  "コマンド",
+                  "イニシャルズ"
+                ]
+              }
+            ]
+          },
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1689",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1688,
-    "checkedAt": "2026-11-22T22:28:42.878Z",
-    "baseCount": 9300,
+    "phase": 1689,
+    "checkedAt": "2026-11-22T22:41:19.762Z",
+    "baseCount": 9303,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9303,
+    "totalCount": 9306,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/qa/42962/",
-      "https://dm.takaratomy.co.jp/rule/qa/40220/"
+      "https://dm.takaratomy.co.jp/rule/qa/40220/",
+      "https://dm.takaratomy.co.jp/rule/qa/44113/",
+      "https://dm.takaratomy.co.jp/rule/qa/41989/",
+      "https://dm.takaratomy.co.jp/rule/qa/42959/",
+      "https://dm.takaratomy.co.jp/rule/qa/42961/",
+      "https://dm.takaratomy.co.jp/rule/qa/43447/",
+      "https://dm.takaratomy.co.jp/rule/qa/40221/",
+      "https://dm.takaratomy.co.jp/rule/qa/40222/",
+      "https://dm.takaratomy.co.jp/rule/qa/40223/",
+      "https://dm.takaratomy.co.jp/rule/qa/40224/",
+      "https://dm.takaratomy.co.jp/rule/qa/40225/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -324121,6 +324278,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/39642/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
           "https://dm.takaratomy.co.jp/rule/qa/48159/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1688,
+        "checkedAt": "2026-11-22T22:28:42.878Z",
+        "baseCount": 9300,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9303,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/42962/",
+          "https://dm.takaratomy.co.jp/rule/qa/40220/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

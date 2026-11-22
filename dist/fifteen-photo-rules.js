@@ -50,7 +50,13 @@ export function createFifteenPhotoRules(api){
  function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
  function execute(s,t,origin,uid,face=0,more={}){give(s,t,[C('executeCard',{origin,target:uid,face,...more})]);}
  function pickExecute(s,t,{origin='hand',ids,max=Infinity,colorsAny,filter={},optional=true,deployOnly=false,reason='カードの能力'}={}){const rows=data(s,t)[origin].filter(x=>!ids||ids.includes(x.uid));choice(s,{...t,exec:{origin,deployOnly,reason}},'実行するカードを選ぶ',[...rows.flatMap(x=>faces(card(x)).flatMap((c,face)=>(!deployOnly||face===0)&&cost(c)<=max&&(!colorsAny||colors(c).some(v=>colorsAny.includes(v)))&&api.matches(s,t.p,x,filter)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:!deployOnly}))&&(!deployOnly||canPut(s,t.p,x,origin,false))?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[])),...(optional?[skip()]:[])]);}
- function run(s,t){if(t.op==='g35_Order'){const own=data(s,t),ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length>1){choice(s,{...t,ids},t.top?'山札の上に置く順序を選ぶ':'山札の下に置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));}else{const rows=[...(t.ordered||[]),...ids].map(uid=>remove(own.deck,uid)).filter(Boolean);own.g35Protected=(own.g35Protected||[]).filter(uid=>!rows.some(x=>x.uid===uid));if(t.top)own.deck.unshift(...rows);else own.deck.push(...rows);api.deckCheck(s,t.p);}return true;}
+ function run(s,t){if(t.op==='g35_BottomGroups1689'){
+  const own=data(s,t),groups=t.groups.map(ids=>own.deck.filter(x=>ids.includes(x.uid)).map(x=>x.uid)).filter(ids=>ids.length);
+  if(groups.length>1)choice(s,{...t,groups},'山札の下に置くまとまりの順番を選ぶ（上から）',groups.map((ids,i)=>opt(ids.length+'枚のまとまり（'+card(own.deck.find(x=>x.uid===ids[0])).name+'ほか）',i,0)));
+  else{const ids=[...(t.ordered||[]),...groups.flat()],rows=ids.map(uid=>remove(own.deck,uid)).filter(Boolean);own.deck.push(...rows);api.deckCheck(s,t.p);}
+  return true;
+ }
+ if(t.op==='g35_Order'){const own=data(s,t),ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length>1){choice(s,{...t,ids},t.top?'山札の上に置く順序を選ぶ':'山札の下に置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));}else{const rows=[...(t.ordered||[]),...ids].map(uid=>remove(own.deck,uid)).filter(Boolean);own.g35Protected=(own.g35Protected||[]).filter(uid=>!rows.some(x=>x.uid===uid));if(t.top)own.deck.unshift(...rows);else own.deck.push(...rows);api.deckCheck(s,t.p);}return true;}
  if(t.op==='g35_Fight'){const x=unit(s,t);if(x)target(s,t,'バトルする相手を選ぶ',creatures(s,1-t.p),t.optional);return true;}
  if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
  case'tapLock':{const selected=t.selected||[],rows=creatures(s,1-t.p).filter(x=>!selected.includes(x.uid));if(selected.length>=t.n||!rows.length)break;target(s,{...t,selected},'タップして次のターンのアンタップを止める相手を選ぶ',rows);break;}
@@ -183,7 +189,11 @@ export function createFifteenPhotoRules(api){
  case'infinityPick':pickExecute(s,t,{origin:'deck',ids:t.ids,optional:true});break;
  case'untapOther':target(s,t,'アンタップする自分の他のクリーチャーを選ぶ',creatures(s,t.p).filter(y=>y.uid!==t.uid),false);break;
  case'miraFinal':for(const y of creatures(s,1-t.p))api.tap(s,1-t.p,y);give(s,t,[E('Draw',{n:creatures(s,1-t.p).filter(y=>y.tapped).length,optional:true})]);break;
- case'bottomBatch':order(s,t,t.ids.filter(uid=>own.deck.some(y=>y.uid===uid)));break;
+ case'bottomBatch':{
+  const ids=t.ids.filter(uid=>own.deck.some(y=>y.uid===uid));
+  if(t.g1689PaymentGroups?.length)put(s,task('g35_BottomGroups1689',t.p,t.source,{groups:[ids,...t.g1689PaymentGroups],ordered:[]}));
+  order(s,t,ids);break;
+ }
  case'masterBreak':{const ids=t.uids.filter(uid=>s.players[t.defender].shields.some(y=>y.uid===uid));if(!ids.length){s.breakContext=null;break;}give(s,t,[E('Target',{to:'grave'}),C('masterCommit',{...t,uids:ids})]);break;}
  case'masterCommit':{s.breakContext={...t.context,g35Prepared:true};api.interruptBreak(s,t.defender,[t.uids[0]],task('g35_Custom',t.p,t.source,{...t,name:'masterBreak',uids:t.uids.slice(1)}));break;}
  case'chief':choice(s,t,'ジョット・首魁・ジョラゴンの効果を選ぶ',[opt('コスト5以下のジョーカーズを手札から出す',0,20),...(!card(t.source).copyOf?[opt('Jビッグ1：他のジョーカーズの登場時能力を使う',1,10)]:[])]);break;
@@ -192,7 +202,11 @@ export function createFifteenPhotoRules(api){
  case'jazzy':choice(s,t,'墓地から手札に戻すクリーチャーを選ぶ',own.grave.filter(y=>card(y).type==='creature').map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;
  default:throw Error('未実装の15画像効果：'+t.name);
  }return true;}
- function chosen(s,t,v){if(t.op==='g35_Order'){pendingOrder(s,t,v);return true;}if(t.op==='g35_Fight'){const x=unit(s,t),y=s.players[1-t.p].battle.find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);return true;}if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
+ function chosen(s,t,v){if(t.op==='g35_BottomGroups1689'){
+  const ids=t.groups[v],group=data(s,t).deck.filter(x=>ids.includes(x.uid)).map(x=>x.uid);
+  put(s,{...t,groups:t.groups.filter((_,i)=>i!==v),ordered:[...(t.ordered||[]),...group]});return true;
+ }
+ if(t.op==='g35_Order'){pendingOrder(s,t,v);return true;}if(t.op==='g35_Fight'){const x=unit(s,t),y=s.players[1-t.p].battle.find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);return true;}if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
  case'tapLock':{const y=opp.battle.find(y=>y.uid===v);if(y){api.tap(s,1-t.p,y);(y.tapLocks??=[]).push({who:1-t.p,afterTurns:opp.turns+1});}pending(s,t,'tapLock',{selected:[...t.selected,v]});break;}
  case'shieldForce':if(x&&v)x.g35ShieldForce=v;break;
  case'galaxyShield':if(v)api.moveShield(s,t.p,v,'hand',{noST:true});pending(s,t,'galaxyHand');break;
@@ -205,7 +219,7 @@ export function createFifteenPhotoRules(api){
  case'brandDiscard':if(v)pending(s,t,'brandDiscard',{selected:[...t.selected,v]});else{api.discardSelected(s,t.p,t.selected,t.source,t.p);give(s,t,t.selected.map(()=>E('Target',{filter:{maxPower:6000},to:'grave'})));}break;
  case'copyEntry':if(v!==null&&v!==undefined&&t.entries[v])api.resolveEntry(s,t.entries[v]);break;
  case'slotPick':if(v){order(s,t,t.ids.filter(uid=>uid!==v));deploy(s,t,'deck',v,{grant:{entryPlayerAttack:true}});}break;
- case'seven':{const y=opp.deck.find(y=>y.uid===v);if(y){const n=cost(card(y)),xs=creatures(s,1-t.p).filter(y=>cost(card(y))===n),ids=[...t.ids,...xs.flatMap(y=>api.allLayers(y).map(y=>y.uid))];pending(s,{...t,p:1-t.p},'bottomBatch',{ids});move(s,xs.map(y=>({player:1-t.p,uid:y.uid,to:'deck',destroy:false})));}break;}
+ case'seven':{const y=opp.deck.find(y=>y.uid===v);if(y){const n=cost(card(y)),xs=creatures(s,1-t.p).filter(y=>cost(card(y))===n),ids=[...t.ids,...xs.flatMap(y=>api.allLayers(y).map(y=>y.uid))];move(s,xs.map(y=>({player:1-t.p,uid:y.uid,to:'deck',destroy:false})),{kind:'g1689SevenBottom',player:1-t.p,source:t.source,ids});}break;}
  case'roadLock':(s.g35SpellLocks??=[]).push({p:1-t.p,turn:s.turn,color:v});break;
  case'finalRemove':pending(s,t,'finalRemove',{colorsLeft:t.colorsLeft.slice(1),chosen:[...t.chosen,v]});break;
  case'maximum':{const y=own.battle.find(y=>y.uid===v);if(y){(y.g35Maximum??=[]).push({turn:s.turn,n:creatures(s,t.p).length});}break;}

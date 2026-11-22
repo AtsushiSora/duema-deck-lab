@@ -6181,6 +6181,8 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
   break;
  }
+ case'g34_DrawAfterDiscard1689':api.draw(s,t.p,t.n+1);break;
+ case'g34_SealAll1689':api.resolveForbiddenSeal(s,t.p);break;
  case'g34_Draw':
   if(used792(s,t,t))break;
   if(t.optional)choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
@@ -10080,7 +10082,11 @@ export function createSixPhotoRules(api){
     if(watcher===y&&(options.selfMuted||api.selfStopped(s,p)))continue;
     const {g997SummonEntry,g1244SummonEntry}=effective(watcher,s);
     if(g997SummonEntry&&(watcher===y||commandDragon))queue(s,p,watcher,g997SummonEntry);
-    if(g1244SummonEntry)queue(s,p,watcher,g1244SummonEntry);
+    if(g1244SummonEntry){
+     const firstEntryCall=effective(watcher,s).g1689FirstEntrySpell;
+     if(firstEntryCall&&(options.selfMuted||options.allEntryMuted))continue;
+     if(!firstEntryCall||s.players[p].enteredThisTurn===1)queue(s,p,watcher,firstEntryCall?g1244SummonEntry.map(d=>({...d,max:cost(effective(y,s))})):g1244SummonEntry);
+    }
    }
   }
   if(!y.sealed&&!y.faceDown&&race(effective(y,s,true),'ドラゴン')){

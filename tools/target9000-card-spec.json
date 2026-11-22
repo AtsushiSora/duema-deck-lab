@@ -37930,5 +37930,162 @@
         }
       ]
     }
+  },
+  "dm22rp2-OR2": {
+    "phase": 1689,
+    "faces": [
+      {
+        "name": "邪龍 ジャブラッド",
+        "typeText": "タマシード/クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "W・ブレイカー\nこのタマシードが出た時、または自分のアビスが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\n自分のアビスが離れる時、かわりにカードを４枚自分の墓地から選び、シャッフルして山札の下に置いてもよい。",
+        "race": "アビスドラゴン/ACE",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "creature",
+      "seedCreature": true,
+      "aceCivilization": "闇",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true,
+          "g1042Together": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "アビス"
+        },
+        "defs": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "optional": true,
+            "g1042Together": true
+          }
+        ]
+      },
+      "g1689JabloodStay": true
+    }
+  },
+  "dmrp19-s07": {
+    "phase": 1689,
+    "faces": [
+      {
+        "name": "戦霊混成 ウルボランス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水/火",
+        "civilizations": [
+          "光",
+          "水",
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "EXライフ\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の手札を２枚まで捨てる。その後、こうして捨てた手札の枚数より１枚多くカードを引く。\n各ターン、自分の最初のクリーチャーが召喚によって出た時、そのクリーチャーのコスト以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+        "race": "ディスペクター/エンジェル・コマンド/アースイーター",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2,
+          "optional": true,
+          "afterDiscardCount": {
+            "op": "g34_DrawAfterDiscard1689",
+            "g1528AllowZero": true
+          }
+        }
+      ],
+      "g1689FirstEntrySpell": true,
+      "g1244SummonEntry": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dmex01-072": {
+    "phase": 1689,
+    "faces": [
+      {
+        "name": "ドルマゲドン・ビッグバン",
+        "typeText": "呪文",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n相手は自身のクリーチャーすべてに封印を１つ付ける。\n闇または火の、進化ではないコマンドまたはイニシャルズを１体、自分の墓地からバトルゾーンに出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（カードを封印するには、自分の山札の上から１枚目を裏向きのままそのカードの上に置く。コマンドがバトルゾーンに出た時、その持ち主はそのコマンドと同じ文明を持つ自身のカードから封印を１つ、墓地に置く。クリーチャーが封印されている間、両プレイヤーはそのクリーチャーを無視する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SealAll1689"
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": false,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "any": [
+              {
+                "color": "闇",
+                "raceAny": [
+                  "コマンド",
+                  "イニシャルズ"
+                ]
+              },
+              {
+                "color": "火",
+                "raceAny": [
+                  "コマンド",
+                  "イニシャルズ"
+                ]
+              }
+            ]
+          },
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        }
+      ]
+    }
   }
 }
