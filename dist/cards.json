@@ -291291,20 +291291,140 @@
       ],
       "supportBatch": "phase-1640",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-010",
+      "name": "悪魔神ザビ・リブラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド/エイリアン",
+      "text": "進化-自分の光または自然のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n相手の呪文の効果によって自分の他のクリーチャーがバトルゾーンを離れる時、そのクリーチャーはバトルゾーンを離れるかわりにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-010",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1641OtherSpellStay": true,
+      "supportBatch": "phase-1641",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-184",
+      "name": "百獣世界の探究者 はじめしゃちょー",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド/ビーストフォーク",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、コスト３以下のクリーチャーを２体まで、自分のマナゾーンからバトルゾーンに出す。\n自分の他のクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-184",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 2,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "g468EntryWatch": {
+        "g565Other": true,
+        "filter": {
+          "creature": true
+        },
+        "mode": "optionalFight"
+      },
+      "supportBatch": "phase-1641",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-010",
+      "name": "蒼狼の始祖アマテラス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ナイト/サムライ/オリジン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札からコストが４以下の呪文を１枚選び、山札をシャッフルしてからその呪文を唱えるか、自分の山札からコストが４以下のクロスギアを１枚選び、山札をシャッフルしてからそのクロスギアをジェネレートしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-010",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "コスト4以下の呪文を山札から唱える",
+              "defs": [
+                {
+                  "op": "SearchCast1641",
+                  "kind": "spell"
+                }
+              ]
+            },
+            {
+              "label": "コスト4以下のクロスギアを山札からジェネレートする",
+              "defs": [
+                {
+                  "op": "SearchCast1641",
+                  "kind": "gear"
+                }
+              ]
+            },
+            {
+              "label": "能力を使わない",
+              "defs": []
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1641",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1640,
+    "phase": 1641,
     "checkedAt": "2026-11-22",
-    "baseCount": 9152,
+    "baseCount": 9155,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9155,
+    "totalCount": 9158,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36830/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36457/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35776/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35777/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35778/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318108,6 +318228,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1640,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9152,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9155,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36830/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

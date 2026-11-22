@@ -2433,8 +2433,8 @@ export function createSixPhotoRules(api){
   break;
  case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
  case'g34_Entry468':{
-  if(t.mode==='mandatoryFight'){
-   put(s,{...t,op:'g34_FightEnemy240',fighter:t.subject,g998EntryFight:true});
+  if(t.mode==='mandatoryFight'||t.mode==='optionalFight'){
+   put(s,{...t,op:'g34_FightEnemy240',fighter:t.subject,g998EntryFight:true,...(t.mode==='optionalFight'?{optional:true}:{})});
    break;
   }
   if(t.mode==='ukonSakon1146'){
@@ -5460,6 +5460,16 @@ export function createSixPhotoRules(api){
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
   break;
  }
+ case'g34_SearchCast1641':{
+  const ids=look(s,{...t,n:own.deck.length}),options=ids.flatMap(uid=>{
+   const y=own.deck.find(y=>y.uid===uid);
+   return faces(card(y)).flatMap((c,face)=>c.type===t.kind&&cost(c)<=4&&api.canExecuteUnpaid(s,t.p,c)&&api.canCast(s,t.p,c,'deck')&&
+    (c.type==='spell'||api.canEnter(s,t.p,c,{origin:'deck',execution:true}))?
+    [opt(c.name,{uid,face},cost(c)+10,y.cardId)]:[]);
+  });
+  if(ids.length)choice(s,{...t,...deckPeek841(own,ids),ids},t.kind==='spell'?'山札から唱えるコスト4以下の呪文を選ぶ（任意）':'山札からジェネレートするコスト4以下のクロスギアを選ぶ（任意）',[...options,skip()]);
+  break;
+ }
  case'g34_SearchZones1633':{
   const ids=look(s,{...t,n:own.deck.length});
   put(s,{...t,...deckPeek841(own,ids),op:'g34_Select',deploy:true,optional:true,
@@ -7900,6 +7910,19 @@ export function createSixPhotoRules(api){
    const x=remove(own.deck,v);
    if(x)enter(s,t.p,x,host.uid,{origin:'deck',execution:false,g31Force:true});
   }
+  break;
+ }
+ case'g34_SearchCast1641':{
+  const y=v&&own.deck.find(y=>y.uid===v.uid),c=y&&faces(card(y))[v.face||0];
+  const allowed=c&&c.type===t.kind&&cost(c)<=4&&api.canExecuteUnpaid(s,t.p,c)&&api.canCast(s,t.p,c,'deck')&&
+   (c.type==='spell'||api.canEnter(s,t.p,c,{origin:'deck',execution:true}));
+  for(const uid of t.ids||[])release(s,t.p,uid);
+  if(allowed){
+   remove(own.deck,y.uid);
+   api.shuffleLibrary(s,t.p,[],t.source);
+   own.deck.push(y);
+   cast(s,t.p,y.uid,true,null,v.face||0,null,'deck',card(t.source).name+'の能力');
+  }else{api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);}
   break;
  }
  case'g34_Put':doPut(s,t,v);break;

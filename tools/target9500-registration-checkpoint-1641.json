@@ -1,0 +1,129 @@
+{
+  "phase": 1641,
+  "checkedAt": "2026-11-22T06:58:28.136Z",
+  "baseline": "226898e73e4061ed39cdda326ded33b62ff95065",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9155,
+  "currentNames": 9158,
+  "remainingNames": 342,
+  "added": [
+    {
+      "id": "dmr03-010",
+      "name": "悪魔神ザビ・リブラ"
+    },
+    {
+      "id": "dmex08-184",
+      "name": "百獣世界の探究者 はじめしゃちょー"
+    },
+    {
+      "id": "dm31-010",
+      "name": "蒼狼の始祖アマテラス"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9155,
+    "uniqueNames": 9158,
+    "uniqueIds": 9158,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1641.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.748,
+      "log": "tmp/duema-phase-1641/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1641-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.76,
+      "log": "tmp/duema-phase-1641/final-focused.log",
+      "passed": 48,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=own spells|opposing caster|Gedora|Soul|Asad|Captain|Cyclone|intervening|previous own use|non-summon|real evolution|Jet grants",
+        "tests/standard1262-effects.test.mjs",
+        "tests/standard1263-effects.test.mjs",
+        "tests/standard998-effects.test.mjs",
+        "tests/standard1159-effects.test.mjs",
+        "tests/standard420-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.389,
+      "log": "tmp/duema-phase-1641/final-related.log",
+      "passed": 43,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.779,
+      "log": "tmp/duema-phase-1641/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.428,
+      "log": "tmp/duema-phase-1641/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.263,
+      "log": "tmp/duema-phase-1641/target9500.log"
+    }
+  },
+  "totalTestsPassed": 91,
+  "hashes": {
+    "dist/cards.json": "5614c5d6dbc59a270159aea4ae2559631b3a82dd683973f67afb74ae7be0a558",
+    "dist/engine.js": "01f309229047df3232ddef788fd40e122bb703cb1aa96a2de3ca7a56b5a9af69",
+    "dist/six-photo-rules.js": "2f1abb0d0571ff6f18922fc7a6a326b12845090827ee2134a4348ff10c6a3dee",
+    "dist/online-compatibility.js": "828b6324793b7961b93971a44bfb7e4d907fa38f73bc57ae8050ed0b51b079c2",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.157",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
