@@ -33062,5 +33062,125 @@
         }
       ]
     }
+  },
+  "dmrp19-019": {
+    "phase": 1649,
+    "faces": [
+      {
+        "name": "ゲット・ザ・フューチャー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚捨て、その後、カードを１枚引く。その捨てたカード以下のコストを持つ相手のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GetFuture1649"
+        }
+      ]
+    }
+  },
+  "dmrp08-053": {
+    "phase": 1649,
+    "faces": [
+      {
+        "name": "シロイヌムサシ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンを離れた時、自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから山札の一番下に置く。",
+        "race": "ジョーカーズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g393Change": {
+        "mana": 6
+      },
+      "g172Leave": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "deck",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmsd13-013": {
+    "phase": 1649,
+    "faces": [
+      {
+        "name": "スッポンジトム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを２枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n自分の手札にカードが５枚以上あれば、このクリーチャーは攻撃もブロックもされない。",
+        "race": "ジョーカーズ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "min": 5
+          }
+        },
+        "grants": {
+          "unblockable": true,
+          "cannotBeAttacked": true
+        }
+      }
+    }
   }
 }

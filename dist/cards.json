@@ -292101,22 +292101,134 @@
       "g1648FirstOwnDrawMana": true,
       "supportBatch": "phase-1648",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-019",
+      "name": "ゲット・ザ・フューチャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚捨て、その後、カードを１枚引く。その捨てたカード以下のコストを持つ相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GetFuture1649"
+        }
+      ],
+      "supportBatch": "phase-1649",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-053",
+      "name": "シロイヌムサシ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンを離れた時、自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-053",
+      "limit": 4,
+      "g393Change": {
+        "mana": 6
+      },
+      "g172Leave": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "deck",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1649",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd13-013",
+      "name": "スッポンジトム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが攻撃する時、Jトルネードしてもよい。そうしたら、カードを２枚引く。（Jトルネード：自分の他のジョーカーズを１体、手札に戻す）\n自分の手札にカードが５枚以上あれば、このクリーチャーは攻撃もブロックもされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-013",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "toOwnerHand": true,
+          "n": 1,
+          "optional": true,
+          "g179Other": true,
+          "g187OwnPick": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "Jトルネードする自分の他のジョーカーズを選ぶ",
+          "afterBattleSelect": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "min": 5
+          }
+        },
+        "grants": {
+          "unblockable": true,
+          "cannotBeAttacked": true
+        }
+      },
+      "supportBatch": "phase-1649",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1648,
+    "phase": 1649,
     "checkedAt": "2026-11-22",
-    "baseCount": 9176,
+    "baseCount": 9179,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9179,
+    "totalCount": 9182,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45904/",
-      "https://dm.takaratomy.co.jp/rule/qa/45905/",
-      "https://dm.takaratomy.co.jp/rule/qa/45930/",
-      "https://dm.takaratomy.co.jp/rule/qa/46065/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36817/"
+      "https://dm.takaratomy.co.jp/rule/qa/32320/",
+      "https://dm.takaratomy.co.jp/rule/qa/32321/",
+      "https://dm.takaratomy.co.jp/rule/qa/31774/",
+      "https://dm.takaratomy.co.jp/rule/qa/31775/",
+      "https://dm.takaratomy.co.jp/rule/qa/31776/",
+      "https://dm.takaratomy.co.jp/rule/qa/39340/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -319065,6 +319177,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/42927/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35334/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31618/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1648,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9176,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9179,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45904/",
+          "https://dm.takaratomy.co.jp/rule/qa/45905/",
+          "https://dm.takaratomy.co.jp/rule/qa/45930/",
+          "https://dm.takaratomy.co.jp/rule/qa/46065/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36817/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

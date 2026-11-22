@@ -4666,6 +4666,14 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_OwnShieldGraves697'});
   break;
  }
+ case'g34_GetFuture1649':
+  if(own.hand.length)choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));
+  else start(s,t,[{op:'Draw',n:1}]);
+  break;
+ case'g34_GetFutureFinish1649':
+  start(s,t,[{op:'Draw',n:1},...(t.discarded?[{op:'DiscardCost655',costs:t.costs,
+   g835Creature:true,inclusive:true}]:[])]);
+  break;
  case'g34_MarshalExchange1648':{
   const selected=t.selected||[],rows=own.hand.filter(y=>!selected.some(r=>r.uid===y.uid)),max=t.max==='all'?Infinity:t.max;
   if(!t.done&&selected.length<max&&rows.length){
@@ -7820,6 +7828,12 @@ export function createSixPhotoRules(api){
   else start(s,t,[{op:'Draw',n:2}]);
   break;
  case'g34_BreakEither1612':if(v)start(s,t,[{op:'Break497',n:1,owner:v.p===t.p?'self':undefined,selected:[v.uid],...(t.g1645CreatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);break;
+ case'g34_GetFuture1649':{
+  const y=own.hand.find(y=>y.uid===v);
+  if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,
+   {...t,op:'g34_GetFutureFinish1649',costs:discardCosts655(s,t.p,y,false)});
+  break;
+ }
  case'g34_MarshalExchange1648':
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});

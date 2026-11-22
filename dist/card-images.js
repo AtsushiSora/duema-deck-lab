@@ -9180,3 +9180,7 @@ export const CARD_IMAGES={
   "dmr09-s04": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-s04.jpg",
   "dm22ex1-095": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-095.jpg",
 };
+
+CARD_IMAGES['dmrp19-019']="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-019.jpg";
+CARD_IMAGES['dmrp08-053']="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-053.jpg";
+CARD_IMAGES['dmsd13-013']="https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-013.jpg";
