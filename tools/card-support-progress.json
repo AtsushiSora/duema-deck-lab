@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9083,
-  "pendingNames": 2742,
-  "phase": 1617,
-  "added": 3,
+  "supportedNames": 9087,
+  "pendingNames": 2738,
+  "phase": 1618,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,14 +154,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1539,
+    "クリーチャー": 1538,
     "呪文": 331,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 35,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 233,
+    "進化クリーチャー": 230,
     "スター進化クリーチャー": 53,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 42,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "未対応の能力文": 2004,
+    "未対応の能力文": 2000,
     "複数面・特殊カードタイプまたは情報不足": 593,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -523864,22 +523864,193 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1618から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1618,
+      "checkedAt": "2026-11-22T03:05:39.570Z",
+      "baseline": "96ef41eaba7f197cf34a4a5b09192e6b7818460d",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9083,
+      "currentNames": 9087,
+      "remainingNames": 413,
+      "added": [
+        {
+          "id": "dm33-026",
+          "name": "ケングレンオー～水遊び～"
+        },
+        {
+          "id": "dm32-060",
+          "name": "ワンケングレンオー ～月下咆哮～"
+        },
+        {
+          "id": "dm34-010",
+          "name": "ワンケングレンオー～全速前進～"
+        },
+        {
+          "id": "dm33-016",
+          "name": "ケンゴウグレンオー～天地鳴動～"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9083,
+        "uniqueNames": 9087,
+        "uniqueIds": 9087,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1618.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.339,
+          "log": "tmp/duema-phase-1618/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1618-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.819,
+          "log": "tmp/duema-phase-1618/final-focused.log",
+          "passed": 34,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1362-effects.test.mjs",
+            "tests/standard439-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1617-effects.test.mjs",
+            "tests/standard1613-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.837,
+          "log": "tmp/duema-phase-1618/final-related.log",
+          "passed": 134,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 25.852,
+          "log": "tmp/duema-phase-1618/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.849,
+          "log": "tmp/duema-phase-1618/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.378,
+          "log": "tmp/duema-phase-1618/target9500.log"
+        }
+      },
+      "totalTestsPassed": 168,
+      "hashes": {
+        "dist/cards.json": "58d29c9903c5b0f65c36f9dd58918f1f2f2c5b31162eb4363e471684240e7448",
+        "dist/engine.js": "0b9613aa285a088ef740dbe997084dcc128dbb1c325bf24488b3c80189e3ca25",
+        "dist/six-photo-rules.js": "816771f30581af93615c2fa60101fb2b19e6b575cec6386c43f1c8af7b5a3d52",
+        "dist/online-compatibility.js": "47d3a0663286684ac22e37417f68f254fc04105f420c53736bdf045663b6aba4",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.134",
+      "registeredCardVerificationPending": [
+        {
+          "phase": 1618,
+          "cardIds": [
+            "dm33-026",
+            "dm32-060",
+            "dm34-010",
+            "dm33-016"
+          ],
+          "target": "QA39412: 弩闘！桃天守閣によるタップ能力からのアンタップ進化",
+          "dependency": "dmex14-040",
+          "reason": "進化系列4種類の全能力実装・固有34件・回帰134件は通過。未対応の桃天守閣を含む公式裁定の実カード再現は次バッチに継続。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39412/",
+          "status": "pending-next-batch"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1618.json",
+      "supported": 9087,
+      "pending": 2738,
+      "reason": "進化系列4種類の登場時処理・召喚・ソウルシフト・攻撃のかわりのタップ能力と山札から重ねる移動を実カードで検証。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1618-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.227,
+          "log": "tmp/duema-phase-1618/focused.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1619から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1617,
-    "nextPhase": 1618,
+    "lastVerifiedPhase": 1618,
+    "nextPhase": 1619,
     "workInProgress": null,
     "nextCandidates": [
-      "龍素記号Cg ダイシャリン：呪文へのチャージャー付与を、通常詠唱・無料使用・ツインパクト・解決中の退出で検証。",
-      "Library of Alexandria：マナゾーンの起動、手札7枚条件と支払いを検証。",
-      "巡霊者ウイニング・スター／スーパー・ウイニング・スター：公式のビクトリーマーク情報を確認して判定を実装。"
+      "弩闘！桃天守閣：全4能力を実装し、phase1618のQA39412再現を解消。",
+      "ゴウケンオー～剣々轟々～：ソウルシフト・ブロッカー全破壊・全山札からの段階進化を検証。",
+      "勝利皇帝Guy-R：超無限進化と∞ソウルシフト、攻撃時のパワー比較全破壊を検証。"
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9083種類・重複0、9500まで残り417。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1617とtools/target9500-registration-checkpoint-1617.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1618で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9087種類・重複0、9500まで残り413。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1618とtools/target9500-registration-checkpoint-1618.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1619で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -523959,9 +524130,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9083種類・重複0、9500まで残り417。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1617とtools/target9500-registration-checkpoint-1617.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1618で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9087種類・重複0、9500まで残り413。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1618とtools/target9500-registration-checkpoint-1618.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1619で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -524092,10 +524263,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9083,
-      "remaining": 417,
+      "currentCount": 9087,
+      "remaining": 413,
       "status": "active",
-      "phase": 1617
+      "phase": 1618
     },
     "deferredRegistrationCandidates": [
       {
@@ -524310,6 +524481,17 @@
         "reason": "公式本文・基本情報・画像を照合。ビクトリーマークの判定、ブロッカー付与・全バトル勝利・ターン終了時アンタップの全能力を検証するまで未登録。",
         "phase": 1613,
         "status": "not-registered"
+      },
+      {
+        "ids": [
+          "dm32-101",
+          "dmex18-067"
+        ],
+        "name": "ケングレンオー ～出発～",
+        "reason": "同名再録の波ダッシュ表記がcatalogue上で別名になっている。今回の4種類と重複登録せず、別途両版と保存済みIDの照合をしてから一種類として対応する。",
+        "id": "dm32-101",
+        "phase": 1618,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -524353,7 +524535,22 @@
       "status": "active",
       "phase": 1603
     },
-    "registrationValidationPending": [],
+    "registrationValidationPending": [
+      {
+        "phase": 1618,
+        "cardIds": [
+          "dm33-026",
+          "dm32-060",
+          "dm34-010",
+          "dm33-016"
+        ],
+        "target": "QA39412: 弩闘！桃天守閣によるタップ能力からのアンタップ進化",
+        "dependency": "dmex14-040",
+        "reason": "進化系列4種類の全能力実装・固有34件・回帰134件は通過。未対応の桃天守閣を含む公式裁定の実カード再現は次バッチに継続。",
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39412/",
+        "status": "pending-next-batch"
+      }
+    ],
     "resolvedRegistrationCandidates": [
       {
         "id": "dmex04-012",
@@ -524475,23 +524672,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1617,
-      "baseline": "78985d1a86d9dde1f6ba00751fa3e1dd56abaa23",
-      "supportedNames": 9083,
-      "artifact": "tools/target9500-registration-checkpoint-1617.json",
-      "checkedAt": "2026-11-22T02:56:39.630Z"
+      "phase": 1618,
+      "baseline": "96ef41eaba7f197cf34a4a5b09192e6b7818460d",
+      "supportedNames": 9087,
+      "artifact": "tools/target9500-registration-checkpoint-1618.json",
+      "checkedAt": "2026-11-22T03:05:39.570Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T02:56:39.630Z",
+      "checkedAt": "2026-11-22T03:05:39.570Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9083,
-      "remainingNames": 417,
+      "currentNames": 9087,
+      "remainingNames": 413,
       "duplicateNames": 0,
-      "engineVersion": "0.602.133",
+      "engineVersion": "0.602.134",
       "added": [
         {
           "id": "dmr12-008",
@@ -524544,6 +524741,22 @@
         {
           "id": "dm32-017",
           "name": "超電磁マクスウェル Z"
+        },
+        {
+          "id": "dm33-026",
+          "name": "ケングレンオー～水遊び～"
+        },
+        {
+          "id": "dm32-060",
+          "name": "ワンケングレンオー ～月下咆哮～"
+        },
+        {
+          "id": "dm34-010",
+          "name": "ワンケングレンオー～全速前進～"
+        },
+        {
+          "id": "dm33-016",
+          "name": "ケンゴウグレンオー～天地鳴動～"
         }
       ],
       "results": {
@@ -524659,10 +524872,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "637d09131199bd56af71e845d38f41bc254555cf7c23c15a5afe0882f37bee56",
-        "dist/engine.js": "30838285b560a66125bd0fcc5ca4f32cb823e38e062040d112a53de6f52c6c97",
-        "dist/six-photo-rules.js": "a178c7a11aeea47a7e6725e0caed93691b088f5977f0632734091e8daebe5e6c",
-        "dist/online-compatibility.js": "f8af48b854c4309f89efc3de0f26b8043ea96ba82cfeed3862fe167474e93178",
+        "dist/cards.json": "58d29c9903c5b0f65c36f9dd58918f1f2f2c5b31162eb4363e471684240e7448",
+        "dist/engine.js": "0b9613aa285a088ef740dbe997084dcc128dbb1c325bf24488b3c80189e3ca25",
+        "dist/six-photo-rules.js": "816771f30581af93615c2fa60101fb2b19e6b575cec6386c43f1c8af7b5a3d52",
+        "dist/online-compatibility.js": "47d3a0663286684ac22e37417f68f254fc04105f420c53736bdf045663b6aba4",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -524727,10 +524940,10 @@
       },
       "phaseRange": [
         1614,
-        1617
+        1618
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 13,
+      "addedNames": 17,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -524742,8 +524955,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 27.708,
-        "log": "tmp/duema-phase-1617/check.log"
+        "seconds": 25.852,
+        "log": "tmp/duema-phase-1618/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -524753,10 +524966,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.889,
-        "log": "tmp/duema-phase-1617/audit.log"
+        "seconds": 12.849,
+        "log": "tmp/duema-phase-1618/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1617.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1618.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -525845,11 +526058,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9083,
-      "remaining": 417,
+      "currentNames": 9087,
+      "remaining": 413,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T02:56:39.630Z"
+      "checkedAt": "2026-11-22T03:05:39.570Z"
     }
   },
   "registeredCardVerification": {
@@ -577714,19 +577927,35 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1617,
-      "added": 3,
-      "supportedNames": 9083,
-      "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1617.json"
+      "phase": 1618,
+      "added": 4,
+      "supportedNames": 9087,
+      "pendingNewCards": 4,
+      "artifact": "tools/target9500-registration-checkpoint-1618.json",
+      "relatedRulingVerificationPending": [
+        {
+          "phase": 1618,
+          "cardIds": [
+            "dm33-026",
+            "dm32-060",
+            "dm34-010",
+            "dm33-016"
+          ],
+          "target": "QA39412: 弩闘！桃天守閣によるタップ能力からのアンタップ進化",
+          "dependency": "dmex14-040",
+          "reason": "進化系列4種類の全能力実装・固有34件・回帰134件は通過。未対応の桃天守閣を含む公式裁定の実カード再現は次バッチに継続。",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39412/",
+          "status": "pending-next-batch"
+        }
+      ]
     }
   },
   "registrationStop": {
-    "phase": 1617,
+    "phase": 1618,
     "threshold": 9500,
-    "supportedNames": 9083,
-    "pendingNames": 2742,
-    "checkedAt": "2026-11-22T02:56:39.630Z",
+    "supportedNames": 9087,
+    "pendingNames": 2738,
+    "checkedAt": "2026-11-22T03:05:39.570Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

@@ -288697,15 +288697,168 @@
       "breaker": 2,
       "supportBatch": "phase-1617",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm33-026",
+      "name": "ケングレンオー～水遊び～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "フレイム・モンスター/ブルー・モンスター",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚、山札の一番下に置く。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 自分の山札を見る。その中から名前に《ワンケングレンオー》とあるカードを１枚選び、バトルゾーンにあるこのクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g439Tap": [
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ワンケングレンオー",
+          "anyCard": true
+        }
+      ],
+      "supportBatch": "phase-1618",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-060",
+      "name": "ワンケングレンオー ～月下咆哮～",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "フレイム・モンスター",
+      "text": "進化-バトルゾーンにある自分の、名前に《ケングレンオー》とあるクリーチャー１体の上に置く。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札を見る。その中から、名前に《ケンゴウグレンオー》とあるカード を１枚選び、バトルゾーンにあるこのクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-060",
+      "limit": 4,
+      "evolution": {
+        "nameIncludes": "ケングレンオー"
+      },
+      "g439Tap": [
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ケンゴウグレンオー",
+          "anyCard": true
+        }
+      ],
+      "supportBatch": "phase-1618",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-010",
+      "name": "ワンケングレンオー～全速前進～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ブルー・モンスター/フレイム・モンスター",
+      "text": "進化 - バトルゾーンにある自分の、名前に《ケングレンオー》とあるクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚を見て、そのうちの１枚を山札の一番下に戻す。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。自分の山札を見る。その中から名前に《ケンゴウグレンオー》とあるクリーチャーを１体選び、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-010",
+      "limit": 4,
+      "evolution": {
+        "nameIncludes": "ケングレンオー"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "to": "deck",
+              "n": 1
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "g439Tap": [
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ケンゴウグレンオー"
+        }
+      ],
+      "supportBatch": "phase-1618",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-016",
+      "name": "ケンゴウグレンオー～天地鳴動～",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 11000,
+      "race": "フレイム・モンスター",
+      "text": "進化ー自分の、名前に《ワンケングレンオー》とあるクリーチャー１体の上に置く。\nソウルシフト(このクリーチャーを召喚する時、このクリーチャーの進化元クリーチャーを選ぶ。このクリーチャーのコストは、その選んだクリーチャーのコストだけ少なくなる。ただし、このクリーチャーのコストは１より少なくならない)\nW・ブレイカー\nこのクリーチャーで攻撃するかわりに、タップして次の 能力を使ってもよい。 相手のパワー2000以下のクリーチャーをすべて破壊する。自分の山札を見る。その中から名前に《ゴウケンオー》とあるクリーチャーを１体選び、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-016",
+      "limit": 4,
+      "evolution": {
+        "nameIncludes": "ワンケングレンオー"
+      },
+      "g1362SoulShift": true,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 2000
+          }
+        },
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ゴウケンオー"
+        }
+      ],
+      "supportBatch": "phase-1618",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1617,
+    "phase": 1618,
     "checkedAt": "2026-11-22",
-    "baseCount": 9080,
-    "newEffectCards": 3,
+    "baseCount": 9083,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9083,
+    "totalCount": 9087,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -315122,6 +315275,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9080,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1617,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9080,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9083,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

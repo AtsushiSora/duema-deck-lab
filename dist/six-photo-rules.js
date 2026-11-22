@@ -2736,12 +2736,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GoukenEvolution1362':{
-  const ids=look(s,{...t,n:7});
+  const ids=look(s,{...t,n:t.allDeck?own.deck.length:7});
   const host=sourceHost474(s,t)?.x;
   const rows=host&&own.battle.includes(host)&&api.isCreature(s,host)?own.deck.filter(x=>
-   ids.includes(x.uid)&&card(x).type==='creature'&&card(x).name.includes('ケンゲキオージャ')&&
+   ids.includes(x.uid)&&(t.anyCard||card(x).type==='creature')&&card(x).name.includes(t.nameIncludes||'ケンゲキオージャ')&&
    canPut(s,t.p,x,'deck')):[];
-  if(rows.length)choice(s,{...t,...deckPeek841(own,ids),ids},'ゴウケンオーの上に重ねるケンゲキオージャを選ぶ',[
+  if(rows.length)choice(s,{...t,...deckPeek841(own,ids),ids},t.allDeck?'このクリーチャーの上に重ねる'+t.nameIncludes+'を選ぶ':'ゴウケンオーの上に重ねるケンゲキオージャを選ぶ',[
    ...rows.map(x=>opt(card(x).name,x.uid,30,x.cardId)),skip()
   ]);
   else{
@@ -7841,7 +7841,7 @@ export function createSixPhotoRules(api){
  case'g34_GoukenEvolution1362':{
   const host=sourceHost474(s,t)?.x;
   put(s,{...t,op:'g34_GoukenShuffle1362'});
-  if(v&&host&&own.battle.includes(host)&&api.isCreature(s,host)){
+  if(v&&host&&!host.sealed&&own.battle.includes(host)&&api.isCreature(s,host)){
    release(s,t.p,v);
    const x=remove(own.deck,v);
    if(x)enter(s,t.p,x,host.uid,{origin:'deck',execution:false,g31Force:true});
