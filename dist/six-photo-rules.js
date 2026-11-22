@@ -1220,7 +1220,7 @@ export function createSixPhotoRules(api){
   const c=card(x);
   return !x.faceDown&&c.type==='creature'&&t.g960DeathNames.includes(exactName(creatureFaceName(c)));
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1633ExtraOrigins?.includes(origin)||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.g1121RepeatTarget&&t.selected.includes(x.uid))return -20;
@@ -5439,6 +5439,13 @@ export function createSixPhotoRules(api){
  case'g34_HatchHunter841':{
   const y=own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
+  break;
+ }
+ case'g34_SearchZones1633':{
+  const ids=look(s,{...t,n:own.deck.length});
+  put(s,{...t,...deckPeek841(own,ids),op:'g34_Select',deploy:true,optional:true,
+   selected:[],rows:[],g530Ids:ids,g1633ExtraOrigins:t.zones.filter(z=>z!=='deck'),
+   after:[{op:'LookRest530',ids,rest:'shuffle'}]});
   break;
  }
  case'g34_AcidDeploy1114':{
@@ -10091,7 +10098,10 @@ export function createSixPhotoRules(api){
     if(watcher.p===p&&watcher.leaveDraw891&&(watcher.g1248DragonLeaves?victim.g1248DragonElement:victim.creature)&&!watchUsed792(s,watcher,{defs:watcher.leaveDraw891})&&
      (!(watcher.g891OnlySelf||watcher.leaveDraw891[0]?.g792Once&&s.g20LeavingUids?.includes(watcher.uid))||key(watcher)===key(victim))&&
      (!watcher.g965OtherOwnLeave||s.active===p&&key(watcher)!==key(victim)))
-     queueBattle(s,p,watcher,watcher.leaveDraw891);
+     {const defs=watcher.leaveDraw891;
+      if(!defs.some(d=>d.g1633ColorlessVictimCost)||!victim.colors.length&&victim.g1145Cost!==undefined)
+       queueBattle(s,p,watcher,defs.map(d=>d.g1633ColorlessVictimCost?{...d,filter:{...d.filter,exactCost:victim.g1145Cost}}:d));
+     }
    const watchers=before.filter(y=>y.p!==p&&(y.elementDraw||victim.creature&&y.opponentCreatureLeaves)||
     to==='grave'&&victim.creature&&y.graveDraw&&key(y)!==key(victim));
    if(victim.creature)for(const y of before){

@@ -1,0 +1,382 @@
+{
+  "phase": 1633,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9129,
+  "target": 9500,
+  "description": "複数のゾーンからの条件付き一括展開、無色の自軍クリーチャーが離れた時のコスト参照によるマナからの展開を既存処理で検証。公式QA31714の再現に必要な燃える漢魂「四つ牙」を加え、進化とハンティング、攻撃時のマナ破棄・任意加速も全文実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31714/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-026",
+      "name": "ブブンド・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-026",
+      "faces": [
+        {
+          "name": "ブブンド・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札またはマナゾーンから《ドドンブブ》を合計２体まで選び、バトルゾーンに出す。その後、山札をシャッフルする。",
+          "race": "グランセクト",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SearchZones1633",
+            "zones": [
+              "deck",
+              "mana"
+            ],
+            "n": 2,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "ドドンブブ"
+            },
+            "title": "山札かマナからドドンブブを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "32e784f36b22df32c6300e17a6252d295686005abd3a2e10c97dc545a23557dd",
+        "facesMatched": true,
+        "imageSha256": "12a9bcd272ff41ad287ca2e9880b707f4823614e2d5a6bc95b1495f5e342e706",
+        "imageBytes": 103751,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像で能力全文・名称・基本情報・マナ数字を照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-02 拡張パック新2弾 マジでB・A・Dなラビリンス!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-026",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp05-001",
+      "name": "出前百丁 チャル名人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-001",
+      "faces": [
+        {
+          "name": "出前百丁 チャル名人",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。自分の山札と手札から《漢》と名前にあるクリーチャーを好きな数バトルゾーンに出す。その後、自分の山札をシャッフルする。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SearchZones1633",
+            "zones": [
+              "deck",
+              "hand"
+            ],
+            "n": "all",
+            "filter": {
+              "creature": true,
+              "name": "漢"
+            },
+            "title": "手札か山札から名前に漢とあるクリーチャーを好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "33ffc2460b1d043689c7b38c5ee4f6965da20a9cef0b51fed175eda80c1482ab",
+        "facesMatched": true,
+        "imageSha256": "24958f70e85ab8d103ce573dee920a6973ce493b51a5c98be85aca2f6990e5cc",
+        "imageBytes": 143006,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像で能力全文・名称・基本情報・マナ数字を照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DMRP-05 双極篇 拡張パック第１弾 轟快!! ジョラゴンGo Fight!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-001",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      },
+      "currentPrint": {
+        "id": "dmex08-229",
+        "name": "出前百丁 チャル名人",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-229",
+        "faces": [
+          {
+            "name": "出前百丁 チャル名人",
+            "typeText": "クリーチャー",
+            "civilizationText": "ゼロ",
+            "civilizations": [
+              "無色"
+            ],
+            "cost": 9,
+            "costText": "9",
+            "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。自分の山札と手札から《漢》と名前にあるクリーチャーを好きな数バトルゾーンに出す。その後、自分の山札をシャッフルする。",
+            "race": "ジョーカーズ",
+            "powerText": "4000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "829b567bf3e5352f2473f0c1df6000c458c0fe657347847ea4ad04035d7c81e7",
+          "facesMatched": true,
+          "imageSha256": "5e3f4e05bdd634ef192ef24b1d70f087f388d213f89b60024dd3766716d4e73d",
+          "imageBytes": 151416,
+          "imageReviewed": true,
+          "imageReview": "参照再録と初版の画像、能力全文、基本情報を照合。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-229.jpg"
+      }
+    },
+    {
+      "id": "dmr08-005",
+      "name": "ドヤガオー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-005",
+      "faces": [
+        {
+          "name": "ドヤガオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の無色クリーチャーがバトルゾーンを離れた時、そのクリーチャーとコストが同じ無色クリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "トライストーン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "noColor": true
+            },
+            "g1633ColorlessVictimCost": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "322083651343eb974b2b1af43fef56f829ed947430fccbe7906192fc9b133c07",
+        "facesMatched": true,
+        "imageSha256": "334df3f2d83cb356e936ba95934700fe884125fc9af41da9297834bd925676bf",
+        "imageBytes": 130123,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像で能力全文・名称・基本情報・マナ数字を照合。"
+      },
+      "sameNameProducts": [
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」",
+        "DMR-08 エピソード2 グレイト・ミラクル"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-005",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      },
+      "currentPrint": {
+        "id": "dm23ex3-TF10",
+        "name": "ドヤガオー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TF10",
+        "faces": [
+          {
+            "name": "ドヤガオー",
+            "typeText": "クリーチャー",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "W・ブレイカー\n自分の無色クリーチャーが離れた時、そのクリーチャーとコストが同じ無色クリーチャーを１体、自分のマナゾーンから出してもよい。",
+            "race": "トライストーン",
+            "powerText": "9000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "a8863c350289d4e248fc19447e066e9fb3ce5e27251f949922d8c616c42d86bc",
+          "facesMatched": true,
+          "imageSha256": "b6d3b28434ad74b0d4955b2a428fc3eb70806d496b773af5600d83dd27f844b5",
+          "imageBytes": 126919,
+          "imageReviewed": true,
+          "imageReview": "参照再録と初版の画像、能力全文、基本情報を照合。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TF10.jpg"
+      }
+    },
+    {
+      "id": "dmr04-013",
+      "name": "燃える漢魂「四つ牙」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-013",
+      "faces": [
+        {
+          "name": "燃える漢魂「四つ牙」",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化?自分のハンター・クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、相手はカードを１枚、自身のマナゾーンから選び、墓地に置く。その後、自分は山札の上から１枚目をマナゾーンに置いてもよい。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nW・ブレイカー",
+          "race": "フレイム・コマンド/ハンター",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ハンター"
+        },
+        "g166Hunting": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "OpponentManaLoss478"
+          },
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚目をマナに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmex08-277",
+        "name": "燃える漢魂「四つ牙」",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-277",
+        "faces": [
+          {
+            "name": "燃える漢魂「四つ牙」",
+            "typeText": "進化クリーチャー",
+            "civilizationText": "火/自然",
+            "civilizations": [
+              "火",
+              "自然"
+            ],
+            "cost": 7,
+            "costText": "7",
+            "abilityText": "進化：自分のハンター・クリーチャー１体の上に置く。\nハンティング\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手はカードを１枚、自身のマナゾーンから選び、墓地に置く。その後、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+            "race": "フレイム・コマンド/ハンター",
+            "powerText": "9000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "e2e43c0a9c059968b26f1cde237c6a3056ea12f3ea14c9145a5ed3a9e4221a18",
+          "facesMatched": true,
+          "imageSha256": "56b4f2b61903a8f5f7ecc4fe0bd7ccae1b18b7b6d12afbfcaa14d7f2aeeb6fe0",
+          "imageBytes": 149623,
+          "imageReviewed": true,
+          "imageReview": "参照再録と初版の画像、能力全文、基本情報を照合。"
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-277.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "de8b7dd6e952cdec29ffb4d7b955f606d6c6cee5800eadceeb9ebaa9e9fa1a3d",
+        "facesMatched": true,
+        "imageSha256": "b2abd36ee779bbc39aa68cd4e04d601c8b2fdfe64002788288ea92efb6c3c197",
+        "imageBytes": 127886,
+        "imageReviewed": true,
+        "imageReview": "公式カード画像で能力全文・名称・基本情報・マナ数字を照合。"
+      },
+      "sameNameProducts": [
+        "DMEX-08 謎のブラックボックスパック",
+        "DMR-04 エピソード1 ライジング・ホープ",
+        "プロモ限定カード 10期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-013",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "既存のサイクロン付与、山札を見る禁止を区別した処理などを公式全文から確認。難しい候補は記録して別候補へ進む。"
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-026": 4,
+      "dmrp05-001": 4,
+      "dmr08-005": 4,
+      "dmr04-013": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31714/",
+      "checkedAt": "2026-11-22",
+      "sha256": "d4deca6b98cf959bceab023d9fb0c2968d3e8e32aa49a61c1c53d0b226f909fb"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/316669/",
+      "checkedAt": "2026-11-22",
+      "sha256": "1f40dee33f42480e88c1793376c80537ad86d5d0c36a10e1bb8bbd253d58a88b"
+    }
+  ],
+  "rulingReview": [
+    "QA31714: 燃える漢魂「四つ牙」は既存の自軍ハンターを進化元としてチャル名人の能力で手札/山札から出せる。再現に必要な同カードも追加する。",
+    "公式総合ルール変更316669の603.5dを参照。ドヤガオーも同時に離れる場合、同時に離れた他の無色クリーチャーを参照しない。"
+  ]
+}

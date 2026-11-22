@@ -290295,19 +290295,158 @@
       },
       "supportBatch": "phase-1632",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-026",
+      "name": "ブブンド・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札またはマナゾーンから《ドドンブブ》を合計２体まで選び、バトルゾーンに出す。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-026",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SearchZones1633",
+          "zones": [
+            "deck",
+            "mana"
+          ],
+          "n": 2,
+          "filter": {
+            "creature": true,
+            "g201ExactName": "ドドンブブ"
+          },
+          "title": "山札かマナからドドンブブを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1633",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-001",
+      "name": "出前百丁 チャル名人",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。自分の山札と手札から《漢》と名前にあるクリーチャーを好きな数バトルゾーンに出す。その後、自分の山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-001",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SearchZones1633",
+          "zones": [
+            "deck",
+            "hand"
+          ],
+          "n": "all",
+          "filter": {
+            "creature": true,
+            "name": "漢"
+          },
+          "title": "手札か山札から名前に漢とあるクリーチャーを好きな数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1633",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-005",
+      "name": "ドヤガオー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "トライストーン",
+      "text": "W・ブレイカー\n自分の無色クリーチャーが離れた時、そのクリーチャーとコストが同じ無色クリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-005",
+      "limit": 4,
+      "breaker": 2,
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "noColor": true
+          },
+          "g1633ColorlessVictimCost": true
+        }
+      ],
+      "supportBatch": "phase-1633",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-013",
+      "name": "燃える漢魂「四つ牙」",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "フレイム・コマンド/ハンター",
+      "text": "進化：自分のハンター・クリーチャー１体の上に置く。\nハンティング\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手はカードを１枚、自身のマナゾーンから選び、墓地に置く。その後、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-013",
+      "limit": 4,
+      "evolution": {
+        "race": "ハンター"
+      },
+      "g166Hunting": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "OpponentManaLoss478"
+        },
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚目をマナに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1633",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1632,
+    "phase": 1633,
     "checkedAt": "2026-11-22",
-    "baseCount": 9126,
-    "newEffectCards": 3,
+    "baseCount": 9129,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9129,
+    "totalCount": 9133,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
-      "https://dm.takaratomy.co.jp/rule/qa/40183/"
+      "https://dm.takaratomy.co.jp/rule/qa/31714/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -316978,6 +317117,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35040/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35079/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35399/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1632,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9126,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9129,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35456/",
+          "https://dm.takaratomy.co.jp/rule/qa/40183/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
