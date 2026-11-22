@@ -1,0 +1,246 @@
+{
+  "phase": 1620,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9090,
+  "target": 9500,
+  "description": "墓地からの有料召喚・墓地出身の登場時能力・攻撃時に実際に墓地へ置いたカード2枚の種族判定を既存処理で実装し、支払い・回数制限・進化除外とJSON継続を検証。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36902/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36903/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36904/",
+    "https://dm.takaratomy.co.jp/rule/qa/43466/"
+  ],
+  "cards": [
+    {
+      "id": "dmr10-v01",
+      "name": "不死帝 ブルース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-v01",
+      "faces": [
+        {
+          "name": "不死帝 ブルース",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。\nW・ブレイカー\n進化ではないデスパペットと進化ではないアウトレイジを、自分の墓地から召喚してもよい。\nこのクリーチャーを自分の墓地から召喚してもよい。",
+          "race": "アウトレイジMAX",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ],
+        "breaker": 2,
+        "graveSummon": true,
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "unlimited": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "raceAny": [
+              "デスパペット",
+              "アウトレイジ"
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-v01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "a79f852a854c4030610f2cd8470e2f756c2e32c1835ad3d9d1d2453e043eb179",
+        "facesMatched": true,
+        "imageSha256": "5bd42d0fc4e6bc3bc52dd1f9e0756bd97c1b032f8334f6e9d4e8b888dbbe8e08",
+        "imageBytes": 149087,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式カード画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "DMR-10 エピソード3 デッド＆ビート"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-v01",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "promoy12-039",
+      "name": "不死の猛者 シックス・センス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-039",
+      "faces": [
+        {
+          "name": "不死の猛者 シックス・センス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーを自分の墓地からバトルゾーンに出した時、コスト６以下の進化ではないアウトレイジまたはデスパペットを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "アウトレイジMAX",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g527ExtraEntry": [
+          {
+            "origin": "grave",
+            "label": "墓地から出た時：非進化アウトレイジかデスパペットを出す",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "max": 6,
+                  "raceAny": [
+                    "アウトレイジ",
+                    "デスパペット"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "7e5f1d4cec3bb24f7bf99c38bb639c3c4d5ce34eb2fc999e85deed62a0f08a77",
+        "facesMatched": true,
+        "imageSha256": "98220c8ffea5e45a5cb8ba433dd481fe8b1c4d5dc8d41212c499164ff9ddfcfe",
+        "imageBytes": 141741,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式カード画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 12期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-039",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "promoy12-006",
+      "name": "カンフーパンヤオ カツドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-006",
+      "faces": [
+        {
+          "name": "カンフーパンヤオ カツドン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置く。そのカードが２枚ともアウトレイジであれば、そのターン、このクリーチャーのパワーは+7777され、シールドをさらに１枚ブレイクする。",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1042Together": true,
+            "movedFilter": {
+              "race": "アウトレイジ"
+            },
+            "afterAllMoved": [
+              {
+                "op": "SelfBoost313",
+                "power": 7777,
+                "g536Source": true
+              },
+              {
+                "op": "SelfExtraBreak444",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "3c2e2a777a7ab60db0678ccb1830d9ac54e25023f9ea340d749149c555f26b89",
+        "facesMatched": true,
+        "imageSha256": "4d64882fa9c35a166f6b8b175733ae29693b58f697276753101ceba31c8187df",
+        "imageBytes": 139409,
+        "imageReviewedAt": "2026-11-22",
+        "imageReview": "公式カード画像で正規名・文明・コスト・パワー・種族・マナ数と能力全文を目視照合。"
+      },
+      "sameNameProducts": [
+        "プロモ限定カード 12期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-006",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "nextCandidates": [
+    "アウトレイジ・デスパペットの未対応カードで能力全文を再現可能な3〜5種類を調査。"
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dmx22b-110",
+      "name": "素晴らしい犬 ワンワンワン",
+      "reason": "Dog Soulsの機能的な扱いを公式資料で確認できていないため未登録。同名別画像版を追加種類に数えない。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr10-v01": 4,
+      "promoy12-039": 4,
+      "promoy12-006": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36902/",
+      "checkedAt": "2026-11-22",
+      "sha256": "186cf7c106b41f6d8cf160ede5a8a081bc6946e24dc3922edc9599de7ff690da"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36903/",
+      "checkedAt": "2026-11-22",
+      "sha256": "c0bc0e82d2be768339ce7fd48862c84fe8031654e64cb1e4c5d6eeceb87acdb5"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36904/",
+      "checkedAt": "2026-11-22",
+      "sha256": "5435b781c523386a6a8233c0600e6398df22948e076782d6c4acef9403ed03ea"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43466/",
+      "checkedAt": "2026-11-22",
+      "sha256": "214ae807fb122b448fbd4bc375b1464bac128d54790df9306445aed49154d5d8"
+    }
+  ]
+}

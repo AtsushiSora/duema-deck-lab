@@ -29089,5 +29089,134 @@
       "g1619PeachCastle": true,
       "d2Field": true
     }
+  },
+  "dmr10-v01": {
+    "phase": 1620,
+    "faces": [
+      {
+        "name": "不死帝 ブルース",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。\nW・ブレイカー\n進化ではないデスパペットと進化ではないアウトレイジを、自分の墓地から召喚してもよい。\nこのクリーチャーを自分の墓地から召喚してもよい。",
+        "race": "アウトレイジMAX",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        }
+      ],
+      "breaker": 2,
+      "graveSummon": true,
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "unlimited": true,
+        "filter": {
+          "creature": true,
+          "nonEvolution": true,
+          "raceAny": [
+            "デスパペット",
+            "アウトレイジ"
+          ]
+        }
+      }
+    }
+  },
+  "promoy12-039": {
+    "phase": 1620,
+    "faces": [
+      {
+        "name": "不死の猛者 シックス・センス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーを自分の墓地からバトルゾーンに出した時、コスト６以下の進化ではないアウトレイジまたはデスパペットを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "アウトレイジMAX",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g527ExtraEntry": [
+        {
+          "origin": "grave",
+          "label": "墓地から出た時：非進化アウトレイジかデスパペットを出す",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 6,
+                "raceAny": [
+                  "アウトレイジ",
+                  "デスパペット"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy12-006": {
+    "phase": 1620,
+    "faces": [
+      {
+        "name": "カンフーパンヤオ カツドン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置く。そのカードが２枚ともアウトレイジであれば、そのターン、このクリーチャーのパワーは+7777され、シールドをさらに１枚ブレイクする。",
+        "race": "アウトレイジ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "g1042Together": true,
+          "movedFilter": {
+            "race": "アウトレイジ"
+          },
+          "afterAllMoved": [
+            {
+              "op": "SelfBoost313",
+              "power": 7777,
+              "g536Source": true
+            },
+            {
+              "op": "SelfExtraBreak444",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    }
   }
 }

@@ -288953,24 +288953,141 @@
       ],
       "supportBatch": "phase-1619",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-v01",
+      "name": "不死帝 ブルース",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。\nW・ブレイカー\n進化ではないデスパペットと進化ではないアウトレイジを、自分の墓地から召喚してもよい。\nこのクリーチャーを自分の墓地から召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-v01",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        }
+      ],
+      "breaker": 2,
+      "graveSummon": true,
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "unlimited": true,
+        "filter": {
+          "creature": true,
+          "nonEvolution": true,
+          "raceAny": [
+            "デスパペット",
+            "アウトレイジ"
+          ]
+        }
+      },
+      "supportBatch": "phase-1620",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-039",
+      "name": "不死の猛者 シックス・センス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アウトレイジMAX",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーを自分の墓地からバトルゾーンに出した時、コスト６以下の進化ではないアウトレイジまたはデスパペットを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-039",
+      "limit": 4,
+      "breaker": 2,
+      "g527ExtraEntry": [
+        {
+          "origin": "grave",
+          "label": "墓地から出た時：非進化アウトレイジかデスパペットを出す",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 6,
+                "raceAny": [
+                  "アウトレイジ",
+                  "デスパペット"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1620",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-006",
+      "name": "カンフーパンヤオ カツドン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置く。そのカードが２枚ともアウトレイジであれば、そのターン、このクリーチャーのパワーは+7777され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-006",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "g1042Together": true,
+          "movedFilter": {
+            "race": "アウトレイジ"
+          },
+          "afterAllMoved": [
+            {
+              "op": "SelfBoost313",
+              "power": 7777,
+              "g536Source": true
+            },
+            {
+              "op": "SelfExtraBreak444",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1620",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1619,
+    "phase": 1620,
     "checkedAt": "2026-11-22",
-    "baseCount": 9087,
+    "baseCount": 9090,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9090,
+    "totalCount": 9093,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39412/",
-      "https://dm.takaratomy.co.jp/rule/qa/39413/",
-      "https://dm.takaratomy.co.jp/rule/qa/39415/",
-      "https://dm.takaratomy.co.jp/rule/qa/40969/",
-      "https://dm.takaratomy.co.jp/rule/qa/40968/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36946/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36947/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36902/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36903/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36904/",
+      "https://dm.takaratomy.co.jp/rule/qa/43466/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -315415,6 +315532,27 @@
         "totalCount": 9087,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1619,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9087,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9090,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39412/",
+          "https://dm.takaratomy.co.jp/rule/qa/39413/",
+          "https://dm.takaratomy.co.jp/rule/qa/39415/",
+          "https://dm.takaratomy.co.jp/rule/qa/40969/",
+          "https://dm.takaratomy.co.jp/rule/qa/40968/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36946/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36947/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
