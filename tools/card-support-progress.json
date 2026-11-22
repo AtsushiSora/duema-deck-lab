@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9073,
-  "pendingNames": 2752,
-  "phase": 1614,
-  "added": 3,
+  "supportedNames": 9077,
+  "pendingNames": 2748,
+  "phase": 1615,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1543,
-    "呪文": 333,
+    "クリーチャー": 1540,
+    "呪文": 332,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 35,
@@ -222,7 +222,7 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "未対応の能力文": 2014,
+    "未対応の能力文": 2010,
     "複数面・特殊カードタイプまたは情報不足": 593,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -523400,11 +523400,181 @@
         "ユーザーが後回しにした公式照合2件は再開しない。"
       ],
       "next": "phase1615。目標9500まで3〜5種類の公式全文照合・実装・固有テスト・回帰・check・nameKey再集計を継続。push・公開・Netlify更新は別途指示時のみ。"
+    },
+    {
+      "phase": 1615,
+      "checkedAt": "2026-11-22T02:43:32.571Z",
+      "baseline": "fd23b7ca22ebaac38af45d8422f0e52e4f5d0fc7",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9073,
+      "currentNames": 9077,
+      "remainingNames": 423,
+      "added": [
+        {
+          "id": "dmx11-046",
+          "name": "黒神龍ハイサイ・ラッシャイ"
+        },
+        {
+          "id": "dmx09-007",
+          "name": "超速リベンジ・ドラゴン"
+        },
+        {
+          "id": "dmex08-225",
+          "name": "東京ミステリーサーカスからの挑戦状"
+        },
+        {
+          "id": "dmex03-007",
+          "name": "ナンバークエスチョン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9073,
+        "uniqueNames": 9077,
+        "uniqueIds": 9077,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official-4": {
+          "name": "official-4",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1615.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.316,
+          "log": "tmp/duema-phase-1615/official-4.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1615-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.134,
+          "log": "tmp/duema-phase-1615/final-focused.log",
+          "passed": 38,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=4",
+            "tests/standard1550-effects.test.mjs",
+            "tests/standard839-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1234-effects.test.mjs",
+            "tests/standard1139-effects.test.mjs",
+            "tests/standard985-effects.test.mjs",
+            "tests/standard1614-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.021,
+          "log": "tmp/duema-phase-1615/final-related.log",
+          "passed": 120,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.575,
+          "log": "tmp/duema-phase-1615/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.958,
+          "log": "tmp/duema-phase-1615/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.306,
+          "log": "tmp/duema-phase-1615/target9500.log"
+        }
+      },
+      "totalTestsPassed": 158,
+      "hashes": {
+        "dist/cards.json": "be798bd0974bbac3c1dae0ccc856f27192202a23b874e7edacc01745868b8731",
+        "dist/engine.js": "303cb7591242f1ded48da349b419145e2ffc595842d1ef506ac2b8c9cabe2b6e",
+        "dist/six-photo-rules.js": "9f36ec602802353df89dd737a7547cd491e1d5fa4c3de8d81a29943b0a9227d9",
+        "dist/online-compatibility.js": "559c40e24c862be7d2dc6093dadc26656a5dd40c72bc03c0e4548769d886a907",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+      },
+      "engineVersion": "0.602.131",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1615.json",
+      "supported": 9077,
+      "pending": 2748,
+      "reason": "山札から墓地への移動条件付き蘇生、墓地の攻撃誘発、指定名の無料実行を全能力で検証。指定名の実在対象ナンバークエスチョンも全能力で追加して検証。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1615-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.359,
+          "log": "tmp/duema-phase-1615/focused.log"
+        },
+        {
+          "name": "focused-2",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1615-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.121,
+          "log": "tmp/duema-phase-1615/focused-2.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1616から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1614,
-    "nextPhase": 1615,
+    "lastVerifiedPhase": 1615,
+    "nextPhase": 1616,
     "workInProgress": null,
     "nextCandidates": [
       "龍素記号Cg ダイシャリン：呪文へのチャージャー付与を、通常詠唱・無料使用・ツインパクト・解決中の退出で検証。",
@@ -523412,13 +523582,13 @@
       "巡霊者ウイニング・スター／スーパー・ウイニング・スター：公式のビクトリーマーク情報を確認して判定を実装。"
     ],
     "steps": [
-      "開始時にHEAD・作業ツリー・ステージ・AGENTS・進捗・前回テスト・実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計。現在9073種類・重複0、目標9500まで427種類。自動実行はPAUSEDのまま。",
-      "検証済みphase1614とtools/target9500-registration-checkpoint-1614.jsonの結果・ハッシュを確認。既存9070定義、既存ID、catalogueの再録エイリアス、保存形式は変更なし。",
-      "phase1615から未対応3〜5種類を目安に公式の全文・基本情報・画像・制限・再録・裁定を照合し、能力全体の固有テストと関連回帰を実行する。部分対応や再録を新規に数えない。",
-      "npm run check、監査、tools/verify-target9500.mjsとnameKey再集計後に進捗を更新し、検証済みファイルを明示的にステージしてローカルコミット。9500到達で件数増加目的の登録を停止。",
-      "過去の全体npm testは中断・合否未確認を維持。phase1614の100シードNEO/DDD群は個別seedに分割して後続検証し、一括再実行と否定名フィルターを繰り返さない。ユーザー保留の公式2件は依頼まで再開しない。",
-      "カード追加分は公開しない。push・公開・Netlify更新には別途の明示指示が必要。"
+      "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
+      "実データdist/cards.jsonのnameKey件数は9077種類・重複0、9500まで残り423。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1615とtools/target9500-registration-checkpoint-1615.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1616で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
+      "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
+      "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -523494,13 +523664,13 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "開始時にHEAD・作業ツリー・ステージ・AGENTS・進捗・前回テスト・実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "dist/cards.jsonをdist/catalogue.jsのnameKeyで再集計。現在9073種類・重複0、目標9500まで427種類。自動実行はPAUSEDのまま。",
-      "検証済みphase1614とtools/target9500-registration-checkpoint-1614.jsonの結果・ハッシュを確認。既存9070定義、既存ID、catalogueの再録エイリアス、保存形式は変更なし。",
-      "phase1615から未対応3〜5種類を目安に公式の全文・基本情報・画像・制限・再録・裁定を照合し、能力全体の固有テストと関連回帰を実行する。部分対応や再録を新規に数えない。",
-      "npm run check、監査、tools/verify-target9500.mjsとnameKey再集計後に進捗を更新し、検証済みファイルを明示的にステージしてローカルコミット。9500到達で件数増加目的の登録を停止。",
-      "過去の全体npm testは中断・合否未確認を維持。phase1614の100シードNEO/DDD群は個別seedに分割して後続検証し、一括再実行と否定名フィルターを繰り返さない。ユーザー保留の公式2件は依頼まで再開しない。",
-      "カード追加分は公開しない。push・公開・Netlify更新には別途の明示指示が必要。"
+      "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
+      "実データdist/cards.jsonのnameKey件数は9077種類・重複0、9500まで残り423。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1615とtools/target9500-registration-checkpoint-1615.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1616で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
+      "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
+      "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
     ],
     "registrationStatus": "active-manual-local-only",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
@@ -523628,10 +523798,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9073,
-      "remaining": 427,
+      "currentCount": 9077,
+      "remaining": 423,
       "status": "active",
-      "phase": 1614
+      "phase": 1615
     },
     "deferredRegistrationCandidates": [
       {
@@ -524011,23 +524181,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1614,
-      "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
-      "supportedNames": 9073,
-      "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "checkedAt": "2026-11-22T02:05:33.611Z"
+      "phase": 1615,
+      "baseline": "fd23b7ca22ebaac38af45d8422f0e52e4f5d0fc7",
+      "supportedNames": 9077,
+      "artifact": "tools/target9500-registration-checkpoint-1615.json",
+      "checkedAt": "2026-11-22T02:43:32.571Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T02:05:33.611Z",
+      "checkedAt": "2026-11-22T02:43:32.571Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9073,
-      "remainingNames": 427,
+      "currentNames": 9077,
+      "remainingNames": 423,
       "duplicateNames": 0,
-      "engineVersion": "0.602.130",
+      "engineVersion": "0.602.131",
       "added": [
         {
           "id": "dmr12-008",
@@ -524040,6 +524210,22 @@
         {
           "id": "dm33-018",
           "name": "リンネ・ルピア"
+        },
+        {
+          "id": "dmx11-046",
+          "name": "黒神龍ハイサイ・ラッシャイ"
+        },
+        {
+          "id": "dmx09-007",
+          "name": "超速リベンジ・ドラゴン"
+        },
+        {
+          "id": "dmex08-225",
+          "name": "東京ミステリーサーカスからの挑戦状"
+        },
+        {
+          "id": "dmex03-007",
+          "name": "ナンバークエスチョン"
         }
       ],
       "results": {
@@ -524155,10 +524341,10 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "e4d83cbd366cab34eaac6131d0e4659c924120bf9ea565a8c2d572219a246b33",
-        "dist/engine.js": "3eb4b17f881adbef7782969878aee96138147625a91a10b5e7b08ac72297807a",
-        "dist/six-photo-rules.js": "c943bbf07e90b329e9674d9da6cff5ebf829104f5b269514b298170b287b053c",
-        "dist/online-compatibility.js": "4b5929e53327231a9949420ab8d7c44e08a8012d9a5a3800f74d21b22773c31a",
+        "dist/cards.json": "be798bd0974bbac3c1dae0ccc856f27192202a23b874e7edacc01745868b8731",
+        "dist/engine.js": "303cb7591242f1ded48da349b419145e2ffc595842d1ef506ac2b8c9cabe2b6e",
+        "dist/six-photo-rules.js": "9f36ec602802353df89dd737a7547cd491e1d5fa4c3de8d81a29943b0a9227d9",
+        "dist/online-compatibility.js": "559c40e24c862be7d2dc6093dadc26656a5dd40c72bc03c0e4548769d886a907",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
       },
       "invariants": {
@@ -524223,12 +524409,36 @@
       },
       "phaseRange": [
         1614,
-        1614
+        1615
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 3,
+      "addedNames": 7,
       "existingDefinitionsUnchanged": 9070,
-      "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。"
+      "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
+      "latestCheck": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.575,
+        "log": "tmp/duema-phase-1615/check.log"
+      },
+      "latestAudit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.958,
+        "log": "tmp/duema-phase-1615/audit.log"
+      },
+      "latestBatch": "tools/target9500-registration-checkpoint-1615.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -525312,6 +525522,16 @@
       "liveChecksPassed": 13,
       "netlifyUpdated": true,
       "automaticNetlifyUpdates": false
+    },
+    "activeUserRegistrationGoal": {
+      "target": 9500,
+      "startNames": 9073,
+      "baseline": "fd23b7ca",
+      "currentNames": 9077,
+      "remaining": 423,
+      "status": "active",
+      "instruction": "目標9,500まで追加して",
+      "checkedAt": "2026-11-22T02:43:32.571Z"
     }
   },
   "registeredCardVerification": {
@@ -577176,20 +577396,19 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1614,
-      "added": 3,
-      "supportedNames": 9073,
+      "phase": 1615,
+      "added": 4,
+      "supportedNames": 9077,
       "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "longRunningRegression": "tests/neo-ddd.test.mjs: mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds"
+      "artifact": "tools/target9500-registration-checkpoint-1615.json"
     }
   },
   "registrationStop": {
-    "phase": 1614,
+    "phase": 1615,
     "threshold": 9500,
-    "supportedNames": 9073,
-    "pendingNames": 2752,
-    "checkedAt": "2026-11-22T02:05:33.611Z",
+    "supportedNames": 9077,
+    "pendingNames": 2748,
+    "checkedAt": "2026-11-22T02:43:32.571Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

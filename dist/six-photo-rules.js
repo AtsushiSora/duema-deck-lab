@@ -3121,8 +3121,8 @@ export function createSixPhotoRules(api){
  }
  case'g34_SelfGraveBottom839':{
   const y=ownGraveSource839(own,t);
-  if(y&&api.canMoveZone(s,t.p,'grave'))choice(s,t,'このクリーチャーを墓地から山札の下に置く？',
-   [opt('山札の下に置く',true,20,y.cardId),skip()]);
+  if(y&&api.canMoveZone(s,t.p,'grave'))choice(s,t,'このクリーチャーを墓地から山札の'+(t.g1615Top?'上':'下')+'に置く？',
+   [opt('山札の'+(t.g1615Top?'上':'下')+'に置く',true,20,y.cardId),skip()]);
   break;
  }
  case'g34_RevealDiscard839':revealDiscard839(s,t);break;
@@ -6798,7 +6798,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_SelfGraveBottom839':
-  if(v&&ownGraveSource839(own,t)&&zoneMove(s,t.p,'grave',t.uid,'deck',t))start(s,t,t.after);
+  if(v&&ownGraveSource839(own,t)&&zoneMove(s,t.p,'grave',t.uid,t.g1615Top?'deckTop':'deck',{...t,g183Return:!!t.g1615Top}))start(s,t,t.after);
   break;
  case'g34_RevealDiscard839':
   if(t.shown){
@@ -9590,6 +9590,8 @@ export function createSixPhotoRules(api){
   if(hyperMode418(s,x))for(const y of s.players[p].grave)
    if(!y.faceDown&&card(y).g1234HyperGraveAttack)
     send(s,p,y,'GraveSummonWatch766',{serial:y.zoneSerial||0});
+  for(const y of s.players[p].grave)if(!y.faceDown&&card(y).g1615RevengeTop&&!api.handAbilityIgnored(s,y))
+   send(s,p,y,'SelfGraveBottom839',{serial:y.zoneSerial||0,g1615Top:true});
   attackWatches252(s,p,x);
   const top=api.visionTop(s,p);
   for(const y of [...s.players[p].hand,...(top?[top]:[])])for(const [face,c] of faces(card(y)).entries()){

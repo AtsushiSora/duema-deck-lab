@@ -288410,15 +288410,128 @@
       "g1614DragonBirdShuffle": true,
       "supportBatch": "phase-1614",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-046",
+      "name": "黒神龍ハイサイ・ラッシャイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ドラゴン・ゾンビ/アンノイズ",
+      "text": "このクリーチャーが山札から墓地に置かれた時、バトルゾーンに自分のドラゴン・ゾンビがあれば、このクリーチャーをバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-046",
+      "limit": 4,
+      "g1550DeckGrave": true,
+      "g1615ZombieRequirement": true,
+      "supportBatch": "phase-1615",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx09-007",
+      "name": "超速リベンジ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマード・ドラゴン/ハンター",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n自分のクリーチャーが攻撃する時、このクリーチャーが自分の墓地にあれば、このクリーチャーを墓地から自分の山札の一番上に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-007",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1615RevengeTop": true,
+      "supportBatch": "phase-1615",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-225",
+      "name": "東京ミステリーサーカスからの挑戦状",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n名前に《ミステリー》、《ナゾ》、《謎》または《クエスチョン》とあるカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-225",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "optional": true,
+          "filter": {
+            "g220NameAny": [
+              "ミステリー",
+              "ナゾ",
+              "謎",
+              "クエスチョン"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1615",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-007",
+      "name": "ナンバークエスチョン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ムートピア/スペシャルズ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、カードを１枚引き、その後、相手とガチンコ・ジャッジする。自分が勝てば、自分の手札の枚数以下のコストを持つ水の呪文を１枚選び、コストを支払わずに唱えてもよい。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-007",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "spellColorsAny": [
+                "水"
+              ],
+              "g1139HandSizeMax": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1615",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1614,
+    "phase": 1615,
     "checkedAt": "2026-11-22",
-    "baseCount": 9070,
-    "newEffectCards": 3,
+    "baseCount": 9073,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9073,
+    "totalCount": 9077,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -314798,6 +314911,20 @@
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1614,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9070,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9073,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
         ]
       }
     ]
