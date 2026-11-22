@@ -1,0 +1,589 @@
+{
+  "phase": 1667,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9239,
+  "target": 9500,
+  "description": "期限付きGuardmanとチャージャー、GR召喚後の3体境界でのMach Fighter・GR全体強化、GR召喚後の3体境界による全体タップと次相手開始時のアンタップ停止を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43486/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp11-061",
+      "name": "ガチャリーフ・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-061",
+      "faces": [
+        {
+          "name": "ガチャリーフ・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "GR召喚する。次の自分のターンのはじめまで、そのGRクリーチャーに「ガードマン」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（自分の他のクリーチャーが攻撃される時、「ガードマン」を持つクリーチャーをタップしてもよい。そうしたら、攻撃クリーチャーはかわりにそのクリーチャーを攻撃する）\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "guardman": true
+            },
+            "untilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-061.jpg",
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-061",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "33981f11fcd8aa3e72e52ab663b91af043d9a1ff68e271eac8dd611b34667c2e",
+        "facesMatched": true,
+        "imageSha256": "b38b303568c28d07e1ba08bb2b9fed5ab7a4e0226a53d2f316d9512452f4fdfb",
+        "imageBytes": 99420,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名前・文明・コスト4・マナ1・全文・GR付与対象と期限を目視照合。ANZENは再録画像の版番号のみの違いも確認。"
+      }
+    },
+    {
+      "id": "dmrp11-062",
+      "name": "ANZENカプセル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-062",
+      "faces": [
+        {
+          "name": "ANZENカプセル",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "GR召喚する。このターン、そのGRクリーチャーに「マッハファイター」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このターン、自分のGRクリーチャーすべてのパワーを+6000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "machFighter": true
+            },
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "min": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "power": 6000,
+                "spell": true
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "grant": {
+                  "g313Breaker": 2,
+                  "g633DoubleBreaker": true
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-062.jpg",
+      "sameNameProducts": [
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-062",
+        "referenceSource": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-e04",
+        "result": "公式の両収録版の全文・基本情報・画像を照合し、元のDMRP11 IDだけを対戦定義として登録。DMBD11は画像参照にのみ追加し重複計上しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "d894970e33f09d68222aa2fb428eb4ba280d1623dc221699a6bc383250bc911b",
+        "facesMatched": true,
+        "imageSha256": "3a7c557a16d4166e80e2b2c6e05d01f88ae6751467b534b92dfc0a07339778f3",
+        "imageBytes": 104641,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名前・文明・コスト4・マナ1・全文・GR付与対象と期限を目視照合。ANZENは再録画像の版番号のみの違いも確認。"
+      }
+    },
+    {
+      "id": "dmrp11-015",
+      "name": "♪お眠りララバイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-015",
+      "faces": [
+        {
+          "name": "♪お眠りララバイ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353",
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "min": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "LockUntap606",
+                "g1019Tap": true,
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-015.jpg",
+      "sameNameProducts": [
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-015",
+        "result": "公式の同名収録一覧を確認。正規IDのみを登録し、同名再録は対応種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "2c91c83dddbdc51106bec7a8b6ba5af23f950cb72f10e11a3507d759e58ed528",
+        "facesMatched": true,
+        "imageSha256": "8a1bd460c0884745d350ff4f87ae34afe40a94d99aff819afb2cff9314a1d7af",
+        "imageBytes": 93837,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名前・文明・コスト4・マナ1・全文・GR付与対象と期限を目視照合。ANZENは再録画像の版番号のみの違いも確認。"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+      "checkedAt": "2026-11-22T13:29:18.858Z",
+      "sha256": "2d96c65ee3b41d8edb606db6ec205823bfb9c3f67b0e1917c8c9758480d1bf5b"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "checkedAt": "2026-11-22T13:29:19.068Z",
+      "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43486/",
+      "checkedAt": "2026-11-22T13:34:35.624Z",
+      "sha256": "70e5849afe0c15aad4e8ca6e274703d8541895ddf30379d000841d9364822c46",
+      "scope": "複数のブレイカー能力をブレイク前に選ぶ一般裁定509.2c。実GRクラッケンバインとANZENカプセルでWかPower3の選択を再現。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T13:29:16.961Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule/qa/ ガチャリーフ",
+      "site:dm.takaratomy.co.jp/rule/qa/ ANZENカプセル",
+      "site:dm.takaratomy.co.jp/rule/qa/ お眠りララバイ"
+    ],
+    "result": "対象固有QAは見つからず。公式カード本文と総合ルールのGR召喚・誘発待機・期限の規定を基準に検証。"
+  },
+  "printAliases": [
+    {
+      "id": "dmbd11-e04",
+      "canonicalId": "dmrp11-062",
+      "name": "ANZENカプセル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-e04",
+      "faces": [
+        {
+          "name": "ANZENカプセル",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "GR召喚する。このターン、そのGRクリーチャーに「マッハファイター」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このターン、自分のGRクリーチャーすべてのパワーを+6000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd11-e04.jpg",
+      "sameNameProducts": [
+        "DMBD-11 ガチヤバ4！無限改造デッキセットDX!! ジョーのビッグバンGR",
+        "DMRP-11 超天篇 拡張パック第3弾 零誕！魔神おこせジョルネード1059!!"
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GrSummon1498",
+            "grant": {
+              "machFighter": true
+            },
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "min": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "power": 6000,
+                "spell": true
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "g1428Gr": true
+                },
+                "grant": {
+                  "g313Breaker": 2,
+                  "g633DoubleBreaker": true
+                },
+                "spell": true
+              }
+            ],
+            "spell": true
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "28028c543719dd2c1c0f62f72b6d3708e225fdc6d74f678c0233eafa57f21eb3",
+        "facesMatched": true,
+        "imageSha256": "05221dc2a45eee2fcbe080ca486998a06d45257ead6433ee73b33fbf1a46ba27",
+        "imageBytes": 105092,
+        "imageReviewed": true,
+        "imageReview": "公式画像で名前・文明・コスト4・マナ1・全文・GR付与対象と期限を目視照合。ANZENは再録画像の版番号のみの違いも確認。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp11-061": 4,
+      "dmrp11-062": 4,
+      "dmrp11-015": 4,
+      "dmbd11-e04": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T13:35:37.420Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1667.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.269,
+        "log": "tmp/duema-phase-1667/official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "final-focused-with-breakers": {
+        "name": "final-focused-with-breakers",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1667-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 18.326,
+        "log": "tmp/duema-phase-1667/final-focused-with-breakers.log",
+        "passed": 82,
+        "failed": 0,
+        "logSha256": "ab2315cb9d8b45244db49e1b85f1a7b593c4092b21db86bb613a14e4cc853296"
+      },
+      "related-gr": {
+        "name": "related-gr",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1666-effects.test.mjs",
+          "tests/standard1497-effects.test.mjs",
+          "tests/standard1402-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.476,
+        "log": "tmp/duema-phase-1667/related-gr.log",
+        "passed": 137,
+        "failed": 0,
+        "logSha256": "ebd388d940b65d2ddd48f389abea96bc5de15d02e0be48b1e3dbaec06e3c5143"
+      },
+      "related-guard-tap": {
+        "name": "related-guard-tap",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1212-effects.test.mjs",
+          "tests/standard1054-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.082,
+        "log": "tmp/duema-phase-1667/related-guard-tap.log",
+        "passed": 21,
+        "failed": 0,
+        "logSha256": "310b9a0016ac687f38a10f50e38ecc3b3a3649d0ec58b09f147e9891867bbdfe"
+      },
+      "related-breaker": {
+        "name": "related-breaker",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1512-effects.test.mjs",
+          "tests/standard1643-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.671,
+        "log": "tmp/duema-phase-1667/related-breaker.log",
+        "passed": 64,
+        "failed": 0,
+        "logSha256": "6185e4d4c794ed120a58d6296a2ff6b78647fd6aa1f308902ba0bfd5cb91bc00"
+      },
+      "check": {
+        "name": "final-check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.414,
+        "log": "tmp/duema-phase-1667/final-check.log",
+        "logSha256": "9578c58324f30354a40b718165b5249aa5702861baa46d10984c565febb23ff5"
+      },
+      "audit": {
+        "name": "final-audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.407,
+        "log": "tmp/duema-phase-1667/final-audit.log",
+        "logSha256": "4c2eaf13545666b05255abd0a9cce27e27a85c140f0eac9b72eda3a46e5a64fd"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.318,
+        "log": "tmp/duema-phase-1667/target9500.log",
+        "logSha256": "e1aab69a05183714dce3195de05bacf68f17701c05cbae6a7faa76fbea034b7f"
+      },
+      "invariants": {
+        "name": "final-invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1667/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.37,
+        "log": "tmp/duema-phase-1667/final-invariants.log",
+        "logSha256": "71e16683f87e265dcbf191818f6326293bff85e42bcb4ff4fbbdf66e396d9113"
+      }
+    },
+    "totalTestsPassed": 304,
+    "focusedTestsPassed": 82,
+    "relatedTestsPassed": 222
+  },
+  "validationNotes": [
+    "固有82件、GR召喚・付与・期限関連137件、ガードマン・アンタップ停止関連21件、ブレイカー関連64件の計304件が通過。",
+    "公式画像は3原版とANZENのDMBD11再録の計4点を目視照合。再録全文と基本情報は同一で、元IDだけを登録し対応種類数は3だけ増加。",
+    "GR召喚後の3体境界、GR召喚が禁止されても既存3体なら残りの効果を適用すること、後からマーチスで3体になっても条件を再判定しないことを両プレイヤーで検証。",
+    "実際のGuardman選択とオンライン投影、召喚酔い中のMach Fighter攻撃、全体タップと既にタップ済みのクリーチャーの次回アンタップ停止を自分・相手ターンのSトリガー双方で確認。チャージャーとGR不足、92枚の実デッキ対戦2件・JSON・AI非公開情報の独立性も通過。",
+    "初回fixtureの6件は、GR召喚禁止役のアアルカイト自身のGR数の数え忘れと、既にタップしたクリーチャーを攻撃役にした設定を修正。後の2件の追加再現ではANZENのW・ブレイカー選択不足を検出し、既存g313Breaker/g633DoubleBreakerを使う完全な付与に修正した。元のPower3と付与W2を選択し実際の2枚ブレイクが通過。根拠は公式QA43486の一般裁定509.2c。",
+    "元9239定義・ID・詳細・別名・既存画像は不変。今回3種類の未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は保持。push・公開・Netlify更新を行わない。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "initial-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1667-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 16.044,
+      "log": "tmp/duema-phase-1667/initial-focused.log"
+    },
+    {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1667-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.962,
+      "log": "tmp/duema-phase-1667/final-focused.log"
+    },
+    {
+      "name": "breaker-reproduction",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^ANZEN retains a real GR Powered Breaker",
+        "tests/standard1667-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.739,
+      "log": "tmp/duema-phase-1667/breaker-reproduction.log"
+    },
+    {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.414,
+      "log": "tmp/duema-phase-1667/final-check.log"
+    },
+    {
+      "name": "final-invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1667/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.37,
+      "log": "tmp/duema-phase-1667/final-invariants.log"
+    },
+    {
+      "name": "final-audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.407,
+      "log": "tmp/duema-phase-1667/final-audit.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmsd08-015",
+      "name": "メルセデスベントゥー",
+      "reason": "GRタップ召喚と相手の攻撃先を自分のクリーチャーへ向ける期限付き効果を全文照合。"
+    },
+    {
+      "id": "dmrp09-095",
+      "name": "KAMASE-BURN!",
+      "reason": "実際に召喚したGR個体を参照するバトルと召喚禁止・置換の境界を公式照合。"
+    },
+    {
+      "id": "dmrp12-079",
+      "name": "バシャーン a.k.a. 遮断",
+      "reason": "実際に召喚したGRの現在パワーを比較する任意バウンスを公式照合。"
+    }
+  ]
+}

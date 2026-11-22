@@ -35204,5 +35204,156 @@
         }
       ]
     }
+  },
+  "dmrp11-061": {
+    "phase": 1667,
+    "faces": [
+      {
+        "name": "ガチャリーフ・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "GR召喚する。次の自分のターンのはじめまで、そのGRクリーチャーに「ガードマン」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（自分の他のクリーチャーが攻撃される時、「ガードマン」を持つクリーチャーをタップしてもよい。そうしたら、攻撃クリーチャーはかわりにそのクリーチャーを攻撃する）\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "guardman": true
+          },
+          "untilStart": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp11-062": {
+    "phase": 1667,
+    "faces": [
+      {
+        "name": "ANZENカプセル",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "GR召喚する。このターン、そのGRクリーチャーに「マッハファイター」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このターン、自分のGRクリーチャーすべてのパワーを+6000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "machFighter": true
+          },
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "power": 6000,
+              "spell": true
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "grant": {
+                "g313Breaker": 2,
+                "g633DoubleBreaker": true
+              },
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp11-015": {
+    "phase": 1667,
+    "faces": [
+      {
+        "name": "♪お眠りララバイ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "LockUntap606",
+              "g1019Tap": true,
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ]
+    }
   }
 }

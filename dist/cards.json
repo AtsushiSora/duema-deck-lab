@@ -294015,15 +294015,157 @@
       ],
       "supportBatch": "phase-1666",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-061",
+      "name": "ガチャリーフ・チャージャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "GR召喚する。次の自分のターンのはじめまで、そのGRクリーチャーに「ガードマン」を与える。\n（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（自分の他のクリーチャーが攻撃される時、「ガードマン」を持つクリーチャーをタップしてもよい。そうしたら、攻撃クリーチャーはかわりにそのクリーチャーを攻撃する）\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-061",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "guardman": true
+          },
+          "untilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1667",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-062",
+      "name": "ANZENカプセル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "GR召喚する。このターン、そのGRクリーチャーに「マッハファイター」を与える。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n（「マッハファイター」を持つクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このターン、自分のGRクリーチャーすべてのパワーを+6000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-062",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrSummon1498",
+          "grant": {
+            "machFighter": true
+          },
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "power": 6000,
+              "spell": true
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "grant": {
+                "g313Breaker": 2,
+                "g633DoubleBreaker": true
+              },
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1667",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-015",
+      "name": "♪お眠りララバイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、相手のクリーチャーをすべてタップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-015",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353",
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              },
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "LockUntap606",
+              "g1019Tap": true,
+              "spell": true
+            }
+          ],
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1667",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1666,
+    "phase": 1667,
     "checkedAt": "2026-11-22",
-    "baseCount": 9236,
+    "baseCount": 9239,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9239,
+    "totalCount": 9242,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
@@ -321314,6 +321456,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/43085/",
           "https://dm.takaratomy.co.jp/rule/qa/43086/",
           "https://dm.takaratomy.co.jp/rule/qa/41187/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1666,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9236,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9239,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
