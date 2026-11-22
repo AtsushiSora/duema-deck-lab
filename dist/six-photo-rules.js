@@ -1252,6 +1252,9 @@ export function createSixPhotoRules(api){
   const own=s.players[t.p];
   if(t.defs[0]?.op==='Select'&&t.defs[0].to==='shields')return own.hand.length?10:-1;
   if(t.defs[0]?.op==='GroupUntap'&&t.defs[1]?.op==='GroupGrant364')return creatures(s,t.p).some(x=>!x.sealed)?10:-1;
+  if(t.defs[0]?.op==='GroupUntap')return creatures(s,t.p).some(x=>x.tapped&&api.canUntap(x))?15:-1;
+  if(t.defs[0]?.op==='FionaAttackPreference1673')return creatures(s,1-t.p).some(x=>!x.sealed)&&creatures(s,t.p).some(x=>x.tapped)?10:-1;
+  if(t.defs[0]?.op==='TapAll')return creatures(s,1-t.p).some(x=>!x.tapped)?15:-1;
   if(t.defs[0]?.op==='BritishReturn1672')return s.g1672Destroyed?.turn===s.turn&&own.grave.some(x=>
    s.g1672Destroyed.cards[t.p].some(r=>r.uid===x.uid&&r.serial===(x.zoneSerial||0)))?15:-1;
   if(t.defs[0]?.op==='LauncherRamp1672')return own.deck.length>1?12:-1000;
@@ -3600,6 +3603,11 @@ export function createSixPhotoRules(api){
   const mana=own.mana.find(y=>y.uid===t.target&&!y.faceDown&&(y.zoneSerial||0)===t.serial);
   if(mana&&!used792(s,t,t))choice(s,t,card(mana).name+'をマナゾーンで裏向きにする？',
    [opt('裏向きにする',true,manaDownScore426(s,t,mana),mana.cardId),skip()]);
+  break;
+ }
+ case'g34_FionaAttackPreference1673':{
+  const refs=creatures(s,1-t.p).filter(y=>!y.sealed&&!y.faceDown).flatMap(api.allLayers).map(key);
+  if(refs.length)(s.extLimits??=[]).push({kind:'g1673PreferCreature',player:1-t.p,refs,turn:s.turn,expires:'end',who:s.active});
   break;
  }
  case'g34_BritishReturn1672':{
@@ -7005,6 +7013,10 @@ export function createSixPhotoRules(api){
    if(batch){batch.push(y);continue;}
    api.addZone(s,t.p,dest,y);
    if(dest==='mana'&&t.g603Draw&&matches(s,t.p,y,t.g603Draw.filter))start(s,t,[{op:'Draw',n:1,optional:!!t.g603Draw.optional}]);
+   if(t.g1673DreamStop&&dest==='mana'&&!api.deckWasShuffled1365(s,y)&&
+      s.players[t.p].mana.some(x=>x.uid===y.uid)&&race(api.zoneCard(s,t.p,y,'mana'),'ドリームメイト')){
+    s.attack=null;api.log(s,t.p,'stopAttack',card(t.source).name+'で攻撃を中止',{cardId:t.source});
+   }
   }
   if(batch?.length)api.addZone(s,t.p,destTogether,...batch);
   if(t.g871Civilizations&&destTogether==='mana'&&batch.length){
@@ -10430,6 +10442,12 @@ export function createSixPhotoRules(api){
  },
  drawn676(s,p,n,before,turnDraw){
   if(!n)return;
+  if(before===0&&s.active===p)for(const owner of [p,1-p])for(const source of s.players[owner].battle){
+   const c=effective(source,s);
+   if(!source.sealed&&!source.faceDown&&!source.g1175DSwitched&&c.g1673FirstDraw&&
+      (c.g1673FirstDraw==='both'||owner===p))
+    queue(s,owner,source,[{op:'DSwitch1669',defs:c.g1673DrawSwitch}]);
+  }
   if(before===0&&s.active===p)for(const owner of [0,1])for(const source of s.players[owner].battle){
    if(source.sealed||source.faceDown||api.ignored(s,source)||!effective(source,s).g1648FirstOwnDrawMana)continue;
    // The ability belongs to the seed's controller, but the player who drew chooses their hand card.

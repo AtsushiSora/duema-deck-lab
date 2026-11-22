@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.11';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.188';
+export const ENGINE_VERSION='0.602.189';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -2840,7 +2840,8 @@ function matchesEvolution(base,condition,context){
  if(condition.category)return (anyRace||races.some(r=>r.includes(condition.category)))&&(!condition.civilization||anyCivilization||civilizations(c).includes(condition.civilization));
  if(condition.civilization)return anyCivilization||civilizations(c).includes(condition.civilization);
  if(condition.multicolor)return civilizations(c).length>1;
- if(condition.blocker)return !!c.blocker;
+ if(condition.blocker)return !!c.blocker||isCreature(context,base)&&!base.sealed&&
+  !!extra.six.grantAuras(context,owner,base,{...card(base),blocker:false}).blocker;
  return false;
 }
 export function ultraBases(s,p,c){return s.players[p].battle.filter(x=>isCreature(s,x)&&!isEvolution(x)&&(effectiveCard(x,s).g293AnyEvolutionRace||/コマンド|ドラゴン/.test(String(effectiveCard(x,s).race))));}
@@ -4282,6 +4283,8 @@ function sharesProtectedCivilization806(s,protectedCard,other,definition){
 function attackTargetAllowed(s,attacker,target){
  if(!attacker)return false;
  const a=effectiveCard(attacker,s),d=effectiveCard(target,s),f=d.g206AttackProtection;
+ if(costValue(d)===1&&power(attacker,false,s)>power(target,false,s)&&
+    s.players.some(own=>own.battle.some(field=>!field.sealed&&!field.faceDown&&effectiveCard(field,s).g1673SmallPowerProtection)))return false;
  if(a.g483AttackCreatureColors&&!a.g483AttackCreatureColors.some(color=>civilizations(d).includes(color)))return false;
  if((d.cannotBeAttackedByCivs||[]).some(c=>civilizations(a).includes(c)))return false;
  if(sharesProtectedCivilization806(s,target,attacker,d))return false;
@@ -5574,6 +5577,14 @@ function legalActionsCore1363(s){
    const attackUntapped=rule.attackUntapped||rule.g1248EntryAttackUntapped&&(c.originalEntryTurn??c.entered)===s.turn||
     extra.six.dragonAttackUntapped967(s,p,c,rule)||extra.six.allyAttackUntapped1195(s,p);
    if(canAttackNormally&&!creatureAttackLocked&&!rule.noCreatureAttack&&(canAttackCreaturesNormally||rule.g838FreshUntapped||freshTappedAttack||attackTargets.length))for(const target of opp.battle.filter(x=>isCreature(s,x)&&(canAttackCreaturesNormally||rule.g838FreshUntapped&&!x.tapped||freshTappedAttack&&x.tapped||attackTargets.includes(x.uid))&&!effectiveCard(x,s).cannotBeAttacked&&(!rule.g692AttackOnlyBlockers||effectiveCard(x,s).blocker)&&attackTargetAllowed(s,c,x)&&extra.six.fifteen.canAttackTarget(s,c,x)&&(!effectiveCard(x,s).flying||rule.flying)&&(x.tapped||attackUntapped||attackTargets.includes(x.uid)||extra.six.attackableUntapped(s,x,rule)||rule.g483AttackUntappedColors?.some(color=>civilizations(effectiveCard(x,s)).includes(color))||(c.entered===s.turn&&rule.machFighter))&&(!effectiveCard(x,s).justDiver||!x.justDiverActive||extra.creatures(s,p).some(y=>effectiveCard(y,s).ignoreAttackLocks))))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));
+  }
+  // A preference fixes the affected creatures at resolution, then uses each
+  // creature's complete legal target set; it never forces an attack declaration.
+  const preferences=(s.extLimits||[]).filter(l=>l.kind==='g1673PreferCreature'&&l.player===p&&l.turn===s.turn);
+  if(preferences.length){
+   const prefer=new Set(own.battle.filter(x=>preferences.some(l=>layers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))
+    .filter(x=>out.some(a=>a.kind==='attack'&&a.uid===x.uid&&a.target!=='player')).map(x=>x.uid));
+   out=out.filter(a=>!(a.kind==='attack'&&a.target==='player'&&prefer.has(a.uid)));
   }
   const attackers=new Set(out.filter(a=>a.kind==='attack').map(a=>a.uid));
   for(const x of own.battle){

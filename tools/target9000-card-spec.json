@@ -36014,5 +36014,119 @@
         ]
       }
     }
+  },
+  "dmr23-030": {
+    "phase": 1673,
+    "faces": [
+      {
+        "name": "Dの牢閣 メメント守神宮",
+        "typeText": "D2フィールド",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "trigger": true,
+      "g208Auras": [
+        {
+          "filter": {},
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "g1673FirstDraw": "both",
+      "g1673DrawSwitch": [
+        {
+          "op": "TapAll"
+        }
+      ]
+    }
+  },
+  "dmr22-022": {
+    "phase": 1673,
+    "faces": [
+      {
+        "name": "Dの揺籠 メリーボーイラウンド",
+        "typeText": "D2フィールド",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "コスト１のクリーチャーは、それよりパワーの大きいクリーチャーに攻撃されない。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンに、１枚目のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のクリーチャーをすべてアンタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1673SmallPowerProtection": true,
+      "g1673FirstDraw": "self",
+      "g1673DrawSwitch": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
+  },
+  "dmex12-046": {
+    "phase": 1673,
+    "faces": [
+      {
+        "name": "Dの森域 フィオナ・ザ・ハート",
+        "typeText": "D2フィールド",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーが攻撃される時、自分の山札の上から１枚目をマナゾーンに置いてもよい。それがドリームメイトなら、攻撃を中止する。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：相手のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン、相手のクリーチャーが攻撃する時、そのクリーチャーは可能ならクリーチャーを攻撃する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g179OpponentStart": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "FionaAttackPreference1673"
+            }
+          ]
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g814CreatureTarget": true,
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true,
+            "g1673DreamStop": true
+          }
+        ]
+      }
+    }
   }
 }

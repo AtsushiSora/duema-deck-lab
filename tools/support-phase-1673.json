@@ -1,0 +1,637 @@
+{
+  "phase": 1673,
+  "checkedAt": "2026-11-23",
+  "baseCount": 9257,
+  "target": 9500,
+  "description": "最初の実ドローでのDスイッチ、全自軍ブロッカー、コスト1の相対パワー攻撃保護、被攻撃時ドリームメイトのマナ化による攻撃中止と既存クリーチャーへの攻撃先制限を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38586/",
+    "https://dm.takaratomy.co.jp/rule/qa/43356/",
+    "https://dm.takaratomy.co.jp/rule/qa/34384/",
+    "https://dm.takaratomy.co.jp/rule/qa/33515/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-030",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-030",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "trigger": true,
+        "g208Auras": [
+          {
+            "filter": {},
+            "grants": {
+              "blocker": true
+            }
+          }
+        ],
+        "g1673FirstDraw": "both",
+        "g1673DrawSwitch": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-030.jpg",
+      "sameNameProducts": [
+        "DM24-BD5 エキサイティング・デュエパ・デッキ アセビと異世界フェアリーたち",
+        "DM24-BD3 ドリーム英雄譚デッキ モモキングの書",
+        "DM23-BD5 エキサイティング・デュエパ・デッキ 「不敬なり！真邪眼騎士団」",
+        "DMBD-15 レジェンドスーパーデッキ 蒼龍革命",
+        "DMEX-06 絶対王者!! デュエキングパック",
+        "DMR-23 革命ファイナル 拡張パック最終章 ドギラゴールデン vs. ドルマゲドンＸ",
+        "プロモ限定カード 17期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-030",
+        "result": "同名収録一覧と既存の全再録IDを公式HTML・画像で照合し、原版IDを保持。",
+        "prints": [
+          "dm24bd5-036",
+          "dm24bd3-012",
+          "dm23bd5-039",
+          "dmbd15-015",
+          "dmex06-076",
+          "promoy17-018",
+          "promoy17-021"
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "ef3462e2f801bf1a3d1634174f956161223a1ce2e7751c12b0fc595ee091057b",
+        "facesMatched": true,
+        "imageSha256": "6812b4bb7cc45424dcfa8ec84927e81b939f6e83d8f15781fcefe66c8959fcf8",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dmr22-022",
+      "name": "Dの揺籠 メリーボーイラウンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-022",
+      "faces": [
+        {
+          "name": "Dの揺籠 メリーボーイラウンド",
+          "typeText": "D2フィールド",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "コスト１のクリーチャーは、それよりパワーの大きいクリーチャーに攻撃されない。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンに、１枚目のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のクリーチャーをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1673SmallPowerProtection": true,
+        "g1673FirstDraw": "self",
+        "g1673DrawSwitch": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-022.jpg",
+      "sameNameProducts": [
+        "DMR-22 革命ファイナル 第2章 世界は0だ!!ブラックアウト!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-022",
+        "result": "同名収録一覧と既存の全再録IDを公式HTML・画像で照合し、原版IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "414b058743b107aba38d7e2ebbbbd0f76fc48199f0e858860db9e806d8c8bc18",
+        "facesMatched": true,
+        "imageSha256": "640cfe40102d72ed3fada50207151525e43cd537ddf9e11bb9bec512c7e518f5",
+        "imageReviewed": true
+      }
+    },
+    {
+      "id": "dmex12-046",
+      "name": "Dの森域 フィオナ・ザ・ハート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-046",
+      "faces": [
+        {
+          "name": "Dの森域 フィオナ・ザ・ハート",
+          "typeText": "D2フィールド",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーが攻撃される時、自分の山札の上から１枚目をマナゾーンに置いてもよい。それがドリームメイトなら、攻撃を中止する。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：相手のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、このターン、相手のクリーチャーが攻撃する時、そのクリーチャーは可能ならクリーチャーを攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g179OpponentStart": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "FionaAttackPreference1673"
+              }
+            ]
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "g814CreatureTarget": true,
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "optional": true,
+              "g1673DreamStop": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-046.jpg",
+      "sameNameProducts": [
+        "DMEX-12 最強戦略!!ドラリンパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-046",
+        "result": "同名収録一覧と既存の全再録IDを公式HTML・画像で照合し、原版IDを保持。",
+        "prints": []
+      },
+      "verification": {
+        "checkedAt": "2026-11-23",
+        "sha256": "6191a446f6a484f3f9fe3832200b30524387082e35c35b3e0dcabc4da7febf75",
+        "facesMatched": true,
+        "imageSha256": "26b3dad8a34438917fbca9f7f24d215090026ee68fb46584526b239afc9cb6dc",
+        "imageReviewed": true
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "reprintEvidence": [
+    {
+      "id": "dm24bd5-036",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-036",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）\n**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-036.jpg",
+      "htmlSha256": "16cc94e5dbad73df64d442164fef4917a36cf628349177557e6af0e88c9a2f2c",
+      "imageSha256": "8cd16ca259a45dcd59b78db8cdfc5a5d98262b6698f876f23d1958f195733238",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "dm24bd3-012",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd3-012",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）\n**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd3-012.jpg",
+      "htmlSha256": "0c202a45aa0a244db292cc245a2c6a1990e60e210f3be80090f762b405199d42",
+      "imageSha256": "d71ef1ba02f417bad59f1cfcecd13579225d9572679e7439adc14421c5553fdc",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "dm23bd5-039",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-039",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）\n**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-039.jpg",
+      "htmlSha256": "1feaff598f10414583800e9ced705ad0037966a97ec26b57f179760aa171849a",
+      "imageSha256": "6b5d340fbf39bd11acde41cffb34173c502e2bf9bb439605a7cf0c04308eb050",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "dmbd15-015",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd15-015",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分のクリーチャーすべてに「ブロッカー」を与える。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd15-015.jpg",
+      "htmlSha256": "5b74b54df1449078cdd9acf409d6b8d3009bdd9245208e4a0f61f3af5fb277ae",
+      "imageSha256": "c8c7cdd02e03bc282b6c124c39581b2c999923937f4f03acd21a3ef65bd6f605",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "dmex06-076",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-076",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-076.jpg",
+      "htmlSha256": "863226b169c2987e34ab4b7d276f4562ac1b62e492bf4d93ad036e7c57a70e4a",
+      "imageSha256": "b2971911586a2874e064451e732fcd8f3c1a17b26be05b0bfc4e03898b783d1c",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "promoy17-018",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-018",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-018.jpg",
+      "htmlSha256": "254a211170eda907a574103b3efde8321342e73f611bd43df48bec8b2fce77bd",
+      "imageSha256": "9d908679adf6fecac28e187fb980b665679b2e71dc63a0b6a248a58f68323163",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "基本情報・能力全文・画像を原版と照合。ブロッカー等の注釈省略とD2交代時の破壊表記更新のみで同じ能力。"
+    },
+    {
+      "id": "promoy17-021",
+      "name": "Dの牢閣 メメント守神宮",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-021",
+      "faces": [
+        {
+          "name": "Dの牢閣 メメント守神宮",
+          "typeText": "D2フィールド",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このD２フィールドをシールドゾーンから手札に加える時、コストを支払わずにすぐ展開してもよい）\n自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：いずれかのプレイヤーが自身のターンに最初のカードを引いた時、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、相",
+          "race": "",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-021.jpg",
+      "htmlSha256": "2015fd7003cf7b1592852276e0bf0a12586a4836e97cb87295bd7b0bf525211e",
+      "imageSha256": "1ec4b31d30dfad8d1000836c8816740a9ebc134da2842efe1b144d0d02c178ef",
+      "imageReviewed": true,
+      "ruleCoreMatches": true,
+      "statsMatchedByImage": true,
+      "comparison": "公式HTMLに誤ったパワー4000と末尾能力欠落がある。公式画像のD2フィールド・光4・マナ1・能力全文を原版と比較して確認。HTML表記を対戦データへ取り込まない。"
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38586/",
+      "checkedAt": "2026-11-22T15:27:16.090Z",
+      "sha256": "34aa02cb50d36ff0f3fd615639b741ab0b7fbfdc8b14ac8852086410907a0263",
+      "questionAnswer": "よくある質問 Q《Dの森域 フィオナ・ザ・ハート》のDスイッチを発動したターン、相手が「スピードアタッカー」を持つクリーチャーをバトルゾーンに出しました。そのクリーチャーはこの効果の影響を受けますか？ Aいいえ、後から出たクリーチャーは影響を受けず、プレイヤーを攻撃することもできます。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1673-effects.test.mjs",
+      "testNamePrefix": "Fiona QA38586",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43356/",
+      "checkedAt": "2026-11-22T15:27:16.704Z",
+      "sha256": "191fe1d9abc5c8c4ecbeb6464a8289a5ff4262f7215ad80450e7a6398e84648f",
+      "questionAnswer": "よくある質問 Q相手の《超球の超人 / 父なるタッチダウン》がいる状況で、自分は《Dの牢閣 メメント守神宮》の「Dスイッチ」や、《バイケンの海幻》の「相手のクリーチャーが自分を攻撃する時」の能力を使えますか？ Aはい、使えます。相手の≪超球の超人≫がいても、自分のクリーチャー以外のカードの能力は使えます。 ≪超球の超人≫の能力によってできなくなるのは\"カードの使用\"です。\"カードの使用\"が禁止されていても、カードの能力は禁止されません。 ",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1673-effects.test.mjs",
+      "testNamePrefix": "Memento QA43356",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34384/",
+      "checkedAt": "2026-11-22T15:27:17.313Z",
+      "sha256": "1f2cad610677e7bc7e97d932e4e779335d2a3d106b45f74839e67807e0d5f49b",
+      "questionAnswer": "よくある質問 Qバトルゾーンに《∞龍 ゲンムエンペラー》がいる状況で、自分は《Dの牢閣 メメント守神宮》を展開しました。自分のコスト5以下のクリーチャーの「ブロッカー」能力は無視されていますが、ブロッカークリーチャーを進化元にする《白騎士の開眼者ウッズ》を、そのクリーチャーから進化することはできますか？ 類似例：《切札電融 モモムゲン》 Aはい、コスト5以下のクリーチャーの能力は無視されているためブロックすることはできませんが、得ている「ブロッカー」能力を失っているわけではありませんので、《白騎士の開眼者ウッズ》に進化できます。 ",
+      "analogue": true,
+      "scope": "同じブロッカー進化条件の登録済み白騎士の聖霊王ウルファスで、無視中でも外部から得たブロッカーを失わない原則を再現。未登録ウッズの全文対応は含まない。",
+      "questionAndAnswerMatched": true,
+      "verifiedBy": "tests/standard1673-effects.test.mjs",
+      "testNamePrefix": "QA34384 analogue",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33515/",
+      "checkedAt": "2026-11-22T15:38:10.735Z",
+      "sha256": "8d9744d6c21d520c2bab6ffa25f26dfe06a770991374b7f2ed80f901e9b32b75",
+      "questionAnswer": "よくある質問 Q自分の場に《Dの牢閣 メメント守神宮》が展開されている状況で《ハッチャキ》が攻撃しました。「ブロッカー」を持たないコスト5以下の進化ではないクリーチャーを1体、自分の手札からバトルゾーンに出せますか？ Aいいえ、 出せません。どのゾーンで機能するかが書かれていない能力はバトルゾーンでのみ機能します。 《Dの牢閣 メメント守神宮》のような常在型能力で「ブロッカー」を与える効果は、バトルゾーンのクリーチャーにのみ影響を及ぼします。 手札にあるクリーチャーはまだブロッカーを得ていないので、《ハッチャキ》の能力で出すことはできません。 ",
+      "verifiedBy": "tests/standard1673-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "questionAndAnswerMatched": true,
+      "testNamePrefix": "Memento never grants Blocker"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-030": 1,
+      "dmr22-022": 4,
+      "dmex12-046": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T15:39:31.926Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1673.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.176,
+        "log": "tmp/duema-phase-1673/official.log",
+        "logSha256": "7941c4461312ef814791dfd16060e0718b022a4691f31f812ba6aeadfc6c5ecd"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1673-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.824,
+        "log": "tmp/duema-phase-1673/final-focused.log",
+        "passed": 103,
+        "failed": 0,
+        "logSha256": "b0b1683ed4177d2afa356f6a216ebfaf1520f0d32947aceb6e22807b58dd2aac"
+      },
+      "related-d2": {
+        "name": "related-d2",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1669-effects.test.mjs",
+          "tests/standard1670-effects.test.mjs",
+          "tests/standard1671-effects.test.mjs",
+          "tests/standard1672-effects.test.mjs",
+          "tests/standard1188-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 48.164,
+        "log": "tmp/duema-phase-1673/related-d2.log",
+        "passed": 515,
+        "failed": 0,
+        "logSha256": "c34fd511bc13380ea037ee270877b1575f718494ee46944b6775b871f3661d79"
+      },
+      "related-draw-blocker": {
+        "name": "related-draw-blocker",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1648-effects.test.mjs",
+          "tests/standard951-effects.test.mjs",
+          "tests/standard1090-effects.test.mjs",
+          "tests/standard1272-effects.test.mjs",
+          "tests/standard196-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 70.548,
+        "log": "tmp/duema-phase-1673/related-draw-blocker.log",
+        "passed": 160,
+        "failed": 0,
+        "logSha256": "ca943f240ca704c4582daf2d815e01339c221bd0e6cc1cf0f21bd01338c86034"
+      },
+      "related-attack-mana": {
+        "name": "related-attack-mana",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard806-effects.test.mjs",
+          "tests/standard1280-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs",
+          "tests/standard1331-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 16.616,
+        "log": "tmp/duema-phase-1673/related-attack-mana.log",
+        "passed": 51,
+        "failed": 0,
+        "logSha256": "d4b2bdfc20296ae03254f3c2d549286be0d8e2fed00f0c065662977e776d979e"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 45.28,
+        "log": "tmp/duema-phase-1673/check.log",
+        "logSha256": "8135944ea7da0e225e0f817ae56b8c8ef2b2dbc42c63de768729aad72d098038"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.147,
+        "log": "tmp/duema-phase-1673/audit.log",
+        "logSha256": "a97327daec989fe8d857d9d551e39f9c0f31de7d708bdcc5401b3527184a0cd6"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.715,
+        "log": "tmp/duema-phase-1673/target9500.log",
+        "logSha256": "81510a6f3f06e4aea0baa19838ad97a83f9828b02385d95fa743399bcfab96b1"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1673/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.894,
+        "log": "tmp/duema-phase-1673/invariants.log",
+        "logSha256": "9854bffef2f0ea10ed61381fe7621d6ba67fee4d315d710c8657e6a14868c7f1"
+      }
+    },
+    "totalTestsPassed": 829,
+    "focusedTestsPassed": 103,
+    "relatedTestsPassed": 726
+  },
+  "validationNotes": [
+    "固有103件、D2関連515件、ドロー置換・ブロッカー160件、攻撃先・マナ移動51件の計829件が通過。npm run check、audit、target9500、既存9257定義・全ID・詳細・別名・画像参照の不変を確認。",
+    "3種類の公式全文・基本情報・マナ値・画像・現行制限を照合。メメント守神宮は現行殿堂1枚制限。他2種類は4枚。同名再録は追加種類へ加算しない。",
+    "メメント守神宮の公式同名収録7商品、原版を除く再録7版（プロモ2版を含む）を公式HTMLと画像で比較。旧版の注釈・交代時の墓地移動と後発の破壊表記の違いを記録。promoy17-021は公式HTMLのパワー4000と末尾能力欠落を公式画像で補って確認し、そのHTMLの誤記を対戦データへ取り込まない。",
+    "最初の実ドロー時にだけ共通Dスイッチを宣言。メメントはいずれかのプレイヤーが自身のターンに引いた時、メリーボーイは自分のターンのみ。複数枚・ゼロ枚・他プレイヤーのターンのドロー・場に出る前のドロー・実バビロニアの2枚への置換と捨て札・通常ドローより前の効果ドロー・D2禁止・任意の拒否・次のターンの再宣言・使用済みを両プレイヤーから検証。",
+    "全自軍ブロッカーは既存のD2対応常在オーラを使用し、実ブロック・相手やフィールドや手札には与えないこと・無視・Sトリガー展開を確認。公式QA43356は実超球の超人で使用禁止と能力使用を区別して再現。公式QA33515は実ハッチャキで手札の非ブロッカーが候補にならないことを再現。公式サイトの検索索引の古いページ番号では本文が見つからず、現行の公式qa_w検索を用いて正確な本文を取得した。",
+    "公式QA34384の無視中でも外部から得たブロッカーを失わない原則は、同じブロッカー進化条件の登録済み白騎士の聖霊王ウルファスを使った類似再現で確認。無視された能力を実際のブロックに使えるようにはせず、進化元の条件判定に常在付与を参照する。未登録ウッズの能力全体や固有再現を検証済みとするものではない。",
+    "メリーボーイの通常能力は両プレイヤーのコスト1を保護し、攻撃宣言前の現在パワーが厳密に大きい相手からの攻撃だけを禁止する。等しい・小さい・コスト2・対象能力無視・フィールド能力無視の境界を確認。Dスイッチの全自軍アンタップは通常のアンタップ禁止とタマシード除外を維持し、通常アンタップを1回飛ばした後の効果アンタップは可能。",
+    "フィオナは相手が自軍クリーチャーを攻撃する宣言時だけ任意の山札1枚からマナ移動を行い、実ドリームメイトで攻撃を中止。非該当・拒否・プレイヤー攻撃・ブロック先変更・カレイコの墓地置換・最後の山札カードでの敗北を確認。攻撃者をアンタップしない。",
+    "公式QA38586に従い、フィオナDスイッチの影響を解決時の既存クリーチャーの物理IDと位相に固定する。各攻撃者に合法のクリーチャー攻撃先がある時だけプレイヤー攻撃を除き、攻撃宣言を強制しない。後から出たスピードアタッカー、攻撃不可の対象、メリーボーイの外部保護、再入場、能力無視、フィールド離脱、ターンをまたぐ期限、JSON再開を検証。",
+    "途中のテスト誤りを修正：攻撃中のみのbuffを常在パワー修整へ変更、通常アンタップを飛ばすskipUntapと効果アンタップ禁止のtapLocksを区別、相討ちで墓地に移動して状態が消えた攻撃者の確認を攻撃宣言直後へ移動、強制攻撃のブレイズ・クローを通常クリーチャーの新規スピードアタッカーへ変更、開始時検証前に期限切れになる禁止の期限を訂正。最終103件が通過。",
+    "手動マナ支払い、暗号化ルームと非操作側に選択肢を公開しないこと、AI計画の純粋性・未知情報非依存、両先後の合法40枚デッキと80物理カードの保存・JSON再開・終局を確認。今回3種類に未完了の検証なし。過去の全体npm test、長時間群、ユーザー保留と登録済み裁定待ち1件を維持。ローカル登録のみ。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr22-025",
+      "name": "革命のD ビッグバン・フェスライブ",
+      "reason": "全自軍+5000・相手呪文による選択不可、相手開始時の攻撃先優先を公式再録・裁定込みで照合する。"
+    },
+    {
+      "id": "dmex12-036",
+      "name": "Dの夜街 ファンキー・ファンキー・タウン",
+      "reason": "展開時の任意捨て札軽減、破壊時ドローと墓地クリーチャー数に応じたDスイッチ全体パワー低下を照合する。"
+    },
+    {
+      "id": "promoy15-035",
+      "name": "禁断の月 ドキンダムーン",
+      "reason": "既存IDの侵略ZERO・D2登場時ミルと開始時のソニック・コマンド蘇生を正規版・再録と照合する。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T15:39:31.926Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp/rule/qa/ メメント守神宮",
+      "site:dm.takaratomy.co.jp/rule/qa/ メリーボーイラウンド",
+      "site:dm.takaratomy.co.jp/rule/qa/ フィオナ・ザ・ハート",
+      "https://dm.takaratomy.co.jp/rule/qa/?qa_w=ハッチャキ"
+    ],
+    "result": "公式個別QA38586・43356・34384・33515の全文を取得し、対応範囲を記録。メリーボーイラウンドの固有QAは検索では見つからず、全文と共通のドロー・攻撃先・アンタップ処理を検証。"
+  }
+}
