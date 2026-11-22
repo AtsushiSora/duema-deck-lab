@@ -294998,20 +294998,150 @@
       "effect": "sixPhoto",
       "supportBatch": "phase-1674",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-034",
+      "name": "Dの地獄 ハリデルベルグ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが破壊された時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-4000する。（パワー０以下のクリーチャーは破壊される）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\nDスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン中に破壊された自分のクリーチャーをすべて、墓地からバトルゾーンに戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-034",
+      "limit": 4,
+      "d2Field": true,
+      "g303DeathWatch": {
+        "defs": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "g174End": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "HaridelReturn1675"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1675",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd21-017",
+      "name": "Dの終断 ドルマゲドン・エリア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のコマンドすべてに「スレイヤー」を与える。\n（他のD２フィールドが出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンの終わりに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、闇または火の、コスト６以下のコマンドを１体、自分の墓地または超次元ゾーンからコストを支払わずに召喚する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-017",
+      "limit": 4,
+      "d2Field": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "コマンド"
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "Execute",
+              "zones": [
+                "grave",
+                "extra"
+              ],
+              "creatureOnly": true,
+              "max": 6,
+              "filter": {
+                "creature": true,
+                "race": "コマンド",
+                "any": [
+                  {
+                    "color": "闇"
+                  },
+                  {
+                    "color": "火"
+                  }
+                ]
+              },
+              "optional": false,
+              "g1675ExtraSummon": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1675",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-006",
+      "name": "白騎士の開眼者ウッズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 10500,
+      "race": "メカサンダー",
+      "text": "ブロッカー\n進化-自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nW・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない効果は無効になる。\n自分のターンの終わりに、バトルゾーンにある自分の、名前に《白騎士》とあるクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-006",
+      "limit": 4,
+      "blocker": true,
+      "evolution": {
+        "blocker": true
+      },
+      "breaker": 2,
+      "g1675BlockerAttacks": true,
+      "g174End": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "g819CreatureNameIncludes": "白騎士"
+          }
+        }
+      ],
+      "supportBatch": "phase-1675",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1674,
-    "checkedAt": "2026-11-23",
-    "baseCount": 9260,
+    "phase": 1675,
+    "checkedAt": "2026-11-22T16:09:10.245Z",
+    "baseCount": 9263,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9263,
+    "totalCount": 9266,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38587/",
-      "https://dm.takaratomy.co.jp/rule/qa/38588/",
-      "https://dm.takaratomy.co.jp/rule/qa/42510/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35852/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35853/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35854/",
+      "https://dm.takaratomy.co.jp/rule/qa/34384/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -322432,6 +322562,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/38586/",
           "https://dm.takaratomy.co.jp/rule/qa/43356/",
           "https://dm.takaratomy.co.jp/rule/qa/34384/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1674,
+        "checkedAt": "2026-11-23",
+        "baseCount": 9260,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9263,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38587/",
+          "https://dm.takaratomy.co.jp/rule/qa/38588/",
+          "https://dm.takaratomy.co.jp/rule/qa/42510/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
