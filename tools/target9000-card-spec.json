@@ -37788,5 +37788,147 @@
         }
       ]
     }
+  },
+  "dm22ex2-004": {
+    "phase": 1688,
+    "faces": [
+      {
+        "name": "悪遊 ノチェス＝アルトゥス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "H・ブレイカー（このクリーチャーはシールドを６つブレイクする）\nこのクリーチャーが攻撃する時、クリーチャーを６体破壊する。（６体になるよう最大数選ぶ。自分のクリーチャーも含めてよい。）\nこのクリーチャーは、可能なら攻撃する。",
+        "race": "アビスロイヤル",
+        "powerText": "66666",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 6,
+      "mustAttack": true,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 6,
+          "to": "grave",
+          "optional": false,
+          "filter": {
+            "creature": true
+          },
+          "g193Select": true
+        }
+      ]
+    }
+  },
+  "dmr07-s01": {
+    "phase": 1688,
+    "faces": [
+      {
+        "name": "「謎」の頂 Z-ファイル",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、自分の他のクリーチャーをすべて破壊してもよい。そうした場合、デーモン・コマンドをすべて、自分の墓地からバトルゾーンに出す。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nエターナル・Ω(このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す)",
+        "race": "アンノウン/ゼニス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g34Omega": true,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "自分の他のクリーチャーをすべて破壊してデーモン・コマンドをすべて出す？",
+          "defs": [
+            {
+              "op": "Sweep",
+              "owner": "self",
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g179Other": true,
+              "g1660CreatureOnly": true
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": "all",
+              "deploy": true,
+              "optional": false,
+              "filter": {
+                "creature": true,
+                "race": "デーモン・コマンド"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr23-l01": {
+    "phase": 1688,
+    "faces": [
+      {
+        "name": "ジョリー・ザ・ジョニー Joe",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "19000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 4,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1242NoEnemyCreatures": true
+          },
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "相手のクリーチャーがいないので勝利"
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g179Other": true,
+              "g1660CreatureOnly": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

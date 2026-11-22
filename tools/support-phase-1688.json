@@ -1,0 +1,632 @@
+{
+  "phase": 1688,
+  "checkedAt": "2026-11-22T22:28:42.878Z",
+  "baseCount": 9300,
+  "target": 9500,
+  "description": "ノチェスの最大6体同時破壊・強制攻撃・Hブレイカー、Zファイルの召喚時任意全破壊と全デーモン展開・Ω・T、Joeの召喚時分岐勝利/全破壊・SA・Qを全能力対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/42962/",
+    "https://dm.takaratomy.co.jp/rule/qa/40220/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 42962,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/42962/",
+      "sha256": "9d96a9c1050203a8dcd51bfcd689503b1de3aef7cad5cd89c9ffa917ab35ab43",
+      "confirmed": true,
+      "scope": "同時破壊の置換と能動側優先を実登録の置換で検証。邪龍ジャブラッドは未登録のためその元配置は未再現。"
+    },
+    {
+      "id": 40220,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40220/",
+      "sha256": "757daf92edaae72cfe9e5cf01474a9d837819e9a629657dc3f7effa97c929073",
+      "confirmed": true,
+      "scope": "解決時の相手クリーチャー有無を封印などで検証。ウルボランスとドルマゲドンビッグバンは未登録のためその元配置は未再現。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm22ex2-004",
+      "name": "悪遊 ノチェス＝アルトゥス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-004",
+      "faces": [
+        {
+          "name": "悪遊 ノチェス＝アルトゥス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "H・ブレイカー（このクリーチャーはシールドを６つブレイクする）\nこのクリーチャーが攻撃する時、クリーチャーを６体破壊する。（６体になるよう最大数選ぶ。自分のクリーチャーも含めてよい。）\nこのクリーチャーは、可能なら攻撃する。",
+          "race": "アビスロイヤル",
+          "powerText": "66666",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 6,
+        "mustAttack": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 6,
+            "to": "grave",
+            "optional": false,
+            "filter": {
+              "creature": true
+            },
+            "g193Select": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-004.jpg",
+      "imageReviewed": true,
+      "imageSha256": "40bdcbfb4f7d864e0a9aa3afc2a274e265513a8cfa94bef404668e89a8e1f01f",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm22ex2-004"
+        ],
+        "result": "原本3版・同名再録7版、全10版の全文・基本情報・画像を照合。同名別画像を追加種類に数えず、Joe以外のジョリー各種は除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:28:42.878Z",
+        "sha256": "d07549aa7d3d043b5da43de32082f0f6d7cc053059fa6baee94354c15af23cc3",
+        "facesMatched": true,
+        "imageSha256": "40bdcbfb4f7d864e0a9aa3afc2a274e265513a8cfa94bef404668e89a8e1f01f"
+      }
+    },
+    {
+      "id": "dmr07-s01",
+      "name": "「謎」の頂 Z-ファイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-s01",
+      "faces": [
+        {
+          "name": "「謎」の頂 Z-ファイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、自分の他のクリーチャーをすべて破壊してもよい。そうした場合、デーモン・コマンドをすべて、自分の墓地からバトルゾーンに出す。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nエターナル・Ω(このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す)",
+          "race": "アンノウン/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g34Omega": true,
+        "summonedEntryOnly": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "自分の他のクリーチャーをすべて破壊してデーモン・コマンドをすべて出す？",
+            "defs": [
+              {
+                "op": "Sweep",
+                "owner": "self",
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g179Other": true,
+                "g1660CreatureOnly": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": "all",
+                "deploy": true,
+                "optional": false,
+                "filter": {
+                  "creature": true,
+                  "race": "デーモン・コマンド"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-s01.jpg",
+      "imageReviewed": true,
+      "imageSha256": "bf7ec1ac6d2c9a9af20f8ff12394970725df4e5f7d7d4cd815ea176331789c35",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm23ex3-TR14",
+          "dmr07-s01",
+          "dmex08-058"
+        ],
+        "result": "原本3版・同名再録7版、全10版の全文・基本情報・画像を照合。同名別画像を追加種類に数えず、Joe以外のジョリー各種は除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:28:42.878Z",
+        "sha256": "1e9391a9e10b1517f15b91e83a04fcec57418477e72be37c29a94bc86ef5f1e8",
+        "facesMatched": true,
+        "imageSha256": "bf7ec1ac6d2c9a9af20f8ff12394970725df4e5f7d7d4cd815ea176331789c35"
+      }
+    },
+    {
+      "id": "dmr23-l01",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-l01",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 4,
+        "summonedEntryOnly": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1242NoEnemyCreatures": true
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "相手のクリーチャーがいないので勝利"
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g179Other": true,
+                "g1660CreatureOnly": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-l01.jpg",
+      "imageReviewed": true,
+      "imageSha256": "dd2b29a41f980c0634d557c84b2644e4a363d3311c68a88d85e7bd944a4b3a81",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm24ex2-Cho003",
+          "dmr23-l01",
+          "dmr23-L1SEC1",
+          "dmr23-L1SEC2",
+          "dmex06-007",
+          "dmex15-a011"
+        ],
+        "result": "原本3版・同名再録7版、全10版の全文・基本情報・画像を照合。同名別画像を追加種類に数えず、Joe以外のジョリー各種は除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:28:42.878Z",
+        "sha256": "8b315841b9a99d3e22222e74c52cd16616d4886880862a04831473a4a1a0ffd0",
+        "facesMatched": true,
+        "imageSha256": "dd2b29a41f980c0634d557c84b2644e4a363d3311c68a88d85e7bd944a4b3a81"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dm23ex3-TR14",
+      "name": "「謎」の頂 Z-ファイル",
+      "canonicalId": "dmr07-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TR14",
+      "faces": [
+        {
+          "name": "「謎」の頂 Z-ファイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の他のクリーチャーをすべて破壊してもよい。そうしたら、デーモン・コマンドをすべて、自分の墓地から出す。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "234d5464ed7202c497fc66aba487c74653847d3b1b828c30bb0ca781eb4b84b3",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TR14.jpg",
+          "file": "tmp/duema-phase-1688/dm23ex3-TR14-0.jpg",
+          "sha256": "c0bec7ed11a53917dcdb2a49efd9e0a0873a0b1c1729a7e3cdebc04b2b6ddd0d"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmex08-058",
+      "name": "「謎」の頂 Z-ファイル",
+      "canonicalId": "dmr07-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-058",
+      "faces": [
+        {
+          "name": "「謎」の頂 Z-ファイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、自分の他のクリーチャーをすべて破壊してもよい。そうしたら、デーモン・コマンドをすべて、自分の墓地からバトルゾーンに出す。\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "7c311d346ef832e671aca1a1b52d5a82d0db51cfea8b0299ea915c0c9f4770b7",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-058.jpg",
+          "file": "tmp/duema-phase-1688/dmex08-058-0.jpg",
+          "sha256": "27c0fe7e3d115eff8e400290c59c0c94e3ac6de68639442fc3ee71b0109e8bcb"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm24ex2-Cho003",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "canonicalId": "dmr23-l01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-Cho003",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によって出た時、相手のクリーチャーがなければ、自分はゲームに勝つ。相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "902ec0956424fe0c6b057e6467b0d2b6b869dfac73390997fd5332d61c46ef46",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho003.jpg",
+          "file": "tmp/duema-phase-1688/dm24ex2-Cho003-0.jpg",
+          "sha256": "25bf68fd06e649e8fbf292486c08783b78b28faff939dc1ba0c0788cb7cea5cd"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmr23-L1SEC1",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "canonicalId": "dmr23-l01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-L1SEC1",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "455d770e06040ec58e2be2233439d957e1649f655f5ad713aef5d99b380d1b65",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-L1SEC1.jpg",
+          "file": "tmp/duema-phase-1688/dmr23-L1SEC1-0.jpg",
+          "sha256": "4cac4f037bbf477cf61448165b87c1fd1c20115418ad916dbafc9e6f7c2a51e8"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmr23-L1SEC2",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "canonicalId": "dmr23-l01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-L1SEC2",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "9c3b4e77cc0f9d13fdcb47297b31a7c67f2e7c9175dc3c4c595bf30e92792f23",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-L1SEC2.jpg",
+          "file": "tmp/duema-phase-1688/dmr23-L1SEC2-0.jpg",
+          "sha256": "063ea93ea7653b4a748b10acb2e8fbf4bec54371149eed6aea68a08850056c37"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmex06-007",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "canonicalId": "dmr23-l01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-007",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "be4aa9e8020c122a7b1255b2a1bf5e6576a5927c55ec1ba74a2c803fe304a883",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-007.jpg",
+          "file": "tmp/duema-phase-1688/dmex06-007-0.jpg",
+          "sha256": "2ede654ffb06d686df9c6d521408311edc1647cbb88257b762902995d87e7b9b"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmex15-a011",
+      "name": "ジョリー・ザ・ジョニー Joe",
+      "canonicalId": "dmr23-l01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a011",
+      "faces": [
+        {
+          "name": "ジョリー・ザ・ジョニー Joe",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "スピードアタッカー\nQ・ブレイカー\nこのクリーチャーが召喚によって出た時、バトルゾーンに相手のクリーチャーがなければ、自分はゲームに勝つ。バトルゾーンに相手のクリーチャーがあれば、他のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "c3de92f48f019f9eb4ed9084f40257a92fc5eac3cd1976051e39f5cf6edc0279",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a011.jpg",
+          "file": "tmp/duema-phase-1688/dmex15-a011-0.jpg",
+          "sha256": "3c79c66db4caab783a033593a4c55c1aed3b319c22f6437d9047070f161b9101"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr05-058",
+      "name": "ヤバスギル・ラップ",
+      "reason": "任意破壊の実際の結果と置換後の結果参照を既存処理へ接続する調査が必要。"
+    },
+    {
+      "id": "dm31-007",
+      "name": "陰陽の伝道士セイメイ",
+      "reason": "呪文だけの墓地→手札禁止について全移動経路の確認を要するため部分登録せず保留。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T22:28:42.878Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex2-004": 4,
+      "dmr07-s01": 4,
+      "dmr23-l01": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T22:34:11.546Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1688.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.216,
+        "log": "tmp/duema-phase-1688/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "focused-verified",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1688-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.606,
+        "log": "tmp/duema-phase-1688/focused-verified.log",
+        "passed": 50,
+        "failed": 0,
+        "logSha256": "cb63ccee0d765f6fa22543f5d73e3518e9ec039eac82bf670d3ff912dfe24413"
+      },
+      "related-keywords": {
+        "name": "related-keywords",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard202-effects.test.mjs",
+          "tests/standard471-effects.test.mjs",
+          "tests/standard203-effects.test.mjs",
+          "tests/standard871-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 24.972,
+        "log": "tmp/duema-phase-1688/related-keywords.log",
+        "passed": 114,
+        "failed": 0,
+        "logSha256": "b3c8819b1de679dbe1ec95376e7f3a2c03ff45602f2d6d671f0834c3350df9c0"
+      },
+      "related-moves": {
+        "name": "related-moves",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1660-effects.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 32.481,
+        "log": "tmp/duema-phase-1688/related-moves.log",
+        "passed": 94,
+        "failed": 0,
+        "logSha256": "4ea2d20b86a9b79d3e18f91f6ac1191f4c820bc168b4575a71974a5e4c4d76f8"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.143,
+        "log": "tmp/duema-phase-1688/check.log",
+        "logSha256": "cdd9ed0feca329b6c5cb184d46f6e9cb7433a4cf662512714a874378a9b8670a"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.834,
+        "log": "tmp/duema-phase-1688/audit.log",
+        "logSha256": "1058fe9a8057224bffc7ce0f51024afd966e4c101054c305abacbd383c43e3cf"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.382,
+        "log": "tmp/duema-phase-1688/target9500.log",
+        "logSha256": "1ba206fa32c6fdee182064122d5aacb1561c4d3e4909ba7705ed4978491ca6cd"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1688/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.434,
+        "log": "tmp/duema-phase-1688/invariants.log",
+        "logSha256": "a65b0dc9d769cbb883176259b504b76c1ab0d870e678dc426e4697197cc7b00a"
+      }
+    },
+    "totalTestsPassed": 258,
+    "focusedTestsPassed": 50,
+    "relatedTestsPassed": 208
+  },
+  "validationNotes": [
+    "開始時HEAD a78f05b1、nameKey9300種類、他の差分なし。phase1687の335件とcheck/auditを確認して次のバッチへ進んだ。",
+    "原本3版と同名再録7版、全10版の公式全文・基本情報・画像10枚・使用制限を照合。正規IDを維持し、Joeと異なるジョニー/Final/ダッシュ/ボルシャック等のカードは除外。同名別イラストは追加種類に数えない。",
+    "ノチェスは既存Select anyOwnerにより6体になるよう最大数を必須選択し、一括破壊する。6体未満なら自分自身も含めて最大数、破壊されない相手を選んでも代わりを追加せず、攻撃元が破壊された場合は攻撃を中止する。可能なら攻撃を既存mustAttackで処理。setCardsの既存数値ブレイカー検査へ6を追加し、実際に8盾中6盾を同時ブレイクすることを確認した。",
+    "Zファイルは実召喚の時だけ任意の全破壊を使い、その選択を使った場合は他に0体でも墓地の全デーモンを出す。自分自身を除外し、相手側は破壊しない。直前に破壊したデーモンも復帰、非デーモンは残し、エターナルΩは破壊/マナ移動を手札へ置換。実玄渦・とこしえ・他Ωの犠牲置換を確認。",
+    "Joeは実召喚による登場の能力解決時に、相手に有効なクリーチャーがいなければ勝利、いれば自身以外の両者全クリーチャーを破壊する。封印・タマシードをクリーチャーと誤認せず、手札から効果で出した場合は勝利/全破壊せず、SAとQブレイカーは有効。実ブラキオ龍樹の誘発停止をZファイル/Joeの実召喚に適用して確認。",
+    "公式QA42962は同時破壊でターンプレイヤーから置換を決定して一括処理する裁定。双方の実EXライフ5体+ノチェスの同時破壊と全物理UIDで共通則を検証した。邪龍ジャブラッド自身は未登録のため元配置と墓地8枚等の正確な再現は次バッチ候補とする。",
+    "公式QA40220はJoeの誘発を他の誘発より後に解決し、その時点で相手のクリーチャーが封印で無視されていれば勝てる裁定。封印済みの実盤面と、実メルゲで待機中のJoeの能力を遅らせた場合の判定を確認。ウルボランス+ドルマゲドンビッグバンの元配置は未登録のため次候補とし、完全再現済みとは数えない。",
+    "固有50件、関連キーワード114件・同時移動/通信94件の計258件、check/audit/target9500/不変条件が通過。合法40枚の2seedで全UIDとJSON後の合法手を維持。初回の未登録のテスト用カードID/誤った墓地封鎖ID/既に解決済みのJoeを待機中と扱ったfixtureを修正し、実登録カードと実待機状態へ置き換えて検証した。",
+    "nameKey9303種類・ID/名前重複0、既存9300定義/画像/ピン/カタログを維持。過去の未確認・保留・公開状況を変更しない。ヤバスギルとセイメイは実装調査を要するため理由を残し別候補へ変更。通常登録でpush・公開・Netlify更新は行わず9500へ継続。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm22rp2-OR2",
+      "name": "邪龍 ジャブラッド",
+      "reason": "QA42962の元配置の再現に必要。タマシード/クリーチャー条件、任意ミル、アビス全体の墓地4枚による離脱置換を全能力対応。"
+    },
+    {
+      "id": "dmrp19-s07",
+      "name": "戦霊混成 ウルボランス",
+      "reason": "QA40220の実再現に必要。任意破棄と結果ドロー、最初の実召喚とそのクリーチャーのコストまでの呪文任意実行を照合。"
+    },
+    {
+      "id": "dmex01-072",
+      "name": "ドルマゲドン・ビッグバン",
+      "reason": "QA40220の実再現に必要。全相手クリーチャー封印、墓地から闇/火の非進化コマンドまたはイニシャルズ1体の登場とターン中SAを全能力対応。"
+    }
+  ]
+}

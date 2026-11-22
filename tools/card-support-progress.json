@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9300,
-  "pendingNames": 2525,
-  "phase": 1687,
+  "supportedNames": 9303,
+  "pendingNames": 2522,
+  "phase": 1688,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1425,
+    "クリーチャー": 1422,
     "呪文": 281,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,10 +221,10 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1822,
+    "未対応の能力文": 1821,
     "複数面・特殊カードタイプまたは情報不足": 586,
     "未対応のG・ゼロ条件": 11,
-    "未対応の召喚時能力": 18,
+    "未対応の召喚時能力": 16,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 10,
     "複雑な進化条件": 11,
@@ -538422,32 +538422,281 @@
         }
       ],
       "next": "phase1688は候補3種を公式全文・画像・再録・制限・裁定に照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1688,
+      "checkedAt": "2026-11-22T22:34:11.546Z",
+      "baseline": "a78f05b1",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9300,
+      "currentNames": 9303,
+      "remainingNames": 197,
+      "added": [
+        {
+          "id": "dm22ex2-004",
+          "name": "悪遊 ノチェス＝アルトゥス"
+        },
+        {
+          "id": "dmr07-s01",
+          "name": "「謎」の頂 Z-ファイル"
+        },
+        {
+          "id": "dmr23-l01",
+          "name": "ジョリー・ザ・ジョニー Joe"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "a78f05b1",
+        "originalDefinitionsUnchanged": 9300,
+        "added": 3,
+        "uniqueNames": 9303,
+        "uniqueIds": 9303,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9300,
+        "existingImageReferenceRowsUnchanged": 11510,
+        "officialPrintsReviewed": 10,
+        "officialImagesReviewed": 10,
+        "existingPinsUnchanged": 820
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1688.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.216,
+          "log": "tmp/duema-phase-1688/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "focused-verified",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1688-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.606,
+          "log": "tmp/duema-phase-1688/focused-verified.log",
+          "passed": 50,
+          "failed": 0,
+          "logSha256": "cb63ccee0d765f6fa22543f5d73e3518e9ec039eac82bf670d3ff912dfe24413"
+        },
+        "related-keywords": {
+          "name": "related-keywords",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard202-effects.test.mjs",
+            "tests/standard471-effects.test.mjs",
+            "tests/standard203-effects.test.mjs",
+            "tests/standard871-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.972,
+          "log": "tmp/duema-phase-1688/related-keywords.log",
+          "passed": 114,
+          "failed": 0,
+          "logSha256": "b3c8819b1de679dbe1ec95376e7f3a2c03ff45602f2d6d671f0834c3350df9c0"
+        },
+        "related-moves": {
+          "name": "related-moves",
+          "command": [
+            "node",
+            "--test",
+            "--test-concurrency=2",
+            "tests/standard1660-effects.test.mjs",
+            "tests/online-runtime.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.481,
+          "log": "tmp/duema-phase-1688/related-moves.log",
+          "passed": 94,
+          "failed": 0,
+          "logSha256": "4ea2d20b86a9b79d3e18f91f6ac1191f4c820bc168b4575a71974a5e4c4d76f8"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.143,
+          "log": "tmp/duema-phase-1688/check.log",
+          "logSha256": "cdd9ed0feca329b6c5cb184d46f6e9cb7433a4cf662512714a874378a9b8670a"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.834,
+          "log": "tmp/duema-phase-1688/audit.log",
+          "logSha256": "1058fe9a8057224bffc7ce0f51024afd966e4c101054c305abacbd383c43e3cf"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.382,
+          "log": "tmp/duema-phase-1688/target9500.log",
+          "logSha256": "1ba206fa32c6fdee182064122d5aacb1561c4d3e4909ba7705ed4978491ca6cd"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1688/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.434,
+          "log": "tmp/duema-phase-1688/invariants.log",
+          "logSha256": "a65b0dc9d769cbb883176259b504b76c1ab0d870e678dc426e4697197cc7b00a"
+        }
+      },
+      "totalTestsPassed": 258,
+      "hashes": {
+        "dist/cards.json": "977aec3d77f117a0a056644e24be569701821c42c73a6c71e4faf44c99fffddb",
+        "dist/engine.js": "a257b5a33f3063565d6743aff0192cab93a897ab0da0ef91247404d600d911d9",
+        "dist/six-photo-rules.js": "6f059e57a7edf84079fc07b076bd3bf769d9bb236e7a00e41526fe5bee75182e",
+        "dist/online-compatibility.js": "a7543b0e4e04aa79f613a6e38aa3b67ed16cbaa70f41401e9b9abf81078c73f1",
+        "dist/card-images.js": "f088f63a81e062632bbbbda5001b6452ac9d55110587894452d9c09adeebf4a1",
+        "tools/target9000-card-spec.json": "0ce780f4bff5ddf430f6ab5f83a3a0b47a165ca4382147b601719d65b7d9277c",
+        "tests/standard1688-effects.test.mjs": "af7aaa0ed1ef4be546455f32ac4b3b46155e30b8b8b1fb3815850fddc8aa18fa"
+      },
+      "engineVersion": "0.602.204",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 42962,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42962/",
+          "sha256": "9d96a9c1050203a8dcd51bfcd689503b1de3aef7cad5cd89c9ffa917ab35ab43",
+          "confirmed": true,
+          "scope": "同時破壊の置換と能動側優先を実登録の置換で検証。邪龍ジャブラッドは未登録のためその元配置は未再現。"
+        },
+        {
+          "id": 40220,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/40220/",
+          "sha256": "757daf92edaae72cfe9e5cf01474a9d837819e9a629657dc3f7effa97c929073",
+          "confirmed": true,
+          "scope": "解決時の相手クリーチャー有無を封印などで検証。ウルボランスとドルマゲドンビッグバンは未登録のためその元配置は未再現。"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1688-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.043,
+          "log": "tmp/duema-phase-1688/focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1688.json",
+      "supported": 9303,
+      "pending": 2522,
+      "reason": "ノチェスの最大6体同時破壊・強制攻撃・Hブレイカー、Zファイルの召喚時任意全破壊と全デーモン展開・Ω・T、Joeの召喚時分岐勝利/全破壊・SA・Qを全能力対応。",
+      "validationNotes": [
+        "開始時HEAD a78f05b1、nameKey9300種類、他の差分なし。phase1687の335件とcheck/auditを確認して次のバッチへ進んだ。",
+        "原本3版と同名再録7版、全10版の公式全文・基本情報・画像10枚・使用制限を照合。正規IDを維持し、Joeと異なるジョニー/Final/ダッシュ/ボルシャック等のカードは除外。同名別イラストは追加種類に数えない。",
+        "ノチェスは既存Select anyOwnerにより6体になるよう最大数を必須選択し、一括破壊する。6体未満なら自分自身も含めて最大数、破壊されない相手を選んでも代わりを追加せず、攻撃元が破壊された場合は攻撃を中止する。可能なら攻撃を既存mustAttackで処理。setCardsの既存数値ブレイカー検査へ6を追加し、実際に8盾中6盾を同時ブレイクすることを確認した。",
+        "Zファイルは実召喚の時だけ任意の全破壊を使い、その選択を使った場合は他に0体でも墓地の全デーモンを出す。自分自身を除外し、相手側は破壊しない。直前に破壊したデーモンも復帰、非デーモンは残し、エターナルΩは破壊/マナ移動を手札へ置換。実玄渦・とこしえ・他Ωの犠牲置換を確認。",
+        "Joeは実召喚による登場の能力解決時に、相手に有効なクリーチャーがいなければ勝利、いれば自身以外の両者全クリーチャーを破壊する。封印・タマシードをクリーチャーと誤認せず、手札から効果で出した場合は勝利/全破壊せず、SAとQブレイカーは有効。実ブラキオ龍樹の誘発停止をZファイル/Joeの実召喚に適用して確認。",
+        "公式QA42962は同時破壊でターンプレイヤーから置換を決定して一括処理する裁定。双方の実EXライフ5体+ノチェスの同時破壊と全物理UIDで共通則を検証した。邪龍ジャブラッド自身は未登録のため元配置と墓地8枚等の正確な再現は次バッチ候補とする。",
+        "公式QA40220はJoeの誘発を他の誘発より後に解決し、その時点で相手のクリーチャーが封印で無視されていれば勝てる裁定。封印済みの実盤面と、実メルゲで待機中のJoeの能力を遅らせた場合の判定を確認。ウルボランス+ドルマゲドンビッグバンの元配置は未登録のため次候補とし、完全再現済みとは数えない。",
+        "固有50件、関連キーワード114件・同時移動/通信94件の計258件、check/audit/target9500/不変条件が通過。合法40枚の2seedで全UIDとJSON後の合法手を維持。初回の未登録のテスト用カードID/誤った墓地封鎖ID/既に解決済みのJoeを待機中と扱ったfixtureを修正し、実登録カードと実待機状態へ置き換えて検証した。",
+        "nameKey9303種類・ID/名前重複0、既存9300定義/画像/ピン/カタログを維持。過去の未確認・保留・公開状況を変更しない。ヤバスギルとセイメイは実装調査を要するため理由を残し別候補へ変更。通常登録でpush・公開・Netlify更新は行わず9500へ継続。"
+      ],
+      "held": [
+        {
+          "id": "dmr05-058",
+          "name": "ヤバスギル・ラップ",
+          "reason": "任意破壊の実際の結果と置換後の結果参照を既存処理へ接続する調査が必要。"
+        },
+        {
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "呪文だけの墓地→手札禁止について全移動経路の確認を要するため部分登録せず保留。"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm22rp2-OR2",
+          "name": "邪龍 ジャブラッド",
+          "reason": "QA42962の元配置の再現に必要。タマシード/クリーチャー条件、任意ミル、アビス全体の墓地4枚による離脱置換を全能力対応。"
+        },
+        {
+          "id": "dmrp19-s07",
+          "name": "戦霊混成 ウルボランス",
+          "reason": "QA40220の実再現に必要。任意破棄と結果ドロー、最初の実召喚とそのクリーチャーのコストまでの呪文任意実行を照合。"
+        },
+        {
+          "id": "dmex01-072",
+          "name": "ドルマゲドン・ビッグバン",
+          "reason": "QA40220の実再現に必要。全相手クリーチャー封印、墓地から闇/火の非進化コマンドまたはイニシャルズ1体の登場とターン中SAを全能力対応。"
+        }
+      ],
+      "next": "phase1689は候補3種を公式全文・画像・再録・制限・裁定に照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1687,
-    "nextPhase": 1688,
+    "lastVerifiedPhase": 1688,
+    "nextPhase": 1689,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr05-058",
-        "name": "ヤバスギル・ラップ",
-        "reason": "相手選択の破壊と実際に破壊しなかった場合の任意展開を既存処理へ照合。"
+        "id": "dm22rp2-OR2",
+        "name": "邪龍 ジャブラッド",
+        "reason": "QA42962の元配置の再現に必要。タマシード/クリーチャー条件、任意ミル、アビス全体の墓地4枚による離脱置換を全能力対応。"
       },
       {
-        "id": "dm22ex2-004",
-        "name": "悪遊 ノチェス＝アルトゥス",
-        "reason": "攻撃時に自分側も含め最大6体の必須破壊・Hブレイカー・可能なら攻撃を照合。"
+        "id": "dmrp19-s07",
+        "name": "戦霊混成 ウルボランス",
+        "reason": "QA40220の実再現に必要。任意破棄と結果ドロー、最初の実召喚とそのクリーチャーのコストまでの呪文任意実行を照合。"
       },
       {
-        "id": "dm31-007",
-        "name": "陰陽の伝道士セイメイ",
-        "reason": "相手からの選択禁止と相手の呪文墓地回収禁止を共通処理へ照合。"
+        "id": "dmex01-072",
+        "name": "ドルマゲドン・ビッグバン",
+        "reason": "QA40220の実再現に必要。全相手クリーチャー封印、墓地から闇/火の非進化コマンドまたはイニシャルズ1体の登場とターン中SAを全能力対応。"
       }
     ],
     "steps": [
       "ユーザーの明示指示で登録再開。変更の影響に合わせた検証方針を適用。",
-      "phase1688は候補3種を公式全文・画像・再録・制限・裁定に照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
+      "phase1689は候補3種を公式全文・画像・再録・制限・裁定に照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
       "過去の未確認・保留を解消扱いにしない。"
     ],
     "knownIssues": [
@@ -539113,7 +539362,10 @@
         "name": "ジョリー・ザ・ジョニー Joe",
         "reason": "公式全文・基本情報・再録一覧とQA40220を保存。全クリーチャーを無視するドルマゲドン・ビッグバンと戦霊混成ウルボランスが未対応で、名指し裁定の召喚時誘発順/無視状態での勝利を再現できない。検証に必要な2種類を全文対応する専用バッチへ保留。",
         "source": "https://dm.takaratomy.co.jp/rule/qa/40220/",
-        "lastReviewedPhase": 1681
+        "lastReviewedPhase": 1681,
+        "status": "implemented-verified",
+        "resolvedByPhase": 1688,
+        "artifact": "tools/target9500-registration-checkpoint-1688.json"
       },
       {
         "id": "dm02-044",
@@ -539128,6 +539380,20 @@
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-057",
         "reason": "最新DM26-EX2では1体から「好きな数リンクして出す」へ能力が変更。原本IDを維持して最新全文に対応するにはリンク配置の競合を含む複数体同時登場とQA43748が必要。旧1体だけの仮実装は撤去し、専用バッチへ保留。",
         "lastReviewedPhase": 1683
+      },
+      {
+        "id": "dmr05-058",
+        "name": "ヤバスギル・ラップ",
+        "reason": "相手の任意破壊が置換されて実際に破壊しなかった場合も含む結果参照と、拒否後の手札/墓地からの任意展開を既存処理だけで再現する調査が必要。",
+        "phase": 1688,
+        "status": "not-registered"
+      },
+      {
+        "id": "dm31-007",
+        "name": "陰陽の伝道士セイメイ",
+        "reason": "呪文だけの墓地→手札移動禁止を、ツインパクト・複数回収・各直接移動経路に適用する確認が必要。墓地を丸ごと禁止する部分実装は行わない。",
+        "phase": 1688,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -539304,23 +539570,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1687,
-      "baseline": "dd184a13",
-      "supportedNames": 9300,
-      "artifact": "tools/target9500-registration-checkpoint-1687.json",
-      "checkedAt": "2026-11-22T22:24:26.595Z"
+      "phase": 1688,
+      "baseline": "a78f05b1",
+      "supportedNames": 9303,
+      "artifact": "tools/target9500-registration-checkpoint-1688.json",
+      "checkedAt": "2026-11-22T22:34:11.546Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T22:24:26.595Z",
+      "checkedAt": "2026-11-22T22:34:11.546Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9300,
-      "remainingNames": 200,
+      "currentNames": 9303,
+      "remainingNames": 197,
       "duplicateNames": 0,
-      "engineVersion": "0.602.203",
+      "engineVersion": "0.602.204",
       "added": [
         {
           "id": "dmr12-008",
@@ -540241,6 +540507,18 @@
         {
           "id": "dmx03-001",
           "name": "巡霊者スーパー・ウイニング・スター"
+        },
+        {
+          "id": "dm22ex2-004",
+          "name": "悪遊 ノチェス＝アルトゥス"
+        },
+        {
+          "id": "dmr07-s01",
+          "name": "「謎」の頂 Z-ファイル"
+        },
+        {
+          "id": "dmr23-l01",
+          "name": "ジョリー・ザ・ジョニー Joe"
         }
       ],
       "results": {
@@ -540356,13 +540634,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "bd4518457b2993d9371181d7f561815eeb4c636e5453bcbd7dc45d84a846891c",
-        "dist/engine.js": "ba5e3392d27865fa915951cbbf94af7756afb4e49ee77440e6e4b26d073b2e57",
+        "dist/cards.json": "977aec3d77f117a0a056644e24be569701821c42c73a6c71e4faf44c99fffddb",
+        "dist/engine.js": "a257b5a33f3063565d6743aff0192cab93a897ab0da0ef91247404d600d911d9",
         "dist/six-photo-rules.js": "6f059e57a7edf84079fc07b076bd3bf769d9bb236e7a00e41526fe5bee75182e",
-        "dist/online-compatibility.js": "506e2d7885f2f0ec57cfb85876f5440aa770097fae988e579c846a484ffa09f9",
-        "dist/card-images.js": "1a0b9ab3308115aafbe63b006f32d9591424868e8c009efde884593660b45b07",
-        "tools/target9000-card-spec.json": "6db1bfcee5624b52f3d8288dbcd45f376ea4fde0a3ca91d39737c64593faaa98",
-        "tests/standard1687-effects.test.mjs": "94f4adef46aecde624da6eb8ba31a7e09c9f1428853a7762189aa4a2e659bfbb"
+        "dist/online-compatibility.js": "a7543b0e4e04aa79f613a6e38aa3b67ed16cbaa70f41401e9b9abf81078c73f1",
+        "dist/card-images.js": "f088f63a81e062632bbbbda5001b6452ac9d55110587894452d9c09adeebf4a1",
+        "tools/target9000-card-spec.json": "0ce780f4bff5ddf430f6ab5f83a3a0b47a165ca4382147b601719d65b7d9277c",
+        "tests/standard1688-effects.test.mjs": "af7aaa0ed1ef4be546455f32ac4b3b46155e30b8b8b1fb3815850fddc8aa18fa"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -540426,10 +540704,10 @@
       },
       "phaseRange": [
         1614,
-        1687
+        1688
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 230,
+      "addedNames": 233,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -540441,9 +540719,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 30.425,
-        "log": "tmp/duema-phase-1687/check.log",
-        "logSha256": "421cfa70c0bc521a19ef6598341e8c0cde598abee99a9c840f870fe1e0fb6663"
+        "seconds": 26.143,
+        "log": "tmp/duema-phase-1688/check.log",
+        "logSha256": "cdd9ed0feca329b6c5cb184d46f6e9cb7433a4cf662512714a874378a9b8670a"
       },
       "latestAudit": {
         "name": "audit",
@@ -540453,11 +540731,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.39,
-        "log": "tmp/duema-phase-1687/audit.log",
-        "logSha256": "d9aa9baf20a93ae8b2803d9a0b880303dd123664e3db3aa646e57282e040e15c"
+        "seconds": 10.834,
+        "log": "tmp/duema-phase-1688/audit.log",
+        "logSha256": "1058fe9a8057224bffc7ce0f51024afd966e4c101054c305abacbd383c43e3cf"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1687.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1688.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -541575,11 +541853,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9300,
-      "remaining": 200,
+      "currentNames": 9303,
+      "remaining": 197,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T22:24:26.595Z",
+      "checkedAt": "2026-11-22T22:34:11.546Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -593681,11 +593959,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1687,
+    "phase": 1688,
     "threshold": 9500,
-    "supportedNames": 9300,
-    "pendingNames": 2525,
-    "checkedAt": "2026-11-22T22:24:26.595Z",
+    "supportedNames": 9303,
+    "pendingNames": 2522,
+    "checkedAt": "2026-11-22T22:34:11.546Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -593694,7 +593972,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1687.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1688.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
