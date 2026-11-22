@@ -1,0 +1,128 @@
+{
+  "phase": 1637,
+  "checkedAt": "2026-11-22T06:25:28.709Z",
+  "baseline": "14079e31224f080d42738329659b114431fe17b9",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9143,
+  "currentNames": 9146,
+  "remainingNames": 354,
+  "added": [
+    {
+      "id": "dm29-s01",
+      "name": "奇跡の精霊ミルザム"
+    },
+    {
+      "id": "dmrp21-038",
+      "name": "シャドウ・ラブ"
+    },
+    {
+      "id": "dmrp02-048",
+      "name": "トゲダマ戦車 チューヘッド"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9143,
+    "uniqueNames": 9146,
+    "uniqueIds": 9146,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1637.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.391,
+      "log": "tmp/duema-phase-1637/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1637-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.653,
+      "log": "tmp/duema-phase-1637/final-focused.log",
+      "passed": 55,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Shield Plus|ShieldPlus|shield loss|Thrilling Three|temporary extra breaks|additional breaks|Crew chooses|Kill filters|Kill skips|Sazanji|power attacker|attack-only grant|attack-only grants",
+        "tests/standard414-effects.test.mjs",
+        "tests/standard444-effects.test.mjs",
+        "tests/standard1009-effects.test.mjs",
+        "tests/standard337-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.689,
+      "log": "tmp/duema-phase-1637/final-related.log",
+      "passed": 42,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.119,
+      "log": "tmp/duema-phase-1637/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.467,
+      "log": "tmp/duema-phase-1637/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.262,
+      "log": "tmp/duema-phase-1637/target9500.log"
+    }
+  },
+  "totalTestsPassed": 97,
+  "hashes": {
+    "dist/cards.json": "c68f2d555eca2d7c74b7577d0aa787efd2f38eaaf55e24ed6a35779e8a80f656",
+    "dist/engine.js": "7a99437919b54c69509a43d98d2aa7e2bd6f6b8a9f62ce1ff4db07f85fa624d0",
+    "dist/six-photo-rules.js": "373206b326afcf08f805d2f16bc317c862f4f38b45ff40fa2738eec5bf411b4b",
+    "dist/online-compatibility.js": "78c037709ddbb15332b9d775c3ef3027579542396d742d41ab39b52cf51e631c",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.153",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "phase": 1637,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9143,
+  "target": 9500,
+  "description": "ウルトラシールド・プラスの最大5枚を一つのシールドへ重ねる処理、任意の自軍破壊に続く敵クリーチャーまたはタマシードの破壊、他のビートジョッキー登場ごとに重複する攻撃時パワーと追加ブレイクを既存処理で全文対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dm29-s01",
+      "name": "奇跡の精霊ミルザム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-s01",
+      "faces": [
+        {
+          "name": "奇跡の精霊ミルザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー\nウルトラシールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)\nW・ブレイカー",
+          "race": "エンジェル・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldPlus414",
+            "n": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "2cdf9de67475e34bb1e3b2731bae866dba6376c0abdbf38f390bbeee06194226",
+        "facesMatched": true,
+        "imageSha256": "545fe9f0fa84a7adbf72b48c304748b0a2451734d9c57dc8301fef608046b279",
+        "imageBytes": 120918,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMX-19 スーパーレア100%パック",
+        "DMC-66 デュエル・マスターズ 超BEST",
+        "DM-29 戦国編 第2弾 戦国英雄伝(ロックオン・ヒーローズ)",
+        "DMC-50 エントリーデッキ ゼロ パーフェクト・エンジェル",
+        "プロモ限定カード 14期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-s01",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp21-038",
+      "name": "シャドウ・ラブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-038",
+      "faces": [
+        {
+          "name": "シャドウ・ラブ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャー１体またはタマシードを１枚破壊してもよい。そうしたら、相手のクリーチャー１体またはタマシードを１枚破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "element": true,
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "creatureOrSeed": true
+            },
+            "g587AfterSelection": true,
+            "spell": true,
+            "after": [
+              {
+                "op": "Target",
+                "element": true,
+                "to": "grave",
+                "filter": {
+                  "creatureOrSeed": true
+                },
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "fc4d6c56a796ea7c279e071fed35c7ea6a87e71116581a28a097d177898506f4",
+        "facesMatched": true,
+        "imageSha256": "af12a82ce08916c5cf16d7d98fa0b21c404118abdb6d35b12704e30813e28e5b",
+        "imageBytes": 112384,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-21 王来MAX第1弾 鬼ヤバ逆襲S-MAX!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-038",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    },
+    {
+      "id": "dmrp02-048",
+      "name": "トゲダマ戦車 チューヘッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-048",
+      "faces": [
+        {
+          "name": "トゲダマ戦車 チューヘッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の他のビートジョッキーがバトルゾーンに出た時、そのターン、このクリーチャーは「パワーアタッカー+5000」を得、シールドをさらに１つブレイクする。（攻撃中、「パワーアタッカー+5000」を持つクリーチャーのパワーは+5000される）",
+          "race": "ビートジョッキー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "g765Element": true,
+          "filter": {
+            "race": "ビートジョッキー"
+          },
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 5000,
+              "g337PowerAttacker": true
+            },
+            {
+              "op": "SelfExtraBreak444",
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "fd417db66f4499d4847f8a679b262a93f58bd650cebf0e2516760d38a0d5df10",
+        "facesMatched": true,
+        "imageSha256": "0891b5c2fcd2631ab3ecc85b8489678bb4f6b64eb584f01b76a688de32fdee18",
+        "imageBytes": 124799,
+        "imageReviewed": true,
+        "imageReview": "公式画像の名称・能力全文・文明・コスト・種族・パワー・マナ1を照合。"
+      },
+      "sameNameProducts": [
+        "DMRP-02 拡張パック新2弾 マジでB・A・Dなラビリンス!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-048",
+        "result": "公式の同名収録一覧を照合。元のIDを維持し、未照合の別版エイリアスは追加しない。"
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm29-s01": 1,
+      "dmrp21-038": 4,
+      "dmrp02-048": 4
+    }
+  },
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
+      "checkedAt": "2026-11-22",
+      "sha256": "c89ef133b3368483b7cb115345369e63f4bcd6a3f8f2aebc3f67c2a3d9af9f9a"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "checkedAt": "2026-11-22",
+      "sha256": "4119694839ccb44dd9af475860afd2b20c620e25766ffb3c54111ce324b1ec26"
+    }
+  ],
+  "implementationNotes": [
+    "シャドウ・ラブの自軍破壊は既存のTarget/afterを利用し、破壊置換と離脱能力を通してから敵破壊へ続く。墓地・手札向け一括移動Selectは戦場の破壊に流用しない。",
+    "ミルザムはg71_Plusの既存の枚数付きシールド選択を利用。チューヘッドは既存の攻撃時パワー修正と追加ブレイクを登場ごとに付与する。"
+  ]
+}

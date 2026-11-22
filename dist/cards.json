@@ -290828,21 +290828,126 @@
       ],
       "supportBatch": "phase-1636",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-s01",
+      "name": "奇跡の精霊ミルザム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー\nウルトラシールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-s01",
+      "limit": 1,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldPlus414",
+          "n": 5
+        }
+      ],
+      "supportBatch": "phase-1637",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-038",
+      "name": "シャドウ・ラブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャー１体またはタマシードを１枚破壊してもよい。そうしたら、相手のクリーチャー１体またはタマシードを１枚破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-038",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "creatureOrSeed": true
+          },
+          "g587AfterSelection": true,
+          "spell": true,
+          "after": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "grave",
+              "filter": {
+                "creatureOrSeed": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1637",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-048",
+      "name": "トゲダマ戦車 チューヘッド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ビートジョッキー",
+      "text": "自分の他のビートジョッキーがバトルゾーンに出た時、そのターン、このクリーチャーは「パワーアタッカー+5000」を得、シールドをさらに１つブレイクする。（攻撃中、「パワーアタッカー+5000」を持つクリーチャーのパワーは+5000される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-048",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "filter": {
+          "race": "ビートジョッキー"
+        },
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 5000,
+            "g337PowerAttacker": true
+          },
+          {
+            "op": "SelfExtraBreak444",
+            "amount": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1637",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1636,
+    "phase": 1637,
     "checkedAt": "2026-11-22",
-    "baseCount": 9139,
-    "newEffectCards": 4,
+    "baseCount": 9143,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9143,
+    "totalCount": 9146,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36810/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35677/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
     ],
     "next": [
@@ -317581,6 +317686,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45058/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37149/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1636,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9139,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9143,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36810/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36808/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36809/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36807/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

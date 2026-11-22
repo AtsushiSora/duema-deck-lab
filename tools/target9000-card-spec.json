@@ -31563,5 +31563,122 @@
         }
       ]
     }
+  },
+  "dm29-s01": {
+    "phase": 1637,
+    "faces": [
+      {
+        "name": "奇跡の精霊ミルザム",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカー\nウルトラシールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚まで、裏向きのまま、自分のシールドいずれか１枚の下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)\nW・ブレイカー",
+        "race": "エンジェル・コマンド",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldPlus414",
+          "n": 5
+        }
+      ]
+    }
+  },
+  "dmrp21-038": {
+    "phase": 1637,
+    "faces": [
+      {
+        "name": "シャドウ・ラブ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャー１体またはタマシードを１枚破壊してもよい。そうしたら、相手のクリーチャー１体またはタマシードを１枚破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "creatureOrSeed": true
+          },
+          "g587AfterSelection": true,
+          "spell": true,
+          "after": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "grave",
+              "filter": {
+                "creatureOrSeed": true
+              },
+              "spell": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp02-048": {
+    "phase": 1637,
+    "faces": [
+      {
+        "name": "トゲダマ戦車 チューヘッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の他のビートジョッキーがバトルゾーンに出た時、そのターン、このクリーチャーは「パワーアタッカー+5000」を得、シールドをさらに１つブレイクする。（攻撃中、「パワーアタッカー+5000」を持つクリーチャーのパワーは+5000される）",
+        "race": "ビートジョッキー",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314OtherEntry": {
+        "who": "self",
+        "g765Element": true,
+        "filter": {
+          "race": "ビートジョッキー"
+        },
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 5000,
+            "g337PowerAttacker": true
+          },
+          {
+            "op": "SelfExtraBreak444",
+            "amount": 1
+          }
+        ]
+      }
+    }
   }
 }
