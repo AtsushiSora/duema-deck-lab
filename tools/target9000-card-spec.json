@@ -35591,5 +35591,161 @@
         ]
       }
     }
+  },
+  "dmex12-031": {
+    "phase": 1670,
+    "faces": [
+      {
+        "name": "Dの劇場 テンダネス・エスセーキ",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のターンの終わりに、自分の山札の上から１枚目を見る。それを、山札の一番下に置いてもよい。その後、バトルゾーンに自分のスプラッシュ・クイーンがあれば、カードを１枚引く。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーはすべてブロックできない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "TenderBlock1670"
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "g323Scry": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "deck",
+              "optional": true
+            }
+          ],
+          "after": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "race": "スプラッシュ・クイーン"
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm23ex3-017": {
+    "phase": 1670,
+    "faces": [
+      {
+        "name": "Dの文殿 アルケミスト・ヒルズ",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "プレイヤーがクリーチャーを召喚した時または呪文を唱えた時、そのプレイヤーにカードを１枚引かせてもよい。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の墓地と手札を山札に加えてシャッフルし、カードを５枚引く。",
+        "race": "ゼニス",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "AlchemistShuffle1670"
+            }
+          ]
+        }
+      ],
+      "g1670Alchemist": true
+    }
+  },
+  "dmr22-027": {
+    "phase": 1670,
+    "faces": [
+      {
+        "name": "Dの暴毒 ヴェノミック・ハザード",
+        "typeText": "D2フィールド",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のターンの終わりに、クリーチャーを１体、自分の墓地から手札に戻してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札からクリーチャーを好きな数捨てる。その数だけ、相手は自身のクリーチャーを選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "HandCycle460",
+              "mode": "any",
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "afterDiscardSelect": {
+                "g1670VictimChooses": true,
+                "origin": "battle",
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g187OwnPick": true
+              }
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ]
+    }
   }
 }

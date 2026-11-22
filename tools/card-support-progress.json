@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9248,
-  "pendingNames": 2577,
-  "phase": 1669,
+  "supportedNames": 9251,
+  "pendingNames": 2574,
+  "phase": 1670,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -169,7 +169,7 @@
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "D2フィールド": 28,
+    "D2フィールド": 25,
     "禁断フィールド": 1,
     "クロスギア": 52,
     "進化クリーチャー(進化GV)": 12,
@@ -226,7 +226,7 @@
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
-    "未対応のD2フィールド能力": 28,
+    "未対応のD2フィールド能力": 25,
     "複雑な進化条件": 11,
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 10,
@@ -533340,27 +533340,245 @@
         }
       ],
       "next": "phase1670で次のD2フィールド3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
+    },
+    {
+      "phase": 1670,
+      "checkedAt": "2026-11-22T14:33:15.443Z",
+      "baseline": "2ec9de60",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9248,
+      "currentNames": 9251,
+      "remainingNames": 249,
+      "added": [
+        {
+          "id": "dmex12-031",
+          "name": "Dの劇場 テンダネス・エスセーキ"
+        },
+        {
+          "id": "dm23ex3-017",
+          "name": "Dの文殿 アルケミスト・ヒルズ"
+        },
+        {
+          "id": "dmr22-027",
+          "name": "Dの暴毒 ヴェノミック・ハザード"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "2ec9de60",
+        "originalDefinitionsUnchanged": 9248,
+        "added": 3,
+        "uniqueNames": 9251,
+        "uniqueIds": 9251,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9248,
+        "existingImageReferenceRowsUnchanged": 11444
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1670.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.229,
+          "log": "tmp/duema-phase-1670/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1670-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.594,
+          "log": "tmp/duema-phase-1670/final-focused.log",
+          "passed": 139,
+          "failed": 0,
+          "logSha256": "85e947b2f03b2101312289bc327244dba9b5bfeb1ca65e3ad029e2bfb8d75db8"
+        },
+        "related-d2-summon": {
+          "name": "related-d2-summon",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1669-effects.test.mjs",
+            "tests/standard1175-effects.test.mjs",
+            "tests/standard808-effects.test.mjs",
+            "tests/standard1268-effects.test.mjs",
+            "tests/standard1668-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.359,
+          "log": "tmp/duema-phase-1670/related-d2-summon.log",
+          "passed": 276,
+          "failed": 0,
+          "logSha256": "97e969606a3b02e2458a9678f18a0e1c815c2c18074028aa92f5aa0274c9fdad"
+        },
+        "related-discard-look": {
+          "name": "related-discard-look",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard323-effects.test.mjs",
+            "tests/standard1163-effects.test.mjs",
+            "tests/standard914-effects.test.mjs",
+            "tests/standard1592-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 35.677,
+          "log": "tmp/duema-phase-1670/related-discard-look.log",
+          "passed": 108,
+          "failed": 0,
+          "logSha256": "676738103ab33c9abec456998a88e3ed56eff30ddb14a7952b84f36538b32273"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.011,
+          "log": "tmp/duema-phase-1670/check.log",
+          "logSha256": "9433c0db32776563bedec117606bcb5b5ef4157ab9758eaee683225be8130658"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.393,
+          "log": "tmp/duema-phase-1670/audit.log",
+          "logSha256": "09fc1dcdd6ca16c9407f6e1540231666264682d3c7fc4d0169695c83c7d24379"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.315,
+          "log": "tmp/duema-phase-1670/target9500.log",
+          "logSha256": "255c46c809b45f6232c72c49840b108a6584b5acd7524b19710a2b9a71a57096"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1670/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.377,
+          "log": "tmp/duema-phase-1670/invariants.log",
+          "logSha256": "1756f7e01248182e525b7cd1a026b716061f7e9c49ed31d388fd8dee7a735e46"
+        }
+      },
+      "totalTestsPassed": 523,
+      "hashes": {
+        "dist/cards.json": "1c60c5899cdd08d42f0a1d142bae5f3a8ced27d746e284086559f040b8b78860",
+        "dist/engine.js": "0054b8982246d9fefded8e47ccbde43dbd7f29fc60c6df2ff430bd1e910f839d",
+        "dist/extended-rules.js": "3d9d53d59e951e0d99fde40fe719c31990479a4b8a6b224eb49d24aa4f7035e0",
+        "dist/six-photo-rules.js": "cf9cb4fccb449ac30fa24c9d9f350392a6b28ce834293ac7e2cd2e672999061c",
+        "dist/online-compatibility.js": "3229ab5c0060fc4c9ce6c7f0397683aa29d651e87d391e6445f28ef5e0a1d482",
+        "dist/card-images.js": "813b809b67e963e13364edad956f49c4c08b239116b91af80f02b5ad63026c5f",
+        "tools/target9000-card-spec.json": "a2703504a5b137a298b4904683c464a219769b59d366731740558211182392d5",
+        "tests/standard1670-effects.test.mjs": "2be23b49979c5636977ced6912ffeb4807f1f94785b9bb90faba93bed1cbbe23"
+      },
+      "engineVersion": "0.602.186",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1670-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 12.929,
+          "log": "tmp/duema-phase-1670/focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1670.json",
+      "supported": 9251,
+      "pending": 2574,
+      "reason": "D2フィールド3種類の終了時の山札操作・墓地回収、召喚と呪文使用の観測、解決時点のブロック禁止・手札墓地の再構成・実際に捨てたクリーチャー数による相手選択破壊を全文対応。",
+      "validationNotes": [
+        "固有139件、D2・召喚・GR観測関連276件、捨て札・山札操作関連108件の計523件が通過。npm run check、audit、target9500、既存9248定義と全ID・詳細・別名・画像参照の不変を確認。",
+        "公式能力全文・基本情報・マナ値・使用制限と画像3枚を照合。各公式ページの同名収録一覧は1商品で、既存の正規IDのみを登録。旧カードや別名・再録の重複加算なし。",
+        "テンダネスは公式QA38584/38585の問答を取得HTMLで照合。実QQQXによる確認禁止でも条件ドローを行い、Dスイッチ時にいた相手だけをブロック禁止にする。実ハヤブサマルの忍者宣言・召喚・自己ブロッカー付与・ブロックを通し、禁止効果の進化後の追跡、ゲンムとフィールド離脱後の持続、終了時の期限切れも検証。",
+        "アルケミストは共通の召喚完了通知と呪文使用通知を観測し、能力の使用者はD2の制御者、ドローするプレイヤーは実際の召喚・唱え手として分離。無料GRも1回、召喚禁止時は発生せず、リツイーギョの登場置換でも実際の召喚は数える。非召喚登場と非クリーチャー実行は対象外。能力無視・ソース離脱後・最後の1枚のドローによる実プレイヤーの敗北を検証。",
+        "アルケミストのDスイッチは自分の墓地と手札だけを移し、墓地移動禁止も既存ポリシーで維持。QQQXの山札位置選択が終わってから5枚ドローへ進む継続にし、通常の開始ドローと実山札切れまで検証。カードを先に引いて位置選択を省略しない。",
+        "ヴェノミックは既存HandCycleと捨て札バッチの実際に捨てた枚数を用い、相手の選択・必要数・可能な範囲の破壊へ渡す。捨てるカードはクリーチャーのみ、0枚・相手0体・不足・多重選択、オニカマスを自身で選ぶ場合、自分の捨て札で相手効果マッドネスを誤起動しないことを検証。終了時回収の任意性と種別・アプル禁止、タップインも確認。",
+        "初回固有テストの2失敗は、テンダネスの終了時確認が未解決なのに相手ターンへ進んだと期待したfixtureが原因。通常の終了時能力を解決してから期限切れを判定するテストへ修正し、最終139件が通過。進化後の禁止も実ブロッカーのラディア・バーレで検証し、禁止効果を外すとブロックできることも確認。",
+        "手動マナ支払い、暗号化ルーム保存・投影の秘匿、AIの純粋性と非公開情報への非依存、両先後の40枚デッキでの80物理カード保存と終局を確認。今回3種類の未完了検証なし。過去の一括npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。ローカルのみでpush・公開・Netlify更新なし。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmr21-013",
+          "name": "Dの楽園 サイケデリック・ガーデン",
+          "reason": "全自軍へのエスケープと終了時Dスイッチの任意手札シールド化を全文照合する。"
+        },
+        {
+          "id": "dm23ex3-014",
+          "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+          "reason": "登場時タップとフィールド存続中のアンタップ禁止、相手開始時Dスイッチのアンタップ・ブロッカー付与を全文照合する。"
+        },
+        {
+          "id": "dmr23-014",
+          "name": "Dの博才 サイバーダイス・ベガス",
+          "reason": "Sトリガー・終了時任意ドロー・相手からのプレイヤー攻撃時Dスイッチでの水7以下呪文を全文照合する。"
+        }
+      ],
+      "next": "phase1671でD2フィールド3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1669,
-    "nextPhase": 1670,
+    "lastVerifiedPhase": 1670,
+    "nextPhase": 1671,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex12-031",
-        "name": "Dの劇場 テンダネス・エスセーキ",
-        "reason": "終了時の山札上確認とスプラッシュ・クイーン条件ドロー、開始時Dスイッチのブロック禁止を全文照合する。"
+        "id": "dmr21-013",
+        "name": "Dの楽園 サイケデリック・ガーデン",
+        "reason": "全自軍へのエスケープと終了時Dスイッチの任意手札シールド化を全文照合する。"
       },
       {
-        "id": "dm23ex3-017",
-        "name": "Dの文殿 アルケミスト・ヒルズ",
-        "reason": "両プレイヤーの召喚・呪文使用時の任意ドローとDスイッチの墓地手札回収後5枚ドローを全文照合する。"
+        "id": "dm23ex3-014",
+        "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+        "reason": "登場時タップとフィールド存続中のアンタップ禁止、相手開始時Dスイッチのアンタップ・ブロッカー付与を全文照合する。"
       },
       {
-        "id": "dmr22-027",
-        "name": "Dの暴毒 ヴェノミック・ハザード",
-        "reason": "タップイン、終了時墓地回収とDスイッチの任意数のクリーチャー捨て札・相手選択破壊を全文照合する。"
+        "id": "dmr23-014",
+        "name": "Dの博才 サイバーダイス・ベガス",
+        "reason": "Sトリガー・終了時任意ドロー・相手からのプレイヤー攻撃時Dスイッチでの水7以下呪文を全文照合する。"
       }
     ],
     "steps": [
@@ -534133,23 +534351,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1669,
-      "baseline": "4c57b3c6",
-      "supportedNames": 9248,
-      "artifact": "tools/target9500-registration-checkpoint-1669.json",
-      "checkedAt": "2026-11-22T14:17:31.170Z"
+      "phase": 1670,
+      "baseline": "2ec9de60",
+      "supportedNames": 9251,
+      "artifact": "tools/target9500-registration-checkpoint-1670.json",
+      "checkedAt": "2026-11-22T14:33:15.443Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T14:17:31.170Z",
+      "checkedAt": "2026-11-22T14:33:15.443Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9248,
-      "remainingNames": 252,
+      "currentNames": 9251,
+      "remainingNames": 249,
       "duplicateNames": 0,
-      "engineVersion": "0.602.185",
+      "engineVersion": "0.602.186",
       "added": [
         {
           "id": "dmr12-008",
@@ -534862,6 +535080,18 @@
         {
           "id": "dmr21-015",
           "name": "Dの悪意 ワルスラー研究所"
+        },
+        {
+          "id": "dmex12-031",
+          "name": "Dの劇場 テンダネス・エスセーキ"
+        },
+        {
+          "id": "dm23ex3-017",
+          "name": "Dの文殿 アルケミスト・ヒルズ"
+        },
+        {
+          "id": "dmr22-027",
+          "name": "Dの暴毒 ヴェノミック・ハザード"
         }
       ],
       "results": {
@@ -534977,13 +535207,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "0d41660355c748f32c2bc1e31aaf5c128e0d0bb4da03584777508746f8332b13",
-        "dist/engine.js": "8fcdfb6c2b312fc39f9ddbf69e3390c4b39ae9eb06b43ea88ab19729a4d0d347",
-        "dist/six-photo-rules.js": "56a80cc49f3569cf65651033bb8c691ea52cf00f7227b3e55a73dab0ee870dc7",
-        "dist/online-compatibility.js": "39ac1d2397807393cf8624f6264a438bb19260387e6e2588a12bc564a3b462f1",
-        "dist/card-images.js": "db2f136040cbacfec68b3d499b1261baaf449baa9b552639cd503a646eb8bd37",
-        "tools/target9000-card-spec.json": "4869e036de75dd38fd26f077d58fa89d7f8ef5a4c6129621b0e936412ea06b4a",
-        "tests/standard1669-effects.test.mjs": "e053200cdfbbd44ddcddc16c5ef19960cc12a81c2f4923d228e8f9d5732e806b"
+        "dist/cards.json": "1c60c5899cdd08d42f0a1d142bae5f3a8ced27d746e284086559f040b8b78860",
+        "dist/engine.js": "0054b8982246d9fefded8e47ccbde43dbd7f29fc60c6df2ff430bd1e910f839d",
+        "dist/extended-rules.js": "3d9d53d59e951e0d99fde40fe719c31990479a4b8a6b224eb49d24aa4f7035e0",
+        "dist/six-photo-rules.js": "cf9cb4fccb449ac30fa24c9d9f350392a6b28ce834293ac7e2cd2e672999061c",
+        "dist/online-compatibility.js": "3229ab5c0060fc4c9ce6c7f0397683aa29d651e87d391e6445f28ef5e0a1d482",
+        "dist/card-images.js": "813b809b67e963e13364edad956f49c4c08b239116b91af80f02b5ad63026c5f",
+        "tools/target9000-card-spec.json": "a2703504a5b137a298b4904683c464a219769b59d366731740558211182392d5",
+        "tests/standard1670-effects.test.mjs": "2be23b49979c5636977ced6912ffeb4807f1f94785b9bb90faba93bed1cbbe23"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -535047,10 +535278,10 @@
       },
       "phaseRange": [
         1614,
-        1669
+        1670
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 178,
+      "addedNames": 181,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -535062,9 +535293,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 32.397,
-        "log": "tmp/duema-phase-1669/check.log",
-        "logSha256": "3f88f36492d8862776f9bff5a22472f74dff9684c39d8398293ced015815703e"
+        "seconds": 20.011,
+        "log": "tmp/duema-phase-1670/check.log",
+        "logSha256": "9433c0db32776563bedec117606bcb5b5ef4157ab9758eaee683225be8130658"
       },
       "latestAudit": {
         "name": "audit",
@@ -535074,11 +535305,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.598,
-        "log": "tmp/duema-phase-1669/audit.log",
-        "logSha256": "ddfb0c833416fed9ade0a7c9435f711470fa9743de628d8b8f8edb512aa45f9a"
+        "seconds": 11.393,
+        "log": "tmp/duema-phase-1670/audit.log",
+        "logSha256": "09fc1dcdd6ca16c9407f6e1540231666264682d3c7fc4d0169695c83c7d24379"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1669.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1670.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -536195,11 +536426,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9248,
-      "remaining": 252,
+      "currentNames": 9251,
+      "remaining": 249,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T14:17:31.170Z"
+      "checkedAt": "2026-11-22T14:33:15.443Z"
     },
     "resolvedRegistrationValidations": [
       {

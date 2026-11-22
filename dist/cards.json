@@ -294375,21 +294375,166 @@
       },
       "supportBatch": "phase-1669",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-031",
+      "name": "Dの劇場 テンダネス・エスセーキ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分のターンの終わりに、自分の山札の上から１枚目を見る。それを、山札の一番下に置いてもよい。その後、バトルゾーンに自分のスプラッシュ・クイーンがあれば、カードを１枚引く。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーはすべてブロックできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-031",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "TenderBlock1670"
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "top",
+          "g323Scry": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "deck",
+              "optional": true
+            }
+          ],
+          "after": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "race": "スプラッシュ・クイーン"
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1670",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-017",
+      "name": "Dの文殿 アルケミスト・ヒルズ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "プレイヤーがクリーチャーを召喚した時または呪文を唱えた時、そのプレイヤーにカードを１枚引かせてもよい。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の墓地と手札を山札に加えてシャッフルし、カードを５枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-017",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "AlchemistShuffle1670"
+            }
+          ]
+        }
+      ],
+      "g1670Alchemist": true,
+      "supportBatch": "phase-1670",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-027",
+      "name": "Dの暴毒 ヴェノミック・ハザード",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のターンの終わりに、クリーチャーを１体、自分の墓地から手札に戻してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札からクリーチャーを好きな数捨てる。その数だけ、相手は自身のクリーチャーを選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-027",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "HandCycle460",
+              "mode": "any",
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "afterDiscardSelect": {
+                "g1670VictimChooses": true,
+                "origin": "battle",
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g187OwnPick": true
+              }
+            }
+          ]
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1670",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1669,
+    "phase": 1670,
     "checkedAt": "2026-11-22",
-    "baseCount": 9245,
+    "baseCount": 9248,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9248,
+    "totalCount": 9251,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37846/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
-      "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+      "https://dm.takaratomy.co.jp/rule/qa/38584/",
+      "https://dm.takaratomy.co.jp/rule/qa/38585/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -321724,6 +321869,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
           "https://dm.takaratomy.co.jp/rule/qa/38577/"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1669,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9245,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9248,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37846/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
+          "https://dm.takaratomy.co.jp/rule/rulechange_info/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

@@ -1,0 +1,453 @@
+{
+  "phase": 1670,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9248,
+  "target": 9500,
+  "description": "D2フィールド3種類の終了時の山札操作・墓地回収、召喚と呪文使用の観測、解決時点のブロック禁止・手札墓地の再構成・実際に捨てたクリーチャー数による相手選択破壊を全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38584/",
+    "https://dm.takaratomy.co.jp/rule/qa/38585/"
+  ],
+  "cards": [
+    {
+      "id": "dmex12-031",
+      "name": "Dの劇場 テンダネス・エスセーキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-031",
+      "faces": [
+        {
+          "name": "Dの劇場 テンダネス・エスセーキ",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターンの終わりに、自分の山札の上から１枚目を見る。それを、山札の一番下に置いてもよい。その後、バトルゾーンに自分のスプラッシュ・クイーンがあれば、カードを１枚引く。\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）\n**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーはすべてブロックできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "TenderBlock1670"
+              }
+            ]
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "top",
+            "g323Scry": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "deck",
+                "optional": true
+              }
+            ],
+            "after": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "race": "スプラッシュ・クイーン"
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-031.jpg",
+      "sameNameProducts": [
+        "DMEX-12 最強戦略!!ドラリンパック"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-031",
+        "result": "公式の同名収録一覧と既存IDを照合。原版IDを維持し、同名再録を追加種類に数えない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "de5c75574f96381126b0ad9ac903f5968929c0ca5e4365615d51dea1858040cd",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:24:36.834Z",
+        "imageSha256": "a580ed963742da7c032025a4eadda8ad4357771e84f36df5cc3d173f4ecf7a18"
+      }
+    },
+    {
+      "id": "dm23ex3-017",
+      "name": "Dの文殿 アルケミスト・ヒルズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-017",
+      "faces": [
+        {
+          "name": "Dの文殿 アルケミスト・ヒルズ",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "プレイヤーがクリーチャーを召喚した時または呪文を唱えた時、そのプレイヤーにカードを１枚引かせてもよい。\n（他のD２フィールドが出た時、このD２フィールドを破壊する）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の墓地と手札を山札に加えてシャッフルし、カードを５枚引く。",
+          "race": "ゼニス",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "AlchemistShuffle1670"
+              }
+            ]
+          }
+        ],
+        "g1670Alchemist": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-017.jpg",
+      "sameNameProducts": [
+        "DM23-EX3 アビス・レボリューション外伝 「邪神と水晶の華」"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-017",
+        "result": "公式の同名収録一覧と既存IDを照合。原版IDを維持し、同名再録を追加種類に数えない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "a15107c3e9f8e2b8bf4a218b879189823db7b830759150c4e44b17c6ea2d9cd3",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:24:36.835Z",
+        "imageSha256": "cf6254a4af4e5477fdfb7f614a21e964085074239ea9a7c9ac86ae7ebb34bba5"
+      }
+    },
+    {
+      "id": "dmr22-027",
+      "name": "Dの暴毒 ヴェノミック・ハザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-027",
+      "faces": [
+        {
+          "name": "Dの暴毒 ヴェノミック・ハザード",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のターンの終わりに、クリーチャーを１体、自分の墓地から手札に戻してもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**Dスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分の手札からクリーチャーを好きな数捨てる。その数だけ、相手は自身のクリーチャーを選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "HandCycle460",
+                "mode": "any",
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "afterDiscardSelect": {
+                  "g1670VictimChooses": true,
+                  "origin": "battle",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g187OwnPick": true
+                }
+              }
+            ]
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-027.jpg",
+      "sameNameProducts": [
+        "DMR-22 革命ファイナル 第2章 世界は0だ!!ブラックアウト!!"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-027",
+        "result": "公式の同名収録一覧と既存IDを照合。原版IDを維持し、同名再録を追加種類に数えない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "3fea07e78ee62c0c9ce4f56d3b871ec398e3942499312b3c3d10f1a334e66767",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:24:36.835Z",
+        "imageSha256": "5c10d3d5397ff44703cd9ac1f23a45661550f6982732ea8a7baf25f7611d15ef"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/extended-rules.js",
+    "dist/six-photo-rules.js"
+  ],
+  "printAliases": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38584/",
+      "checkedAt": "2026-11-22T14:23:15.508Z",
+      "sha256": "50ea3f501e87493d5a777abc9d38ab5606b4991b32d898bcc8b63efb5497589e",
+      "questionAndAnswerMatched": true,
+      "result": "山札の確認・移動が禁止されてもスプラッシュ・クイーン条件のドローを行う。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38585/",
+      "checkedAt": "2026-11-22T14:23:16.118Z",
+      "sha256": "1429f5d587a823aa9f95b9690bc0fb268cd6bbd0d3e2afc8a668b6f17cc9e5ed",
+      "questionAndAnswerMatched": true,
+      "result": "Dスイッチの後から出たハヤブサマルはブロックできる。"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T14:23:16.118Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp Dの劇場 テンダネス・エスセーキ",
+      "site:dm.takaratomy.co.jp/rule/qa アルケミスト・ヒルズ",
+      "site:dm.takaratomy.co.jp/rule/qa ヴェノミック・ハザード"
+    ],
+    "result": "テンダネスはQA38584により山札確認禁止でも条件ドローを継続、QA38585により後発ハヤブサマルはブロック可能。他2種の固有QAは検索で見つからず全文と既存の使用時誘発・シャッフル・捨て札の共通処理を照合。"
+  },
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex12-031": 4,
+      "dm23ex3-017": 4,
+      "dmr22-027": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T14:33:15.443Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1670.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.229,
+        "log": "tmp/duema-phase-1670/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1670-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 18.594,
+        "log": "tmp/duema-phase-1670/final-focused.log",
+        "passed": 139,
+        "failed": 0,
+        "logSha256": "85e947b2f03b2101312289bc327244dba9b5bfeb1ca65e3ad029e2bfb8d75db8"
+      },
+      "related-d2-summon": {
+        "name": "related-d2-summon",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1669-effects.test.mjs",
+          "tests/standard1175-effects.test.mjs",
+          "tests/standard808-effects.test.mjs",
+          "tests/standard1268-effects.test.mjs",
+          "tests/standard1668-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.359,
+        "log": "tmp/duema-phase-1670/related-d2-summon.log",
+        "passed": 276,
+        "failed": 0,
+        "logSha256": "97e969606a3b02e2458a9678f18a0e1c815c2c18074028aa92f5aa0274c9fdad"
+      },
+      "related-discard-look": {
+        "name": "related-discard-look",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard323-effects.test.mjs",
+          "tests/standard1163-effects.test.mjs",
+          "tests/standard914-effects.test.mjs",
+          "tests/standard1592-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 35.677,
+        "log": "tmp/duema-phase-1670/related-discard-look.log",
+        "passed": 108,
+        "failed": 0,
+        "logSha256": "676738103ab33c9abec456998a88e3ed56eff30ddb14a7952b84f36538b32273"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.011,
+        "log": "tmp/duema-phase-1670/check.log",
+        "logSha256": "9433c0db32776563bedec117606bcb5b5ef4157ab9758eaee683225be8130658"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.393,
+        "log": "tmp/duema-phase-1670/audit.log",
+        "logSha256": "09fc1dcdd6ca16c9407f6e1540231666264682d3c7fc4d0169695c83c7d24379"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.315,
+        "log": "tmp/duema-phase-1670/target9500.log",
+        "logSha256": "255c46c809b45f6232c72c49840b108a6584b5acd7524b19710a2b9a71a57096"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1670/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.377,
+        "log": "tmp/duema-phase-1670/invariants.log",
+        "logSha256": "1756f7e01248182e525b7cd1a026b716061f7e9c49ed31d388fd8dee7a735e46"
+      }
+    },
+    "totalTestsPassed": 523,
+    "focusedTestsPassed": 139,
+    "relatedTestsPassed": 384
+  },
+  "validationNotes": [
+    "固有139件、D2・召喚・GR観測関連276件、捨て札・山札操作関連108件の計523件が通過。npm run check、audit、target9500、既存9248定義と全ID・詳細・別名・画像参照の不変を確認。",
+    "公式能力全文・基本情報・マナ値・使用制限と画像3枚を照合。各公式ページの同名収録一覧は1商品で、既存の正規IDのみを登録。旧カードや別名・再録の重複加算なし。",
+    "テンダネスは公式QA38584/38585の問答を取得HTMLで照合。実QQQXによる確認禁止でも条件ドローを行い、Dスイッチ時にいた相手だけをブロック禁止にする。実ハヤブサマルの忍者宣言・召喚・自己ブロッカー付与・ブロックを通し、禁止効果の進化後の追跡、ゲンムとフィールド離脱後の持続、終了時の期限切れも検証。",
+    "アルケミストは共通の召喚完了通知と呪文使用通知を観測し、能力の使用者はD2の制御者、ドローするプレイヤーは実際の召喚・唱え手として分離。無料GRも1回、召喚禁止時は発生せず、リツイーギョの登場置換でも実際の召喚は数える。非召喚登場と非クリーチャー実行は対象外。能力無視・ソース離脱後・最後の1枚のドローによる実プレイヤーの敗北を検証。",
+    "アルケミストのDスイッチは自分の墓地と手札だけを移し、墓地移動禁止も既存ポリシーで維持。QQQXの山札位置選択が終わってから5枚ドローへ進む継続にし、通常の開始ドローと実山札切れまで検証。カードを先に引いて位置選択を省略しない。",
+    "ヴェノミックは既存HandCycleと捨て札バッチの実際に捨てた枚数を用い、相手の選択・必要数・可能な範囲の破壊へ渡す。捨てるカードはクリーチャーのみ、0枚・相手0体・不足・多重選択、オニカマスを自身で選ぶ場合、自分の捨て札で相手効果マッドネスを誤起動しないことを検証。終了時回収の任意性と種別・アプル禁止、タップインも確認。",
+    "初回固有テストの2失敗は、テンダネスの終了時確認が未解決なのに相手ターンへ進んだと期待したfixtureが原因。通常の終了時能力を解決してから期限切れを判定するテストへ修正し、最終139件が通過。進化後の禁止も実ブロッカーのラディア・バーレで検証し、禁止効果を外すとブロックできることも確認。",
+    "手動マナ支払い、暗号化ルーム保存・投影の秘匿、AIの純粋性と非公開情報への非依存、両先後の40枚デッキでの80物理カード保存と終局を確認。今回3種類の未完了検証なし。過去の一括npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。ローカルのみでpush・公開・Netlify更新なし。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "prepare",
+      "command": [
+        "node",
+        "tmp/duema-phase-1670/prepare.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.916,
+      "log": "tmp/duema-phase-1670/prepare.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1670-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 12.929,
+      "log": "tmp/duema-phase-1670/focused.log"
+    },
+    {
+      "name": "focused-v2",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1670-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.094,
+      "log": "tmp/duema-phase-1670/focused-v2.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr21-013",
+      "name": "Dの楽園 サイケデリック・ガーデン",
+      "reason": "全自軍へのエスケープと終了時Dスイッチの任意手札シールド化を全文照合する。"
+    },
+    {
+      "id": "dm23ex3-014",
+      "name": "Dの頂点 ニルヴァーナ・ゼニシア",
+      "reason": "登場時タップとフィールド存続中のアンタップ禁止、相手開始時Dスイッチのアンタップ・ブロッカー付与を全文照合する。"
+    },
+    {
+      "id": "dmr23-014",
+      "name": "Dの博才 サイバーダイス・ベガス",
+      "reason": "Sトリガー・終了時任意ドロー・相手からのプレイヤー攻撃時Dスイッチでの水7以下呪文を全文照合する。"
+    }
+  ]
+}

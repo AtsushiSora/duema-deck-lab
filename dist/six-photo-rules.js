@@ -1237,8 +1237,17 @@ export function createSixPhotoRules(api){
   const value=costKey1669(cost(api.zoneCard(s,p,x,origin)));
   return t.g1669CostSlots.filter(n=>n===value).length>(t.rows||[]).filter(r=>r.cost1669===value).length;
  }
+ // The D2 controller decides whether the player who used the card draws.
+ function alchemistUse1670(s,player){
+  for(const owner of [s.active,1-s.active])for(const x of s.players[owner].battle)
+   if(!x.sealed&&!x.faceDown&&card(x).g1670Alchemist&&effective(x,s).g1670Alchemist)
+    queue(s,owner,x,[{op:'AlchemistDraw1670',drawPlayer:player}]);
+ }
  function dSwitchScore1669(s,t){
   const own=s.players[t.p];
+  if(t.defs[0]?.op==='TenderBlock1670')return creatures(s,1-t.p).some(x=>!x.sealed&&effective(x,s).blocker)?12:-1;
+  if(t.defs[0]?.op==='AlchemistShuffle1670')return own.deck.length+own.hand.length+own.grave.length<=5?-1000:own.hand.length<4?20:-1;
+  if(t.defs[0]?.op==='HandCycle460')return own.hand.some(x=>matches(s,t.p,x,t.defs[0].filter))&&creatures(s,1-t.p).some(x=>!x.sealed)?15:-1;
   if(t.defs[0]?.op==='WalsraDeploy1669'){
    const slots=creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown).map(x=>costKey1669(cost(effective(x,s))));
    return list(s,{p:t.p,origin:'hand',deploy:true,filter:{creature:true},g1669CostSlots:slots}).length?20:-1;
@@ -2351,7 +2360,7 @@ export function createSixPhotoRules(api){
   const selected=ids.filter(uid=>s.players[t.p].hand.some(x=>x.uid===uid));
   if(t.afterDiscardSelect){
    if(selected.length)api.discardSelected(s,t.p,selected,t.source,t.p,null,null,
-    task('g34_Select',t.p,t.source,t.afterDiscardSelect));
+    task(t.afterDiscardSelect.g1670VictimChooses?'g34_VenomicDestroy1670':'g34_Select',t.p,t.source,t.afterDiscardSelect));
    return;
   }
   api.discardSelected(s,t.p,selected,t.source,t.p,null,{op:'g34_CycleDraw460',p:t.p,source:t.source,
@@ -3576,6 +3585,32 @@ export function createSixPhotoRules(api){
    [opt('裏向きにする',true,manaDownScore426(s,t,mana),mana.cardId),skip()]);
   break;
  }
+ case'g34_TenderBlock1670':
+  for(const y of creatures(s,1-t.p))if(!y.sealed&&!y.faceDown)(s.extLimits??=[]).push({
+   kind:'block',g190Freeze:true,player:1-t.p,ref:{uid:y.uid,incarnation:y.incarnation||0},g1058FollowUnit:true,
+   expires:'end',who:s.active,controller:t.p
+  });
+  break;
+ case'g34_AlchemistShuffle1670':{
+  const added=['grave','hand'].flatMap(origin=>policyTake(s,t.p,origin,api));
+  for(const x of added)clear(x,'deck');
+  // Insertions under Q.Q.QX. must finish before drawing from the rebuilt library.
+  start(s,t,[{op:'Draw',n:5}]);
+  api.shuffleLibrary(s,t.p,added,t.source);
+  api.log(s,t.p,'shuffleGrave',card(t.source).name+'：自分の墓地と手札を山札に戻してシャッフルした',{cardId:t.source});
+  break;
+ }
+ case'g34_AlchemistDraw1670':{
+  const who=t.drawPlayer,count=s.players[who].deck?.length??s.players[who].deckCount??0;
+  choice(s,t,(who===t.p?'自分':'相手')+'にカードを1枚引かせる？',[
+   opt('1枚引かせる',true,who===t.p?(count>1?10:-1000):(count<=1?1000:-4)),skip()
+  ]);
+  break;
+ }
+ case'g34_VenomicDestroy1670':
+  if(t.n>0)start(s,{...t,p:1-t.p,controller:t.controller??t.p},[{op:'Select',origin:'battle',to:'grave',n:t.n,
+   filter:{creature:true},g187OwnPick:true,title:'破壊する自分のクリーチャーを'+t.n+'体選ぶ'}]);
+  break;
  case'g34_DSwitch1669':{
   const field=live(s,t);
   if(field&&!field.sealed&&!field.faceDown&&!field.g1175DSwitched&&!d2Locked1188(s,t.p))
@@ -7051,6 +7086,7 @@ export function createSixPhotoRules(api){
    turnManaDown(s,t,{p:t.p,uid:mana.uid,serial:t.serial});
   }
  }break;
+ case'g34_AlchemistDraw1670':if(v)api.draw(s,t.drawPlayer,1);break;
  case'g34_DSwitch1669':if(v&&x&&!x.sealed&&!x.faceDown&&!x.g1175DSwitched&&!d2Locked1188(s,t.p)){
   x.g1175DSwitched=true;
   api.log(s,t.p,'dSwitch',card(t.source).name+'のDスイッチを使う',{cardId:t.source});
@@ -9534,6 +9570,7 @@ export function createSixPhotoRules(api){
    }
   }
  },
+ alchemistSummoned1670(s,p){alchemistUse1670(s,p);},
  played(s,p,c,x,origin,permit){
   if(c.type!=='spell')terminalUse1292(s,p,c);
   const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
@@ -9595,6 +9632,7 @@ export function createSixPhotoRules(api){
   return true;
  },
  spellCast(s,p,c,origin,owner,inst,face){
+  alchemistUse1670(s,p);
   terminalUse1292(s,p,c);
   firstSummonOrSpell1247(s,1);
   qualifyingUse1224(s,p,c,null,owner);
