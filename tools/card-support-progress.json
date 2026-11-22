@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9185,
-  "pendingNames": 2640,
-  "phase": 1650,
+  "supportedNames": 9188,
+  "pendingNames": 2637,
+  "phase": 1651,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1478,
-    "呪文": 310,
+    "クリーチャー": 1477,
+    "呪文": 309,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 34,
@@ -169,7 +169,7 @@
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "D2フィールド": 32,
+    "D2フィールド": 31,
     "禁断フィールド": 1,
     "クロスギア": 52,
     "進化クリーチャー(進化GV)": 12,
@@ -221,12 +221,12 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1907,
+    "未対応の能力文": 1905,
     "複数面・特殊カードタイプまたは情報不足": 592,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
-    "未対応のD2フィールド能力": 32,
+    "未対応のD2フィールド能力": 31,
     "複雑な進化条件": 11,
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 10,
@@ -529401,34 +529401,209 @@
         "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
       ],
       "next": "確認を待たずphase1651から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
+    },
+    {
+      "phase": 1651,
+      "checkedAt": "2026-11-22T09:09:46.080Z",
+      "baseline": "c5c9a8ea1dbf96b3aa8673c75986d5caf4ac192e",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9185,
+      "currentNames": 9188,
+      "remainingNames": 312,
+      "added": [
+        {
+          "id": "dmex16-026",
+          "name": "Dの侵略 クリム・ゾーン"
+        },
+        {
+          "id": "dmrp14-009",
+          "name": "「忍」の鬼 ジライヤ齋"
+        },
+        {
+          "id": "dmx19-s28",
+          "name": "サタデー・ナイトメア・フィーバー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "originalDefinitionsUnchanged": 9185,
+        "uniqueNames": 9188,
+        "uniqueIds": 9188,
+        "catalogueAndAliasesUnchanged": true,
+        "partialNewDefinitions": 0
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1651.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.467,
+          "log": "tmp/duema-phase-1651/official.log"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1651-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 29.389,
+          "log": "tmp/duema-phase-1651/final-focused.log",
+          "passed": 72,
+          "failed": 0
+        },
+        "final-related": {
+          "name": "final-related",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=exchange|swap|Swap|replacement|revival|entry|Entry|evolution|grave|Grave|destruction|destroy|D2|D２|turn|Turn|墓地|儀|零龍",
+            "tests/requested393-change.test.mjs",
+            "tests/standard550-effects.test.mjs",
+            "tests/standard891-effects.test.mjs",
+            "tests/standard898-effects.test.mjs",
+            "tests/standard1469-effects.test.mjs",
+            "tests/standard430-effects.test.mjs",
+            "tests/standard1303-effects.test.mjs",
+            "tests/standard1327-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.848,
+          "log": "tmp/duema-phase-1651/final-related.log",
+          "passed": 118,
+          "failed": 0
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.947,
+          "log": "tmp/duema-phase-1651/check.log"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.333,
+          "log": "tmp/duema-phase-1651/audit.log"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.315,
+          "log": "tmp/duema-phase-1651/target9500.log"
+        }
+      },
+      "totalTestsPassed": 190,
+      "hashes": {
+        "dist/cards.json": "792b066bd4a79ecf424d9db6ae8da8b855609afc2a0572a05f0787445d54fd32",
+        "dist/engine.js": "8a9e7f1faa751391034dc66996efec757ddcec9b0a80dd3ffd3b8af65f4bfdd3",
+        "dist/six-photo-rules.js": "81511ee94b1909cb43f941ec34de2637082b7c6ff3800210dd86be808cc84fb3",
+        "dist/online-compatibility.js": "aec4373d0cfef71155b7cf7a196b4ddff00676e5133a1323aa38e9bf00a74ffa",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/requested393-change-rules.js": "18bfd61b7cc781f2636491d7bc67aef1c3436db26f554c3455ab7187be44d223"
+      },
+      "engineVersion": "0.602.167",
+      "registeredCardVerificationPending": [
+        {
+          "target": "Crim-QA39975-exact-source",
+          "cardIds": [
+            "dmex16-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+          "reason": "公式裁定と同時Sweepでソニックのみ残る結果は照合済み。未対応のテック団の波壊Go！自体を追加し、進化元等を含む全カード手札戻しモードの実カード経路で再現する検証をphase1652へ持ち越す。",
+          "status": "pending-exact-source-reproduction"
+        },
+        {
+          "target": "Crim-31638-exact-source",
+          "cardIds": [
+            "dmex16-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+          "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
+          "status": "pending-exact-source-reproduction"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1651.json",
+      "supported": 9188,
+      "pending": 2637,
+      "reason": "クリム・ゾーンの開始時任意ソニック展開と両者の効果に対する手札戻し禁止、ジライヤ齋の鬼タイム中の非進化8以下墓地入れ替え、サタデー・ナイトメア・フィーバーの全破壊後の両者4種族全展開を全文対応。",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1651-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 26.106,
+          "log": "tmp/duema-phase-1651/focused.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存の長時間群の未確認、ユーザー保留の公式照合2件を別に保持。今回の追加カードに未完了の固有検証はない。"
+      ],
+      "next": "確認を待たずphase1652から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新はしない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1650,
-    "nextPhase": 1651,
+    "lastVerifiedPhase": 1651,
+    "nextPhase": 1652,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex16-026",
-        "name": "Dの侵略 クリム・ゾーン",
-        "reason": "公式本文と同名収録、変更31638を確認。自分開始時ソニック展開と手札戻り禁止を実装する。core moveCreaturesのcanLeave contextへ移動先toを渡し、Sixの条件付き禁止として場の生存・種族・無視を判定する。墓地・マナ・進化元単体を禁止しない。"
+        "id": "dmr23-024",
+        "name": "テック団の波壊Go！",
+        "reason": "クリム・ゾーンのQA39975の実カード再現に使用。相手のコスト5以下のカード全部には進化元・付属カード・封印も含む。全部同時の手札戻しと6以上クリーチャー破壊の両モード、ST、置換、元のID維持を公式照合後に実装検証する。"
       },
       {
-        "id": "dmrp14-009",
-        "name": "「忍」の鬼 ジライヤ齋",
-        "reason": "公式QA33607/33609/33610/33625と変更31620を確認。Jクライムの既存入れ替えを再利用し、鬼タイムの誘発時と解決時の再判定、非ジョーカーズ・非進化・上限8とNEOの任意進化に対応する。"
+        "id": "dm26-034",
+        "name": "執拗なる鎧亜の牢獄",
+        "reason": "クリム・ゾーンの変更31638の実カード再現に使用。選んだクリーチャーの現在の全名前を手札戻しの成否と独立に記憶し、ランダム1枚捨てた実結果との一致でシールド墓地移動をする。捨てる置換やツインパクト・リンクしたゴッドを公式照合して検証する。"
       },
       {
-        "id": "dmx19-s28",
-        "name": "サタデー・ナイトメア・フィーバー",
-        "reason": "全文をローカル資料で確認。両者全破壊後、4種族の全墓地展開を、両者の同時登場・進化元と保留・登場制限・破壊時能力の順序まで検証する。公式ページ・画像・制限・再録のライブ照合から開始する。"
+        "id": "dm22ex1-050",
+        "name": "漂流大陸の復活",
+        "reason": "phase1651の保留・両プレイヤー展開を再利用し、ウェーブストライカー/サバイバー/ダイナモに限定して全員の墓地から出す処理を全文対応する。公式ページ・画像・制限・再録・裁定のライブ照合から開始する。"
       }
     ],
     "steps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9185種類・重複0、9500まで残り315。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1650とtools/target9500-registration-checkpoint-1650.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1651で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9188種類・重複0、9500まで残り312。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1651とtools/target9500-registration-checkpoint-1651.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1652で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -529508,9 +529683,9 @@
     ],
     "restartSteps": [
       "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9185種類・重複0、9500まで残り315。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1650とtools/target9500-registration-checkpoint-1650.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1651で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
+      "実データdist/cards.jsonのnameKey件数は9188種類・重複0、9500まで残り312。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
+      "検証済みphase1651とtools/target9500-registration-checkpoint-1651.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
+      "phase1652で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
       "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
       "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
       "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
@@ -529641,10 +529816,10 @@
     "registrationTarget": {
       "target": 9500,
       "startCount": 9043,
-      "currentCount": 9185,
-      "remaining": 315,
+      "currentCount": 9188,
+      "remaining": 312,
       "status": "active",
-      "phase": 1650
+      "phase": 1651
     },
     "deferredRegistrationCandidates": [
       {
@@ -529972,7 +530147,26 @@
       "status": "active",
       "phase": 1603
     },
-    "registrationValidationPending": [],
+    "registrationValidationPending": [
+      {
+        "target": "Crim-QA39975-exact-source",
+        "cardIds": [
+          "dmex16-026"
+        ],
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+        "reason": "公式裁定と同時Sweepでソニックのみ残る結果は照合済み。未対応のテック団の波壊Go！自体を追加し、進化元等を含む全カード手札戻しモードの実カード経路で再現する検証をphase1652へ持ち越す。",
+        "status": "pending-exact-source-reproduction"
+      },
+      {
+        "target": "Crim-31638-exact-source",
+        "cardIds": [
+          "dmex16-026"
+        ],
+        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+        "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
+        "status": "pending-exact-source-reproduction"
+      }
+    ],
     "resolvedRegistrationCandidates": [
       {
         "id": "dmex04-012",
@@ -530094,23 +530288,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1650,
-      "baseline": "2e3d8196118cf5019522d5d0f0181c364d9c6181",
-      "supportedNames": 9185,
-      "artifact": "tools/target9500-registration-checkpoint-1650.json",
-      "checkedAt": "2026-11-22T08:48:11.220Z"
+      "phase": 1651,
+      "baseline": "c5c9a8ea1dbf96b3aa8673c75986d5caf4ac192e",
+      "supportedNames": 9188,
+      "artifact": "tools/target9500-registration-checkpoint-1651.json",
+      "checkedAt": "2026-11-22T09:09:46.080Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T08:48:11.220Z",
+      "checkedAt": "2026-11-22T09:09:46.080Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9185,
-      "remainingNames": 315,
+      "currentNames": 9188,
+      "remainingNames": 312,
       "duplicateNames": 0,
-      "engineVersion": "0.602.166",
+      "engineVersion": "0.602.167",
       "added": [
         {
           "id": "dmr12-008",
@@ -530571,6 +530765,18 @@
         {
           "id": "dmrp16-009",
           "name": "N・S・Y"
+        },
+        {
+          "id": "dmex16-026",
+          "name": "Dの侵略 クリム・ゾーン"
+        },
+        {
+          "id": "dmrp14-009",
+          "name": "「忍」の鬼 ジライヤ齋"
+        },
+        {
+          "id": "dmx19-s28",
+          "name": "サタデー・ナイトメア・フィーバー"
         }
       ],
       "results": {
@@ -530686,11 +530892,12 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "5db1dd0aaa92d255106f1d5d4ad7669db57bc9d91d06ff37b4385daf3eeb8134",
-        "dist/engine.js": "e4267edb07fa9504d3ba0913b7bffcc8fab90c78294a0b06dcaf6798f8b7d2d9",
-        "dist/six-photo-rules.js": "4d8a3975c896ca41a47a45b5af94ef6b30b1bc594a7778e1a26b22a350c13cf5",
-        "dist/online-compatibility.js": "adafffef231839f72881357ed97f22e3d95ef7711e5ec97dafa551e52284e697",
-        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+        "dist/cards.json": "792b066bd4a79ecf424d9db6ae8da8b855609afc2a0572a05f0787445d54fd32",
+        "dist/engine.js": "8a9e7f1faa751391034dc66996efec757ddcec9b0a80dd3ffd3b8af65f4bfdd3",
+        "dist/six-photo-rules.js": "81511ee94b1909cb43f941ec34de2637082b7c6ff3800210dd86be808cc84fb3",
+        "dist/online-compatibility.js": "aec4373d0cfef71155b7cf7a196b4ddff00676e5133a1323aa38e9bf00a74ffa",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/requested393-change-rules.js": "18bfd61b7cc781f2636491d7bc67aef1c3436db26f554c3455ab7187be44d223"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -530754,10 +530961,10 @@
       },
       "phaseRange": [
         1614,
-        1650
+        1651
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 115,
+      "addedNames": 118,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -530769,8 +530976,8 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.867,
-        "log": "tmp/duema-phase-1650/check.log"
+        "seconds": 21.947,
+        "log": "tmp/duema-phase-1651/check.log"
       },
       "latestAudit": {
         "name": "audit",
@@ -530780,10 +530987,10 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.129,
-        "log": "tmp/duema-phase-1650/audit.log"
+        "seconds": 11.333,
+        "log": "tmp/duema-phase-1651/audit.log"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1650.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1651.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -531872,11 +532079,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9185,
-      "remaining": 315,
+      "currentNames": 9188,
+      "remaining": 312,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T08:48:11.220Z"
+      "checkedAt": "2026-11-22T09:09:46.080Z"
     },
     "resolvedRegistrationValidations": [
       {
@@ -583874,20 +584081,39 @@
       }
     },
     "latestRegistrationBatch": {
-      "phase": 1650,
+      "phase": 1651,
       "added": 3,
-      "supportedNames": 9185,
-      "pendingNewCards": 0,
-      "artifact": "tools/target9500-registration-checkpoint-1650.json",
-      "relatedRulingVerificationPending": []
+      "supportedNames": 9188,
+      "pendingNewCards": 1,
+      "artifact": "tools/target9500-registration-checkpoint-1651.json",
+      "relatedRulingVerificationPending": [
+        {
+          "target": "Crim-QA39975-exact-source",
+          "cardIds": [
+            "dmex16-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+          "reason": "公式裁定と同時Sweepでソニックのみ残る結果は照合済み。未対応のテック団の波壊Go！自体を追加し、進化元等を含む全カード手札戻しモードの実カード経路で再現する検証をphase1652へ持ち越す。",
+          "status": "pending-exact-source-reproduction"
+        },
+        {
+          "target": "Crim-31638-exact-source",
+          "cardIds": [
+            "dmex16-026"
+          ],
+          "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+          "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
+          "status": "pending-exact-source-reproduction"
+        }
+      ]
     }
   },
   "registrationStop": {
-    "phase": 1650,
+    "phase": 1651,
     "threshold": 9500,
-    "supportedNames": 9185,
-    "pendingNames": 2640,
-    "checkedAt": "2026-11-22T08:48:11.220Z",
+    "supportedNames": 9188,
+    "pendingNames": 2637,
+    "checkedAt": "2026-11-22T09:09:46.080Z",
     "registrationStopped": false,
     "automationId": "duema-deck-lab",
     "automationStatus": "PAUSED",

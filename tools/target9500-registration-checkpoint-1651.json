@@ -1,0 +1,152 @@
+{
+  "phase": 1651,
+  "checkedAt": "2026-11-22T09:09:46.080Z",
+  "baseline": "c5c9a8ea1dbf96b3aa8673c75986d5caf4ac192e",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9185,
+  "currentNames": 9188,
+  "remainingNames": 312,
+  "added": [
+    {
+      "id": "dmex16-026",
+      "name": "Dの侵略 クリム・ゾーン"
+    },
+    {
+      "id": "dmrp14-009",
+      "name": "「忍」の鬼 ジライヤ齋"
+    },
+    {
+      "id": "dmx19-s28",
+      "name": "サタデー・ナイトメア・フィーバー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9185,
+    "uniqueNames": 9188,
+    "uniqueIds": 9188,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1651.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.467,
+      "log": "tmp/duema-phase-1651/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1651-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 29.389,
+      "log": "tmp/duema-phase-1651/final-focused.log",
+      "passed": 72,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=exchange|swap|Swap|replacement|revival|entry|Entry|evolution|grave|Grave|destruction|destroy|D2|D２|turn|Turn|墓地|儀|零龍",
+        "tests/requested393-change.test.mjs",
+        "tests/standard550-effects.test.mjs",
+        "tests/standard891-effects.test.mjs",
+        "tests/standard898-effects.test.mjs",
+        "tests/standard1469-effects.test.mjs",
+        "tests/standard430-effects.test.mjs",
+        "tests/standard1303-effects.test.mjs",
+        "tests/standard1327-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.848,
+      "log": "tmp/duema-phase-1651/final-related.log",
+      "passed": 118,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.947,
+      "log": "tmp/duema-phase-1651/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.333,
+      "log": "tmp/duema-phase-1651/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.315,
+      "log": "tmp/duema-phase-1651/target9500.log"
+    }
+  },
+  "totalTestsPassed": 190,
+  "hashes": {
+    "dist/cards.json": "792b066bd4a79ecf424d9db6ae8da8b855609afc2a0572a05f0787445d54fd32",
+    "dist/engine.js": "8a9e7f1faa751391034dc66996efec757ddcec9b0a80dd3ffd3b8af65f4bfdd3",
+    "dist/six-photo-rules.js": "81511ee94b1909cb43f941ec34de2637082b7c6ff3800210dd86be808cc84fb3",
+    "dist/online-compatibility.js": "aec4373d0cfef71155b7cf7a196b4ddff00676e5133a1323aa38e9bf00a74ffa",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/requested393-change-rules.js": "18bfd61b7cc781f2636491d7bc67aef1c3436db26f554c3455ab7187be44d223"
+  },
+  "engineVersion": "0.602.167",
+  "registeredCardVerificationPending": [
+    {
+      "target": "Crim-QA39975-exact-source",
+      "cardIds": [
+        "dmex16-026"
+      ],
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39975/",
+      "reason": "公式裁定と同時Sweepでソニックのみ残る結果は照合済み。未対応のテック団の波壊Go！自体を追加し、進化元等を含む全カード手札戻しモードの実カード経路で再現する検証をphase1652へ持ち越す。",
+      "status": "pending-exact-source-reproduction"
+    },
+    {
+      "target": "Crim-31638-exact-source",
+      "cardIds": [
+        "dmex16-026"
+      ],
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+      "reason": "公式変更後の本文を照合し、クリムの手札戻し禁止を両者の効果と同時移動で検証済み。未対応の執拗なる鎧亜の牢獄の実カードで、戻らない同名クリーチャーを手札から捨てた時のシールド墓地移動をphase1652で再現する。",
+      "status": "pending-exact-source-reproduction"
+    }
+  ],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

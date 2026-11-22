@@ -292293,20 +292293,110 @@
       ],
       "supportBatch": "phase-1650",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex16-026",
+      "name": "Dの侵略 クリム・ゾーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分のターンのはじめに、自分の手札からソニック・コマンドを１体出してもよい。\n自分のソニック・コマンドはバトルゾーンから手札に戻らない。\n（他のD２フィールドが出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-026",
+      "limit": 4,
+      "d2Field": true,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ソニック・コマンド"
+          }
+        }
+      ],
+      "g1651BounceStopRace": "ソニック・コマンド",
+      "supportBatch": "phase-1651",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-009",
+      "name": "「忍」の鬼 ジライヤ齋",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デモニオ/鬼札王国",
+      "text": "鬼タイム ：このクリーチャーが攻撃する時、自分と相手のシールドの数が合計６つ以下なら、自分の墓地にあるコスト８以下の進化ではないクリーチャー１体とこのクリーチャーを入れ替えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-009",
+      "limit": 4,
+      "g1651GraveSwap": true,
+      "supportBatch": "phase-1651",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx19-s28",
+      "name": "サタデー・ナイトメア・フィーバー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 13,
+      "power": 0,
+      "race": "",
+      "text": "クリーチャーをすべて破壊する。その後、各プレイヤーは自身の墓地からナイトメア、デスパペット、デビルマスク、ゴーストをすべてバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s28",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "NightmareBoth1651"
+        }
+      ],
+      "supportBatch": "phase-1651",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1650,
+    "phase": 1651,
     "checkedAt": "2026-11-22",
-    "baseCount": 9182,
+    "baseCount": 9185,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9185,
+    "totalCount": 9188,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35449/",
-      "https://dm.takaratomy.co.jp/rule/qa/38767/",
-      "https://dm.takaratomy.co.jp/rule/qa/40465/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31638/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+      "https://dm.takaratomy.co.jp/rule/qa/33607/",
+      "https://dm.takaratomy.co.jp/rule/qa/33609/",
+      "https://dm.takaratomy.co.jp/rule/qa/33610/",
+      "https://dm.takaratomy.co.jp/rule/qa/33625/",
+      "https://dm.takaratomy.co.jp/rule/qa/40461/",
+      "https://dm.takaratomy.co.jp/rule/qa/31611/",
+      "https://dm.takaratomy.co.jp/rule/qa/39975/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -319294,6 +319384,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/31775/",
           "https://dm.takaratomy.co.jp/rule/qa/31776/",
           "https://dm.takaratomy.co.jp/rule/qa/39340/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1650,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9182,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9185,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35449/",
+          "https://dm.takaratomy.co.jp/rule/qa/38767/",
+          "https://dm.takaratomy.co.jp/rule/qa/40465/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -33272,5 +33272,98 @@
         }
       ]
     }
+  },
+  "dmex16-026": {
+    "phase": 1651,
+    "faces": [
+      {
+        "name": "Dの侵略 クリム・ゾーン",
+        "typeText": "D2フィールド",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターンのはじめに、自分の手札からソニック・コマンドを１体出してもよい。\n自分のソニック・コマンドはバトルゾーンから手札に戻らない。\n（他のD２フィールドが出た時、このD２フィールドを自分の墓地に置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ソニック・コマンド"
+          }
+        }
+      ],
+      "g1651BounceStopRace": "ソニック・コマンド"
+    }
+  },
+  "dmrp14-009": {
+    "phase": 1651,
+    "faces": [
+      {
+        "name": "「忍」の鬼 ジライヤ齋",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "鬼タイム ：このクリーチャーが攻撃する時、自分と相手のシールドの数が合計６つ以下なら、自分の墓地にあるコスト８以下の進化ではないクリーチャー１体とこのクリーチャーを入れ替えてもよい。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1651GraveSwap": true
+    }
+  },
+  "dmx19-s28": {
+    "phase": 1651,
+    "faces": [
+      {
+        "name": "サタデー・ナイトメア・フィーバー",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "クリーチャーをすべて破壊する。その後、各プレイヤーは自身の墓地からナイトメア、デスパペット、デビルマスク、ゴーストをすべてバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "NightmareBoth1651"
+        }
+      ]
+    }
   }
 }
