@@ -529409,19 +529409,19 @@
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex18-031",
-        "name": "スリヴァーの女王",
-        "reason": "超次元からの有料クリーチャー召喚許可と、味方へのスリヴァー・サバイバー追加を全体検証する。"
-      },
-      {
         "id": "dmex16-026",
         "name": "Dの侵略 クリム・ゾーン",
-        "reason": "ターン開始時の任意ソニック・コマンド展開と味方ソニック・コマンドの手札戻り禁止を、D2競合も含めて照合する。"
+        "reason": "公式本文と同名収録、変更31638を確認。自分開始時ソニック展開と手札戻り禁止を実装する。core moveCreaturesのcanLeave contextへ移動先toを渡し、Sixの条件付き禁止として場の生存・種族・無視を判定する。墓地・マナ・進化元単体を禁止しない。"
       },
       {
         "id": "dmrp14-009",
         "name": "「忍」の鬼 ジライヤ齋",
-        "reason": "鬼タイム条件下でのコスト8以下・非進化との墓地入れ替えと攻撃継続を既存Jクライム処理に照合する。"
+        "reason": "公式QA33607/33609/33610/33625と変更31620を確認。Jクライムの既存入れ替えを再利用し、鬼タイムの誘発時と解決時の再判定、非ジョーカーズ・非進化・上限8とNEOの任意進化に対応する。"
+      },
+      {
+        "id": "dmx19-s28",
+        "name": "サタデー・ナイトメア・フィーバー",
+        "reason": "全文をローカル資料で確認。両者全破壊後、4種族の全墓地展開を、両者の同時登場・進化元と保留・登場制限・破壊時能力の順序まで検証する。公式ページ・画像・制限・再録のライブ照合から開始する。"
       }
     ],
     "steps": [
@@ -529917,6 +529917,18 @@
         "resolvedByPhase": 1647,
         "artifact": "tools/target9500-registration-checkpoint-1647.json",
         "resolution": "解決途中の実物移動、同じカードの回収、公式6裁定、シールドでの保留、スペースチャージ・仁義・ヴォイドとターン中断を固有テストで検証。"
+      },
+      {
+        "id": "dmex18-031",
+        "name": "スリヴァーの女王",
+        "phase": 1651,
+        "status": "not-registered",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-031",
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa/40868/",
+          "https://dm.takaratomy.co.jp/rule/qa/40867/"
+        ],
+        "reason": "公式QA40868ではサイキック両面・ドラグハートのクリーチャー側・超次元へ移った通常クリーチャーの召喚を許可し、QA40867では超次元からのニンジャストライク・Sバック・ギャラクシールドも許可する。有料の表面召喚だけでは全文対応としない。既存g450ZoneSummonは主に墓地とマナ用で、全許可の実装と固有検証、マナ数が「-」の公式画像照合を要するため未登録。"
       }
     ],
     "lastExplicitUserAddition": {
@@ -531976,7 +531988,29 @@
         "resolvedByPhase": 1647,
         "artifact": "tools/target9500-registration-checkpoint-1647.json"
       }
-    ]
+    ],
+    "nextCandidateResearch": {
+      "checkedAt": "2026-11-22T08:50:49.622Z",
+      "registered": false,
+      "namesAdded": 0,
+      "sliverQueen": {
+        "id": "dmex18-031",
+        "name": "スリヴァーの女王",
+        "phase": 1651,
+        "status": "not-registered",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-031",
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa/40868/",
+          "https://dm.takaratomy.co.jp/rule/qa/40867/"
+        ],
+        "reason": "公式QA40868ではサイキック両面・ドラグハートのクリーチャー側・超次元へ移った通常クリーチャーの召喚を許可し、QA40867では超次元からのニンジャストライク・Sバック・ギャラクシールドも許可する。有料の表面召喚だけでは全文対応としない。既存g450ZoneSummonは主に墓地とマナ用で、全許可の実装と固有検証、マナ数が「-」の公式画像照合を要するため未登録。"
+      },
+      "notes": [
+        "ジライヤ齋は既存g393Changeへ直接指定するとジョーカーズ限定になるため不可。g1651GraveSwapなど明示フラグからg393C_Swapへ非進化制限と鬼タイムを渡し、既存の原子的入れ替え・位相引継ぎ・攻撃継続を使う。",
+        "クリム・ゾーンの禁止は移動先がhandの場合のみ。自分のSonic Commandクリーチャー全体に、D2フィールドの常在能力として働かせる。D2競合は既存d2Field処理を使用する。",
+        "現在の登録済みカードに未検証項目を追加したものではない。最新の検証済み登録はphase1650、9185種類。"
+      ]
+    }
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
