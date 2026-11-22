@@ -295955,20 +295955,162 @@
       ],
       "supportBatch": "phase-1684",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-v02",
+      "name": "ガイアール・カイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n自分のシールドがブレイクされる時、そのシールドを見る。手札に加えるかわりにそれを自分の墓地に置いてもよい。そうした場合、こうして墓地に置いたカードのいずれかと同じコストのハンター・サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n【覚醒リンク面】\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。\nワールド・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガイアール・カイザー/ブーストグレンオー/ドラゴニック・ピッピー)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-v02",
+      "limit": 4,
+      "psychic": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g1685ShieldCall": true,
+      "g1355LinkedFace": {
+        "name": "激竜王ガイアール・オウドラゴン",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 24,
+        "power": 25000,
+        "race": "キング・コマンド・ドラゴン/ハンター",
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g1355Unlink": true,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-v02b.jpg",
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "g745Sweep": "opponent"
+          }
+        ]
+      },
+      "supportBatch": "phase-1685",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-062",
+      "name": "ドラゴニック・ピッピー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード/ハンター",
+      "text": "覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《ガイアール・カイザー》と《ブーストグレンオー》があれば、そのクリーチャーとこのクリーチャーをすべて裏返しリンクさせる。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される) (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。\nワールド・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガイアール・カイザー/ブーストグレンオー/ドラゴニック・ピッピー)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-062",
+      "limit": 4,
+      "psychic": true,
+      "g166Hunting": true,
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partners": [
+            "dmr01-v02",
+            "dmr01-060"
+          ]
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "激竜王ガイアール・オウドラゴン",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 24,
+        "power": 25000,
+        "race": "キング・コマンド・ドラゴン/ハンター",
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g1355Unlink": true,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-062b.jpg",
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "g745Sweep": "opponent"
+          }
+        ]
+      },
+      "supportBatch": "phase-1685",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-060",
+      "name": "ブーストグレンオー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "フレイム・モンスター/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、このクリーチャーよりパワーが小さいクリーチャーを１体破壊する。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。\nワールド・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(ガイアール・カイザー/ブーストグレンオー/ドラゴニック・ピッピー)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-060",
+      "limit": 4,
+      "psychic": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "grave",
+          "optional": false
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "激竜王ガイアール・オウドラゴン",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 24,
+        "power": 25000,
+        "race": "キング・コマンド・ドラゴン/ハンター",
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g1355Unlink": true,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-060b.jpg",
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "g745Sweep": "opponent"
+          }
+        ]
+      },
+      "supportBatch": "phase-1685",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1684,
-    "checkedAt": "2026-11-22T19:43:38.052Z",
-    "baseCount": 9289,
-    "newEffectCards": 2,
+    "phase": 1685,
+    "checkedAt": "2026-11-22T20:05:53.907Z",
+    "baseCount": 9291,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9291,
+    "totalCount": 9294,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33604/",
-      "https://dm.takaratomy.co.jp/rule/qa/44182/",
-      "https://dm.takaratomy.co.jp/rule/qa/47925/"
+      "https://dm.takaratomy.co.jp/rule/qa/39982/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36306/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36309/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36350/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -323558,6 +323700,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45909/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1684,
+        "checkedAt": "2026-11-22T19:43:38.052Z",
+        "baseCount": 9289,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9291,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33604/",
+          "https://dm.takaratomy.co.jp/rule/qa/44182/",
+          "https://dm.takaratomy.co.jp/rule/qa/47925/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

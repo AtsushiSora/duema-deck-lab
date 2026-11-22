@@ -3687,6 +3687,12 @@ export function createSixPhotoRules(api){
    expires:'end',who:s.active,controller:t.p
   });
   break;
+ case'g34_GaiaResume1685':api.resumeBreak1685(s,t.p,t.uids,t.context);break;
+ case'g34_GaiaSpawn1685':{
+  const rows=own.extra.filter(x=>card(x).psychic&&race(card(x),'ハンター')&&t.costs.includes(cost(card(x))===Infinity?'∞':cost(card(x)))&&canPut(s,t.p,x,'extra'));
+  if(rows.length)choice(s,t,'墓地に置いたカードと同じコストのハンター・サイキックを1体出す',rows.map(x=>opt(card(x).name,x.uid,15+cost(card(x)),x.cardId)));
+  break;
+ }
  case'g34_WorldReset1684':{
   const order=[s.active,1-s.active];
   // Finish both shuffles (including Q.Q.QX. insertion choices) before either draw.
@@ -8086,6 +8092,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_VegasCost851':if(v==='∞'||v>=5)start(s,t,[{op:'Draw',n:3}]);break;
+ case'g34_GaiaSpawn1685':{
+  const y=own.extra.find(x=>x.uid===v);
+  if(y&&card(y).psychic&&race(card(y),'ハンター')&&t.costs.includes(cost(card(y))===Infinity?'∞':cost(card(y))))doPut(s,{...t,origin:'extra',target:v});
+  break;
+ }
  case'g34_InspectHandCost1109':
   if(t.count)start(s,t,[{op:'DrawUpTo',n:t.count,g203Draw:true,g853EachDraw:true}]);
   break;
