@@ -37646,5 +37646,147 @@
       "breaker": 2,
       "g1686Zero": true
     }
+  },
+  "dmr03-026": {
+    "phase": 1687,
+    "faces": [
+      {
+        "name": "カモン・ピッピー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。\n▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "ファイアー・バード/ハンター",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "コスト3以下のファイアー・バード・サイキックを2体まで出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 2,
+                  "deploy": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "ファイアー・バード",
+                    "g1085Psychic": true,
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "label": "火のコスト6以下のサイキックを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "optional": false,
+                  "filter": {
+                    "creature": true,
+                    "color": "火",
+                    "g1085Psychic": true,
+                    "max": 6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx01-029": {
+    "phase": 1687,
+    "faces": [
+      {
+        "name": "巡霊者ウイニング・スター",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の(ビクトリー)を持つクリーチャーはすべてのバトルに勝つ。",
+        "race": "コスモ・ウォーカー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g466BattleAura": {
+        "filter": {
+          "creature": true,
+          "g1686Victory": true
+        },
+        "win": true
+      }
+    }
+  },
+  "dmx03-001": {
+    "phase": 1687,
+    "faces": [
+      {
+        "name": "巡霊者スーパー・ウイニング・スター",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の(ビクトリー)を持つクリーチャーは「ブロッカー」を得、すべてのバトルに勝ち、自分のターンの終わりにアンタップされる。",
+        "race": "コスモ・ウォーカー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g466BattleAura": {
+        "filter": {
+          "creature": true,
+          "g1686Victory": true
+        },
+        "win": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          }
+        }
+      ]
+    }
   }
 }

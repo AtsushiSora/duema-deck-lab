@@ -421,8 +421,9 @@ export function createSixPhotoRules(api){
  // Hand-evolution GV is an evolution card even before its bases are attached; NEO requires a base.
  const livePower199=(s,x,inCombat)=>api.power(x,!!inCombat&&(x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0)),s);
  const evolutionOrLinkedGod=(x,c)=>api.isEvolution(x)||!!(x.godLinks?.length&&race(c,'ゴッド'));
+ const physicalVictory1686=x=>[x,...(x.godLinks||[])].some(y=>hasVictoryRarity1686(card({...y,godLinks:null,g1357Copies:null,g393JCopies:null}).name));
  function matches(s,p,x,f={}){
-  if(f.g1686Victory&&!([x,...(x.godLinks||[])].some(y=>hasVictoryRarity1686(card({...y,godLinks:null,g1357Copies:null,g393JCopies:null}).name))))return false;
+  if(f.g1686Victory&&!physicalVictory1686(x))return false;
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
@@ -1050,7 +1051,7 @@ export function createSixPhotoRules(api){
  // recursively decorating other aura recipients; ignored recipients never reach this hook.
  function grantAuras(s,owner,x,c,racesOnly=false){
   if(c.type!=='creature')return c;
-  const fits=f=>(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
+  const fits=f=>(!f.g1686Victory||physicalVictory1686(x))&&(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
   let out=c,slayers=c.g208SlayerCount||Number(!!c.slayer);
   for(const p of [0,1])for(const source of s.players[p].battle){
    const sourceCard=card(source),auras=sourceCard.g208Auras;

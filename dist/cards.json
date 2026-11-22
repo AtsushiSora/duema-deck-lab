@@ -296173,21 +296173,166 @@
       "g1686Zero": true,
       "supportBatch": "phase-1686",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-026",
+      "name": "カモン・ピッピー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ファイアー・バード/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。\n▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "コスト3以下のファイアー・バード・サイキックを2体まで出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 2,
+                  "deploy": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "ファイアー・バード",
+                    "g1085Psychic": true,
+                    "max": 3
+                  }
+                }
+              ]
+            },
+            {
+              "label": "火のコスト6以下のサイキックを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "optional": false,
+                  "filter": {
+                    "creature": true,
+                    "color": "火",
+                    "g1085Psychic": true,
+                    "max": 6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1687",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx01-029",
+      "name": "巡霊者ウイニング・スター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "コスモ・ウォーカー",
+      "text": "自分のビクトリーを持つクリーチャーはすべてのバトルに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx01-029",
+      "abilityErrata": {
+        "abilityText": "自分のビクトリーを持つクリーチャーはすべてのバトルに勝つ。",
+        "reason": "公式画像のVアイコンを明示する表示補完。全文・効果は変更しない。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx01-029",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx01-029.jpg",
+        "imageSha256": "303e4d2c6396cdff84d39c9ad91f6850a44c3d05af9f07b4e6678bb915f325fc"
+      },
+      "limit": 4,
+      "g466BattleAura": {
+        "filter": {
+          "creature": true,
+          "g1686Victory": true
+        },
+        "win": true
+      },
+      "supportBatch": "phase-1687",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx03-001",
+      "name": "巡霊者スーパー・ウイニング・スター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "コスモ・ウォーカー",
+      "text": "自分のビクトリーを持つクリーチャーは「ブロッカー」を得、すべてのバトルに勝ち、自分のターンの終わりにアンタップされる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-001",
+      "abilityErrata": {
+        "abilityText": "自分のビクトリーを持つクリーチャーは「ブロッカー」を得、すべてのバトルに勝ち、自分のターンの終わりにアンタップされる。",
+        "reason": "公式画像のVアイコンを明示する表示補完。全文・効果は変更しない。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-001",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-001.jpg",
+        "imageSha256": "06e89f22cbf2681a9e1d62f65c6eee6e91bea9c8a76262c261a5a903887a02ea"
+      },
+      "limit": 4,
+      "g466BattleAura": {
+        "filter": {
+          "creature": true,
+          "g1686Victory": true
+        },
+        "win": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1687",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1686,
-    "checkedAt": "2026-11-22T20:39:59.309Z",
-    "baseCount": 9294,
+    "phase": 1687,
+    "checkedAt": "2026-11-22T22:19:03.953Z",
+    "baseCount": 9297,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9297,
+    "totalCount": 9300,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/qa/39642/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36308/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37298/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37300/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36309/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+      "https://dm.takaratomy.co.jp/rule/qa/48159/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -323815,6 +323960,24 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1686,
+        "checkedAt": "2026-11-22T20:39:59.309Z",
+        "baseCount": 9294,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9297,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/39642/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36308/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37298/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37300/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36309/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
         ]
       }
     ]

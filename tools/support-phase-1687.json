@@ -1,0 +1,616 @@
+{
+  "phase": 1687,
+  "checkedAt": "2026-11-22T22:19:03.953Z",
+  "baseCount": 9297,
+  "target": 9500,
+  "description": "カモン・ピッピーの選択サイキック登場と、ウイニング2種のビクトリー対象の全バトル勝利・ブロッカー付与・ターン終了時アンタップを全文対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/39642/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+    "https://dm.takaratomy.co.jp/rule/qa/48159/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 39642,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39642/",
+      "sha256": "447ca6c844244601276b583a59e90955edbd079bc902c94fabe4bf92dbbd3ed1",
+      "confirmed": true,
+      "scope": "公式VIC/WVCの共通則を登録済み実カードで確認。質問のモルトNEXT版の元配置は未登録のため未再現。"
+    },
+    {
+      "id": 36202,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+      "sha256": "fb5605230f8f1593ce016075da866d758e06a0d461253e91cad81d7f7e6bb20f",
+      "confirmed": true,
+      "scope": "実ファイブスター・ブラスターとパワー末尾500同士、およびウイニング同士の競合で検証する。"
+    },
+    {
+      "id": 48159,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/48159/",
+      "sha256": "55dc3dad1833469b3175e559581b05fc5bc1300d5788b43007398947230aae39",
+      "confirmed": true,
+      "scope": "カモンと続くサイキックの登場が別の登場イベントであることを確認。カツドン三面カードは未登録のため、その覚醒2回の元配置は未再現。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmr03-026",
+      "name": "カモン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-026",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。\n▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。\n▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト3以下のファイアー・バード・サイキックを2体まで出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 2,
+                    "deploy": true,
+                    "optional": true,
+                    "filter": {
+                      "creature": true,
+                      "race": "ファイアー・バード",
+                      "g1085Psychic": true,
+                      "max": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "火のコスト6以下のサイキックを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "optional": false,
+                    "filter": {
+                      "creature": true,
+                      "color": "火",
+                      "g1085Psychic": true,
+                      "max": 6
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-026.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6ab8d85c718ff32ee6bc62fe17be4050970d3d4c49e47868e3d3600f3ea886f0",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy10-030",
+          "dm25ex4-T14",
+          "dmr03-026",
+          "dmr03-026M",
+          "dmd20-018",
+          "dm23ex2-078",
+          "dmx22b-039"
+        ],
+        "result": "原本3版・カモン同名再録6版の全文・基本情報・画像9枚を照合。表記の更新のみで効果は同じ。ボルシャック・カモン・ピッピーは別名別能力として除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:19:03.953Z",
+        "sha256": "5c96682d336b01f33b1fb988629f9eeb493579f2c1131463ca492deec0c16618",
+        "facesMatched": true,
+        "imageSha256": "6ab8d85c718ff32ee6bc62fe17be4050970d3d4c49e47868e3d3600f3ea886f0"
+      }
+    },
+    {
+      "id": "dmx01-029",
+      "name": "巡霊者ウイニング・スター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx01-029",
+      "faces": [
+        {
+          "name": "巡霊者ウイニング・スター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の(ビクトリー)を持つクリーチャーはすべてのバトルに勝つ。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          },
+          "win": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx01-029.jpg",
+      "imageReviewed": true,
+      "imageSha256": "303e4d2c6396cdff84d39c9ad91f6850a44c3d05af9f07b4e6678bb915f325fc",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmx01-029"
+        ],
+        "result": "原本3版・カモン同名再録6版の全文・基本情報・画像9枚を照合。表記の更新のみで効果は同じ。ボルシャック・カモン・ピッピーは別名別能力として除外。"
+      },
+      "errata": {
+        "abilityText": "自分のビクトリーを持つクリーチャーはすべてのバトルに勝つ。",
+        "reason": "公式画像のVアイコンを明示する表示補完。全文・効果は変更しない。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx01-029",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx01-029.jpg",
+        "imageSha256": "303e4d2c6396cdff84d39c9ad91f6850a44c3d05af9f07b4e6678bb915f325fc"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:19:03.953Z",
+        "sha256": "3f9b2a184f9f0f07d1c44480c8f20932a81c684bb318447d28e1394df31d4163",
+        "facesMatched": true,
+        "imageSha256": "303e4d2c6396cdff84d39c9ad91f6850a44c3d05af9f07b4e6678bb915f325fc"
+      }
+    },
+    {
+      "id": "dmx03-001",
+      "name": "巡霊者スーパー・ウイニング・スター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-001",
+      "faces": [
+        {
+          "name": "巡霊者スーパー・ウイニング・スター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の(ビクトリー)を持つクリーチャーは「ブロッカー」を得、すべてのバトルに勝ち、自分のターンの終わりにアンタップされる。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "g1686Victory": true
+          },
+          "win": true
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g1686Victory": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ],
+        "g174End": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true,
+              "g1686Victory": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-001.jpg",
+      "imageReviewed": true,
+      "imageSha256": "06e89f22cbf2681a9e1d62f65c6eee6e91bea9c8a76262c261a5a903887a02ea",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmx03-001"
+        ],
+        "result": "原本3版・カモン同名再録6版の全文・基本情報・画像9枚を照合。表記の更新のみで効果は同じ。ボルシャック・カモン・ピッピーは別名別能力として除外。"
+      },
+      "errata": {
+        "abilityText": "自分のビクトリーを持つクリーチャーは「ブロッカー」を得、すべてのバトルに勝ち、自分のターンの終わりにアンタップされる。",
+        "reason": "公式画像のVアイコンを明示する表示補完。全文・効果は変更しない。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-001",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-001.jpg",
+        "imageSha256": "06e89f22cbf2681a9e1d62f65c6eee6e91bea9c8a76262c261a5a903887a02ea"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T22:19:03.953Z",
+        "sha256": "3a817b5345ea7b296216636ad5424eb6ee764eb715b15d3bf906062681122435",
+        "facesMatched": true,
+        "imageSha256": "06e89f22cbf2681a9e1d62f65c6eee6e91bea9c8a76262c261a5a903887a02ea"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "promoy10-030",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy10-030",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。 　▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。 　▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "7d166470fbe7abf2f7bbdea8c461e188d754d827eb555a16ead150f1835e42b7",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy10-030.jpg",
+          "file": "tmp/duema-phase-1687/promoy10-030-0.jpg",
+          "sha256": "c7eb19bd17bfc58a7e4c10ea59470d0d0adbf5dea57c5b6d5f4743e17ca48ca1"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm25ex4-T14",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T14",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、 次の中から１回選ぶ。\n▶コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンから出す。\n▶火のコスト６以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "c3879c9476e5bd89f46a8d3d1747df73bdb0368eed7ec64152b51214064943eb",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T14.jpg",
+          "file": "tmp/duema-phase-1687/dm25ex4-T14-0.jpg",
+          "sha256": "9004b56477679963bf289d8c15246e44e40bdba5f82b6dd42e54ee481227ab23"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmr03-026M",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-026M",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。 　▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。 　▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "d5f2c91ffe26d70afc86f106d1f74d4b3e4faa8c1456ef1e873bd130ae36d091",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-026M.jpg",
+          "file": "tmp/duema-phase-1687/dmr03-026M-0.jpg",
+          "sha256": "ddcb41d5ed7d0e19d7e0d053c7dba1ddf99cc2b700b6a29c16c06f084da7a9ae"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmd20-018",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-018",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、 次のうちいずれかひとつを選ぶ。　▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。　▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "e4f998c33346011f3831a0e78febba8e2f63d9db35c1aec5bf4741a2ec92c0c6",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-018.jpg",
+          "file": "tmp/duema-phase-1687/dmd20-018-0.jpg",
+          "sha256": "f542bb5a32847cc597b7a9a428041b5a9653b0bdaa56a8ba31680ea0f02ea117"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm23ex2-078",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-078",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、 次のうちいずれかひとつを選ぶ。\n▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンから出す。\n▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンから出す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "20cfbf532e252abe51466178c77d2a3093cd88925a831101ac88db5f44c47fc3",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-078.jpg",
+          "file": "tmp/duema-phase-1687/dm23ex2-078-0.jpg",
+          "sha256": "055248b9552cbedf58dd4d87a0f22cdbaa640ce5bc618e2c08812d7f762926f4"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx22b-039",
+      "name": "カモン・ピッピー",
+      "canonicalId": "dmr03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-039",
+      "faces": [
+        {
+          "name": "カモン・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、 次のうちいずれかひとつを選ぶ。 ▼コスト３以下のファイアー・バード・サイキック・クリーチャーを２体まで、自分の超次元ゾーンからバトルゾーンに出す。 ▼コスト６以下の火のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "8d044af235444b3032164be6f1bed2a2dd3f3ed2ff6b12e4ac1a0470cae27d53",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-039.jpg",
+          "file": "tmp/duema-phase-1687/dmx22b-039-0.jpg",
+          "sha256": "679a524eee7ae504e288f399e9b96a7831ae1c2a058f30b6fa8a8cacc0faee34"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "victoryRarityEvidence": "tools/victory-card-evidence.json",
+  "held": [
+    {
+      "id": "promoy9-097",
+      "name": "キズナ・ブラスター",
+      "reason": "指定のXXサイキックが未登録のため、今回の3種を優先。全文と両選択の実カード検証ができるバッチで対応。"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T22:19:03.953Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr03-026": 4,
+      "dmx01-029": 4,
+      "dmx03-001": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T22:24:26.595Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1687.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 5.552,
+        "log": "tmp/duema-phase-1687/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused": {
+        "name": "focused-verified",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1687-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.638,
+        "log": "tmp/duema-phase-1687/focused-verified.log",
+        "passed": 54,
+        "failed": 0,
+        "logSha256": "42051df86d403ffb953bde17a208d2e54cdf1c1277b6c532bcc469e4cfce2b6a"
+      },
+      "related-auras": {
+        "name": "related-auras",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard208-effects.test.mjs",
+          "tests/standard219-effects.test.mjs",
+          "tests/standard587-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 40.501,
+        "log": "tmp/duema-phase-1687/related-auras.log",
+        "passed": 107,
+        "failed": 0,
+        "logSha256": "3bd93c015bc76961e18a013a7f77e75f40441fad9665c4c9c5ca5872b55d1c46"
+      },
+      "related-psychic": {
+        "name": "related-psychic",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=2",
+          "tests/standard1685-effects.test.mjs",
+          "tests/standard1686-effects.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 38.886,
+        "log": "tmp/duema-phase-1687/related-psychic.log",
+        "passed": 174,
+        "failed": 0,
+        "logSha256": "1759004ae00b978c4ef9c9ae6058428a0005e84c9cd9dbcadce62a54de97feb4"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 30.425,
+        "log": "tmp/duema-phase-1687/check.log",
+        "logSha256": "421cfa70c0bc521a19ef6598341e8c0cde598abee99a9c840f870fe1e0fb6663"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.39,
+        "log": "tmp/duema-phase-1687/audit.log",
+        "logSha256": "d9aa9baf20a93ae8b2803d9a0b880303dd123664e3db3aa646e57282e040e15c"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.438,
+        "log": "tmp/duema-phase-1687/target9500.log",
+        "logSha256": "14b1cb1c52ab3de3c5cea6bd516c62e43cd4c24dac5e920b76fddca394f83793"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1687/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.488,
+        "log": "tmp/duema-phase-1687/invariants.log",
+        "logSha256": "0c3c2b3521d203d8d247ddf58bd81a0222f07119f61765a62e6051200d430bc5"
+      }
+    },
+    "totalTestsPassed": 335,
+    "focusedTestsPassed": 54,
+    "relatedTestsPassed": 281
+  },
+  "validationNotes": [
+    "ユーザーの「再開して」により手動登録を再開。目標9500と変更の影響に応じる検証方針を維持。開始時nameKey9297、HEAD dd184a13、差分と実行中の登録/テストなし。",
+    "カモン原本+同名再録6版とウイニング2種の計9版について、公式能力全文・基本情報・画像9枚・制限・収録を照合。現行カモンの殿堂解除を確認し4枚使用可。既存正規IDと保存形式を維持し、再録は種類に数えず別名のボルシャックカモンを除外。",
+    "カモンは出た時の必須2モード選択、FireBirdコスト3以下サイキック0〜2体、または火コスト6以下サイキック1体必須を既存Choose/Selectで全能力対応。元ピッピー2体・リュウセイ6を使用し、ガイアール7や非火SM2を除外。空の超次元・輝羅の禁止・とこしえの実登場置換を双方で確認。",
+    "ウイニング2種の全バトル勝利は既存の発生源所有battleAura、スーパーのブロッカーは既存grantAura、終了時アンタップは発生源のg174End/GroupUntapへ接続。対象が能力無視されても発生源の勝利効果とアンタップは残り、付与されたブロッカーは無視される。発生源の無視・封印・退出で効果を失う。ビクトリー判定は前回の公式VIC/WVC276版の根拠を再利用し、付与の共通フィルターに接続した。",
+    "双方の強制勝利は実マルシアスとの対戦、旧QA36202は実ファイブスターと3500の実クリーチャー2体の両者勝利で確認。リンクの実処理で激竜王ガイアールオウドラゴンになった面にも付与。名前だけVを含む非Vカードや他の非Vは対象外。能力コピーで物理レアリティを変えない。",
+    "QA39642の共通則を実登録のVIC/WVCで確認。QA48159はカモンと続くサイキックが別登場イベントであることを照合したが、勝首領龍カツドン三面は未登録で覚醒2回の元配置は再現していない。カモンの全能力の固有検証完了とは区別して、この外部カード依存の再現範囲を残す。",
+    "固有54件・能力付与/終了時/勝利107件・サイキック/ビクトリー/通信174件の335件、check/audit/target9500/不変条件が通過。合法40枚+超次元6枚の2seedで全物理UIDとJSON継続を検証。初回の誤った輝羅/とこしえのIDと、実パワーを誤認した対照fixtureを直し、全固有を再実行して通過。共通処理の変更範囲に合わせて回帰を選び、既に通過した群は繰り返さない。",
+    "nameKey9300種類・重複0、既存9297定義/画像/ピン/カタログを維持。過去の登録済み未検証・長時間群・全体npm test中断・ユーザー保留・公開状態をそのまま保持。push/公開/Netlify更新なし。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr05-058",
+      "name": "ヤバスギル・ラップ",
+      "reason": "相手選択の破壊と実際に破壊しなかった場合の任意展開を既存処理へ照合。"
+    },
+    {
+      "id": "dm22ex2-004",
+      "name": "悪遊 ノチェス＝アルトゥス",
+      "reason": "攻撃時に自分側も含め最大6体の必須破壊・Hブレイカー・可能なら攻撃を照合。"
+    },
+    {
+      "id": "dm31-007",
+      "name": "陰陽の伝道士セイメイ",
+      "reason": "相手からの選択禁止と相手の呪文墓地回収禁止を共通処理へ照合。"
+    }
+  ]
+}
