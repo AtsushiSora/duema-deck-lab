@@ -2998,6 +2998,21 @@ export function createSixPhotoRules(api){
    opt('終極宣言する',true,creatures(s,1-t.p).some(y=>effective(y,s).noCostReduction)?-10:25),skip()
   ]);
   break;
+ // Resolve the source move first, including any departure replacement. The rest
+ // of the reset still resolves when the source has already left the battlefield.
+ case'g34_PacificReset1614':{
+  put(s,{...t,op:'g34_PacificShuffle1614'});
+  const host=sourceHost474(s,t);
+  if(host)move(s,[{player:host.p,uid:host.x.uid,to:'deck',destroy:false,g731Shuffling:true,g1614DeferShuffle:true,controller:t.p}]);
+  break;
+ }
+ case'g34_PacificShuffle1614':{
+  const rows=[...own.hand.splice(0),...(api.canMoveZone(s,t.p,'grave')?own.grave.splice(0):[])];
+  for(const y of rows)clear(y,'deck');
+  api.shuffleLibrary(s,t.p,rows,t.source);
+  start(s,t,[{op:'Draw',n:3}]);
+  break;
+ }
  case'g34_GraveShuffle545':put(s,task('g22Shuffle',t.p,t.source,
   {optional:t.optional,owner:t.owner,creaturesThenDraw:t.creaturesThenDraw}));break;
  case'g34_MillRecover545':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}clear(y);api.addZone(s,t.p,'grave',y);const matched=!api.deckWasShuffled1365(s,y)&&matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner!==null)break;if(matched)zoneMove(s,t.p,'grave',y.uid,'hand',t);else start(s,t,t.elseDefs);break;}

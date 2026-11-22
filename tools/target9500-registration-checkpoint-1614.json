@@ -1,0 +1,205 @@
+{
+  "phase": 1614,
+  "checkedAt": "2026-11-22T02:05:33.611Z",
+  "status": "verified-local",
+  "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
+  "target": 9500,
+  "startNames": 9070,
+  "currentNames": 9073,
+  "remainingNames": 427,
+  "duplicateNames": 0,
+  "engineVersion": "0.602.130",
+  "added": [
+    {
+      "id": "dmr12-008",
+      "name": "散舞する世界 パシフィック R"
+    },
+    {
+      "id": "dm25rp4-045",
+      "name": "KUMPU-外套膝92"
+    },
+    {
+      "id": "dm33-018",
+      "name": "リンネ・ルピア"
+    }
+  ],
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1614.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.535,
+      "log": "tmp/duema-phase-1614/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1614-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.901,
+      "log": "tmp/duema-phase-1614/final-focused.log",
+      "passed": 27,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1613-effects.test.mjs",
+        "tests/standard293-effects.test.mjs",
+        "tests/standard731-effects.test.mjs",
+        "tests/standard955-effects.test.mjs",
+        "tests/standard571-effects.test.mjs",
+        "tests/standard1128-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1588-effects.test.mjs",
+        "tests/online-runtime.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 27.667,
+      "log": "tmp/duema-phase-1614/final-related.log",
+      "passed": 465,
+      "failed": 0
+    },
+    "neo-specific": {
+      "name": "neo-specific",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=normal summoning requires|GG may evolve|GG accepts|NEO evolution|DDD rejects|quadruple breaker|GG leaves continuous|AI declaration, ordering",
+        "tests/neo-ddd.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.631,
+      "log": "tmp/duema-phase-1614/neo-specific.log",
+      "passed": 6,
+      "failed": 0
+    },
+    "final-check": {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.617,
+      "log": "tmp/duema-phase-1614/final-check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.391,
+      "log": "tmp/duema-phase-1614/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.271,
+      "log": "tmp/duema-phase-1614/target9500.log"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tools/verify-target10000.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.268,
+      "log": "tmp/duema-phase-1614/invariants.log"
+    }
+  },
+  "totalTestsPassed": 498,
+  "hashes": {
+    "dist/cards.json": "e4d83cbd366cab34eaac6131d0e4659c924120bf9ea565a8c2d572219a246b33",
+    "dist/engine.js": "3eb4b17f881adbef7782969878aee96138147625a91a10b5e7b08ac72297807a",
+    "dist/six-photo-rules.js": "c943bbf07e90b329e9674d9da6cff5ebf829104f5b269514b298170b287b053c",
+    "dist/online-compatibility.js": "4b5929e53327231a9949420ab8d7c44e08a8012d9a5a3800f74d21b22773c31a",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "invariants": {
+    "baseline": "b705d51a",
+    "originalDefinitionsUnchanged": 9070,
+    "uniqueNames": 9073,
+    "uniqueIds": 9073,
+    "added": 3,
+    "duplicateNames": 0
+  },
+  "interruptedOptionalRegression": {
+    "phase": 1614,
+    "target": "tests/neo-ddd.test.mjs: mixed NEO/DDD games conserve all eighty unique cards through every action and finish with reproducible seeds",
+    "status": "interrupted-unconfirmed",
+    "reason": "100シードの一括対戦を含むため113.317秒で中断。否定名フィルターでの除外も機能せず71.29秒で中断。以後は同じ実行を繰り返さず、肯定名指定のNEO固有6件、関連回帰465件、今回の40枚デッキ対戦2件を含む27件を確認した。100シード群自体の合格は推定しない。",
+    "attempts": [
+      {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "--test-concurrency=4",
+          "tests/standard1613-effects.test.mjs",
+          "tests/standard293-effects.test.mjs",
+          "tests/standard731-effects.test.mjs",
+          "tests/standard955-effects.test.mjs",
+          "tests/standard571-effects.test.mjs",
+          "tests/standard1128-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs",
+          "tests/neo-ddd.test.mjs",
+          "tests/standard1588-effects.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": -9,
+        "timedout": false,
+        "seconds": 113.317,
+        "log": "tmp/duema-phase-1614/related.log"
+      },
+      {
+        "name": "neo-focused",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?!mixed NEO/DDD games)",
+          "tests/neo-ddd.test.mjs"
+        ],
+        "code": -9,
+        "timedout": false,
+        "seconds": 71.29,
+        "log": "tmp/duema-phase-1614/neo-focused.log"
+      }
+    ],
+    "resume": "100シードを個々のseedへ分割し、各ケースを独立した時間上限付きで検証する。一括npm testや否定フィルターによる同じ長時間群の再実行はしない。",
+    "engineVersion": "0.602.130",
+    "scope": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。"
+  },
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
