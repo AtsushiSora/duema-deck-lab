@@ -6181,6 +6181,23 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
   break;
  }
+ case'g34_SelfSpellShield1692':api.moveSpellShield1692(s,t.p,t.uid);break;
+ case'g34_TuneAgain1692':choice(s,t,'持ち主の手札に戻すバトルゾーンのカードを1枚選ぶ',cardMoveOptions579(s,{...t,anyOwner:true,to:'hand'}));break;
+ case'g34_TuneFollow1692':{
+  const y=own.hand.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(y&&card(y).type==='creature'&&!api.isEvolution(y)&&colors(card(y)).includes('水')&&race(card(y),'ソニック・コマンド')&&canPut(s,t.p,y,'hand'))start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{exactId:y.cardId},g530Ids:[y.uid]}]);
+  break;
+ }
+ case'g34_Texas1692':choice(s,t,'山札の上に置いて戻す自分の非進化クリーチャーを1体選ぶ',targetOptions(s,t.p,creatures(s,t.p).filter(y=>!y.sealed&&!api.isEvolution(y))));break;
+ case'g34_TexasAfter1692':{
+  const y=own.deck[0];if(!y||y.uid!==t.target||(y.zoneSerial||0)!==t.serial)break;
+  y.faceUp=true;api.log(s,t.p,'reveal',card(t.source).name+'で'+card(y).name+'を表向きの山札上に置いた',{cardId:y.cardId});
+  start(s,t,[{op:'Put',origin:'deck',target:y.uid},{op:'TexasBreak1692',target:y.uid,expectedIncarnation:t.expectedIncarnation}]);break;
+ }
+ case'g34_TexasBreak1692':{
+  const y=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.expectedIncarnation&&!x.sealed&&api.isCreature(s,x));
+  if(y)start(s,{...t,uid:y.uid,incarnation:y.incarnation||0,source:y.cardId},[{op:'Break497',n:1,g747CreatureBreak:true,g913DepartedBreaker:true}]);break;
+ }
  case'g34_GigaReveal1691':{
   const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>ids.includes(x.uid));
   if(!y)break;
@@ -8313,6 +8330,16 @@ export function createSixPhotoRules(api){
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});
   break;
+ case'g34_TuneAgain1692':{
+  const row=cardMoveRows579(s,{...t,anyOwner:true,to:'hand'}).get(v);if(!row)break;
+  put(s,{...t,op:'g34_TuneFollow1692',target:row.x.uid,serial:(row.x.zoneSerial||0)+1});
+  api.moveBattleCard(s,row.p,row.x.uid,'hand',{controller:t.p,destinationOwner:row.x.cardOwner??row.p,toOwnerHand:true});break;
+ }
+ case'g34_Texas1692':{
+  const y=own.battle.find(x=>x.uid===v&&!x.sealed&&api.isCreature(s,x)&&!api.isEvolution(x));if(!y)break;
+  put(s,{...t,op:'g34_TexasAfter1692',target:y.uid,serial:(y.zoneSerial||0)+1,expectedIncarnation:(y.incarnation||0)+1});
+  move(s,[{player:t.p,uid:y.uid,to:'deckTop',destroy:false,controller:t.p}]);break;
+ }
  case'g34_GigaMove1691':start(s,t,[{op:'Select',origin:'deck',...(v?{deploy:true}:{to:'hand'}),n:1,optional:false,g530Ids:[t.target]}]);break;
  case'g34_FinaleBreak1690':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else if(t.selected?.length)start(s,t,[{op:'Break497',owner:'self',n:t.selected.length,selected:t.selected,g747CreatureBreak:true,g913DepartedBreaker:true}]);break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;

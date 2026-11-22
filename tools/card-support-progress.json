@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9311,
-  "pendingNames": 2514,
-  "phase": 1691,
+  "supportedNames": 9314,
+  "pendingNames": 2511,
+  "phase": 1692,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1416,
-    "呪文": 280,
+    "呪文": 277,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1815,
+    "未対応の能力文": 1812,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 15,
@@ -539587,32 +539587,340 @@
         }
       ],
       "next": "phase1692は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1692,
+      "checkedAt": "2026-11-22T23:45:55.313Z",
+      "baseline": "a0e21860",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9311,
+      "currentNames": 9314,
+      "remainingNames": 186,
+      "added": [
+        {
+          "id": "dm20-008",
+          "name": "スローリー・チェーン"
+        },
+        {
+          "id": "dmr23-013",
+          "name": "チューン・アゲイン"
+        },
+        {
+          "id": "dmrp02-029",
+          "name": "テキサス・ストーム"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "a0e21860",
+        "originalDefinitionsUnchanged": 9311,
+        "added": 3,
+        "uniqueNames": 9314,
+        "uniqueIds": 9314,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9311,
+        "existingImageReferenceRowsUnchanged": 11521,
+        "officialPrintsReviewed": 9,
+        "officialImagesReviewed": 9,
+        "existingPinsUnchanged": 831
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1692.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.347,
+          "log": "tmp/duema-phase-1692/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-final": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1692-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.936,
+          "log": "tmp/duema-phase-1692/focused-final.log",
+          "passed": 41,
+          "failed": 0,
+          "logSha256": "3eaa82299293cb515f46ea65194cdc86c7f6917592bc8df4c42ade6307083d08"
+        },
+        "related-spell-movement": {
+          "name": "related-spell-movement",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1647-effects.test.mjs",
+            "tests/standard726-effects.test.mjs",
+            "tests/standard1344-effects.test.mjs",
+            "tests/standard1690-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 37.002,
+          "log": "tmp/duema-phase-1692/related-spell-movement.log",
+          "passed": 105,
+          "failed": 0,
+          "logSha256": "7e2134c24fa98fd63bc1c0fdff4d9ea657f2c981ddbdff935d2589290acbaeb9"
+        },
+        "related-physical-bounce": {
+          "name": "related-physical-bounce",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1005-effects.test.mjs",
+            "tests/standard1355-effects.test.mjs",
+            "tests/standard579-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.613,
+          "log": "tmp/duema-phase-1692/related-physical-bounce.log",
+          "passed": 115,
+          "failed": 0,
+          "logSha256": "8b5419b7b98d5970a11a7da40a16a574a2fcc3935e026daf3068f39b27054de9"
+        },
+        "related-kaku": {
+          "name": "related-kaku",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Kaku|^Fire granted during first attack by Kaku",
+            "tests/magic-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.717,
+          "log": "tmp/duema-phase-1692/related-kaku.log",
+          "passed": 5,
+          "failed": 0,
+          "logSha256": "f2085738d73f25bb9c0c14fc7a73eaf935e622eb13e43860bc7715c5ba607735"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.957,
+          "log": "tmp/duema-phase-1692/check.log",
+          "logSha256": "298c31ad2c32b496b674ee79357cfd514590caeecb57247fa7ddc88b2d278f6d"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.412,
+          "log": "tmp/duema-phase-1692/audit.log",
+          "logSha256": "581db20e63a6cd50d84320221ac8d14f8a3732d792bb66632bd753db1f84d8cb"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.409,
+          "log": "tmp/duema-phase-1692/target9500.log",
+          "logSha256": "2f4398b7e52d895c70011647a1eab6983d3a190e247f93ae4fd77b9cea3379d4"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1692/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.506,
+          "log": "tmp/duema-phase-1692/invariants.log",
+          "logSha256": "2807840b9d5c6d151cd63f40ce79cf751d760d1ac4b8168c3ca41dcf061acc83"
+        }
+      },
+      "totalTestsPassed": 266,
+      "hashes": {
+        "dist/cards.json": "7d550efac85e747266a888a18df9694473c20986bf352765a1c7b3dd8c2ca1ca",
+        "dist/engine.js": "1d18fd42fcb8f72cc55172651a5ef1595ce6b44e5828ed067b805809782c3d2a",
+        "dist/six-photo-rules.js": "af24908243c97c04e9003c6ace91fecf4af61a50351ae68424f5972cea07e723",
+        "dist/online-compatibility.js": "176676f8a6d87dc6b5cc5805117e013b10253a80eb42f0ce4cb1e2b4b3bd9d76",
+        "dist/card-images.js": "3d53f4fd6d060aeb451df31f5bcc8994a765c4ef5e4582c14a172e2255a81ffa",
+        "tools/target9000-card-spec.json": "9665d64e53b763536fb6d4fe03ef0c4c60819828c02ae88a2aa311e90673e0b4",
+        "tests/standard1692-effects.test.mjs": "6c234f67d7f6e2f0fe9ab3308a2cb34d7adbc688b5200af7cc63a5a62e5553af"
+      },
+      "engineVersion": "0.602.208",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 35461,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35461/",
+          "sha256": "075d483f9350c9dd88b45adf1eeca1e86845aa209f969aec03ecdc536a26a59c",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs"
+        },
+        {
+          "id": 37926,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/37926/",
+          "sha256": "aacdfa13cdf0406a92460e84bddc50056a2c0c95c059a922d797cb4ce245bbbc",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs"
+        },
+        {
+          "id": 36944,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+          "sha256": "4fd3eba88295bf6e176ea695fe8269eb58e548da290926114e233935c602e179",
+          "confirmed": true,
+          "reproduced": false,
+          "scope": "公式本文確認済み。原本未登録のため正確な再現はphase1693候補。新規スローリーの効果は実レッドゾーンと自身/相手カードの効果の区別を検証。"
+        },
+        {
+          "id": 36684,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+          "sha256": "49c217a148df178542aa0aaf6600f84d94dca2768e444f434dea0e8d603b5ce7",
+          "confirmed": true,
+          "reproduced": false,
+          "scope": "公式本文確認済み。原本未登録のため正確な再現はphase1693候補。新規スローリーの効果は実レッドゾーンと自身/相手カードの効果の区別を検証。"
+        },
+        {
+          "id": 31568,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/31568/",
+          "sha256": "538516defe2fd080cb3b39ea063d0e4af25f28fa8da868aeca6f6c080243efeb",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs"
+        },
+        {
+          "id": 33443,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33443/",
+          "sha256": "070f004ba48fefb2f9e061fbc6851ad43663b3cb781319a00bbdd0be7027c975",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs",
+          "scope": "メイン中のクリーチャーによる指示ブレイクがattackではない文脈を維持。個別キリフダッシュ実行は既存処理の検証範囲。"
+        },
+        {
+          "id": 43800,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43800/",
+          "sha256": "c96ee74e59a637271577ab322a17aa7a522897a7f32d6b84c5439cfa5964520e",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs"
+        },
+        {
+          "id": 43801,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43801/",
+          "sha256": "c0c63ac0b36b687ab7b1a3a40757b7f84e52c433a5d314406aa35db6f5fbbdb3",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1692-effects.test.mjs"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1692-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 12.175,
+          "log": "tmp/duema-phase-1692/focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1692.json",
+      "supported": 9314,
+      "pending": 2511,
+      "reason": "スローリーチェーンの全体攻撃停止・解決中の自己盾化と盾墓地移動、チューンアゲインの物理カードの持ち主手札移動と対象判定後の再登場、テキサスストームの山札上経由再登場と実クリーチャーの1盾ブレイクを全能力対応。",
+      "validationNotes": [
+        "開始時HEAD a0e21860、作業ツリー/ステージは空、nameKey9311種類、既存プロセスなし。前バッチ255件とcheck/audit、AGENTS、過去の未確認を確認。既存の目標記録はPAUSEDのままで新規作成できなかったが、ユーザーの新たな明示指示に従いローカル登録を継続し、目標を達成済みと扱わない。",
+        "原本3版と同名再録6版、全9版の公式全文・基本情報・画像9枚・使用制限を照合。3種類だけを追加し、再録は正規IDに解決。",
+        "スローリーは既存の全体攻撃停止を使い、既存の早期呪文移動フレーム管理を盾化にも接続。解決中に実呪文1枚を裏向き盾に移動した後、自分の盾1つを必須で墓地に置く。公式QA35461の自分自身選択、盾0からの自身選択、実ST、実スペルサイクリカ墓地実行と終了時移動の競合、フウジン天＆ライジン天の盾追加禁止を検証。今の攻撃を遡及中止せず次の攻撃を止め、新しく出たクリーチャーも止め、ターン終了で失効する。",
+        "実レッドゾーンが相手の攻撃停止効果を無視できる一方、自分のカードの全体攻撃禁止は無視できないよう、全体制限の出所を既存のcontrollerから評価する処理を修正。QA36944/36684の原本2カードは未登録のため、そのカード自身を使う正確な再現は次バッチに分ける。公式本文は確認済み、スローリーの攻撃禁止処理を能力無効と混同しない。",
+        "チューンは既存の物理バトルカード選択を再利用し、対象を持ち主の手札へ返す。元の物理UIDと移動serialを追跡して、その後の手札で自分の水/非進化ソニックかを判定し、戻したその1枚だけを任意で出す。同名の別手札は選べない。封印・進化元・相手カード・借用された自分のカード・フィールドを検証。公式QA37926は実水ソニックの封印を外してそのカードを出す配置で再現。",
+        "テキサスは自分の非進化1体を山札上へ移動し、表向き情報を残してから同じ物理カードを山札上から出し、新incarnationの実クリーチャーが1盾ブレイク。公式QA31568は実クシュトルが場を離れなかった場合にブレイクしない。実輝羅で戻れない場合は表向きの山札上に残ってブレイクしない。",
+        "QA43800/43801は実カクメイジンの最初のブレイク前に実テキサスを唱えて自身を戻す配置で再現。新しいブレイク前の3回目を割り込ませ、最初に選んだ盾を再び選んで2枚だけブレイクし、元の残りの能力/ブレイクも失わない。メイン中の指示ブレイクを攻撃中のキリフダッシュ機会と誤認しないことは既存の攻撃情報とブレイク文脈を維持。",
+        "固有41件、早期呪文移動/停止/特殊ブレイク105件、物理カード移動/封印/山札置換/通信115件、カクメイジン指定5件、合計266件が通過。合法40枚2seed対戦で全物理UIDとJSON合法手を維持。両席の解決中スローリー移動と非公開の封印選択を暗号化通信ルーム保存/復元し、相手手札が漏れないことを確認。",
+        "初回はスローリーの盾墓地移動のownerを指定せず既存処理の既定相手を選んでいた実装誤りを固有テストで検出。manifest・pin・実データを自分指定に修正して再検証。共通処理の初期検証で失敗していないテキサス/チューンを含め最終固有テストを通過。",
+        "check/audit/target9500/不変条件を通過。nameKey9314種類、既存9311定義・画像・カタログ・ピン・ID・保存形式を維持。過去の全体テスト中断・長時間群未確認・個別未確認・ユーザー保留・公開履歴は保持。push・公開・Netlify更新なし。"
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmd06-001",
+          "name": "偽りの名オレワレオ",
+          "reason": "QA36684の正確な元カード。自分のブロッカーの固有の攻撃不可能力を無効にする範囲と相手カードの効果を区別して対応。"
+        },
+        {
+          "id": "dmr10-010",
+          "name": "光器の裏技ディーヴァ・ライブ",
+          "reason": "QA36944の正確な元カード。Gゼロ、ターン中の固有攻撃不可能力無効、終了時全体アンタップを全能力対応。"
+        },
+        {
+          "id": "dm36-031",
+          "name": "ダブル・リボルバードラゴン",
+          "reason": "自分のターン中かつ自身タップ時だけ相手クリーチャーの登場を墓地へ置換する全文を照合。"
+        }
+      ],
+      "next": "phase1693は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1691,
-    "nextPhase": 1692,
+    "lastVerifiedPhase": 1692,
+    "nextPhase": 1693,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm20-008",
-        "name": "スローリー・チェーン",
-        "reason": "全体攻撃停止と解決中呪文自身のシールド化、その後の盾1枚墓地移動を公式照合。"
+        "id": "dmd06-001",
+        "name": "偽りの名オレワレオ",
+        "reason": "QA36684の正確な元カード。自分のブロッカーの固有の攻撃不可能力を無効にする範囲と相手カードの効果を区別して対応。"
       },
       {
-        "id": "dmr23-013",
-        "name": "チューン・アゲイン",
-        "reason": "任意の物理バトルカードの手札移動と、自分の非進化水ソニックの場合の再登場を照合。"
+        "id": "dmr10-010",
+        "name": "光器の裏技ディーヴァ・ライブ",
+        "reason": "QA36944の正確な元カード。Gゼロ、ターン中の固有攻撃不可能力無効、終了時全体アンタップを全能力対応。"
       },
       {
-        "id": "dmrp02-029",
-        "name": "テキサス・ストーム",
-        "reason": "非進化クリーチャーを公開山札上に置いて戻し、1盾ブレイクする実参照を照合。"
+        "id": "dm36-031",
+        "name": "ダブル・リボルバードラゴン",
+        "reason": "自分のターン中かつ自身タップ時だけ相手クリーチャーの登場を墓地へ置換する全文を照合。"
       }
     ],
     "steps": [
       "ユーザーの明示指示で登録再開。変更の影響に合わせた検証方針を適用。",
-      "phase1692は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
+      "phase1693は候補3種を公式全文・画像・再録・制限・裁定と照合し、全能力対応と影響に応じた検証、check/audit/nameKey再集計・進捗更新・検証済みローカルコミット後、9500へ継続。通常登録ではpush・公開・Netlify更新なし。",
       "過去の未確認・保留を解消扱いにしない。"
     ],
     "knownIssues": [
@@ -540493,23 +540801,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1691,
-      "baseline": "ecc0610b",
-      "supportedNames": 9311,
-      "artifact": "tools/target9500-registration-checkpoint-1691.json",
-      "checkedAt": "2026-11-22T23:13:42.225Z"
+      "phase": 1692,
+      "baseline": "a0e21860",
+      "supportedNames": 9314,
+      "artifact": "tools/target9500-registration-checkpoint-1692.json",
+      "checkedAt": "2026-11-22T23:45:55.313Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T23:13:42.225Z",
+      "checkedAt": "2026-11-22T23:45:55.313Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9311,
-      "remainingNames": 189,
+      "currentNames": 9314,
+      "remainingNames": 186,
       "duplicateNames": 0,
-      "engineVersion": "0.602.207",
+      "engineVersion": "0.602.208",
       "added": [
         {
           "id": "dmr12-008",
@@ -541474,6 +541782,18 @@
         {
           "id": "dmr21-s09",
           "name": "D2V2 禁断のギガトロン"
+        },
+        {
+          "id": "dm20-008",
+          "name": "スローリー・チェーン"
+        },
+        {
+          "id": "dmr23-013",
+          "name": "チューン・アゲイン"
+        },
+        {
+          "id": "dmrp02-029",
+          "name": "テキサス・ストーム"
         }
       ],
       "results": {
@@ -541589,13 +541909,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "978c1187071c02be8c176690cea3ca2c60aa44ebcaf362322f0903ec77e35038",
-        "dist/engine.js": "a32de7d44242f0be9da11aca45d1f109cdeca7ca2a39c489c0c296be9ad0330a",
-        "dist/six-photo-rules.js": "0f48ee5c6afabf51076c7c6259613868bcec0c54c94e45becf4ab5fa5d796609",
-        "dist/online-compatibility.js": "f62c313efcc3e3fb43245af816808ecf89068867ff885538e1fce446fc5454fa",
-        "dist/card-images.js": "33fa184b0007d703a1769e68c79eb7ed1fb320fb6447ce865eeabd34b9f61ef5",
-        "tools/target9000-card-spec.json": "892f2e51dafd0d76353c4c1187204d51ca477738adc4e3ae5182a4c0b5ce9522",
-        "tests/standard1691-effects.test.mjs": "fa061a9a4d09255cc4458b9e4c855f2239ffcfe2b1f415e944c54442a008e349"
+        "dist/cards.json": "7d550efac85e747266a888a18df9694473c20986bf352765a1c7b3dd8c2ca1ca",
+        "dist/engine.js": "1d18fd42fcb8f72cc55172651a5ef1595ce6b44e5828ed067b805809782c3d2a",
+        "dist/six-photo-rules.js": "af24908243c97c04e9003c6ace91fecf4af61a50351ae68424f5972cea07e723",
+        "dist/online-compatibility.js": "176676f8a6d87dc6b5cc5805117e013b10253a80eb42f0ce4cb1e2b4b3bd9d76",
+        "dist/card-images.js": "3d53f4fd6d060aeb451df31f5bcc8994a765c4ef5e4582c14a172e2255a81ffa",
+        "tools/target9000-card-spec.json": "9665d64e53b763536fb6d4fe03ef0c4c60819828c02ae88a2aa311e90673e0b4",
+        "tests/standard1692-effects.test.mjs": "6c234f67d7f6e2f0fe9ab3308a2cb34d7adbc688b5200af7cc63a5a62e5553af"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -541659,10 +541979,10 @@
       },
       "phaseRange": [
         1614,
-        1691
+        1692
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 241,
+      "addedNames": 244,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -541674,9 +541994,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.744,
-        "log": "tmp/duema-phase-1691/check.log",
-        "logSha256": "a64c34d64bf549548b3b8a4d914aa7e75ec87491b8b716cb4c3b40836f78da31"
+        "seconds": 20.957,
+        "log": "tmp/duema-phase-1692/check.log",
+        "logSha256": "298c31ad2c32b496b674ee79357cfd514590caeecb57247fa7ddc88b2d278f6d"
       },
       "latestAudit": {
         "name": "audit",
@@ -541686,11 +542006,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.998,
-        "log": "tmp/duema-phase-1691/audit.log",
-        "logSha256": "59db0a3f50c3bfea242c9cfc933d431d74cea65e6c72e05c59b977c94605ed3d"
+        "seconds": 12.412,
+        "log": "tmp/duema-phase-1692/audit.log",
+        "logSha256": "581db20e63a6cd50d84320221ac8d14f8a3732d792bb66632bd753db1f84d8cb"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1691.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1692.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -542808,11 +543128,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9311,
-      "remaining": 189,
+      "currentNames": 9314,
+      "remaining": 186,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T23:13:42.225Z",
+      "checkedAt": "2026-11-22T23:45:55.313Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -594914,11 +595234,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1691,
+    "phase": 1692,
     "threshold": 9500,
-    "supportedNames": 9311,
-    "pendingNames": 2514,
-    "checkedAt": "2026-11-22T23:13:42.225Z",
+    "supportedNames": 9314,
+    "pendingNames": 2511,
+    "checkedAt": "2026-11-22T23:45:55.313Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -594927,7 +595247,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1691.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1692.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

@@ -38320,5 +38320,98 @@
         }
       ]
     }
+  },
+  "dm20-008": {
+    "phase": 1692,
+    "faces": [
+      {
+        "name": "スローリー・チェーン",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nこのターン、クリーチャーは攻撃することができない。\nこの呪文を裏向きにしてシールドに加える。その後、自分のシールドを１枚選び、墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LockAttacks726",
+          "spell": true
+        },
+        {
+          "op": "SelfSpellShield1692"
+        },
+        {
+          "op": "ShieldGrave588",
+          "n": 1,
+          "required": true,
+          "owner": "self"
+        }
+      ]
+    }
+  },
+  "dmr23-013": {
+    "phase": 1692,
+    "faces": [
+      {
+        "name": "チューン・アゲイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるカードを１枚選び、持ち主の手札に戻す。そのカードが自分の水の進化ではないソニック・コマンドなら、それを手札からバトルゾーンに出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TuneAgain1692"
+        }
+      ]
+    }
+  },
+  "dmrp02-029": {
+    "phase": 1692,
+    "faces": [
+      {
+        "name": "テキサス・ストーム",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の進化ではないクリーチャーを１体、表向きのまま山札の上に置く。その後、それを山札の上からバトルゾーンに戻す。そのクリーチャーは、相手のシールドを１つブレイクする。",
+        "race": "ジョーカーズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Texas1692"
+        }
+      ]
+    }
   }
 }

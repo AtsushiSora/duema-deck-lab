@@ -151,6 +151,8 @@ export function createExtendedRules(api){
     (l.max===undefined||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))))return true;
   if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='g677OnlyAttacker'&&l.player===p&&
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
+  // Ignoring opponents' attack effects never cancels an attack prohibition from one's own card.
+  if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='attack'&&l.player===p&&l.controller===p&&!l.uid&&!l.refs&&!l.g190Freeze&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if((kind==='attack'||kind==='block')&&pairedCombatLocked(s,x))return true;
   if((kind==='attack'||kind==='block')&&six.namedCombatLocked1643(s,p,x))return true;
