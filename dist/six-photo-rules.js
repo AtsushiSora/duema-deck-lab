@@ -6428,6 +6428,13 @@ export function createSixPhotoRules(api){
  case'g34_LightShieldTrigger1538':
   (s.extLimits??=[]).push({kind:'g1538LightShieldTriggers',player:t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});
   break;
+ case'g34_StarMemory1657':{
+  // QA38617: capture the existing shield cards, not future shields or later visits.
+  (s.extLimits??=[]).push({kind:'g1193ShieldTrigger',player:t.p,expires:'end',who:t.p,
+   refs:own.shields.flatMap(api.shieldCards).map(x=>({uid:x.uid,serial:x.zoneSerial||0})),
+   spellSource:t.source,spellCost:cost(card(t.source))});
+  break;
+ }
  case'g34_BenzoSide1339':{
   (s.extLimits??=[]).push({kind:'g1339ShieldTriggers',expires:'start',who:t.p,controller:t.p});
   const frame=s.extSpells?.find(f=>f.inst.uid===t.uid);
@@ -7971,7 +7978,9 @@ export function createSixPhotoRules(api){
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
-  if(t.g961TrapCommune)
+  if(t.g1657Pokira)
+   (s.extLimits??=[]).push({kind:'g1657RaceGraveHand',player:t.p,filter:chosen,expires:'end',who:s.active});
+  else if(t.g961TrapCommune)
    start(s,t,[{op:'Select',origin:'battle',to:'grave',n:'all',optional:true,filter:chosen,g173Targets:true,
     g187OwnPick:true,g961TrapCommune:true,title:'破壊する自分の'+v+'を好きな数選ぶ'}]);
   else if(t.g735Grant)
@@ -9259,6 +9268,10 @@ export function createSixPhotoRules(api){
    moves[rule.optional?'optional':rule.tapped?'tapped':'untapped']=true;
   }
   return moves;
+ },
+ graveToHand1657(s,p,x){
+  return !x.sealed&&!x.faceDown&&api.isCreature(s,x)&&(s.extLimits||[]).some(l=>
+   l.kind==='g1657RaceGraveHand'&&l.player===p&&matches(s,p,x,l.filter));
  },
  destroyToHand390(s,p,x){
   if(x.sealed||x.faceDown)return false;

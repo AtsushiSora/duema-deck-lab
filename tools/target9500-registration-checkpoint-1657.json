@@ -1,0 +1,146 @@
+{
+  "phase": 1657,
+  "checkedAt": "2026-11-22T10:30:42.144Z",
+  "baseline": "27e764d16313620f4c4acd0624780450de32c9b1",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9205,
+  "currentNames": 9208,
+  "remainingNames": 292,
+  "added": [
+    {
+      "id": "dm19-019",
+      "name": "封魔ラベリーズ"
+    },
+    {
+      "id": "dm29-008",
+      "name": "星龍の記憶"
+    },
+    {
+      "id": "dm09-025",
+      "name": "ポキラ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9205,
+    "uniqueNames": 9208,
+    "uniqueIds": 9208,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-reprint": {
+      "name": "official-reprint",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1657.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.871,
+      "log": "tmp/duema-phase-1657/official-reprint.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1657-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 25.086,
+      "log": "tmp/duema-phase-1657/final-focused.log",
+      "passed": 84,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Cyclone|cyclone|Galaxy|Tribal|race|Race|Shield|shield|tap|Tap|Kiryu|replacement",
+        "tests/standard420-effects.test.mjs",
+        "tests/standard724-effects.test.mjs",
+        "tests/standard735-effects.test.mjs",
+        "tests/standard737-effects.test.mjs",
+        "tests/standard1193-effects.test.mjs",
+        "tests/standard1339-effects.test.mjs",
+        "tests/standard1608-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 7.385,
+      "log": "tmp/duema-phase-1657/final-related.log",
+      "passed": 57,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.541,
+      "log": "tmp/duema-phase-1657/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.215,
+      "log": "tmp/duema-phase-1657/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.265,
+      "log": "tmp/duema-phase-1657/target9500.log"
+    },
+    "qa35426": {
+      "name": "qa35426",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=QA35426",
+        "tests/standard1657-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.992,
+      "log": "tmp/duema-phase-1657/qa35426.log",
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "totalTestsPassed": 143,
+  "hashes": {
+    "dist/cards.json": "0fc16ded97f5ba663b0353e87d954bba057d38aa04dbd3b828073616a609e776",
+    "dist/engine.js": "3126b93ff33b542393880820313dd4db3d905491e59ae8d4f47c4c9da6a7fbf2",
+    "dist/six-photo-rules.js": "eb69f65186b02df46f426194e729acc397842fa823612f35edb7dbd8c44f2ad1",
+    "dist/online-compatibility.js": "c1ab9db574adcb042eb4f73295f1a059e241a6224e8c687fa2e6fae7da8e9fff",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.173",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
