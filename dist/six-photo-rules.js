@@ -948,7 +948,7 @@ export function createSixPhotoRules(api){
   if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：'+(owner===t.p?'自分':'相手')+'のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
   if(t.afterAttempt)start(s,t,t.afterAttempt);
  }
- function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
+ function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.attacking||w.g1642AttackBattleWin)&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
  const useColorsMatch=(watch,c)=>(!watch.color||colors(c).includes(watch.color))&&
@@ -4551,6 +4551,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ChooseCivilization805':{
+  if(t.g1642OpponentReveal){
+   choice(s,t,'相手が手札に加えられる文明を選ぶ',civilizations805.map(color=>opt(color,color,0)),1-t.p);
+   break;
+  }
   if(t.g1078Discard){
    choice(s,t,'捨てさせる手札の文明を選ぶ',civilizations805.map(color=>opt(color,color,0)));
    break;
@@ -4946,7 +4950,7 @@ export function createSixPhotoRules(api){
   if(own.shields.length)choice(s,t,'S・トリガーを与えるシールドを1つ選ぶ',
    own.shields.map((x,i)=>opt('シールド'+(i+1),api.shieldGroup(x),10)));
   break;
- case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
+ case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand',...(t.owner==='opponent'?{g832ShieldOwner:1-t.p}:{})});break;
  case'g34_HandShield657':
   if(own.hand.length&&(t.afterAttempt||api.canAddShield(s,t.p)))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
    ...own.hand.map(y=>opt(card(y).name,y.uid,card(y).gCastle||faces(card(y)).some(c=>c.trigger)?12:2,y.cardId)),skip()
@@ -7436,6 +7440,10 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ChooseCivilization805':
+  if(t.g1642OpponentReveal){
+   start(s,t,[{op:'Look',n:6,public:true,rest:'bottom',stages:[{n:'all',optional:true,to:'hand',filter:{anyFaceColor:v}}]}]);
+   break;
+  }
   if(t.g1078Discard){
    const owner=1-t.p,hand=s.players[owner].hand;
    api.log(s,owner,'reveal','手札を公開：'+(hand.map(y=>card(y).name).join('・')||'なし'),{cardId:t.source});

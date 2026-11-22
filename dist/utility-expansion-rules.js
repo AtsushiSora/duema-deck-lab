@@ -27,7 +27,7 @@ export function createUtilityExpansionRules(api){
   choice(s,t,title,options);break;
  }if(t.g533CardOnly){const rows=own.shields.flatMap((root,i)=>api.shieldCards(root).map((x,j)=>({x,i,j}))).filter(({x})=>!x.g37ShieldHeld);if(rows.length)choice(s,t,'手札に加えるシールドゾーンのカードを1枚選ぶ（S・トリガーは'+(t.g238ShieldHand?'使えません':'使えます')+'）',rows.map(({x,i,j})=>opt('シールド '+(i+1)+' のカード '+(j+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)));break;}const owner=t.g832ShieldOwner??t.p,shields=s.players[owner].shields;
  const rows=shields.filter(x=>api.shieldCards(x).some(y=>!y.g37ShieldHeld));
- if(rows.length)choice(s,t,'手札に加える'+(owner===t.p?'自分':'相手')+'のシールドを1つ選ぶ（S・トリガーは使えません）',rows.map((x,i)=>opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)));break;}
+ if(rows.length)choice(s,t,'手札に加える'+(owner===t.p?'自分':'相手')+'のシールドを1つ選ぶ（S・トリガーは'+(t.g1562PrintedST&&!t.g238ShieldHand?'使えます':'使えません')+'）',rows.map((x,i)=>opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)));break;}
  case'g54_Shrine':{
   if(!api.canMoveZone(s,t.p,'grave'))break;
   const rows=own.grave.splice(0),to=api.manaRedirect(s,t.p)?'grave':'mana';

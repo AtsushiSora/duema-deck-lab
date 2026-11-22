@@ -291410,21 +291410,111 @@
       ],
       "supportBatch": "phase-1641",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-034",
+      "name": "失われし鎧亜の秘術",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nマナゾーンに置く時、このカードはタップして置く。\n相手に文明をひとつ選ばせる。その後、自分の山札を上から６枚、表向きにする。その中から、相手が選んだ文明のカードを好きな数自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-034",
+      "limit": 4,
+      "trigger": true,
+      "manaTapped": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseCivilization805",
+          "g1642OpponentReveal": true
+        }
+      ],
+      "supportBatch": "phase-1642",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-018",
+      "name": "返り討ちバンビー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ドリームメイト/ハンター",
+      "text": "ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nこのクリーチャーがバトルに勝った時、相手のシールドをひとつ選び、相手はそれを自身の手札に加える。(その「S・トリガー」は使える)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-018",
+      "limit": 4,
+      "g166Hunting": true,
+      "g189BattleWin": [
+        {
+          "op": "ShieldHand",
+          "owner": "opponent",
+          "g1562PrintedST": true
+        }
+      ],
+      "supportBatch": "phase-1642",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx06-s01",
+      "name": "ガイアール・アバレ・カイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "自分のハンターが攻撃してバトルに勝った時、このクリーチャーをアンタップし、相手のシールドをひとつ選ぶ。相手はそのシールドを自身の手札に加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g252WinWatch": {
+        "attacking": true,
+        "filter": {
+          "race": "ハンター"
+        },
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          },
+          {
+            "op": "ShieldHand",
+            "owner": "opponent",
+            "g1562PrintedST": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1642",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1641,
+    "phase": 1642,
     "checkedAt": "2026-11-22",
-    "baseCount": 9155,
+    "baseCount": 9158,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9158,
+    "totalCount": 9161,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36457/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35776/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35777/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35778/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36480/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36481/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36482/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -318245,6 +318335,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36827/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36826/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36830/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1641,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9155,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9158,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36457/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35776/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35777/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35778/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,131 @@
+{
+  "phase": 1642,
+  "checkedAt": "2026-11-22T07:11:33.998Z",
+  "baseline": "da354c029c3aeecd169cc2da72e90ec4db354f5a",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9158,
+  "currentNames": 9161,
+  "remainingNames": 339,
+  "added": [
+    {
+      "id": "dm25-034",
+      "name": "失われし鎧亜の秘術"
+    },
+    {
+      "id": "dmr06-018",
+      "name": "返り討ちバンビー"
+    },
+    {
+      "id": "dmx06-s01",
+      "name": "ガイアール・アバレ・カイザー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9158,
+    "uniqueNames": 9161,
+    "uniqueIds": 9161,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1642.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.623,
+      "log": "tmp/duema-phase-1642/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1642-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.202,
+      "log": "tmp/duema-phase-1642/final-focused.log",
+      "passed": 54,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Platoon|Depth Noble|Gran Belze|Sea Rigel|battle watchers|Algorus|duplicate battle|Four Fangs|Tactics|Both forced winners",
+        "tests/standard805-effects.test.mjs",
+        "tests/standard924-effects.test.mjs",
+        "tests/standard1078-effects.test.mjs",
+        "tests/standard1562-effects.test.mjs",
+        "tests/standard252-effects.test.mjs",
+        "tests/standard1633-effects.test.mjs",
+        "tests/standard587-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.804,
+      "log": "tmp/duema-phase-1642/final-related.log",
+      "passed": 26,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.247,
+      "log": "tmp/duema-phase-1642/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.284,
+      "log": "tmp/duema-phase-1642/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.26,
+      "log": "tmp/duema-phase-1642/target9500.log"
+    }
+  },
+  "totalTestsPassed": 80,
+  "hashes": {
+    "dist/cards.json": "65d5e2e6873af52804c20b0a6780962fa640b555f878025e4ad62e67c031b6ab",
+    "dist/engine.js": "71e43ea1a7be1f7dc97cd296f0684b5ade8392b5b2e7e052bb0cba6f4f05afb5",
+    "dist/six-photo-rules.js": "e9fd9344f7b7a58d28fe9295d57ba00449eb482a2cbeecb0f88292d75332a067",
+    "dist/online-compatibility.js": "c0f8c817070d57e4c21cf47682c18817ceea63fcf763ed4fd4972ed9dc1150fe",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.158",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

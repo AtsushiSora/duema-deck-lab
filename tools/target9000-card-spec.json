@@ -32218,5 +32218,105 @@
         }
       ]
     }
+  },
+  "dm25-034": {
+    "phase": 1642,
+    "faces": [
+      {
+        "name": "失われし鎧亜の秘術",
+        "typeText": "呪文",
+        "civilizationText": "水/火/自然",
+        "civilizations": [
+          "水",
+          "火",
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー\nマナゾーンに置く時、このカードはタップして置く。\n相手に文明をひとつ選ばせる。その後、自分の山札を上から６枚、表向きにする。その中から、相手が選んだ文明のカードを好きな数自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "manaTapped": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseCivilization805",
+          "g1642OpponentReveal": true
+        }
+      ]
+    }
+  },
+  "dmr06-018": {
+    "phase": 1642,
+    "faces": [
+      {
+        "name": "返り討ちバンビー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nこのクリーチャーがバトルに勝った時、相手のシールドをひとつ選び、相手はそれを自身の手札に加える。(その「S・トリガー」は使える)",
+        "race": "ドリームメイト/ハンター",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g166Hunting": true,
+      "g189BattleWin": [
+        {
+          "op": "ShieldHand",
+          "owner": "opponent",
+          "g1562PrintedST": true
+        }
+      ]
+    }
+  },
+  "dmx06-s01": {
+    "phase": 1642,
+    "faces": [
+      {
+        "name": "ガイアール・アバレ・カイザー",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "自分のハンターが攻撃してバトルに勝った時、このクリーチャーをアンタップし、相手のシールドをひとつ選ぶ。相手はそのシールドを自身の手札に加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "レッド・コマンド・ドラゴン/ハンター",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g252WinWatch": {
+        "attacking": true,
+        "filter": {
+          "race": "ハンター"
+        },
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          },
+          {
+            "op": "ShieldHand",
+            "owner": "opponent",
+            "g1562PrintedST": true
+          }
+        ]
+      }
+    }
   }
 }
