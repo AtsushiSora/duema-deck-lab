@@ -35450,5 +35450,146 @@
         }
       ]
     }
+  },
+  "dmr21-017": {
+    "phase": 1669,
+    "faces": [
+      {
+        "name": "Dの炎闘 アリーナ・カモーネ",
+        "typeText": "D2フィールド",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分のクリーチャーがバトルに勝った時、そのクリーチャーは相手のシールドをひとつブレイクしてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーすべてはアンタップしていても攻撃される。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "ArenaAttackable1669"
+            }
+          ]
+        }
+      ],
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "winner": true,
+        "defs": [
+          {
+            "op": "WinnerBreak1669"
+          }
+        ],
+        "g1669WinnerBreak": true
+      }
+    }
+  },
+  "dmr21-019": {
+    "phase": 1669,
+    "faces": [
+      {
+        "name": "Dの花道 ズンドコ晴れ舞台",
+        "typeText": "D2フィールド",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "ManaDeploy523",
+              "origin": "mana",
+              "filter": {
+                "creature": true
+              },
+              "optional": false
+            }
+          ]
+        }
+      ],
+      "g1613D2PrintedEntry": true,
+      "g314OtherEntry": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dmr21-015": {
+    "phase": 1669,
+    "faces": [
+      {
+        "name": "Dの悪意 ワルスラー研究所",
+        "typeText": "D2フィールド",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、バトルゾーンにある自分のクリーチャー１体につき同じコストのクリーチャーを１体、自分の手札からバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "WalsraDeploy1669"
+            }
+          ]
+        }
+      ],
+      "g1613D2PrintedEntry": true,
+      "g314OtherEntry": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      }
+    }
   }
 }

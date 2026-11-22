@@ -294243,19 +294243,153 @@
       ],
       "supportBatch": "phase-1668",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-017",
+      "name": "Dの炎闘 アリーナ・カモーネ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーがバトルに勝った時、そのクリーチャーは相手のシールドをひとつブレイクしてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーすべてはアンタップしていても攻撃される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-017",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "ArenaAttackable1669"
+            }
+          ]
+        }
+      ],
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "winner": true,
+        "defs": [
+          {
+            "op": "WinnerBreak1669"
+          }
+        ],
+        "g1669WinnerBreak": true
+      },
+      "supportBatch": "phase-1669",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-019",
+      "name": "Dの花道 ズンドコ晴れ舞台",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\n（他の D２フィールドが出た時、この D２フィールドを破壊する）\n**\nDスイッチ：自分のターンのはじめに、この D２フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-019",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "ManaDeploy523",
+              "origin": "mana",
+              "filter": {
+                "creature": true
+              },
+              "optional": false
+            }
+          ]
+        }
+      ],
+      "g1613D2PrintedEntry": true,
+      "g314OtherEntry": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1669",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-015",
+      "name": "Dの悪意 ワルスラー研究所",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、バトルゾーンにある自分のクリーチャー１体につき同じコストのクリーチャーを１体、自分の手札からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-015",
+      "limit": 4,
+      "d2Field": true,
+      "g1669D2Start": true,
+      "g174Start": [
+        {
+          "op": "DSwitch1669",
+          "defs": [
+            {
+              "op": "WalsraDeploy1669"
+            }
+          ]
+        }
+      ],
+      "g1613D2PrintedEntry": true,
+      "g314OtherEntry": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1669",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1668,
+    "phase": 1669,
     "checkedAt": "2026-11-22",
-    "baseCount": 9242,
+    "baseCount": 9245,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9245,
+    "totalCount": 9248,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
-      "https://dm.takaratomy.co.jp/rule/qa/38577/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37846/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
+      "https://dm.takaratomy.co.jp/rule/rulechange_info/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -321574,6 +321708,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1668,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9242,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9245,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31405/",
+          "https://dm.takaratomy.co.jp/rule/qa/38577/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

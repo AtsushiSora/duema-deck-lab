@@ -1,0 +1,648 @@
+{
+  "phase": 1669,
+  "checkedAt": "2026-11-22",
+  "baseCount": 9245,
+  "target": 9500,
+  "description": "D2フィールド3種類の登場・バトル勝利能力と一度限りの開始時Dスイッチ、現在の敵のみ攻撃可能化、マナ数以下の登場、各コストの重複枠に対応した手札からの登場を全文実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37846/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
+    "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-017",
+      "name": "Dの炎闘 アリーナ・カモーネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-017",
+      "faces": [
+        {
+          "name": "Dの炎闘 アリーナ・カモーネ",
+          "typeText": "D2フィールド",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーがバトルに勝った時、そのクリーチャーは相手のシールドをひとつブレイクしてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、そのターン、相手のクリーチャーすべてはアンタップしていても攻撃される。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "ArenaAttackable1669"
+              }
+            ]
+          }
+        ],
+        "g252WinWatch": {
+          "filter": {
+            "creature": true
+          },
+          "winner": true,
+          "defs": [
+            {
+              "op": "WinnerBreak1669"
+            }
+          ],
+          "g1669WinnerBreak": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-017.jpg",
+      "sameNameProducts": [
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-017",
+        "result": "公式同名収録一覧を照合。元IDのみ登録し、同名再録は種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "69c26501c7f7898658f23fcb9e8da606e8f0ac07c9ce9c7bedc0a63e62db9bf0",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:17:30.695Z",
+        "imageSha256": "d63e1ec3237d104cd802b6f3e0c5b391ad51169569a0df8feb7dec4745fd910d"
+      }
+    },
+    {
+      "id": "dmr21-019",
+      "name": "Dの花道 ズンドコ晴れ舞台",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-019",
+      "faces": [
+        {
+          "name": "Dの花道 ズンドコ晴れ舞台",
+          "typeText": "D2フィールド",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "ManaDeploy523",
+                "origin": "mana",
+                "filter": {
+                  "creature": true
+                },
+                "optional": false
+              }
+            ]
+          }
+        ],
+        "g1613D2PrintedEntry": true,
+        "g314OtherEntry": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-019.jpg",
+      "sameNameProducts": [
+        "DM26-EX3 キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!!ドラ娘100％パック",
+        "DM22-RP2X ゴッド・オブ・アビス 第2弾「轟炎の竜皇」超刺激パック",
+        "DM22-RP2 ゴッド・オブ・アビス 第2弾「轟炎の竜皇」",
+        "DM22-RP1 ゴッド・オブ・アビス 第１弾「伝説の邪神」",
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣",
+        "プロモ限定カード 18期"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-019",
+        "referenceSource": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-077",
+        "sameNameProducts": [
+          "DM26-EX3 キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!!ドラ娘100％パック",
+          "DM22-RP2X ゴッド・オブ・アビス 第2弾「轟炎の竜皇」超刺激パック",
+          "DM22-RP2 ゴッド・オブ・アビス 第2弾「轟炎の竜皇」",
+          "DM22-RP1 ゴッド・オブ・アビス 第１弾「伝説の邪神」",
+          "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣",
+          "プロモ限定カード 18期"
+        ],
+        "result": "原版と現行DM26EX3再録の能力全文・基本情報・画像、全6商品を照合。原版IDを保持し、現行のD2破壊表記で処理し、再録は画像参照だけに追加。"
+      },
+      "currentPrint": {
+        "id": "dm26ex3-077",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-077",
+        "faces": [
+          {
+            "name": "Dの花道 ズンドコ晴れ舞台",
+            "typeText": "D2フィールド",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 5,
+            "costText": "5",
+            "abilityText": "自分のクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\n（他の D２フィールドが出た時、この D２フィールドを破壊する）\n**\nDスイッチ：自分のターンのはじめに、この D２フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出す。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "reason": "現行再録では登場の用語を短縮し、D2の置換を破壊する表記に統一。元IDと原版詳細を維持し、既存のD2置換共通処理を使用。",
+        "name": "Dの花道 ズンドコ晴れ舞台",
+        "verification": {
+          "checkedAt": "2026-11-22",
+          "sha256": "c30ac892542f78c6eeaf37098db625a13da378dd47091484690234edb1aa54a1",
+          "facesMatched": true,
+          "imageReviewed": true,
+          "imageSha256": "cb6f1cd33346eeb6af745b8698ec1160dd58dca96e034a9d01497e58ac9080b7"
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "2f04263ce1a8d16866ff1391d8d742a78f233fa5dab9161cc48ea920afc572c9",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:17:30.702Z",
+        "imageSha256": "20c6e0d9062514bfe1c968ef9ca5aebdb5a29ce25fc792cb76b8ea4e77a837ac"
+      }
+    },
+    {
+      "id": "dmr21-015",
+      "name": "Dの悪意 ワルスラー研究所",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-015",
+      "faces": [
+        {
+          "name": "Dの悪意 ワルスラー研究所",
+          "typeText": "D2フィールド",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）**\nDスイッチ：自分のターンのはじめに、このD２フィールドをゲーム中で一度上下逆さまにしてもよい。そうしたら、バトルゾーンにある自分のクリーチャー１体につき同じコストのクリーチャーを１体、自分の手札からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "WalsraDeploy1669"
+              }
+            ]
+          }
+        ],
+        "g1613D2PrintedEntry": true,
+        "g314OtherEntry": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-015.jpg",
+      "sameNameProducts": [
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣"
+      ],
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-015",
+        "result": "公式同名収録一覧を照合。元IDのみ登録し、同名再録は種類数へ加算しない。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "a4ab69fd700d1e5f3f2d48412073fddf0481c312e1ff881f5c5393ae2ee89a3b",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:17:30.702Z",
+        "imageSha256": "b7e9b2c5f3b6bc6e9fac13f3f83b88cadb04f3c1717b095fd978793465eb498f"
+      }
+    }
+  ],
+  "runtimeFiles": [
+    "dist/engine.js",
+    "dist/six-photo-rules.js"
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex3-077",
+      "canonicalId": "dmr21-019",
+      "name": "Dの花道 ズンドコ晴れ舞台",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-077",
+      "faces": [
+        {
+          "name": "Dの花道 ズンドコ晴れ舞台",
+          "typeText": "D2フィールド",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\n（他の D２フィールドが出た時、この D２フィールドを破壊する）\n**\nDスイッチ：自分のターンのはじめに、この D２フィールドをゲーム中で１度上下逆さまにしてもよい。そうしたら、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex3-077.jpg",
+      "sameNameProducts": [
+        "DM26-EX3 キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!!ドラ娘100％パック",
+        "DM22-RP2X ゴッド・オブ・アビス 第2弾「轟炎の竜皇」超刺激パック",
+        "DM22-RP2 ゴッド・オブ・アビス 第2弾「轟炎の竜皇」",
+        "DM22-RP1 ゴッド・オブ・アビス 第１弾「伝説の邪神」",
+        "DMR-21 革命ファイナル 拡張パック第１章 ハムカツ団とドギラゴン剣",
+        "プロモ限定カード 18期"
+      ],
+      "spec": {
+        "d2Field": true,
+        "g1669D2Start": true,
+        "g174Start": [
+          {
+            "op": "DSwitch1669",
+            "defs": [
+              {
+                "op": "ManaDeploy523",
+                "origin": "mana",
+                "filter": {
+                  "creature": true
+                },
+                "optional": false
+              }
+            ]
+          }
+        ],
+        "g1613D2PrintedEntry": true,
+        "g314OtherEntry": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-22",
+        "sha256": "c30ac892542f78c6eeaf37098db625a13da378dd47091484690234edb1aa54a1",
+        "facesMatched": true,
+        "imageReviewed": true,
+        "imageReviewedAt": "2026-11-22T14:17:30.703Z",
+        "imageSha256": "cb6f1cd33346eeb6af745b8698ec1160dd58dca96e034a9d01497e58ac9080b7"
+      }
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37846/",
+      "checkedAt": "2026-11-22T14:05:38.334Z",
+      "sha256": "276cbd094c31453c3bb6463766fe795d7ade83751747714a194fd5ddfe679bd5",
+      "evidenceMethod": "Official primary-source search result verified; direct archived-page response retained separately."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37851/",
+      "checkedAt": "2026-11-22T14:05:38.866Z",
+      "sha256": "a158c12f52422c4fdf4f98e0a6ad807a03d73a51d24d54edc6da993b06b2611b",
+      "evidenceMethod": "Official primary-source search result verified; direct archived-page response retained separately."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37852/",
+      "checkedAt": "2026-11-22T14:05:39.424Z",
+      "sha256": "c008fb638bb33a1de946cd4f1364dc4eb1ecfdecdd15bdc7d298e258c398055d",
+      "evidenceMethod": "Official primary-source search result verified; direct archived-page response retained separately."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange_info/",
+      "checkedAt": "2026-11-22T14:05:39.868Z",
+      "sha256": "2d2e39bdffae04bf6dfdbabfd6a365accf030dd254eada5346c7fff795eaef11",
+      "evidenceMethod": "Official page read"
+    }
+  ],
+  "rulingSearch": {
+    "checkedAt": "2026-11-22T14:05:39.868Z",
+    "queries": [
+      "site:dm.takaratomy.co.jp アリーナ・カモーネ 後から",
+      "site:dm.takaratomy.co.jp Dスイッチについて 上下逆さま",
+      "site:dm.takaratomy.co.jp ワルスラー研究所 同じコスト"
+    ],
+    "result": "公式QA37846は切替時にいた相手のみを対象としSトリガーで後から出る相手を含めない。QA37851/37852は使用済みがターン開始で戻らず現在出ているそのカードで一度と確認。ワルスラー・ズンドコの個別QAは見つからず、全文と既存の同時登場・進化・マナ比較処理を照合。",
+    "archivedPageCaveat": "web openの過去QAは汎用ページを返したため、本文の確認根拠は公式URLの検索結果。取得HTMLのハッシュだけをQA本文照合の証拠にはしない。"
+  },
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-017": 4,
+      "dmr21-019": 4,
+      "dmr21-015": 4,
+      "dm26ex3-077": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T14:17:31.170Z",
+    "results": {
+      "official": {
+        "name": "verified-official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1669.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.979,
+        "log": "tmp/duema-phase-1669/verified-official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "focused": {
+        "name": "verified-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1669-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 29.335,
+        "log": "tmp/duema-phase-1669/verified-focused.log",
+        "passed": 141,
+        "failed": 0,
+        "logSha256": "d3daa583b75ff9c6b8c2adae5f29fe739e4783b2e72a30caa0d3ba8c76be6232"
+      },
+      "related-d2": {
+        "name": "final-related-d2",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1175-effects.test.mjs",
+          "tests/standard1188-effects.test.mjs",
+          "tests/standard1276-effects.test.mjs",
+          "tests/standard1613-effects.test.mjs",
+          "tests/standard1651-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 51.253,
+        "log": "tmp/duema-phase-1669/final-related-d2.log",
+        "passed": 129,
+        "failed": 0,
+        "logSha256": "d097577b04d326512bfa51a71285a0420a76dff6eb836a745082ccf4b5d1af75"
+      },
+      "related-selection": {
+        "name": "final-related-selection",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard523-effects.test.mjs",
+          "tests/standard550-effects.test.mjs",
+          "tests/standard924-effects.test.mjs",
+          "tests/standard1505-effects.test.mjs",
+          "tests/standard1642-effects.test.mjs",
+          "tests/standard828-effects.test.mjs",
+          "tests/standard747-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 59.751,
+        "log": "tmp/duema-phase-1669/final-related-selection.log",
+        "passed": 266,
+        "failed": 0,
+        "logSha256": "2636c12b8f47e2d14985544079a4596e2177d1922e080deb26804c641a33885e"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 32.397,
+        "log": "tmp/duema-phase-1669/check.log",
+        "logSha256": "3f88f36492d8862776f9bff5a22472f74dff9684c39d8398293ced015815703e"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.598,
+        "log": "tmp/duema-phase-1669/audit.log",
+        "logSha256": "ddfb0c833416fed9ade0a7c9435f711470fa9743de628d8b8f8edb512aa45f9a"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.313,
+        "log": "tmp/duema-phase-1669/target9500.log",
+        "logSha256": "4129561eff82aa7d486c89e582d39f3a99fef1dde476a7e79f375e068533a644"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1669/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.19,
+        "log": "tmp/duema-phase-1669/invariants.log",
+        "logSha256": "332d3f1cc645df2b2be0bf9bd960cc3c9ac29ff260a5e71e7e5178b933e6e083"
+      }
+    },
+    "totalTestsPassed": 536,
+    "focusedTestsPassed": 141,
+    "relatedTestsPassed": 395
+  },
+  "validationNotes": [
+    "固有141件、D2・開始時・登場関連129件、マナ比較・選択・勝利ブレイク関連266件の計536件が通過。npm run check、audit、target9500、既存9245定義と全ID・詳細・別名・画像参照の不変を確認。",
+    "原版3枚と現行DM26EX3ズンドコ再録の公式画像4点を目視照合。全6商品の同名収録一覧も確認。元IDと原版detailsを保持し、現行再録のD2破壊表記を採用。再録は画像参照のみで重複加算しない。",
+    "公式QA37846の検索結果で切替時にいた相手だけに適用することを確認。実際のSトリガーで後から登場するエクスプレス・ドラグーンは未タップ攻撃の対象にしない。QA37851/37852の使用済み保持・再登場での再使用、2017ルール改訂の開始時アンタップ後の解決、World Stopによる禁止も検証。過去QAへの直接openは汎用ページのため、保存HTMLのハッシュだけを本文照合の証拠にはしない。",
+    "ワルスラーは解決時の自軍コストを重複枠のまま固定し、選択済みの同コスト枠を消費して強制の可能な範囲を選択。新しく出る個体の枠は増やさない。0と∞、多重枠、異なるコスト、選択した新しい進化元への進化、JSON・暗号化保存と投影の秘匿を検証。既存の一括登場処理を再利用し、登場時ドローは全選択後に処理。",
+    "アリーナは攻撃・防御・効果バトルの勝利を既存watchに接続し、勝者の正確な参照とカードIDを保持して既存のクリーチャーブレイクへ渡す。任意不使用・W/Tブレイカーで1つの効果ブレイク・シールド焼却・0シールドでの勝利なし・元の個体の離脱後の保留効果・同値相打ち・能力無視を検証。D2の解決済み効果は呪文扱いにせずゲンムの呪文無視の対象にしない。",
+    "初回の固有テストは構文誤り、封印を実カードで設定しない盤面、D2禁止に別の呪文を使った設定、進化選択のop名、0パワーの自壊を無視した期待値などのfixture誤りで失敗。正しいカード・封印・選択・自壊を再現して解消。追加の進化元選択を将来盤面に反映し、勝者の離脱後も既存のブレイク参照を維持する実装を加え、最終536件で回帰を確認。",
+    "手動マナ支払い、AIの純粋性と非公開情報への非依存、両先後の40枚デッキでの80物理カードの保存と終局を検証。今回3種類に未完了検証なし。過去の全体npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。ローカルのみでpush・公開・Netlify更新を行わない。"
+  ],
+  "extraValidationRuns": [
+    {
+      "name": "prepare",
+      "command": [
+        "node",
+        "tmp/duema-phase-1669/prepare.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.004,
+      "log": "tmp/duema-phase-1669/prepare.log"
+    },
+    {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1669.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.923,
+      "log": "tmp/duema-phase-1669/official.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.248,
+      "log": "tmp/duema-phase-1669/focused.log"
+    },
+    {
+      "name": "focused-v2",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 12.753,
+      "log": "tmp/duema-phase-1669/focused-v2.log"
+    },
+    {
+      "name": "focused-v3",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 12.769,
+      "log": "tmp/duema-phase-1669/focused-v3.log"
+    },
+    {
+      "name": "focused-v4",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 24.647,
+      "log": "tmp/duema-phase-1669/focused-v4.log"
+    },
+    {
+      "name": "related-d2",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1175-effects.test.mjs",
+        "tests/standard1188-effects.test.mjs",
+        "tests/standard1276-effects.test.mjs",
+        "tests/standard1613-effects.test.mjs",
+        "tests/standard1651-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 42.427,
+      "log": "tmp/duema-phase-1669/related-d2.log"
+    },
+    {
+      "name": "related-selection",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard523-effects.test.mjs",
+        "tests/standard550-effects.test.mjs",
+        "tests/standard924-effects.test.mjs",
+        "tests/standard1505-effects.test.mjs",
+        "tests/standard1642-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 49.775,
+      "log": "tmp/duema-phase-1669/related-selection.log"
+    },
+    {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1669-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.223,
+      "log": "tmp/duema-phase-1669/final-focused.log"
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmex12-031",
+      "name": "Dの劇場 テンダネス・エスセーキ",
+      "reason": "終了時の山札上確認とスプラッシュ・クイーン条件ドロー、開始時Dスイッチのブロック禁止を全文照合する。"
+    },
+    {
+      "id": "dm23ex3-017",
+      "name": "Dの文殿 アルケミスト・ヒルズ",
+      "reason": "両プレイヤーの召喚・呪文使用時の任意ドローとDスイッチの墓地手札回収後5枚ドローを全文照合する。"
+    },
+    {
+      "id": "dmr22-027",
+      "name": "Dの暴毒 ヴェノミック・ハザード",
+      "reason": "タップイン、終了時墓地回収とDスイッチの任意数のクリーチャー捨て札・相手選択破壊を全文照合する。"
+    }
+  ]
+}
