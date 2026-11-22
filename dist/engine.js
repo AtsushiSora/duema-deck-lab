@@ -16,7 +16,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.4';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.138';
+export const ENGINE_VERSION='0.602.139';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -1642,6 +1642,11 @@ function untapCard(s,p,x){if(!x?.tapped||(s.players[p].mana.includes(x)?!canUnta
 function peachCastle1619(s,p){
  return s.players[p].battle.find(x=>!x.sealed&&!x.faceDown&&card(x).g1619PeachCastle&&effectiveCard(x,s).g1619PeachCastle);
 }
+function fortDrawTap1623(s,p,x){
+ return !x.sealed&&!x.faceDown&&isCreature(s,x)&&!abilitiesIgnored(s,x)&&civilizations(effectiveCard(x,s)).includes('水')&&
+  s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&isCreature(s,y)&&
+   card(y).g1623FortDrawAura&&effectiveCard(y,s).g1623FortDrawAura);
+}
 function tapCard(s,p,x,controller=effectActor(s)){
  if(!x||x.sealed||x.tapped||card(x).type==='duelist')return;
  if(controller===1-p&&card(x).g1150OpponentCannotTap&&effectiveCard(x,s).g1150OpponentCannotTap)return;
@@ -2781,6 +2786,7 @@ function matchesEvolution(base,condition,context){
   [c.name,...(c.additionalNames||[])].some(name=>name.includes(condition.nameIncludes));
  if(condition.creature)return isCreature(context,base);if(condition.nonEvolution&&isEvolution(base))return false;if(condition.evolution)return isEvolution(base)&&(!condition.civilization||anyCivilization||civilizations(c).includes(condition.civilization));
  if(condition.ultimate)return !!card(base).ultimateEvolution;
+ if(condition.all)return condition.all.every(x=>matchesEvolution(base,x,context));
  if(condition.any)return condition.any.some(x=>matchesEvolution(base,x,context));
  if(condition.race)return anyRace||races.some(r=>r.includes(condition.race));
  if(condition.category)return (anyRace||races.some(r=>r.includes(condition.category)))&&(!condition.civilization||anyCivilization||civilizations(c).includes(condition.civilization));
@@ -5495,6 +5501,9 @@ function legalActionsCore1363(s){
     &&(!c.g736AttackInstead||canDeclareAttack)&&!(c.g736ForcedAttack&&canDeclareAttack)
     &&(!requiresUnforcedAttack||!c.mustAttack)&&(!c.g804ManaTapCost||own.mana.filter(y=>!y.tapped).length>=c.g804ManaTapCost))
     out.push(option('tapAbility',`${c.name}のタップ能力を使う`,{uid:x.uid,cardId:x.cardId,...(requiresUnforcedAttack?{requiresUnforcedAttack:true}:{})}));
+   if(fortDrawTap1623(s,p,x)&&canAttack(s,p,x)&&(x.entered<s.turn||c.speedAttacker||isEvolution(x))&&
+      !(c.noPlayerAttack&&c.noCreatureAttack)&&!(c.g736ForcedAttack&&canDeclareAttack))
+    out.push(option('tapAbility',`${c.name}をタップしてカードを1枚引く`,{uid:x.uid,cardId:x.cardId,g1623FortDraw:true}));
   }
   if(!out.some(a=>a.kind==='attack'&&effectiveCard(own.battle.find(c=>c.uid===a.uid),s).mustAttack))out.push(option('endTurn','ターン終了'));
  }
@@ -5798,8 +5807,8 @@ function applyStepCore1363(s,action){
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
  if(a.kind==='tapAbility'){
   const x=s.players[p].battle.find(x=>x.uid===a.uid),c=effectiveCard(x,s);
-  const context={uid:x.uid,incarnation:x.incarnation||0,defs:structuredClone(c.g439Tap)};
-  if(c.g804ManaTapCost)extra.put(s,extra.task('g34_TapAbilityMana804',p,x.cardId,{...context,n:c.g804ManaTapCost}));
+  const context={uid:x.uid,incarnation:x.incarnation||0,defs:a.g1623FortDraw?[{op:'Draw',n:1}]:structuredClone(c.g439Tap)};
+  if(!a.g1623FortDraw&&c.g804ManaTapCost)extra.put(s,extra.task('g34_TapAbilityMana804',p,x.cardId,{...context,n:c.g804ManaTapCost}));
   else{
    tapCard(s,p,x);
    extra.put(s,extra.task('g34_Sequence',p,x.cardId,context));
@@ -6750,7 +6759,7 @@ export function rankHeuristicActions(s){
     if(d.op==='GroupGrant364'&&d.grant.g313Breaker)for(const y of own.battle){const c=effectiveCard(y,projected);if(!y.sealed&&!y.tapped&&!c.noAttack&&!c.noPlayerAttack&&(y.entered<v.turn||c.speedAttacker||isEvolution(y))&&extra.six.matches(projected,p,y,d.filter)&&(c.breaker||1)<d.grant.g313Breaker)score+=8;}
    }return score;
   }
-  if(a.kind==='tapAbility')return extra.six.tapScore439(v,p,find(p,a.uid));
+  if(a.kind==='tapAbility')return extra.six.tapScore439(v,p,find(p,a.uid),a.g1623FortDraw?[{op:'Draw',n:1}]:null);
   if(a.kind==='hyper')return 12;
   if(a.kind==='replaceShieldFace'||a.kind==='replaceSavak')return 35;
   if(a.kind==='replaceMuku')return (s.extTasks||[]).some(t=>t.op==='swapFinish'&&t.p===p&&t.old===s.decision?.uid)?-15:45;

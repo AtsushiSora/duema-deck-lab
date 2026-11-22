@@ -1,0 +1,129 @@
+{
+  "phase": 1623,
+  "checkedAt": "2026-11-22T04:01:49.353Z",
+  "baseline": "8359a69d188960217591e2ba97467f586c710bd3",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9101,
+  "currentNames": 9104,
+  "remainingNames": 396,
+  "added": [
+    {
+      "id": "dm06-017",
+      "name": "フォート・メガクラスター"
+    },
+    {
+      "id": "sp-018",
+      "name": "無敵巨兵グランダイバーX"
+    },
+    {
+      "id": "dmx11-001",
+      "name": "十弐制覇 鬼「王者」"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9101,
+    "uniqueNames": 9104,
+    "uniqueIds": 9104,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1623.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.681,
+      "log": "tmp/duema-phase-1623/official.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1623-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.165,
+      "log": "tmp/duema-phase-1623/focused-initial.log",
+      "aliasOf": "focused-initial",
+      "passed": 39,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=4",
+        "tests/standard1468-effects.test.mjs",
+        "tests/standard1618-effects.test.mjs",
+        "tests/standard1362-effects.test.mjs",
+        "tests/standard1622-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.481,
+      "log": "tmp/duema-phase-1623/final-related.log",
+      "passed": 102,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.937,
+      "log": "tmp/duema-phase-1623/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.313,
+      "log": "tmp/duema-phase-1623/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.297,
+      "log": "tmp/duema-phase-1623/target9500.log"
+    }
+  },
+  "totalTestsPassed": 141,
+  "hashes": {
+    "dist/cards.json": "172ac52b79342a7f1b246f664c6151d86d57db9968eb217f1922a60968e56fc0",
+    "dist/engine.js": "67857cb01bae2d9789736aa2d04a4d188afa11b0b54e39de7100cb11ee4e092d",
+    "dist/six-photo-rules.js": "740275b8566d9975f09d8afab39c8fb4afe06b9052fb2360e46b89102d3d9973",
+    "dist/online-compatibility.js": "d0b5f2d36747b550ca75f82ff898d335e582e5fc37c32999203910310017fcad",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935"
+  },
+  "engineVersion": "0.602.139",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
