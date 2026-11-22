@@ -6181,6 +6181,15 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
   break;
  }
+ case'g34_GigaReveal1691':{
+  const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>ids.includes(x.uid));
+  if(!y)break;
+  if(!faces(card(y)).some(c=>c.d2Field||race(c,'イニシャルズ')||race(c,'ソニック・コマンド'))){release(s,t.p,y.uid);break;}
+  const next={...t,op:'g34_GigaMove1691',target:y.uid};
+  if(ownCondition(s,t.p,{g580D2Field:true})&&canPut(s,t.p,y,'deck'))choice(s,next,'公開したカードをバトルゾーンに出しますか？',[opt('バトルゾーンに出す',true,25,y.cardId),opt('手札に加える',false,5,y.cardId)]);
+  else start(s,t,[{op:'Select',origin:'deck',to:'hand',n:1,optional:false,g530Ids:[y.uid]}]);
+  break;
+ }
  case'g34_FinaleBreak1690':{
   const selected=t.selected||[],rows=own.shields.filter(x=>!selected.includes(x.uid));
   if(rows.length)choice(s,{...t,selected},'ブレイクする自分のシールドを好きな数選ぶ（'+selected.length+'つ選択済み）',[...rows.map((x,i)=>opt('シールド '+(own.shields.indexOf(x)+1),x.uid,rows.length>2?5:-5)),skip()]);
@@ -8304,6 +8313,7 @@ export function createSixPhotoRules(api){
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});
   break;
+ case'g34_GigaMove1691':start(s,t,[{op:'Select',origin:'deck',...(v?{deploy:true}:{to:'hand'}),n:1,optional:false,g530Ids:[t.target]}]);break;
  case'g34_FinaleBreak1690':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else if(t.selected?.length)start(s,t,[{op:'Break497',owner:'self',n:t.selected.length,selected:t.selected,g747CreatureBreak:true,g913DepartedBreaker:true}]);break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldCardManaDeploy1317':
@@ -9630,7 +9640,7 @@ export function createSixPhotoRules(api){
   api.allLayers(x).some(y=>l.refs.includes(key(y)))&&(l.spell===false||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))),
  // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
- destroySafe409:(s,x)=>bouncerProtects1294(s,x)||blockProtected1201(s,x)||!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
+ destroySafe409:(s,x)=>!x.sealed&&!!effective(x,s).g1691OniOwnDestroySafe&&s.players[s.active].battle.includes(x)&&api.oniTime1303(s,s.active)||bouncerProtects1294(s,x)||blockProtected1201(s,x)||!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
  extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;

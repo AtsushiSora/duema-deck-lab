@@ -1,0 +1,392 @@
+{
+  "phase": 1691,
+  "checkedAt": "2026-11-22T23:08:47.140Z",
+  "baseCount": 9308,
+  "target": 9500,
+  "description": "アシュラ天狗の盾回収試行後の破壊と鬼タイム破壊禁止、ヨミノ晴明の鬼タイム開始蘇生とSA・正のパワー時の強制5枚ミル置換、ギガトロンの攻撃時公開と条件付き登場を全能力対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/39385/",
+    "https://dm.takaratomy.co.jp/rule/qa/33594/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 39385,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39385/",
+      "sha256": "4a97611961a1393f3231a9dba49b0a0102f35ea7a2c700fafb4b1fdb406c9921",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1691-effects.test.mjs"
+    },
+    {
+      "id": 33594,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33594/",
+      "sha256": "c6f769ccc565f8878ae1b0d3e09a4579c941777b577da1e03ad4ba0db5669973",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1691-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmex14-s08",
+      "name": "「修羅」の鬼 アシュラ天狗",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s08",
+      "faces": [
+        {
+          "name": "「修羅」の鬼 アシュラ天狗",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、手札に加えてもよい。ただし、その「S・トリガー」は使えない。このようにしてシールドを手札に加えたら、相手のクリーチャーを１体破壊する。\n鬼タイム：自分と相手のシールドの数が合計６つ以下で、自分のターンなら、このクリーチャーは破壊されない。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "シールド1つを手札に加えて相手1体を破壊する？",
+                "defs": [
+                  {
+                    "op": "ShieldHandFollow1017",
+                    "noST": true,
+                    "defs": [
+                      {
+                        "op": "Target",
+                        "to": "grave",
+                        "filter": {
+                          "creature": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g1691OniOwnDestroySafe": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-s08.jpg",
+      "imageReviewed": true,
+      "imageSha256": "73ab8ea8b1f0daee84c50c35c59f9d41ec603dc2e38c0b3faa860b1fe5aa6793",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmex14-s08"
+        ],
+        "result": "正規名で原本3版と画像3枚を照合。同名検索に混在する「復活」/「特攻」ヨミノ晴明は異なるカード名・能力のため除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:08:47.140Z",
+        "sha256": "4974431d6d9741c61cbc259702fdc76f807e21ce1522eb0cdd0784bd014ce671",
+        "facesMatched": true,
+        "imageSha256": "73ab8ea8b1f0daee84c50c35c59f9d41ec603dc2e38c0b3faa860b1fe5aa6793"
+      }
+    },
+    {
+      "id": "dmrp14-s09",
+      "name": "「陰陽」の鬼 ヨミノ晴明",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s09",
+      "faces": [
+        {
+          "name": "「陰陽」の鬼 ヨミノ晴明",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n鬼タイム ：自分のターンのはじめに、自分と相手のシールドの数が合計６つ以下なら、コスト５以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。そのターン、そのクリーチャーに「スピードアタッカー」を与える。\nこのクリーチャーが破壊される時、そのパワーが０より大きければ、かわりに自分の山札の上から５枚を墓地に置く。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "sumBoth": true,
+                "max": 6
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "optional": false,
+                "filter": {
+                  "creature": true,
+                  "max": 5
+                },
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ],
+        "g1351MillStay": 5,
+        "g1691DestroyMill": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-s09.jpg",
+      "imageReviewed": true,
+      "imageSha256": "f6b535252fac29820a902fa3459ff2c18987ef0ad5ab529b547acd142465b94d",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp14-s09"
+        ],
+        "result": "正規名で原本3版と画像3枚を照合。同名検索に混在する「復活」/「特攻」ヨミノ晴明は異なるカード名・能力のため除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:08:47.140Z",
+        "sha256": "9b0f8d377f9521f5e43f8eaa100a3e12eabc7beb3d97b54e3dc6ef0862ae19bb",
+        "facesMatched": true,
+        "imageSha256": "f6b535252fac29820a902fa3459ff2c18987ef0ad5ab529b547acd142465b94d"
+      }
+    },
+    {
+      "id": "dmr21-s09",
+      "name": "D2V2 禁断のギガトロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s09",
+      "faces": [
+        {
+          "name": "D2V2 禁断のギガトロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがD２フィールド、イニシャルズ、あるいはソニック・コマンドなら、自分の手札に加える。バトルゾーンに自分のD２フィールドがあれば、そのカードを手札に加えるかわりにバトルゾーンに出してもよい。",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "GigaReveal1691"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-s09.jpg",
+      "imageReviewed": true,
+      "imageSha256": "8be9c1fb28c93583ea889a9f6df2c69666b851506816c34fe7f6d5f01a780dc0",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmr21-s09"
+        ],
+        "result": "正規名で原本3版と画像3枚を照合。同名検索に混在する「復活」/「特攻」ヨミノ晴明は異なるカード名・能力のため除外。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:08:47.140Z",
+        "sha256": "f5a1f35b12fe7fc0bdf1417efbc063931eee730918c60ab8c85344070df86552",
+        "facesMatched": true,
+        "imageSha256": "8be9c1fb28c93583ea889a9f6df2c69666b851506816c34fe7f6d5f01a780dc0"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T23:08:47.140Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-s08": 4,
+      "dmrp14-s09": 4,
+      "dmr21-s09": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-22T23:13:42.225Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1691.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.327,
+        "log": "tmp/duema-phase-1691/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused-final": {
+        "name": "focused-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1691-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.759,
+        "log": "tmp/duema-phase-1691/focused-final.log",
+        "passed": 63,
+        "failed": 0,
+        "logSha256": "c504a58f4eddabaaa1f3ecd943b4a836c91f2c1ed272ce4e6353a4eb7ce5906e"
+      },
+      "related-mill-stay": {
+        "name": "related-mill-stay",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1351-effects.test.mjs",
+          "tests/standard577-effects.test.mjs",
+          "tests/standard619-effects.test.mjs",
+          "tests/standard1690-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.685,
+        "log": "tmp/duema-phase-1691/related-mill-stay.log",
+        "passed": 87,
+        "failed": 0,
+        "logSha256": "333d6ba9e544c6ee59e4e811b1221e0ca93ab70c1a6269186ff67664ab61bbb9"
+      },
+      "related-zones": {
+        "name": "related-zones",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1017-effects.test.mjs",
+          "tests/standard668-effects.test.mjs",
+          "tests/standard1175-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.657,
+        "log": "tmp/duema-phase-1691/related-zones.log",
+        "passed": 105,
+        "failed": 0,
+        "logSha256": "b63dc04f9ea0d2534a141464d325ef081f155fd7bf6383ccddf7c0d02004c4e5"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.744,
+        "log": "tmp/duema-phase-1691/check.log",
+        "logSha256": "a64c34d64bf549548b3b8a4d914aa7e75ec87491b8b716cb4c3b40836f78da31"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.998,
+        "log": "tmp/duema-phase-1691/audit.log",
+        "logSha256": "59db0a3f50c3bfea242c9cfc933d431d74cea65e6c72e05c59b977c94605ed3d"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.421,
+        "log": "tmp/duema-phase-1691/target9500.log",
+        "logSha256": "9ec4e5634944f6ea59012cb46582d3c9e816bcb55f47670e428af9052d187c41"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1691/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.536,
+        "log": "tmp/duema-phase-1691/invariants.log",
+        "logSha256": "f4553034bc6c4d229051cf1882832bff0f7f28c944d1d875727fba81a2b34509"
+      }
+    },
+    "totalTestsPassed": 255,
+    "focusedTestsPassed": 63,
+    "relatedTestsPassed": 192
+  },
+  "validationNotes": [
+    "開始時HEAD ecc0610b、作業ツリーとステージは空、nameKey9308種類。前バッチ561件とcheck/audit、AGENTSおよび未確認事項を確認して継続。",
+    "原本3版の公式全文・基本情報・画像3枚・使用制限・QA2件を照合。同名検索のヨミノ晴明R/1.0の3版は正規名も能力も異なるため再録に数えず除外。既存IDを維持し各名前1定義だけを追加。",
+    "アシュラ天狗は既存Offer/ShieldHandFollow1017を使い、1つの盾を手札へ加える試行を選んだ場合に相手1体を破壊。任意部分を辞退した場合やシールドがない場合は破壊しない。S・トリガー不可。公式QA39385は実凄惨なる牙パラノーマルの表向き盾を選んでシールドゴーが墓地移動へ置換しても破壊を続ける配置で再現。鬼タイムかつ自分のターンだけ破壊禁止となり、手札戻しは妨げず、無視時には破壊できる。ブロッカー/SA/Wを維持。",
+    "ヨミノ晴明は既存g174開始時/IfOwnで鬼タイムの墓地からコスト5以下1体の必須登場とターン中SA。輝羅が止める配置とSA失効を確認。既存5枚ミル離脱置換へ破壊時・正パワー・強制の個別フラグを追加し、バウンス/マナ/山札移動・単に墓地に置く移動・パワー0以下では適用しない。公式QA33594の山札4枚なら破壊される配置を再現。5枚あれば強制適用して山札切れ、6枚なら1枚残る。2体同時破壊と山札9枚では同じ5枚を重複使用せず片方だけが残る。従来アビスラブの任意置換は変更しない。",
+    "ギガトロンは実攻撃時に山札上1枚を公開。D2フィールド/イニシャルズ/ソニックコマンドのいずれかなら手札へ加え、D2フィールドが自分の場にあればその移動を任意で登場へ変更する。無関係カードは元の山札上に残し公開予約を解除。D2の置き換え、実イニシャルズの登場時能力、実ソニック、輝羅による登場禁止、D2があっても手札を選ぶ場合を確認。多色タップイン/SA/Wは既存処理。",
+    "固有63件、5枚ミル/離脱耐性/前バッチの関連回帰87件、盾回収/シールドゴー/D2/山札置換/通信の関連回帰105件の合計255件が通過。合法40枚2seedの実対戦で全物理UID・JSON後の合法手を維持。両席の強制ミルとギガトロンの公開選択を暗号化通信ルームへ保存/復元し、非公開手札を漏らさず後続操作が可能なことを確認。",
+    "初回失敗はテストがソニックでないメガスピアを使っていたことと、ExactMoveが墓地破壊を指すのに任意のdestroy:falseで単なる墓地移動になると仮定していたfixtureが原因。実轟速ザレッドdmr17-081と既存Sweep g815PutInGraveを使うテストに修正し通過。",
+    "check/audit/target9500/不変条件を通過。nameKey9311種類・ID/名前重複0、既存9308定義・画像・カタログ・ピン・保存形式を維持。全体テスト中断・長時間未確認・個別未確認・ユーザー保留・公開履歴はそのまま保持。通常登録ではpush・公開・Netlify更新を実施しない。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm20-008",
+      "name": "スローリー・チェーン",
+      "reason": "全体攻撃停止と解決中呪文自身のシールド化、その後の盾1枚墓地移動を公式照合。"
+    },
+    {
+      "id": "dmr23-013",
+      "name": "チューン・アゲイン",
+      "reason": "任意の物理バトルカードの手札移動と、自分の非進化水ソニックの場合の再登場を照合。"
+    },
+    {
+      "id": "dmrp02-029",
+      "name": "テキサス・ストーム",
+      "reason": "非進化クリーチャーを公開山札上に置いて戻し、1盾ブレイクする実参照を照合。"
+    }
+  ]
+}
