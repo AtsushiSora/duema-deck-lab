@@ -1,0 +1,137 @@
+{
+  "phase": 1659,
+  "checkedAt": "2026-11-22T11:09:21.991Z",
+  "baseline": "83c37229573b5cf3708522a3982d053153023740",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9211,
+  "currentNames": 9215,
+  "remainingNames": 285,
+  "added": [
+    {
+      "id": "dm17-008",
+      "name": "ヴァリアブル・ポーカー"
+    },
+    {
+      "id": "dm29-009",
+      "name": "蒼神龍アル・バビロン"
+    },
+    {
+      "id": "dm06-021",
+      "name": "キュロロ"
+    },
+    {
+      "id": "dmex06-010",
+      "name": "奇跡の精霊ネオ・ミルザム"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "originalDefinitionsUnchanged": 9211,
+    "uniqueNames": 9215,
+    "uniqueIds": 9215,
+    "catalogueAndAliasesUnchanged": true,
+    "partialNewDefinitions": 0
+  },
+  "results": {
+    "official-super": {
+      "name": "official-super",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1659.json",
+        "--resume"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.213,
+      "log": "tmp/duema-phase-1659/official-super.log"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1659-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.596,
+      "log": "tmp/duema-phase-1659/final-focused.log",
+      "passed": 122,
+      "failed": 0
+    },
+    "final-related": {
+      "name": "final-related",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "shield|Shield|Plus|plus|break|Break|peek|Peek|Zaha|group|Group",
+        "tests/standard585-effects.test.mjs",
+        "tests/standard812-effects.test.mjs",
+        "tests/standard1279-effects.test.mjs",
+        "tests/standard1352-effects.test.mjs",
+        "tests/standard1637-effects.test.mjs",
+        "tests/standard1658-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.165,
+      "log": "tmp/duema-phase-1659/final-related.log",
+      "passed": 104,
+      "failed": 0
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.013,
+      "log": "tmp/duema-phase-1659/check.log"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.19,
+      "log": "tmp/duema-phase-1659/audit.log"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.261,
+      "log": "tmp/duema-phase-1659/target9500.log"
+    }
+  },
+  "totalTestsPassed": 226,
+  "hashes": {
+    "dist/cards.json": "0f8968897636f0e2943d8bf09a45cd8f67e02281a5d13f1f62c9b3a47773ca03",
+    "dist/engine.js": "628e4201a57276e0fcd79e2ef2748e721b3f32190b6c61724a84179ec1c5d312",
+    "dist/six-photo-rules.js": "a945c9407076c6eacc440a9a922d9455a823975ddd3d6fb2fd3f768d7956a242",
+    "dist/online-compatibility.js": "a07e7e438b890baebe0d5c2c86b24ff6e7e214b3c6d3fd316d629f5d07bed59a",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/utility-shield-spells.js": "278923d4d4a5ecbc39f37b571cad62a154bbbb22c5f641b895ef66979e9079da"
+  },
+  "engineVersion": "0.602.175",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}

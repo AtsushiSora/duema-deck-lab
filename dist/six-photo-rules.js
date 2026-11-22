@@ -4769,7 +4769,8 @@ export function createSixPhotoRules(api){
   if(rows.length)choice(s,t,'ブレイクするシールドを選ぶ',rows);break;
  }
  case'g34_Break497':{
-  const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
+  const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields;
+  let chooser=t.ownerChooses?owner:t.p;
   const candidate=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;
   const host=candidate&&!candidate.sealed&&api.isCreature(s,candidate)?candidate:null;
   const triggeredBreaker=t.g830BlockBreaker??t.g828BattleBreaker??(t.g913DepartedBreaker?t.source:undefined);
@@ -4777,6 +4778,7 @@ export function createSixPhotoRules(api){
   const c=host&&effective(host,s);
   if(c?.g977CannotBreak)break;
   const keeping=t.keep!==undefined;
+  if(!keeping&&(host||triggeredBreaker)&&hooks.defenderShieldChoice1659(s,owner,{player:t.p,burn:c?.shieldBurn,reverse:c?.reverseBurn,qqBreak:c?.qqLock,g1577BottomBurn:c?.g1577BottomBurn}))chooser=owner;
   if(keeping&&shields.length<=t.keep)break;
   const printed=keeping?shields.length-t.keep:t.n==='all'?shields.length:t.n+(t.g1084FixedBreak?0:c?.extraBreak||0);
   const cap=t.g1342AlreadyCounted?printed:creatureBreakCount1342(s,t.p,host,printed);
@@ -6442,6 +6444,55 @@ export function createSixPhotoRules(api){
  case'g34_LightShieldTrigger1538':
   (s.extLimits??=[]).push({kind:'g1538LightShieldTriggers',player:t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});
   break;
+ case'g34_SuperPlus1659':
+  if(api.canAddShield(s,t.p)&&own.shields.length)choice(s,t,'スーパー・シールド・プラスですべてのシールドに1枚ずつ重ねますか？',[opt('重ねる',true,own.deck.length>own.shields.length?10:-1000),skip()]);break;
+ case'g34_SuperPlusOrder1659':{
+  const rows=own.shields.filter(x=>!t.ordered.includes(api.shieldGroup(x)));
+  if(rows.length<=1){put(s,{...t,op:'g34_SuperPlusPut1659',ordered:[...t.ordered,...rows.map(api.shieldGroup)]});break;}
+  choice(s,t,'山札の上から順に重ねるシールドを選ぶ',rows.map((x,i)=>opt('自分のシールド '+(own.shields.indexOf(x)+1),api.shieldGroup(x),0)));break;
+ }
+ case'g34_SuperPlusPut1659':{
+  const placements=t.ordered.map(group=>({group,x:api.takeTop(s,t.p)})).filter(r=>r.x),placed=[];
+  const redirect=s.players.some(p=>p.battle.some(x=>effective(x,s).deckRedirect));
+  for(const {group,x}of placements){
+   if(redirect){clear(x,'grave');api.addZone(s,t.p,'grave',x);}
+   else{clear(x,'shields');if(api.addShieldCard(s,t.p,group,x,{faceUp:false}))placed.push(group);}
+  }
+  api.log(s,t.p,'shieldPlus',card(t.source).name+'：各シールドに1枚ずつ裏向きで重ねる',{cardId:t.source});
+  api.deckCheck(s,t.p);
+  if(s.winner===null)put(s,...placed.map(group=>task('g34_AlPlus1659',t.p,t.source,{group})));break;
+ }
+ case'g34_Poker1659':
+  api.log(s,t.p,'look',card(t.source).name+'で自分のシールドを確認（内容は非公開）',{cardId:t.source});
+  put(s,{...t,op:'g34_PokerPick1659',picked:[]});break;
+ case'g34_PokerPick1659':{
+  const rows=own.shields.filter(root=>!api.shieldCards(root).some(x=>x.g37ShieldHeld));
+  const seen=rows.flatMap((root,i)=>api.shieldCards(root).map(x=>({id:x.cardId,label:'自分のシールド '+(i+1)})));
+  choice(s,{...t,g585Peek:seen},'山札の下に置く自分のシールドを好きな数選ぶ（'+t.picked.length+'つ選択済み）',[
+   ...rows.flatMap((root,i)=>t.picked.includes(api.shieldGroup(root))?[]:[opt('シールド '+(i+1)+'（カード'+api.shieldCards(root).length+'枚）',api.shieldGroup(root),0)]),
+   opt('選択を終える',null,1)]);break;
+ }
+ case'g34_PokerOrder1659':{
+  const cards=t.picked.flatMap(uid=>api.shieldCards(api.findShield(own,uid))),remaining=cards.filter(x=>!t.ordered.includes(x.uid));
+  if(remaining.length<=1){put(s,{...t,op:'g34_PokerCommit1659',ordered:[...t.ordered,...remaining.map(x=>x.uid)]});break;}
+  choice(s,{...t,g585Peek:cards.map(x=>({id:x.cardId,label:'山札の下に置くカード'}))},'山札の下に置くカードを上から順に選ぶ',remaining.map(x=>opt(card(x).name,x.uid,0,x.cardId)));break;
+ }
+ case'g34_PokerCommit1659':{
+  const follow={...t,op:'g34_PokerRefill1659',count:t.picked.length};
+  api.moveShields(s,t.p,t.picked,'deck',{g1659DeckOrder:t.ordered});
+  if(!api.deferShieldMove1352(s,follow))put(s,follow);break;
+ }
+ case'g34_PokerRefill1659':if(t.count)start(s,t,[{op:'ShieldTop',n:t.count,g779Simultaneous:true}]);break;
+ case'g34_DefenderBreak1659':{
+  const rows=own.shields.filter(x=>!t.selected.includes(api.shieldGroup(x))),n=Math.min(t.n,own.shields.length);
+  if(t.selected.length>=n||!rows.length){api.breakShields(s,t.p,t.selected);break;}
+  if(n-t.selected.length===rows.length){api.breakShields(s,t.p,[...t.selected,...rows.map(api.shieldGroup)]);break;}
+  choice(s,t,'自分でブレイクされるシールドを選ぶ（'+t.selected.length+'/'+n+'）',rows.map((x,i)=>opt('自分のシールド '+(own.shields.indexOf(x)+1),api.shieldGroup(x),0)));break;
+ }
+ case'g34_AlPlus1659':{
+  const watcher=creatures(s,t.p).find(x=>!x.sealed&&!x.faceDown&&effective(x,s).g1659PlusPeek);
+  if(watcher&&api.findShield(own,t.group))choice(s,{...t,source:watcher.cardId},'シールド・プラスしたシールドを確認しますか？',[opt('確認する',true,1),skip()]);break;
+ }
  case'g34_BeastCharge1658':{
   const n=s.g1658CreatureBreaks?.turn===s.turn?s.g1658CreatureBreaks.players[t.p]:0;
   start(s,t,[{op:'Look',g201Search:true,g841DeckPeek:true,n:'all',rest:'shuffle',
@@ -7994,6 +8045,12 @@ export function createSixPhotoRules(api){
   });
   break;
  }
+ case'g34_SuperPlus1659':if(v)put(s,{...t,op:'g34_SuperPlusOrder1659',ordered:[]});break;
+ case'g34_SuperPlusOrder1659':put(s,{...t,ordered:[...t.ordered,v]});break;
+ case'g34_PokerPick1659':if(v)put(s,{...t,picked:[...t.picked,v]});else put(s,{...t,op:'g34_PokerOrder1659',ordered:[]});break;
+ case'g34_PokerOrder1659':put(s,{...t,ordered:[...t.ordered,v]});break;
+ case'g34_DefenderBreak1659':put(s,{...t,selected:[...t.selected,v]});break;
+ case'g34_AlPlus1659':if(v){const root=api.findShield(own,t.group);if(root)showPeek585(s,t,[{x:root,p:t.p,seen:api.shieldCards(root),label:'シールド・プラスした自分のシールド'}]);}break;
  case'g34_ChooseRace724':{
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
@@ -10056,6 +10113,10 @@ export function createSixPhotoRules(api){
   const x=s.players[context.player]?.battle.find(y=>y.uid===context.sourceUid&&
    (context.incarnation===undefined||(y.incarnation||0)===context.incarnation));
   return x&&!x.sealed&&api.isCreature(s,x)?api.allLayers(x).map(key):null;
+ },
+ defenderShieldChoice1659(s,p,context){
+  return context?.player===1-p&&(s.active===p||!context.burn&&!context.reverse&&!context.qqBreak&&!context.g1577BottomBurn)&&
+   creatures(s,p).some(x=>!x.sealed&&!x.faceDown&&effective(x,s).g1659ShieldChoose);
  },
  recordBeastBreak1658(s,context,defender,count){
   const p=context?.player;

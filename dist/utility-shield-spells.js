@@ -31,6 +31,7 @@ export function createUtilityShieldSpells(api){
  case'g71_Plus':{
   const group=v?.group??v;
   if(!group||!api.canAddShield(s,t.p)||!api.findShield(own,group))break;
+  const beforePlus1659=api.shieldCards(api.findShield(own,group)).length;
   const cards=[];
   for(let i=0;i<(v?.amount??1);i++){
    const x=api.takeTop(s,t.p);
@@ -48,6 +49,7 @@ export function createUtilityShieldSpells(api){
    api.log(s,t.p,'shieldPlus',card(t.source).name+'：山札の上'+cards.length+'枚を裏向きでシールドに重ねる',{cardId:t.source});
   }
   api.deckCheck(s,t.p);
+  if(api.shieldCards(api.findShield(own,group)).length>beforePlus1659&&s.winner===null)put(s,task('g34_AlPlus1659',t.p,t.source,{group}));
   break;
  }
  default:throw Error('未実装のシールド・除去の選択：'+t.op);
