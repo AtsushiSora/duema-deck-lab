@@ -207,7 +207,7 @@ const PAGE_CREATURES={
  records:{id:'dmr22-l03',crop:'110 145 465 375',side:'right'},
  history:{id:'dm23ex2-017',crop:'85 140 500 400',side:'right'},
  account:{id:'dm06-s08',crop:'85 210 320 340',side:'right'},
- tournament:{id:'dmr21-l02',crop:'65 145 520 375',side:'left'},
+ tournament:{id:'dmr21-l02',crop:'65 145 520 375',side:'right'},
  challenge:{id:'dm14-s05',crop:'65 140 530 415',side:'right'},
  online:{id:'dm23ex2-017',crop:'85 140 500 400',side:'right'},
  strongest:{id:'dmrp15-km1',crop:'5 105 620 390',side:'right'},

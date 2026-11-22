@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-22T01:19:16.807316+00:00",
+  "baseCommit": "add0eb21107913371471052503a803cd802e080a",
+  "status": "verified-local-not-published",
+  "change": "Align the tournament menu and preparation hero with the other entries: illustration right, copy left. Existing image pixels and crop unchanged.",
+  "validation": {
+    "results": [
+      {
+        "name": "menu",
+        "command": [
+          "node",
+          "--test",
+          "tests/home-navigation.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 8.476,
+        "log": "tmp/duema-tournament-art/menu.log",
+        "status": "passed",
+        "sha256": "264bbf2b3d7e5eef0255d62cd33e06effe72e6954ad2e5d6ae5f27a6fc9b5365",
+        "passed": 31
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 14.469,
+        "log": "tmp/duema-tournament-art/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.15,
+        "log": "tmp/duema-tournament-art/check.log",
+        "status": "passed",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      }
+    ],
+    "testsPassed": 31,
+    "newTestsAdded": 0,
+    "preview": {
+      "method": "Local actual-app VM markup with current CSS.",
+      "desktop": {
+        "width": 1280,
+        "height": 720,
+        "imageSide": "right",
+        "textAlign": "left",
+        "screenshot": "/tmp/duema-tournament-art/desktop.jpg"
+      },
+      "mobile": {
+        "width": 375,
+        "height": 812,
+        "scrollWidth": 375,
+        "class": "art-right",
+        "screenshot": "/tmp/duema-tournament-art/mobile.jpg"
+      },
+      "viewportRestored": true,
+      "localServerStopped": true
+    },
+    "noWholeNpmTest": true
+  },
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/app.js": "44c7c352623f7bd671f10a98ecf83cc989b45695075c119319f9975ce8e15fc1",
+    "dist/assets/page-creatures/dmr21-l02.jpg": "536e4740a2df22a89357354b76fdaca2d326da25d9b979f047da5a686e8dfb72",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40",
+    "/tmp/duema-tournament-art/desktop.jpg": "c977b0f57d3953c38092ef1c03759b67f125f8a8de23ef675bcb2bb20f25beb8",
+    "/tmp/duema-tournament-art/mobile.jpg": "64f7526ce24fa1a0ea62afafc03032646e55072b86950871854b754c2e23e3f2"
+  },
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  }
+}
