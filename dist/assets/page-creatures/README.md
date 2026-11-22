@@ -8,7 +8,8 @@
 | 自動対戦の分析のボタン・CPU観戦の準備画面 | 聖霊王アルファディオス | https://dm.takaratomy.co.jp/card/detail/?id=dm15-s01 |
 | 対戦する | 竜皇神 ボルシャック・バクテラス | https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-OR2 |
 | デッキ管理・編集 | 百族の長 プチョヘンザ | https://dm.takaratomy.co.jp/card/detail/?id=dmr21-l01 |
-| 最強CPU戦・自動シミュレーションの準備 | ボルメテウス・サファイア・ドラゴン | https://dm.takaratomy.co.jp/card/detail/?id=dmc27-004 |
+| 自動シミュレーションの準備 | ボルメテウス・サファイア・ドラゴン | https://dm.takaratomy.co.jp/card/detail/?id=dmc27-004 |
+| 最強CPU戦のボタン・準備画面 | ∞龍 ゲンムエンペラー | https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-km1 |
 | 戦績・分析 | 時の法皇 ミラダンテXII | https://dm.takaratomy.co.jp/card/detail/?id=dmr22-l03 |
 | 履歴・オンライン | MMM-ジョーキング | https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-017 |
 | アカウント | ボルメテウス・ホワイト・ドラゴン | https://dm.takaratomy.co.jp/card/detail/?id=dm06-s08 |
