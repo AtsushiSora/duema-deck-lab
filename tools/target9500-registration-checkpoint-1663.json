@@ -1,0 +1,254 @@
+{
+  "phase": 1663,
+  "checkedAt": "2026-11-22T12:42:36.505Z",
+  "baseline": "75bbe231",
+  "status": "verified-local",
+  "target": 9500,
+  "before": 9227,
+  "currentNames": 9230,
+  "remainingNames": 270,
+  "added": [
+    {
+      "id": "dmr06-035",
+      "name": "救済の精霊ニャッタラモン"
+    },
+    {
+      "id": "dm23bd4-009",
+      "name": "龍の世界 龍幻郷"
+    },
+    {
+      "id": "dmc51-005",
+      "name": "ルピア・ラピア"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "75bbe231",
+    "originalDefinitionsUnchanged": 9227,
+    "added": 3,
+    "uniqueNames": 9230,
+    "uniqueIds": 9230,
+    "duplicateNames": 0,
+    "catalogueAndAliasesUnchanged": true,
+    "existingImageUrlsUnchanged": 9227,
+    "existingImageReferenceRowsUnchanged": 11419
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1663.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.872,
+      "log": "tmp/duema-phase-1663/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1663-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 30.437,
+      "log": "tmp/duema-phase-1663/final-focused.log",
+      "passed": 120,
+      "failed": 0,
+      "logSha256": "452986b0bb9b578bebfb227071360d4f19d9b1ea241e3c826f066d30c8166831"
+    },
+    "final-edge-completion": {
+      "name": "final-edge-completion",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(QA38631 actual|Zero-power Rapia)",
+        "tests/standard1663-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.664,
+      "log": "tmp/duema-phase-1663/final-edge-completion.log",
+      "passed": 4,
+      "failed": 0,
+      "logSha256": "bf7f2d973c6999777a297d36329463bb93f17a66db122deb0b98ac3dc52bb417"
+    },
+    "related-savers": {
+      "name": "related-savers",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard571-effects.test.mjs",
+        "tests/standard575-effects.test.mjs",
+        "tests/standard1555-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 28.672,
+      "log": "tmp/duema-phase-1663/related-savers.log",
+      "passed": 367,
+      "failed": 0,
+      "logSha256": "41b00b9965cd813b6c24ec77258ae73e18c0756593fc03992c5875c6ed909626"
+    },
+    "related-aura": {
+      "name": "related-aura",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard560-effects.test.mjs",
+        "tests/standard1280-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 41.548,
+      "log": "tmp/duema-phase-1663/related-aura.log",
+      "passed": 194,
+      "failed": 0,
+      "logSha256": "569853037020b96fe5206cc5beaf2db58cc891219b897eb959aa104760242185"
+    },
+    "related-world": {
+      "name": "related-world",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(Dragon World mills|Both official Dragon Savers|A Dragon World under|Infinity can reveal)",
+        "tests/standard1250-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.865,
+      "log": "tmp/duema-phase-1663/related-world.log",
+      "passed": 4,
+      "failed": 0,
+      "logSha256": "b08a9b8c90d2251c7c5a14c1ae7b2d24609f605d7e6042a5900e31aa79191774"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.436,
+      "log": "tmp/duema-phase-1663/check.log",
+      "logSha256": "e26a7fb3b630735e2f04a30aedc6ba11182ebdcb371be98cb007e1436a1d1e49"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.65,
+      "log": "tmp/duema-phase-1663/audit.log",
+      "logSha256": "342fb49a794846e26e6495a378199fc30b316077166191d53115f1bbbfb3059a"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.253,
+      "log": "tmp/duema-phase-1663/target9500.log",
+      "logSha256": "edd7e83965d1bcf124a6543160257d05c3d69c1285d906d6e2e8630ffab1e63f"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1663/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.355,
+      "log": "tmp/duema-phase-1663/invariants.log",
+      "logSha256": "1b1b0655d61704572e43f1a99b865e554c1e329ae56fe2b2a4dca75b4d79cbcc"
+    }
+  },
+  "totalTestsPassed": 689,
+  "hashes": {
+    "dist/cards.json": "4494c8d0964db14ce9c5539898714eb307530de93be28b47cc5f67decfb77250",
+    "dist/engine.js": "aba1148c62bbaf48abf20ed54f261a1c635925e76b2357563d6e3d296869a277",
+    "dist/online-compatibility.js": "58cbb0032fe4d6fadeaafb6ea358f7e1a7149c62e71b9e644874e0af432436cf",
+    "dist/card-images.js": "68efaf4c9eb6c030b646ad4e8c6be486c59bb80cdf344388d9b05a7bf601a4b7",
+    "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+    "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
+    "tools/target9000-card-spec.json": "97742f3661a244b7d92367563943a3e38c5c21e3a94a671f62e89e3a216ad227",
+    "tests/standard1663-effects.test.mjs": "00d5fcddf29df938a5c37826220afee8099448a8b89a1a8b2f0bf66b497cec8b"
+  },
+  "engineVersion": "0.602.179",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "kind": "registration-toward-9500",
+  "manifest": "tools/support-phase-1663.json",
+  "supported": 9230,
+  "pending": 2595,
+  "reason": "アンノウンのセイバー、ヒストリック・フィールドのタップマナ追加・ドラゴンへのSA・ドラゴンのウルトラセイバー、任意ドラゴン召喚軽減と破壊時の任意マナ移動・条件付きドラゴン回収を全文対応。",
+  "resolvedAttempts": [
+    {
+      "name": "initial-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1663-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 24.773,
+      "log": "tmp/duema-phase-1663/initial-focused.log"
+    },
+    {
+      "name": "driver-reproduction",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Rapia does not recover a Dragon when Driver",
+        "tests/standard1663-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.656,
+      "log": "tmp/duema-phase-1663/driver-reproduction.log"
+    }
+  ],
+  "remaining": [
+    "過去の全体npm test、既存長時間群、ユーザー保留の公式照合2件、登録済みカードの裁定再現待ち1件は別に保持。今回3種類の全文・固有検証は完了。"
+  ],
+  "next": "phase1664で公式照合から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新は行わない。",
+  "validationNotes": [
+    "固有120件と後から加えたQA38631の実カード再現・パワー0の破壊置換4件を重複なく通過。関連回帰はセイバー367件、任意軽減とドライバー194件、龍世界の公式裁定4件の計565件。合計689件。",
+    "ドライバーの別のマナ置換を選んだ場合にもラピアの回収が働く今回追加処理の不具合を、両プレイヤーで再現して修正。本人の通常マナ置換を選び、実際にそのカードがマナへ移った場合だけ回収する。",
+    "最初のfixtureの破壊保護は実際のg409AttackEffect、Genmu下のSA確認は能力無視されない10コストのドラゴン、任意ゾーン選択の拒否値はnullに修正。テスト期待値を既存ルールに合わせたもので、誤った挙動を対応済みにはしない。",
+    "元版3枚と再録2枚の公式画像・能力全文・制限を照合。龍幻郷の公式多色タップ注釈エラッタを参照。再録の新IDは追加せず、元の登録IDを保持。",
+    "スーパー・サイチェン・ピッピーは実際の呼び出し先とリンク部品3枚の全文が未対応のため未登録で保留。別名の勝利のガイアール・カイザーで代用しない。",
+    "今回3種類に未完了の固有検証はない。過去の一括npm test、既存長時間群、ユーザー保留の公式照合と登録済みカードの裁定再現待ちは保持。今回の登録はpush・公開・Netlify更新を行わない。"
+  ],
+  "deferredCandidates": [
+    {
+      "id": "dmx02-003",
+      "name": "スーパー・サイチェン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-003",
+      "reason": "実際の呼び出し先ガイアール・カイザー(dmr01-v02)は未登録。シールドブレイク置換と、ブーストグレンオー(dmr01-060)・ドラゴニック・ピッピー(dmr01-062)の全能力・覚醒リンク・リンク解除を含む専用バッチで対応する。別名の勝利のガイアール・カイザーでは代用せず、部分登録はしない。"
+    }
+  ]
+}

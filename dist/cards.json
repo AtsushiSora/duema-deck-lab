@@ -293568,19 +293568,115 @@
       "g845LightDiscard": "card",
       "supportBatch": "phase-1662",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-035",
+      "name": "救済の精霊ニャッタラモン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "エンジェル・コマンド/アンノイズ",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)このクリーチャーは、相手プレイヤーを攻撃できない。セイバー:アンノウン(自分のアンノウンが破壊される時、このクリーチャーをかわりに破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-035",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g571Saver": {
+        "filter": {
+          "race": "アンノウン"
+        }
+      },
+      "supportBatch": "phase-1663",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23bd4-009",
+      "name": "龍の世界 龍幻郷",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "ドラゴン・ワールド",
+      "text": "このフィールドが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。\n自分のドラゴンすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nウルトラ・セイバー：ドラゴン（自分のドラゴンが離れる時、かわりにこのフィールドを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "tapped": true
+        }
+      ],
+      "g1458FieldAura": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g571Saver": {
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "ultra": true
+      },
+      "supportBatch": "phase-1663",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc51-005",
+      "name": "ルピア・ラピア",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のドラゴンを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置いてもよい。そうした場合、ドラゴンを１体、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc51-005",
+      "limit": 4,
+      "g290SummonAura": {
+        "race": "ドラゴン",
+        "amount": 1,
+        "g560Optional": true
+      },
+      "g575OptionalMana": true,
+      "g1663RapiaRecover": true,
+      "supportBatch": "phase-1663",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1662,
+    "phase": 1663,
     "checkedAt": "2026-11-22",
-    "baseCount": 9224,
+    "baseCount": 9227,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9227,
+    "totalCount": 9230,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36473/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316658/",
+      "https://dm.takaratomy.co.jp/rule/qa/38631/",
+      "https://dm.takaratomy.co.jp/rule/qa/46826/"
     ],
     "next": [
       "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
@@ -320801,6 +320897,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/31621/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"
+        ]
+      },
+      {
+        "phase": 1662,
+        "checkedAt": "2026-11-22",
+        "baseCount": 9224,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9227,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36488/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36473/"
         ],
         "next": [
           "9500種類を目標に、公式照合と固有テストを終えた3〜5種類のバッチを追加する。公開は別途指示がある時だけ。Netlifyは更新しない。"

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9227,
-  "pendingNames": 2598,
-  "phase": 1662,
+  "supportedNames": 9230,
+  "pendingNames": 2595,
+  "phase": 1663,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1453,
+    "クリーチャー": 1451,
     "呪文": 297,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -194,7 +194,7 @@
     "進化クリーチャー(墓地進化V)": 1,
     "進化クリーチャー(デッキ進化)": 5,
     "G城": 10,
-    "ヒストリック・フィールド": 4,
+    "ヒストリック・フィールド": 3,
     "禁断の鼓動": 2,
     "幸せのフィールド": 1,
     "進化クリーチャー（墓地進化）": 1,
@@ -221,8 +221,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1867,
-    "複数面・特殊カードタイプまたは情報不足": 591,
+    "未対応の能力文": 1865,
+    "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
     "未対応のシンカパワー": 2,
@@ -531742,27 +531742,281 @@
         "強欲ジェラシー・シャンのプロモ限定カード10期の収録情報は公式の同名一覧で確認。未確認の版ID・画像のエイリアスは作らず、照合したDMR03版の正規IDだけを登録。",
         "今回3種に未完了の固有検証はない。過去の全体npm test・既存長時間群・保留中の公式照合と裁定再現の状態は維持する。"
       ]
+    },
+    {
+      "phase": 1663,
+      "checkedAt": "2026-11-22T12:42:36.505Z",
+      "baseline": "75bbe231",
+      "status": "verified-local",
+      "target": 9500,
+      "before": 9227,
+      "currentNames": 9230,
+      "remainingNames": 270,
+      "added": [
+        {
+          "id": "dmr06-035",
+          "name": "救済の精霊ニャッタラモン"
+        },
+        {
+          "id": "dm23bd4-009",
+          "name": "龍の世界 龍幻郷"
+        },
+        {
+          "id": "dmc51-005",
+          "name": "ルピア・ラピア"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "75bbe231",
+        "originalDefinitionsUnchanged": 9227,
+        "added": 3,
+        "uniqueNames": 9230,
+        "uniqueIds": 9230,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9227,
+        "existingImageReferenceRowsUnchanged": 11419
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1663.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.872,
+          "log": "tmp/duema-phase-1663/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "final-focused": {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1663-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.437,
+          "log": "tmp/duema-phase-1663/final-focused.log",
+          "passed": 120,
+          "failed": 0,
+          "logSha256": "452986b0bb9b578bebfb227071360d4f19d9b1ea241e3c826f066d30c8166831"
+        },
+        "final-edge-completion": {
+          "name": "final-edge-completion",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(QA38631 actual|Zero-power Rapia)",
+            "tests/standard1663-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.664,
+          "log": "tmp/duema-phase-1663/final-edge-completion.log",
+          "passed": 4,
+          "failed": 0,
+          "logSha256": "bf7f2d973c6999777a297d36329463bb93f17a66db122deb0b98ac3dc52bb417"
+        },
+        "related-savers": {
+          "name": "related-savers",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard575-effects.test.mjs",
+            "tests/standard1555-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 28.672,
+          "log": "tmp/duema-phase-1663/related-savers.log",
+          "passed": 367,
+          "failed": 0,
+          "logSha256": "41b00b9965cd813b6c24ec77258ae73e18c0756593fc03992c5875c6ed909626"
+        },
+        "related-aura": {
+          "name": "related-aura",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard560-effects.test.mjs",
+            "tests/standard1280-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 41.548,
+          "log": "tmp/duema-phase-1663/related-aura.log",
+          "passed": 194,
+          "failed": 0,
+          "logSha256": "569853037020b96fe5206cc5beaf2db58cc891219b897eb959aa104760242185"
+        },
+        "related-world": {
+          "name": "related-world",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Dragon World mills|Both official Dragon Savers|A Dragon World under|Infinity can reveal)",
+            "tests/standard1250-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.865,
+          "log": "tmp/duema-phase-1663/related-world.log",
+          "passed": 4,
+          "failed": 0,
+          "logSha256": "b08a9b8c90d2251c7c5a14c1ae7b2d24609f605d7e6042a5900e31aa79191774"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.436,
+          "log": "tmp/duema-phase-1663/check.log",
+          "logSha256": "e26a7fb3b630735e2f04a30aedc6ba11182ebdcb371be98cb007e1436a1d1e49"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.65,
+          "log": "tmp/duema-phase-1663/audit.log",
+          "logSha256": "342fb49a794846e26e6495a378199fc30b316077166191d53115f1bbbfb3059a"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.253,
+          "log": "tmp/duema-phase-1663/target9500.log",
+          "logSha256": "edd7e83965d1bcf124a6543160257d05c3d69c1285d906d6e2e8630ffab1e63f"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1663/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.355,
+          "log": "tmp/duema-phase-1663/invariants.log",
+          "logSha256": "1b1b0655d61704572e43f1a99b865e554c1e329ae56fe2b2a4dca75b4d79cbcc"
+        }
+      },
+      "totalTestsPassed": 689,
+      "hashes": {
+        "dist/cards.json": "4494c8d0964db14ce9c5539898714eb307530de93be28b47cc5f67decfb77250",
+        "dist/engine.js": "aba1148c62bbaf48abf20ed54f261a1c635925e76b2357563d6e3d296869a277",
+        "dist/online-compatibility.js": "58cbb0032fe4d6fadeaafb6ea358f7e1a7149c62e71b9e644874e0af432436cf",
+        "dist/card-images.js": "68efaf4c9eb6c030b646ad4e8c6be486c59bb80cdf344388d9b05a7bf601a4b7",
+        "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
+        "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
+        "tools/target9000-card-spec.json": "97742f3661a244b7d92367563943a3e38c5c21e3a94a671f62e89e3a216ad227",
+        "tests/standard1663-effects.test.mjs": "00d5fcddf29df938a5c37826220afee8099448a8b89a1a8b2f0bf66b497cec8b"
+      },
+      "engineVersion": "0.602.179",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "kind": "registration-toward-9500",
+      "manifest": "tools/support-phase-1663.json",
+      "supported": 9230,
+      "pending": 2595,
+      "reason": "アンノウンのセイバー、ヒストリック・フィールドのタップマナ追加・ドラゴンへのSA・ドラゴンのウルトラセイバー、任意ドラゴン召喚軽減と破壊時の任意マナ移動・条件付きドラゴン回収を全文対応。",
+      "resolvedAttempts": [
+        {
+          "name": "initial-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1663-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 24.773,
+          "log": "tmp/duema-phase-1663/initial-focused.log"
+        },
+        {
+          "name": "driver-reproduction",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^Rapia does not recover a Dragon when Driver",
+            "tests/standard1663-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.656,
+          "log": "tmp/duema-phase-1663/driver-reproduction.log"
+        }
+      ],
+      "remaining": [
+        "過去の全体npm test、既存長時間群、ユーザー保留の公式照合2件、登録済みカードの裁定再現待ち1件は別に保持。今回3種類の全文・固有検証は完了。"
+      ],
+      "next": "phase1664で公式照合から次の3〜5種類を続け、9500到達で登録を止める。push・公開・Netlify更新は行わない。",
+      "validationNotes": [
+        "固有120件と後から加えたQA38631の実カード再現・パワー0の破壊置換4件を重複なく通過。関連回帰はセイバー367件、任意軽減とドライバー194件、龍世界の公式裁定4件の計565件。合計689件。",
+        "ドライバーの別のマナ置換を選んだ場合にもラピアの回収が働く今回追加処理の不具合を、両プレイヤーで再現して修正。本人の通常マナ置換を選び、実際にそのカードがマナへ移った場合だけ回収する。",
+        "最初のfixtureの破壊保護は実際のg409AttackEffect、Genmu下のSA確認は能力無視されない10コストのドラゴン、任意ゾーン選択の拒否値はnullに修正。テスト期待値を既存ルールに合わせたもので、誤った挙動を対応済みにはしない。",
+        "元版3枚と再録2枚の公式画像・能力全文・制限を照合。龍幻郷の公式多色タップ注釈エラッタを参照。再録の新IDは追加せず、元の登録IDを保持。",
+        "スーパー・サイチェン・ピッピーは実際の呼び出し先とリンク部品3枚の全文が未対応のため未登録で保留。別名の勝利のガイアール・カイザーで代用しない。",
+        "今回3種類に未完了の固有検証はない。過去の一括npm test、既存長時間群、ユーザー保留の公式照合と登録済みカードの裁定再現待ちは保持。今回の登録はpush・公開・Netlify更新を行わない。"
+      ],
+      "deferredCandidates": [
+        {
+          "id": "dmx02-003",
+          "name": "スーパー・サイチェン・ピッピー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-003",
+          "reason": "実際の呼び出し先ガイアール・カイザー(dmr01-v02)は未登録。シールドブレイク置換と、ブーストグレンオー(dmr01-060)・ドラゴニック・ピッピー(dmr01-062)の全能力・覚醒リンク・リンク解除を含む専用バッチで対応する。別名の勝利のガイアール・カイザーでは代用せず、部分登録はしない。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1662,
-    "nextPhase": 1663,
+    "lastVerifiedPhase": 1663,
+    "nextPhase": 1664,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr06-035",
-        "name": "救済の精霊ニャッタラモン",
-        "reason": "アンノウン限定のセイバーとブロッカー・プレイヤー攻撃禁止を公式照合して既存の身代わり破壊で実装。"
+        "id": "dm36-097",
+        "name": "チャイ・アイニー",
+        "reason": "ドラゴンのセイバー、XX名を持つ自軍への選択防止、破壊時のドラゴン全体へのアンタップクリーチャー攻撃付与を公式照合。"
       },
       {
-        "id": "dmx02-003",
-        "name": "スーパー・サイチェン・ピッピー",
-        "reason": "ハンター限定セイバーと、相手ターンに実際に手札から捨てられた時のガイアール・カイザー展開を照合。"
+        "id": "dmx04-010",
+        "name": "予言者ヨーデル・ワイス",
+        "reason": "光のハンター・サイキック限定の超次元展開とサイキックのセイバーを照合し、呼び出し先の実装状況も確認。"
       },
       {
-        "id": "dm23bd4-009",
-        "name": "龍の世界 龍幻郷",
-        "reason": "フィールドの登場時タップマナ追加、ドラゴンへのSA、フィールドを使うウルトラ・セイバーの全文を照合。"
+        "id": "dm24-031",
+        "name": "鋼流星ペングカイザー",
+        "reason": "光と水の2体による進化V、他のブロッカーへのフェニックスのセイバー付与・多色タップ・Wブレイカーを照合。"
       }
     ],
     "steps": [
@@ -532333,6 +532587,14 @@
         "reason": "バトル敗北時の自己破壊を両者のマナ移動へ置換する能力。同パワーの同時敗北、スレイヤー、EXライフ等の競合置換とバトル結果・相手移動を原子的に扱う検証が必要なため未登録。",
         "phase": 1659,
         "status": "not-registered"
+      },
+      {
+        "id": "dmx02-003",
+        "name": "スーパー・サイチェン・ピッピー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-003",
+        "reason": "実際の呼び出し先ガイアール・カイザー(dmr01-v02)は未登録。シールドブレイク置換と、ブーストグレンオー(dmr01-060)・ドラゴニック・ピッピー(dmr01-062)の全能力・覚醒リンク・リンク解除を含む専用バッチで対応する。別名の勝利のガイアール・カイザーでは代用せず、部分登録はしない。",
+        "phase": 1663,
+        "status": "not-registered"
       }
     ],
     "lastExplicitUserAddition": {
@@ -532509,23 +532771,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1662,
-      "baseline": "428fb81ce6853277f684262a0ef7486e82dcb9a5",
-      "supportedNames": 9227,
-      "artifact": "tools/target9500-registration-checkpoint-1662.json",
-      "checkedAt": "2026-11-22T12:19:16.833Z"
+      "phase": 1663,
+      "baseline": "75bbe231",
+      "supportedNames": 9230,
+      "artifact": "tools/target9500-registration-checkpoint-1663.json",
+      "checkedAt": "2026-11-22T12:42:36.505Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T12:19:16.833Z",
+      "checkedAt": "2026-11-22T12:42:36.505Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9227,
-      "remainingNames": 273,
+      "currentNames": 9230,
+      "remainingNames": 270,
       "duplicateNames": 0,
-      "engineVersion": "0.602.178",
+      "engineVersion": "0.602.179",
       "added": [
         {
           "id": "dmr12-008",
@@ -533154,6 +533416,18 @@
         {
           "id": "dmr03-030",
           "name": "強欲ジェラシー・シャン"
+        },
+        {
+          "id": "dmr06-035",
+          "name": "救済の精霊ニャッタラモン"
+        },
+        {
+          "id": "dm23bd4-009",
+          "name": "龍の世界 龍幻郷"
+        },
+        {
+          "id": "dmc51-005",
+          "name": "ルピア・ラピア"
         }
       ],
       "results": {
@@ -533269,13 +533543,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "dda69ddae7b5f79eb3cec5a7facab96f404317bb977779518de3fc86228d1a0a",
-        "dist/engine.js": "c12a825349b981c59bee054d1de7a7cffc1386eac774d15ff312c643f21dd995",
-        "dist/online-compatibility.js": "15d2fd34974ee85707804fff46924192bbb307dbbf53cab889c3c53030df50bb",
-        "dist/card-images.js": "4f54bb400a2278c9ff26c5e69c182107196f21b18386345d6dbe9ae378056c5e",
+        "dist/cards.json": "4494c8d0964db14ce9c5539898714eb307530de93be28b47cc5f67decfb77250",
+        "dist/engine.js": "aba1148c62bbaf48abf20ed54f261a1c635925e76b2357563d6e3d296869a277",
+        "dist/online-compatibility.js": "58cbb0032fe4d6fadeaafb6ea358f7e1a7149c62e71b9e644874e0af432436cf",
+        "dist/card-images.js": "68efaf4c9eb6c030b646ad4e8c6be486c59bb80cdf344388d9b05a7bf601a4b7",
         "dist/catalogue.json": "3c7ad615ed434adf238fd8742b19d82f12523956a8b5b9bd016be6ea02d32935",
         "dist/card-name-aliases.js": "6b4d1bb43af448df78ec54c185a459e878b7b82eec9e6e460ea3cb3e7f2f1812",
-        "tools/target9000-card-spec.json": "e0b3b756ebdad512cf88145744402ded542d84ef385c37b52fa7e466f796ff7f"
+        "tools/target9000-card-spec.json": "97742f3661a244b7d92367563943a3e38c5c21e3a94a671f62e89e3a216ad227",
+        "tests/standard1663-effects.test.mjs": "00d5fcddf29df938a5c37826220afee8099448a8b89a1a8b2f0bf66b497cec8b"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -533339,10 +533614,10 @@
       },
       "phaseRange": [
         1614,
-        1662
+        1663
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 157,
+      "addedNames": 160,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -533354,9 +533629,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 23.992,
-        "log": "tmp/duema-phase-1662/check.log",
-        "logSha256": "26908cc50035949148a295a2758e5262ef64fb921706968705e8908d388219b7"
+        "seconds": 20.436,
+        "log": "tmp/duema-phase-1663/check.log",
+        "logSha256": "e26a7fb3b630735e2f04a30aedc6ba11182ebdcb371be98cb007e1436a1d1e49"
       },
       "latestAudit": {
         "name": "audit",
@@ -533366,11 +533641,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.334,
-        "log": "tmp/duema-phase-1662/audit.log",
-        "logSha256": "42f040e802bb91fb243be2a0e470d10bea126f4b3e45d2118f9c1dbbfecdb823"
+        "seconds": 11.65,
+        "log": "tmp/duema-phase-1663/audit.log",
+        "logSha256": "342fb49a794846e26e6495a378199fc30b316077166191d53115f1bbbfb3059a"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1662.json"
+      "latestBatch": "tools/target9500-registration-checkpoint-1663.json"
     },
     "latestManualCheck": {
       "checkedAt": "2026-11-21T10:03:37.879Z",
@@ -534459,11 +534734,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9227,
-      "remaining": 273,
+      "currentNames": 9230,
+      "remaining": 270,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T12:19:16.833Z"
+      "checkedAt": "2026-11-22T12:42:36.505Z"
     },
     "resolvedRegistrationValidations": [
       {
