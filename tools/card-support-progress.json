@@ -541467,6 +541467,24 @@
       "supportedNamesUnchanged": 9294,
       "manifest": "tools/support-phase-1686.json",
       "checkpoint": "tools/target9500-registration-checkpoint-1686.json"
+    },
+    "validationPolicy": {
+      "approvedOn": "2026-11-23",
+      "userInstruction": "今後はそれで追加して",
+      "scope": "今後のカード登録。再開指示ではないため、登録の一時停止を維持。",
+      "existingProcessingOnly": "能力全体・例外の固有テストと関係する回帰テストを中心に確認。",
+      "sharedProcessingChanges": "影響する既存カード・通信対戦・保存などへ回帰検証の範囲を広げる。",
+      "onFailure": "原因を修正し、該当テストと影響する回帰を再実行。",
+      "avoidRedundantRuns": "回数や件数は固定目標にしない。十分な検証が通った後は新しい変更・失敗・未解決の懸念がない限り繰り返さない。",
+      "perBatchRequired": [
+        "公式能力全文・基本情報・画像・使用制限・再録・関連裁定の照合",
+        "固有テストと変更に関係する回帰テスト",
+        "npm run check",
+        "実データのnameKey再集計",
+        "既存ID・デッキ・対戦履歴・保存形式の維持確認",
+        "結果・対象・未確認事項を進捗に記録し、検証済み差分のみローカルコミット"
+      ],
+      "historicalUnverified": "全体npm test中断・長時間群・登録済み未検証・ユーザー保留は解消扱いにしない。"
     }
   },
   "registeredCardVerification": {
