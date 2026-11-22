@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-22",
   "catalogueNames": 11825,
-  "supportedNames": 9242,
-  "pendingNames": 2583,
-  "phase": 1667,
+  "supportedNames": 9245,
+  "pendingNames": 2580,
+  "phase": 1668,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -46,7 +46,7 @@
     },
     {
       "ability": "GR召喚",
-      "pendingNames": 34,
+      "pendingNames": 31,
       "examples": [
         {
           "id": "dmrp12-s11",
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1446,
-    "呪文": 291,
+    "呪文": 288,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 33,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1853,
+    "未対応の能力文": 1850,
     "複数面・特殊カードタイプまたは情報不足": 590,
     "未対応のG・ゼロ条件": 11,
     "未対応の召喚時能力": 18,
@@ -532872,27 +532872,252 @@
         }
       ],
       "next": "phase1668でGR召喚した個体を参照する3種類を公式照合・全文実装から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
+    },
+    {
+      "phase": 1668,
+      "checkedAt": "2026-11-22T13:50:22.941Z",
+      "baseline": "7329d20c",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9242,
+      "currentNames": 9245,
+      "remainingNames": 255,
+      "added": [
+        {
+          "id": "dmsd08-015",
+          "name": "メルセデスベントゥー"
+        },
+        {
+          "id": "dmrp09-095",
+          "name": "KAMASE-BURN!"
+        },
+        {
+          "id": "dmrp12-079",
+          "name": "バシャーン a.k.a. 遮断"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "7329d20c",
+        "originalDefinitionsUnchanged": 9242,
+        "added": 3,
+        "uniqueNames": 9245,
+        "uniqueIds": 9245,
+        "duplicateNames": 0,
+        "catalogueAndAliasesUnchanged": true,
+        "existingImageUrlsUnchanged": 9242,
+        "existingImageReferenceRowsUnchanged": 11435
+      },
+      "results": {
+        "official": {
+          "name": "verified-official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1668.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.349,
+          "log": "tmp/duema-phase-1668/verified-official.log",
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "focused": {
+          "name": "verified-final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1668-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.579,
+          "log": "tmp/duema-phase-1668/verified-final-focused.log",
+          "passed": 94,
+          "failed": 0,
+          "logSha256": "0d073312c9fcbb95f54f48d833461f52584e1ad56cef4c6f9636129e255ab7cc"
+        },
+        "related-gr": {
+          "name": "related-gr",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1666-effects.test.mjs",
+            "tests/standard1667-effects.test.mjs",
+            "tests/standard1450-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.731,
+          "log": "tmp/duema-phase-1668/related-gr.log",
+          "passed": 201,
+          "failed": 0,
+          "logSha256": "7c8ba9183e07edf9ab9fd9dd4da4f974e12eba3e978f60fb9ae4c67597760424"
+        },
+        "related-fight-references": {
+          "name": "related-fight-references",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard240-effects.test.mjs",
+            "tests/standard692-effects.test.mjs",
+            "tests/standard1021-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 28.398,
+          "log": "tmp/duema-phase-1668/related-fight-references.log",
+          "passed": 78,
+          "failed": 0,
+          "logSha256": "ab012aff6f17a5726f659f13fe297bd1b626e98d111da180424027104a48d628"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.145,
+          "log": "tmp/duema-phase-1668/check.log",
+          "logSha256": "808bf4a7a61511c086c932be6784fc2f7da09c059596aba12404743b01828750"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.149,
+          "log": "tmp/duema-phase-1668/audit.log",
+          "logSha256": "429c29361ef324d4eef6777aa2258bced4dbbd818ee746ab17400ffb3ae2eb29"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.426,
+          "log": "tmp/duema-phase-1668/target9500.log",
+          "logSha256": "cf8571fda7fb019fbbdb193137acdfa12fc388e6fb8286ea6736cd881403f165"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1668/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.663,
+          "log": "tmp/duema-phase-1668/invariants.log",
+          "logSha256": "6ebd37becc8ba5ca903989d554cfc8707aacbac777042560887aa1c8419a8f6a"
+        }
+      },
+      "totalTestsPassed": 373,
+      "hashes": {
+        "dist/cards.json": "75a43c4fb43332d00a1db46cb5858aac94746d6762a579bb538d943407bdbd80",
+        "dist/engine.js": "0814f930fef230bebb0cfad42fa582f05ce0f5dc98a1b50ec8109f305950823d",
+        "dist/six-photo-rules.js": "d3916440aae619de32a33e38a1e46f6adfd16efac331b920b91749e90cdf6f3a",
+        "dist/online-compatibility.js": "6fbdf18b834f1c39bf35ff97ffe77af64c973b5e88a459bb6bc6df06da2386e3",
+        "dist/card-images.js": "d3df4d96fb21e6f627043c3ef6f68a05eb7e96cd05796e26ceb089d1d65997f8",
+        "tools/target9000-card-spec.json": "3331f45454f9c818816b3a44eb5e4d16357b56f0e61432affa7d2d93692cd8a3",
+        "tests/standard1668-effects.test.mjs": "95369651dc9cc6a1ba12ea9cb90e281ad5aec044a45ecdda2992f20010aaa883"
+      },
+      "engineVersion": "0.602.184",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1668.json"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.091,
+          "log": "tmp/duema-phase-1668/official.log"
+        },
+        {
+          "name": "final-focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1668-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 21.913,
+          "log": "tmp/duema-phase-1668/final-focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1668.json",
+      "supported": 9245,
+      "pending": 2580,
+      "reason": "タップGR召喚と次自分ターン開始までの攻撃先制限、実際の召喚個体の任意バトル、実際の召喚個体の現在・最後のパワー以下の任意バウンスを全文対応。",
+      "validationNotes": [
+        "固有94件、GR召喚・付与・禁止関連201件、バトル・最後の情報・攻撃先制限関連78件の計373件が通過。npm run check、audit、target9500、既存9242定義と全ID・詳細・別名・画像参照の不変を確認。",
+        "原版3枚と参照再録2枚の公式画像5点を目視照合。MercedesのRP09ページでは最終文の自分のが省略されているが、公式画像は原版同様に自分のクリーチャーと明記。再録HTMLを変えずその差を記録し、2人対戦で同じ攻撃先制限を適用。KAMASEの公式同名6商品も照合し、元IDのみを計上。",
+        "召喚前の予想位置だけで成功扱いにせず、実際のGR登場でUIDとincarnationに一致する後続処理へ登場記録を渡す。リツイーギョの実際の登場置換・GR禁止・空の超GRを検証し、既存GRや次のカードへ参照がすり替わらないことを確認。",
+        "KAMASEは公式QA38577を実カードクラッケンバインで再現し、唱えている呪文自身を墓地のパワー計算に含めない。強弱同値の任意バトルと、バシャーンの現在パワー比較・自他のカード・自分自身の選択、離脱後の最後の情報と∞のJSON保存を確認。",
+        "MercedesはSトリガー後の残りの攻撃から即時適用し、合法のクリーチャー攻撃先がない時はプレイヤーを攻撃できる。次自分ターン開始での期限切れ、手動マナ選択、暗号化ルーム保存からの選択再開、オンライン秘匿、92枚の実デッキ対戦2件とAIの非公開情報独立性を両プレイヤーで確認。",
+        "再録表記差の検出でmanifest生成が停止した後、未生成ファイルに対する最初の検証実行は失敗。差分を公式画像で照合し、verified-officialで5定義が通過。暗号化fixtureの4失敗はschemaVersion未設定が原因で、既存PROTOCOLを設定して全94件が通過。製品側の認証や整合性確認を緩めない。",
+        "今回3種類に未完了検証なし。既存の全体npm test・長時間群・ユーザー保留・登録済み裁定再現待ち1件は維持。今回の登録はローカルのみで、push・公開・Netlify更新を行わない。"
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmr21-017",
+          "name": "Dの炎闘 アリーナ・カモーネ",
+          "reason": "バトル勝利後の任意ブレイクとDスイッチによる当ターンの攻撃先拡張を全文照合。"
+        },
+        {
+          "id": "dmr21-019",
+          "name": "Dの花道 ズンドコ晴れ舞台",
+          "reason": "登場時のマナ加速とDスイッチのマナ枚数比較でのマナからの登場を全文照合。"
+        },
+        {
+          "id": "dmr21-015",
+          "name": "Dの悪意 ワルスラー研究所",
+          "reason": "任意ドローとDスイッチの現在の自軍各コストに対応した手札からの登場を全文照合。"
+        }
+      ],
+      "next": "phase1669でD2フィールド3種類を公式照合から進める。9500到達で通常登録停止。公開は別指示の時だけ。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1667,
-    "nextPhase": 1668,
+    "lastVerifiedPhase": 1668,
+    "nextPhase": 1669,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmsd08-015",
-        "name": "メルセデスベントゥー",
-        "reason": "GRタップ召喚と相手の攻撃先を自分のクリーチャーへ向ける期限付き効果を全文照合。"
+        "id": "dmr21-017",
+        "name": "Dの炎闘 アリーナ・カモーネ",
+        "reason": "バトル勝利後の任意ブレイクとDスイッチによる当ターンの攻撃先拡張を全文照合。"
       },
       {
-        "id": "dmrp09-095",
-        "name": "KAMASE-BURN!",
-        "reason": "実際に召喚したGR個体を参照するバトルと召喚禁止・置換の境界を公式照合。"
+        "id": "dmr21-019",
+        "name": "Dの花道 ズンドコ晴れ舞台",
+        "reason": "登場時のマナ加速とDスイッチのマナ枚数比較でのマナからの登場を全文照合。"
       },
       {
-        "id": "dmrp12-079",
-        "name": "バシャーン a.k.a. 遮断",
-        "reason": "実際に召喚したGRの現在パワーを比較する任意バウンスを公式照合。"
+        "id": "dmr21-015",
+        "name": "Dの悪意 ワルスラー研究所",
+        "reason": "任意ドローとDスイッチの現在の自軍各コストに対応した手札からの登場を全文照合。"
       }
     ],
     "steps": [
@@ -533664,23 +533889,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1667,
-      "baseline": "c45e6c8c",
-      "supportedNames": 9242,
-      "artifact": "tools/target9500-registration-checkpoint-1667.json",
-      "checkedAt": "2026-11-22T13:35:37.420Z"
+      "phase": 1668,
+      "baseline": "7329d20c",
+      "supportedNames": 9245,
+      "artifact": "tools/target9500-registration-checkpoint-1668.json",
+      "checkedAt": "2026-11-22T13:50:22.941Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-22T13:35:37.420Z",
+      "checkedAt": "2026-11-22T13:50:22.941Z",
       "status": "in-progress",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9242,
-      "remainingNames": 258,
+      "currentNames": 9245,
+      "remainingNames": 255,
       "duplicateNames": 0,
-      "engineVersion": "0.602.183",
+      "engineVersion": "0.602.184",
       "added": [
         {
           "id": "dmr12-008",
@@ -534369,6 +534594,18 @@
         {
           "id": "dmrp11-015",
           "name": "♪お眠りララバイ"
+        },
+        {
+          "id": "dmsd08-015",
+          "name": "メルセデスベントゥー"
+        },
+        {
+          "id": "dmrp09-095",
+          "name": "KAMASE-BURN!"
+        },
+        {
+          "id": "dmrp12-079",
+          "name": "バシャーン a.k.a. 遮断"
         }
       ],
       "results": {
@@ -534484,13 +534721,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "2ed2597e96a401ecd4281db53733babd82d62c1af379be10c22f12b0c4b745e1",
-        "dist/engine.js": "f677ff1ca6a11059b5e8b6393c8263525c55b4775b0ca0ada5595d0bd869427f",
-        "dist/six-photo-rules.js": "7c7f5c1ec53ff88a05fda4e854c3bacf87c8bc5ff2b654a60c21ee1d33127141",
-        "dist/online-compatibility.js": "f1f7c07942313ec61460a0742c7481b130c2aa43ba8daa4820c29ee5dc59f2a3",
-        "dist/card-images.js": "e9e6933dfe72d87033a4e41b115d9bab62c835bb30fa119641c91dbef17c47ba",
-        "tools/target9000-card-spec.json": "ffc3d0c10f4711d5d2ef68c90e9c775a9bebc948a0fdac406778a571b774917b",
-        "tests/standard1666-effects.test.mjs": "bb40c81a92628fc8d3f26be9dab308d7ab60a40bd81d5f8deea7932dd71f3c30"
+        "dist/cards.json": "75a43c4fb43332d00a1db46cb5858aac94746d6762a579bb538d943407bdbd80",
+        "dist/engine.js": "0814f930fef230bebb0cfad42fa582f05ce0f5dc98a1b50ec8109f305950823d",
+        "dist/six-photo-rules.js": "d3916440aae619de32a33e38a1e46f6adfd16efac331b920b91749e90cdf6f3a",
+        "dist/online-compatibility.js": "6fbdf18b834f1c39bf35ff97ffe77af64c973b5e88a459bb6bc6df06da2386e3",
+        "dist/card-images.js": "d3df4d96fb21e6f627043c3ef6f68a05eb7e96cd05796e26ceb089d1d65997f8",
+        "tools/target9000-card-spec.json": "3331f45454f9c818816b3a44eb5e4d16357b56f0e61432affa7d2d93692cd8a3",
+        "tests/standard1668-effects.test.mjs": "95369651dc9cc6a1ba12ea9cb90e281ad5aec044a45ecdda2992f20010aaa883"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -534554,14 +534791,14 @@
       },
       "phaseRange": [
         1614,
-        1667
+        1668
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 172,
+      "addedNames": 175,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "final-check",
+        "name": "check",
         "command": [
           "npm",
           "run",
@@ -534569,23 +534806,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 22.414,
-        "log": "tmp/duema-phase-1667/final-check.log",
-        "logSha256": "9578c58324f30354a40b718165b5249aa5702861baa46d10984c565febb23ff5"
+        "seconds": 21.145,
+        "log": "tmp/duema-phase-1668/check.log",
+        "logSha256": "808bf4a7a61511c086c932be6784fc2f7da09c059596aba12404743b01828750"
       },
       "latestAudit": {
-        "name": "final-audit",
+        "name": "audit",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.407,
-        "log": "tmp/duema-phase-1667/final-audit.log",
-        "logSha256": "4c2eaf13545666b05255abd0a9cce27e27a85c140f0eac9b72eda3a46e5a64fd"
+        "seconds": 12.149,
+        "log": "tmp/duema-phase-1668/audit.log",
+        "logSha256": "429c29361ef324d4eef6777aa2258bced4dbbd818ee746ab17400ffb3ae2eb29"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1667.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1668.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -535702,11 +535939,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9242,
-      "remaining": 258,
+      "currentNames": 9245,
+      "remaining": 255,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-22T13:35:37.420Z"
+      "checkedAt": "2026-11-22T13:50:22.941Z"
     },
     "resolvedRegistrationValidations": [
       {

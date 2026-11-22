@@ -3724,8 +3724,9 @@ export function createSixPhotoRules(api){
   break;
  case'g34_CreatureAttackTarget1021':{
   const player=1-t.p;
-  (s.extLimits??=[]).push({kind:'g1021CreatureAttackTarget',player,startsPlayer:player,active:false,
-   expires:'end',who:player,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
+  (s.extLimits??=[]).push({kind:'g1021CreatureAttackTarget',player,
+   ...(t.untilStart?{active:true,expires:'start',who:t.p}:{startsPlayer:player,active:false,expires:'end',who:player}),
+   spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
   break;
  }
  case'g34_CountPower561':start(s,t,countedPowerDefs561(s,t,t));break;
@@ -6621,8 +6622,24 @@ export function createSixPhotoRules(api){
   const n=countDraw(s,t.p,{zone:'battle',filter:{creature:true,g1428Gr:true}});
   if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n,g173Targets:true,g193Tap:true,filter:{creature:true}}]);break;
  }
+ case'g34_GrThen1668':{
+  const top=own.gr?.[0];if(!top){if(t.mode==='fight')start(s,t,[{op:'FightEnemy240',fighter:null,g998EntryFight:true,optional:true}]);break;}
+  const grRef={uid:top.uid,incarnation:(top.incarnation||0)+1};
+  start(s,t,[{op:'AuraGr1353',g1668Receipt:grRef},{op:'GrFollow1668',grRef,mode:t.mode,arrived:false}]);break;
+ }
+ case'g34_GrFollow1668':{
+  const host=t.arrived&&sourceHost474(s,t.grRef),live=host&&!host.x.sealed&&api.isCreature(s,host.x);
+  if(t.mode==='fight'){
+   start(s,t,[{op:'FightEnemy240',fighter:t.grRef,g998EntryFight:true,optional:true}]);
+  }else{
+   if(!t.arrived)break;
+   const n=live?currentPower506(s,host.x):t.grLastPower;
+   if(n!==undefined&&n!=='-∞'&&n!==-Infinity)start(s,t,[{op:'Target',anyOwner:true,optional:true,to:'hand',filter:{creature:true,...(n==='∞'||n===Infinity?{}:{maxPower:n,g199Power:true})}}]);
+  }
+  break;
+ }
  case'g34_GrSummon1498':api.grSummon(s,t.p,{g1498Grant:{grant:t.grant,spell:!!t.spell||card(t.source).type==='spell',permanent:!!t.permanent,untilStart:!!t.untilStart,delayed:t.delayed,source:t.source,controller:t.controller??t.p}});break;
- case'g34_AuraGr1353':api.grSummon(s,t.p,{tapped:!!t.tapped});break;
+ case'g34_AuraGr1353':api.grSummon(s,t.p,{tapped:!!t.tapped,...(t.g1668Receipt?{g1668Receipt:t.g1668Receipt}:{})});break;
  case'g34_SelfAura1460':{
   const host=sourceHost474(s,t);
   if(host)put(s,{...t,op:'g34_AuraFromGrave1354',host:{uid:host.x.uid,incarnation:host.x.incarnation||0}});break;

@@ -35355,5 +35355,100 @@
         }
       ]
     }
+  },
+  "dmsd08-015": {
+    "phase": 1668,
+    "faces": [
+      {
+        "name": "メルセデスベントゥー",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。そのGRクリーチャーはタップしてバトルゾーンに出る。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n次の自分のターンのはじめまで、相手のクリーチャーが攻撃する時、可能なら自分のクリーチャーを攻撃する。",
+        "race": "ジョーカーズ/ワンダフォース",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353",
+          "tapped": true,
+          "spell": true
+        },
+        {
+          "op": "CreatureAttackTarget1021",
+          "untilStart": true,
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp09-095": {
+    "phase": 1668,
+    "faces": [
+      {
+        "name": "KAMASE-BURN!",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。その後、相手のクリーチャーを１体選んでもよい。そのGRクリーチャーと、選んだ相手のクリーチャーをバトルさせる。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrThen1668",
+          "mode": "fight",
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmrp12-079": {
+    "phase": 1668,
+    "faces": [
+      {
+        "name": "バシャーン a.k.a. 遮断",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nGR召喚する。その後、そのクリーチャー以下のパワーを持つクリーチャーを１体選び、持ち主の手札に戻してもよい。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GrThen1668",
+          "mode": "bounce",
+          "spell": true
+        }
+      ]
+    }
   }
 }
