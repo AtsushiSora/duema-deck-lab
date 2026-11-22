@@ -1,0 +1,202 @@
+{
+  "checkedAt": "2026-11-22T01:06:23.215798+00:00",
+  "baseCommit": "0118f7083247b3c6bd492a8cfee186320190026e",
+  "status": "local-improvement-verified-not-published",
+  "userScope": "Delay before the opponent operation appears on the other player screen. User clarified own-operation response time is not the reported issue. The phrase about reflection was NOT deployment authorization.",
+  "rootCause": "Existing polling waits 3000 ms after each GET completes before the next check; remote changes can wait that interval plus HTTP latency.",
+  "changes": [
+    "Use the already authenticated Firebase SDK to listen to the current room document. Emit only revision/cache hints to the online client; never decrypt stored state in the browser.",
+    "On a newer server-confirmed revision, fetch the authoritative projected room immediately rather than waiting for the next poll.",
+    "Coalesce repeated hints, catch updates arriving during reads and writes, avoid redundant reads after own commits, and preserve backoff for quotas/errors.",
+    "While the listener is healthy, retain a 15000 ms safety poll; use the existing 3000 ms poll for unsupported, failed or cache-only subscriptions.",
+    "Unsubscribe on leaving the online view, clearing the room, account change, match completion and disposal; discard callbacks from previous identities and rooms.",
+    "No save format, API move format, security rules, card IDs, stored decks or existing match histories changed."
+  ],
+  "verification": {
+    "results": [
+      {
+        "name": "live-cases",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.145,
+        "log": "tmp/duema-live-sync/live-cases.log",
+        "status": "passed",
+        "sha256": "f64ae408e1a1b350316c508f1614cd45a269e1ac611ae6704b5388c75ac30b45",
+        "passed": 23
+      },
+      {
+        "name": "live-app",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern",
+          "^live app sync",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.006,
+        "log": "tmp/duema-live-sync/live-app.log",
+        "status": "passed",
+        "sha256": "5c461d3ab7fe8c6dc8edd8a1796c6788eb680c77ae567d39e995885cfb51d58a",
+        "passed": 2
+      },
+      {
+        "name": "scheduler-benchmark",
+        "command": [
+          "node",
+          "tools/benchmark-online-sync.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.079,
+        "log": "tmp/duema-live-sync/scheduler-benchmark.log",
+        "status": "passed",
+        "sha256": "4bc8c1f1f01e4406b44f099afda20f00ad951ab3589a71ef1cf6805749717b19"
+      },
+      {
+        "name": "final-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-live.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-app.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/online-feedback.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.909,
+        "log": "tmp/duema-live-sync/final-online.log",
+        "status": "passed",
+        "sha256": "81ac75fa5e5d44793576edb74172c099d163007bead8c0e0b94e10f3334337f7",
+        "passed": 190
+      },
+      {
+        "name": "final-accounts",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/account-ios.test.mjs",
+          "tests/account-app.test.mjs",
+          "tests/play-time-sync.test.mjs",
+          "tests/app-updates.test.mjs",
+          "tests/ui-navigation-improvements.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.302,
+        "log": "tmp/duema-live-sync/final-accounts.log",
+        "status": "passed",
+        "sha256": "fece7a9b2193f2f7f5aba877ee5f880057b48bcd3d1f31aa66094650e5c0ec98",
+        "passed": 86
+      },
+      {
+        "name": "final-check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.288,
+        "log": "tmp/duema-live-sync/final-check.log",
+        "status": "passed",
+        "sha256": "53385cc776e247358f25f6106b71c99729e696703f83d3d63f78ab15f517e134"
+      },
+      {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.01,
+        "log": "tmp/duema-live-sync/audit.log",
+        "status": "passed",
+        "sha256": "f3dce8c6897c86fad30c51a6172abc271f0dea7a15e217958f36c09a29dd682a"
+      }
+    ],
+    "distinctTestsPassed": 276,
+    "newLiveCasesIncludedInTotal": 25,
+    "incompleteRuns": [],
+    "noWholeNpmTest": true,
+    "maxProcessSeconds": 570,
+    "actualAppIntegration": "Room join and opponent resignation pass through revision notifications into the actual app VM, real HTTP handler and encrypted isolated store without manual refresh. Unchanged snapshots preserve current selection and action context."
+  },
+  "schedulerBenchmark": {
+    "measurement": "Deterministic scheduler simulation. Excludes real notification transport, token acquisition, server and network latency. Idle request counts include initial load.",
+    "before": {
+      "fixedSchedulerWaitMs": 2900,
+      "idleGetsIn60Seconds": 21
+    },
+    "after": {
+      "fixedSchedulerWaitMs": 0,
+      "idleGetsIn60Seconds": 5
+    }
+  },
+  "productionDiagnosticsReadOnly": {
+    "window": "Approximately the 24 hours ending 2026-11-22 01:01-01:04 UTC",
+    "source": "Netlify Observability topk functions, FunctionName duel, Method GET/POST, StatusCode 200",
+    "getLatencySeconds": {
+      "p50": 0.474496309,
+      "p90": 0.872039292,
+      "p99": 1.649041384
+    },
+    "postLatencySeconds": {
+      "p50": 1.232097099,
+      "p90": 2.202724343,
+      "p99": 4.518463311
+    },
+    "interpretation": "Aggregate server/edge response statistics, not tester-specific end-to-end measurements. The GET time remains in addition to listener delivery even after the fixed poll wait is removed. POST latency was inspected before the user clarified it was outside the reported issue.",
+    "functionsRegion": "us-east-2",
+    "databaseRegion": "not confirmed",
+    "regionChanged": false,
+    "stopBuilds": true
+  },
+  "officialReferences": [
+    "https://firebase.google.com/docs/firestore/query-data/listen",
+    "https://firebase.google.com/docs/firestore/pricing"
+  ],
+  "actualCards": {
+    "startUniqueNames": 9070,
+    "endUniqueNames": 9070,
+    "uniqueIds": 9070,
+    "duplicates": 0,
+    "added": 0,
+    "normalization": "dist/catalogue.js nameKey"
+  },
+  "hashes": {
+    "dist/app.js": "7170cfcba2c5ce509959fafd0ab58b81a20e8f40aee28d8a8d7f75fe0b19c480",
+    "dist/online.js": "85a9ecdfa7f17180ae76fc36b540b7822de96174dfd8aa9a72237862083232e9",
+    "dist/account.js": "44c4cdde58946d22248b64323e42c1f531cf80b28e6a019fbf4cef929d505351",
+    "tests/online-live.test.mjs": "c4f3e8c21707069dc354360caf49b768551c98de31bde10e77c2d5120c2cb135",
+    "tests/online-app.test.mjs": "905490531f055c3db076c40f20069294201f2b044ac40bd897ebc7c11e933fd1",
+    "tools/benchmark-online-sync.mjs": "2d3d7aa58c69b68e3e1668ec1db02b2e124661cf41d925f823271faa2d655cd7",
+    "dist/cards.json": "42c3b7b8060c037d25105c6320c4bd597a47be5e94fcec473de4f685e90bbb40"
+  },
+  "limits": [
+    "Scheduler simulation excludes real notification transport, token acquisition, HTTP latency and rendering time; it is not a claim of zero end-to-end latency.",
+    "Real Firebase subscription under two production accounts and device/network latency remain unmeasured for this local change. SDK wiring and lifecycle were verified through controlled SDK fixtures and actual-app isolated integration.",
+    "The existing production site is unchanged and therefore still uses the previous polling behavior.",
+    "A future explicitly authorized release must bump app/module cache versions and verify the change on both player accounts.",
+    "Historical interrupted whole npm test and two user-deferred ruling/reprint items remain unchanged."
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false,
+    "releaseVersionPreparationReverted": true,
+    "automaticUpdatesRemainStopped": true
+  }
+}

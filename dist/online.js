@@ -3,11 +3,37 @@ import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.722.4';
 const needsUserAction=e=>['room/version','room/schema','room/integrity'].includes(e.code)
  ||[400,401,403,404,405,410,413,415].includes(e.status)
  ||/^auth\//.test(String(e.code||''))&&!['auth/network-request-failed','auth/internal-error'].includes(e.code);
-export function createOnlineClient({getToken,fetcher=fetch,onChange=()=>{},interval=3000,timeout=15000,timer=setTimeout,cancel=clearTimeout}={}){
- let identity=null,epoch=0,handle=null,controller=null,active=false,reading=false,verifiedRules=false,failures=0;
+export function createOnlineClient({getToken,fetcher=fetch,onChange=()=>{},interval=3000,liveInterval=15000,watchRoom=null,timeout=15000,timer=setTimeout,cancel=clearTimeout}={}){
+ let identity=null,epoch=0,handle=null,controller=null,active=false,reading=false,verifiedRules=false,failures=0,live=null;
  const state={room:null,busy:false,connected:false,error:null,loaded:false,feedback:null,retry:null};
  const emit=()=>onChange(structuredClone(state));
- const later=()=>{cancel(handle);handle=null;if(active&&identity&&state.retry?.automatic!==false)handle=timer(()=>{void refresh({automatic:true});},state.retry?.delay??interval);};
+ const later=()=>{cancel(handle);handle=null;if(active&&identity&&state.retry?.automatic!==false)handle=timer(()=>{void refresh({automatic:true});},state.retry?.delay??(live?.ready?Math.max(interval,liveInterval):interval));};
+ function stopWatching(){const previous=live;live=null;previous?.stop?.();}
+ function flushLive(){
+  const scope=live;
+  if(!scope?.pending||!active||reading||state.busy||state.retry)return;
+  scope.pending=false;
+  if(scope.revision>=(state.room?.revision??0)+1)void refresh({automatic:true});
+ }
+ function syncWatch(){
+  const room=state.room;
+  if(!active||!identity||typeof watchRoom!=='function'||!room||![0,1].includes(room.seat)||!['waiting','playing'].includes(room.phase)||state.retry?.automatic===false){stopWatching();return;}
+  if(live?.uid===identity&&live.code===room.code)return;
+  stopWatching();const scope={uid:identity,code:room.code,ready:false,pending:false,revision:room.revision,stop:null,failed:false};live=scope;
+  const current=()=>live===scope&&active&&identity===scope.uid&&state.room?.code===scope.code;
+  const failed=()=>{if(!current())return;scope.failed=true;scope.ready=false;scope.pending=false;scope.stop?.();scope.stop=null;later();};
+  try{
+   const stop=watchRoom(room.code,hint=>{
+    if(!current()||scope.failed)return;
+    if(hint?.fromCache){scope.ready=false;later();return;}
+    if(!Number.isSafeInteger(hint?.revision)||hint.revision<0)return;
+    scope.ready=true;scope.revision=Math.max(scope.revision,hint.revision);
+    if(hint.revision>(state.room?.revision??-1)){scope.pending=true;queueMicrotask(flushLive);}
+    later();
+   },failed);
+   if(typeof stop==='function'){if(current()&&!scope.failed)scope.stop=stop;else stop();}else if(current())live=null;
+  }catch{failed();}
+ }
  async function request(body,code){
   const ownController=new AbortController();controller=ownController;const limit=timer(()=>ownController.abort(),timeout);
   try{
@@ -39,13 +65,13 @@ export function createOnlineClient({getToken,fetcher=fetch,onChange=()=>{},inter
     state.error=error;state.retry=retry;state.connected=false;verifiedRules=false;
    }
    return null;
-  }finally{if(generation===epoch){reading=false;state.busy=false;if(foreground||changed)emit();later();}}
+  }finally{if(generation===epoch){reading=false;state.busy=false;if(foreground||changed)emit();syncWatch();later();flushLive();}}
  }
  // Automatic retries only reconcile with GET. Uncertain game moves are never replayed.
- async function refresh({automatic=false}={}){if(automatic&&state.retry?.automatic===false)return null;return run(null,state.room?.code);}
+ async function refresh({automatic=false}={}){if(!automatic&&live?.failed)stopWatching();if(automatic&&state.retry?.automatic===false)return null;return run(null,state.room?.code);}
  function reset(){failures=0;Object.assign(state,{room:null,busy:false,connected:false,error:null,loaded:false,feedback:null,retry:null});}
- function setIdentity(uid){if(uid===identity)return;epoch++;identity=uid||null;verifiedRules=false;controller?.abort();cancel(handle);reading=false;reset();emit();if(identity&&active)void refresh({automatic:true});}
- function setActive(value){if(active===value)return;active=value;cancel(handle);if(active&&identity&&!state.busy)void refresh({automatic:true});}
+ function setIdentity(uid){if(uid===identity)return;stopWatching();epoch++;identity=uid||null;verifiedRules=false;controller?.abort();cancel(handle);reading=false;reset();emit();if(identity&&active)void refresh({automatic:true});}
+ function setActive(value){if(active===value)return;active=value;if(!active)stopWatching();else syncWatch();cancel(handle);if(active&&identity&&!state.busy)void refresh({automatic:true});}
  const mutation=async(op,body={})=>{const generation=epoch,who=identity;if(!who)return null;if(!verifiedRules){await refresh();if(generation!==epoch||who!==identity||!state.connected)return null;}return run({op,requestId:crypto.randomUUID(),...body});};
- return{setIdentity,setActive,refresh,reviewFeedback(delta){const f=state.feedback;if(!f||![-1,1].includes(delta))return;const next=Math.max(0,Math.min(f.items.length-1,f.index+delta));if(next!==f.index){f.index=next;emit();}},getState:()=>structuredClone(state),create:deck=>mutation('create',{deck}),join:(code,deck)=>mutation('join',{code,deck}),move:(actionId,number)=>mutation('move',{code:state.room?.code,revision:state.room?.revision,actionId,...(number!==undefined?{number}:{})}),resign:()=>mutation('resign',{code:state.room?.code,revision:state.room?.revision}),cancel:()=>mutation('cancel',{code:state.room?.code,revision:state.room?.revision}),clear(){epoch++;controller?.abort();cancel(handle);reading=false;verifiedRules=false;reset();emit();},dispose(){epoch++;identity=null;active=false;controller?.abort();cancel(handle);}};
+ return{setIdentity,setActive,refresh,reviewFeedback(delta){const f=state.feedback;if(!f||![-1,1].includes(delta))return;const next=Math.max(0,Math.min(f.items.length-1,f.index+delta));if(next!==f.index){f.index=next;emit();}},getState:()=>structuredClone(state),create:deck=>mutation('create',{deck}),join:(code,deck)=>mutation('join',{code,deck}),move:(actionId,number)=>mutation('move',{code:state.room?.code,revision:state.room?.revision,actionId,...(number!==undefined?{number}:{})}),resign:()=>mutation('resign',{code:state.room?.code,revision:state.room?.revision}),cancel:()=>mutation('cancel',{code:state.room?.code,revision:state.room?.revision}),clear(){stopWatching();epoch++;controller?.abort();cancel(handle);reading=false;verifiedRules=false;reset();emit();},dispose(){stopWatching();epoch++;identity=null;active=false;controller?.abort();cancel(handle);}};
 }
