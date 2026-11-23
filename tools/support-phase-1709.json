@@ -1,0 +1,785 @@
+{
+  "phase": 1709,
+  "checkedAt": "2026-11-23T05:44:31.815Z",
+  "baseCount": 9362,
+  "target": 9500,
+  "description": "Complete One Two Sun Dawn sequential mandatory fire destruction, Balcadius full evolution/sweep/spell lock and both souls, Destronlee conditional lone power/breaker, Vaz Romanov dark grave evolution and non-evolution destruction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36187/",
+    "https://dm.takaratomy.co.jp/rule/qa/39123/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 36187,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36187/",
+      "sha256": "18ec43619e6322784c98ca897e2ea085c79157aabae54586a79b3d854208948e",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1709-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA36187 destroys all other both-player creatures"
+    },
+    {
+      "id": 39123,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39123/",
+      "sha256": "44d4444777ff5556311d974fde78dba772476f5a3622c04afdba209f41b31ce9",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1709-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA39123 Gyai moves grave-evolution top and selected grave base together"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-048",
+      "name": "ワンツーサン・ドーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-048",
+      "faces": [
+        {
+          "name": "ワンツーサン・ドーン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー1000以下のクリーチャーを１体破壊し、相手のパワー2000以下のクリーチャーを１体破壊し、その後、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 1000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-048.jpg",
+      "imageReviewed": true,
+      "imageSha256": "957a69b3433bccfc161b700d0d18289f66a9447506c606ede636c9b0a5e201da",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp07-048"
+        ],
+        "result": "Exact official name search and listed products; all11 original/reprint full faces and images reviewed. Nonmatching Destron names excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:44:31.815Z",
+        "sha256": "864d36599e4aa82395a6130696105c409611c5dfcdda2b6363ba49aa8a6573bf",
+        "facesMatched": true,
+        "imageSha256": "957a69b3433bccfc161b700d0d18289f66a9447506c606ede636c9b0a5e201da"
+      }
+    },
+    {
+      "id": "dm38-s05",
+      "name": "悪魔神王バルカディアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-s05",
+      "faces": [
+        {
+          "name": "悪魔神王バルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のエンジェル・コマンドまたはデーモン・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\n相手は呪文を唱えることができない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "14500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "エンジェル・コマンド"
+            },
+            {
+              "race": "デーモン・コマンド"
+            }
+          ]
+        },
+        "g558Souls": [
+          "H",
+          "E"
+        ],
+        "breaker": 3,
+        "g473OpponentSpellLock": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "g179Other": true,
+            "g1660CreatureOnly": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-s05.jpg",
+      "imageReviewed": true,
+      "imageSha256": "b5d926f29a7b740d12d5b8489efab29fe02c671d4529658fbfb8e7a8748f2085",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy11-077",
+          "dmx19-s49",
+          "dm38-s05"
+        ],
+        "result": "Exact official name search and listed products; all11 original/reprint full faces and images reviewed. Nonmatching Destron names excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:44:31.815Z",
+        "sha256": "59ec3e70aeca329f97d4a119c66e0c978d03ee7f10feeb66facb70ededc93ed2",
+        "facesMatched": true,
+        "imageSha256": "b5d926f29a7b740d12d5b8489efab29fe02c671d4529658fbfb8e7a8748f2085"
+      }
+    },
+    {
+      "id": "dmx16-015",
+      "name": "悪魔龍王 デストロンリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-015",
+      "faces": [
+        {
+          "name": "悪魔龍王 デストロンリー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ー自分の闇のコマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\nW・ブレイカー\nバトルゾーンに自分の他のクリーチャーが１体もない場合、このクリーチャーのパワーは+5000され、「T・ブレイカー」を得る。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "category": "コマンド",
+          "civilization": "闇"
+        },
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g479OnlyCreature": true
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "g179Other": true,
+            "g1660CreatureOnly": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-015.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6d2303a00db6d7b34339d4defd052a3fb48b7714cd1ae912103c120bbc0dd9af",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmx16-015"
+        ],
+        "result": "Exact official name search and listed products; all11 original/reprint full faces and images reviewed. Nonmatching Destron names excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:44:31.815Z",
+        "sha256": "4fb3292efa81c8970b5a72291d2a14c35cb41baefce0d2a067772350f28138bb",
+        "facesMatched": true,
+        "imageSha256": "6d2303a00db6d7b34339d4defd052a3fb48b7714cd1ae912103c120bbc0dd9af"
+      }
+    },
+    {
+      "id": "dmc68-007",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-007",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー(墓地進化)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、相手の進化ではないクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-007.jpg",
+      "imageReviewed": true,
+      "imageSha256": "f4f30b00354885fb6131125893b3f246180fd7cd033adfd68bb2e53f8d7b6241",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy13-025",
+          "dmx14-044",
+          "dmex04-035",
+          "dmx18-013",
+          "dmc68-007",
+          "dmbd10-012"
+        ],
+        "result": "Exact official name search and listed products; all11 original/reprint full faces and images reviewed. Nonmatching Destron names excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:44:31.815Z",
+        "sha256": "20694b84af03713a0ae745dba2e8e1afa21c12783456ebf3edaccf05d714c62e",
+        "facesMatched": true,
+        "imageSha256": "f4f30b00354885fb6131125893b3f246180fd7cd033adfd68bb2e53f8d7b6241"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "promoy11-077",
+      "name": "悪魔神王バルカディアス",
+      "canonicalId": "dm38-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-077",
+      "faces": [
+        {
+          "name": "悪魔神王バルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "【H・ソウル】【E・ソウル】\nマナゾーンに置く時、このカードはタップして置く。\n進化-自分のエンジェル・コマンドまたはデーモン・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\n相手は呪文を唱えることができない。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "14500",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "dc6e6c5d314f646b464f171c862df347bcea26a14609358deb6ab3408ca70b86",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-077.jpg",
+          "file": "tmp/duema-phase-1709/promoy11-077-0.jpg",
+          "sha256": "e799a2de5894a3a931977695e59ce92b8ddff2f83518bbf15489aa3499594dbe"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx19-s49",
+      "name": "悪魔神王バルカディアス",
+      "canonicalId": "dm38-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s49",
+      "faces": [
+        {
+          "name": "悪魔神王バルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "【H・ソウル】【E・ソウル】\nマナゾーンに置く時、このカードはタップして置く。\n進化-自分のエンジェル・コマンドまたはデーモン・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\n相手は呪文を唱えることができない。\nT・ブレイカー",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "14500",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "d75e71732462a1766921b32ea8f62f20650ec2ddc988d3e440ad91109cc997a1",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s49.jpg",
+          "file": "tmp/duema-phase-1709/dmx19-s49-0.jpg",
+          "sha256": "8362cccd0d64184d6a32c456ce1f6f25ec2a53bc2c6a38d8c8838f2fcfd44c96"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "promoy13-025",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "canonicalId": "dmc68-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-025",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、相手の進化ではないクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "c41a338792a47bfd25c5d4cafa16f4eddae407a2e55c39d61f2feb15e84ad0ba",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-025.jpg",
+          "file": "tmp/duema-phase-1709/promoy13-025-0.jpg",
+          "sha256": "4ec11fac6a3dfbdf833ce1d36231cbe1f76aab0fc1e9d9f273a9563e48b659b0"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx14-044",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "canonicalId": "dmc68-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-044",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、相手の進化ではないクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "1df0721d9c33e86ca4c7f861e5e6d1f912af02d524f68f8c9aab109ebe3c0482",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-044.jpg",
+          "file": "tmp/duema-phase-1709/dmx14-044-0.jpg",
+          "sha256": "731f1a796da10704b1bbc72ef0501453dc57842c28612baa420d91f4c8bee3a1"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmex04-035",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "canonicalId": "dmc68-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-035",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手の進化ではないクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "f92adf90f882d275b9368494c1b19684c1d126bca08f2e98d39116d3d0f5eaba",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-035.jpg",
+          "file": "tmp/duema-phase-1709/dmex04-035-0.jpg",
+          "sha256": "dc8c630ec7e9520f7e70bbc298f908c5d78e87f5b2ef87f2ff3f60fe865ccaaa"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx18-013",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "canonicalId": "dmc68-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-013",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、相手の進化ではないクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "b4c2fb4751c0e07ed830d7de6da68119b191141e61327f6c82ae61ea81d918b6",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-013.jpg",
+          "file": "tmp/duema-phase-1709/dmx18-013-0.jpg",
+          "sha256": "027c2a6ca17142e2341f480d50ef52ee50867728b4f86da6ab80f7c5c3e02cb9"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmbd10-012",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "canonicalId": "dmc68-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd10-012",
+      "faces": [
+        {
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手の進化ではないクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド/ダークロード",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "9f6832aa8036850097b47e9d6de63b7e9faa75a238c23a2b2266dd62fd0d8b30",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd10-012.jpg",
+          "file": "tmp/duema-phase-1709/dmbd10-012-0.jpg",
+          "sha256": "b17e15b682da60b6ca986f4e4aefe542188a0a59b5ff4a3e3f9c947acb6c9360"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T05:44:31.815Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-048": 4,
+      "dm38-s05": 4,
+      "dmx16-015": 4,
+      "dmc68-007": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T05:51:33.335Z",
+    "results": {
+      "related-evolution-grave-lock": {
+        "name": "related-evolution-grave-lock",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1072-effects.test.mjs",
+          "tests/standard1043-effects.test.mjs",
+          "tests/standard479-effects.test.mjs",
+          "tests/standard473-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 23.878,
+        "log": "tmp/duema-phase-1709/related-evolution-grave-lock.log",
+        "passed": 162,
+        "logSha256": "4d51adfc0e016bd0c682f422ab2778d189119362ad8bca39a8fb96ce31b5a8df"
+      },
+      "related-sequential-online": {
+        "name": "related-sequential-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1703-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 28.332,
+        "log": "tmp/duema-phase-1709/related-sequential-online.log",
+        "passed": 92,
+        "logSha256": "10257ee7ae7d7570f7f2a67cdf2b15dbf696d50757a95204953df7164bcb695b"
+      },
+      "related-grave-zoro-short": {
+        "name": "related-grave-zoro-short",
+        "command": [
+          "node",
+          "--test",
+          "tests/grave-interactions.test.mjs",
+          "tests/standard1138-effects.test.mjs",
+          "tests/standard1139-effects.test.mjs",
+          "tests/standard1140-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.697,
+        "log": "tmp/duema-phase-1709/related-grave-zoro-short.log",
+        "passed": 51,
+        "logSha256": "b0c4c6a455d2fe7fb9322fb47a193330cf0db9ad30987e5f82a020fa483b1319"
+      },
+      "related-galaxy-entry-short": {
+        "name": "related-galaxy-entry-short",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Inca forbids|^Tokoshie replaces|^Segare redirects|^revolution change|^entry replacement|^a replaced mana|^mana creature permission|^a free summon",
+          "tests/galaxy-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.839,
+        "log": "tmp/duema-phase-1709/related-galaxy-entry-short.log",
+        "passed": 8,
+        "logSha256": "4380fa9e94a9558291ff43f404345caf376154bc61b9c04bc59d5781d4bc8200"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1709.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.349,
+        "log": "tmp/duema-phase-1709/official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.786,
+        "log": "tmp/duema-phase-1709/check.log",
+        "logSha256": "39183fdecb4a870b59562c53008761a36885a1dde85fcc990b6724caa097dc13"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.462,
+        "log": "tmp/duema-phase-1709/audit.log",
+        "logSha256": "d65c8fd1da5f7d5c917825f2163bffe8cb9ad2811ba9244d606e2b56e19f7a05"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.504,
+        "log": "tmp/duema-phase-1709/target9500.log",
+        "logSha256": "e550a6d3ea66f01b1a5625f80e4d0ab844d8e1d2dea7354fd28787dcc13beb03"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1709/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.373,
+        "log": "tmp/duema-phase-1709/invariants.log",
+        "logSha256": "3b8ebe7246874688a136e00ce8eba4198519efb44b6ee68c03365f1dbb7c28a4"
+      },
+      "focused": {
+        "passed": 42,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1709-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 7.478,
+            "log": "tmp/duema-phase-1709/focused.log",
+            "passed": 21,
+            "logSha256": "4c9086dae55e1926d03da2957e8226b39f53c804a48d9034974dbb73bc38f7c5"
+          },
+          {
+            "name": "focused-corrected-fixtures-and-grave-stack",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Four whole|^Dawn shield|^Balcadius requires|^Balcadius spell lock|^Destronlee live|^Vaz Romanov exact",
+              "tests/standard1709-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 0.93,
+            "log": "tmp/duema-phase-1709/focused-corrected-fixtures-and-grave-stack.log",
+            "passed": 10,
+            "logSha256": "38ed3a6f5000c621fb374930b88ce9de626ea8a1b100a0ecaf0fa61feebcb179"
+          },
+          {
+            "name": "focused-metadata-and-shared-grave-cases",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Four whole|^Grave replacement|^Multiple replacement|^Legacy DOOM",
+              "tests/standard1709-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.475,
+            "log": "tmp/duema-phase-1709/focused-metadata-and-shared-grave-cases.log",
+            "passed": 9,
+            "logSha256": "b1ac32c3952d1b28fa434844343316539aecc2d8115ac6e5a6a2b08dad87bb01"
+          },
+          {
+            "name": "focused-legacy-zoro",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Legacy DOOM stack",
+              "tests/standard1709-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.71,
+            "log": "tmp/duema-phase-1709/focused-legacy-zoro.log",
+            "passed": 2,
+            "logSha256": "ccc806e8d62aa80b0ce7ee47a25cd4054bf8dcc04062e4b4fa7e0afa29d952c5"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 355,
+    "focusedTestsPassed": 42,
+    "relatedTestsPassed": 313
+  },
+  "validationNotes": [
+    "Actual nameKey counts9362/9366; clean baseline644bebcb and no running prior work. All9362 existing definitions/IDs/details/catalogue/name aliases/images/pins unchanged; no save-format change.",
+    "Four full official cards,11 original/reprint faces and images, current mana and limits verified. Balcadius retains H/E souls confirmed on all3 actual images; Destronlee exact name has a space, other similarly named Demon Dragon Kings excluded. Seven same-name reprints add no names and resolve with their saved name to the original battle ID.",
+    "Dawn pays5 or uses optional free S Trigger and resolves mandatory opposing current-power thresholds1000/2000/3000 in order. Missing an early target does not stop later destruction. Balcadius Angel-or-Demon evolution costs10, preserves its base, destroys every other own/enemy creature under exact QA36187, leaves gears, has T and restricts only enemy spells including shield spells while live.",
+    "Destronlee full dark Command evolution costs8, native other-creature sweep and lone-own-creature +5000/T continuously track own actual creatures; noncreature gears and opponent creatures do not count. Ignoring source removes its abilities. Vaz Romanov costs7, exactly one own dark grave creature, native evolution stack/W and mandatory opposing non-evolution destruction; encrypted pending base/target survives both players and conserves physical IDs.",
+    "Exact QA39123 exposed a real shared bug: Gyai replaced a grave-evolution creature entry but left its selected base in grave. Galaxy replacement now carries the selected g31 or legacy grave stack under Gyai or existing Zoro creature replacement, records base origins, and preserves same-zone semantics. Card replacements such as Tokoshie remain independent and do not consume bases when a hand entry is not replaced. Actual Alpha, multi-choice JSON continuation, legacy DOOM ordinary Gyai entry and multi-base Zoro replacement verified.",
+    "42 unique focused cases plus313 affected regressions pass,total355. Check21.786s, audit12.462s, target9500 and invariants pass. Initial fixtures corrected numeric g35Ignored, charge phase, useTrigger action, and name-based reprint lookup for prints absent from the original snapshot; real Gyai bug fixed rather than waived.",
+    "An accidentally overbroad galaxy regression invocation was stopped only for this run after139.766s with code-9, never marked passed. Full No22 six-seed matchups,35 random games and production20-game group remain unverified/outside this registration scope; not repeated. Replacement-related8 positive-pattern cases and all51 grave/Zoro unit cases were separately run and passed. Historical whole-suite and other pending/deferrals unchanged. No whole npm test, push/publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm31-008",
+      "name": "天扇ハタフリ・ハフリーズ",
+      "reason": "Verify whole gear, crossed Blocker and own-end untap."
+    },
+    {
+      "id": "dm35-017",
+      "name": "レジェンド・ルピア・ウィング",
+      "reason": "Verify free crossing to Rupia and full optional Armored Dragon search/reveal/shuffle."
+    },
+    {
+      "id": "dm23ex1-079",
+      "name": "炎刃 イダテン・アクセラー",
+      "reason": "Verify full Samurai gear and crossed Speed Attacker."
+    },
+    {
+      "id": "promoy11-046",
+      "name": "偽りの王 ヴァルトシュタイン",
+      "reason": "Verify full entry mill5 and own Zenith summon discount2 floor1."
+    }
+  ]
+}

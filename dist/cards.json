@@ -298346,21 +298346,203 @@
       ],
       "supportBatch": "phase-1708",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-048",
+      "name": "ワンツーサン・ドーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー1000以下のクリーチャーを１体破壊し、相手のパワー2000以下のクリーチャーを１体破壊し、その後、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-048",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 1000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1709",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-s05",
+      "name": "悪魔神王バルカディアス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 14500,
+      "race": "エンジェル・コマンド/デーモン・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のエンジェル・コマンドまたはデーモン・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\n相手は呪文を唱えることができない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-s05",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "エンジェル・コマンド"
+          },
+          {
+            "race": "デーモン・コマンド"
+          }
+        ]
+      },
+      "g558Souls": [
+        "H",
+        "E"
+      ],
+      "breaker": 3,
+      "g473OpponentSpellLock": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "g179Other": true,
+          "g1660CreatureOnly": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1709",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-015",
+      "name": "悪魔龍王 デストロンリー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "進化ー自分の闇のコマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、他のクリーチャーをすべて破壊する。\nW・ブレイカー\nバトルゾーンに自分の他のクリーチャーが１体もない場合、このクリーチャーのパワーは+5000され、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-015",
+      "limit": 4,
+      "evolution": {
+        "category": "コマンド",
+        "civilization": "闇"
+      },
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g479OnlyCreature": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 3
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "g179Other": true,
+          "g1660CreatureOnly": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1709",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc68-007",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド/ダークロード",
+      "text": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、相手の進化ではないクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-007",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1709",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1708,
-    "checkedAt": "2026-11-23T05:31:13.611Z",
-    "baseCount": 9359,
-    "newEffectCards": 3,
+    "phase": 1709,
+    "checkedAt": "2026-11-23T05:44:31.815Z",
+    "baseCount": 9362,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9362,
+    "totalCount": 9366,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35724/",
-      "https://dm.takaratomy.co.jp/rule/qa/34384/",
-      "https://dm.takaratomy.co.jp/rule/qa/43462/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36187/",
+      "https://dm.takaratomy.co.jp/rule/qa/39123/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -326364,6 +326546,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35317/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35702/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1708,
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "baseCount": 9359,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9362,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35724/",
+          "https://dm.takaratomy.co.jp/rule/qa/34384/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11824,
-  "supportedNames": 9362,
-  "pendingNames": 2462,
-  "phase": 1708,
-  "added": 3,
+  "supportedNames": 9366,
+  "pendingNames": 2458,
+  "phase": 1709,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,13 +155,13 @@
   ],
   "pendingByType": {
     "クリーチャー": 1390,
-    "呪文": 271,
+    "呪文": 270,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 210,
+    "進化クリーチャー": 208,
     "スター進化クリーチャー": 49,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 41,
@@ -186,7 +186,6 @@
     "DGフィールド": 1,
     "進化クリーチャー（超無限進化）": 3,
     "ドラグハート・ウエポン": 34,
-    "進化クリーチャー(墓地進化)": 2,
     "進化クリーチャー(進化V)": 12,
     "キング・セル": 5,
     "NEO GRクリーチャー": 1,
@@ -203,6 +202,7 @@
     "サイキック・クロスギア": 4,
     "WDフィールド": 1,
     "ドラゴニック・フィールド": 2,
+    "進化クリーチャー(墓地進化)": 1,
     "進化クリーチャー(超無限墓地進化)": 1,
     "進化クリーチャー(超無限進化)": 5,
     "零龍星雲": 4,
@@ -221,8 +221,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1775,
-    "複数面・特殊カードタイプまたは情報不足": 576,
+    "未対応の能力文": 1772,
+    "複数面・特殊カードタイプまたは情報不足": 575,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -545246,32 +545246,374 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1709,
+      "checkedAt": "2026-11-23T05:51:33.335Z",
+      "baseline": "644bebcb",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9362,
+      "currentNames": 9366,
+      "remainingNames": 134,
+      "added": [
+        {
+          "id": "dmrp07-048",
+          "name": "ワンツーサン・ドーン"
+        },
+        {
+          "id": "dm38-s05",
+          "name": "悪魔神王バルカディアス"
+        },
+        {
+          "id": "dmx16-015",
+          "name": "悪魔龍王 デストロンリー"
+        },
+        {
+          "id": "dmc68-007",
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "644bebcb",
+        "originalDefinitionsUnchanged": 9362,
+        "added": 4,
+        "uniqueNames": 9366,
+        "uniqueIds": 9366,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9362,
+        "existingImageReferenceRowsUnchanged": 11573,
+        "officialPrintsReviewed": 11,
+        "officialImagesReviewed": 11,
+        "existingPinsUnchanged": 917
+      },
+      "results": {
+        "related-evolution-grave-lock": {
+          "name": "related-evolution-grave-lock",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1072-effects.test.mjs",
+            "tests/standard1043-effects.test.mjs",
+            "tests/standard479-effects.test.mjs",
+            "tests/standard473-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.878,
+          "log": "tmp/duema-phase-1709/related-evolution-grave-lock.log",
+          "passed": 162,
+          "logSha256": "4d51adfc0e016bd0c682f422ab2778d189119362ad8bca39a8fb96ce31b5a8df"
+        },
+        "related-sequential-online": {
+          "name": "related-sequential-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1703-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 28.332,
+          "log": "tmp/duema-phase-1709/related-sequential-online.log",
+          "passed": 92,
+          "logSha256": "10257ee7ae7d7570f7f2a67cdf2b15dbf696d50757a95204953df7164bcb695b"
+        },
+        "related-grave-zoro-short": {
+          "name": "related-grave-zoro-short",
+          "command": [
+            "node",
+            "--test",
+            "tests/grave-interactions.test.mjs",
+            "tests/standard1138-effects.test.mjs",
+            "tests/standard1139-effects.test.mjs",
+            "tests/standard1140-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.697,
+          "log": "tmp/duema-phase-1709/related-grave-zoro-short.log",
+          "passed": 51,
+          "logSha256": "b0c4c6a455d2fe7fb9322fb47a193330cf0db9ad30987e5f82a020fa483b1319"
+        },
+        "related-galaxy-entry-short": {
+          "name": "related-galaxy-entry-short",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Inca forbids|^Tokoshie replaces|^Segare redirects|^revolution change|^entry replacement|^a replaced mana|^mana creature permission|^a free summon",
+            "tests/galaxy-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.839,
+          "log": "tmp/duema-phase-1709/related-galaxy-entry-short.log",
+          "passed": 8,
+          "logSha256": "4380fa9e94a9558291ff43f404345caf376154bc61b9c04bc59d5781d4bc8200"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1709.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.349,
+          "log": "tmp/duema-phase-1709/official.log",
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.786,
+          "log": "tmp/duema-phase-1709/check.log",
+          "logSha256": "39183fdecb4a870b59562c53008761a36885a1dde85fcc990b6724caa097dc13"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.462,
+          "log": "tmp/duema-phase-1709/audit.log",
+          "logSha256": "d65c8fd1da5f7d5c917825f2163bffe8cb9ad2811ba9244d606e2b56e19f7a05"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.504,
+          "log": "tmp/duema-phase-1709/target9500.log",
+          "logSha256": "e550a6d3ea66f01b1a5625f80e4d0ab844d8e1d2dea7354fd28787dcc13beb03"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1709/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.373,
+          "log": "tmp/duema-phase-1709/invariants.log",
+          "logSha256": "3b8ebe7246874688a136e00ce8eba4198519efb44b6ee68c03365f1dbb7c28a4"
+        },
+        "focused": {
+          "passed": 42,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1709-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 7.478,
+              "log": "tmp/duema-phase-1709/focused.log",
+              "passed": 21,
+              "logSha256": "4c9086dae55e1926d03da2957e8226b39f53c804a48d9034974dbb73bc38f7c5"
+            },
+            {
+              "name": "focused-corrected-fixtures-and-grave-stack",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Four whole|^Dawn shield|^Balcadius requires|^Balcadius spell lock|^Destronlee live|^Vaz Romanov exact",
+                "tests/standard1709-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.93,
+              "log": "tmp/duema-phase-1709/focused-corrected-fixtures-and-grave-stack.log",
+              "passed": 10,
+              "logSha256": "38ed3a6f5000c621fb374930b88ce9de626ea8a1b100a0ecaf0fa61feebcb179"
+            },
+            {
+              "name": "focused-metadata-and-shared-grave-cases",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Four whole|^Grave replacement|^Multiple replacement|^Legacy DOOM",
+                "tests/standard1709-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.475,
+              "log": "tmp/duema-phase-1709/focused-metadata-and-shared-grave-cases.log",
+              "passed": 9,
+              "logSha256": "b1ac32c3952d1b28fa434844343316539aecc2d8115ac6e5a6a2b08dad87bb01"
+            },
+            {
+              "name": "focused-legacy-zoro",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Legacy DOOM stack",
+                "tests/standard1709-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.71,
+              "log": "tmp/duema-phase-1709/focused-legacy-zoro.log",
+              "passed": 2,
+              "logSha256": "ccc806e8d62aa80b0ce7ee47a25cd4054bf8dcc04062e4b4fa7e0afa29d952c5"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 355,
+      "hashes": {
+        "dist/cards.json": "1b707f7f6b07d10bdd5056f8edfafb19705d450c411ae8e53de0c4adab4a5158",
+        "dist/engine.js": "43183cc90a1c69a9dcb6cf5092926b40c67c4c6a96ec0990a3cb1df075129116",
+        "dist/galaxy-rules.js": "d05f7b188d00e0da8f5fe1e29b4acb4b207d53f2396a46ad22f2f7c07ff9144a",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "91e6563cad0173b16b05aa38b57366124afaa450e915dab460bbc7ce0910692f",
+        "dist/card-images.js": "94ae48fd9b82770118747715de62cb108da943bbae1c1ac1c5240d786c9c91bd",
+        "tools/target9000-card-spec.json": "0de6c1209b0fd7000bc8a6f9f3104c45c9774e3158a200acd8067d8ab01ed64c",
+        "tests/standard1709-effects.test.mjs": "95921b75c942ff143592b9737a18f65666c7d64b5be5e2688de8678fdbafff10"
+      },
+      "engineVersion": "0.602.226",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1709-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.478,
+          "log": "tmp/duema-phase-1709/focused.log",
+          "logSha256": "4c9086dae55e1926d03da2957e8226b39f53c804a48d9034974dbb73bc38f7c5"
+        },
+        {
+          "name": "focused-corrected-fixtures-and-grave-stack",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Four whole|^Dawn shield|^Balcadius requires|^Balcadius spell lock|^Destronlee live|^Vaz Romanov exact",
+            "tests/standard1709-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.93,
+          "log": "tmp/duema-phase-1709/focused-corrected-fixtures-and-grave-stack.log",
+          "logSha256": "38ed3a6f5000c621fb374930b88ce9de626ea8a1b100a0ecaf0fa61feebcb179"
+        },
+        {
+          "name": "related-entry-replacement",
+          "command": [
+            "node",
+            "--test",
+            "tests/galaxy-effects.test.mjs",
+            "tests/grave-interactions.test.mjs",
+            "tests/standard1138-effects.test.mjs",
+            "tests/standard1139-effects.test.mjs",
+            "tests/standard1140-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 139.766,
+          "log": "tmp/duema-phase-1709/related-entry-replacement.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1709.json",
+      "supported": 9366,
+      "pending": 2458,
+      "reason": "Complete One Two Sun Dawn sequential mandatory fire destruction, Balcadius full evolution/sweep/spell lock and both souls, Destronlee conditional lone power/breaker, Vaz Romanov dark grave evolution and non-evolution destruction.",
+      "validationNotes": [
+        "Actual nameKey counts9362/9366; clean baseline644bebcb and no running prior work. All9362 existing definitions/IDs/details/catalogue/name aliases/images/pins unchanged; no save-format change.",
+        "Four full official cards,11 original/reprint faces and images, current mana and limits verified. Balcadius retains H/E souls confirmed on all3 actual images; Destronlee exact name has a space, other similarly named Demon Dragon Kings excluded. Seven same-name reprints add no names and resolve with their saved name to the original battle ID.",
+        "Dawn pays5 or uses optional free S Trigger and resolves mandatory opposing current-power thresholds1000/2000/3000 in order. Missing an early target does not stop later destruction. Balcadius Angel-or-Demon evolution costs10, preserves its base, destroys every other own/enemy creature under exact QA36187, leaves gears, has T and restricts only enemy spells including shield spells while live.",
+        "Destronlee full dark Command evolution costs8, native other-creature sweep and lone-own-creature +5000/T continuously track own actual creatures; noncreature gears and opponent creatures do not count. Ignoring source removes its abilities. Vaz Romanov costs7, exactly one own dark grave creature, native evolution stack/W and mandatory opposing non-evolution destruction; encrypted pending base/target survives both players and conserves physical IDs.",
+        "Exact QA39123 exposed a real shared bug: Gyai replaced a grave-evolution creature entry but left its selected base in grave. Galaxy replacement now carries the selected g31 or legacy grave stack under Gyai or existing Zoro creature replacement, records base origins, and preserves same-zone semantics. Card replacements such as Tokoshie remain independent and do not consume bases when a hand entry is not replaced. Actual Alpha, multi-choice JSON continuation, legacy DOOM ordinary Gyai entry and multi-base Zoro replacement verified.",
+        "42 unique focused cases plus313 affected regressions pass,total355. Check21.786s, audit12.462s, target9500 and invariants pass. Initial fixtures corrected numeric g35Ignored, charge phase, useTrigger action, and name-based reprint lookup for prints absent from the original snapshot; real Gyai bug fixed rather than waived.",
+        "An accidentally overbroad galaxy regression invocation was stopped only for this run after139.766s with code-9, never marked passed. Full No22 six-seed matchups,35 random games and production20-game group remain unverified/outside this registration scope; not repeated. Replacement-related8 positive-pattern cases and all51 grave/Zoro unit cases were separately run and passed. Historical whole-suite and other pending/deferrals unchanged. No whole npm test, push/publication or Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm31-008",
+          "name": "天扇ハタフリ・ハフリーズ",
+          "reason": "Verify whole gear, crossed Blocker and own-end untap."
+        },
+        {
+          "id": "dm35-017",
+          "name": "レジェンド・ルピア・ウィング",
+          "reason": "Verify free crossing to Rupia and full optional Armored Dragon search/reveal/shuffle."
+        },
+        {
+          "id": "dm23ex1-079",
+          "name": "炎刃 イダテン・アクセラー",
+          "reason": "Verify full Samurai gear and crossed Speed Attacker."
+        },
+        {
+          "id": "promoy11-046",
+          "name": "偽りの王 ヴァルトシュタイン",
+          "reason": "Verify full entry mill5 and own Zenith summon discount2 floor1."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1708,
-    "nextPhase": 1709,
+    "lastVerifiedPhase": 1709,
+    "nextPhase": 1710,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp07-048",
-        "name": "ワンツーサン・ドーン",
-        "reason": "Verify whole sequential1000/2000/3000 destruction and Shield Trigger."
+        "id": "dm31-008",
+        "name": "天扇ハタフリ・ハフリーズ",
+        "reason": "Verify whole gear, crossed Blocker and own-end untap."
       },
       {
-        "id": "dm38-s05",
-        "name": "悪魔神王バルカディアス",
-        "reason": "Verify complete evolution, other-creature sweep, opposing spell lock and T breaker."
+        "id": "dm35-017",
+        "name": "レジェンド・ルピア・ウィング",
+        "reason": "Verify free crossing to Rupia and full optional Armored Dragon search/reveal/shuffle."
       },
       {
-        "id": "dmx16-015",
-        "name": "悪魔龍王デストロンリー",
-        "reason": "Verify full Command evolution, other-creature sweep and conditional lone-creature power/breaker."
+        "id": "dm23ex1-079",
+        "name": "炎刃 イダテン・アクセラー",
+        "reason": "Verify full Samurai gear and crossed Speed Attacker."
       },
       {
-        "id": "dmc68-007",
-        "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
-        "reason": "Verify whole grave evolution, opposing non-evolution destruction and W breaker."
+        "id": "promoy11-046",
+        "name": "偽りの王 ヴァルトシュタイン",
+        "reason": "Verify full entry mill5 and own Zenith summon discount2 floor1."
       }
     ],
     "steps": [
@@ -546156,23 +546498,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1708,
-      "baseline": "3505ea3d",
-      "supportedNames": 9362,
-      "artifact": "tools/target9500-registration-checkpoint-1708.json",
-      "checkedAt": "2026-11-23T05:41:58.276Z"
+      "phase": 1709,
+      "baseline": "644bebcb",
+      "supportedNames": 9366,
+      "artifact": "tools/target9500-registration-checkpoint-1709.json",
+      "checkedAt": "2026-11-23T05:51:33.335Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T05:41:58.276Z",
+      "checkedAt": "2026-11-23T05:51:33.335Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9362,
-      "remainingNames": 138,
+      "currentNames": 9366,
+      "remainingNames": 134,
       "duplicateNames": 0,
-      "engineVersion": "0.602.225",
+      "engineVersion": "0.602.226",
       "added": [
         {
           "id": "dmr12-008",
@@ -547341,6 +547683,22 @@
         {
           "id": "dm23ex1-067",
           "name": "天装 タイショウ・アームズ"
+        },
+        {
+          "id": "dmrp07-048",
+          "name": "ワンツーサン・ドーン"
+        },
+        {
+          "id": "dm38-s05",
+          "name": "悪魔神王バルカディアス"
+        },
+        {
+          "id": "dmx16-015",
+          "name": "悪魔龍王 デストロンリー"
+        },
+        {
+          "id": "dmc68-007",
+          "name": "暗黒の悪魔神ヴァーズ・ロマノフ"
         }
       ],
       "results": {
@@ -547456,17 +547814,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "ff891fa52f912f4f09f62ebc806b9470538a4fd0f7c4485f989b4de71c26b5f9",
-        "dist/engine.js": "771353e1e5e130bbf474b9a2a03689fdd7d14073839dad75e2c6d85d3a58f9a3",
-        "dist/card-name-aliases.js": "08847f03f9f62b6761b9b9f04cfac32b543cf0a0affb27701ce23e5324feafa2",
-        "dist/catalogue.json": "950538b8c311b0c7e7eb7b687f5326028458b3389d8c62233ccd362197e7af8c",
-        "tools/verify-catalogue-extension.mjs": "c8d81bfaf1243f964b379b33736fc8250703645adaefd2f59954918909c5ee22",
-        "tests/target9500-verification.test.mjs": "8f5d75036ce82f3ab83ecb2db3a4a9dc171864a4ee0e027f1c37bd2e792679b5",
+        "dist/cards.json": "1b707f7f6b07d10bdd5056f8edfafb19705d450c411ae8e53de0c4adab4a5158",
+        "dist/engine.js": "43183cc90a1c69a9dcb6cf5092926b40c67c4c6a96ec0990a3cb1df075129116",
+        "dist/galaxy-rules.js": "d05f7b188d00e0da8f5fe1e29b4acb4b207d53f2396a46ad22f2f7c07ff9144a",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "e5ed00e4ca82936e8bb9e7b682e77c68e154e47f052379cffd4724452dfea6cd",
-        "dist/card-images.js": "0917286ff3bff24b5e57c9cfe7d72670448a048635177babce66faffdec15020",
-        "tools/target9000-card-spec.json": "e7eddf746a780e2446afca1a5594c76ace4992d7e645ce13ffd33a9047177cd5",
-        "tests/standard1708-effects.test.mjs": "dabe808deb6cf0b8084d4639315789925380ec04218fe0d9211a64d924811927"
+        "dist/online-compatibility.js": "91e6563cad0173b16b05aa38b57366124afaa450e915dab460bbc7ce0910692f",
+        "dist/card-images.js": "94ae48fd9b82770118747715de62cb108da943bbae1c1ac1c5240d786c9c91bd",
+        "tools/target9000-card-spec.json": "0de6c1209b0fd7000bc8a6f9f3104c45c9774e3158a200acd8067d8ab01ed64c",
+        "tests/standard1709-effects.test.mjs": "95921b75c942ff143592b9737a18f65666c7d64b5be5e2688de8678fdbafff10"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -547530,14 +547885,14 @@
       },
       "phaseRange": [
         1614,
-        1708
+        1709
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 292,
+      "addedNames": 296,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check-name-count-fixed",
+        "name": "check",
         "command": [
           "npm",
           "run",
@@ -547545,9 +547900,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.697,
-        "log": "tmp/duema-phase-1708/check-name-count-fixed.log",
-        "logSha256": "aaf71f1a85ba215e60d665dfd96dd4a938d21aeb788e4de6de2d0894b122f021"
+        "seconds": 21.786,
+        "log": "tmp/duema-phase-1709/check.log",
+        "logSha256": "39183fdecb4a870b59562c53008761a36885a1dde85fcc990b6724caa097dc13"
       },
       "latestAudit": {
         "name": "audit",
@@ -547557,11 +547912,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.702,
-        "log": "tmp/duema-phase-1708/audit.log",
-        "logSha256": "135d419f34b0fc5dfbdd56c164214a7dc152166f52aa0ce3c0c4314e2ca60dd3"
+        "seconds": 12.462,
+        "log": "tmp/duema-phase-1709/audit.log",
+        "logSha256": "d65c8fd1da5f7d5c917825f2163bffe8cb9ad2811ba9244d606e2b56e19f7a05"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1708.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1709.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -548679,11 +549034,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9362,
-      "remaining": 138,
+      "currentNames": 9366,
+      "remaining": 134,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T05:41:58.276Z",
+      "checkedAt": "2026-11-23T05:51:33.335Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -600828,11 +601183,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1708,
+    "phase": 1709,
     "threshold": 9500,
-    "supportedNames": 9362,
-    "pendingNames": 2462,
-    "checkedAt": "2026-11-23T05:41:58.276Z",
+    "supportedNames": 9366,
+    "pendingNames": 2458,
+    "checkedAt": "2026-11-23T05:51:33.335Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -600841,7 +601196,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1708.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1709.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

@@ -84,9 +84,12 @@ export function createGalaxyRules(api){
   // Hand-evolution material moves with the creature under Gaia or Zoro (QA39125, QA48906).
   if(card(x).g827HandWaterEvolution&&(card(r.source).gaiaEntry||r.g35Role==='zoro'))
    api.attachHandEvolution(s,e.p,x,e.baseUid);
-  // Grave evolution moves the selected material with the entrant under Zoro (QA48906).
-  if(r.g35Role==='zoro'&&Array.isArray(e.baseUid)&&card(x).g31Evolution?.zone==='grave'){
-   const bases=e.baseUid.map(uid=>remove(own.grave,uid));
+  // Creature replacements move the grave-evolution stack together (QA39123, QA48906).
+  if((card(r.source).gaiaEntry||r.g35Role==='zoro')&&Array.isArray(e.baseUid)&&
+   (card(x).g31Evolution?.zone==='grave'||card(x).graveEvolution)){
+   const bases=e.baseUid.map(uid=>own.grave.find(y=>y.uid===uid));
+   if(bases.some(y=>!y))throw Error('墓地進化元がありません');
+   for(const base of bases){origins.set(base.uid,{zone:'grave',serial:base.zoneSerial,tapped:base.tapped});remove(own.grave,base.uid);}
    x.under=bases;
   }
   // Creature replacements include the mana evolution base (QA48906, QA49082).
