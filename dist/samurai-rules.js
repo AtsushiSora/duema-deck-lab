@@ -37,10 +37,14 @@ export function createSamuraiRules(api){
 
  }
  const crossPayment=(g,reduction=0,alternative=false)=>({...card(g),crossing:true,...(alternative?{cost:card(g).g1720CrossAlternativeCost}:{}),...(reduction?{g933CrossReduction:reduction}:{})});
- function freeCross(g,c,x){return c.type==='creature'&&(g.g1723FreeEvolutionGod&&(api.isEvolution(x)||x.godLinks?.length&&String(c.race).includes('ゴッド'))||g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>(Array.isArray(g.g1710FreeCrossName)?g.g1710FreeCrossName:[g.g1710FreeCrossName]).some(part=>name.includes(part))));}
+ function freeCross(g,c,x){return c.type==='creature'&&(g.g1724FreeCross||g.g1723FreeEvolutionGod&&(api.isEvolution(x)||x.godLinks?.length&&String(c.race).includes('ゴッド'))||g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>(Array.isArray(g.g1710FreeCrossName)?g.g1710FreeCrossName:[g.g1710FreeCrossName]).some(part=>name.includes(part))));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g18_FinalGrant1724':
+  if(s.attackLifecycle&&s.players.some(owner=>owner.battle.some(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation))))
+   choice(s,t,'この攻撃の終わりまでG・ブレイカーを与える？',[opt('与える',true,10),skip()]);
+  break;
  case'g18_SelfCross1707':{
   const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
   const rows=host?gears(s,t.p).filter(g=>!g.sealed&&!g.faceDown&&live(s,t.p,g)!==host):[];
@@ -116,6 +120,7 @@ export function createSamuraiRules(api){
  }break;
  case'g18_Generate':if(v)cast(s,t.p,v,true,null,0,null,'hand','侍流ジェネレート');break;
  case'g18_Bui':if(v){const before=own.brokenThisTurn||0;api.interruptBreak(s,t.p,[v],task('g18_AfterBreak',t.p,t.source,{before}));}break;
+ case'g18_FinalGrant1724':if(v&&s.attackLifecycle)(s.attackLifecycle.g1724FinalRefs??=[]).push({uid:t.uid,incarnation:t.incarnation});break;
  case'g18_Musashi':put(s,task('g18_MusashiDraw',t.p,t.source,{remaining:own.battle.filter(x=>colors(card(x)).includes('光')).length}));if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g18_MusashiDraw':if(v){put(s,{...t,remaining:t.remaining-1});api.draw(s,t.p,1);}break;
  case'g18_MusashiUse':if(v)put(s,task('g18_Use',t.p,t.source,{origin:'hand',...v}));break;
@@ -247,6 +252,16 @@ export function createSamuraiRules(api){
   for(const g of attached(s,owner,x))if(card(g).g1720CrossBlockedBreak&&!g.faceDown&&!g.sealed&&active(s,g))
    on(s,owner,g,'g34_Break497',{uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g830BlockBreaker:x.cardId});
  },
+ broken(s,context,n,defender){
+  if(!n||!context||context.burn||context.reverse||defender!==1-context.player)return;
+  const p=context.player,x=s.players[p]?.battle.find(y=>y.uid===context.sourceUid&&(context.incarnation===undefined||(y.incarnation||0)===context.incarnation));
+  if(!x||x.sealed||!api.isCreature(s,x))return;
+  for(const g of attached(s,p,x))if(card(g).g1724BreakDestroyDraw&&!g.faceDown&&!g.sealed&&active(s,g))
+   for(let i=0;i<n;i++)on(s,p,g,'g34_Sequence',{defs:[
+    {op:'Target',to:'grave',filter:{creature:true,maxPower:3000},optional:false},
+    {op:'Draw',n:1,optional:true}
+   ]});
+ },
  battleTasks1719(s,p,x){
   if(x.sealed||!api.isCreature(s,x))return [];
   return attached(s,p,x).filter(g=>card(g).g1719CrossBattle&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>({
@@ -265,6 +280,8 @@ export function createSamuraiRules(api){
  },
  decorate932(s,p,x,c){
   if(c.type!=='creature')return c;
+  if(s.attackLifecycle?.g1724FinalRefs?.some(r=>api.allLayers(x).some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)))c={...c,gBreaker:true};
+
   for(const g of attached(s,p,x))if(card(g).g1715CrossGrant&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g))c={...c,...card(g).g1715CrossGrant};
   let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
@@ -323,6 +340,10 @@ export function createSamuraiRules(api){
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length+(card(g).g1719CrossCostPower?cost(c)*card(g).g1719CrossCostPower:0)+(card(g).g1717CrossTappedPower?card(g).g1717CrossTappedPower*s.players.flatMap(own=>own.battle).filter(y=>y.tapped&&!y.sealed&&!y.faceDown&&api.isCreature(s,y)).length:0)+(card(g).g1715CrossPower?(paired(s,p,x,card(g).g1715CrossPower.name)?card(g).g1715CrossPower.paired:card(g).g1715CrossPower.base):0),0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
+  if(c.type==='gear'&&c.g1724EntryGearGrave&&!options.selfMuted&&!options.allEntryMuted&&active(s,x))
+   on(s,p,x,'g34_Select',{origin:'battle',anyOwner:true,to:'grave',n:1,destroy:false,toOwnerGrave:true,
+    filter:{g201Gear:true,faceUp:true},g173Targets:true,g193Select:true,title:'墓地に置くクロスギアを1枚選ぶ'});
+
   // Phase1716: finish S Trigger X before resolving entry triggers. Command unsealing is queued next, ahead of this task.
   if(c.type==='gear'&&c.g1717EntryCross&&!options.selfMuted&&!options.allEntryMuted&&active(s,x))on(s,p,x,'g18_FreeCross',{gear:x.uid,gearInc:x.incarnation||0});
   if(c.type==='gear'&&options.g1716TriggerX)put(s,task('g18_FreeCross',p,x.cardId,{gear:x.uid,gearInc:x.incarnation||0,required927:true}));
@@ -352,6 +373,8 @@ export function createSamuraiRules(api){
   for(const g of attached(s,p,x)){
    if(!active(s,g))continue;
    const gear=card(g);
+   if(gear.g1724FinalGrant&&!g.faceDown&&!g.sealed)
+    on(s,p,g,'g18_FinalGrant1724',{uid:x.uid,incarnation:x.incarnation||0});
    if(gear.g1723FirstGodUntap&&!g.faceDown&&!g.sealed&&godAttacks.length===1&&s.players[1-p].battle.some(y=>y.uid===s.attack?.target&&String(effective(y,s,true).race).includes('ゴッド')))
     on(s,p,g,'g34_Untap',{uid:x.uid,incarnation:x.incarnation||0,g191First:true});
    if(gear.doss)on(s,p,g,'g18_Mekraid');
