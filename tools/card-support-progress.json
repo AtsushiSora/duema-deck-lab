@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9392,
-  "pendingNames": 2431,
-  "phase": 1717,
+  "supportedNames": 9395,
+  "pendingNames": 2428,
+  "phase": 1718,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -171,7 +171,7 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 23,
+    "クロスギア": 20,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 555,
+    "複数面・特殊カードタイプまたは情報不足": 552,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -547797,27 +547797,271 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1718,
+      "checkedAt": "2026-11-23T07:05:26.553Z",
+      "baseline": "e2681d4e",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9392,
+      "currentNames": 9395,
+      "remainingNames": 105,
+      "added": [
+        {
+          "id": "dm16-020",
+          "name": "ドラム・スピリット"
+        },
+        {
+          "id": "dm15-014",
+          "name": "ハングリー・ガントレット"
+        },
+        {
+          "id": "dm14-058",
+          "name": "ヘル・ダブルクロー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "e2681d4e",
+        "originalDefinitionsUnchanged": 9392,
+        "added": 3,
+        "uniqueNames": 9395,
+        "uniqueIds": 9395,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9392,
+        "existingImageReferenceRowsUnchanged": 11610,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 965
+      },
+      "results": {
+        "related-tap-sweep-win": {
+          "name": "related-tap-sweep-win",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1706-effects.test.mjs",
+            "tests/standard692-effects.test.mjs",
+            "tests/standard745-effects.test.mjs",
+            "tests/standard993-effects.test.mjs",
+            "tests/standard1081-effects.test.mjs",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 27.131,
+          "log": "tmp/duema-phase-1718/related-tap-sweep-win.log",
+          "passed": 131,
+          "logSha256": "48dbceb3f46eddaaf5490093243b5fc1468253370dbb78b214e358749f3d8efa"
+        },
+        "related-online-save": {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.776,
+          "log": "tmp/duema-phase-1718/related-online-save.log",
+          "passed": 55,
+          "logSha256": "9cb9e6208e06dcc4642321d3dca86f1df7c849aa42957ebb29443cd7350e87b4"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1718.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.347,
+          "log": "tmp/duema-phase-1718/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.399,
+          "log": "tmp/duema-phase-1718/check.log",
+          "logSha256": "4c982de068007dbf44cf5bd4b064cf5ddd67e96959886eee1585070d691b7067"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.746,
+          "log": "tmp/duema-phase-1718/audit.log",
+          "logSha256": "f8a09469c10155b837cc9835521cf7b1f06466b26493e1c078704bbcdb38d4fe"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.49,
+          "log": "tmp/duema-phase-1718/target9500.log",
+          "logSha256": "628623bce0f0cabc109269853f3b2279f4893d5651729bc587b408b8a1d28731"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1718/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.385,
+          "log": "tmp/duema-phase-1718/invariants.log",
+          "logSha256": "3c4ef4d3841d5acc7211eb7565ba505eae2028bfa64c2c5e6704594b81874ea8"
+        },
+        "focused": {
+          "passed": 44,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1718-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 7.872,
+              "log": "tmp/duema-phase-1718/focused.log",
+              "passed": 42,
+              "logSha256": "54fe4d42fca82eee3aa44b8827934801e15d5225034a5df8b03bb2dd1ee5d16a"
+            },
+            {
+              "name": "focused-pending",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Hell exact host",
+                "tests/standard1718-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.55,
+              "log": "tmp/duema-phase-1718/focused-pending.log",
+              "passed": 2,
+              "logSha256": "640448c50d10cb5ea91cfd6b3ab1bddd9e81dd4a7685939d083d14b6255db526"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 230,
+      "hashes": {
+        "dist/cards.json": "3b5594e2d98012b7aca98756d7fc252de96b916e45f1d091f3d7c70e81ee6aa1",
+        "dist/engine.js": "0ba9a6d14dc6cbdb0285643f2547866108c556105a1619d6d52ad306cf6f8c73",
+        "dist/samurai-rules.js": "c999e29f65237cbf3ef1a9f96e222cd8cbf3a15f400a78be3815f8a0f027496c",
+        "dist/extended-rules.js": "115b003fb59abb9df91deeddc639cee10eea1c3c5fb75870b5c456a0d896cb78",
+        "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "7f8bfbfe1d52c66e3a05202902a7d16ee0440a365abefd8e789712497d598e5e",
+        "dist/card-images.js": "353ca8c4d9911271c74a3bdb64cd999f87a566f820e44ca1a3012b7369f36417",
+        "tools/target9000-card-spec.json": "16f1dcb35081838ff2c3300d37997e7d267c5a2d52c01f2e777a4cd55d91fa35",
+        "tests/standard1718-effects.test.mjs": "8fcab15b585d01f009c2c37e45c6f476485311b0202ce2aec6d1e75de8eac175"
+      },
+      "engineVersion": "0.602.235",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1718-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.872,
+          "log": "tmp/duema-phase-1718/focused.log",
+          "logSha256": "54fe4d42fca82eee3aa44b8827934801e15d5225034a5df8b03bb2dd1ee5d16a"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1718.json",
+      "supported": 9395,
+      "pending": 2428,
+      "reason": "Complete Drum Spirit same-name non-evolution deploy/search/shuffle tap ability, Hungry Gauntlet both-player inclusive power sweep including host, Hell Double Claw granted W breaker and gear-owned win destroy trigger",
+      "validationNotes": [
+        "Actual nameKey9392→9395; baselinee2681d4e clean/no staged changes/no prior repository work or tests. All9392 old definitions, IDs, details/catalogue/aliases and image references preserved. Full3 original official images, whole abilities, basic stats, mana and current restrictions verified. Exact-name search finds only3 originals; fuzzy hit dm22ex1-083 is 魔導獣ギガントレット, not a Hungry reprint.",
+        "Drum Spirit grants a distinct native tap action; full-deck private same-name non-evolution selection uses native LookDeploy530 for genuine deployment/entry abilities, optional decline and shuffle. Elpheus exactQA35365 cannot deploy another evolution and still shuffles. Snapshot uses existing name-LKI handling for pending effects.",
+        "Hungry uses native source-power comparison and a narrowly scoped inclusive-both-player flag. Candidate set computed before any destruction, so host and equal-power creatures both die, greater-power/sealed/noncreature elements remain. Mask power after tapping included; target immunity cannot stop a nonselective sweep. QA35339 self destruction and exactQA35340 real Rifle/Hungry choose exactly one tap action verified.",
+        "Hell grants native W breaker but its mandatory battle-win destruction remains an independent active gear-owned trigger even with ignored host. Attacking and defending wins, tie, ignored/sealed source, actual Spiral hand replacement, pending JSON and exact incarnation tested. Gear remains independently in battle. Existing source/blocker/breaker behavior unchanged.",
+        "44 unique focused cases verified. Initial2 pending-trigger fixtures inspected the earlier loser-death stage instead of winner-trigger storage; corrected to actual Onimaru battle-win draw watcher and battleResolution.wins, reran only2 cases successfully. No ability failure or unresolved new-card test remains.131 related tap/sweep/name-search/cross regression cases plus55 online/save cases passed; total230. check20.399s/audit10.746s and target/count/invariants passed.",
+        "Historical full-suite, exact-card/reprint, long-run and user deferrals preserved. No whole npm test, repeated long group, push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm28-039",
+          "name": "鬼装オーガ・フィスト",
+          "reason": "Full cost-based external crossed power and granted lower-power block restriction."
+        },
+        {
+          "id": "dmc56-004",
+          "name": "竜装 シデン・レジェンド",
+          "reason": "Full crossed power/attack one shield break/free cross by Shiden Dragon name."
+        },
+        {
+          "id": "dm28-051",
+          "name": "流闘シャーク・バンカー",
+          "reason": "Full crossed power and gear-owned optional draw when host battles."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1717,
-    "nextPhase": 1718,
+    "lastVerifiedPhase": 1718,
+    "nextPhase": 1719,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm16-020",
-        "name": "ドラム・スピリット",
-        "reason": "Full gear-host tap ability to search and deploy same-name non-evolution."
+        "id": "dm28-039",
+        "name": "鬼装オーガ・フィスト",
+        "reason": "Full cost-based external crossed power and granted lower-power block restriction."
       },
       {
-        "id": "dm15-014",
-        "name": "ハングリー・ガントレット",
-        "reason": "Full gear-host tap ability to destroy every creature with power<=host, including host."
+        "id": "dmc56-004",
+        "name": "竜装 シデン・レジェンド",
+        "reason": "Full crossed power/attack one shield break/free cross by Shiden Dragon name."
       },
       {
-        "id": "dm14-058",
-        "name": "ヘル・ダブルクロー",
-        "reason": "Full crossed W breaker and gear-owned destroy-host trigger when host wins a battle."
+        "id": "dm28-051",
+        "name": "流闘シャーク・バンカー",
+        "reason": "Full crossed power and gear-owned optional draw when host battles."
       }
     ],
     "steps": [
@@ -548702,23 +548946,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1717,
-      "baseline": "230dd06c",
-      "supportedNames": 9392,
-      "artifact": "tools/target9500-registration-checkpoint-1717.json",
-      "checkedAt": "2026-11-23T06:55:00.411Z"
+      "phase": 1718,
+      "baseline": "e2681d4e",
+      "supportedNames": 9395,
+      "artifact": "tools/target9500-registration-checkpoint-1718.json",
+      "checkedAt": "2026-11-23T07:05:26.553Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T06:55:00.411Z",
+      "checkedAt": "2026-11-23T07:05:26.553Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9392,
-      "remainingNames": 108,
+      "currentNames": 9395,
+      "remainingNames": 105,
       "duplicateNames": 0,
-      "engineVersion": "0.602.234",
+      "engineVersion": "0.602.235",
       "added": [
         {
           "id": "dmr12-008",
@@ -550007,6 +550251,18 @@
         {
           "id": "dm29-034",
           "name": "装刃 レオ・インパクト"
+        },
+        {
+          "id": "dm16-020",
+          "name": "ドラム・スピリット"
+        },
+        {
+          "id": "dm15-014",
+          "name": "ハングリー・ガントレット"
+        },
+        {
+          "id": "dm14-058",
+          "name": "ヘル・ダブルクロー"
         }
       ],
       "results": {
@@ -550122,15 +550378,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "49bdb03410eb22326497e84d378cec35a4ca383bc7345eec188a7ff165a6d063",
-        "dist/engine.js": "dc98b4ab81009ada43aca2093c01173933cf071ab2c227eae8df27c21e52c88a",
-        "dist/samurai-rules.js": "1b97167a1ef6fba05005d8e2b36a1f19dbfd4e3a70d00cd79d21ef662e9b4acc",
-        "dist/extended-rules.js": "7f1080375eaf2bcb60779fe572371f59c55c73530266fd9a2370e0251a642871",
+        "dist/cards.json": "3b5594e2d98012b7aca98756d7fc252de96b916e45f1d091f3d7c70e81ee6aa1",
+        "dist/engine.js": "0ba9a6d14dc6cbdb0285643f2547866108c556105a1619d6d52ad306cf6f8c73",
+        "dist/samurai-rules.js": "c999e29f65237cbf3ef1a9f96e222cd8cbf3a15f400a78be3815f8a0f027496c",
+        "dist/extended-rules.js": "115b003fb59abb9df91deeddc639cee10eea1c3c5fb75870b5c456a0d896cb78",
+        "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "60a848c0d9d17d4e120040ec95cf10d220da84f920a2bb2cc773e47cdf62d636",
-        "dist/card-images.js": "3845f52562a256398d04dd22abb3532d798bed602b5cf380abe931f5b5ec8afd",
-        "tools/target9000-card-spec.json": "767e16b6f674b9f8254877c565d96e2c8164d0b3991de146652f8403801e6267",
-        "tests/standard1717-effects.test.mjs": "7cfdb2e0b3a7018b929f034f7d04c793c32f5c28d7f94456e1c6b24ef8434915"
+        "dist/online-compatibility.js": "7f8bfbfe1d52c66e3a05202902a7d16ee0440a365abefd8e789712497d598e5e",
+        "dist/card-images.js": "353ca8c4d9911271c74a3bdb64cd999f87a566f820e44ca1a3012b7369f36417",
+        "tools/target9000-card-spec.json": "16f1dcb35081838ff2c3300d37997e7d267c5a2d52c01f2e777a4cd55d91fa35",
+        "tests/standard1718-effects.test.mjs": "8fcab15b585d01f009c2c37e45c6f476485311b0202ce2aec6d1e75de8eac175"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -550194,10 +550451,10 @@
       },
       "phaseRange": [
         1614,
-        1717
+        1718
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 322,
+      "addedNames": 325,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -550209,9 +550466,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.764,
-        "log": "tmp/duema-phase-1717/check.log",
-        "logSha256": "86bad10c7036297c31defdf11e005d33a816d4d5fe2feaa0f10cdef50e5b5d4a"
+        "seconds": 20.399,
+        "log": "tmp/duema-phase-1718/check.log",
+        "logSha256": "4c982de068007dbf44cf5bd4b064cf5ddd67e96959886eee1585070d691b7067"
       },
       "latestAudit": {
         "name": "audit",
@@ -550221,11 +550478,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.541,
-        "log": "tmp/duema-phase-1717/audit.log",
-        "logSha256": "9533f0fd051abc354f43dc9b32db33af59c856eb0304b724629c24563562f682"
+        "seconds": 10.746,
+        "log": "tmp/duema-phase-1718/audit.log",
+        "logSha256": "f8a09469c10155b837cc9835521cf7b1f06466b26493e1c078704bbcdb38d4fe"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1717.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1718.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -551343,11 +551600,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9392,
-      "remaining": 108,
+      "currentNames": 9395,
+      "remaining": 105,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T06:55:00.411Z",
+      "checkedAt": "2026-11-23T07:05:26.553Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -603525,11 +603782,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1717,
+    "phase": 1718,
     "threshold": 9500,
-    "supportedNames": 9392,
-    "pendingNames": 2431,
-    "checkedAt": "2026-11-23T06:55:00.411Z",
+    "supportedNames": 9395,
+    "pendingNames": 2428,
+    "checkedAt": "2026-11-23T07:05:26.553Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -603538,7 +603795,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1717.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1718.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

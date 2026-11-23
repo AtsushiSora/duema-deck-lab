@@ -1,0 +1,363 @@
+{
+  "phase": 1718,
+  "checkedAt": "2026-11-23T07:01:31.280Z",
+  "baseCount": 9392,
+  "target": 9500,
+  "description": "Complete Drum Spirit same-name non-evolution deploy/search/shuffle tap ability, Hungry Gauntlet both-player inclusive power sweep including host, Hell Double Claw granted W breaker and gear-owned win destroy trigger",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35365/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35339/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35340/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 35365,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35365/",
+      "sha256": "8e5fa2e0c88a1bf91d14d8a0b7e0ff20593cf3dab316fa90bc61d36ea4e8559e",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1718-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "id": 35339,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35339/",
+      "sha256": "c549048bd6d22a3761dea97303e119b8d20e38ca7a3f217061973d8d76a10eb4",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1718-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "id": 35340,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35340/",
+      "sha256": "5e58d9c5d74a56dc1afbe6e612bb4721c584e4d41159c44aac6f3b7aacf1cd63",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1718-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm16-020",
+      "name": "ドラム・スピリット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-020",
+      "faces": [
+        {
+          "name": "ドラム・スピリット",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "クロスギア\nこれをクロスしたクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札を見る。その中から、これをクロスしたクリーチャーと同じ名前の、進化クリーチャーではないクリーチャーを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1706CrossTap": [
+          {
+            "op": "DrumSpirit1718"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-020.jpg",
+      "imageReviewed": true,
+      "imageSha256": "25deb17ad0fdc578677d77d240d0a4ec5317dd02da686a56727395f04df49a4b",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm16-020"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T07:01:31.280Z",
+        "sha256": "b0fd84f6ecad0fe5b8f69bf022f158cbda303c2c0f5b0fd2e6dd6815c8d17a80",
+        "facesMatched": true,
+        "imageSha256": "25deb17ad0fdc578677d77d240d0a4ec5317dd02da686a56727395f04df49a4b"
+      }
+    },
+    {
+      "id": "dm15-014",
+      "name": "ハングリー・ガントレット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-014",
+      "faces": [
+        {
+          "name": "ハングリー・ガントレット",
+          "typeText": "クロスギア",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "これをクロスしたクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこれをクロスしたクリーチャーとパワーが同じかそれより小さいクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1706CrossTap": [
+          {
+            "op": "TargetBelowSource692",
+            "g745Sweep": "both",
+            "g1718SweepInclusive": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-014.jpg",
+      "imageReviewed": true,
+      "imageSha256": "397ce264313ab39b2c707e955bf5792579fd9ed774b54a34f9e4b5884f0d152c",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm15-014"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T07:01:31.280Z",
+        "sha256": "7921176216d3cb43b683bd4a42ce32d075f9253d009a51866db6a7bdc4777b14",
+        "facesMatched": true,
+        "imageSha256": "397ce264313ab39b2c707e955bf5792579fd9ed774b54a34f9e4b5884f0d152c"
+      }
+    },
+    {
+      "id": "dm14-058",
+      "name": "ヘル・ダブルクロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-058",
+      "faces": [
+        {
+          "name": "ヘル・ダブルクロー",
+          "typeText": "クロスギア",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーがバトルに勝った時、そのクリーチャーを破壊する。\nこれをクロスしたクリーチャーは｢W・ブレイカー｣を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1715CrossGrant": {
+          "g818DoubleBreaker": true
+        },
+        "g1718CrossWinDestroy": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-058.jpg",
+      "imageReviewed": true,
+      "imageSha256": "fedb6af0201ef20e7c7f8d2de85ea6332109cafaee852144458c0625c2f295e3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm14-058"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T07:01:31.280Z",
+        "sha256": "fda32e341ca4d77923d27b603af1d4600c0892f51d96b10f2fe54f3d33dce30d",
+        "facesMatched": true,
+        "imageSha256": "fedb6af0201ef20e7c7f8d2de85ea6332109cafaee852144458c0625c2f295e3"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T07:01:31.280Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm16-020": 4,
+      "dm15-014": 4,
+      "dm14-058": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T07:05:26.553Z",
+    "results": {
+      "related-tap-sweep-win": {
+        "name": "related-tap-sweep-win",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1706-effects.test.mjs",
+          "tests/standard692-effects.test.mjs",
+          "tests/standard745-effects.test.mjs",
+          "tests/standard993-effects.test.mjs",
+          "tests/standard1081-effects.test.mjs",
+          "tests/standard1715-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 27.131,
+        "log": "tmp/duema-phase-1718/related-tap-sweep-win.log",
+        "passed": 131,
+        "logSha256": "48dbceb3f46eddaaf5490093243b5fc1468253370dbb78b214e358749f3d8efa"
+      },
+      "related-online-save": {
+        "name": "related-online-save",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.776,
+        "log": "tmp/duema-phase-1718/related-online-save.log",
+        "passed": 55,
+        "logSha256": "9cb9e6208e06dcc4642321d3dca86f1df7c849aa42957ebb29443cd7350e87b4"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1718.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.347,
+        "log": "tmp/duema-phase-1718/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.399,
+        "log": "tmp/duema-phase-1718/check.log",
+        "logSha256": "4c982de068007dbf44cf5bd4b064cf5ddd67e96959886eee1585070d691b7067"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.746,
+        "log": "tmp/duema-phase-1718/audit.log",
+        "logSha256": "f8a09469c10155b837cc9835521cf7b1f06466b26493e1c078704bbcdb38d4fe"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.49,
+        "log": "tmp/duema-phase-1718/target9500.log",
+        "logSha256": "628623bce0f0cabc109269853f3b2279f4893d5651729bc587b408b8a1d28731"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1718/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.385,
+        "log": "tmp/duema-phase-1718/invariants.log",
+        "logSha256": "3c4ef4d3841d5acc7211eb7565ba505eae2028bfa64c2c5e6704594b81874ea8"
+      },
+      "focused": {
+        "passed": 44,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1718-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 7.872,
+            "log": "tmp/duema-phase-1718/focused.log",
+            "passed": 42,
+            "logSha256": "54fe4d42fca82eee3aa44b8827934801e15d5225034a5df8b03bb2dd1ee5d16a"
+          },
+          {
+            "name": "focused-pending",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Hell exact host",
+              "tests/standard1718-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.55,
+            "log": "tmp/duema-phase-1718/focused-pending.log",
+            "passed": 2,
+            "logSha256": "640448c50d10cb5ea91cfd6b3ab1bddd9e81dd4a7685939d083d14b6255db526"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 230,
+    "focusedTestsPassed": 44,
+    "relatedTestsPassed": 186
+  },
+  "validationNotes": [
+    "Actual nameKey9392→9395; baselinee2681d4e clean/no staged changes/no prior repository work or tests. All9392 old definitions, IDs, details/catalogue/aliases and image references preserved. Full3 original official images, whole abilities, basic stats, mana and current restrictions verified. Exact-name search finds only3 originals; fuzzy hit dm22ex1-083 is 魔導獣ギガントレット, not a Hungry reprint.",
+    "Drum Spirit grants a distinct native tap action; full-deck private same-name non-evolution selection uses native LookDeploy530 for genuine deployment/entry abilities, optional decline and shuffle. Elpheus exactQA35365 cannot deploy another evolution and still shuffles. Snapshot uses existing name-LKI handling for pending effects.",
+    "Hungry uses native source-power comparison and a narrowly scoped inclusive-both-player flag. Candidate set computed before any destruction, so host and equal-power creatures both die, greater-power/sealed/noncreature elements remain. Mask power after tapping included; target immunity cannot stop a nonselective sweep. QA35339 self destruction and exactQA35340 real Rifle/Hungry choose exactly one tap action verified.",
+    "Hell grants native W breaker but its mandatory battle-win destruction remains an independent active gear-owned trigger even with ignored host. Attacking and defending wins, tie, ignored/sealed source, actual Spiral hand replacement, pending JSON and exact incarnation tested. Gear remains independently in battle. Existing source/blocker/breaker behavior unchanged.",
+    "44 unique focused cases verified. Initial2 pending-trigger fixtures inspected the earlier loser-death stage instead of winner-trigger storage; corrected to actual Onimaru battle-win draw watcher and battleResolution.wins, reran only2 cases successfully. No ability failure or unresolved new-card test remains.131 related tap/sweep/name-search/cross regression cases plus55 online/save cases passed; total230. check20.399s/audit10.746s and target/count/invariants passed.",
+    "Historical full-suite, exact-card/reprint, long-run and user deferrals preserved. No whole npm test, repeated long group, push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm28-039",
+      "name": "鬼装オーガ・フィスト",
+      "reason": "Full cost-based external crossed power and granted lower-power block restriction."
+    },
+    {
+      "id": "dmc56-004",
+      "name": "竜装 シデン・レジェンド",
+      "reason": "Full crossed power/attack one shield break/free cross by Shiden Dragon name."
+    },
+    {
+      "id": "dm28-051",
+      "name": "流闘シャーク・バンカー",
+      "reason": "Full crossed power and gear-owned optional draw when host battles."
+    }
+  ]
+}

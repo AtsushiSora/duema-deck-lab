@@ -191,6 +191,15 @@ export function createSamuraiRules(api){
      g.weaponTo={uid:x.uid,incarnation:x.incarnation||0};
   }
  },
+ battleWins(s,p,w){
+  const host=s.players[p].battle.find(x=>x.uid===w?.uid&&(w.incarnation===undefined||(x.incarnation||0)===w.incarnation));
+  if(!host||host.sealed||!api.isCreature(s,host))return [];
+  return attached(s,p,host).filter(g=>card(g).g1718CrossWinDestroy&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>({
+   player:p,uid:g.uid,source:g.cardId,effect:'extended',task:task('g34_ExactMove',p,g.cardId,{
+    uid:g.uid,incarnation:g.incarnation||0,owner:p,target:host.uid,targetIncarnation:host.incarnation||0,to:'grave'
+   })
+  }));
+ },
  decorate932(s,p,x,c){
   if(c.type!=='creature')return c;
   for(const g of attached(s,p,x))if(card(g).g1715CrossGrant&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g))c={...c,...card(g).g1715CrossGrant};

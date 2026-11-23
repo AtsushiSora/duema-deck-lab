@@ -6009,6 +6009,13 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_DrumSpirit1718':{
+  const host=sourceHost474(s,t)?.x;
+  const names=host&&!host.sealed&&api.isCreature(s,host)?battleNames676(s,host):t.g399Attacker?.g1081Names||[];
+  start(s,t,[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',
+   filter:{creature:true,nonEvolution:true,any:names.map(g201ExactName=>({g201ExactName}))}}]);
+  break;
+ }
  case'g34_BioKAttackerSearch1081':{
   const attacker=own.battle.find(y=>y.uid===s.attack?.attacker&&!y.sealed);
   const names=attacker?attackNames1081(s,attacker):t.g399Attacker?.g1081Names||[];
@@ -6636,7 +6643,7 @@ export function createSixPhotoRules(api){
    const threshold=current==='∞'?Infinity:current;
    const owners=t.g993OpponentSweepInclusive||t.g745Sweep==='opponent'?[1-t.p]:[t.p,1-t.p];
    const rows=owners.flatMap(p=>creatures(s,p)
-    .filter(y=>!y.sealed&&(t.g993OpponentSweepInclusive?currentPower506(s,y)<=threshold:currentPower506(s,y)<threshold))
+    .filter(y=>!y.sealed&&(t.g993OpponentSweepInclusive||t.g1718SweepInclusive?currentPower506(s,y)<=threshold:currentPower506(s,y)<threshold))
     .map(y=>({player:p,uid:y.uid,to:'grave',destroy:true})));
    if(rows.length)move(s,rows);
   }else{
