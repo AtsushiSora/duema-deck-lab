@@ -297144,18 +297144,150 @@
       "g1661DestroyUnderNeo": "evolution",
       "supportBatch": "phase-1695",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-017",
+      "name": "ウツセミ童子",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 3000,
+      "race": "デモニオ/鬼札王国",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：このクリーチャーがバトルゾーンを離れた時、自分と相手のシールドの数が合計６つ以下なら、コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-017",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "optional": false,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "max": 7
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1696",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-039",
+      "name": "ガンブルマン ＜バンレイ.Star＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "ビートジョッキー/ブレイブ・スピリット/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の火のクリーチャー１体または火のタマシード１枚につき、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-039",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDestroy1202",
+          "zone": "battle",
+          "filter": {
+            "color": "火",
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ]
+          },
+          "targetFilter": {
+            "blocker": true
+          },
+          "g262Elements": true
+        }
+      ],
+      "supportBatch": "phase-1696",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-025",
+      "name": "ギガジグアプ",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "キマイラ",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分の墓地から山札の下に好きな順序で置いてもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-025",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g1202GraveBottomStay": 3,
+      "g1223DestroyOnlyStay": true,
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "self"
+          }
+        ]
+      },
+      "supportBatch": "phase-1696",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1695,
-    "checkedAt": "2026-11-23T00:18:05.292Z",
-    "baseCount": 9320,
+    "phase": 1696,
+    "checkedAt": "2026-11-23T00:25:02.136Z",
+    "baseCount": 9323,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9323,
+    "totalCount": 9326,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa_old/36858/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35947/"
+      "https://dm.takaratomy.co.jp/rule/qa/33429/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -324943,6 +325075,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/45903/",
           "https://dm.takaratomy.co.jp/rule/qa/45907/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1695,
+        "checkedAt": "2026-11-23T00:18:05.292Z",
+        "baseCount": 9320,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9323,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36858/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35947/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

@@ -1,0 +1,451 @@
+{
+  "phase": 1696,
+  "checkedAt": "2026-11-23T00:25:02.136Z",
+  "baseCount": 9323,
+  "target": 9500,
+  "description": "Full Utsusemi leave/Oni revival, Gamburuman Star evolution and counted Blocker destruction, and Giga grave-payment destruction replacement/first-grave-leave freeze.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/33429/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43059/",
+    "https://dm.takaratomy.co.jp/rule/qa/42055/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 33429,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33429/",
+      "sha256": "b47411c68d37cdc8e4ce76b70606308f84cc55e87253e342ae17d0c747093011",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": "603.4",
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "version": "1.54",
+      "confirmed": true,
+      "scope": "A conditional triggered ability checks the condition at resolution, regardless of its state at the trigger event.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": 43059,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43059/",
+      "sha256": "7a3151191f7c419deb87f5ff1e6939f6c7aad82462e5813bccd262116ed08973",
+      "confirmed": true,
+      "scope": "Actual Luna/Darkness regression and Giga first-departure analogue.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": 42055,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/42055/",
+      "sha256": "8a6dd425545ff6e09a64a4662dac2f32a1afa55f41f92230aab95a56a5a6033f",
+      "confirmed": true,
+      "scope": "Apul no-zone-movement analogue for Giga payment/selection; not exact Bell Abyss Rush.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-017",
+      "name": "ウツセミ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-017",
+      "faces": [
+        {
+          "name": "ウツセミ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：このクリーチャーがバトルゾーンを離れた時、自分と相手のシールドの数が合計６つ以下なら、コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noAttack": true,
+        "g172Leave": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "sumBoth": true,
+                "max": 6
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "optional": false,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "max": 7
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-017.jpg",
+      "imageReviewed": true,
+      "imageSha256": "ebe1a79887c54c0582c69a66470bbfc678eeddfe46b5751bab8c935440dd0b65",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy19-039",
+          "dmrp14-017"
+        ],
+        "result": "Original 3 prints plus one same-name Utsusemi promo: all full faces, stats and images reviewed. An unrelated Gamburuman search hit was excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:25:02.136Z",
+        "sha256": "9d59b01a21ca6855aab753350e88e4c7989f062566a6c454b3c41b56da3c2e2f",
+        "facesMatched": true,
+        "imageSha256": "ebe1a79887c54c0582c69a66470bbfc678eeddfe46b5751bab8c935440dd0b65"
+      }
+    },
+    {
+      "id": "dmrp21-039",
+      "name": "ガンブルマン ＜バンレイ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-039",
+      "faces": [
+        {
+          "name": "ガンブルマン ＜バンレイ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の火のクリーチャー１体または火のタマシード１枚につき、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー/ブレイブ・スピリット/レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDestroy1202",
+            "zone": "battle",
+            "filter": {
+              "color": "火",
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g295Tamaseed": true
+                }
+              ]
+            },
+            "targetFilter": {
+              "blocker": true
+            },
+            "g262Elements": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-039.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4b9c994c06b86d07c0396050c798935adc6a67b130afd09809c3764af38fa6e7",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp21-039"
+        ],
+        "result": "Original 3 prints plus one same-name Utsusemi promo: all full faces, stats and images reviewed. An unrelated Gamburuman search hit was excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:25:02.136Z",
+        "sha256": "d8f2215ad61dcd2836135315c8f308c71745ec691286896187cbfa94bea1a54b",
+        "facesMatched": true,
+        "imageSha256": "4b9c994c06b86d07c0396050c798935adc6a67b130afd09809c3764af38fa6e7"
+      }
+    },
+    {
+      "id": "dm25rp3-025",
+      "name": "ギガジグアプ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-025",
+      "faces": [
+        {
+          "name": "ギガジグアプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分の墓地から山札の下に好きな順序で置いてもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "キマイラ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g1202GraveBottomStay": 3,
+        "g1223DestroyOnlyStay": true,
+        "g1300FirstGraveLeft": {
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "self"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-025.jpg",
+      "imageReviewed": true,
+      "imageSha256": "574c6e83bcef4882c82fdfa9373ae0bb96752572b2a61ad37c1e821ebdf8b433",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm25rp3-025"
+        ],
+        "result": "Original 3 prints plus one same-name Utsusemi promo: all full faces, stats and images reviewed. An unrelated Gamburuman search hit was excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:25:02.136Z",
+        "sha256": "006e84bb632f2e2b5271bd10e6681a96baf2e99020ded96d3faa43cb4e009981",
+        "facesMatched": true,
+        "imageSha256": "574c6e83bcef4882c82fdfa9373ae0bb96752572b2a61ad37c1e821ebdf8b433"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "promoy19-039",
+      "name": "ウツセミ童子",
+      "canonicalId": "dmrp14-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-039",
+      "faces": [
+        {
+          "name": "ウツセミ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：このクリーチャーがバトルゾーンを離れた時、自分と相手のシールドの数が合計６つ以下なら、コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "7a01f2edc5854a16211855dd1ee851a5cfea1ef1844bb4c323bbf41c1ca4a2c3",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-039.jpg",
+          "file": "tmp/duema-phase-1696/promoy19-039-0.jpg",
+          "sha256": "bcd14dd54a7b8fdc519e0ca2ebb7930a71acdae469beab3969b681a660d1f449"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T00:25:02.136Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-017": 4,
+      "dmrp21-039": 4,
+      "dm25rp3-025": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T00:36:10.591Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1696.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.093,
+        "log": "tmp/duema-phase-1696/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "focused-complete": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1696-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.285,
+        "log": "tmp/duema-phase-1696/focused-complete.log",
+        "passed": 48,
+        "failed": 0,
+        "logSha256": "c72294a6356d667a84e04af3df2a9ddb0860d8bd5b70030375a7c529805c0be1"
+      },
+      "focused-edge": {
+        "name": "focused-edge",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Actual Apul|^Gamburuman counts an inactive",
+          "tests/standard1696-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.9,
+        "log": "tmp/duema-phase-1696/focused-edge.log",
+        "passed": 4,
+        "failed": 0,
+        "logSha256": "933daf100ddbfee27f1ee08c57ac2db1778dd9d1608770d5ca83dc7b90f93639"
+      },
+      "related-grave": {
+        "name": "related-grave",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1300-effects.test.mjs",
+          "tests/standard1223-effects.test.mjs",
+          "tests/standard1202-effects.test.mjs",
+          "tests/standard1689-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 27.806,
+        "log": "tmp/duema-phase-1696/related-grave.log",
+        "passed": 110,
+        "failed": 0,
+        "logSha256": "60f6c28ca455029a8041d236606120d7902aa9dcfcb2fd5d3d60916785656bc1"
+      },
+      "related-trigger-online": {
+        "name": "related-trigger-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard190-effects.test.mjs",
+          "tests/standard276-effects.test.mjs",
+          "tests/standard1694-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 39.699,
+        "log": "tmp/duema-phase-1696/related-trigger-online.log",
+        "passed": 163,
+        "failed": 0,
+        "logSha256": "f68890eeee27cb80155db4a97e5c94864615f5906d35ef08cab5b4715209f22a"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.628,
+        "log": "tmp/duema-phase-1696/check.log",
+        "logSha256": "25091320b6b6fbb2e60022a3c95c59a13a62925044e444024c0074b0e704787f"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.773,
+        "log": "tmp/duema-phase-1696/audit.log",
+        "logSha256": "f683bc60f026c8957a61c995051a794cd0600129427532939cf8762b969eaf19"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.391,
+        "log": "tmp/duema-phase-1696/target9500.log",
+        "logSha256": "ace92c938455bf85b55db908ebd942479328ba059ab57c10074189af113e7aca"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1696/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.375,
+        "log": "tmp/duema-phase-1696/invariants.log",
+        "logSha256": "ba5e1eb7311a3c4d8062223fef5eaaf6f7f5249320449ef0d46bf1cbca899619"
+      }
+    },
+    "totalTestsPassed": 325,
+    "focusedTestsPassed": 52,
+    "relatedTestsPassed": 273
+  },
+  "validationNotes": [
+    "Baseline 8f101a65; no overlapping jobs. Existing differences belong to this phase. Start nameKey count 9323; all prior pending and publication state preserved.",
+    "All 3 full official abilities/basic faces and 4 original/promo images visually reviewed. Utsusemi promo is the same card; an unrelated Gamburuman search hit is excluded. Current restrictions verified for all 3.",
+    "Utsusemi: S-Trigger, Blocker and no attack; mandatory cost <=7 creature revival after leaving only if combined shields <=6 at resolution. Rule 603.4 verified with both 6 to 7 and 7 to 6 shield changes before resolution, hand/mana/grave departures and actual twin creature cost filtering in both seats.",
+    "Gamburuman: full Star evolution and W-Breaker, count every own Fire creature or Fire Tamaseed once, then destroy only opposing Blockers. Fire Tamaseed/creature dual type is counted once, a Fire field is excluded. Both evolution branches, mandatory Star replacement and W breaks are covered.",
+    "Giga: optional destruction-only replacement by exactly 3 ordered own grave cards; insufficient payment, decline, bounce, ignored abilities and one physical payment reserved once during simultaneous destruction. First grave departure triggers all sources present at the departure, including a source subsequently destroyed in the same event. Native observation now occurs at the payment event to retain that source.",
+    "QA43059 reproduced by existing actual Luna/Darkness regressions and analogous new Giga revival tests; entering from grave cannot see its own first departure. QA42055 is verified by a related Apul no-movement analogue using Giga grave payment/selection, not a claim to reproduce the exact Bell Abyss Rush scenario. Rule 603.4 reproduced by Utsusemi tests.",
+    "52 focused tests passed in split runs of 48 complete tests plus 4 newly added edge tests; 110 grave/replacement and 163 trigger/online regressions passed, total 325. Pending choices survive encrypted online storage, private projections, legal forty-card games, unique physical IDs and JSON continuation in both seats.",
+    "Earlier focused failures exposed the Tamaseed count flag and observation timing, both corrected and impact regressions passed. Fixture corrections exclude a true cost-9 twin and handle automatic mandatory Star replacement. npm run check, audit, target9500 and baseline invariants passed. nameKey count 9326. No push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmex11-017",
+      "name": "「戒律の大弓」",
+      "reason": "Verify full official creature-entry shield replacement, Blocker restrictions and Fire battle protection."
+    }
+  ]
+}

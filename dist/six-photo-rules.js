@@ -4145,7 +4145,7 @@ export function createSixPhotoRules(api){
   break;
  case'g34_CountDestroy1202':{
   const n=countDraw(s,t.p,t);
-  if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n,filter:{creature:true},
+  if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n,filter:{creature:true,...t.targetFilter},
    g173Targets:true,g193Select:true,title:'同時に破壊する相手のクリーチャーを'+n+'体選ぶ'}]);
   break;
  }

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9323,
-  "pendingNames": 2502,
-  "phase": 1695,
+  "supportedNames": 9326,
+  "pendingNames": 2499,
+  "phase": 1696,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1412,
+    "クリーチャー": 1410,
     "呪文": 272,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -162,7 +162,7 @@
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 213,
-    "スター進化クリーチャー": 53,
+    "スター進化クリーチャー": 52,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 42,
     "オレガ・オーラ": 26,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1804,
+    "未対応の能力文": 1801,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 15,
@@ -540761,32 +540761,299 @@
         }
       ],
       "next": "phase1696の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
+    },
+    {
+      "phase": 1696,
+      "checkedAt": "2026-11-23T00:36:10.591Z",
+      "baseline": "8f101a65",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9323,
+      "currentNames": 9326,
+      "remainingNames": 174,
+      "added": [
+        {
+          "id": "dmrp14-017",
+          "name": "ウツセミ童子"
+        },
+        {
+          "id": "dmrp21-039",
+          "name": "ガンブルマン ＜バンレイ.Star＞"
+        },
+        {
+          "id": "dm25rp3-025",
+          "name": "ギガジグアプ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "8f101a65",
+        "originalDefinitionsUnchanged": 9323,
+        "added": 3,
+        "uniqueNames": 9326,
+        "uniqueIds": 9326,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9323,
+        "existingImageReferenceRowsUnchanged": 11533,
+        "officialPrintsReviewed": 4,
+        "officialImagesReviewed": 4,
+        "existingPinsUnchanged": 848
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1696.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.093,
+          "log": "tmp/duema-phase-1696/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-complete": {
+          "name": "focused-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1696-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 17.285,
+          "log": "tmp/duema-phase-1696/focused-complete.log",
+          "passed": 48,
+          "failed": 0,
+          "logSha256": "c72294a6356d667a84e04af3df2a9ddb0860d8bd5b70030375a7c529805c0be1"
+        },
+        "focused-edge": {
+          "name": "focused-edge",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Actual Apul|^Gamburuman counts an inactive",
+            "tests/standard1696-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.9,
+          "log": "tmp/duema-phase-1696/focused-edge.log",
+          "passed": 4,
+          "failed": 0,
+          "logSha256": "933daf100ddbfee27f1ee08c57ac2db1778dd9d1608770d5ca83dc7b90f93639"
+        },
+        "related-grave": {
+          "name": "related-grave",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1300-effects.test.mjs",
+            "tests/standard1223-effects.test.mjs",
+            "tests/standard1202-effects.test.mjs",
+            "tests/standard1689-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 27.806,
+          "log": "tmp/duema-phase-1696/related-grave.log",
+          "passed": 110,
+          "failed": 0,
+          "logSha256": "60f6c28ca455029a8041d236606120d7902aa9dcfcb2fd5d3d60916785656bc1"
+        },
+        "related-trigger-online": {
+          "name": "related-trigger-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard190-effects.test.mjs",
+            "tests/standard276-effects.test.mjs",
+            "tests/standard1694-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 39.699,
+          "log": "tmp/duema-phase-1696/related-trigger-online.log",
+          "passed": 163,
+          "failed": 0,
+          "logSha256": "f68890eeee27cb80155db4a97e5c94864615f5906d35ef08cab5b4715209f22a"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.628,
+          "log": "tmp/duema-phase-1696/check.log",
+          "logSha256": "25091320b6b6fbb2e60022a3c95c59a13a62925044e444024c0074b0e704787f"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.773,
+          "log": "tmp/duema-phase-1696/audit.log",
+          "logSha256": "f683bc60f026c8957a61c995051a794cd0600129427532939cf8762b969eaf19"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.391,
+          "log": "tmp/duema-phase-1696/target9500.log",
+          "logSha256": "ace92c938455bf85b55db908ebd942479328ba059ab57c10074189af113e7aca"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1696/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.375,
+          "log": "tmp/duema-phase-1696/invariants.log",
+          "logSha256": "ba5e1eb7311a3c4d8062223fef5eaaf6f7f5249320449ef0d46bf1cbca899619"
+        }
+      },
+      "totalTestsPassed": 325,
+      "hashes": {
+        "dist/cards.json": "1d3d6b841e3d6dc217832cc66998153ee11cdb5f40c533569130ddef96cee63f",
+        "dist/engine.js": "7d5f15a6d82f013a3f77fb574d83d9158ecaea5e6731e264486cb446b61d9dd7",
+        "dist/six-photo-rules.js": "1df1a93738b626f9bb257bfeb852b3c670e62e2c33b29c56a8a2fd3b7a518740",
+        "dist/online-compatibility.js": "0f3368f1c8604b45e92c403ce8777ea8fa47bd34caf06555a89b7f89eed3a5ac",
+        "dist/card-images.js": "4c87bd02ca387bacda039bdb71cf26b4ac077f0fd98e2f49d980c7c078e713e7",
+        "tools/target9000-card-spec.json": "67f5dbf1f04cede3eb83e422c30e743cd4f5064ddc68fd40ede4a94da76ef3c7",
+        "tests/standard1696-effects.test.mjs": "f787bd0d718a7ce647b14971f57016ca4882615f948ff88fc838962daf0a3747"
+      },
+      "engineVersion": "0.602.212",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 33429,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/33429/",
+          "sha256": "b47411c68d37cdc8e4ce76b70606308f84cc55e87253e342ae17d0c747093011",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1696-effects.test.mjs"
+        },
+        {
+          "id": "603.4",
+          "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "version": "1.54",
+          "confirmed": true,
+          "scope": "A conditional triggered ability checks the condition at resolution, regardless of its state at the trigger event.",
+          "reproduced": true,
+          "test": "tests/standard1696-effects.test.mjs"
+        },
+        {
+          "id": 43059,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43059/",
+          "sha256": "7a3151191f7c419deb87f5ff1e6939f6c7aad82462e5813bccd262116ed08973",
+          "confirmed": true,
+          "scope": "Actual Luna/Darkness regression and Giga first-departure analogue.",
+          "reproduced": true,
+          "test": "tests/standard1696-effects.test.mjs"
+        },
+        {
+          "id": 42055,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/42055/",
+          "sha256": "8a6dd425545ff6e09a64a4662dac2f32a1afa55f41f92230aab95a56a5a6033f",
+          "confirmed": true,
+          "scope": "Apul no-zone-movement analogue for Giga payment/selection; not exact Bell Abyss Rush.",
+          "reproduced": true,
+          "test": "tests/standard1696-effects.test.mjs"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1696-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 10.209,
+          "log": "tmp/duema-phase-1696/focused.log"
+        },
+        {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1696-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.595,
+          "log": "tmp/duema-phase-1696/focused-final.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1696.json",
+      "supported": 9326,
+      "pending": 2499,
+      "reason": "Full Utsusemi leave/Oni revival, Gamburuman Star evolution and counted Blocker destruction, and Giga grave-payment destruction replacement/first-grave-leave freeze.",
+      "validationNotes": [
+        "Baseline 8f101a65; no overlapping jobs. Existing differences belong to this phase. Start nameKey count 9323; all prior pending and publication state preserved.",
+        "All 3 full official abilities/basic faces and 4 original/promo images visually reviewed. Utsusemi promo is the same card; an unrelated Gamburuman search hit is excluded. Current restrictions verified for all 3.",
+        "Utsusemi: S-Trigger, Blocker and no attack; mandatory cost <=7 creature revival after leaving only if combined shields <=6 at resolution. Rule 603.4 verified with both 6 to 7 and 7 to 6 shield changes before resolution, hand/mana/grave departures and actual twin creature cost filtering in both seats.",
+        "Gamburuman: full Star evolution and W-Breaker, count every own Fire creature or Fire Tamaseed once, then destroy only opposing Blockers. Fire Tamaseed/creature dual type is counted once, a Fire field is excluded. Both evolution branches, mandatory Star replacement and W breaks are covered.",
+        "Giga: optional destruction-only replacement by exactly 3 ordered own grave cards; insufficient payment, decline, bounce, ignored abilities and one physical payment reserved once during simultaneous destruction. First grave departure triggers all sources present at the departure, including a source subsequently destroyed in the same event. Native observation now occurs at the payment event to retain that source.",
+        "QA43059 reproduced by existing actual Luna/Darkness regressions and analogous new Giga revival tests; entering from grave cannot see its own first departure. QA42055 is verified by a related Apul no-movement analogue using Giga grave payment/selection, not a claim to reproduce the exact Bell Abyss Rush scenario. Rule 603.4 reproduced by Utsusemi tests.",
+        "52 focused tests passed in split runs of 48 complete tests plus 4 newly added edge tests; 110 grave/replacement and 163 trigger/online regressions passed, total 325. Pending choices survive encrypted online storage, private projections, legal forty-card games, unique physical IDs and JSON continuation in both seats.",
+        "Earlier focused failures exposed the Tamaseed count flag and observation timing, both corrected and impact regressions passed. Fixture corrections exclude a true cost-9 twin and handle automatic mandatory Star replacement. npm run check, audit, target9500 and baseline invariants passed. nameKey count 9326. No push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmex11-017",
+          "name": "「戒律の大弓」",
+          "reason": "Verify full official creature-entry shield replacement, Blocker restrictions and Fire battle protection."
+        }
+      ],
+      "next": "phase1697の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1695,
-    "nextPhase": 1696,
+    "lastVerifiedPhase": 1696,
+    "nextPhase": 1697,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp14-017",
-        "name": "ウツセミ童子",
-        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
-      },
-      {
-        "id": "dmrp21-039",
-        "name": "ガンブルマン ＜バンレイ.Star＞",
-        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
-      },
-      {
-        "id": "dm25rp3-025",
-        "name": "ギガジグアプ",
-        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
+        "id": "dmex11-017",
+        "name": "「戒律の大弓」",
+        "reason": "Verify full official creature-entry shield replacement, Blocker restrictions and Fire battle protection."
       }
     ],
     "steps": [
       "ユーザーの指示で9500まで3〜5種類バッチを継続。",
-      "phase1696の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
+      "phase1697の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
       "過去の未確認・保留は保持。"
     ],
     "knownIssues": [
@@ -541667,23 +541934,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1695,
-      "baseline": "c4bed588",
-      "supportedNames": 9323,
-      "artifact": "tools/target9500-registration-checkpoint-1695.json",
-      "checkedAt": "2026-11-23T00:22:25.878Z"
+      "phase": 1696,
+      "baseline": "8f101a65",
+      "supportedNames": 9326,
+      "artifact": "tools/target9500-registration-checkpoint-1696.json",
+      "checkedAt": "2026-11-23T00:36:10.591Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T00:22:25.878Z",
+      "checkedAt": "2026-11-23T00:36:10.591Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9323,
-      "remainingNames": 177,
+      "currentNames": 9326,
+      "remainingNames": 174,
       "duplicateNames": 0,
-      "engineVersion": "0.602.211",
+      "engineVersion": "0.602.212",
       "added": [
         {
           "id": "dmr12-008",
@@ -542696,6 +542963,18 @@
         {
           "id": "dm34-028",
           "name": "時空男"
+        },
+        {
+          "id": "dmrp14-017",
+          "name": "ウツセミ童子"
+        },
+        {
+          "id": "dmrp21-039",
+          "name": "ガンブルマン ＜バンレイ.Star＞"
+        },
+        {
+          "id": "dm25rp3-025",
+          "name": "ギガジグアプ"
         }
       ],
       "results": {
@@ -542811,13 +543090,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "d33be31129ecd4cadd575cd1784c74802443b47121fe5d274422b5a117844458",
-        "dist/engine.js": "16f58209e1ba401d9db37f02f3f9826e9b75dea70c319d527ca4723d8baaa0fa",
-        "dist/six-photo-rules.js": "d3b8a60e9731f2efe23f3c4ccf51034b9860c52e28b6ae799a2d02e6b18d6e36",
-        "dist/online-compatibility.js": "c6b476189ad8ec3354a4d7eb07dc6c86ddfc3b3eae73598b6a9f21d859f6232a",
-        "dist/card-images.js": "c92f932bf22564ff99bd511c1d5060252d20818f0b6b22efa56006bd7cfaee2c",
-        "tools/target9000-card-spec.json": "6cb836890e412077157ab82f9174d1738e89ccfc606c2c6cb67bcc78fbad91bd",
-        "tests/standard1695-effects.test.mjs": "8373e2db63881d6b24119a167cd20000aa75a1c27e8347c727e411e35b634a37"
+        "dist/cards.json": "1d3d6b841e3d6dc217832cc66998153ee11cdb5f40c533569130ddef96cee63f",
+        "dist/engine.js": "7d5f15a6d82f013a3f77fb574d83d9158ecaea5e6731e264486cb446b61d9dd7",
+        "dist/six-photo-rules.js": "1df1a93738b626f9bb257bfeb852b3c670e62e2c33b29c56a8a2fd3b7a518740",
+        "dist/online-compatibility.js": "0f3368f1c8604b45e92c403ce8777ea8fa47bd34caf06555a89b7f89eed3a5ac",
+        "dist/card-images.js": "4c87bd02ca387bacda039bdb71cf26b4ac077f0fd98e2f49d980c7c078e713e7",
+        "tools/target9000-card-spec.json": "67f5dbf1f04cede3eb83e422c30e743cd4f5064ddc68fd40ede4a94da76ef3c7",
+        "tests/standard1696-effects.test.mjs": "f787bd0d718a7ce647b14971f57016ca4882615f948ff88fc838962daf0a3747"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -542881,10 +543160,10 @@
       },
       "phaseRange": [
         1614,
-        1695
+        1696
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 253,
+      "addedNames": 256,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -542896,9 +543175,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.097,
-        "log": "tmp/duema-phase-1695/check.log",
-        "logSha256": "001b8cba6989373aa6172ceebf327cf50a2ff5f62e61177f01afe991521702b7"
+        "seconds": 19.628,
+        "log": "tmp/duema-phase-1696/check.log",
+        "logSha256": "25091320b6b6fbb2e60022a3c95c59a13a62925044e444024c0074b0e704787f"
       },
       "latestAudit": {
         "name": "audit",
@@ -542908,11 +543187,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.741,
-        "log": "tmp/duema-phase-1695/audit.log",
-        "logSha256": "6d052e5c5223cf5d33638e9948c8de8e585a085526173364fb091e0c4cf4800a"
+        "seconds": 10.773,
+        "log": "tmp/duema-phase-1696/audit.log",
+        "logSha256": "f683bc60f026c8957a61c995051a794cd0600129427532939cf8762b969eaf19"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1695.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1696.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -544030,11 +544309,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9323,
-      "remaining": 177,
+      "currentNames": 9326,
+      "remaining": 174,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T00:22:25.878Z",
+      "checkedAt": "2026-11-23T00:36:10.591Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -596136,11 +596415,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1695,
+    "phase": 1696,
     "threshold": 9500,
-    "supportedNames": 9323,
-    "pendingNames": 2502,
-    "checkedAt": "2026-11-23T00:22:25.878Z",
+    "supportedNames": 9326,
+    "pendingNames": 2499,
+    "checkedAt": "2026-11-23T00:36:10.591Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -596149,7 +596428,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1695.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1696.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

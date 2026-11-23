@@ -38834,5 +38834,197 @@
       "noAttack": true,
       "g1661DestroyUnderNeo": "evolution"
     }
+  },
+  "promoy19-039": {
+    "phase": 1696,
+    "faces": [
+      {
+        "name": "ウツセミ童子",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：このクリーチャーがバトルゾーンを離れた時、自分と相手のシールドの数が合計６つ以下なら、コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "optional": false,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "max": 7
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp14-017": {
+    "phase": 1696,
+    "faces": [
+      {
+        "name": "ウツセミ童子",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n鬼タイム ：このクリーチャーがバトルゾーンを離れた時、自分と相手のシールドの数が合計６つ以下なら、コスト７以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "noAttack": true,
+      "g172Leave": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "deploy": true,
+              "optional": false,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "max": 7
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp21-039": {
+    "phase": 1696,
+    "faces": [
+      {
+        "name": "ガンブルマン ＜バンレイ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の火のクリーチャー１体または火のタマシード１枚につき、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+        "race": "ビートジョッキー/ブレイブ・スピリット/レクスターズ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDestroy1202",
+          "zone": "battle",
+          "filter": {
+            "color": "火",
+            "any": [
+              {
+                "creature": true
+              },
+              {
+                "g295Tamaseed": true
+              }
+            ]
+          },
+          "targetFilter": {
+            "blocker": true
+          },
+          "g262Elements": true
+        }
+      ]
+    }
+  },
+  "dm25rp3-025": {
+    "phase": 1696,
+    "faces": [
+      {
+        "name": "ギガジグアプ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇/火",
+        "civilizations": [
+          "水",
+          "闇",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが破壊される時、かわりにカードを３枚、自分の墓地から山札の下に好きな順序で置いてもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+        "race": "キマイラ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "g1202GraveBottomStay": 3,
+      "g1223DestroyOnlyStay": true,
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "self"
+          }
+        ]
+      }
+    }
   }
 }

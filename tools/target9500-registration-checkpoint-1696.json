@@ -1,0 +1,277 @@
+{
+  "phase": 1696,
+  "checkedAt": "2026-11-23T00:36:10.591Z",
+  "baseline": "8f101a65",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9323,
+  "currentNames": 9326,
+  "remainingNames": 174,
+  "added": [
+    {
+      "id": "dmrp14-017",
+      "name": "ウツセミ童子"
+    },
+    {
+      "id": "dmrp21-039",
+      "name": "ガンブルマン ＜バンレイ.Star＞"
+    },
+    {
+      "id": "dm25rp3-025",
+      "name": "ギガジグアプ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "8f101a65",
+    "originalDefinitionsUnchanged": 9323,
+    "added": 3,
+    "uniqueNames": 9326,
+    "uniqueIds": 9326,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9323,
+    "existingImageReferenceRowsUnchanged": 11533,
+    "officialPrintsReviewed": 4,
+    "officialImagesReviewed": 4,
+    "existingPinsUnchanged": 848
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1696.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.093,
+      "log": "tmp/duema-phase-1696/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-complete": {
+      "name": "focused-complete",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1696-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.285,
+      "log": "tmp/duema-phase-1696/focused-complete.log",
+      "passed": 48,
+      "failed": 0,
+      "logSha256": "c72294a6356d667a84e04af3df2a9ddb0860d8bd5b70030375a7c529805c0be1"
+    },
+    "focused-edge": {
+      "name": "focused-edge",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^Actual Apul|^Gamburuman counts an inactive",
+        "tests/standard1696-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.9,
+      "log": "tmp/duema-phase-1696/focused-edge.log",
+      "passed": 4,
+      "failed": 0,
+      "logSha256": "933daf100ddbfee27f1ee08c57ac2db1778dd9d1608770d5ca83dc7b90f93639"
+    },
+    "related-grave": {
+      "name": "related-grave",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1300-effects.test.mjs",
+        "tests/standard1223-effects.test.mjs",
+        "tests/standard1202-effects.test.mjs",
+        "tests/standard1689-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 27.806,
+      "log": "tmp/duema-phase-1696/related-grave.log",
+      "passed": 110,
+      "failed": 0,
+      "logSha256": "60f6c28ca455029a8041d236606120d7902aa9dcfcb2fd5d3d60916785656bc1"
+    },
+    "related-trigger-online": {
+      "name": "related-trigger-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard190-effects.test.mjs",
+        "tests/standard276-effects.test.mjs",
+        "tests/standard1694-effects.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 39.699,
+      "log": "tmp/duema-phase-1696/related-trigger-online.log",
+      "passed": 163,
+      "failed": 0,
+      "logSha256": "f68890eeee27cb80155db4a97e5c94864615f5906d35ef08cab5b4715209f22a"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.628,
+      "log": "tmp/duema-phase-1696/check.log",
+      "logSha256": "25091320b6b6fbb2e60022a3c95c59a13a62925044e444024c0074b0e704787f"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.773,
+      "log": "tmp/duema-phase-1696/audit.log",
+      "logSha256": "f683bc60f026c8957a61c995051a794cd0600129427532939cf8762b969eaf19"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.391,
+      "log": "tmp/duema-phase-1696/target9500.log",
+      "logSha256": "ace92c938455bf85b55db908ebd942479328ba059ab57c10074189af113e7aca"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1696/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.375,
+      "log": "tmp/duema-phase-1696/invariants.log",
+      "logSha256": "ba5e1eb7311a3c4d8062223fef5eaaf6f7f5249320449ef0d46bf1cbca899619"
+    }
+  },
+  "totalTestsPassed": 325,
+  "hashes": {
+    "dist/cards.json": "1d3d6b841e3d6dc217832cc66998153ee11cdb5f40c533569130ddef96cee63f",
+    "dist/engine.js": "7d5f15a6d82f013a3f77fb574d83d9158ecaea5e6731e264486cb446b61d9dd7",
+    "dist/six-photo-rules.js": "1df1a93738b626f9bb257bfeb852b3c670e62e2c33b29c56a8a2fd3b7a518740",
+    "dist/online-compatibility.js": "0f3368f1c8604b45e92c403ce8777ea8fa47bd34caf06555a89b7f89eed3a5ac",
+    "dist/card-images.js": "4c87bd02ca387bacda039bdb71cf26b4ac077f0fd98e2f49d980c7c078e713e7",
+    "tools/target9000-card-spec.json": "67f5dbf1f04cede3eb83e422c30e743cd4f5064ddc68fd40ede4a94da76ef3c7",
+    "tests/standard1696-effects.test.mjs": "f787bd0d718a7ce647b14971f57016ca4882615f948ff88fc838962daf0a3747"
+  },
+  "engineVersion": "0.602.212",
+  "registeredCardVerificationPending": [],
+  "relatedRulingReproductionScope": [
+    {
+      "id": 33429,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33429/",
+      "sha256": "b47411c68d37cdc8e4ce76b70606308f84cc55e87253e342ae17d0c747093011",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": "603.4",
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "version": "1.54",
+      "confirmed": true,
+      "scope": "A conditional triggered ability checks the condition at resolution, regardless of its state at the trigger event.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": 43059,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43059/",
+      "sha256": "7a3151191f7c419deb87f5ff1e6939f6c7aad82462e5813bccd262116ed08973",
+      "confirmed": true,
+      "scope": "Actual Luna/Darkness regression and Giga first-departure analogue.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    },
+    {
+      "id": 42055,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/42055/",
+      "sha256": "8a6dd425545ff6e09a64a4662dac2f32a1afa55f41f92230aab95a56a5a6033f",
+      "confirmed": true,
+      "scope": "Apul no-zone-movement analogue for Giga payment/selection; not exact Bell Abyss Rush.",
+      "reproduced": true,
+      "test": "tests/standard1696-effects.test.mjs"
+    }
+  ],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1696-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 10.209,
+      "log": "tmp/duema-phase-1696/focused.log"
+    },
+    {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1696-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 9.595,
+      "log": "tmp/duema-phase-1696/focused-final.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1696.json",
+  "supported": 9326,
+  "pending": 2499,
+  "reason": "Full Utsusemi leave/Oni revival, Gamburuman Star evolution and counted Blocker destruction, and Giga grave-payment destruction replacement/first-grave-leave freeze.",
+  "validationNotes": [
+    "Baseline 8f101a65; no overlapping jobs. Existing differences belong to this phase. Start nameKey count 9323; all prior pending and publication state preserved.",
+    "All 3 full official abilities/basic faces and 4 original/promo images visually reviewed. Utsusemi promo is the same card; an unrelated Gamburuman search hit is excluded. Current restrictions verified for all 3.",
+    "Utsusemi: S-Trigger, Blocker and no attack; mandatory cost <=7 creature revival after leaving only if combined shields <=6 at resolution. Rule 603.4 verified with both 6 to 7 and 7 to 6 shield changes before resolution, hand/mana/grave departures and actual twin creature cost filtering in both seats.",
+    "Gamburuman: full Star evolution and W-Breaker, count every own Fire creature or Fire Tamaseed once, then destroy only opposing Blockers. Fire Tamaseed/creature dual type is counted once, a Fire field is excluded. Both evolution branches, mandatory Star replacement and W breaks are covered.",
+    "Giga: optional destruction-only replacement by exactly 3 ordered own grave cards; insufficient payment, decline, bounce, ignored abilities and one physical payment reserved once during simultaneous destruction. First grave departure triggers all sources present at the departure, including a source subsequently destroyed in the same event. Native observation now occurs at the payment event to retain that source.",
+    "QA43059 reproduced by existing actual Luna/Darkness regressions and analogous new Giga revival tests; entering from grave cannot see its own first departure. QA42055 is verified by a related Apul no-movement analogue using Giga grave payment/selection, not a claim to reproduce the exact Bell Abyss Rush scenario. Rule 603.4 reproduced by Utsusemi tests.",
+    "52 focused tests passed in split runs of 48 complete tests plus 4 newly added edge tests; 110 grave/replacement and 163 trigger/online regressions passed, total 325. Pending choices survive encrypted online storage, private projections, legal forty-card games, unique physical IDs and JSON continuation in both seats.",
+    "Earlier focused failures exposed the Tamaseed count flag and observation timing, both corrected and impact regressions passed. Fixture corrections exclude a true cost-9 twin and handle automatic mandatory Star replacement. npm run check, audit, target9500 and baseline invariants passed. nameKey count 9326. No push/publication/Netlify update."
+  ],
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "dmex11-017",
+      "name": "「戒律の大弓」",
+      "reason": "Verify full official creature-entry shield replacement, Blocker restrictions and Fire battle protection."
+    }
+  ],
+  "next": "phase1697の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
+}
