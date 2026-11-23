@@ -136,6 +136,21 @@ export function createSixPhotoRules(api){
  function namedLock1643(s,p,names){return (s.extLimits||[]).some(l=>l.kind==='g1643NamedCreatureLock'&&l.player===p&&l.names.some(n=>names.includes(n))&&!api.spellIgnored(s,{type:'spell',spellSource:l.spellSource,cost:l.spellCost}));}
  function nextOpponentStay1643(s,p){return (s.extLimits||[]).some(l=>l.kind==='g1643NextOpponentStay'&&l.player===p&&s.active===l.who&&s.players[l.who].turns>l.afterTurns&&!api.spellIgnored(s,{type:'spell',spellSource:l.spellSource,cost:l.spellCost}));}
  function sourceHost474(s,t){if(!t)return null;for(const p of[0,1]){const x=s.players[p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(x)return{p,x};}return null;}
+ function manaEvolution1701(s,p,host,y,max){
+  if(!host||!s.players[p].battle.includes(host)||host.sealed||host.faceDown||!api.isCreature(s,host)||y.faceDown||!api.canMoveZone(s,p,'mana'))return false;
+  const c=api.zoneCard(s,p,y,'mana');
+  if(c.type!=='creature'||cost(c)>max||c.manaEvolution||c.graveEvolution||c.ultraEvolution||!api.canEnter(s,p,c,{origin:'mana',execution:false}))return false;
+  const multi=c.g31Evolution;
+  // The effect specifies this one creature as the entire base. GV/V and
+  // grave/deck evolution cannot add different creatures to that base.
+  if(multi){
+   if(multi.zone!=='battle'&&!multi.zones?.includes('battle')||multi.conditions?.length!==1||multi.minCards&&api.allLayers(host).length<multi.minCards)return false;
+   return api.matchesEvolution(host,multi.conditions[0],s);
+  }
+  const condition=c.evolution||c.neoEvolution;
+  return !!condition&&api.matchesEvolution(host,condition,s);
+ }
+ function queenCandidate1701(x){const all=faces(card(x));return all.every(c=>c.type!=='creature')&&all.some(c=>cost(c)<=6);}
  function entryFight624(s,t){
   const own=sourceHost474(s,t),enemy=sourceHost474(s,t.enemy);
   return own&&enemy&&own.p!==enemy.p&&[own.x,enemy.x].every(x=>!x.sealed&&api.isCreature(s,x))?[own,enemy]:null;
@@ -5797,6 +5812,21 @@ export function createSixPhotoRules(api){
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
   break;
  }
+ case'g34_QueenSearch1701':{
+  const ids=look(s,{...t,n:own.deck.length}),rows=own.deck.filter(y=>ids.includes(y.uid)&&queenCandidate1701(y));
+  if(ids.length)choice(s,{...t,...deckPeek841(own,ids),ids},'山札から手札に加えて使うコスト6以下のクリーチャーではないカードを選ぶ（任意）',[
+   ...rows.map(y=>opt(card(y).name,y.uid,15+Math.max(...faces(card(y)).map(cost)),y.cardId)),skip()
+  ]);
+  else{api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);}
+  break;
+ }
+ case'g34_SelfManaEvolution1701':{
+  const host=sourceHost474(s,t)?.x,rows=own.mana.filter(y=>manaEvolution1701(s,t.p,host,y,t.max));
+  if(rows.length)choice(s,t,'攻撃中のこのクリーチャーの上に進化させるマナのクリーチャーを選ぶ（任意）',[
+   ...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},20+cost(card(y)),y.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_SearchCast1641':{
   const ids=look(s,{...t,n:own.deck.length}),options=ids.flatMap(uid=>{
    const y=own.deck.find(y=>y.uid===uid);
@@ -6109,11 +6139,13 @@ export function createSixPhotoRules(api){
   const p=1-t.p;
   put(s,{...t,p,controller:t.controller??t.p,op:'g34_RotoReveal1683'});break;
  }
+ case'g34_GyurumReveal1701':
  case'g34_RotoReveal1683':{
-  const filter={creature:true,nonEvolution:true},ids=look(s,{...t,n:own.deck.length,public:true,g1603UntilFilter:filter}),last=ids.at(-1),found=own.deck.find(x=>x.uid===last);
+  const gyurum=t.op==='g34_GyurumReveal1701';
+  const filter={creature:true,...(!gyurum?{nonEvolution:true}:{})},ids=look(s,{...t,n:own.deck.length,public:true,g1603UntilFilter:filter}),last=ids.at(-1),found=own.deck.find(x=>x.uid===last);
   const hit=found&&matches(s,t.p,found,filter);
   if(hit)release(s,t.p,last);
-  start(s,t,[...(hit?[{op:'Put',origin:'deck',target:last,noEvolve:true}]:[]),
+  start(s,t,[...(hit?[{op:'Put',origin:'deck',target:last,noEvolve:!gyurum}]:[]),
    {op:'Order',ids:ids.filter(uid=>!hit||uid!==last),rest:'bottom',ordered:[]}]);
   break;
  }
@@ -8533,6 +8565,26 @@ export function createSixPhotoRules(api){
    release(s,t.p,v);
    const x=remove(own.deck,v);
    if(x)enter(s,t.p,x,host.uid,{origin:'deck',execution:false,g31Force:true});
+  }
+  break;
+ }
+ case'g34_QueenSearch1701':{
+  const y=v&&own.deck.find(y=>y.uid===v&&t.ids.includes(y.uid)),valid=y&&queenCandidate1701(y);
+  if(valid){
+   api.log(s,t.p,'reveal',card(t.source).name+'：'+card(y).name+'を公開して手札に加える',{cardId:y.cardId});
+   zoneMove(s,t.p,'deck',y.uid,'hand',t);
+  }
+  for(const uid of t.ids||[])release(s,t.p,uid);
+  api.shuffleLibrary(s,t.p,[],t.source);
+  if(valid&&own.hand.includes(y))start(s,t,[{op:'Execute',origin:'hand',optional:false,g1578Exact:{uid:y.uid,serial:y.zoneSerial||0}}]);
+  else api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_SelfManaEvolution1701':{
+  const host=sourceHost474(s,t)?.x,y=v&&own.mana.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);
+  if(y&&manaEvolution1701(s,t.p,host,y,t.max)){
+   remove(own.mana,y.uid);clear(y,'battle');
+   enter(s,t.p,y,host.uid,{origin:'mana',execution:false,g31Force:true});
   }
   break;
  }

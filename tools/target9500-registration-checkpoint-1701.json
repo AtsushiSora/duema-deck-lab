@@ -1,0 +1,330 @@
+{
+  "phase": 1701,
+  "checkedAt": "2026-11-23T04:01:44.494Z",
+  "baseline": "974b010b",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9339,
+  "currentNames": 9342,
+  "remainingNames": 158,
+  "added": [
+    {
+      "id": "dm32-004",
+      "name": "エンペラー・ギュルム"
+    },
+    {
+      "id": "dmx24-001",
+      "name": "クイーン・アマテラス"
+    },
+    {
+      "id": "dmrp22-022",
+      "name": "グラスパー ＜チェインレック.Star＞"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "974b010b",
+    "originalDefinitionsUnchanged": 9339,
+    "added": 3,
+    "uniqueNames": 9342,
+    "uniqueIds": 9342,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9339,
+    "existingImageReferenceRowsUnchanged": 11549,
+    "officialPrintsReviewed": 8,
+    "officialImagesReviewed": 8,
+    "existingPinsUnchanged": 875
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1701.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.551,
+      "log": "tmp/duema-phase-1701/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "related-atomic-exchange": {
+      "name": "related-atomic-exchange",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard753-effects.test.mjs",
+        "tests/standard1345-effects.test.mjs",
+        "tests/standard1698-fly-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.916,
+      "log": "tmp/duema-phase-1701/related-atomic-exchange.log",
+      "passed": 43,
+      "logSha256": "4de4f866e3cd8051fbda71cc8f81c4bc0117b0ac312c7882ac2e1c85822ac89d"
+    },
+    "related-reveal-evolution": {
+      "name": "related-reveal-evolution",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1683-effects.test.mjs",
+        "tests/standard1577-effects.test.mjs",
+        "tests/standard1609-effects.test.mjs",
+        "tests/standard1340-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.484,
+      "log": "tmp/duema-phase-1701/related-reveal-evolution.log",
+      "passed": 118,
+      "logSha256": "05fc162f9677652d5dc1f89a15718b944d0a574466a5534acce854d419e1019b"
+    },
+    "related-search-online": {
+      "name": "related-search-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1641-effects.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.789,
+      "log": "tmp/duema-phase-1701/related-search-online.log",
+      "passed": 92,
+      "logSha256": "d50e68812e900e70fe4908fa9381846ed67da07d1cf798b0f2f31999c6b75008"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.563,
+      "log": "tmp/duema-phase-1701/check.log",
+      "logSha256": "ec27c41fa4cc2db828abc6d1aabff116b02ded3e4bf44f5430e3aed5fceafc2f"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.548,
+      "log": "tmp/duema-phase-1701/audit.log",
+      "logSha256": "925d9a440b1ca98c423ecb45e14137dbbe34961d1d83c230bb1d0326e8e7d3bb"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.375,
+      "log": "tmp/duema-phase-1701/target9500.log",
+      "logSha256": "2a819a4c8cdddd44345c21225dd9bde7b387c38382a4eb7d570d62b20d6767e1"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1701/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.429,
+      "log": "tmp/duema-phase-1701/invariants.log",
+      "logSha256": "dab28ba7c14ae981a49a96bb7fa3a1c91d2beeb37818c5402775908167b0599b"
+    },
+    "focused": {
+      "passed": 64,
+      "failed": 0,
+      "parts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.752,
+          "log": "tmp/duema-phase-1701/focused.log",
+          "passed": 42,
+          "logSha256": "26023edf728fc5ff17c7e87080ef4aebe1c784392b0d047261c3163b1371423c"
+        },
+        {
+          "name": "focused-fixed",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Gyurum revealed evolution|^Gyurum ignored|^Queen excludes|^Grasper attack evolves|^Exact QA41430",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.764,
+          "log": "tmp/duema-phase-1701/focused-fixed.log",
+          "passed": 12,
+          "logSha256": "fc507863430c429fd34dacb2e24200d6759138056e239174747dc0391a492810"
+        },
+        {
+          "name": "focused-evolution-base-fixed",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Gyurum revealed evolution",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.598,
+          "log": "tmp/duema-phase-1701/focused-evolution-base-fixed.log",
+          "passed": 2,
+          "logSha256": "e11e5311c6fb9db2f1a00888baaa560b5a1c24481ad1a5ce1937dad5a8b06ac7"
+        },
+        {
+          "name": "focused-star-base",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^A Grasper with a real",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.595,
+          "log": "tmp/duema-phase-1701/focused-star-base.log",
+          "passed": 2,
+          "logSha256": "9a4191241be1605b42d0b7a19a657ea4ff9e3378373b7f170f638be7258a0add"
+        },
+        {
+          "name": "focused-host-edge",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^A queued Grasper|^Grasper cannot recruit|^Grasper attack evolves",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.671,
+          "log": "tmp/duema-phase-1701/focused-host-edge.log",
+          "passed": 10,
+          "logSha256": "8c05aa78bc5b870c0e950c78f25589fe6d0f7ca292c5fc8bfd23208e0573b9e4"
+        },
+        {
+          "name": "focused-provenance-minimum",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Queen hand-origin|^Grasper single-creature",
+            "tests/standard1701-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.799,
+          "log": "tmp/duema-phase-1701/focused-provenance-minimum.log",
+          "passed": 6,
+          "logSha256": "60978275ed368c04e3aff1a26f6585d29f057bdeed5e8bc585fac051b5724f2a"
+        }
+      ],
+      "coverage": "52 original cases:42 initially passed,8 repairs in focused-fixed plus2 correct Parasite Worm base cases.2 new Star-with-base negative exchanges,4 host ownership/multiple-base cases and6 hand provenance/minimum-physical-stack cases. Repeated passing selections count once."
+    }
+  },
+  "totalTestsPassed": 317,
+  "hashes": {
+    "dist/cards.json": "3c423e9e30cc958582f2a36a4b9d3b2e3509fdd8b10fd8796a5f8e24b104a7ce",
+    "dist/engine.js": "cf347208565bc2b02419d558035a49fc966e8aff6f167472964bbbba095f8e23",
+    "dist/six-photo-rules.js": "6237376fd5a8510cd401af5874087b09b578723e7d3ea745a8fb631c16e53cfb",
+    "dist/extended-rules.js": "d076309e34f26cb8c10d433251d26f3780a4ad29f2cb868a75e428a7aae495bf",
+    "dist/online-compatibility.js": "e3683981cea2b2c0b4b0745c9c82aeacb79b1a8693f0dd6aae99c3e445acc314",
+    "dist/card-images.js": "6857f280b42a09799117e64dddabdecca7731a9e75fe0d99fa1f850a102d9dbe",
+    "tools/target9000-card-spec.json": "c377179eeb21a45c3186e78d97d5c251dd2927fe7114c568b72f170b282d64aa",
+    "tests/standard1701-effects.test.mjs": "440e694ab4612c351d8514c76161349e5a8f5fa6f4dde20c0e9e81c819297f72"
+  },
+  "engineVersion": "0.602.218",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1701-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 9.752,
+      "log": "tmp/duema-phase-1701/focused.log"
+    },
+    {
+      "name": "focused-fixed",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^Gyurum revealed evolution|^Gyurum ignored|^Queen excludes|^Grasper attack evolves|^Exact QA41430",
+        "tests/standard1701-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.764,
+      "log": "tmp/duema-phase-1701/focused-fixed.log"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1701.json",
+  "supported": 9342,
+  "pending": 2483,
+  "reason": "Complete Gyurum Cyber evolution and mandatory leave reveal/deploy with failed evolution retained on top; Queen noncreature search/hand/shuffle/free use of either spell face; Grasper Star ramp and legal single-host mana evolution during attack.",
+  "validationNotes": [
+    "Start and post-verification nameKey counts from actual dist/cards.json are9339 and9342. Baseline974b010b inspected; prior batch processes had completed and worktree/staging were clean. Existing card definitions/IDs/catalogue/image references and save formats preserved.",
+    "Full official faces/stats/mana/restrictions and all8 original/reprint images reviewed: Gyurum1, Queen6, Grasper Star1. Great Grasper search hits are distinct cards and excluded. Five Queen reprints add no names.",
+    "Gyurum reuses the native reveal-until/ordered-bottom pipeline, with all creatures including evolutions. It stops at the first creature, attempts mandatory deployment, and orders only preceding noncreatures. Exact QA35796 retains an evolution without a valid base on top. Actual Parasite Worm base enables Genocide Worm; ignored departure/untargetable sealed source, empty hit list, ordinary leaves and complete physical conservation verified.",
+    "Queen performs private complete-library search, publicly reveals the chosen eligible noncreature, moves it to hand, shuffles, then mandates use of that physical card with native Execute. It can choose either legal spell face without the search cost restriction, including actual Prayer3/Crystal Doom11 in exact QA45067. Creature/spell twins are excluded, all supported noncreature element types are usable, and a locked spell remains in hand. Actual Kikuchi proves execution occurs from hand, not directly from the library.",
+    "Grasper Star supports Nature/Rexstar bases, native Star replacement, mandatory one-card ramp and exact legal mana evolution on its current own attacking host. Regular/NEO/one-creature variable evolution, two physical-card minimum inside one pre-existing stack, face-down/wrong race/high cost/mana evolution exclusion, unavailable/recontrolled host, and refusal to recruit another creature for evolution V verified. Native forced-single-base entry preserves attack, tap and physical layers.",
+    "Exact QA41430 exposed a pre-existing common exchange bug: Star evolution without an underlying card was incorrectly rejected simply because a replacement applied. Exchange now accepts that Star replacement only when all layers consist of the single departing card. With a real underlying base the exchange still fails. Kappa and every other replacement still fail before payment; exact QA45513 remains passing in related regressions. No stored format or old definition changed.",
+    "64 distinct focused tests and253 affected regressions pass,total317. One legal40-card seeded game preserves all80 physical IDs and JSON legal actions. Encrypted mandatory twin face choice hides other hands and round-trips correctly. Check/audit/nameKey/campaign/baseline invariants pass.",
+    "Initial fixture mistakes were repaired: Genocide Worm requires Parasite Worm rather than a Dark card or Demon Command; sealed creatures are not selectable by a creature-only move; Holy Spark/Demon Hand cost6 do qualify for Queen; a NEO creature with no W breaker breaks one shield. Those fixtures and the actual Star exchange bug are separately recorded; all failing cases now pass.",
+    "Historical whole npm test, prior individual/long/reprint deferrals preserved unchanged. No repeated whole long group or npm test. No push/publication/Netlify update."
+  ],
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "promoy9-093",
+      "name": "クリスタル・スーパーパラディン",
+      "reason": "Verify canonical name/prints and full Liquid People evolution, enemy Psychic return and all-Blocker attack bounce."
+    },
+    {
+      "id": "dmrp01-s07",
+      "name": "ガンザン戦車 スパイク７K",
+      "reason": "Verify complete Fire NEO evolution and independent two-mode temporary grants to each own creature."
+    },
+    {
+      "id": "promoy16-114",
+      "name": "キング・ザ・スロットン",
+      "reason": "Verify all-three-Jokers reveal, optional creature deployment, same-cost physical remaining-card recovery and ordered bottom."
+    }
+  ],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+}
