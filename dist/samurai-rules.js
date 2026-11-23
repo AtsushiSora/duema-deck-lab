@@ -37,7 +37,7 @@ export function createSamuraiRules(api){
 
  }
  const crossPayment=(g,reduction=0,alternative=false)=>({...card(g),crossing:true,...(alternative?{cost:card(g).g1720CrossAlternativeCost}:{}),...(reduction?{g933CrossReduction:reduction}:{})});
- function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>(Array.isArray(g.g1710FreeCrossName)?g.g1710FreeCrossName:[g.g1710FreeCrossName]).some(part=>name.includes(part))));}
+ function freeCross(g,c,x){return c.type==='creature'&&(g.g1723FreeEvolutionGod&&(api.isEvolution(x)||x.godLinks?.length&&String(c.race).includes('ゴッド'))||g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>(Array.isArray(g.g1710FreeCrossName)?g.g1710FreeCrossName:[g.g1710FreeCrossName]).some(part=>name.includes(part))));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
@@ -192,6 +192,19 @@ export function createSamuraiRules(api){
  crossDestroyToHand(s,p,x){return !x.sealed&&attached(s,p,x).some(g=>card(g).g1715CrossDestroyToHand&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  // Phase1713: an active crossed gear supplies permission independently of its host abilities.
  evolutionRace(s,p,x){return p>=0&&!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x)&&attached(s,p,x).some(g=>card(g).g1713CrossAnyEvolutionRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
+ soulSacrifices(s,row,host,sacrifices){
+  if(row.replacement||row.to!=='grave'||row.destroy===false||host.sealed||!api.isCreature(s,host)||!attached(s,row.player,host).some(g=>card(g).g1723SoulSacrifice&&!g.sealed&&!g.faceDown&&active(s,g)))return [];
+  return creatures(s,row.player).filter(x=>x!==host&&!x.sealed&&!x.faceDown&&!sacrifices.has(x.uid)&&api.canSacrifice1723(s,row.player,x));
+ },
+ sagaSources(s,row,host,sacrifices){
+  if(row.replacement||row.to!=='grave'||row.destroy===false||host.sealed||!api.isCreature(s,host))return [];
+  return attached(s,row.player,host).filter(g=>card(g).g1723SagaReplace&&!g.sealed&&!g.faceDown&&active(s,g)&&!sacrifices.has(g.uid)&&!api.manaMoveForbidden(s,row.player)&&api.canLeave(s,row.player,g,{to:'mana',destroy:false,replacement:true}));
+ },
+ battlePower(s,x,y){
+  if(!y||!String(effective(y,s,true).race).includes('ゴッド'))return 0;
+  const p=s.players.findIndex(own=>own.battle.includes(x));
+  return p<0||x.sealed?0:attached(s,p,x).filter(g=>!g.sealed&&!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g1723GodBattlePower||0),0);
+ },
  nobleAttackLocked(s,p,x){
   return s.players.some((own,owner)=>own.battle.some(g=>card(g).g1721Noble&&!g.sealed&&!g.faceDown&&active(s,g)&&!live(s,owner,g)))&&api.power(x,false,s)<=2000;
  },
@@ -334,9 +347,13 @@ export function createSamuraiRules(api){
    if(c.samuraiBui)on(s,p,x,'g18_Bui');
    if(c.samuraiMusashi)on(s,p,x,'g18_MusashiUse');
   }
+  const refs=api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0));
+  const godAttacks=s.g481Attackers?.turn===s.turn?s.g481Attackers.events.filter(e=>e.p===p&&e.g1723GodTarget&&e.refs.some(r=>refs.includes(r))):[];
   for(const g of attached(s,p,x)){
    if(!active(s,g))continue;
    const gear=card(g);
+   if(gear.g1723FirstGodUntap&&!g.faceDown&&!g.sealed&&godAttacks.length===1&&s.players[1-p].battle.some(y=>y.uid===s.attack?.target&&String(effective(y,s,true).race).includes('ゴッド')))
+    on(s,p,g,'g34_Untap',{uid:x.uid,incarnation:x.incarnation||0,g191First:true});
    if(gear.doss)on(s,p,g,'g18_Mekraid');
    if(gear.g1719CrossAttackBreak&&!g.faceDown&&!g.sealed)on(s,p,g,'g34_Break497',{
     uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g828BattleBreaker:x.cardId
@@ -372,7 +389,7 @@ export function createSamuraiRules(api){
   }
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
-   const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
+   const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host,x);
    const hostFree=!x.sealed&&!g.sealed&&!g.faceDown&&(host.g946FreeCross&&active(s,x)||attached(s,p,x).some(y=>card(y).g1713CrossFree&&!y.faceDown&&!y.sealed&&live(s,p,y)===x&&active(s,y)));
    if(gear.g1720CrossAlternativeCost&&!g.sealed&&!g.faceDown&&active(s,g)&&api.canPay(s,p,crossPayment(g,0,true)))
     out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,g1720AlternativeCross:true,

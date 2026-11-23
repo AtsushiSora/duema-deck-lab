@@ -10473,7 +10473,7 @@ export function createSixPhotoRules(api){
   if(s.attackLifecycle&&x.g34Grants?.some(g=>g.turn===s.turn&&g.g1225DestroyAfterAttack))
    s.attackLifecycle.g1225AttackDeaths=x.g34Grants.filter(g=>g.turn===s.turn&&g.g1225DestroyAfterAttack)
     .map(g=>g.g1225DestroyAfterAttack);
-  if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,g1699Colors:colors(effective(x,s,true)),...(race(effective(x,s,true),'ドラゴン')?{g1222Dragon:true}:{}),...(race(effective(x,s,true),'アビス')?{g1236Abyss:true}:{}),...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
+  if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(s.players[1-p].battle.some(y=>y.uid===s.attack?.target&&!y.sealed&&race(effective(y,s,true),'ゴッド'))?{g1723GodTarget:true}:{}),g1699Colors:colors(effective(x,s,true)),...(race(effective(x,s,true),'ドラゴン')?{g1222Dragon:true}:{}),...(race(effective(x,s,true),'アビス')?{g1236Abyss:true}:{}),...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
   const attacker={uid:x.uid,incarnation:x.incarnation||0};
   for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
    if(!watcher.sealed&&!watcher.faceDown&&card(watcher).g1158FirstAttackBreak&&
