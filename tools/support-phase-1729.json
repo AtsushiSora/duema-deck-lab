@@ -1,0 +1,547 @@
+{
+  "phase": 1729,
+  "checkedAt": "2026-11-23T09:37:23.629Z",
+  "baseCount": 9424,
+  "target": 9500,
+  "description": "Full Dis Rigel grave Alien attacking power, Zami Alien recovery, complete Daikinboshi Psychic pair link/unlink and unlimited paid grave Alien summon. Actual Kiku whole S-trigger/optional self-destruction player-attack cancellation dependency to reproduce QA36429 and existing Zabi Musha BLACK QA36430.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36431/",
+    "https://dm.takaratomy.co.jp/rule/qa/43933/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36429/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36430/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36431/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36432/",
+    "https://dm.takaratomy.co.jp/rule/qa/43933/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 36431,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36431/",
+      "sha256": "ab5739afa7711d433c5b46ec22021e1293483b9bd3306908ed48c6355b8f6581",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Each repeated grave Alien summon pays normal cost, including exact encrypted manual mana."
+    },
+    {
+      "id": 43933,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43933/",
+      "sha256": "16dada3c01a81abf98b59e0b12784d5d9e17d23ba5c02a9313854a81b1fb9de3",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Freshly entered actual Rigel/Zami cells may attack both player and tapped creature after awakening-link."
+    },
+    {
+      "id": 36429,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36429/",
+      "sha256": "adabadff0b29b7182cb4231363fcfb9296e1539be27498cf6d16870794a51f63",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Actual Zami recovers own Alien first, then actual Kiku is destroyed and cancels the still-tapped attack without breaking shields."
+    },
+    {
+      "id": 36430,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36430/",
+      "sha256": "f7dc239983cf410c024ef6122c0749682f7fd69c2b20db2d455da5d00b761626",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Actual registered Zabi Musha BLACK destroys Kiku before pending defensive sacrifice resolves; attack continues."
+    },
+    {
+      "id": 36431,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36431/",
+      "sha256": "ab5739afa7711d433c5b46ec22021e1293483b9bd3306908ed48c6355b8f6581",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Each repeated grave Alien summon pays normal cost, including exact encrypted manual mana."
+    },
+    {
+      "id": 36432,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36432/",
+      "sha256": "14e0267db7f74464ca520b46ac0678356992540ab67bb2eb124cbadb8857aef1",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Actual Daikinboshi grave Alien summon only in own main phase under normal summoning rules."
+    },
+    {
+      "id": 43933,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43933/",
+      "sha256": "16dada3c01a81abf98b59e0b12784d5d9e17d23ba5c02a9313854a81b1fb9de3",
+      "confirmed": true,
+      "reproduced": true,
+      "bothPlayersVerified": true,
+      "test": "tests/standard1729-effects.test.mjs",
+      "scope": "Freshly entered actual Rigel/Zami cells may attack both player and tapped creature after awakening-link."
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmd04-001",
+      "name": "炎上なる者ディス・リゲル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-001",
+      "faces": [
+        {
+          "name": "炎上なる者ディス・リゲル",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "覚醒 (サイキック)リンク - 自分のターンのはじめに、バトルゾーンに自分の《大昇進！座美の花》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。\n攻撃中、このクリーチャーのパワーは、自分の墓地にあるエイリアン１体につき+1000される。",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "最強国技ダイキンボシ",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "エイリアンを自分の墓地から召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(炎上なる者ディス・リゲル/大昇進！座美の花)",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partner": "dmd04-002"
+          }
+        ],
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 1000,
+          "attackOnly": true,
+          "filter": {
+            "g561CreatureRace": "エイリアン"
+          }
+        },
+        "g1355LinkedFace": {
+          "name": "最強国技ダイキンボシ",
+          "type": "creature",
+          "civ": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 15,
+          "power": 9000,
+          "race": "リビング・デッド/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-001b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g294GraveAura": {
+            "race": "エイリアン"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-001a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "2121b81335dac475777a2be260b6e202d893915d1785020185c65935856ec628",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-001b.jpg",
+      "backImageSha256": "7b4ba41a9b0cc16e9ec9b9e2387875602619fafa94ef83525bc47cab6970b9f1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:37:23.629Z",
+        "printedFrontType": "サイキック・クリーチャー",
+        "printedBackType": "サイキック・セル",
+        "wholeLinkedFaceType": "サイキック・スーパー・クリーチャー"
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmd04-001"
+        ],
+        "result": "Whole exact-name official search/product lists; every original/reprint whole face and both images inspected."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:37:23.629Z",
+        "sha256": "31e61f0d26a12f459174962b2508c608780c87495fd86b4ecf969e7e47335869",
+        "facesMatched": true,
+        "imageSha256": "2121b81335dac475777a2be260b6e202d893915d1785020185c65935856ec628",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-001b.jpg",
+        "backImageSha256": "7b4ba41a9b0cc16e9ec9b9e2387875602619fafa94ef83525bc47cab6970b9f1"
+      }
+    },
+    {
+      "id": "dmd04-002",
+      "name": "大昇進！座美の花",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-002",
+      "faces": [
+        {
+          "name": "大昇進！座美の花",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、エイリアンを１体、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "最強国技ダイキンボシ",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "エイリアンを自分の墓地から召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(炎上なる者ディス・リゲル/大昇進！座美の花)",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "エイリアン"
+            }
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "最強国技ダイキンボシ",
+          "type": "creature",
+          "civ": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 15,
+          "power": 9000,
+          "race": "リビング・デッド/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-002b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g294GraveAura": {
+            "race": "エイリアン"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-002a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0a7b22778ea210f656dffc8cc711f818e84ef4e3b450506c975c501f8826f014",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-002b.jpg",
+      "backImageSha256": "84ac790c2e1a1a6809aa9bcf1eac8257f5c63dd465225d106a63e6724ece4e59",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:37:23.629Z",
+        "printedFrontType": "サイキック・クリーチャー",
+        "printedBackType": "サイキック・セル",
+        "wholeLinkedFaceType": "サイキック・スーパー・クリーチャー"
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmd04-002"
+        ],
+        "result": "Whole exact-name official search/product lists; every original/reprint whole face and both images inspected."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:37:23.629Z",
+        "sha256": "3a43b7eb74d1940eaac420b222d760213ca3eb26ef765c0f127889d57208a6c7",
+        "facesMatched": true,
+        "imageSha256": "0a7b22778ea210f656dffc8cc711f818e84ef4e3b450506c975c501f8826f014",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-002b.jpg",
+        "backImageSha256": "84ac790c2e1a1a6809aa9bcf1eac8257f5c63dd465225d106a63e6724ece4e59"
+      }
+    },
+    {
+      "id": "dmd03-005",
+      "name": "特攻の菊",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-005",
+      "faces": [
+        {
+          "name": "特攻の菊",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\n相手のクリーチャーが自分を攻撃する時、このクリーチャーを破壊してもよい。そうした場合、その攻撃を中止する。",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "defs": [
+            {
+              "op": "SelfSacrifice407",
+              "defs": [
+                {
+                  "op": "Custom",
+                  "name": "stopAttack"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd03-005.jpg",
+      "imageReviewed": true,
+      "imageSha256": "589e4b894739843773204901dc2137cde589ddc35b25d020a5005eb739ee9272",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmd03-005"
+        ],
+        "result": "Whole official exact-name search/product list: original only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:37:23.629Z",
+        "sha256": "ecf7d59f61a35ee62e214269c1cd1339d02efd6ce67c7df79045b54bf98f10c4",
+        "facesMatched": true,
+        "imageSha256": "589e4b894739843773204901dc2137cde589ddc35b25d020a5005eb739ee9272"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmrp12-s04",
+      "name": "堕悪の覇王 シャークウガ/闇の魔改造",
+      "reason": "Official whole image verifies missing spell civilization Dark. Complete CIP requires simultaneous selected physical2 battle cards including sources/underlayers/seals and replacement/LKI; native single BattleCardMove579 cannot simply repeat. No metadata or partial runtime registration."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T09:37:23.629Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd04-001": 4,
+      "dmd04-002": 4,
+      "dmd03-005": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T09:48:11.964Z",
+    "results": {
+      "related-grave-count": {
+        "name": "related-grave-count",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:Gaslan permits|Killer Eye permits|permission updates|grave summoning respects|multiple shared|Sasage payment|Fock Jack mills|light and fire grave|grave power still|race count uses)",
+          "tests/standard294-effects.test.mjs",
+          "tests/standard207-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.055,
+        "log": "tmp/duema-phase-1729/related-grave-count.log",
+        "passed": 18,
+        "logSha256": "d62ddd51c2881bd4b898efc10f8c0808f67eac648748c0df4ecccbb08d2cf04a"
+      },
+      "related-link": {
+        "name": "related-link",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1355-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.96,
+        "log": "tmp/duema-phase-1729/related-link.log",
+        "passed": 7,
+        "logSha256": "5f7de00e7098e24c5272a78306c92e65f67ebba6794c651023b35ec781b05158"
+      },
+      "related-kiku": {
+        "name": "related-kiku",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard407-effects.test.mjs",
+          "tests/standard1628-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.613,
+        "log": "tmp/duema-phase-1729/related-kiku.log",
+        "passed": 86,
+        "logSha256": "0c6048fdc7c71a6e0a6f575afc07b5e9826e9a3d66638e201c1076f926d3c734"
+      },
+      "related-online-save": {
+        "name": "related-online-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.603,
+        "log": "tmp/duema-phase-1729/related-online-final.log",
+        "passed": 55,
+        "logSha256": "ac72c62327ba4ad0777f0070c6218db5360e4ea2011a35b0d19184c1501e4b58"
+      },
+      "official": {
+        "name": "official-final",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1729.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.431,
+        "log": "tmp/duema-phase-1729/official-final.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "check": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.697,
+        "log": "tmp/duema-phase-1729/check-final.log",
+        "logSha256": "a2a633f60f377e569f762b3536fc5ad6537dba317a3d67ad07f3da3cd72dad44"
+      },
+      "audit": {
+        "name": "audit-final",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.013,
+        "log": "tmp/duema-phase-1729/audit-final.log",
+        "logSha256": "6688ba3117103ce5043c18a7d6135f94280f6a1abaa97a4f10e47d6dfd5225a0"
+      },
+      "target9500": {
+        "name": "target9500-final",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.449,
+        "log": "tmp/duema-phase-1729/target9500-final.log",
+        "logSha256": "d0833d210643f9adc471d6a8e135d1a694838255dbc6c6c07b3729aa0b33aeeb"
+      },
+      "invariants": {
+        "name": "invariants-final",
+        "command": [
+          "node",
+          "tmp/duema-phase-1729/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.442,
+        "log": "tmp/duema-phase-1729/invariants-final.log",
+        "logSha256": "2bfafc11493cd0c4b09291c5ff2b59ef08701771ee6778dd0ebad4518ad205b4"
+      },
+      "focused": {
+        "passed": 63,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused-final-three",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1729-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.644,
+            "log": "tmp/duema-phase-1729/focused-final-three.log",
+            "passed": 63,
+            "logSha256": "a77d22abc989c6ecc2334d0fca683fdb0b9564ba6371b33bd2802b8d787ea79b"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 229,
+    "focusedTestsPassed": 63,
+    "relatedTestsPassed": 166
+  },
+  "validationNotes": [
+    "Actual nameKey9424→9427 froma1657640; all9424 previous IDs/definitions and catalogue/details/aliases/images/refs/pins preserved. Full3 original cards: both complete Rigel/Zami linked faces, plus actual Kiku added as necessary QA dependency.3 original prints/5 images/mana0 or1/basic info/limits verified; official exact-name search/product lists show originals only. Linked back not counted separately.",
+    "Dis Rigel native attack-only grave count uses same creature-face Alien race filter, excludes own noncreature/nonAlien and opposing grave, reacts to current grave and ability ignore. Zami native optional own Alien creature recovery andW verified. Pair uses native own-start exact link/unlink and9000/DarkFire/W/grave Alien summon aura. Unlimited paid summons consume selected colors/mana each time, encrypted manual payment preserves exact physical card, genuine hand-entry and grave-movement locks respected. Unlink, ignored/sealed source and opposing turn remove permission.",
+    "QA36431 normal cost, QA36432 own preattack main timing, QA43933 fresh linked cells may attack either target reproduced. QA36429 necessitated adding complete actual Kiku S-trigger and optional player-attack self-sacrifice/stop. Actual Zami recovers first then Kiku sacrifice cancels without untapping or shield break. QA36430 uses real registered Zabi Musha BLACK which destroys Kiku first, so queued absent-source sacrifice cannot stop the attack. Kiku direct/no-shields/decline/creature-target/ignore/seal and actual free ST without retroactive cancellation verified.",
+    "63 final unique focused cases pass.18 positively selected short grave-summon/count regressions,7 link regressions,86 self-sacrifice/Zabi Musha regressions and55 final online/save tests pass,total229. Initial2 fixtures corrected to actual Inca/Genka/Pumpkin lock cards; six Kiku assertions corrected from absent to native null stopped attack. No runtime rule changes beyond version; all abilities reuse native effects. Earlier2-card check/online/official/invariant runs are superseded by final3-card results, not double-counted. npm run check-final19.697s, audit12.013s, target and actual nameKey/ID invariants pass.",
+    "Shark whole official image verifies its missing spell civilization Dark, but complete simultaneous2 physical battle-card bounce must handle sources/underlayers/seals/LKI/replacements; native single BattleCardMove579 cannot simply repeat. Held without metadata edits/partial runtime/count. Historical pending full-suite/card/print/long/user deferrals unchanged. No full npm test, push, publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm39-011",
+      "name": "時空の凶兵ブラック・ガンヴィート",
+      "reason": "Native tapped removal/enemy-end empty-hand awakening/back discard and sacrifice; full official review required."
+    },
+    {
+      "id": "dm38-022",
+      "name": "時空の戦猫シンカイヤヌス",
+      "reason": "Full directed loop awakening and on-awakening effects, requires narrow event hook."
+    },
+    {
+      "id": "dmc65-001",
+      "name": "時空の嵐ストームXX",
+      "reason": "Independent start mill3 and optional exact5 Fire Bird grave-to-deck awakening plus back awakening destruction; enables genuine XX Psychic modal validation."
+    },
+    {
+      "id": "promoy9-097",
+      "name": "キズナ・ブラスター",
+      "reason": "Revisit after complete real cost7 XX Psychic dependency; both modal paths need full verification."
+    }
+  ]
+}

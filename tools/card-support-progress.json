@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9424,
-  "pendingNames": 2399,
-  "phase": 1728,
-  "added": 4,
+  "supportedNames": 9427,
+  "pendingNames": 2396,
+  "phase": 1729,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -118,7 +118,7 @@
     },
     {
       "ability": "覚醒",
-      "pendingNames": 81,
+      "pendingNames": 79,
       "examples": [
         {
           "id": "dmx07-v01",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1387,
+    "クリーチャー": 1386,
     "呪文": 264,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -175,7 +175,7 @@
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
-    "サイキック・クリーチャー": 99,
+    "サイキック・クリーチャー": 97,
     "進化クロスギア": 1,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
@@ -221,8 +221,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1764,
-    "複数面・特殊カードタイプまたは情報不足": 525,
+    "未対応の能力文": 1763,
+    "複数面・特殊カードタイプまたは情報不足": 523,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -551053,27 +551053,311 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1729,
+      "checkedAt": "2026-11-23T09:48:11.964Z",
+      "baseline": "a1657640",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9424,
+      "currentNames": 9427,
+      "remainingNames": 73,
+      "added": [
+        {
+          "id": "dmd04-001",
+          "name": "炎上なる者ディス・リゲル"
+        },
+        {
+          "id": "dmd04-002",
+          "name": "大昇進！座美の花"
+        },
+        {
+          "id": "dmd03-005",
+          "name": "特攻の菊"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "a1657640",
+        "originalDefinitionsUnchanged": 9424,
+        "added": 2,
+        "uniqueNames": 9426,
+        "uniqueIds": 9426,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9424,
+        "existingImageReferenceRowsUnchanged": 11666,
+        "officialPrintsReviewed": 2,
+        "officialImagesReviewed": 4,
+        "existingPinsUnchanged": 1021
+      },
+      "results": {
+        "related-grave-count": {
+          "name": "related-grave-count",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:Gaslan permits|Killer Eye permits|permission updates|grave summoning respects|multiple shared|Sasage payment|Fock Jack mills|light and fire grave|grave power still|race count uses)",
+            "tests/standard294-effects.test.mjs",
+            "tests/standard207-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.055,
+          "log": "tmp/duema-phase-1729/related-grave-count.log",
+          "passed": 18,
+          "logSha256": "d62ddd51c2881bd4b898efc10f8c0808f67eac648748c0df4ecccbb08d2cf04a"
+        },
+        "related-link": {
+          "name": "related-link",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1355-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.96,
+          "log": "tmp/duema-phase-1729/related-link.log",
+          "passed": 7,
+          "logSha256": "5f7de00e7098e24c5272a78306c92e65f67ebba6794c651023b35ec781b05158"
+        },
+        "related-kiku": {
+          "name": "related-kiku",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard407-effects.test.mjs",
+            "tests/standard1628-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.613,
+          "log": "tmp/duema-phase-1729/related-kiku.log",
+          "passed": 86,
+          "logSha256": "0c6048fdc7c71a6e0a6f575afc07b5e9826e9a3d66638e201c1076f926d3c734"
+        },
+        "related-online-save": {
+          "name": "related-online-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.603,
+          "log": "tmp/duema-phase-1729/related-online-final.log",
+          "passed": 55,
+          "logSha256": "ac72c62327ba4ad0777f0070c6218db5360e4ea2011a35b0d19184c1501e4b58"
+        },
+        "official": {
+          "name": "official-final",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1729.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.431,
+          "log": "tmp/duema-phase-1729/official-final.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.697,
+          "log": "tmp/duema-phase-1729/check-final.log",
+          "logSha256": "a2a633f60f377e569f762b3536fc5ad6537dba317a3d67ad07f3da3cd72dad44"
+        },
+        "audit": {
+          "name": "audit-final",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.013,
+          "log": "tmp/duema-phase-1729/audit-final.log",
+          "logSha256": "6688ba3117103ce5043c18a7d6135f94280f6a1abaa97a4f10e47d6dfd5225a0"
+        },
+        "target9500": {
+          "name": "target9500-final",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.449,
+          "log": "tmp/duema-phase-1729/target9500-final.log",
+          "logSha256": "d0833d210643f9adc471d6a8e135d1a694838255dbc6c6c07b3729aa0b33aeeb"
+        },
+        "invariants": {
+          "name": "invariants-final",
+          "command": [
+            "node",
+            "tmp/duema-phase-1729/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.442,
+          "log": "tmp/duema-phase-1729/invariants-final.log",
+          "logSha256": "2bfafc11493cd0c4b09291c5ff2b59ef08701771ee6778dd0ebad4518ad205b4"
+        },
+        "focused": {
+          "passed": 63,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused-final-three",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1729-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.644,
+              "log": "tmp/duema-phase-1729/focused-final-three.log",
+              "passed": 63,
+              "logSha256": "a77d22abc989c6ecc2334d0fca683fdb0b9564ba6371b33bd2802b8d787ea79b"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 229,
+      "hashes": {
+        "dist/cards.json": "346054f4292d7ae91ff16f859586de1529919a09ec15ee0b350b3dfab9b8242d",
+        "dist/engine.js": "2a5408322e82c4d66dfe592c79f5825e1416b762cf6e67af0caae4226ee1596b",
+        "dist/samurai-rules.js": "8f8af778ae496637ac00cb1a4cbabbeafbb61a36ac1a3b3ca7f514f281237b55",
+        "dist/extended-rules.js": "f66ab662e6582a8953c8a4e9a10dce44bcfac857658e9cc3678bfc56582f62fa",
+        "dist/six-photo-rules.js": "6da6423f50563971218b331de07b2d855768b047132bab4233a75d029fa84d11",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "4f6556a2bf2b5eb1c0e61dacec3eadb0344e467cfc8f6f6efb515a040b1aeb02",
+        "dist/card-images.js": "40e062c6742b0532a023536533c2c08a09b551d32215e8db8e2306082b64a730",
+        "tools/target9000-card-spec.json": "1a30acfd4d367c76500b096a1841eae5ffcee5bb1349ff6c50d1d75fa85dd0a2",
+        "tests/standard1729-effects.test.mjs": "5e5ed234012463778aa77771da23d12b3fddac197ee6f268db459cb3f0bfc78b"
+      },
+      "engineVersion": "0.602.246",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1729-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.404,
+          "log": "tmp/duema-phase-1729/focused.log",
+          "logSha256": "7dba44b7f28e53183596e7e64a497e4fd806a5ed605a1fb0114fd9c6a545f4d4"
+        },
+        {
+          "name": "focused-kiku",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:phase1729 records|Kiku|QA36429|QA36430)",
+            "tests/standard1729-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.828,
+          "log": "tmp/duema-phase-1729/focused-kiku.log",
+          "logSha256": "80148a168c54b5cf751fccafd77843f45613202c7ddbac2d751098816bd41944"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1729.json",
+      "supported": 9427,
+      "pending": 2396,
+      "reason": "Full Dis Rigel grave Alien attacking power, Zami Alien recovery, complete Daikinboshi Psychic pair link/unlink and unlimited paid grave Alien summon. Actual Kiku whole S-trigger/optional self-destruction player-attack cancellation dependency to reproduce QA36429 and existing Zabi Musha BLACK QA36430.",
+      "validationNotes": [
+        "Actual nameKey9424→9427 froma1657640; all9424 previous IDs/definitions and catalogue/details/aliases/images/refs/pins preserved. Full3 original cards: both complete Rigel/Zami linked faces, plus actual Kiku added as necessary QA dependency.3 original prints/5 images/mana0 or1/basic info/limits verified; official exact-name search/product lists show originals only. Linked back not counted separately.",
+        "Dis Rigel native attack-only grave count uses same creature-face Alien race filter, excludes own noncreature/nonAlien and opposing grave, reacts to current grave and ability ignore. Zami native optional own Alien creature recovery andW verified. Pair uses native own-start exact link/unlink and9000/DarkFire/W/grave Alien summon aura. Unlimited paid summons consume selected colors/mana each time, encrypted manual payment preserves exact physical card, genuine hand-entry and grave-movement locks respected. Unlink, ignored/sealed source and opposing turn remove permission.",
+        "QA36431 normal cost, QA36432 own preattack main timing, QA43933 fresh linked cells may attack either target reproduced. QA36429 necessitated adding complete actual Kiku S-trigger and optional player-attack self-sacrifice/stop. Actual Zami recovers first then Kiku sacrifice cancels without untapping or shield break. QA36430 uses real registered Zabi Musha BLACK which destroys Kiku first, so queued absent-source sacrifice cannot stop the attack. Kiku direct/no-shields/decline/creature-target/ignore/seal and actual free ST without retroactive cancellation verified.",
+        "63 final unique focused cases pass.18 positively selected short grave-summon/count regressions,7 link regressions,86 self-sacrifice/Zabi Musha regressions and55 final online/save tests pass,total229. Initial2 fixtures corrected to actual Inca/Genka/Pumpkin lock cards; six Kiku assertions corrected from absent to native null stopped attack. No runtime rule changes beyond version; all abilities reuse native effects. Earlier2-card check/online/official/invariant runs are superseded by final3-card results, not double-counted. npm run check-final19.697s, audit12.013s, target and actual nameKey/ID invariants pass.",
+        "Shark whole official image verifies its missing spell civilization Dark, but complete simultaneous2 physical battle-card bounce must handle sources/underlayers/seals/LKI/replacements; native single BattleCardMove579 cannot simply repeat. Held without metadata edits/partial runtime/count. Historical pending full-suite/card/print/long/user deferrals unchanged. No full npm test, push, publication or Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dmrp12-s04",
+          "name": "堕悪の覇王 シャークウガ/闇の魔改造",
+          "reason": "Official whole image verifies missing spell civilization Dark. Complete CIP requires simultaneous selected physical2 battle cards including sources/underlayers/seals and replacement/LKI; native single BattleCardMove579 cannot simply repeat. No metadata or partial runtime registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm39-011",
+          "name": "時空の凶兵ブラック・ガンヴィート",
+          "reason": "Native tapped removal/enemy-end empty-hand awakening/back discard and sacrifice; full official review required."
+        },
+        {
+          "id": "dm38-022",
+          "name": "時空の戦猫シンカイヤヌス",
+          "reason": "Full directed loop awakening and on-awakening effects, requires narrow event hook."
+        },
+        {
+          "id": "dmc65-001",
+          "name": "時空の嵐ストームXX",
+          "reason": "Independent start mill3 and optional exact5 Fire Bird grave-to-deck awakening plus back awakening destruction; enables genuine XX Psychic modal validation."
+        },
+        {
+          "id": "promoy9-097",
+          "name": "キズナ・ブラスター",
+          "reason": "Revisit after complete real cost7 XX Psychic dependency; both modal paths need full verification."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1728,
-    "nextPhase": 1729,
+    "lastVerifiedPhase": 1729,
+    "nextPhase": 1730,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmd04-001",
-        "name": "炎上なる者ディス・リゲル",
-        "reason": "Native Psychic pair link; full original/reprint both-face review required."
+        "id": "dm39-011",
+        "name": "時空の凶兵ブラック・ガンヴィート",
+        "reason": "Native tapped removal/enemy-end empty-hand awakening/back discard and sacrifice; full official review required."
       },
       {
-        "id": "dmd04-002",
-        "name": "大昇進！座美の花",
-        "reason": "Complete linked back grave Alien summon and own attack Alien recovery; verify with native link partner."
+        "id": "dm38-022",
+        "name": "時空の戦猫シンカイヤヌス",
+        "reason": "Full directed loop awakening and on-awakening effects, requires narrow event hook."
       },
       {
-        "id": "dmrp12-s04",
-        "name": "堕悪の覇王 シャークウガ/闇の魔改造",
-        "reason": "Whole twin native battle-card bounce and global opposing minus; official review required."
+        "id": "dmc65-001",
+        "name": "時空の嵐ストームXX",
+        "reason": "Independent start mill3 and optional exact5 Fire Bird grave-to-deck awakening plus back awakening destruction; enables genuine XX Psychic modal validation."
+      },
+      {
+        "id": "promoy9-097",
+        "name": "キズナ・ブラスター",
+        "reason": "Revisit after complete real cost7 XX Psychic dependency; both modal paths need full verification."
       }
     ],
     "steps": [
@@ -551958,23 +552242,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1728,
-      "baseline": "63ce3d28",
-      "supportedNames": 9424,
-      "artifact": "tools/target9500-registration-checkpoint-1728.json",
-      "checkedAt": "2026-11-23T09:34:43.227Z"
+      "phase": 1729,
+      "baseline": "a1657640",
+      "supportedNames": 9427,
+      "artifact": "tools/target9500-registration-checkpoint-1729.json",
+      "checkedAt": "2026-11-23T09:48:11.964Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T09:34:43.227Z",
+      "checkedAt": "2026-11-23T09:48:11.964Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9424,
-      "remainingNames": 76,
+      "currentNames": 9427,
+      "remainingNames": 73,
       "duplicateNames": 0,
-      "engineVersion": "0.602.245",
+      "engineVersion": "0.602.246",
       "added": [
         {
           "id": "dmr12-008",
@@ -553391,6 +553675,18 @@
         {
           "id": "dmr01-061",
           "name": "ギル・ポリマのペンチ"
+        },
+        {
+          "id": "dmd04-001",
+          "name": "炎上なる者ディス・リゲル"
+        },
+        {
+          "id": "dmd04-002",
+          "name": "大昇進！座美の花"
+        },
+        {
+          "id": "dmd03-005",
+          "name": "特攻の菊"
         }
       ],
       "results": {
@@ -553506,16 +553802,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "4832e8ab9a0e6f1476cafd723e47c497005f41d9ea3b8840b567d7e9f4f58f3b",
-        "dist/engine.js": "08a3203e45a37c5e0ba6c90a67040427b5b3ec597cf9ec907d89075ba12f2ef9",
+        "dist/cards.json": "346054f4292d7ae91ff16f859586de1529919a09ec15ee0b350b3dfab9b8242d",
+        "dist/engine.js": "2a5408322e82c4d66dfe592c79f5825e1416b762cf6e67af0caae4226ee1596b",
         "dist/samurai-rules.js": "8f8af778ae496637ac00cb1a4cbabbeafbb61a36ac1a3b3ca7f514f281237b55",
         "dist/extended-rules.js": "f66ab662e6582a8953c8a4e9a10dce44bcfac857658e9cc3678bfc56582f62fa",
         "dist/six-photo-rules.js": "6da6423f50563971218b331de07b2d855768b047132bab4233a75d029fa84d11",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "7eee201745fe2dd41ce10867bfc1c015fbca767fb38b68f7b74e9b265a230e7c",
-        "dist/card-images.js": "1c02eb8388190ca9659b579d75fe1433d9448e5a041435d47c6f6b6748fcce69",
-        "tools/target9000-card-spec.json": "20ddb00504a6b57c777c9e82459de45d90fba01bc514af53abc3cb5180664608",
-        "tests/standard1728-effects.test.mjs": "c7a3bbed63d264bb5ded018e45f2a7a5991b34af5fd6ad5bf38832fb8bc0d689"
+        "dist/online-compatibility.js": "4f6556a2bf2b5eb1c0e61dacec3eadb0344e467cfc8f6f6efb515a040b1aeb02",
+        "dist/card-images.js": "40e062c6742b0532a023536533c2c08a09b551d32215e8db8e2306082b64a730",
+        "tools/target9000-card-spec.json": "1a30acfd4d367c76500b096a1841eae5ffcee5bb1349ff6c50d1d75fa85dd0a2",
+        "tests/standard1729-effects.test.mjs": "5e5ed234012463778aa77771da23d12b3fddac197ee6f268db459cb3f0bfc78b"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -553579,14 +553875,14 @@
       },
       "phaseRange": [
         1614,
-        1728
+        1729
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 354,
+      "addedNames": 357,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check-current",
+        "name": "check-final",
         "command": [
           "npm",
           "run",
@@ -553594,23 +553890,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.833,
-        "log": "tmp/duema-phase-1728/check-current.log",
-        "logSha256": "43d28d0a2cd76ac32c7f55917da4c450c942ccaff410835a2c951e31bf7edd2d"
+        "seconds": 19.697,
+        "log": "tmp/duema-phase-1729/check-final.log",
+        "logSha256": "a2a633f60f377e569f762b3536fc5ad6537dba317a3d67ad07f3da3cd72dad44"
       },
       "latestAudit": {
-        "name": "audit",
+        "name": "audit-final",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.435,
-        "log": "tmp/duema-phase-1728/audit.log",
-        "logSha256": "94004c1a21c969fc6d1c48b37dee1997ff1f70c1dfe00376142ddc71dc255f64"
+        "seconds": 12.013,
+        "log": "tmp/duema-phase-1729/audit-final.log",
+        "logSha256": "6688ba3117103ce5043c18a7d6135f94280f6a1abaa97a4f10e47d6dfd5225a0"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1728.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1729.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -554728,11 +555024,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9424,
-      "remaining": 76,
+      "currentNames": 9427,
+      "remaining": 73,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T09:34:43.227Z",
+      "checkedAt": "2026-11-23T09:48:11.964Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -606910,11 +607206,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1728,
+    "phase": 1729,
     "threshold": 9500,
-    "supportedNames": 9424,
-    "pendingNames": 2399,
-    "checkedAt": "2026-11-23T09:34:43.227Z",
+    "supportedNames": 9427,
+    "pendingNames": 2396,
+    "checkedAt": "2026-11-23T09:48:11.964Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -606923,7 +607219,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1728.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1729.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

@@ -300238,15 +300238,152 @@
       },
       "supportBatch": "phase-1728",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd04-001",
+      "name": "炎上なる者ディス・リゲル",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "リビング・デッド/エイリアン",
+      "text": "覚醒 (サイキック)リンク - 自分のターンのはじめに、バトルゾーンに自分の《大昇進！座美の花》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。\n攻撃中、このクリーチャーのパワーは、自分の墓地にあるエイリアン１体につき+1000される。\n【覚醒リンク面】\nエイリアンを自分の墓地から召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(炎上なる者ディス・リゲル/大昇進！座美の花)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-001",
+      "limit": 4,
+      "psychic": true,
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partner": "dmd04-002"
+        }
+      ],
+      "g207CountPower": {
+        "zone": "grave",
+        "amount": 1000,
+        "attackOnly": true,
+        "filter": {
+          "g561CreatureRace": "エイリアン"
+        }
+      },
+      "g1355LinkedFace": {
+        "name": "最強国技ダイキンボシ",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 15,
+        "power": 9000,
+        "race": "リビング・デッド/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-001b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true,
+        "g294GraveAura": {
+          "race": "エイリアン"
+        }
+      },
+      "supportBatch": "phase-1729",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd04-002",
+      "name": "大昇進！座美の花",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "リビング・デッド/エイリアン",
+      "text": "このクリーチャーが攻撃する時、エイリアンを１体、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n【覚醒リンク面】\nエイリアンを自分の墓地から召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(炎上なる者ディス・リゲル/大昇進！座美の花)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-002",
+      "limit": 4,
+      "psychic": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "エイリアン"
+          }
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "最強国技ダイキンボシ",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 15,
+        "power": 9000,
+        "race": "リビング・デッド/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-002b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true,
+        "g294GraveAura": {
+          "race": "エイリアン"
+        }
+      },
+      "supportBatch": "phase-1729",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd03-005",
+      "name": "特攻の菊",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\n相手のクリーチャーが自分を攻撃する時、このクリーチャーを破壊してもよい。そうした場合、その攻撃を中止する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd03-005",
+      "limit": 4,
+      "trigger": true,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "defs": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Custom",
+                "name": "stopAttack"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1729",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1728,
-    "checkedAt": "2026-11-23T09:24:11.269Z",
-    "baseCount": 9420,
-    "newEffectCards": 4,
+    "phase": 1729,
+    "checkedAt": "2026-11-23T09:37:23.629Z",
+    "baseCount": 9424,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9424,
+    "totalCount": 9427,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -328621,6 +328758,21 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 9420,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1728,
+        "checkedAt": "2026-11-23T09:24:11.269Z",
+        "baseCount": 9420,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9424,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
