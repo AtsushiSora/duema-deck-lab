@@ -300689,15 +300689,207 @@
       ],
       "supportBatch": "phase-1730",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-041",
+      "name": "イオの伝道師ガガ・パックン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "バーサーカー/エイリアン",
+      "text": "相手の呪文を唱えるコストは１多くなる。\n覚醒リンク- 自分のターンのはじめに、バトルゾーンに自分の《タイタンの大地ジオ・ザ・マン》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\n相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーは「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(イオの伝道師ガガ・パックン/タイタンの大地ジオ・ザ・マン)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-041",
+      "limit": 4,
+      "psychic": true,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 1
+      },
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partner": "dmr01-065"
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "貪欲バリバリ・パックンガー",
+        "type": "creature",
+        "civ": "光/自然",
+        "civilizations": [
+          "光",
+          "自然"
+        ],
+        "cost": 15,
+        "power": 10500,
+        "race": "ガイア・コマンド/バーサーカー/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g1731OpponentAttacking": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "supportBatch": "phase-1731",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-065",
+      "name": "タイタンの大地ジオ・ザ・マン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ガイア・コマンド/エイリアン",
+      "text": "自分のターンの終わりに、カードを１枚、自分のマナゾーンから手札に戻してもよい。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\n相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーは「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(イオの伝道師ガガ・パックン/タイタンの大地ジオ・ザ・マン)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-065",
+      "limit": 4,
+      "psychic": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "貪欲バリバリ・パックンガー",
+        "type": "creature",
+        "civ": "光/自然",
+        "civilizations": [
+          "光",
+          "自然"
+        ],
+        "cost": 15,
+        "power": 10500,
+        "race": "ガイア・コマンド/バーサーカー/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g1731OpponentAttacking": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "supportBatch": "phase-1731",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-023",
+      "name": "時空のジキル ザビ・ガンマン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "リビング・デッド/エイリアン",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nループ覚醒-このクリーチャーがブロックした時または攻撃された時、自分の山札の上から２枚を墓地に置き、その後、このクリーチャーを《時空のハイド ジオ・マッチョ》のほうに裏返す。（攻撃は中止されない）（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）\n【呪文面】\nこのクリーチャーのパワーは、自分の墓地にあるクリーチャー１体につき+1000される。\nループ覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、このクリーチャーを《時空のジキル ザビ・ガンマン》のほうに裏返す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-023",
+      "limit": 4,
+      "psychic": true,
+      "blocker": true,
+      "noAttack": true,
+      "g178Block": [
+        {
+          "op": "Mill",
+          "n": 2
+        },
+        {
+          "op": "Awaken1095",
+          "loop": true,
+          "g1730Face": true
+        }
+      ],
+      "g447Attacked": [
+        {
+          "op": "Mill",
+          "n": 2
+        },
+        {
+          "op": "Awaken1095",
+          "loop": true,
+          "g1730Face": true
+        }
+      ],
+      "g1085Back": {
+        "name": "時空のハイド ジオ・マッチョ",
+        "type": "creature",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "power": 3000,
+        "race": "ビーストフォーク/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-023b.jpg",
+        "blocker": false,
+        "noAttack": false,
+        "g178Block": null,
+        "g447Attacked": null,
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 1000,
+          "filter": {
+            "creature": true
+          }
+        },
+        "g482Unblocked": [
+          {
+            "op": "Awaken1095",
+            "loop": true,
+            "g1730Face": false
+          }
+        ]
+      },
+      "supportBatch": "phase-1731",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1730,
-    "checkedAt": "2026-11-23T09:57:40.895Z",
-    "baseCount": 9427,
-    "newEffectCards": 4,
+    "phase": 1731,
+    "checkedAt": "2026-11-23T10:06:51.605Z",
+    "baseCount": 9431,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9431,
+    "totalCount": 9434,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -329102,6 +329294,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9427,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1730,
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "baseCount": 9427,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9431,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

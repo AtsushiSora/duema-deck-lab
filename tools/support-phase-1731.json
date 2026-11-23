@@ -1,0 +1,724 @@
+{
+  "phase": 1731,
+  "checkedAt": "2026-11-23T10:06:51.605Z",
+  "baseCount": 9431,
+  "target": 9500,
+  "description": "Complete Gaga Pakkun/Gio Zaman linked Pakkunga and Jekyll/Hyde directed loop battle and grave power.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36305/",
+      "sha256": "c154755bf5856ca9f5a8c79b7af5a465c01b07dab51c6b037393ab92ef300ac2",
+      "scope": "Unpaid spells such as S-trigger have no extra1 mana despite Gaga spell tax.",
+      "reproduced": true,
+      "test": "tests/standard1731-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmr01-041",
+      "name": "イオの伝道師ガガ・パックン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-041",
+      "faces": [
+        {
+          "name": "イオの伝道師ガガ・パックン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の呪文を唱えるコストは１多くなる。\n覚醒リンク- 自分のターンのはじめに、バトルゾーンに自分の《タイタンの大地ジオ・ザ・マン》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "バーサーカー/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "貪欲バリバリ・パックンガー",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーは「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(イオの伝道師ガガ・パックン/タイタンの大地ジオ・ザ・マン)",
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 1
+        },
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partner": "dmr01-065"
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "貪欲バリバリ・パックンガー",
+          "type": "creature",
+          "civ": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "power": 10500,
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g252AttackWatch": {
+            "who": "opponent",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          },
+          "g260Self": {
+            "filter": {
+              "g1731OpponentAttacking": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "649666c69f6417382b1510f1d5d6fab1e3d7ae0da1dfd3b54c358d3ac0566ca5",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041b.jpg",
+      "backImageSha256": "673e57b2c78eaf35d90d12160110185252890b853c48e99130774ca792df4dda",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:06:51.605Z",
+        "reason": "Full original/reprint linked cell images jointly verify whole Psychic Super Creature; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr01-041",
+          "dmex08-043"
+        ],
+        "result": "Whole exact-name official search/product lists; every original/reprint whole face and image inspected."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "sha256": "839360bf18538b79e0dad8e0547e1124be191fab8063528062625df0f21d49bd",
+        "facesMatched": true,
+        "imageSha256": "649666c69f6417382b1510f1d5d6fab1e3d7ae0da1dfd3b54c358d3ac0566ca5",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041b.jpg",
+        "backImageSha256": "673e57b2c78eaf35d90d12160110185252890b853c48e99130774ca792df4dda"
+      }
+    },
+    {
+      "id": "dmr01-065",
+      "name": "タイタンの大地ジオ・ザ・マン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-065",
+      "faces": [
+        {
+          "name": "タイタンの大地ジオ・ザ・マン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のターンの終わりに、カードを１枚、自分のマナゾーンから手札に戻してもよい。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "ガイア・コマンド/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "貪欲バリバリ・パックンガー",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーは「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(イオの伝道師ガガ・パックン/タイタンの大地ジオ・ザ・マン)",
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "貪欲バリバリ・パックンガー",
+          "type": "creature",
+          "civ": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "power": 10500,
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g252AttackWatch": {
+            "who": "opponent",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          },
+          "g260Self": {
+            "filter": {
+              "g1731OpponentAttacking": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "2caac130c7ba7845277a0be0ac077cf7de1a70ca988d58aa5aa27bb527296a6f",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065b.jpg",
+      "backImageSha256": "c5d1eb969fdfafa5ee6b8e8d40c519055a084496e5c0de0fe209f60df6ccd5e3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:06:51.605Z",
+        "reason": "Full original/reprint linked cell images jointly verify whole Psychic Super Creature; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr01-065",
+          "dmex08-044"
+        ],
+        "result": "Whole exact-name official search/product lists; every original/reprint whole face and image inspected."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "sha256": "09809090d557feb8513b872505cf454a9d2698eda3259194ae6ca169b14a4ca2",
+        "facesMatched": true,
+        "imageSha256": "2caac130c7ba7845277a0be0ac077cf7de1a70ca988d58aa5aa27bb527296a6f",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065b.jpg",
+        "backImageSha256": "c5d1eb969fdfafa5ee6b8e8d40c519055a084496e5c0de0fe209f60df6ccd5e3"
+      }
+    },
+    {
+      "id": "dmr03-023",
+      "name": "時空のジキル ザビ・ガンマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-023",
+      "faces": [
+        {
+          "name": "時空のジキル ザビ・ガンマン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nループ覚醒-このクリーチャーがブロックした時または攻撃された時、自分の山札の上から２枚を墓地に置き、その後、このクリーチャーを《時空のハイド ジオ・マッチョ》のほうに裏返す。（攻撃は中止されない）（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "時空のハイド ジオ・マッチョ",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、自分の墓地にあるクリーチャー１体につき+1000される。\nループ覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、このクリーチャーを《時空のジキル ザビ・ガンマン》のほうに裏返す。",
+          "race": "ビーストフォーク/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Awaken1095",
+            "loop": true,
+            "g1730Face": true
+          }
+        ],
+        "g447Attacked": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Awaken1095",
+            "loop": true,
+            "g1730Face": true
+          }
+        ],
+        "g1085Back": {
+          "name": "時空のハイド ジオ・マッチョ",
+          "type": "creature",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "power": 3000,
+          "race": "ビーストフォーク/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-023b.jpg",
+          "blocker": false,
+          "noAttack": false,
+          "g178Block": null,
+          "g447Attacked": null,
+          "g207CountPower": {
+            "zone": "grave",
+            "amount": 1000,
+            "filter": {
+              "creature": true
+            }
+          },
+          "g482Unblocked": [
+            {
+              "op": "Awaken1095",
+              "loop": true,
+              "g1730Face": false
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-023a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0f1482dfd3a86fc3651ef4c453ac366434a1e2ada4f34cfef55bf9b58069f584",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-023b.jpg",
+      "backImageSha256": "efc48c09e6d5b7ccb851164f5708041f7447971e70c32f46943271da721c5b71",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:06:51.605Z",
+        "reason": "Both whole loop faces reviewed, same cost4 Dark1000/Nature3000, no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr03-023"
+        ],
+        "result": "Whole exact-name official search/product lists; every original/reprint whole face and image inspected."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "sha256": "7b43bfaa7e33b9e0501994ad4f6bbbb10aade52b8361f1d05931883f87cb2bf1",
+        "facesMatched": true,
+        "imageSha256": "0f1482dfd3a86fc3651ef4c453ac366434a1e2ada4f34cfef55bf9b58069f584",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-023b.jpg",
+        "backImageSha256": "efc48c09e6d5b7ccb851164f5708041f7447971e70c32f46943271da721c5b71"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-043",
+      "name": "イオの伝道師ガガ・パックン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-043",
+      "faces": [
+        {
+          "name": "イオの伝道師ガガ・パックン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の呪文を唱えるコストを１多くする。\n覚醒リンク：自分のターンのはじめに、バトルゾーンに自分の《タイタンの大地ジオ・ザ・マン》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "バーサーカー/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "貪欲バリバリ・パックンガー",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "W・ブレイカー\n相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーに「ブロッカー」を与える。\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）",
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 1
+        },
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partner": "dmr01-065"
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "貪欲バリバリ・パックンガー",
+          "type": "creature",
+          "civ": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "power": 10500,
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-041b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g252AttackWatch": {
+            "who": "opponent",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          },
+          "g260Self": {
+            "filter": {
+              "g1731OpponentAttacking": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        }
+      },
+      "canonicalId": "dmr01-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-043a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "c0fa55cbfd68a3398cfd0e592e1d694ebd6e074e9bfdf82627fa7e6f469d3f3f",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-043b.jpg",
+      "backImageSha256": "b55522b9bd8b46a1bb640f32dc216c70f6a9c06ee398001be18fdfad4efe03e1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:06:51.605Z",
+        "reason": "Full original/reprint linked cell images jointly verify whole Psychic Super Creature; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "sha256": "e143b541669640e1cc79b5a1e567ed2830b69b63e6c4501e448011321b04b9d3",
+        "facesMatched": true,
+        "imageSha256": "c0fa55cbfd68a3398cfd0e592e1d694ebd6e074e9bfdf82627fa7e6f469d3f3f",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-043b.jpg",
+        "backImageSha256": "b55522b9bd8b46a1bb640f32dc216c70f6a9c06ee398001be18fdfad4efe03e1"
+      }
+    },
+    {
+      "id": "dmex08-044",
+      "name": "タイタンの大地ジオ・ザ・マン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-044",
+      "faces": [
+        {
+          "name": "タイタンの大地ジオ・ザ・マン",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のターンの終わりに、カードを１枚、自分のマナゾーンから手札に戻してもよい。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ガイア・コマンド/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "貪欲バリバリ・パックンガー",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "W・ブレイカー\n相手のクリーチャーが攻撃する時、このクリーチャーをアンタップする。\n相手のクリーチャーが攻撃している間、このクリーチャーに「ブロッカー」を与える。\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）",
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "貪欲バリバリ・パックンガー",
+          "type": "creature",
+          "civ": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 15,
+          "power": 10500,
+          "race": "ガイア・コマンド/バーサーカー/エイリアン",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-065b.jpg",
+          "breaker": 2,
+          "g1355Unlink": true,
+          "g252AttackWatch": {
+            "who": "opponent",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          },
+          "g260Self": {
+            "filter": {
+              "g1731OpponentAttacking": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        }
+      },
+      "canonicalId": "dmr01-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-044a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "5932230d97c1b9bc274c820e6f7c631e6e29d528c162c29970c1b73ceb22ab91",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-044b.jpg",
+      "backImageSha256": "b55522b9bd8b46a1bb640f32dc216c70f6a9c06ee398001be18fdfad4efe03e1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:06:51.605Z",
+        "reason": "Full original/reprint linked cell images jointly verify whole Psychic Super Creature; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "sha256": "b4caf758bf4e54af47b5049d780d818340b500b3a14d8a8d70f23d53bfd31db4",
+        "facesMatched": true,
+        "imageSha256": "5932230d97c1b9bc274c820e6f7c631e6e29d528c162c29970c1b73ceb22ab91",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-044b.jpg",
+        "backImageSha256": "b55522b9bd8b46a1bb640f32dc216c70f6a9c06ee398001be18fdfad4efe03e1"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T10:06:51.605Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-041": 4,
+      "dmr01-065": 4,
+      "dmr03-023": 4,
+      "dmex08-043": 4,
+      "dmex08-044": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T10:09:41.838Z",
+    "results": {
+      "focused": {
+        "name": "focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1731-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.347,
+        "log": "tmp/duema-phase-1731/focused.log",
+        "passed": 47,
+        "logSha256": "ed3366070769c1a0be9d1bb02a11680e782e9f238db21b4ac233696c153a5f07"
+      },
+      "related-loop-link": {
+        "name": "related-loop-link",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1730-effects.test.mjs",
+          "tests/standard1355-effects.test.mjs",
+          "tests/standard1729-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.574,
+        "log": "tmp/duema-phase-1731/related-loop-link.log",
+        "passed": 133,
+        "logSha256": "0f9dae9ae2a4e07b5ee7605dd7cebb05f3ce9dc4830be09db57c9298578191b6"
+      },
+      "related-tax-block": {
+        "name": "related-tax-block",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:spell taxes|sealed and ability|taxes apply|ordinary paid|taxed cheap|spell-side|S-trigger bypasses|all optional block|block abilities|GG does not suppress)",
+          "tests/standard222-effects.test.mjs",
+          "tests/standard178-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.055,
+        "log": "tmp/duema-phase-1731/related-tax-block.log",
+        "passed": 9,
+        "logSha256": "870ab34c8a4db63f18423fd8f0d4bc29e14ef6424e07e455a9c59c7d0f3b32aa"
+      },
+      "related-online-save": {
+        "name": "related-online-save",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.896,
+        "log": "tmp/duema-phase-1731/related-online-save.log",
+        "passed": 55,
+        "logSha256": "a1877b523dee1c58455bb37b17b56aa77f2fe10d8099ab93ef8a12df1b15d0ac"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1731.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.36,
+        "log": "tmp/duema-phase-1731/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.519,
+        "log": "tmp/duema-phase-1731/check.log",
+        "logSha256": "0823d7534649861a5dd589311afa2fb56c7190a61eba28eb09c5c2c3a0b1cd54"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.967,
+        "log": "tmp/duema-phase-1731/audit.log",
+        "logSha256": "76ccadd7183a5c093e691f6ef209c84cdcbf52b0f86ce7579f87d1039e1e6a09"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.433,
+        "log": "tmp/duema-phase-1731/target9500.log",
+        "logSha256": "550f5ed9e1e22ce2ff3d5f6c20c1a5cd5e799208557373c33d19b93298a79ea1"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1731/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.902,
+        "log": "tmp/duema-phase-1731/invariants.log",
+        "logSha256": "75e0fea22a2409d5f85c158368454e5c52b41d969d05d4a6385d562eea70f151"
+      }
+    },
+    "totalTestsPassed": 244,
+    "focusedTestsPassed": 47,
+    "relatedTestsPassed": 197
+  },
+  "validationNotes": [
+    "Actual nameKey9431→9434; all9431 existing definitions, IDs, catalogue/details/aliases/images/refs/pins unchanged.3 complete original Psychic cards,5 original/reprint definitions,10 full images. Linked back and two reprints are not counted as names.",
+    "Gaga uses native opposing spell tax+1, exact own-start PsychicLink1355 with Gio. QA36305 actual free Cyber Brain S-trigger pays no mana despite tax. Gio native optional own-end mana recovery accepts tapped/facedown cards and may decline. Pakkunga10500 LightNature W/link解除 uses native mandatory opponent-attack untap plus one narrow condition on actual opposing live attacker to grant Blocker only during the attack. Front tax/recovery disappear on linked face; repeated blocking, suppression, link timing/partner and either-cell unlink verified both players.",
+    "Jekyll native g178Block/g447Attacked mills2 then directed loop to Hyde before continuing battle. Hyde live own grave creature power and unblocked player-attack loop to Jekyll reuse existing count/unblocked/directed awakening; actual block, creature attack, direct attack, ignored source and no cancellation verified. All47 focused tests passed first attempt. Related existing loop/link and Daikinboshi, positively selected spell-tax/block regressions, encrypted online/save tests passed; npm run check, official exact faces/current limits, audit and real nameKey/ID invariants passed.",
+    "Only runtime rule change is a condition usable by the new back face; no save schema or old definition changes. Encrypted defender action ownership, JSON restoration and legal saved forty-card decks with86 physical cards verified. Historical pending and user deferrals retained exactly; no full npm test, repeated broad long group, push, publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm36-s09",
+      "name": "時空の豪腕ジャパン",
+      "reason": "Full own-start5 creatures awakening and back creature library search/解除."
+    },
+    {
+      "id": "dmx22b-116",
+      "name": "時空の司令 コンボイ・トレーラー",
+      "reason": "Optional real tribe hand deployment then awakening, complete dual tribe speed/battle aura/解除."
+    },
+    {
+      "id": "dm39-008",
+      "name": "時空のスター・G・ホーガン",
+      "reason": "Optional Water creature reduction, own-end three actual summons awakening and back actual summon top peek/deploy."
+    }
+  ]
+}
