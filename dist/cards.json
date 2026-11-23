@@ -299948,19 +299948,111 @@
       "g1726NeoWave": true,
       "supportBatch": "phase-1726",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-035",
+      "name": "ぼくらの友情パワー！",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nコスト５以下の多色サイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "multicolor": true,
+            "max": 5
+          },
+          "title": "超次元ゾーンからコスト5以下の多色サイキックを1体出す"
+        }
+      ],
+      "supportBatch": "phase-1727",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-020",
+      "name": "超次元ガード・ホール",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある進化ではないクリーチャーを１体選んで裏向きにし、新しいシールドとして持ち主のシールドゾーンに加える。\n闇または光の、コスト10以下の、「コマンド」と種族にあるサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "spell": true
+        },
+        {
+          "op": "Select",
+          "origin": "extra",
+          "deploy": true,
+          "n": 1,
+          "g1104PsychicFaces": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "race": "コマンド",
+            "max": 10,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "title": "超次元ゾーンから光または闇のコスト10以下のコマンド・サイキックを1体出す"
+        }
+      ],
+      "supportBatch": "phase-1727",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1726,
-    "checkedAt": "2026-11-23T08:59:00.548Z",
-    "baseCount": 9416,
+    "phase": 1727,
+    "checkedAt": "2026-11-23T09:16:48.526Z",
+    "baseCount": 9418,
     "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9418,
+    "totalCount": 9420,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34840/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -328304,6 +328396,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37503/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35369/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1726,
+        "checkedAt": "2026-11-23T08:59:00.548Z",
+        "baseCount": 9416,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9418,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34840/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
