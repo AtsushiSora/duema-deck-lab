@@ -6181,6 +6181,27 @@ export function createSixPhotoRules(api){
   if(n)start(s,t,[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]);
   break;
  }
+ case'g34_Fortune1694':{const ids=look(s,{...t,n:3,public:true});put(s,{...t,op:'g34_FortunePick1694',ids,selected:[],used:[]});break;}
+ case'g34_FortunePick1694':{
+  const rows=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(y=>y&&!t.selected.includes(y.uid));
+  const options=rows.flatMap(y=>[...new Set(faces(card(y)).map(c=>c.type).concat(card(y).seedCreature||card(y).natureAce4?['seed']:[]))].filter(type=>!t.used.includes(type)).map(type=>opt(card(y).name+'（'+({creature:'クリーチャー',spell:'呪文',seed:'タマシード',field:'フィールド',gear:'クロスギア',aura:'オレガ・オーラ',duelist:'デュエリスト',land:'土地'}[type]||type)+'）',{uid:y.uid,type},15,y.cardId)));
+  if(options.length)choice(s,t,'異なるカードタイプのカードを手札に加える（任意）',[...options,skip()]);
+  else put(s,{...t,op:'g34_FortuneFinish1694'});break;
+ }
+ case'g34_FortuneFinish1694':{
+  for(const uid of t.selected)zoneMove(s,t.p,'deck',uid,'hand',t);
+  put(s,{...t,op:'g34_LookPick',ids:t.ids.filter(uid=>!t.selected.includes(uid)),stage:0,stages:[],rest:'bottom'});break;
+ }
+ case'g34_Jakon1694':{
+  const selected=t.selected||[],rows=creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown&&!selected.some(r=>r.uid===y.uid));
+  const options=targetOptions(s,t.p,rows).map(o=>({...o,value:{uid:o.value,incarnation:rows.find(y=>y.uid===o.value).incarnation||0}}));
+  if(options.length)choice(s,{...t,selected},'同時に破壊する自分のクリーチャーを選ぶ（任意）',[...options,skip()]);
+  else put(s,{...t,selected,op:'g34_JakonFinish1694'});break;
+ }
+ case'g34_JakonFinish1694':{
+  const rows=t.selected.map(r=>own.battle.find(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation&&!y.sealed&&api.isCreature(s,y))).filter(Boolean);
+  if(rows.length)move(s,rows.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.p})),{kind:'g865DrawDestroyed',player:t.p,source:t.source,drawMultiplier:2});break;
+ }
  case'g34_SelfSpellShield1692':api.moveSpellShield1692(s,t.p,t.uid);break;
  case'g34_TuneAgain1692':choice(s,t,'持ち主の手札に戻すバトルゾーンのカードを1枚選ぶ',cardMoveOptions579(s,{...t,anyOwner:true,to:'hand'}));break;
  case'g34_TuneFollow1692':{
@@ -8330,6 +8351,10 @@ export function createSixPhotoRules(api){
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});
   break;
+ case'g34_FortunePick1694':
+  if(v){const y=own.deck.find(y=>y.uid===v.uid);if(y&&!t.selected.includes(v.uid)&&!t.used.includes(v.type)&&[...faces(card(y)).map(c=>c.type),...(card(y).seedCreature||card(y).natureAce4?['seed']:[])].includes(v.type))put(s,{...t,selected:[...t.selected,v.uid],used:[...t.used,v.type]});}
+  else put(s,{...t,op:'g34_FortuneFinish1694'});break;
+ case'g34_Jakon1694':if(v)put(s,{...t,selected:[...t.selected,v]});else put(s,{...t,op:'g34_JakonFinish1694'});break;
  case'g34_TuneAgain1692':{
   const row=cardMoveRows579(s,{...t,anyOwner:true,to:'hand'}).get(v);if(!row)break;
   put(s,{...t,op:'g34_TuneFollow1692',target:row.x.uid,serial:(row.x.zoneSerial||0)+1});
@@ -8778,6 +8803,10 @@ export function createSixPhotoRules(api){
   if(t.g1645Boomerang&&v){
    const target=own.battle.find(y=>y.uid===v.uid),frame=s.extSpells?.find(f=>f.inst.uid===t.uid&&f.caster===t.p&&!f.virtual);
    if(target&&frame)(s.extLimits??=[]).push({kind:'g1645Boomerang',source:t.source,controller:t.p,ref:{uid:target.uid,incarnation:target.incarnation||0},spellRef:{uid:t.uid,incarnation:frame.inst.incarnation||0,serial:(frame.inst.zoneSerial||0)+1},turn:s.turn,expires:'end',who:s.active});
+  }
+  if(t.g1694Fruit&&v){
+   const y=own.battle.find(y=>y.uid===v.uid);
+   if(y)(s.extLimits??=[]).push({kind:'g1694Fruit',player:t.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,spellCost:cost(card(t.source)),turn:s.turn,expires:'end',who:s.active});
   }
   if(t.g946BattleWinUntap&&v){
    const target=own.battle.find(y=>y.uid===v.uid);

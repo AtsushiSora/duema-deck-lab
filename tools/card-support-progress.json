@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-11-22",
+  "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9317,
-  "pendingNames": 2508,
-  "phase": 1693,
+  "supportedNames": 9320,
+  "pendingNames": 2505,
+  "phase": 1694,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1414,
-    "呪文": 276,
+    "呪文": 273,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1810,
+    "未対応の能力文": 1807,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 15,
@@ -540220,32 +540220,334 @@
         }
       ],
       "next": "phase1694の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
+    },
+    {
+      "phase": 1694,
+      "checkedAt": "2026-11-23T00:16:01.804Z",
+      "baseline": "3e36676b",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9317,
+      "currentNames": 9320,
+      "remainingNames": 180,
+      "added": [
+        {
+          "id": "dm07-034",
+          "name": "不死身の果実"
+        },
+        {
+          "id": "dmrp21-034",
+          "name": "フォーチュン・ドンキッキー"
+        },
+        {
+          "id": "dm06-028",
+          "name": "邪魂転生"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "3e36676b",
+        "originalDefinitionsUnchanged": 9317,
+        "added": 3,
+        "uniqueNames": 9320,
+        "uniqueIds": 9320,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9317,
+        "existingImageReferenceRowsUnchanged": 11527,
+        "officialPrintsReviewed": 8,
+        "officialImagesReviewed": 8,
+        "existingPinsUnchanged": 837
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1694.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.412,
+          "log": "tmp/duema-phase-1694/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-complete": {
+          "name": "focused-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 17.32,
+          "log": "tmp/duema-phase-1694/focused-complete.log",
+          "passed": 48,
+          "failed": 0,
+          "logSha256": "7dfc9ae58562217f282bf5ec18323b1a88fc28a7b2d1bbfb78af1b03eb1720b9"
+        },
+        "related-destruction": {
+          "name": "related-destruction",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard865-effects.test.mjs",
+            "tests/standard1271-effects.test.mjs",
+            "tests/standard1334-effects.test.mjs",
+            "tests/standard1689-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 27.338,
+          "log": "tmp/duema-phase-1694/related-destruction.log",
+          "passed": 104,
+          "failed": 0,
+          "logSha256": "e010fab2e1e56b088940efc5eb7fa61939b55c486f6c76844fa141d7c683c17b"
+        },
+        "related-look-online": {
+          "name": "related-look-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1658-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1693-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 68.29,
+          "log": "tmp/duema-phase-1694/related-look-online.log",
+          "passed": 206,
+          "failed": 0,
+          "logSha256": "fb64002ce6ecb34fe812fff96b1d63a9c9dcbd6a9cad26c8f7aa424a2cbfd498"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.537,
+          "log": "tmp/duema-phase-1694/check.log",
+          "logSha256": "73434c0bbcbdb35d95792da97ce68885005909001bbaa97a9d691a45209d662d"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.455,
+          "log": "tmp/duema-phase-1694/audit.log",
+          "logSha256": "634af0e76054ad91272f1fa26e70233831964da9f8a669297f2002f707bfbc25"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.366,
+          "log": "tmp/duema-phase-1694/target9500.log",
+          "logSha256": "dd3db44123f0bc4a43604236a79e1f024e9fc22045dbe324643f2099ca012fcf"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1694/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.586,
+          "log": "tmp/duema-phase-1694/invariants.log",
+          "logSha256": "b010f5842e8caf8e0f9414db0af9c4a2c0409297ffbc95ca1fb82617f4a161dc"
+        }
+      },
+      "totalTestsPassed": 358,
+      "hashes": {
+        "dist/cards.json": "48b852ea5888f0ea84d61ff354bcf568c7dee3e7666aec75dda1931f4db5b128",
+        "dist/engine.js": "d95c008614b3db5acdc7a52cbd5ee0a20effd780ef65aa6b64778e21237a5a0d",
+        "dist/six-photo-rules.js": "d3b8a60e9731f2efe23f3c4ccf51034b9860c52e28b6ae799a2d02e6b18d6e36",
+        "dist/online-compatibility.js": "594230b20f79e644c628f4797eaebe62a0577b745ede6afbfb6d2727ca3cbf60",
+        "dist/card-images.js": "6391a732afb3ed3c619f1c504424482f1390094c20dc4b22a243c1e412382cad",
+        "tools/target9000-card-spec.json": "18cbda37259adb8a29e446b631809814c35f8499db304d63281da782e30ae82e",
+        "tests/standard1694-effects.test.mjs": "7c21126ce45f61c021c6ca735e6a2168f1b0d61a30691db56fd49a99c4170e4f"
+      },
+      "engineVersion": "0.602.210",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 35115,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35115/",
+          "sha256": "ed745c66cea7180460e52c8c3faca12699f2e162205330120828986a5305bbbb",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1694-effects.test.mjs"
+        },
+        {
+          "id": 45903,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45903/",
+          "sha256": "b4f9ce119f6bc6b7c7752bb170440f0e0fa0db82a9b0a85e98eec0318877bbc0",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1694-effects.test.mjs"
+        },
+        {
+          "id": 45907,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45907/",
+          "sha256": "50e2859db2954ba735d9e4c197b7fac9e7dd733abf3481cc09c9b4425d4a8278",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1694-effects.test.mjs"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 6.142,
+          "log": "tmp/duema-phase-1694/focused.log"
+        },
+        {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.961,
+          "log": "tmp/duema-phase-1694/focused-final.log"
+        },
+        {
+          "name": "focused-corrected",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 10.13,
+          "log": "tmp/duema-phase-1694/focused-corrected.log"
+        },
+        {
+          "name": "focused-rulings",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Actual Cyber I Choice|^Actual Gareck",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.679,
+          "log": "tmp/duema-phase-1694/focused-rulings.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1694.json",
+      "supported": 9320,
+      "pending": 2505,
+      "reason": "不死身の果実の対象限定破壊マナ置換、フォーチュンドンキッキーの異なるタイプの任意取得と残り順序、邪魂転生の任意数同時破壊と実破壊数2倍ドローを全能力対応。",
+      "validationNotes": [
+        "Baseline 3e36676b; clean working tree and index; nameKey 9317; AGENTS, prior 447 checks and historical incomplete results inspected.",
+        "Official exact-name searches found Fruit 2 prints, Fortune 1, Jakon 5. All 8 full faces, stats, images (visually reviewed), mana value 1 and current restrictions were verified. Only 3 distinct names added. Newest Fruit and Jakon text specifies destruction, not any graveyard movement.",
+        "Fruit uses a physical target reference, an external turn effect and the existing mana destruction replacement. It expires at turn end, respects non-destructive grave movement and affects no other allied creature. Actual Aqua Soldier exposed a missing competing original hand destination; both original hand and Fruit mana destinations are now offered and tested in both seats (QA35115). Replacement payments cannot be replaced again.",
+        "Fortune reuses public deck reveal, protected physical cards, normal zone movement and bottom ordering. Choose one type per selected card, never repeat an assigned type. Official comprehensive rule 810.3 supports choosing one half of a twin. Tests cover two twins assigned different types, an actual Tamaseed Creature using either type, 3 distinct types, 3 creatures, declining all and exact reverse bottom order.",
+        "Jakon selects all targets before one simultaneous destruction. The existing g865DrawDestroyed counts actual direct destructions; its optional multiplier defaults to one and is two for Jakon. Evolution sources do not inflate the count; a directly destroyed psychic still counts after returning to extra. Fruit mana and Soldier hand replacements draw nothing.",
+        "QA45903 reproduced in both seats with actual Hatter Rupia, Gareck, Jakon and 3 mana: declare both shield triggers, summon Gareck first, resolve Jakon and draw 2 before the waiting Hatter destruction. QA45907 reproduced in both seats with actual Cyber I Choice and Jakon: declare both, summon I Choice, remove the water creature seal in its rule window, then destroy both creatures with Jakon and draw 4.",
+        "48 focused tests, 104 destruction/leave regressions, 206 look/shuffle/previous-batch/online regressions: 358 passed. A legal forty-card seeded game preserved all physical UIDs and JSON legal actions. Encrypted online snapshots preserve pending type selections and hide the opposing hand.",
+        "Intermediate failures retained in logs: incorrect creature IDs used as a spell/ACE fixture, native last-card automatic ordering, missing g815PutInGrave for a non-destructive move, and an unconsumed command unseal choice were corrected. Aqua Soldier competition required a runtime correction. Final focused and affected regressions all pass.",
+        "check, audit, target9500 and baseline invariants pass. nameKey 9320, no duplicates. Existing 9317 definitions, IDs, images, pins, catalogue and save formats remain unchanged. Historical pending tests, deferrals and publication records retained. No push, publication or Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dm23rp4-036",
+          "name": "ピッピ・修・ピヨッコ",
+          "reason": "公式全文・基本情報・画像URL・同名2版を取得。盾追加/重ね/EXライフ/城/交換など全経路を登場前置換し、盾追加誘発を発生させない共通処理の専用検証が必要。部分登録しない。"
+        },
+        {
+          "id": "dmrp08-046",
+          "name": "バイクロ・チュリス",
+          "reason": "同じ全経路の盾追加置換が必要なため同時保留。"
+        },
+        {
+          "id": "dmx19-s17",
+          "name": "龍素記号Cg ダイシャリン",
+          "reason": "付与チャージャーと呪文自身/外部の終了先、保持盾・解決中源の出入りの優先関係を専用検証する。部分登録しない。"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        },
+        {
+          "id": "dmx11-072",
+          "name": "騒音機装 DJ アフロ・スピーカー",
+          "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        },
+        {
+          "id": "dm34-028",
+          "name": "時空男",
+          "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        }
+      ],
+      "next": "phase1695の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1693,
-    "nextPhase": 1694,
+    "lastVerifiedPhase": 1694,
+    "nextPhase": 1695,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm23rp4-036",
-        "name": "ピッピ・修・ピヨッコ",
-        "reason": "相手ターンの相手盾追加を墓地に置換する全経路を照合。"
+        "id": "dmr09-102",
+        "name": "戦場のロックンロール",
+        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
       },
       {
-        "id": "dmrp08-046",
-        "name": "バイクロ・チュリス",
-        "reason": "同じ盾追加置換とスピードアタッカーを全能力対応。"
+        "id": "dmx11-072",
+        "name": "騒音機装 DJ アフロ・スピーカー",
+        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
       },
       {
-        "id": "dmx19-s17",
-        "name": "龍素記号Cg ダイシャリン",
-        "reason": "全自呪文へのチャージャー付与と既存終了先置換の優先関係を照合。"
+        "id": "dm34-028",
+        "name": "時空男",
+        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
       }
     ],
     "steps": [
       "ユーザーの指示で9500まで3〜5種類バッチを継続。",
-      "phase1694の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
+      "phase1695の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
       "過去の未確認・保留は保持。"
     ],
     "knownIssues": [
@@ -541126,23 +541428,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1693,
-      "baseline": "99f7bcf3",
-      "supportedNames": 9317,
-      "artifact": "tools/target9500-registration-checkpoint-1693.json",
-      "checkedAt": "2026-11-23T00:00:38.384Z"
+      "phase": 1694,
+      "baseline": "3e36676b",
+      "supportedNames": 9320,
+      "artifact": "tools/target9500-registration-checkpoint-1694.json",
+      "checkedAt": "2026-11-23T00:16:01.804Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T00:00:38.384Z",
+      "checkedAt": "2026-11-23T00:16:01.804Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9317,
-      "remainingNames": 183,
+      "currentNames": 9320,
+      "remainingNames": 180,
       "duplicateNames": 0,
-      "engineVersion": "0.602.209",
+      "engineVersion": "0.602.210",
       "added": [
         {
           "id": "dmr12-008",
@@ -542131,6 +542433,18 @@
         {
           "id": "dm36-031",
           "name": "ダブル・リボルバードラゴン"
+        },
+        {
+          "id": "dm07-034",
+          "name": "不死身の果実"
+        },
+        {
+          "id": "dmrp21-034",
+          "name": "フォーチュン・ドンキッキー"
+        },
+        {
+          "id": "dm06-028",
+          "name": "邪魂転生"
         }
       ],
       "results": {
@@ -542246,14 +542560,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "b81e4241f92c09285878a62a858e65dd6cb91109104afdf826a9f5fcb3bef47f",
-        "dist/engine.js": "6b0a74aac76b4b3705cde1f8bfecfee862fa0b06c3ceed5dd0dfb4693294646f",
-        "dist/six-photo-rules.js": "46ad1e03f6b886318d48d4ba2a6fbee6ff7ee23c9cb0bff3cb1505eb0d1a0074",
-        "dist/galaxy-rules.js": "e57234c0c41eed89fe2838e663f5dc22df862457bcd19fe0d136775654ab32d2",
-        "dist/online-compatibility.js": "9c9f5086e35832d1050c778391eb20256505d28b9f84a3890e5bd5bb8a32d514",
-        "dist/card-images.js": "09ec7b02d57a5385e6ba8e6ccbfb3c1904d77b66d3a1d8e67ba9a89d9ddf93e3",
-        "tools/target9000-card-spec.json": "69fa1d58494d429c8433f40e19e9e6515eb8a1ff6d7f264c1dc6505b3caf619d",
-        "tests/standard1693-effects.test.mjs": "e91c9e08bd18e6d1116253256006a6388c21af6f043699b5f285e58661a51f45"
+        "dist/cards.json": "48b852ea5888f0ea84d61ff354bcf568c7dee3e7666aec75dda1931f4db5b128",
+        "dist/engine.js": "d95c008614b3db5acdc7a52cbd5ee0a20effd780ef65aa6b64778e21237a5a0d",
+        "dist/six-photo-rules.js": "d3b8a60e9731f2efe23f3c4ccf51034b9860c52e28b6ae799a2d02e6b18d6e36",
+        "dist/online-compatibility.js": "594230b20f79e644c628f4797eaebe62a0577b745ede6afbfb6d2727ca3cbf60",
+        "dist/card-images.js": "6391a732afb3ed3c619f1c504424482f1390094c20dc4b22a243c1e412382cad",
+        "tools/target9000-card-spec.json": "18cbda37259adb8a29e446b631809814c35f8499db304d63281da782e30ae82e",
+        "tests/standard1694-effects.test.mjs": "7c21126ce45f61c021c6ca735e6a2168f1b0d61a30691db56fd49a99c4170e4f"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -542317,14 +542630,14 @@
       },
       "phaseRange": [
         1614,
-        1693
+        1694
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 247,
+      "addedNames": 250,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check-final",
+        "name": "check",
         "command": [
           "npm",
           "run",
@@ -542332,9 +542645,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 29.032,
-        "log": "tmp/duema-phase-1693/check-final.log",
-        "logSha256": "36d03087f5f4a10fee33f44071fa74dc7095072cad228eb7bf8d3fa1f66b765d"
+        "seconds": 23.537,
+        "log": "tmp/duema-phase-1694/check.log",
+        "logSha256": "73434c0bbcbdb35d95792da97ce68885005909001bbaa97a9d691a45209d662d"
       },
       "latestAudit": {
         "name": "audit",
@@ -542344,11 +542657,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.939,
-        "log": "tmp/duema-phase-1693/audit.log",
-        "logSha256": "e9ceb838d76cb7bf099734bed3746ac611b56ce9d2bf627751bba623081f3dac"
+        "seconds": 11.455,
+        "log": "tmp/duema-phase-1694/audit.log",
+        "logSha256": "634af0e76054ad91272f1fa26e70233831964da9f8a669297f2002f707bfbc25"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1693.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1694.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -543466,11 +543779,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9317,
-      "remaining": 183,
+      "currentNames": 9320,
+      "remaining": 180,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T00:00:38.384Z",
+      "checkedAt": "2026-11-23T00:16:01.804Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -595572,11 +595885,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1693,
+    "phase": 1694,
     "threshold": 9500,
-    "supportedNames": 9317,
-    "pendingNames": 2508,
-    "checkedAt": "2026-11-23T00:00:38.384Z",
+    "supportedNames": 9320,
+    "pendingNames": 2505,
+    "checkedAt": "2026-11-23T00:16:01.804Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -595585,7 +595898,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1693.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1694.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
