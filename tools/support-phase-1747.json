@@ -1,0 +1,281 @@
+{
+  "phase": 1747,
+  "checkedAt": "2026-11-23T23:02:04.663Z",
+  "baseCount": 9471,
+  "target": 9500,
+  "description": "One fully native CodeKing original: optional mill5, optional Zenith summon reduction2 and W breaker. Other screened candidates require common-path changes or unresolved official metadata, so not padded with partial support.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [],
+  "cards": [
+    {
+      "id": "promoy11-046",
+      "name": "偽りの王 ヴァルトシュタイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-046",
+      "faces": [
+        {
+          "name": "偽りの王 ヴァルトシュタイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置く。\n自分のゼニスを召喚するコストは２少なくなる。ただし、コストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g349SummonAuras": [
+          {
+            "race": "ゼニス",
+            "amount": 2,
+            "g560Optional": true
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上から5枚を墓地に置く？",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 5
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-046.jpg",
+      "imageReviewed": true,
+      "imageSha256": "77a2c367837b234eb184a11e544a4e78c30f4316d322d92c2a40083c5b027dae",
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:02:04.663Z",
+        "reason": "Viewed original official P46/Y11 image: cost7, Dark/Fire, mana1,7000,KingCommandDragon/Unknown,W; BOTH mill5 and Zenith reduction2 are optional as printed. Official HTML omits optional wording; runtime follows the actual official printed image, records discrepancy rather than silently equating them."
+      },
+      "printedAbilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から5枚を墓地に置いてもよい。\n自分のゼニスを召喚するコストを2少なくしてもよい。ただし、コストは1より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを2枚ブレイクする）",
+      "officialHtmlDiffersFromPrintedAbility": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy11-046"
+        ],
+        "result": "Official same-name search32 results fully checked: only original P46/Y11 has this exact normalized name; all other rows are other CodeKings."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:02:04.663Z",
+        "sha256": "e7b373b7ae65c057b4b65d2f9c3e776b3ca54adadc3c0c8a4e72ad78bc009bf9",
+        "facesMatched": true,
+        "imageSha256": "77a2c367837b234eb184a11e544a4e78c30f4316d322d92c2a40083c5b027dae"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmx17-006",
+      "name": "龍素記号 Og アマテ・ラジアル",
+      "reason": "Existing SearchCast1641 accepts all spell civilizations; full Water-only search plus shuffle-before-cast needs a common-path extension. Deferred per short native-only batch instruction."
+    },
+    {
+      "id": "dmex08-286",
+      "name": "奏世の鍵主 ウムル＝ノル",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33234/",
+      "reason": "Official QA33234 says no race and ability present, while detail HTML race is ルリグ; must resolve printed metadata and no-ability/race semantics before registration. Not counted."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T23:02:04.663Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy11-046": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T23:05:03.180Z",
+    "results": {
+      "focused-final": {
+        "name": "focused-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1747-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.514,
+        "log": "tmp/duema-phase-1747/focused-final.log",
+        "passed": 37,
+        "logSha256": "2b5ebe997cda12915490938ffae51c9bab2cbba58f77a2f1aa74153448b174cb"
+      },
+      "related-reductions": {
+        "name": "related-reductions",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=reducers|reductions|reduction|reduced|summon pays|cost still|creature-face|arrival and departure|cost or fixed|matching summon|Onbashi combines",
+          "tests/standard349-effects.test.mjs",
+          "tests/standard1483-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.476,
+        "log": "tmp/duema-phase-1747/related-reductions.log",
+        "passed": 54,
+        "logSha256": "ea96743e7ddb7a2dd6e0b83435de48dde59cc82ecf8f6a434715e12f30954c40"
+      },
+      "related-mill": {
+        "name": "related-mill",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Yamino Caesar|paid native summon|Saikuu independent|Ghoul",
+          "tests/standard1560-effects.test.mjs",
+          "tests/standard1745-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.098,
+        "log": "tmp/duema-phase-1747/related-mill.log",
+        "passed": 28,
+        "logSha256": "f27c18477ba0b8b5709f9a47e5bad3769746df97506cf048fcb3ea5e9bc415c9"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.789,
+        "log": "tmp/duema-phase-1747/related-online.log",
+        "passed": 12,
+        "logSha256": "064d18328c4a3af9a977f4086c1412fa3d7d71c5f260b65788c2dc0b58f4475e"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1747/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.457,
+        "log": "tmp/duema-phase-1747/research.log",
+        "logSha256": "5f4c06c28257533719575624196e7463186990e587bbbb29c8a3f91c8cf2a272"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1747/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 17.52,
+        "log": "tmp/duema-phase-1747/prints.log",
+        "logSha256": "13f2cde6e5acc643f6f74702d7b3ae92d48755b585f543171a2e259ab70d9478"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1747.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.123,
+        "log": "tmp/duema-phase-1747/official.log",
+        "logSha256": "27017780b8aa199e53aefbcbfc4ca7ed66ff1f5d05752c9a5b0695d5a1197030"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.197,
+        "log": "tmp/duema-phase-1747/check.log",
+        "logSha256": "3dc51985001a3aa1f740a5f026022d9b8593a564c58e08ab0d04ac7417c0e56d"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.213,
+        "log": "tmp/duema-phase-1747/audit.log",
+        "logSha256": "172b175c45eddad9a5ed2c055eae0e27866b595ccfdde2b77f21bcc8c9b50c01"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.391,
+        "log": "tmp/duema-phase-1747/target9500.log",
+        "logSha256": "bcbc18f0cfd6c3ed8be4bc0156301b9535115f48ddfccc8e923056f61f9f37c9"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1747/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.431,
+        "log": "tmp/duema-phase-1747/invariants.log",
+        "logSha256": "61895a30078bbe60885b19267f9b688454b4d634dc2c46c66b78f61ea9129112"
+      }
+    },
+    "totalTestsPassed": 131,
+    "focusedTestsPassed": 37,
+    "relatedTestsPassed": 94
+  },
+  "validationNotes": [
+    "Actual data nameKey9471→9472. One complete new original name Valtshutain; no same-name reprints or duplicate rows counted. Official same-name search had32 hits, all fetched: only original P46/Y11 exact name;31 other CodeKings excluded. Original official image viewed:7 Dark/Fire mana1/7000/KingCommandDragon/Unknown/W; regulation limit4 checked.",
+    "Original P46/Y11 image has OPTIONAL mill5 and OPTIONAL Zenith reduction2, plus multicolor tapped-mana line. HTML omits optional wording and the mana reminder. Preserve original HTML faces for strict source verification, and separately record complete printed ability text and discrepancy. Existing native Offer+Mill and optional g349SummonAuras represent the actual printed card; no new shared gameplay logic or save schema introduced.",
+    "Actual paid7 optional accept/decline mills exactly5; short4 deck acceptance mills all and loses, decline preserves deck. Free nonsummon native entry still triggers. Multicolor charge is tapped, fresh body sick, ordinary attack breaks2. Actual Zenith10 summon chooses0/1/2 discount, native six-source stacking stops at1; Unknown-only creature and Zenith spells/fields unaffected. Enemy/ignored/sealed/grave sources give no discount; source departure and actual DiamondStar prohibit discount appropriately.",
+    "37 focused cases pass, plus affected native reduction/Onbashi/mill/Ghoul/online-save regressions. Encrypted pending Offer and reduction decisions, opponent action hiding, pure AI evaluation, exact physical conservation, legal40 decks/80-card save format verified. One initial test fixture used wrong DiamondStar ID; corrected to real dmrp22-027, verified actual prohibition then removal. All final tests pass. npm run check/audit/target9500/invariants pass;9471 original definitions/details/catalogue/name aliases/images/pins unchanged.",
+    "One smaller native-only batch rather than counting incomplete candidates: AmateRadial needs Water-only search plus shuffle-before-cast extension; Umur official QA33234/no-race metadata requires full reconciliation. Both held with reasons, not counted. Existing historical registration/print/long-suite pending and interrupted full npm test unchanged. No full or old long CPU group rerun. Local commit only; no push, Pages or Netlify. Target9500 remaining28, next phase1748."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmx17-006",
+      "name": "龍素記号 Og アマテ・ラジアル",
+      "reason": "Existing SearchCast1641 accepts all spell civilizations; full Water-only search plus shuffle-before-cast needs a common-path extension. Deferred per short native-only batch instruction."
+    },
+    {
+      "id": "dmex08-286",
+      "name": "奏世の鍵主 ウムル＝ノル",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33234/",
+      "reason": "Official QA33234 says no race and ability present, while detail HTML race is ルリグ; must resolve printed metadata and no-ability/race semantics before registration. Not counted."
+    }
+  ]
+}
