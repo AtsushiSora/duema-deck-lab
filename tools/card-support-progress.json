@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9459,
-  "pendingNames": 2364,
-  "phase": 1741,
-  "added": 3,
+  "supportedNames": 9461,
+  "pendingNames": 2362,
+  "phase": 1742,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1375,
+    "クリーチャー": 1373,
     "呪文": 261,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1751,
+    "未対応の能力文": 1749,
     "複数面・特殊カードタイプまたは情報不足": 507,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -554947,27 +554947,251 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1742,
+      "checkedAt": "2026-11-23T12:22:34.901Z",
+      "baseline": "00969b27",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9459,
+      "currentNames": 9461,
+      "remainingNames": 39,
+      "added": [
+        {
+          "id": "dm20-003",
+          "name": "忘却人形ラビオール"
+        },
+        {
+          "id": "promoy13-081",
+          "name": "弐刀龍覇 グレンモルト「双」"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "00969b27",
+        "originalDefinitionsUnchanged": 9459,
+        "added": 2,
+        "uniqueNames": 9461,
+        "uniqueIds": 9461,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9459,
+        "existingImageReferenceRowsUnchanged": 11724,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 1079
+      },
+      "results": {
+        "related-weapons": {
+          "name": "related-weapons",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1474-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.259,
+          "log": "tmp/duema-phase-1742/related-weapons.log",
+          "passed": 21,
+          "logSha256": "0c897f192d82423494642a198a8e6ed6c3636adb538e26858a458b429e5e4e30"
+        },
+        "related-fort": {
+          "name": "related-fort",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Collector|phase1738 manual",
+            "tests/standard1738-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.127,
+          "log": "tmp/duema-phase-1742/related-fort.log",
+          "passed": 22,
+          "logSha256": "060c9f1f4716d65905f60c430a1d0c050be8db8501e243449e96b7229d01bfcd"
+        },
+        "related-online": {
+          "name": "related-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.824,
+          "log": "tmp/duema-phase-1742/related-online.log",
+          "passed": 55,
+          "logSha256": "2b66296237d7399c6e170244ec5cde025cce7ce05d13f74e184ef879023b436a"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1742.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.358,
+          "log": "tmp/duema-phase-1742/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.638,
+          "log": "tmp/duema-phase-1742/check.log",
+          "logSha256": "fbad5b7032e4f988c9de9fc9071a9b7bf5c15891bc6475ff518272a418f0eed2"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.316,
+          "log": "tmp/duema-phase-1742/audit.log",
+          "logSha256": "9754c568f33f84ad1e6a30f284ed0e6fef067ea9a0144a56322be875af6f83de"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.381,
+          "log": "tmp/duema-phase-1742/target9500.log",
+          "logSha256": "8001e0bcb17e95a43a5f970ab527218b810253862b19044ab4e681655d9ca10a"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1742/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.388,
+          "log": "tmp/duema-phase-1742/invariants.log",
+          "logSha256": "e1a676dd1dbb836bbd7de83ca4875a9eb3f8344e3d7a55910c2d149e8c1fb8b6"
+        },
+        "focused": {
+          "passed": 27,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1742-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.962,
+              "log": "tmp/duema-phase-1742/focused.log",
+              "logSha256": "900ac0c356f1b87cb540e7644f28c8ba669cd5e7781b864dd9624b58d3e4a768"
+            }
+          ],
+          "coverage": "27 unique full-ability cases pass on both seats, no failed attempts."
+        }
+      },
+      "totalTestsPassed": 125,
+      "hashes": {
+        "dist/cards.json": "f56a7eb615d48d4e90fc9c1fc8cf5462bb68c3cec3654e84f0778fbbb4c06e6d",
+        "dist/engine.js": "5b43cdb58c75d118aabed75611fcadf5acc3dde5e9fca908c7e7b6ba698bc9fd",
+        "dist/six-photo-rules.js": "49c1b09447204c5c3f9a61d7f272ff66ea24c5083746ff081a2c961b44d04e51",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
+        "dist/redzone-rules.js": "cde1bdfe6a29395a1702500c0be5be1ba30f11dadeefcea55cd31ac38b176fe5",
+        "dist/online-compatibility.js": "1b0837711da2b3d7d6d06ea71446079f97e583524852ab312dc0bbdf440d770e",
+        "dist/card-images.js": "840e07fc801932fe99a60ef3df11b6cda6e972f390b36f3c53ca720db54dbdd3",
+        "tools/target9000-card-spec.json": "f9e1448e2cb66865baef13f5aa852acad746307d0856831cd9180c94fa9be695",
+        "tests/standard1742-effects.test.mjs": "8ff0186ecc131e84b58ac9969e2b6932d08be55778b19edc4e9cbc6135405637"
+      },
+      "engineVersion": "0.602.259",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1742.json",
+      "supported": 9461,
+      "pending": 2362,
+      "reason": "Full Labiol FortressE actual paid DeathPuppet mana conditional both-player whole-hand discard, and Glenmolt Double optional two cost2-or-less weapons attached to itself.",
+      "validationNotes": [
+        "Actual nameKey9459→9461. Two complete names, three official original/reprint pages and printed images reviewed. Existing9459 definitions/IDs/catalogue/details/names/images/pins unchanged. No count for reprint or held Seimei.",
+        "Labiol reuses phase1738 actual paid mana race provenance, DeathPuppet exact-race payment triggers both-player native whole hand discard. Both seats paid6,3000body, manual payment actual-race/no-race, cancel exact rollback and JSON restore, tapped qualifying card excluded, free summon/nonsummon no FortE, opposing Tignus hand protection verified. Existing Collector native FortE regressions pass.",
+        "Glenmolt Double gains W breaker and selects0/1/2 own real Dragheart weapons cost<=2 before either enters; new narrow DeployWeapons1742 uses native canEnter, attachment incarnation and enter path. Offcolor weapons with Fire-only mana, no Psychic/main card, no repeat same physical UID, two same-name weapons allowed, ignored/empty source, pending source departure cancels, actual SpiralGate returns both attached weapons, physical conservation, encrypted room restore, private actions, pure AI and80-card saved deck verified. No changes to existing weapon deployment operations; full short1474 dragheart regression passes.",
+        "Official search returned King37179/37180 about its explicitly different same-name weapon restriction, not this Double, so not applied as a ruling for Double. Original Double full printed text has no same-name prohibition; no direct related QA on its official page.27 focused and short related regressions/check/audit/count/target/invariants pass. Historical interrupted full-suite and pending items retained, no push/publication/Netlify."
+      ],
+      "held": [
+        {
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "Official full text/basic data/art and no reprints reviewed, but opponent-only spell grave-to-hand prohibition needs coverage across all recovery paths and Twinpacts, not blanket grave freeze. Held before implementation, no count."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "promoy15-078",
+          "name": "終断デルタ ドルハカバ",
+          "reason": "Native speed attacker and conditional grave summon with own field presence."
+        },
+        {
+          "id": "dm36-023",
+          "name": "奈落の魔黒ジャック・ライガー",
+          "reason": "Review exact E Soul evolution and optional self recovery from deck mill."
+        },
+        {
+          "id": "dmrp18-050",
+          "name": "群蟲 シェルフォ-２",
+          "reason": "Review native Sasage2 and opponent mana departure prohibition for all movement paths."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1741,
-    "nextPhase": 1742,
+    "lastVerifiedPhase": 1742,
+    "nextPhase": 1743,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm20-003",
-        "name": "忘却人形ラビオール",
-        "reason": "Reuse validated actual FortE paid-race provenance and both-player discard whole hand."
+        "id": "promoy15-078",
+        "name": "終断デルタ ドルハカバ",
+        "reason": "Native speed attacker and conditional grave summon with own field presence."
       },
       {
-        "id": "promoy13-081",
-        "name": "弐刀龍覇 グレンモルト「双」",
-        "reason": "Reuse native optional two cost<=2 weapon attachments and W breaker; check all official prints."
+        "id": "dm36-023",
+        "name": "奈落の魔黒ジャック・ライガー",
+        "reason": "Review exact E Soul evolution and optional self recovery from deck mill."
       },
       {
-        "id": "dm31-007",
-        "name": "陰陽の伝道士セイメイ",
-        "reason": "Reuse untargetable and narrow opponent grave-spell recovery restriction after official rulings review."
+        "id": "dmrp18-050",
+        "name": "群蟲 シェルフォ-２",
+        "reason": "Review native Sasage2 and opponent mana departure prohibition for all movement paths."
       }
     ],
     "steps": [
@@ -555852,23 +556076,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1741,
-      "baseline": "4f6f2175",
-      "supportedNames": 9459,
-      "artifact": "tools/target9500-registration-checkpoint-1741.json",
-      "checkedAt": "2026-11-23T12:16:29.801Z"
+      "phase": 1742,
+      "baseline": "00969b27",
+      "supportedNames": 9461,
+      "artifact": "tools/target9500-registration-checkpoint-1742.json",
+      "checkedAt": "2026-11-23T12:22:34.901Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T12:16:29.801Z",
+      "checkedAt": "2026-11-23T12:22:34.901Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9459,
-      "remainingNames": 41,
+      "currentNames": 9461,
+      "remainingNames": 39,
       "duplicateNames": 0,
-      "engineVersion": "0.602.258",
+      "engineVersion": "0.602.259",
       "added": [
         {
           "id": "dmr12-008",
@@ -557425,6 +557649,14 @@
         {
           "id": "dm19-s01",
           "name": "超神星ヴィーナス・ラ・セイントマザー"
+        },
+        {
+          "id": "dm20-003",
+          "name": "忘却人形ラビオール"
+        },
+        {
+          "id": "promoy13-081",
+          "name": "弐刀龍覇 グレンモルト「双」"
         }
       ],
       "results": {
@@ -557540,16 +557772,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "4db830d26006a0428350d716b612e23c98ed1e66d799a067edf788c17a7a5b47",
-        "dist/engine.js": "573b1ae0f6d8b6aaf90bdf95e08591ca461130a66edb50f2b45c2d9e516eda60",
-        "dist/six-photo-rules.js": "c97a3a14b9867bf27f626a488dbce6a7262f018c699688b1627b1a1fa6765a11",
+        "dist/cards.json": "f56a7eb615d48d4e90fc9c1fc8cf5462bb68c3cec3654e84f0778fbbb4c06e6d",
+        "dist/engine.js": "5b43cdb58c75d118aabed75611fcadf5acc3dde5e9fca908c7e7b6ba698bc9fd",
+        "dist/six-photo-rules.js": "49c1b09447204c5c3f9a61d7f272ff66ea24c5083746ff081a2c961b44d04e51",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
         "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
         "dist/redzone-rules.js": "cde1bdfe6a29395a1702500c0be5be1ba30f11dadeefcea55cd31ac38b176fe5",
-        "dist/online-compatibility.js": "6e93df5596e782d430c15d6a3310f3d47bab1dd18e01bc7de9a6fc3aa2249e3e",
-        "dist/card-images.js": "d5a8ae0685c18018c49580e7fc21df70fc0b980cfd926213a8cc017fd29d1329",
-        "tools/target9000-card-spec.json": "1976503a46dc66045ee101c75c59ba639309e78e621ac2c699c680d788f09737",
-        "tests/standard1741-effects.test.mjs": "191051d656557d5157671f1012759ff04512f0a5985d562e31e86ba6f82de041"
+        "dist/online-compatibility.js": "1b0837711da2b3d7d6d06ea71446079f97e583524852ab312dc0bbdf440d770e",
+        "dist/card-images.js": "840e07fc801932fe99a60ef3df11b6cda6e972f390b36f3c53ca720db54dbdd3",
+        "tools/target9000-card-spec.json": "f9e1448e2cb66865baef13f5aa852acad746307d0856831cd9180c94fa9be695",
+        "tests/standard1742-effects.test.mjs": "8ff0186ecc131e84b58ac9969e2b6932d08be55778b19edc4e9cbc6135405637"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -557613,10 +557845,10 @@
       },
       "phaseRange": [
         1614,
-        1741
+        1742
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 389,
+      "addedNames": 391,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -557628,9 +557860,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.89,
-        "log": "tmp/duema-phase-1741/check.log",
-        "logSha256": "a48d5bdfade829f711f6a936f4c741e69f2e8970312a8bfbbd3b8cb34c253c75"
+        "seconds": 19.638,
+        "log": "tmp/duema-phase-1742/check.log",
+        "logSha256": "fbad5b7032e4f988c9de9fc9071a9b7bf5c15891bc6475ff518272a418f0eed2"
       },
       "latestAudit": {
         "name": "audit",
@@ -557640,11 +557872,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.408,
-        "log": "tmp/duema-phase-1741/audit.log",
-        "logSha256": "f720c954b4e87e07b77c2c73c4cc1ab080ed4f917c9025923037861942a485eb"
+        "seconds": 10.316,
+        "log": "tmp/duema-phase-1742/audit.log",
+        "logSha256": "9754c568f33f84ad1e6a30f284ed0e6fef067ea9a0144a56322be875af6f83de"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1741.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1742.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -558762,11 +558994,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9459,
-      "remaining": 41,
+      "currentNames": 9461,
+      "remaining": 39,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T12:16:29.801Z",
+      "checkedAt": "2026-11-23T12:22:34.901Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -610974,11 +611206,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1741,
+    "phase": 1742,
     "threshold": 9500,
-    "supportedNames": 9459,
-    "pendingNames": 2364,
-    "checkedAt": "2026-11-23T12:16:29.801Z",
+    "supportedNames": 9461,
+    "pendingNames": 2362,
+    "checkedAt": "2026-11-23T12:22:34.901Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -610987,7 +611219,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1741.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1742.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

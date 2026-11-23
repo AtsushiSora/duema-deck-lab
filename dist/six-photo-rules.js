@@ -2535,6 +2535,17 @@ export function createSixPhotoRules(api){
   if(options.length)choice(s,t,'ウエポンを装備する自分のクリーチャーを選ぶ',options);
   break;
  }
+ case'g34_DeployWeapons1742':{
+  const host=sourceHost474(s,t)?.x;
+  if(!host||host.sealed||!api.isCreature(s,host))break;
+  const selected=t.selected||[],rows=own.extra.filter(y=>!selected.includes(y.uid)&&card(y).dragheart&&card(y).type==='weapon'&&cost(card(y))<=t.max&&api.canEnter(s,t.p,card(y),{origin:'extra',execution:false}));
+  if(!t.done&&selected.length<t.n&&rows.length){
+   choice(s,t,'装備して出すウエポンを選ぶ（'+selected.length+'/'+t.n+'枚）',[...rows.map(y=>opt(card(y).name,y.uid,20,y.cardId)),skip()]);break;
+  }
+  const weapons=selected.map(uid=>own.extra.find(y=>y.uid===uid)).filter(Boolean);
+  for(const y of weapons){remove(own.extra,y.uid);y.weaponTo={uid:host.uid,incarnation:host.incarnation||0};own.hasWeapons1361=true;enter(s,t.p,y,null,{origin:'extra',execution:false,effectController:t.controller??t.p});}
+  break;
+ }
  case'g34_DeployDragheart1361':{
   const options=dragheartOptions1361(s,t).map(y=>opt(card(y).name,y.uid,20,y.cardId));
   if(options.length)choice(s,t,'超次元ゾーンから出すドラグハートを選ぶ',options);
@@ -7455,6 +7466,7 @@ export function createSixPhotoRules(api){
  case'g34_GodWall1485':{
   const y=own.battle.find(x=>x.uid===v);if(y)(s.extLimits??=[]).push({kind:'g627Stay',ref:{uid:y.uid,incarnation:y.incarnation||0},destroyOnly:!race(effective(y,s),'ゴッド'),expires:'start',who:t.p,source:t.source,spellCost:cost(card(t.source))});break;
  }
+ case'g34_DeployWeapons1742':put(s,{...t,...(v?{selected:[...(t.selected||[]),v]}:{done:true})});break;
  case'g34_DeployDragheart1361':{
   const y=dragheartOptions1361(s,t).find(y=>y.uid===v);
   if(!y)break;
