@@ -1,0 +1,543 @@
+{
+  "phase": 1705,
+  "checkedAt": "2026-11-23T04:56:03.130Z",
+  "baseCount": 9350,
+  "target": 9500,
+  "description": "Complete Mononofu Ruby-aware Bolmeteus search and exact Musha attack shield removal, actual B Crimson deck evolution/Fire Bird shield inspection and trigger-card destination, and Royal Dorian physical top-card mass devolution.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+    "https://dm.takaratomy.co.jp/rule/qa/40784/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 40784,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40784/",
+      "sha256": "eb89c608d33f5ce0d8199b4b9585c2459aa3b680d9c38c3887809139cab86b61",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1705-effects.test.mjs",
+      "testNamePrefix": "Exact QA40784",
+      "bothPlayersVerified": true,
+      "scope": "Actual B Crimson Ruby search by actual Mononofu, original canonical IDs preserved."
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmpcd02-a07",
+      "name": "モノノフ・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a07",
+      "faces": [
+        {
+          "name": "モノノフ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の山札を見る。その中から、名前に《ボルメテウス》とあるクリーチャーを１体相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "g1705CreatureNameIncludes": "ボルメテウス"
+                },
+                "reveal": true
+              }
+            ],
+            "rest": "shuffle"
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "g1705ExactBattleName": "ボルメテウス・武者・ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "ShieldGrave588",
+              "n": 1,
+              "required": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a07.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9b988bca423b28dbabac174845062e46913cfb6e0a8467adbf43dbcac9c3d599",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmpcd02-a07"
+        ],
+        "result": "All five original/reprint full faces, stats and official images reviewed. Dorian later cosmetic text is equivalent; original IDs retained."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:56:03.130Z",
+        "sha256": "09b8efb84c72c934a4a5dfc413ff875d7377602067ee30c909722940aeaccd88",
+        "facesMatched": true,
+        "imageSha256": "9b988bca423b28dbabac174845062e46913cfb6e0a8467adbf43dbcac9c3d599"
+      }
+    },
+    {
+      "id": "promoy8-002",
+      "name": "超竜Bクリムゾン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy8-002",
+      "faces": [
+        {
+          "name": "超竜Bクリムゾン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "デッキ進化-自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーであれば、このクリーチャーをその上に重ねつつバトルゾーンに出す。そのカードがクリーチャー以外であれば、このクリーチャーを自分の手札に戻す。\n自分のファイアー・バードがシールドをブレイクする時、そのシールドを見る。そのシールドに「S・トリガー」が付いていれば、相手の手札に加えるかわりに墓地に置く。「S・トリガー」が付いていない場合、相手はそれを手札に加える。\nW・ブレイカー",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g45MDeck": true,
+        "g831SingleDeckEvolution": true,
+        "breaker": 2,
+        "g1705RubyNameParts": [
+          "ボルメテウス"
+        ],
+        "g1705Crimson": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy8-002.jpg",
+      "imageReviewed": true,
+      "imageSha256": "e9d8553ddd125ce458331c613fd64c1c2f566c93234c2462b1dc25c2bf580680",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy8-002"
+        ],
+        "result": "All five original/reprint full faces, stats and official images reviewed. Dorian later cosmetic text is equivalent; original IDs retained."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:56:03.130Z",
+        "sha256": "2b55e0da07c396e5199e63cbdf7b63673966d710cac22503ab45fa340aed2fa9",
+        "facesMatched": true,
+        "imageSha256": "e9d8553ddd125ce458331c613fd64c1c2f566c93234c2462b1dc25c2bf580680"
+      }
+    },
+    {
+      "id": "dm11-019",
+      "name": "ロイヤル・ドリアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-019",
+      "faces": [
+        {
+          "name": "ロイヤル・ドリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるすべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RoyalDevolve1705"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-019.jpg",
+      "imageReviewed": true,
+      "imageSha256": "affc074b13f622e5f6ee362f06219690497e7cbbc074fb1e39d984acda6d5f22",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm22ex1-Cho26",
+          "dmx11-061",
+          "dm11-019"
+        ],
+        "result": "All five original/reprint full faces, stats and official images reviewed. Dorian later cosmetic text is equivalent; original IDs retained."
+      },
+      "currentPrint": {
+        "id": "dm22ex1-Cho26",
+        "name": "ロイヤル・ドリアン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-Cho26",
+        "faces": [
+          {
+            "name": "ロイヤル・ドリアン",
+            "typeText": "クリーチャー",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 5,
+            "costText": "5",
+            "abilityText": "S・トリガー\nこのクリーチャーが出た時、すべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+            "race": "ワイルド・ベジーズ",
+            "powerText": "1000",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-23T04:56:03.130Z",
+          "sha256": "3d02218faabff1689d701a5b6da950baa334d0c6df3a6ee1d582eb5cc1e54308",
+          "facesMatched": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:56:03.130Z",
+        "sha256": "c78a5a8eaf6b756ea6623b6f159be5d3ae8411ca76519cc455517bf7399da3ea",
+        "facesMatched": true,
+        "imageSha256": "affc074b13f622e5f6ee362f06219690497e7cbbc074fb1e39d984acda6d5f22"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dm22ex1-Cho26",
+      "name": "ロイヤル・ドリアン",
+      "canonicalId": "dm11-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-Cho26",
+      "faces": [
+        {
+          "name": "ロイヤル・ドリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\nこのクリーチャーが出た時、すべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "3d02218faabff1689d701a5b6da950baa334d0c6df3a6ee1d582eb5cc1e54308",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-Cho26.jpg",
+          "file": "tmp/duema-phase-1705/dm22ex1-Cho26-0.jpg",
+          "sha256": "125bd78c9bf22919528ce7ee9517fd105a1591b77f7e7e48aab47253517d4b2f"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx11-061",
+      "name": "ロイヤル・ドリアン",
+      "canonicalId": "dm11-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-061",
+      "faces": [
+        {
+          "name": "ロイヤル・ドリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるすべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "f0c34cb6054c021bcced3f12962124cd6c8013611f128f342913f7b2b8b19bcd",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-061.jpg",
+          "file": "tmp/duema-phase-1705/dmx11-061-0.jpg",
+          "sha256": "52f3f82a60e7fadf3779637d9e135793f801eb90f73422c44f27ae78c53b5bf2"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "resolvedHolds": [
+    {
+      "phase": 1704,
+      "id": "dmpcd02-a07",
+      "resolution": "Register full actual B Crimson with Mononofu and reproduce QA40784, without a fake battle source or renamed original ID."
+    }
+  ],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T04:56:03.130Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmpcd02-a07": 4,
+      "promoy8-002": 4,
+      "dm11-019": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T05:08:22.805Z",
+    "results": {
+      "related-deck-physical": {
+        "name": "related-deck-physical",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard831-effects.test.mjs",
+          "tests/standard579-effects.test.mjs",
+          "tests/standard1355-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.277,
+        "log": "tmp/duema-phase-1705/related-deck-physical.log",
+        "passed": 54,
+        "logSha256": "a4fbe68e1545813d46efb9c230f242562b7f4acce432c625ff0db5ce1f4b8365"
+      },
+      "related-shield-transaction": {
+        "name": "related-shield-transaction",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1344-effects.test.mjs",
+          "tests/standard1279-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.458,
+        "log": "tmp/duema-phase-1705/related-shield-transaction.log",
+        "passed": 64,
+        "logSha256": "58d1e3b620fe928410ba43cc5e96c0f1de226a783d95d88a9b7c3036dffd525e"
+      },
+      "related-saver-neme": {
+        "name": "related-saver-neme",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Neme | saves exactly | may decline saving | does not save while |^double break|^two saver|^soul guards|^saved shields|^mandatory attack|^an evolution under|^the whole evolution|^unleavable|^a direct attack|^creature muting|^copied Shield|^every physical",
+          "tests/standard401-effects.test.mjs",
+          "tests/standard1698-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.739,
+        "log": "tmp/duema-phase-1705/related-saver-neme.log",
+        "passed": 135,
+        "logSha256": "8b4bf4cdf32400649cb572945d8c55b14697b0111e4c1b26af4de73f94a886d0"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1705.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.817,
+        "log": "tmp/duema-phase-1705/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.118,
+        "log": "tmp/duema-phase-1705/check.log",
+        "logSha256": "cc64b8e9ba14c1a9b32d769c37aee948c66563c53ab4f318bc6979f176b3175c"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.982,
+        "log": "tmp/duema-phase-1705/audit.log",
+        "logSha256": "d0058982bf346e61f651a9bdae1eed1bf1819f93979407497d072292d2beaa89"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.426,
+        "log": "tmp/duema-phase-1705/target9500.log",
+        "logSha256": "c153836bafaa311a0bf6d90e05d0118a62c10dd7b58619cf24035fd4ee867511"
+      },
+      "invariants-reference-count-fixed": {
+        "name": "invariants-reference-count-fixed",
+        "command": [
+          "node",
+          "tmp/duema-phase-1705/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.36,
+        "log": "tmp/duema-phase-1705/invariants-reference-count-fixed.log",
+        "logSha256": "f1fb43dc1f3ac79189832341ad2f0332fe8a3b1c820d95a52b5dee2ca22c69b9"
+      },
+      "focused": {
+        "passed": 46,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1705-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 9.668,
+            "log": "tmp/duema-phase-1705/focused.log",
+            "passed": 32,
+            "logSha256": "55a041da26e8e285a2c9fd27fcc39487570119bf58d79240bccd7104e660bc1b"
+          },
+          {
+            "name": "focused-reveal-and-fixtures-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Exact QA40784|^Crimson mixed double|^Crimson private inspection",
+              "tests/standard1705-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.722,
+            "log": "tmp/duema-phase-1705/focused-reveal-and-fixtures-fixed.log",
+            "passed": 6,
+            "logSha256": "c84fa0279efc6c7ed47210b34f4993ef0f6db87fca2912ba8cd0d5c8d9e61e9d"
+          },
+          {
+            "name": "focused-shield-and-current-reconstruction",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Crimson checks each|^Crimson inspection resumes|^Crimson destination|^Dorian current",
+              "tests/standard1705-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 0.781,
+            "log": "tmp/duema-phase-1705/focused-shield-and-current-reconstruction.log",
+            "passed": 6,
+            "logSha256": "f007b088764c693d9f56bcbcb0742e7fff41216873945e4d6d0d482b386b5980"
+          },
+          {
+            "name": "focused-saver-continuation-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Crimson inspection resumes",
+              "tests/standard1705-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.613,
+            "log": "tmp/duema-phase-1705/focused-saver-continuation-fixed.log",
+            "passed": 2,
+            "logSha256": "5ff56b99cb15cfb051546f9679a2936130bf4d94515b5a55eb589a86cda3d3ec"
+          },
+          {
+            "name": "focused-crimson-final-continuation",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Crimson ",
+              "tests/standard1705-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.077,
+            "log": "tmp/duema-phase-1705/focused-crimson-final-continuation.log",
+            "passed": 22,
+            "logSha256": "c952be0eb3051f7ba6679a17f3d83f6ea0bfb433dbbf951a1e79c192e06c82a4"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 299,
+    "focusedTestsPassed": 46,
+    "relatedTestsPassed": 253
+  },
+  "validationNotes": [
+    "Start/post-verification actual nameKey counts9350/9353. Baseline01ecacf5. All9350 original card definitions, existing IDs, catalogue/details, aliases, image references, pin definitions and save formats preserved. Three reference rows added, not two; initial invariant fixture count corrected after inspecting the exact diff.",
+    "All three whole official faces, stats, original art, current limits and mana verified. Two exact Dorian reprints reviewed, five official images total; no reprint or ruby counted as an additional name.",
+    "Exact QA40784 reproduced with actual fully registered B Crimson from both player seats: Mononofu finds Bolmeteus ruby without changing the canonical name or ID. Optional creature-only search reveals the chosen card and shuffles even when declined. Initial missing reveal flag corrected in manifest, pins and live definition; both seats pass.",
+    "Mononofu exact original Musha watcher excludes Bui and the opposing player, works on a creature attack and puts one complete shield group into its owners grave without declaring a trigger or counting a break. Suppressed source does not trigger.",
+    "Crimson uses existing paid single-card deck evolution; creature top becomes physical base, noncreature stays on top and same Crimson returns to hand while mana remains paid. Own Fire Bird shield breaks inspect privately; S-trigger cards go to grave and nontriggers to hand. Actual break counters/Swan triggers remain, including mixed multi-card bundles and an actual Genmu-ignored Fire Bird.",
+    "Private Crimson inspection uses the existing inspectedCards actor-only projection and encrypted serializable task. Initial online assertions used the wrong field; corrected to inspectedCards, absent for the defender. No private shield names are added to the public log.",
+    "Extra Shield Saver regression exposed a real new continuation bug: after inspection the entire break pipeline offered a previously declined saver again. Added a narrow native commit continuation after inspection; never re-enters prior replacement/guard choices. Both seats accept/decline Saver, preserve saved shields, conserve physical IDs and retain Neme first-break replacement. All22 affected Crimson cases rechecked after this fix.",
+    "Royal Dorian snapshots both players evolution creatures, moves only each original top to its actual owners mana and reconstructs through the native movement path. Bases, no-base NEO, untargetable, sealed, changed control, actual Star and shield-trigger entry verified. Current rule801.4 reproduced with a nonindependent spell discarded before a tapped creature remains; no new entry draw occurs and an exposed evolution is not removed a second time.",
+    "46 distinct focused cases and253 affected regressions pass,total299. Initial6 failures were resolved (2 reveal-definition failures,4 fixture assertions); extra2 Saver continuation failures were corrected in code. Legal40-card seeded game finishes with80 conserved physical IDs and JSON-equivalent legal actions. Check/audit/target9500/nameKey/invariants pass.",
+    "Historical whole npm test remains interrupted/unconfirmed; all individual, long, reprint and user deferrals preserved. Mononofu phase1704 hold is resolved by this full batch. No push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm14-094",
+      "name": "クエイク・スタッフ",
+      "reason": "Verify complete official Cross Gear rules and native crossed Slayer, all exact reprints."
+    },
+    {
+      "id": "dm14-064",
+      "name": "クリムゾン・ライフル",
+      "reason": "Verify complete Cross Gear and host tap-to-destroy ability with native gear activation."
+    },
+    {
+      "id": "dm02-044",
+      "name": "ギガスタンド",
+      "reason": "Verify optional self-grave replacement discard and return through existing native replacement handling."
+    }
+  ],
+  "ruleReconstructionVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+    "rule": "801.4",
+    "reproduced": true,
+    "bothPlayersVerified": true,
+    "testNamePrefix": "Dorian current 801.4"
+  }
+}

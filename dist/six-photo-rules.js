@@ -445,6 +445,8 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.g1705CreatureNameIncludes&&!faces(c).some(face=>face.type==='creature'&&[face.name,...(face.g1705RubyNameParts||[])].some(name=>name.includes(f.g1705CreatureNameIncludes))))return false;
+  if(f.g1705ExactBattleName&&!battleNames676(s,x).includes(exactName(f.g1705ExactBattleName)))return false;
   if(f.g1490Exile&&!c.g1490Exile)return false;
   if(f.g1579AnyFaceTrigger&&!faces(c).some(face=>face.trigger||face.triggerPlus||face.superTrigger))return false;
   if(f.g1537LinkedGod&&(!race(d,'ゴッド')||!x.godLinks?.length))return false;
@@ -5829,6 +5831,12 @@ export function createSixPhotoRules(api){
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
   break;
  }
+ case'g34_RoyalDevolve1705':{
+  const rows=[s.active,1-s.active].flatMap(p=>creatures(s,p).filter(y=>!y.sealed&&!y.faceDown&&api.isEvolution(y))
+   .map(y=>({player:p,uid:y.uid,to:'mana',cardOnly:true,toOwnerMana:true,controller:t.p})));
+  if(rows.length)move(s,rows);
+  break;
+ }
  case'g34_BishamonCost1704':{
   const selected=t.selected||[],rows=own.grave.filter(y=>!selected.some(r=>r.uid===y.uid));
   if(selected.length===2){
@@ -8608,6 +8616,9 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_CrimsonPeek1705':
+  api.resumeCrimson1705(s,t.defender,t.uids,t.context);
+  break;
  case'g34_BishamonCost1704':
   if(v)put(s,{...t,selected:[...t.selected,v]});else start(s,t,[{op:'SelfDestroy'}]);
   break;

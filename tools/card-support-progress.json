@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9350,
-  "pendingNames": 2475,
-  "phase": 1704,
-  "added": 2,
+  "supportedNames": 9353,
+  "pendingNames": 2472,
+  "phase": 1705,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,14 +154,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1393,
+    "クリーチャー": 1391,
     "呪文": 271,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 211,
+    "進化クリーチャー": 210,
     "スター進化クリーチャー": 49,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 41,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1779,
+    "未対応の能力文": 1776,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -543873,27 +543873,357 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1705,
+      "checkedAt": "2026-11-23T05:08:22.805Z",
+      "baseline": "01ecacf5",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9350,
+      "currentNames": 9353,
+      "remainingNames": 147,
+      "added": [
+        {
+          "id": "dmpcd02-a07",
+          "name": "モノノフ・ルピア"
+        },
+        {
+          "id": "promoy8-002",
+          "name": "超竜Bクリムゾン"
+        },
+        {
+          "id": "dm11-019",
+          "name": "ロイヤル・ドリアン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "01ecacf5",
+        "originalDefinitionsUnchanged": 9350,
+        "added": 3,
+        "uniqueNames": 9353,
+        "uniqueIds": 9353,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9350,
+        "existingImageReferenceRowsUnchanged": 11560,
+        "officialPrintsReviewed": 5,
+        "officialImagesReviewed": 5,
+        "existingPinsUnchanged": 898
+      },
+      "results": {
+        "related-deck-physical": {
+          "name": "related-deck-physical",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard831-effects.test.mjs",
+            "tests/standard579-effects.test.mjs",
+            "tests/standard1355-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.277,
+          "log": "tmp/duema-phase-1705/related-deck-physical.log",
+          "passed": 54,
+          "logSha256": "a4fbe68e1545813d46efb9c230f242562b7f4acce432c625ff0db5ce1f4b8365"
+        },
+        "related-shield-transaction": {
+          "name": "related-shield-transaction",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1344-effects.test.mjs",
+            "tests/standard1279-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.458,
+          "log": "tmp/duema-phase-1705/related-shield-transaction.log",
+          "passed": 64,
+          "logSha256": "58d1e3b620fe928410ba43cc5e96c0f1de226a783d95d88a9b7c3036dffd525e"
+        },
+        "related-saver-neme": {
+          "name": "related-saver-neme",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Neme | saves exactly | may decline saving | does not save while |^double break|^two saver|^soul guards|^saved shields|^mandatory attack|^an evolution under|^the whole evolution|^unleavable|^a direct attack|^creature muting|^copied Shield|^every physical",
+            "tests/standard401-effects.test.mjs",
+            "tests/standard1698-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.739,
+          "log": "tmp/duema-phase-1705/related-saver-neme.log",
+          "passed": 135,
+          "logSha256": "8b4bf4cdf32400649cb572945d8c55b14697b0111e4c1b26af4de73f94a886d0"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1705.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.817,
+          "log": "tmp/duema-phase-1705/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.118,
+          "log": "tmp/duema-phase-1705/check.log",
+          "logSha256": "cc64b8e9ba14c1a9b32d769c37aee948c66563c53ab4f318bc6979f176b3175c"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.982,
+          "log": "tmp/duema-phase-1705/audit.log",
+          "logSha256": "d0058982bf346e61f651a9bdae1eed1bf1819f93979407497d072292d2beaa89"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.426,
+          "log": "tmp/duema-phase-1705/target9500.log",
+          "logSha256": "c153836bafaa311a0bf6d90e05d0118a62c10dd7b58619cf24035fd4ee867511"
+        },
+        "invariants-reference-count-fixed": {
+          "name": "invariants-reference-count-fixed",
+          "command": [
+            "node",
+            "tmp/duema-phase-1705/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.36,
+          "log": "tmp/duema-phase-1705/invariants-reference-count-fixed.log",
+          "logSha256": "f1fb43dc1f3ac79189832341ad2f0332fe8a3b1c820d95a52b5dee2ca22c69b9"
+        },
+        "focused": {
+          "passed": 46,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1705-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 9.668,
+              "log": "tmp/duema-phase-1705/focused.log",
+              "passed": 32,
+              "logSha256": "55a041da26e8e285a2c9fd27fcc39487570119bf58d79240bccd7104e660bc1b"
+            },
+            {
+              "name": "focused-reveal-and-fixtures-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Exact QA40784|^Crimson mixed double|^Crimson private inspection",
+                "tests/standard1705-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.722,
+              "log": "tmp/duema-phase-1705/focused-reveal-and-fixtures-fixed.log",
+              "passed": 6,
+              "logSha256": "c84fa0279efc6c7ed47210b34f4993ef0f6db87fca2912ba8cd0d5c8d9e61e9d"
+            },
+            {
+              "name": "focused-shield-and-current-reconstruction",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Crimson checks each|^Crimson inspection resumes|^Crimson destination|^Dorian current",
+                "tests/standard1705-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.781,
+              "log": "tmp/duema-phase-1705/focused-shield-and-current-reconstruction.log",
+              "passed": 6,
+              "logSha256": "f007b088764c693d9f56bcbcb0742e7fff41216873945e4d6d0d482b386b5980"
+            },
+            {
+              "name": "focused-saver-continuation-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Crimson inspection resumes",
+                "tests/standard1705-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.613,
+              "log": "tmp/duema-phase-1705/focused-saver-continuation-fixed.log",
+              "passed": 2,
+              "logSha256": "5ff56b99cb15cfb051546f9679a2936130bf4d94515b5a55eb589a86cda3d3ec"
+            },
+            {
+              "name": "focused-crimson-final-continuation",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Crimson ",
+                "tests/standard1705-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.077,
+              "log": "tmp/duema-phase-1705/focused-crimson-final-continuation.log",
+              "passed": 22,
+              "logSha256": "c952be0eb3051f7ba6679a17f3d83f6ea0bfb433dbbf951a1e79c192e06c82a4"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 299,
+      "hashes": {
+        "dist/cards.json": "0e9c7bb6be0cc948f4dbff971935ee7626fc6a205c5cdafd2d89342ec137501f",
+        "dist/engine.js": "7feffcd59d8d544c8adad03527e55e8eee148d1bc2629b4654cfac0aff7b131d",
+        "dist/six-photo-rules.js": "5165bc82e21862fa8cf9038d36c30178d256311c524ccc6cb4a2eb3f22e53b63",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "2d9b7e831b678b408d19a443cc1e83b5f97e7c94d71e357f4a1b67761d3d8a8c",
+        "dist/card-images.js": "d644b256426802181742af15ac80ce827e63cc6c7f212d619bf0541c826d6245",
+        "tools/target9000-card-spec.json": "dcbf30f0d9b84a9f6b4578dadd62d033168280a6e1447a1966df47c0e945235b",
+        "tests/standard1705-effects.test.mjs": "9a2bb6876582594af4cf229e502455fe68dde903a54804c0d5ad44c5a1fb2ae0"
+      },
+      "engineVersion": "0.602.222",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1705-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.668,
+          "log": "tmp/duema-phase-1705/focused.log",
+          "logSha256": "55a041da26e8e285a2c9fd27fcc39487570119bf58d79240bccd7104e660bc1b"
+        },
+        {
+          "name": "focused-shield-and-current-reconstruction",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Crimson checks each|^Crimson inspection resumes|^Crimson destination|^Dorian current",
+            "tests/standard1705-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.781,
+          "log": "tmp/duema-phase-1705/focused-shield-and-current-reconstruction.log",
+          "logSha256": "f007b088764c693d9f56bcbcb0742e7fff41216873945e4d6d0d482b386b5980"
+        },
+        {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1705/invariants.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.372,
+          "log": "tmp/duema-phase-1705/invariants.log",
+          "logSha256": "0f596202244a02e9f5fd12fba20e1b451768ae23147fce7a00eee2b7f44f2ade"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1705.json",
+      "supported": 9353,
+      "pending": 2472,
+      "reason": "Complete Mononofu Ruby-aware Bolmeteus search and exact Musha attack shield removal, actual B Crimson deck evolution/Fire Bird shield inspection and trigger-card destination, and Royal Dorian physical top-card mass devolution.",
+      "validationNotes": [
+        "Start/post-verification actual nameKey counts9350/9353. Baseline01ecacf5. All9350 original card definitions, existing IDs, catalogue/details, aliases, image references, pin definitions and save formats preserved. Three reference rows added, not two; initial invariant fixture count corrected after inspecting the exact diff.",
+        "All three whole official faces, stats, original art, current limits and mana verified. Two exact Dorian reprints reviewed, five official images total; no reprint or ruby counted as an additional name.",
+        "Exact QA40784 reproduced with actual fully registered B Crimson from both player seats: Mononofu finds Bolmeteus ruby without changing the canonical name or ID. Optional creature-only search reveals the chosen card and shuffles even when declined. Initial missing reveal flag corrected in manifest, pins and live definition; both seats pass.",
+        "Mononofu exact original Musha watcher excludes Bui and the opposing player, works on a creature attack and puts one complete shield group into its owners grave without declaring a trigger or counting a break. Suppressed source does not trigger.",
+        "Crimson uses existing paid single-card deck evolution; creature top becomes physical base, noncreature stays on top and same Crimson returns to hand while mana remains paid. Own Fire Bird shield breaks inspect privately; S-trigger cards go to grave and nontriggers to hand. Actual break counters/Swan triggers remain, including mixed multi-card bundles and an actual Genmu-ignored Fire Bird.",
+        "Private Crimson inspection uses the existing inspectedCards actor-only projection and encrypted serializable task. Initial online assertions used the wrong field; corrected to inspectedCards, absent for the defender. No private shield names are added to the public log.",
+        "Extra Shield Saver regression exposed a real new continuation bug: after inspection the entire break pipeline offered a previously declined saver again. Added a narrow native commit continuation after inspection; never re-enters prior replacement/guard choices. Both seats accept/decline Saver, preserve saved shields, conserve physical IDs and retain Neme first-break replacement. All22 affected Crimson cases rechecked after this fix.",
+        "Royal Dorian snapshots both players evolution creatures, moves only each original top to its actual owners mana and reconstructs through the native movement path. Bases, no-base NEO, untargetable, sealed, changed control, actual Star and shield-trigger entry verified. Current rule801.4 reproduced with a nonindependent spell discarded before a tapped creature remains; no new entry draw occurs and an exposed evolution is not removed a second time.",
+        "46 distinct focused cases and253 affected regressions pass,total299. Initial6 failures were resolved (2 reveal-definition failures,4 fixture assertions); extra2 Saver continuation failures were corrected in code. Legal40-card seeded game finishes with80 conserved physical IDs and JSON-equivalent legal actions. Check/audit/target9500/nameKey/invariants pass.",
+        "Historical whole npm test remains interrupted/unconfirmed; all individual, long, reprint and user deferrals preserved. Mononofu phase1704 hold is resolved by this full batch. No push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm14-094",
+          "name": "クエイク・スタッフ",
+          "reason": "Verify complete official Cross Gear rules and native crossed Slayer, all exact reprints."
+        },
+        {
+          "id": "dm14-064",
+          "name": "クリムゾン・ライフル",
+          "reason": "Verify complete Cross Gear and host tap-to-destroy ability with native gear activation."
+        },
+        {
+          "id": "dm02-044",
+          "name": "ギガスタンド",
+          "reason": "Verify optional self-grave replacement discard and return through existing native replacement handling."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1704,
-    "nextPhase": 1705,
+    "lastVerifiedPhase": 1705,
+    "nextPhase": 1706,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmpcd02-a07",
-        "name": "モノノフ・ルピア",
-        "reason": "Pair complete Bolmeteus search/Musha attack shield burn with actual ruby-name B Crimson source for QA40784."
+        "id": "dm14-094",
+        "name": "クエイク・スタッフ",
+        "reason": "Verify complete official Cross Gear rules and native crossed Slayer, all exact reprints."
       },
       {
-        "id": "promoy8-002",
-        "name": "超竜Bクリムゾン",
-        "reason": "Needed for Mononofu exact ruby search QA40784; implement full deck evolution and Fire Bird conditional shield-trigger burn before counting."
+        "id": "dm14-064",
+        "name": "クリムゾン・ライフル",
+        "reason": "Verify complete Cross Gear and host tap-to-destroy ability with native gear activation."
       },
       {
-        "id": "dm11-019",
-        "name": "ロイヤル・ドリアン",
-        "reason": "Verify original and exact reprints, native shield trigger and physical evolution-top-to-owner-mana movement across both players."
+        "id": "dm02-044",
+        "name": "ギガスタンド",
+        "reason": "Verify optional self-grave replacement discard and return through existing native replacement handling."
       }
     ],
     "steps": [
@@ -544778,23 +545108,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1704,
-      "baseline": "a9165ada",
-      "supportedNames": 9350,
-      "artifact": "tools/target9500-registration-checkpoint-1704.json",
-      "checkedAt": "2026-11-23T04:47:35.146Z"
+      "phase": 1705,
+      "baseline": "01ecacf5",
+      "supportedNames": 9353,
+      "artifact": "tools/target9500-registration-checkpoint-1705.json",
+      "checkedAt": "2026-11-23T05:08:22.805Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T04:47:35.146Z",
+      "checkedAt": "2026-11-23T05:08:22.805Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9350,
-      "remainingNames": 150,
+      "currentNames": 9353,
+      "remainingNames": 147,
       "duplicateNames": 0,
-      "engineVersion": "0.602.221",
+      "engineVersion": "0.602.222",
       "added": [
         {
           "id": "dmr12-008",
@@ -545915,6 +546245,18 @@
         {
           "id": "dmrp18-s02",
           "name": "ビシャモンス ＜ハンニバル.Star＞"
+        },
+        {
+          "id": "dmpcd02-a07",
+          "name": "モノノフ・ルピア"
+        },
+        {
+          "id": "promoy8-002",
+          "name": "超竜Bクリムゾン"
+        },
+        {
+          "id": "dm11-019",
+          "name": "ロイヤル・ドリアン"
         }
       ],
       "results": {
@@ -546030,15 +546372,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "82fa7e808bcdadc9c57311e8a2f857cb58f3c751c249b1102134bb9976ee40ff",
-        "dist/engine.js": "a875a82eaa926fe44f39532097613358702de3d6a9ef9889e2f506286de3502c",
-        "dist/six-photo-rules.js": "b59c608b024095d208c785618be35394be943dfa1183b775b8ad9fa2478ee987",
-        "dist/fifteen-photo-rules.js": "fc16f0a97a4da7bfaf15155f23829ed646276b3fb89992aaca20d3966d8b7e12",
+        "dist/cards.json": "0e9c7bb6be0cc948f4dbff971935ee7626fc6a205c5cdafd2d89342ec137501f",
+        "dist/engine.js": "7feffcd59d8d544c8adad03527e55e8eee148d1bc2629b4654cfac0aff7b131d",
+        "dist/six-photo-rules.js": "5165bc82e21862fa8cf9038d36c30178d256311c524ccc6cb4a2eb3f22e53b63",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "46415553deabc64869fccf97553d913d4b5524ebe09ca25dbc6bafb967ee5280",
-        "dist/card-images.js": "0ac1271af81a987a592a3fff8d93828dd1d5a72cf0b8775fdd7758b8e8732a51",
-        "tools/target9000-card-spec.json": "946c584b62b1bf70cf58b5dee886f4de7a3f8ee1f7fedb6a5c595a25c2a7991d",
-        "tests/standard1704-effects.test.mjs": "6e92d6e58604f2498ce624d2c403069e2ee0a11fd21eede588fd407fe71bd534"
+        "dist/online-compatibility.js": "2d9b7e831b678b408d19a443cc1e83b5f97e7c94d71e357f4a1b67761d3d8a8c",
+        "dist/card-images.js": "d644b256426802181742af15ac80ce827e63cc6c7f212d619bf0541c826d6245",
+        "tools/target9000-card-spec.json": "dcbf30f0d9b84a9f6b4578dadd62d033168280a6e1447a1966df47c0e945235b",
+        "tests/standard1705-effects.test.mjs": "9a2bb6876582594af4cf229e502455fe68dde903a54804c0d5ad44c5a1fb2ae0"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -546102,10 +546443,10 @@
       },
       "phaseRange": [
         1614,
-        1704
+        1705
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 280,
+      "addedNames": 283,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -546117,9 +546458,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.838,
-        "log": "tmp/duema-phase-1704/check.log",
-        "logSha256": "e7b73874baef923f72f966ff2c29b43b6679ded070e39d1de2328979959bb68b"
+        "seconds": 20.118,
+        "log": "tmp/duema-phase-1705/check.log",
+        "logSha256": "cc64b8e9ba14c1a9b32d769c37aee948c66563c53ab4f318bc6979f176b3175c"
       },
       "latestAudit": {
         "name": "audit",
@@ -546129,11 +546470,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 13.115,
-        "log": "tmp/duema-phase-1704/audit.log",
-        "logSha256": "0d4ab4e99f3ce35bdcc9d6822deb1b47aef155d36d8691efdd74ecbb71382e2f"
+        "seconds": 10.982,
+        "log": "tmp/duema-phase-1705/audit.log",
+        "logSha256": "d0058982bf346e61f651a9bdae1eed1bf1819f93979407497d072292d2beaa89"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1704.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1705.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -547251,11 +547592,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9350,
-      "remaining": 150,
+      "currentNames": 9353,
+      "remaining": 147,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T04:47:35.146Z",
+      "checkedAt": "2026-11-23T05:08:22.805Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -599400,11 +599741,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1704,
+    "phase": 1705,
     "threshold": 9500,
-    "supportedNames": 9350,
-    "pendingNames": 2475,
-    "checkedAt": "2026-11-23T04:47:35.146Z",
+    "supportedNames": 9353,
+    "pendingNames": 2472,
+    "checkedAt": "2026-11-23T05:08:22.805Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -599413,7 +599754,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1704.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1705.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

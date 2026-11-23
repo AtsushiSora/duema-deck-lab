@@ -298010,19 +298010,120 @@
       ],
       "supportBatch": "phase-1704",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd02-a07",
+      "name": "モノノフ・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "このクリーチャーが出た時、自分の山札を見る。その中から、名前に《ボルメテウス》とあるクリーチャーを１体相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、相手のシールドを１つ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a07",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "g1705CreatureNameIncludes": "ボルメテウス"
+              },
+              "reveal": true
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "g1705ExactBattleName": "ボルメテウス・武者・ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave588",
+            "n": 1,
+            "required": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1705",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy8-002",
+      "name": "超竜Bクリムゾン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "アーマード・ドラゴン",
+      "text": "デッキ進化-自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーであれば、このクリーチャーをその上に重ねつつバトルゾーンに出す。そのカードがクリーチャー以外であれば、このクリーチャーを自分の手札に戻す。\n自分のファイアー・バードがシールドをブレイクする時、そのシールドを見る。そのシールドに「S・トリガー」が付いていれば、相手の手札に加えるかわりに墓地に置く。「S・トリガー」が付いていない場合、相手はそれを手札に加える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy8-002",
+      "limit": 4,
+      "g45MDeck": true,
+      "g831SingleDeckEvolution": true,
+      "breaker": 2,
+      "g1705RubyNameParts": [
+        "ボルメテウス"
+      ],
+      "g1705Crimson": true,
+      "supportBatch": "phase-1705",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-019",
+      "name": "ロイヤル・ドリアン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "S・トリガー\nこのクリーチャーが出た時、すべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RoyalDevolve1705"
+        }
+      ],
+      "supportBatch": "phase-1705",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1704,
-    "checkedAt": "2026-11-23T04:38:30.196Z",
-    "baseCount": 9348,
-    "newEffectCards": 2,
+    "phase": 1705,
+    "checkedAt": "2026-11-23T04:56:03.130Z",
+    "baseCount": 9350,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9350,
+    "totalCount": 9353,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39848/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+      "https://dm.takaratomy.co.jp/rule/qa/40784/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -325954,6 +326055,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/41453/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1704,
+        "checkedAt": "2026-11-23T04:38:30.196Z",
+        "baseCount": 9348,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9350,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39848/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

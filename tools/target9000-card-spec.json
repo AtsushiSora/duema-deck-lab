@@ -40645,5 +40645,170 @@
         }
       ]
     }
+  },
+  "dmpcd02-a07": {
+    "phase": 1705,
+    "faces": [
+      {
+        "name": "モノノフ・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが出た時、自分の山札を見る。その中から、名前に《ボルメテウス》とあるクリーチャーを１体相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。\n自分の《ボルメテウス・武者・ドラゴン》が攻撃する時、相手のシールドを１つ選び、持ち主の墓地に置く。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "g1705CreatureNameIncludes": "ボルメテウス"
+              },
+              "reveal": true
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "g1705ExactBattleName": "ボルメテウス・武者・ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "ShieldGrave588",
+            "n": 1,
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "promoy8-002": {
+    "phase": 1705,
+    "faces": [
+      {
+        "name": "超竜Bクリムゾン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "デッキ進化-自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーであれば、このクリーチャーをその上に重ねつつバトルゾーンに出す。そのカードがクリーチャー以外であれば、このクリーチャーを自分の手札に戻す。\n自分のファイアー・バードがシールドをブレイクする時、そのシールドを見る。そのシールドに「S・トリガー」が付いていれば、相手の手札に加えるかわりに墓地に置く。「S・トリガー」が付いていない場合、相手はそれを手札に加える。\nW・ブレイカー",
+        "race": "アーマード・ドラゴン",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g45MDeck": true,
+      "g831SingleDeckEvolution": true,
+      "breaker": 2,
+      "g1705RubyNameParts": [
+        "ボルメテウス"
+      ],
+      "g1705Crimson": true
+    }
+  },
+  "dm22ex1-Cho26": {
+    "phase": 1705,
+    "faces": [
+      {
+        "name": "ロイヤル・ドリアン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー\nこのクリーチャーが出た時、すべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RoyalDevolve1705"
+        }
+      ]
+    }
+  },
+  "dmx11-061": {
+    "phase": 1705,
+    "faces": [
+      {
+        "name": "ロイヤル・ドリアン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるすべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RoyalDevolve1705"
+        }
+      ]
+    }
+  },
+  "dm11-019": {
+    "phase": 1705,
+    "faces": [
+      {
+        "name": "ロイヤル・ドリアン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるすべての進化クリーチャーの一番上のカードを、持ち主のマナゾーンに置く。",
+        "race": "ワイルド・ベジーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RoyalDevolve1705"
+        }
+      ]
+    }
   }
 }
