@@ -1213,6 +1213,30 @@ export function createSixPhotoRules(api){
  function fitsCost550(s,t,x,p,origin){return t.g550CostBudget===undefined||spent550(t)+cost(api.zoneCard(s,p,x,origin))<=t.g550CostBudget;}
  function deploymentState550(s,t){if(t.g550CostBudget===undefined&&!t.g1669CostSlots||!t.rows?.length)return s;const future=t.rows.flatMap(r=>{const x=s.players[r.p][r.origin].find(y=>y.uid===r.uid&&(y.zoneSerial||0)===(r.serial550??r.serial1669??0));return x?[r.g1104Back?psychicBack1104(x):x]:[];});return{...s,players:s.players.map((own,p)=>p===t.p?{...own,battle:[...own.battle,...future]}:own)};}
  function deployValue550(s,p,x){const c=card(x),n=s.players[p].deck?.length??s.players[p].deckCount??0,draw=c.effect==='draw2'?2:c.effect==='magicDraw'?1:0,entry=modeScore(s,{p,source:c.id},c.g34Tasks||[]);if(entry<=-900||draw>=n&&draw>0)return-1000;return 12+Math.min(30,cost(c)*2)+(c.type==='creature'?Math.min(10,(Number(c.power)||0)/3000):0)+entry+draw*10;}
+ // QA36572: select exactly the printed total, while permitting an evolution
+ // whose base is selected first. Speculation changes neither zones nor state.
+ function exactBudgetChoices1735(s,t){
+  const memo=new Map();
+  const append=(next,r)=>({...next,selected:[...(next.selected||[]),r.x.uid],rows:[...(next.rows||[]),
+   {uid:r.x.uid,p:r.p,origin:r.origin,cost550:cost(api.zoneCard(s,r.p,r.x,r.origin)),serial550:r.x.zoneSerial||0}]});
+  function completes(next){
+   const left=next.g550CostBudget-spent550(next);
+   if(left===0)return true;
+   const key=(next.selected||[]).slice().sort().join('|');
+   if(memo.has(key))return memo.get(key);
+   // A cost-only upper bound includes evolutions not yet able to enter. It
+   // rejects impossible sums without exploring every ordering of identical costs.
+   const sums=new Set([0]);
+   for(const r of list(s,{...next,deploy:false})){
+    const n=cost(api.zoneCard(s,r.p,r.x,r.origin));
+    for(const sum of [...sums])if(sum+n<=left)sums.add(sum+n);
+   }
+   if(!sums.has(left)){memo.set(key,false);return false;}
+   const possible=list(s,next).some(r=>completes(append(next,r)));
+   memo.set(key,possible);return possible;
+  }
+  return list(s,t).filter(r=>completes(append(t,r)));
+ }
  function budgetScores550(s,t,rows,n){
   const cap=t.g550CostBudget-spent550(t);
   const slots=Math.min(rows.length,n-(t.selected?.length||0),t.origin==='deck'?Math.max(0,s.players[t.p].deck.length-1-(t.selected?.length||0)):Infinity);
@@ -1510,6 +1534,7 @@ export function createSixPhotoRules(api){
  }
  function selection(s,t){
   let candidates=t.anyOwner?[...list(s,{...t,owner:'opponent'}),...list(s,{...t,owner:'self'})]:list(s,t);
+  if(t.g1735ExactBudget)candidates=exactBudgetChoices1735(s,t);
   if(t.g1111DistinctNames){
    const chosen=new Set(t.rows.map(row=>row.g1111Name));
    candidates=candidates.filter(({x})=>!chosen.has(exactName(card(x).name)));
@@ -1555,7 +1580,7 @@ export function createSixPhotoRules(api){
    choice(s,t,'確認したカード',[opt('確認を終える',null,0)]);
    return;
   }
-  if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length||t.g891BouncePair&&!t.g891OwnStage)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：',...(t.g1114HandAndDeck?{deck:'山札：'}:{})}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(t.g1669CostSlots?{cost1669:costKey1669(cost(api.zoneCard(s,p,x,origin))),serial1669:x.zoneSerial||0}:{}),...(origin==='extra'&&x.g1085Awakened?{g1104Back:true}:{}),...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(selectionKey1104(x)):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g899RampTapped?(s.players[t.p].deck.length>t.selected.length+1?12:-1000):t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.exactOptional?'使わない':t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
+  if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length||t.g891BouncePair&&!t.g891OwnStage)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：',...(t.g1114HandAndDeck?{deck:'山札：'}:{})}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(t.g1669CostSlots?{cost1669:costKey1669(cost(api.zoneCard(s,p,x,origin))),serial1669:x.zoneSerial||0}:{}),...(origin==='extra'&&x.g1085Awakened?{g1104Back:true}:{}),...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(selectionKey1104(x)):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g899RampTapped?(s.players[t.p].deck.length>t.selected.length+1?12:-1000):t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&(!t.g1735ExactBudget||spent550(t)===t.g550CostBudget)&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.exactOptional?'使わない':t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){
   if(!y||y.sealed)return;
   const ref={uid:y.uid,incarnation:y.incarnation||0},end=t.g190Freeze==='end';
@@ -1731,6 +1756,7 @@ export function createSixPhotoRules(api){
    if(host)applyGrant(s,{...t,grant:{speedAttacker:true}},host.x);
    return;
   }
+  if(t.g1735ExactBudget&&spent550(t)!==t.g550CostBudget)return;
   if(t.exactOptional&&(t.rows?.length||0)!==t.n)return;
   if(t.g1225ManaExchange){
    moveZoneSelection583(s,t,t.rows);

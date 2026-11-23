@@ -47617,5 +47617,201 @@
         ]
       }
     }
+  },
+  "dm23ex3-TR12": {
+    "phase": 1735,
+    "faces": [
+      {
+        "name": "「命」の頂 グレイテスト・グレート",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "Q・ブレイカー\nこのクリーチャーが召喚によって出た時、自分のマナゾーンまたは墓地から好きな数のクリーチャーをコストの合計が７になるように選び、出す。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+        "race": "アンノウン/ゼニス",
+        "powerText": "21000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 4,
+      "g34Omega": true,
+      "g1087SummonEntry": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "g550CostBudget": 7,
+          "g1735ExactBudget": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "マナ・墓地からコスト合計がちょうど7になるクリーチャーを選ぶ"
+        }
+      ]
+    }
+  },
+  "dmr05-s01": {
+    "phase": 1735,
+    "faces": [
+      {
+        "name": "「命」の頂 グレイテスト・グレート",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、自分のマナゾーンまたは墓地から好きな数のクリーチャーをコストの合計が７になるように選び、バトルゾーンに出す。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\nエターナル・Ω(このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す)",
+        "race": "アンノウン/ゼニス",
+        "powerText": "21000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 4,
+      "g34Omega": true,
+      "g1087SummonEntry": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "g550CostBudget": 7,
+          "g1735ExactBudget": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "マナ・墓地からコスト合計がちょうど7になるクリーチャーを選ぶ"
+        }
+      ]
+    }
+  },
+  "dmex19-s13": {
+    "phase": 1735,
+    "faces": [
+      {
+        "name": "“極限駆雷”ブランド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、GR召喚する。\n自分のGRクリーチャーが出た時、このターン、次に使う自分の火のカードのコストを１少なくする。ただし、コストは０以下にはならない。\n自分のGRクリーチャーが３体以上あれば、このクリーチャーの攻撃先は変更できない。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "NextReduction456",
+            "amount": 1,
+            "filter": {
+              "color": "火"
+            }
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 3,
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            }
+          }
+        },
+        "grants": {
+          "attackUnredirectable": true
+        }
+      }
+    }
+  },
+  "dmrp12-s11": {
+    "phase": 1735,
+    "faces": [
+      {
+        "name": "“極限駆雷”ブランド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーがバトルゾーンに出た時、このターン、次に使う自分の火のカードのコストを１少なくする。ただし、コストは０以下にはならない。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーの攻撃先は変更できない。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "NextReduction456",
+            "amount": 1,
+            "filter": {
+              "color": "火"
+            }
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 3,
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            }
+          }
+        },
+        "grants": {
+          "attackUnredirectable": true
+        }
+      }
+    }
   }
 }

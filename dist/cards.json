@@ -301392,15 +301392,105 @@
       },
       "supportBatch": "phase-1734",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-s01",
+      "name": "「命」の頂 グレイテスト・グレート",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 21000,
+      "race": "アンノウン/ゼニス",
+      "text": "このクリーチャーを召喚してバトルゾーンに出した時、自分のマナゾーンまたは墓地から好きな数のクリーチャーをコストの合計が７になるように選び、バトルゾーンに出す。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\nエターナル・Ω(このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s01",
+      "limit": 4,
+      "breaker": 4,
+      "g34Omega": true,
+      "g1087SummonEntry": [
+        {
+          "op": "Select",
+          "zones": [
+            "mana",
+            "grave"
+          ],
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "g550CostBudget": 7,
+          "g1735ExactBudget": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "マナ・墓地からコスト合計がちょうど7になるクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1735",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-s11",
+      "name": "“極限駆雷”ブランド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "このクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーがバトルゾーンに出た時、このターン、次に使う自分の火のカードのコストを１少なくする。ただし、コストは０以下にはならない。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーの攻撃先は変更できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s11",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "g1428Gr": true
+        },
+        "defs": [
+          {
+            "op": "NextReduction456",
+            "amount": 1,
+            "filter": {
+              "color": "火"
+            }
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "min": 3,
+            "filter": {
+              "creature": true,
+              "g1428Gr": true
+            }
+          }
+        },
+        "grants": {
+          "attackUnredirectable": true
+        }
+      },
+      "supportBatch": "phase-1735",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1734,
-    "checkedAt": "2026-11-23T10:30:06.908Z",
-    "baseCount": 9439,
-    "newEffectCards": 3,
+    "phase": 1735,
+    "checkedAt": "2026-11-23T10:45:44.410Z",
+    "baseCount": 9442,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9442,
+    "totalCount": 9444,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -329865,6 +329955,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9439,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1734,
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "baseCount": 9439,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9442,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

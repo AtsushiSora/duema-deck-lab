@@ -1,0 +1,574 @@
+{
+  "phase": 1735,
+  "checkedAt": "2026-11-23T10:45:44.410Z",
+  "baseCount": 9442,
+  "target": 9500,
+  "description": "Full Greatest Great exact7 summoned mana/grave deployment and Climax Brand GR/next Fire card reduction/unredirectable attacks.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36572/",
+      "sha256": "1742f7d5bba8e4d749dfb4949ceeb59e51ceecd4ff6c85264614875ab26cc9e5",
+      "scope": "Exactly7, not7 or less.",
+      "reproduced": true,
+      "test": "tests/standard1735-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36573/",
+      "sha256": "491dfd104628f83515a0c3f352e37b201548c63f705de10fd7caf3912b8d3b2f",
+      "scope": "Printed cost, not Cocco reduced summoning cost.",
+      "reproduced": true,
+      "test": "tests/standard1735-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33072/",
+      "sha256": "a527a40841e03606bea4c918342682bf0ad55d1e94bb950565b8547edbf35fc5",
+      "scope": "Each GR entry reduction stacks for the next Fire card.",
+      "reproduced": true,
+      "test": "tests/standard1735-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmr05-s01",
+      "name": "「命」の頂 グレイテスト・グレート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s01",
+      "faces": [
+        {
+          "name": "「命」の頂 グレイテスト・グレート",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、自分のマナゾーンまたは墓地から好きな数のクリーチャーをコストの合計が７になるように選び、バトルゾーンに出す。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\nエターナル・Ω(このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す)",
+          "race": "アンノウン/ゼニス",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "g34Omega": true,
+        "g1087SummonEntry": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "n": "all",
+            "deploy": true,
+            "optional": true,
+            "g550CostBudget": 7,
+            "g1735ExactBudget": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "マナ・墓地からコスト合計がちょうど7になるクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-s01.jpg",
+      "imageReviewed": true,
+      "imageSha256": "13b5a18473ab4e8205a19a9313fdf5f6cbe492919061d21a7d68c8fb63f2d190",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:45:44.410Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm23ex3-TR12",
+          "dmr05-s01"
+        ],
+        "excluded": [
+          "dm23ex3-SP4",
+          "dm23ex3-S06"
+        ],
+        "result": "Official exact-name search/product lists matched every whole original/reprint face/image; similarly named Shimei Greatest is a different card, excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:45:44.410Z",
+        "sha256": "a043d412383eb660e0f2299a1d337fb0bf6946635c27dc29e58ce988fb1dfcc5",
+        "facesMatched": true,
+        "imageSha256": "13b5a18473ab4e8205a19a9313fdf5f6cbe492919061d21a7d68c8fb63f2d190"
+      }
+    },
+    {
+      "id": "dmrp12-s11",
+      "name": "“極限駆雷”ブランド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s11",
+      "faces": [
+        {
+          "name": "“極限駆雷”ブランド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、GR召喚する。\n自分のGRクリーチャーがバトルゾーンに出た時、このターン、次に使う自分の火のカードのコストを１少なくする。ただし、コストは０以下にはならない。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーの攻撃先は変更できない。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "defs": [
+            {
+              "op": "NextReduction456",
+              "amount": 1,
+              "filter": {
+                "color": "火"
+              }
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              }
+            }
+          },
+          "grants": {
+            "attackUnredirectable": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-s11.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0135dd40439225b3c1e1b1ddf58004aec6523a272779a2442b6693529d03c1b5",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:45:44.410Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmex19-s13",
+          "dmrp12-s11"
+        ],
+        "excluded": [],
+        "result": "Official exact-name search/product lists matched every whole original/reprint face/image; similarly named Shimei Greatest is a different card, excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:45:44.410Z",
+        "sha256": "e571e59a442c995e21b30e65c9beee4ee353328d5a1e58388f2ea7a434383811",
+        "facesMatched": true,
+        "imageSha256": "0135dd40439225b3c1e1b1ddf58004aec6523a272779a2442b6693529d03c1b5"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23ex3-TR12",
+      "name": "「命」の頂 グレイテスト・グレート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TR12",
+      "faces": [
+        {
+          "name": "「命」の頂 グレイテスト・グレート",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "Q・ブレイカー\nこのクリーチャーが召喚によって出た時、自分のマナゾーンまたは墓地から好きな数のクリーチャーをコストの合計が７になるように選び、出す。\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "g34Omega": true,
+        "g1087SummonEntry": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "n": "all",
+            "deploy": true,
+            "optional": true,
+            "g550CostBudget": 7,
+            "g1735ExactBudget": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "マナ・墓地からコスト合計がちょうど7になるクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "canonicalId": "dmr05-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TR12.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0604a4794a01709e1caa1a7ffb3e6fc5335fe7386f03eca355af7be077cc181e",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:45:44.410Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:45:44.410Z",
+        "sha256": "009534c2469f984ac3fac7629a9f556a25556377c8011c36b0bfb2fb2e3daf4f",
+        "facesMatched": true,
+        "imageSha256": "0604a4794a01709e1caa1a7ffb3e6fc5335fe7386f03eca355af7be077cc181e"
+      }
+    },
+    {
+      "id": "dmex19-s13",
+      "name": "“極限駆雷”ブランド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-s13",
+      "faces": [
+        {
+          "name": "“極限駆雷”ブランド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、GR召喚する。\n自分のGRクリーチャーが出た時、このターン、次に使う自分の火のカードのコストを１少なくする。ただし、コストは０以下にはならない。\n自分のGRクリーチャーが３体以上あれば、このクリーチャーの攻撃先は変更できない。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g1428Gr": true
+          },
+          "defs": [
+            {
+              "op": "NextReduction456",
+              "amount": 1,
+              "filter": {
+                "color": "火"
+              }
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "min": 3,
+              "filter": {
+                "creature": true,
+                "g1428Gr": true
+              }
+            }
+          },
+          "grants": {
+            "attackUnredirectable": true
+          }
+        }
+      },
+      "canonicalId": "dmrp12-s11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-s13.jpg",
+      "imageReviewed": true,
+      "imageSha256": "2257ffd25ea09170a4be0080e154aa4f71bad34a4a322dd1e76276603a05fa61",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:45:44.410Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:45:44.410Z",
+        "sha256": "af3f40e601c4a017920c1e0b578771fd653ac47ed7cb9eb8bd0d46c3d87673b1",
+        "facesMatched": true,
+        "imageSha256": "2257ffd25ea09170a4be0080e154aa4f71bad34a4a322dd1e76276603a05fa61"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmrp03-024",
+      "name": "“必駆”蛮触礼亞",
+      "reason": "BADS2 payment/discard timing and mandatory fight after successful optional BeatJockey deployment need full official timing and new payment handling. Original/reprints fetched; no partial registration."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T10:45:44.410Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-s01": 4,
+      "dmrp12-s11": 4,
+      "dm23ex3-TR12": 4,
+      "dmex19-s13": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T10:51:08.654Z",
+    "results": {
+      "related-budget": {
+        "name": "related-budget",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:Shirazu permits|Shirazu zero|Distas Gate|A selected low|Unusable evolution|The revival batch|Budget AI|A stale selected)",
+          "tests/standard550-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.01,
+        "log": "tmp/duema-phase-1735/related-budget.log",
+        "passed": 33,
+        "logSha256": "6b4236105cf139910f03f4dce63f23e72d71c8b184edab081011da4b249841c7"
+      },
+      "related-reduction": {
+        "name": "related-reduction",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:all intermediate|multiple SC|two nature|unrelated creature|filtered reductions|a direct deployment|free creature|a free S Trigger|reduction prohibition|turn end|an already|manual mana|canceling manual|an evolution|AI ranking)",
+          "tests/standard456-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.41,
+        "log": "tmp/duema-phase-1735/related-reduction.log",
+        "passed": 15,
+        "logSha256": "809654696fe77b7f10c80a5a39b87f08a78ddccdfb673bb69c958f3ed5cdc6a7"
+      },
+      "related-gr": {
+        "name": "related-gr",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1428-effects.test.mjs",
+          "tests/standard1353-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.245,
+        "log": "tmp/duema-phase-1735/related-gr.log",
+        "passed": 39,
+        "logSha256": "1d2b74c53941b6c80196589c82ac3761873e05fc6224e08248b79bea6f4e794e"
+      },
+      "related-online-save": {
+        "name": "related-online-save",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.362,
+        "log": "tmp/duema-phase-1735/related-online-save.log",
+        "passed": 55,
+        "logSha256": "b95e88e573424481b712e6dd7ae15622770ee61bdefad0d0bf1885574a8a55e0"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1735.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.327,
+        "log": "tmp/duema-phase-1735/official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.332,
+        "log": "tmp/duema-phase-1735/check.log",
+        "logSha256": "f152ed4e9c5ae2f96007925f5997a710331857b82b4d7617395973c2ab75ca56"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.103,
+        "log": "tmp/duema-phase-1735/audit.log",
+        "logSha256": "437f9ffb8e5f99e1f413b80b72e9b73a1fb6484b16558eac45a0c354fc977b25"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.463,
+        "log": "tmp/duema-phase-1735/target9500.log",
+        "logSha256": "dcbf3f8c7e1871a5c558b86b8d67c7b8bf41ee19afbacf5a7160dbb357f532c4"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1735/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.48,
+        "log": "tmp/duema-phase-1735/invariants.log",
+        "logSha256": "3dacc2617105d39462e1bda85b92079283dd8826391c7d0f1da6a9942cd67b29"
+      },
+      "focused": {
+        "passed": 47,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1735-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 2.732,
+            "log": "tmp/duema-phase-1735/focused.log",
+            "logSha256": "33a11b239a0cfb7a8648c7ce161944f5cd3c54063ab7d973fa0b57f5fda72dde"
+          },
+          {
+            "name": "focused-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:QA36573|QA33072)",
+              "tests/standard1735-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.079,
+            "log": "tmp/duema-phase-1735/focused-fix.log",
+            "logSha256": "065407e74a54dff8bcf972deaf2e2e24c9e6c7bc1f6d4a4eb32349a4590daa1c"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Greatest native Q|Greatest zero cost may|Brand Fire spell|Brand3 GR|phase1735 saved)",
+              "tests/standard1735-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.261,
+            "log": "tmp/duema-phase-1735/focused-additional.log",
+            "logSha256": "6f209fa658068a9680b02b126a1f5b2fc6f75429d7c39f96488ab21ae352499a"
+          },
+          {
+            "name": "additional-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Greatest zero cost may|Brand Fire spell)",
+              "tests/standard1735-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.968,
+            "log": "tmp/duema-phase-1735/additional-fix.log",
+            "logSha256": "da13db38a9dd1f416b9a620e0e709c34c89c295badeaff8dc55a90e9bf74b1e5"
+          },
+          {
+            "name": "focused-real",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Greatest actual Souryu|Brand actual free)",
+              "tests/standard1735-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.893,
+            "log": "tmp/duema-phase-1735/focused-real.log",
+            "logSha256": "7fe19ee872588cd411e27cfdea602eb2860241a507ec198315b45f499d3bfcaf"
+          }
+        ],
+        "coverage": "47 unique cases across original, corrected fixture expectations and additional real-card cases; latest result per case all pass."
+      }
+    },
+    "totalTestsPassed": 189,
+    "focusedTestsPassed": 47,
+    "relatedTestsPassed": 142
+  },
+  "validationNotes": [
+    "Actual nameKey9442→9444; all9442 old definitions/IDs/catalogue/details/aliases/images/refs/pins unchanged.2 fully implemented canonical cards,4 exact-name original/reprints and4 whole card images reviewed. Similar Shimei Greatest SP4/S06 names excluded; no duplicates added.",
+    "Greatest native summoned-only entry/Q breaker/Eternal Omega plus narrow exact-budget selector. QA36572 requires exactly7; QA36573 uses printed cost, not Cocco discounts. Pure memoized completion search with cost-only subset pruning prevents dead-end partial choices while allowing selected bases to unlock evolution, zero-cost extras, mixed own mana/grave and native movement/entry restrictions. No saved schema change. Actual Souryu nonsummon entry does not trigger.",
+    "Brand uses native GR summon, per-own-GR-entry next Fire card reduction and live own3 GR unredirectability. QA33072 stacking, next Fire creature/spell/cross-gear use, floor1, unrelated use, source suppression/departure, noCostReduction, turn expiry, native blockers/Guardman and real free Fire ST verified.47 focused cases plus affected budget/reduction/GR/online/save regressions pass. Initial failures were fixture assumptions (cost7 mistaken9, Zangeki independent discount, power0 cleanup and Dark spell mistaken Fire); corrected targeted cases pass.",
+    "Official manifest/limits, npm run check, audit, target9500 and old ID/save invariants pass. Historical pending/fullSuiteStatus kept exactly; no full npm test or old broad long group rerun. BADS card held with precise full-timing reason; no partial registration. No push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "reason": "Full native speed attacker plus opponent-own-turn shield entry replacement."
+    },
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "reason": "Full opponent-own-turn shield entry replacement; share primitive after official checks."
+    },
+    {
+      "id": "dmr18-s03",
+      "name": "正体不明",
+      "reason": "Full summoned-only optional hand army deployment and opponent extra turn."
+    }
+  ]
+}
