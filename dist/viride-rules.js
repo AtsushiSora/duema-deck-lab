@@ -61,7 +61,7 @@ export function createVirideRules(api){
     !creatures(s,1-p).some(x=>{const d=effective(x,s);return d.g26OneNote||d.g590SpellOnce;});
   },
   entryAllowed(s,p,c){return c?.type!=='creature'||(s.players[p].enteredThisTurn||0)<1||!creatures(s,1-p).some(x=>effective(x,s).g26OneNote&&x.under?.length);},
-  everSaver(s,p){return lightMana(s,p)>=5&&has(s,p,'g26Ever');},
+  everSaver(s,p){return has(s,p,'g1698OwenGuard')||lightMana(s,p)>=5&&has(s,p,'g26Ever');},
   noLose:(s,p)=>!!s.g26Extreme?.[p],
   discount(s,p,c){return c.type==='creature'?selectedGardens(s,p,c).length+(c.g26Ever&&lightMana(s,p)>=3?2:0):0;},
   played(s,p,c){for(const x of selectedGardens(s,p,c))(s.g26GardenUsed??={})[key(x)]=s.turn;},

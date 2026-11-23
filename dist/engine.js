@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.18';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.213';
+export const ENGINE_VERSION='0.602.215';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -1597,7 +1597,14 @@ function beginZero1686(s,defender,uids){
 }
 // Gaia's private inspection is available in the same replacement window as Shield Saver.
 function gaiaShieldSources1685(s,p){return s.players[p].battle.filter(x=>!abilitiesIgnored(s,x)&&!x.faceDown&&isCreature(s,x)&&effectiveCard(x,s).g1685ShieldCall);}
-function gaiaPriority1685(s,p){return p===s.active&&!s.breakContext?.g1685Offered&&!s.breakContext?.replacementBreak&&gaiaShieldSources1685(s,p).length>0;}
+function nemeSources1698(s,p){return (s.players[p].brokenThisTurn||0)===0&&s.players[p].g1698NemeTurn!==s.turn?s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown&&isCreature(s,x)&&effectiveCard(x,s).g1698Neme):[];}
+function beginNeme1698(s,p,uids){
+ const context=s.breakContext,source=nemeSources1698(s,p)[0];
+ if(!source||!context||context.g1698NemeOffered||context.replacementBreak)return false;
+ s.players[p].g1698NemeTurn=s.turn;s.breakContext=null;
+ extra.put(s,extra.task('g34_NemeBreak1698',p,source.cardId,{uids:[...uids],context}));return true;
+}
+function gaiaPriority1685(s,p){return p===s.active&&!s.breakContext?.replacementBreak&&(!s.breakContext?.g1685Offered&&gaiaShieldSources1685(s,p).length>0||!s.breakContext?.g1698NemeOffered&&nemeSources1698(s,p).length>0);}
 function beginGaiaShield1685(s,p,uids){
  const context=s.breakContext,sources=gaiaShieldSources1685(s,p);
  if(!context||context.g1685Offered||context.replacementBreak||!sources.length)return false;
@@ -1781,7 +1788,7 @@ function shieldLeft(s,p,x,group=null){
  (s.g787ShieldLeftTurns??=[null,null])[p]=s.turn;
  // Removing one card from a shield bundle is not a shield departure (QA48472).
  if(group!==null)(s.g1036ShieldGroupLeftTurns??=[null,null])[p]=s.turn;
- extra.shieldLeft(s,p,x,group);delete x.g19ShieldST;
+ extra.shieldLeft(s,p,x,group);delete x.g19ShieldST;delete x.g1698ShieldST;
  if(group===null)return;
  const remembered=s.players[p].g1336ExLifeGroups?.includes(group);
  const tracked=remembered||s.players[p].battle.some(top=>layers(top).some(source=>
@@ -1872,7 +1879,7 @@ function shieldHasTrigger1162(s,p,x){
 }
 function shieldFaceHasTrigger1162(s,p,x,c){
  if(faceUpShieldTriggerBlocked1343(s,p,x))return false;
- return allShieldTrigger1303(s,p)||dgGrant1366(s,p,c)||c.trigger||c.triggerPlus||c.superTrigger||x.g19ShieldST!==undefined||
+ return allShieldTrigger1303(s,p)||dgGrant1366(s,p,c)||c.trigger||c.triggerPlus||c.superTrigger||x.g19ShieldST!==undefined||x.g1698ShieldST===s.turn||
   c.type==='spell'&&extra.spellShieldTrigger(s,p)||
   c.g26Viride&&s.players[1-p].battle.filter(y=>isCreature(s,y)).length>=3||
   c.graveTotalTrigger&&s.players.reduce((n,own)=>n+own.grave.length,0)>=c.graveTotalTrigger||
@@ -2194,7 +2201,7 @@ function graveMillAvailable1351(s,p){
 function kappaMana1603(s,row){
  const host=row&&s.players[row.player].battle.find(x=>x.uid===row.uid);
  return host&&!row.replacement&&isCreature(s,host)&&effectiveCard(host,s).g1603Kappa
-  ?s.players[row.player].mana.filter(x=>x.faceDown):[];
+  ?s.players[row.player].mana.filter(x=>x.faceDown&&!s.leaving?.rows.some(r=>r!==row&&r.plan?.kind==='kappa1603'&&r.plan.cards.includes(x.uid))):[];
 }
 // These five creatures remain in the battle zone as a NEO creature's base.
 // The destination is a card type, independent of its NEO evolution's base restrictions.
@@ -2474,6 +2481,12 @@ function advanceLeaving(s){if(s.lossEvent)return;
  // An exchange fails as a whole when either move is replaced; replacement costs do not occur.
  if(s.leaving.rows.some(row=>row.exchange&&row.plan.kind!=='leave')){s.leaving=null;return;}
  const batch=s.leaving,fourth=[0,1].map(p=>({p,uids:batchRows(s,p)}));
+ // Exchange failure is checked before any Kappa payment (QA45513, 701.26b).
+ for(const row of batch.rows)if(row.plan.kind==='kappa1603'){
+  for(const uid of row.plan.cards)s.players[row.player].mana.find(x=>x.uid===uid).faceDown=false;
+  row.plan={kind:'stay577'};
+  log(s,row.player,'eternalKappa','エターナル・Κでマナ3枚を表向きにしてバトルゾーンに残す',{cardId:ownCardForRow(s,row).cardId});
+ }
  // Check the impending departure after replacements and before moving any card.
  for(const player of [s.active,1-s.active])for(const row of batch.rows){
   if(row.player!==player||!row.g1362DepartureWin||row.plan.kind!=='leave'||row.death)continue;
@@ -4947,6 +4960,7 @@ function breakShields(s,defender,uids){
  uids=uids.filter(uid=>findShield(s.players[defender],uid));if(!uids.length){s.breakContext=null;return;}
  if(s.breakContext&&s.breakContext.g756Breaker===undefined)
   s.breakContext.g756Breaker=extra.six.breakerRefs756(s,s.breakContext);
+ if(defender===s.active&&beginNeme1698(s,defender,uids))return;
  if(extra.beforeBreak(s,defender,uids))return;
  if(s.breakContext?.player===s.active&&beginZero1686(s,defender,uids))return;
  if(s.breakContext?.player===s.active)replaceBreakWithShields1239(s,uids);
@@ -4960,6 +4974,7 @@ function breakShields(s,defender,uids){
   return;
  }
  if(!s.breakContext?.g1685Offered&&gaiaShieldSources1685(s,defender).length&&!s.breakContext?.burn&&!s.breakContext?.reverse&&!qqBreakSource(s,defender)&&!s.breakContext?.g1577BottomBurn&&beginGaiaShield1685(s,defender,uids))return;
+ if(!s.breakContext?.burn&&!s.breakContext?.reverse&&!qqBreakSource(s,defender)&&!s.breakContext?.g1577BottomBurn&&beginNeme1698(s,defender,uids))return;
  if(extra.viride.beforeBreak(s,defender,uids))return;
  // Rule 609.8: the attacking player's replacement takes priority over a Shield Saver.
  if(!s.breakContext?.g1685GuardsDone&&!s.breakContext?.burn&&!s.breakContext?.reverse&&!qqBreakSource(s,defender)&&(shieldGuardSources(s,defender).length||shieldSaverSources(s,defender).length)){s.shieldBreak={player:defender,uids:[...uids],protections:[]};s.decision={type:'shieldGuard',player:defender};return;}
@@ -5091,6 +5106,12 @@ function commitShieldBreak(s,defender,uids,prepared1366=null){
  const groups=prepared1366?.groups??(cardOnly?own.shields.filter(root=>shieldCards(root).some(x=>selected.has(x.uid)&&!x.g37ShieldHeld)):
   uids.map(uid=>findShield(own,uid)).filter(Boolean));
  const handGroups=shieldGroupSnapshot1313(groups);
+ const enemyCreature1698=!handOnly&&breakContext?.player===1-defender&&breakContext.g756Breaker?.length>0;
+ if(!prepared1366&&enemyCreature1698&&groups.length&&own.g1698CreatureBreakTurn!==s.turn){
+  own.g1698CreatureBreakTurn=s.turn;
+  if(own.battle.some(x=>!x.sealed&&!x.faceDown&&isCreature(s,x)&&effectiveCard(x,s).g1698FirstLightST))
+   for(const x of groups.flatMap(shieldCards))if(playFaces(card(x)).some(face=>civilizations(face).includes('光')))x.g1698ShieldST=s.turn;
+ }
  const all=cardOnly?groups.flatMap(shieldCards).filter(x=>selected.has(x.uid)&&!x.g37ShieldHeld):groups.flatMap(shieldCards);
  // QA 31727: a Castle can be chosen, or falls when no shield card remains under it.
  const orphaned=cardOnly?groups.filter(root=>shieldCards(root).every(x=>selected.has(x.uid)||fortified(x))).map(shieldGroup):[];
@@ -5113,7 +5134,7 @@ function commitShieldBreak(s,defender,uids,prepared1366=null){
   {uid:breaker.uid,incarnation:breaker.incarnation??0,player:breakContext.player,source:breakContext.source}:null;
  // Pending broken shields are excluded from Duelangel's threshold at declaration.
  const pendingBreak={defender,remaining},allTrigger=allShieldTriggersToHand(s,defender);
- const eligibleFaces=prepared1366?.eligibleFaces??Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x)||mutedTriggers.has(x.uid))return [];const faces=extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(!breakContext?.noST||crestPermission1348(s,defender,c))&&(allTrigger||dgGrant1366(s,defender,c)||c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=(c.g1509GraveSpellTrigger||2))&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c,null,defender,pendingBreak)&&(crestPermission1348(s,defender,c)||extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ const eligibleFaces=prepared1366?.eligibleFaces??Object.fromEntries((toMana?[]:all).flatMap(x=>{if(goesToGrave(x)||mutedTriggers.has(x.uid))return [];const faces=extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(!breakContext?.noST||crestPermission1348(s,defender,c))&&(allTrigger||dgGrant1366(s,defender,c)||c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||lightShieldTrigger1019(s,defender,c,handRemaining)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||x.g1698ShieldST===s.turn||c.type==='spell'&&extra.spellShieldTrigger(s,defender,true)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=(c.g1509GraveSpellTrigger||2))&&(!summonLocked||c.type!=='creature')&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c,null,defender,pendingBreak)&&(crestPermission1348(s,defender,c)||extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  // QA35246: reveal the cards in the actual break before they enter the hand.
  if(!handOnly&&breakContext?.player===1-defender&&
   (breakContext.g756Breaker?.length||breakContext.g913DepartedBreaker)){
@@ -5919,9 +5940,7 @@ function applyStepCore1363(s,action){
   const row=s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p),available=kappaMana1603(s,row);
   const chosen=[...d.chosen,a.uid];
   if(chosen.length===3&&chosen.every(uid=>available.some(x=>x.uid===uid))&&new Set(chosen).size===3){
-   for(const uid of chosen)available.find(x=>x.uid===uid).faceDown=false;
-   row.plan={kind:'stay577'};s.decision=null;
-   log(s,p,'eternalKappa','エターナル・Κでマナ3枚を表向きにしてバトルゾーンに残す',{cardId:ownCardForRow(s,row).cardId});
+   row.plan={kind:'kappa1603',cards:chosen};s.decision=null;
   }else d.chosen=chosen;
  }
  if(a.kind==='replaceStay577'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'stay577'};s.decision=null;}

@@ -1,0 +1,847 @@
+{
+  "phase": 1698,
+  "checkedAt": "2026-11-23T00:54:39.459Z",
+  "baseCount": 9329,
+  "target": 9500,
+  "description": "Complete Neme first-shield-break replacement; latest Lionel summoned entry/first opposing creature break Light shield triggers; Owen summoned grave recycle/three shields and allied shield-two leave replacement. Explicit user priority: Fly King Chris Tabula Rasa, complete Zenith revolution change/world break/both-hand face-down mana/live spell lock/Eternal Kappa.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa/31560/",
+    "https://dm.takaratomy.co.jp/rule/qa/44591/",
+    "https://dm.takaratomy.co.jp/rule/qa/45513/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 31560,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31560/",
+      "sha256": "3d1329e5042d0482fde5cb6baa38ff95bd9da899798ddecb13a6680b27b65e4d",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1698-effects.test.mjs",
+      "scope": "Actual official cards and original QA setup in both seats."
+    },
+    {
+      "id": 44591,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44591/",
+      "sha256": "205dee42fe4db02b789583457bba0448bffccb1b0839d2eaf4821c9f0497cf80",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1698-effects.test.mjs",
+      "scope": "Self-return movement analogue; no physical-hand Egoist implementation."
+    },
+    {
+      "id": 45513,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45513/",
+      "sha256": "2f1d09c99eb915e77bc6059c5718b779a6eaca1e07d8530e237ffdb21baac320",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1698-fly-effects.test.mjs",
+      "scope": "Actual official cards and original QA setup in both seats."
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-s03",
+      "name": "王家の精霊 ネメス・テーベ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s03",
+      "faces": [
+        {
+          "name": "王家の精霊 ネメス・テーベ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー\nT・ブレイカー\n各ターン、自分のシールドがはじめてブレイクされる時、かわりに自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "エンジェル・コマンド",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g1698Neme": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-s03.jpg",
+      "imageReviewed": true,
+      "imageSha256": "8f7a02e474e2bf6aa472428be1f99609534a6277ce0650dfe22a6ee0fd5f3a65",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp02-s03"
+        ],
+        "result": "Five full original/reprint faces and images reviewed. Use latest Lionel/Owen wording; reprints are not additional names."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:54:39.459Z",
+        "sha256": "4f521d1889be0cb1c1687b7ebbfcfc83ff11cf1bf5f89497b15a44f9197ea768",
+        "facesMatched": true,
+        "imageSha256": "8f7a02e474e2bf6aa472428be1f99609534a6277ce0650dfe22a6ee0fd5f3a65"
+      }
+    },
+    {
+      "id": "dmx25-s02",
+      "name": "「獅星」の頂 ザ・ライオネル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-s02",
+      "faces": [
+        {
+          "name": "「獅星」の頂 ザ・ライオネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、カードを３枚引いてもよい。その後、手札を３枚まで裏向きにして、それぞれを新しいシールドとして自分のシールドゾーンに置く。\n各ターン、相手のクリーチャーがはじめて、１つ以上自分のシールドをブレイクした時、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+          "race": "エンジェル・コマンド/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g1698FirstLightST": true,
+        "g1698SummonEntry": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 3,
+            "optional": true,
+            "g583Group": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm23ex3-TF05",
+        "name": "「獅星」の頂 ザ・ライオネル",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TF05",
+        "faces": [
+          {
+            "name": "「獅星」の頂 ザ・ライオネル",
+            "typeText": "クリーチャー",
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ],
+            "cost": 10,
+            "costText": "10",
+            "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、カードを３枚引いてもよい。その後、自分の手札を３枚までシールド化する。\n各ターン、はじめて相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、そのターン、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+            "race": "エンジェル・コマンド/ゼニス",
+            "powerText": "13000",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-23T00:54:39.459Z",
+          "sha256": "4b183bc86dc49828ade196dfebe205aeb68cb56f9506dbdd39c926b550bbac91",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-s02.jpg",
+      "imageReviewed": true,
+      "imageSha256": "2c7d4fd45125bf2878ded20378806100591945943ac312094795002ac1228024",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm23ex3-TF05",
+          "dmx25-s02"
+        ],
+        "result": "Five full original/reprint faces and images reviewed. Use latest Lionel/Owen wording; reprints are not additional names."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:54:39.459Z",
+        "sha256": "5fc1b91b68de4bc60c054441537e46296f5494b03bf762494688148b9a849d1e",
+        "facesMatched": true,
+        "imageSha256": "2c7d4fd45125bf2878ded20378806100591945943ac312094795002ac1228024"
+      }
+    },
+    {
+      "id": "dmbd06-001",
+      "name": "「終焉」の頂 オーエン・ザ・ロード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-001",
+      "faces": [
+        {
+          "name": "「終焉」の頂 オーエン・ザ・ロード",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚を裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置いてもよい。\n自分のクリーチャーがバトルゾーンを離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、それらの「S・トリガー」能力は使えない。",
+          "race": "デーモン・コマンド/アンノウン/ゼニス",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1698OwenGuard": true,
+        "g1698SummonEntry": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "Offer",
+            "title": "山札の上から3枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 3,
+                "g779Simultaneous": true
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm23ex3-TF03",
+        "name": "「終焉」の頂 オーエン・ザ・ロード",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TF03",
+        "faces": [
+          {
+            "name": "「終焉」の頂 オーエン・ザ・ロード",
+            "typeText": "クリーチャー",
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ],
+            "cost": 11,
+            "costText": "11",
+            "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚をシールド化してもよい。\n自分のクリーチャーが離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。",
+            "race": "デーモン・コマンド/アンノウン/ゼニス",
+            "powerText": "11500",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-23T00:54:39.459Z",
+          "sha256": "250b9859b66bb06c83c8364cff9d883d8c90672892ae17c0f07bc2bccd016b61",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd06-001.jpg",
+      "imageReviewed": true,
+      "imageSha256": "817506759977429772ddd6ab0d527b3cf5604d3968e097a3216b5f6430b2c65e",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm23ex3-TF03",
+          "dmbd06-001"
+        ],
+        "result": "Five full original/reprint faces and images reviewed. Use latest Lionel/Owen wording; reprints are not additional names."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:54:39.459Z",
+        "sha256": "4dadf1e5f1b9ba5565ef67fa979cc0ed6796e1435fef3dfeb8689ca517eb010e",
+        "facesMatched": true,
+        "imageSha256": "817506759977429772ddd6ab0d527b3cf5604d3968e097a3216b5f6430b2c65e"
+      }
+    },
+    {
+      "id": "dm24sp2-001",
+      "name": "蠅の王 クリス=タブラ=ラーサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-001",
+      "faces": [
+        {
+          "name": "蠅の王 クリス=タブラ=ラーサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "革命チェンジ：ゼニス（自分のゼニスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札をすべて裏向きでマナゾーンに置く。\n相手は、自分のマナゾーンにある裏向きのカードの枚数よりコストが小さい呪文を唱えられない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+          "race": "ゼニス・セレス",
+          "powerText": "57975",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ゼニス",
+          "g486Current": true
+        },
+        "worldBreaker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FlyHands1698"
+          }
+        ],
+        "g1698FlySpellLock": true,
+        "g1603Kappa": true,
+        "breaker": "∞"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-001.jpg",
+      "imageReviewed": true,
+      "imageSha256": "75bf77e8d9772dead40129ceaa55a5d6acc05da909692af39c80b06bbf794fd5",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm24sp2-TD01",
+          "dm24sp2-001"
+        ],
+        "result": "Original and TD01 images and full faces reviewed; base Chris Tabula Rasa OR1/ORsec1 search hits are different cards and excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T00:54:39.459Z",
+        "sha256": "9ba5b3b22cb696c31ac10a79da86b8614e105926b485f21de34aee79101d2a84",
+        "facesMatched": true,
+        "imageSha256": "75bf77e8d9772dead40129ceaa55a5d6acc05da909692af39c80b06bbf794fd5"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dm23ex3-TF05",
+      "name": "「獅星」の頂 ザ・ライオネル",
+      "canonicalId": "dmx25-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TF05",
+      "faces": [
+        {
+          "name": "「獅星」の頂 ザ・ライオネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、カードを３枚引いてもよい。その後、自分の手札を３枚までシールド化する。\n各ターン、はじめて相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、そのターン、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+          "race": "エンジェル・コマンド/ゼニス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "4b183bc86dc49828ade196dfebe205aeb68cb56f9506dbdd39c926b550bbac91",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TF05.jpg",
+          "file": "tmp/duema-phase-1698/dm23ex3-TF05-0.jpg",
+          "sha256": "2c773d706af14c3d4b3672cc5fcdd9af482c10d58f3da9d60e3515e4d8f6ec9f"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm23ex3-TF03",
+      "name": "「終焉」の頂 オーエン・ザ・ロード",
+      "canonicalId": "dmbd06-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TF03",
+      "faces": [
+        {
+          "name": "「終焉」の頂 オーエン・ザ・ロード",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚をシールド化してもよい。\n自分のクリーチャーが離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "デーモン・コマンド/アンノウン/ゼニス",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "250b9859b66bb06c83c8364cff9d883d8c90672892ae17c0f07bc2bccd016b61",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TF03.jpg",
+          "file": "tmp/duema-phase-1698/dm23ex3-TF03-0.jpg",
+          "sha256": "1a56c4b11366185d478c136ae2ae786a4e08aa69469a6b7d5eb0bc38cabbdcc2"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm24sp2-TD01",
+      "name": "蠅の王 クリス=タブラ=ラーサ",
+      "canonicalId": "dm24sp2-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-TD01",
+      "faces": [
+        {
+          "name": "蠅の王 クリス=タブラ=ラーサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "革命チェンジ：ゼニス（自分のゼニスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札をすべて裏向きでマナゾーンに置く。\n相手は、自分のマナゾーンにある裏向きのカードの枚数よりコストが小さい呪文を唱えられない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+          "race": "ゼニス・セレス",
+          "powerText": "57975",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "876f47ec9b8177a0cb659639772d57b44e30c1f3046f58f494d2268d7e0f6986",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24sp2-TD01.jpg",
+          "file": "tmp/duema-phase-1699/dm24sp2-TD01-0.jpg",
+          "sha256": "077e46fcf03bf2f2cd499394d9bf387902285a4141ff62670fecfa1d3769de39"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "dm23ex3-OR1",
+      "name": "クリス=タブラ=ラーサ",
+      "reason": "Different card, not a reprint of Fly King; not added or counted."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T00:54:39.459Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-s03": 4,
+      "dmx25-s02": 4,
+      "dmbd06-001": 4,
+      "dm24sp2-001": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T01:13:39.148Z",
+    "results": {
+      "official-final": {
+        "name": "official-final",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1698.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.689,
+        "log": "tmp/duema-phase-1698/official-final.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "related-break-priority": {
+        "name": "related-break-priority",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1685-effects.test.mjs",
+          "tests/standard1686-effects.test.mjs",
+          "tests/standard1344-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 26.527,
+        "log": "tmp/duema-phase-1698/related-break-priority.log",
+        "passed": 179,
+        "logSha256": "ae8a8f20527e9f0913faf0d2974bf54793496ff042641760ad6784ff20af0713",
+        "failed": 0
+      },
+      "related-shields": {
+        "name": "related-shields",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1343-effects.test.mjs",
+          "tests/standard1366-effects.test.mjs",
+          "tests/standard1162-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.207,
+        "log": "tmp/duema-phase-1698/related-shields.log",
+        "passed": 38,
+        "logSha256": "4e7a8c79b1a2fc020ad1b43c1f3b0758e626e3783d02647977784ba841a16822",
+        "failed": 0
+      },
+      "related-entry-leave": {
+        "name": "related-entry-leave",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard997-effects.test.mjs",
+          "tests/standard545-effects.test.mjs",
+          "tests/viride-rules.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.764,
+        "log": "tmp/duema-phase-1698/related-entry-leave.log",
+        "passed": 106,
+        "logSha256": "4112bb82381aac3bf81b59f3bc7ace6d802accfa2f62eb1f77d22ed95ba243ff",
+        "failed": 0
+      },
+      "related-kappa": {
+        "name": "related-kappa",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1603-effects.test.mjs",
+          "tests/standard1294-effects.test.mjs",
+          "tests/standard1307-effects.test.mjs",
+          "tests/standard1647-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 35.55,
+        "log": "tmp/duema-phase-1698/related-kappa.log",
+        "passed": 102,
+        "logSha256": "857cc4dcae25142b97934020c6d4d6b388a05db2c430f6b9e95404e077274c91",
+        "failed": 0
+      },
+      "related-group-mana": {
+        "name": "related-group-mana",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard583-effects.test.mjs",
+          "tests/standard1694-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.133,
+        "log": "tmp/duema-phase-1698/related-group-mana.log",
+        "passed": 137,
+        "logSha256": "954e3a3106b26f0ffb4d52ada4c944977f3c7f0dc5e9041e4468fb1949f93633",
+        "failed": 0
+      },
+      "viride-focused": {
+        "name": "viride-focused",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Everlast|^Extreme stay|^new target choices|^Saint redirects",
+          "tests/viride-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.76,
+        "log": "tmp/duema-phase-1698/viride-focused.log",
+        "passed": 6,
+        "logSha256": "075bb55a84bfd1a7f781897483b6f25a7fac856df6c4f4cd8bdf24d4f51631ee",
+        "failed": 0
+      },
+      "viride-explicit-units": {
+        "name": "viride-explicit-units",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:Viride adds ten complete effects and the original historical forty|Viride alternative summon requires strictly more shields and pays exactly two light even under reduction lock|Viride watches the first combined enemy event, draws optionally then deploys by printed event cost|Viride does not get a new first event when entering after an earlier enemy event|Viride triggers on an actual enemy spell before its summoned creature and allows a deploy after declining draw|Viride gains shield trigger at three enemy creatures and snapshots eligibility before shields leave|Zaze enters tapped and does not untap naturally at its turn start|Zaze untaps on a shield addition, offers all three modes and can draw while already untapped|Zaze tap mode lasts through the next enemy untap but other untaps remain possible|Zaze stay mode prevents own effects too and expires at its next turn start|Garden discounts each creature once per turn, supports declining and does not discount castles|Garden draw triggers only with strictly more own creatures at end of turn|Hustle enters faceup, ramps one tapped card and never gains Balzark discard or leave abilities|Hustle redirects nonsummoned creatures on either turn, while real summons still enter|Queen redirects creatures above mana count even after paid reductions and never sacrifices itself or attacks|OneNote limits actual spell casts and opens permission immediately after it leaves|OneNote NEO only limits creatures while evolved and counts earlier entries this turn|Poppi forbids mana grave extra and battle origins for every element but permits hand and library|Poppi blocks grave spell choices rather than failing after the choice is submitted|Extreme Final Revolution works without revolution change and is shared game history with other Finals|Extreme prevents enemy removal including later creatures, but permits own effects and state based battle defeat|Extreme prevents direct defeat for the enemy turn then expires at own turn start|Dogi end may decline ramp and still deploy two hand or mana creatures with total cost at most seven|Zaze triggers once for each physical card shieldified from an evolution stack and ignores natural tap text under Genmu|Poppi Escape returns a G castle without chaining its grave replacement and AI never cycles shield selection cancel|Saint can be declined and ordinary castle replacement is not a broken shield|turn-player reverse burn outranks Saint and puts G castles at library bottom, without chaining grave replacement|Hustle prevents a revolution swap entirely and does not move either creature|Extreme allows battle zero-power cleanup and protects the current creature stack after evolution|Extreme protected Segare can replace a normal summon but cannot pay its own move against an effect summon)$",
+          "tests/viride-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.417,
+        "log": "tmp/duema-phase-1698/viride-explicit-units.log",
+        "passed": 30,
+        "logSha256": "52387e426ba81d00fa251901765db38cc9d3d93c4477a327404985182d1ac2cd",
+        "failed": 0
+      },
+      "check-verified": {
+        "name": "check-verified",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.668,
+        "log": "tmp/duema-phase-1698/check-verified.log",
+        "logSha256": "eba47117b702b3df90ef285a73f991581a88f70fab2730b77ca64c85534f1e90"
+      },
+      "audit-verified": {
+        "name": "audit-verified",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.451,
+        "log": "tmp/duema-phase-1698/audit-verified.log",
+        "logSha256": "ef5ede4a0976fac9d5f210a46b259e013c36db4a4a01c6c0d91e94dca9fc7351"
+      },
+      "target9500-complete": {
+        "name": "target9500-complete",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.378,
+        "log": "tmp/duema-phase-1698/target9500-complete.log",
+        "logSha256": "1bf5960e20689c60fbb9b498a33214b91d9da808263c8494cdbbbefdae64eb86"
+      },
+      "invariants-verified": {
+        "name": "invariants-verified",
+        "command": [
+          "node",
+          "tmp/duema-phase-1698/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.436,
+        "log": "tmp/duema-phase-1698/invariants-verified.log",
+        "logSha256": "13c3249b174e39d08a610c30ede9a6f844a278642d5fe33c3c13914f20320615"
+      },
+      "shieldFocused": {
+        "kind": "split-verification-aggregate",
+        "passed": 54,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 10.913,
+            "log": "tmp/duema-phase-1698/focused.log",
+            "passed": 31,
+            "logSha256": "d6f0cb3245659d0d9fac459900b39ca9ed9d129e0a2af0da247f7a9372872515"
+          },
+          {
+            "name": "focused-fixtures-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Three strict|^Neme replaces exactly|^Neme entering after|^Summon-only entry",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.168,
+            "log": "tmp/duema-phase-1698/focused-fixtures-fixed.log",
+            "passed": 11,
+            "logSha256": "8dc4f24dfdf4a79dd97970139f60bca9ee072b8a0fbe444e8a1d7eb01acc8d06"
+          },
+          {
+            "name": "focused-edge",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Lionel grants every|^Lionel does not consume|^Neme optional shield replacement|^Owen simultaneous",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 0.848,
+            "log": "tmp/duema-phase-1698/focused-edge.log",
+            "passed": 6,
+            "logSha256": "713b9f14565f14265b1805d29cf4b11ad8749cae894b492d173b33a9c9a96c73"
+          },
+          {
+            "name": "focused-burn-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Lionel does not consume",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.777,
+            "log": "tmp/duema-phase-1698/focused-burn-fixed.log",
+            "passed": 2,
+            "logSha256": "919eb49d8992f2195f9c07973838d6193d15f5471c89097241bdd1b83447081b"
+          },
+          {
+            "name": "focused-active-priority",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Neme active-player replacement",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.563,
+            "log": "tmp/duema-phase-1698/focused-active-priority.log",
+            "passed": 2,
+            "logSha256": "312106c812905f3a8ba7ffe090d798a665154dc776f7f506085d461e673a5716"
+          },
+          {
+            "name": "focused-metadata-priority-final",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Four strict|^Neme non-active|^Neme active-player replacement",
+              "tests/standard1698-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.785,
+            "log": "tmp/duema-phase-1698/focused-metadata-priority-final.log",
+            "passed": 5,
+            "logSha256": "c51ec4ab2e13845e2ce61edb2153548c7f6e16aff3befc341ee13f749103158c"
+          }
+        ],
+        "coverage": "42 original tests: 31 initially passed, 11 fixture repairs passed; 8 new edge tests: 6 passed plus 2 repaired shield-order fixtures; 2 active-priority tests; final metadata and active/non-active priority selection passed. Final 5-test selection replaces metadata and 2 active tests already counted; only 2 non-active tests are additional."
+      },
+      "flyFocused": {
+        "kind": "split-verification-aggregate",
+        "passed": 28,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused-fly-final",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1698-fly-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.268,
+            "log": "tmp/duema-phase-1698/focused-fly-final.log",
+            "passed": 23,
+            "logSha256": "e85e8e3241cc8ff985c07ba172441f2f36129ca0079ec884d7680bfbdde92fdc"
+          },
+          {
+            "name": "focused-fly-verified",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Fly spell lock allows equal printed",
+              "tests/standard1698-fly-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.682,
+            "log": "tmp/duema-phase-1698/focused-fly-verified.log",
+            "passed": 2,
+            "logSha256": "6b80c00958d5035fab5702618fb328e32e111a168bbbdb311b6b9cbd06218f6e"
+          },
+          {
+            "name": "focused-fly-edge",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Fly Eternal Kappa does not replace|^Fly in a legal forty",
+              "tests/standard1698-fly-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 7.722,
+            "log": "tmp/duema-phase-1698/focused-fly-edge.log",
+            "passed": 3,
+            "logSha256": "6b616d25906015f83bdd626906cc2725525fa479e6b888b7e083f8f7f1ecc323"
+          }
+        ],
+        "coverage": "23 initial passing cases, two final twin-cost/seal-state fixture repairs, and three new loss/legal-forty tests. World breaker spec corrected to the native infinity+world representation before the 23 passing cases. Exact QA45513 is included in both seats."
+      }
+    },
+    "totalTestsPassed": 680,
+    "focusedTestsPassed": 82,
+    "relatedTestsPassed": 598
+  },
+  "validationNotes": [
+    "Baseline 1baf71d7 and start nameKey 9329 inspected. Three researched shield cards plus the explicitly requested Fly King form one four-card batch; real nameKey count 9333. Existing IDs, original 9329 definitions, catalogue, image references and save formats preserved.",
+    "All full official abilities, stats, printed mana, restrictions and seven original/reprint images reviewed. Latest Lionel/Owen wording used. The Lionel reprint still says break-shita-toki (after breaking); an earlier draft reading of suru-toki was corrected before final validation. Same-name reprints add no names. Original Chris Tabula Rasa is a different card and was not added.",
+    "Neme: Blocker/T, one chosen first shield of a simultaneous break is retained while a new top shield is added; exact QA31560 triple-break/two-shield setup reproduced in both seats. Multiple copies, decline, new entry, next native turn, ability suppression, encrypted pending choice and active/non-active replacement priority versus burn verified.",
+    "Lionel: optional all-three draw followed independently by zero-to-three hand shields only on a real summon; other Command Dragon summons do not retrigger. First opposing creature break grants Light cards their shield triggers before declaration. Simultaneous multi-shield Light/non-Light, prior spell break, replaced burn, late source entry and native shield-trigger execution verified.",
+    "Owen: mandatory own grave recycle/shuffle precedes an optional simultaneous three-shield addition on summon; ordinary deployment does not trigger it. Native two-shield allied leave replacement covers itself, destruction/bounce/mana, no-ST return, decline, suppression and physical reservation in simultaneous destruction. QA44591 is tested as a self-return movement analogue; the unregistered physical-hand joke card Egoist is not claimed as exact reproduction.",
+    "Fly King: Zenith revolution change, no paid mana, world break of all five shields, and both complete hands (including the returned Zenith attacker) move to untapped face-down mana. Live spell lock counts its controller face-down mana with strict inequality, including twin spell faces and free shield triggers, and deactivates under ignored/sealed sources. Eternal Kappa selects exactly three own face-down cards, preserves taps/UIDs, respects simultaneous reservation, and does not replace game loss.",
+    "Exact official QA45513 reproduced in both seats with actual Beethoven and Fly King: selecting Kappa fails the exchange, leaves both creatures in their original zones, preserves all four face-down mana and tap states, and Beethoven continues its four-shield attack. The native Kappa payment is now committed only after exchange-failure checks. Both pending choices and private face-down mana survive encrypted online storage.",
+    "82 focused tests across split selections and 598 affected regressions passed, total 680. Two legal forty-card seeded games preserve all physical IDs and JSON legal actions through completion. Final check/audit/target9500/invariants pass. Official verifier refresh had reset image proof fields; reviewed image hashes were restored and target9500 passed afterward.",
+    "A broad Viride group containing 8 random-action games, a 62-game worker run and 31 replayed AI games timed out at 570.014 seconds. A negative selection unintentionally matched the file parent and was stopped after 118.618 seconds; it is not counted as passing. All 36 short unit cases were then verified using explicit positive names (6 + 30); the three long cases remain pending and are not rerun. The related-entry-leave command includes a nonexistent historical viride-rules path silently ignored by node; its 106 passes cover standard997/545, and actual Viride units are separately verified.",
+    "Historical whole npm test remains interrupted/unconfirmed. Previous individual, long and reprint deferrals preserved; this broad long group is added to pending history. No push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr08-025",
+      "name": "ヘブンズ・サンダー",
+      "reason": "Verify complete friendly Blocker power/W/attack-permission spell while preserving summoning sickness."
+    },
+    {
+      "id": "dmrp04s-006",
+      "name": "凶鬼04号 ビビム",
+      "reason": "Verify battle/grave departures and complete targeted power reduction using existing event provenance."
+    },
+    {
+      "id": "dmr12-004",
+      "name": "神々の地 ディオニソス",
+      "reason": "Verify grave-destination replacement from every origin; do not count partial support."
+    }
+  ],
+  "longRegressionVerificationPending": [
+    {
+      "target": "phase1698-Viride-broad-three-long-cases",
+      "phase": 1698,
+      "status": "interrupted-unconfirmed",
+      "file": "tests/viride-effects.test.mjs",
+      "tests": [
+        "Viride random actions conserve80 cards and round-trip every pending choice and replacement",
+        "Viride production worker completes sixty-two games with no unresolved match",
+        "Viride AI games finish against all thirty-one configured decks with replay and card conservation"
+      ],
+      "reason": "Broad command timed out at 570.014s. Negative name filtering also selected the parent; stopped at 118.618s. Neither long run is a pass. All 36 short unit cases passed in explicit positive selections; future work must split by individual seeds/opponents and must not restart these whole long groups.",
+      "attempts": [
+        {
+          "name": "related-viride-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/viride-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": -9,
+          "timedout": true,
+          "seconds": 570.014,
+          "log": "tmp/duema-phase-1698/related-viride-online.log",
+          "logSha256": "55300772c0bcc74d6ffdbcb6bd7e06d24ea43ddf44910e8edad4c902e02ed08d"
+        },
+        {
+          "name": "viride-unit-remainder",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?!Viride random|Viride production|Viride AI|Everlast|Extreme stay|new target choices|Saint redirects)",
+            "tests/viride-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 118.618,
+          "log": "tmp/duema-phase-1698/viride-unit-remainder.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ]
+}

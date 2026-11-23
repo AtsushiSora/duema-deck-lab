@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9329,
-  "pendingNames": 2496,
-  "phase": 1697,
-  "added": 3,
+  "supportedNames": 9333,
+  "pendingNames": 2492,
+  "phase": 1698,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -64,7 +64,7 @@
     },
     {
       "ability": "革命チェンジ",
-      "pendingNames": 35,
+      "pendingNames": 34,
       "examples": [
         {
           "id": "dmr23-023",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1408,
+    "クリーチャー": 1404,
     "呪文": 271,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,10 +221,10 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1798,
+    "未対応の能力文": 1796,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
-    "未対応の召喚時能力": 15,
+    "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
     "未対応のD2フィールド能力": 10,
     "複雑な進化条件": 11,
@@ -301,8 +301,8 @@
         "name": "「黒幕」"
       },
       {
-        "id": "dmx25-s02",
-        "name": "「獅星」の頂 ザ・ライオネル"
+        "id": "dmr06-s01",
+        "name": "「呪」の頂 サスペンス"
       }
     ],
     "未対応のシンカパワー": [
@@ -541402,33 +541402,633 @@
         }
       ],
       "next": "phase1698の候補3種類を公式全文・画像・再録・制限・裁定と照合し、固有/関連回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
+    },
+    {
+      "phase": 1698,
+      "checkedAt": "2026-11-23T01:13:39.148Z",
+      "baseline": "1baf71d7",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9329,
+      "currentNames": 9333,
+      "remainingNames": 167,
+      "added": [
+        {
+          "id": "dmrp02-s03",
+          "name": "王家の精霊 ネメス・テーベ"
+        },
+        {
+          "id": "dmx25-s02",
+          "name": "「獅星」の頂 ザ・ライオネル"
+        },
+        {
+          "id": "dmbd06-001",
+          "name": "「終焉」の頂 オーエン・ザ・ロード"
+        },
+        {
+          "id": "dm24sp2-001",
+          "name": "蠅の王 クリス=タブラ=ラーサ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "1baf71d7",
+        "originalDefinitionsUnchanged": 9329,
+        "added": 4,
+        "uniqueNames": 9333,
+        "uniqueIds": 9333,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9329,
+        "existingImageReferenceRowsUnchanged": 11539,
+        "officialPrintsReviewed": 7,
+        "officialImagesReviewed": 7,
+        "existingPinsUnchanged": 859
+      },
+      "results": {
+        "official-final": {
+          "name": "official-final",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1698.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.689,
+          "log": "tmp/duema-phase-1698/official-final.log",
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "related-break-priority": {
+          "name": "related-break-priority",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1685-effects.test.mjs",
+            "tests/standard1686-effects.test.mjs",
+            "tests/standard1344-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.527,
+          "log": "tmp/duema-phase-1698/related-break-priority.log",
+          "passed": 179,
+          "logSha256": "ae8a8f20527e9f0913faf0d2974bf54793496ff042641760ad6784ff20af0713",
+          "failed": 0
+        },
+        "related-shields": {
+          "name": "related-shields",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1343-effects.test.mjs",
+            "tests/standard1366-effects.test.mjs",
+            "tests/standard1162-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.207,
+          "log": "tmp/duema-phase-1698/related-shields.log",
+          "passed": 38,
+          "logSha256": "4e7a8c79b1a2fc020ad1b43c1f3b0758e626e3783d02647977784ba841a16822",
+          "failed": 0
+        },
+        "related-entry-leave": {
+          "name": "related-entry-leave",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard997-effects.test.mjs",
+            "tests/standard545-effects.test.mjs",
+            "tests/viride-rules.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.764,
+          "log": "tmp/duema-phase-1698/related-entry-leave.log",
+          "passed": 106,
+          "logSha256": "4112bb82381aac3bf81b59f3bc7ace6d802accfa2f62eb1f77d22ed95ba243ff",
+          "failed": 0
+        },
+        "related-kappa": {
+          "name": "related-kappa",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1603-effects.test.mjs",
+            "tests/standard1294-effects.test.mjs",
+            "tests/standard1307-effects.test.mjs",
+            "tests/standard1647-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 35.55,
+          "log": "tmp/duema-phase-1698/related-kappa.log",
+          "passed": 102,
+          "logSha256": "857cc4dcae25142b97934020c6d4d6b388a05db2c430f6b9e95404e077274c91",
+          "failed": 0
+        },
+        "related-group-mana": {
+          "name": "related-group-mana",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard583-effects.test.mjs",
+            "tests/standard1694-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.133,
+          "log": "tmp/duema-phase-1698/related-group-mana.log",
+          "passed": 137,
+          "logSha256": "954e3a3106b26f0ffb4d52ada4c944977f3c7f0dc5e9041e4468fb1949f93633",
+          "failed": 0
+        },
+        "viride-focused": {
+          "name": "viride-focused",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Everlast|^Extreme stay|^new target choices|^Saint redirects",
+            "tests/viride-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.76,
+          "log": "tmp/duema-phase-1698/viride-focused.log",
+          "passed": 6,
+          "logSha256": "075bb55a84bfd1a7f781897483b6f25a7fac856df6c4f4cd8bdf24d4f51631ee",
+          "failed": 0
+        },
+        "viride-explicit-units": {
+          "name": "viride-explicit-units",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:Viride adds ten complete effects and the original historical forty|Viride alternative summon requires strictly more shields and pays exactly two light even under reduction lock|Viride watches the first combined enemy event, draws optionally then deploys by printed event cost|Viride does not get a new first event when entering after an earlier enemy event|Viride triggers on an actual enemy spell before its summoned creature and allows a deploy after declining draw|Viride gains shield trigger at three enemy creatures and snapshots eligibility before shields leave|Zaze enters tapped and does not untap naturally at its turn start|Zaze untaps on a shield addition, offers all three modes and can draw while already untapped|Zaze tap mode lasts through the next enemy untap but other untaps remain possible|Zaze stay mode prevents own effects too and expires at its next turn start|Garden discounts each creature once per turn, supports declining and does not discount castles|Garden draw triggers only with strictly more own creatures at end of turn|Hustle enters faceup, ramps one tapped card and never gains Balzark discard or leave abilities|Hustle redirects nonsummoned creatures on either turn, while real summons still enter|Queen redirects creatures above mana count even after paid reductions and never sacrifices itself or attacks|OneNote limits actual spell casts and opens permission immediately after it leaves|OneNote NEO only limits creatures while evolved and counts earlier entries this turn|Poppi forbids mana grave extra and battle origins for every element but permits hand and library|Poppi blocks grave spell choices rather than failing after the choice is submitted|Extreme Final Revolution works without revolution change and is shared game history with other Finals|Extreme prevents enemy removal including later creatures, but permits own effects and state based battle defeat|Extreme prevents direct defeat for the enemy turn then expires at own turn start|Dogi end may decline ramp and still deploy two hand or mana creatures with total cost at most seven|Zaze triggers once for each physical card shieldified from an evolution stack and ignores natural tap text under Genmu|Poppi Escape returns a G castle without chaining its grave replacement and AI never cycles shield selection cancel|Saint can be declined and ordinary castle replacement is not a broken shield|turn-player reverse burn outranks Saint and puts G castles at library bottom, without chaining grave replacement|Hustle prevents a revolution swap entirely and does not move either creature|Extreme allows battle zero-power cleanup and protects the current creature stack after evolution|Extreme protected Segare can replace a normal summon but cannot pay its own move against an effect summon)$",
+            "tests/viride-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.417,
+          "log": "tmp/duema-phase-1698/viride-explicit-units.log",
+          "passed": 30,
+          "logSha256": "52387e426ba81d00fa251901765db38cc9d3d93c4477a327404985182d1ac2cd",
+          "failed": 0
+        },
+        "check-verified": {
+          "name": "check-verified",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.668,
+          "log": "tmp/duema-phase-1698/check-verified.log",
+          "logSha256": "eba47117b702b3df90ef285a73f991581a88f70fab2730b77ca64c85534f1e90"
+        },
+        "audit-verified": {
+          "name": "audit-verified",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.451,
+          "log": "tmp/duema-phase-1698/audit-verified.log",
+          "logSha256": "ef5ede4a0976fac9d5f210a46b259e013c36db4a4a01c6c0d91e94dca9fc7351"
+        },
+        "target9500-complete": {
+          "name": "target9500-complete",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.378,
+          "log": "tmp/duema-phase-1698/target9500-complete.log",
+          "logSha256": "1bf5960e20689c60fbb9b498a33214b91d9da808263c8494cdbbbefdae64eb86"
+        },
+        "invariants-verified": {
+          "name": "invariants-verified",
+          "command": [
+            "node",
+            "tmp/duema-phase-1698/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.436,
+          "log": "tmp/duema-phase-1698/invariants-verified.log",
+          "logSha256": "13c3249b174e39d08a610c30ede9a6f844a278642d5fe33c3c13914f20320615"
+        },
+        "shieldFocused": {
+          "kind": "split-verification-aggregate",
+          "passed": 54,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 10.913,
+              "log": "tmp/duema-phase-1698/focused.log",
+              "passed": 31,
+              "logSha256": "d6f0cb3245659d0d9fac459900b39ca9ed9d129e0a2af0da247f7a9372872515"
+            },
+            {
+              "name": "focused-fixtures-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Three strict|^Neme replaces exactly|^Neme entering after|^Summon-only entry",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.168,
+              "log": "tmp/duema-phase-1698/focused-fixtures-fixed.log",
+              "passed": 11,
+              "logSha256": "8dc4f24dfdf4a79dd97970139f60bca9ee072b8a0fbe444e8a1d7eb01acc8d06"
+            },
+            {
+              "name": "focused-edge",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Lionel grants every|^Lionel does not consume|^Neme optional shield replacement|^Owen simultaneous",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.848,
+              "log": "tmp/duema-phase-1698/focused-edge.log",
+              "passed": 6,
+              "logSha256": "713b9f14565f14265b1805d29cf4b11ad8749cae894b492d173b33a9c9a96c73"
+            },
+            {
+              "name": "focused-burn-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Lionel does not consume",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.777,
+              "log": "tmp/duema-phase-1698/focused-burn-fixed.log",
+              "passed": 2,
+              "logSha256": "919eb49d8992f2195f9c07973838d6193d15f5471c89097241bdd1b83447081b"
+            },
+            {
+              "name": "focused-active-priority",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Neme active-player replacement",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.563,
+              "log": "tmp/duema-phase-1698/focused-active-priority.log",
+              "passed": 2,
+              "logSha256": "312106c812905f3a8ba7ffe090d798a665154dc776f7f506085d461e673a5716"
+            },
+            {
+              "name": "focused-metadata-priority-final",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Four strict|^Neme non-active|^Neme active-player replacement",
+                "tests/standard1698-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.785,
+              "log": "tmp/duema-phase-1698/focused-metadata-priority-final.log",
+              "passed": 5,
+              "logSha256": "c51ec4ab2e13845e2ce61edb2153548c7f6e16aff3befc341ee13f749103158c"
+            }
+          ],
+          "coverage": "42 original tests: 31 initially passed, 11 fixture repairs passed; 8 new edge tests: 6 passed plus 2 repaired shield-order fixtures; 2 active-priority tests; final metadata and active/non-active priority selection passed. Final 5-test selection replaces metadata and 2 active tests already counted; only 2 non-active tests are additional."
+        },
+        "flyFocused": {
+          "kind": "split-verification-aggregate",
+          "passed": 28,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused-fly-final",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1698-fly-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.268,
+              "log": "tmp/duema-phase-1698/focused-fly-final.log",
+              "passed": 23,
+              "logSha256": "e85e8e3241cc8ff985c07ba172441f2f36129ca0079ec884d7680bfbdde92fdc"
+            },
+            {
+              "name": "focused-fly-verified",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Fly spell lock allows equal printed",
+                "tests/standard1698-fly-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.682,
+              "log": "tmp/duema-phase-1698/focused-fly-verified.log",
+              "passed": 2,
+              "logSha256": "6b80c00958d5035fab5702618fb328e32e111a168bbbdb311b6b9cbd06218f6e"
+            },
+            {
+              "name": "focused-fly-edge",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Fly Eternal Kappa does not replace|^Fly in a legal forty",
+                "tests/standard1698-fly-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 7.722,
+              "log": "tmp/duema-phase-1698/focused-fly-edge.log",
+              "passed": 3,
+              "logSha256": "6b616d25906015f83bdd626906cc2725525fa479e6b888b7e083f8f7f1ecc323"
+            }
+          ],
+          "coverage": "23 initial passing cases, two final twin-cost/seal-state fixture repairs, and three new loss/legal-forty tests. World breaker spec corrected to the native infinity+world representation before the 23 passing cases. Exact QA45513 is included in both seats."
+        }
+      },
+      "totalTestsPassed": 680,
+      "hashes": {
+        "dist/cards.json": "5bab46b5643cac3c55294069dd7607d6063547fafe078abc24f3b70b8f454b99",
+        "dist/engine.js": "5b830dfb0fac496381ea5bce94200040c473d781fea391d86d5aaf4d996ff127",
+        "dist/six-photo-rules.js": "6b7acc6403488c2d17bfda1d97c4df4d6104e1132386246dd2fae3f0f2f52704",
+        "dist/viride-rules.js": "555cf0e11dcdae9cb20c21931ffe2dcf5757fda9f733565c313500233e2dc898",
+        "dist/online-compatibility.js": "67d9d9603b08ce0dbd5a972e69c30583e3ae4eb182d76daa8e9e66048c68fa3d",
+        "dist/card-images.js": "e88e01e5fccc863231849fee213b9c23f1b7a3d2574878ecffbf4f083a197c4a",
+        "tools/target9000-card-spec.json": "8c63bd6ec7a92c3aafe1b561a5e0d522da1f8859d3fcc323da1d1a02ae0a11c1",
+        "tests/standard1698-effects.test.mjs": "4093f885b696432e2dcb3597816534b5b44390727fed85e4f0fe64a94aa29541",
+        "tests/standard1698-fly-effects.test.mjs": "139e69ce5748bb5ca442260104d63625529889bdabc26fbe4fdd57c618ddf1bb"
+      },
+      "engineVersion": "0.602.215",
+      "registeredCardVerificationPending": [],
+      "longRegressionVerificationPending": [
+        {
+          "target": "phase1698-Viride-broad-three-long-cases",
+          "phase": 1698,
+          "status": "interrupted-unconfirmed",
+          "file": "tests/viride-effects.test.mjs",
+          "tests": [
+            "Viride random actions conserve80 cards and round-trip every pending choice and replacement",
+            "Viride production worker completes sixty-two games with no unresolved match",
+            "Viride AI games finish against all thirty-one configured decks with replay and card conservation"
+          ],
+          "reason": "Broad command timed out at 570.014s. Negative name filtering also selected the parent; stopped at 118.618s. Neither long run is a pass. All 36 short unit cases passed in explicit positive selections; future work must split by individual seeds/opponents and must not restart these whole long groups.",
+          "attempts": [
+            {
+              "name": "related-viride-online",
+              "command": [
+                "node",
+                "--test",
+                "tests/viride-effects.test.mjs",
+                "tests/online-runtime.test.mjs",
+                "tests/online-client.test.mjs"
+              ],
+              "code": -9,
+              "timedout": true,
+              "seconds": 570.014,
+              "log": "tmp/duema-phase-1698/related-viride-online.log",
+              "logSha256": "55300772c0bcc74d6ffdbcb6bd7e06d24ea43ddf44910e8edad4c902e02ed08d"
+            },
+            {
+              "name": "viride-unit-remainder",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(?!Viride random|Viride production|Viride AI|Everlast|Extreme stay|new target choices|Saint redirects)",
+                "tests/viride-effects.test.mjs"
+              ],
+              "code": -9,
+              "timedout": false,
+              "seconds": 118.618,
+              "log": "tmp/duema-phase-1698/viride-unit-remainder.log",
+              "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        }
+      ],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 31560,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/31560/",
+          "sha256": "3d1329e5042d0482fde5cb6baa38ff95bd9da899798ddecb13a6680b27b65e4d",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1698-effects.test.mjs",
+          "scope": "Actual official cards and original QA setup in both seats."
+        },
+        {
+          "id": 44591,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44591/",
+          "sha256": "205dee42fe4db02b789583457bba0448bffccb1b0839d2eaf4821c9f0497cf80",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1698-effects.test.mjs",
+          "scope": "Self-return movement analogue; no physical-hand Egoist implementation."
+        },
+        {
+          "id": 45513,
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45513/",
+          "sha256": "2f1d09c99eb915e77bc6059c5718b779a6eaca1e07d8530e237ffdb21baac320",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1698-fly-effects.test.mjs",
+          "scope": "Actual official cards and original QA setup in both seats."
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1698-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 10.913,
+          "log": "tmp/duema-phase-1698/focused.log"
+        },
+        {
+          "name": "focused-edge",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Lionel grants every|^Lionel does not consume|^Neme optional shield replacement|^Owen simultaneous",
+            "tests/standard1698-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.848,
+          "log": "tmp/duema-phase-1698/focused-edge.log"
+        },
+        {
+          "name": "focused-fly",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1698-fly-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.235,
+          "log": "tmp/duema-phase-1698/focused-fly.log"
+        },
+        {
+          "name": "focused-fly-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1698-fly-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.268,
+          "log": "tmp/duema-phase-1698/focused-fly-final.log"
+        },
+        {
+          "name": "four-card-metadata",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Four strict",
+            "tests/standard1698-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.643,
+          "log": "tmp/duema-phase-1698/four-card-metadata.log"
+        },
+        {
+          "name": "focused-fly-twin-fixed",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Fly spell lock allows equal printed",
+            "tests/standard1698-fly-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.722,
+          "log": "tmp/duema-phase-1698/focused-fly-twin-fixed.log"
+        },
+        {
+          "name": "target9500-final",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.262,
+          "log": "tmp/duema-phase-1698/target9500-final.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1698.json",
+      "supported": 9333,
+      "pending": 2492,
+      "reason": "Complete Neme first-shield-break replacement; latest Lionel summoned entry/first opposing creature break Light shield triggers; Owen summoned grave recycle/three shields and allied shield-two leave replacement. Explicit user priority: Fly King Chris Tabula Rasa, complete Zenith revolution change/world break/both-hand face-down mana/live spell lock/Eternal Kappa.",
+      "validationNotes": [
+        "Baseline 1baf71d7 and start nameKey 9329 inspected. Three researched shield cards plus the explicitly requested Fly King form one four-card batch; real nameKey count 9333. Existing IDs, original 9329 definitions, catalogue, image references and save formats preserved.",
+        "All full official abilities, stats, printed mana, restrictions and seven original/reprint images reviewed. Latest Lionel/Owen wording used. The Lionel reprint still says break-shita-toki (after breaking); an earlier draft reading of suru-toki was corrected before final validation. Same-name reprints add no names. Original Chris Tabula Rasa is a different card and was not added.",
+        "Neme: Blocker/T, one chosen first shield of a simultaneous break is retained while a new top shield is added; exact QA31560 triple-break/two-shield setup reproduced in both seats. Multiple copies, decline, new entry, next native turn, ability suppression, encrypted pending choice and active/non-active replacement priority versus burn verified.",
+        "Lionel: optional all-three draw followed independently by zero-to-three hand shields only on a real summon; other Command Dragon summons do not retrigger. First opposing creature break grants Light cards their shield triggers before declaration. Simultaneous multi-shield Light/non-Light, prior spell break, replaced burn, late source entry and native shield-trigger execution verified.",
+        "Owen: mandatory own grave recycle/shuffle precedes an optional simultaneous three-shield addition on summon; ordinary deployment does not trigger it. Native two-shield allied leave replacement covers itself, destruction/bounce/mana, no-ST return, decline, suppression and physical reservation in simultaneous destruction. QA44591 is tested as a self-return movement analogue; the unregistered physical-hand joke card Egoist is not claimed as exact reproduction.",
+        "Fly King: Zenith revolution change, no paid mana, world break of all five shields, and both complete hands (including the returned Zenith attacker) move to untapped face-down mana. Live spell lock counts its controller face-down mana with strict inequality, including twin spell faces and free shield triggers, and deactivates under ignored/sealed sources. Eternal Kappa selects exactly three own face-down cards, preserves taps/UIDs, respects simultaneous reservation, and does not replace game loss.",
+        "Exact official QA45513 reproduced in both seats with actual Beethoven and Fly King: selecting Kappa fails the exchange, leaves both creatures in their original zones, preserves all four face-down mana and tap states, and Beethoven continues its four-shield attack. The native Kappa payment is now committed only after exchange-failure checks. Both pending choices and private face-down mana survive encrypted online storage.",
+        "82 focused tests across split selections and 598 affected regressions passed, total 680. Two legal forty-card seeded games preserve all physical IDs and JSON legal actions through completion. Final check/audit/target9500/invariants pass. Official verifier refresh had reset image proof fields; reviewed image hashes were restored and target9500 passed afterward.",
+        "A broad Viride group containing 8 random-action games, a 62-game worker run and 31 replayed AI games timed out at 570.014 seconds. A negative selection unintentionally matched the file parent and was stopped after 118.618 seconds; it is not counted as passing. All 36 short unit cases were then verified using explicit positive names (6 + 30); the three long cases remain pending and are not rerun. The related-entry-leave command includes a nonexistent historical viride-rules path silently ignored by node; its 106 passes cover standard997/545, and actual Viride units are separately verified.",
+        "Historical whole npm test remains interrupted/unconfirmed. Previous individual, long and reprint deferrals preserved; this broad long group is added to pending history. No push/publication/Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dm23ex3-OR1",
+          "name": "クリス=タブラ=ラーサ",
+          "reason": "Different card, not a reprint of Fly King; not added or counted."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmr08-025",
+          "name": "ヘブンズ・サンダー",
+          "reason": "Verify complete friendly Blocker power/W/attack-permission spell while preserving summoning sickness."
+        },
+        {
+          "id": "dmrp04s-006",
+          "name": "凶鬼04号 ビビム",
+          "reason": "Verify battle/grave departures and complete targeted power reduction using existing event provenance."
+        },
+        {
+          "id": "dmr12-004",
+          "name": "神々の地 ディオニソス",
+          "reason": "Verify grave-destination replacement from every origin; do not count partial support."
+        }
+      ],
+      "next": "9,500まで3〜5種類バッチを継続。公式全文/再録/制限/画像/裁定・固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット。過去と今回の長時間未確認は保持し、一括再実行しない。push/公開/Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1697,
-    "nextPhase": 1698,
+    "lastVerifiedPhase": 1698,
+    "nextPhase": 1699,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp02-s03",
-        "name": "王家の精霊 ネメス・テーベ",
-        "reason": "Verify complete first-shield-break replacement with existing shield pipelines."
+        "id": "dmr08-025",
+        "name": "ヘブンズ・サンダー",
+        "reason": "Verify complete friendly Blocker power/W/attack-permission spell while preserving summoning sickness."
       },
       {
-        "id": "dmx25-s02",
-        "name": "「獅星」の頂 ザ・ライオネル",
-        "reason": "Verify summoned entry, first creature break and granted Light shield triggers."
+        "id": "dmrp04s-006",
+        "name": "凶鬼04号 ビビム",
+        "reason": "Verify battle/grave departures and complete targeted power reduction using existing event provenance."
       },
       {
-        "id": "dmbd06-001",
-        "name": "「終焉」の頂 オーエン・ザ・ロード",
-        "reason": "Reuse existing grave shuffle, optional shield addition and shield-two leave replacement."
+        "id": "dmr12-004",
+        "name": "神々の地 ディオニソス",
+        "reason": "Verify grave-destination replacement from every origin; do not count partial support."
       }
     ],
     "steps": [
       "ユーザー指示の9500まで3〜5種類バッチを継続。",
-      "phase1698の候補3種類を公式全文・画像・再録・制限・裁定と照合し、固有/関連回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
-      "過去の未確認・保留は保持。"
+      "9,500まで3〜5種類バッチを継続。公式全文/再録/制限/画像/裁定・固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット。過去と今回の長時間未確認は保持し、一括再実行しない。push/公開/Netlify更新なし。",
+      "蠅の王追加要求はphase1698で完了。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -542308,23 +542908,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1697,
-      "baseline": "b8995f2e",
-      "supportedNames": 9329,
-      "artifact": "tools/target9500-registration-checkpoint-1697.json",
-      "checkedAt": "2026-11-23T00:50:45.924Z"
+      "phase": 1698,
+      "baseline": "1baf71d7",
+      "supportedNames": 9333,
+      "artifact": "tools/target9500-registration-checkpoint-1698.json",
+      "checkedAt": "2026-11-23T01:13:39.148Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T00:50:45.924Z",
+      "checkedAt": "2026-11-23T01:13:39.148Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9329,
-      "remainingNames": 171,
+      "currentNames": 9333,
+      "remainingNames": 167,
       "duplicateNames": 0,
-      "engineVersion": "0.602.213",
+      "engineVersion": "0.602.215",
       "added": [
         {
           "id": "dmr12-008",
@@ -543361,6 +543961,22 @@
         {
           "id": "promoy19-088",
           "name": "弩闘×十王超ファイナルウォーズ!!!"
+        },
+        {
+          "id": "dmrp02-s03",
+          "name": "王家の精霊 ネメス・テーベ"
+        },
+        {
+          "id": "dmx25-s02",
+          "name": "「獅星」の頂 ザ・ライオネル"
+        },
+        {
+          "id": "dmbd06-001",
+          "name": "「終焉」の頂 オーエン・ザ・ロード"
+        },
+        {
+          "id": "dm24sp2-001",
+          "name": "蠅の王 クリス=タブラ=ラーサ"
         }
       ],
       "results": {
@@ -543476,15 +544092,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "61f500ebdf72de5b54e30887e6136919050561168dd823ad60d8c73dd63c937d",
-        "dist/engine.js": "15506976caef26f98993145cb676cf7364635f83581d99367aa1591f7a104de7",
-        "dist/six-photo-rules.js": "a7a84158daae285fee6ac9dcc8f6a6ff2f8281d0764fa88131b68ea0833d8b84",
-        "dist/online-compatibility.js": "24f92f606072b91fc06fc6f28b0edfb031760d934dae64db4b10699e907cbd53",
-        "dist/card-images.js": "b99754cd98293a8e8cabbbb23edbd2b4e97729f1db5d4cb1feae4b0088629cbb",
-        "dist/king-master-cards.js": "22d33463c027709bbe4cb900d0ad2e777eed9b221f944ef602b0690197d84957",
-        "tools/king-master-card-evidence.json": "e5ebd02b2b389e5f14cf511f1a02cfcd0898cd483a2f1407e057aaa73c91c54c",
-        "tools/target9000-card-spec.json": "44b65e37432bf581017b2127ca4068e51feb255e4be806fdefc2e6bee771f594",
-        "tests/standard1697-effects.test.mjs": "5f62c07bdc264b43ba76796271f9a32ae5eacd5f8a18576e5be3517a8d7c057f"
+        "dist/cards.json": "5bab46b5643cac3c55294069dd7607d6063547fafe078abc24f3b70b8f454b99",
+        "dist/engine.js": "5b830dfb0fac496381ea5bce94200040c473d781fea391d86d5aaf4d996ff127",
+        "dist/six-photo-rules.js": "6b7acc6403488c2d17bfda1d97c4df4d6104e1132386246dd2fae3f0f2f52704",
+        "dist/viride-rules.js": "555cf0e11dcdae9cb20c21931ffe2dcf5757fda9f733565c313500233e2dc898",
+        "dist/online-compatibility.js": "67d9d9603b08ce0dbd5a972e69c30583e3ae4eb182d76daa8e9e66048c68fa3d",
+        "dist/card-images.js": "e88e01e5fccc863231849fee213b9c23f1b7a3d2574878ecffbf4f083a197c4a",
+        "tools/target9000-card-spec.json": "8c63bd6ec7a92c3aafe1b561a5e0d522da1f8859d3fcc323da1d1a02ae0a11c1",
+        "tests/standard1698-effects.test.mjs": "4093f885b696432e2dcb3597816534b5b44390727fed85e4f0fe64a94aa29541",
+        "tests/standard1698-fly-effects.test.mjs": "139e69ce5748bb5ca442260104d63625529889bdabc26fbe4fdd57c618ddf1bb"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -543548,14 +544164,14 @@
       },
       "phaseRange": [
         1614,
-        1697
+        1698
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 259,
+      "addedNames": 263,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check",
+        "name": "check-verified",
         "command": [
           "npm",
           "run",
@@ -543563,23 +544179,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.232,
-        "log": "tmp/duema-phase-1697/check.log",
-        "logSha256": "6937723a976c90b35efff6e73a492561ff475efb63d031f2def503e6e5c7196c"
+        "seconds": 20.668,
+        "log": "tmp/duema-phase-1698/check-verified.log",
+        "logSha256": "eba47117b702b3df90ef285a73f991581a88f70fab2730b77ca64c85534f1e90"
       },
       "latestAudit": {
-        "name": "audit",
+        "name": "audit-verified",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.528,
-        "log": "tmp/duema-phase-1697/audit.log",
-        "logSha256": "3bc0c00a030de1e6c0bf18904d7a42e6dbadf56d4bc15bbe4c257f61240db97c"
+        "seconds": 11.451,
+        "log": "tmp/duema-phase-1698/audit-verified.log",
+        "logSha256": "ef5ede4a0976fac9d5f210a46b259e013c36db4a4a01c6c0d91e94dca9fc7351"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1697.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1698.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -544697,11 +545313,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9329,
-      "remaining": 171,
+      "currentNames": 9333,
+      "remaining": 167,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T00:50:45.924Z",
+      "checkedAt": "2026-11-23T01:13:39.148Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -544808,6 +545424,49 @@
         },
         "resume": "一括実行を繰り返さない。相手ID・seed・先後・ワーカーゲーム数を小さい単位で固定し、実行時間とカード保存の検証結果を集約する。",
         "newCardSpecificValidationPending": false
+      },
+      {
+        "target": "phase1698-Viride-broad-three-long-cases",
+        "phase": 1698,
+        "status": "interrupted-unconfirmed",
+        "file": "tests/viride-effects.test.mjs",
+        "tests": [
+          "Viride random actions conserve80 cards and round-trip every pending choice and replacement",
+          "Viride production worker completes sixty-two games with no unresolved match",
+          "Viride AI games finish against all thirty-one configured decks with replay and card conservation"
+        ],
+        "reason": "Broad command timed out at 570.014s. Negative name filtering also selected the parent; stopped at 118.618s. Neither long run is a pass. All 36 short unit cases passed in explicit positive selections; future work must split by individual seeds/opponents and must not restart these whole long groups.",
+        "attempts": [
+          {
+            "name": "related-viride-online",
+            "command": [
+              "node",
+              "--test",
+              "tests/viride-effects.test.mjs",
+              "tests/online-runtime.test.mjs",
+              "tests/online-client.test.mjs"
+            ],
+            "code": -9,
+            "timedout": true,
+            "seconds": 570.014,
+            "log": "tmp/duema-phase-1698/related-viride-online.log",
+            "logSha256": "55300772c0bcc74d6ffdbcb6bd7e06d24ea43ddf44910e8edad4c902e02ed08d"
+          },
+          {
+            "name": "viride-unit-remainder",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?!Viride random|Viride production|Viride AI|Everlast|Extreme stay|new target choices|Saint redirects)",
+              "tests/viride-effects.test.mjs"
+            ],
+            "code": -9,
+            "timedout": false,
+            "seconds": 118.618,
+            "log": "tmp/duema-phase-1698/viride-unit-remainder.log",
+            "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
       }
     ],
     "resolvedRegistrationDeferrals": [
@@ -596803,11 +597462,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1697,
+    "phase": 1698,
     "threshold": 9500,
-    "supportedNames": 9329,
-    "pendingNames": 2496,
-    "checkedAt": "2026-11-23T00:50:45.924Z",
+    "supportedNames": 9333,
+    "pendingNames": 2492,
+    "checkedAt": "2026-11-23T01:13:39.148Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -596816,7 +597475,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1697.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1698.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

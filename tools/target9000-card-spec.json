@@ -39285,5 +39285,269 @@
         }
       ]
     }
+  },
+  "dmrp02-s03": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "王家の精霊 ネメス・テーベ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカーブロッカー\nT・ブレイカー\n各ターン、自分のシールドがはじめてブレイクされる時、かわりに自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+        "race": "エンジェル・コマンド",
+        "powerText": "13500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 3,
+      "g1698Neme": true
+    }
+  },
+  "dm23ex3-TF05": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "「獅星」の頂 ザ・ライオネル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、カードを３枚引いてもよい。その後、自分の手札を３枚までシールド化する。\n各ターン、はじめて相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、そのターン、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+        "race": "エンジェル・コマンド/ゼニス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 3,
+      "g1698FirstLightST": true,
+      "g1698SummonEntry": [
+        {
+          "op": "Offer",
+          "title": "カードを3枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 3,
+          "optional": true,
+          "g583Group": true
+        }
+      ]
+    }
+  },
+  "dmx25-s02": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "「獅星」の頂 ザ・ライオネル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、カードを３枚引いてもよい。その後、手札を３枚まで裏向きにして、それぞれを新しいシールドとして自分のシールドゾーンに置く。\n各ターン、相手のクリーチャーがはじめて、１つ以上自分のシールドをブレイクした時、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+        "race": "エンジェル・コマンド/ゼニス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 3,
+      "g1698FirstLightST": true,
+      "g1698SummonEntry": [
+        {
+          "op": "Offer",
+          "title": "カードを3枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 3,
+          "optional": true,
+          "g583Group": true
+        }
+      ]
+    }
+  },
+  "dm23ex3-TF03": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "「終焉」の頂 オーエン・ザ・ロード",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚をシールド化してもよい。\n自分のクリーチャーが離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。",
+        "race": "デーモン・コマンド/アンノウン/ゼニス",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1698OwenGuard": true,
+      "g1698SummonEntry": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        },
+        {
+          "op": "Offer",
+          "title": "山札の上から3枚をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 3,
+              "g779Simultaneous": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmbd06-001": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "「終焉」の頂 オーエン・ザ・ロード",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によってバトルゾーンに出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚を裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置いてもよい。\n自分のクリーチャーがバトルゾーンを離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、それらの「S・トリガー」能力は使えない。",
+        "race": "デーモン・コマンド/アンノウン/ゼニス",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1698OwenGuard": true,
+      "g1698SummonEntry": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        },
+        {
+          "op": "Offer",
+          "title": "山札の上から3枚をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 3,
+              "g779Simultaneous": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm24sp2-TD01": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "蠅の王 クリス=タブラ=ラーサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 15,
+        "costText": "15",
+        "abilityText": "革命チェンジ：ゼニス（自分のゼニスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札をすべて裏向きでマナゾーンに置く。\n相手は、自分のマナゾーンにある裏向きのカードの枚数よりコストが小さい呪文を唱えられない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "57975",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "rev": {
+        "race": "ゼニス",
+        "g486Current": true
+      },
+      "worldBreaker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FlyHands1698"
+        }
+      ],
+      "g1698FlySpellLock": true,
+      "g1603Kappa": true,
+      "breaker": "∞"
+    }
+  },
+  "dm24sp2-001": {
+    "phase": 1698,
+    "faces": [
+      {
+        "name": "蠅の王 クリス=タブラ=ラーサ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 15,
+        "costText": "15",
+        "abilityText": "革命チェンジ：ゼニス（自分のゼニスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札をすべて裏向きでマナゾーンに置く。\n相手は、自分のマナゾーンにある裏向きのカードの枚数よりコストが小さい呪文を唱えられない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+        "race": "ゼニス・セレス",
+        "powerText": "57975",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "rev": {
+        "race": "ゼニス",
+        "g486Current": true
+      },
+      "worldBreaker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FlyHands1698"
+        }
+      ],
+      "g1698FlySpellLock": true,
+      "g1603Kappa": true,
+      "breaker": "∞"
+    }
   }
 }

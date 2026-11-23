@@ -297362,18 +297362,149 @@
       ],
       "supportBatch": "phase-1697",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-s03",
+      "name": "王家の精霊 ネメス・テーベ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 13500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカーブロッカー\nT・ブレイカー\n各ターン、自分のシールドがはじめてブレイクされる時、かわりに自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s03",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "g1698Neme": true,
+      "supportBatch": "phase-1698",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx25-s02",
+      "name": "「獅星」の頂 ザ・ライオネル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 13000,
+      "race": "エンジェル・コマンド/ゼニス",
+      "text": "ブロッカーブロッカー\nT・ブレイカー\nこのクリーチャーが召喚によって出た時、カードを３枚引いてもよい。その後、自分の手札を３枚までシールド化する。\n各ターン、はじめて相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、そのターン、それらのシールドの光のカードすべてに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "g1698FirstLightST": true,
+      "g1698SummonEntry": [
+        {
+          "op": "Offer",
+          "title": "カードを3枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 3,
+          "optional": true,
+          "g583Group": true
+        }
+      ],
+      "supportBatch": "phase-1698",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd06-001",
+      "name": "「終焉」の頂 オーエン・ザ・ロード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 11500,
+      "race": "デーモン・コマンド/アンノウン/ゼニス",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが召喚によって出た時、自分の墓地のカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から３枚をシールド化してもよい。\n自分のクリーチャーが離れる時、かわりに自分のシールドを２つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1698OwenGuard": true,
+      "g1698SummonEntry": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        },
+        {
+          "op": "Offer",
+          "title": "山札の上から3枚をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 3,
+              "g779Simultaneous": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1698",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24sp2-001",
+      "name": "蠅の王 クリス=タブラ=ラーサ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 15,
+      "power": 57975,
+      "race": "ゼニス・セレス",
+      "text": "革命チェンジ：ゼニス（自分のゼニスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札をすべて裏向きでマナゾーンに置く。\n相手は、自分のマナゾーンにある裏向きのカードの枚数よりコストが小さい呪文を唱えられない。\nエターナル・Κ（このクリーチャーが離れる時、かわりに自分のマナゾーンにある裏向きのカードを３枚、表向きにしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24sp2-001",
+      "limit": 4,
+      "rev": {
+        "race": "ゼニス",
+        "g486Current": true
+      },
+      "worldBreaker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FlyHands1698"
+        }
+      ],
+      "g1698FlySpellLock": true,
+      "g1603Kappa": true,
+      "supportBatch": "phase-1698",
+      "supportKind": "effect",
+      "breaker": "∞"
     }
   ],
   "supportExpansion": {
-    "phase": 1697,
-    "checkedAt": "2026-11-23T00:44:44.025Z",
-    "baseCount": 9326,
-    "newEffectCards": 3,
+    "phase": 1698,
+    "checkedAt": "2026-11-23T00:54:39.459Z",
+    "baseCount": 9329,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9329,
+    "totalCount": 9333,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa/33523/",
-      "https://dm.takaratomy.co.jp/rule/qa/41142/"
+      "https://dm.takaratomy.co.jp/rule/qa/31560/",
+      "https://dm.takaratomy.co.jp/rule/qa/44591/",
+      "https://dm.takaratomy.co.jp/rule/qa/45513/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -325191,6 +325322,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/qa/33429/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1697,
+        "checkedAt": "2026-11-23T00:44:44.025Z",
+        "baseCount": 9326,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9329,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/33523/",
+          "https://dm.takaratomy.co.jp/rule/qa/41142/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
