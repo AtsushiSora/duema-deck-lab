@@ -297714,21 +297714,122 @@
       ],
       "supportBatch": "phase-1701",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy9-093",
+      "name": "クリスタル・スーパーパラディン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "リキッド・ピープル",
+      "text": "進化-自分のリキッド・ピープル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のサイキック・クリーチャーを１体選び、持ち主の超次元ゾーンに戻す。\nこのクリーチャーが攻撃する時、バトルゾーンにある「ブロッカー」を持つクリーチャーをすべて、持ち主の手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-093",
+      "limit": 4,
+      "evolution": {
+        "race": "リキッド・ピープル"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "extra",
+          "toOwnerExtra": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1702",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-s07",
+      "name": "ガンザン戦車 スパイク７K",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ビートジョッキー",
+      "text": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャーは、それぞれ次のうちいずれか１つの能力を得る。 __このターン、そのクリーチャーはパワーを+5000され、シールドをさらに１つブレイクする。 __このターン、そのクリーチャーはパワーを+2000され、アンタップしているクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s07",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SpikeModes1702"
+        }
+      ],
+      "supportBatch": "phase-1702",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-114",
+      "name": "キング・ザ・スロットン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7777,
+      "race": "ジョーカーズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。それらが３枚ともジョーカーズであれば、その中からクリーチャーを１体バトルゾーンに出してもよい。その後、残りの２枚の中から、それと同じコストのカードをすべて手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-114",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "g35_Custom",
+          "name": "slotPromo1702"
+        }
+      ],
+      "supportBatch": "phase-1702",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1701,
-    "checkedAt": "2026-11-23T03:51:32.798Z",
-    "baseCount": 9339,
+    "phase": 1702,
+    "checkedAt": "2026-11-23T04:12:38.382Z",
+    "baseCount": 9342,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9342,
+    "totalCount": 9345,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35796/",
-      "https://dm.takaratomy.co.jp/rule/qa/45067/",
-      "https://dm.takaratomy.co.jp/rule/qa/41430/"
+      "https://dm.takaratomy.co.jp/rule/qa/31545/",
+      "https://dm.takaratomy.co.jp/rule/qa/34384/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -325609,6 +325710,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/34350/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1701,
+        "checkedAt": "2026-11-23T03:51:32.798Z",
+        "baseCount": 9339,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9342,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35796/",
+          "https://dm.takaratomy.co.jp/rule/qa/45067/",
+          "https://dm.takaratomy.co.jp/rule/qa/41430/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

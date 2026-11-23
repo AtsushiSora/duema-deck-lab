@@ -77,6 +77,25 @@ export function createFifteenPhotoRules(api){
  case'copyEntry':{const c=card(t.copy),entries=api.entryAbilities(s,t.p,t.copy,{source:t.source,uid:t.uid,incarnation:t.incarnation||0,jBig:t.jBig});if(entries.length&&c.g35Role!=='galaxy')choice(s,{...t,entries},c.name+'の登場時能力を1つ使う？',[...entries.map((e,i)=>opt(e.label,i,15,t.copy)),skip()]);break;}
  case'melaventureDelay':break;
  case'melaSweep':if(jokerCount(s,t.p)>=7)give(s,t,[E('Sweep',{filter:{creature:true,blocker:true}})]);break;
+ case'slotPromo1702':{
+  const ids=reveal(s,t,3);
+  if(ids.length===3&&ids.every(uid=>j(card(own.deck.find(y=>y.uid===uid)))))pending(s,t,'slotPromoPick1702',{ids});
+  else order(s,t,ids);
+  break;
+ }
+ case'slotPromoPick1702':{
+  const rows=own.deck.filter(y=>t.ids.includes(y.uid)&&card(y).type==='creature'&&canPut(s,t.p,y,'deck'));
+  if(rows.length)choice(s,t,'公開したジョーカーズからクリーチャーを1体出す（任意）',[...rows.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)),skip()]);
+  else order(s,t,t.ids);
+  break;
+ }
+ case'slotPromoRecover1702':{
+  const deployed=own.battle.find(y=>y.uid===t.deployed),n=deployed?cost(effective(deployed,s)):t.deployedCost;
+  const matches=own.deck.filter(y=>t.ids.includes(y.uid)&&faces(card(y)).some(c=>cost(c)===n)).map(y=>y.uid);
+  if(matches.length)offer(s,t,'出したクリーチャーと同じコストのカードをすべて手札に加える？',{matches});
+  else order(s,t,t.ids);
+  break;
+ }
  case'slot':{const ids=reveal(s,t,3);if(ids.length===3&&ids.every(uid=>j(card(own.deck.find(x=>x.uid===uid))))){pending(s,t,'slotPick',{ids});}else order(s,t,ids);break;}
  case'slotPick':{const rows=own.deck.filter(y=>t.ids.includes(y.uid)&&canPut(s,t.p,y,'deck'));choice(s,t,'公開したジョーカーズからクリーチャーを1体出す',rows.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)));if(!rows.length)order(s,t,t.ids);break;}
  case'seven':{const ids=reveal(s,t,3,1-t.p);choice(s,{...t,ids},'公開したカードのコストを選ぶ',s.players[1-t.p].deck.filter(y=>ids.includes(y.uid)).map(y=>opt(card(y).name,y.uid,creatures(s,1-t.p).filter(x=>cost(card(x))===cost(card(y))).length*10,y.cardId)));break;}
@@ -218,6 +237,19 @@ export function createFifteenPhotoRules(api){
  case'moujaDiscard':{const y=own.hand.find(y=>y.uid===v),multi=y&&colors(card(y)).length>1;api.discardSelected(s,t.p,[v],t.source,t.p);if(multi&&x)api.untap(s,t.p,x);break;}
  case'brandDiscard':if(v)pending(s,t,'brandDiscard',{selected:[...t.selected,v]});else{api.discardSelected(s,t.p,t.selected,t.source,t.p);give(s,t,t.selected.map(()=>E('Target',{filter:{maxPower:6000},to:'grave'})));}break;
  case'copyEntry':if(v!==null&&v!==undefined&&t.entries[v])api.resolveEntry(s,t.entries[v]);break;
+ case'slotPromoPick1702':{
+  const y=v&&own.deck.find(y=>y.uid===v&&t.ids.includes(y.uid));
+  if(y){
+   own.g35Protected=(own.g35Protected||[]).filter(uid=>uid!==v);
+   pending(s,t,'slotPromoRecover1702',{ids:t.ids.filter(uid=>uid!==v),deployed:v,deployedCost:cost(card(y))});
+   deploy(s,t,'deck',v);
+  }else order(s,t,t.ids);
+  break;
+ }
+ case'slotPromoRecover1702':
+  if(v)for(const uid of t.matches)zoneMove(s,t.p,'deck',uid,'hand',t);
+  order(s,t,t.ids);
+  break;
  case'slotPick':if(v){order(s,t,t.ids.filter(uid=>uid!==v));deploy(s,t,'deck',v,{grant:{entryPlayerAttack:true}});}break;
  case'seven':{const y=opp.deck.find(y=>y.uid===v);if(y){const n=cost(card(y)),xs=creatures(s,1-t.p).filter(y=>cost(card(y))===n),ids=[...t.ids,...xs.flatMap(y=>api.allLayers(y).map(y=>y.uid))];move(s,xs.map(y=>({player:1-t.p,uid:y.uid,to:'deck',destroy:false})),{kind:'g1689SevenBottom',player:1-t.p,source:t.source,ids});}break;}
  case'roadLock':(s.g35SpellLocks??=[]).push({p:1-t.p,turn:s.turn,color:v});break;

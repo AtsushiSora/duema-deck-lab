@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9342,
-  "pendingNames": 2483,
-  "phase": 1701,
+  "supportedNames": 9345,
+  "pendingNames": 2480,
+  "phase": 1702,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,17 +154,17 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1397,
+    "クリーチャー": 1396,
     "呪文": 271,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 212,
+    "進化クリーチャー": 211,
     "スター進化クリーチャー": 51,
     "進化クリーチャー(超無限進化・Ω)": 1,
-    "NEOクリーチャー": 42,
+    "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1787,
+    "未対応の能力文": 1784,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -542920,27 +542920,367 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1702,
+      "checkedAt": "2026-11-23T04:19:33.285Z",
+      "baseline": "c8836a86",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9342,
+      "currentNames": 9345,
+      "remainingNames": 155,
+      "added": [
+        {
+          "id": "promoy9-093",
+          "name": "クリスタル・スーパーパラディン"
+        },
+        {
+          "id": "dmrp01-s07",
+          "name": "ガンザン戦車 スパイク７K"
+        },
+        {
+          "id": "promoy16-114",
+          "name": "キング・ザ・スロットン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "c8836a86",
+        "originalDefinitionsUnchanged": 9342,
+        "added": 3,
+        "uniqueNames": 9345,
+        "uniqueIds": 9345,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9342,
+        "existingImageReferenceRowsUnchanged": 11552,
+        "officialPrintsReviewed": 4,
+        "officialImagesReviewed": 4,
+        "existingPinsUnchanged": 883
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1702.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.4,
+          "log": "tmp/duema-phase-1702/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "related-blocker": {
+          "name": "related-blocker",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1675-effects.test.mjs",
+            "tests/standard1696-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.878,
+          "log": "tmp/duema-phase-1702/related-blocker.log",
+          "passed": 162,
+          "logSha256": "50bf19ac2bd46c27aadb50ec0123337d2affdaa79b8069fc98a0753adb0d9dc6"
+        },
+        "related-grants": {
+          "name": "related-grants",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1438-effects.test.mjs",
+            "tests/standard1678-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.924,
+          "log": "tmp/duema-phase-1702/related-grants.log",
+          "passed": 95,
+          "logSha256": "97af71862e2f193cca6244baf3903fc65b287fd49740c601e88d199d6109ca9e"
+        },
+        "related-reveal-online": {
+          "name": "related-reveal-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1689-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.638,
+          "log": "tmp/duema-phase-1702/related-reveal-online.log",
+          "passed": 111,
+          "logSha256": "12afae0414b3b1dc7696c62c7c13b18fbb6cf98b43ebce4d7f52054c82e58e74"
+        },
+        "related-joker-units": {
+          "name": "related-joker-units",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^colorless Jokers|^Nefer leaves|^VV8 puts|^Gaiging reveals|^Chief Joragon|^Stella stops",
+            "tests/fifteen-photo.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.616,
+          "log": "tmp/duema-phase-1702/related-joker-units.log",
+          "passed": 6,
+          "logSha256": "7d28fd47c92d202729eb2d9e29efacdb100e38ace7d0416be03aa1941bd169e4"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.731,
+          "log": "tmp/duema-phase-1702/check.log",
+          "logSha256": "7411fdc0fda19dc762c456145f1fc03755d1d0430f00cf83e5d4590e20bcc653"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.818,
+          "log": "tmp/duema-phase-1702/audit.log",
+          "logSha256": "169aacf74920d93c1d0d8cba838c586cd6987330ffa68b8eb76aab283d95407e"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.343,
+          "log": "tmp/duema-phase-1702/target9500.log",
+          "logSha256": "fe449c7d347b72ee4215799efe574a821a1a4b60d5903df5b753faf112dbd442"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1702/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.391,
+          "log": "tmp/duema-phase-1702/invariants.log",
+          "logSha256": "7c3dbe20248b14d46d1810539787f35d4bd13f59f8a3e557b498a1f057cdd19c"
+        },
+        "focused": {
+          "passed": 58,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1702-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 6.396,
+              "log": "tmp/duema-phase-1702/focused.log",
+              "passed": 36,
+              "logSha256": "e959498891a40f46308d46d302dc48c16cb2bd043dbbb62d6d6ebb2ea6ad50f6"
+            },
+            {
+              "name": "focused-paladin-base",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Super Paladin",
+                "tests/standard1702-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.556,
+              "log": "tmp/duema-phase-1702/focused-paladin-base.log",
+              "passed": 12,
+              "logSha256": "1bcbcc0dde1c8766cba7dcfc86335c39b309faaf0bb9e8c01ac36278f68b4d27"
+            },
+            {
+              "name": "focused-edge",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Promo Slotton an incomplete|^Promo Slotton cannot deploy|^Ignored and sealed|^Promo Slotton recovery encrypted|^Super Paladin cannot choose|^A legal forty",
+                "tests/standard1702-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 11.203,
+              "log": "tmp/duema-phase-1702/focused-edge.log",
+              "passed": 7,
+              "logSha256": "4fdf0a0ea688f9173cf058edb92ad57e0c35364ff93cbebeccef51e35f05ec19"
+            },
+            {
+              "name": "focused-edge-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Promo Slotton cannot deploy|^Actual Waldo",
+                "tests/standard1702-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.678,
+              "log": "tmp/duema-phase-1702/focused-edge-fixed.log",
+              "passed": 2,
+              "logSha256": "aba4c768f3f8e9a793745e2fead5687d4e86b114720e06a6435705571e8c4b8a"
+            },
+            {
+              "name": "focused-evolution-base",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Promo Slotton cannot deploy",
+                "tests/standard1702-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.614,
+              "log": "tmp/duema-phase-1702/focused-evolution-base.log",
+              "passed": 2,
+              "logSha256": "5bbc16de55237e2a9701d4d9ab1792f43bb2dceebc1acb58175695edcf3c1c0d"
+            }
+          ],
+          "coverage": "48 original tests:36 initially passed,12 pass after correcting the Liquid People test base.10 new edge cases pass across focused-edge (6 new plus repeated legal game), focused-edge-fixed (2 actual Waldo) and focused-evolution-base (2 legal Nature-base evolution). Repeated passing legal game counts once; initial two invalid borrowed-ability API tests were replaced with actual Waldo entry suppression."
+        }
+      },
+      "totalTestsPassed": 432,
+      "hashes": {
+        "dist/cards.json": "3f283928e53c033bd18e7b71fc177ec2bb748108d01cc5109a05f1d05653c822",
+        "dist/engine.js": "884eea9e5bb3f95bef38966b0bdfbdb6a30af5ed2d5b4054529e0851090e51b6",
+        "dist/six-photo-rules.js": "c811ec0232da11d06bdbabac4ef8043975f7f09f4a777012571e7a104f1f807f",
+        "dist/fifteen-photo-rules.js": "53335b70739e07cc2aa88ebd36fc40f4fa8929751b11ad456251fc5e9f4b8681",
+        "dist/online-compatibility.js": "660ca26a9a15075d994485b8dd69dacea1d94d0ba118bd408f29bba31bb5eb82",
+        "dist/card-images.js": "4c5885771d9203acfe5bdbf157e20857665c4e7af6b4fb74e177698be3280c78",
+        "tools/target9000-card-spec.json": "2cd10644a4dfc0765ea899dd3eaf83de29a60071d0d7d1bc517c9ed4fb86ee59",
+        "tests/standard1702-effects.test.mjs": "eeb3b92c7bba1536690451a684a4ee48679e6a0eb0a6317cd26eb4f64369b7c2"
+      },
+      "engineVersion": "0.602.219",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1702-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 6.396,
+          "log": "tmp/duema-phase-1702/focused.log"
+        },
+        {
+          "name": "focused-edge",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Promo Slotton an incomplete|^Promo Slotton cannot deploy|^Ignored and sealed|^Promo Slotton recovery encrypted|^Super Paladin cannot choose|^A legal forty",
+            "tests/standard1702-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 11.203,
+          "log": "tmp/duema-phase-1702/focused-edge.log"
+        },
+        {
+          "name": "focused-edge-fixed",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Promo Slotton cannot deploy|^Actual Waldo",
+            "tests/standard1702-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.678,
+          "log": "tmp/duema-phase-1702/focused-edge-fixed.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1702.json",
+      "supported": 9345,
+      "pending": 2480,
+      "reason": "Complete Super Paladin Psychic return and all-Blocker bounce, Spike independent NEO creature grants, and promo Slotton optional deployment/same-cost all-card recovery/ordered bottom.",
+      "validationNotes": [
+        "Start/post-verification actual nameKey counts9342/9345. Baselinec8836a86, clean tree/staging, no prior batch/test process running. Existing card definitions, IDs, catalogue, images, save formats and historical pending entries preserved.",
+        "Three full official original faces, stats, mana, current restrictions and four official images reviewed: Super Paladin2, Spike1, promo Slotton1. Only the exact Paladin reprint is equivalent; King the Slotton7/twin search results are distinct and excluded.",
+        "Super Paladin evolves over Liquid People, returns exactly one targetable opposing Psychic to its physical owner extra, and bounces all own/opposing Blockers on attack to actual owners without targeting. Its own actual Memento-granted Blocker bounces itself and cancels the attack only. Sealed targets excluded; actual Genmu suppresses its cost-five source abilities and W break.",
+        "Common Blocker matching now uses existing blockerAbility1675 through matchesEvolution, retaining both printed and granted Blocker presence while ignored. This does not restore block actions. Exact QA34384 actual Genmu/Memento/Woods is reproduced in related standard1675 in both seats; Super Paladin attack analogue also tested with explicitly ignored printed/granted Blockers.",
+        "Exact QA31545 Spike choices are mandatory independently per current own active creature including itself. Native Fire NEO optional evolution, paid six, power+5000/additive extra break or power+2000/untapped-creature permission, source departure, multiple stacking, no speed/sickness bypass, real end expiry, incarnation reset, ignored recipients/reactivation verified.",
+        "Promo Slotton reveals/protects exactly top three, requires all three Jokers, optionally deploys only a legal creature and separately offers all-or-none matching remaining-card recovery. Remaining any-card/twin costs, ordered bottom, failed all-Joker count, no creature/no base, actual Nature evolution and deployed Nefer follow-up are verified. No Slotton7 entry-attack permission is granted; the old Slotton7 pipeline is unchanged.",
+        "58 unique focused and374 affected regression tests pass,total432. Encrypted Spike mandatory mode and Slotton optional recovery choices round-trip with physical UIDs and legal actions. Updated legal forty-card seeded game conserves all80 physical IDs and finishes after JSON resumes. Check/audit/target9500/nameKey/baseline invariants all pass.",
+        "Fixture corrections: Candy Drop is Cyber Virus rather than Liquid People; actual Hulcus provides the Paladin base. Slotton itself is a legal Joker evolution base, so no-base tests use actual Zundoko Nature/Rexstar evolution; the positive base is Nature, not Fire. entryAbilities is a borrowing API, so invalid ignore tests were replaced with actual Waldo source entry suppression. No fixture failures were hidden or marked as implementation bugs.",
+        "Historical whole npm test status remains interrupted/unconfirmed; all prior individual/long/reprint deferrals remain unchanged. No whole long group rerun, push, publication or Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm32-015",
+          "name": "ポジトロン・サイン",
+          "reason": "Verify four-card private look, optional S-Trigger spell, ordered bottom before unpaid cast and native trigger."
+        },
+        {
+          "id": "sp-007",
+          "name": "ボルスレッド・ファイアー・ドラゴン",
+          "reason": "Verify attack optional real Dragon discard, discarded creature power comparison and enemy destruction."
+        },
+        {
+          "id": "dmrp22-2A",
+          "name": "ホワイト・スワン",
+          "reason": "Verify both-player two shields, five-shield power/W threshold and each actual own shield-break target tap."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1701,
-    "nextPhase": 1702,
+    "lastVerifiedPhase": 1702,
+    "nextPhase": 1703,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "promoy9-093",
-        "name": "クリスタル・スーパーパラディン",
-        "reason": "Verify canonical name/prints and full Liquid People evolution, enemy Psychic return and all-Blocker attack bounce."
+        "id": "dm32-015",
+        "name": "ポジトロン・サイン",
+        "reason": "Verify four-card private look, optional S-Trigger spell, ordered bottom before unpaid cast and native trigger."
       },
       {
-        "id": "dmrp01-s07",
-        "name": "ガンザン戦車 スパイク７K",
-        "reason": "Verify complete Fire NEO evolution and independent two-mode temporary grants to each own creature."
+        "id": "sp-007",
+        "name": "ボルスレッド・ファイアー・ドラゴン",
+        "reason": "Verify attack optional real Dragon discard, discarded creature power comparison and enemy destruction."
       },
       {
-        "id": "promoy16-114",
-        "name": "キング・ザ・スロットン",
-        "reason": "Verify all-three-Jokers reveal, optional creature deployment, same-cost physical remaining-card recovery and ordered bottom."
+        "id": "dmrp22-2A",
+        "name": "ホワイト・スワン",
+        "reason": "Verify both-player two shields, five-shield power/W threshold and each actual own shield-break target tap."
       }
     ],
     "steps": [
@@ -543825,23 +544165,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1701,
-      "baseline": "974b010b",
-      "supportedNames": 9342,
-      "artifact": "tools/target9500-registration-checkpoint-1701.json",
-      "checkedAt": "2026-11-23T04:01:44.494Z"
+      "phase": 1702,
+      "baseline": "c8836a86",
+      "supportedNames": 9345,
+      "artifact": "tools/target9500-registration-checkpoint-1702.json",
+      "checkedAt": "2026-11-23T04:19:33.285Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T04:01:44.494Z",
+      "checkedAt": "2026-11-23T04:19:33.285Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9342,
-      "remainingNames": 158,
+      "currentNames": 9345,
+      "remainingNames": 155,
       "duplicateNames": 0,
-      "engineVersion": "0.602.218",
+      "engineVersion": "0.602.219",
       "added": [
         {
           "id": "dmr12-008",
@@ -544930,6 +545270,18 @@
         {
           "id": "dmrp22-022",
           "name": "グラスパー ＜チェインレック.Star＞"
+        },
+        {
+          "id": "promoy9-093",
+          "name": "クリスタル・スーパーパラディン"
+        },
+        {
+          "id": "dmrp01-s07",
+          "name": "ガンザン戦車 スパイク７K"
+        },
+        {
+          "id": "promoy16-114",
+          "name": "キング・ザ・スロットン"
         }
       ],
       "results": {
@@ -545045,14 +545397,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "3c423e9e30cc958582f2a36a4b9d3b2e3509fdd8b10fd8796a5f8e24b104a7ce",
-        "dist/engine.js": "cf347208565bc2b02419d558035a49fc966e8aff6f167472964bbbba095f8e23",
-        "dist/six-photo-rules.js": "6237376fd5a8510cd401af5874087b09b578723e7d3ea745a8fb631c16e53cfb",
-        "dist/extended-rules.js": "d076309e34f26cb8c10d433251d26f3780a4ad29f2cb868a75e428a7aae495bf",
-        "dist/online-compatibility.js": "e3683981cea2b2c0b4b0745c9c82aeacb79b1a8693f0dd6aae99c3e445acc314",
-        "dist/card-images.js": "6857f280b42a09799117e64dddabdecca7731a9e75fe0d99fa1f850a102d9dbe",
-        "tools/target9000-card-spec.json": "c377179eeb21a45c3186e78d97d5c251dd2927fe7114c568b72f170b282d64aa",
-        "tests/standard1701-effects.test.mjs": "440e694ab4612c351d8514c76161349e5a8f5fa6f4dde20c0e9e81c819297f72"
+        "dist/cards.json": "3f283928e53c033bd18e7b71fc177ec2bb748108d01cc5109a05f1d05653c822",
+        "dist/engine.js": "884eea9e5bb3f95bef38966b0bdfbdb6a30af5ed2d5b4054529e0851090e51b6",
+        "dist/six-photo-rules.js": "c811ec0232da11d06bdbabac4ef8043975f7f09f4a777012571e7a104f1f807f",
+        "dist/fifteen-photo-rules.js": "53335b70739e07cc2aa88ebd36fc40f4fa8929751b11ad456251fc5e9f4b8681",
+        "dist/online-compatibility.js": "660ca26a9a15075d994485b8dd69dacea1d94d0ba118bd408f29bba31bb5eb82",
+        "dist/card-images.js": "4c5885771d9203acfe5bdbf157e20857665c4e7af6b4fb74e177698be3280c78",
+        "tools/target9000-card-spec.json": "2cd10644a4dfc0765ea899dd3eaf83de29a60071d0d7d1bc517c9ed4fb86ee59",
+        "tests/standard1702-effects.test.mjs": "eeb3b92c7bba1536690451a684a4ee48679e6a0eb0a6317cd26eb4f64369b7c2"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -545116,10 +545468,10 @@
       },
       "phaseRange": [
         1614,
-        1701
+        1702
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 272,
+      "addedNames": 275,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -545131,9 +545483,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.563,
-        "log": "tmp/duema-phase-1701/check.log",
-        "logSha256": "ec27c41fa4cc2db828abc6d1aabff116b02ded3e4bf44f5430e3aed5fceafc2f"
+        "seconds": 19.731,
+        "log": "tmp/duema-phase-1702/check.log",
+        "logSha256": "7411fdc0fda19dc762c456145f1fc03755d1d0430f00cf83e5d4590e20bcc653"
       },
       "latestAudit": {
         "name": "audit",
@@ -545143,11 +545495,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.548,
-        "log": "tmp/duema-phase-1701/audit.log",
-        "logSha256": "925d9a440b1ca98c423ecb45e14137dbbe34961d1d83c230bb1d0326e8e7d3bb"
+        "seconds": 10.818,
+        "log": "tmp/duema-phase-1702/audit.log",
+        "logSha256": "169aacf74920d93c1d0d8cba838c586cd6987330ffa68b8eb76aab283d95407e"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1701.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1702.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -546265,11 +546617,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9342,
-      "remaining": 158,
+      "currentNames": 9345,
+      "remaining": 155,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T04:01:44.494Z",
+      "checkedAt": "2026-11-23T04:19:33.285Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -598414,11 +598766,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1701,
+    "phase": 1702,
     "threshold": 9500,
-    "supportedNames": 9342,
-    "pendingNames": 2483,
-    "checkedAt": "2026-11-23T04:01:44.494Z",
+    "supportedNames": 9345,
+    "pendingNames": 2480,
+    "checkedAt": "2026-11-23T04:19:33.285Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -598427,7 +598779,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1701.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1702.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
