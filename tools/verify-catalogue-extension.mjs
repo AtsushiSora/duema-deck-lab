@@ -3,7 +3,11 @@ import{nameKey}from'../dist/catalogue.js';
 import{standardCardSpec}from'./standard-card-spec.mjs';
 // Older official HTML sometimes appends the evolution method to the card type.
 // Both printed images say 進化クリーチャー; require identical pinned full abilities below.
-const printBasic=faces=>faces.map(({abilityText,...basic})=>({...basic,
+// Explicit evidence can equate the two wave-dash glyphs used by official reprints.
+// This affects verification only; runtime name keys and saved IDs stay unchanged.
+const waveName=name=>nameKey(name).replace(/[〜～~]/g,'~');
+const printBasic=(faces,waveDash=false)=>faces.map(({abilityText,...basic})=>({...basic,
+ ...(waveDash?{name:waveName(basic.name)}:{}),
  typeText:basic.typeText==='進化クリーチャー(超無限進化・Ω)'?'進化クリーチャー':basic.typeText}));
 // Preserve every saved entry. Verified print names may merge display counts without removing IDs.
 export function assertVerifiedCatalogueExtension(before,current,{supported,manifests}){
@@ -38,16 +42,19 @@ export function assertVerifiedCatalogueExtension(before,current,{supported,manif
   if(Object.hasOwn(before.aliases||{},id))continue;
   const canonical=supported.find(c=>c.id===canonicalId);
   assert.ok(canonical,'Alias target is unsupported: '+id);
-  assert.ok(!before.cards.some(c=>c.id===id)&&!supported.some(c=>c.id===id),'Alias would replace an existing ID: '+id);
   const evidence=manifests.flatMap(m=>(m.printAliases||[]).map(r=>({m,r}))).find(({r})=>r.id===id&&r.canonicalId===canonicalId);
   assert.ok(evidence,'Missing official alias evidence: '+id);
   const{m,r}=evidence,target=m.cards.find(c=>c.id===canonicalId);
   assert.ok(target,'Alias target lacks a pinned full definition: '+id);
-  assert.equal(nameKey(r.name),nameKey(canonical.name));
+  const waveDash=r.printNameNormalization==='wave-dash-only';
+  assert.equal(waveDash?waveName(r.name):nameKey(r.name),waveDash?waveName(canonical.name):nameKey(canonical.name));
+  const existing=before.cards.find(c=>c.id===id);
+  assert.ok(!supported.some(c=>c.id===id)&&(!existing||waveDash&&existing.name===r.name),
+   'Alias would replace an existing ID without exact official wave-dash print evidence: '+id);
   assert.equal(new URL(r.source).hostname,'dm.takaratomy.co.jp');
   assert.equal(new URL(r.source).searchParams.get('id'),id);
   try{assert.deepEqual(r.faces,target.faces);}catch{
-   assert.deepEqual(printBasic(r.faces),printBasic(target.faces),'Print basic fields differ: '+id);
+   assert.deepEqual(printBasic(r.faces,waveDash),printBasic(target.faces,waveDash),'Print basic fields differ: '+id);
    assert.deepEqual(standardCardSpec({id:r.id,name:r.name,status:'complete',faces:r.faces},{phase:m.phase}),target.spec,'Full print abilities differ: '+id);
   }
   assert.ok(r.verification?.facesMatched&&r.imageReviewed&&r.allAbilitiesAndBasicInformationMatched,'Unverified print alias: '+id);
