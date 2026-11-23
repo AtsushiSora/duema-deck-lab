@@ -6439,6 +6439,20 @@ export function createSixPhotoRules(api){
    ...(t.max!==undefined?{max:t.max}:{}),...(t.spellColorsAny?{spellColorsAny:t.spellColorsAny}:{}),...(t.filter?{filter:t.filter}:{})}]);
   break;
  }
+ case'g34_PsychicMill1734':{
+  if(!t.accepted){
+   choice(s,t,'山札の上2枚を墓地に置き、各カードのコスト以下のサイキックを出す？',[
+    opt('2枚を墓地に置く',true,own.deck.length>2?15:-1000),skip()]);
+   break;
+  }
+  const moved=api.mill(s,t.p,2,{together:true})||[];
+  if(s.winner!==null)break;
+  const caps=moved.filter(y=>own.grave.includes(y)).map(y=>Math.max(0,...faces(card(y)).map(cost)));
+  start(s,t,caps.map(max=>({op:'Select',origin:'extra',deploy:true,n:1,optional:true,g1104PsychicFaces:true,
+   filter:{creature:true,g1085Psychic:true,max:max===Infinity?'∞':max},
+   title:'墓地に置いたカードのコスト'+(max===Infinity?'∞':max)+'以下のサイキックを1体まで出す'})));
+  break;
+ }
  case'g34_MillSpell1578':{
   const moved=api.mill(s,t.p,1,{together:true}),y=moved?.[0];
   if(s.winner===null&&y&&own.grave.includes(y)&&faces(card(y)).some(c=>c.type==='spell'))
@@ -8854,6 +8868,7 @@ export function createSixPhotoRules(api){
  case'g34_MilledCost':
   if(t.costs.includes(v))start(s,t,[{...t.target,filter:v==='∞'?{}:{max:v}}]);
   break;
+ case'g34_PsychicMill1734':if(v)put(s,{...t,accepted:true});break;
  case'g34_Mill':if(v){const p=t.opponent?1-t.p:t.owner??t.p;api.mill(s,p,t.n==='∞'?s.players[p].deck.length:t.n,{together:t.g1042Together});}break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
  case'g34_ChooseEndUntap501':if(v){
@@ -9813,7 +9828,7 @@ export function createSixPhotoRules(api){
  allowedEntry(s,p,c,options){if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},
  battleNames1664:battleNames676,
  namedEntryLocked1643:(s,p,c)=>namedLock1643(s,p,[exactName(creatureFaceName(c))]),
- namedCombatLocked1643:(s,p,x)=>namedLock1643(s,p,battleNames676(s,x)),
+ namedCombatLocked1643:(s,p,x)=>!!card(x).psychic&&creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1734PsychicCombatLock)||namedLock1643(s,p,battleNames676(s,x)),
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
   if(context.to==='hand'&&!x.sealed&&api.isCreature(s,x)&&s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1651BounceStopRace&&race(c,effective(y,s).g1651BounceStopRace)))return false;

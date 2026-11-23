@@ -1,0 +1,808 @@
+{
+  "phase": 1734,
+  "checkedAt": "2026-11-23T10:30:06.908Z",
+  "baseCount": 9439,
+  "target": 9500,
+  "description": "Full Ukon/Sakon/Forever3-cell Gaiarl Ryusei link, Psychic player/combat restrictions and optional mill2 per-card cost extra deployment.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36434/",
+      "sha256": "202edd9102c7375c4af01bbff6a0e99f0441dee9f0ccbd7a6417af006c82732b",
+      "scope": "Player restriction applies also to Psychic Super and Evolution Psychic creatures.",
+      "reproduced": true,
+      "test": "tests/standard1734-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36435/",
+      "sha256": "9ca498b8109f3836b33238c5864b538137eaeec0c7f911ccbb2616ce17125e14",
+      "scope": "Ordinary Psychic may still attack a tapped creature.",
+      "reproduced": true,
+      "test": "tests/standard1734-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmr03-042",
+      "name": "ウコン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-042",
+      "faces": [
+        {
+          "name": "ウコン・ピッピー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある自分のドラゴンすべてのパワーは+2000される。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。\n相手のサイキック・クリーチャーは攻撃・ブロックできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードとコストが同じかそれ以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。\nT・ブレイカー\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(ウコン・ピッピー/サコン・ピッピー/流星のフォーエバー・カイザー)",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "power": 2000
+        },
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-042b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-042a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "51e5cf6bfae5e03cf2ca7b57a1a23902304c08ad177b6061e2b656e1057713e9",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-042b.jpg",
+      "backImageSha256": "762a9e1c0d91b8ad91f02b2190e24f5f03e893b7f2acbdc08945daefbcbd1cb7",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm25ex4-T24",
+          "dmr03-042"
+        ],
+        "result": "Whole exact-name official search/product lists, original and DM25EX4 prints, every full face/image reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "1de4656d05b82afa563c2db5748463c24968d8186987c15a67127d92845bcfeb",
+        "facesMatched": true,
+        "imageSha256": "51e5cf6bfae5e03cf2ca7b57a1a23902304c08ad177b6061e2b656e1057713e9",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-042b.jpg",
+        "backImageSha256": "762a9e1c0d91b8ad91f02b2190e24f5f03e893b7f2acbdc08945daefbcbd1cb7"
+      }
+    },
+    {
+      "id": "dmr03-043",
+      "name": "サコン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-043",
+      "faces": [
+        {
+          "name": "サコン・ピッピー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "覚醒 (サイキック)リンク - 自分のターンのはじめに、バトルゾーンに自分の《流星のフォーエバー・カイザー》と《ウコン・ピッピー》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。\n相手のサイキック・クリーチャーは攻撃・ブロックできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードとコストが同じかそれ以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。\nT・ブレイカー\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(ウコン・ピッピー/サコン・ピッピー/流星のフォーエバー・カイザー)",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partners": [
+              "dmr03-v01",
+              "dmr03-042"
+            ]
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-043b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-043a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "f55a9383d4fbcf41d2f2ebd5aac28d1bf248891cacdb89e63ab429a83183b5b9",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-043b.jpg",
+      "backImageSha256": "69a3b2b1dd73af62a585985ff5360bb917b2e47c728dd4e74f0ee4e106bf02be",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm25ex4-T25",
+          "dmr03-043"
+        ],
+        "result": "Whole exact-name official search/product lists, original and DM25EX4 prints, every full face/image reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "d3edfc847bbe845ae9bbe3598fb94e594d5f1c5dc22823a5a7c18cb2512eb93d",
+        "facesMatched": true,
+        "imageSha256": "f55a9383d4fbcf41d2f2ebd5aac28d1bf248891cacdb89e63ab429a83183b5b9",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-043b.jpg",
+        "backImageSha256": "69a3b2b1dd73af62a585985ff5360bb917b2e47c728dd4e74f0ee4e106bf02be"
+      }
+    },
+    {
+      "id": "dmr03-v01",
+      "name": "流星のフォーエバー・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-v01",
+      "faces": [
+        {
+          "name": "流星のフォーエバー・カイザー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のサイキック・クリーチャーは、プレイヤーに攻撃できない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。\n相手のサイキック・クリーチャーは攻撃・ブロックできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードとコストが同じかそれ以下のサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出してもよい。\nT・ブレイカー\nリンク解除（このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）\n※覚醒リンクするために必要なカード(ウコン・ピッピー/サコン・ピッピー/流星のフォーエバー・カイザー)",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g1734PsychicPlayerLock": true,
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-v01b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-v01a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6bb0232e0c8d4337d129f744081fac0e1d90e264c4fce988b7672bfab4d31e08",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-v01b.jpg",
+      "backImageSha256": "1dbb0db0b4ef3971843547bfa4f291d74c5f9855aa2ae13156e551acf8712d8a",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr03-v01",
+          "dm25ex4-TR01"
+        ],
+        "result": "Whole exact-name official search/product lists, original and DM25EX4 prints, every full face/image reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "d4bc84fe61000283c8f2dc14148eed81826fd8de6c6b83f361c0453a46da365e",
+        "facesMatched": true,
+        "imageSha256": "6bb0232e0c8d4337d129f744081fac0e1d90e264c4fce988b7672bfab4d31e08",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-v01b.jpg",
+        "backImageSha256": "1dbb0db0b4ef3971843547bfa4f291d74c5f9855aa2ae13156e551acf8712d8a"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex4-T24",
+      "name": "ウコン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T24",
+      "faces": [
+        {
+          "name": "ウコン・ピッピー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のドラゴンすべてのパワーを+2000する。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "T・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\n相手のサイキック・クリーチャーは攻撃もブロックもできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードのコスト以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出してもよい。\nリンク解除（このクリーチャーが離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "power": 2000
+        },
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-042b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dmr03-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T24a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "c9845505dd6a8e1421fba3adc645bdeaa462c207733c1dc9783cb308e21d9702",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T24b.jpg",
+      "backImageSha256": "f236e35a50a9b3fd1f3bbe4c280a51014bc503c6c4e3716adacc3888dafec7a7",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "b3b6319c198b3af539afd5ec45a69a83fe2068d6226938a51c304a6d839a9366",
+        "facesMatched": true,
+        "imageSha256": "c9845505dd6a8e1421fba3adc645bdeaa462c207733c1dc9783cb308e21d9702",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T24b.jpg",
+        "backImageSha256": "f236e35a50a9b3fd1f3bbe4c280a51014bc503c6c4e3716adacc3888dafec7a7"
+      }
+    },
+    {
+      "id": "dm25ex4-T25",
+      "name": "サコン・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-T25",
+      "faces": [
+        {
+          "name": "サコン・ピッピー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "覚醒リンク：自分のターンのはじめに、自分の《流星のフォーエバー・カイザー》と《ウコン・ピッピー》があれば、それら１体ずつとこのクリーチャーを裏返しリンクさせる。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "T・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\n相手のサイキック・クリーチャーは攻撃もブロックもできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードのコスト以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出してもよい。\nリンク解除（このクリーチャーが離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g174Start": [
+          {
+            "op": "PsychicLink1355",
+            "partners": [
+              "dmr03-v01",
+              "dmr03-042"
+            ]
+          }
+        ],
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-043b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dmr03-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T25a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6ea83f11da4971e254c8fb83580a74d685ee477413e5951d7c3069db814b3453",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T25b.jpg",
+      "backImageSha256": "579b16a780733c65f5a3fd3c71be9b638db5769e616c87bd65303f45bdc7c16d",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "60ef93dc06524265a87bc920315e96abb08bd815aeb11d0d7952b064b770015d",
+        "facesMatched": true,
+        "imageSha256": "6ea83f11da4971e254c8fb83580a74d685ee477413e5951d7c3069db814b3453",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-T25b.jpg",
+        "backImageSha256": "579b16a780733c65f5a3fd3c71be9b638db5769e616c87bd65303f45bdc7c16d"
+      }
+    },
+    {
+      "id": "dm25ex4-TR01",
+      "name": "流星のフォーエバー・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR01",
+      "faces": [
+        {
+          "name": "流星のフォーエバー・カイザー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のサイキック・クリーチャーは、プレイヤーを攻撃できない。\nW・ブレイカー",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "typeText": "サイキック・スーパー・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "T・ブレイカー\n自分のクリーチャーすべてに「スピードアタッカー」を与える。\n相手のサイキック・クリーチャーは攻撃もブロックもできない。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。こうして墓地に置いたカード１枚につき、そのカードのコスト以下のサイキック・クリーチャーを１体、自分の超次元ゾーンから出してもよい。\nリンク解除（このクリーチャーが離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す）",
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "powerText": "19000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "breaker": 2,
+        "g1734PsychicPlayerLock": true,
+        "g1355LinkedFace": {
+          "name": "星龍王ガイアール・リュウセイドラゴン",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 20,
+          "power": 19000,
+          "race": "キング・コマンド・ドラゴン/ハンター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-v01b.jpg",
+          "breaker": 3,
+          "g1355Unlink": true,
+          "g208Auras": [
+            {
+              "filter": {
+                "creature": true
+              },
+              "grants": {
+                "speedAttacker": true
+              }
+            }
+          ],
+          "g1734PsychicCombatLock": true,
+          "g34Attack": [
+            {
+              "op": "PsychicMill1734"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dmr03-v01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR01a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "bf6f7f0af74da4c8c0524766ade00984044cc1674635170656d1751fe6a85fd2",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR01b.jpg",
+      "backImageSha256": "2067bfded45a9bbb73a0a05aaecf398eb34ae8c74fa60092e502f297371f3fce",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:30:06.908Z",
+        "reason": "All original/current reprint fronts and3 linked back parts jointly reviewed: Fire cost20 power19000 KingCommandDragon/Hunter, T/LinkRelease/speed aura/Psychic combat lock/optional mill2 independent cost-cap deployment. No soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:30:06.908Z",
+        "sha256": "ff42102805194d68d1ce6ade830a0f69321a435ffc28437c3209fcd09c2f6bb6",
+        "facesMatched": true,
+        "imageSha256": "bf6f7f0af74da4c8c0524766ade00984044cc1674635170656d1751fe6a85fd2",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR01b.jpg",
+        "backImageSha256": "2067bfded45a9bbb73a0a05aaecf398eb34ae8c74fa60092e502f297371f3fce"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T10:30:06.908Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr03-042": 4,
+      "dmr03-043": 4,
+      "dmr03-v01": 4,
+      "dm25ex4-T24": 4,
+      "dm25ex4-T25": 4,
+      "dm25ex4-TR01": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T10:37:29.868Z",
+    "results": {
+      "related-psychic-choice": {
+        "name": "related-psychic-choice",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1349-effects.test.mjs",
+          "tests/standard1355-effects.test.mjs",
+          "tests/standard1331-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.788,
+        "log": "tmp/duema-phase-1734/related-psychic-choice.log",
+        "passed": 21,
+        "logSha256": "d2df46e2188f7eb6ccc5a22fb2685644561af17bc67b6e0ee184ea3a046c554b"
+      },
+      "related-attack-mill": {
+        "name": "related-attack-mill",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:Orewaleo dynamically|Diva covers|Actual Slowly|Actual Princess|QA43060|QQ forbids|an ignored or sealed)",
+          "tests/standard1693-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.132,
+        "log": "tmp/duema-phase-1734/related-attack-mill.log",
+        "passed": 15,
+        "logSha256": "aac5e3f30e362fc311126d12b121b3f4da2f76fe10771087d514df0dea2310a2"
+      },
+      "related-online-save": {
+        "name": "related-online-save",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.935,
+        "log": "tmp/duema-phase-1734/related-online-save.log",
+        "passed": 55,
+        "logSha256": "0135631189fa0aacf2cc08b7060ef8947b4e5c290a116ed3436dcc123436b4d1"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1734.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.235,
+        "log": "tmp/duema-phase-1734/official.log",
+        "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.042,
+        "log": "tmp/duema-phase-1734/check.log",
+        "logSha256": "4e05e52d7f03d61e4a909c3d53e63d247e2723d5b007ace6383c8803fe9ab421"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.485,
+        "log": "tmp/duema-phase-1734/audit.log",
+        "logSha256": "3411d6c36a856b15ec325d887c38ba28bda2277655cb89acefbc59cc926b937b"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.433,
+        "log": "tmp/duema-phase-1734/target9500.log",
+        "logSha256": "4ad8eac7ccad6f69d956e03b04d8f967675f0dc509a647db7ae8372a937ca70c"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1734/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.997,
+        "log": "tmp/duema-phase-1734/invariants.log",
+        "logSha256": "9e0d227234446a47bc19d3be317cdb2a0715fb9c3495baf6e8ac05d42a4f0d91"
+      },
+      "focused": {
+        "passed": 57,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1734-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.699,
+            "log": "tmp/duema-phase-1734/focused.log",
+            "logSha256": "12a0c0c4134dc24caa0d2a2fb76c1d4c3f29672dc4c7be31911bd1b67dfa3001"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:phase1734 real|Gaiarl Ryusei real deck|Gaiarl Ryusei selecting)",
+              "tests/standard1734-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.937,
+            "log": "tmp/duema-phase-1734/focused-additional.log",
+            "logSha256": "f46ab8486824f74b9025e6a1e040df62f3d12335bc6e45614bda856d8eb420df"
+          }
+        ],
+        "coverage": "49 initial cases plus8 additional cases, unique cases counted once; only the inaccurate AI case label was corrected after execution without changing its body."
+      }
+    },
+    "totalTestsPassed": 148,
+    "focusedTestsPassed": 57,
+    "relatedTestsPassed": 91
+  },
+  "validationNotes": [
+    "Actual nameKey9439→9442, all9439 old definitions/IDs/catalogue/details/aliases/images/refs/pins unchanged.3 full original Psychic cards,6 exact-name original/current DM25EX4 print definitions and12 whole images jointly reviewed.3-cell linked back cost20/19000/T/Fire KingCommandDragon Hunter; linked back and3 reprints not counted as names.",
+    "Ukon native own Dragon2000 aura, Sakon exact own-start3-cell link and mandatory link解除 reused. Forever player-only opposing Psychic restriction uses narrow live-source guard and applies even to ignored recipients. QA36434 actual ordinary Janus, linked KillerDragon Super and Evolution RedZoneBuster cannot attack player; QA36435 they may attack tapped creatures and block. Back live Psychic combat restriction covers both player/creature attack and blocking; ignored/sealed source removes it; real Diamond Cutter player-only override preserved. Own native continuous speed aura and19k/T verified both players.",
+    "Back new serializable PsychicMill1734 optional choice uses native simultaneous mill2, excludes replacement cards not in grave, stops on deck loss and creates one independent native optional extra Select for EACH actual milled card cost. No summed budget, repeated physical selection, false summons or extra mana. Current rule201.2b permits either twinpact printed cost; selecting within maximum represents the union of legal reference choices for one optional Psychic. Real2/6 cost caps, twin2/4, chosen Janus back face, decline each step, Senno/5000GT, last2 library CPU decline/human loss, actual Kikuchi deck-shuffle replacement, native CIP timing, encrypted actions and AI purity verified.",
+    "57 unique focused cases passed first attempts (49 initial+8 additional); extra AI case label corrected without body change. Related actual P-invasion/link/Diamond, positively selected short intrinsic attack restrictions and mill replacement, online/save regressions pass. npm run check, official full faces/limits, audit and nameKey/ID invariants pass. No whole npm test or old broad long group rerun; historical pending/card/print/long/user deferrals retained exactly. No push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr05-s01",
+      "name": "「命」の頂 グレイテスト・グレート",
+      "reason": "Full exact cost7 combined mana/grave native deployment, summoned entry only and Eternal Omega."
+    },
+    {
+      "id": "dmrp12-s11",
+      "name": "“極限駆雷”ブランド",
+      "reason": "Full GR entry, next Fire card reduction per own GR entry,3 GR unredirectable attack; prioritize native operations."
+    },
+    {
+      "id": "dmrp03-024",
+      "name": "“必駆”蛮触礼亞",
+      "reason": "Full BADS2 and optional actual BeatJockey hand deployment, mandatory fight and delayed destruction."
+    }
+  ]
+}
