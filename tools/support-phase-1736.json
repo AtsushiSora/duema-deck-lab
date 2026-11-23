@@ -1,0 +1,511 @@
+{
+  "phase": 1736,
+  "checkedAt": "2026-11-23T10:56:09.806Z",
+  "baseCount": 9444,
+  "target": 9500,
+  "description": "Full ZeroJr Genmu MugenCrime2 targeted mute until own start and ShinGaiginga revolution/battle bonus/selected extra turns.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39327/",
+      "sha256": "2aabfc1d30e31417bf0be5e2b057adca3c34de16be8ddbe8a793c5be12a3602a",
+      "scope": "Three successive DeadDamned entries select once when the first destroys Shin, granting one extra turn.",
+      "reproduced": true,
+      "test": "tests/standard1736-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "promoy19-054",
+      "name": "ゼーロJr.&ゲンムエンペラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-054",
+      "faces": [
+        {
+          "name": "ゼーロJr.&ゲンムエンペラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、他のコスト５以下のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーの能力をすべて無視する。",
+          "race": "∞ドラゴン/チーム零",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g179Other": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "g1736MuteUntilStart": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-054.jpg",
+      "imageReviewed": true,
+      "imageSha256": "801276cf48f0eb2e980b2edf65bb999309ddbfcb18e02ae3480ded7a31898550",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:56:09.806Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy19-054"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:56:09.806Z",
+        "sha256": "92728b2bf32a712881e3cbd8859a10baddc36d1a4f3e36ae028af8fa9f07eb71",
+        "facesMatched": true,
+        "imageSha256": "801276cf48f0eb2e980b2edf65bb999309ddbfcb18e02ae3480ded7a31898550"
+      }
+    },
+    {
+      "id": "promoy15-066",
+      "name": "シン・ガイギンガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-066",
+      "faces": [
+        {
+          "name": "シン・ガイギンガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：火のドラゴン（自分の火のドラゴンが攻撃する時とき、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+4000 する。\n相手がこのクリーチャーを選んだ時、このターンの後に自分のターンを追加する。",
+          "race": "ガイアール・コマンド・ドラゴン/ハムカツ団",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ドラゴン",
+          "colors": [
+            "火"
+          ],
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g38BattleBonus": 4000,
+        "g447Selected": [
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-066.jpg",
+      "imageReviewed": true,
+      "imageSha256": "e886559ac2b47019f735647684d813e27a1d5a4261182167f1076ffc5b4bb3b1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:56:09.806Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy15-066",
+          "dm25ex2-Cho019",
+          "dmex12-006"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:56:09.806Z",
+        "sha256": "4e5cbe3337409c191210b14a65992537c57aaba2136909773a3ef176dff58f0e",
+        "facesMatched": true,
+        "imageSha256": "e886559ac2b47019f735647684d813e27a1d5a4261182167f1076ffc5b4bb3b1"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex2-Cho019",
+      "name": "シン・ガイギンガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho019",
+      "faces": [
+        {
+          "name": "シン・ガイギンガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：火のドラゴン\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+4000する。\n相手がこのクリーチャーを選んだ時、このターンの後に自分のターンを追加する。",
+          "race": "ガイアール・コマンド・ドラゴン/ハムカツ団",
+          "powerText": "9000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ドラゴン",
+          "colors": [
+            "火"
+          ],
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g38BattleBonus": 4000,
+        "g447Selected": [
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ]
+      },
+      "canonicalId": "promoy15-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho019.jpg",
+      "imageReviewed": true,
+      "imageSha256": "e5aad3ce0c90ec643008c3a0777e1a020d9428236bf1ddd4c339ede928f6e1c5",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:56:09.806Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:56:09.806Z",
+        "sha256": "c152ae718c617e45fcbb72cf77a1ac35ba006193c6399dd632b7ff541e938e4a",
+        "facesMatched": true,
+        "imageSha256": "e5aad3ce0c90ec643008c3a0777e1a020d9428236bf1ddd4c339ede928f6e1c5"
+      }
+    },
+    {
+      "id": "dmex12-006",
+      "name": "シン・ガイギンガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-006",
+      "faces": [
+        {
+          "name": "シン・ガイギンガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：火のドラゴン（自分の火のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nバトル中、このクリーチャーのパワーを+4000する。\n相手がこのクリーチャーを選んだ時、このターンの後に自分のターンを追加する。",
+          "race": "ガイアール・コマンド・ドラゴン/ハムカツ団",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ドラゴン",
+          "colors": [
+            "火"
+          ],
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g38BattleBonus": 4000,
+        "g447Selected": [
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ]
+      },
+      "canonicalId": "promoy15-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-006.jpg",
+      "imageReviewed": true,
+      "imageSha256": "d43e3b7fbdd1cd01721ea2244abfc639889b3670cd4e5a06a57c82242c431263",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T10:56:09.806Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T10:56:09.806Z",
+        "sha256": "fbfd297e269dfef7af534b11012379433d9bdd113e6234ab32dfa18499cda5b1",
+        "facesMatched": true,
+        "imageSha256": "d43e3b7fbdd1cd01721ea2244abfc639889b3670cd4e5a06a57c82242c431263"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "reason": "Requires full shield-placement replacement across grouped shields, stacks, battle layers and replacement precedence; not equivalent to existing no-add prohibition."
+    },
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "reason": "Same complete shield-placement integration plus QA46059 Marshal attempted placement count before break remains to implement; no partial registration."
+    },
+    {
+      "id": "dmr18-s03",
+      "name": "正体不明",
+      "reason": "Opponent extra-turn insertion must preserve ordinary next turn after the extra turn; unlimited hand deployment must support evolving onto selected bases. Full timing support pending."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T10:56:09.806Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy19-054": 4,
+      "promoy15-066": 4,
+      "dm25ex2-Cho019": 4,
+      "dmex12-006": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T11:01:56.973Z",
+    "results": {
+      "related-selected": {
+        "name": "related-selected",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:native Spiral|multi-target|an effect forcing|effect battles|GG does|AI and|two Pungis)",
+          "tests/standard447-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.221,
+        "log": "tmp/duema-phase-1736/related-selected.log",
+        "passed": 7,
+        "logSha256": "fa759268ce82e659b0b70f5374f61f704771bac1491242504c8ed2c66fd64d9f"
+      },
+      "related-revolution": {
+        "name": "related-revolution",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:change from|a non-Dragon|Super Brikin|Colorfulbell|Dogi survives)",
+          "tests/standard487-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.334,
+        "log": "tmp/duema-phase-1736/related-revolution.log",
+        "passed": 5,
+        "logSha256": "a9e660218b377226495f92a9786e53ad989ce31da8a53c309b34eb220a8fda96"
+      },
+      "related-mute-short": {
+        "name": "related-mute-short",
+        "command": [
+          "node",
+          "--test",
+          "tests/dokindante-turn.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.138,
+        "log": "tmp/duema-phase-1736/related-mute-short.log",
+        "passed": 23,
+        "logSha256": "8ad1dec38a75381d8925785db773436a60d7071a920b88f6ce0c3b9e99e5ee10"
+      },
+      "related-sss-short": {
+        "name": "related-sss-short",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:Genmu ignores|SSS invasion|normal Damd|battlefield SSS|SSS declaration|SSS cannot)",
+          "tests/zard-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.902,
+        "log": "tmp/duema-phase-1736/related-sss-short.log",
+        "passed": 6,
+        "logSha256": "44d15fcca9c52cfa76c47a8b03220f830d55577ee0211c1c891c4b2f05f38337"
+      },
+      "related-online-save": {
+        "name": "related-online-save",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.924,
+        "log": "tmp/duema-phase-1736/related-online-save.log",
+        "passed": 55,
+        "logSha256": "e20e9da8a8646f524e447a4a4fbf2f9d0d16a085b45275e636ab14da39f8596c"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1736.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.292,
+        "log": "tmp/duema-phase-1736/official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.223,
+        "log": "tmp/duema-phase-1736/check.log",
+        "logSha256": "d3c0db9e783b0fd612c51808b3e40673ca7f1d1e0e6503f3e07acd579371fd06"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.166,
+        "log": "tmp/duema-phase-1736/audit.log",
+        "logSha256": "d725ba6cb2103585988cb93f84f3b1efc2533159d278e12a1b77890806975ed8"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.431,
+        "log": "tmp/duema-phase-1736/target9500.log",
+        "logSha256": "b1e98d8e460ef1393435201a9171e8b3807e2fd067462a79e118e18d3577ebab"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1736/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.414,
+        "log": "tmp/duema-phase-1736/invariants.log",
+        "logSha256": "19947bb61f3de0e793466fb505a6e310e58ed0b4a2cfb7c444a9f50a7863148e"
+      },
+      "focused": {
+        "passed": 37,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1736-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.705,
+            "log": "tmp/duema-phase-1736/focused.log",
+            "logSha256": "54c8b8641365cbd53f34bcc3349a14e4ac795c20f9555304ba1595a6d85459d0"
+          },
+          {
+            "name": "focused-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^ZeroJr targeted mute",
+              "tests/standard1736-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.795,
+            "log": "tmp/duema-phase-1736/focused-fix.log",
+            "logSha256": "0e4042c727493be595ad654717870c260845783be41560eb5bc91ed0c07dccc4"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:QA39327|ZeroJr independent|Existing Dokindante|phase1736 legal40)",
+              "tests/standard1736-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.252,
+            "log": "tmp/duema-phase-1736/focused-additional.log",
+            "logSha256": "51a3df9752bc6880f7a3d0d8cf66ce1fe073d054a1099aa364b910c0912e8dee"
+          },
+          {
+            "name": "additional-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^QA39327",
+              "tests/standard1736-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.599,
+            "log": "tmp/duema-phase-1736/additional-fix.log",
+            "logSha256": "13bf4dc1916c5ba60ef657975f7a8771203408dd3f3a7ee4d6486e790c9ff017"
+          }
+        ],
+        "coverage": "37 unique cases across original, corrected fixture expectations and additional real-card cases; latest result per case all pass."
+      }
+    },
+    "totalTestsPassed": 133,
+    "focusedTestsPassed": 37,
+    "relatedTestsPassed": 96
+  },
+  "validationNotes": [
+    "Actual nameKey9444→9446, all9444 old IDs/definitions/catalogue/details/images/aliases/refs/pins unchanged.2 canonical cards,4 whole official original/reprint faces and images, fresh limits reviewed; duplicate prints count0.",
+    "ZeroJr full paid4/MugenCrime2 from hand/grave with2 distinct taps and WaterDark mana, mandatory other<=5 own/enemy target. Narrow optional target reference extends existing g34Mute; normal whole-player mute unchanged. It follows evolution layers/control, persists after source departure, expires next controller start, and does not bind fresh reentry or future creatures. JSON/private actor actions/old save shape preserved.",
+    "Shin native Fire Dragon revolution,9000+4000 in battle both sides/W breaker and opponent selected extra-turn reused. Real targeted destruction leaves source and still grants extra turn, own selections/attack/untargeted sweeps do not, Valhalla/ignored source prevent trigger. QA39327 reproduced actual3 declared SSS invasions, sequential removal selects once and one extra turn.37 unique focused and affected short target/revolution/mute/SSS/online/save regressions pass; npm run check and audit/count/ID invariants pass.",
+    "Initial failures were wrong evolution tribe fixture (CandyDrop CyberVirus, corrected to AquaVehicle LiquidPeople) and expecting a flat rather than nested physical evolution stack; corrected targeted cases pass. The accidentally broad old Zard regression was stopped at75.072s, code-9, not a pass; required short Dokindante/SSS cases passed independently. Old full npm test stays interrupted/unconfirmed; no old broad group rerun. Shield replacement2 and opponent extra turn card are held with full coverage reasons. No push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp07-028",
+      "name": "アゲアゲ・マイコー",
+      "reason": "Full optional either-player shield replacement on entry and attack using existing operations."
+    },
+    {
+      "id": "dmex01-078",
+      "name": "TOYザマス",
+      "reason": "Full opponent shield exchange entry and optional draw on every opponent shield placement."
+    },
+    {
+      "id": "dm02-044",
+      "name": "ギガスタンド",
+      "reason": "Full discard-before-own-grave replacement returning source hand; verify native support before implementation."
+    }
+  ]
+}

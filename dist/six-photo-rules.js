@@ -8967,6 +8967,12 @@ export function createSixPhotoRules(api){
  }
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g1736MuteUntilStart){
+   const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid&&!y.sealed&&api.isCreature(s,y));
+   if(target)(s.extLimits??=[]).push({kind:'g34Mute',player:v.p,expires:'start',who:t.p,
+    g1736TargetRef:{uid:target.uid,incarnation:target.incarnation||0}});
+   break;
+  }
   if(t.g1357Become){
    const host=sourceHost474(s,t)?.x;
    const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);
