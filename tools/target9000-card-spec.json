@@ -50102,5 +50102,122 @@
         }
       ]
     }
+  },
+  "dm09-004": {
+    "phase": 1752,
+    "faces": [
+      {
+        "name": "聖剣炎獣バーレスク",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "進化-自分のアーマード・ワイバーン１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、このターンの後にもう一度自分のターンを行う。\nW・ブレイカー\n自分のターンの終わりに、このクリーチャーを自分の手札に戻す。",
+        "race": "アーマード・ワイバーン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "アーマード・ワイバーン"
+      },
+      "breaker": 2,
+      "g482Unblocked": [
+        {
+          "op": "Custom",
+          "name": "extraTurn"
+        }
+      ],
+      "g174End": [
+        {
+          "op": "SelfHand299",
+          "toOwnerHand": true
+        }
+      ]
+    }
+  },
+  "dmex15-a041": {
+    "phase": 1752,
+    "faces": [
+      {
+        "name": "聖剣炎獣バーレスク",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "進化：アーマード・ワイバーン１体の上に置く。\nＷ・ブレイカー\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、このターンの後に自分のターンを追加する。\n自分のターンの終わりに、このクリーチャーを手札に戻す。",
+        "race": "アーマード・ワイバーン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "アーマード・ワイバーン"
+      },
+      "breaker": 2,
+      "g482Unblocked": [
+        {
+          "op": "Custom",
+          "name": "extraTurn"
+        }
+      ],
+      "g174End": [
+        {
+          "op": "SelfHand299",
+          "toOwnerHand": true
+        }
+      ]
+    }
+  },
+  "dm04-017": {
+    "phase": 1752,
+    "faces": [
+      {
+        "name": "メガ・ブラスター",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分の手札から好きな枚数を選び、自分の墓地に置く。その後、その枚数と同じ数の自分のクリーチャーをバトルゾーンから選ぶ。このターン、選ばれたクリーチャーは「W(ダブル)・ブレーカー」を得る。(シールドを攻撃したとき、シールドを２枚ブレイクする)",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandCycle460",
+          "mode": "any",
+          "to": "grave",
+          "afterDiscardSelect": {
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "exactOptional": true,
+            "g335Grant": {
+              "g313Breaker": 2
+            },
+            "title": "捨てた枚数と同じ数の自分のクリーチャーを選ぶ"
+          }
+        }
+      ]
+    }
   }
 }

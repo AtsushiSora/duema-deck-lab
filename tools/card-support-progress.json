@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9480,
-  "pendingNames": 2343,
-  "phase": 1751,
-  "added": 3,
+  "supportedNames": 9482,
+  "pendingNames": 2341,
+  "phase": 1752,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -157,13 +157,13 @@
   ],
   "pendingByType": {
     "クリーチャー": 1358,
-    "呪文": 260,
+    "呪文": 259,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 205,
+    "進化クリーチャー": 204,
     "スター進化クリーチャー": 49,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -222,7 +222,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1731,
+    "未対応の能力文": 1730,
     "複数面・特殊カードタイプまたは情報不足": 506,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -244,7 +244,6 @@
     "未対応の革命誘発効果": 2,
     "未対応のS・トリガー・プラス能力": 1,
     "未対応の被攻撃・被選択能力": 1,
-    "未対応の非ブロック時能力": 1,
     "独立した誘発能力の順序対応が必要": 2,
     "未対応のアクセル能力": 2,
     "重複パワー修整": 1
@@ -504,12 +503,6 @@
       {
         "id": "dm28-029",
         "name": "朱雀神ガリョウ"
-      }
-    ],
-    "未対応の非ブロック時能力": [
-      {
-        "id": "dm09-004",
-        "name": "聖剣炎獣バーレスク"
       }
     ],
     "独立した誘発能力の順序対応が必要": [
@@ -557963,26 +557956,348 @@
         }
       ],
       "next": "次の10分間隔の回でphase1752から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1752,
+      "checkedAt": "2026-11-23T23:58:51.222Z",
+      "baseline": "1e0a2101",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9480,
+      "currentNames": 9482,
+      "remainingNames": 18,
+      "added": [
+        {
+          "id": "dm09-004",
+          "name": "聖剣炎獣バーレスク"
+        },
+        {
+          "id": "dm04-017",
+          "name": "メガ・ブラスター"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "1e0a2101",
+        "originalDefinitionsUnchanged": 9480,
+        "added": 2,
+        "uniqueNames": 9482,
+        "uniqueIds": 9482,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 1,
+        "existingImageUrlsUnchanged": 9480,
+        "existingImageReferenceRowsUnchanged": 11761,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 1116
+      },
+      "results": {
+        "focused-complete": {
+          "name": "focused-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1752-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.139,
+          "log": "tmp/duema-phase-1752/focused-complete.log",
+          "passed": 35,
+          "logSha256": "bb95f31735a115c11f6a13b732372ff2fca99cc2bb33cd1bcdcfd08489c04e39"
+        },
+        "related-return": {
+          "name": "related-return",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard299-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.639,
+          "log": "tmp/duema-phase-1752/related-return.log",
+          "passed": 96,
+          "logSha256": "d51eaabe4d52e50f1ec20c72d5ffd3d49e10adf1ce55764d060b3083461f123d"
+        },
+        "related-discard": {
+          "name": "related-discard",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Venomic",
+            "tests/standard1670-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.635,
+          "log": "tmp/duema-phase-1752/related-discard.log",
+          "passed": 36,
+          "logSha256": "dfb26b27496e886429714be61b04572724779bc9ce14c9d22839d270cbb9ed31"
+        },
+        "related-turn": {
+          "name": "related-turn",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Valhalla prevents",
+            "tests/champion-policy-integration.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.059,
+          "log": "tmp/duema-phase-1752/related-turn.log",
+          "passed": 2,
+          "logSha256": "bf7e9226edc9ef4af285512f8faef6cd9da29b195e1da3d858253e28c94e5bdd"
+        },
+        "related-online": {
+          "name": "related-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.898,
+          "log": "tmp/duema-phase-1752/related-online.log",
+          "passed": 12,
+          "logSha256": "7846ef8a14099e149779928cf3c4178251471e4684a90f9d58193d0e0d32a94a"
+        },
+        "research": {
+          "name": "research",
+          "command": [
+            "node",
+            "tmp/duema-phase-1752/research.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.061,
+          "log": "tmp/duema-phase-1752/research.log",
+          "logSha256": "34f3ca300f05c25cf8c278fbb28c30db4387fce99b32191032283d693a44b193"
+        },
+        "research-complete": {
+          "name": "research-complete",
+          "command": [
+            "node",
+            "tmp/duema-phase-1752/research.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.703,
+          "log": "tmp/duema-phase-1752/research-complete.log",
+          "logSha256": "097c3119f471d62c511532dbd50656bf881ee3cd31af1de94caccc03bf6ce733"
+        },
+        "prints": {
+          "name": "prints",
+          "command": [
+            "node",
+            "tmp/duema-phase-1752/prints.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.014,
+          "log": "tmp/duema-phase-1752/prints.log",
+          "logSha256": "98bef9508e1d988fbde803730ce47b9e41f3bfc1e01bc0ba0bf9381020c82951"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1752.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.418,
+          "log": "tmp/duema-phase-1752/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "rulings": {
+          "name": "rulings",
+          "command": [
+            "python3",
+            "tmp/duema-phase-1752/rulings.py"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.933,
+          "log": "tmp/duema-phase-1752/rulings.log",
+          "logSha256": "758cdcced91779ea1ba5be2f565db9a5e1afbfbc53eb22ee8f8ef8f2cb7e7942"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.731,
+          "log": "tmp/duema-phase-1752/check.log",
+          "logSha256": "36390fc616ccf1a3adfc4c716c3f376d63a6eb17e9a57abe8d0cf43655b88cea"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.118,
+          "log": "tmp/duema-phase-1752/audit.log",
+          "logSha256": "ed21c4e4c8c2210c1de25cd2dd7000c45a9acda1620ff13885da187bf6766b75"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.477,
+          "log": "tmp/duema-phase-1752/target9500.log",
+          "logSha256": "d24c799e33a41b17e178c9b7242e22bd891241b2f49a362f583d05f2ff06ff3d"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1752/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.436,
+          "log": "tmp/duema-phase-1752/invariants.log",
+          "logSha256": "630dc75adeecbba2ee240df2aa9a19eab1a327ffa667c075ac12a7b5b67f0c2f"
+        }
+      },
+      "totalTestsPassed": 181,
+      "hashes": {
+        "dist/cards.json": "60cc6f578f325f3105ae3c3eb12578216fa9e1053d2db7598131f33fcdb8e9c5",
+        "dist/engine.js": "b06e3bf924321d1e94402b8afc78ebb8062fcfec0380f9bfd365077309db221b",
+        "dist/six-photo-rules.js": "7c746823113d343db189c96f8bf7ffe6d28d069fec125556e04a1ff911bf8e7e",
+        "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
+        "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "da3f62944fd82e40cf890413ea52896578768343d6cf0c69fc41566b517691e4",
+        "dist/online-compatibility.js": "ffaf78de5565c9b3fabd0e0c1e18106bfc7512908f41b967b4ab936e617ab135",
+        "dist/card-images.js": "76d922b0c4984f16b2218c10c97cd1b3fac0e667654284a7e82e45cd8a906bd5",
+        "tools/target9000-card-spec.json": "a6e504fd8f25301583fc01fcf7e56c8479ab1e44944bb64cb92798726ea240b1",
+        "tools/verify-catalogue-extension.mjs": "50f98ecd00def02959372bf245f2ca3ccaa841c86708d2060a503982b03bd778",
+        "tests/standard1752-effects.test.mjs": "8d31377d02c1cb71093facfe7423a4d03057295a2af900f8705daaf38f8bea24"
+      },
+      "engineVersion": "0.602.269",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1752-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.067,
+          "log": "tmp/duema-phase-1752/focused.log",
+          "logSha256": "347a4cd50928db22e3093b1d0f42e1f96b2f17764eb88a9a0db5fe4b0e9e2a8f"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1752.json",
+      "supported": 9482,
+      "pending": 2341,
+      "reason": "Fully native Balesk named-race evolution, W, unblocked extra turns and own-end stack return; MegaBlaster any hand discard then exact equal own-creature temporary W grants.",
+      "validationNotes": [
+        "Actual data nameKey9480→9482. Two complete new canonical names Balesk dm09-004 and MegaBlaster dm04-017. Three full official original/reprint pages and images checked, Fire9/8000/ArmoredWyvern evolution/W plus Fire2 spell, mana1/current limit4. Balesk reprint dmex15-a041 is only a verified alias with full strict pinned face; not counted as another card.",
+        "Balesk uses native named-race evolution, g482Unblocked Custom extraTurn, W and own-end SelfHand299 whole stack to owners hand. Paid9/exact actual ArmoredWyvern base, wrong base excluded,8000/immediate evolution attack/W, actual unblocked extra turn, blocked and creature attacks/ignored ability exclusions, opponent-end/ignored end-return exclusions tested both seats. Exact QA35157 returns source and base at first own end before extra turn. Exact QA35158 two unblocked Balesks add2 separate turns and actual advancement reaches opponent only after both.",
+        "MegaBlaster uses native HandCycle460 any hand discard followed by afterDiscardSelect with exactOptional and temporary g313Breaker2. Paid2/zero-to3 chosen hand cards/mandatory exactly equal own creature choices, independent opposing creature/remaining hand/physical count and end-turn expiration tested both seats. Exact QA35064 insufficient own creature count grants nobody W while chosen hand cards go to grave. Actual small creature double-break and real native triple breaker retains T. Pending partially selected exact count survives encrypted JSON; only actor acts and AI reads remain pure.",
+        "Initial fixture errors corrected by cloning the hand array so engine hand removal does not mutate the test expected-card array, and using actual native triple breaker GradianRedDragon dm05-s04 instead of a W-breaker ID. No runtime or common gameplay path changes needed. All35 final focused cases plus affected SelfHand299, Venomic count continuation, Valhalla extra-turn prevention and online-save regressions pass; npm run check/audit/target9500/invariants pass. All9480 previous definitions/IDs/images/pins/details/catalogue rows remain unchanged.",
+        "Initially screened Zeus/Leo/Meise official texts and reprints. Zeus/Leo not implemented because g208 granted self-protection does not model independent source protection when recipient abilities are ignored; native nondestruction race protection also insufficient. Meise requires precise entry-trigger suppression, simultaneous evolution/tamaseed creatures and state-based Command unsealing QA43351; native ignoreEntry cannot be assumed equivalent. Reasons and original sources retained in held. No partially supported cards added to fill the batch guideline.",
+        "Historical registered-card, reprint and interrupted long-test pending preserved exactly. Full npm test and old long groups not rerun. Verified local only, no push/Pages/Netlify. Continue phase1753 toward9500, remaining18."
+      ],
+      "held": [
+        {
+          "id": "dmx22b-040",
+          "name": "超覚醒ゼウス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+          "reason": "Granting g577Stay through g208Aura loses protection when recipient abilities are ignored, unlike this source continuous protection. Needs independent source-based shield5/Light protection; not partially registered."
+        },
+        {
+          "id": "dmd08-001",
+          "name": "真実の聖霊王 レオ・ザ・スター",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+          "reason": "Independent other-Angel leave replacement must remain effective on ignored recipients. g208 grant is not equivalent; native race protection covers nondestruction only. Defer full source replacement."
+        },
+        {
+          "id": "dm23rp2-018",
+          "name": "冥逝邪夢",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-018",
+          "reason": "Native g1684IgnoreEntry suppresses all entry watchers, while this effect requires precise entrants own triggers and state-based Command unsealing (QA43351); full simultaneous mass evolution/tamaseed-creature semantics need verification and shared entry path."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmx22b-040",
+          "name": "超覚醒ゼウス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+          "reason": "Granting g577Stay through g208Aura loses protection when recipient abilities are ignored, unlike this source continuous protection. Needs independent source-based shield5/Light protection; not partially registered."
+        },
+        {
+          "id": "dmd08-001",
+          "name": "真実の聖霊王 レオ・ザ・スター",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+          "reason": "Independent other-Angel leave replacement must remain effective on ignored recipients. g208 grant is not equivalent; native race protection covers nondestruction only. Defer full source replacement."
+        },
+        {
+          "id": "dm23rp2-018",
+          "name": "冥逝邪夢",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-018",
+          "reason": "Native g1684IgnoreEntry suppresses all entry watchers, while this effect requires precise entrants own triggers and state-based Command unsealing (QA43351); full simultaneous mass evolution/tamaseed-creature semantics need verification and shared entry path."
+        }
+      ],
+      "next": "次の10分間隔の回でphase1753から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1751,
-    "nextPhase": 1752,
+    "lastVerifiedPhase": 1752,
+    "nextPhase": 1753,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm25rp4-035",
-        "name": "ブリザド＝ザルド",
-        "reason": "Native g1240/g1700 handles a fixed discard count, not up-to3 with per-card2 reduction; defer complete variable-cost payment path."
+        "id": "dmx22b-040",
+        "name": "超覚醒ゼウス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+        "reason": "Granting g577Stay through g208Aura loses protection when recipient abilities are ignored, unlike this source continuous protection. Needs independent source-based shield5/Light protection; not partially registered."
       },
       {
-        "id": "sp-008",
-        "name": "黒神龍バズラデューダ",
-        "reason": "Native g1695 discard-race replacement restricts creature faces, while card permits Dragon cards including spells/fields; defer full Dragon-card filter rather than partial protection."
+        "id": "dmd08-001",
+        "name": "真実の聖霊王 レオ・ザ・スター",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+        "reason": "Independent other-Angel leave replacement must remain effective on ignored recipients. g208 grant is not equivalent; native race protection covers nondestruction only. Defer full source replacement."
+      },
+      {
+        "id": "dm23rp2-018",
+        "name": "冥逝邪夢",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-018",
+        "reason": "Native g1684IgnoreEntry suppresses all entry watchers, while this effect requires precise entrants own triggers and state-based Command unsealing (QA43351); full simultaneous mass evolution/tamaseed-creature semantics need verification and shared entry path."
       }
     ],
     "steps": [
-      "次の10分間隔の回でphase1752から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+      "次の10分間隔の回でphase1753から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -558861,23 +559176,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1751,
-      "baseline": "93c2c186",
-      "supportedNames": 9480,
-      "artifact": "tools/target9500-registration-checkpoint-1751.json",
-      "checkedAt": "2026-11-23T23:48:50.928Z"
+      "phase": 1752,
+      "baseline": "1e0a2101",
+      "supportedNames": 9482,
+      "artifact": "tools/target9500-registration-checkpoint-1752.json",
+      "checkedAt": "2026-11-23T23:58:51.222Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T23:48:50.928Z",
+      "checkedAt": "2026-11-23T23:58:51.222Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9480,
-      "remainingNames": 20,
+      "currentNames": 9482,
+      "remainingNames": 18,
       "duplicateNames": 0,
-      "engineVersion": "0.602.268",
+      "engineVersion": "0.602.269",
       "added": [
         {
           "id": "dmr12-008",
@@ -560518,6 +560833,14 @@
         {
           "id": "dmex06-041",
           "name": "猟奇と耽美の人形劇"
+        },
+        {
+          "id": "dm09-004",
+          "name": "聖剣炎獣バーレスク"
+        },
+        {
+          "id": "dm04-017",
+          "name": "メガ・ブラスター"
         }
       ],
       "results": {
@@ -560633,18 +560956,18 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "68ff54cdc35831aa32a30fbdac2b9095503a2c24f57dec97e3ab4d9c601f72e2",
-        "dist/engine.js": "d7d8a9aebb8e85b595d1b0cee2ae216b0a40b6a60f3635af629e9e380fee56f3",
+        "dist/cards.json": "60cc6f578f325f3105ae3c3eb12578216fa9e1053d2db7598131f33fcdb8e9c5",
+        "dist/engine.js": "b06e3bf924321d1e94402b8afc78ebb8062fcfec0380f9bfd365077309db221b",
         "dist/six-photo-rules.js": "7c746823113d343db189c96f8bf7ffe6d28d069fec125556e04a1ff911bf8e7e",
         "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
         "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/catalogue.json": "29d0acf56961a3a12e61ab937450ad4cc17602fcb2a90d220059dd40e272d420",
-        "dist/online-compatibility.js": "5390ceb9a54b7dfe0479f98b9fbe1258f275cecb7bf36d5d0988dd0575acac62",
-        "dist/card-images.js": "e57fb3077491b311b2259443213f160a1c3eb5fdde84f5963581731fce270a14",
-        "tools/target9000-card-spec.json": "44ac82e897194cabbef1986f4ed8650ab2390d43b181cc142c5929ce914556a5",
+        "dist/catalogue.json": "da3f62944fd82e40cf890413ea52896578768343d6cf0c69fc41566b517691e4",
+        "dist/online-compatibility.js": "ffaf78de5565c9b3fabd0e0c1e18106bfc7512908f41b967b4ab936e617ab135",
+        "dist/card-images.js": "76d922b0c4984f16b2218c10c97cd1b3fac0e667654284a7e82e45cd8a906bd5",
+        "tools/target9000-card-spec.json": "a6e504fd8f25301583fc01fcf7e56c8479ab1e44944bb64cb92798726ea240b1",
         "tools/verify-catalogue-extension.mjs": "50f98ecd00def02959372bf245f2ca3ccaa841c86708d2060a503982b03bd778",
-        "tests/standard1751-effects.test.mjs": "a57d069c092d846697cd1d7860c081f28092ba12b916ba9b1f4ceae0e1708af9"
+        "tests/standard1752-effects.test.mjs": "8d31377d02c1cb71093facfe7423a4d03057295a2af900f8705daaf38f8bea24"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -560708,10 +561031,10 @@
       },
       "phaseRange": [
         1614,
-        1751
+        1752
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 410,
+      "addedNames": 412,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -560723,9 +561046,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.466,
-        "log": "tmp/duema-phase-1751/check.log",
-        "logSha256": "3bc10ec74240e75d38d1916f10202503eea35bef7ed17a0091c33551837edc62"
+        "seconds": 21.731,
+        "log": "tmp/duema-phase-1752/check.log",
+        "logSha256": "36390fc616ccf1a3adfc4c716c3f376d63a6eb17e9a57abe8d0cf43655b88cea"
       },
       "latestAudit": {
         "name": "audit",
@@ -560735,11 +561058,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.951,
-        "log": "tmp/duema-phase-1751/audit.log",
-        "logSha256": "2e780e051d614f8659faba49fce98f51e05fadc184379da4ae48b02995a816a6"
+        "seconds": 12.118,
+        "log": "tmp/duema-phase-1752/audit.log",
+        "logSha256": "ed21c4e4c8c2210c1de25cd2dd7000c45a9acda1620ff13885da187bf6766b75"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1751.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1752.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -561857,11 +562180,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9480,
-      "remaining": 20,
+      "currentNames": 9482,
+      "remaining": 18,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T23:48:50.928Z",
+      "checkedAt": "2026-11-23T23:58:51.222Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -562203,7 +562526,7 @@
       "checkedAt": "2026-11-23T22:20:44.237Z",
       "startNames": 9465,
       "target": 9500,
-      "remaining": 20,
+      "remaining": 18,
       "batchSize": "3–5 (remaining fewer allowed)",
       "validation": "Keep official full-text/stat/image/restriction/reprint/ruling checks, focused and affected regression tests, npm run check, actual nameKey count and progress. Do not repeat passed tests without new changes or concerns; no full npm test or old long group reruns.",
       "completionTiming": "10 minutes is a start cadence, not a guaranteed completion time. Skip duplicate work while prior run is active.",
@@ -562212,9 +562535,9 @@
         "pages": false,
         "netlify": false
       },
-      "currentNames": 9480,
-      "lastCompletedPhase": 1751,
-      "lastCompletedAt": "2026-11-23T23:48:50.928Z"
+      "currentNames": 9482,
+      "lastCompletedPhase": 1752,
+      "lastCompletedAt": "2026-11-23T23:58:51.222Z"
     }
   },
   "registeredCardVerification": {
@@ -614088,11 +614411,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1751,
+    "phase": 1752,
     "threshold": 9500,
-    "supportedNames": 9480,
-    "pendingNames": 2343,
-    "checkedAt": "2026-11-23T23:48:50.928Z",
+    "supportedNames": 9482,
+    "pendingNames": 2341,
+    "checkedAt": "2026-11-23T23:58:51.222Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -614101,7 +614424,7 @@
     "mode": "heartbeat",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1751.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1752.json",
     "resume": "ユーザーの10分間隔の追加再開指示。現在9465種類、phase1745から開始し9500で停止。各回3〜5種類を影響範囲に応じて検証、ローカルコミットまで。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

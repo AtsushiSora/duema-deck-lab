@@ -1,0 +1,490 @@
+{
+  "phase": 1752,
+  "checkedAt": "2026-11-23T23:55:11.790Z",
+  "baseCount": 9480,
+  "target": 9500,
+  "description": "Fully native Balesk named-race evolution, W, unblocked extra turns and own-end stack return; MegaBlaster any hand discard then exact equal own-creature temporary W grants.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35157/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35064/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35158/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35157/",
+      "sha256": "ea41d41bf0300f79a393792a5d75016644efc8f7815a17f66dfac8f0b63363e5",
+      "checkedAt": "2026-11-23T23:57:32.872422+00:00",
+      "result": "Exact first own turn end returns Balesk and every evolution base together before extra turn. Both seats actual attacks/end turn reproduced.",
+      "reproduced": true,
+      "test": "tests/standard1752-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35158/",
+      "sha256": "12daa8c6442c4ce9d84722c11fb75877fd16b185083dc21ee4017033666e892c",
+      "checkedAt": "2026-11-23T23:57:33.769506+00:00",
+      "result": "Two actual Balesks unblocked in same turn grant2 extra turns; both return first own end; actual advancement through both extra turns then opponent verified both seats.",
+      "reproduced": true,
+      "test": "tests/standard1752-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35064/",
+      "sha256": "240a27642d20b734926a1c710b780ad3404d8367425c53f64146efe7f625a9de",
+      "checkedAt": "2026-11-23T23:57:34.691696+00:00",
+      "result": "Zero hand discard allowed. With more discarded cards than own creatures, cards are discarded but no creature receives W; own0/1 versus2 discards reproduced both seats.",
+      "reproduced": true,
+      "test": "tests/standard1752-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm09-004",
+      "name": "聖剣炎獣バーレスク",
+      "canonicalId": "dm09-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-004",
+      "faces": [
+        {
+          "name": "聖剣炎獣バーレスク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "進化-自分のアーマード・ワイバーン１体の上に置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、このターンの後にもう一度自分のターンを行う。\nW・ブレイカー\n自分のターンの終わりに、このクリーチャーを自分の手札に戻す。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アーマード・ワイバーン"
+        },
+        "breaker": 2,
+        "g482Unblocked": [
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "SelfHand299",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-004.jpg",
+      "imageReviewed": true,
+      "imageSha256": "3847b62b5d9024e039a2c5912d24eed13a7d4d0cddea635eb1023947c36af0e3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:55:11.790Z",
+        "reason": "All3 official printed images viewed. Balesk Fire9/8000/ArmoredWyvern evolution/W/unblocked extra turn/own end entire stack bounce; MegaBlaster Fire2/spell/optional any hand discard then exactly equal own-creature W grant this turn. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm09-004",
+          "dmex15-a041"
+        ],
+        "result": "Complete official exact-name search2 Balesk prints and1 MegaBlaster print reviewed; two canonical names only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:55:11.790Z",
+        "sha256": "a0d673fddd1dd8170964ddbfb8ad6317b88255c72c90aa6f22e8a105915131bf",
+        "facesMatched": true,
+        "imageSha256": "3847b62b5d9024e039a2c5912d24eed13a7d4d0cddea635eb1023947c36af0e3"
+      }
+    },
+    {
+      "id": "dm04-017",
+      "name": "メガ・ブラスター",
+      "canonicalId": "dm04-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-017",
+      "faces": [
+        {
+          "name": "メガ・ブラスター",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の手札から好きな枚数を選び、自分の墓地に置く。その後、その枚数と同じ数の自分のクリーチャーをバトルゾーンから選ぶ。このターン、選ばれたクリーチャーは「W(ダブル)・ブレーカー」を得る。(シールドを攻撃したとき、シールドを２枚ブレイクする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "mode": "any",
+            "to": "grave",
+            "afterDiscardSelect": {
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "exactOptional": true,
+              "g335Grant": {
+                "g313Breaker": 2
+              },
+              "title": "捨てた枚数と同じ数の自分のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-017.jpg",
+      "imageReviewed": true,
+      "imageSha256": "b55cf3c86184b9a2c76feb2cffe05232c9226ad8c433d9ac927bf1ed73bd3a61",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:55:11.790Z",
+        "reason": "All3 official printed images viewed. Balesk Fire9/8000/ArmoredWyvern evolution/W/unblocked extra turn/own end entire stack bounce; MegaBlaster Fire2/spell/optional any hand discard then exactly equal own-creature W grant this turn. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm04-017"
+        ],
+        "result": "Complete official exact-name search2 Balesk prints and1 MegaBlaster print reviewed; two canonical names only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:55:11.790Z",
+        "sha256": "d71707192e90d461862a881750f2ade290bf89ad4b0d3f2990aff819281bba6a",
+        "facesMatched": true,
+        "imageSha256": "b55cf3c86184b9a2c76feb2cffe05232c9226ad8c433d9ac927bf1ed73bd3a61"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex15-a041",
+      "name": "聖剣炎獣バーレスク",
+      "canonicalId": "dm09-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a041",
+      "faces": [
+        {
+          "name": "聖剣炎獣バーレスク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "進化：アーマード・ワイバーン１体の上に置く。\nＷ・ブレイカー\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、このターンの後に自分のターンを追加する。\n自分のターンの終わりに、このクリーチャーを手札に戻す。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アーマード・ワイバーン"
+        },
+        "breaker": 2,
+        "g482Unblocked": [
+          {
+            "op": "Custom",
+            "name": "extraTurn"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "SelfHand299",
+            "toOwnerHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a041.jpg",
+      "imageReviewed": true,
+      "imageSha256": "79dd35f30a4793147eb8dd1d51c954ec3f25f18ef7bd16fffe32cbeecc77609f",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:55:11.790Z",
+        "reason": "All3 official printed images viewed. Balesk Fire9/8000/ArmoredWyvern evolution/W/unblocked extra turn/own end entire stack bounce; MegaBlaster Fire2/spell/optional any hand discard then exactly equal own-creature W grant this turn. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm09-004",
+          "dmex15-a041"
+        ],
+        "result": "Complete official exact-name search2 Balesk prints and1 MegaBlaster print reviewed; two canonical names only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:55:11.790Z",
+        "sha256": "cb5933d2f8eb8c3485743d0985808464fe33bc2733657fc651064c682f368c05",
+        "facesMatched": true,
+        "imageSha256": "79dd35f30a4793147eb8dd1d51c954ec3f25f18ef7bd16fffe32cbeecc77609f"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dmex15-a041",
+      "canonicalId": "dm09-004"
+    }
+  ],
+  "held": [
+    {
+      "id": "dmx22b-040",
+      "name": "超覚醒ゼウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+      "reason": "Granting g577Stay through g208Aura loses protection when recipient abilities are ignored, unlike this source continuous protection. Needs independent source-based shield5/Light protection; not partially registered."
+    },
+    {
+      "id": "dmd08-001",
+      "name": "真実の聖霊王 レオ・ザ・スター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+      "reason": "Independent other-Angel leave replacement must remain effective on ignored recipients. g208 grant is not equivalent; native race protection covers nondestruction only. Defer full source replacement."
+    },
+    {
+      "id": "dm23rp2-018",
+      "name": "冥逝邪夢",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-018",
+      "reason": "Native g1684IgnoreEntry suppresses all entry watchers, while this effect requires precise entrants own triggers and state-based Command unsealing (QA43351); full simultaneous mass evolution/tamaseed-creature semantics need verification and shared entry path."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T23:55:11.790Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-004": 4,
+      "dm04-017": 4,
+      "dmex15-a041": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T23:58:51.222Z",
+    "results": {
+      "focused-complete": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1752-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.139,
+        "log": "tmp/duema-phase-1752/focused-complete.log",
+        "passed": 35,
+        "logSha256": "bb95f31735a115c11f6a13b732372ff2fca99cc2bb33cd1bcdcfd08489c04e39"
+      },
+      "related-return": {
+        "name": "related-return",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard299-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.639,
+        "log": "tmp/duema-phase-1752/related-return.log",
+        "passed": 96,
+        "logSha256": "d51eaabe4d52e50f1ec20c72d5ffd3d49e10adf1ce55764d060b3083461f123d"
+      },
+      "related-discard": {
+        "name": "related-discard",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Venomic",
+          "tests/standard1670-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.635,
+        "log": "tmp/duema-phase-1752/related-discard.log",
+        "passed": 36,
+        "logSha256": "dfb26b27496e886429714be61b04572724779bc9ce14c9d22839d270cbb9ed31"
+      },
+      "related-turn": {
+        "name": "related-turn",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Valhalla prevents",
+          "tests/champion-policy-integration.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.059,
+        "log": "tmp/duema-phase-1752/related-turn.log",
+        "passed": 2,
+        "logSha256": "bf7e9226edc9ef4af285512f8faef6cd9da29b195e1da3d858253e28c94e5bdd"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.898,
+        "log": "tmp/duema-phase-1752/related-online.log",
+        "passed": 12,
+        "logSha256": "7846ef8a14099e149779928cf3c4178251471e4684a90f9d58193d0e0d32a94a"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1752/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.061,
+        "log": "tmp/duema-phase-1752/research.log",
+        "logSha256": "34f3ca300f05c25cf8c278fbb28c30db4387fce99b32191032283d693a44b193"
+      },
+      "research-complete": {
+        "name": "research-complete",
+        "command": [
+          "node",
+          "tmp/duema-phase-1752/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.703,
+        "log": "tmp/duema-phase-1752/research-complete.log",
+        "logSha256": "097c3119f471d62c511532dbd50656bf881ee3cd31af1de94caccc03bf6ce733"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1752/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.014,
+        "log": "tmp/duema-phase-1752/prints.log",
+        "logSha256": "98bef9508e1d988fbde803730ce47b9e41f3bfc1e01bc0ba0bf9381020c82951"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1752.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.418,
+        "log": "tmp/duema-phase-1752/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "rulings": {
+        "name": "rulings",
+        "command": [
+          "python3",
+          "tmp/duema-phase-1752/rulings.py"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.933,
+        "log": "tmp/duema-phase-1752/rulings.log",
+        "logSha256": "758cdcced91779ea1ba5be2f565db9a5e1afbfbc53eb22ee8f8ef8f2cb7e7942"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.731,
+        "log": "tmp/duema-phase-1752/check.log",
+        "logSha256": "36390fc616ccf1a3adfc4c716c3f376d63a6eb17e9a57abe8d0cf43655b88cea"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.118,
+        "log": "tmp/duema-phase-1752/audit.log",
+        "logSha256": "ed21c4e4c8c2210c1de25cd2dd7000c45a9acda1620ff13885da187bf6766b75"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.477,
+        "log": "tmp/duema-phase-1752/target9500.log",
+        "logSha256": "d24c799e33a41b17e178c9b7242e22bd891241b2f49a362f583d05f2ff06ff3d"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1752/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.436,
+        "log": "tmp/duema-phase-1752/invariants.log",
+        "logSha256": "630dc75adeecbba2ee240df2aa9a19eab1a327ffa667c075ac12a7b5b67f0c2f"
+      }
+    },
+    "totalTestsPassed": 181,
+    "focusedTestsPassed": 35,
+    "relatedTestsPassed": 146
+  },
+  "validationNotes": [
+    "Actual data nameKey9480→9482. Two complete new canonical names Balesk dm09-004 and MegaBlaster dm04-017. Three full official original/reprint pages and images checked, Fire9/8000/ArmoredWyvern evolution/W plus Fire2 spell, mana1/current limit4. Balesk reprint dmex15-a041 is only a verified alias with full strict pinned face; not counted as another card.",
+    "Balesk uses native named-race evolution, g482Unblocked Custom extraTurn, W and own-end SelfHand299 whole stack to owners hand. Paid9/exact actual ArmoredWyvern base, wrong base excluded,8000/immediate evolution attack/W, actual unblocked extra turn, blocked and creature attacks/ignored ability exclusions, opponent-end/ignored end-return exclusions tested both seats. Exact QA35157 returns source and base at first own end before extra turn. Exact QA35158 two unblocked Balesks add2 separate turns and actual advancement reaches opponent only after both.",
+    "MegaBlaster uses native HandCycle460 any hand discard followed by afterDiscardSelect with exactOptional and temporary g313Breaker2. Paid2/zero-to3 chosen hand cards/mandatory exactly equal own creature choices, independent opposing creature/remaining hand/physical count and end-turn expiration tested both seats. Exact QA35064 insufficient own creature count grants nobody W while chosen hand cards go to grave. Actual small creature double-break and real native triple breaker retains T. Pending partially selected exact count survives encrypted JSON; only actor acts and AI reads remain pure.",
+    "Initial fixture errors corrected by cloning the hand array so engine hand removal does not mutate the test expected-card array, and using actual native triple breaker GradianRedDragon dm05-s04 instead of a W-breaker ID. No runtime or common gameplay path changes needed. All35 final focused cases plus affected SelfHand299, Venomic count continuation, Valhalla extra-turn prevention and online-save regressions pass; npm run check/audit/target9500/invariants pass. All9480 previous definitions/IDs/images/pins/details/catalogue rows remain unchanged.",
+    "Initially screened Zeus/Leo/Meise official texts and reprints. Zeus/Leo not implemented because g208 granted self-protection does not model independent source protection when recipient abilities are ignored; native nondestruction race protection also insufficient. Meise requires precise entry-trigger suppression, simultaneous evolution/tamaseed creatures and state-based Command unsealing QA43351; native ignoreEntry cannot be assumed equivalent. Reasons and original sources retained in held. No partially supported cards added to fill the batch guideline.",
+    "Historical registered-card, reprint and interrupted long-test pending preserved exactly. Full npm test and old long groups not rerun. Verified local only, no push/Pages/Netlify. Continue phase1753 toward9500, remaining18."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmx22b-040",
+      "name": "超覚醒ゼウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+      "reason": "Granting g577Stay through g208Aura loses protection when recipient abilities are ignored, unlike this source continuous protection. Needs independent source-based shield5/Light protection; not partially registered."
+    },
+    {
+      "id": "dmd08-001",
+      "name": "真実の聖霊王 レオ・ザ・スター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+      "reason": "Independent other-Angel leave replacement must remain effective on ignored recipients. g208 grant is not equivalent; native race protection covers nondestruction only. Defer full source replacement."
+    },
+    {
+      "id": "dm23rp2-018",
+      "name": "冥逝邪夢",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-018",
+      "reason": "Native g1684IgnoreEntry suppresses all entry watchers, while this effect requires precise entrants own triggers and state-based Command unsealing (QA43351); full simultaneous mass evolution/tamaseed-creature semantics need verification and shared entry path."
+    }
+  ]
+}
