@@ -49507,5 +49507,92 @@
     "spec": {
       "g1745LooksRevive": true
     }
+  },
+  "dm31-024": {
+    "phase": 1746,
+    "faces": [
+      {
+        "name": "T2・オガプー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の城をシールドゾーンに置いた時、カードを１枚引くか、バトルゾーンにあるクリーチャーを１体選んで持ち主の手札に戻してもよい。",
+        "race": "サイバーロード",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1746CastleEntry": true
+    }
+  },
+  "dmx19-s17": {
+    "phase": 1746,
+    "faces": [
+      {
+        "name": "龍素記号Cg ダイシャリン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "自分が唱える呪文は「チャージャー」を得る。（「チャージャー」を持つ呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）\nW・ブレイカー",
+        "race": "クリスタル・コマンド・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1746ChargerAura": true
+    }
+  },
+  "dmr18-s03": {
+    "phase": 1746,
+    "faces": [
+      {
+        "name": "正体不明",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが召喚されてバトルゾーンに出た時。好きな数のクリーチャーを自分の手札からバトルゾーンに出す。このターンの後、相手は追加のターンを得る。",
+        "race": "???",
+        "powerText": "14000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": "all",
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "手札から出すクリーチャーを好きな数選ぶ",
+          "after": [
+            {
+              "op": "OpponentExtra1746"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

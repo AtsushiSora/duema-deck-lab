@@ -134,7 +134,8 @@ export function createShieldPhotoRules(api){
  },
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},
  guard(s,p,x){return ad(effective(x,s))&&creatures(s,p).some(y=>effective(y,s).g33Kaku);},
- shieldAdded(s,p,x){
+ shieldAdded(s,p,x,options={}){
+  if(options.fortified1746)for(const y of creatures(s,p))if(!y.sealed&&!y.faceDown&&effective(y,s).g1746CastleEntry&&!api.ignored(s,y))api.enqueue(s,p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('g34_Choose',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0,controller:p,modes:[{label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},{label:'クリーチャーを1体手札に戻す',defs:[{op:'Target',anyOwner:true,to:'hand',toOwnerHand:true}]},{label:'使わない',defs:[]}]})});
   if(!x.faceUp)return;
   const active=!shieldAbilitiesMuted(s,p);
   if(active&&card(x).g657FaceUpEntry)api.enqueue(s,p,{
