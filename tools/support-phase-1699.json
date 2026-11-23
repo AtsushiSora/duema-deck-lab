@@ -1,0 +1,439 @@
+{
+  "phase": 1699,
+  "checkedAt": "2026-11-23T03:28:48.683Z",
+  "baseCount": 9333,
+  "target": 9500,
+  "description": "Full Dangan Teio entry-turn player attack permissions/restrictions, Chitta other-Fire-attack history and Guardman, and Skid first actual Muutopia hand discard mandatory draw.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31877/",
+    "https://dm.takaratomy.co.jp/rule/qa/40670/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 31877,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31877/",
+      "sha256": "308e27c5b8ee63dc70da66aa7d438a9a4f19506856ef2075b1d1c622f212f722",
+      "confirmed": true,
+      "scope": "Twinpact discard identity analogue; registered Skull regression reproduces original QA, Skid checks creature race once per physical card.",
+      "reproduced": true,
+      "tests": [
+        "tests/standard1241-effects.test.mjs",
+        "tests/standard1699-effects.test.mjs"
+      ]
+    },
+    {
+      "id": 40670,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40670/",
+      "sha256": "e098e17c694699ee2ee28f3dd32512bb7caf09703faa31bf6fdf8d37d28997f0",
+      "confirmed": true,
+      "scope": "First actual discard triggers once for one simultaneous group; Skid race-specific analogue verified in both seats; no claim of exact Emperor source setup.",
+      "reproduced": true,
+      "tests": [
+        "tests/standard1268-effects.test.mjs",
+        "tests/standard1699-effects.test.mjs"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "promoy16-008",
+      "name": "超絶特Q ダンガンテイオー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-008",
+      "faces": [
+        {
+          "name": "超絶特Q ダンガンテイオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーは、バトルゾーンに出たターン、相手プレイヤーを攻撃できる。\n相手のクリーチャーは、バトルゾーンに出たターン、自分を攻撃できない。",
+          "race": "ジョーカーズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g40EntryPlayerStop": true,
+        "g1699EntryPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-008.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4c3cf703b80a8a2cdc8110670ee1f1dd6280a8a14f099e0253b6c488d0da2720",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy16-008",
+          "dmex02-011"
+        ],
+        "result": "All exact-name original/reprint full faces and images reviewed; similarly named Chitta Perol, its Crown and Bakukyo Hibiki excluded. Dangan reprint uses player wording for the same two-player entry-turn restriction."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T03:28:48.683Z",
+        "sha256": "aa982e54f5e52e3510eff677529e07e63385092f3c275b09af7468edeff81180",
+        "facesMatched": true,
+        "imageSha256": "4c3cf703b80a8a2cdc8110670ee1f1dd6280a8a14f099e0253b6c488d0da2720"
+      }
+    },
+    {
+      "id": "dmrp21-067",
+      "name": "爆鏡 チッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-067",
+      "faces": [
+        {
+          "name": "爆鏡 チッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのターン、他の火のクリーチャーが攻撃していなければ、このクリーチャーは攻撃できない。",
+          "race": "ヒューマノイド爆",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g225AttackRequires": {
+          "kind": "otherAttack",
+          "color": "火"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-067.jpg",
+      "imageReviewed": true,
+      "imageSha256": "326beb457af0e3d69b5d225fb4905f023818693ed02b268597fdc273fee5656b",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp21-067"
+        ],
+        "result": "All exact-name original/reprint full faces and images reviewed; similarly named Chitta Perol, its Crown and Bakukyo Hibiki excluded. Dangan reprint uses player wording for the same two-player entry-turn restriction."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T03:28:48.683Z",
+        "sha256": "15fa32c464f0b585d5af15525749e9eef236c78dc2c5805fcefc94207bcf1276",
+        "facesMatched": true,
+        "imageSha256": "326beb457af0e3d69b5d225fb4905f023818693ed02b268597fdc273fee5656b"
+      }
+    },
+    {
+      "id": "dmrp02-039",
+      "name": "策謀の支持者 スキッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-039",
+      "faces": [
+        {
+          "name": "策謀の支持者 スキッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n各ターン、ムートピアがはじめて自分の手札から捨てられた時、カードを１枚引く。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1699FirstMuutopiaDiscard": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-039.jpg",
+      "imageReviewed": true,
+      "imageSha256": "af178b148e315682d9c5a0c885101d5bae5c5a1237f9ff4212925bc3b776a6db",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp02-039"
+        ],
+        "result": "All exact-name original/reprint full faces and images reviewed; similarly named Chitta Perol, its Crown and Bakukyo Hibiki excluded. Dangan reprint uses player wording for the same two-player entry-turn restriction."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T03:28:48.683Z",
+        "sha256": "538b7a9e7f2533718e36f800ed0dc6f14a03763edc234aab30d0e43a6e687260",
+        "facesMatched": true,
+        "imageSha256": "af178b148e315682d9c5a0c885101d5bae5c5a1237f9ff4212925bc3b776a6db"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dmex02-011",
+      "name": "超絶特Q ダンガンテイオー",
+      "canonicalId": "promoy16-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-011",
+      "faces": [
+        {
+          "name": "超絶特Q ダンガンテイオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーは、バトルゾーンに出たターン、プレイヤーを攻撃できる。\n相手のクリーチャーは、バトルゾーンに出たターン、プレイヤーを攻撃できない。",
+          "race": "ジョーカーズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "dd3c02be482f2d7bcddfc9584014774381981c79bcd71f9ec3ca798f776ceac3",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-011.jpg",
+          "file": "tmp/duema-phase-1699-new/dmex02-011-0.jpg",
+          "sha256": "a5eb85e6c9a8d3e034f485da1c78a647be7595868672312e26d3e9c423a5afee"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr08-025",
+      "name": "ヘブンズ・サンダー",
+      "reason": "All attack restrictions must be bypassed while retaining target-specific summoning sickness. Hold until this can be verified completely; no partial registration."
+    },
+    {
+      "id": "dmrp04s-006",
+      "name": "凶鬼04号 ビビム",
+      "reason": "Needs last-known grave source departure triggers and image correction of the official HTML power-minus glyph. No partial registration."
+    },
+    {
+      "id": "dmr12-004",
+      "name": "神々の地 ディオニソス",
+      "reason": "All-origin creature grave replacement requires hand/deck/shield/layer cases beyond ordinary destruction. No partial registration."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T03:28:48.683Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy16-008": 4,
+      "dmrp21-067": 4,
+      "dmrp02-039": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T03:34:31.234Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1699.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.2,
+        "log": "tmp/duema-phase-1699-new/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "related-attack": {
+        "name": "related-attack",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard481-effects.test.mjs",
+          "tests/standard652-effects.test.mjs",
+          "tests/standard1588-effects.test.mjs",
+          "tests/standard1678-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 44.597,
+        "log": "tmp/duema-phase-1699-new/related-attack.log",
+        "passed": 186,
+        "logSha256": "6197f2e87dbc899a74ab02f438434ae5307c99bff3face4d4f1ee0459435fc9e"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.746,
+        "log": "tmp/duema-phase-1699-new/check.log",
+        "logSha256": "fa9ae67ea713e73eeacbea49d8198772b537ce99bcbbca16d9236561bc87c583"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.569,
+        "log": "tmp/duema-phase-1699-new/audit.log",
+        "logSha256": "08297d0680decfcfee737965966ad363608fae8b8b00f650ef6f32edc476fb7c"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.42,
+        "log": "tmp/duema-phase-1699-new/target9500.log",
+        "logSha256": "6bd7ab5078f82a97efac255ce7b56731125a7fa27cd3f7258b4361172ef83c60"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1699-new/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.434,
+        "log": "tmp/duema-phase-1699-new/invariants.log",
+        "logSha256": "d8f70d2735880755d5e81200547f8588d09960f575900f3fb1c718a9717db4f2"
+      },
+      "focused": {
+        "passed": 56,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1699-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 12.448,
+            "log": "tmp/duema-phase-1699-new/focused.log",
+            "passed": 50,
+            "logSha256": "8e2549b29fb2a5c33aaf3e025a04660aba27fe14e8de6d1353e59b1a0506e5f6"
+          },
+          {
+            "name": "focused-edge",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Skid draws mandatorily|^Skid ordinary|^Skid queued|^Chitta cannot retroactively",
+              "tests/standard1699-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 2.238,
+            "log": "tmp/duema-phase-1699-new/focused-edge.log",
+            "passed": 8,
+            "logSha256": "320a42d4fc174730974b7327e597217d336e7d5ce9349ef4fa05b28d8e910050"
+          },
+          {
+            "name": "focused-queued-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Skid queued|^Skid ordinary",
+              "tests/standard1699-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.65,
+            "log": "tmp/duema-phase-1699-new/focused-queued-fixed.log",
+            "passed": 4,
+            "logSha256": "50d89e4824c7378179b916341ebbaf10c01c26de7b4e5c075fe5f6760a62e2c1"
+          }
+        ],
+        "coverage": "50 original cases; 4 effect-controller variants corrected and passed again; 6 new edge cases, including 2 queued-source cases repaired to specify the self-discard owner. Repeated passing cases are counted once."
+      },
+      "relatedDiscardOnline": {
+        "passed": 87,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "related-discard-online",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1241-effects.test.mjs",
+              "tests/standard1268-effects.test.mjs",
+              "tests/standard1329-effects.test.mjs",
+              "tests/online-runtime.test.mjs",
+              "tests/online-client.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 3.635,
+            "log": "tmp/duema-phase-1699-new/related-discard-online.log",
+            "passed": 83,
+            "logSha256": "f9db8d1bc61d0b3eff806d76035f552ac157d5f0361e251976ebbfe469cb8217"
+          },
+          {
+            "name": "online-compatibility-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^result cues synchronize|^two independent clients|^rejoining on a fresh device|^online game UI has horizontal",
+              "tests/online-client.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.559,
+            "log": "tmp/duema-phase-1699-new/online-compatibility-fixed.log",
+            "passed": 4,
+            "logSha256": "e4ce262b1066e0512a32bbb469dc98d9dccde94040aac33c2c2d287997232e8b"
+          }
+        ],
+        "coverage": "83 initial passing cases and 4 online-client cases passing after regenerating the engine/cards compatibility hash."
+      }
+    },
+    "totalTestsPassed": 329,
+    "focusedTestsPassed": 56,
+    "relatedTestsPassed": 273
+  },
+  "validationNotes": [
+    "Start and post-verification nameKey counts from actual dist/cards.json are 9333 and 9336. Baseline 07d7a661 inspected; no staged/working changes or prior processes were running. Existing definitions, IDs, aliases, catalogue, save formats and old image references unchanged.",
+    "Three original cards and one exact-name Dangan reprint were checked against official full faces, basic information, current restrictions, printed mana and all four viewed images. Eleven fuzzy Chitta results were filtered to one exact name. Same-name reprints are not counted.",
+    "Dangan uses native entry-turn player prohibition and a generalization of the existing Gambo player permission, rather than Speed Attacker. Permission applies to all own fresh creatures including itself and ability-ignored recipients, never allows fresh creature attacks, and disappears with an inactive source. Opposing fresh speed/evolution creatures may attack creatures but cannot attack its controller. Existing attack prohibitions continue to apply.",
+    "Chitta uses native Guardman and other-attack conditions. Attack declaration captures current civilization in an additive public history field, so departed attackers remain counted and later civilization changes cannot rewrite history. Either player Fire creatures qualify, the same current creature never counts itself, and summoning sickness remains unchanged.",
+    "Skid uses actual hand-discard events and a turn-scoped first-Muutopia record even before a source enters or while ignored. Both players and effect controllers, simultaneous discards, multiple sources, twinpact race identity, ignored sources, queued source departure, next native turn, empty discard, ordinary hand-to-mana, milling and replaced discards are covered. The mandatory draw does not become optional.",
+    "Official QA31877 actual Skull twinpact regression is included; Skid is a race-specific analogue. QA40670 actual Emperor first-discard regression is included; Skid simultaneous Muutopia checks use the same first-event principle. No unregistered source is claimed as exact reproduction.",
+    "56 distinct focused tests and 273 affected regressions pass, total329; check, audit, nameKey recount, campaign verification and baseline invariants pass. One legal forty-card seeded game preserves all80 physical IDs and JSON legal actions. Encrypted online choice and first-discard state survive storage without leaking the other hand.",
+    "Two edge fixture failures omitted owner:self on a discard task; corrected fixtures pass. Four initial online-client failures were caused by not yet regenerating online-compatibility after the engine/cards changes; regenerated metadata and all four pass. No remaining failure from this batch. Historical whole-suite/long/registered-card/reprint deferrals remain unchanged. No push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp08-s06",
+      "name": "凶鬼02号 ドゴンギヨス",
+      "reason": "Check full two-card discard summon discount, Slayer/double break and all-origin opposing mana entry tap."
+    },
+    {
+      "id": "dm23ex1-061",
+      "name": "世露詞駆 キャロル",
+      "reason": "Check actual discard trigger, both mana civilizations and exact-name absence at resolution."
+    },
+    {
+      "id": "dm31-024",
+      "name": "T2・オガプー",
+      "reason": "Check castle placement watcher, independent draw/bounce mode and mandatory choice scope."
+    }
+  ]
+}

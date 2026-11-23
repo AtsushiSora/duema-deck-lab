@@ -1323,7 +1323,7 @@ export function createSixPhotoRules(api){
    case'otherAttack':{
     const refs=new Set(x?api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0)):[]);
     if(s.g481Attackers?.turn!==s.turn)return false;
-    const events=s.g481Attackers.events.filter(event=>(!rule.own||event.p===p)&&!event.refs.some(ref=>refs.has(ref)));
+    const events=s.g481Attackers.events.filter(event=>(!rule.own||event.p===p)&&(!rule.color||event.g1699Colors?.includes(rule.color))&&!event.refs.some(ref=>refs.has(ref)));
     // Count distinct attacking creatures, rather than repeated attacks by one creature.
     return rule.min>1?new Set(events.map(event=>event.refs[0])).size>=rule.min:events.length>0;
    }
@@ -10351,7 +10351,7 @@ export function createSixPhotoRules(api){
   if(s.attackLifecycle&&x.g34Grants?.some(g=>g.turn===s.turn&&g.g1225DestroyAfterAttack))
    s.attackLifecycle.g1225AttackDeaths=x.g34Grants.filter(g=>g.turn===s.turn&&g.g1225DestroyAfterAttack)
     .map(g=>g.g1225DestroyAfterAttack);
-  if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(race(effective(x,s,true),'ドラゴン')?{g1222Dragon:true}:{}),...(race(effective(x,s,true),'アビス')?{g1236Abyss:true}:{}),...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
+  if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,g1699Colors:colors(effective(x,s,true)),...(race(effective(x,s,true),'ドラゴン')?{g1222Dragon:true}:{}),...(race(effective(x,s,true),'アビス')?{g1236Abyss:true}:{}),...(race(effective(x,s,true),'ティラノ・ドレイク')?{tyrannoDrake925:true}:{}),...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.g481Attackers.events.length===1){
   const attacker={uid:x.uid,incarnation:x.incarnation||0};
   for(const owner of [p,1-p])for(const watcher of s.players[owner].battle){
    if(!watcher.sealed&&!watcher.faceDown&&card(watcher).g1158FirstAttackBreak&&

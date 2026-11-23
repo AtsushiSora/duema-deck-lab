@@ -863,6 +863,16 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   afterDiscard(s,t,x,discarded,undefined,graveWatchers);
  }
  function discardByType1241(s,p,discarded){
+  // Remember actual hand discards even before a Skid enters or while it is ignored.
+  // A replacement that moves the hand card elsewhere never calls this hook.
+  if(faces(card(discarded)).some(f=>String(f.race||'').split('/').some(r=>r.includes('ムートピア')))){
+   if(s.g1699MuutopiaDiscard?.turn!==s.turn)s.g1699MuutopiaDiscard={turn:s.turn,players:[false,false]};
+   if(!s.g1699MuutopiaDiscard.players[p]){
+    s.g1699MuutopiaDiscard.players[p]=true;
+    for(const x of creatures(s,p))if(!x.sealed&&!x.faceDown&&effective(x,s).g1699FirstMuutopiaDiscard)
+     enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:[{op:'Draw',n:1}]})});
+   }
+  }
   let types;
   for(const x of s.players[p].battle){
    if(x.sealed||!card(x).g1241DiscardTypes||!api.isCreature(s,x))continue;

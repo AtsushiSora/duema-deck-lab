@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9333,
-  "pendingNames": 2492,
-  "phase": 1698,
-  "added": 4,
+  "supportedNames": 9336,
+  "pendingNames": 2489,
+  "phase": 1699,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1404,
+    "クリーチャー": 1401,
     "呪文": 271,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1796,
+    "未対応の能力文": 1793,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -542002,33 +542002,344 @@
         }
       ],
       "next": "9,500まで3〜5種類バッチを継続。公式全文/再録/制限/画像/裁定・固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット。過去と今回の長時間未確認は保持し、一括再実行しない。push/公開/Netlify更新なし。"
+    },
+    {
+      "phase": 1699,
+      "checkedAt": "2026-11-23T03:34:31.234Z",
+      "baseline": "07d7a661",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9333,
+      "currentNames": 9336,
+      "remainingNames": 164,
+      "added": [
+        {
+          "id": "promoy16-008",
+          "name": "超絶特Q ダンガンテイオー"
+        },
+        {
+          "id": "dmrp21-067",
+          "name": "爆鏡 チッタ"
+        },
+        {
+          "id": "dmrp02-039",
+          "name": "策謀の支持者 スキッド"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "07d7a661",
+        "originalDefinitionsUnchanged": 9333,
+        "added": 3,
+        "uniqueNames": 9336,
+        "uniqueIds": 9336,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9333,
+        "existingImageReferenceRowsUnchanged": 11543,
+        "officialPrintsReviewed": 4,
+        "officialImagesReviewed": 4,
+        "existingPinsUnchanged": 866
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1699.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.2,
+          "log": "tmp/duema-phase-1699-new/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "related-attack": {
+          "name": "related-attack",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard481-effects.test.mjs",
+            "tests/standard652-effects.test.mjs",
+            "tests/standard1588-effects.test.mjs",
+            "tests/standard1678-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 44.597,
+          "log": "tmp/duema-phase-1699-new/related-attack.log",
+          "passed": 186,
+          "logSha256": "6197f2e87dbc899a74ab02f438434ae5307c99bff3face4d4f1ee0459435fc9e"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.746,
+          "log": "tmp/duema-phase-1699-new/check.log",
+          "logSha256": "fa9ae67ea713e73eeacbea49d8198772b537ce99bcbbca16d9236561bc87c583"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.569,
+          "log": "tmp/duema-phase-1699-new/audit.log",
+          "logSha256": "08297d0680decfcfee737965966ad363608fae8b8b00f650ef6f32edc476fb7c"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.42,
+          "log": "tmp/duema-phase-1699-new/target9500.log",
+          "logSha256": "6bd7ab5078f82a97efac255ce7b56731125a7fa27cd3f7258b4361172ef83c60"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1699-new/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.434,
+          "log": "tmp/duema-phase-1699-new/invariants.log",
+          "logSha256": "d8f70d2735880755d5e81200547f8588d09960f575900f3fb1c718a9717db4f2"
+        },
+        "focused": {
+          "passed": 56,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1699-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 12.448,
+              "log": "tmp/duema-phase-1699-new/focused.log",
+              "passed": 50,
+              "logSha256": "8e2549b29fb2a5c33aaf3e025a04660aba27fe14e8de6d1353e59b1a0506e5f6"
+            },
+            {
+              "name": "focused-edge",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Skid draws mandatorily|^Skid ordinary|^Skid queued|^Chitta cannot retroactively",
+                "tests/standard1699-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 2.238,
+              "log": "tmp/duema-phase-1699-new/focused-edge.log",
+              "passed": 8,
+              "logSha256": "320a42d4fc174730974b7327e597217d336e7d5ce9349ef4fa05b28d8e910050"
+            },
+            {
+              "name": "focused-queued-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Skid queued|^Skid ordinary",
+                "tests/standard1699-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.65,
+              "log": "tmp/duema-phase-1699-new/focused-queued-fixed.log",
+              "passed": 4,
+              "logSha256": "50d89e4824c7378179b916341ebbaf10c01c26de7b4e5c075fe5f6760a62e2c1"
+            }
+          ],
+          "coverage": "50 original cases; 4 effect-controller variants corrected and passed again; 6 new edge cases, including 2 queued-source cases repaired to specify the self-discard owner. Repeated passing cases are counted once."
+        },
+        "relatedDiscardOnline": {
+          "passed": 87,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "related-discard-online",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1241-effects.test.mjs",
+                "tests/standard1268-effects.test.mjs",
+                "tests/standard1329-effects.test.mjs",
+                "tests/online-runtime.test.mjs",
+                "tests/online-client.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 3.635,
+              "log": "tmp/duema-phase-1699-new/related-discard-online.log",
+              "passed": 83,
+              "logSha256": "f9db8d1bc61d0b3eff806d76035f552ac157d5f0361e251976ebbfe469cb8217"
+            },
+            {
+              "name": "online-compatibility-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^result cues synchronize|^two independent clients|^rejoining on a fresh device|^online game UI has horizontal",
+                "tests/online-client.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.559,
+              "log": "tmp/duema-phase-1699-new/online-compatibility-fixed.log",
+              "passed": 4,
+              "logSha256": "e4ce262b1066e0512a32bbb469dc98d9dccde94040aac33c2c2d287997232e8b"
+            }
+          ],
+          "coverage": "83 initial passing cases and 4 online-client cases passing after regenerating the engine/cards compatibility hash."
+        }
+      },
+      "totalTestsPassed": 329,
+      "hashes": {
+        "dist/cards.json": "58e296b504815a7c3b04b330a2df7de2ab4f0cbb8300d953c456ee1489eb821a",
+        "dist/engine.js": "6dbac4c44f000e9e207525b13a9414a9836c90d43e00a853ad5e04399088c250",
+        "dist/six-photo-rules.js": "41e05829710f332692799518c39c71b367654018a14111c4e8d4923cd0b975b9",
+        "dist/extended-rules.js": "81e3c675fa94da28d2a983fe967ddb17528e2e64320d25875bc74ec57d755216",
+        "dist/online-compatibility.js": "d99cf243ee50cd79b7147e697161dbd79fac95dd8e3eb09955d07707305dc3a6",
+        "dist/card-images.js": "d5fa17ce4b8894bbb0549cd055cfc2a249ac67aeaa0d61fc30c32a4c782d9ba5",
+        "tools/target9000-card-spec.json": "10f84fa1779fe1df7ce5f12804b11dc4eb2dad125f230df136d95370e52cd3a4",
+        "tests/standard1699-effects.test.mjs": "2ba89474004a66f31d425f78e1ea97ae09910fe30c40dffe9e8492ad4c5f2874"
+      },
+      "engineVersion": "0.602.216",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused-edge",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Skid draws mandatorily|^Skid ordinary|^Skid queued|^Chitta cannot retroactively",
+            "tests/standard1699-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.238,
+          "log": "tmp/duema-phase-1699-new/focused-edge.log"
+        },
+        {
+          "name": "related-discard-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1241-effects.test.mjs",
+            "tests/standard1268-effects.test.mjs",
+            "tests/standard1329-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.635,
+          "log": "tmp/duema-phase-1699-new/related-discard-online.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1699.json",
+      "supported": 9336,
+      "pending": 2489,
+      "reason": "Full Dangan Teio entry-turn player attack permissions/restrictions, Chitta other-Fire-attack history and Guardman, and Skid first actual Muutopia hand discard mandatory draw.",
+      "validationNotes": [
+        "Start and post-verification nameKey counts from actual dist/cards.json are 9333 and 9336. Baseline 07d7a661 inspected; no staged/working changes or prior processes were running. Existing definitions, IDs, aliases, catalogue, save formats and old image references unchanged.",
+        "Three original cards and one exact-name Dangan reprint were checked against official full faces, basic information, current restrictions, printed mana and all four viewed images. Eleven fuzzy Chitta results were filtered to one exact name. Same-name reprints are not counted.",
+        "Dangan uses native entry-turn player prohibition and a generalization of the existing Gambo player permission, rather than Speed Attacker. Permission applies to all own fresh creatures including itself and ability-ignored recipients, never allows fresh creature attacks, and disappears with an inactive source. Opposing fresh speed/evolution creatures may attack creatures but cannot attack its controller. Existing attack prohibitions continue to apply.",
+        "Chitta uses native Guardman and other-attack conditions. Attack declaration captures current civilization in an additive public history field, so departed attackers remain counted and later civilization changes cannot rewrite history. Either player Fire creatures qualify, the same current creature never counts itself, and summoning sickness remains unchanged.",
+        "Skid uses actual hand-discard events and a turn-scoped first-Muutopia record even before a source enters or while ignored. Both players and effect controllers, simultaneous discards, multiple sources, twinpact race identity, ignored sources, queued source departure, next native turn, empty discard, ordinary hand-to-mana, milling and replaced discards are covered. The mandatory draw does not become optional.",
+        "Official QA31877 actual Skull twinpact regression is included; Skid is a race-specific analogue. QA40670 actual Emperor first-discard regression is included; Skid simultaneous Muutopia checks use the same first-event principle. No unregistered source is claimed as exact reproduction.",
+        "56 distinct focused tests and 273 affected regressions pass, total329; check, audit, nameKey recount, campaign verification and baseline invariants pass. One legal forty-card seeded game preserves all80 physical IDs and JSON legal actions. Encrypted online choice and first-discard state survive storage without leaking the other hand.",
+        "Two edge fixture failures omitted owner:self on a discard task; corrected fixtures pass. Four initial online-client failures were caused by not yet regenerating online-compatibility after the engine/cards changes; regenerated metadata and all four pass. No remaining failure from this batch. Historical whole-suite/long/registered-card/reprint deferrals remain unchanged. No push/publication/Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dmr08-025",
+          "name": "ヘブンズ・サンダー",
+          "reason": "All attack restrictions must be bypassed while retaining target-specific summoning sickness. Hold until this can be verified completely; no partial registration."
+        },
+        {
+          "id": "dmrp04s-006",
+          "name": "凶鬼04号 ビビム",
+          "reason": "Needs last-known grave source departure triggers and image correction of the official HTML power-minus glyph. No partial registration."
+        },
+        {
+          "id": "dmr12-004",
+          "name": "神々の地 ディオニソス",
+          "reason": "All-origin creature grave replacement requires hand/deck/shield/layer cases beyond ordinary destruction. No partial registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp08-s06",
+          "name": "凶鬼02号 ドゴンギヨス",
+          "reason": "Check full two-card discard summon discount, Slayer/double break and all-origin opposing mana entry tap."
+        },
+        {
+          "id": "dm23ex1-061",
+          "name": "世露詞駆 キャロル",
+          "reason": "Check actual discard trigger, both mana civilizations and exact-name absence at resolution."
+        },
+        {
+          "id": "dm31-024",
+          "name": "T2・オガプー",
+          "reason": "Check castle placement watcher, independent draw/bounce mode and mandatory choice scope."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1698,
-    "nextPhase": 1699,
+    "lastVerifiedPhase": 1699,
+    "nextPhase": 1700,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr08-025",
-        "name": "ヘブンズ・サンダー",
-        "reason": "Verify complete friendly Blocker power/W/attack-permission spell while preserving summoning sickness."
+        "id": "dmrp08-s06",
+        "name": "凶鬼02号 ドゴンギヨス",
+        "reason": "Check full two-card discard summon discount, Slayer/double break and all-origin opposing mana entry tap."
       },
       {
-        "id": "dmrp04s-006",
-        "name": "凶鬼04号 ビビム",
-        "reason": "Verify battle/grave departures and complete targeted power reduction using existing event provenance."
+        "id": "dm23ex1-061",
+        "name": "世露詞駆 キャロル",
+        "reason": "Check actual discard trigger, both mana civilizations and exact-name absence at resolution."
       },
       {
-        "id": "dmr12-004",
-        "name": "神々の地 ディオニソス",
-        "reason": "Verify grave-destination replacement from every origin; do not count partial support."
+        "id": "dm31-024",
+        "name": "T2・オガプー",
+        "reason": "Check castle placement watcher, independent draw/bounce mode and mandatory choice scope."
       }
     ],
     "steps": [
       "ユーザー指示の9500まで3〜5種類バッチを継続。",
-      "9,500まで3〜5種類バッチを継続。公式全文/再録/制限/画像/裁定・固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット。過去と今回の長時間未確認は保持し、一括再実行しない。push/公開/Netlify更新なし。",
-      "蠅の王追加要求はphase1698で完了。"
+      "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -542908,23 +543219,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1698,
-      "baseline": "1baf71d7",
-      "supportedNames": 9333,
-      "artifact": "tools/target9500-registration-checkpoint-1698.json",
-      "checkedAt": "2026-11-23T01:13:39.148Z"
+      "phase": 1699,
+      "baseline": "07d7a661",
+      "supportedNames": 9336,
+      "artifact": "tools/target9500-registration-checkpoint-1699.json",
+      "checkedAt": "2026-11-23T03:34:31.234Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T01:13:39.148Z",
+      "checkedAt": "2026-11-23T03:34:31.234Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9333,
-      "remainingNames": 167,
+      "currentNames": 9336,
+      "remainingNames": 164,
       "duplicateNames": 0,
-      "engineVersion": "0.602.215",
+      "engineVersion": "0.602.216",
       "added": [
         {
           "id": "dmr12-008",
@@ -543977,6 +544288,18 @@
         {
           "id": "dm24sp2-001",
           "name": "蠅の王 クリス=タブラ=ラーサ"
+        },
+        {
+          "id": "promoy16-008",
+          "name": "超絶特Q ダンガンテイオー"
+        },
+        {
+          "id": "dmrp21-067",
+          "name": "爆鏡 チッタ"
+        },
+        {
+          "id": "dmrp02-039",
+          "name": "策謀の支持者 スキッド"
         }
       ],
       "results": {
@@ -544092,15 +544415,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "5bab46b5643cac3c55294069dd7607d6063547fafe078abc24f3b70b8f454b99",
-        "dist/engine.js": "5b830dfb0fac496381ea5bce94200040c473d781fea391d86d5aaf4d996ff127",
-        "dist/six-photo-rules.js": "6b7acc6403488c2d17bfda1d97c4df4d6104e1132386246dd2fae3f0f2f52704",
-        "dist/viride-rules.js": "555cf0e11dcdae9cb20c21931ffe2dcf5757fda9f733565c313500233e2dc898",
-        "dist/online-compatibility.js": "67d9d9603b08ce0dbd5a972e69c30583e3ae4eb182d76daa8e9e66048c68fa3d",
-        "dist/card-images.js": "e88e01e5fccc863231849fee213b9c23f1b7a3d2574878ecffbf4f083a197c4a",
-        "tools/target9000-card-spec.json": "8c63bd6ec7a92c3aafe1b561a5e0d522da1f8859d3fcc323da1d1a02ae0a11c1",
-        "tests/standard1698-effects.test.mjs": "4093f885b696432e2dcb3597816534b5b44390727fed85e4f0fe64a94aa29541",
-        "tests/standard1698-fly-effects.test.mjs": "139e69ce5748bb5ca442260104d63625529889bdabc26fbe4fdd57c618ddf1bb"
+        "dist/cards.json": "58e296b504815a7c3b04b330a2df7de2ab4f0cbb8300d953c456ee1489eb821a",
+        "dist/engine.js": "6dbac4c44f000e9e207525b13a9414a9836c90d43e00a853ad5e04399088c250",
+        "dist/six-photo-rules.js": "41e05829710f332692799518c39c71b367654018a14111c4e8d4923cd0b975b9",
+        "dist/extended-rules.js": "81e3c675fa94da28d2a983fe967ddb17528e2e64320d25875bc74ec57d755216",
+        "dist/online-compatibility.js": "d99cf243ee50cd79b7147e697161dbd79fac95dd8e3eb09955d07707305dc3a6",
+        "dist/card-images.js": "d5fa17ce4b8894bbb0549cd055cfc2a249ac67aeaa0d61fc30c32a4c782d9ba5",
+        "tools/target9000-card-spec.json": "10f84fa1779fe1df7ce5f12804b11dc4eb2dad125f230df136d95370e52cd3a4",
+        "tests/standard1699-effects.test.mjs": "2ba89474004a66f31d425f78e1ea97ae09910fe30c40dffe9e8492ad4c5f2874"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -544164,14 +544486,14 @@
       },
       "phaseRange": [
         1614,
-        1698
+        1699
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 263,
+      "addedNames": 266,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check-verified",
+        "name": "check",
         "command": [
           "npm",
           "run",
@@ -544179,23 +544501,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.668,
-        "log": "tmp/duema-phase-1698/check-verified.log",
-        "logSha256": "eba47117b702b3df90ef285a73f991581a88f70fab2730b77ca64c85534f1e90"
+        "seconds": 20.746,
+        "log": "tmp/duema-phase-1699-new/check.log",
+        "logSha256": "fa9ae67ea713e73eeacbea49d8198772b537ce99bcbbca16d9236561bc87c583"
       },
       "latestAudit": {
-        "name": "audit-verified",
+        "name": "audit",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.451,
-        "log": "tmp/duema-phase-1698/audit-verified.log",
-        "logSha256": "ef5ede4a0976fac9d5f210a46b259e013c36db4a4a01c6c0d91e94dca9fc7351"
+        "seconds": 11.569,
+        "log": "tmp/duema-phase-1699-new/audit.log",
+        "logSha256": "08297d0680decfcfee737965966ad363608fae8b8b00f650ef6f32edc476fb7c"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1698.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1699.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -545313,11 +545635,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9333,
-      "remaining": 167,
+      "currentNames": 9336,
+      "remaining": 164,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T01:13:39.148Z",
+      "checkedAt": "2026-11-23T03:34:31.234Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -597462,11 +597784,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1698,
+    "phase": 1699,
     "threshold": 9500,
-    "supportedNames": 9333,
-    "pendingNames": 2492,
-    "checkedAt": "2026-11-23T01:13:39.148Z",
+    "supportedNames": 9336,
+    "pendingNames": 2489,
+    "checkedAt": "2026-11-23T03:34:31.234Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -597475,7 +597797,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1698.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1699.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
