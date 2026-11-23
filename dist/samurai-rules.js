@@ -225,6 +225,8 @@ export function createSamuraiRules(api){
    if(c.samuraiGenerate)on(s,p,x,'g18_Generate');
    if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');
   }
+  if(c.type==='gear')for(const watcher of creatures(s,p))if(!watcher.sealed&&!watcher.faceDown&&effective(watcher,s).g1700GearBlockerDestroy)
+   on(s,p,watcher,'g34_Target',{to:'grave',filter:{blocker:true},optional:true,title:'破壊する相手のブロッカーを1体まで選ぶ'});
   if(c.type==='gear'&&options.execution)
    for(const watcher of creatures(s,p)){
     if(effective(watcher,s).g931GenerateDraw)on(s,p,watcher,'g34_Draw',{n:1,optional:true});

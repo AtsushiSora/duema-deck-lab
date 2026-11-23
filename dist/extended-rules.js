@@ -893,10 +893,14 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
   for(const {uid,incarnation,source} of first.sources)
    enqueue(s,p,{uid,incarnation,source,effect:'extended',task:task('g34_FirstDiscardUse1268',p,source,{refs:first.refs})});
  }
+ function discardCarol1700(s,p,x){
+  if(card(x).g1700DiscardCarol&&!api.handAbilityIgnored(s,x))six.send(s,p,x,'IfOwn',{filter:{all:[{g568ManaColors:['水','火']},{g1485BattleName:{name:'世露詞駆 キャロル',absent:true}}]},defs:[{op:'GraveSummonWatch766',serial:x.zoneSerial||0}]});
+ }
  function afterDiscard(s,t,x,discarded,group=s.extDiscardBatches?.[t.batchId],graveWatchers=group?.g1284Watchers){saga.discarded(s,t,x,discarded);environment.discarded(s,t,x,discarded);six.fifteen.discarded(s,t,x,discarded);
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
+   discardCarol1700(s,t.p,x);
    if(card(x).g1686DiscardGaia&&t.p!==s.active&&!api.handAbilityIgnored(s,x))enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Select',t.p,x.cardId,{origin:'extra',n:1,deploy:true,optional:true,filter:{creature:true,g1085Psychic:true,exactId:'dmr01-v02'},title:'元のガイアール・カイザーを1体まで出す'})});
    if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))
     enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discardedSpell1207',t.p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0,g1207GraveExecutions:x.g1207GraveExecutions||0})});
@@ -1071,7 +1075,7 @@ if(f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.to='hand';f.g416S
  return {
   entryWouldReplace753:(s,p,c)=>galaxy.entryWouldReplace(s,p,c,'mana',false),swapped753:magic.swapped,
   requested393C,requested393D,requested393J,requested393P,photo160,photo159,utilityLightControl,utilityTwinSupport,utilityRaid,utilityGraveKnights,utilityRomano,utilityNatureSupport,utilityGuard,utilityDragon,utilityTide,utilityTop,utilityControl,spellTax:utilityControl.spellTax,utilityExpansion,utilityWater,utilityNature,utilityDark,saga,control,seed,cyber,firebird,combat,junior,history,revisions,continuation,original,environment,recommended,six,photo,golgy,viride,originAllowed:viride.originAllowed,everSaver:viride.everSaver,virideDiscount:viride.discount,
-  notifyHandDiscard848(s,p,x){notifyGraveDiscard1284(s,p,graveDiscardWatch1284(s,p).filter(r=>r.uid!==x?.uid));recordFirstDiscard1037(s,p);notifyDiscard848(s,p,discardWatchers848(s,p),1);if(x)discardByType1241(s,p,x);},
+  notifyHandDiscard848(s,p,x){notifyGraveDiscard1284(s,p,graveDiscardWatch1284(s,p).filter(r=>r.uid!==x?.uid));recordFirstDiscard1037(s,p);notifyDiscard848(s,p,discardWatchers848(s,p),1);if(x){discardCarol1700(s,p,x);discardByType1241(s,p,x);}},
   abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w,escape)=>abyss.beginSB(s,p,a,w,escape),discardManaSource,forcedDiscard(s,p,uids,source,{allowTurnReplacement=false,replaceToMana=false}={}){
    const event={p,source,n:1,causedBy:p,g848Grouped:true},watchers=discardWatchers848(s,p);
    const graveWatchers=graveDiscardWatch1284(s,p);
