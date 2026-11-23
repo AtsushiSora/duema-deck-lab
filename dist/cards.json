@@ -300041,15 +300041,212 @@
       ],
       "supportBatch": "phase-1727",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-065",
+      "name": "時空の花カイマン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ビーストフォーク",
+      "text": "覚醒-このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分の山札の上から１枚目をマナゾーンに置く。その攻撃の後、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-065",
+      "limit": 4,
+      "psychic": true,
+      "g482Unblocked": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "華獣の覚醒者アリゲーター",
+        "type": "creature",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 10,
+        "power": 8000,
+        "race": "ビーストフォーク",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-065b.jpg",
+        "breaker": 2,
+        "g482Unblocked": null,
+        "g34Attack": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1728",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx02-001",
+      "name": "時空の侍ボルメテウス・若武者・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "このクリーチャーが攻撃する時、相手のパワー3000以下のクリーチャーを１体破壊する。\n覚醒 - 自分のターンのはじめに、相手のシールドが２枚以下であれば、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【呪文面】\nこのクリーチャーが攻撃する時、相手のパワー9000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-001",
+      "limit": 4,
+      "psychic": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "opponent": true,
+              "max": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "戦国の覚醒者メビウス・武者・ドラゴン",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 14,
+        "power": 9000,
+        "race": "アーマード・ドラゴン/サムライ",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-001b.jpg",
+        "breaker": 2,
+        "g174Start": null,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 9000
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1728",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-054",
+      "name": "マシュマロ人形ザビ・ポリマ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デスパペット/エイリアン",
+      "text": "覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《ギル・ポリマのペンチ》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(マシュマロ人形ザビ・ポリマ/ギル・ポリマのペンチ)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-054",
+      "limit": 4,
+      "psychic": true,
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partner": "dmr01-061"
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "幻惑の魔手ドン・マシュマロ",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 9,
+        "power": 6000,
+        "race": "デスパペット/ゼノパーツ/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-054b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true
+      },
+      "supportBatch": "phase-1728",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-061",
+      "name": "ギル・ポリマのペンチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ゼノパーツ/エイリアン",
+      "text": "(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)\n【覚醒リンク面】\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nリンク解除(このクリーチャーがバトルゾーンを離れる時、そのサイキック・セルのいずれか１枚を選んで超次元ゾーンに戻し、残りのカードを裏返す)\n※覚醒リンクするために必要なカード(マシュマロ人形ザビ・ポリマ/ギル・ポリマのペンチ)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-061",
+      "limit": 4,
+      "psychic": true,
+      "g1355LinkedFace": {
+        "name": "幻惑の魔手ドン・マシュマロ",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 9,
+        "power": 6000,
+        "race": "デスパペット/ゼノパーツ/エイリアン",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-061b.jpg",
+        "breaker": 2,
+        "g1355Unlink": true
+      },
+      "supportBatch": "phase-1728",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1727,
-    "checkedAt": "2026-11-23T09:16:48.526Z",
-    "baseCount": 9418,
-    "newEffectCards": 2,
+    "phase": 1728,
+    "checkedAt": "2026-11-23T09:24:11.269Z",
+    "baseCount": 9420,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9420,
+    "totalCount": 9424,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -328412,6 +328609,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/34840/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1727,
+        "checkedAt": "2026-11-23T09:16:48.526Z",
+        "baseCount": 9418,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9420,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "9500へ公式全文対応を継続"
