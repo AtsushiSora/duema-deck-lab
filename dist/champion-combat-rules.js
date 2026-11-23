@@ -12,29 +12,31 @@ export function createCombatChampionRules(api){
  function look(s,t,n,publicly=false){const own=s.players[t.p],held=reserved(own),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,lookN(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,publicly?'reveal':'look',card(t.source).name+'：山札の上'+xs.length+'枚'+(publicly?'を公開：'+xs.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});return xs.map(x=>x.uid);}
  const release=(s,p,ids)=>s.players[p].g34Protected=(s.players[p].g34Protected||[]).filter(id=>!ids.includes(id));
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
- const canPut=(s,p,x,z,execution=false)=>['creature','seed'].includes(card(x).type)&&allowedZone(s,p,z)&&(!execution||api.canCast(s,p,card(x),z))&&api.canEnter(s,p,card(x),{origin:z,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
- function deploy(s,t,base=null){const own=s.players[t.p],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||!canPut(s,t.p,x,t.origin,!!t.execution))return false;if(t.execution){api.cast(s,t.p,x.uid,true,base,0,null,t.origin,t.reason||'アタック・チャンス');return true;}remove(own[t.origin],x.uid);release(s,t.p,[x.uid]);clear(x,'battle');api.enter(s,t.p,x,base,{origin:t.origin,execution:false});if(t.orderGrant)x.g50OrderGrant={p:t.p,turns:own.turns};if(t.origin==='deck')api.deckCheck(s,t.p);return true;}
+ const canPut=(s,p,x,z,execution=false,order=false)=>(order?['creature','seed','aura','field','gear','duelist']:['creature','seed']).includes(card(x).type)&&allowedZone(s,p,z)&&(!execution||api.canCast(s,p,card(x),z))&&api.canEnter(s,p,card(x),{origin:z,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
+ function deploy(s,t,base=null){const own=s.players[t.p],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||!canPut(s,t.p,x,t.origin,!!t.execution,!!t.orderGrant))return false;if(t.execution){api.cast(s,t.p,x.uid,true,base,0,null,t.origin,t.reason||'アタック・チャンス');return true;}remove(own[t.origin],x.uid);release(s,t.p,[x.uid]);clear(x,'battle');api.enter(s,t.p,x,base,{origin:t.origin,execution:false});if(t.orderGrant)x.g50OrderGrant={p:t.p,turns:own.turns};if(t.origin==='deck')api.deckCheck(s,t.p);return true;}
  function ramp(s,t){const x=api.takeTop(s,t.p);if(x){const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)?'grave':'mana');clear(x,to);api.addZone(s,t.p,to,x);}api.deckCheck(s,t.p);return x;}
  function layerLeaving(s,p,top,y){if(card(y).g50Canbero&&!api.ignored(s,top))on(s,p,top,'CanberoUntap',{ids:api.layers(y).slice(1).map(z=>z.uid)});}
  function detach(s,p,x,uid){const parent=api.layers(x).find(y=>y.under?.some(z=>z.uid===uid));if(!parent)return false;const y=parent.under.find(y=>y.uid===uid);api.rememberEvolutionGraveSources?.(s,p,x,[y]);layerLeaving(s,p,x,y);if(api.recordLastPower)api.recordLastPower(s,p,x,[y]);remove(parent.under,uid);const rest=y.under||[];parent.under.push(...rest);clear(y,'grave');api.addZone(s,p,'grave',y);return true;}
  function breakAll(s,t,p,uids,follow){if(!uids.length){if(follow)put(s,follow);return;}api.interruptBreak(s,p,uids,follow||task('g50_Done',t.p,t.source));}
- function candidateRows(s,t,filter){return(t.zones||[t.origin||'hand']).flatMap(origin=>allowedZone(s,t.p,origin)?s.players[t.p][origin].filter(x=>filter(card(x),x)&&canPut(s,t.p,x,origin,!!t.execution)).map(x=>({x,origin})):[]);}
+ function candidateRows(s,t,filter){return(t.zones||[t.origin||'hand']).flatMap(origin=>allowedZone(s,t.p,origin)?s.players[t.p][origin].filter(x=>filter(card(x),x)&&canPut(s,t.p,x,origin,!!t.execution,!!t.orderGrant)).map(x=>({x,origin})):[]);}
  function chooseDeploy(s,t,filter,title){const rows=candidateRows(s,t,filter);choice(s,t,title,[...rows.map(({x,origin})=>opt((t.zones?.length>1?({hand:'手札：',mana:'マナ：',grave:'墓地：'}[origin]||''):'')+card(x).name,{uid:x.uid,origin},30+cost(card(x)),x.cardId)),...(t.optional===false?[]:[skip()])]);}
  function beginMeteor(s,t){const x=live(s,t),ids=x?api.layers(x).slice(1).map(x=>x.uid):[];if(ids.length>=3)choice(s,{...t,selected:[]},'メテオバーン：進化元を3枚墓地に置いて、相手のシールドをすべてブレイクする？',[opt('進化元を3枚選ぶ',true,100),skip()]);}
  function finishSacrifice(s,t){const moved=s.players[t.p].grave.some(x=>x.uid===t.target&&(x.zoneSerial||0)>t.serial);if(t.feather){if(!moved){const x=live(s,t);if(x)move(s,[{player:sourcePlayer(t),uid:x.uid,to:'grave',destroy:false}]);}}else if(moved)api.draw(s,t.p,2);}
  function castKing(s,t){
   const {p}=t,own=s.players[p],source=card(t.source),c={...source.g50KingFace,id:source.id};
   const rows=t.parts.map(r=>({...r,x:own[r.origin].find(x=>x.uid===r.uid)}));
-  if(rows.some(r=>!r.x||!allowedZone(s,p,r.origin)))return;
+  if(rows.some(r=>!r.x||c.type!=='spell'&&!allowedZone(s,p,r.origin)))return;
   if(t.g464Reducers!==undefined)c.g464Reducers=t.g464Reducers;
   if(api.offerExecution464(s,p,c,{...t,op:'g50_KingCast'}))return;
   const amount=api.summonCost(s,p,c),paidMana=api.pay(s,p,c);
   if(t.g464Reducers)api.consumeExecution464(s,p,c);
+  const origins=c.type==='spell'?rows.map(r=>({uid:r.uid,origin:r.origin,tapped:r.x.tapped,serial:r.x.zoneSerial,retain:r.origin==='mana'&&!allowedZone(s,p,'mana')})):null;
   for(const r of rows)remove(own[r.origin],r.uid);
   const top=rows.find(r=>r.x.cardId===t.source)||rows[0],inst=top.x;
   for(const r of rows)clear(r.x,'battle');
   inst.g50KingFace=true;
   inst.g50KingDefinition=t.source;
+  if(origins)inst.g1743KingOrigins=origins;
   inst.under=rows.filter(r=>r!==top).map(r=>r.x);
   api.completeExecution(s,p,inst,c,{ruleOrigin:top.origin,origin:top.origin,free:false,
    freeReason:'キング・セル合体',alternativeCost:null,paidMana,cost:amount,
@@ -72,7 +74,7 @@ export function createCombatChampionRules(api){
  case'g50_GodDiscard':if(own.hand.length)choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,(card(y).name.includes('モモキング')?35:0)+(rek(card(y))?20:0)-cost(card(y)),y.cardId)));break;
  case'g50_GodAfter':{const ids=s.g14Discards?.[t.key]||[];delete s.g14Discards?.[t.key];if(ids.some(id=>card(id).name.includes('モモキング'))&&x)api.untap(s,t.p,x);if(ids.some(id=>rek(card(id))))put(s,task('g34_Target',t.p,t.source,{to:'hand',title:'手札に戻す相手のクリーチャーを選ぶ'}));break;}
  case'g50_Nex':{const ids=look(s,t,1,true),y=pool(s,{...t,ids})[0];if(y&&(rek(card(y))||card(y).type==='creature'&&fire(card(y)))){if(canPut(s,t.p,y,'deck'))queue(s,t,'Deploy',{target:y.uid,origin:'deck',optional:false});else release(s,t.p,ids);}else if(y){remove(own.deck,y.uid);release(s,t.p,ids);clear(y,'grave');api.addZone(s,t.p,'grave',y);}release(s,t.p,ids.filter(uid=>uid!==y?.uid));api.deckCheck(s,t.p);break;}
- case'g50_Deploy':{const y=own[t.origin]?.find(y=>y.uid===t.target);if(!y||!canPut(s,t.p,y,t.origin,!!t.execution)){if(t.origin==='deck'&&y){release(s,t.p,[y.uid]);if(t.failureTo==='grave'){remove(own.deck,y.uid);clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}if(card(y).evolution)choice(s,t,'進化元を選ぶ',api.evolutionBases(s,t.p,card(y)).map(b=>opt(card(b).name,b.uid,10,b.cardId)));else deploy(s,t);break;}
+ case'g50_Deploy':{const y=own[t.origin]?.find(y=>y.uid===t.target);if(!y||!canPut(s,t.p,y,t.origin,!!t.execution,!!t.orderGrant)){if(t.origin==='deck'&&y){release(s,t.p,[y.uid]);if(t.failureTo==='grave'){remove(own.deck,y.uid);clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}if(card(y).evolution)choice(s,t,'進化元を選ぶ',api.evolutionBases(s,t.p,card(y)).map(b=>opt(card(b).name,b.uid,10,b.cardId)));else deploy(s,t);break;}
  case'g50_Duel':put(s,task('g34_Target',t.p,t.source,{to:'mana',title:'マナゾーンに置く相手のクリーチャーを選ぶ'}),{...t,op:'g50_DuelPut'});break;
  case'g50_DuelPut':chooseDeploy(s,{...t,origin:'mana'},c=>dragon(c)&&c.name.includes('ボルシャック')&&cost(c)<=own.mana.length,'マナから出すボルシャック・ドラゴンを選ぶ');break;
  case'g50_Secret':{const y=ramp(s,t);if(y&&dragon(card(y)))queue(s,t,'ManaReturn');break;}
@@ -95,8 +97,8 @@ export function createCombatChampionRules(api){
  case'g50_Rev0Evolve':{const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),base=own.battle.find(y=>y.uid===t.base);if(y&&base&&api.evolutionBases(s,t.p,card(y)).some(y=>y.uid===base.uid)&&api.canEnter(s,t.p,card(y),{origin:'hand',execution:false})){remove(own.hand,y.uid);clear(y,'battle');api.enter(s,t.p,y,base.uid,{origin:'hand',execution:false});}break;}
  case'g50_Chance':{const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);if(y&&canPut(s,t.p,y,'hand',true))choice(s,t,'アタック・チャンス：秘伝・ドラゴンを召喚する？',[opt('コストを支払わず召喚',true,35,y.cardId),skip()]);break;}
  case'g50_Order':{const rows=[0,1].flatMap(p=>creatures(s,p).filter(y=>!dragon(effective(y,s))).map(y=>({player:p,uid:y.uid,to:'hand',destroy:false})));queue(s,t,'OrderPut');if(rows.length)move(s,rows);break;}
- case'g50_OrderPut':chooseDeploy(s,{...t,zones:['mana','grave']},dragon,'マナ・墓地から出すドラゴンを選ぶ（好きな数）');break;
- case'g50_KingFinish':{const frame=s.extSpells?.find(f=>f.inst.uid===t.uid),y=frame?.inst;if(y){const parts=(y.under||[]).flatMap(api.layers);delete y.under;for(const z of parts){clear(z,'grave');api.addZone(s,t.p,'grave',z);}}break;}
+ case'g50_OrderPut':chooseDeploy(s,{...t,zones:['mana','grave'],orderGrant:true},dragon,'マナ・墓地から出すドラゴンを選ぶ（好きな数）');break;
+ case'g50_KingFinish':{const frame=s.extSpells?.find(f=>f.inst.uid===t.uid),y=frame?.inst;if(y&&!y.g1743KingOrigins){const parts=(y.under||[]).flatMap(api.layers);delete y.under;for(const z of parts){clear(z,'grave');api.addZone(s,t.p,'grave',z);}}break;}
  case'g50_Guard':ramp(s,t);put(s,task('g34_Target',t.p,t.source,{tap:true,optional:true,title:'Volzeos-Balamord：タップする相手を1体まで選ぶ'}));break;
  case'g50_Poleco':if(x)move(s,[{player:t.p,uid:x.uid,to:'hand',destroy:false}]);break;
  default:throw Error('未実装の歴代進化効果：'+t.op);
@@ -130,10 +132,16 @@ export function createCombatChampionRules(api){
  case'g50_OrderPut':if(v)put(s,{...t,op:'g50_Deploy',target:v.uid,origin:v.origin,orderGrant:true},t);else queue(s,t,'KingFinish');break;
  default:throw Error('未実装の歴代進化選択：'+t.op);
  }return true;}
- const kingRows=(s,p)=>['hand','mana'].flatMap(origin=>allowedZone(s,p,origin)?s.players[p][origin].map(x=>({x,origin})):[]);
- function kingSets(s,p,c){const rows=kingRows(s,p),names=c.g50KingParts;if(!names)return[];const options=names.map(name=>rows.filter(r=>card(r.x).name===name));if(options.some(xs=>!xs.length))return[];let out=[[]];for(const xs of options)out=out.flatMap(old=>xs.map(x=>[...old,x]));return out;}
+ const kingRows=(s,p,spell=false)=>['hand','mana'].flatMap(origin=>spell&&origin==='mana'||allowedZone(s,p,origin)?s.players[p][origin].map(x=>({x,origin})):[]);
+ function kingSets(s,p,c){const rows=kingRows(s,p,c.g50KingFace.type==='spell'),names=c.g50KingParts;if(!names)return[];const options=names.map(name=>rows.filter(r=>card(r.x).name===name));if(options.some(xs=>!xs.length))return[];let out=[[]];for(const xs of options)out=out.flatMap(old=>xs.map(x=>[...old,x]));return out;}
  return{run,chosen,layerLeaving,
- finishSpell(s,f){if(!f.inst.g50KingFace||!f.inst.under?.length)return;const parts=f.inst.under.flatMap(api.layers);delete f.inst.under;const to=['deck','mana'].includes(f.to)?f.to:'grave';for(const y of parts){clear(y,to);api.addZone(s,f.owner,to,y);}},
+ finishSpell(s,f){if(!f.inst.g50KingFace||!f.inst.under?.length)return;
+  const parts=f.inst.under.flatMap(api.layers),origins=f.inst.g1743KingOrigins||[];delete f.inst.under;delete f.inst.g1743KingOrigins;
+  const to=['deck','mana'].includes(f.to)?f.to:'grave';
+  function retained(y){const r=origins.find(r=>r.uid===y.uid);if(!r||r.origin!=='mana'||!r.retain&&allowedZone(s,f.owner,'mana'))return false;clear(y,'mana');y.tapped=r.tapped;if(r.serial===undefined)delete y.zoneSerial;else y.zoneSerial=r.serial;return true;}
+  for(const y of parts){if(retained(y))api.addZone(s,f.owner,'mana',y);else{clear(y,to);api.addZone(s,f.owner,to,y);}}
+  if(retained(f.inst)){f.to='mana';f.spell={...f.spell,summonOrigin:'mana'};}
+ },
  effect(s,p,c,uid,entry){if(!c.g50Effect)return false;put(s,task('g50_'+c.g50Effect,p,c.id,{uid,incarnation:entry?.incarnation||0,super:!!(entry?.super||c.superTriggerActive)}));return true;},
  entry(s,p,x,options={}){if(rek(card(x)))for(const y of s.players[p].battle)if(y.uid!==x.uid&&card(y).g50Kingdom&&!api.ignored(s,y))on(s,p,y,'KingdomOffer');},
  stateCheck(s){for(const p of[0,1])for(const top of s.players[p].battle){const all=api.layers(top),n=all.length;for(const x of all){const c=card(x);if(!c.g50Kingdom)continue;const previous=x.g50KingdomCount;x.g50KingdomCount=n;
@@ -156,7 +164,7 @@ export function createCombatChampionRules(api){
  leaving(s,p,x,snapshot,to,destroy){const row=snapshot?.find(r=>r.uid===x.uid&&r.p===p);if(row?.snow&&to==='grave'&&destroy)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Ramp',p,x.cardId,{n:1})});if(row?.canbero)on(s,p,x,'CanberoUntap',{ids:row.ids});},
  selected(s,p,a,d){const v=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(x=>x.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof v==='string'?[v]:v?.uid?[v.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)&&effective(x,s).g50Apollo)on(s,1-p,x,'ApolloMana',{selected:[]});},
  guardStrike(s,p){for(const x of creatures(s,p))if(effective(x,s).g50Volzeos)on(s,p,x,'Guard');},
- mainActions(s,p){const out=[],own=s.players[p];if(creatures(s,p).filter(x=>fire(effective(x,s))&&dragon(effective(x,s))).length>=4)for(const x of own.hand)if(card(x).g50Varga&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true}))out.push({kind:'play',uid:x.uid,cardId:x.cardId,cost:0,alternative:'combatZero',label:card(x).name+'をG・ゼロで召喚'});const seen=new Set();for(const row of kingRows(s,p)){const c=card(row.x);if(!c.g50KingParts||seen.has(c.g50KingFace.name))continue;seen.add(c.g50KingFace.name);const king={...c.g50KingFace,id:c.id};if(!api.canCast(s,p,king)||king.type==='creature'&&!api.canEnter(s,p,king,{origin:row.origin,execution:true})||!api.canPay(s,p,king))continue;for(const rows of kingSets(s,p,c))out.push({kind:'play',uid:rows[0].x.uid,cardId:c.id,cost:api.summonCost(s,p,king),alternative:'combatKing',parts:rows.map(r=>({uid:r.x.uid,origin:r.origin})),kingSource:c.id,label:king.name+'をキング・セルから合体して'+(king.type==='spell'?'唱える':'召喚')});}return out;},
+ mainActions(s,p){const out=[],own=s.players[p];if(creatures(s,p).filter(x=>fire(effective(x,s))&&dragon(effective(x,s))).length>=4)for(const x of own.hand)if(card(x).g50Varga&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true}))out.push({kind:'play',uid:x.uid,cardId:x.cardId,cost:0,alternative:'combatZero',label:card(x).name+'をG・ゼロで召喚'});const seen=new Set();for(const row of kingRows(s,p,true)){const c=card(row.x);if(!c.g50KingParts||seen.has(c.g50KingFace.name))continue;seen.add(c.g50KingFace.name);const king={...c.g50KingFace,id:c.id};if(!api.canCast(s,p,king)||king.type==='creature'&&!api.canEnter(s,p,king,{origin:row.origin,execution:true})||!api.canPay(s,p,king))continue;for(const rows of kingSets(s,p,c))out.push({kind:'play',uid:rows[0].x.uid,cardId:c.id,cost:api.summonCost(s,p,king),alternative:'combatKing',parts:rows.map(r=>({uid:r.x.uid,origin:r.origin})),kingSource:c.id,label:king.name+'をキング・セルから合体して'+(king.type==='spell'?'唱える':'召喚')});}return out;},
  alternative(s,p,a){if(a.alternative==='combatZero'){api.cast(s,p,a.uid,true,null,0,null,'hand','G・ゼロ');return;}castKing(s,{p,source:a.kingSource,parts:a.parts});},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const x of own.battle)if(x.g50OrderGrant?.p===p&&s.players[p].turns>x.g50OrderGrant.turns)delete x.g50OrderGrant;},
  };

@@ -74,7 +74,7 @@ export function createRecommendedRules(api){
   switch(t.op){
    case'g36Olive':{const target=s.players[v],xs=policyTake(s,v,'grave',api);for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,v,xs,t.source);api.log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});break;}
    case'g36Collapse':{const x=policyRemove(s,v.p,'mana',v.uid,api);if(x){clear(x,'deck');s.players[v.p].deck.unshift(x);api.log(s,t.p,'manaToTop',(v.p===t.p?'自分':'相手')+'のマナ1枚を山札の上に置く',{cardId:t.source});}break;}
-   case'g36WaterPick':{const x=policyRemove(s,t.p,'mana',v,api);if(x){const max=cost(card(x));clear(x,'hand');api.addZone(s,t.p,'hand',x);put(s,continuation(t,'g36WaterBounce',{max}));}break;}
+   case'g36WaterPick':{const selected=own.mana.find(x=>x.uid===v);if(selected){const max=cost(card(selected)),x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}put(s,continuation(t,'g36WaterBounce',{max}));}break;}
    case'g36WaterBounce':if(v)move(s,[{player:1-t.p,uid:v,to:'hand',destroy:false}]);break;
    case'g36Love':{
     const target=s.players[v],rows=['hand','grave'].flatMap(origin=>target[origin].map(x=>({origin,uid:x.uid,serial:x.zoneSerial||0})));

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9461,
-  "pendingNames": 2362,
-  "phase": 1742,
-  "added": 2,
+  "supportedNames": 9464,
+  "pendingNames": 2359,
+  "phase": 1743,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,14 +154,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1373,
+    "クリーチャー": 1372,
     "呪文": 261,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 207,
+    "進化クリーチャー": 206,
     "スター進化クリーチャー": 49,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -186,7 +186,7 @@
     "進化クリーチャー（超無限進化）": 3,
     "ドラグハート・ウエポン": 34,
     "進化クリーチャー(進化V)": 11,
-    "キング・セル": 5,
+    "キング・セル": 4,
     "NEO GRクリーチャー": 1,
     "エグザイル・クリーチャー": 20,
     "進化クリーチャー(墓地進化V)": 1,
@@ -220,12 +220,12 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1749,
-    "複数面・特殊カードタイプまたは情報不足": 507,
+    "未対応の能力文": 1748,
+    "複数面・特殊カードタイプまたは情報不足": 506,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
-    "複雑な進化条件": 11,
+    "複雑な進化条件": 10,
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 7,
     "コスト・文明の個別処理が必要": 2,
@@ -555171,27 +555171,407 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1743,
+      "checkedAt": "2026-11-23T12:40:42.290Z",
+      "baseline": "06a6d170",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9461,
+      "currentNames": 9464,
+      "remainingNames": 36,
+      "added": [
+        {
+          "id": "dm36-023",
+          "name": "奈落の魔黒ジャック・ライガー"
+        },
+        {
+          "id": "dmrp18-050",
+          "name": "群蟲 シェルフォ-２"
+        },
+        {
+          "id": "dmex18-011",
+          "name": "新世界王の創造"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "06a6d170",
+        "originalDefinitionsUnchanged": 9461,
+        "added": 3,
+        "uniqueNames": 9464,
+        "uniqueIds": 9464,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9461,
+        "existingImageReferenceRowsUnchanged": 11727,
+        "officialPrintsReviewed": 5,
+        "officialImagesReviewed": 7,
+        "existingPinsUnchanged": 1082
+      },
+      "results": {
+        "related-king": {
+          "name": "related-king",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=King cells|King Cells|Three King|New World Order|Volzeos|Hero Story",
+            "tests/champion-combat-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.31,
+          "log": "tmp/duema-phase-1743/related-king.log",
+          "passed": 5,
+          "logSha256": "c7c1431ea95935c3d102ef87102250e9bf2c6d07d33e354eaaa0406b1b5c34fe"
+        },
+        "related-deck-grave": {
+          "name": "related-deck-grave",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1550-effects.test.mjs",
+            "tests/standard1615-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.563,
+          "log": "tmp/duema-phase-1743/related-deck-grave.log",
+          "passed": 57,
+          "logSha256": "394b41549cad8bc86186cedb20301f73a42e9097bdc41e147ca7359eff5dabfc"
+        },
+        "related-policy": {
+          "name": "related-policy",
+          "command": [
+            "node",
+            "--test",
+            "tests/champion-zone-policy.test.mjs",
+            "tests/recommended-cards.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 52.313,
+          "log": "tmp/duema-phase-1743/related-policy.log",
+          "passed": 35,
+          "logSha256": "d71a51df6dc29359dcca5d06b7fa6c83aa14d3ad2eb449ce92829c84ad2f1c8d"
+        },
+        "related-sasage": {
+          "name": "related-sasage",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Sasage",
+            "tests/standard1507-effects.test.mjs",
+            "tests/standard1560-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.662,
+          "log": "tmp/duema-phase-1743/related-sasage.log",
+          "passed": 2,
+          "logSha256": "e4a2cd8e619ee665b6c0de44adb0b74e979c619187b9ab9a421177ace07d9ad6"
+        },
+        "related-evidence": {
+          "name": "related-evidence",
+          "command": [
+            "node",
+            "--test",
+            "tests/official-face-image-evidence.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.136,
+          "log": "tmp/duema-phase-1743/related-evidence.log",
+          "passed": 18,
+          "logSha256": "cd0dfdf2dd1c50f964fe3cebfb9304ffd6ff092286dc197b05e9aa73c07bce5d"
+        },
+        "related-online": {
+          "name": "related-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.65,
+          "log": "tmp/duema-phase-1743/related-online.log",
+          "passed": 55,
+          "logSha256": "3c5661f299ce77624be2fd3d11bc6ce0eb52ecaccf65b857c52934be5ec602a1"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1743.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.536,
+          "log": "tmp/duema-phase-1743/official.log",
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.723,
+          "log": "tmp/duema-phase-1743/check.log",
+          "logSha256": "d6720522b8168d5e1267dddd625672fe35c78efeba0bf4d07b00492acb03834b"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.94,
+          "log": "tmp/duema-phase-1743/audit.log",
+          "logSha256": "5758a93792c4bd6db1a1a8cb458883f2ea16ec53389a0ee191d1e4960f60c449"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.418,
+          "log": "tmp/duema-phase-1743/target9500.log",
+          "logSha256": "14fab0753453ad451ff68e18bf2260457f44568f9904fafa1d0c9c2da0a877ac"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1743/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.365,
+          "log": "tmp/duema-phase-1743/invariants.log",
+          "logSha256": "ec6ce7afcf11592292c64b077d0e7d11f0ea00759a884ee6a93ac1787164b338"
+        },
+        "focused": {
+          "passed": 55,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.123,
+              "log": "tmp/duema-phase-1743/focused.log",
+              "logSha256": "b290892abf55b30354ccf5592e8bda541ec43ff3e41d49969ae66e7331d037b1"
+            },
+            {
+              "name": "focused-king-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Creation full|QA40946|pending King",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.773,
+              "log": "tmp/duema-phase-1743/focused-king-fix.log",
+              "logSha256": "e48ff152d0415ff3974a35c35e692638a2a6ddf2f3f66ebf71d4364933b49022"
+            },
+            {
+              "name": "focused-extra",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Shellfo preserves|QA40160|Dragon CrossGear|Endezaaku|QA40947|Creation GStrike",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.725,
+              "log": "tmp/duema-phase-1743/focused-extra.log",
+              "logSha256": "aa83c5d912b6557a6adb5c802fc1397588a3b382bd53502eb0aec1754db68eb8"
+            },
+            {
+              "name": "focused-wide-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Dragon CrossGear|Endezaaku",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.671,
+              "log": "tmp/duema-phase-1743/focused-wide-fix.log",
+              "logSha256": "5621266b7e9db9107e8d7d67f78dda942f743c94418ca84932761068f9e8bc61"
+            },
+            {
+              "name": "focused-final-edges",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Jack deck recovery|Frozen Creation|Both frozen|grants to a real|phase1743 legal",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.619,
+              "log": "tmp/duema-phase-1743/focused-final-edges.log",
+              "logSha256": "7645e864cde6d2c245745bea859b993a6ee6241efb3996d51fe3caece00d0293"
+            },
+            {
+              "name": "focused-aura-grant",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Endezaaku",
+                "tests/standard1743-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.66,
+              "log": "tmp/duema-phase-1743/focused-aura-grant.log",
+              "logSha256": "b05a56178ccc1f2ea4c4912568cb66dbda36d4b4d4853a67c0b1e876c21ec741"
+            }
+          ],
+          "coverage": "55 unique cases pass. Corrected fixture function selector, deferred legacy KingFinish, and Order eligibility propagation; original failed attempts retained and all affected final cases rerun."
+        }
+      },
+      "totalTestsPassed": 227,
+      "hashes": {
+        "dist/cards.json": "d327d99ebe95d01cd339ff08c4a5d6818db5267317042c3f0b3d0f7434df13c3",
+        "dist/engine.js": "82fd078a6ec071610da73983df737b6a0a7d8fc5f2ca27087c52e42053b8b4a4",
+        "dist/six-photo-rules.js": "49c1b09447204c5c3f9a61d7f272ff66ea24c5083746ff081a2c961b44d04e51",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
+        "dist/champion-combat-rules.js": "bc6e407ace312809ada71c890b7f1420e4b9f5757d86d74566ff0163223c2316",
+        "dist/recommended-rules.js": "6be2b8bb86b1c893e68413b350553f8c45463f50e3c73b08d280f4a36002cfb5",
+        "dist/mana-origin1653.js": "fa47a4dbd5ee8c8581ee59d42327763dba3f92a8e85950b3260677253cb76433",
+        "tools/official-face-image-evidence.mjs": "09abe06e20b2ab761ccaaff53cb77fc098ef3ef2577b6b94347ce9b0520326d2",
+        "tests/official-face-image-evidence.test.mjs": "9d3fe1f4996aad2dacb5ab3aa5a337bccd232c9f882273da52eaa42029702162",
+        "dist/online-compatibility.js": "e42131f7665f63d0c074875ff5c5fdaac1a77fafb3c2cfec700340e0d2de60dc",
+        "dist/card-images.js": "1a05f9d3f3d2ac1febfc1b0f3a092e1cbf76c30fd2e1c2e94d800678ab21adef",
+        "tools/target9000-card-spec.json": "da703b7f2251a7ffc5b797d11d2a68e53f4ba0e8c03f89b61966d4ed4bba0ad8",
+        "tests/standard1743-effects.test.mjs": "ed3f0ae635e16fd020b183e639b3c3ed8eced94ccddf9b527d0c138bb2582e4b"
+      },
+      "engineVersion": "0.602.260",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1743-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.123,
+          "log": "tmp/duema-phase-1743/focused.log",
+          "logSha256": "b290892abf55b30354ccf5592e8bda541ec43ff3e41d49969ae66e7331d037b1"
+        },
+        {
+          "name": "focused-extra",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Shellfo preserves|QA40160|Dragon CrossGear|Endezaaku|QA40947|Creation GStrike",
+            "tests/standard1743-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.725,
+          "log": "tmp/duema-phase-1743/focused-extra.log",
+          "logSha256": "aa83c5d912b6557a6adb5c802fc1397588a3b382bd53502eb0aec1754db68eb8"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1743.json",
+      "supported": 9464,
+      "pending": 2359,
+      "reason": "Full Jack Liger E soul evolution and optional self deck-to-grave recovery, Shellfo2 opponent mana departure lock/Sasage2, plus required Creation King Cell and full combined New World Order. Printed-name Dolhakaba duplicate excluded.",
+      "validationNotes": [
+        "Actual nameKey9461→9464. Three complete new canonical names, five original/reprint pages and seven images reviewed. Jack printed E Soul/evolution symbol, Shellfo Sasage2/mana1, Creation full KingCell/composite rules confirmed. Old Creation HTML omits the combined back text/type; existing complete details unchanged and cross-checked against exact matching front plus hashed official later print full HTML/combined image. Added narrowly constrained KingCell evidence validation and positive/negative verifier tests; no arbitrary existing field overrides.",
+        "Jack Liger uses native E Soul base eligibility, printed E Soul,6000/W and paid4. Added optional self grave-hand continuation to existing tracked deck-to-grave arrival hook; original Arrogant1615 Zombie behavior unchanged. Actual BoneOdori self-mill accept/decline, hand discard exclusion, grave lock and Genmu ability ignore, sealed base, source physical UID and both players verified.",
+        "Shellfo g1743ManaStay narrows native origin restriction to opponent mana only; grave movement/own mana, ordinary hand summons, charging and mana tapping remain legal. Four actual native mana destination paths, hand recovery stop, mana summon/mana evolution prohibition, ignored source and Sasage2 paid Dispector/donor death verified.",
+        "Required new Creation reuses existing full NewWorldOrder face, GStrike and hand-mana untap. Exact official QA40946 frozen KingCell cast reproduced with Creation or Destruction in mana, both parts in mana,13 mana paid including the retained cell itself, preserved tap/zone serial, pending encrypted room restoration and physical conservation. New narrow spell component-origin tracking retains blocked mana components through combination/finish; ordinary King creature combinations unchanged and legacy saved casts still work. Deferred old Order KingFinish so component movement is handled once by normal spell finish; internal origins cleared on completion.",
+        "NewWorldOrder paid13 and actual Akashic3 free cast QA43953, full nonDragon bounce, optional grave Dragon deployment and haste/blocker until next own start pass. Expanded only Order deployment to real Dragon Aura/CrossGear/field through native enter; actual Endezaaku/GR host QA40945 confirms abilities given to Aura, not the attached GR creature. Actual Gods Trial exposes standalone cell cost0 QA40947; legal40 new decks preserve80 cards and schemas.",
+        "Related QA40160 exposed old WaterPick incorrectly suppressing its following bounce when mana retrieval was blocked. Fixed to reference the selected original cost independently of successful movement. Reproduced with real Bolshack Dragon mana cost6 and actual DondonMizumaku/Shellfo on both seats; the QA named final Glenmolt is unregistered but its unique abilities are irrelevant to this cost-reference rule and not claimed tested.",
+        "Original-print Dolhakaba promo is already registered under canonical dmr23-043 Greek Delta name. Official QA32408 and printed art confirm identity; do not count Katakana promo as a new card or modify existing definition. Promo import alias mapping not changed.",
+        "55 focused unique cases and affected short king/deck-grave/zone-policy/Sasage/evidence/online-save regressions pass, including six related legal CPU games in52.3sec; npm run check/audit/target/invariants pass. Old pending and interrupted full-suite status preserved; no push/publication/Netlify."
+      ],
+      "held": [
+        {
+          "id": "promoy15-078",
+          "name": "終断デルタ ドルハカバ",
+          "reason": "NOT NEW: official QA32408 and printed promo name confirm same card as registered dmr23-043終断Δドルハカバ. Current promo HTML also omits Sonic Command middle dot; no duplicate battle definition or count. Existing definition kept. Promo alias import mapping not changed in this batch."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "promoy9-040",
+          "name": "爆竜パーフェクトストーム・XX",
+          "reason": "Review native optional one named hyperdimensional grave spell bottom leave replacement and W breaker."
+        },
+        {
+          "id": "dm22-s03",
+          "name": "黒神龍グールジェネレイド",
+          "reason": "Review existing grave Dragon death observer and self revival with exact same-name exclusion."
+        },
+        {
+          "id": "dmrp06-019",
+          "name": "整刑医 ルックス",
+          "reason": "Review optional self death-bottom replacement and mandatory follow-up grave creature cost<=6 deployment."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1742,
-    "nextPhase": 1743,
+    "lastVerifiedPhase": 1743,
+    "nextPhase": 1742,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "promoy15-078",
-        "name": "終断デルタ ドルハカバ",
-        "reason": "Native speed attacker and conditional grave summon with own field presence."
+        "id": "promoy9-040",
+        "name": "爆竜パーフェクトストーム・XX",
+        "reason": "Review native optional one named hyperdimensional grave spell bottom leave replacement and W breaker."
       },
       {
-        "id": "dm36-023",
-        "name": "奈落の魔黒ジャック・ライガー",
-        "reason": "Review exact E Soul evolution and optional self recovery from deck mill."
+        "id": "dm22-s03",
+        "name": "黒神龍グールジェネレイド",
+        "reason": "Review existing grave Dragon death observer and self revival with exact same-name exclusion."
       },
       {
-        "id": "dmrp18-050",
-        "name": "群蟲 シェルフォ-２",
-        "reason": "Review native Sasage2 and opponent mana departure prohibition for all movement paths."
+        "id": "dmrp06-019",
+        "name": "整刑医 ルックス",
+        "reason": "Review optional self death-bottom replacement and mandatory follow-up grave creature cost<=6 deployment."
       }
     ],
     "steps": [
@@ -556076,23 +556456,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1742,
-      "baseline": "00969b27",
-      "supportedNames": 9461,
-      "artifact": "tools/target9500-registration-checkpoint-1742.json",
-      "checkedAt": "2026-11-23T12:22:34.901Z"
+      "phase": 1743,
+      "baseline": "06a6d170",
+      "supportedNames": 9464,
+      "artifact": "tools/target9500-registration-checkpoint-1743.json",
+      "checkedAt": "2026-11-23T12:40:42.290Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T12:22:34.901Z",
+      "checkedAt": "2026-11-23T12:40:42.290Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9461,
-      "remainingNames": 39,
+      "currentNames": 9464,
+      "remainingNames": 36,
       "duplicateNames": 0,
-      "engineVersion": "0.602.259",
+      "engineVersion": "0.602.260",
       "added": [
         {
           "id": "dmr12-008",
@@ -557657,6 +558037,18 @@
         {
           "id": "promoy13-081",
           "name": "弐刀龍覇 グレンモルト「双」"
+        },
+        {
+          "id": "dm36-023",
+          "name": "奈落の魔黒ジャック・ライガー"
+        },
+        {
+          "id": "dmrp18-050",
+          "name": "群蟲 シェルフォ-２"
+        },
+        {
+          "id": "dmex18-011",
+          "name": "新世界王の創造"
         }
       ],
       "results": {
@@ -557772,16 +558164,20 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "f56a7eb615d48d4e90fc9c1fc8cf5462bb68c3cec3654e84f0778fbbb4c06e6d",
-        "dist/engine.js": "5b43cdb58c75d118aabed75611fcadf5acc3dde5e9fca908c7e7b6ba698bc9fd",
+        "dist/cards.json": "d327d99ebe95d01cd339ff08c4a5d6818db5267317042c3f0b3d0f7434df13c3",
+        "dist/engine.js": "82fd078a6ec071610da73983df737b6a0a7d8fc5f2ca27087c52e42053b8b4a4",
         "dist/six-photo-rules.js": "49c1b09447204c5c3f9a61d7f272ff66ea24c5083746ff081a2c961b44d04e51",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
         "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
-        "dist/redzone-rules.js": "cde1bdfe6a29395a1702500c0be5be1ba30f11dadeefcea55cd31ac38b176fe5",
-        "dist/online-compatibility.js": "1b0837711da2b3d7d6d06ea71446079f97e583524852ab312dc0bbdf440d770e",
-        "dist/card-images.js": "840e07fc801932fe99a60ef3df11b6cda6e972f390b36f3c53ca720db54dbdd3",
-        "tools/target9000-card-spec.json": "f9e1448e2cb66865baef13f5aa852acad746307d0856831cd9180c94fa9be695",
-        "tests/standard1742-effects.test.mjs": "8ff0186ecc131e84b58ac9969e2b6932d08be55778b19edc4e9cbc6135405637"
+        "dist/champion-combat-rules.js": "bc6e407ace312809ada71c890b7f1420e4b9f5757d86d74566ff0163223c2316",
+        "dist/recommended-rules.js": "6be2b8bb86b1c893e68413b350553f8c45463f50e3c73b08d280f4a36002cfb5",
+        "dist/mana-origin1653.js": "fa47a4dbd5ee8c8581ee59d42327763dba3f92a8e85950b3260677253cb76433",
+        "tools/official-face-image-evidence.mjs": "09abe06e20b2ab761ccaaff53cb77fc098ef3ef2577b6b94347ce9b0520326d2",
+        "tests/official-face-image-evidence.test.mjs": "9d3fe1f4996aad2dacb5ab3aa5a337bccd232c9f882273da52eaa42029702162",
+        "dist/online-compatibility.js": "e42131f7665f63d0c074875ff5c5fdaac1a77fafb3c2cfec700340e0d2de60dc",
+        "dist/card-images.js": "1a05f9d3f3d2ac1febfc1b0f3a092e1cbf76c30fd2e1c2e94d800678ab21adef",
+        "tools/target9000-card-spec.json": "da703b7f2251a7ffc5b797d11d2a68e53f4ba0e8c03f89b61966d4ed4bba0ad8",
+        "tests/standard1743-effects.test.mjs": "ed3f0ae635e16fd020b183e639b3c3ed8eced94ccddf9b527d0c138bb2582e4b"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -557845,10 +558241,10 @@
       },
       "phaseRange": [
         1614,
-        1742
+        1743
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 391,
+      "addedNames": 394,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -557860,9 +558256,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.638,
-        "log": "tmp/duema-phase-1742/check.log",
-        "logSha256": "fbad5b7032e4f988c9de9fc9071a9b7bf5c15891bc6475ff518272a418f0eed2"
+        "seconds": 19.723,
+        "log": "tmp/duema-phase-1743/check.log",
+        "logSha256": "d6720522b8168d5e1267dddd625672fe35c78efeba0bf4d07b00492acb03834b"
       },
       "latestAudit": {
         "name": "audit",
@@ -557872,11 +558268,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.316,
-        "log": "tmp/duema-phase-1742/audit.log",
-        "logSha256": "9754c568f33f84ad1e6a30f284ed0e6fef067ea9a0144a56322be875af6f83de"
+        "seconds": 10.94,
+        "log": "tmp/duema-phase-1743/audit.log",
+        "logSha256": "5758a93792c4bd6db1a1a8cb458883f2ea16ec53389a0ee191d1e4960f60c449"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1742.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1743.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -558994,11 +559390,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9461,
-      "remaining": 39,
+      "currentNames": 9464,
+      "remaining": 36,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T12:22:34.901Z",
+      "checkedAt": "2026-11-23T12:40:42.290Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -611206,11 +611602,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1742,
+    "phase": 1743,
     "threshold": 9500,
-    "supportedNames": 9461,
-    "pendingNames": 2362,
-    "checkedAt": "2026-11-23T12:22:34.901Z",
+    "supportedNames": 9464,
+    "pendingNames": 2359,
+    "checkedAt": "2026-11-23T12:40:42.290Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -611219,7 +611615,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1742.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1743.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

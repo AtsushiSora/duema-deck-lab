@@ -1,9 +1,24 @@
-// Only fill absent spell type or civilization fields after reviewing the exact official image.
+// Fill absent printed fields only with explicit, hash-verified official image evidence.
 import assert from'node:assert/strict';
 import{createHash}from'node:crypto';
 import{parseDetail}from'./detail-parser.mjs';
 export async function verifiedOfficialFaces(html,row,fetchImage=async source=>{const r=await fetch(source,{signal:AbortSignal.timeout(30000)});assert.ok(r.ok&&r.headers.get('content-type')?.startsWith('image/'));return Buffer.from(await r.arrayBuffer());}){
- const faces=parseDetail(html,row).faces,evidence=row.faceImageEvidence;if(!evidence)return faces;
+ const faces=parseDetail(html,row).faces,evidence=row.faceImageEvidence,combined=row.kingCellCombinedEvidence;
+ if(combined){
+  assert.equal(faces.length,2);assert.equal(faces[0].typeText,'キング・セル');
+  assert.equal(faces[1].typeText,'');assert.equal(faces[1].abilityText,'');assert.ok(faces[1].missingFields.includes('type'));
+  assert.ok(combined.reviewedAt&&combined.reason);assert.equal(new URL(combined.source).hostname,'dm.takaratomy.co.jp');
+  const response=await fetch(combined.source,{signal:AbortSignal.timeout(30000)});assert.ok(response.ok);const reference=await response.text();
+  assert.equal(createHash('sha256').update(reference).digest('hex'),combined.htmlSha256);
+  const complete=parseDetail(reference,{id:combined.id,name:row.name}).faces;
+  assert.deepEqual(complete[0],faces[0]);assert.equal(complete[1].typeText,'呪文');assert.ok(complete[1].abilityText.length>0);
+  assert.deepEqual({...complete[1],typeText:'',abilityText:'',missingFields:['type']},faces[1]);
+  const urls=[...reference.matchAll(/class=["']card-img["'][^>]*>\s*<img[^>]*src=["']([^"']+)/g)].map(x=>new URL(x[1],combined.source).href);
+  assert.equal(urls[1],combined.image);assert.equal(new URL(combined.image).hostname,'dm.takaratomy.co.jp');
+  assert.equal(createHash('sha256').update(await fetchImage(combined.image)).digest('hex'),combined.imageSha256);
+  return complete;
+ }
+ if(!evidence)return faces;
  assert.ok(evidence.reviewedAt&&evidence.reason);assert.match(evidence.sha256,/^[a-f0-9]{64}$/);
  const src=html.match(/class=["']card-img["'][^>]*>\s*<img[^>]*src=["']([^"']+)/)?.[1];assert.ok(src);
  assert.equal(new URL(evidence.source).hostname,'dm.takaratomy.co.jp');assert.equal(evidence.source,new URL(src,row.source).href);

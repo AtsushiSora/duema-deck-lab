@@ -15,7 +15,7 @@ export function trackManaOrigins1653(s){
   }
  }
  // Rule 409.1c: a resolving spell still belongs to its original zone.
- const seen=new Set();function spell(f){if(!f||seen.has(f))return;seen.add(f);if(f.inst&&!f.virtual&&!f.g1647EarlyMoved){const p=f.owner??f.player??f.caster;noteZone1653(s,p,f.shieldCast?'shields':f.origin||f.spell?.summonOrigin||'hand',f.inst);}spell(f.previous);spell(f.parent);}
+ const seen=new Set();function spell(f){if(!f||seen.has(f))return;seen.add(f);if(f.inst&&!f.virtual&&!f.g1647EarlyMoved){const p=f.owner??f.player??f.caster;noteZone1653(s,p,f.shieldCast?'shields':f.origin||f.spell?.summonOrigin||'hand',f.inst);if(f.inst.g1743KingOrigins)for(const r of f.inst.g1743KingOrigins)map.set(r.uid,{p,zone:r.origin});}spell(f.previous);spell(f.parent);}
  spell(s.resolvingSpell);for(const f of s.extSpells||[])spell(f);
 }
 export function removedZone1653(list,x){const row=lists.get(list);if(row)noteZone1653(row.s,row.p,row.zone,x);}
