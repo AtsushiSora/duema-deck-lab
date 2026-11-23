@@ -251,6 +251,8 @@ export function createSamuraiRules(api){
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length+(card(g).g1715CrossPower?(paired(s,p,x,card(g).g1715CrossPower.name)?card(g).g1715CrossPower.paired:card(g).g1715CrossPower.base):0),0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
+  // Phase1716: finish S Trigger X before resolving entry triggers. Command unsealing is queued next, ahead of this task.
+  if(c.type==='gear'&&options.g1716TriggerX)put(s,task('g18_FreeCross',p,x.cardId,{gear:x.uid,gearInc:x.incarnation||0,required927:true}));
   if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){
    if(c.samuraiGenerate)on(s,p,x,'g18_Generate');
    if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');

@@ -103,7 +103,7 @@ export function createRedzoneRules(api){
  manaTap(s,p){return s.leaving?.snapshot?.redzone?.manaTap?.[p]??creatures(s,1-p).some(x=>effective(x,s).opponentManaTap);},
  snapshot(s){return {manaTap:[0,1].map(p=>creatures(s,1-p).some(x=>effective(x,s).opponentManaTap)),royals:[0,1].flatMap(p=>creatures(s,p).filter(x=>effective(x,s).pandora).map(x=>x.uid))};},
  extraAdded(s,p,all){for(const x of all)if(s.leaving?s.leaving.snapshot?.redzone?.royals.includes(x.uid):card(x).pandora)on(s,p,x,'g23_Royal');},
- command(s,p,x){if(!api.isCreature(s,x)||!String(effective(x,s).race).includes('コマンド'))return;const cs=colors(effective(x,s));if((s.players[p].seals||[]).some(y=>api.mayMoveSeal(s,p,y)&&s.players[p].battle.some(z=>z.uid===y.sealOf&&colors(card(z.cardId)).some(c=>cs.includes(c)))))put(s,task('g23_Unseal',p,x.cardId,{colors:cs}));},
+ command(s,p,x){if(x.sealed||x.faceDown||!(api.isCreature(s,x)||['gear','seed','field','aura','duelist'].includes(card(x).type))||!String(effective(x,s).race).includes('コマンド'))return;const cs=colors(effective(x,s));if((s.players[p].seals||[]).some(y=>api.mayMoveSeal(s,p,y)&&s.players[p].battle.some(z=>z.uid===y.sealOf&&colors(card(z.cardId)).some(c=>cs.includes(c)))))put(s,task('g23_Unseal',p,x.cardId,{colors:cs}));},
  handMana(s,p,x){if(card(x).redCircleMana)on(s,p,x,'g23_CircleMana',{serial:x.zoneSerial||0});},
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).redPurin).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g23_Purin',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  psychicInvasions1349(s,p,a){

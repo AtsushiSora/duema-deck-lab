@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9385,
-  "pendingNames": 2438,
-  "phase": 1715,
+  "supportedNames": 9389,
+  "pendingNames": 2434,
+  "phase": 1716,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -171,7 +171,7 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 30,
+    "クロスギア": 26,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 562,
+    "複数面・特殊カードタイプまたは情報不足": 558,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -547254,32 +547254,346 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1716,
+      "checkedAt": "2026-11-23T06:49:26.070Z",
+      "baseline": "322882d7",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9385,
+      "currentNames": 9389,
+      "remainingNames": 111,
+      "added": [
+        {
+          "id": "dm15-s05",
+          "name": "アクテリオン・フォース"
+        },
+        {
+          "id": "dm15-032",
+          "name": "インフェルノ・シザース"
+        },
+        {
+          "id": "dm15-026",
+          "name": "マキシマム・ディフェンス"
+        },
+        {
+          "id": "dm23ex1-066",
+          "name": "天装 カガヤキ・ミガタメ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "322882d7",
+        "originalDefinitionsUnchanged": 9385,
+        "added": 4,
+        "uniqueNames": 9389,
+        "uniqueIds": 9389,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9385,
+        "existingImageReferenceRowsUnchanged": 11601,
+        "officialPrintsReviewed": 6,
+        "officialImagesReviewed": 6,
+        "existingPinsUnchanged": 956
+      },
+      "results": {
+        "related-triggers-and-cross": {
+          "name": "related-triggers-and-cross",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard633-effects.test.mjs",
+            "tests/standard506-effects.test.mjs",
+            "tests/standard210-effects.test.mjs",
+            "tests/standard1710-effects.test.mjs",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 43.566,
+          "log": "tmp/duema-phase-1716/related-triggers-and-cross.log",
+          "passed": 252,
+          "logSha256": "df529a33198d9e7ff1ec1e5e9290aa4bcfc46f21beeed4891d06b6b0c1451fc6"
+        },
+        "related-seal-freeze-short": {
+          "name": "related-seal-freeze-short",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:No23 adds10 canonical names and all40 official cards with23 ready lists|Red Zone destroys every enemy tied for greatest power without selecting|Black Zone seals every enemy tied for least power and does not select protected enemies|sealing Genmu immediately restores low-cost abilities and preserves printed controller information|a matching Command must remove exactly one seal before entry effects, without entering again|wrong-colour Commands, dormant seed Command and replacement entry cannot remove seals|seals do not reveal their identities, cannot act as creatures or evolve and do not untap with their host|Airvo selects a zero-cost face-down seal instead of its ignored host or underlying creature cards|removing a seal draws for opposing Dollar but never triggers the sealed creature leaving|invasion from hand and grave declares first and continues the same attack|battlefield S invasion reconstructs the previous base and never re-enters or seals again \\(QA39974\\)|declared invasion does not follow a card between hand and grave and rechecks the current evolution base|Red F first attack untaps and destroys only its top, reconstructing its base|Red F uses the inherited attack count and does not untap a second time \\(QA42363\\)|Red F blocks G Strike and its attack-end ability survives GG|Pandora pays exactly water and fire2, draws2 discards1 and is not a summon|Pandora ignores summon prohibitions and the extra-zone draw is not silenced by Genmu|Royal may be summoned from extra and Tokoshie replaces it before its entry draw|Purin transfers itself at start then deploys a different Alien without summoning|Circle is a seed evolution base and obligatorily discards before and after its optional draws|Circle untaps only after hand-to-mana even through Tripper; ramped Circle stays tapped|Tripper taps mono and face-down mana from all origins and its ability is ignored under Genmu|Clock skips all remaining choices and deferred attack effects immediately|Gareck chooses three modes sequentially and a creature milled by mode2 may revive in mode3|Balchuris declares on the second attack and enters after that attack, only once per turn|Pandora from the same extra zone pays2 without moving or drawing again \\(QA40823\\)|Pandora consumes a granted mana summon use even without summoning \\(QA40824\\)|Superhero Time treats seals as cost0 cards and never offers their sealed host|Balchuris drawn after the second attack or discarded after declaring cannot enter \\(QA46240/41294\\)|Balchuris appearance counts even when its ability is ignored by Genmu|Clock clears a declaration waiting for after the attack and Red F still permits S triggers|sealed Samurai keeps its crossed gear without discounts or team buffs and permits recross \\(QA42077/43764\\)|sealed creatures do not gain a resolved team buff that survives after unsealing|number-ignore snapshots exclude sealed creatures before a later unseal|Frozen Carnival removes seals while preserving ignored constituent cards, then freezes restored creatures|photo forty cards cover22 identities and9 new complete effect specs|Momo suppresses monochrome creatures but keeps printed characteristics and multicolor effects|Momo world breaker and first attack untap are active, with conditional blocker|Momo can be summoned through crime5 from grave but never via finite ordinary cost|Dol creates2 distinct EX life shields and locks spells on its own turn|Dol sweep destroys both sides with EX replacement and optional draws per actual destruction|Dol drawing taps one enemy mana and keeps it locked through the enemy next start|Hawk redirects its own removal to deck bottom and permits creature grave summons|Hawk and EX life offer distinct mandatory replacements|Hawk makes both players discard hands at either turn end|Cube shuffles and gives an optional creature deployment without registering a deck|Cube noncreature card goes to mana and respects Ningyo replacement|Galaxy needs an ultimate creature and searches up to2 creatures before shuffling|Panda mills3 then optionally gives minus1000 per grave card|Jaouga8 sacrifices one shield, untaps mana and opens its hyper mode|Jaouga8 may decline shield loss and free deployments never receive its summon-only ability|Complex enters tapped, resists removal through7 sources and wakes at8|Complex cannot leave while asleep even when chosen by destruction|Complex attack moves exactly its chosen source to grave and deploys that creature|Cocoon ramps1 and can skip recycling; normal casting does not deploy from mana|Momo and multicolor Genmu coexist and jointly suppress monochrome or cheap creatures|Complex cannot be untapped by another effect while it has seven or fewer sources|Cocoon super trigger deploys a creature only after ramp and optional grave recycling|Jaouga8 hyper mode grants only one paid Demonio execution from grave on its controller turn|evolution S trigger is usable only with a valid base and preserves the base as a physical source|Demonio strike back accepts Demonio shields, evolves and sacrifices only the actual shield card|Dol supplies one printed mana despite five colors, while multicolor spell modifiers survive Momo suppression)$",
+            "tests/redzone-effects.test.mjs",
+            "tests/kenji-photo.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.63,
+          "log": "tmp/duema-phase-1716/related-seal-freeze-short.log",
+          "passed": 62,
+          "logSha256": "56774b0c1e2edc8c3b7beb03a9ce7aec849c3b1830391b8d61635663c160dded"
+        },
+        "related-online-save": {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.671,
+          "log": "tmp/duema-phase-1716/related-online-save.log",
+          "passed": 55,
+          "logSha256": "0a533f564e91d37065160658a0b3518007ead08acc569788931763de962a51e0"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1716.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.289,
+          "log": "tmp/duema-phase-1716/official.log",
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.038,
+          "log": "tmp/duema-phase-1716/check.log",
+          "logSha256": "cf5744c28f3a06b7c46eef3cd0ab8456c17dc92055fd7c77db9883f4d96bb86b"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.033,
+          "log": "tmp/duema-phase-1716/audit.log",
+          "logSha256": "9b4f1fb4540384e4f10077bbef57f9aacf1b13e1a7e389c913950a89df553d52"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.524,
+          "log": "tmp/duema-phase-1716/target9500.log",
+          "logSha256": "20e69fc5d04ea2e457791d9327f07bdddadf7c916d4000ec2460b950575ec68e"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1716/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.592,
+          "log": "tmp/duema-phase-1716/invariants.log",
+          "logSha256": "959da9b649bb9d242c998cbf91ac2773966552356079d81a12fad32a3bf8f1d2"
+        },
+        "focused": {
+          "passed": 58,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1716-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 8.958,
+              "log": "tmp/duema-phase-1716/focused.log",
+              "passed": 50,
+              "logSha256": "f94ddf4041a3667e6f9cbaaf61138b5cd6ff483f9766ddf68825630ae07f3836"
+            },
+            {
+              "name": "focused-additional",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(QA44661|Acterion keeps)",
+                "tests/standard1716-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.554,
+              "log": "tmp/duema-phase-1716/focused-additional.log",
+              "passed": 4,
+              "logSha256": "ff45a962995b7aad92b58365cc816d202d9c2eceee139e14349398b24cf64c58"
+            },
+            {
+              "name": "focused-original-command-watcher",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(Existing registered Taisho|Actual Sirius)",
+                "tests/standard1716-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.876,
+              "log": "tmp/duema-phase-1716/focused-original-command-watcher.log",
+              "passed": 4,
+              "logSha256": "9c40f9bdc96372cb81da9a8f1c6e51d5fbd86e95a946451181f835e890f5b02f"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 427,
+      "hashes": {
+        "dist/cards.json": "48434d1894502b4714fdb070d5a546259c7f3cc74d67e5e3dc6aab392c2bf8d3",
+        "dist/engine.js": "90d2e57226ab32cf95d87c9c455be716804e54e428b966b56c0334b4cc5cb930",
+        "dist/samurai-rules.js": "2df2dda9ddc19226ee51f98cbe5b8da19d32ab5dc2de0d0ddbbd942a4512405c",
+        "dist/redzone-rules.js": "e639c7644f35ce2b9235fa699d3f4e6129594e5a24e4481784b8e0738ead59e2",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "bcaf57a1979ef4ded628280ae60fd947c80f82fdc71852a50148cf1a082dd350",
+        "dist/card-images.js": "f204fe7dd06ff090e9d49e4deb91bb1248ea46fd91ef57fab5348240b93664e3",
+        "tools/target9000-card-spec.json": "cd5032916bce6483b3ffae5e501fe8997a8d8c0ffe51a75f9db7690a664a0062",
+        "tests/standard1716-effects.test.mjs": "348938a196dc2fa28e6b31472357d66c27a6280bc009659126c7fe5cd7e05cfc"
+      },
+      "engineVersion": "0.602.233",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "related-seal-freeze-unit",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:No23 adds10 canonical names and all40 official cards with23 ready lists|Red Zone destroys every enemy tied for greatest power without selecting|Black Zone seals every enemy tied for least power and does not select protected enemies|sealing Genmu immediately restores low-cost abilities and preserves printed controller information|a matching Command must remove exactly one seal before entry effects, without entering again|wrong-colour Commands, dormant seed Command and replacement entry cannot remove seals|seals do not reveal their identities, cannot act as creatures or evolve and do not untap with their host|Airvo selects a zero-cost face-down seal instead of its ignored host or underlying creature cards|removing a seal draws for opposing Dollar but never triggers the sealed creature leaving|invasion from hand and grave declares first and continues the same attack|battlefield S invasion reconstructs the previous base and never re-enters or seals again \\(QA39974\\)|declared invasion does not follow a card between hand and grave and rechecks the current evolution base|Red F first attack untaps and destroys only its top, reconstructing its base|Red F uses the inherited attack count and does not untap a second time \\(QA42363\\)|Red F blocks G Strike and its attack-end ability survives GG|Pandora pays exactly water and fire2, draws2 discards1 and is not a summon|Pandora ignores summon prohibitions and the extra-zone draw is not silenced by Genmu|Royal may be summoned from extra and Tokoshie replaces it before its entry draw|Purin transfers itself at start then deploys a different Alien without summoning|Circle is a seed evolution base and obligatorily discards before and after its optional draws|Circle untaps only after hand-to-mana even through Tripper; ramped Circle stays tapped|Tripper taps mono and face-down mana from all origins and its ability is ignored under Genmu|Clock skips all remaining choices and deferred attack effects immediately|Gareck chooses three modes sequentially and a creature milled by mode2 may revive in mode3|Balchuris declares on the second attack and enters after that attack, only once per turn|Pandora from the same extra zone pays2 without moving or drawing again \\(QA40823\\)|Pandora consumes a granted mana summon use even without summoning \\(QA40824\\)|Superhero Time treats seals as cost0 cards and never offers their sealed host|Balchuris drawn after the second attack or discarded after declaring cannot enter \\(QA46240/41294\\)|Balchuris appearance counts even when its ability is ignored by Genmu|Clock clears a declaration waiting for after the attack and Red F still permits S triggers|sealed Samurai keeps its crossed gear without discounts or team buffs and permits recross \\(QA42077/43764\\)|sealed creatures do not gain a resolved team buff that survives after unsealing|number-ignore snapshots exclude sealed creatures before a later unseal|Frozen Carnival removes seals while preserving ignored constituent cards, then freezes restored creatures|photo forty cards cover22 identities and9 new complete effect specs|Momo suppresses monochrome creatures but keeps printed characteristics and multicolor effects|Momo world breaker and first attack untap are active, with conditional blocker|Momo can be summoned through crime5 from grave but never via finite ordinary cost|Dol creates2 distinct EX life shields and locks spells on its own turn|Dol sweep destroys both sides with EX replacement and optional draws per actual destruction|Dol drawing taps one enemy mana and keeps it locked through the enemy next start|Hawk redirects its own removal to deck bottom and permits creature grave summons|Hawk and EX life offer distinct mandatory replacements|Hawk makes both players discard hands at either turn end|Cube shuffles and gives an optional creature deployment without registering a deck|Cube noncreature card goes to mana and respects Ningyo replacement|Galaxy needs an ultimate creature and searches up to2 creatures before shuffling|Panda mills3 then optionally gives minus1000 per grave card|Jaouga8 sacrifices one shield, untaps mana and opens its hyper mode|Jaouga8 may decline shield loss and free deployments never receive its summon-only ability|Complex enters tapped, resists removal through7 sources and wakes at8|Complex cannot leave while asleep even when chosen by destruction|Complex attack moves exactly its chosen source to grave and deploys that creature|Cocoon ramps1 and can skip recycling; normal casting does not deploy from mana|screenshot simulations finish and conserve80 unique cards at every step|Momo and multicolor Genmu coexist and jointly suppress monochrome or cheap creatures|Complex cannot be untapped by another effect while it has seven or fewer sources|Cocoon super trigger deploys a creature only after ramp and optional grave recycling|Jaouga8 hyper mode grants only one paid Demonio execution from grave on its controller turn|evolution S trigger is usable only with a valid base and preserves the base as a physical source|Demonio strike back accepts Demonio shields, evolves and sacrifices only the actual shield card|screenshot deck finishes against all31 configured opponents without deadlocks or lost physical cards|Dol supplies one printed mana despite five colors, while multicolor spell modifiers survive Momo suppression)$",
+            "tests/redzone-effects.test.mjs",
+            "tests/kenji-photo.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 85.758,
+          "log": "tmp/duema-phase-1716/related-seal-freeze-unit.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1716.json",
+      "supported": 9389,
+      "pending": 2434,
+      "reason": "Complete four S Trigger X gears: mandatory free crossing after successful generation and Command-element seal removal; full Acterion9000/T, Inferno total-power3000 destruction, Maximum5000/Blocker/no attack, and Kagayaki entry/attack tap-freeze. Resolve phase1712 held card completely.",
+      "validationNotes": [
+        "Actual nameKey9385→9389; clean baseline322882d7, no prior running work/tests. All9385 original definitions, IDs, catalogue/details/aliases, old image URLs and pins unchanged. Six full official original/reprint images/mana/current restrictions verified; two reprints add no names.",
+        "Four complete S Trigger X gears use existing trigger declaration and mandatory required927 cross selection. Generation with no own creature succeeds; with own creatures it must cross with no decline. Paid generation, declining trigger, ordinary paid recross and own-field-only/actual sealed-host rules verified for both players. Exact QA43456/37489/37492 reproduced.",
+        "Kagayaki full native entry and crossed-host attack tap-freeze plus exact QA43760: Command gear generation unseals actual Musashi Niten before mandatory cross selection. Common Command check corrected from creatures only to actual Command elements. Existing Taisho gear now also unseals without redefining any old card. Actual Sirius draw watcher waits until cross finishes and draws once.",
+        "Acterion attack-only9000 and granted T stack while ignored host loses them. Existing W/T/quad/world choices retained, no plain single-break alternative added. Inferno mandatory trigger optionally selects distinct opponents with current-power total<=3000, no over-budget extra; ignored host still triggers, ignored gear does not. Maximum external5000 plus granted Blocker and noAttack verified, including actual next-attack blocking.",
+        "Exact QA44661 actual Complex with7 sources frozen by Kagayaki still untaps through its triggered eighth source at next start. Normal tap-freeze lasts exactly the next natural untap and expires afterward. JSON/encrypted STX and original legal40/80-card seeded completion pass.",
+        "58 unique focused cases pass, including first50 with no failures;369 affected regressions pass,total427. Check21.038s,audit12.033s,actual nameKey/invariants/target9500 pass. Online/save and check were accidentally queued twice after the interrupted shell continued; only latest identical execution counts, no duplicate test totals.",
+        "Positive selection accidentally retained two screenshot multi-game cases from kenji-photo; stopped only newly launched process group18102 at85.758s. No broad result is a pass. Corrected positive list excludes those2 and all62 required short Redzone/Complex cases pass independently. Neither broad screenshot group will be restarted; exact unconfirmed targets recorded below and in resume pending.",
+        "Phase1712 held Kagayaki is now fully implemented/verified; historical full-suite/individual/reprint/other long/user deferrals are preserved. No whole npm test or push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm15-023",
+          "name": "クイック・ディフェンス",
+          "reason": "Whole S Trigger X plus Blocker and death free recross."
+        },
+        {
+          "id": "dm15-029",
+          "name": "パワード・マスク",
+          "reason": "Whole S Trigger X plus crossed power per tapped battlefield creature."
+        },
+        {
+          "id": "dm29-034",
+          "name": "装刃 レオ・インパクト",
+          "reason": "Whole S Trigger X plus optional entry cross and attack Shield Plus."
+        },
+        {
+          "id": "dm16-020",
+          "name": "ドラム・スピリット",
+          "reason": "Whole crossed tap ability: search/deploy same-name non-evolution."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。",
+      "longRegressionUnconfirmed": [
+        {
+          "phase": 1716,
+          "target": "phase1716-kenji-two-screenshot-broad-cases",
+          "status": "interrupted-unconfirmed",
+          "file": "tests/kenji-photo.test.mjs",
+          "tests": [
+            "screenshot simulations finish and conserve80 unique cards at every step",
+            "screenshot deck finishes against all31 configured opponents without deadlocks or lost physical cards"
+          ],
+          "reason": "Positive list inadvertently retained these broad comparisons; own group18102 stopped at85.758s, no pass inferred. Required62 short command/freeze units pass in a separate corrected positive selection. Do not rerun either whole long group.",
+          "execution": {
+            "name": "related-seal-freeze-unit",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:No23 adds10 canonical names and all40 official cards with23 ready lists|Red Zone destroys every enemy tied for greatest power without selecting|Black Zone seals every enemy tied for least power and does not select protected enemies|sealing Genmu immediately restores low-cost abilities and preserves printed controller information|a matching Command must remove exactly one seal before entry effects, without entering again|wrong-colour Commands, dormant seed Command and replacement entry cannot remove seals|seals do not reveal their identities, cannot act as creatures or evolve and do not untap with their host|Airvo selects a zero-cost face-down seal instead of its ignored host or underlying creature cards|removing a seal draws for opposing Dollar but never triggers the sealed creature leaving|invasion from hand and grave declares first and continues the same attack|battlefield S invasion reconstructs the previous base and never re-enters or seals again \\(QA39974\\)|declared invasion does not follow a card between hand and grave and rechecks the current evolution base|Red F first attack untaps and destroys only its top, reconstructing its base|Red F uses the inherited attack count and does not untap a second time \\(QA42363\\)|Red F blocks G Strike and its attack-end ability survives GG|Pandora pays exactly water and fire2, draws2 discards1 and is not a summon|Pandora ignores summon prohibitions and the extra-zone draw is not silenced by Genmu|Royal may be summoned from extra and Tokoshie replaces it before its entry draw|Purin transfers itself at start then deploys a different Alien without summoning|Circle is a seed evolution base and obligatorily discards before and after its optional draws|Circle untaps only after hand-to-mana even through Tripper; ramped Circle stays tapped|Tripper taps mono and face-down mana from all origins and its ability is ignored under Genmu|Clock skips all remaining choices and deferred attack effects immediately|Gareck chooses three modes sequentially and a creature milled by mode2 may revive in mode3|Balchuris declares on the second attack and enters after that attack, only once per turn|Pandora from the same extra zone pays2 without moving or drawing again \\(QA40823\\)|Pandora consumes a granted mana summon use even without summoning \\(QA40824\\)|Superhero Time treats seals as cost0 cards and never offers their sealed host|Balchuris drawn after the second attack or discarded after declaring cannot enter \\(QA46240/41294\\)|Balchuris appearance counts even when its ability is ignored by Genmu|Clock clears a declaration waiting for after the attack and Red F still permits S triggers|sealed Samurai keeps its crossed gear without discounts or team buffs and permits recross \\(QA42077/43764\\)|sealed creatures do not gain a resolved team buff that survives after unsealing|number-ignore snapshots exclude sealed creatures before a later unseal|Frozen Carnival removes seals while preserving ignored constituent cards, then freezes restored creatures|photo forty cards cover22 identities and9 new complete effect specs|Momo suppresses monochrome creatures but keeps printed characteristics and multicolor effects|Momo world breaker and first attack untap are active, with conditional blocker|Momo can be summoned through crime5 from grave but never via finite ordinary cost|Dol creates2 distinct EX life shields and locks spells on its own turn|Dol sweep destroys both sides with EX replacement and optional draws per actual destruction|Dol drawing taps one enemy mana and keeps it locked through the enemy next start|Hawk redirects its own removal to deck bottom and permits creature grave summons|Hawk and EX life offer distinct mandatory replacements|Hawk makes both players discard hands at either turn end|Cube shuffles and gives an optional creature deployment without registering a deck|Cube noncreature card goes to mana and respects Ningyo replacement|Galaxy needs an ultimate creature and searches up to2 creatures before shuffling|Panda mills3 then optionally gives minus1000 per grave card|Jaouga8 sacrifices one shield, untaps mana and opens its hyper mode|Jaouga8 may decline shield loss and free deployments never receive its summon-only ability|Complex enters tapped, resists removal through7 sources and wakes at8|Complex cannot leave while asleep even when chosen by destruction|Complex attack moves exactly its chosen source to grave and deploys that creature|Cocoon ramps1 and can skip recycling; normal casting does not deploy from mana|screenshot simulations finish and conserve80 unique cards at every step|Momo and multicolor Genmu coexist and jointly suppress monochrome or cheap creatures|Complex cannot be untapped by another effect while it has seven or fewer sources|Cocoon super trigger deploys a creature only after ramp and optional grave recycling|Jaouga8 hyper mode grants only one paid Demonio execution from grave on its controller turn|evolution S trigger is usable only with a valid base and preserves the base as a physical source|Demonio strike back accepts Demonio shields, evolves and sacrifices only the actual shield card|screenshot deck finishes against all31 configured opponents without deadlocks or lost physical cards|Dol supplies one printed mana despite five colors, while multicolor spell modifiers survive Momo suppression)$",
+              "tests/redzone-effects.test.mjs",
+              "tests/kenji-photo.test.mjs"
+            ],
+            "code": -9,
+            "timedout": false,
+            "seconds": 85.758,
+            "log": "tmp/duema-phase-1716/related-seal-freeze-unit.log"
+          },
+          "newCardSpecificValidationPending": false
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1715,
-    "nextPhase": 1716,
+    "lastVerifiedPhase": 1716,
+    "nextPhase": 1717,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm15-s05",
-        "name": "アクテリオン・フォース",
-        "reason": "Verify full S Trigger X generation plus mandatory free crossing and granted Power Attacker9000/T."
+        "id": "dm15-023",
+        "name": "クイック・ディフェンス",
+        "reason": "Whole S Trigger X plus Blocker and death free recross."
       },
       {
-        "id": "dm15-032",
-        "name": "インフェルノ・シザース",
-        "reason": "Verify full S Trigger X and crossed attack total-power3000 destruction."
+        "id": "dm15-029",
+        "name": "パワード・マスク",
+        "reason": "Whole S Trigger X plus crossed power per tapped battlefield creature."
       },
       {
-        "id": "dm15-026",
-        "name": "マキシマム・ディフェンス",
-        "reason": "Verify full S Trigger X, crossed5000/Blocker and cannot attack."
+        "id": "dm29-034",
+        "name": "装刃 レオ・インパクト",
+        "reason": "Whole S Trigger X plus optional entry cross and attack Shield Plus."
       },
       {
-        "id": "dm23ex1-066",
-        "name": "天装 カガヤキ・ミガタメ",
-        "reason": "Held phase1712; implement full S Trigger X and both entry/attack tap-freeze, including seal removal before crossing."
+        "id": "dm16-020",
+        "name": "ドラム・スピリット",
+        "reason": "Whole crossed tap ability: search/deploy same-name non-evolution."
       }
     ],
     "steps": [
@@ -548164,23 +548478,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1715,
-      "baseline": "0a00aefd",
-      "supportedNames": 9385,
-      "artifact": "tools/target9500-registration-checkpoint-1715.json",
-      "checkedAt": "2026-11-23T06:39:21.245Z"
+      "phase": 1716,
+      "baseline": "322882d7",
+      "supportedNames": 9389,
+      "artifact": "tools/target9500-registration-checkpoint-1716.json",
+      "checkedAt": "2026-11-23T06:49:26.070Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T06:39:21.245Z",
+      "checkedAt": "2026-11-23T06:49:26.070Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9385,
-      "remainingNames": 115,
+      "currentNames": 9389,
+      "remainingNames": 111,
       "duplicateNames": 0,
-      "engineVersion": "0.602.232",
+      "engineVersion": "0.602.233",
       "added": [
         {
           "id": "dmr12-008",
@@ -549441,6 +549755,22 @@
         {
           "id": "dm36-014",
           "name": "蒼月の守護者グーゼ・ノース"
+        },
+        {
+          "id": "dm15-s05",
+          "name": "アクテリオン・フォース"
+        },
+        {
+          "id": "dm15-032",
+          "name": "インフェルノ・シザース"
+        },
+        {
+          "id": "dm15-026",
+          "name": "マキシマム・ディフェンス"
+        },
+        {
+          "id": "dm23ex1-066",
+          "name": "天装 カガヤキ・ミガタメ"
         }
       ],
       "results": {
@@ -549556,15 +549886,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "02f3830328e16eb1866d1ff8a0446bd387c8ce0fdbd8f619085e3245d8e0d967",
-        "dist/engine.js": "92c2810353b14283fe5199a07faef18e44d6392149fce16091d89cd450d39735",
-        "dist/samurai-rules.js": "7cc2cf1ac6efae975cde8ceb068b8ad952ce41fbc5563227cdd105d17b387a24",
-        "dist/extended-rules.js": "7f1080375eaf2bcb60779fe572371f59c55c73530266fd9a2370e0251a642871",
+        "dist/cards.json": "48434d1894502b4714fdb070d5a546259c7f3cc74d67e5e3dc6aab392c2bf8d3",
+        "dist/engine.js": "90d2e57226ab32cf95d87c9c455be716804e54e428b966b56c0334b4cc5cb930",
+        "dist/samurai-rules.js": "2df2dda9ddc19226ee51f98cbe5b8da19d32ab5dc2de0d0ddbbd942a4512405c",
+        "dist/redzone-rules.js": "e639c7644f35ce2b9235fa699d3f4e6129594e5a24e4481784b8e0738ead59e2",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "a81e8b5c7cb2ea0d5b33a1a594e823b7f9a6fc60ccad62569ee264ad9ca09dbe",
-        "dist/card-images.js": "67c8a91fe3ffcb5f6b34c4fdcfbf1fde4f5c06d77c4460eddf12334f49c1e57f",
-        "tools/target9000-card-spec.json": "24378c0d8775c18f1781d98232ded5d4130206353b2e723f55c778d1f40c7d3d",
-        "tests/standard1715-effects.test.mjs": "9dbddaf40794a1178a899c1f50b5eee7fd28c4ee45fd6c582361a741fbbe6781"
+        "dist/online-compatibility.js": "bcaf57a1979ef4ded628280ae60fd947c80f82fdc71852a50148cf1a082dd350",
+        "dist/card-images.js": "f204fe7dd06ff090e9d49e4deb91bb1248ea46fd91ef57fab5348240b93664e3",
+        "tools/target9000-card-spec.json": "cd5032916bce6483b3ffae5e501fe8997a8d8c0ffe51a75f9db7690a664a0062",
+        "tests/standard1716-effects.test.mjs": "348938a196dc2fa28e6b31472357d66c27a6280bc009659126c7fe5cd7e05cfc"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -549628,10 +549958,10 @@
       },
       "phaseRange": [
         1614,
-        1715
+        1716
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 315,
+      "addedNames": 319,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -549643,9 +549973,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.14,
-        "log": "tmp/duema-phase-1715/check.log",
-        "logSha256": "c3fa7a34ebd4bf81dfc7913ce133bedd36a3028a23fd8c732c6afa02f2e0bff2"
+        "seconds": 21.038,
+        "log": "tmp/duema-phase-1716/check.log",
+        "logSha256": "cf5744c28f3a06b7c46eef3cd0ab8456c17dc92055fd7c77db9883f4d96bb86b"
       },
       "latestAudit": {
         "name": "audit",
@@ -549655,11 +549985,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.1,
-        "log": "tmp/duema-phase-1715/audit.log",
-        "logSha256": "3c8d5435e8cbb5320fb774c061267b44501e6e38742ec4c43e58c9a088ead0b5"
+        "seconds": 12.033,
+        "log": "tmp/duema-phase-1716/audit.log",
+        "logSha256": "9b4f1fb4540384e4f10077bbef57f9aacf1b13e1a7e389c913950a89df553d52"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1715.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1716.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -550777,11 +551107,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9385,
-      "remaining": 115,
+      "currentNames": 9389,
+      "remaining": 111,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T06:39:21.245Z",
+      "checkedAt": "2026-11-23T06:49:26.070Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -550931,6 +551261,32 @@
             "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
         ]
+      },
+      {
+        "phase": 1716,
+        "target": "phase1716-kenji-two-screenshot-broad-cases",
+        "status": "interrupted-unconfirmed",
+        "file": "tests/kenji-photo.test.mjs",
+        "tests": [
+          "screenshot simulations finish and conserve80 unique cards at every step",
+          "screenshot deck finishes against all31 configured opponents without deadlocks or lost physical cards"
+        ],
+        "reason": "Positive list inadvertently retained these broad comparisons; own group18102 stopped at85.758s, no pass inferred. Required62 short command/freeze units pass in a separate corrected positive selection. Do not rerun either whole long group.",
+        "execution": {
+          "name": "related-seal-freeze-unit",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:No23 adds10 canonical names and all40 official cards with23 ready lists|Red Zone destroys every enemy tied for greatest power without selecting|Black Zone seals every enemy tied for least power and does not select protected enemies|sealing Genmu immediately restores low-cost abilities and preserves printed controller information|a matching Command must remove exactly one seal before entry effects, without entering again|wrong-colour Commands, dormant seed Command and replacement entry cannot remove seals|seals do not reveal their identities, cannot act as creatures or evolve and do not untap with their host|Airvo selects a zero-cost face-down seal instead of its ignored host or underlying creature cards|removing a seal draws for opposing Dollar but never triggers the sealed creature leaving|invasion from hand and grave declares first and continues the same attack|battlefield S invasion reconstructs the previous base and never re-enters or seals again \\(QA39974\\)|declared invasion does not follow a card between hand and grave and rechecks the current evolution base|Red F first attack untaps and destroys only its top, reconstructing its base|Red F uses the inherited attack count and does not untap a second time \\(QA42363\\)|Red F blocks G Strike and its attack-end ability survives GG|Pandora pays exactly water and fire2, draws2 discards1 and is not a summon|Pandora ignores summon prohibitions and the extra-zone draw is not silenced by Genmu|Royal may be summoned from extra and Tokoshie replaces it before its entry draw|Purin transfers itself at start then deploys a different Alien without summoning|Circle is a seed evolution base and obligatorily discards before and after its optional draws|Circle untaps only after hand-to-mana even through Tripper; ramped Circle stays tapped|Tripper taps mono and face-down mana from all origins and its ability is ignored under Genmu|Clock skips all remaining choices and deferred attack effects immediately|Gareck chooses three modes sequentially and a creature milled by mode2 may revive in mode3|Balchuris declares on the second attack and enters after that attack, only once per turn|Pandora from the same extra zone pays2 without moving or drawing again \\(QA40823\\)|Pandora consumes a granted mana summon use even without summoning \\(QA40824\\)|Superhero Time treats seals as cost0 cards and never offers their sealed host|Balchuris drawn after the second attack or discarded after declaring cannot enter \\(QA46240/41294\\)|Balchuris appearance counts even when its ability is ignored by Genmu|Clock clears a declaration waiting for after the attack and Red F still permits S triggers|sealed Samurai keeps its crossed gear without discounts or team buffs and permits recross \\(QA42077/43764\\)|sealed creatures do not gain a resolved team buff that survives after unsealing|number-ignore snapshots exclude sealed creatures before a later unseal|Frozen Carnival removes seals while preserving ignored constituent cards, then freezes restored creatures|photo forty cards cover22 identities and9 new complete effect specs|Momo suppresses monochrome creatures but keeps printed characteristics and multicolor effects|Momo world breaker and first attack untap are active, with conditional blocker|Momo can be summoned through crime5 from grave but never via finite ordinary cost|Dol creates2 distinct EX life shields and locks spells on its own turn|Dol sweep destroys both sides with EX replacement and optional draws per actual destruction|Dol drawing taps one enemy mana and keeps it locked through the enemy next start|Hawk redirects its own removal to deck bottom and permits creature grave summons|Hawk and EX life offer distinct mandatory replacements|Hawk makes both players discard hands at either turn end|Cube shuffles and gives an optional creature deployment without registering a deck|Cube noncreature card goes to mana and respects Ningyo replacement|Galaxy needs an ultimate creature and searches up to2 creatures before shuffling|Panda mills3 then optionally gives minus1000 per grave card|Jaouga8 sacrifices one shield, untaps mana and opens its hyper mode|Jaouga8 may decline shield loss and free deployments never receive its summon-only ability|Complex enters tapped, resists removal through7 sources and wakes at8|Complex cannot leave while asleep even when chosen by destruction|Complex attack moves exactly its chosen source to grave and deploys that creature|Cocoon ramps1 and can skip recycling; normal casting does not deploy from mana|screenshot simulations finish and conserve80 unique cards at every step|Momo and multicolor Genmu coexist and jointly suppress monochrome or cheap creatures|Complex cannot be untapped by another effect while it has seven or fewer sources|Cocoon super trigger deploys a creature only after ramp and optional grave recycling|Jaouga8 hyper mode grants only one paid Demonio execution from grave on its controller turn|evolution S trigger is usable only with a valid base and preserves the base as a physical source|Demonio strike back accepts Demonio shields, evolves and sacrifices only the actual shield card|screenshot deck finishes against all31 configured opponents without deadlocks or lost physical cards|Dol supplies one printed mana despite five colors, while multicolor spell modifiers survive Momo suppression)$",
+            "tests/redzone-effects.test.mjs",
+            "tests/kenji-photo.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 85.758,
+          "log": "tmp/duema-phase-1716/related-seal-freeze-unit.log"
+        },
+        "newCardSpecificValidationPending": false
       }
     ],
     "resolvedRegistrationDeferrals": [
@@ -550939,6 +551295,13 @@
         "fromPhase": 1646,
         "resolvedByPhase": 1647,
         "artifact": "tools/target9500-registration-checkpoint-1647.json"
+      },
+      {
+        "id": "dm23ex1-066",
+        "fromPhase": 1712,
+        "resolvedByPhase": 1716,
+        "artifact": "tools/target9500-registration-checkpoint-1716.json",
+        "reason": "Complete S Trigger X/entry/attack/freeze with exact QAs and actual Command unseal order verified."
       }
     ],
     "nextCandidateResearch": {
@@ -602926,11 +603289,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1715,
+    "phase": 1716,
     "threshold": 9500,
-    "supportedNames": 9385,
-    "pendingNames": 2438,
-    "checkedAt": "2026-11-23T06:39:21.245Z",
+    "supportedNames": 9389,
+    "pendingNames": 2434,
+    "checkedAt": "2026-11-23T06:49:26.070Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -602939,7 +603302,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1715.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1716.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

@@ -299109,26 +299109,145 @@
       "g1715HHandStay": true,
       "supportBatch": "phase-1715",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm15-s05",
+      "name": "アクテリオン・フォース",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーX(このクロスギアをシールドゾーンから手札に加える時、コストを支払わずにすぐジェネレートし、自分のクリーチャー１体にクロスしてもよい)\nクロスギア\nこれをクロスしたクリーチャーは｢パワーアタッカー+9000｣と｢T・ブレイカー｣を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-s05",
+      "limit": 4,
+      "trigger": true,
+      "g1716TriggerX": true,
+      "g1707CrossAttackBonus": 9000,
+      "g1715CrossGrant": {
+        "g1716TripleBreaker": true
+      },
+      "supportBatch": "phase-1716",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-032",
+      "name": "インフェルノ・シザース",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーX(このクロスギアをシールドゾーンから手札に加える時、コストを支払わずにすぐジェネレートし、自分のクリーチャー１体にクロスしてもよい)\nクロスギア\nこれをクロスしたクリーチャーが攻撃する時、相手のクリーチャーをパワーの合計が3000以下になるように好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-032",
+      "limit": 4,
+      "trigger": true,
+      "g1716TriggerX": true,
+      "g931CrossAttack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 3000
+        }
+      ],
+      "supportBatch": "phase-1716",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-026",
+      "name": "マキシマム・ディフェンス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーX(このクロスギアをシールドゾーンから手札に加える時、コストを支払わずにすぐジェネレートし、自分のクリーチャー１体にクロスしてもよい)\nクロスギア\nこれをクロスしたクリーチャーのパワーは+5000され、｢ブロッカー｣を得る。\nこれをクロスしたクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-026",
+      "limit": 4,
+      "trigger": true,
+      "g1716TriggerX": true,
+      "g123CrossPower": 5000,
+      "g945CrossBlocker": true,
+      "g1715CrossGrant": {
+        "noAttack": true
+      },
+      "supportBatch": "phase-1716",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-066",
+      "name": "天装 カガヤキ・ミガタメ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 4,
+      "power": 0,
+      "race": "エンジェル・コマンド/アーマード・サムライ",
+      "text": "S・トリガー S・トリガーX（このクロスギアをシールドゾーンから手札に加える時、コストを支払わずにすぐジェネレートし、自分のクリーチャー１体にクロスしてもよい）\nクロスギア（自分のターン中、このクロスギアのコストを支払ってクリーチャー１体にクロスしてもよい。そのクリーチャーが離れても、このクロスギアは残る）\nこのクロスギアが出た時、またはこれをクロスしたクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-066",
+      "limit": 4,
+      "trigger": true,
+      "g1716TriggerX": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g931CrossAttack": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "supportBatch": "phase-1716",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1715,
-    "checkedAt": "2026-11-23T06:34:06.735Z",
-    "baseCount": 9381,
+    "phase": 1716,
+    "checkedAt": "2026-11-23T06:43:19.430Z",
+    "baseCount": 9385,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9385,
+    "totalCount": 9389,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35371/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35372/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35373/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35374/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35318/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36009/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36007/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36008/"
+      "https://dm.takaratomy.co.jp/rule/qa/43456/",
+      "https://dm.takaratomy.co.jp/rule/qa/43760/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37489/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37492/",
+      "https://dm.takaratomy.co.jp/rule/qa/44661/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -327255,6 +327374,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/39511/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35034/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34810/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1715,
+        "checkedAt": "2026-11-23T06:34:06.735Z",
+        "baseCount": 9381,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9385,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35371/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35372/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35373/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35318/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36009/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36007/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36008/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
