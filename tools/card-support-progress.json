@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9389,
-  "pendingNames": 2434,
-  "phase": 1716,
-  "added": 4,
+  "supportedNames": 9392,
+  "pendingNames": 2431,
+  "phase": 1717,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -171,7 +171,7 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 26,
+    "クロスギア": 23,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 558,
+    "複数面・特殊カードタイプまたは情報不足": 555,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -547568,32 +547568,256 @@
           "newCardSpecificValidationPending": false
         }
       ]
+    },
+    {
+      "phase": 1717,
+      "checkedAt": "2026-11-23T06:55:00.411Z",
+      "baseline": "230dd06c",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9389,
+      "currentNames": 9392,
+      "remainingNames": 108,
+      "added": [
+        {
+          "id": "dm15-023",
+          "name": "クイック・ディフェンス"
+        },
+        {
+          "id": "dm15-029",
+          "name": "パワード・マスク"
+        },
+        {
+          "id": "dm29-034",
+          "name": "装刃 レオ・インパクト"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "230dd06c",
+        "originalDefinitionsUnchanged": 9389,
+        "added": 3,
+        "uniqueNames": 9392,
+        "uniqueIds": 9392,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9389,
+        "existingImageReferenceRowsUnchanged": 11607,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 962
+      },
+      "results": {
+        "related-cross-death-shield": {
+          "name": "related-cross-death-shield",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1281-effects.test.mjs",
+            "tests/standard927-effects.test.mjs",
+            "tests/standard414-effects.test.mjs",
+            "tests/standard943-effects.test.mjs",
+            "tests/standard1716-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.973,
+          "log": "tmp/duema-phase-1717/related-cross-death-shield.log",
+          "passed": 172,
+          "logSha256": "6ad687fb4b73e96a3f87234aa3987cd2ef1dbf048afdfaaaf71548ec1c44d399"
+        },
+        "related-online-save": {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.398,
+          "log": "tmp/duema-phase-1717/related-online-save.log",
+          "passed": 55,
+          "logSha256": "78199185dfd35e33996a40351d80acc33c608f996e81349532bde426dc7034ca"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1717.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.365,
+          "log": "tmp/duema-phase-1717/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.764,
+          "log": "tmp/duema-phase-1717/check.log",
+          "logSha256": "86bad10c7036297c31defdf11e005d33a816d4d5fe2feaa0f10cdef50e5b5d4a"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.541,
+          "log": "tmp/duema-phase-1717/audit.log",
+          "logSha256": "9533f0fd051abc354f43dc9b32db33af59c856eb0304b724629c24563562f682"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.495,
+          "log": "tmp/duema-phase-1717/target9500.log",
+          "logSha256": "e9f25158afeadecea62f4d86a8af6adfe683d3f6296a4b5bf578db0c5c88cdc5"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1717/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.607,
+          "log": "tmp/duema-phase-1717/invariants.log",
+          "logSha256": "0c75c7b27a2051f10512940cc7e1ed7039ebc35bf7819119cfa24c19ec59ad7f"
+        },
+        "focused": {
+          "passed": 42,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1717-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 11.769,
+              "log": "tmp/duema-phase-1717/focused.log",
+              "passed": 42,
+              "logSha256": "a55cc9bc35c4aaf90f69e271d10d030e573d3a0124a1153ce26487cd477b13e5"
+            },
+            {
+              "name": "focused-mask",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Mask",
+                "tests/standard1717-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.617,
+              "log": "tmp/duema-phase-1717/focused-mask.log",
+              "passed": 4,
+              "logSha256": "b0181f4907e872ae62e4031ce3e594c7cb238d27a6ca742296bd8bea8ce45a93"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 269,
+      "hashes": {
+        "dist/cards.json": "49bdb03410eb22326497e84d378cec35a4ca383bc7345eec188a7ff165a6d063",
+        "dist/engine.js": "dc98b4ab81009ada43aca2093c01173933cf071ab2c227eae8df27c21e52c88a",
+        "dist/samurai-rules.js": "1b97167a1ef6fba05005d8e2b36a1f19dbfd4e3a70d00cd79d21ef662e9b4acc",
+        "dist/extended-rules.js": "7f1080375eaf2bcb60779fe572371f59c55c73530266fd9a2370e0251a642871",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "60a848c0d9d17d4e120040ec95cf10d220da84f920a2bb2cc773e47cdf62d636",
+        "dist/card-images.js": "3845f52562a256398d04dd22abb3532d798bed602b5cf380abe931f5b5ec8afd",
+        "tools/target9000-card-spec.json": "767e16b6f674b9f8254877c565d96e2c8164d0b3991de146652f8403801e6267",
+        "tests/standard1717-effects.test.mjs": "7cfdb2e0b3a7018b929f034f7d04c793c32f5c28d7f94456e1c6b24ef8434915"
+      },
+      "engineVersion": "0.602.234",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1717.json",
+      "supported": 9392,
+      "pending": 2431,
+      "reason": "Complete Quick Defense S Trigger X/Blocker/death optional immediate free recross, Powered Mask external power per all tapped creatures, Leo Impact STX/optional entry free cross/attack Shield Plus.",
+      "validationNotes": [
+        "Actual nameKey9389→9392; clean baseline230dd06c and no prior work/tests. All9389 previous battle definitions, IDs, catalogue/details/aliases, old image URLs and pinned records unchanged. Three whole official original images/basic stats/mana/current restrictions and exact-name product searches verified, no reprint or duplicate names added.",
+        "Quick Defense complete S Trigger X, granted Blocker and independent gear-owned optional death recross. Native LKI cross-death snapshot gains an explicit new flag while previous Protectors draw behavior remains unchanged. Exact QA35337/35338 immediate recross outside main, decline loses later free chance, actual blocked battle loss, replacement-to-hand exclusion, source ignored/left-field and encrypted pending choice verified.",
+        "Exact QA35336 uses actual Quick STX and actual Sirius; native generation draw waits until mandatory crossing finishes and draws once. Ordinary paid generation/crossing remain separate.",
+        "Powered Mask external power counts every actual tapped both-player creature, including its tapped/ignored host and other ignored creatures; excludes gears, seals and facedown elements. Multiple sources stack, recross/tap/untap/seal/ignore dynamically change power. Avoid global counting when no Mask flag is present; reran only4 affected Mask cases after this small optimization.",
+        "Leo native S Trigger X plus a separate optional entry cross means mandatory first cross can be followed by an optional second cross. Paid generation only pays4 even when taking optional entry cross. Native crossed Shield Plus optionally places exactly one hidden deck card under an existing shield; preserves group count, no trigger use, no-shield/no-deck-move and ignored source cases tested.",
+        "42 unique focused cases pass on first run,227 affected regressions pass,total269; check19.764s,audit11.541s,actual nameKey/invariants/target9500 pass. Pending JSON/online choices and original legal40/80 physical cards verified.",
+        "All historical full-suite, individual/reprint, long-test and user deferrals preserved, including phase1716 interrupted screenshot comparisons; none rerun or inferred passing. No whole npm test or push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm16-020",
+          "name": "ドラム・スピリット",
+          "reason": "Full gear-host tap ability to search and deploy same-name non-evolution."
+        },
+        {
+          "id": "dm15-014",
+          "name": "ハングリー・ガントレット",
+          "reason": "Full gear-host tap ability to destroy every creature with power<=host, including host."
+        },
+        {
+          "id": "dm14-058",
+          "name": "ヘル・ダブルクロー",
+          "reason": "Full crossed W breaker and gear-owned destroy-host trigger when host wins a battle."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1716,
-    "nextPhase": 1717,
+    "lastVerifiedPhase": 1717,
+    "nextPhase": 1718,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm15-023",
-        "name": "クイック・ディフェンス",
-        "reason": "Whole S Trigger X plus Blocker and death free recross."
-      },
-      {
-        "id": "dm15-029",
-        "name": "パワード・マスク",
-        "reason": "Whole S Trigger X plus crossed power per tapped battlefield creature."
-      },
-      {
-        "id": "dm29-034",
-        "name": "装刃 レオ・インパクト",
-        "reason": "Whole S Trigger X plus optional entry cross and attack Shield Plus."
-      },
-      {
         "id": "dm16-020",
         "name": "ドラム・スピリット",
-        "reason": "Whole crossed tap ability: search/deploy same-name non-evolution."
+        "reason": "Full gear-host tap ability to search and deploy same-name non-evolution."
+      },
+      {
+        "id": "dm15-014",
+        "name": "ハングリー・ガントレット",
+        "reason": "Full gear-host tap ability to destroy every creature with power<=host, including host."
+      },
+      {
+        "id": "dm14-058",
+        "name": "ヘル・ダブルクロー",
+        "reason": "Full crossed W breaker and gear-owned destroy-host trigger when host wins a battle."
       }
     ],
     "steps": [
@@ -548478,23 +548702,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1716,
-      "baseline": "322882d7",
-      "supportedNames": 9389,
-      "artifact": "tools/target9500-registration-checkpoint-1716.json",
-      "checkedAt": "2026-11-23T06:49:26.070Z"
+      "phase": 1717,
+      "baseline": "230dd06c",
+      "supportedNames": 9392,
+      "artifact": "tools/target9500-registration-checkpoint-1717.json",
+      "checkedAt": "2026-11-23T06:55:00.411Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T06:49:26.070Z",
+      "checkedAt": "2026-11-23T06:55:00.411Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9389,
-      "remainingNames": 111,
+      "currentNames": 9392,
+      "remainingNames": 108,
       "duplicateNames": 0,
-      "engineVersion": "0.602.233",
+      "engineVersion": "0.602.234",
       "added": [
         {
           "id": "dmr12-008",
@@ -549771,6 +549995,18 @@
         {
           "id": "dm23ex1-066",
           "name": "天装 カガヤキ・ミガタメ"
+        },
+        {
+          "id": "dm15-023",
+          "name": "クイック・ディフェンス"
+        },
+        {
+          "id": "dm15-029",
+          "name": "パワード・マスク"
+        },
+        {
+          "id": "dm29-034",
+          "name": "装刃 レオ・インパクト"
         }
       ],
       "results": {
@@ -549886,15 +550122,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "48434d1894502b4714fdb070d5a546259c7f3cc74d67e5e3dc6aab392c2bf8d3",
-        "dist/engine.js": "90d2e57226ab32cf95d87c9c455be716804e54e428b966b56c0334b4cc5cb930",
-        "dist/samurai-rules.js": "2df2dda9ddc19226ee51f98cbe5b8da19d32ab5dc2de0d0ddbbd942a4512405c",
-        "dist/redzone-rules.js": "e639c7644f35ce2b9235fa699d3f4e6129594e5a24e4481784b8e0738ead59e2",
+        "dist/cards.json": "49bdb03410eb22326497e84d378cec35a4ca383bc7345eec188a7ff165a6d063",
+        "dist/engine.js": "dc98b4ab81009ada43aca2093c01173933cf071ab2c227eae8df27c21e52c88a",
+        "dist/samurai-rules.js": "1b97167a1ef6fba05005d8e2b36a1f19dbfd4e3a70d00cd79d21ef662e9b4acc",
+        "dist/extended-rules.js": "7f1080375eaf2bcb60779fe572371f59c55c73530266fd9a2370e0251a642871",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "bcaf57a1979ef4ded628280ae60fd947c80f82fdc71852a50148cf1a082dd350",
-        "dist/card-images.js": "f204fe7dd06ff090e9d49e4deb91bb1248ea46fd91ef57fab5348240b93664e3",
-        "tools/target9000-card-spec.json": "cd5032916bce6483b3ffae5e501fe8997a8d8c0ffe51a75f9db7690a664a0062",
-        "tests/standard1716-effects.test.mjs": "348938a196dc2fa28e6b31472357d66c27a6280bc009659126c7fe5cd7e05cfc"
+        "dist/online-compatibility.js": "60a848c0d9d17d4e120040ec95cf10d220da84f920a2bb2cc773e47cdf62d636",
+        "dist/card-images.js": "3845f52562a256398d04dd22abb3532d798bed602b5cf380abe931f5b5ec8afd",
+        "tools/target9000-card-spec.json": "767e16b6f674b9f8254877c565d96e2c8164d0b3991de146652f8403801e6267",
+        "tests/standard1717-effects.test.mjs": "7cfdb2e0b3a7018b929f034f7d04c793c32f5c28d7f94456e1c6b24ef8434915"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -549958,10 +550194,10 @@
       },
       "phaseRange": [
         1614,
-        1716
+        1717
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 319,
+      "addedNames": 322,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -549973,9 +550209,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.038,
-        "log": "tmp/duema-phase-1716/check.log",
-        "logSha256": "cf5744c28f3a06b7c46eef3cd0ab8456c17dc92055fd7c77db9883f4d96bb86b"
+        "seconds": 19.764,
+        "log": "tmp/duema-phase-1717/check.log",
+        "logSha256": "86bad10c7036297c31defdf11e005d33a816d4d5fe2feaa0f10cdef50e5b5d4a"
       },
       "latestAudit": {
         "name": "audit",
@@ -549985,11 +550221,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.033,
-        "log": "tmp/duema-phase-1716/audit.log",
-        "logSha256": "9b4f1fb4540384e4f10077bbef57f9aacf1b13e1a7e389c913950a89df553d52"
+        "seconds": 11.541,
+        "log": "tmp/duema-phase-1717/audit.log",
+        "logSha256": "9533f0fd051abc354f43dc9b32db33af59c856eb0304b724629c24563562f682"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1716.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1717.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -551107,11 +551343,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9389,
-      "remaining": 111,
+      "currentNames": 9392,
+      "remaining": 108,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T06:49:26.070Z",
+      "checkedAt": "2026-11-23T06:55:00.411Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -603289,11 +603525,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1716,
+    "phase": 1717,
     "threshold": 9500,
-    "supportedNames": 9389,
-    "pendingNames": 2434,
-    "checkedAt": "2026-11-23T06:49:26.070Z",
+    "supportedNames": 9392,
+    "pendingNames": 2431,
+    "checkedAt": "2026-11-23T06:55:00.411Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -603302,7 +603538,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1716.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1717.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
