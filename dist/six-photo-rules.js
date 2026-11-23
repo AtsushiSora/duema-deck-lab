@@ -3272,7 +3272,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_SelfGraveShield659':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
-  if(y)zoneMove(s,t.p,'grave',y.uid,'shields',{...t,g657FaceUp:true});
+  if(y)zoneMove(s,t.p,'grave',y.uid,'shields',{...t,g657FaceUp:!t.g1714FaceDown});
   break;
  }
  case'g34_HippoMana1124':{

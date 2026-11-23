@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9379,
-  "pendingNames": 2444,
-  "phase": 1713,
-  "added": 3,
+  "supportedNames": 9381,
+  "pendingNames": 2442,
+  "phase": 1714,
+  "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1390,
+    "クリーチャー": 1388,
     "呪文": 266,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1769,
+    "未対応の能力文": 1767,
     "複数面・特殊カードタイプまたは情報不足": 565,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -546647,27 +546647,336 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1714,
+      "checkedAt": "2026-11-23T06:31:03.419Z",
+      "baseline": "294ae5d7",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9379,
+      "currentNames": 9381,
+      "remainingNames": 119,
+      "added": [
+        {
+          "id": "dmsp02-012",
+          "name": "未来王龍 モモキング"
+        },
+        {
+          "id": "dm03-006",
+          "name": "雷雲の守護者ラーザ・ベガ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "294ae5d7",
+        "originalDefinitionsUnchanged": 9379,
+        "added": 2,
+        "uniqueNames": 9381,
+        "uniqueIds": 9381,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9379,
+        "existingImageReferenceRowsUnchanged": 11593,
+        "officialPrintsReviewed": 4,
+        "officialImagesReviewed": 4,
+        "existingPinsUnchanged": 948
+      },
+      "results": {
+        "related-shield-go": {
+          "name": "related-shield-go",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard659-effects.test.mjs",
+            "tests/standard916-effects.test.mjs",
+            "tests/standard693-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.865,
+          "log": "tmp/duema-phase-1714/related-shield-go.log",
+          "passed": 39,
+          "logSha256": "db8277eacfeb0eaf5f46a505bb70d9572395955636c91d168c1cb708806878b0"
+        },
+        "related-evolution-online": {
+          "name": "related-evolution-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1239-effects.test.mjs",
+            "tests/standard1570-effects.test.mjs",
+            "tests/standard1713-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.567,
+          "log": "tmp/duema-phase-1714/related-evolution-online.log",
+          "passed": 104,
+          "logSha256": "5a295e848213b3ac00c1d5afa55b42cd8bc9db853700055539265a6bd646a0b9"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1714.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.273,
+          "log": "tmp/duema-phase-1714/official.log",
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.772,
+          "log": "tmp/duema-phase-1714/check.log",
+          "logSha256": "26f8ab91994447ccaca0968d9156fc3acfef67610590668b81e1cbec8d5778da"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.806,
+          "log": "tmp/duema-phase-1714/audit.log",
+          "logSha256": "9df99ce8742d7bf6d7f81ed21b36059125e060ec9d1cf734ec6564e316a7aa0e"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.435,
+          "log": "tmp/duema-phase-1714/target9500.log",
+          "logSha256": "1fb56c21352aeaf72a9e0825cccec34812babfedeeb00dd0de1a29971f4c472c"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1714/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.38,
+          "log": "tmp/duema-phase-1714/invariants.log",
+          "logSha256": "367fbbe21999e9ae3ed26a7118df5b7105cfb2ac315e40286cd994680409d818"
+        },
+        "focused": {
+          "passed": 30,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1714-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 7.807,
+              "log": "tmp/duema-phase-1714/focused.log",
+              "passed": 22,
+              "logSha256": "0a5bd189f2fd244b0e99dd299fdc3e4d1227cba0f0db4224bbed48a6d73b891d"
+            },
+            {
+              "name": "focused-fixtures",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(Complete creature|QA35034|Raza pending|Encrypted pending)",
+                "tests/standard1714-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.78,
+              "log": "tmp/duema-phase-1714/focused-fixtures.log",
+              "passed": 10,
+              "logSha256": "de8ddbaf4e7693c517cb3c9dcb3c00f750ba4958a4942f3e9655046e4443ba8a"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 173,
+      "hashes": {
+        "dist/cards.json": "33c73dc2cb12d888f740c84a0d37d82f6c9d56f4883508fdce31791db538a445",
+        "dist/engine.js": "2d303260440ef498b8cabd80fb4e8fb524a3c6cb463494afed3d033458f754ac",
+        "dist/samurai-rules.js": "9cc6adb9349fed249b144f40610acc53398b40fdbb41db1a75980a322156da8e",
+        "dist/six-photo-rules.js": "98092e806eeb683874e31479b194cd0503bb72e343da71b697b05b245d39136c",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "385613024d713072c767db7b8f4b95830ec2cca4fbf27f2d283d34315821ab4b",
+        "dist/card-images.js": "a7ba9c74c6c9d96b7719ace1b9f54bf2a0f9875e35566f4008f9cd4998d25851",
+        "tools/target9000-card-spec.json": "7282ff1cebb7bd04593381408c5a1fc1e7e198eeb4795a58ac1fdeed17de9d9b",
+        "tests/standard1714-effects.test.mjs": "5153b12b42c4252c1366011325dccca17de86d2afc6dbaae35f73535648ba83b"
+      },
+      "engineVersion": "0.602.231",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1714-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.807,
+          "log": "tmp/duema-phase-1714/focused.log",
+          "logSha256": "0a5bd189f2fd244b0e99dd299fdc3e4d1227cba0f0db4224bbed48a6d73b891d"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1714.json",
+      "supported": 9381,
+      "pending": 2442,
+      "reason": "Complete Future King Momoking race-only evolution/own-base summon discount and Raza Vega using current reprint destroyed-trigger wording. Two complete native cards; do not pad with partial replacement or grave-lock candidates.",
+      "validationNotes": [
+        "Actual nameKey count9379→9381; clean baseline294ae5d7, no prior work/tests. All9379 old definitions, IDs, catalogue/details/aliases, image URLs, pins and original saved formats unchanged.",
+        "Complete native Momoking Speed/W breaker/race-only evolution/selected-base discount1, current limits and all4 original/reprint images reviewed. Whole2-page official Momoking search (92 broad hits) and product list isolate only exact-name DMSP02 and DMEX16, excluding JO and other named cards.",
+        "Exact QA39511 uses actual Alpha GS and Dead Zone: race permission never waives civilization/blocker/name/ultimate or source ignore/seal. Actual paid evolution quotes discount only for selected physical base; ordinary base no discount, cost min1 and reduction ban maintained. Immediately attacks and performs double break.",
+        "Raza current DMEX08-231 image/text changes old original pre-grave wording to a destroyed trigger. Implement with g172Death plus existing serial-checked SelfGraveShield659 and explicit g1714FaceDown. Existing default face-up Shield Go remains unchanged; no g916 replacement used. Full original ID retained.",
+        "Exact QA35034 appends sixth face-down shield; exact QA34810 actual Radia Barle stack loses both to grave without undercard ability. Real block loss, ordinary bounce, source ignored, shield/grave locks, pending card leaves grave, JSON/encrypted effect-order and physical conservation verified.",
+        "30 unique focused and143 related tests pass. Initial8 fixture failures were optional booleans vs false and auto-resolving single death task; normalize booleans and add real Kuzu death watcher to hold actual effect order, rerun only10 affected cases. Runtime behavior required no correction.",
+        "Three unregistered candidates held with full fetched official faces and concrete reasons: Baikuro/Pippi require complete shield-placement replacement across all origins; Seimei requires spell-only grave-to-hand restriction. None partially registered/count-added. All historical pending/full-suite/long/reprint/user deferrals retained.",
+        "Check19.772s, audit10.806s, actual nameKey/invariants/target9500 pass. No whole npm test/repeated long run or push/publication/Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dmrp08-046",
+          "name": "バイクロ・チュリス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-046",
+          "faces": [
+            {
+              "name": "バイクロ・チュリス",
+              "typeText": "クリーチャー",
+              "civilizationText": "火",
+              "civilizations": [
+                "火"
+              ],
+              "cost": 4,
+              "costText": "4",
+              "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+              "race": "ビートジョッキー",
+              "powerText": "3000",
+              "missingFields": []
+            }
+          ],
+          "status": "not-registered",
+          "reason": "Opponent-turn own-shield placement replacement needs complete common handling including hand/deck/battle/stacked shields and replacement competition; not represented by canAddShield prohibition. No partial registration."
+        },
+        {
+          "id": "dm23rp4-036",
+          "name": "ピッピ・修・ピヨッコ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-036",
+          "faces": [
+            {
+              "name": "ピッピ・修・ピヨッコ",
+              "typeText": "クリーチャー",
+              "civilizationText": "火",
+              "civilizations": [
+                "火"
+              ],
+              "cost": 2,
+              "costText": "2",
+              "abilityText": "相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+              "race": "アーマード・ファイアー・バード",
+              "powerText": "3000",
+              "missingFields": []
+            }
+          ],
+          "status": "not-registered",
+          "reason": "Opponent-turn own-shield placement replacement needs complete common handling including hand/deck/battle/stacked shields and replacement competition; not represented by canAddShield prohibition. No partial registration."
+        },
+        {
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-007",
+          "faces": [
+            {
+              "name": "陰陽の伝道士セイメイ",
+              "typeText": "クリーチャー",
+              "civilizationText": "光",
+              "civilizations": [
+                "光"
+              ],
+              "cost": 4,
+              "costText": "4",
+              "abilityText": "相手がクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)\n相手は、呪文を自分自身の墓地から手札に戻すことができない。",
+              "race": "バーサーカー/サムライ",
+              "powerText": "3500",
+              "missingFields": []
+            }
+          ],
+          "status": "not-registered",
+          "reason": "Spell-specific opponent grave-to-hand restriction is not represented by general grave lock; do not partially register untargetable."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm17-001",
+          "name": "クイーン・オブ・プロテクション",
+          "reason": "Verify complete crossed power/blocker plus physical Lord pairing."
+        },
+        {
+          "id": "dm17-002",
+          "name": "ロード・オブ・レジェンドソード",
+          "reason": "Verify whole crossed W/lower-power unblockable plus Queen paired extra break."
+        },
+        {
+          "id": "dm14-052",
+          "name": "スパイラル・オーラ",
+          "reason": "Verify complete independent gear destruction-to-hand replacement."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1713,
-    "nextPhase": 1714,
+    "lastVerifiedPhase": 1714,
+    "nextPhase": 1715,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp08-046",
-        "name": "バイクロ・チュリス",
-        "reason": "Verify full Speed Attacker and opponent-turn shield-placement replacement."
+        "id": "dm17-001",
+        "name": "クイーン・オブ・プロテクション",
+        "reason": "Verify complete crossed power/blocker plus physical Lord pairing."
       },
       {
-        "id": "dm23rp4-036",
-        "name": "ピッピ・修・ピヨッコ",
-        "reason": "Verify full matching opponent-turn shield-placement replacement."
+        "id": "dm17-002",
+        "name": "ロード・オブ・レジェンドソード",
+        "reason": "Verify whole crossed W/lower-power unblockable plus Queen paired extra break."
       },
       {
-        "id": "dm31-007",
-        "name": "陰陽の伝道士セイメイ",
-        "reason": "Verify full untargetable and opponent spell-only grave-to-hand restriction."
+        "id": "dm14-052",
+        "name": "スパイラル・オーラ",
+        "reason": "Verify complete independent gear destruction-to-hand replacement."
       }
     ],
     "steps": [
@@ -547552,23 +547861,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1713,
-      "baseline": "d0138c06",
-      "supportedNames": 9379,
-      "artifact": "tools/target9500-registration-checkpoint-1713.json",
-      "checkedAt": "2026-11-23T06:22:24.037Z"
+      "phase": 1714,
+      "baseline": "294ae5d7",
+      "supportedNames": 9381,
+      "artifact": "tools/target9500-registration-checkpoint-1714.json",
+      "checkedAt": "2026-11-23T06:31:03.419Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T06:22:24.037Z",
+      "checkedAt": "2026-11-23T06:31:03.419Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9379,
-      "remainingNames": 121,
+      "currentNames": 9381,
+      "remainingNames": 119,
       "duplicateNames": 0,
-      "engineVersion": "0.602.230",
+      "engineVersion": "0.602.231",
       "added": [
         {
           "id": "dmr12-008",
@@ -548805,6 +549114,14 @@
         {
           "id": "dm32-110",
           "name": "メガ・イノセントソード"
+        },
+        {
+          "id": "dmsp02-012",
+          "name": "未来王龍 モモキング"
+        },
+        {
+          "id": "dm03-006",
+          "name": "雷雲の守護者ラーザ・ベガ"
         }
       ],
       "results": {
@@ -548920,15 +549237,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "429b29ef20a6b864669425a94fac3e9519d18cad0f3478a8d52807e4c949a33a",
-        "dist/engine.js": "0c2d2862d704cbe809a8b769793d924100defb9c0a2b72c7f7abb0d75bea8217",
+        "dist/cards.json": "33c73dc2cb12d888f740c84a0d37d82f6c9d56f4883508fdce31791db538a445",
+        "dist/engine.js": "2d303260440ef498b8cabd80fb4e8fb524a3c6cb463494afed3d033458f754ac",
         "dist/samurai-rules.js": "9cc6adb9349fed249b144f40610acc53398b40fdbb41db1a75980a322156da8e",
-        "dist/extended-rules.js": "4cc41d0257537098c0a9b32b19c1efe0b7e18bf2916422d6de4887023300cc33",
+        "dist/six-photo-rules.js": "98092e806eeb683874e31479b194cd0503bb72e343da71b697b05b245d39136c",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "2b12580731c77443f225d8e8db75253bdf7c29bf734e9df3717dece0662ecb5b",
-        "dist/card-images.js": "92f7320cf26e16667fdfdf2a93c341285d56587238e10ed869715935e94221f3",
-        "tools/target9000-card-spec.json": "5bfbae33d482716b14ac61af736cc0f14f47d484614283ece93f333d28c7dddf",
-        "tests/standard1713-effects.test.mjs": "c05dc41efb3911a8b3ebaf6f5586896b5d15912b6665415fb25ee03f260c1565"
+        "dist/online-compatibility.js": "385613024d713072c767db7b8f4b95830ec2cca4fbf27f2d283d34315821ab4b",
+        "dist/card-images.js": "a7ba9c74c6c9d96b7719ace1b9f54bf2a0f9875e35566f4008f9cd4998d25851",
+        "tools/target9000-card-spec.json": "7282ff1cebb7bd04593381408c5a1fc1e7e198eeb4795a58ac1fdeed17de9d9b",
+        "tests/standard1714-effects.test.mjs": "5153b12b42c4252c1366011325dccca17de86d2afc6dbaae35f73535648ba83b"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -548992,10 +549309,10 @@
       },
       "phaseRange": [
         1614,
-        1713
+        1714
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 309,
+      "addedNames": 311,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -549007,9 +549324,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.738,
-        "log": "tmp/duema-phase-1713/check.log",
-        "logSha256": "ef14172e5f4621002792684960652f33ebbfa0adb5426f2bc335554e426c3cc9"
+        "seconds": 19.772,
+        "log": "tmp/duema-phase-1714/check.log",
+        "logSha256": "26f8ab91994447ccaca0968d9156fc3acfef67610590668b81e1cbec8d5778da"
       },
       "latestAudit": {
         "name": "audit",
@@ -549019,11 +549336,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.796,
-        "log": "tmp/duema-phase-1713/audit.log",
-        "logSha256": "e7d7b29415fd74be35aebfdbd6c2a57a000d38c468dcaff360cf3213d5c0e634"
+        "seconds": 10.806,
+        "log": "tmp/duema-phase-1714/audit.log",
+        "logSha256": "9df99ce8742d7bf6d7f81ed21b36059125e060ec9d1cf734ec6564e316a7aa0e"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1713.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1714.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -550141,11 +550458,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9379,
-      "remaining": 121,
+      "currentNames": 9381,
+      "remaining": 119,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T06:22:24.037Z",
+      "checkedAt": "2026-11-23T06:31:03.419Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -602290,11 +602607,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1713,
+    "phase": 1714,
     "threshold": 9500,
-    "supportedNames": 9379,
-    "pendingNames": 2444,
-    "checkedAt": "2026-11-23T06:22:24.037Z",
+    "supportedNames": 9381,
+    "pendingNames": 2442,
+    "checkedAt": "2026-11-23T06:31:03.419Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -602303,7 +602620,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1713.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1714.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
