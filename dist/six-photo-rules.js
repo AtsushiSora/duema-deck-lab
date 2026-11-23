@@ -3222,7 +3222,7 @@ export function createSixPhotoRules(api){
   if(t.optional||t.afterAttempt){
    if(!host.x.sealed)start(s,t,[{op:'ExactMove',owner:host.p,target:host.x.uid,targetIncarnation:host.x.incarnation||0,
     to:'hand',toOwnerHand:true,optional:t.optional,afterAttempt:t.afterAttempt}]);
-  }else move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);
+  }else move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p,...(t.toOwnerHand?{toOwnerHand:true}:{})}]);
   break;
  }
  // The death trigger follows its first grave visit, never a later visit by the same physical card.
@@ -4305,6 +4305,7 @@ export function createSixPhotoRules(api){
   if(chosen.length>=(t.n??1)||!rows.length){for(const uid of ids)release(s,owner,uid);for(const uid of chosen)zoneMove(s,owner,'deck',uid,'grave',t);api.shuffleLibrary(s,owner);api.deckCheck(s,owner);break;}
   choice(s,{...t,ids,chosen,deckOwner:owner},'山札から墓地に置くカードを選ぶ（任意）',[...rows.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),...(!t.exact||!chosen.length?[skip()]:[])]);break;
  }
+ case'g34_BazagaCross1707':put(s,{...t,op:'g18_SelfCross1707'});break;
  case'g34_FreeCross927':put(s,{...t,op:'g18_ChooseFreeCross927'});break;
  case'g34_DestroyPerAlly927':{
   const n=creatures(s,t.p).filter(x=>!x.sealed&&matches(s,t.p,x,{raceAny:t.raceAny})).length;

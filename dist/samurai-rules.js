@@ -15,6 +15,10 @@ export function createSamuraiRules(api){
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
  const mushaName='ボルメテウス・武者・ドラゴン';
  function identity(s,p,x,c){
+  if(c.type==='creature'&&!x.sealed){
+   const races=attached(s,p,x).filter(g=>card(g).g1707CrossRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g)).map(g=>card(g).g1707CrossRace);
+   if(races.length)c={...c,race:[...new Set([...String(c.race||'').split('/').filter(Boolean),...races])].join('/')};
+  }
   if(c.type!=='creature'||x.sealed||!s.players[p].battle.some(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)&&card(g).g1083MushaLegend&&!g.faceDown&&!g.sealed&&active(s,g)))return c;
   return {...c,additionalNames:c.name===mushaName?[]:[mushaName],
    race:[...new Set([...String(c.race||'').split('/').filter(Boolean),'アーマード・ドラゴン','サムライ'])].join('/')};
@@ -32,6 +36,14 @@ export function createSamuraiRules(api){
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g18_SelfCross1707':{
+  const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
+  const rows=host?gears(s,t.p).filter(g=>!g.sealed&&!g.faceDown&&live(s,t.p,g)!==host):[];
+  if(rows.length)choice(s,t,'このクリーチャーに無料でクロスする自分のクロスギアを1枚選ぶ（任意）',[
+   ...rows.map(g=>opt(card(g).name,{uid:g.uid,incarnation:g.incarnation||0},20,g.cardId)),skip()
+  ]);
+  break;
+ }
  case'g18_Generate':choice(s,t,'侍流ジェネレートで手札のクロスギアを使う？',[...own.hand.filter(x=>card(x).type==='gear'&&canUse(s,t.p,card(x),'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g18_Bui':choice(s,t,'自分のシールドを1つブレイクして6000以下を破壊する？',[...own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,creatures(s,1-t.p).some(x=>api.power(x,false,s)<=6000)?20:-5)),skip()]);break;
  case'g18_AfterBreak':if((own.brokenThisTurn||0)>t.before)put(s,task('destroyPower',t.p,t.source,{max:6000}));break;
@@ -75,6 +87,12 @@ export function createSamuraiRules(api){
  default:throw Error('未実装のサムライ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g18_SelfCross1707':{
+  const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
+  const gear=v&&gears(s,t.p).find(g=>g.uid===v.uid&&(g.incarnation||0)===v.incarnation&&!g.sealed&&!g.faceDown);
+  if(host&&gear&&live(s,t.p,gear)!==host)cross(s,t.p,gear,host);
+  break;
+ }
  case'g18_Generate':if(v)cast(s,t.p,v,true,null,0,null,'hand','侍流ジェネレート');break;
  case'g18_Bui':if(v){const before=own.brokenThisTurn||0;api.interruptBreak(s,t.p,[v],task('g18_AfterBreak',t.p,t.source,{before}));}break;
  case'g18_Musashi':put(s,task('g18_MusashiDraw',t.p,t.source,{remaining:own.battle.filter(x=>colors(card(x)).includes('光')).length}));if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
@@ -173,7 +191,7 @@ export function createSamuraiRules(api){
   let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
    const def=card(g);
-   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker&&!def.g1312CrossSpeed&&!def.g1706CrossSlayer&&!def.g1706CrossTap)||g.faceDown||g.sealed||!active(s,g))continue;
+   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker&&!def.g1312CrossSpeed&&!def.g1706CrossSlayer&&!def.g1706CrossTap&&!def.g1707CrossAttackBonus)||g.faceDown||g.sealed||!active(s,g))continue;
    const host=live(s,owner,g);
    if(def.g945CrossBlocker&&owner===p&&host===x)blocker=true;
    if(def.g1312CrossSpeed&&owner===p&&host===x)speed=true;
@@ -184,7 +202,7 @@ export function createSamuraiRules(api){
     }]};
    }
    if(!host){speed||=!!def.g932UncrossedSpeed;slayers+=Number(!!def.g932UncrossedSlayer);}
-   else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=def.g932CrossAttackBonus||0;
+   else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=(def.g932CrossAttackBonus||0)+(def.g1707CrossAttackBonus||0);
   }
   if(speed&&!c.speedAttacker)c={...c,speedAttacker:true};
   if(blocker&&!c.blocker)c={...c,blocker:true};
