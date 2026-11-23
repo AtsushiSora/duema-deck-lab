@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9450,
-  "pendingNames": 2373,
-  "phase": 1738,
-  "added": 2,
+  "supportedNames": 9453,
+  "pendingNames": 2370,
+  "phase": 1739,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1378,
-    "呪文": 263,
+    "呪文": 261,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -163,7 +163,6 @@
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 208,
     "スター進化クリーチャー": 49,
-    "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
     "デュエルメイト・クリーチャー": 4,
@@ -221,8 +220,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1756,
-    "複数面・特殊カードタイプまたは情報不足": 509,
+    "未対応の能力文": 1754,
+    "複数面・特殊カードタイプまたは情報不足": 508,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のシンカパワー": 2,
@@ -553800,27 +553799,535 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1739,
+      "checkedAt": "2026-11-23T11:45:30.601Z",
+      "baseline": "b0a7bb7d",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9450,
+      "currentNames": 9453,
+      "remainingNames": 47,
+      "added": [
+        {
+          "id": "dmr08-025",
+          "name": "ヘブンズ・サンダー"
+        },
+        {
+          "id": "dm07-039",
+          "name": "ミラクル・ポータル"
+        },
+        {
+          "id": "dmr08-v01",
+          "name": "「無情」の極 シャングリラ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "b0a7bb7d",
+        "originalDefinitionsUnchanged": 9450,
+        "added": 3,
+        "uniqueNames": 9453,
+        "uniqueIds": 9453,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9450,
+        "existingImageReferenceRowsUnchanged": 11707,
+        "officialPrintsReviewed": 5,
+        "officialImagesReviewed": 5,
+        "existingPinsUnchanged": 1062
+      },
+      "results": {
+        "related-diamond": {
+          "name": "related-diamond",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1331-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.543,
+          "log": "tmp/duema-phase-1739/related-diamond.log",
+          "passed": 6,
+          "logSha256": "bceac7df60103965999f9a544aa7642b2a22b4ae645be771b9edee16228e1cd5"
+        },
+        "related-woods": {
+          "name": "related-woods",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Woods",
+            "tests/standard1675-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.489,
+          "log": "tmp/duema-phase-1739/related-woods.log",
+          "passed": 28,
+          "logSha256": "9c2ae92874c3f1cbb959b9e4850cb38e449da4ff72dc78cd0b65ea497f6f637c"
+        },
+        "related-evolution": {
+          "name": "related-evolution",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Soul Shift|Gouken|Kengeki can use|Kagekiri|Maribel",
+            "tests/standard1362-effects.test.mjs",
+            "tests/standard825-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.81,
+          "log": "tmp/duema-phase-1739/related-evolution.log",
+          "passed": 12,
+          "logSha256": "948aa2648d912281208e5e2351dccdfaabf126f000fb21bd088f1c61e99b03d8"
+        },
+        "related-psychic": {
+          "name": "related-psychic",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Diamond Cutter|Forever stops|back stops",
+            "tests/standard1734-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.975,
+          "log": "tmp/duema-phase-1739/related-psychic.log",
+          "passed": 6,
+          "logSha256": "3e6a33461b85b406d20d4810775e6f6cc7fc0c628b954b81f28bad6bf9f6a216"
+        },
+        "related-arking": {
+          "name": "related-arking",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1336-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.11,
+          "log": "tmp/duema-phase-1739/related-arking.log",
+          "passed": 6,
+          "logSha256": "3bcdcfc38934e2a21d1dbb603a31f4004da95dd64770a6ee372d94264cb9e89b"
+        },
+        "related-chooser": {
+          "name": "related-chooser",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=evolution|three zones|replacement decisions|original caster",
+            "tests/standard1369-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.924,
+          "log": "tmp/duema-phase-1739/related-chooser.log",
+          "passed": 5,
+          "logSha256": "fde0b91d79938b326dcc6a55ff232bf4a4aef9c7e31fa5812da87aafaf07bd74"
+        },
+        "related-online": {
+          "name": "related-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.917,
+          "log": "tmp/duema-phase-1739/related-online.log",
+          "passed": 55,
+          "logSha256": "cd8bb25fc2ec0e32507811a5879e14dccae312691616520cd068fbad24dde6d7"
+        },
+        "official": {
+          "name": "official-final",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1739.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.287,
+          "log": "tmp/duema-phase-1739/official-final.log",
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "check": {
+          "name": "check-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.393,
+          "log": "tmp/duema-phase-1739/check-final.log",
+          "logSha256": "4608098db7165c007487b52066865e6bbfdd6a69b340ebbb4358f4d7b7b9b2d1"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.471,
+          "log": "tmp/duema-phase-1739/audit.log",
+          "logSha256": "6455cc5144dcaf76c4f53a762576a815a009fb318f8385d324d52d4c430ace06"
+        },
+        "target9500": {
+          "name": "target9500-final",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.383,
+          "log": "tmp/duema-phase-1739/target9500-final.log",
+          "logSha256": "41e95722e29deac1f9bbf3cac94f792c4131f95b883e65ba783d6b4ad8e18602"
+        },
+        "invariants": {
+          "name": "invariants-final",
+          "command": [
+            "node",
+            "tmp/duema-phase-1739/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.423,
+          "log": "tmp/duema-phase-1739/invariants-final.log",
+          "logSha256": "f1fa24ee42c8cd594e805a6813168a7c9977e1250f826c9bb2374c6acefa079b"
+        },
+        "focused": {
+          "passed": 73,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.238,
+              "log": "tmp/duema-phase-1739/focused.log",
+              "logSha256": "7dd86f842f0ca9668f3582b6c4cd7974dd397d914fa6367d27166fdc6276fbe6"
+            },
+            {
+              "name": "focused-fix",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.679,
+              "log": "tmp/duema-phase-1739/focused-fix.log",
+              "logSha256": "648ae0b2df07aaf7502d55eb9ec604e3bd2eb380c6e13b9bc2dd366f17c5b41a"
+            },
+            {
+              "name": "focused-final",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 1.686,
+              "log": "tmp/duema-phase-1739/focused-final.log",
+              "logSha256": "ee8efa13e608daab2ef67405cc88d9febeea57db978175f0a774a4670e502dd0"
+            },
+            {
+              "name": "focused-shang",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Shangrila|QA36777|externally",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.323,
+              "log": "tmp/duema-phase-1739/focused-shang.log",
+              "logSha256": "790321db5736f284a74daf4549df28033a06258e5608de2fc1498d86bfd8fc2c"
+            },
+            {
+              "name": "focused-shang-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=QA36777|Shangrila Meteor",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.839,
+              "log": "tmp/duema-phase-1739/focused-shang-fix.log",
+              "logSha256": "ac453afa129570211bdcc1b558aa32dbbc55ebe3cd0e204368d2db309ba6d5c3"
+            },
+            {
+              "name": "focused-additional",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=QA36779|fresh reentry",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.626,
+              "log": "tmp/duema-phase-1739/focused-additional.log",
+              "logSha256": "3575d04dd649f5e01ca064de303d6641c74c55124ed97dde4ade891a411f1c09"
+            },
+            {
+              "name": "focused-woods-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=Real Woods",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.563,
+              "log": "tmp/duema-phase-1739/focused-woods-fix.log",
+              "logSha256": "c55a792635c27ab632525754cc8a896c3999afd4396de3185d78d9f16c037863"
+            },
+            {
+              "name": "focused-mana",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=selected mana Guardian",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.542,
+              "log": "tmp/duema-phase-1739/focused-mana.log",
+              "logSha256": "a15d646995527f0ed448c714dc4cfce8b50e5535776234e45a2a7f813433eb21"
+            },
+            {
+              "name": "focused-limits",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=color-only|Yomino",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.792,
+              "log": "tmp/duema-phase-1739/focused-limits.log",
+              "logSha256": "7a7f50c2c98e281f23cb966717a7853e6f14c1d0943b0ee1dbcff481e94cd566"
+            },
+            {
+              "name": "focused-alias-save",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=reprint IDs|multi-zone evolution continuation",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.717,
+              "log": "tmp/duema-phase-1739/focused-alias-save.log",
+              "logSha256": "9c36a8f7f0097084538010c4549420a24c37886fd73cbda21511ed20e5b037b7"
+            },
+            {
+              "name": "focused-alias-save-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=reprint IDs|multi-zone evolution continuation",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.675,
+              "log": "tmp/duema-phase-1739/focused-alias-save-fix.log",
+              "logSha256": "d79258c579b7f48d6b32d706633d4c38cc2646dcb9ae43d34377f2dbca38307a"
+            },
+            {
+              "name": "focused-print-type",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=official evolution subtype",
+                "tests/standard1739-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.553,
+              "log": "tmp/duema-phase-1739/focused-print-type.log",
+              "logSha256": "f8ce72c7e5222d360292966848bc6da659e15f798e27e44d1ab9cb593f606ce0"
+            }
+          ],
+          "coverage": "73 unique cases; initial missing sixPhoto routing, incorrect GranGure noAttack fixture and e.allLayers helper, absent reprint aliases and auto-finish fixture were corrected and rerun. Every unique final case passes."
+        }
+      },
+      "totalTestsPassed": 191,
+      "hashes": {
+        "dist/cards.json": "877da1acc35987ce43dc917e88b705d8f81fc3807d01c0de4b51414fc3e2ddcb",
+        "dist/engine.js": "9be8cffd40011f2a3ee4a9729bd9a6ba62472818b3fd47cffe32e7c154e7aa73",
+        "dist/six-photo-rules.js": "eb947d46c67067acab2ea5632b21517fd2fc9692ccee0a74d329d811c31e747e",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
+        "dist/phoenix-rules.js": "d844709cab707787165088fef0de53a9298d6e7221749680086bd2a4cbe63187",
+        "tools/verify-catalogue-extension.mjs": "189e6df81024c4fde81c9025678b2fef96d64ce979748cad4e34fa9a5319b8f2",
+        "dist/online-compatibility.js": "b62be15710e3eda5910f077f1f456bbe5b2464a8fc88f3aa749e6bfcea6e2e34",
+        "dist/card-images.js": "221da62d9f64af80d9d3a28a00cbc21c0ad19bc2930d9283b445392034a43faf",
+        "tools/target9000-card-spec.json": "d80fd00db8ebe20a66df4541394852be473e8a0aefa28fd437e8ee739f5f1745",
+        "tests/standard1739-effects.test.mjs": "756fc0640a4329a17d5f8a09b0de4171b2cecdd16b36bcf9c99a28b0475f227b"
+      },
+      "engineVersion": "0.602.256",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1739-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.238,
+          "log": "tmp/duema-phase-1739/focused.log",
+          "logSha256": "7dd86f842f0ca9668f3582b6c4cd7974dd397d914fa6367d27166fdc6276fbe6"
+        },
+        {
+          "name": "focused-fix",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1739-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.679,
+          "log": "tmp/duema-phase-1739/focused-fix.log",
+          "logSha256": "648ae0b2df07aaf7502d55eb9ec604e3bd2eb380c6e13b9bc2dd366f17c5b41a"
+        },
+        {
+          "name": "focused-shang",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Shangrila|QA36777|externally",
+            "tests/standard1739-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.323,
+          "log": "tmp/duema-phase-1739/focused-shang.log",
+          "logSha256": "790321db5736f284a74daf4549df28033a06258e5608de2fc1498d86bfd8fc2c"
+        },
+        {
+          "name": "focused-alias-save",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=reprint IDs|multi-zone evolution continuation",
+            "tests/standard1739-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.717,
+          "log": "tmp/duema-phase-1739/focused-alias-save.log",
+          "logSha256": "9c36a8f7f0097084538010c4549420a24c37886fd73cbda21511ed20e5b037b7"
+        },
+        {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.486,
+          "log": "tmp/duema-phase-1739/target9500.log",
+          "logSha256": "2cd242bea0978496deb21d91c9849cc38361cac91830fc2c75d57380402e8e62"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1739.json",
+      "supported": 9453,
+      "pending": 2370,
+      "reason": "Heavens Thunder chosen own Blocker +4000/W and all attack restrictions ignored except sickness; Miracle Portal chosen own unblockable/player attack freedom except sickness. Full Shangrila ultra-infinite evolution Omega from any Guardian combination in battle/grave/mana, optional one-card Meteor enemy shuffle, tapped opponent attack lock and Eternal Omega.",
+      "validationNotes": [
+        "Actual nameKey9450→9453; all9450 existing definitions/IDs, details/name normalization/images/pins and old catalogue data retained. Added2 verified reprint ID aliases only.5 complete original/reprint images and all full abilities/limits verified.",
+        "Heavens Thunder chooses one own current Blocker, gives+4000/W and overrides all attack prohibitions except summoning sickness. Miracle Portal chooses one own creature, gives unblockability and only opposing-player attack freedom, not creature attack or sickness. Target/expiry/leave-reentry/evolution layers/ignored spell/Genmu/untapped target protections/native Woods/Diamond/JSON/encrypted choices tested. QA36799 reproduced with real newly supported Shangrila.",
+        "Shangrila uses existing physical native multi-base evolution with a narrowly enabled variable multi-zone choice: Guardian1+ from own battle/grave/mana, any combination including multiple same-zone. Actual payment can tap selected mana base; no wrong race/face-down mana/locked grave; cancel/JSON/encrypted and Yomino count+zone chooser passed. Native T breaker/Eternal Omega/one-card optional Meteor reuses whole-stack shuffled library movement. Tapped live source prohibits all opposing attacks, forced attack included; ignored/sealed/untapped source does not.",
+        "New2 print ID-only aliases exposed original HTML evolution subtype label variation. Catalogue extension validation normalizes only the exact evolution type label with/without super-infinite-Omega parenthetical, still requires pinned identical full specs and every other printed field. Real alias test passes; wrong base type, cost and power rejected. Positron deferred before implementation pending QA47359 source-zone retention dependency.73 focused unique cases and related short regressions pass, current check/audit/count/target/invariants pass. All historical pending unchanged. No full npm test, old long group, push/publication/Netlify."
+      ],
+      "held": [
+        {
+          "id": "dm32-015",
+          "name": "ポジトロン・サイン",
+          "reason": "Official originals/reprints full texts and art reviewed; mandatory bottom ordering before selected ST spell is native-compatible, but QA47359 requires unavailable Shisan Fairy library-retention provenance for spells held during execution. Defer full card instead of marking a partial implementation complete."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp18-032",
+          "name": "「天馬の騎兵」",
+          "reason": "Reuse full own-creature attack freedom except sickness for Shinka Power, plus GStrike."
+        },
+        {
+          "id": "dmex17-024",
+          "name": "Duplicates of G.O.D.",
+          "reason": "Reuse ultimate evolution/invasion and native temporary spell+cheap summon lock."
+        },
+        {
+          "id": "dmrp15-s04",
+          "name": "「疾風」の鬼 フウジン天",
+          "reason": "Reuse other-entry optional shield grave sacrifice and incoming creature haste; OniTime4000/W."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1738,
-    "nextPhase": 1736,
+    "lastVerifiedPhase": 1739,
+    "nextPhase": 1740,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm32-015",
-        "name": "ポジトロン・サイン",
-        "reason": "Full actual top4 optional S Trigger spell execution and ordered library rest; prioritize native look/cast."
+        "id": "dmrp18-032",
+        "name": "「天馬の騎兵」",
+        "reason": "Reuse full own-creature attack freedom except sickness for Shinka Power, plus GStrike."
       },
       {
-        "id": "dmr08-025",
-        "name": "ヘブンズ・サンダー",
-        "reason": "Full one own blocker power4000/W and native Diamond-style attack restriction override excluding sickness."
+        "id": "dmex17-024",
+        "name": "Duplicates of G.O.D.",
+        "reason": "Reuse ultimate evolution/invasion and native temporary spell+cheap summon lock."
       },
       {
-        "id": "dm07-039",
-        "name": "ミラクル・ポータル",
-        "reason": "Full chosen own creature unblockability and native player attack restriction override."
+        "id": "dmrp15-s04",
+        "name": "「疾風」の鬼 フウジン天",
+        "reason": "Reuse other-entry optional shield grave sacrifice and incoming creature haste; OniTime4000/W."
       }
     ],
     "steps": [
@@ -554705,23 +555212,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1738,
-      "baseline": "d6db8224",
-      "supportedNames": 9450,
-      "artifact": "tools/target9500-registration-checkpoint-1738.json",
-      "checkedAt": "2026-11-23T11:26:34.499Z"
+      "phase": 1739,
+      "baseline": "b0a7bb7d",
+      "supportedNames": 9453,
+      "artifact": "tools/target9500-registration-checkpoint-1739.json",
+      "checkedAt": "2026-11-23T11:45:30.601Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T11:26:34.499Z",
+      "checkedAt": "2026-11-23T11:45:30.601Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9450,
-      "remainingNames": 50,
+      "currentNames": 9453,
+      "remainingNames": 47,
       "duplicateNames": 0,
-      "engineVersion": "0.602.255",
+      "engineVersion": "0.602.256",
       "added": [
         {
           "id": "dmr12-008",
@@ -556242,6 +556749,18 @@
         {
           "id": "dmr05-032",
           "name": "メガンス・ワイバーン"
+        },
+        {
+          "id": "dmr08-025",
+          "name": "ヘブンズ・サンダー"
+        },
+        {
+          "id": "dm07-039",
+          "name": "ミラクル・ポータル"
+        },
+        {
+          "id": "dmr08-v01",
+          "name": "「無情」の極 シャングリラ"
         }
       ],
       "results": {
@@ -556357,14 +556876,17 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "de9f1d4e81ee06dca4533efe55cf78f79ba8cce8f425989ae49b70ab626ca582",
-        "dist/engine.js": "a48f058351fb9e8e40d2ba1dd9fd37e1c803505a2d9cdc73e345308bd9f7d4f2",
-        "dist/six-photo-rules.js": "11a1507a750580410953d458cfed596dae4ac8d10001f6e189879cc7fba83fa1",
+        "dist/cards.json": "877da1acc35987ce43dc917e88b705d8f81fc3807d01c0de4b51414fc3e2ddcb",
+        "dist/engine.js": "9be8cffd40011f2a3ee4a9729bd9a6ba62472818b3fd47cffe32e7c154e7aa73",
+        "dist/six-photo-rules.js": "eb947d46c67067acab2ea5632b21517fd2fc9692ccee0a74d329d811c31e747e",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/online-compatibility.js": "d474471b03f8e7cf609153299a12c5fe9b629a9bf9e464b50b967d4a139ac1fe",
-        "dist/card-images.js": "bd4c4b53e56cd13bb20981d312fde9b6bde8dd9ed53fb1c7f138ff75f54c9938",
-        "tools/target9000-card-spec.json": "5f5e2660e7e009791872218be41d6f8e8fda1085d1c8423ac11abea9c6f52fad",
-        "tests/standard1738-effects.test.mjs": "46d6d0c44c23a52e45857e3d4762efe73805ba6815e6e61deb870108484926e0"
+        "dist/catalogue.json": "3472fc9c1ad85a73d9ab56f9703c0c7c60ea57027035310f45b5647394ff1e49",
+        "dist/phoenix-rules.js": "d844709cab707787165088fef0de53a9298d6e7221749680086bd2a4cbe63187",
+        "tools/verify-catalogue-extension.mjs": "189e6df81024c4fde81c9025678b2fef96d64ce979748cad4e34fa9a5319b8f2",
+        "dist/online-compatibility.js": "b62be15710e3eda5910f077f1f456bbe5b2464a8fc88f3aa749e6bfcea6e2e34",
+        "dist/card-images.js": "221da62d9f64af80d9d3a28a00cbc21c0ad19bc2930d9283b445392034a43faf",
+        "tools/target9000-card-spec.json": "d80fd00db8ebe20a66df4541394852be473e8a0aefa28fd437e8ee739f5f1745",
+        "tests/standard1739-effects.test.mjs": "756fc0640a4329a17d5f8a09b0de4171b2cecdd16b36bcf9c99a28b0475f227b"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -556428,10 +556950,10 @@
       },
       "phaseRange": [
         1614,
-        1738
+        1739
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 380,
+      "addedNames": 383,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -556443,9 +556965,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.448,
-        "log": "tmp/duema-phase-1738/check-final.log",
-        "logSha256": "2e8608a5ba8a43eb3661ce1f78a5f54b8d5e86d67d7346dee77c245ce806b154"
+        "seconds": 19.393,
+        "log": "tmp/duema-phase-1739/check-final.log",
+        "logSha256": "4608098db7165c007487b52066865e6bbfdd6a69b340ebbb4358f4d7b7b9b2d1"
       },
       "latestAudit": {
         "name": "audit",
@@ -556455,11 +556977,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.226,
-        "log": "tmp/duema-phase-1738/audit.log",
-        "logSha256": "556107a7f9a03ae60582fd8e149c7f9a193a9f070c541ebeb96538ee06e563da"
+        "seconds": 10.471,
+        "log": "tmp/duema-phase-1739/audit.log",
+        "logSha256": "6455cc5144dcaf76c4f53a762576a815a009fb318f8385d324d52d4c430ace06"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1738.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1739.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -557577,11 +558099,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9450,
-      "remaining": 50,
+      "currentNames": 9453,
+      "remaining": 47,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T11:26:34.499Z",
+      "checkedAt": "2026-11-23T11:45:30.601Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -609789,11 +610311,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1738,
+    "phase": 1739,
     "threshold": 9500,
-    "supportedNames": 9450,
-    "pendingNames": 2373,
-    "checkedAt": "2026-11-23T11:26:34.499Z",
+    "supportedNames": 9453,
+    "pendingNames": 2370,
+    "checkedAt": "2026-11-23T11:45:30.601Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -609802,7 +610324,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1738.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1739.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

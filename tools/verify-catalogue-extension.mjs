@@ -1,6 +1,10 @@
 import assert from'node:assert/strict';
 import{nameKey}from'../dist/catalogue.js';
 import{standardCardSpec}from'./standard-card-spec.mjs';
+// Older official HTML sometimes appends the evolution method to the card type.
+// Both printed images say 進化クリーチャー; require identical pinned full abilities below.
+const printBasic=faces=>faces.map(({abilityText,...basic})=>({...basic,
+ typeText:basic.typeText==='進化クリーチャー(超無限進化・Ω)'?'進化クリーチャー':basic.typeText}));
 // Preserve every saved entry. Verified print names may merge display counts without removing IDs.
 export function assertVerifiedCatalogueExtension(before,current,{supported,manifests}){
  const remaining=structuredClone(current),added=[];
@@ -43,7 +47,7 @@ export function assertVerifiedCatalogueExtension(before,current,{supported,manif
   assert.equal(new URL(r.source).hostname,'dm.takaratomy.co.jp');
   assert.equal(new URL(r.source).searchParams.get('id'),id);
   try{assert.deepEqual(r.faces,target.faces);}catch{
-   assert.deepEqual(r.faces.map(({abilityText,...basic})=>basic),target.faces.map(({abilityText,...basic})=>basic),'Print basic fields differ: '+id);
+   assert.deepEqual(printBasic(r.faces),printBasic(target.faces),'Print basic fields differ: '+id);
    assert.deepEqual(standardCardSpec({id:r.id,name:r.name,status:'complete',faces:r.faces},{phase:m.phase}),target.spec,'Full print abilities differ: '+id);
   }
   assert.ok(r.verification?.facesMatched&&r.imageReviewed&&r.allAbilitiesAndBasicInformationMatched,'Unverified print alias: '+id);

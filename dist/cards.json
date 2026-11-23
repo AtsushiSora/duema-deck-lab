@@ -301659,15 +301659,118 @@
       ],
       "supportBatch": "phase-1738",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-025",
+      "name": "ヘブンズ・サンダー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体のパワーは+4000され、「W・ブレイカー」を得、そのクリーチャーの攻撃できない効果はすべて無効になる。(ただし、召喚酔いは無効にならない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-025",
+      "limit": 4,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "blocker": true
+          },
+          "power": 4000,
+          "grant": {
+            "breaker": 2,
+            "g1739AttackFreedom": "all"
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1739",
+      "supportKind": "effect",
+      "effect": "sixPhoto"
+    },
+    {
+      "id": "dm07-039",
+      "name": "ミラクル・ポータル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。また、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」と書かれていても、このターンそのクリーチャーは相手プレイヤーを攻撃することができる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-039",
+      "limit": 4,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "unblockable": true,
+            "g1739AttackFreedom": "player"
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1739",
+      "supportKind": "effect",
+      "effect": "sixPhoto"
+    },
+    {
+      "id": "dmr08-v01",
+      "name": "「無情」の極 シャングリラ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 17000,
+      "race": "ガーディアン/ゼニス",
+      "text": "超無限進化・Ω-ガーディアンを１体以上自分の墓地、マナゾーンまたはバトルゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nT・ブレイカー\nこのクリーチャーがタップされている時、相手のクリーチャーは攻撃できない。\nエターナル・Ω",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-v01",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g31Evolution": {
+        "zones": [
+          "battle",
+          "grave",
+          "mana"
+        ],
+        "conditions": [
+          {
+            "race": "ガーディアン"
+          }
+        ],
+        "variable": true,
+        "g1739VariableZones": true
+      },
+      "breaker": 3,
+      "g34Omega": true,
+      "g825Meteor": "shuffleEnemy1739",
+      "g1739TappedAttackLock": true,
+      "supportBatch": "phase-1739",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1738,
-    "checkedAt": "2026-11-23T11:14:32.647Z",
-    "baseCount": 9448,
-    "newEffectCards": 2,
+    "phase": 1739,
+    "checkedAt": "2026-11-23T11:33:17.563Z",
+    "baseCount": 9450,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9450,
+    "totalCount": 9453,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -330192,6 +330295,21 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 9448,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1738,
+        "checkedAt": "2026-11-23T11:14:32.647Z",
+        "baseCount": 9448,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9450,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

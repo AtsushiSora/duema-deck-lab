@@ -48082,5 +48082,203 @@
         }
       ]
     }
+  },
+  "dmr08-025": {
+    "phase": 1739,
+    "faces": [
+      {
+        "name": "ヘブンズ・サンダー",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このターン、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体のパワーは+4000され、「W・ブレイカー」を得、そのクリーチャーの攻撃できない効果はすべて無効になる。(ただし、召喚酔いは無効にならない)",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "blocker": true
+          },
+          "power": 4000,
+          "grant": {
+            "breaker": 2,
+            "g1739AttackFreedom": "all"
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ],
+      "effect": "sixPhoto"
+    }
+  },
+  "dm07-039": {
+    "phase": 1739,
+    "faces": [
+      {
+        "name": "ミラクル・ポータル",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。また、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」と書かれていても、このターンそのクリーチャーは相手プレイヤーを攻撃することができる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "unblockable": true,
+            "g1739AttackFreedom": "player"
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        }
+      ],
+      "effect": "sixPhoto"
+    }
+  },
+  "dmr08-v01": {
+    "phase": 1739,
+    "faces": [
+      {
+        "name": "「無情」の極 シャングリラ",
+        "typeText": "進化クリーチャー(超無限進化・Ω)",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "超無限進化・Ω-ガーディアンを１体以上自分の墓地、マナゾーンまたはバトルゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nT・ブレイカー\nこのクリーチャーがタップされている時、相手のクリーチャーは攻撃できない。\nエターナル・Ω",
+        "race": "ガーディアン/ゼニス",
+        "powerText": "17000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g31Evolution": {
+        "zones": [
+          "battle",
+          "grave",
+          "mana"
+        ],
+        "conditions": [
+          {
+            "race": "ガーディアン"
+          }
+        ],
+        "variable": true,
+        "g1739VariableZones": true
+      },
+      "breaker": 3,
+      "g34Omega": true,
+      "g825Meteor": "shuffleEnemy1739",
+      "g1739TappedAttackLock": true
+    }
+  },
+  "dmx25-v01": {
+    "phase": 1739,
+    "faces": [
+      {
+        "name": "「無情」の極 シャングリラ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "超無限進化・Ω：自分のガーディアンを１体以上バトルゾーン、墓地、またはマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nT・ブレイカー\nエターナル・Ω\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nこのクリーチャーがタップしていれば、相手のクリーチャーは攻撃できない。",
+        "race": "ガーディアン/ゼニス",
+        "powerText": "17000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g31Evolution": {
+        "zones": [
+          "battle",
+          "grave",
+          "mana"
+        ],
+        "conditions": [
+          {
+            "race": "ガーディアン"
+          }
+        ],
+        "variable": true,
+        "g1739VariableZones": true
+      },
+      "breaker": 3,
+      "g34Omega": true,
+      "g825Meteor": "shuffleEnemy1739",
+      "g1739TappedAttackLock": true
+    }
+  },
+  "dm23ex3-TR02": {
+    "phase": 1739,
+    "faces": [
+      {
+        "name": "「無情」の極 シャングリラ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 11,
+        "costText": "11",
+        "abilityText": "超無限進化・Ω：バトルゾーン、墓地、またはマナゾーンから、自分のガーディアンを１体以上選び、このクリーチャーをその上に重ねつつ出す。\nT・ブレイカー\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを山札に加えてシャッフルする。\nこのクリーチャーがタップしていれば、相手のクリーチャーは攻撃できない。",
+        "race": "ガーディアン/ゼニス",
+        "powerText": "17000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g31Evolution": {
+        "zones": [
+          "battle",
+          "grave",
+          "mana"
+        ],
+        "conditions": [
+          {
+            "race": "ガーディアン"
+          }
+        ],
+        "variable": true,
+        "g1739VariableZones": true
+      },
+      "breaker": 3,
+      "g34Omega": true,
+      "g825Meteor": "shuffleEnemy1739",
+      "g1739TappedAttackLock": true
+    }
   }
 }

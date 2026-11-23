@@ -1,0 +1,758 @@
+{
+  "phase": 1739,
+  "checkedAt": "2026-11-23T11:33:17.563Z",
+  "baseCount": 9450,
+  "target": 9500,
+  "description": "Heavens Thunder chosen own Blocker +4000/W and all attack restrictions ignored except sickness; Miracle Portal chosen own unblockable/player attack freedom except sickness. Full Shangrila ultra-infinite evolution Omega from any Guardian combination in battle/grave/mana, optional one-card Meteor enemy shuffle, tapped opponent attack lock and Eternal Omega.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36799/",
+      "sha256": "e90486031bc43106005155e021c0b4566676016835e52e7b56969cfc9127e5ef",
+      "scope": "Heavens Thunder permits attacking past tapped Shangrila.",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35119/",
+      "sha256": "02372ce7f37609051d09291fe7f677396f2305ee9c8eab64b30435be38e3cb78",
+      "scope": "Portal does not remove summoning sickness.",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35120/",
+      "scope": "Portal does not allow noAttack creature to attack creatures.",
+      "sha256": "a86ebc871bc2e771f6cda46fd52536c5effa2ea3f45e4e2942fd005572c85912",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36777/",
+      "scope": "Choose any1+ Guardian bases across three own zones, including multiple from same zone.",
+      "sha256": "2e530c8a7e30a99d433a7af1cb0286c99fa3e3cba5010d124f7211afe279a8cb",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36778/",
+      "scope": "Meteor burns only one base.",
+      "sha256": "1511bebdd579e22b223da2f8ff6d5a4aa55d2c461bb5637350de37e9b6226c66",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36779/",
+      "scope": "Tapped Shangrila attack prohibition overrides forced attack.",
+      "sha256": "5bc87c17367f04aba683c1a56ec222ad8c95a4c5b784b6951f17decc42880cac",
+      "reproduced": true,
+      "test": "tests/standard1739-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmr08-025",
+      "name": "ヘブンズ・サンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-025",
+      "faces": [
+        {
+          "name": "ヘブンズ・サンダー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体のパワーは+4000され、「W・ブレイカー」を得、そのクリーチャーの攻撃できない効果はすべて無効になる。(ただし、召喚酔いは無効にならない)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "blocker": true
+            },
+            "power": 4000,
+            "grant": {
+              "breaker": 2,
+              "g1739AttackFreedom": "all"
+            },
+            "g1106ExternalUntilEnd": true,
+            "spell": true
+          }
+        ],
+        "effect": "sixPhoto"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-025.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9184b4ff5d31533112a72cafb5c1f0871a0b89407fed9f4d0af3aceea07f01e3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:33:17.563Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr08-025"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "sha256": "e2e71c9a21881be9f9ffb216fbbf122096320f988ddd882c708b52b13927a8b4",
+        "facesMatched": true,
+        "imageSha256": "9184b4ff5d31533112a72cafb5c1f0871a0b89407fed9f4d0af3aceea07f01e3"
+      }
+    },
+    {
+      "id": "dm07-039",
+      "name": "ミラクル・ポータル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-039",
+      "faces": [
+        {
+          "name": "ミラクル・ポータル",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。また、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」と書かれていても、このターンそのクリーチャーは相手プレイヤーを攻撃することができる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true,
+              "g1739AttackFreedom": "player"
+            },
+            "g1106ExternalUntilEnd": true,
+            "spell": true
+          }
+        ],
+        "effect": "sixPhoto"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-039.jpg",
+      "imageReviewed": true,
+      "imageSha256": "f78335da47f1b2cca383dc17e81f75607a4f6c96353ada5ecf862ebb1f54c324",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:33:17.563Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm07-039"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "sha256": "833fa7e3beb7d320c1e69a952211eda53fce1c98c0cf68cd21997acda80270c8",
+        "facesMatched": true,
+        "imageSha256": "f78335da47f1b2cca383dc17e81f75607a4f6c96353ada5ecf862ebb1f54c324"
+      }
+    },
+    {
+      "id": "dmr08-v01",
+      "name": "「無情」の極 シャングリラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-v01",
+      "faces": [
+        {
+          "name": "「無情」の極 シャングリラ",
+          "typeText": "進化クリーチャー(超無限進化・Ω)",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "超無限進化・Ω-ガーディアンを１体以上自分の墓地、マナゾーンまたはバトルゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nT・ブレイカー\nこのクリーチャーがタップされている時、相手のクリーチャーは攻撃できない。\nエターナル・Ω",
+          "race": "ガーディアン/ゼニス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ガーディアン"
+        },
+        "g31Evolution": {
+          "zones": [
+            "battle",
+            "grave",
+            "mana"
+          ],
+          "conditions": [
+            {
+              "race": "ガーディアン"
+            }
+          ],
+          "variable": true,
+          "g1739VariableZones": true
+        },
+        "breaker": 3,
+        "g34Omega": true,
+        "g825Meteor": "shuffleEnemy1739",
+        "g1739TappedAttackLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-v01.jpg",
+      "imageSha256": "ae0c20b435b4ca7770bd8816bcc0a9198b8a954dc8366eb507fe8b5d2426162c",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:37:42.012Z",
+        "reason": "Complete3 original/reprint art, zero civilization,11 cost/17000 power/T breaker/Guardian Zenith/mana1; same full five abilities."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr08-v01",
+          "dmx25-v01",
+          "dm23ex3-TR02"
+        ],
+        "result": "Official exact-name search+product lists+full3 text/art reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "sha256": "6e7aefcedf653d803cbbc811ed132fe3d2c4116499da85682ac5c375dfb96d86",
+        "facesMatched": true,
+        "imageSha256": "ae0c20b435b4ca7770bd8816bcc0a9198b8a954dc8366eb507fe8b5d2426162c"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx25-v01",
+      "name": "「無情」の極 シャングリラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-v01",
+      "faces": [
+        {
+          "name": "「無情」の極 シャングリラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "超無限進化・Ω：自分のガーディアンを１体以上バトルゾーン、墓地、またはマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nT・ブレイカー\nエターナル・Ω\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nこのクリーチャーがタップしていれば、相手のクリーチャーは攻撃できない。",
+          "race": "ガーディアン/ゼニス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ガーディアン"
+        },
+        "g31Evolution": {
+          "zones": [
+            "battle",
+            "grave",
+            "mana"
+          ],
+          "conditions": [
+            {
+              "race": "ガーディアン"
+            }
+          ],
+          "variable": true,
+          "g1739VariableZones": true
+        },
+        "breaker": 3,
+        "g34Omega": true,
+        "g825Meteor": "shuffleEnemy1739",
+        "g1739TappedAttackLock": true
+      },
+      "canonicalId": "dmr08-v01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-v01.jpg",
+      "imageSha256": "451a3a611daa3dc9a321baa6301094967d60088482daea6ca728742811b25a75",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:37:42.016Z",
+        "reason": "Complete3 original/reprint art, zero civilization,11 cost/17000 power/T breaker/Guardian Zenith/mana1; same full five abilities."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "sha256": "921bcfb7505a24e1cf69e723c2ecbe3e36ecbb54e96c620a08f4ca1c0ec8a6b3",
+        "facesMatched": true,
+        "imageSha256": "451a3a611daa3dc9a321baa6301094967d60088482daea6ca728742811b25a75"
+      }
+    },
+    {
+      "id": "dm23ex3-TR02",
+      "name": "「無情」の極 シャングリラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-TR02",
+      "faces": [
+        {
+          "name": "「無情」の極 シャングリラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "超無限進化・Ω：バトルゾーン、墓地、またはマナゾーンから、自分のガーディアンを１体以上選び、このクリーチャーをその上に重ねつつ出す。\nT・ブレイカー\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを山札に加えてシャッフルする。\nこのクリーチャーがタップしていれば、相手のクリーチャーは攻撃できない。",
+          "race": "ガーディアン/ゼニス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ガーディアン"
+        },
+        "g31Evolution": {
+          "zones": [
+            "battle",
+            "grave",
+            "mana"
+          ],
+          "conditions": [
+            {
+              "race": "ガーディアン"
+            }
+          ],
+          "variable": true,
+          "g1739VariableZones": true
+        },
+        "breaker": 3,
+        "g34Omega": true,
+        "g825Meteor": "shuffleEnemy1739",
+        "g1739TappedAttackLock": true
+      },
+      "canonicalId": "dmr08-v01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-TR02.jpg",
+      "imageSha256": "22c8f5dcc55f06673b90940d26e4d1865ef952bf60c2d5fcdd83ec055cc8f6e6",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:37:42.016Z",
+        "reason": "Complete3 original/reprint art, zero civilization,11 cost/17000 power/T breaker/Guardian Zenith/mana1; same full five abilities."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "sha256": "73e7df1a93d6d46c72e809622f2611d6204ba3c715fd09d6a42c40f896e78698",
+        "facesMatched": true,
+        "imageSha256": "22c8f5dcc55f06673b90940d26e4d1865ef952bf60c2d5fcdd83ec055cc8f6e6"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dm32-015",
+      "name": "ポジトロン・サイン",
+      "reason": "Official originals/reprints full texts and art reviewed; mandatory bottom ordering before selected ST spell is native-compatible, but QA47359 requires unavailable Shisan Fairy library-retention provenance for spells held during execution. Defer full card instead of marking a partial implementation complete."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T11:33:17.563Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-025": 4,
+      "dm07-039": 4,
+      "dmr08-v01": 4,
+      "dmx25-v01": 4,
+      "dm23ex3-TR02": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T11:45:30.601Z",
+    "results": {
+      "related-diamond": {
+        "name": "related-diamond",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1331-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.543,
+        "log": "tmp/duema-phase-1739/related-diamond.log",
+        "passed": 6,
+        "logSha256": "bceac7df60103965999f9a544aa7642b2a22b4ae645be771b9edee16228e1cd5"
+      },
+      "related-woods": {
+        "name": "related-woods",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Woods",
+          "tests/standard1675-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.489,
+        "log": "tmp/duema-phase-1739/related-woods.log",
+        "passed": 28,
+        "logSha256": "9c2ae92874c3f1cbb959b9e4850cb38e449da4ff72dc78cd0b65ea497f6f637c"
+      },
+      "related-evolution": {
+        "name": "related-evolution",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Soul Shift|Gouken|Kengeki can use|Kagekiri|Maribel",
+          "tests/standard1362-effects.test.mjs",
+          "tests/standard825-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.81,
+        "log": "tmp/duema-phase-1739/related-evolution.log",
+        "passed": 12,
+        "logSha256": "948aa2648d912281208e5e2351dccdfaabf126f000fb21bd088f1c61e99b03d8"
+      },
+      "related-psychic": {
+        "name": "related-psychic",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Diamond Cutter|Forever stops|back stops",
+          "tests/standard1734-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.975,
+        "log": "tmp/duema-phase-1739/related-psychic.log",
+        "passed": 6,
+        "logSha256": "3e6a33461b85b406d20d4810775e6f6cc7fc0c628b954b81f28bad6bf9f6a216"
+      },
+      "related-arking": {
+        "name": "related-arking",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1336-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.11,
+        "log": "tmp/duema-phase-1739/related-arking.log",
+        "passed": 6,
+        "logSha256": "3bcdcfc38934e2a21d1dbb603a31f4004da95dd64770a6ee372d94264cb9e89b"
+      },
+      "related-chooser": {
+        "name": "related-chooser",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=evolution|three zones|replacement decisions|original caster",
+          "tests/standard1369-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.924,
+        "log": "tmp/duema-phase-1739/related-chooser.log",
+        "passed": 5,
+        "logSha256": "fde0b91d79938b326dcc6a55ff232bf4a4aef9c7e31fa5812da87aafaf07bd74"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.917,
+        "log": "tmp/duema-phase-1739/related-online.log",
+        "passed": 55,
+        "logSha256": "cd8bb25fc2ec0e32507811a5879e14dccae312691616520cd068fbad24dde6d7"
+      },
+      "official": {
+        "name": "official-final",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1739.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.287,
+        "log": "tmp/duema-phase-1739/official-final.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "check": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.393,
+        "log": "tmp/duema-phase-1739/check-final.log",
+        "logSha256": "4608098db7165c007487b52066865e6bbfdd6a69b340ebbb4358f4d7b7b9b2d1"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.471,
+        "log": "tmp/duema-phase-1739/audit.log",
+        "logSha256": "6455cc5144dcaf76c4f53a762576a815a009fb318f8385d324d52d4c430ace06"
+      },
+      "target9500": {
+        "name": "target9500-final",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.383,
+        "log": "tmp/duema-phase-1739/target9500-final.log",
+        "logSha256": "41e95722e29deac1f9bbf3cac94f792c4131f95b883e65ba783d6b4ad8e18602"
+      },
+      "invariants": {
+        "name": "invariants-final",
+        "command": [
+          "node",
+          "tmp/duema-phase-1739/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.423,
+        "log": "tmp/duema-phase-1739/invariants-final.log",
+        "logSha256": "f1fa24ee42c8cd594e805a6813168a7c9977e1250f826c9bb2374c6acefa079b"
+      },
+      "focused": {
+        "passed": 73,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.238,
+            "log": "tmp/duema-phase-1739/focused.log",
+            "logSha256": "7dd86f842f0ca9668f3582b6c4cd7974dd397d914fa6367d27166fdc6276fbe6"
+          },
+          {
+            "name": "focused-fix",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.679,
+            "log": "tmp/duema-phase-1739/focused-fix.log",
+            "logSha256": "648ae0b2df07aaf7502d55eb9ec604e3bd2eb380c6e13b9bc2dd366f17c5b41a"
+          },
+          {
+            "name": "focused-final",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.686,
+            "log": "tmp/duema-phase-1739/focused-final.log",
+            "logSha256": "ee8efa13e608daab2ef67405cc88d9febeea57db978175f0a774a4670e502dd0"
+          },
+          {
+            "name": "focused-shang",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=Shangrila|QA36777|externally",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.323,
+            "log": "tmp/duema-phase-1739/focused-shang.log",
+            "logSha256": "790321db5736f284a74daf4549df28033a06258e5608de2fc1498d86bfd8fc2c"
+          },
+          {
+            "name": "focused-shang-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=QA36777|Shangrila Meteor",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.839,
+            "log": "tmp/duema-phase-1739/focused-shang-fix.log",
+            "logSha256": "ac453afa129570211bdcc1b558aa32dbbc55ebe3cd0e204368d2db309ba6d5c3"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=QA36779|fresh reentry",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.626,
+            "log": "tmp/duema-phase-1739/focused-additional.log",
+            "logSha256": "3575d04dd649f5e01ca064de303d6641c74c55124ed97dde4ade891a411f1c09"
+          },
+          {
+            "name": "focused-woods-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=Real Woods",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.563,
+            "log": "tmp/duema-phase-1739/focused-woods-fix.log",
+            "logSha256": "c55a792635c27ab632525754cc8a896c3999afd4396de3185d78d9f16c037863"
+          },
+          {
+            "name": "focused-mana",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=selected mana Guardian",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.542,
+            "log": "tmp/duema-phase-1739/focused-mana.log",
+            "logSha256": "a15d646995527f0ed448c714dc4cfce8b50e5535776234e45a2a7f813433eb21"
+          },
+          {
+            "name": "focused-limits",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=color-only|Yomino",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.792,
+            "log": "tmp/duema-phase-1739/focused-limits.log",
+            "logSha256": "7a7f50c2c98e281f23cb966717a7853e6f14c1d0943b0ee1dbcff481e94cd566"
+          },
+          {
+            "name": "focused-alias-save",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=reprint IDs|multi-zone evolution continuation",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 0.717,
+            "log": "tmp/duema-phase-1739/focused-alias-save.log",
+            "logSha256": "9c36a8f7f0097084538010c4549420a24c37886fd73cbda21511ed20e5b037b7"
+          },
+          {
+            "name": "focused-alias-save-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=reprint IDs|multi-zone evolution continuation",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.675,
+            "log": "tmp/duema-phase-1739/focused-alias-save-fix.log",
+            "logSha256": "d79258c579b7f48d6b32d706633d4c38cc2646dcb9ae43d34377f2dbca38307a"
+          },
+          {
+            "name": "focused-print-type",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=official evolution subtype",
+              "tests/standard1739-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.553,
+            "log": "tmp/duema-phase-1739/focused-print-type.log",
+            "logSha256": "f8ce72c7e5222d360292966848bc6da659e15f798e27e44d1ab9cb593f606ce0"
+          }
+        ],
+        "coverage": "73 unique cases; initial missing sixPhoto routing, incorrect GranGure noAttack fixture and e.allLayers helper, absent reprint aliases and auto-finish fixture were corrected and rerun. Every unique final case passes."
+      }
+    },
+    "totalTestsPassed": 191,
+    "focusedTestsPassed": 73,
+    "relatedTestsPassed": 118
+  },
+  "validationNotes": [
+    "Actual nameKey9450→9453; all9450 existing definitions/IDs, details/name normalization/images/pins and old catalogue data retained. Added2 verified reprint ID aliases only.5 complete original/reprint images and all full abilities/limits verified.",
+    "Heavens Thunder chooses one own current Blocker, gives+4000/W and overrides all attack prohibitions except summoning sickness. Miracle Portal chooses one own creature, gives unblockability and only opposing-player attack freedom, not creature attack or sickness. Target/expiry/leave-reentry/evolution layers/ignored spell/Genmu/untapped target protections/native Woods/Diamond/JSON/encrypted choices tested. QA36799 reproduced with real newly supported Shangrila.",
+    "Shangrila uses existing physical native multi-base evolution with a narrowly enabled variable multi-zone choice: Guardian1+ from own battle/grave/mana, any combination including multiple same-zone. Actual payment can tap selected mana base; no wrong race/face-down mana/locked grave; cancel/JSON/encrypted and Yomino count+zone chooser passed. Native T breaker/Eternal Omega/one-card optional Meteor reuses whole-stack shuffled library movement. Tapped live source prohibits all opposing attacks, forced attack included; ignored/sealed/untapped source does not.",
+    "New2 print ID-only aliases exposed original HTML evolution subtype label variation. Catalogue extension validation normalizes only the exact evolution type label with/without super-infinite-Omega parenthetical, still requires pinned identical full specs and every other printed field. Real alias test passes; wrong base type, cost and power rejected. Positron deferred before implementation pending QA47359 source-zone retention dependency.73 focused unique cases and related short regressions pass, current check/audit/count/target/invariants pass. All historical pending unchanged. No full npm test, old long group, push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp18-032",
+      "name": "「天馬の騎兵」",
+      "reason": "Reuse full own-creature attack freedom except sickness for Shinka Power, plus GStrike."
+    },
+    {
+      "id": "dmex17-024",
+      "name": "Duplicates of G.O.D.",
+      "reason": "Reuse ultimate evolution/invasion and native temporary spell+cheap summon lock."
+    },
+    {
+      "id": "dmrp15-s04",
+      "name": "「疾風」の鬼 フウジン天",
+      "reason": "Reuse other-entry optional shield grave sacrifice and incoming creature haste; OniTime4000/W."
+    }
+  ]
+}
