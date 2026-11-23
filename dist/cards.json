@@ -302584,19 +302584,104 @@
       ],
       "supportBatch": "phase-1750",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-012",
+      "name": "暗黒鎧 ギラン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ダーク・ナイトメア/革命軍",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルに負けた時、このクリーチャーを墓地からバトルゾーンにタップして出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-012",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1314BattleLossRevive": true,
+      "supportBatch": "phase-1751",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-054",
+      "name": "仁王の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャイアント",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-054",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g1053LargeUse": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true
+        }
+      ],
+      "supportBatch": "phase-1751",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex06-041",
+      "name": "猟奇と耽美の人形劇",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手の手札を見て、カードを１枚選ぶ。相手はそれを表向きにして、新しいシールドとして自身のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-041",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "g657FaceUp": true,
+          "title": "相手の手札を見て表向きのシールドにするカードを1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1751",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1750,
-    "checkedAt": "2026-11-23T23:36:16.910Z",
-    "baseCount": 9476,
-    "newEffectCards": 1,
+    "phase": 1751,
+    "checkedAt": "2026-11-23T23:44:58.038Z",
+    "baseCount": 9477,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9477,
+    "totalCount": 9480,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39412/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37264/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -331301,6 +331386,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1750,
+        "checkedAt": "2026-11-23T23:36:16.910Z",
+        "baseCount": 9476,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9477,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39412/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

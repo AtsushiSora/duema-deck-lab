@@ -50008,5 +50008,99 @@
         }
       ]
     }
+  },
+  "dmx20-012": {
+    "phase": 1751,
+    "faces": [
+      {
+        "name": "暗黒鎧 ギラン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルに負けた時、このクリーチャーを墓地からバトルゾーンにタップして出す。",
+        "race": "ダーク・ナイトメア/革命軍",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g1314BattleLossRevive": true
+    }
+  },
+  "dmrp05-054": {
+    "phase": 1751,
+    "faces": [
+      {
+        "name": "仁王の超人",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "ジャイアント",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g1053LargeUse": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true
+        }
+      ]
+    }
+  },
+  "dmex06-041": {
+    "phase": 1751,
+    "faces": [
+      {
+        "name": "猟奇と耽美の人形劇",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手の手札を見て、カードを１枚選ぶ。相手はそれを表向きにして、新しいシールドとして自身のシールドゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "g657FaceUp": true,
+          "title": "相手の手札を見て表向きのシールドにするカードを1枚選ぶ"
+        }
+      ]
+    }
   }
 }

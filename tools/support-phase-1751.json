@@ -1,0 +1,415 @@
+{
+  "phase": 1751,
+  "checkedAt": "2026-11-23T23:44:58.038Z",
+  "baseCount": 9477,
+  "target": 9500,
+  "description": "Fully native Giran mandatory tapped battle-loss return, Niou entry ramp and own-turn cost8 summon/cast target to owner mana, Puppetry inspected opposing hand card to new face-up shield with ST.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37264/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37264/",
+      "sha256": "cf2108d7ac5a2f99a1d7025b5c8ff4c1cc98f493a76dde0a2224f04827921611",
+      "checkedAt": "2026-11-23T23:47:40.652046+00:00",
+      "result": "Exact Giran mandatory tapped return after blocking loss, direct attack on tapped Giran and actual PakuPakuLife forced battle reproduced both seats. Ignored ability, grave lock, bottom replacement, nonbattle DemonHand destruction correctly exclude revival.",
+      "reproduced": true,
+      "test": "tests/standard1751-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmx20-012",
+      "name": "暗黒鎧 ギラン",
+      "canonicalId": "dmx20-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-012",
+      "faces": [
+        {
+          "name": "暗黒鎧 ギラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルに負けた時、このクリーチャーを墓地からバトルゾーンにタップして出す。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1314BattleLossRevive": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-012.jpg",
+      "imageReviewed": true,
+      "imageSha256": "72c576edb01dae8ba729a007a974fe3311b0ff731722996555f36c3d831e8241",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:44:58.038Z",
+        "reason": "All3 official full images viewed. Giran3/2000 Dark/blocker/noAttack/mandatory tapped battle-loss return; Niou4/3000 Nature/mandatory ramp and cost8 uses; Puppetry LightDark4/ST/mandatory one inspected opposing hand card as new face-up shield. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmx20-012"
+        ],
+        "result": "All official same-name search results inspected; only one exact canonical name print per candidate. Giran keyword broad37 family names excluded; not extra cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:44:58.038Z",
+        "sha256": "5e541f60c001d92942fb2d04d82f1de91771b27c4e46e3ef28dabf5f639afed0",
+        "facesMatched": true,
+        "imageSha256": "72c576edb01dae8ba729a007a974fe3311b0ff731722996555f36c3d831e8241"
+      }
+    },
+    {
+      "id": "dmrp05-054",
+      "name": "仁王の超人",
+      "canonicalId": "dmrp05-054",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-054",
+      "faces": [
+        {
+          "name": "仁王の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "ジャイアント",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g1053LargeUse": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-054.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6b5ccfec69a22d3efa50bfdaa51872b85b915ba80806f940a05b1604ec4f6ec9",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:44:58.038Z",
+        "reason": "All3 official full images viewed. Giran3/2000 Dark/blocker/noAttack/mandatory tapped battle-loss return; Niou4/3000 Nature/mandatory ramp and cost8 uses; Puppetry LightDark4/ST/mandatory one inspected opposing hand card as new face-up shield. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmrp05-054"
+        ],
+        "result": "All official same-name search results inspected; only one exact canonical name print per candidate. Giran keyword broad37 family names excluded; not extra cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:44:58.038Z",
+        "sha256": "fddf545b12a9f2636d3b51b66637f687e97265cabc50e75364520f9d32304e62",
+        "facesMatched": true,
+        "imageSha256": "6b5ccfec69a22d3efa50bfdaa51872b85b915ba80806f940a05b1604ec4f6ec9"
+      }
+    },
+    {
+      "id": "dmex06-041",
+      "name": "猟奇と耽美の人形劇",
+      "canonicalId": "dmex06-041",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-041",
+      "faces": [
+        {
+          "name": "猟奇と耽美の人形劇",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手の手札を見て、カードを１枚選ぶ。相手はそれを表向きにして、新しいシールドとして自身のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "g657FaceUp": true,
+            "title": "相手の手札を見て表向きのシールドにするカードを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-041.jpg",
+      "imageReviewed": true,
+      "imageSha256": "da80175b73f6b9624b709aed6c6b49580aa006e816ec8302016a434d45abb6c6",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:44:58.038Z",
+        "reason": "All3 official full images viewed. Giran3/2000 Dark/blocker/noAttack/mandatory tapped battle-loss return; Niou4/3000 Nature/mandatory ramp and cost8 uses; Puppetry LightDark4/ST/mandatory one inspected opposing hand card as new face-up shield. All mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmex06-041"
+        ],
+        "result": "All official same-name search results inspected; only one exact canonical name print per candidate. Giran keyword broad37 family names excluded; not extra cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:44:58.038Z",
+        "sha256": "6cea284d34d79975f14a5a127fb1348011172efd890d89b97dc83015663fd356",
+        "facesMatched": true,
+        "imageSha256": "da80175b73f6b9624b709aed6c6b49580aa006e816ec8302016a434d45abb6c6"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dm25rp4-035",
+      "name": "ブリザド＝ザルド",
+      "reason": "Native g1240/g1700 handles a fixed discard count, not up-to3 with per-card2 reduction; defer complete variable-cost payment path."
+    },
+    {
+      "id": "sp-008",
+      "name": "黒神龍バズラデューダ",
+      "reason": "Native g1695 discard-race replacement restricts creature faces, while card permits Dragon cards including spells/fields; defer full Dragon-card filter rather than partial protection."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T23:44:58.038Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx20-012": 4,
+      "dmrp05-054": 4,
+      "dmex06-041": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T23:48:50.928Z",
+    "results": {
+      "focused-complete": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1751-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.555,
+        "log": "tmp/duema-phase-1751/focused-complete.log",
+        "passed": 43,
+        "logSha256": "1db215f2eb06639205c5f9f3254bc1eba6bb56ca1d131322c1dffd704801b840"
+      },
+      "related-battle": {
+        "name": "related-battle",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Gawara",
+          "tests/standard1314-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.372,
+        "log": "tmp/duema-phase-1751/related-battle.log",
+        "passed": 5,
+        "logSha256": "322723650349214214cc3379b3455de47cb34b1a1e8a9b0e79cc87fc75fb2245"
+      },
+      "related-large": {
+        "name": "related-large",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Jill",
+          "tests/standard1053-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.752,
+        "log": "tmp/duema-phase-1751/related-large.log",
+        "passed": 4,
+        "logSha256": "a1cc03cbdacea1bff59cc65af5b901a59b67651724608d91d589ec21fd77ce6c"
+      },
+      "related-shield": {
+        "name": "related-shield",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Starman draws|Psychic You",
+          "tests/standard657-effects.test.mjs",
+          "tests/standard832-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.37,
+        "log": "tmp/duema-phase-1751/related-shield.log",
+        "passed": 7,
+        "logSha256": "6905bd8e2b227d9cb3f512ccb7d8027e22667213e89ddda220b3ee9ae9b964cc"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.995,
+        "log": "tmp/duema-phase-1751/related-online.log",
+        "passed": 12,
+        "logSha256": "75724ac0d8fcc4ef6d26430b678018ffba75a36f444a8f9ae3e88fdf45285485"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1751/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 4.058,
+        "log": "tmp/duema-phase-1751/research.log",
+        "logSha256": "6d38f6e5442e6b500bbe3dc68d08fa771f676dc4285314aa36667feb6379b1b1"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1751/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.464,
+        "log": "tmp/duema-phase-1751/prints.log",
+        "logSha256": "0f4691dcb48390d2fc676645e719b6e725f5ec06b88903fccad8d18f57e45790"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1751.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.313,
+        "log": "tmp/duema-phase-1751/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "rulings": {
+        "name": "rulings",
+        "command": [
+          "python3",
+          "tmp/duema-phase-1751/rulings.py"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.008,
+        "log": "tmp/duema-phase-1751/rulings.log",
+        "logSha256": "c867623642e966c8dcd1c0f1ad9d16efe32fb590f8054c764ab987942e3ca483"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.466,
+        "log": "tmp/duema-phase-1751/check.log",
+        "logSha256": "3bc10ec74240e75d38d1916f10202503eea35bef7ed17a0091c33551837edc62"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.951,
+        "log": "tmp/duema-phase-1751/audit.log",
+        "logSha256": "2e780e051d614f8659faba49fce98f51e05fadc184379da4ae48b02995a816a6"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.721,
+        "log": "tmp/duema-phase-1751/target9500.log",
+        "logSha256": "a2848b50fad2ad52ab39687286710acb533d1417c40070016cb60d88b74eec5e"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1751/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.713,
+        "log": "tmp/duema-phase-1751/invariants.log",
+        "logSha256": "b8df9b3c56018521d6d48de3134ba13f84c86c20b5ab31e057193660e88fb9e4"
+      }
+    },
+    "totalTestsPassed": 71,
+    "focusedTestsPassed": 43,
+    "relatedTestsPassed": 28
+  },
+  "validationNotes": [
+    "Actual data nameKey9477→9480. Three complete native canonical names Giran dmx20-012, Niou dmrp05-054, Puppetry dmex06-041. All3 original official full pages and images, costs/power/races/mana1 and current limit4 verified. Official same-name search examined all37 broad Giran-family results and single Niou/Puppetry results; only3 exact original names, no extra same-name prints or duplicates.",
+    "Giran reuses blocker/noAttack and mandatory g1314BattleLossRevive. Paid3/2000, cannot attack, real blocking loss, direct attack on tapped Giran and actual PakuPakuLife forced battle all return its same physical card tapped. Exact official QA37264 reproduced both seats. Existing grave copy not revived. Ignored ability, real GenKa grave lock, opponent battle-loss bottom replacement and actual nonbattle DemonHand destruction prevent return correctly.",
+    "Niou reuses mandatory entry Ramp1 and g1053LargeUse. Paid4/3000 and real top card to mana, printed cost9 Dragon summoned for7 after real Cocco reduction, exact cost8 spell, mandatory chosen opposing creature to owner mana, seed exclusion, other turn/below8/nonsummon put/ignored/sealed exclusions tested both seats. Actual opposing cost8 S trigger on Nious own turn still triggers the effect before Niou is destroyed, matching the native same-worded Jill timing path; no subject restriction invented.",
+    "Puppetry reuses mandatory inspected opposing-hand Select to new shield with g657FaceUp and native ST. Paid4 with LightDark, actual choice of opposing hand only, no optional skip, face-up new shield ownership/count, remaining hand, empty hand, actual Tignus discard protection does not prevent a non-discard shield move, and real S trigger free cast tested both seats. Pending hand selection encrypted JSON roundtrip retains legal actions, actor sees card names, other player cannot act; pure AI and physical card conservation verified. Legal40 decks and80-card save formats unchanged.",
+    "Initial fixture errors corrected: ignored Giran has no blocker and must be attacked while tapped; grave lock uses actual GenKa dmrp08-014; destruction uses actual DemonHand dm01-027 with explicit target. Niou cost8 sweep test now uses a real high-power enemy surviving the spell before the queued target ability. No gameplay fix or common path changes needed. All final focused and affected Gawara/Jill/face-up hand-shield/online-save regressions plus npm run check, audit, target9500 and invariants pass.",
+    "BlizzardZard deferred because fixed native discard counts do not implement up-to3 per-card cost2 reduction. Bazraduda deferred because native race-discard protection accepts creature faces, not all Dragon cards. Neither partly counted. Historical registered verification/reprints/full-suite and long-test pending preserved exactly; no full npm test or old long groups rerun. Verified local only; no push/Pages/Netlify. Continue phase1752 toward9500, remaining20."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm25rp4-035",
+      "name": "ブリザド＝ザルド",
+      "reason": "Native g1240/g1700 handles a fixed discard count, not up-to3 with per-card2 reduction; defer complete variable-cost payment path."
+    },
+    {
+      "id": "sp-008",
+      "name": "黒神龍バズラデューダ",
+      "reason": "Native g1695 discard-race replacement restricts creature faces, while card permits Dragon cards including spells/fields; defer full Dragon-card filter rather than partial protection."
+    }
+  ]
+}
