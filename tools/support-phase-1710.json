@@ -1,0 +1,471 @@
+{
+  "phase": 1710,
+  "checkedAt": "2026-11-23T05:55:22.870Z",
+  "baseCount": 9366,
+  "target": 9500,
+  "description": "Complete Hatafuri crossed Blocker/mandatory own-end untap, Legend Rupia Wing free name-dependent crossing/optional revealed Armored Dragon search and Idaten Samurai crossed Speed Attacker.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 43462,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43462/",
+      "sha256": "647b6162ef8b254103c2fcff7d83e942929a01a61c9344dd1aa0edf1864c0008",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1710-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "QA43462 full paid generation/crossing; independent cross gear and legal main-step recrossing"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm31-008",
+      "name": "天扇ハタフリ・ハフリーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-008",
+      "faces": [
+        {
+          "name": "天扇ハタフリ・ハフリーズ",
+          "typeText": "クロスギア",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーは「ブロッカー」を得る。\nこれをクロスしたクリーチャーは、自分のターンの終わりにアンタップされる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g945CrossBlocker": true,
+        "g1710CrossEndUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-008.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4bcfcecc724f4887948d9ca55041841b25ddfe8e36749f2b273a8a88a4e19ecf",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm31-008"
+        ],
+        "result": "Official exact-name searches and products;5 original/reprint full faces/images reviewed. Original Zubatto Accelerator has a different printed name from Idaten and is not treated as a reprint."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:55:22.870Z",
+        "sha256": "7e2aedb1570602be6ad89880eb59a0f514fd1a48ce16df022000fefc1c2be29e",
+        "facesMatched": true,
+        "imageSha256": "4bcfcecc724f4887948d9ca55041841b25ddfe8e36749f2b273a8a88a4e19ecf"
+      }
+    },
+    {
+      "id": "dm35-017",
+      "name": "レジェンド・ルピア・ウィング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-017",
+      "faces": [
+        {
+          "name": "レジェンド・ルピア・ウィング",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこのカードは、コストを支払わずに、名前に《ルピア》とあるクリーチャーにクロスしてもよい。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札を見る。その中からアーマード・ドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1710FreeCrossName": "ルピア",
+        "g931CrossAttack": [
+          {
+            "op": "Look",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "アーマード・ドラゴン"
+                }
+              }
+            ],
+            "rest": "shuffle",
+            "g201Search": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-017.jpg",
+      "imageReviewed": true,
+      "imageSha256": "b37f8564653f587f224fa734dedeeb2d9942d7fc48aa88857308995f08834d86",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm35-017",
+          "dm35-017HC",
+          "dmc67-008"
+        ],
+        "result": "Official exact-name searches and products;5 original/reprint full faces/images reviewed. Original Zubatto Accelerator has a different printed name from Idaten and is not treated as a reprint."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:55:22.870Z",
+        "sha256": "f5ccb28237824fab3084925f9c6f2db5757ae6efabbe2509828fb567afcf8f02",
+        "facesMatched": true,
+        "imageSha256": "b37f8564653f587f224fa734dedeeb2d9942d7fc48aa88857308995f08834d86"
+      }
+    },
+    {
+      "id": "dm23ex1-079",
+      "name": "炎刃 イダテン・アクセラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-079",
+      "faces": [
+        {
+          "name": "炎刃 イダテン・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア（自分のターン中、このクロスギアのコストを支払ってクリーチャー１体にクロスしてもよい。そのクリーチャーが離れても、このクロスギアは残る）\nこれをクロスしたクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1312CrossSpeed": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-079.jpg",
+      "imageReviewed": true,
+      "imageSha256": "f1ef9b670b4188f86b4aeb7af9989af7f38cdce56ad40b92704eee9ff0952b18",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm23ex1-079"
+        ],
+        "result": "Official exact-name searches and products;5 original/reprint full faces/images reviewed. Original Zubatto Accelerator has a different printed name from Idaten and is not treated as a reprint."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:55:22.870Z",
+        "sha256": "2dd05db722c82305f548f9bb1fb0c3ab42e2f79894e01c88e501fe64ed49f0fa",
+        "facesMatched": true,
+        "imageSha256": "f1ef9b670b4188f86b4aeb7af9989af7f38cdce56ad40b92704eee9ff0952b18"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dm35-017HC",
+      "name": "レジェンド・ルピア・ウィング",
+      "canonicalId": "dm35-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-017HC",
+      "faces": [
+        {
+          "name": "レジェンド・ルピア・ウィング",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこのカードは、コストを支払わずに、名前に《ルピア》とあるクリーチャーにクロスしてもよい。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札を見る。その中からアーマード・ドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "6344feebfe9b7d6c188baa391d65b503b29a11a7abfacd1fba3ffc25ddef2987",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-017HC.jpg",
+          "file": "tmp/duema-phase-1710/dm35-017HC-0.jpg",
+          "sha256": "128f0f3673d65a1d8d62c0683e4e5ba299a1fce0d3d1bf5ec1b2f7c55e5afb1a"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmc67-008",
+      "name": "レジェンド・ルピア・ウィング",
+      "canonicalId": "dm35-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-008",
+      "faces": [
+        {
+          "name": "レジェンド・ルピア・ウィング",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこのカードは、コストを支払わずに、名前に《ルピア》とあるクリーチャーにクロスしてもよい。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札を見る。その中からアーマード・ドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "6beb66a8eff050d39065326d4cbcb7cdf768d7bc540220aa7acc7363628d22ac",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-008.jpg",
+          "file": "tmp/duema-phase-1710/dmc67-008-0.jpg",
+          "sha256": "b7f8e8f49dd1c298a08b2f0c190f61c4fbfc9eb36537978a47ff4e05b097aa9e"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "promoy11-046",
+      "name": "偽りの王 ヴァルトシュタイン",
+      "canonicalId": "promoy11-046",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-046",
+      "faces": [
+        {
+          "name": "偽りの王 ヴァルトシュタイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置く。\n自分のゼニスを召喚するコストは２少なくなる。ただし、コストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "e7b373b7ae65c057b4b65d2f9c3e776b3ca54adadc3c0c8a4e72ad78bc009bf9",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-046.jpg",
+          "file": "tmp/duema-phase-1710/promoy11-046-0.jpg",
+          "sha256": "77a2c367837b234eb184a11e544a4e78c30f4316d322d92c2a40083c5b027dae"
+        }
+      ],
+      "imageReviewed": true,
+      "status": "not-registered",
+      "reason": "Official HTML makes mill5 and Zenith discount mandatory; the actual official P46/Y11 image says both are optional. Defer until the current full official ruling/erratum resolves the discrepancy; no partial registration or name counted."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T05:55:22.870Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm31-008": 4,
+      "dm35-017": 4,
+      "dm23ex1-079": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T05:59:44.884Z",
+    "results": {
+      "related-crossing-speed": {
+        "name": "related-crossing-speed",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard932-effects.test.mjs",
+          "tests/standard1707-effects.test.mjs",
+          "tests/standard945-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.563,
+        "log": "tmp/duema-phase-1710/related-crossing-speed.log",
+        "passed": 76,
+        "logSha256": "8e36b08e40f87d3ad185f660e7b7348f0937496eb0a96e20a823aeee4814c3d1"
+      },
+      "related-end-cross-online": {
+        "name": "related-end-cross-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard928-effects.test.mjs",
+          "tests/standard1708-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 8.691,
+        "log": "tmp/duema-phase-1710/related-end-cross-online.log",
+        "passed": 89,
+        "logSha256": "e9ddab004b93fb6898428f3ee9a09fe0538b288a7702609b6bd7ca70ef08319a"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1710.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.276,
+        "log": "tmp/duema-phase-1710/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.885,
+        "log": "tmp/duema-phase-1710/check.log",
+        "logSha256": "7fd79a049a7437d40c72803adf21756eb4542dea948b6fa6aadc735550f118a0"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.332,
+        "log": "tmp/duema-phase-1710/audit.log",
+        "logSha256": "84b602f4ab81de32f06cb9cd48ba9e44c00d14df82c45df8b717d43cc40dde28"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.423,
+        "log": "tmp/duema-phase-1710/target9500.log",
+        "logSha256": "77ee4f7a0f7a810856015498ff5e01a43191beee0a892af0f165c9e1162149a2"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1710/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.373,
+        "log": "tmp/duema-phase-1710/invariants.log",
+        "logSha256": "f1d86b5a969ef463a51be66fa6b40bc1f6a2e2ec0deb741dd13806c9cc5c419d"
+      },
+      "focused": {
+        "passed": 38,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1710-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.729,
+            "log": "tmp/duema-phase-1710/focused.log",
+            "passed": 23,
+            "logSha256": "fc0a15f7a31f28e044c90c95b1a401e7547f88672f8b18c59a1c7f1cf0e11be6"
+          },
+          {
+            "name": "focused-fixtures-corrected",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Hatafuri end untap|^Wing free crossing|^Idaten gives|^All new gears",
+              "tests/standard1710-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 9.685,
+            "log": "tmp/duema-phase-1710/focused-fixtures-corrected.log",
+            "passed": 9,
+            "logSha256": "001fc9bcac11b324fa6578c624dc096ece1fc5478763b71fa2ecabf428ba3f1c"
+          },
+          {
+            "name": "focused-end-reference-and-search-lock",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Hatafuri mandatory|^Hatafuri already|^Wing optional search",
+              "tests/standard1710-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.777,
+            "log": "tmp/duema-phase-1710/focused-end-reference-and-search-lock.log",
+            "passed": 6,
+            "logSha256": "096502f7de34eb148d00baf4934d03b9c6784bec32992784b6b71ae56273c4fc"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 203,
+    "focusedTestsPassed": 38,
+    "relatedTestsPassed": 165
+  },
+  "validationNotes": [
+    "Actual nameKey counts9366/9369; clean baseline00dc9d14, no running prior work. All9366 existing battle definitions/IDs/details/catalogue/aliases/images/pins preserved. No save-format change.",
+    "Three full gears,5 original/exact-reprint official faces and images, mana and current limits verified. Wing has original/HC/DMC67 prints. Idaten has a different printed name from old Zubatto; name search matches do not automatically become aliases. Six images reviewed including held Valt.",
+    "Hatafuri uses native crossed Blocker and a narrowly tagged mandatory own-end gear trigger which captures the actual physical host UID/incarnation at trigger time, then native g18_EndUntap. No optional decline. Recrossing, opponent end step, ignored/sealed gear, ignored host losing Blocker while external gear end effect remains, untap locks, and already triggered ability after gear departure verified.",
+    "Wing free crossing is a narrowly tagged name-includes condition through existing freeCross and uses current battle name/additional names. Own actual Cocco Rupia can cross without mana, non-Rupia still pays3, ignored gear loses free permission while ignored Rupia retains its name. Native whole-deck g201Search optional one Armored Dragon reveals and shuffles, including a target below top7, no draw, decline and actual QQQX lock. Search belongs to gear even when host is ignored; encrypted private pending has no opponent choices.",
+    "Idaten fully pays generation/crossing1 and native crossed Speed Attacker permits fresh-host attack, disappears on recrossing/ignore, and keeps gear independent when the host leaves. All3 remain distinct complete names.",
+    "Valt promoy11-046 is not registered: official HTML makes mill5 and Zenith discount mandatory, but the actual official P46/Y11 image explicitly says both are optional. Full original face/image/hash/product proof retained in held with reason, awaiting current official ruling/erratum; zero new names.",
+    "38 unique focused cases and165 affected regressions pass,total203. Check19.885s, audit11.332s, target9500 and invariants pass. Fixture corrections use actual dm06-062 Cocco Rupia rather than a spell, unrestricted dm01-008 Bolshack for the legal40 rather than4 restricted Bajula, exported canCreatureAttack, and pause an opponent end step before normal next-turn untapping to inspect trigger ownership.",
+    "All historical interrupted/unconfirmed whole-suite, individual, long, reprint and user deferrals preserved. No whole npm test, repeated long group, push/publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm31-043",
+      "name": "フォーチュン・スロット",
+      "reason": "Verify public top4 optional one per creature/spell/gear/castle and ordered rest, Shield Trigger."
+    },
+    {
+      "id": "dmr09-093",
+      "name": "ブータンの収穫",
+      "reason": "Verify complete choice between two Exile recoveries and one creature recovery, Shield Trigger."
+    },
+    {
+      "id": "dm03-017",
+      "name": "ブレイズ・キャノン",
+      "reason": "Verify all own mana Fire condition and native current-own-creature attack bonus/W grants."
+    },
+    {
+      "id": "dmr02-040",
+      "name": "光陰のリバイバー・スパイラル",
+      "reason": "Verify full mandatory target, own Light-or-Dark conditional owner deck-top/hand and Shield Trigger."
+    }
+  ]
+}

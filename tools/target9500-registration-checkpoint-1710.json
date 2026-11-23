@@ -1,0 +1,297 @@
+{
+  "phase": 1710,
+  "checkedAt": "2026-11-23T05:59:44.884Z",
+  "baseline": "00dc9d14",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9366,
+  "currentNames": 9369,
+  "remainingNames": 131,
+  "added": [
+    {
+      "id": "dm31-008",
+      "name": "天扇ハタフリ・ハフリーズ"
+    },
+    {
+      "id": "dm35-017",
+      "name": "レジェンド・ルピア・ウィング"
+    },
+    {
+      "id": "dm23ex1-079",
+      "name": "炎刃 イダテン・アクセラー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "00dc9d14",
+    "originalDefinitionsUnchanged": 9366,
+    "added": 3,
+    "uniqueNames": 9369,
+    "uniqueIds": 9369,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9366,
+    "existingImageReferenceRowsUnchanged": 11577,
+    "officialPrintsReviewed": 5,
+    "officialImagesReviewed": 5,
+    "existingPinsUnchanged": 928
+  },
+  "results": {
+    "related-crossing-speed": {
+      "name": "related-crossing-speed",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard932-effects.test.mjs",
+        "tests/standard1707-effects.test.mjs",
+        "tests/standard945-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.563,
+      "log": "tmp/duema-phase-1710/related-crossing-speed.log",
+      "passed": 76,
+      "logSha256": "8e36b08e40f87d3ad185f660e7b7348f0937496eb0a96e20a823aeee4814c3d1"
+    },
+    "related-end-cross-online": {
+      "name": "related-end-cross-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard928-effects.test.mjs",
+        "tests/standard1708-effects.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.691,
+      "log": "tmp/duema-phase-1710/related-end-cross-online.log",
+      "passed": 89,
+      "logSha256": "e9ddab004b93fb6898428f3ee9a09fe0538b288a7702609b6bd7ca70ef08319a"
+    },
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1710.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.276,
+      "log": "tmp/duema-phase-1710/official.log",
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.885,
+      "log": "tmp/duema-phase-1710/check.log",
+      "logSha256": "7fd79a049a7437d40c72803adf21756eb4542dea948b6fa6aadc735550f118a0"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.332,
+      "log": "tmp/duema-phase-1710/audit.log",
+      "logSha256": "84b602f4ab81de32f06cb9cd48ba9e44c00d14df82c45df8b717d43cc40dde28"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.423,
+      "log": "tmp/duema-phase-1710/target9500.log",
+      "logSha256": "77ee4f7a0f7a810856015498ff5e01a43191beee0a892af0f165c9e1162149a2"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1710/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.373,
+      "log": "tmp/duema-phase-1710/invariants.log",
+      "logSha256": "f1d86b5a969ef463a51be66fa6b40bc1f6a2e2ec0deb741dd13806c9cc5c419d"
+    },
+    "focused": {
+      "passed": 38,
+      "failed": 0,
+      "parts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1710-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.729,
+          "log": "tmp/duema-phase-1710/focused.log",
+          "passed": 23,
+          "logSha256": "fc0a15f7a31f28e044c90c95b1a401e7547f88672f8b18c59a1c7f1cf0e11be6"
+        },
+        {
+          "name": "focused-fixtures-corrected",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Hatafuri end untap|^Wing free crossing|^Idaten gives|^All new gears",
+            "tests/standard1710-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.685,
+          "log": "tmp/duema-phase-1710/focused-fixtures-corrected.log",
+          "passed": 9,
+          "logSha256": "001fc9bcac11b324fa6578c624dc096ece1fc5478763b71fa2ecabf428ba3f1c"
+        },
+        {
+          "name": "focused-end-reference-and-search-lock",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Hatafuri mandatory|^Hatafuri already|^Wing optional search",
+            "tests/standard1710-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.777,
+          "log": "tmp/duema-phase-1710/focused-end-reference-and-search-lock.log",
+          "passed": 6,
+          "logSha256": "096502f7de34eb148d00baf4934d03b9c6784bec32992784b6b71ae56273c4fc"
+        }
+      ],
+      "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+    }
+  },
+  "totalTestsPassed": 203,
+  "hashes": {
+    "dist/cards.json": "121369a794cea7e3ce26ef7a7ee12489486ae968fc5f9cecbd67a0cd0d99664d",
+    "dist/engine.js": "4452cd5a74bb76f780dba793a96c90a074e1196e82e30f284a1e45fdf73f001d",
+    "dist/samurai-rules.js": "e110898eb2f996cb583b1592a8bd91efd8d3708c02928c8e88f7b0ba8fc99147",
+    "dist/six-photo-rules.js": "95bc77797db7ce1c5f46d35011070ff6d06fcf963ebd73b0a6b70688beba4d7b",
+    "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+    "dist/online-compatibility.js": "5b5a41bd464a621d05930b088b30c047f2a3d1f4ac46781d92f35b4b7670fdb2",
+    "dist/card-images.js": "d748aa9130d1e7918463cdc2986568c719257272d8dc7d43bcf2c91097acc31e",
+    "tools/target9000-card-spec.json": "dd56d40a81951c0a4d77f64565eefeb109e984fbe8d3430fc9da6375a27f5995",
+    "tests/standard1710-effects.test.mjs": "398b53dd870d80ab87006fcd1de12bdc156ebd234cb033a7d14794b1b7470089"
+  },
+  "engineVersion": "0.602.227",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1710-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.729,
+      "log": "tmp/duema-phase-1710/focused.log",
+      "logSha256": "fc0a15f7a31f28e044c90c95b1a401e7547f88672f8b18c59a1c7f1cf0e11be6"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1710.json",
+  "supported": 9369,
+  "pending": 2455,
+  "reason": "Complete Hatafuri crossed Blocker/mandatory own-end untap, Legend Rupia Wing free name-dependent crossing/optional revealed Armored Dragon search and Idaten Samurai crossed Speed Attacker.",
+  "validationNotes": [
+    "Actual nameKey counts9366/9369; clean baseline00dc9d14, no running prior work. All9366 existing battle definitions/IDs/details/catalogue/aliases/images/pins preserved. No save-format change.",
+    "Three full gears,5 original/exact-reprint official faces and images, mana and current limits verified. Wing has original/HC/DMC67 prints. Idaten has a different printed name from old Zubatto; name search matches do not automatically become aliases. Six images reviewed including held Valt.",
+    "Hatafuri uses native crossed Blocker and a narrowly tagged mandatory own-end gear trigger which captures the actual physical host UID/incarnation at trigger time, then native g18_EndUntap. No optional decline. Recrossing, opponent end step, ignored/sealed gear, ignored host losing Blocker while external gear end effect remains, untap locks, and already triggered ability after gear departure verified.",
+    "Wing free crossing is a narrowly tagged name-includes condition through existing freeCross and uses current battle name/additional names. Own actual Cocco Rupia can cross without mana, non-Rupia still pays3, ignored gear loses free permission while ignored Rupia retains its name. Native whole-deck g201Search optional one Armored Dragon reveals and shuffles, including a target below top7, no draw, decline and actual QQQX lock. Search belongs to gear even when host is ignored; encrypted private pending has no opponent choices.",
+    "Idaten fully pays generation/crossing1 and native crossed Speed Attacker permits fresh-host attack, disappears on recrossing/ignore, and keeps gear independent when the host leaves. All3 remain distinct complete names.",
+    "Valt promoy11-046 is not registered: official HTML makes mill5 and Zenith discount mandatory, but the actual official P46/Y11 image explicitly says both are optional. Full original face/image/hash/product proof retained in held with reason, awaiting current official ruling/erratum; zero new names.",
+    "38 unique focused cases and165 affected regressions pass,total203. Check19.885s, audit11.332s, target9500 and invariants pass. Fixture corrections use actual dm06-062 Cocco Rupia rather than a spell, unrestricted dm01-008 Bolshack for the legal40 rather than4 restricted Bajula, exported canCreatureAttack, and pause an opponent end step before normal next-turn untapping to inspect trigger ownership.",
+    "All historical interrupted/unconfirmed whole-suite, individual, long, reprint and user deferrals preserved. No whole npm test, repeated long group, push/publication or Netlify update."
+  ],
+  "held": [
+    {
+      "id": "promoy11-046",
+      "name": "偽りの王 ヴァルトシュタイン",
+      "canonicalId": "promoy11-046",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-046",
+      "faces": [
+        {
+          "name": "偽りの王 ヴァルトシュタイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置く。\n自分のゼニスを召喚するコストは２少なくなる。ただし、コストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "e7b373b7ae65c057b4b65d2f9c3e776b3ca54adadc3c0c8a4e72ad78bc009bf9",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-046.jpg",
+          "file": "tmp/duema-phase-1710/promoy11-046-0.jpg",
+          "sha256": "77a2c367837b234eb184a11e544a4e78c30f4316d322d92c2a40083c5b027dae"
+        }
+      ],
+      "imageReviewed": true,
+      "status": "not-registered",
+      "reason": "Official HTML makes mill5 and Zenith discount mandatory; the actual official P46/Y11 image says both are optional. Defer until the current full official ruling/erratum resolves the discrepancy; no partial registration or name counted."
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm31-043",
+      "name": "フォーチュン・スロット",
+      "reason": "Verify public top4 optional one per creature/spell/gear/castle and ordered rest, Shield Trigger."
+    },
+    {
+      "id": "dmr09-093",
+      "name": "ブータンの収穫",
+      "reason": "Verify complete choice between two Exile recoveries and one creature recovery, Shield Trigger."
+    },
+    {
+      "id": "dm03-017",
+      "name": "ブレイズ・キャノン",
+      "reason": "Verify all own mana Fire condition and native current-own-creature attack bonus/W grants."
+    },
+    {
+      "id": "dmr02-040",
+      "name": "光陰のリバイバー・スパイラル",
+      "reason": "Verify full mandatory target, own Light-or-Dark conditional owner deck-top/hand and Shield Trigger."
+    }
+  ],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+}

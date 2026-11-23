@@ -32,7 +32,7 @@ export function createSamuraiRules(api){
   if(effective(x,s).g721CrossRamp)on(s,p,x,'g34_Ramp',{n:1,tapped:true});
  }
  const crossPayment=(g,reduction=0)=>({...card(g),crossing:true,...(reduction?{g933CrossReduction:reduction}:{})});
- function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName)));}
+ function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>name.includes(g.g1710FreeCrossName)));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
@@ -281,7 +281,10 @@ export function createSamuraiRules(api){
  end(s,p){
   const own=(x,op)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});
   return [...creatures(s,p).filter(x=>effective(x,s).samuraiEndUntap).map(x=>own(x,'g18_EndUntap')),
-   ...gears(s,p).filter(g=>!g.sealed&&!g.faceDown&&card(g).g928CrossEndUntap&&active(s,g)).map(g=>own(g,'g18_ReverseUntap928'))];
+   ...gears(s,p).filter(g=>!g.sealed&&!g.faceDown&&card(g).g928CrossEndUntap&&active(s,g)).map(g=>own(g,'g18_ReverseUntap928')),
+   ...gears(s,p).filter(g=>!g.sealed&&!g.faceDown&&card(g).g1710CrossEndUntap&&active(s,g)&&live(s,p,g)).map(g=>{
+    const host=live(s,p,g);return{player:p,uid:g.uid,source:g.cardId,effect:'extended',task:task('g18_EndUntap',p,g.cardId,{uid:host.uid,incarnation:host.incarnation||0})};
+   })];
  },
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).maroku&&attached(s,p,x).length).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_Maroku',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  mainActions(s,p){
