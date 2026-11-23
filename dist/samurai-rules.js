@@ -168,6 +168,8 @@ export function createSamuraiRules(api){
   return triggered;
  },
  identity,
+ // Phase1713: an active crossed gear supplies permission independently of its host abilities.
+ evolutionRace(s,p,x){return p>=0&&!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x)&&attached(s,p,x).some(g=>card(g).g1713CrossAnyEvolutionRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  protected(s,p,x){
   if(x.crossedTo&&card(x).type==='gear'){
    const host=live(s,p,x);
@@ -242,7 +244,7 @@ export function createSamuraiRules(api){
   }
   return count;
  },
- power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
+ power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length,0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
   if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){
@@ -298,7 +300,7 @@ export function createSamuraiRules(api){
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
    const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
-   const hostFree=host.g946FreeCross&&!x.sealed&&active(s,x)&&!g.sealed&&!g.faceDown;
+   const hostFree=!x.sealed&&!g.sealed&&!g.faceDown&&(host.g946FreeCross&&active(s,x)||attached(s,p,x).some(y=>card(y).g1713CrossFree&&!y.faceDown&&!y.sealed&&live(s,p,y)===x&&active(s,y)));
    const base=free?0:api.summonCost(s,p,crossPayment(g));
    const hostDiscount=active(s,x)?host.g933CrossDiscount||0:0;
    const gearDiscount=gear.g1312SamuraiCrossDiscount&&!g.faceDown&&active(s,g)&&samurai(effective(x,s))?gear.g1312SamuraiCrossDiscount:0;
