@@ -301875,15 +301875,176 @@
       },
       "supportBatch": "phase-1740",
       "supportKind": "effect"
+    },
+    {
+      "id": "sp-005",
+      "name": "凶星王ダーク・ヒドラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ダークロード",
+      "text": "自分のクリーチャーがバトルゾーンに出たとき、そのクリーチャーと同じ種族のクリーチャーを自分の墓地から１体選び、自分の手札に加えてもよい。\nW・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-005",
+      "limit": 4,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1324IncludeSelf": true,
+        "g1533RaceRecovery": true
+      },
+      "supportBatch": "phase-1741",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-005",
+      "name": "星狼凰マスター・オブ・デスティニー",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "フェニックス/ナイト/サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分のサムライ・クリーチャー１体とナイト・クリーチャー１体を重ねた上に置く。\nこのクリーチャーが攻撃する時、自分のマナゾーンにある「S・トリガー」付きの呪文を１枚、コストを支払わずに唱えてもよい。その後、クロスギアを１枚、自分のマナゾーンからバトルゾーンに出してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-005",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "サムライ"
+          },
+          {
+            "race": "ナイト"
+          }
+        ]
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "サムライ"
+          },
+          {
+            "race": "ナイト"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "mana",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g201Gear": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1741",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-s01",
+      "name": "超神星ヴィーナス・ラ・セイントマザー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12500,
+      "race": "フェニックス",
+      "text": "進化GV-自分のガーディアン、グレートメカオー、アーク・セラフィムのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s01",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ガーディアン"
+          },
+          {
+            "race": "グレートメカオー"
+          },
+          {
+            "race": "アーク・セラフィム"
+          }
+        ]
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ガーディアン"
+              },
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "アーク・セラフィム"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ガーディアン"
+              },
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "アーク・セラフィム"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ガーディアン"
+              },
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "アーク・セラフィム"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g1741MeteorStay": true,
+      "supportBatch": "phase-1741",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1740,
-    "checkedAt": "2026-11-23T11:50:05.067Z",
-    "baseCount": 9453,
+    "phase": 1741,
+    "checkedAt": "2026-11-23T12:05:54.775Z",
+    "baseCount": 9456,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9456,
+    "totalCount": 9459,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -330438,6 +330599,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9453,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1740,
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "baseCount": 9453,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9456,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

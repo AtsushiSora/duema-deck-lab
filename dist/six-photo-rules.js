@@ -2880,6 +2880,15 @@ export function createSixPhotoRules(api){
    move(s,[{player,uid:attacker.uid,to:'mana',controller:player}]);
   break;
  }
+ case'g34_RaceRecovery1741':{
+  const copiedSelf=t.g1741EntrySelf&&card(t.source).copyOf;
+  const ref=copiedSelf?t:t.g1741Subject;
+  const host=sourceHost474(s,ref)?.x;
+  const races=host?exactRaces(effective(host,s)):copiedSelf?exactRaces(card(t.source)):t.g1741Races;
+  if(races?.length)start(s,t,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
+   filter:{creature:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}]);
+  break;
+ }
  case'g34_EntryMach762':{
   const host=sourceHost474(s,t.subject)?.x;
   if(host&&!host.sealed&&api.isCreature(s,host))applyGrant(s,{...t,grant:t.g1740Haste?{speedAttacker:true}:{machFighter:true}},host);
@@ -10562,7 +10571,7 @@ export function createSixPhotoRules(api){
    if(watch.g910HigherPower&&currentPower506(s,y)<=currentPower506(s,x))continue;
    if(watch.g1533RaceRecovery){
     const races=exactRaces(effective(y,s));
-    if(races.length)queue(s,owner,x,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{creature:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}]);
+    if(races.length)queue(s,owner,x,[{op:'RaceRecovery1741',g1741Subject:{uid:y.uid,incarnation:y.incarnation||0},g1741Races:races,g1741EntrySelf:x.uid===y.uid}]);
    }
    else if(watch.g1632DestroyEntrant)queue(s,owner,x,[{op:'ExactMove',owner:p,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0,g403Refs:api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})),followEvolution:true}]);
    else if(watch.g1740EntrantHaste)queue(s,owner,x,[{op:'ShieldGrave',optional:true,then:[{op:'EntryMach762',subject:{uid:y.uid,incarnation:y.incarnation||0},g1740Haste:true}]}]);

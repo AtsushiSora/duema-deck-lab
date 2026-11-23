@@ -1,0 +1,790 @@
+{
+  "phase": 1741,
+  "checkedAt": "2026-11-23T12:05:54.775Z",
+  "baseCount": 9456,
+  "target": 9500,
+  "description": "Full original Dark Hydra own entry race grave recovery; Master of Destiny Samurai/Knight evolutionV and mana ST spell then gear; Venus three-race evolutionGV and optional one physical under-card leave replacement.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44360/",
+      "sha256": "8db9c870c255a405360460441066cbba14645a5394447f3b06038fd1a287abfc",
+      "scope": "Borrowed Hydra self-entry recovery references the borrowing creature race, not original Hydra; real Orlgate equivalent explicitly named by this QA.",
+      "reproduced": true,
+      "test": "tests/standard1741-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35420/",
+      "sha256": "d5912c4c0ef1c321a8cc82d2c9b8549db2ee386456474ca94087d7e09cbe2c8b",
+      "scope": "Venus may replace battle loss and all departures, including movement of just the top creature card.",
+      "reproduced": true,
+      "test": "tests/standard1741-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "sp-005",
+      "name": "凶星王ダーク・ヒドラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-005",
+      "faces": [
+        {
+          "name": "凶星王ダーク・ヒドラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出たとき、そのクリーチャーと同じ種族のクリーチャーを自分の墓地から１体選び、自分の手札に加えてもよい。\nW・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "g1324IncludeSelf": true,
+          "g1533RaceRecovery": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-005.jpg",
+      "imageReviewed": true,
+      "imageSha256": "bba4584d0bfc31f0cc0bf429b5fe263256b31b38c7bcb797de28a10570c20770",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmex17-Cho03",
+          "dmc38-009",
+          "sp-005"
+        ],
+        "result": "Official same-name search/product lists and full original/reprint text/art reviewed. Distinct twins excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "f4212ce96e6822e23f000da10fe04b705d160098b5b76d2f8f49b23df2e919e2",
+        "facesMatched": true,
+        "imageSha256": "bba4584d0bfc31f0cc0bf429b5fe263256b31b38c7bcb797de28a10570c20770"
+      }
+    },
+    {
+      "id": "dm31-005",
+      "name": "星狼凰マスター・オブ・デスティニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-005",
+      "faces": [
+        {
+          "name": "星狼凰マスター・オブ・デスティニー",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分のサムライ・クリーチャー１体とナイト・クリーチャー１体を重ねた上に置く。\nこのクリーチャーが攻撃する時、自分のマナゾーンにある「S・トリガー」付きの呪文を１枚、コストを支払わずに唱えてもよい。その後、クロスギアを１枚、自分のマナゾーンからバトルゾーンに出してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス/ナイト/サムライ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "サムライ"
+            },
+            {
+              "race": "ナイト"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "サムライ"
+            },
+            {
+              "race": "ナイト"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "mana",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g201Gear": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-005.jpg",
+      "imageReviewed": true,
+      "imageSha256": "7b739ece5db5c9c6f622ce00ab1ff18d03a5b261288a2c80a4f3a98f12b498b3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm31-005"
+        ],
+        "result": "Official same-name search/product lists and full original/reprint text/art reviewed. Distinct twins excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "6a4b8022f92beaf4309008ba87247e96a4716b54c50bf3874a80b4cf0d6ec6c9",
+        "facesMatched": true,
+        "imageSha256": "7b739ece5db5c9c6f622ce00ab1ff18d03a5b261288a2c80a4f3a98f12b498b3"
+      }
+    },
+    {
+      "id": "dm19-s01",
+      "name": "超神星ヴィーナス・ラ・セイントマザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s01",
+      "faces": [
+        {
+          "name": "超神星ヴィーナス・ラ・セイントマザー",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-自分のガーディアン、グレートメカオー、アーク・セラフィムのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ガーディアン"
+            },
+            {
+              "race": "グレートメカオー"
+            },
+            {
+              "race": "アーク・セラフィム"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1741MeteorStay": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s01.jpg",
+      "imageReviewed": true,
+      "imageSha256": "53744400e17ef24cd2dc3bc8b6bc0a188f55f57d5025bacc97b36ce6459ae0ea",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm19-s01",
+          "dmc66-002",
+          "dmx12b-029"
+        ],
+        "result": "Official same-name search/product lists and full original/reprint text/art reviewed. Distinct twins excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "3de2bcb7e3a514e9b5b49af045218491d9b437b793c50d7a4f6eb05aa3e4dfb7",
+        "facesMatched": true,
+        "imageSha256": "53744400e17ef24cd2dc3bc8b6bc0a188f55f57d5025bacc97b36ce6459ae0ea"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex17-Cho03",
+      "name": "凶星王ダーク・ヒドラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-Cho03",
+      "faces": [
+        {
+          "name": "凶星王ダーク・ヒドラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーが出た時、そのクリーチャーと同じ種族を１つでも持つクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "g1324IncludeSelf": true,
+          "g1533RaceRecovery": true
+        }
+      },
+      "canonicalId": "sp-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-Cho03.jpg",
+      "imageReviewed": true,
+      "imageSha256": "695493daa65312c4bcd81e2c7bae60f08cf08ec4350ed1387f87724328626020",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "92a700d18b37372a55f13fd4ac87b3c2340d2303e21a5a8b43b391b0cb9b82d4",
+        "facesMatched": true,
+        "imageSha256": "695493daa65312c4bcd81e2c7bae60f08cf08ec4350ed1387f87724328626020"
+      }
+    },
+    {
+      "id": "dmc38-009",
+      "name": "凶星王ダーク・ヒドラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc38-009",
+      "faces": [
+        {
+          "name": "凶星王ダーク・ヒドラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出た時、そのクリーチャーと同じ種族をひとつでも持つクリーチャーを１体、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "g1324IncludeSelf": true,
+          "g1533RaceRecovery": true
+        }
+      },
+      "canonicalId": "sp-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc38-009.jpg",
+      "imageReviewed": true,
+      "imageSha256": "b353c2f3b5f17d6c8c7e03667cf97cfd95d681d04a9fbaf345cb0b8224caa38d",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "2956072d85bd4ae4992376a9f58d73100c6c4670f8c900ae49a6fef2310973a6",
+        "facesMatched": true,
+        "imageSha256": "b353c2f3b5f17d6c8c7e03667cf97cfd95d681d04a9fbaf345cb0b8224caa38d"
+      }
+    },
+    {
+      "id": "dmc66-002",
+      "name": "超神星ヴィーナス・ラ・セイントマザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-002",
+      "faces": [
+        {
+          "name": "超神星ヴィーナス・ラ・セイントマザー",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-自分のガーディアン、グレートメカオー、アーク・セラフィムのいずれか３体を重ねた上に置く。\nメテオバーン-このクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "フェニックス",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ガーディアン"
+            },
+            {
+              "race": "グレートメカオー"
+            },
+            {
+              "race": "アーク・セラフィム"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1741MeteorStay": true
+      },
+      "canonicalId": "dm19-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-002.jpg",
+      "imageReviewed": true,
+      "imageSha256": "15cf373bff9db09e4e192c9fd5c4c4858b4f1e93c3cf0c63fa04d3608762a4ff",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "18dd478458225a2226c59c882be34d617db8b345ceab397bada5678328a03b96",
+        "facesMatched": true,
+        "imageSha256": "15cf373bff9db09e4e192c9fd5c4c4858b4f1e93c3cf0c63fa04d3608762a4ff"
+      }
+    },
+    {
+      "id": "dmx12b-029",
+      "name": "超神星ヴィーナス・ラ・セイントマザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-029",
+      "faces": [
+        {
+          "name": "超神星ヴィーナス・ラ・セイントマザー",
+          "typeText": "進化クリーチャー（進化GV）",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-自分のガーディアン、グレートメカオー、アーク・セラフィムのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "フェニックス",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ガーディアン"
+            },
+            {
+              "race": "グレートメカオー"
+            },
+            {
+              "race": "アーク・セラフィム"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ガーディアン"
+                },
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "アーク・セラフィム"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1741MeteorStay": true
+      },
+      "canonicalId": "dm19-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-029.jpg",
+      "imageReviewed": true,
+      "imageSha256": "5ed971bfdf3e18ef34760044bd97acc3c27f1810ed8857896dd072342d8dfaba",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:05:54.775Z",
+        "reason": "Complete7 official original/reprint art reviewed: type, mana1, cost/power/races/full abilities. Same exact names; excluded Hydra Twinpact as a separate card."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:05:54.775Z",
+        "sha256": "d539586bb5d56d3c2d39ff539ed59a0e9a9dc9029fbf30be4220c78bb1b496ae",
+        "facesMatched": true,
+        "imageSha256": "5ed971bfdf3e18ef34760044bd97acc3c27f1810ed8857896dd072342d8dfaba"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T12:05:54.775Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "sp-005": 4,
+      "dm31-005": 4,
+      "dm19-s01": 4,
+      "dmex17-Cho03": 4,
+      "dmc38-009": 4,
+      "dmc66-002": 4,
+      "dmx12b-029": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T12:16:29.801Z",
+    "results": {
+      "related-hydra": {
+        "name": "related-hydra",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1533-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.085,
+        "log": "tmp/duema-phase-1741/related-hydra.log",
+        "passed": 28,
+        "logSha256": "ee60284689ef19b47ec137d9d1470243bb6f968a0a78c740a7a1906383e29b5f"
+      },
+      "related-copy": {
+        "name": "related-copy",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=copied|copy|Orugate|JustDiver|Kiinary suppresses",
+          "tests/maruru-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.098,
+        "log": "tmp/duema-phase-1741/related-copy.log",
+        "passed": 10,
+        "logSha256": "25ec04b2bfc24fe7c2c04a7738215c637b953692fe88d099ff7b2db0b3b54607"
+      },
+      "related-evolution": {
+        "name": "related-evolution",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=V evolution|reconstruction|Savak|Apollo|Pluto meteor",
+          "tests/phoenix-photo.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.381,
+        "log": "tmp/duema-phase-1741/related-evolution.log",
+        "passed": 8,
+        "logSha256": "bf6582fe9688237da271dc7fba2de2d81f5e95a39b43b173591e647676e737d6"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.659,
+        "log": "tmp/duema-phase-1741/related-online.log",
+        "passed": 55,
+        "logSha256": "d7ec653bba7a3966be57f265f68833943a42a505453dc6aeb0b26afece4253f1"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1741.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.914,
+        "log": "tmp/duema-phase-1741/official.log",
+        "logSha256": "dee30b240bfdb6cf62bc73d37a94eb6ff294090cad529caf2fad39d6cb257e27"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.89,
+        "log": "tmp/duema-phase-1741/check.log",
+        "logSha256": "a48d5bdfade829f711f6a936f4c741e69f2e8970312a8bfbbd3b8cb34c253c75"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.408,
+        "log": "tmp/duema-phase-1741/audit.log",
+        "logSha256": "f720c954b4e87e07b77c2c73c4cc1ab080ed4f917c9025923037861942a485eb"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.408,
+        "log": "tmp/duema-phase-1741/target9500.log",
+        "logSha256": "8ad9ad05b24fcd6107ca9c98a8681a98660e63062392eeee4f23dca9ac3be87e"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1741/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.368,
+        "log": "tmp/duema-phase-1741/invariants.log",
+        "logSha256": "90f92c279b8e75a0a3253877f975729bfd51d4a7fb259da7bdda215647d397ad"
+      },
+      "focused": {
+        "passed": 53,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1741-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 3.139,
+            "log": "tmp/duema-phase-1741/focused.log",
+            "logSha256": "2477cd8a9249b8e8ec167e56bebe0c695a679b73ee38dbb09b84a52e23de85ca"
+          },
+          {
+            "name": "focused-master-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=Master|phase1741 legal",
+              "tests/standard1741-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.9,
+            "log": "tmp/duema-phase-1741/focused-master-fix.log",
+            "logSha256": "76fdd03230e785a2b9dff67bc297f3811af50b46c29da9aefcd22e173552669e"
+          },
+          {
+            "name": "focused-extra",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=physical top-only|positive multi race|mixed three|paid opposing|zero power|encrypted room",
+              "tests/standard1741-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.921,
+            "log": "tmp/duema-phase-1741/focused-extra.log",
+            "logSha256": "8505006ddaf5a7fe6455c8655291f8705bd77f6a518d7cd16e0d8afa4ba5b5f2"
+          },
+          {
+            "name": "focused-extra-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=paid opposing|zero power",
+              "tests/standard1741-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.126,
+            "log": "tmp/duema-phase-1741/focused-extra-fix.log",
+            "logSha256": "9a39a1d8b64a6ee599923677454e9c6a5ad859cd6b055f4bf3f823bb0a0a76f9"
+          }
+        ],
+        "coverage": "53 unique cases. Corrected nonexistent Knight fixture ID, native effect target action, negative power modifier, and actual top-only movement fixture. Every final case passes."
+      }
+    },
+    "totalTestsPassed": 154,
+    "focusedTestsPassed": 53,
+    "relatedTestsPassed": 101
+  },
+  "validationNotes": [
+    "Actual nameKey9456→9459, three complete new names and seven official original/reprint prints/art reviewed. Existing9456 definitions/IDs, catalogue/details, names, image refs and strict pins unchanged; same-name reprints excluded from count.",
+    "Dark Hydra native self/own entry recovery uses actual entrant races. Added deferred reference resolution so real Orlgate copied self entry refers to its own race per QA44360. Both seats, self/other/enemy, exact multiple races, optional decline, ignored/sealed source, locked grave, pending source departure verified. Existing Twinpact Hydra1533 and narrow copied-entry regressions pass.",
+    "Master uses two distinct Samurai and Knight bases, native multi-color tapped mana and printed mana1,12000/T breaker. Paid7 and immediate evolution attack, mana printed ST spell only with full spell resolution followed by independent optional CrossGear deployment, declining spell but choosing Gear, physical UID conservation and no invalid single dual-race base verified.",
+    "Venus uses three distinct creatures of Guardian/GreatMecha/ArcSeraphim in any mix,12500/T breaker. Narrow optional meteor replacement sends exactly one physical under-card to grave instead of any departure. Both seats all five zones, actual paid DemonHand/SpiralGate, actual battle loss, actual top-only BattleCardMove579 verified by cardOnly departure row, nested base reconstruction, optional decline, empty/ignored source, power0 finite three replacements then destruction, encrypted authoritative room restore/projection, pure AI and80-card legal save verified. Existing evolution/meteor/reconstruction regressions pass.",
+    "Initial fixture-only failures were corrected and affected cases rerun. All53 unique focused cases and short related groups pass, npm run check/audit/target9500/invariants pass. Historical pending items and interrupted full-suite status retained. No push, publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm20-003",
+      "name": "忘却人形ラビオール",
+      "reason": "Reuse validated actual FortE paid-race provenance and both-player discard whole hand."
+    },
+    {
+      "id": "promoy13-081",
+      "name": "弐刀龍覇 グレンモルト「双」",
+      "reason": "Reuse native optional two cost<=2 weapon attachments and W breaker; check all official prints."
+    },
+    {
+      "id": "dm31-007",
+      "name": "陰陽の伝道士セイメイ",
+      "reason": "Reuse untargetable and narrow opponent grave-spell recovery restriction after official rulings review."
+    }
+  ]
+}
