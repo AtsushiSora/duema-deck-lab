@@ -33,7 +33,7 @@ export function createSamuraiRules(api){
   api.log(s,p,'crossGear',card(g).name+'を'+card(x).name+'にクロス',{cardId:g.cardId,target:x.uid});
   if(effective(x,s).g721CrossRamp)on(s,p,x,'g34_Ramp',{n:1,tapped:true});
  }
- const crossPayment=(g,reduction=0)=>({...card(g),crossing:true,...(reduction?{g933CrossReduction:reduction}:{})});
+ const crossPayment=(g,reduction=0,alternative=false)=>({...card(g),crossing:true,...(alternative?{cost:card(g).g1720CrossAlternativeCost}:{}),...(reduction?{g933CrossReduction:reduction}:{})});
  function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>name.includes(g.g1710FreeCrossName)));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
@@ -191,6 +191,12 @@ export function createSamuraiRules(api){
      g.weaponTo={uid:x.uid,incarnation:x.incarnation||0};
   }
  },
+ block(s,p){
+  const owner=1-p,x=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker);
+  if(!x||x.sealed||!api.isCreature(s,x))return;
+  for(const g of attached(s,owner,x))if(card(g).g1720CrossBlockedBreak&&!g.faceDown&&!g.sealed&&active(s,g))
+   on(s,owner,g,'g34_Break497',{uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g830BlockBreaker:x.cardId});
+ },
  battleTasks1719(s,p,x){
   if(x.sealed||!api.isCreature(s,x))return [];
   return attached(s,p,x).filter(g=>card(g).g1719CrossBattle&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>({
@@ -327,6 +333,10 @@ export function createSamuraiRules(api){
    if(live(s,p,g)?.uid===x.uid)continue;
    const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
    const hostFree=!x.sealed&&!g.sealed&&!g.faceDown&&(host.g946FreeCross&&active(s,x)||attached(s,p,x).some(y=>card(y).g1713CrossFree&&!y.faceDown&&!y.sealed&&live(s,p,y)===x&&active(s,y)));
+   if(gear.g1720CrossAlternativeCost&&!g.sealed&&!g.faceDown&&active(s,g)&&api.canPay(s,p,crossPayment(g,0,true)))
+    out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,g1720AlternativeCross:true,
+     cost:api.summonCost(s,p,crossPayment(g,0,true)),free:false,score:12,
+     label:gear.name+' → '+host.name+'に代替コストでクロス（'+gear.g1720CrossAlternativeCost+'マナ）'});
    const base=free?0:api.summonCost(s,p,crossPayment(g));
    const hostDiscount=active(s,x)?host.g933CrossDiscount||0:0;
    const gearDiscount=gear.g1312SamuraiCrossDiscount&&!g.faceDown&&active(s,g)&&samurai(effective(x,s))?gear.g1312SamuraiCrossDiscount:0;
@@ -351,7 +361,7 @@ export function createSamuraiRules(api){
   return out;
  },
  crossOnEntry(s,p,x,ids){for(const g of gears(s,p))if(!g.sealed&&ids.includes(g.uid))cross(s,p,g,x);},
- crossAction(s,p,a){const g=s.players[p].battle.find(x=>x.uid===a.uid),x=s.players[p].battle.find(x=>x.uid===a.target);if(!a.free)api.pay(s,p,crossPayment(g,a.g933CrossReduction));cross(s,p,g,x);},
+ crossAction(s,p,a){const g=s.players[p].battle.find(x=>x.uid===a.uid),x=s.players[p].battle.find(x=>x.uid===a.target);if(!a.free)api.pay(s,p,crossPayment(g,a.g933CrossReduction,!!a.g1720AlternativeCross));cross(s,p,g,x);},
  variants(s,p,actions){const out=[...actions];if(noReduce(s,p))return out;for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.alternative||a.g18Reducers!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=optionalReducers(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g18Reducers:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{})};if(api.canPay(s,p,payment))out.push({...a,g18Reducers:n,cost:api.summonCost(s,p,payment),label:c.name+'をザンゲキの軽減'+n+'回で使う'});}}return out;},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const top of own.battle)for(const x of api.layers(top))x.g18Blocker=(x.g18Blocker||[]).filter(v=>v.who!==p);},
  };
