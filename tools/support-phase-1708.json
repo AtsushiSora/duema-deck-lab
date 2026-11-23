@@ -1,0 +1,577 @@
+{
+  "phase": 1708,
+  "checkedAt": "2026-11-23T05:31:13.611Z",
+  "baseCount": 9359,
+  "target": 9500,
+  "description": "Complete Dual Stinger mandatory opposing Blocker destruction, Paladin Spear all-player Blocker sweep, and Taisho Arms any-number Samurai recovery/crossed Blocker. Resolve verified Fairy Accelerator original/reprint name variation to its existing ID without adding a battle card.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35724/",
+    "https://dm.takaratomy.co.jp/rule/qa/34384/",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 35724,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35724/",
+      "sha256": "957054e8b5d112a160d1d617b377a645b0fabdd0c7c7156e63eb875097145389",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1708-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA35724 all Blockers return before block decisions"
+    },
+    {
+      "id": 34384,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34384/",
+      "sha256": "1f2cad610677e7bc7e97d932e4e779335d2a3d106b45f74839e67807e0d5f49b",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1708-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA34384 ignored printed and granted Blocker presence"
+    },
+    {
+      "id": 43462,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43462/",
+      "sha256": "647b6162ef8b254103c2fcff7d83e942929a01a61c9344dd1aa0edf1864c0008",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1708-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Cross gear independent physical attachment and departure"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm29-051",
+      "name": "熱刀 デュアル・スティンガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-051",
+      "faces": [
+        {
+          "name": "熱刀 デュアル・スティンガー",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア：このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-051.jpg",
+      "imageReviewed": true,
+      "imageSha256": "af9b0ef855319a40d2bf9d2083bc0a9a7424212ef48859664ce53f883f55d485",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm29-051",
+          "dmc56-037"
+        ],
+        "result": "Official name searches and product lists confirm original/exact reprints; all full faces and official images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "sha256": "0f776ea28b7e463e8684ed673e1afbc4a26e4a143683f11b7f28fea5e49a10ce",
+        "facesMatched": true,
+        "imageSha256": "af9b0ef855319a40d2bf9d2083bc0a9a7424212ef48859664ce53f883f55d485"
+      }
+    },
+    {
+      "id": "dm30-002",
+      "name": "氷槍 パラディン・スピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-002",
+      "faces": [
+        {
+          "name": "氷槍 パラディン・スピア",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、バトルゾーンにある「ブロッカー」を持つクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-002.jpg",
+      "imageReviewed": true,
+      "imageSha256": "d54d9676d5aabd1a64a68e698ce2ded34899f78f44833afa185d8e4889390641",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm30-002"
+        ],
+        "result": "Official name searches and product lists confirm original/exact reprints; all full faces and official images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "sha256": "55940de32e306ee33a5692ca7856b8f7ae223bb67b15a5c11402b4f3db9ec416",
+        "facesMatched": true,
+        "imageSha256": "d54d9676d5aabd1a64a68e698ce2ded34899f78f44833afa185d8e4889390641"
+      }
+    },
+    {
+      "id": "dm23ex1-067",
+      "name": "天装 タイショウ・アームズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-067",
+      "faces": [
+        {
+          "name": "天装 タイショウ・アームズ",
+          "typeText": "クロスギア",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア（自分のターン中、このクロスギアのコストを支払ってクリーチャー１体にクロスしてもよい。そのクリーチャーが離れても、このクロスギアは残る）\nこのクロスギアが出た時、自分の山札の上から３枚を見る。その中からサムライを好きな数選んで相手に見せ、手札に加える。残りを好きな順序で山札の下に置く。\nこれをクロスしたクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "エンジェル・コマンド/アーマード・サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g945CrossBlocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "anyFaceRace": "サムライ"
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-067.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6af4f306324d1d6cd1cbcbac66264fa95cdfedc351e6ae996dd69322557282e8",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm23ex1-067"
+        ],
+        "result": "Official name searches and product lists confirm original/exact reprints; all full faces and official images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "sha256": "103ee6d341eaec9338c7b5c47f1a450f5abdc908d582a5fcbfe5570bf6f82ee8",
+        "facesMatched": true,
+        "imageSha256": "6af4f306324d1d6cd1cbcbac66264fa95cdfedc351e6ae996dd69322557282e8"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm28-110",
+      "name": "覇翼フェアリー・アクセラー",
+      "canonicalId": "dmpcd02-a13",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-110",
+      "faces": [
+        {
+          "name": "覇翼フェアリー・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "dd4b08e7922fb1a5787389a1358d8a6f50412fe2561458b949b5734b3c4023bc",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-110.jpg",
+          "file": "tmp/duema-phase-1708/dm28-110-0.jpg",
+          "sha256": "c483c47db6136bc754042228c19003747572c12b25a7ddac43bcedbef61268b3"
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-110.jpg",
+      "imageReviewed": true,
+      "imageSha256": "c483c47db6136bc754042228c19003747572c12b25a7ddac43bcedbef61268b3",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "sha256": "dd4b08e7922fb1a5787389a1358d8a6f50412fe2561458b949b5734b3c4023bc",
+        "facesMatched": true,
+        "imageSha256": "c483c47db6136bc754042228c19003747572c12b25a7ddac43bcedbef61268b3"
+      }
+    }
+  ],
+  "existingCards": [
+    {
+      "id": "dmpcd02-a13",
+      "name": "覇翼 フェアリー・ アクセラー",
+      "canonicalId": "dmpcd02-a13",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a13",
+      "faces": [
+        {
+          "name": "覇翼 フェアリー・ アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "f6a9a5f62d4ce8ff2444d24e292c77db8b72457d551498e65cfdc57ece8e0c05",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a13.jpg",
+          "file": "tmp/duema-phase-1708/dmpcd02-a13-0.jpg",
+          "sha256": "aee5197c58b2bf4cbf5768af80aec346fbd883330055f1bf3ced03deb7b25f07"
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a13.jpg",
+      "imageReviewed": true,
+      "imageSha256": "aee5197c58b2bf4cbf5768af80aec346fbd883330055f1bf3ced03deb7b25f07",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "checkedAt": "2026-11-23T05:31:13.611Z",
+        "sha256": "f6a9a5f62d4ce8ff2444d24e292c77db8b72457d551498e65cfdc57ece8e0c05",
+        "facesMatched": true,
+        "imageSha256": "aee5197c58b2bf4cbf5768af80aec346fbd883330055f1bf3ced03deb7b25f07"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dmc56-037",
+      "name": "熱刀 デュアル・スティンガー",
+      "canonicalId": "dm29-051",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc56-037",
+      "faces": [
+        {
+          "name": "熱刀 デュアル・スティンガー",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア：このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "e048c654772bdffc9c00fe7b2074423dcfb159a3161748e482a834b532a199d0",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc56-037.jpg",
+          "file": "tmp/duema-phase-1708/dmc56-037-0.jpg",
+          "sha256": "a11f828c67b94d7eb51496227ecc887365a1a6b2d93f3a3ddc891fa6856b29a7"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [],
+  "duplicateCandidates": [
+    {
+      "id": "dm28-110",
+      "name": "覇翼フェアリー・アクセラー",
+      "existingId": "dmpcd02-a13",
+      "existingName": "覇翼 フェアリー・ アクセラー",
+      "result": "Verified whole same card with official whitespace variation; preserve existing ID and definition. Added alias resolves original print and saves quantities; zero new names."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T05:31:13.611Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm29-051": 4,
+      "dm30-002": 4,
+      "dm23ex1-067": 4,
+      "dm28-110": 4,
+      "dmpcd02-a13": 4
+    }
+  },
+  "nameAliases": [
+    {
+      "from": "覇翼フェアリー・アクセラー",
+      "to": "覇翼 フェアリー・ アクセラー",
+      "canonicalId": "dmpcd02-a13",
+      "reason": "Both whole official print faces, rules, images and mana verified; preserve the phase1576 ID and definition."
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-23T05:41:58.276Z",
+    "results": {
+      "related-gear-attack": {
+        "name": "related-gear-attack",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1576-effects.test.mjs",
+          "tests/standard1702-effects.test.mjs",
+          "tests/standard945-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.48,
+        "log": "tmp/duema-phase-1708/related-gear-attack.log",
+        "passed": 88,
+        "logSha256": "688674585853928119476145f699b151a0197fa3a471d801ff6fb57d6f9fbf90"
+      },
+      "related-alias-storage-online": {
+        "name": "related-alias-storage-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/account.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs",
+          "tests/catalogue-draw.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.274,
+        "log": "tmp/duema-phase-1708/related-alias-storage-online.log",
+        "passed": 90,
+        "logSha256": "4f6540fab5338123e05a67240733c96cfe731a8ccc8282ca786853d191285656"
+      },
+      "related-catalogue-count-guard": {
+        "name": "related-catalogue-count-guard",
+        "command": [
+          "node",
+          "--test",
+          "tests/target9500-verification.test.mjs",
+          "tests/standard1683-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.312,
+        "log": "tmp/duema-phase-1708/related-catalogue-count-guard.log",
+        "passed": 104,
+        "logSha256": "ed28eaa43f0f8dc335ca465e6e3bbb357a9cc60bcbec16d3a2d742385628e878"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1708.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.275,
+        "log": "tmp/duema-phase-1708/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "check-name-count-fixed": {
+        "name": "check-name-count-fixed",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.697,
+        "log": "tmp/duema-phase-1708/check-name-count-fixed.log",
+        "logSha256": "aaf71f1a85ba215e60d665dfd96dd4a938d21aeb788e4de6de2d0894b122f021"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.702,
+        "log": "tmp/duema-phase-1708/audit.log",
+        "logSha256": "135d419f34b0fc5dfbdd56c164214a7dc152166f52aa0ce3c0c4314e2ca60dd3"
+      },
+      "target9500-final": {
+        "name": "target9500-final",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.37,
+        "log": "tmp/duema-phase-1708/target9500-final.log",
+        "logSha256": "3e79dd2f05c7d618041c88c0356367fd7dfe644c2486a4738d36344aefaa87a4"
+      },
+      "invariants-name-count-fixed": {
+        "name": "invariants-name-count-fixed",
+        "command": [
+          "node",
+          "tmp/duema-phase-1708/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.44,
+        "log": "tmp/duema-phase-1708/invariants-name-count-fixed.log",
+        "logSha256": "81349f37471135c6ce740497374c70d56878149baadec12dfa6e56797489f059"
+      },
+      "focused": {
+        "passed": 35,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1708-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 10.992,
+            "log": "tmp/duema-phase-1708/focused.log",
+            "passed": 25,
+            "logSha256": "5820125ecead9ca7a53a50ecb51f403a1d9e73d4da794343fddb173ce3b0d9f1"
+          },
+          {
+            "name": "focused-native-choice-fixtures-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Dual Stinger belongs|^Taisho optionally|^Taisho whole",
+              "tests/standard1708-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.893,
+            "log": "tmp/duema-phase-1708/focused-native-choice-fixtures-fixed.log",
+            "passed": 10,
+            "logSha256": "5d39070a964212cd673209f0e302d45bc7fd7f8e028e72644dca102c6b2f2e53"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 317,
+    "focusedTestsPassed": 35,
+    "relatedTestsPassed": 282
+  },
+  "validationNotes": [
+    "Actual nameKey counts9359/9362; clean baseline3505ea3d and no running prior work. All9359 existing battle definitions, IDs, details, old images and spec pins preserved. No save-format change.",
+    "Three full native-gear cards, six official original/reprint faces and images, current limits and mana verified. Dual Stinger exact reprint dmc56-037; Paladin Spear and Taisho original only. No runtime effect changes.",
+    "Dual Stinger mandatory opposing Blocker destruction includes printed Blockers whose abilities are ignored and granted Blockers under exact QA34384; the actual Genmu is also a Blocker. Paladin Spear exact QA35724 returns all both-player Blockers to physical owners before block choices, including its attacking host when it is a Blocker. Crossed triggers remain gear abilities.",
+    "Taisho full paid generation/crossing, optional zero/one/all Samurai among top3, both creatures/gears, reveal rather than draw, ordered remaining bottom, privacy/encrypted pending and real crossed Blocker battles verified. Actual Waldo/Genmu creature restrictions do not suppress noncreature gear entry.",
+    "Fairy Accelerator dm28-110 is the existing phase1576 dmpcd02-a13 with official whitespace variation, not a new card. Both whole faces, native optional ramp, images and restrictions verified. Explicit alias preserves the current battle ID/name/definition and all print IDs; saved quantities2+2 resolve to4. Significant spaces in unrelated names remain significant.",
+    "Catalogue metadata registeredNameCount corrected11825 to11824 after the verified Fairy alias; every catalogue card row and ID unchanged. Campaign guard accepts this count-only correction solely with matching full official original/current faces, images, limits, spec and saved canonical ID. Added13 success/rejection tests; previous strict row/alias checks preserved.",
+    "35 unique focused cases +282 affected regressions pass,total317. Latest check, target9500, invariants and audit pass. Initial focused failures were fixtures expecting g34_Look rather than native g34_LookPick and omitting Genmu from the set of printed Blockers. Initial check exposed stale catalogue count and was corrected without deleting rows or weakening tools/check.mjs.",
+    "Historical interrupted whole-suite, individual, long, reprint and user-deferral pending remain unchanged. No whole npm test, repeated long group, push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmrp07-048",
+      "name": "ワンツーサン・ドーン",
+      "reason": "Verify whole sequential1000/2000/3000 destruction and Shield Trigger."
+    },
+    {
+      "id": "dm38-s05",
+      "name": "悪魔神王バルカディアス",
+      "reason": "Verify complete evolution, other-creature sweep, opposing spell lock and T breaker."
+    },
+    {
+      "id": "dmx16-015",
+      "name": "悪魔龍王デストロンリー",
+      "reason": "Verify full Command evolution, other-creature sweep and conditional lone-creature power/breaker."
+    },
+    {
+      "id": "dmc68-007",
+      "name": "暗黒の悪魔神ヴァーズ・ロマノフ",
+      "reason": "Verify whole grave evolution, opposing non-evolution destruction and W breaker."
+    }
+  ]
+}

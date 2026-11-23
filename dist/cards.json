@@ -298250,23 +298250,117 @@
       ],
       "supportBatch": "phase-1707",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-051",
+      "name": "熱刀 デュアル・スティンガー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 2,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア：このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-051",
+      "limit": 4,
+      "g931CrossAttack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1708",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-002",
+      "name": "氷槍 パラディン・スピア",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、バトルゾーンにある「ブロッカー」を持つクリーチャーをすべて持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-002",
+      "limit": 4,
+      "g931CrossAttack": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1708",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-067",
+      "name": "天装 タイショウ・アームズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "エンジェル・コマンド/アーマード・サムライ",
+      "text": "クロスギア（自分のターン中、このクロスギアのコストを支払ってクリーチャー１体にクロスしてもよい。そのクリーチャーが離れても、このクロスギアは残る）\nこのクロスギアが出た時、自分の山札の上から３枚を見る。その中からサムライを好きな数選んで相手に見せ、手札に加える。残りを好きな順序で山札の下に置く。\nこれをクロスしたクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-067",
+      "limit": 4,
+      "g945CrossBlocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "anyFaceRace": "サムライ"
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1708",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1707,
-    "checkedAt": "2026-11-23T05:20:32.481Z",
-    "baseCount": 9356,
+    "phase": 1708,
+    "checkedAt": "2026-11-23T05:31:13.611Z",
+    "baseCount": 9359,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9359,
+    "totalCount": 9362,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35314/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35315/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35317/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35702/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35724/",
+      "https://dm.takaratomy.co.jp/rule/qa/34384/",
+      "https://dm.takaratomy.co.jp/rule/qa/43462/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -326250,6 +326344,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37482/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37485/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1707,
+        "checkedAt": "2026-11-23T05:20:32.481Z",
+        "baseCount": 9356,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9359,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35314/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35315/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35317/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35702/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
