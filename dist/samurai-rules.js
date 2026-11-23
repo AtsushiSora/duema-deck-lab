@@ -14,7 +14,7 @@ export function createSamuraiRules(api){
  const active=(s,g)=>!api.ignored(s,g);
  // Phase1715: pairing tests physical attached cards; a muted partner still has its name.
  const paired=(s,p,x,name)=>attached(s,p,x).some(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x&&[card(g).name,...(card(g).additionalNames||[])].includes(name));
- const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
+ const optionalReducers=(s,p,c)=>c.type==='creature'?gears(s,p).filter(g=>active(s,g)&&!g.sealed&&!g.faceDown&&!live(s,p,g)&&(card(g).zangeki&&(dragon(c)||samurai(c))||card(g).g1722DragonDiscount&&dragon(c))).length:0;
  const mushaName='ボルメテウス・武者・ドラゴン';
  function identity(s,p,x,c){
   if(c.type==='creature'&&!x.sealed){
@@ -32,9 +32,12 @@ export function createSamuraiRules(api){
   g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};
   api.log(s,p,'crossGear',card(g).name+'を'+card(x).name+'にクロス',{cardId:g.cardId,target:x.uid});
   if(effective(x,s).g721CrossRamp)on(s,p,x,'g34_Ramp',{n:1,tapped:true});
+  if(!x.sealed&&samurai(effective(x,s,true)))for(const mana of s.players[p].mana)if(card(mana).g1722ManaCross&&!mana.faceDown)
+   on(s,p,mana,'g18_Inazuma1722',{serial:mana.zoneSerial||0,host:{uid:x.uid,incarnation:x.incarnation||0}});
+
  }
  const crossPayment=(g,reduction=0,alternative=false)=>({...card(g),crossing:true,...(alternative?{cost:card(g).g1720CrossAlternativeCost}:{}),...(reduction?{g933CrossReduction:reduction}:{})});
- function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>name.includes(g.g1710FreeCrossName)));}
+ function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&(c.name===mushaName||c.additionalNames?.includes(mushaName))||g.g1710FreeCrossName&&[c.name,...(c.additionalNames||[])].some(name=>(Array.isArray(g.g1710FreeCrossName)?g.g1710FreeCrossName:[g.g1710FreeCrossName]).some(part=>name.includes(part))));}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
@@ -44,6 +47,18 @@ export function createSamuraiRules(api){
   if(rows.length)choice(s,t,'このクリーチャーに無料でクロスする自分のクロスギアを1枚選ぶ（任意）',[
    ...rows.map(g=>opt(card(g).name,{uid:g.uid,incarnation:g.incarnation||0},20,g.cardId)),skip()
   ]);
+  break;
+ }
+ case'g18_Inazuma1722':{
+  const g=own.mana.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&!y.faceDown);
+  if(g&&api.canMoveZone(s,t.p,'mana')&&api.canEnter(s,t.p,card(g),{origin:'mana',execution:false}))
+   choice(s,t,'イナズマ・カブトをマナゾーンから出し、クロスする？',[opt('出す',true,15,g.cardId),skip()]);
+  break;
+ }
+ case'g18_InazumaAfter1722':{
+  const g=own.battle.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial+1&&!y.sealed&&!y.faceDown);
+  const host=own.battle.find(y=>!y.sealed&&api.isCreature(s,y)&&api.allLayers(y).some(z=>z.uid===t.host.uid&&(z.incarnation||0)===t.host.incarnation));
+  if(g&&host)cross(s,t.p,g,host);
   break;
  }
  case'g18_Generate':choice(s,t,'侍流ジェネレートで手札のクロスギアを使う？',[...own.hand.filter(x=>card(x).type==='gear'&&canUse(s,t.p,card(x),'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
@@ -95,6 +110,10 @@ export function createSamuraiRules(api){
   if(host&&gear&&live(s,t.p,gear)!==host)cross(s,t.p,gear,host);
   break;
  }
+ case'g18_Inazuma1722':if(v){
+  const g=own.mana.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&!y.faceDown);
+  if(g)put(s,task('g34_Put',t.p,t.source,{origin:'mana',target:g.uid}),{...t,op:'g18_InazumaAfter1722'});
+ }break;
  case'g18_Generate':if(v)cast(s,t.p,v,true,null,0,null,'hand','侍流ジェネレート');break;
  case'g18_Bui':if(v){const before=own.brokenThisTurn||0;api.interruptBreak(s,t.p,[v],task('g18_AfterBreak',t.p,t.source,{before}));}break;
  case'g18_Musashi':put(s,task('g18_MusashiDraw',t.p,t.source,{remaining:own.battle.filter(x=>colors(card(x)).includes('光')).length}));if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
@@ -300,6 +319,10 @@ export function createSamuraiRules(api){
   }
   if(c.type==='gear')for(const watcher of creatures(s,p))if(!watcher.sealed&&!watcher.faceDown&&effective(watcher,s).g1700GearBlockerDestroy)
    on(s,p,watcher,'g34_Target',{to:'grave',filter:{blocker:true},optional:true,title:'破壊する相手のブロッカーを1体まで選ぶ'});
+  if(c.type==='gear'&&c.g1722SamuraiMagic&&options.execution&&!options.selfMuted&&!options.allEntryMuted&&active(s,x))
+   on(s,p,x,'g34_Sequence',{defs:[{op:'IfOwn',filter:{g1484ZoneCount:{zone:'battle',min:1,filter:{creature:true,race:'サムライ'}}},defs:[
+    {op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',filter:{g201Gear:true,g201ExactName:c.name}}
+   ]}]});
   if(c.type==='gear'&&options.execution)
    for(const watcher of creatures(s,p)){
     if(effective(watcher,s).g931GenerateDraw)on(s,p,watcher,'g34_Draw',{n:1,optional:true});
@@ -380,7 +403,7 @@ export function createSamuraiRules(api){
  },
  crossOnEntry(s,p,x,ids){for(const g of gears(s,p))if(!g.sealed&&ids.includes(g.uid))cross(s,p,g,x);},
  crossAction(s,p,a){const g=s.players[p].battle.find(x=>x.uid===a.uid),x=s.players[p].battle.find(x=>x.uid===a.target);if(!a.free)api.pay(s,p,crossPayment(g,a.g933CrossReduction,!!a.g1720AlternativeCross));cross(s,p,g,x);},
- variants(s,p,actions){const out=[...actions];if(noReduce(s,p))return out;for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.alternative||a.g18Reducers!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=optionalReducers(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g18Reducers:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{})};if(api.canPay(s,p,payment))out.push({...a,g18Reducers:n,cost:api.summonCost(s,p,payment),label:c.name+'をザンゲキの軽減'+n+'回で使う'});}}return out;},
+ variants(s,p,actions){const out=[...actions];if(noReduce(s,p))return out;for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.alternative||a.g18Reducers!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=optionalReducers(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g18Reducers:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{})};if(api.canPay(s,p,payment))out.push({...a,g18Reducers:n,cost:api.summonCost(s,p,payment),label:c.name+'を'+(gears(s,p).some(g=>card(g).g1722DragonDiscount)?'クロスギア':'ザンゲキ')+'の軽減'+n+'回で使う'});}}return out;},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const top of own.battle)for(const x of api.layers(top))x.g18Blocker=(x.g18Blocker||[]).filter(v=>v.who!==p);},
  };
 }
