@@ -14,6 +14,7 @@ export function createSixPhotoRules(api){
  const raid764=createChampionRaid(api,'g34_');
  const attackConditionReading481=new WeakSet(),playerStopReading567=new WeakSet();
  const shieldAdds918=new WeakMap();
+ const shieldAdds1737=new WeakMap();
  const secondManaAdds1205=new WeakMap();
  const civilizations805=['光','水','闇','火','自然'];
  function manaColorMatchCount1054(rows,colors){
@@ -951,6 +952,14 @@ export function createSixPhotoRules(api){
   const own=s.players[owner];
   if(kind==='ragnarok'){
    start(s,t,[{op:'ShieldTop',n:moved.filter(x=>own.grave.includes(x)).length+1,g779Simultaneous:true}]);
+  }else if(kind==='cycle1737'){
+   const bottom=moved.filter(x=>own.deck.includes(x));
+   const known=new Map(t.g1737ShieldLabels||[]);
+   const order=bottom.length>1?[task('g78_BottomOrder',owner,t.source,{
+    rows:bottom.map((x,i)=>({uid:x.uid,label:known.get(x.uid)||'裏向きのカード '+(i+1),cardId:known.has(x.uid)?x.cardId:null})),
+    ordered:[],newCards:true,controller:t.p})]:[];
+   // The next instruction still happens when a shield movement is replaced.
+   put(s,...order,task('g34_ShieldTop',owner,t.source,{n:1}));
   }else if(kind==='shuffle'){
    if(moved.length){
     const added=moved.map(y=>remove(own.deck,y.uid)).filter(Boolean);
@@ -5113,6 +5122,14 @@ export function createSixPhotoRules(api){
   if(options.length)choice(s,t,'山札に戻すシールドを1つ選ぶ',options);
   break;
  }
+ case'g34_ShieldCycle1737':{
+  const owners=t.owner==='opponent'?[1-t.p]:[t.p,1-t.p];
+  const options=owners.flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
+   ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},score:owner===t.p?1:10
+  })));
+  if(options.length)choice(s,t,'山札の一番下に置き、新しいシールドと入れ替える',[...options,...(t.optional?[skip()]:[])]);
+  break;
+ }
  case'g34_ShieldGraveReplace1109':{
   const options=[t.p,1-t.p].flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},score:owner===t.p?0:10
@@ -7517,6 +7534,15 @@ export function createSixPhotoRules(api){
   finishOrDeferShield1352(s,t,'shuffle',owner,moved);
   break;
  }
+ case'g34_ShieldCycle1737':{
+  if(!v)break;
+  const {owner,uid}=v,root=api.findShield(s.players[owner],uid);
+  if(!root)break;
+  const labels=api.shieldCards(root).filter(x=>x.faceUp).map(x=>[x.uid,card(x).name]);
+  const next={...t,g1737ShieldLabels:labels},moved=api.moveShield(s,owner,uid,'deck');
+  finishOrDeferShield1352(s,next,'cycle1737',owner,moved);
+  break;
+ }
  case'g34_ShieldGraveReplace1109':{
   const {owner,uid}=v,moved=api.moveShield(s,owner,uid,'grave');
   finishOrDeferShield1352(s,t,'replace',owner,moved);
@@ -9320,6 +9346,17 @@ export function createSixPhotoRules(api){
    if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
   }
  }
+ function shieldObservers1737(s){
+  return s.players.flatMap((own,p)=>own.battle.flatMap(x=>{
+   if(x.sealed||x.faceDown||!api.isCreature(s,x))return [];
+   const defs=effective(x,s).g1737OpponentShieldAdded;
+   return defs?[{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,defs}]:[];
+  }));
+ }
+ function triggerEnemyShieldAdded1737(s,p,count){
+  for(const r of shieldObservers1737(s))if(r.p!==p)
+   for(let i=0;i<count;i++)queue(s,r.p,r,r.defs);
+ }
  function triggerSecondMana1205(s,p){
   for(const x of s.players[p].battle){
    if(x.sealed||x.faceDown||!card(x).g1205SecondMana)continue;
@@ -10158,7 +10195,19 @@ export function createSixPhotoRules(api){
    shieldAdds918.set(s.leaving,counts);
   }else triggerShieldAdded918(s,p,count);
  },
+ shieldAdded1737(s,p){
+  if(s.g20LeavingUids&&s.leaving){
+   const counts=shieldAdds1737.get(s.leaving)||[0,0];
+   counts[p]++;
+   shieldAdds1737.set(s.leaving,counts);
+  }else triggerEnemyShieldAdded1737(s,p,1);
+ },
  flushShieldAdded918(s,batch){
+  const other=shieldAdds1737.get(batch);
+  if(other){
+   shieldAdds1737.delete(batch);
+   for(const p of [s.active,1-s.active])triggerEnemyShieldAdded1737(s,p,other[p]);
+  }
   const counts=shieldAdds918.get(batch);
   if(!counts)return;
   shieldAdds918.delete(batch);

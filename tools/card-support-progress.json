@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9446,
-  "pendingNames": 2377,
-  "phase": 1736,
+  "supportedNames": 9448,
+  "pendingNames": 2375,
+  "phase": 1737,
   "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1382,
+    "クリーチャー": 1380,
     "呪文": 263,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1760,
+    "未対応の能力文": 1758,
     "複数面・特殊カードタイプまたは情報不足": 509,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -553198,27 +553198,307 @@
         "resume": "Do not restart this whole group. If needed, split by individual opponent, seed, first player and worker game count; retain per-run measured results.",
         "newCardSpecificValidationPending": false
       }
+    },
+    {
+      "phase": 1737,
+      "checkedAt": "2026-11-23T11:10:40.703Z",
+      "baseline": "823a60d9",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9446,
+      "currentNames": 9448,
+      "remainingNames": 52,
+      "added": [
+        {
+          "id": "dmrp07-028",
+          "name": "アゲアゲ・マイコー"
+        },
+        {
+          "id": "dmex01-078",
+          "name": "TOYザマス"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "823a60d9",
+        "originalDefinitionsUnchanged": 9446,
+        "added": 2,
+        "uniqueNames": 9448,
+        "uniqueIds": 9448,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9446,
+        "existingImageReferenceRowsUnchanged": 11703,
+        "officialPrintsReviewed": 2,
+        "officialImagesReviewed": 2,
+        "existingPinsUnchanged": 1058
+      },
+      "results": {
+        "related-shield-cycle": {
+          "name": "related-shield-cycle",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1018-effects.test.mjs",
+            "tests/standard1352-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.294,
+          "log": "tmp/duema-phase-1737/related-shield-cycle.log",
+          "passed": 36,
+          "logSha256": "fa10a7e1df3f5a47cff9de60e360537fb64554b3fd9418ce149e090fbc2f5c70"
+        },
+        "related-shield-events": {
+          "name": "related-shield-events",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard918-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.253,
+          "log": "tmp/duema-phase-1737/related-shield-events.log",
+          "passed": 10,
+          "logSha256": "ee72e261d92bbd4e35c89109263e79422b1b89de1ea63766b87ba16c2dfa50b8"
+        },
+        "related-mirzam": {
+          "name": "related-mirzam",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Milzam",
+            "tests/standard1637-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.375,
+          "log": "tmp/duema-phase-1737/related-mirzam.log",
+          "passed": 19,
+          "logSha256": "16fc7deb7b9b7ff400fa469a8c408dfdf5f0fda9a5af811cff3d5cda5c03ab57"
+        },
+        "related-online-save": {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.671,
+          "log": "tmp/duema-phase-1737/related-online-save.log",
+          "passed": 55,
+          "logSha256": "a44e1503cd682e7254746e4b3ef553624d516a1d5ecc8a9649b13ae0ad4b108f"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1737.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.383,
+          "log": "tmp/duema-phase-1737/official.log",
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.514,
+          "log": "tmp/duema-phase-1737/check.log",
+          "logSha256": "4b340abb324ca9cb1087f92ddd188eb3a2057f035a8be47327b08ef860f723c5"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.271,
+          "log": "tmp/duema-phase-1737/audit.log",
+          "logSha256": "86d2e05230e86163ff8541cac3984d0b2ab603c534cc1703600b01c4a688349d"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.433,
+          "log": "tmp/duema-phase-1737/target9500.log",
+          "logSha256": "7b6f5db78ed4558b3ffd7f651af224ad5ba099f0dace789a6aa228e51e65a539"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1737/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.433,
+          "log": "tmp/duema-phase-1737/invariants.log",
+          "logSha256": "0bf00bfc4630dc34c71a16a96cc0d825442b5b2faae7da4b7e8239fd35d35a82"
+        },
+        "focused": {
+          "passed": 35,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1737-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 1.037,
+              "log": "tmp/duema-phase-1737/focused.log",
+              "logSha256": "948db7b4af6c62b524f9f73681f147001daf653d1e3ff4d75abc951de256471c"
+            },
+            {
+              "name": "focused-fix",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^TOY resolved",
+                "tests/standard1737-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.557,
+              "log": "tmp/duema-phase-1737/focused-fix.log",
+              "logSha256": "66a10ba21e07e8ec31413e6ff31b57bdaca2e7828a553a38319e5f686a3152f7"
+            },
+            {
+              "name": "focused-final-hooks",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(?:TOY|QA31628|QA31627|Maiko attempts|phase1737 legal40)",
+                "tests/standard1737-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 2.067,
+              "log": "tmp/duema-phase-1737/focused-final-hooks.log",
+              "logSha256": "1527a54ba37eb25ff2508797b5d127bd6ad310659ef0752fc641398f8fc2055d"
+            }
+          ],
+          "coverage": "35 unique cases across original, corrected fixture expectations and additional real-card cases; latest result per case all pass."
+        }
+      },
+      "totalTestsPassed": 155,
+      "hashes": {
+        "dist/cards.json": "d86c4d2ac9f29f0d7db9b9cd747eb4d2b848fe54ccf616763b92c7a2da5d7ce7",
+        "dist/engine.js": "8e0a9917f06700768a658f6bd4947e51d1932d559cf3509e548ff9eb935ed09e",
+        "dist/six-photo-rules.js": "38ffe1e33b52ed3e41dc162a8df645c556b34ac334c068aa367c738c1fbbbc5e",
+        "dist/extended-rules.js": "3ecf762d067e1ed728962a4fa490bee9c79fa45d91944b4ea25a3f187693a1b9",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/online-compatibility.js": "201358db25a1af6d201535345a3aa92903124ac1dcfbaa6f2731133658e3cc6c",
+        "dist/card-images.js": "9208899f3f49ae54594a2725af652587abe2b1baed344ec6f09de59803b63add",
+        "tools/target9000-card-spec.json": "3404796538a27789d795cde08c6dcfbd2a0722a710cac669a8cb9352736e4f78",
+        "tests/standard1737-effects.test.mjs": "ba1bcded7f509b63b5890bd421bae14ebeb80a0aa9a9143f2d6f558154b1c286"
+      },
+      "engineVersion": "0.602.254",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1737-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.037,
+          "log": "tmp/duema-phase-1737/focused.log",
+          "logSha256": "948db7b4af6c62b524f9f73681f147001daf653d1e3ff4d75abc951de256471c"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1737.json",
+      "supported": 9448,
+      "pending": 2375,
+      "reason": "Full Ageage Maiko and TOY Zamas shield-bottom/immediate fresh shield cycle; per-card opponent shield placement optional draws including castle/stack.",
+      "validationNotes": [
+        "Actual nameKey9446→9448, all9446 old definitions/IDs/catalogue/details/images/aliases/refs/pins unchanged.2 canonical complete cards,2 full official originals/images and current limits verified. No exact-name reprints found; no duplicate added.",
+        "Shared ShieldCycle1737 preserves chosen owner, moves whole group to deck bottom without shuffle, orders only newly bottomed physical cards with concealed labels controlled by owner, then immediately adds a new hidden shield. Maiko optional either-player CIP/attack and TOY mandatory opposing CIP use it. Actual castle-to-grave and native Zaha retained-shield continuation verified; real shield-add prevention retained.",
+        "TOY narrow opponent-shield event hook uses existing physical-card notification including stacked cards and castles. During simultaneous battle moves it aggregates events and triggers only surviving active observers after all moves, matching existing Ikari timing. QA31628 actual Mirzam5 cards causes5 optional draws; QA31627 actual castle causes1. Multiple copies, declines, suppression, forbidden additions, source departure after trigger, AI draw safety/purity, private owner ordering and encrypted restore verified.",
+        "35 unique focused and native shield-cycle/Zaha/placement/Mirzam/online/save regressions passed; check/audit/target/count/ID invariants pass. Initial failed AI expectation was a fixture changing deck size after choice scores were computed, corrected before generating the choice. After adjusting simultaneous observer timing, all affected TOY/QA cases rerun successfully. GigaStand held because full QA35021 simultaneous replacement ordering is not equivalent to existing discard-stay or return-then-discard. Historical pending including1736 No02 long group preserved exactly. No full npm test/old long group rerun; no push/publication/Netlify."
+      ],
+      "held": [
+        {
+          "id": "dm02-044",
+          "name": "ギガスタンド",
+          "reason": "QA35021 simultaneous AquaSoldier/Sylphy empty-hand replacement ordering requires available hand after another replacement; existing discard-stay and return-then-discard are different timing. Hold full implementation rather than reuse partial semantics."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm20-024",
+          "name": "アクア・フェアコレクター",
+          "reason": "Full FortressE LiquidPeople paid mana and both-player optional draw count."
+        },
+        {
+          "id": "dmr05-032",
+          "name": "メガンス・ワイバーン",
+          "reason": "Full opponent-turn mana departure to top-library trigger."
+        },
+        {
+          "id": "dmr11-001",
+          "name": "神聖鬼 デトロイト・テクノ",
+          "reason": "Full optional colorless mana number2 payment and W breaker."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1736,
-    "nextPhase": 1737,
+    "lastVerifiedPhase": 1737,
+    "nextPhase": 1736,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp07-028",
-        "name": "アゲアゲ・マイコー",
-        "reason": "Full optional either-player shield replacement on entry and attack using existing operations."
+        "id": "dm20-024",
+        "name": "アクア・フェアコレクター",
+        "reason": "Full FortressE LiquidPeople paid mana and both-player optional draw count."
       },
       {
-        "id": "dmex01-078",
-        "name": "TOYザマス",
-        "reason": "Full opponent shield exchange entry and optional draw on every opponent shield placement."
+        "id": "dmr05-032",
+        "name": "メガンス・ワイバーン",
+        "reason": "Full opponent-turn mana departure to top-library trigger."
       },
       {
-        "id": "dm02-044",
-        "name": "ギガスタンド",
-        "reason": "Full discard-before-own-grave replacement returning source hand; verify native support before implementation."
+        "id": "dmr11-001",
+        "name": "神聖鬼 デトロイト・テクノ",
+        "reason": "Full optional colorless mana number2 payment and W breaker."
       }
     ],
     "steps": [
@@ -554103,23 +554383,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1736,
-      "baseline": "160a6251",
-      "supportedNames": 9446,
-      "artifact": "tools/target9500-registration-checkpoint-1736.json",
-      "checkedAt": "2026-11-23T11:01:56.973Z"
+      "phase": 1737,
+      "baseline": "823a60d9",
+      "supportedNames": 9448,
+      "artifact": "tools/target9500-registration-checkpoint-1737.json",
+      "checkedAt": "2026-11-23T11:10:40.703Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T11:01:56.973Z",
+      "checkedAt": "2026-11-23T11:10:40.703Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9446,
-      "remainingNames": 54,
+      "currentNames": 9448,
+      "remainingNames": 52,
       "duplicateNames": 0,
-      "engineVersion": "0.602.253",
+      "engineVersion": "0.602.254",
       "added": [
         {
           "id": "dmr12-008",
@@ -555624,6 +555904,14 @@
         {
           "id": "promoy15-066",
           "name": "シン・ガイギンガ"
+        },
+        {
+          "id": "dmrp07-028",
+          "name": "アゲアゲ・マイコー"
+        },
+        {
+          "id": "dmex01-078",
+          "name": "TOYザマス"
         }
       ],
       "results": {
@@ -555739,14 +556027,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "7778ab8f40fa26673d9f40613450bc47d83c886866f9d2fa586de1347dcdc8dd",
-        "dist/engine.js": "e8a92d2cbf3a5b5d6bf582da6a5a7ef5d316d462a49fa1fe77082ded13dad9d6",
-        "dist/six-photo-rules.js": "747254968c779e85b85d51f73bf10edb2a2ece96a690521781c4924f5df5a6e9",
+        "dist/cards.json": "d86c4d2ac9f29f0d7db9b9cd747eb4d2b848fe54ccf616763b92c7a2da5d7ce7",
+        "dist/engine.js": "8e0a9917f06700768a658f6bd4947e51d1932d559cf3509e548ff9eb935ed09e",
+        "dist/six-photo-rules.js": "38ffe1e33b52ed3e41dc162a8df645c556b34ac334c068aa367c738c1fbbbc5e",
+        "dist/extended-rules.js": "3ecf762d067e1ed728962a4fa490bee9c79fa45d91944b4ea25a3f187693a1b9",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/online-compatibility.js": "f4cd5170fd6adf372ae3b8413dfcfbcd2fcb1f8e4150bb1938d155637e89eddc",
-        "dist/card-images.js": "c13c40e54ec4584a1b63519b9a236ac00efb038827f80454d2edfe1712563aed",
-        "tools/target9000-card-spec.json": "9fd4b83b6e31789ff54b4baff7bdb1480291fc390798dacd8a9cb5b51784d60f",
-        "tests/standard1736-effects.test.mjs": "7356666af942c7643091e1763e73cf2600cedd82632ed8bcb3fbd913052ae805"
+        "dist/online-compatibility.js": "201358db25a1af6d201535345a3aa92903124ac1dcfbaa6f2731133658e3cc6c",
+        "dist/card-images.js": "9208899f3f49ae54594a2725af652587abe2b1baed344ec6f09de59803b63add",
+        "tools/target9000-card-spec.json": "3404796538a27789d795cde08c6dcfbd2a0722a710cac669a8cb9352736e4f78",
+        "tests/standard1737-effects.test.mjs": "ba1bcded7f509b63b5890bd421bae14ebeb80a0aa9a9143f2d6f558154b1c286"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -555810,10 +556099,10 @@
       },
       "phaseRange": [
         1614,
-        1736
+        1737
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 376,
+      "addedNames": 378,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -555825,9 +556114,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.223,
-        "log": "tmp/duema-phase-1736/check.log",
-        "logSha256": "d3c0db9e783b0fd612c51808b3e40673ca7f1d1e0e6503f3e07acd579371fd06"
+        "seconds": 20.514,
+        "log": "tmp/duema-phase-1737/check.log",
+        "logSha256": "4b340abb324ca9cb1087f92ddd188eb3a2057f035a8be47327b08ef860f723c5"
       },
       "latestAudit": {
         "name": "audit",
@@ -555837,11 +556126,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.166,
-        "log": "tmp/duema-phase-1736/audit.log",
-        "logSha256": "d725ba6cb2103585988cb93f84f3b1efc2533159d278e12a1b77890806975ed8"
+        "seconds": 11.271,
+        "log": "tmp/duema-phase-1737/audit.log",
+        "logSha256": "86d2e05230e86163ff8541cac3984d0b2ab603c534cc1703600b01c4a688349d"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1736.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1737.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -556959,11 +557248,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9446,
-      "remaining": 54,
+      "currentNames": 9448,
+      "remaining": 52,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T11:01:56.973Z",
+      "checkedAt": "2026-11-23T11:10:40.703Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -609171,11 +609460,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1736,
+    "phase": 1737,
     "threshold": 9500,
-    "supportedNames": 9446,
-    "pendingNames": 2377,
-    "checkedAt": "2026-11-23T11:01:56.973Z",
+    "supportedNames": 9448,
+    "pendingNames": 2375,
+    "checkedAt": "2026-11-23T11:10:40.703Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -609184,7 +609473,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1736.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1737.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

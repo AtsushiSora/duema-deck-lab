@@ -47957,5 +47957,73 @@
         }
       ]
     }
+  },
+  "dmrp07-028": {
+    "phase": 1737,
+    "faces": [
+      {
+        "name": "アゲアゲ・マイコー",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、または攻撃する時、いずれかのプレイヤーのシールドゾーンからシールドを１つ選んでもよい。そうしたら、その持ち主はそれを自身の山札の一番下に置き、その後、自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。",
+        "race": "ジョーカーズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldCycle1737",
+          "optional": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "ShieldCycle1737",
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dmex01-078": {
+    "phase": 1737,
+    "faces": [
+      {
+        "name": "TOYザマス",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のシールドを１つ選ぶ。相手はそれを自身の山札の一番下に置く。その後、相手は自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\n相手がカードをシールドゾーンに置く時、自分はカードを１枚引いてもよい。",
+        "race": "ジョーカーズ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent"
+        }
+      ],
+      "g1737OpponentShieldAdded": [
+        {
+          "op": "DrawUpTo",
+          "n": 1
+        }
+      ]
+    }
   }
 }
