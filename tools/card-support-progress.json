@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9320,
-  "pendingNames": 2505,
-  "phase": 1694,
+  "supportedNames": 9323,
+  "pendingNames": 2502,
+  "phase": 1695,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,8 +154,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1414,
-    "呪文": 273,
+    "クリーチャー": 1412,
+    "呪文": 272,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1807,
+    "未対応の能力文": 1804,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 15,
@@ -540522,32 +540522,271 @@
         }
       ],
       "next": "phase1695の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
+    },
+    {
+      "phase": 1695,
+      "checkedAt": "2026-11-23T00:22:25.878Z",
+      "baseline": "c4bed588",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9320,
+      "currentNames": 9323,
+      "remainingNames": 177,
+      "added": [
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール"
+        },
+        {
+          "id": "dmx11-072",
+          "name": "騒音機装 DJ アフロ・スピーカー"
+        },
+        {
+          "id": "dm34-028",
+          "name": "時空男"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "c4bed588",
+        "originalDefinitionsUnchanged": 9320,
+        "added": 3,
+        "uniqueNames": 9323,
+        "uniqueIds": 9323,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9320,
+        "existingImageReferenceRowsUnchanged": 11530,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 845
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1695.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.156,
+          "log": "tmp/duema-phase-1695/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-final": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1695-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.468,
+          "log": "tmp/duema-phase-1695/focused-final.log",
+          "passed": 52,
+          "failed": 0,
+          "logSha256": "c829c72183881251251139716d6abf6d559220b68f174e32b48a1ef9651cedc2"
+        },
+        "related-replacement": {
+          "name": "related-replacement",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1661-effects.test.mjs",
+            "tests/standard846-effects.test.mjs",
+            "tests/standard897-effects.test.mjs",
+            "tests/standard1694-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.549,
+          "log": "tmp/duema-phase-1695/related-replacement.log",
+          "passed": 192,
+          "failed": 0,
+          "logSha256": "a51a8d67b2966b50d03e7ce276b7b11c0792bbf971b39f80c4f4deebd35d72aa"
+        },
+        "related-attack-online": {
+          "name": "related-attack-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard971-effects.test.mjs",
+            "tests/standard924-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.32,
+          "log": "tmp/duema-phase-1695/related-attack-online.log",
+          "passed": 73,
+          "failed": 0,
+          "logSha256": "d203dd44e604bff4dc12e9552469bbb37c30a434c8320ec342555eb465e6fb30"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.097,
+          "log": "tmp/duema-phase-1695/check.log",
+          "logSha256": "001b8cba6989373aa6172ceebf327cf50a2ff5f62e61177f01afe991521702b7"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.741,
+          "log": "tmp/duema-phase-1695/audit.log",
+          "logSha256": "6d052e5c5223cf5d33638e9948c8de8e585a085526173364fb091e0c4cf4800a"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.392,
+          "log": "tmp/duema-phase-1695/target9500.log",
+          "logSha256": "4147435c3392f8db855ee0ab54ea67fae6b085e40f3053faa5c091e715c16dcc"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1695/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.484,
+          "log": "tmp/duema-phase-1695/invariants.log",
+          "logSha256": "4dcee09cc011925f81ac09e35af22e001d7df884f7fd359264f9805fb14d230b"
+        }
+      },
+      "totalTestsPassed": 317,
+      "hashes": {
+        "dist/cards.json": "d33be31129ecd4cadd575cd1784c74802443b47121fe5d274422b5a117844458",
+        "dist/engine.js": "16f58209e1ba401d9db37f02f3f9826e9b75dea70c319d527ca4723d8baaa0fa",
+        "dist/six-photo-rules.js": "d3b8a60e9731f2efe23f3c4ccf51034b9860c52e28b6ae799a2d02e6b18d6e36",
+        "dist/online-compatibility.js": "c6b476189ad8ec3354a4d7eb07dc6c86ddfc3b3eae73598b6a9f21d859f6232a",
+        "dist/card-images.js": "c92f932bf22564ff99bd511c1d5060252d20818f0b6b22efa56006bd7cfaee2c",
+        "tools/target9000-card-spec.json": "6cb836890e412077157ab82f9174d1738e89ccfc606c2c6cb67bcc78fbad91bd",
+        "tests/standard1695-effects.test.mjs": "8373e2db63881d6b24119a167cd20000aa75a1c27e8347c727e411e35b634a37"
+      },
+      "engineVersion": "0.602.211",
+      "registeredCardVerificationPending": [],
+      "relatedRulingReproductionScope": [
+        {
+          "id": 36858,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/36858/",
+          "sha256": "713ead5a064ae052eac229252fb7a843870221989b3c10ac41e90ac64ca984f8",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1695-effects.test.mjs"
+        },
+        {
+          "id": 35947,
+          "source": "https://dm.takaratomy.co.jp/rule/qa_old/35947/",
+          "sha256": "6eff0eb18c5fb92dd3f6eb99565d0b55be19d838482b9974cd169c7fec0e40b1",
+          "confirmed": true,
+          "reproduced": true,
+          "test": "tests/standard1695-effects.test.mjs"
+        }
+      ],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1695-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.565,
+          "log": "tmp/duema-phase-1695/focused.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1695.json",
+      "supported": 9323,
+      "pending": 2502,
+      "reason": "ロックンロールの対象限定攻撃許可、DJの種族を指定する手札支払い破壊置換、時空男の進化クリーチャー下置き破壊置換を全能力対応。",
+      "validationNotes": [
+        "Baseline c4bed588, clean worktree/index, nameKey 9320, no overlapping jobs. AGENTS and previous 358 passing checks inspected.",
+        "All 3 original full faces, basic stats, images (visually inspected), mana value 1 and restrictions verified. Exact-name filtering excluded 4 unrelated DJ search hits, so there are no reprints or duplicate names to count.",
+        "Rock uses existing g971 physical-target attack permission, including future attackers and summoning sickness only against the selected creature. QA36858 reproduced in both seats with actual fresh creatures. Initially tapped enemies and own creatures cannot be selected; intrinsic attack restrictions and Slowly remain; the permission expires at turn end and cannot follow a departed and newly entered incarnation.",
+        "DJ reuses the existing one-spell destruction-replacement payment with a printed creature-race filter for Great Mecha O. Tests cover a multirace Mecha O, an actual Mecha O twin, a second DJ, wrong spells/creatures, optional decline, ignored ability, bounce, non-destructive grave movement and simultaneous destruction reserving one physical hand card only once.",
+        "Jikuu Otoko reuses the NEO under-placement replacement with an explicit evolution-host variant. Ordinary evolution and evolved NEO are valid; unevolved NEO, enemy hosts and inactive sources are not. QA35947 reproduced with a Water evolution host and unrelated Dark Hedrian source, independent of evolution race requirements. Declining, later host movement, physical base identity and blocker/no-attack abilities verified.",
+        "52 focused tests, 192 replacement/destruction regressions, 73 attack/online regressions, total 317 passed. Legal forty-card seeded game preserves all UIDs and JSON legal actions; pending race-filtered payment and evolution host choices survive encrypted online storage and private-hand projection in both seats.",
+        "Initial 2 focused failures were fixture-only: a spell ignored by actual Genmu has no target choice; the helper now selects only when a real choice exists. Final focused module and all affected regressions pass.",
+        "check, audit, target9500 and baseline invariants pass. nameKey 9323, no duplicate names; existing 9320 definitions, IDs, images, pins, catalogue and saves unchanged. Historical incomplete whole-suite/long groups and prior individual/print deferrals retained. No push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmrp14-017",
+          "name": "ウツセミ童子",
+          "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
+        },
+        {
+          "id": "dmrp21-039",
+          "name": "ガンブルマン ＜バンレイ.Star＞",
+          "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
+        },
+        {
+          "id": "dm25rp3-025",
+          "name": "ギガジグアプ",
+          "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
+        }
+      ],
+      "next": "phase1696の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1694,
-    "nextPhase": 1695,
+    "lastVerifiedPhase": 1695,
+    "nextPhase": 1696,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr09-102",
-        "name": "戦場のロックンロール",
-        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        "id": "dmrp14-017",
+        "name": "ウツセミ童子",
+        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
       },
       {
-        "id": "dmx11-072",
-        "name": "騒音機装 DJ アフロ・スピーカー",
-        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        "id": "dmrp21-039",
+        "name": "ガンブルマン ＜バンレイ.Star＞",
+        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
       },
       {
-        "id": "dm34-028",
-        "name": "時空男",
-        "reason": "Prefer existing physical-target attack permissions or destruction replacement handlers; verify complete official text and exceptions."
+        "id": "dm25rp3-025",
+        "name": "ギガジグアプ",
+        "reason": "Reuse existing leave/revival, counted destruction and grave-leave replacement handlers; verify complete official abilities and edge cases."
       }
     ],
     "steps": [
       "ユーザーの指示で9500まで3〜5種類バッチを継続。",
-      "phase1695の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
+      "phase1696の候補3種類を公式全文・画像・再録・制限・裁定と照合、固有/影響回帰・check/audit/nameKey/進捗/検証済みローカルコミット後9500へ継続。push/公開/Netlify更新なし。",
       "過去の未確認・保留は保持。"
     ],
     "knownIssues": [
@@ -541428,23 +541667,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1694,
-      "baseline": "3e36676b",
-      "supportedNames": 9320,
-      "artifact": "tools/target9500-registration-checkpoint-1694.json",
-      "checkedAt": "2026-11-23T00:16:01.804Z"
+      "phase": 1695,
+      "baseline": "c4bed588",
+      "supportedNames": 9323,
+      "artifact": "tools/target9500-registration-checkpoint-1695.json",
+      "checkedAt": "2026-11-23T00:22:25.878Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T00:16:01.804Z",
+      "checkedAt": "2026-11-23T00:22:25.878Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9320,
-      "remainingNames": 180,
+      "currentNames": 9323,
+      "remainingNames": 177,
       "duplicateNames": 0,
-      "engineVersion": "0.602.210",
+      "engineVersion": "0.602.211",
       "added": [
         {
           "id": "dmr12-008",
@@ -542445,6 +542684,18 @@
         {
           "id": "dm06-028",
           "name": "邪魂転生"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール"
+        },
+        {
+          "id": "dmx11-072",
+          "name": "騒音機装 DJ アフロ・スピーカー"
+        },
+        {
+          "id": "dm34-028",
+          "name": "時空男"
         }
       ],
       "results": {
@@ -542560,13 +542811,13 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "48b852ea5888f0ea84d61ff354bcf568c7dee3e7666aec75dda1931f4db5b128",
-        "dist/engine.js": "d95c008614b3db5acdc7a52cbd5ee0a20effd780ef65aa6b64778e21237a5a0d",
+        "dist/cards.json": "d33be31129ecd4cadd575cd1784c74802443b47121fe5d274422b5a117844458",
+        "dist/engine.js": "16f58209e1ba401d9db37f02f3f9826e9b75dea70c319d527ca4723d8baaa0fa",
         "dist/six-photo-rules.js": "d3b8a60e9731f2efe23f3c4ccf51034b9860c52e28b6ae799a2d02e6b18d6e36",
-        "dist/online-compatibility.js": "594230b20f79e644c628f4797eaebe62a0577b745ede6afbfb6d2727ca3cbf60",
-        "dist/card-images.js": "6391a732afb3ed3c619f1c504424482f1390094c20dc4b22a243c1e412382cad",
-        "tools/target9000-card-spec.json": "18cbda37259adb8a29e446b631809814c35f8499db304d63281da782e30ae82e",
-        "tests/standard1694-effects.test.mjs": "7c21126ce45f61c021c6ca735e6a2168f1b0d61a30691db56fd49a99c4170e4f"
+        "dist/online-compatibility.js": "c6b476189ad8ec3354a4d7eb07dc6c86ddfc3b3eae73598b6a9f21d859f6232a",
+        "dist/card-images.js": "c92f932bf22564ff99bd511c1d5060252d20818f0b6b22efa56006bd7cfaee2c",
+        "tools/target9000-card-spec.json": "6cb836890e412077157ab82f9174d1738e89ccfc606c2c6cb67bcc78fbad91bd",
+        "tests/standard1695-effects.test.mjs": "8373e2db63881d6b24119a167cd20000aa75a1c27e8347c727e411e35b634a37"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -542630,10 +542881,10 @@
       },
       "phaseRange": [
         1614,
-        1694
+        1695
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 250,
+      "addedNames": 253,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -542645,9 +542896,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 23.537,
-        "log": "tmp/duema-phase-1694/check.log",
-        "logSha256": "73434c0bbcbdb35d95792da97ce68885005909001bbaa97a9d691a45209d662d"
+        "seconds": 20.097,
+        "log": "tmp/duema-phase-1695/check.log",
+        "logSha256": "001b8cba6989373aa6172ceebf327cf50a2ff5f62e61177f01afe991521702b7"
       },
       "latestAudit": {
         "name": "audit",
@@ -542657,11 +542908,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.455,
-        "log": "tmp/duema-phase-1694/audit.log",
-        "logSha256": "634af0e76054ad91272f1fa26e70233831964da9f8a669297f2002f707bfbc25"
+        "seconds": 10.741,
+        "log": "tmp/duema-phase-1695/audit.log",
+        "logSha256": "6d052e5c5223cf5d33638e9948c8de8e585a085526173364fb091e0c4cf4800a"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1694.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1695.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -543779,11 +544030,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9320,
-      "remaining": 180,
+      "currentNames": 9323,
+      "remaining": 177,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T00:16:01.804Z",
+      "checkedAt": "2026-11-23T00:22:25.878Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -595885,11 +596136,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1694,
+    "phase": 1695,
     "threshold": 9500,
-    "supportedNames": 9320,
-    "pendingNames": 2505,
-    "checkedAt": "2026-11-23T00:16:01.804Z",
+    "supportedNames": 9323,
+    "pendingNames": 2502,
+    "checkedAt": "2026-11-23T00:22:25.878Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -595898,7 +596149,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1694.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1695.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
