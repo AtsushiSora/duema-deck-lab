@@ -194,6 +194,7 @@ export function createSamuraiRules(api){
   return triggered;
  },
  identity,
+ crossDestroyStay(s,p,x){return !x.sealed&&attached(s,p,x).some(g=>card(g).g1725CrossDestroyStay&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  crossDestroyToHand(s,p,x){return !x.sealed&&attached(s,p,x).some(g=>card(g).g1715CrossDestroyToHand&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  // Phase1713: an active crossed gear supplies permission independently of its host abilities.
  evolutionRace(s,p,x){return p>=0&&!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x)&&attached(s,p,x).some(g=>card(g).g1713CrossAnyEvolutionRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
@@ -238,6 +239,7 @@ export function createSamuraiRules(api){
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},
  inherit(s,base,x){
+  if(card(base).type==='gear'&&card(x).type==='gear'&&base.crossedTo)x.crossedTo={...base.crossedTo};
   if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);
   for(const p of [0,1]){
    for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};
@@ -272,7 +274,11 @@ export function createSamuraiRules(api){
  battleWins(s,p,w){
   const host=s.players[p].battle.find(x=>x.uid===w?.uid&&(w.incarnation===undefined||(x.incarnation||0)===w.incarnation));
   if(!host||host.sealed||!api.isCreature(s,host))return [];
-  return attached(s,p,host).filter(g=>card(g).g1718CrossWinDestroy&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>({
+  return attached(s,p,host).filter(g=>(card(g).g1718CrossWinDestroy||card(g).g1725CrossWinUntap)&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>card(g).g1725CrossWinUntap?{
+   player:p,uid:g.uid,source:g.cardId,effect:'extended',task:task('g34_Sequence',p,g.cardId,{
+    uid:host.uid,incarnation:host.incarnation||0,defs:[{op:'Offer',title:'バトルに勝ったクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}]
+   })
+  }:({
    player:p,uid:g.uid,source:g.cardId,effect:'extended',task:task('g34_ExactMove',p,g.cardId,{
     uid:g.uid,incarnation:g.incarnation||0,owner:p,target:host.uid,targetIncarnation:host.incarnation||0,to:'grave'
    })

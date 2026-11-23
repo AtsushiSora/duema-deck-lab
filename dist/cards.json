@@ -299753,23 +299753,155 @@
       "g1724BreakDestroyDraw": true,
       "supportBatch": "phase-1724",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc42-001",
+      "name": "レオパルド・グローリーソード",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "クロスギア\nこれをクロスしたクリーチャーに、好きな種族の進化クリーチャーを置いてもよい。\nこのクロスギアに、好きな文明の進化クロスギアを置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-001",
+      "limit": 4,
+      "g1713CrossAnyEvolutionRace": true,
+      "g1725AnyGearEvolutionCivilization": true,
+      "supportBatch": "phase-1725",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-003",
+      "name": "ツナミ・カタストロフィー",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "このクロスギアはマナゾーンにタップして置かれる。\n進化-自分の水または闇のクロスギア１枚の上に置く。\nこれをクロスしたクリーチャーのパワーは+2000される。\nこれをクロスしたクリーチャーが攻撃する時、カードを ２枚まで引く。その後、相手は自分自身の手札を２枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-003",
+      "limit": 4,
+      "g1725GearEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g123CrossPower": 2000,
+      "g931CrossAttack": [
+        {
+          "op": "Draw",
+          "n": 2,
+          "optional": true
+        },
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1725",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-s05",
+      "name": "グランドクロス・カタストロフィー",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このクロスギアはマナゾーンにタップして置かれる。\n進化-自分の光または自然のクロスギア１枚の上に置く。\nこれをクロスしたクリーチャーは、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが破壊される時、そのクリーチャーは墓地に置かれるかわりにバトルゾーンにとどまる。\n自分のターンの終わりに、これをクロスしたクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-s05",
+      "limit": 4,
+      "g1725GearEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "g945CrossBlocker": true,
+      "g1725CrossDestroyStay": true,
+      "g1710CrossEndUntap": true,
+      "supportBatch": "phase-1725",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc45-017",
+      "name": "龍刃 ヤマト・スピリット",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 3,
+      "power": 0,
+      "race": "サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のサムライ・クロスギア１枚の上に置く。\nこれをクロスしたクリーチャーは「クルー・ブレイカー：サムライ・クリーチャー」を得る。(「クルー・ブレイカー：サムライ・クリーチャー」を得たクリーチャーは、バトルゾーンにある自分の他のサムライ・クリーチャー１体につき、シールドをさらに１枚ブレイクする)\nこれをクロスしたクリーチャーがバトルに勝った時、そのクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-017",
+      "limit": 4,
+      "g1725GearEvolution": true,
+      "evolution": {
+        "race": "サムライ"
+      },
+      "g1715CrossGrant": {
+        "g444Crew": {
+          "filter": {
+            "creature": true,
+            "race": "サムライ"
+          },
+          "other": true
+        }
+      },
+      "g1725CrossWinUntap": true,
+      "supportBatch": "phase-1725",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1724,
-    "checkedAt": "2026-11-23T08:30:24.829Z",
-    "baseCount": 9410,
-    "newEffectCards": 2,
+    "phase": 1725,
+    "checkedAt": "2026-11-23T08:40:13.462Z",
+    "baseCount": 9412,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9412,
+    "totalCount": 9416,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36746/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36747/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36748/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34886/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34887/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37497/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37498/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37499/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37500/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37501/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37502/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37503/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35369/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -328069,6 +328201,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35728/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35993/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35700/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1724,
+        "checkedAt": "2026-11-23T08:30:24.829Z",
+        "baseCount": 9410,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9412,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36746/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36747/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36748/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34886/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34887/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

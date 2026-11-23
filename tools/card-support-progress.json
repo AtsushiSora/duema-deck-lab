@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9412,
-  "pendingNames": 2411,
-  "phase": 1724,
-  "added": 2,
+  "supportedNames": 9416,
+  "pendingNames": 2407,
+  "phase": 1725,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -171,12 +171,12 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 3,
+    "クロスギア": 2,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
     "サイキック・クリーチャー": 103,
-    "進化クロスギア": 6,
+    "進化クロスギア": 3,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
     "城": 21,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 535,
+    "複数面・特殊カードタイプまたは情報不足": 531,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -549766,27 +549766,453 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1725,
+      "checkedAt": "2026-11-23T08:52:41.458Z",
+      "baseline": "38d09677",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9412,
+      "currentNames": 9416,
+      "remainingNames": 84,
+      "added": [
+        {
+          "id": "dmc42-001",
+          "name": "レオパルド・グローリーソード"
+        },
+        {
+          "id": "dm17-003",
+          "name": "ツナミ・カタストロフィー"
+        },
+        {
+          "id": "dm17-s05",
+          "name": "グランドクロス・カタストロフィー"
+        },
+        {
+          "id": "dmc45-017",
+          "name": "龍刃 ヤマト・スピリット"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "38d09677",
+        "originalDefinitionsUnchanged": 9412,
+        "added": 4,
+        "uniqueNames": 9416,
+        "uniqueIds": 9416,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9412,
+        "existingImageReferenceRowsUnchanged": 11638,
+        "officialPrintsReviewed": 6,
+        "officialImagesReviewed": 6,
+        "existingPinsUnchanged": 993
+      },
+      "results": {
+        "related-evolution-win-final": {
+          "name": "related-evolution-win-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1713-effects.test.mjs",
+            "tests/standard933-effects.test.mjs",
+            "tests/standard927-effects.test.mjs",
+            "tests/standard1718-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.737,
+          "log": "tmp/duema-phase-1725/related-evolution-win-final.log",
+          "passed": 100,
+          "logSha256": "218620b17ce8856e71cd6336ff4776c9f662988f74bafa324a370ea164aaeb1c"
+        },
+        "related-destruction-stay-final": {
+          "name": "related-destruction-stay-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1715-effects.test.mjs",
+            "tests/standard1304-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 27.196,
+          "log": "tmp/duema-phase-1725/related-destruction-stay-final.log",
+          "passed": 57,
+          "logSha256": "953342ba090f46d48a201a88e627b45898e38365f8c104c768457fa3187a8de4"
+        },
+        "related-online-save-final": {
+          "name": "related-online-save-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.746,
+          "log": "tmp/duema-phase-1725/related-online-save-final.log",
+          "passed": 55,
+          "logSha256": "83aff88a34a3dfadb6758a8eba8b3a85a05fc1e77b383d836a60716e2b816cf7"
+        },
+        "official": {
+          "name": "official-expanded",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1725.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.346,
+          "log": "tmp/duema-phase-1725/official-expanded.log",
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "check": {
+          "name": "check-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.28,
+          "log": "tmp/duema-phase-1725/check-final.log",
+          "logSha256": "b7be9492341a5dac6695af2894b3b193ed6ecc52772bb2f7f5bc448145bda145"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.447,
+          "log": "tmp/duema-phase-1725/audit.log",
+          "logSha256": "281650036057ba51bc14264593d4c5bfb73f51c92dae012a7af4a66f70ed1935"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.441,
+          "log": "tmp/duema-phase-1725/target9500.log",
+          "logSha256": "7a070d7d15c12eefe1afb566032f026c2abf2a83ffd903b36b382da961b06429"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1725/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.378,
+          "log": "tmp/duema-phase-1725/invariants.log",
+          "logSha256": "251b52ab3a1f8620bf1d31a00c9625a34cce8550009000f175d2e453ed3ff580"
+        },
+        "focused": {
+          "passed": 74,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 2.444,
+              "log": "tmp/duema-phase-1725/focused.log",
+              "passed": 43,
+              "logSha256": "8a9d06314471f16f98c8653648cc5a4a9e5a119e74945177bcce4ba363f5c497"
+            },
+            {
+              "name": "focused-corrected",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(?:QA37502|QA35370|Tsunami attack draws)",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.854,
+              "log": "tmp/duema-phase-1725/focused-corrected.log",
+              "passed": 10,
+              "logSha256": "0ba04857a5a06a334dee0a17cd9fa185aee3420499ca03f054adf0b75684c6b7"
+            },
+            {
+              "name": "focused-stack-edges",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^(?:Actual Rakujo card|Evolution gear counts|Evolution cross gears and Glory conserve)",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 7.351,
+              "log": "tmp/duema-phase-1725/focused-stack-edges.log",
+              "passed": 3,
+              "logSha256": "ed551050ac72531d4411d065e1b085eb03a6363b6dcc4f1fa9d335b909da7c2f"
+            },
+            {
+              "name": "focused-reconstruct-corrected",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Actual Rakujo card",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.649,
+              "log": "tmp/duema-phase-1725/focused-reconstruct-corrected.log",
+              "passed": 2,
+              "logSha256": "62b60d58f0f80dd19fae23de47d5b3a4c7aa2031dc4196f27ef0296a13fd94d7"
+            },
+            {
+              "name": "focused-expanded",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 9.368,
+              "log": "tmp/duema-phase-1725/focused-expanded.log",
+              "passed": 72,
+              "logSha256": "8811a814af1b969c4791acbac0cb5d785a159f0c4c1fafc7f4274da4b31197ad"
+            },
+            {
+              "name": "focused-yamato-defender-corrected",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Yamato external battle win",
+                "tests/standard1725-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.607,
+              "log": "tmp/duema-phase-1725/focused-yamato-defender-corrected.log",
+              "passed": 2,
+              "logSha256": "6f6823bce49f96dbd38ea608e689181c17de0221e01a92d890c6de336c9f7cc4"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 286,
+      "hashes": {
+        "dist/cards.json": "39b2f4b9f04139e5c164675b3369491ce1a692a6885847c0d883f4f197dc7af8",
+        "dist/engine.js": "44ae62b32efc282f2d52cf1aeccd2f685d9d084e10fd93078303efdd66a05103",
+        "dist/samurai-rules.js": "83362ff6fddc89411fa09e61fafd1525b7bec50b98490cb9cb8f4a919f937353",
+        "dist/extended-rules.js": "dfd207a8636e29f710c031cc73ad1628eb1625a61d63072a3504c09e8c1bec5e",
+        "dist/six-photo-rules.js": "28c84ed03017228fc1074a148e074a73ebcea9b73af2ba72030b49eee38114d9",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "895ef1b7a8731652ba0b9770c4c6542bb6aa05a9682de95568aefcd56d5d3323",
+        "dist/card-images.js": "168afa28f5dd788e9562ce38ac16db6c529e6cd720d569cdd2802f9506476c52",
+        "tools/target9000-card-spec.json": "03db742d76f70eb7883af3b0213716cb7734fb856acc0446a72b2f3c23fb487d",
+        "tests/standard1725-effects.test.mjs": "12e8978ac6440ec0935e9b8f927baffbf587fedaaae85e034f7571f29629f4ce"
+      },
+      "engineVersion": "0.602.242",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "supersededVerification": [
+        {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1725.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.472,
+          "log": "tmp/duema-phase-1725/official.log",
+          "status": "superseded-after-adding-fourth-complete-card",
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.449,
+          "log": "tmp/duema-phase-1725/related-online-save.log",
+          "status": "superseded-after-adding-fourth-complete-card",
+          "logSha256": "a6a74ac687e40ddd4a42b43ec4ef029f0356c6bf60b150419f3ccb5f32f33ad5"
+        },
+        {
+          "name": "related-evolution-cross",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1713-effects.test.mjs",
+            "tests/standard933-effects.test.mjs",
+            "tests/standard927-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.347,
+          "log": "tmp/duema-phase-1725/related-evolution-cross.log",
+          "status": "superseded-after-adding-fourth-complete-card",
+          "logSha256": "43b890e3aca85e3ae8abf99b92a8a829fe14815f4de0a0cab0911b2ed35cc50c"
+        },
+        {
+          "name": "related-destruction-stay",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1715-effects.test.mjs",
+            "tests/standard1304-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.267,
+          "log": "tmp/duema-phase-1725/related-destruction-stay.log",
+          "status": "superseded-after-adding-fourth-complete-card",
+          "logSha256": "af0be1b64ceefb799e4ef89a05dd1244084ea3e0a6c15ff39c729f4d7a3de625"
+        },
+        {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.312,
+          "log": "tmp/duema-phase-1725/check.log",
+          "status": "superseded-after-adding-fourth-complete-card",
+          "logSha256": "9409a6f5b68a4e3a99b3b8bbab9be208a96e20cab7ee0197ea3b4c12ac9b4908"
+        }
+      ],
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1725-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.444,
+          "log": "tmp/duema-phase-1725/focused.log",
+          "logSha256": "8a9d06314471f16f98c8653648cc5a4a9e5a119e74945177bcce4ba363f5c497"
+        },
+        {
+          "name": "focused-stack-edges",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(?:Actual Rakujo card|Evolution gear counts|Evolution cross gears and Glory conserve)",
+            "tests/standard1725-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.351,
+          "log": "tmp/duema-phase-1725/focused-stack-edges.log",
+          "logSha256": "ed551050ac72531d4411d065e1b085eb03a6363b6dcc4f1fa9d335b909da7c2f"
+        },
+        {
+          "name": "focused-expanded",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1725-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 9.368,
+          "log": "tmp/duema-phase-1725/focused-expanded.log",
+          "logSha256": "8811a814af1b969c4791acbac0cb5d785a159f0c4c1fafc7f4274da4b31197ad"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1725.json",
+      "supported": 9416,
+      "pending": 2407,
+      "reason": "Full Glory Sword creature-race/gear-civilization evolution freedom and real evolution gear subsystem, Tsunami2000/attack draw up to2 then opponent discard2, Grandcross Blocker/destruction stay/own end untap; real Yamato Spirit dependency verifies Samurai-only base, granted Crew Breaker and optional crossed battle-win untap",
+      "validationNotes": [
+        "Actual nameKey9412→9416 from clean38d09677/no concurrent work or tests. All9412 old definitions, original IDs, catalogue/details/aliases/images/refs/pins unchanged. Four full official cards and2 exact reprints reviewed in6 faces/images/mana/stats/limits. Yamato fuzzy2 matches are different Diabolos cards, not aliases. Glory previously held is now fully implemented with real evolution-gear dependencies; no partial registrations.",
+        "Glory grants external creature evolution-race freedom while its own active gear grants only evolution-gear civilization freedom. Existing matchesEvolution civilization permission is extended specifically for this gear. Actual Yamato Samurai-only evolution cannot use Glory or a nonSamurai top, including a Tsunami whose buried source was Samurai. This preserves the printed scope of both abilities.",
+        "Evolution gears reuse existing type:gear, evolution conditions, under-card storage, normal generation/payment/effect Put, original uid/incarnation and reconstruction. Own faceup unsealed matching top gear required; enemy gears/creatures forbidden. CrossedTo carries from base gear to evolved gear and through native card-only reconstruction; buried ability ignored, top cost pays for recrossing whole physical stack. QAs37497-37503 all reproduced. Real Voyager QA35369 and real Aus Rook/Quake QA35370 show generation separate from crossing. Current QA49440 exactly reproduced using actual Ryujin Doss Fang dm23ex1-024, Yamato and actual Rakujo spell dmr15-041.",
+        "Tsunami external2000 and native crossed attack draw0..2 then opposing controller chooses2 discards; no dependency on host abilities, ignored source removes both. Grandcross grants Blocker but independently replaces normal destruction with native mandatory stay and uses existing own-end untap. Ignored host loses granted Blocker but keeps gear-owned replacement/untap; inactive source removes them, tap locks respected, power0 stays while gear remains and dies when it leaves, no replacement chain for actual Shield Saver.",
+        "Yamato full Fire/Nature tapped mana, Samurai gear evolution, granted Crew Breaker counts other own Samurai creatures only (not gears/opponents/self), optional external battle-win untap attacking/defending even ignored host, and untap locks. Native battle-win task hook preserves existing Hell destruction; relevant1718 regressions pass.",
+        "74 unique focused cases pass by aggregate and final4-card expanded execution/corrections. Initial10 fixtures corrected native Put chooser opcode, optional Aus Rook reduction selection and shield hand arrival after attack;2 reconstruction fixtures corrected new spell UID timing. Expanded2 defending fixtures corrected attacking Tyler PA3000 to real Aqua Vehicle1000. During editing a mapper closing-parenthesis typo was caught by node --check and corrected before runtime verification. No runtime failure remains.100 final evolution/cross/win,57 final destruction/stay,55 final online/save regressions pass,total286. Earlier3-card checks are superseded after dependency expansion and not counted twice. Final check/count/audit/invariants/target pass.",
+        "All historical full-suite/card/reprint/long/user deferrals unchanged; no whole npm test, old long group, push/publication/Netlify update. Existing under/cross fields and save format maintained."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm17-005",
+          "name": "プロミネンス・カタストロフィー",
+          "reason": "Real evolution gear; PA11000/T and nonEvolution Armored Dragon same-name tapped library deploy."
+        },
+        {
+          "id": "dm17-s04",
+          "name": "ネオウェーブ・カタストロフィー",
+          "reason": "Real evolution gear; Blocker and reveal3/free cast S-trigger spells, rest ordered bottom."
+        },
+        {
+          "id": "dm17-004",
+          "name": "エクスプロード・カタストロフィー",
+          "reason": "Real evolution gear; untapped attack and battle-loser-name purge across opponent4 zones with hand inspection."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1724,
-    "nextPhase": 1725,
+    "lastVerifiedPhase": 1725,
+    "nextPhase": 1726,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmc42-001",
-        "name": "レオパルド・グローリーソード",
-        "reason": "Full evolution creature race freedom plus gear civilization freedom; pair with real evolution gears."
+        "id": "dm17-005",
+        "name": "プロミネンス・カタストロフィー",
+        "reason": "Real evolution gear; PA11000/T and nonEvolution Armored Dragon same-name tapped library deploy."
       },
       {
-        "id": "dm17-003",
-        "name": "ツナミ・カタストロフィー",
-        "reason": "Evolution cross gear, external2000, crossed attack optional draw2 then mandatory opponent discard2."
+        "id": "dm17-s04",
+        "name": "ネオウェーブ・カタストロフィー",
+        "reason": "Real evolution gear; Blocker and reveal3/free cast S-trigger spells, rest ordered bottom."
       },
       {
-        "id": "dm17-s05",
-        "name": "グランドクロス・カタストロフィー",
-        "reason": "Evolution cross gear, granted Blocker, mandatory host destruction stay and own end untap."
+        "id": "dm17-004",
+        "name": "エクスプロード・カタストロフィー",
+        "reason": "Real evolution gear; untapped attack and battle-loser-name purge across opponent4 zones with hand inspection."
       }
     ],
     "steps": [
@@ -550671,23 +551097,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1724,
-      "baseline": "4ac28826",
-      "supportedNames": 9412,
-      "artifact": "tools/target9500-registration-checkpoint-1724.json",
-      "checkedAt": "2026-11-23T08:35:45.863Z"
+      "phase": 1725,
+      "baseline": "38d09677",
+      "supportedNames": 9416,
+      "artifact": "tools/target9500-registration-checkpoint-1725.json",
+      "checkedAt": "2026-11-23T08:52:41.458Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T08:35:45.863Z",
+      "checkedAt": "2026-11-23T08:52:41.458Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9412,
-      "remainingNames": 88,
+      "currentNames": 9416,
+      "remainingNames": 84,
       "duplicateNames": 0,
-      "engineVersion": "0.602.241",
+      "engineVersion": "0.602.242",
       "added": [
         {
           "id": "dmr12-008",
@@ -552056,6 +552482,22 @@
         {
           "id": "dmx12b-025",
           "name": "炎水剣オンセン・サバキ"
+        },
+        {
+          "id": "dmc42-001",
+          "name": "レオパルド・グローリーソード"
+        },
+        {
+          "id": "dm17-003",
+          "name": "ツナミ・カタストロフィー"
+        },
+        {
+          "id": "dm17-s05",
+          "name": "グランドクロス・カタストロフィー"
+        },
+        {
+          "id": "dmc45-017",
+          "name": "龍刃 ヤマト・スピリット"
         }
       ],
       "results": {
@@ -552171,16 +552613,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "e294474fc07334258f74b7f8356254c52a46fce662c601fac21149f08c50117f",
-        "dist/engine.js": "00ee057fcbc5d9bdfbb2729a486c3c0c69192c14fcb874fee083a52c2d91824a",
-        "dist/samurai-rules.js": "807c6b782218749287e6e9d62650c125b8fac5bab100c90a347ffb20fd45034e",
-        "dist/extended-rules.js": "2a111e7b5ed7f2095c22084badbbdd9e1963fa55826cd1f4d4ce2cdde1ddc4d4",
+        "dist/cards.json": "39b2f4b9f04139e5c164675b3369491ce1a692a6885847c0d883f4f197dc7af8",
+        "dist/engine.js": "44ae62b32efc282f2d52cf1aeccd2f685d9d084e10fd93078303efdd66a05103",
+        "dist/samurai-rules.js": "83362ff6fddc89411fa09e61fafd1525b7bec50b98490cb9cb8f4a919f937353",
+        "dist/extended-rules.js": "dfd207a8636e29f710c031cc73ad1628eb1625a61d63072a3504c09e8c1bec5e",
         "dist/six-photo-rules.js": "28c84ed03017228fc1074a148e074a73ebcea9b73af2ba72030b49eee38114d9",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "d5b2703bc3933c338038ee1c8d37eac0ba2647d2c96b111bb255e1445099436a",
-        "dist/card-images.js": "5a2a7eb12fef0d75429d14e10859ca29d4a71d80e7e19caf347a3e263a92372b",
-        "tools/target9000-card-spec.json": "2a297e05e53ff2783c5c87b6495e797b7a3fcbb8f51033e9561b2254f309480f",
-        "tests/standard1724-effects.test.mjs": "0a20947456d49b9f06c1a1bae3e5d58cf84d29d0b3503184cf5d00ee6e5d3c1a"
+        "dist/online-compatibility.js": "895ef1b7a8731652ba0b9770c4c6542bb6aa05a9682de95568aefcd56d5d3323",
+        "dist/card-images.js": "168afa28f5dd788e9562ce38ac16db6c529e6cd720d569cdd2802f9506476c52",
+        "tools/target9000-card-spec.json": "03db742d76f70eb7883af3b0213716cb7734fb856acc0446a72b2f3c23fb487d",
+        "tests/standard1725-effects.test.mjs": "12e8978ac6440ec0935e9b8f927baffbf587fedaaae85e034f7571f29629f4ce"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -552244,14 +552686,14 @@
       },
       "phaseRange": [
         1614,
-        1724
+        1725
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 342,
+      "addedNames": 346,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check",
+        "name": "check-final",
         "command": [
           "npm",
           "run",
@@ -552259,9 +552701,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.76,
-        "log": "tmp/duema-phase-1724/check.log",
-        "logSha256": "b3965e7be8486172756665d0ff4b541ea2fc3c90434fe00ea47c2bd677cb39c4"
+        "seconds": 22.28,
+        "log": "tmp/duema-phase-1725/check-final.log",
+        "logSha256": "b7be9492341a5dac6695af2894b3b193ed6ecc52772bb2f7f5bc448145bda145"
       },
       "latestAudit": {
         "name": "audit",
@@ -552271,11 +552713,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.594,
-        "log": "tmp/duema-phase-1724/audit.log",
-        "logSha256": "610a2ede4ea517592098a236d073cec30e4ca26e76f20985899035eac7f92e8f"
+        "seconds": 10.447,
+        "log": "tmp/duema-phase-1725/audit.log",
+        "logSha256": "281650036057ba51bc14264593d4c5bfb73f51c92dae012a7af4a66f70ed1935"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1724.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1725.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -553393,11 +553835,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9412,
-      "remaining": 88,
+      "currentNames": 9416,
+      "remaining": 84,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T08:35:45.863Z",
+      "checkedAt": "2026-11-23T08:52:41.458Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -605575,11 +606017,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1724,
+    "phase": 1725,
     "threshold": 9500,
-    "supportedNames": 9412,
-    "pendingNames": 2411,
-    "checkedAt": "2026-11-23T08:35:45.863Z",
+    "supportedNames": 9416,
+    "pendingNames": 2407,
+    "checkedAt": "2026-11-23T08:52:41.458Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -605588,7 +606030,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1724.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1725.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
