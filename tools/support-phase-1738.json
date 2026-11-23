@@ -1,0 +1,396 @@
+{
+  "phase": 1738,
+  "checkedAt": "2026-11-23T11:14:32.647Z",
+  "baseCount": 9448,
+  "target": 9500,
+  "description": "Full Aqua Fair Collector FortressE paid LiquidPeople mana conditional both-player draws and Megans opponent-turn per-mana-card departure shield recovery.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36604/",
+      "sha256": "5dbf59b39afaf9e06cf623091c150c16f62fe9a4a497833198f1b2ca706229b3",
+      "scope": "Opponent mana departure counts regardless of destination; controller chooses enemy shield, ST may be used.",
+      "reproduced": true,
+      "test": "tests/standard1738-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm20-024",
+      "name": "アクア・フェアコレクター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-024",
+      "faces": [
+        {
+          "name": "アクア・フェアコレクター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "フォートE：リキッド・ピープル(このクリーチャーをバトルゾーンに出した時、リキッド・ピープルを自分のマナゾーンでタップしてこのクリーチャーを召喚していた場合、このクリーチャーは次の能力を得る)\n各プレイヤーはバトルゾーンにある自分自身のクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1738FortE": {
+          "race": "リキッド・ピープル",
+          "defs": [
+            {
+              "op": "EachPlayerCreatureDraw1738"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-024.jpg",
+      "imageReviewed": true,
+      "imageSha256": "1aaa6e701b8f590fae8d0f4ed370c2550c25f2a3a923f89c1207c90425ec4e7d",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:14:32.647Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm20-024"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:14:32.647Z",
+        "sha256": "5869f9ab9820309679d354ad5bafbf478f6e981f0fba419fab0b9cbfbd38f9ea",
+        "facesMatched": true,
+        "imageSha256": "1aaa6e701b8f590fae8d0f4ed370c2550c25f2a3a923f89c1207c90425ec4e7d"
+      }
+    },
+    {
+      "id": "dmr05-032",
+      "name": "メガンス・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-032",
+      "faces": [
+        {
+          "name": "メガンス・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のターン中、相手のマナゾーンからカードが離れる時、相手のシールドをひとつ選び、持ち主の手札に加える。",
+          "race": "アーマード・ワイバーン/アンノイズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1738OpponentManaDeparture": [
+          {
+            "op": "ShieldHand",
+            "owner": "opponent",
+            "g1562PrintedST": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-032.jpg",
+      "imageReviewed": true,
+      "imageSha256": "02da4f3041cb6eb8958e3697ac3a72b3f2428f5cd31529f69fe121188238e5ff",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:14:32.647Z",
+        "reason": "Every full exact-name original/reprint image reviewed: printed cost, mana1, race, power and whole abilities; no soul symbols."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr05-032"
+        ],
+        "result": "Exact-name official search/product list, full original/reprint images and text compared."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:14:32.647Z",
+        "sha256": "badcfabe86fa7a4abecd2f29a2366f6a53b2ea4ea42a1ca44bfc41463d851824",
+        "facesMatched": true,
+        "imageSha256": "02da4f3041cb6eb8958e3697ac3a72b3f2428f5cd31529f69fe121188238e5ff"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmr11-001",
+      "name": "神聖鬼 デトロイト・テクノ",
+      "reason": "Optional per-colorless-card mana-number1/2 choice must cover automatic/manual payment and interaction with mandatory zero, Crystal Soul and civilization changes; do not substitute mandatory Fairy2. QA44588 self-summoning excluded. Similar-name twin dm24bd6-004 is a different card and not a reprint."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T11:14:32.647Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-024": 4,
+      "dmr05-032": 4
+    }
+  },
+  "ruleEvidence": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
+      "sha256": "5fb0124e45463c29dabe3327c1de111f6e7d512fc3e4c2bca114690085d4e32d",
+      "scope": "409.1c held cards retain original zone;409.2a returning to original zone is not a move."
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-23T11:26:34.499Z",
+    "results": {
+      "related-payments": {
+        "name": "related-payments",
+        "command": [
+          "node",
+          "--test",
+          "tests/mana-payment.test.mjs",
+          "tests/mana-summon-ui.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.92,
+        "log": "tmp/duema-phase-1738/related-payments.log",
+        "passed": 25,
+        "logSha256": "db16af7f4f102eeb92978321b20950c7f5a10348ed07ea1f802de7f26ce55f5f"
+      },
+      "related-departure": {
+        "name": "related-departure-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard811-effects.test.mjs",
+          "tests/standard1124-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.714,
+        "log": "tmp/duema-phase-1738/related-departure-final.log",
+        "passed": 23,
+        "logSha256": "b0c6e49d98f2e99b437b290f666e4b269777c42c44092020b62c85112456b742"
+      },
+      "related-strato": {
+        "name": "related-strato-final",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Stratobag",
+          "tests/champion-seed-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.539,
+        "log": "tmp/duema-phase-1738/related-strato-final.log",
+        "passed": 4,
+        "logSha256": "6998ca65c2a35b154cccd101d39a4b2a8f81c659cf517036664aa0b21fa8318c"
+      },
+      "related-online-save": {
+        "name": "related-online-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.638,
+        "log": "tmp/duema-phase-1738/related-online-final.log",
+        "passed": 55,
+        "logSha256": "37669a61488e516b92cd16e104291b26ec756384133716c8cc3d89bb25d15bec"
+      },
+      "official": {
+        "name": "official-final",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1738.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.276,
+        "log": "tmp/duema-phase-1738/official-final.log",
+        "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+      },
+      "check": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.448,
+        "log": "tmp/duema-phase-1738/check-final.log",
+        "logSha256": "2e8608a5ba8a43eb3661ce1f78a5f54b8d5e86d67d7346dee77c245ce806b154"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.226,
+        "log": "tmp/duema-phase-1738/audit.log",
+        "logSha256": "556107a7f9a03ae60582fd8e149c7f9a193a9f070c541ebeb96538ee06e563da"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.421,
+        "log": "tmp/duema-phase-1738/target9500.log",
+        "logSha256": "fb1154f73aa81d569310bb9757f8ea036759b3e09f61289fec7a087ff7d09676"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1738/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.377,
+        "log": "tmp/duema-phase-1738/invariants.log",
+        "logSha256": "b3e04b30e4b2bd8812b6c18be8511c3d8a6ad35dd334e732bc3b2316b4aaf9a0"
+      },
+      "focused": {
+        "passed": 51,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.116,
+            "log": "tmp/duema-phase-1738/focused.log",
+            "logSha256": "183da19209ca52047a312b83fe5ba002a1570837faabaf03003ec9a0cd7a8091"
+          },
+          {
+            "name": "focused-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Collector|Megans own mana|Megans recovered|phase1738 manual)",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.915,
+            "log": "tmp/duema-phase-1738/focused-fix.log",
+            "logSha256": "dcf48d4a71f2159bacf4b0978990383f2dec5235a1727586569ab90371161ad8"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Collector native free|Collector draw counts|Megans on own turn|Megans own-turn end|phase1738 full)",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.624,
+            "log": "tmp/duema-phase-1738/focused-additional.log",
+            "logSha256": "90f7331eb20937907e68e369ef8c3656254b72f5836e43e588e0f7e84877e37f"
+          },
+          {
+            "name": "focused-borrow-final",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:Collector exposes|phase1738 strict)",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.636,
+            "log": "tmp/duema-phase-1738/focused-borrow-final.log",
+            "logSha256": "62cae9284ad4f3303fb009baaeb7ea7bf5faf289308db3397679a01e728f3e37"
+          },
+          {
+            "name": "focused-pending-final",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^(?:QA36604|Megans|Rule409)",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.14,
+            "log": "tmp/duema-phase-1738/focused-pending-final.log",
+            "logSha256": "70aa59d28fb4bed79738ae109ca00ba64308770b3e137db7ebb7f41fb7c92fea"
+          },
+          {
+            "name": "focused-json-final",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Rule409.1c",
+              "tests/standard1738-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.557,
+            "log": "tmp/duema-phase-1738/focused-json-final.log",
+            "logSha256": "682ce75f009ba617a6d20526ead0469b6c625ee4971ed034229b0d6bbb6aaeab"
+          }
+        ],
+        "coverage": "51 unique cases across original, corrected fixture expectations and additional real-card cases; latest result per case all pass."
+      }
+    },
+    "totalTestsPassed": 158,
+    "focusedTestsPassed": 51,
+    "relatedTestsPassed": 107
+  },
+  "validationNotes": [
+    "Actual nameKey9448→9450, all9448 old definitions/IDs/catalogue/details/images/aliases/refs/pins unchanged.2 canonical full cards,2 complete official originals/images and fresh limits reviewed. No duplicate prints counted.",
+    "Collector FortressE records matching untapped face-up LiquidPeople mana before this payment and confirms actual taps after payment. Only this qualifying paid summon passes a transient option through existing execution/entry frames; presence, already tapped/wrong tribe, free and actual Souryu nonsummon do not qualify. Existing borrowed-entry list exposes the full definition. Each player separately chooses up to its own actual unsealed creature count, source included, noncreature tamaseeds excluded. Manual selection/cancel/JSON/encrypted frames verified.",
+    "Megans reuses native per-card mana-departure snapshots with a new opponent-own-turn observer. QA36604 all destinations, actual Souryu/Mystic Creation3 departures and GioZaman end-turn departure covered. Controller chooses opposing shield, native g1562PrintedST permits actual DemonHand ST; resolved second trigger persists after the source is removed. Own mana/offturn/tapping/ignored source excluded and duplicate/empty-shield cases terminate.",
+    "Rules409.1c/409.2a use existing transient mana-origin provenance over physical held cards for the new observer only: a mana spell in a holding frame has not departed, and a Charger returning to the original zone never departs. Actual mana CyberBrain resolves to grave and triggers once, including JSON continuation; actual mana BoneOdori Charger stays with no trigger. Legacy Rag/Jingi/Stratobag and manual payment regressions pass. Initial own/fortE variable scope faults and missing ST flag were fixed, affected cases rerun.51 unique focused plus related regressions, final check/audit/official/target/invariants all pass. Detroit optional mana-number handling held with reason; all historical pending preserved. No full npm test/old long group rerun or push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm32-015",
+      "name": "ポジトロン・サイン",
+      "reason": "Full actual top4 optional S Trigger spell execution and ordered library rest; prioritize native look/cast."
+    },
+    {
+      "id": "dmr08-025",
+      "name": "ヘブンズ・サンダー",
+      "reason": "Full one own blocker power4000/W and native Diamond-style attack restriction override excluding sickness."
+    },
+    {
+      "id": "dm07-039",
+      "name": "ミラクル・ポータル",
+      "reason": "Full chosen own creature unblockability and native player attack restriction override."
+    }
+  ]
+}

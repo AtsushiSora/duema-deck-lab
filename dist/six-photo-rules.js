@@ -4183,6 +4183,9 @@ export function createSixPhotoRules(api){
  case'g34_ManaEntryGrave1632':{const y=own.mana.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);if(y)zoneMove(s,t.p,'mana',y.uid,'grave',t);break;}
  case'g34_LifeCharger1631':(s.extLimits??=[]).push({kind:'g1631LifeCharger',player:t.p,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;
  case'g34_BattleColors1630':start(s,t,battleColorDefs1630(s,t));break;
+ case'g34_EachPlayerCreatureDraw1738':
+  put(s,...[t.p,1-t.p].map(p=>task('g34_DrawUpTo',p,t.source,{n:creatures(s,p).filter(x=>!x.sealed).length,g203Draw:true,controller:t.p})));
+  break;
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true,...(t.after?{after:t.after}:{})}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  case'g34_DrawAgainstHand1086':{
   const drawn=api.draw(s,t.p,opp.hand.length);

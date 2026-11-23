@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.18';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.3';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.254';
+export const ENGINE_VERSION='0.602.255';
 export const AI_VERSION='2.3.437';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -3912,7 +3912,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(stopped&&(c.effect||c.dragonEntryTap))log(s,p,'triggerPrevented',`${c.name}自身の登場時能力は${abilitiesIgnored(s,inst)?'能力の無視':graveMuted?'ブラキオ龍樹':brakkio?card(brakkio).name:c.abakuOni&&oniTime1303(s,p)?'鬼タイム':extra.muteEntry(s,p)?'マリニャンX':'GG'}によりトリガーしない`,{cardId:c.id});
  if(!stopped){
   if(c.waveSummonCast&&entryOptions.execution)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('waveGraveCast',p,c.id)});
-  const defs=firstNamedEntry&&entryOptions.execution?[{op:'Custom',name:'extraTurn'}]:
+  const defs=entryOptions.g1738FortE?c.g1738FortE?.defs:firstNamedEntry&&entryOptions.execution?[{op:'Custom',name:'extraTurn'}]:
    entryOptions.g1086FreeSummon?c.g1086FreeSummonEntry:entryOptions.execution?
     (entryOptions.origin==='mana'&&c.g1124ManaSummonEntry||c.g1087SummonEntry):null;
   if(defs)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',
@@ -3995,6 +3995,7 @@ export function entryAbilities(s,p,original,reference){
  }
  const summonEntry=c.g997SummonEntry||c.g1087SummonEntry;
  if(summonEntry)extended('召喚して出た時','g34_Sequence',{defs:summonEntry});
+ if(c.g1738FortE)extended('フォートE：'+c.g1738FortE.race,'g34_Sequence',{defs:c.g1738FortE.defs});
  for(const ability of eligibleExtraEntry527(c,null))extended(ability.label,'g34_Sequence',{defs:ability.defs});
  if(c.justDiver)add('ジャストダイバー','justDiver');
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');
@@ -4107,8 +4108,10 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  const requireZoneMana=needsZoneMana1359(s,p,c);
  const ids=requireZoneMana?paymentIds(s,p,payment,otherPayment):null;
  if(requireZoneMana&&!ids)return;
+ const fortEMana1738=c.g1738FortE&&!free?s.players[p].mana.filter(x=>!x.tapped&&!x.faceDown&&String(zoneCard(s,p,x,'mana').race||'').split('/').some(r=>r.includes(c.g1738FortE.race))):[];
  if(!free)for(const id of otherPayment)tapCard(s,p,s.players[p].battle.find(x=>x.uid===id));
  const paidMana=free?false:requireZoneMana?tapPayment(s,p,ids):pay(s,p,payment);const originIndex402=originBlocked402?s.players[p][origin].findIndex(x=>x.uid===uid):-1,inst=remove(s.players[p][origin],uid),grantedSuper=free&&!!c.superTrigger&&inst.g30SuperFace===face;delete inst.g30SuperFace;
+ const fortE1738=!!paidMana&&fortEMana1738.some(x=>x.tapped);
  delete inst.g1335Vivid;
  if(ruleOrigin==='grave'){
   extra.six.consumeGraveUse1226(s,p,inst);
@@ -4118,12 +4121,12 @@ function playCard(s,p,uid,free=false,baseUid=null,face=0,alternativeCost=null,or
  }
  if(!free&&!payment.fixedPayment)extra.six.consumeExecution464(s,p,payment);
  extra.six.revealCommitted470(s,p,c,alternativeCost);
- const execution={ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,unpaid,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402,originIndex402,auraOriginIndex};if(extra.shieldPhoto.beforeExecution(s,p,c,inst,execution))return;completeExecution(s,p,inst,c,execution);
+ const execution={ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,...(fortE1738?{fortE1738:true}:{}),unpaid,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402,originIndex402,auraOriginIndex};if(extra.shieldPhoto.beforeExecution(s,p,c,inst,execution))return;completeExecution(s,p,inst,c,execution);
 }
 // Cyclone checks the previous card used by this player in this turn, before recording this use.
 // Entry effects and non-summon deployments do not overwrite that history (official QA37513).
 function recordUse420(s,p,c){const last=s.g420LastUse?.[p],ready=last?.turn===s.turn&&last.creature;(s.g420LastUse??=[null,null])[p]={turn:s.turn,creature:c.type==='creature'};return (c.g420Cyclone||c.type==='spell'&&s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&effectiveCard(x,s).g1657CycloneAura))?{...c,g420CycloneReturn:!!ready}:c;}
-function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,unpaid,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1,auraOriginIndex}){
+function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alternativeCost,paidMana,fortE1738=false,unpaid,cost,ownGraveCast,grantedSuper,baseUid,face,permit,originBlocked402=false,originIndex402=-1,auraOriginIndex}){
  if(!free&&alternativeCost?.g1439Mask){c=overdriveEntry1439(c,alternativeCost.g1439Mask);if(c.type==='creature')inst.g1439PaidMask=alternativeCost.g1439Mask;}
  c=recordUse420(s,p,c);
  const costPaid=freeReason==='跳次元召喚'||!free&&cost>0;
@@ -4172,7 +4175,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  else if(['creature','seed','gear','field','duelist'].includes(c.type)){
   const altEnd=!free&&!!alternativeCost?.g1221AltEnd;
   if(altEnd)extra.six.scheduleAltEnd1221(s,p,c,inst);
-  enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid,...(c.g1716TriggerX&&free&&freeReason==='S・トリガー'?{g1716TriggerX:true}:{}),...(!free&&c.g1411BuzzRenda?{g1411BuzzN:alternativeCost?.g1411BuzzN||0}:{}),...(reductionSources.length?{g1305ReductionSources:reductionSources}:{}),...(altEnd?{g1221AltEnd:true}:{}),effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(c.g1086FreeSummonEntry&&freeReason===c.g396Zero?.label?{g1086FreeSummon:true}:{}),...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.entry?{g499Reduced:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.tappedEntry?{tapped:true}:{}),...(alternativeCost?.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),...(typeof permit==='string'&&permit.startsWith('g1087Sign:')?{g1087Grant:permit.slice('g1087Sign:'.length)}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
+  enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid,...(fortE1738?{g1738FortE:true}:{}),...(c.g1716TriggerX&&free&&freeReason==='S・トリガー'?{g1716TriggerX:true}:{}),...(!free&&c.g1411BuzzRenda?{g1411BuzzN:alternativeCost?.g1411BuzzN||0}:{}),...(reductionSources.length?{g1305ReductionSources:reductionSources}:{}),...(altEnd?{g1221AltEnd:true}:{}),effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(c.g1086FreeSummonEntry&&freeReason===c.g396Zero?.label?{g1086FreeSummon:true}:{}),...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.entry?{g499Reduced:true}:{}),...(!free&&alternativeCost?.g499Reduction>0&&c.g212CountDiscount?.tappedEntry?{tapped:true}:{}),...(alternativeCost?.g1117MoveToExtra?{g1117MoveToExtra:true}:{}),...(typeof permit==='string'&&permit.startsWith('g1087Sign:')?{g1087Grant:permit.slice('g1087Sign:'.length)}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
  else if(c.charger&&!spellIgnored(s,c)){
   s.resolvingSpell={player:p,inst,source:c.id,face,origin:ruleOrigin};
   if(!checkDeckSpell||!checkDeckSpell841(s,p,c,inst))continueCast1293(s,p,inst.uid);
@@ -5339,6 +5342,8 @@ function skipTurn(s,p,source){
  s.pendingEffects=[];s.triggerStack=[];s.extTasks=[];s.after=[];s.g10RevDeclarations=[];
  nextTurn(s);
 }
+// Rule409.1c: held spells still belong to their original mana zone.
+function pendingManaUids1738(s,p){return [...new Set(manaOrigins1653(s,physicalCards(s)).filter(r=>r.zone==='mana'&&r.p===p).map(r=>r.uid))];}
 function manaSnapshot(s){
  return s.players.map(own=>{
   const watchers=[],perCard=[],jingi=[],toGrave=[];
@@ -5351,7 +5356,8 @@ function manaSnapshot(s){
    if(c.g1301ManaToGrave&&!x.sealed&&!x.faceDown)toGrave.push({...ref,defs:c.g1301ManaToGrave});
    if(c.g1124Jingi&&!x.sealed&&!x.faceDown&&isCreature(s,x))jingi.push({...ref,defs:c.g1124Jingi});
   }
-  return {uids:own.mana.map(x=>x.uid),watchers,perCard,jingi,toGrave,creatures:jingi.length?
+  const opponentPerCard1738=s.active===s.players.indexOf(own)?s.players[1-s.active].battle.flatMap(x=>{const defs=!x.sealed&&!x.faceDown&&isCreature(s,x)&&effectiveCard(x,s).g1738OpponentManaDeparture;return defs?[{uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,defs}]:[];}):[];
+  return {uids:own.mana.map(x=>x.uid),watchers,perCard,jingi,toGrave,opponentPerCard1738,...(opponentPerCard1738.length?{manaUids1738:pendingManaUids1738(s,s.players.indexOf(own))}:{}),creatures:jingi.length?
    own.mana.filter(x=>!x.faceDown&&playFaces(card(x)).some(face=>face.type==='creature')).map(x=>x.uid):[]};
  });
 }
@@ -5360,19 +5366,23 @@ function manaDeparted(s,before){
  const trackBurials=before.some(x=>x.toGrave.length);
  for(let p=0;p<2;p++){
   const {uids,watchers,perCard,jingi,creatures}=before[p],mana=s.players[p].mana;
-  if(uids.length===mana.length&&uids.every((uid,i)=>uid===mana[i].uid))continue;
+  const pending1738=before[p].manaUids1738?new Set(pendingManaUids1738(s,p)):null;
+  const departed1738=pending1738?before[p].manaUids1738.filter(uid=>!pending1738.has(uid)).length:0;
   const remaining=new Set(mana.map(x=>x.uid));
   const departed=uids.filter(uid=>!remaining.has(uid)).length;
-  if(!departed)continue;
+  if(!departed&&!departed1738)continue;
   if(trackBurials){
    const graveUids=new Set(s.players.flatMap(player=>player.grave.map(x=>x.uid)));
    buried+=uids.filter(uid=>!remaining.has(uid)&&graveUids.has(uid)).length;
   }
-  extra.seed.manaLeft(s,p,watchers);
+  if(departed)extra.seed.manaLeft(s,p,watchers);
   for(const {uid,cardId,incarnation,defs} of jingi)
    for(const departedUid of creatures)
     if(departedUid!==uid&&!remaining.has(departedUid))
      enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
+  for(const {uid,cardId,incarnation,defs} of before[p].opponentPerCard1738||[])
+   for(let i=0;i<departed1738;i++)
+    enqueueEffect(s,1-p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',1-p,cardId,{uid,incarnation,defs})});
   for(const {uid,cardId,incarnation,defs} of perCard)
    for(let i=0;i<departed;i++)
     enqueueEffect(s,p,{uid,incarnation,source:cardId,effect:'extended',task:extra.task('g34_Sequence',p,cardId,{uid,incarnation,defs})});
