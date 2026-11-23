@@ -173,10 +173,16 @@ export function createSamuraiRules(api){
   let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
    const def=card(g);
-   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker&&!def.g1312CrossSpeed)||g.faceDown||!active(s,g))continue;
+   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker&&!def.g1312CrossSpeed&&!def.g1706CrossSlayer&&!def.g1706CrossTap)||g.faceDown||g.sealed||!active(s,g))continue;
    const host=live(s,owner,g);
    if(def.g945CrossBlocker&&owner===p&&host===x)blocker=true;
    if(def.g1312CrossSpeed&&owner===p&&host===x)speed=true;
+   if(owner===p&&host===x){
+    slayers+=Number(!!def.g1706CrossSlayer);
+    if(def.g1706CrossTap)c={...c,g1706CrossTapOptions:[...(c.g1706CrossTapOptions||[]),{
+     uid:g.uid,incarnation:g.incarnation||0,source:g.cardId,defs:def.g1706CrossTap
+    }]};
+   }
    if(!host){speed||=!!def.g932UncrossedSpeed;slayers+=Number(!!def.g932UncrossedSlayer);}
    else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=def.g932CrossAttackBonus||0;
   }
@@ -262,6 +268,12 @@ export function createSamuraiRules(api){
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).maroku&&attached(s,p,x).length).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_Maroku',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  mainActions(s,p){
   const out=[];
+  if(creatures(s,p).some(x=>!x.sealed))for(const x of s.players[p].hand){
+   const c=api.zoneCard(s,p,x,'hand');
+   if(c.g1706FreeGenerate&&api.canCast(s,p,c,'hand')&&api.canEnter(s,p,c,{origin:'hand',execution:true}))
+    out.push({kind:'play',uid:x.uid,cardId:x.cardId,origin:'hand',cost:0,freeSummon:'G・ゼロ',
+     label:c.name+'をG・ゼロでジェネレートする'});
+  }
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
    const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
