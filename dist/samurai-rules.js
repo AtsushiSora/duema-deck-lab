@@ -173,12 +173,30 @@ export function createSamuraiRules(api){
  crossDestroyToHand(s,p,x){return !x.sealed&&attached(s,p,x).some(g=>card(g).g1715CrossDestroyToHand&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  // Phase1713: an active crossed gear supplies permission independently of its host abilities.
  evolutionRace(s,p,x){return p>=0&&!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x)&&attached(s,p,x).some(g=>card(g).g1713CrossAnyEvolutionRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
+ nobleAttackLocked(s,p,x){
+  return s.players.some((own,owner)=>own.battle.some(g=>card(g).g1721Noble&&!g.sealed&&!g.faceDown&&active(s,g)&&!live(s,owner,g)))&&api.power(x,false,s)<=2000;
+ },
+ nobleTargetAllowed(s,attacker,target){
+  const p=s.players.findIndex(own=>own.battle.includes(target));
+  return p<0||!attached(s,p,target).some(g=>card(g).g1721Noble&&!g.sealed&&!g.faceDown&&active(s,g))||api.power(attacker,false,s)>2000;
+ },
+ nobleBlockAllowed(s,attacker,blocker){
+  const p=s.players.findIndex(own=>own.battle.includes(blocker)),a=s.players.findIndex(own=>own.battle.includes(attacker));
+  return !(a>=0&&attached(s,a,attacker).some(g=>card(g).g1721Noble&&!g.sealed&&!g.faceDown&&active(s,g))&&api.power(blocker,false,s)<=2000)&&!this.nobleAttackLocked(s,p,blocker);
+ },
+ powerMultiplier(s,x){
+  if(x.sealed)return 1;
+  let multiplier=1;
+  for(const own of s.players)for(const g of own.battle)if(card(g).g1721CrossMultiplier&&!g.sealed&&!g.faceDown&&g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)&&active(s,g)&&api.isCreature(s,x))multiplier*=card(g).g1721CrossMultiplier;
+  return multiplier;
+ },
+ spellTax(s,p,c){return c.type==='spell'?gears(s,1-p).filter(g=>card(g).g1721UncrossedSpellTax&&!g.sealed&&!g.faceDown&&!live(s,1-p,g)&&active(s,g)).reduce((n,g)=>n+card(g).g1721UncrossedSpellTax,0):0;},
  protected(s,p,x){
   if(x.crossedTo&&card(x).type==='gear'){
    const host=live(s,p,x);
    return !!(host&&!host.sealed&&card(host).g858ProtectCrossedGear&&active(s,host));
   }
-  return api.isCreature(s,x)&&attached(s,p,x).some(g=>card(g).g119Petro&&active(s,g));
+  return api.isCreature(s,x)&&attached(s,p,x).some(g=>active(s,g)&&!g.sealed&&!g.faceDown&&(card(g).g119Petro||card(g).g1721CrossSpellProtection&&api.isSpellChoice(s)));
  },
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},

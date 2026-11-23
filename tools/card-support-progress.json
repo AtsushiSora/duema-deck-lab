@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9401,
-  "pendingNames": 2422,
-  "phase": 1720,
+  "supportedNames": 9404,
+  "pendingNames": 2419,
+  "phase": 1721,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -171,7 +171,7 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 14,
+    "クロスギア": 11,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 546,
+    "複数面・特殊カードタイプまたは情報不足": 543,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -548614,27 +548614,361 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1721,
+      "checkedAt": "2026-11-23T07:31:41.819Z",
+      "baseline": "78d81f6b",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9401,
+      "currentNames": 9404,
+      "remainingNames": 96,
+      "added": [
+        {
+          "id": "dm16-011",
+          "name": "ノーブル・エンフォーサー"
+        },
+        {
+          "id": "dm28-010",
+          "name": "叫鬼ジャミング・ビート"
+        },
+        {
+          "id": "dm14-s10",
+          "name": "パワード・スタリオン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "78d81f6b",
+        "originalDefinitionsUnchanged": 9401,
+        "added": 3,
+        "uniqueNames": 9404,
+        "uniqueIds": 9404,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 5,
+        "existingImageUrlsUnchanged": 9401,
+        "existingImageReferenceRowsUnchanged": 11621,
+        "officialPrintsReviewed": 8,
+        "officialImagesReviewed": 8,
+        "existingPinsUnchanged": 976
+      },
+      "results": {
+        "related-power-combat": {
+          "name": "related-power-combat",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1147-effects.test.mjs",
+            "tests/standard1111-effects.test.mjs",
+            "tests/standard593-effects.test.mjs",
+            "tests/standard1693-effects.test.mjs",
+            "tests/standard1720-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 69.597,
+          "log": "tmp/duema-phase-1721/related-power-combat.log",
+          "passed": 130,
+          "logSha256": "a0714f09a39ff4ec099b13d68569282cdef2a16a2a5f70874e48d2efd8255bf6"
+        },
+        "related-spell-chooser": {
+          "name": "related-spell-chooser",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1369-effects.test.mjs",
+            "tests/standard996-effects.test.mjs",
+            "tests/standard1303-effects.test.mjs",
+            "tests/standard1719-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.414,
+          "log": "tmp/duema-phase-1721/related-spell-chooser.log",
+          "passed": 90,
+          "logSha256": "afcfe03e7affffcf24c09fe42af1e0e84ea5e8379fc99e8160c8cd67bfcc2ce4"
+        },
+        "related-conditional-battle-final": {
+          "name": "related-conditional-battle-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/utility116-effects.test.mjs",
+            "tests/utility118-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.748,
+          "log": "tmp/duema-phase-1721/related-conditional-battle-final.log",
+          "passed": 57,
+          "logSha256": "dacfef4d71ad22358ff69399e2cb6f51e4b69ebee766affa986a528f81962d4d"
+        },
+        "related-online-save": {
+          "name": "related-online-save-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.64,
+          "log": "tmp/duema-phase-1721/related-online-save-final.log",
+          "passed": 55,
+          "logSha256": "34dfc15b5a22d3fea45c439260cd1e9728fbdcfb03cc9dbcfc4b4e6e9d355714"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1721.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.4,
+          "log": "tmp/duema-phase-1721/official.log",
+          "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+        },
+        "check": {
+          "name": "check-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 19.489,
+          "log": "tmp/duema-phase-1721/check-final.log",
+          "logSha256": "8bb75515d1cfaab88433e63bf56c88eead3cb766e02f8fe87d0c2f2dd6d81fec"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.346,
+          "log": "tmp/duema-phase-1721/audit.log",
+          "logSha256": "4b16baa4f75ed18f7fc448ea776ef46ba16d09d36af6737af95b1e7d7577e42d"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.654,
+          "log": "tmp/duema-phase-1721/target9500.log",
+          "logSha256": "30e1bf0f0ba5482649e33d4351d7e68bd25eaf76833c87f2bc7fb4971d46fc58"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1721/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.59,
+          "log": "tmp/duema-phase-1721/invariants.log",
+          "logSha256": "1786b6454edbdd486855f36191e1075f3466618588a3b26fd8e6ed15f485bb71"
+        },
+        "focused": {
+          "passed": 50,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1721-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 7.164,
+              "log": "tmp/duema-phase-1721/focused.log",
+              "passed": 44,
+              "logSha256": "a4461148215f2b745b5b375d618a777a36eac3f1621cebe20b549c5676bcb8b9"
+            },
+            {
+              "name": "focused-noble",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Noble crossed|^QA36684",
+                "tests/standard1721-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.497,
+              "log": "tmp/duema-phase-1721/focused-noble.log",
+              "passed": 4,
+              "logSha256": "e23027daf87ab4a59271924b984844a4da437a0604ebb01295760b884910738c"
+            },
+            {
+              "name": "focused-battle-bonus",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Stallion doubles actual Testa",
+                "tests/standard1721-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.437,
+              "log": "tmp/duema-phase-1721/focused-battle-bonus.log",
+              "passed": 0,
+              "logSha256": "6515bd79b9e7c206f21c07449bf54b8e6766c3252847c1e0e44934050872cb3f"
+            },
+            {
+              "name": "focused-battle-bonus-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Stallion doubles actual Testa",
+                "tests/standard1721-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.432,
+              "log": "tmp/duema-phase-1721/focused-battle-bonus-fixed.log",
+              "passed": 2,
+              "logSha256": "095f4aa684b8de71f8a5b45f8673e674baf1f7697804d357370212a28ffbcd6e"
+            },
+            {
+              "name": "focused-sunburst",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Stallion multiplies actual Sunburst",
+                "tests/standard1721-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.499,
+              "log": "tmp/duema-phase-1721/focused-sunburst.log",
+              "passed": 2,
+              "logSha256": "7d02031d9b0b21eae2317c052963d4ef463c101277c7610a4b92d75e5c2866d6"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 382,
+      "hashes": {
+        "dist/cards.json": "af34464951dfbec1562447d3913b4b5954dbf4bca0d997b46049614a22eb4130",
+        "dist/engine.js": "2a280602235cd2eb1000e5c0827efa70d116c4b7ed5230e4164f250d1488c990",
+        "dist/samurai-rules.js": "a2094c12aa92c8b39bd7cb4ba088e5e017faa263d4b4205bcbc13a04b8b1f19c",
+        "dist/extended-rules.js": "a632eafef484cab9d50400d365f91efeae5e7d835b421f441070a66c5aaeec54",
+        "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "cefccb2b023facb2ccd3d137ca55c9c977c34e822ca1271e7d820860f0b95dc7",
+        "dist/card-images.js": "b1c68550f148799da1fbcbc817408248e6181fe525dcc672e95e09a5e24ef956",
+        "tools/target9000-card-spec.json": "346001ada39ef6d178f5b4ee2150f7b7c474fefcbf0350a5b9643ca387477209",
+        "tests/standard1721-effects.test.mjs": "546951c0f3740331540a4b05423fbea593887dd21fea859a1593083026dac4a6"
+      },
+      "engineVersion": "0.602.238",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1721-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.164,
+          "log": "tmp/duema-phase-1721/focused.log",
+          "logSha256": "a4461148215f2b745b5b375d618a777a36eac3f1621cebe20b549c5676bcb8b9"
+        },
+        {
+          "name": "focused-battle-bonus",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Stallion doubles actual Testa",
+            "tests/standard1721-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.437,
+          "log": "tmp/duema-phase-1721/focused-battle-bonus.log",
+          "logSha256": "6515bd79b9e7c206f21c07449bf54b8e6766c3252847c1e0e44934050872cb3f"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1721.json",
+      "supported": 9404,
+      "pending": 2419,
+      "reason": "Complete Noble Enforcer crossed/uncrossed power-based combat restriction, Jamming Beat uncrossed spell tax/crossed spell chooser protection, Powered Stallion final external doubling plus conditional W/T breaker",
+      "validationNotes": [
+        "Actual nameKey9401→9404 from clean78d81f6b/staged-none/no existing repository work. All9401 old definitions/IDs/details/catalogue/aliases and old image refs/pins unchanged. Eight whole official print faces/images/basic data/mana/limits verified; six exact Noble prints plus Jamming and Stallion. Fuzzy Noble hit dm22ex1-049 is a different card and excluded.",
+        "Noble Enforcer active uncrossed gear prevents both-player2000-or-less attack/block declarations including PA-only boosts and Gamar tapQA35363. Crossing switches off global restriction and independently protects its ignored current host from low attackers/blockers. Source ignored/sealed/recross update immediately. ExactQA35364 actual Diamond Cutter allows only player attack, exactQA36944/36684 real Diva Live/Orewaleo do not cancel external restriction. AttackLocked display also matches permission.",
+        "Jamming active uncrossed gears stack1 opponent spell tax; crossed gears supply selection protection from an opponent chooser independently of host abilities. ExactQA35665 own real Spiral Gate plus enemy actual Yomi chooser excludes the protected host despite owner casting the spell. Opponent spell choice blocked; owner own choice and creature ability choices allowed; source ignoring/seal/recross tested.",
+        "Stallion final external2x multiplier applies after all additive/subtractive changes, including attack bonuses, battle-only, conditional Fire opponent and large-opponent bonuses. Multiple sources multiply, fixed power remains final override, infinity is safe. ExactQA35311 additive order; QA40267 analogous actual Deathmarch reduces raw4000 to0 before doubling. Granted W>=6000/T>=15000 retain W/T/Q choices and disappear on ignored host while external power remains.",
+        "50 unique focused tests pass by aggregate. Initial2 Noble fixtures left the next attacker tapped; fixed fixture only. Added actual Tajimal Fire battle case exposed missing context on two remaining conditional multiplier calls; fixed all context-bearing calls, reran affected2 and added actual Sunburst/Tajimal ordering2. No unresolved new-card failure.130 prior power/combat regressions pass; after narrow final conditional correction57 native conditional-battle cases pass.90 spell/chooser and55 final online/save cases pass,total382. The69.597s broad power run was not repeated; no whole npm test.",
+        "Final check19.489s passes on final runtime; audit13.346s,count9404/invariants/target9500 pass. All prior full-suite/card/reprint/long/user deferrals remain unchanged. No push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm31-004",
+          "name": "流牙 シシマイ・ドスファング",
+          "reason": "Whole6000/extra-break/destruction to hand/Samurai Magic same-name gear generation."
+        },
+        {
+          "id": "dmx21-013",
+          "name": "竜装 センゴク・トッパアーマー",
+          "reason": "Whole optional uncrossed Dragon discount/external power and extra-break/free-cross names."
+        },
+        {
+          "id": "dm30-034",
+          "name": "閃光 イナズマ・カブト",
+          "reason": "Whole power and optional mana entry/free cross when own gear crosses a Samurai creature."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1720,
-    "nextPhase": 1721,
+    "lastVerifiedPhase": 1721,
+    "nextPhase": 1722,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm16-011",
-        "name": "ノーブル・エンフォーサー",
-        "reason": "Whole crossed and uncrossed power-gated attack/block restrictions."
+        "id": "dm31-004",
+        "name": "流牙 シシマイ・ドスファング",
+        "reason": "Whole6000/extra-break/destruction to hand/Samurai Magic same-name gear generation."
       },
       {
-        "id": "dm28-010",
-        "name": "叫鬼ジャミング・ビート",
-        "reason": "Whole uncrossed opponent spell tax and crossed spell-only selection protection."
+        "id": "dmx21-013",
+        "name": "竜装 センゴク・トッパアーマー",
+        "reason": "Whole optional uncrossed Dragon discount/external power and extra-break/free-cross names."
       },
       {
-        "id": "dm14-s10",
-        "name": "パワード・スタリオン",
-        "reason": "Whole external doubled current power and conditional granted W/T breaker."
+        "id": "dm30-034",
+        "name": "閃光 イナズマ・カブト",
+        "reason": "Whole power and optional mana entry/free cross when own gear crosses a Samurai creature."
       }
     ],
     "steps": [
@@ -549519,23 +549853,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1720,
-      "baseline": "05c87627",
-      "supportedNames": 9401,
-      "artifact": "tools/target9500-registration-checkpoint-1720.json",
-      "checkedAt": "2026-11-23T07:20:01.630Z"
+      "phase": 1721,
+      "baseline": "78d81f6b",
+      "supportedNames": 9404,
+      "artifact": "tools/target9500-registration-checkpoint-1721.json",
+      "checkedAt": "2026-11-23T07:31:41.819Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T07:20:01.630Z",
+      "checkedAt": "2026-11-23T07:31:41.819Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9401,
-      "remainingNames": 99,
+      "currentNames": 9404,
+      "remainingNames": 96,
       "duplicateNames": 0,
-      "engineVersion": "0.602.237",
+      "engineVersion": "0.602.238",
       "added": [
         {
           "id": "dmr12-008",
@@ -550860,6 +551194,18 @@
         {
           "id": "dmex16-041",
           "name": "超銀河槍 THE END"
+        },
+        {
+          "id": "dm16-011",
+          "name": "ノーブル・エンフォーサー"
+        },
+        {
+          "id": "dm28-010",
+          "name": "叫鬼ジャミング・ビート"
+        },
+        {
+          "id": "dm14-s10",
+          "name": "パワード・スタリオン"
         }
       ],
       "results": {
@@ -550975,16 +551321,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "9d6a30fc97e119929c0a6ee5dce7f523179143b151e2bc2b64103df8887d4bd0",
-        "dist/engine.js": "046371b61e8412b32da11ae07139a53d1f7a26e75871dc3f16526730b6122764",
-        "dist/samurai-rules.js": "b9629ec340e458477ea4cc110ad2674cef4a9d1ae666e3ebb6be1fb09688b926",
-        "dist/extended-rules.js": "cce0a6ee0655a57876d3c7b20887395d95c62964c275eef64a9c402008016674",
+        "dist/cards.json": "af34464951dfbec1562447d3913b4b5954dbf4bca0d997b46049614a22eb4130",
+        "dist/engine.js": "2a280602235cd2eb1000e5c0827efa70d116c4b7ed5230e4164f250d1488c990",
+        "dist/samurai-rules.js": "a2094c12aa92c8b39bd7cb4ba088e5e017faa263d4b4205bcbc13a04b8b1f19c",
+        "dist/extended-rules.js": "a632eafef484cab9d50400d365f91efeae5e7d835b421f441070a66c5aaeec54",
         "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "ce4bf14980050c3828b6ec62367bfda14a5a4e475160df75e9ad5142c3f137b7",
-        "dist/card-images.js": "58cfdf6ef9c07e6729ffdbae4a00ad538168bbb1e00fa454450eb1b49bff0254",
-        "tools/target9000-card-spec.json": "5d2f15f4d86dbe6515a82f3445586cbb54befb3bb7e9a63ca4b32b1c07cf39bd",
-        "tests/standard1720-effects.test.mjs": "3162f09289ba5f01eb8702fd1f2778cfea6bbc42033af69e70b3ffd829bab843"
+        "dist/online-compatibility.js": "cefccb2b023facb2ccd3d137ca55c9c977c34e822ca1271e7d820860f0b95dc7",
+        "dist/card-images.js": "b1c68550f148799da1fbcbc817408248e6181fe525dcc672e95e09a5e24ef956",
+        "tools/target9000-card-spec.json": "346001ada39ef6d178f5b4ee2150f7b7c474fefcbf0350a5b9643ca387477209",
+        "tests/standard1721-effects.test.mjs": "546951c0f3740331540a4b05423fbea593887dd21fea859a1593083026dac4a6"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -551048,14 +551394,14 @@
       },
       "phaseRange": [
         1614,
-        1720
+        1721
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 331,
+      "addedNames": 334,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check",
+        "name": "check-final",
         "command": [
           "npm",
           "run",
@@ -551063,9 +551409,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 21.283,
-        "log": "tmp/duema-phase-1720/check.log",
-        "logSha256": "7af10cc77e78d719eb35f3171275506326108ea7853e4049595a609258d83ed8"
+        "seconds": 19.489,
+        "log": "tmp/duema-phase-1721/check-final.log",
+        "logSha256": "8bb75515d1cfaab88433e63bf56c88eead3cb766e02f8fe87d0c2f2dd6d81fec"
       },
       "latestAudit": {
         "name": "audit",
@@ -551075,11 +551421,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 12.084,
-        "log": "tmp/duema-phase-1720/audit.log",
-        "logSha256": "277c40a594adf782a8e8bf9f143b95dea895d6ada7709ffdbcde7d0561030265"
+        "seconds": 13.346,
+        "log": "tmp/duema-phase-1721/audit.log",
+        "logSha256": "4b16baa4f75ed18f7fc448ea776ef46ba16d09d36af6737af95b1e7d7577e42d"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1720.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1721.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -552197,11 +552543,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9401,
-      "remaining": 99,
+      "currentNames": 9404,
+      "remaining": 96,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T07:20:01.630Z",
+      "checkedAt": "2026-11-23T07:31:41.819Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -604379,11 +604725,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1720,
+    "phase": 1721,
     "threshold": 9500,
-    "supportedNames": 9401,
-    "pendingNames": 2422,
-    "checkedAt": "2026-11-23T07:20:01.630Z",
+    "supportedNames": 9404,
+    "pendingNames": 2419,
+    "checkedAt": "2026-11-23T07:31:41.819Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -604392,7 +604738,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1720.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1721.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
