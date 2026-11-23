@@ -1,0 +1,231 @@
+{
+  "phase": 1732,
+  "checkedAt": "2026-11-23T10:17:50.324Z",
+  "baseline": "4e951251",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9434,
+  "currentNames": 9436,
+  "remainingNames": 64,
+  "added": [
+    {
+      "id": "dm36-s09",
+      "name": "時空の豪腕ジャパン"
+    },
+    {
+      "id": "dmx22b-116",
+      "name": "時空の司令 コンボイ・トレーラー"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "4e951251",
+    "originalDefinitionsUnchanged": 9434,
+    "added": 2,
+    "uniqueNames": 9436,
+    "uniqueIds": 9436,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9434,
+    "existingImageReferenceRowsUnchanged": 11682,
+    "officialPrintsReviewed": 2,
+    "officialImagesReviewed": 4,
+    "existingPinsUnchanged": 1037
+  },
+  "results": {
+    "focused-final": {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1732-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.532,
+      "log": "tmp/duema-phase-1732/focused-final.log",
+      "passed": 45,
+      "logSha256": "a0df505e34b8d31c141a4e04e200ac65a44eec3ee89642382c69c52dcacdf842"
+    },
+    "related-psychic": {
+      "name": "related-psychic",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1085-effects.test.mjs",
+        "tests/standard1102-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.497,
+      "log": "tmp/duema-phase-1732/related-psychic.log",
+      "passed": 15,
+      "logSha256": "14820dd687a486557e523e31890efc91fe8753de1a8528661b4aa119e636d286"
+    },
+    "related-battle-aura": {
+      "name": "related-battle-aura",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(?:Yama|Zeebra|multiple Yama|Shinpan)",
+        "tests/standard466-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.797,
+      "log": "tmp/duema-phase-1732/related-battle-aura.log",
+      "passed": 19,
+      "logSha256": "773d6a993e6236d926516f4d8703b7d9aa00de1c1a2b88e8a2e188560335ec74"
+    },
+    "related-online-save": {
+      "name": "related-online-save",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.654,
+      "log": "tmp/duema-phase-1732/related-online-save.log",
+      "passed": 55,
+      "logSha256": "68dcf31db25fa7fee2c98d6fad319b92ada30bfbe0e8513cf870b8ed89e23e96"
+    },
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1732.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.292,
+      "log": "tmp/duema-phase-1732/official.log",
+      "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.199,
+      "log": "tmp/duema-phase-1732/check.log",
+      "logSha256": "e209168009cc52545c3eae7222a48500250105cc1d5bbd25076ab93c98577139"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.639,
+      "log": "tmp/duema-phase-1732/audit.log",
+      "logSha256": "f95a1c663c6b5d6aac6fc4c9536608a961848e96f130f32d05a5fd3e4a8db8ab"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.439,
+      "log": "tmp/duema-phase-1732/target9500.log",
+      "logSha256": "147b548899aa54f557b984233e2561602ad07bbe2c4070db49e8e3462a1084c4"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1732/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.777,
+      "log": "tmp/duema-phase-1732/invariants.log",
+      "logSha256": "cea4a836fc39b66ca73b9f3dfb9c273df076647a52cb14edee7d1d2668c843ea"
+    }
+  },
+  "totalTestsPassed": 134,
+  "hashes": {
+    "dist/cards.json": "21c998efe349a36d69f93e30ba55d65b5f5be7576427f798c52d294999b086e9",
+    "dist/engine.js": "3fd3a86c16da770c6b52fadf8f4f0b837e01cd176c5df4af31aa2a3b1e494f39",
+    "dist/six-photo-rules.js": "9191d711d96e3cf714e5793210c4f16ee26024b418913a5278cd80419e36ce6c",
+    "dist/details.json": "90670cc80f9f4d5dd89d6052be65696b1abf34dc11a4745b4831bce2b2121f20",
+    "dist/online-compatibility.js": "1ba7fe0f8346879de4374ae994a520e47bc8634f669f7b1f22737f371fda08b7",
+    "dist/card-images.js": "24a46af6841c8c04dd8f112e7980ed9ec1c31e9aae7b8d9fb704ccdf9210446a",
+    "tools/target9000-card-spec.json": "26209db2c453caa10f3f99a6e6901bad22017529812adc20c52e512d994c2c5a",
+    "tests/standard1732-effects.test.mjs": "157217b3337c4301e0dd0f2ce503775841e5a0442fadc4c48baf9cd10c0ecad6"
+  },
+  "engineVersion": "0.602.249",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1732-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.872,
+      "log": "tmp/duema-phase-1732/focused.log",
+      "logSha256": "e2757503afbc17a48a01f178b8e8d675428e61e285f3b4e3412cdf908441fdb4"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1732.json",
+  "supported": 9436,
+  "pending": 2387,
+  "reason": "Complete Japan/Japanica awakening, library recovery and release; Convoy Trailer hand tribe deployment and complete Commander dual-tribe speed/battle aura/release.",
+  "validationNotes": [
+    "Actual nameKey9434→9436, all9434 old definitions/IDs/catalogue/details/aliases/images/refs/pins unchanged.2 full original Psychic cards and4 full official images, no same-name reprints. Raw official missing back Giant race and W soul symbols are explicitly covered in Japan back/runtime spec from both whole images; no existing raw metadata modified.",
+    "Japan native own-start creature count includes itself and excludes sealed/noncreatures/opposing cards, threshold5 checked live; Japanica17000/T and native解除 with optional own-end whole-library creature search, reveal only chosen card and shuffle, decline/ignore/opponent timing verified. Convoy native optional exact1 nonEvolution GreatMechaO or KikaiHero hand deployment, no summon/mana cost, then direct awakening. Decline/none/illegal evolution/opponent turn/ignore/Senno no awakening verified. Complete Commander8000/W/解除 grants native continuous speed and battle-only8000 to both own tribes and itself; ignored recipients keep external bonus, ignored/sealed source loses aura, defending and actual5000 Tai Darion versus13000 Bajula tie prove exact8000.",
+    "Focused fixture corrections replaced nonattacking Medetain with real vanilla Laserion and retained actual Captain Hustles printed own power condition. No runtime rules changed, version only0.602.249. Final whole focused, affected Psychic awakening/release and positively selected battle-aura regressions, encrypted online/save, npm run check, official full face/limits, audit and real nameKey/ID invariants pass. Physical84-card legal extra decks and private encrypted search action ownership preserved.",
+    "Hogan held: original back image14000 conflicts with VC back image and both current official HTML rows11000. Complete original/VC abilities/images reviewed but authoritative correction or current rule for discrepancy not confirmed; no partial registration. Historical pending/card/print/long/user deferrals retained exactly. No whole npm test, repeated broad long group, push/publication/Netlify."
+  ],
+  "held": [
+    {
+      "id": "dm39-008",
+      "name": "時空のスター・G・ホーガン",
+      "reason": "Both full faces/normal and VC official sources and images reviewed. Original back image prints14000, official HTML for both IDs and VC back image11000. Explicit authoritative correction/current rule for the discrepancy not verified; do not register or count partially. Optional reducer/actual summon count/top-deploy also require focused verification in a later batch."
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmd19-005",
+      "name": "時空の斬将オルゼキア",
+      "reason": "Actual turn destruction race history and back on-awakening blind discard2; complete official review required."
+    },
+    {
+      "id": "promoy10-037",
+      "name": "シルバー・ヴォルグ",
+      "reason": "Complete own-start Proto pair and back first opposing destruction untap."
+    },
+    {
+      "id": "promoy10-032",
+      "name": "プロト・ガイアール",
+      "reason": "Optional attack real Silver extra deployment and complete linked KillerDragon back."
+    }
+  ],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
+}

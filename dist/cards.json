@@ -300881,15 +300881,182 @@
       },
       "supportBatch": "phase-1731",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-s09",
+      "name": "時空の豪腕ジャパン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ジャイアント",
+      "text": "覚醒-自分のターンのはじめに、バトルゾーンに自分のクリーチャーが５体以上あれば、このクリーチャーをコストの大きいほうに裏返す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n【呪文面】\n自分のターンの終わりに、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s09",
+      "limit": 4,
+      "psychic": true,
+      "g558Souls": [
+        "W"
+      ],
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 5,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "乱打の覚醒者ジャパニカ",
+        "type": "creature",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 14,
+        "power": 17000,
+        "race": "ジャイアント",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s09b.jpg",
+        "g558Souls": [
+          "W"
+        ],
+        "breaker": 3,
+        "g1085Release": true,
+        "g174Start": null,
+        "g174End": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1732",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-116",
+      "name": "時空の司令 コンボイ・トレーラー",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "フレイム・コマンド/グレートメカオー/ハンター",
+      "text": "ブロッカーブロッカー\nこのクリーチャーは攻撃できない。\n覚醒―自分のターンのはじめに、進化ではないグレートメカオーまたはキカイヒーローを１体、自分の手札からバトルゾーンに出してもよい。そうしたら、このクリーチャーをコストの大きいほうに裏返す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）\n【呪文面】\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のグレートメカオーとキカイヒーローすべてに「スピードアタッカー」を与え、バトル中のパワーを+8000する。\n解除（このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-116",
+      "limit": 4,
+      "psychic": true,
+      "blocker": true,
+      "noAttack": true,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "exactOptional": true,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ],
+            "nonEvolution": true
+          },
+          "after": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "司令官の覚醒者 コンボイ",
+        "type": "creature",
+        "civ": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 14,
+        "power": 8000,
+        "race": "フレイム・コマンド/グレートメカオー/ハンター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-116b.jpg",
+        "blocker": false,
+        "noAttack": false,
+        "g174Start": null,
+        "breaker": 2,
+        "g1085Release": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "グレートメカオー",
+                "キカイヒーロー"
+              ]
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ]
+          },
+          "power": 8000
+        }
+      },
+      "supportBatch": "phase-1732",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1731,
-    "checkedAt": "2026-11-23T10:06:51.605Z",
-    "baseCount": 9431,
-    "newEffectCards": 3,
+    "phase": 1732,
+    "checkedAt": "2026-11-23T10:13:31.035Z",
+    "baseCount": 9434,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9434,
+    "totalCount": 9436,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -329309,6 +329476,21 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 9431,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1731,
+        "checkedAt": "2026-11-23T10:06:51.605Z",
+        "baseCount": 9431,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9434,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

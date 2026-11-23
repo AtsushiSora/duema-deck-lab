@@ -46580,5 +46580,209 @@
         ]
       }
     }
+  },
+  "dm36-s09": {
+    "phase": 1732,
+    "faces": [
+      {
+        "name": "時空の豪腕ジャパン",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "覚醒-自分のターンのはじめに、バトルゾーンに自分のクリーチャーが５体以上あれば、このクリーチャーをコストの大きいほうに裏返す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ジャイアント",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "乱打の覚醒者ジャパニカ",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 14,
+        "costText": "14",
+        "abilityText": "自分のターンの終わりに、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n解除(このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す)",
+        "race": "",
+        "powerText": "17000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "W"
+      ],
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "min": 5,
+              "filter": {
+                "creature": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "乱打の覚醒者ジャパニカ",
+        "type": "creature",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 14,
+        "power": 17000,
+        "race": "ジャイアント",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s09b.jpg",
+        "g558Souls": [
+          "W"
+        ],
+        "breaker": 3,
+        "g1085Release": true,
+        "g174Start": null,
+        "g174End": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmx22b-116": {
+    "phase": 1732,
+    "faces": [
+      {
+        "name": "時空の司令 コンボイ・トレーラー",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nこのクリーチャーは攻撃できない。\n覚醒―自分のターンのはじめに、進化ではないグレートメカオーまたはキカイヒーローを１体、自分の手札からバトルゾーンに出してもよい。そうしたら、このクリーチャーをコストの大きいほうに裏返す。（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "フレイム・コマンド/グレートメカオー/ハンター",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "司令官の覚醒者 コンボイ",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 14,
+        "costText": "14",
+        "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のグレートメカオーとキカイヒーローすべてに「スピードアタッカー」を与え、バトル中のパワーを+8000する。\n解除（このクリーチャーがバトルゾーンを離れる時、バトルゾーンを離れるかわりに、コストの小さいほうに裏返す）",
+        "race": "フレイム・コマンド/グレートメカオー/ハンター",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "blocker": true,
+      "noAttack": true,
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "exactOptional": true,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ],
+            "nonEvolution": true
+          },
+          "after": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "司令官の覚醒者 コンボイ",
+        "type": "creature",
+        "civ": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 14,
+        "power": 8000,
+        "race": "フレイム・コマンド/グレートメカオー/ハンター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-116b.jpg",
+        "blocker": false,
+        "noAttack": false,
+        "g174Start": null,
+        "breaker": 2,
+        "g1085Release": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "グレートメカオー",
+                "キカイヒーロー"
+              ]
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ]
+          },
+          "power": 8000
+        }
+      }
+    }
   }
 }
