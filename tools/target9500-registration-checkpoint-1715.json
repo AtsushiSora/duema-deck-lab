@@ -1,0 +1,298 @@
+{
+  "phase": 1715,
+  "checkedAt": "2026-11-23T06:39:21.245Z",
+  "baseline": "0a00aefd",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9381,
+  "currentNames": 9385,
+  "remainingNames": 115,
+  "added": [
+    {
+      "id": "dm17-001",
+      "name": "クイーン・オブ・プロテクション"
+    },
+    {
+      "id": "dm17-002",
+      "name": "ロード・オブ・レジェンドソード"
+    },
+    {
+      "id": "dm14-052",
+      "name": "スパイラル・オーラ"
+    },
+    {
+      "id": "dm36-014",
+      "name": "蒼月の守護者グーゼ・ノース"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "0a00aefd",
+    "originalDefinitionsUnchanged": 9381,
+    "added": 4,
+    "uniqueNames": 9385,
+    "uniqueIds": 9385,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9381,
+    "existingImageReferenceRowsUnchanged": 11597,
+    "officialPrintsReviewed": 4,
+    "officialImagesReviewed": 4,
+    "existingPinsUnchanged": 952
+  },
+  "results": {
+    "related-cross-power": {
+      "name": "related-cross-power",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard945-effects.test.mjs",
+        "tests/standard1230-effects.test.mjs",
+        "tests/standard408-effects.test.mjs",
+        "tests/standard1713-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.692,
+      "log": "tmp/duema-phase-1715/related-cross-power.log",
+      "passed": 116,
+      "logSha256": "14368eb0b1c3869000ecdbee7ebfda9810020cd9f6301bbec2560819b5af5f23"
+    },
+    "related-destruction-save": {
+      "name": "related-destruction-save",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard390-effects.test.mjs",
+        "tests/standard575-effects.test.mjs",
+        "tests/standard1651-effects.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 34.329,
+      "log": "tmp/duema-phase-1715/related-destruction-save.log",
+      "passed": 227,
+      "logSha256": "ac86c845c849495a8e81b15f5ed9900a19f037cfc7857c48601feeffa02f1584"
+    },
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1715.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.453,
+      "log": "tmp/duema-phase-1715/official.log",
+      "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.14,
+      "log": "tmp/duema-phase-1715/check.log",
+      "logSha256": "c3fa7a34ebd4bf81dfc7913ce133bedd36a3028a23fd8c732c6afa02f2e0bff2"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.1,
+      "log": "tmp/duema-phase-1715/audit.log",
+      "logSha256": "3c8d5435e8cbb5320fb774c061267b44501e6e38742ec4c43e58c9a088ead0b5"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.415,
+      "log": "tmp/duema-phase-1715/target9500.log",
+      "logSha256": "b70c0d109258a307e887a32554a7238467200768e43f46e49587dae599e6529c"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1715/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.365,
+      "log": "tmp/duema-phase-1715/invariants.log",
+      "logSha256": "bde00ed8892279e089d5d752ac8c235ac95a812041b814e4f22ffcdd3e4e235c"
+    },
+    "focused": {
+      "passed": 48,
+      "failed": 0,
+      "parts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 6.834,
+          "log": "tmp/duema-phase-1715/focused.log",
+          "passed": 30,
+          "logSha256": "186a737e6d5a7081600934e943fc229cfbd9e019bcfa6240a0d4b38d0aba0bea"
+        },
+        {
+          "name": "focused-fixtures",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(QA35371|Queen external|Lord grants|Spiral never|QA35318|Gooze protection|Crossed paired)",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.066,
+          "log": "tmp/duema-phase-1715/focused-fixtures.log",
+          "passed": 16,
+          "logSha256": "be624d2acf7d875fea1b9fdf511737b806c58f802e268704aa3112ae778dd7bb"
+        },
+        {
+          "name": "focused-replacement",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(QA35318|Crossed paired)",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.683,
+          "log": "tmp/duema-phase-1715/focused-replacement.log",
+          "passed": 6,
+          "logSha256": "b7f8d53b89fa636b17cff675ce628cbfe339cf38f322e680610679bb995bd7bf"
+        },
+        {
+          "name": "focused-breaker-choice",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Lord grants",
+            "tests/standard1715-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.538,
+          "log": "tmp/duema-phase-1715/focused-breaker-choice.log",
+          "passed": 2,
+          "logSha256": "90dee1b9713d07c9a9eed9265530ede27605e48d6fc2a7b2819539e9f6d1f435"
+        }
+      ],
+      "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+    }
+  },
+  "totalTestsPassed": 391,
+  "hashes": {
+    "dist/cards.json": "02f3830328e16eb1866d1ff8a0446bd387c8ce0fdbd8f619085e3245d8e0d967",
+    "dist/engine.js": "92c2810353b14283fe5199a07faef18e44d6392149fce16091d89cd450d39735",
+    "dist/samurai-rules.js": "7cc2cf1ac6efae975cde8ceb068b8ad952ce41fbc5563227cdd105d17b387a24",
+    "dist/extended-rules.js": "7f1080375eaf2bcb60779fe572371f59c55c73530266fd9a2370e0251a642871",
+    "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+    "dist/online-compatibility.js": "a81e8b5c7cb2ea0d5b33a1a594e823b7f9a6fc60ccad62569ee264ad9ca09dbe",
+    "dist/card-images.js": "67c8a91fe3ffcb5f6b34c4fdcfbf1fde4f5c06d77c4460eddf12334f49c1e57f",
+    "tools/target9000-card-spec.json": "24378c0d8775c18f1781d98232ded5d4130206353b2e723f55c778d1f40c7d3d",
+    "tests/standard1715-effects.test.mjs": "9dbddaf40794a1178a899c1f50b5eee7fd28c4ee45fd6c582361a741fbbe6781"
+  },
+  "engineVersion": "0.602.232",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1715-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 6.834,
+      "log": "tmp/duema-phase-1715/focused.log",
+      "logSha256": "186a737e6d5a7081600934e943fc229cfbd9e019bcfa6240a0d4b38d0aba0bea"
+    },
+    {
+      "name": "focused-fixtures",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(QA35371|Queen external|Lord grants|Spiral never|QA35318|Gooze protection|Crossed paired)",
+        "tests/standard1715-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.066,
+      "log": "tmp/duema-phase-1715/focused-fixtures.log",
+      "logSha256": "be624d2acf7d875fea1b9fdf511737b806c58f802e268704aa3112ae778dd7bb"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1715.json",
+  "supported": 9385,
+  "pending": 2438,
+  "reason": "Complete Queen/Lord physical crossed-card pairing, Spiral Aura destruction replacement, and exact QA36009 dependency Gooze North mandatory H-Soul opponent-turn hand-return replacement. All abilities implemented; psychic different names not counted.",
+  "validationNotes": [
+    "Actual nameKey9381→9385, clean baseline0a00aefd and no prior work/tests. All9381 existing definitions, IDs, details/catalogue/aliases, image URLs and pins unchanged. All4 original official images, full abilities/basic stats/mana/current restrictions verified; psychic different-name counterparts not duplicate-added.",
+    "Queen external power4000 becomes12000 if the same physical host carries a named Lord. Each Queen counts once, Lords do not multiply a single Queen; active source is required but an ignored physical partner retains its name. Granted Blocker is suppressed on ignored host; external power remains.",
+    "Lord grants native W and strictly-lower-current-power block restriction. Original T is not downgraded; conditional extra2 per physical Lord uses existing external cross extra-break handling and survives ignored host separately from granted W. Exact QA35371-35374 both-player power/extra-break counts reproduced.",
+    "Spiral uses existing mandatory destroy-to-hand replacement by adding only an active crossed-source hook. Gear remains in play, no death watcher fires, ignored host still receives external replacement, ignored/sealed source does not. Native competition preserved: exact QA35318 real Broccoli chooses hand or mana, with JSON/encrypted pending choice.",
+    "Added complete Gooze North solely for exact QA36009. Official image confirms H Soul, native Blocker/no-player-attack and opponent-turn mandatory H-Soul bounce-stay source. QA36007 any player effect, QA36008 no decline, QA36009 no replacement chaining reproduced with actual H-Soul card. Source ignored/sealed, own-turn and wrong-controller cases tested.",
+    "48 unique focused cases pass after fixture corrections;343 affected regressions pass,total391. Initial fixtures assumed a decision for automatic single-shield break, skipped block/actual Bajula attack trigger, used wrong native replacement labels, or injected an unsupported replacement parameter into ExactMove. Corrections use real Broccoli battle replacement and existing native effect steps. Replaced fixture titles are mapped to their current names when aggregating unique results.",
+    "Historical full-suite/individual/reprint/long/user deferrals unchanged; no whole npm test/repeated long group or push/publication/Netlify. Check/audit/invariants/actual nameKey/target9500 pass."
+  ],
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "dm15-s05",
+      "name": "アクテリオン・フォース",
+      "reason": "Verify full S Trigger X generation plus mandatory free crossing and granted Power Attacker9000/T."
+    },
+    {
+      "id": "dm15-032",
+      "name": "インフェルノ・シザース",
+      "reason": "Verify full S Trigger X and crossed attack total-power3000 destruction."
+    },
+    {
+      "id": "dm15-026",
+      "name": "マキシマム・ディフェンス",
+      "reason": "Verify full S Trigger X, crossed5000/Blocker and cannot attack."
+    },
+    {
+      "id": "dm23ex1-066",
+      "name": "天装 カガヤキ・ミガタメ",
+      "reason": "Held phase1712; implement full S Trigger X and both entry/attack tap-freeze, including seal removal before crossing."
+    }
+  ],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+}

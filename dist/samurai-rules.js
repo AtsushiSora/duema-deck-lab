@@ -12,6 +12,8 @@ export function createSamuraiRules(api){
  };
  const attached=(s,p,x)=>gears(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0));
  const active=(s,g)=>!api.ignored(s,g);
+ // Phase1715: pairing tests physical attached cards; a muted partner still has its name.
+ const paired=(s,p,x,name)=>attached(s,p,x).some(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x&&[card(g).name,...(card(g).additionalNames||[])].includes(name));
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
  const mushaName='ボルメテウス・武者・ドラゴン';
  function identity(s,p,x,c){
@@ -168,6 +170,7 @@ export function createSamuraiRules(api){
   return triggered;
  },
  identity,
+ crossDestroyToHand(s,p,x){return !x.sealed&&attached(s,p,x).some(g=>card(g).g1715CrossDestroyToHand&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  // Phase1713: an active crossed gear supplies permission independently of its host abilities.
  evolutionRace(s,p,x){return p>=0&&!x.sealed&&!x.faceDown&&s.players[p].battle.includes(x)&&attached(s,p,x).some(g=>card(g).g1713CrossAnyEvolutionRace&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g));},
  protected(s,p,x){
@@ -190,6 +193,7 @@ export function createSamuraiRules(api){
  },
  decorate932(s,p,x,c){
   if(c.type!=='creature')return c;
+  for(const g of attached(s,p,x))if(card(g).g1715CrossGrant&&!g.faceDown&&!g.sealed&&live(s,p,g)===x&&active(s,g))c={...c,...card(g).g1715CrossGrant};
   let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
    const def=card(g);
@@ -240,11 +244,11 @@ export function createSamuraiRules(api){
   for(const gear of s.players[p].battle){
    if(gear.crossedTo?.uid!==x.uid||gear.crossedTo.incarnation!==(x.incarnation||0)||gear.faceDown)continue;
    const amount=card(gear).g1230CrossExtraBreak;
-   if(amount&&active(s,gear))count+=amount;
+   if(amount&&active(s,gear)&&(!card(gear).g1715CrossPartner||paired(s,p,x,card(gear).g1715CrossPartner)))count+=amount;
   }
   return count;
  },
- power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length,0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
+ power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length+(card(g).g1715CrossPower?(paired(s,p,x,card(g).g1715CrossPower.name)?card(g).g1715CrossPower.paired:card(g).g1715CrossPower.base):0),0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
   if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){
