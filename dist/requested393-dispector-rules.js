@@ -51,7 +51,10 @@ export function createRequested393DispectorRules(api){
   const n=dies(s)+1;
   const byPlayer=n>1?[...(s.g393DDestroyed.byPlayer||[0,0])]:[0,0];
   byPlayer[p]++;
-  s.g393DDestroyed={turn:s.turn,n,byPlayer};
+  // Keep the public race at destruction, even if the card later leaves the graveyard.
+  const racesByPlayer=n>1?(s.g393DDestroyed.racesByPlayer||[[],[]]).map(r=>[...r]):[[],[]];
+  racesByPlayer[p].push(String(prior?.race??effective(x,s).race??''));
+  s.g393DDestroyed={turn:s.turn,n,byPlayer,racesByPlayer};
   return n===1;
  },
  played(s,p,c){if(c.type!=='spell')countExecution(s,p);},spellCast(s,p){countExecution(s,p);},

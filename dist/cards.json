@@ -301048,15 +301048,194 @@
       },
       "supportBatch": "phase-1732",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd19-005",
+      "name": "時空の斬将オルゼキア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n覚醒-ターン中、自分のデーモン・コマンドが破壊されていれば、そのターンの終わりにこのクリーチャーをコストの大きいほうに裏返す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）\n【呪文面】\nこのクリーチャーが覚醒した時、相手の手札を２枚見ないで選び、捨てさせる。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-005",
+      "limit": 4,
+      "psychic": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1733DestroyedRace": "デーモン・コマンド"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1733DestroyedRace": "デーモン・コマンド"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "魔刻の覚醒者Ｇ・オルゼキア",
+        "type": "creature",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 14,
+        "power": 12000,
+        "race": "デーモン・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-005b.jpg",
+        "breaker": 3,
+        "g174End": null,
+        "g565OpponentEnd": null,
+        "g1730WhenAwaken": [
+          {
+            "op": "BlindDiscard773",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1733",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy10-037",
+      "name": "シルバー・ヴォルグ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ダーク・モンスター/ハンター",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n覚醒リンク - 自分のターンのはじめに、バトルゾーンに自分の《プロト・ガイアール》があれば、そのクリーチャーとこのクリーチャーを裏返しリンクさせる。\n【覚醒リンク面】\nブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n各ターン、相手のクリーチャーがはじめて破壊された時、このクリーチャーをアンタップする。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy10-037",
+      "limit": 4,
+      "psychic": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174Start": [
+        {
+          "op": "PsychicLink1355",
+          "partner": "promoy10-032"
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "撃墜王ガイアール・キラードラゴン",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "レッド・コマンド・ドラゴン/デーモン・コマンド/ハンター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy10-037b.jpg",
+        "blocker": true,
+        "breaker": 2,
+        "g303DeathWatch": {
+          "opponent": true,
+          "g1733FirstForPlayer": true,
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ],
+          "g891LookBackSelf": true
+        }
+      },
+      "supportBatch": "phase-1733",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy10-032",
+      "name": "プロト・ガイアール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "フレイム・モンスター/ハンター",
+      "text": "このクリーチャーが攻撃する時、《シルバー・ヴォルグ》を１体、自分の超次元ゾーンからバトルゾーンに出してもよい。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）\n【覚醒リンク面】\nブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n各ターン、相手のクリーチャーがはじめて破壊された時、このクリーチャーをアンタップする。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy10-032",
+      "limit": 4,
+      "psychic": true,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g1085Psychic": true,
+            "g201ExactName": "シルバー・ヴォルグ"
+          }
+        }
+      ],
+      "g1355LinkedFace": {
+        "name": "撃墜王ガイアール・キラードラゴン",
+        "type": "creature",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "レッド・コマンド・ドラゴン/デーモン・コマンド/ハンター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy10-032b.jpg",
+        "blocker": true,
+        "breaker": 2,
+        "g303DeathWatch": {
+          "opponent": true,
+          "g1733FirstForPlayer": true,
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ],
+          "g891LookBackSelf": true
+        }
+      },
+      "supportBatch": "phase-1733",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1732,
-    "checkedAt": "2026-11-23T10:13:31.035Z",
-    "baseCount": 9434,
-    "newEffectCards": 2,
+    "phase": 1733,
+    "checkedAt": "2026-11-23T10:20:43.124Z",
+    "baseCount": 9436,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9436,
+    "totalCount": 9439,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -329491,6 +329670,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9434,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1732,
+        "checkedAt": "2026-11-23T10:13:31.035Z",
+        "baseCount": 9434,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9436,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

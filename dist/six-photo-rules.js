@@ -687,6 +687,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1733DestroyedRace)return s.g393DDestroyed?.turn===s.turn&&!!s.g393DDestroyed.racesByPlayer?.[p]?.some(r=>r.includes(f.g1733DestroyedRace));
   if(f.g1731OpponentAttacking)return !!s.attack&&s.players[1-p].battle.some(x=>x.uid===s.attack.attacker&&!x.sealed&&api.isCreature(s,x));
   if(f.g1629OwnTurn)return s.active===p;
   if(f.g1564Opponent)return s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&matches(s,1-p,x,f.g1564Opponent));
@@ -11024,7 +11025,7 @@ export function createSixPhotoRules(api){
    }
   }
   const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=deathVictim1674(death,p,x);const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
-   (victim.creature||victim.element&&y.watch.g1311Element)&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&
+   (victim.creature||victim.element&&y.watch.g1311Element)&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&(!y.watch.g1733FirstForPlayer||s.g393DDestroyed?.turn===s.turn&&s.g393DDestroyed.byPlayer?.[p]===1)&&
    (y.watch.both||y.p===(y.watch.opponent?1-p:p)))){const self=key(watcher)===key(victim);
    // Rule 603.5d: a source that leaves in this batch can see only itself.
    if(watcher.g891OnlySelf&&!self)continue;
