@@ -45404,5 +45404,776 @@
         ]
       }
     }
+  },
+  "dm39-011": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の凶兵ブラック・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "【B・ソウル】\nこのクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "B"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "type": "creature",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "デーモン・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+        "g558Souls": [
+          "B"
+        ],
+        "effect": null,
+        "g34Tasks": null,
+        "g565OpponentEnd": null,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dm39-011VC": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の凶兵ブラック・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "【B・ソウル】\nこのクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "B"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "type": "creature",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "デーモン・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+        "g558Souls": [
+          "B"
+        ],
+        "effect": null,
+        "g34Tasks": null,
+        "g565OpponentEnd": null,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dmbd21-010": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の凶兵ブラック・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーが出た時、相手のタップしているクリーチャーを１体破壊する。\n覚醒：相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "デーモン・コマンド",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "B"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "type": "creature",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "デーモン・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+        "g558Souls": [
+          "B"
+        ],
+        "effect": null,
+        "g34Tasks": null,
+        "g565OpponentEnd": null,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dmd19-015": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の凶兵ブラック・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "デーモン・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "デーモン・コマンド",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "B"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "g1102DirectAwaken": true
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+        "type": "creature",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 13,
+        "power": 9000,
+        "race": "デーモン・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+        "g558Souls": [
+          "B"
+        ],
+        "effect": null,
+        "g34Tasks": null,
+        "g565OpponentEnd": null,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      }
+    }
+  },
+  "dm38-022": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の戦猫シンカイヤヌス",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーに覚醒した時、カードを１枚引く。\nループ覚醒-自分のターン中に火のクリーチャーをバトルゾーンに出した時、このクリーチャーを《時空の戦猫ヤヌスグレンオー》のほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+        "race": "ブルー・モンスター",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "時空の戦猫ヤヌスグレンオー",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーに覚醒した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーは「パワーアタッカー+2000」と「スピードアタッカー」を得る。\nループ覚醒-自分のターン中に水のクリーチャーをバトルゾーンに出した時、このクリーチャーを《時空の戦猫シンカイヤヌス》のほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+        "race": "フレイム・モンスター",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "M",
+        "K"
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "ownTurn": true,
+        "g1324IncludeSelf": true,
+        "filter": {
+          "creature": true,
+          "color": "火"
+        },
+        "defs": [
+          {
+            "op": "Awaken1095",
+            "loop": true,
+            "g1730Face": true
+          }
+        ]
+      },
+      "g1730WhenAwaken": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1085Back": {
+        "name": "時空の戦猫ヤヌスグレンオー",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "power": 4000,
+        "race": "フレイム・モンスター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+        "g558Souls": [
+          "M",
+          "K"
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "ownTurn": true,
+          "g1324IncludeSelf": true,
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "loop": true,
+              "g1730Face": false
+            }
+          ]
+        },
+        "g1730WhenAwaken": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "g337PowerAttacker": true,
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmex08-224": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の戦猫シンカイヤヌス",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが覚醒した時、カードを１枚引く。\nループ覚醒：自分のターン中に火のクリーチャーがバトルゾーンに出た時、このクリーチャーを《時空の戦猫ヤヌスグレンオー》のほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "ブルー・モンスター",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "時空の戦猫ヤヌスグレンオー",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが覚醒した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーに「パワーアタッカー+2000」と「スピードアタッカー」を与える。\nループ覚醒：自分のターン中に水のクリーチャーがバトルゾーンに出た時、このクリーチャーを《時空の戦猫シンカイヤヌス》のほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "フレイム・モンスター",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "g558Souls": [
+        "M",
+        "K"
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "ownTurn": true,
+        "g1324IncludeSelf": true,
+        "filter": {
+          "creature": true,
+          "color": "火"
+        },
+        "defs": [
+          {
+            "op": "Awaken1095",
+            "loop": true,
+            "g1730Face": true
+          }
+        ]
+      },
+      "g1730WhenAwaken": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g1085Back": {
+        "name": "時空の戦猫ヤヌスグレンオー",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "power": 4000,
+        "race": "フレイム・モンスター",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+        "g558Souls": [
+          "M",
+          "K"
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "ownTurn": true,
+          "g1324IncludeSelf": true,
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "loop": true,
+              "g1730Face": false
+            }
+          ]
+        },
+        "g1730WhenAwaken": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "g337PowerAttacker": true,
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmc65-001": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "時空の嵐ストームXX",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーは攻撃することができない。\n自分のターンのはじめに、自分の山札の上から３枚を墓地に置く。\n覚醒 - 自分のターンのはじめに、自分の墓地からファイアー・バードを５枚選び、山札に加えてシャッフルしてもよい。そうした場合、このクリーチャーをコストの大きいほうに裏返す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "アーマード・ドラゴン/フレイム・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "神風の覚醒者ストーム・カイザー XX",
+        "typeText": "サイキック・クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 14,
+        "costText": "14",
+        "abilityText": "このクリーチャーが覚醒した時、相手のクリーチャーを２体破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+        "race": "アーマード・ドラゴン/フレイム・コマンド",
+        "powerText": "15000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "psychic": true,
+      "manaValue": 0,
+      "noAttack": true,
+      "g1730OwnStartAbilities": [
+        {
+          "label": "山札の上から3枚を墓地に置く",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 3
+            }
+          ]
+        },
+        {
+          "label": "ファイアー・バード5枚を山札に戻して覚醒する",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "deck",
+              "n": 5,
+              "optional": true,
+              "exactOptional": true,
+              "filter": {
+                "anyFaceRace": "ファイアー・バード"
+              },
+              "after": [
+                {
+                  "op": "Shuffle405"
+                },
+                {
+                  "op": "Awaken1095",
+                  "g1102DirectAwaken": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g1085Back": {
+        "name": "神風の覚醒者ストーム・カイザー XX",
+        "type": "creature",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 14,
+        "power": 15000,
+        "race": "アーマード・ドラゴン/フレイム・コマンド",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-001b.jpg",
+        "noAttack": false,
+        "g1730OwnStartAbilities": [],
+        "breaker": 3,
+        "g1730WhenAwaken": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true
+          }
+        ]
+      }
+    }
+  },
+  "promoy9-097": {
+    "phase": 1730,
+    "faces": [
+      {
+        "name": "キズナ・ブラスター",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "次のうちいずれかひとつを選ぶ。 ▼自分の山札を見る。その中から名前に《XX》とあるクリーチャーを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。 ▼コスト７以下の、名前に《XX》とあるサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "山札からXXを出す",
+              "defs": [
+                {
+                  "op": "LookDeploy530",
+                  "g201Search": true,
+                  "g841DeckPeek": true,
+                  "limit": 1,
+                  "rest": "shuffle",
+                  "filter": {
+                    "creature": true,
+                    "name": "XX"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "超次元ゾーンからコスト7以下のXXを出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "extra",
+                  "n": 1,
+                  "deploy": true,
+                  "g1104PsychicFaces": true,
+                  "filter": {
+                    "creature": true,
+                    "g1085Psychic": true,
+                    "max": 7,
+                    "name": "XX"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

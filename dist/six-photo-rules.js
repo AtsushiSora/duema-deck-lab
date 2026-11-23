@@ -4515,6 +4515,8 @@ export function createSixPhotoRules(api){
  case'g34_Awaken1095':{
   const x=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation&&!y.sealed);
   if(!x||x.g1085Awakened&&!t.loop)break;
+  // Named loop faces do not toggle again when another queued trigger already reached that face.
+  if(t.g1730Face!==undefined&&!!x.g1085Awakened===t.g1730Face)break;
   if(t.loop){api.awakenPsychic(s,t.p,x,true);break;}
   if(t.g1102DirectAwaken){api.awakenPsychic(s,t.p,x);break;}
   if(t.g1096OtherEntries!==undefined){
@@ -9602,7 +9604,8 @@ export function createSixPhotoRules(api){
     title:'マナゾーンに置く自分の手札を1枚選ぶ（任意）'});
   }
  },
- turnStart(s,p,tappedBefore){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||card(x).type==='aura'||card(x).type==='field'&&(card(x).dragheart||effective(x,s).g1651BounceStopRace||effective(x,s).g1669D2Start)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const c=effective(x,s),defs=c[controller===p?'g174Start':'g179OpponentStart'];if(defs?.[0]?.op==='PsychicLink1355'&&!psychicLinkChoices1358(s,controller,x,defs[0]).length)return [];if(c.g754StartTapped&&!(controller===p?tappedBefore?.has(x.uid):x.tapped))return [];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));const grave=s.players[p].grave.flatMap(x=>{
+ turnStart(s,p,tappedBefore){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||card(x).type==='aura'||card(x).type==='field'&&(card(x).dragheart||effective(x,s).g1651BounceStopRace||effective(x,s).g1669D2Start)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const c=effective(x,s),defs=c[controller===p?'g174Start':'g179OpponentStart'];if(defs?.[0]?.op==='PsychicLink1355'&&!psychicLinkChoices1358(s,controller,x,defs[0]).length)return [];if(c.g754StartTapped&&!(controller===p?tappedBefore?.has(x.uid):x.tapped))return [];const abilities=[...(defs?[{defs}]:[]),...(controller===p?c.g1730OwnStartAbilities||[]:[])];
+ return abilities.map(({defs,label})=>({player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',...(label?{label}:{}),task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}));}));const grave=s.players[p].grave.flatMap(x=>{
   const c=card(x),colors=c.g754GraveStartColors;
   if(x.faceDown)return [];
   if(c.g1628GraveStartShield){

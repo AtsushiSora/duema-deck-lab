@@ -1,0 +1,252 @@
+{
+  "phase": 1730,
+  "checkedAt": "2026-11-23T10:03:30.571Z",
+  "baseline": "cfa4085a",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9427,
+  "currentNames": 9431,
+  "remainingNames": 69,
+  "added": [
+    {
+      "id": "dm39-011",
+      "name": "時空の凶兵ブラック・ガンヴィート"
+    },
+    {
+      "id": "dm38-022",
+      "name": "時空の戦猫シンカイヤヌス"
+    },
+    {
+      "id": "dmc65-001",
+      "name": "時空の嵐ストームXX"
+    },
+    {
+      "id": "promoy9-097",
+      "name": "キズナ・ブラスター"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "cfa4085a",
+    "originalDefinitionsUnchanged": 9427,
+    "added": 4,
+    "uniqueNames": 9431,
+    "uniqueIds": 9431,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "detailsCorrection": "Only previously unsupported dm39-011 front adds missing official B soul label; all other rows and fields unchanged.",
+    "newOfficialPrintAliases": 4,
+    "existingImageUrlsUnchanged": 9427,
+    "existingImageReferenceRowsUnchanged": 11669,
+    "officialPrintsReviewed": 8,
+    "officialImagesReviewed": 15,
+    "existingPinsUnchanged": 1024
+  },
+  "results": {
+    "focused-final": {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1730-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.131,
+      "log": "tmp/duema-phase-1730/focused-final.log",
+      "passed": 63,
+      "logSha256": "0acc1c99b70768781929611f152fedf9265c95d6c39e2f13b6033a7c758b612b"
+    },
+    "related-awakening": {
+      "name": "related-awakening",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1102-effects.test.mjs",
+        "tests/standard1104-effects.test.mjs",
+        "tests/standard1355-effects.test.mjs",
+        "tests/standard1356-effects.test.mjs",
+        "tests/standard1727-effects.test.mjs",
+        "tests/standard1728-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 7.286,
+      "log": "tmp/duema-phase-1730/related-awakening.log",
+      "passed": 146,
+      "logSha256": "3746ea22f117401424fddd03438a24f7b5c74118052989e64f69116058bc36be"
+    },
+    "related-start-soul": {
+      "name": "related-start-soul",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(?:turn-start effects|optional start ramp|own-end mill|optional end mill|multiple own-start|Genmu and ignored|soul identifiers|Screw)",
+        "tests/standard174-effects.test.mjs",
+        "tests/standard558-effects.test.mjs",
+        "tests/standard565-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.98,
+      "log": "tmp/duema-phase-1730/related-start-soul.log",
+      "passed": 13,
+      "logSha256": "a41de1037d4474909175f2486ff06f56548551e82e4a6ebed187d727a8b91fe1"
+    },
+    "related-online-final": {
+      "name": "related-online-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.709,
+      "log": "tmp/duema-phase-1730/related-online-final.log",
+      "passed": 55,
+      "logSha256": "0943a40d57c6248b01e37bede269d5cb221322312f10915cdcebf15f2071ebae"
+    },
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1730.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.967,
+      "log": "tmp/duema-phase-1730/official.log",
+      "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+    },
+    "check-final": {
+      "name": "check-final",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.707,
+      "log": "tmp/duema-phase-1730/check-final.log",
+      "logSha256": "e838bb57be7c6d50c0304b0d6ce67d5760127c9dee9e61c2306cb7e8fad3141b"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.673,
+      "log": "tmp/duema-phase-1730/audit.log",
+      "logSha256": "745d146aed70c2ce8d1c2202ce0eec9e6bf3fe21f79aafedf77266da8e6a0565"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.481,
+      "log": "tmp/duema-phase-1730/target9500.log",
+      "logSha256": "89c88f6a83fe20f2f5c529880e21b0c222a7718258609d9107b1ed2a93adfc72"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1730/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.435,
+      "log": "tmp/duema-phase-1730/invariants.log",
+      "logSha256": "39da617db8e9b2bd4ce69faefa5fbb0b15c103ef3797925882c72478457531ff"
+    }
+  },
+  "totalTestsPassed": 277,
+  "hashes": {
+    "dist/cards.json": "7df203dc1dc80f1b60a68eb8211d1d6785bc1e93b840c86c204bc3cc134ef725",
+    "dist/engine.js": "34d7f56d2cdeac163b123531e0f05105f5286d8e931fd91f7f2d72278bc74d34",
+    "dist/six-photo-rules.js": "a9863008074b7d2d8975f0b9e7e732ad8af99edc3aef98abd66edfde7118f598",
+    "dist/details.json": "90670cc80f9f4d5dd89d6052be65696b1abf34dc11a4745b4831bce2b2121f20",
+    "dist/online-compatibility.js": "beef15b5bbbec7d156a5b8e196f975d5646b587667c808e5be889ffe693458ff",
+    "dist/card-images.js": "89e5dc051c9be457ecf9e4c61ba41f89c6a63d5db5028e9c9915aa922e8a0804",
+    "tools/target9000-card-spec.json": "8ad0c5fdf3f3778481ea99d6895defcf7cb10aec1bf34841e3a9b26c6ed398ed",
+    "tests/standard1730-effects.test.mjs": "af54a0ff8bc0e9326982f6c1672a5beab884f21addd5c6ae8f01fb7a9d091f2e"
+  },
+  "engineVersion": "0.602.247",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1730-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.51,
+      "log": "tmp/duema-phase-1730/focused.log",
+      "logSha256": "955f992ddd4b8a8b024f5e731a4418f1e30370ed84d775194d2a376c12d276fd"
+    },
+    {
+      "name": "focused-additional",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(?:Janus direct|Storm return5|Storm attack|Janus real|Kizuna real5000|Kizuna whole)",
+        "tests/standard1730-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.788,
+      "log": "tmp/duema-phase-1730/focused-additional.log",
+      "logSha256": "3bc5ea1a262b38d7fe56860176fe65a1468f1d9282fb8c1500434534f2653e02"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 19.525,
+      "log": "tmp/duema-phase-1730/check.log",
+      "logSha256": "23f68d5f07310c057551af5e3a1a78e48302fe78dd3df0ce34f21bb809cff7a4"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1730.json",
+  "supported": 9431,
+  "pending": 2392,
+  "reason": "Complete Black Ganvito, directed Janus loop awakening, independent Storm XX start abilities and Kizuna Blaster both modes.",
+  "validationNotes": [
+    "Actual nameKey9427→9431, existing9427 supported definitions/IDs unchanged, every preexisting catalogue/alias/image/ref/pin preserved. Only previously unsupported dm39-011 detail adds missing official front B soul label; all other detail rows and fields unchanged.4 complete original cards,8 exact-name prints,15 full images including both back faces reviewed. Back faces/reprints are not added names.",
+    "Printed images establish B soul on both Ganvito faces and M/K souls on both Janus faces even where official HTML omits symbols; explicit runtime soul arrays preserve them. Ganvito mandatory tapped removal/opponent-end empty-hand awakening/back opponent-chosen discard then sacrifice and W breaker verified both players.",
+    "Janus native own-turn matching-entry watcher now uses directed target face; queued same-color entries cannot toggle twice. New small awakening hook queues actual resulting-face abilities only on genuine awakening, not chosen-face deployment or unlink. Native PA2000 and speed grant expires at end; blue draw1 and attack freshness verified. Storm new independent start-ability groups preserve choice of mill3 versus exact5 Fire Bird return first. Native exactOptional selection, any-face race, shuffle, source identity and back destroy2/T breaker reused.",
+    "Kizuna real registered Storm XX enables correct cost7 XX Psychic mode. Private full-library optional GENJI XX deployment, shuffle/decline/no targets, native paid7, nonsummon entry locks and 5000GT verified. Both players encrypted choice, exact legal actions, private projection, saved legal deck/86 physical identities and AI purity verified. Check initial failure was mismatched engine constant versus release version, both now0.602.247 and final online/check pass. Initial fixture corrections: native discard uses extended choice; simultaneous Fire entries use real Heavens Gate and2 Keen; Energy Hole itself draws1 and only selects Water, so direct both-face test uses real BlueWhite Hole; exported canCreatureAttack requires player argument. Failed attempts preserved, final distinct passing cases counted once.",
+    "No full npm test or old broad long group rerun. Historical card/print/long pending and user deferrals unchanged; no push/publication/Netlify."
+  ],
+  "held": [],
+  "nextCandidates": [],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。旧未確認項目を保持、全体npm testと同じ長時間群を再実行せず、push・公開・Netlify更新なし。"
+}

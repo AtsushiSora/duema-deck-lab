@@ -1,0 +1,1139 @@
+{
+  "phase": 1730,
+  "checkedAt": "2026-11-23T09:57:40.895Z",
+  "baseCount": 9427,
+  "target": 9500,
+  "description": "Complete Black Ganvito, directed Janus loop awakening, independent Storm XX start abilities and Kizuna Blaster both modes.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [],
+  "cards": [
+    {
+      "id": "dm39-011",
+      "name": "時空の凶兵ブラック・ガンヴィート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-011",
+      "faces": [
+        {
+          "name": "時空の凶兵ブラック・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "【B・ソウル】\nこのクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "デーモン・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "B"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "g1102DirectAwaken": true
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "type": "creature",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "power": 9000,
+          "race": "デーモン・コマンド",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+          "g558Souls": [
+            "B"
+          ],
+          "effect": null,
+          "g34Tasks": null,
+          "g565OpponentEnd": null,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            },
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "96729266d1d92b66ad9a454248235cee3db44ab9cd2918af7dc0506c0f7893c0",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+      "backImageSha256": "63d7a25bb3f0bc57621c05a684562abb127bad20e24624e40cb75f5d9468dcf9",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "All4 print images show B soul on BOTH faces; official HTML omits back soul, sometimes both. Explicit B soul spec preserves full printed ability."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm39-011",
+          "dm39-011VC",
+          "dmbd21-010",
+          "dmd19-015"
+        ],
+        "result": "Whole exact-name official search/product list, all faces and images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "c1827794f1db162f065e958ba9c1500777f0a00700246e35dc5d20878b7e5664",
+        "facesMatched": true,
+        "imageSha256": "96729266d1d92b66ad9a454248235cee3db44ab9cd2918af7dc0506c0f7893c0",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+        "backImageSha256": "63d7a25bb3f0bc57621c05a684562abb127bad20e24624e40cb75f5d9468dcf9"
+      }
+    },
+    {
+      "id": "dm38-022",
+      "name": "時空の戦猫シンカイヤヌス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-022",
+      "faces": [
+        {
+          "name": "時空の戦猫シンカイヤヌス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーに覚醒した時、カードを１枚引く。\nループ覚醒-自分のターン中に火のクリーチャーをバトルゾーンに出した時、このクリーチャーを《時空の戦猫ヤヌスグレンオー》のほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "ブルー・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "時空の戦猫ヤヌスグレンオー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーに覚醒した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーは「パワーアタッカー+2000」と「スピードアタッカー」を得る。\nループ覚醒-自分のターン中に水のクリーチャーをバトルゾーンに出した時、このクリーチャーを《時空の戦猫シンカイヤヌス》のほうに裏返す。(ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "M",
+          "K"
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "ownTurn": true,
+          "g1324IncludeSelf": true,
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "loop": true,
+              "g1730Face": true
+            }
+          ]
+        },
+        "g1730WhenAwaken": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g1085Back": {
+          "name": "時空の戦猫ヤヌスグレンオー",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "power": 4000,
+          "race": "フレイム・モンスター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+          "g558Souls": [
+            "M",
+            "K"
+          ],
+          "g314OtherEntry": {
+            "who": "self",
+            "ownTurn": true,
+            "g1324IncludeSelf": true,
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "loop": true,
+                "g1730Face": false
+              }
+            ]
+          },
+          "g1730WhenAwaken": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 2000,
+              "g337PowerAttacker": true,
+              "grant": {
+                "speedAttacker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4d21e98b2582540d6507e458b32a3cb06ece7a9fbe57d82083f8710c64f73b4d",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+      "backImageSha256": "20414d362d121570d32b9971f9b3f6b8120f9af690d9b2817149c46325a95529",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "Both original/reprint images show M and K souls on BOTH faces; official HTML omits soul symbols. Explicit soul spec preserves full printed ability."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm38-022",
+          "dmex08-224"
+        ],
+        "result": "Whole exact-name official search/product list, all faces and images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "248594c7517b726c556d5dddb9eee859769702056ab10af6bc6eaee1858a8f98",
+        "facesMatched": true,
+        "imageSha256": "4d21e98b2582540d6507e458b32a3cb06ece7a9fbe57d82083f8710c64f73b4d",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+        "backImageSha256": "20414d362d121570d32b9971f9b3f6b8120f9af690d9b2817149c46325a95529"
+      }
+    },
+    {
+      "id": "dmc65-001",
+      "name": "時空の嵐ストームXX",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-001",
+      "faces": [
+        {
+          "name": "時空の嵐ストームXX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーは攻撃することができない。\n自分のターンのはじめに、自分の山札の上から３枚を墓地に置く。\n覚醒 - 自分のターンのはじめに、自分の墓地からファイアー・バードを５枚選び、山札に加えてシャッフルしてもよい。そうした場合、このクリーチャーをコストの大きいほうに裏返す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "アーマード・ドラゴン/フレイム・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "神風の覚醒者ストーム・カイザー XX",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "costText": "14",
+          "abilityText": "このクリーチャーが覚醒した時、相手のクリーチャーを２体破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "アーマード・ドラゴン/フレイム・コマンド",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "noAttack": true,
+        "g1730OwnStartAbilities": [
+          {
+            "label": "山札の上から3枚を墓地に置く",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 3
+              }
+            ]
+          },
+          {
+            "label": "ファイアー・バード5枚を山札に戻して覚醒する",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "deck",
+                "n": 5,
+                "optional": true,
+                "exactOptional": true,
+                "filter": {
+                  "anyFaceRace": "ファイアー・バード"
+                },
+                "after": [
+                  {
+                    "op": "Shuffle405"
+                  },
+                  {
+                    "op": "Awaken1095",
+                    "g1102DirectAwaken": true
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "神風の覚醒者ストーム・カイザー XX",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 14,
+          "power": 15000,
+          "race": "アーマード・ドラゴン/フレイム・コマンド",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-001b.jpg",
+          "noAttack": false,
+          "g1730OwnStartAbilities": [],
+          "breaker": 3,
+          "g1730WhenAwaken": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 2,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-001a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9d599903a348baa209ce0b250d5cd31319f09495349942e42c723cbb67aef6d0",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-001b.jpg",
+      "backImageSha256": "6600c50d2695694036a53ab7e17a4cca8e7dbdaf643866faf7b51c60511a9a1e",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "Full printed faces reviewed."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmc65-001"
+        ],
+        "result": "Whole exact-name official search/product list, all faces and images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "643db9112eb82bd7cbf1e7e337415d8beae9c630655be5aae0d706c2aac4a394",
+        "facesMatched": true,
+        "imageSha256": "9d599903a348baa209ce0b250d5cd31319f09495349942e42c723cbb67aef6d0",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-001b.jpg",
+        "backImageSha256": "6600c50d2695694036a53ab7e17a4cca8e7dbdaf643866faf7b51c60511a9a1e"
+      }
+    },
+    {
+      "id": "promoy9-097",
+      "name": "キズナ・ブラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy9-097",
+      "faces": [
+        {
+          "name": "キズナ・ブラスター",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "次のうちいずれかひとつを選ぶ。 ▼自分の山札を見る。その中から名前に《XX》とあるクリーチャーを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。 ▼コスト７以下の、名前に《XX》とあるサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "山札からXXを出す",
+                "defs": [
+                  {
+                    "op": "LookDeploy530",
+                    "g201Search": true,
+                    "g841DeckPeek": true,
+                    "limit": 1,
+                    "rest": "shuffle",
+                    "filter": {
+                      "creature": true,
+                      "name": "XX"
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "超次元ゾーンからコスト7以下のXXを出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "extra",
+                    "n": 1,
+                    "deploy": true,
+                    "g1104PsychicFaces": true,
+                    "filter": {
+                      "creature": true,
+                      "g1085Psychic": true,
+                      "max": 7,
+                      "name": "XX"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy9-097.jpg",
+      "imageReviewed": true,
+      "imageSha256": "32640e706e18b3c3c62de68940e92bc900162ce1682fb039c347e4fab3af8118",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "Full printed faces reviewed."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy9-097"
+        ],
+        "result": "Whole exact-name official search/product list, all faces and images reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "9b10b7f8052c68ba0afc73fe6c9f2bc83d629a7d1293f6716881015bc4561a30",
+        "facesMatched": true,
+        "imageSha256": "32640e706e18b3c3c62de68940e92bc900162ce1682fb039c347e4fab3af8118"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm39-011VC",
+      "name": "時空の凶兵ブラック・ガンヴィート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-011VC",
+      "faces": [
+        {
+          "name": "時空の凶兵ブラック・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "【B・ソウル】\nこのクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+          "race": "デーモン・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "B"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "g1102DirectAwaken": true
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "type": "creature",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "power": 9000,
+          "race": "デーモン・コマンド",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+          "g558Souls": [
+            "B"
+          ],
+          "effect": null,
+          "g34Tasks": null,
+          "g565OpponentEnd": null,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            },
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dm39-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011VCa.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0379344e201c506ac17922b49249a9b14fa74cce0d1f8f992b49dd6aa3ae80e6",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011VCb.jpg",
+      "backImageSha256": "325505c3c1f8f8a2d37510439dfe039676451a32d50f0e5197449d58c5c7be4f",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "All4 print images show B soul on BOTH faces; official HTML omits back soul, sometimes both. Explicit B soul spec preserves full printed ability."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "7fe99172fad10f0d1b876f3011ce2371e02b9d2c7bb35444f62cc20f37af331c",
+        "facesMatched": true,
+        "imageSha256": "0379344e201c506ac17922b49249a9b14fa74cce0d1f8f992b49dd6aa3ae80e6",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011VCb.jpg",
+        "backImageSha256": "325505c3c1f8f8a2d37510439dfe039676451a32d50f0e5197449d58c5c7be4f"
+      }
+    },
+    {
+      "id": "dmbd21-010",
+      "name": "時空の凶兵ブラック・ガンヴィート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-010",
+      "faces": [
+        {
+          "name": "時空の凶兵ブラック・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが出た時、相手のタップしているクリーチャーを１体破壊する。\n覚醒：相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。",
+          "race": "デーモン・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "このクリーチャーが攻撃する時、相手は、自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "B"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "g1102DirectAwaken": true
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "type": "creature",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "power": 9000,
+          "race": "デーモン・コマンド",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+          "g558Souls": [
+            "B"
+          ],
+          "effect": null,
+          "g34Tasks": null,
+          "g565OpponentEnd": null,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            },
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dm39-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-010a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "df99592dd24e86708c8452e354b393fa584a76486cc078f46a9b3baefd901d67",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-010b.jpg",
+      "backImageSha256": "d0f653c67dfcd4b542f96467997decc4bf491f404c5235c82eaab6f3d4789b65",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "All4 print images show B soul on BOTH faces; official HTML omits back soul, sometimes both. Explicit B soul spec preserves full printed ability."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "ce19cea94d9e44672e81c005916d1e9cc7e6b7068a15c5906acb811bdfaab810",
+        "facesMatched": true,
+        "imageSha256": "df99592dd24e86708c8452e354b393fa584a76486cc078f46a9b3baefd901d67",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-010b.jpg",
+        "backImageSha256": "d0f653c67dfcd4b542f96467997decc4bf491f404c5235c82eaab6f3d4789b65"
+      }
+    },
+    {
+      "id": "dmd19-015",
+      "name": "時空の凶兵ブラック・ガンヴィート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-015",
+      "faces": [
+        {
+          "name": "時空の凶兵ブラック・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手のタップされているクリーチャーを１体破壊する。\n覚醒 - 相手のターンの終わりに、相手の手札が１枚もなければ、このクリーチャーをコストの大きいほうに裏返す。 （ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "デーモン・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選んで捨て、その後、自身のクリーチャーを１体選んで破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "B"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "g1102DirectAwaken": true
+              }
+            ]
+          }
+        ],
+        "g1085Back": {
+          "name": "凶刀の覚醒者ダークネス・ガンヴィート",
+          "type": "creature",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "power": 9000,
+          "race": "デーモン・コマンド",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-011b.jpg",
+          "g558Souls": [
+            "B"
+          ],
+          "effect": null,
+          "g34Tasks": null,
+          "g565OpponentEnd": null,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            },
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "canonicalId": "dm39-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-015a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "fcd9d1737b145ec9986874936694d0dc6e612c9c88f9258bdc9bb662242902be",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-015b.jpg",
+      "backImageSha256": "78fc289bce9c0b876ffffdafe6a5b8a74a434a27b27d9c29d658cec0cfdc8c27",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "All4 print images show B soul on BOTH faces; official HTML omits back soul, sometimes both. Explicit B soul spec preserves full printed ability."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "7ab6b7b899cca9527e50217bcfaac73a850b34aff8d1fcd4bbf2417b19f668ab",
+        "facesMatched": true,
+        "imageSha256": "fcd9d1737b145ec9986874936694d0dc6e612c9c88f9258bdc9bb662242902be",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-015b.jpg",
+        "backImageSha256": "78fc289bce9c0b876ffffdafe6a5b8a74a434a27b27d9c29d658cec0cfdc8c27"
+      }
+    },
+    {
+      "id": "dmex08-224",
+      "name": "時空の戦猫シンカイヤヌス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-224",
+      "faces": [
+        {
+          "name": "時空の戦猫シンカイヤヌス",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが覚醒した時、カードを１枚引く。\nループ覚醒：自分のターン中に火のクリーチャーがバトルゾーンに出た時、このクリーチャーを《時空の戦猫ヤヌスグレンオー》のほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "ブルー・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "時空の戦猫ヤヌスグレンオー",
+          "typeText": "サイキック・クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが覚醒した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーに「パワーアタッカー+2000」と「スピードアタッカー」を与える。\nループ覚醒：自分のターン中に水のクリーチャーがバトルゾーンに出た時、このクリーチャーを《時空の戦猫シンカイヤヌス》のほうに裏返す。\n（ゲーム開始時、サイキック・クリーチャーは山札には含めず、自分の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す）",
+          "race": "フレイム・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "psychic": true,
+        "manaValue": 0,
+        "g558Souls": [
+          "M",
+          "K"
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "ownTurn": true,
+          "g1324IncludeSelf": true,
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "defs": [
+            {
+              "op": "Awaken1095",
+              "loop": true,
+              "g1730Face": true
+            }
+          ]
+        },
+        "g1730WhenAwaken": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g1085Back": {
+          "name": "時空の戦猫ヤヌスグレンオー",
+          "type": "creature",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "power": 4000,
+          "race": "フレイム・モンスター",
+          "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-022b.jpg",
+          "g558Souls": [
+            "M",
+            "K"
+          ],
+          "g314OtherEntry": {
+            "who": "self",
+            "ownTurn": true,
+            "g1324IncludeSelf": true,
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "defs": [
+              {
+                "op": "Awaken1095",
+                "loop": true,
+                "g1730Face": false
+              }
+            ]
+          },
+          "g1730WhenAwaken": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 2000,
+              "g337PowerAttacker": true,
+              "grant": {
+                "speedAttacker": true
+              }
+            }
+          ]
+        }
+      },
+      "canonicalId": "dm38-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-224a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "695c94e862fe6f55d987cfe2f197bcc693920c21e892779fd279b3503a7bcf8f",
+      "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-224b.jpg",
+      "backImageSha256": "c8c10d23b8e16c6613c5f6e1904ddb95db1a24c24f0147ac00044aaf9d133b52",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T09:57:40.895Z",
+        "reason": "Both original/reprint images show M and K souls on BOTH faces; official HTML omits soul symbols. Explicit soul spec preserves full printed ability."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T09:57:40.895Z",
+        "sha256": "92dea397bb9bbd59fd1e7b8c6d09ee41d34397654624523a48968e58eabb874a",
+        "facesMatched": true,
+        "imageSha256": "695c94e862fe6f55d987cfe2f197bcc693920c21e892779fd279b3503a7bcf8f",
+        "backImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-224b.jpg",
+        "backImageSha256": "c8c10d23b8e16c6613c5f6e1904ddb95db1a24c24f0147ac00044aaf9d133b52"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T09:57:40.895Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm39-011": 4,
+      "dm38-022": 4,
+      "dmc65-001": 4,
+      "promoy9-097": 4,
+      "dm39-011VC": 4,
+      "dmbd21-010": 4,
+      "dmd19-015": 4,
+      "dmex08-224": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T10:03:30.571Z",
+    "results": {
+      "focused-final": {
+        "name": "focused-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1730-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.131,
+        "log": "tmp/duema-phase-1730/focused-final.log",
+        "passed": 63,
+        "logSha256": "0acc1c99b70768781929611f152fedf9265c95d6c39e2f13b6033a7c758b612b"
+      },
+      "related-awakening": {
+        "name": "related-awakening",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1102-effects.test.mjs",
+          "tests/standard1104-effects.test.mjs",
+          "tests/standard1355-effects.test.mjs",
+          "tests/standard1356-effects.test.mjs",
+          "tests/standard1727-effects.test.mjs",
+          "tests/standard1728-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 7.286,
+        "log": "tmp/duema-phase-1730/related-awakening.log",
+        "passed": 146,
+        "logSha256": "3746ea22f117401424fddd03438a24f7b5c74118052989e64f69116058bc36be"
+      },
+      "related-start-soul": {
+        "name": "related-start-soul",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?:turn-start effects|optional start ramp|own-end mill|optional end mill|multiple own-start|Genmu and ignored|soul identifiers|Screw)",
+          "tests/standard174-effects.test.mjs",
+          "tests/standard558-effects.test.mjs",
+          "tests/standard565-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.98,
+        "log": "tmp/duema-phase-1730/related-start-soul.log",
+        "passed": 13,
+        "logSha256": "a41de1037d4474909175f2486ff06f56548551e82e4a6ebed187d727a8b91fe1"
+      },
+      "related-online-final": {
+        "name": "related-online-final",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.709,
+        "log": "tmp/duema-phase-1730/related-online-final.log",
+        "passed": 55,
+        "logSha256": "0943a40d57c6248b01e37bede269d5cb221322312f10915cdcebf15f2071ebae"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1730.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.967,
+        "log": "tmp/duema-phase-1730/official.log",
+        "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+      },
+      "check-final": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.707,
+        "log": "tmp/duema-phase-1730/check-final.log",
+        "logSha256": "e838bb57be7c6d50c0304b0d6ce67d5760127c9dee9e61c2306cb7e8fad3141b"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.673,
+        "log": "tmp/duema-phase-1730/audit.log",
+        "logSha256": "745d146aed70c2ce8d1c2202ce0eec9e6bf3fe21f79aafedf77266da8e6a0565"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.481,
+        "log": "tmp/duema-phase-1730/target9500.log",
+        "logSha256": "89c88f6a83fe20f2f5c529880e21b0c222a7718258609d9107b1ed2a93adfc72"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1730/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.435,
+        "log": "tmp/duema-phase-1730/invariants.log",
+        "logSha256": "39da617db8e9b2bd4ce69faefa5fbb0b15c103ef3797925882c72478457531ff"
+      }
+    },
+    "totalTestsPassed": 277,
+    "focusedTestsPassed": 63,
+    "relatedTestsPassed": 214
+  },
+  "validationNotes": [
+    "Actual nameKey9427→9431, existing9427 supported definitions/IDs unchanged, every preexisting catalogue/alias/image/ref/pin preserved. Only previously unsupported dm39-011 detail adds missing official front B soul label; all other detail rows and fields unchanged.4 complete original cards,8 exact-name prints,15 full images including both back faces reviewed. Back faces/reprints are not added names.",
+    "Printed images establish B soul on both Ganvito faces and M/K souls on both Janus faces even where official HTML omits symbols; explicit runtime soul arrays preserve them. Ganvito mandatory tapped removal/opponent-end empty-hand awakening/back opponent-chosen discard then sacrifice and W breaker verified both players.",
+    "Janus native own-turn matching-entry watcher now uses directed target face; queued same-color entries cannot toggle twice. New small awakening hook queues actual resulting-face abilities only on genuine awakening, not chosen-face deployment or unlink. Native PA2000 and speed grant expires at end; blue draw1 and attack freshness verified. Storm new independent start-ability groups preserve choice of mill3 versus exact5 Fire Bird return first. Native exactOptional selection, any-face race, shuffle, source identity and back destroy2/T breaker reused.",
+    "Kizuna real registered Storm XX enables correct cost7 XX Psychic mode. Private full-library optional GENJI XX deployment, shuffle/decline/no targets, native paid7, nonsummon entry locks and 5000GT verified. Both players encrypted choice, exact legal actions, private projection, saved legal deck/86 physical identities and AI purity verified. Check initial failure was mismatched engine constant versus release version, both now0.602.247 and final online/check pass. Initial fixture corrections: native discard uses extended choice; simultaneous Fire entries use real Heavens Gate and2 Keen; Energy Hole itself draws1 and only selects Water, so direct both-face test uses real BlueWhite Hole; exported canCreatureAttack requires player argument. Failed attempts preserved, final distinct passing cases counted once.",
+    "No full npm test or old broad long group rerun. Historical card/print/long pending and user deferrals unchanged; no push/publication/Netlify."
+  ],
+  "nextCandidates": []
+}
