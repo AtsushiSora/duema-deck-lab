@@ -1,0 +1,596 @@
+{
+  "phase": 1703,
+  "checkedAt": "2026-11-23T04:24:25.132Z",
+  "baseCount": 9345,
+  "target": 9500,
+  "description": "Complete Feiwon Star other-small-creature entry tap, Bolsled real Dragon discard power destruction, and White Swan both-player shields/threshold/break tap.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/41453/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 41453,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41453/",
+      "sha256": "aa84701f2db6af075d1004f369bbfba32ea1f9dfea8fe9fb9f1d1392cf4cd2f2",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1703-effects.test.mjs",
+      "testNamePrefix": "Exact QA41453",
+      "bothPlayersVerified": true,
+      "scope": "Actual Holy Spark and Aqua Surfer Shield Triggers before Swan; either Surfer/Swan entry effect order."
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-012",
+      "name": "フェイウォン ＜モーリッツ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-012",
+      "faces": [
+        {
+          "name": "フェイウォン ＜モーリッツ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のコスト４以下のクリーチャーが出た時、相手のクリーチャーを１体選んでタップする。",
+          "race": "メタリカ/ソルトルーパー/レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g250EntryDraw": {
+          "self": false,
+          "filter": {
+            "creature": true,
+            "max": 4
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-012.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9ecbb10125786262dd45bc0e686d1d0834eb388966c893b3fee770e81f889c26",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp18-coro06",
+          "dmrp18-012"
+        ],
+        "result": "Seven exact original/reprint images and all full faces reviewed; original green Feiwon and Positron excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:24:25.132Z",
+        "sha256": "60db5ce5ed1a399c7225fd5bd99c1c3dd30fbc7a02d5977c03cf2fa59274df41",
+        "facesMatched": true,
+        "imageSha256": "9ecbb10125786262dd45bc0e686d1d0834eb388966c893b3fee770e81f889c26"
+      }
+    },
+    {
+      "id": "sp-007",
+      "name": "ボルスレッド・ファイアー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-007",
+      "faces": [
+        {
+          "name": "ボルスレッド・ファイアー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが攻撃する時、種族にドラゴンとあるクリーチャーを１体、自分の手札から捨ててもよい。そうした場合、そのクリーチャーとパワーが同じかそれ以下の相手のクリーチャーを１体、破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "g1703DiscardPower": true,
+                "filter": {
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-007.jpg",
+      "imageReviewed": true,
+      "imageSha256": "c6456710ab00d094264447831a99cc820ed006fc8814566ca1b8f59790373eb2",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "sp-007"
+        ],
+        "result": "Seven exact original/reprint images and all full faces reviewed; original green Feiwon and Positron excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:24:25.132Z",
+        "sha256": "945240865906e1c2b60a45de6cf46cf699e25de9d79f58071c52bced497db79d",
+        "facesMatched": true,
+        "imageSha256": "c6456710ab00d094264447831a99cc820ed006fc8814566ca1b8f59790373eb2"
+      }
+    },
+    {
+      "id": "dmrp22-2A",
+      "name": "ホワイト・スワン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-2A",
+      "faces": [
+        {
+          "name": "ホワイト・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ/スプリガン/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BothShieldTop1703",
+            "n": 2
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "min": 5
+            }
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        },
+        "g1703OwnShieldBreak": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-2A.jpg",
+      "imageReviewed": true,
+      "imageSha256": "385bda8a61873c3f44ec56b76dc2da56cabb0ca5d18cf1ad89b674129df2f4da",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm25rp3-SP2",
+          "dmrp22-S2",
+          "dmrp22-2A",
+          "dmrp22-4B"
+        ],
+        "result": "Seven exact original/reprint images and all full faces reviewed; original green Feiwon and Positron excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:24:25.132Z",
+        "sha256": "70e7acfbcf134e4d50fd8349e68939428ce2e93c799909892bd0985f53420151",
+        "facesMatched": true,
+        "imageSha256": "385bda8a61873c3f44ec56b76dc2da56cabb0ca5d18cf1ad89b674129df2f4da"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dmrp18-coro06",
+      "name": "フェイウォン ＜モーリッツ.Star＞",
+      "canonicalId": "dmrp18-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-coro06",
+      "faces": [
+        {
+          "name": "フェイウォン ＜モーリッツ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のコスト４以下のクリーチャーが出た時、相手のクリーチャーを１体選んでタップする。",
+          "race": "メタリカ/ソルトルーパー/レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "21a9565251bbbe1daa022d509a1d9921e977249aa7d5b90b741820d76e685eb0",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-coro06.jpg",
+          "file": "tmp/duema-phase-1703/dmrp18-coro06-0.jpg",
+          "sha256": "591d10e3f240c16eb24c2417e29712bcebac442e583f972ce508d89eac2fbab1"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dm25rp3-SP2",
+      "name": "ホワイト・スワン",
+      "canonicalId": "dmrp22-2A",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-SP2",
+      "faces": [
+        {
+          "name": "ホワイト・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ/スプリガン/レクスターズ",
+          "powerText": "5000+",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "46cb16bdad212f8ae6efe8524e2578ef41a70a2266bbe34e2e7f5f4ee4cd5efb",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-SP2.jpg",
+          "file": "tmp/duema-phase-1703/dm25rp3-SP2-0.jpg",
+          "sha256": "1fe758380151df15a8d6c48230fdcf0f1fa9c75e5ed7f133f710c1b6aafa54d1"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmrp22-S2",
+      "name": "ホワイト・スワン",
+      "canonicalId": "dmrp22-2A",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-S2",
+      "faces": [
+        {
+          "name": "ホワイト・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ/スプリガン/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "a7b95a15fdfeb7c81a6b5788f8ecaa738ba4737a3646721881551ebc830aa4a7",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-S2.jpg",
+          "file": "tmp/duema-phase-1703/dmrp22-S2-0.jpg",
+          "sha256": "b5250de12b81a2722efa4252f3e0c51f5b0727874cf7e4ecb91d8299766c2863"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmrp22-4B",
+      "name": "ホワイト・スワン",
+      "canonicalId": "dmrp22-2A",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-4B",
+      "faces": [
+        {
+          "name": "ホワイト・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ/スプリガン/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "5e2acd7e4a1beec7516bca5f415614455fb83e1cc18ea32bb324702cc4e67f7e",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-4B.jpg",
+          "file": "tmp/duema-phase-1703/dmrp22-4B-0.jpg",
+          "sha256": "96e7464f79384701e35cc81215c0d753e343b18196baf73b72b8553ea5d2fb1b"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "dm32-015",
+      "name": "ポジトロン・サイン",
+      "reason": "Official QA47359 needs actual unregistered Shisan Fairy dm25rp3-029 to reproduce spell execution while its library departure is prohibited. Hold until its complete ability and all zone paths are supported; not added or counted.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm32-015",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-se08",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-004",
+        "https://dm.takaratomy.co.jp/rule/qa/47359/"
+      ],
+      "officialFacesStatsAndThreeImagesReviewed": true,
+      "rulingSha256": "09a889ff4fa1b66874630ef28641bce14a6ab8f07b6bb1cd39be6c68f129cf38"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T04:24:25.132Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-012": 4,
+      "sp-007": 4,
+      "dmrp22-2A": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T04:32:04.772Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1703.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.342,
+        "log": "tmp/duema-phase-1703/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "related-shield-online": {
+        "name": "related-shield-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1012-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.196,
+        "log": "tmp/duema-phase-1703/related-shield-online.log",
+        "passed": 65,
+        "logSha256": "303a3b81472cfc116d69a4fdeccb4e1b8605c2d78ab967ed86b997382cb80f95"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.638,
+        "log": "tmp/duema-phase-1703/audit.log",
+        "logSha256": "1305063f6334e29bd0da37bc58404c6b33f9b5f8cd5c8b7614eecf0ecfaf0259"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.377,
+        "log": "tmp/duema-phase-1703/target9500.log",
+        "logSha256": "e525afdadcc83b135811f04f7a7630048efe7bffb6b72723e62b1ce2db590302"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1703/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.441,
+        "log": "tmp/duema-phase-1703/invariants.log",
+        "logSha256": "57d898d0c1e196851628082ee210ae00b07532d80d667f53891d20d8f0dc8076"
+      },
+      "check": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.439,
+        "log": "tmp/duema-phase-1703/check-final.log",
+        "logSha256": "90ed5acd91b83c76080c29e035cdf2e026ccb94c3242741cced891b0f3cc50cc"
+      },
+      "focused": {
+        "passed": 48,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1703-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 13.961,
+            "log": "tmp/duema-phase-1703/focused.log",
+            "passed": 32,
+            "logSha256": "bddacc212ead31391e0e531c1f87d4e54d559d7d7e0de61c7e8818a94fe93ff6"
+          },
+          {
+            "name": "focused-fixtures-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Bolsled uses current|^Swan pays five|^Exact QA41453 creature|^Ignored or sealed Swan",
+              "tests/standard1703-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.72,
+            "log": "tmp/duema-phase-1703/focused-fixtures-fixed.log",
+            "passed": 8,
+            "logSha256": "52d2ba7e62f4a58e1d4bdf1e88abafa7799132eb4550c47d68740123433d8109"
+          },
+          {
+            "name": "focused-edges",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Exact QA41453 may|^Swan distinguishes|^Bolsled an actual|^Swan entry on",
+              "tests/standard1703-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 0.779,
+            "log": "tmp/duema-phase-1703/focused-edges.log",
+            "passed": 6,
+            "logSha256": "4385f223aed32aac27d46921cd1d4700a0e5db702fd2ee86df3db60a4ea49788"
+          },
+          {
+            "name": "focused-bolsled-infinity-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Bolsled",
+              "tests/standard1703-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.886,
+            "log": "tmp/duema-phase-1703/focused-bolsled-infinity-fixed.log",
+            "passed": 14,
+            "logSha256": "fa5e2d4a47943649dbd71ff4fc490b096f29cca23f6df732d64e04c520cf5718"
+          }
+        ],
+        "coverage": "40 original cases:32 initially passed and8 pass after fixture repairs.8 extra edges:6 first-pass and2 infinite-power cases fixed;12 repeated finite Bolsled cases in the final14 count once."
+      },
+      "related-discard-entry": {
+        "passed": 129,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "related-discard-entry",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1282-effects.test.mjs",
+              "tests/standard488-effects.test.mjs",
+              "tests/standard250-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 17.573,
+            "log": "tmp/duema-phase-1703/related-discard-entry.log",
+            "passed": 128,
+            "logSha256": "f4527fba388ee2b2cd591879556372eaa085ec7c61e6e71f4ff3ee1d0addf4c2"
+          },
+          {
+            "name": "related-blocker-expectation-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Mekagenji QA34384",
+              "tests/standard488-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.56,
+            "log": "tmp/duema-phase-1703/related-blocker-expectation-fixed.log",
+            "passed": 1,
+            "logSha256": "85f7acee2edfb1ee1514ec7a1a010a4119b4e254db1cd1385d32e33dfb5f67ce"
+          }
+        ],
+        "coverage": "128 first-pass cases and1 obsolete Blocker expectation corrected to actual QA34384 ability presence, including selecting and destroying both printed-ignored and granted Blockers."
+      }
+    },
+    "totalTestsPassed": 242,
+    "focusedTestsPassed": 48,
+    "relatedTestsPassed": 194
+  },
+  "validationNotes": [
+    "Start/post-verification actual nameKey counts9345/9348. Baseline1beb09c4, clean tree/staging, previous batch/test processes all complete. Existing definitions, IDs, catalogue, image URLs, aliases, physical references and save formats preserved.",
+    "Three full official faces/basic information/mana/current restrictions and all7 exact print images reviewed: Feiwon Star2, Bolsled1, Swan4. Four exact reprints add no names. Original green Feiwon search hits are distinct. Swan later plus-marked power art still has base5000 and complete same abilities.",
+    "Feiwon Star uses native Light/Rexstar evolution, W break, Star replacement and mandatory other-own-creature entry watcher. Paid/effect entries, cost4 boundary, self/opponent/noncreature exclusion, multiple sources and actual Genmu ignore verified.",
+    "Bolsled optionally discards an actual Dragon creature using the native actual-discard continuation, then mandates destroying one targetable opponent at current power no greater than the discarded creature. Boundaries, real power modifiers, no target, wrong race, unselectable/sealed targets, creature attack cancellation, source ignore and real infinity Dragon target/JSON resume tested. Infinite discarded power imposes no upper bound, avoiding string infinity numeric comparison; finite cases stay bounded.",
+    "Swan adds each player actual top2 as separate private shields in active-player order using native ShieldTop. Its5-shield threshold counts groups and follows changing counts. Every actual own broken shield queues a mandatory tap regardless of Swan tap state; spell breaks trigger, nonbreak shield moves/destruction and enemy breaks do not. Ignored/sealed sources and opponent-turn effect entry/Waldo entry suppression verified.",
+    "Exact QA41453 tested in both seats: actual Holy Spark finishes before Swan tap; actual Aqua Surfer enters first and its entry ability and Swan may be chosen in either order through native entryOrder. No trigger timing or save-format change was needed.",
+    "48 distinct focused and194 affected regressions pass,total242. Swan choice encrypted round-trip hides other account hand and preserves legal actions/physical UIDs. Legal40-card seeded game finishes preserving80 IDs and JSON actions. Final check/audit/target9500/nameKey/baseline invariants pass.",
+    "Fixture repairs: buff is attack-only, so current enemy power uses a real powerModifier; the paid-source fixture adds its new UID to the pre-injection physical baseline; actual Aqua Surfer isdm05-024, and Shield Trigger entry ordering uses native entryOrder; sealed cards have no creature power. Infinity boundary additionally exposed and repaired the real new Bolsled filter bug.",
+    "The related standard488 Mekagenji test had an obsolete expectation that ignored printed Blocker disappears. Official QA34384 says the ability still exists. Corrected the expected selectable targets and verified actual destruction of both ignored printed and granted Blockers without restoring block permission; no old card definition changed.",
+    "Positron Sign official originals/reprints3 and all images reviewed, but held because exact QA47359 requires currently unregistered Shisan Fairydm25rp3-029 and complete global deck departure handling. It is unregistered and uncounted; no partial implementation added.",
+    "Historical whole npm test interrupted/unconfirmed, individual/long/reprint/user deferrals and publication records remain unchanged. No repeated whole long group, push/publication or Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "promoy16-053",
+      "name": "ビギニング・ザ・メラビート",
+      "reason": "Verify summon-only mandatory JOE Joker hand deployment and exact delayed bottom/draw."
+    },
+    {
+      "id": "dmpcd02-a07",
+      "name": "モノノフ・ルピア",
+      "reason": "Verify full Bolmeteus creature search and actual Musha attack shield-to-grave watcher."
+    },
+    {
+      "id": "dmrp18-s02",
+      "name": "ビシャモンス ＜ハンニバル.Star＞",
+      "reason": "Verify native Dark/Rexstar Star evolution, triple break, exact two-card grave bottom payment at attack end or self destruction."
+    }
+  ]
+}

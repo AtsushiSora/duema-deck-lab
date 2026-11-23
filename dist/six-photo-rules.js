@@ -646,7 +646,7 @@ export function createSixPhotoRules(api){
  const discardCostFilter655=(limit,inclusive)=>inclusive?(limit==='∞'?{}:{max:limit}):{belowCost:limit};
  const destroyBelowCost655=(limit,{g835Creature,inclusive,to='grave',toOwnerDeck})=>({op:'Target',element:!g835Creature,to,filter:discardCostFilter655(limit,inclusive),...(toOwnerDeck?{toOwnerDeck:true}:{})});
  function discardDefs248(s,t,y){
-  return t.defs.map(d=>d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
+  return t.defs.map(d=>d.g1703DiscardPower?{...d,filter:{...d.filter,...(card(y).power==='∞'?{}:{maxPower:card(y).power})}}:d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature&&!d.g1048AnyDiscardedFace)}:
    d.op==='DiscardPower1282'?{...d,power:card(y).power==='∞'?'-infinity':-card(y).power}:d);
  }
@@ -5812,6 +5812,9 @@ export function createSixPhotoRules(api){
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
   break;
  }
+ case'g34_BothShieldTop1703':
+  start(s,t,[s.active,1-s.active].map(p=>({op:'ShieldTop',p,n:t.n,g779Simultaneous:true})));
+  break;
  case'g34_SpikeModes1702':
   start(s,t,creatures(s,t.p).filter(y=>!y.sealed&&!y.faceDown).map(y=>({op:'SpikeMode1702',target:y.uid,targetIncarnation:y.incarnation||0})));
   break;
@@ -10764,7 +10767,7 @@ export function createSixPhotoRules(api){
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
  ownShieldBroken1012(s,p,count){
   for(const x of creatures(s,p)){
-   const defs=x.tapped&&!x.sealed&&effective(x,s).g1012OwnShieldBreakTapped;
+   const c=!x.sealed&&effective(x,s),defs=c&&(c.g1703OwnShieldBreak||(x.tapped&&c.g1012OwnShieldBreakTapped));
    if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
   }
  },

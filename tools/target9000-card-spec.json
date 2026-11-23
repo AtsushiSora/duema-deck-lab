@@ -40176,5 +40176,322 @@
         }
       ]
     }
+  },
+  "dmrp18-coro06": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "フェイウォン ＜モーリッツ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のコスト４以下のクリーチャーが出た時、相手のクリーチャーを１体選んでタップする。",
+        "race": "メタリカ/ソルトルーパー/レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true,
+          "max": 4
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp18-012": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "フェイウォン ＜モーリッツ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のコスト４以下のクリーチャーが出た時、相手のクリーチャーを１体選んでタップする。",
+        "race": "メタリカ/ソルトルーパー/レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true,
+          "max": 4
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      }
+    }
+  },
+  "sp-007": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "ボルスレッド・ファイアー・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが攻撃する時、種族にドラゴンとあるクリーチャーを１体、自分の手札から捨ててもよい。そうした場合、そのクリーチャーとパワーが同じかそれ以下の相手のクリーチャーを１体、破壊する。",
+        "race": "アーマード・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "g1703DiscardPower": true,
+              "filter": {
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25rp3-SP2": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "ホワイト・スワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+        "race": "メタリカ/スプリガン/レクスターズ",
+        "powerText": "5000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BothShieldTop1703",
+          "n": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g1703OwnShieldBreak": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ]
+    }
+  },
+  "dmrp22-S2": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "ホワイト・スワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+        "race": "メタリカ/スプリガン/レクスターズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BothShieldTop1703",
+          "n": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g1703OwnShieldBreak": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ]
+    }
+  },
+  "dmrp22-2A": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "ホワイト・スワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+        "race": "メタリカ/スプリガン/レクスターズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BothShieldTop1703",
+          "n": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g1703OwnShieldBreak": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ]
+    }
+  },
+  "dmrp22-4B": {
+    "phase": 1703,
+    "faces": [
+      {
+        "name": "ホワイト・スワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+        "race": "メタリカ/スプリガン/レクスターズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BothShieldTop1703",
+          "n": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g1703OwnShieldBreak": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ]
+    }
   }
 }

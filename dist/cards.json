@@ -297816,20 +297816,143 @@
       ],
       "supportBatch": "phase-1702",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-012",
+      "name": "フェイウォン ＜モーリッツ.Star＞",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "メタリカ/ソルトルーパー/レクスターズ",
+      "text": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のコスト４以下のクリーチャーが出た時、相手のクリーチャーを１体選んでタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-012",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "self": false,
+        "filter": {
+          "creature": true,
+          "max": 4
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1703",
+      "supportKind": "effect"
+    },
+    {
+      "id": "sp-007",
+      "name": "ボルスレッド・ファイアー・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが攻撃する時、種族にドラゴンとあるクリーチャーを１体、自分の手札から捨ててもよい。そうした場合、そのクリーチャーとパワーが同じかそれ以下の相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-007",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "g1703DiscardPower": true,
+              "filter": {
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1703",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-2A",
+      "name": "ホワイト・スワン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "メタリカ/スプリガン/レクスターズ",
+      "text": "このクリーチャーが出た時、各プレイヤーは自身の山札の上から２枚をシールド化する。\n自分のシールドが５つ以上あれば、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。\n自分のシールドがブレイクされた時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-2A",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BothShieldTop1703",
+          "n": 2
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g1703OwnShieldBreak": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-1703",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1702,
-    "checkedAt": "2026-11-23T04:12:38.382Z",
-    "baseCount": 9342,
+    "phase": 1703,
+    "checkedAt": "2026-11-23T04:24:25.132Z",
+    "baseCount": 9345,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9345,
+    "totalCount": 9348,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31545/",
-      "https://dm.takaratomy.co.jp/rule/qa/34384/"
+      "https://dm.takaratomy.co.jp/rule/qa/41453/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -325728,6 +325851,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35796/",
           "https://dm.takaratomy.co.jp/rule/qa/45067/",
           "https://dm.takaratomy.co.jp/rule/qa/41430/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1702,
+        "checkedAt": "2026-11-23T04:12:38.382Z",
+        "baseCount": 9342,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9345,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31545/",
+          "https://dm.takaratomy.co.jp/rule/qa/34384/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

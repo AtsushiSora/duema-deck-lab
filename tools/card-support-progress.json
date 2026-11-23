@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11825,
-  "supportedNames": 9345,
-  "pendingNames": 2480,
-  "phase": 1702,
+  "supportedNames": 9348,
+  "pendingNames": 2477,
+  "phase": 1703,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1396,
+    "クリーチャー": 1394,
     "呪文": 271,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -162,7 +162,7 @@
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 211,
-    "スター進化クリーチャー": 51,
+    "スター進化クリーチャー": 50,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1784,
+    "未対応の能力文": 1781,
     "複数面・特殊カードタイプまたは情報不足": 585,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -543260,27 +543260,362 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1703,
+      "checkedAt": "2026-11-23T04:32:04.772Z",
+      "baseline": "1beb09c4",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9345,
+      "currentNames": 9348,
+      "remainingNames": 152,
+      "added": [
+        {
+          "id": "dmrp18-012",
+          "name": "フェイウォン ＜モーリッツ.Star＞"
+        },
+        {
+          "id": "sp-007",
+          "name": "ボルスレッド・ファイアー・ドラゴン"
+        },
+        {
+          "id": "dmrp22-2A",
+          "name": "ホワイト・スワン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "1beb09c4",
+        "originalDefinitionsUnchanged": 9345,
+        "added": 3,
+        "uniqueNames": 9348,
+        "uniqueIds": 9348,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9345,
+        "existingImageReferenceRowsUnchanged": 11555,
+        "officialPrintsReviewed": 7,
+        "officialImagesReviewed": 7,
+        "existingPinsUnchanged": 887
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1703.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.342,
+          "log": "tmp/duema-phase-1703/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "related-shield-online": {
+          "name": "related-shield-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1012-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.196,
+          "log": "tmp/duema-phase-1703/related-shield-online.log",
+          "passed": 65,
+          "logSha256": "303a3b81472cfc116d69a4fdeccb4e1b8605c2d78ab967ed86b997382cb80f95"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.638,
+          "log": "tmp/duema-phase-1703/audit.log",
+          "logSha256": "1305063f6334e29bd0da37bc58404c6b33f9b5f8cd5c8b7614eecf0ecfaf0259"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.377,
+          "log": "tmp/duema-phase-1703/target9500.log",
+          "logSha256": "e525afdadcc83b135811f04f7a7630048efe7bffb6b72723e62b1ce2db590302"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1703/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.441,
+          "log": "tmp/duema-phase-1703/invariants.log",
+          "logSha256": "57d898d0c1e196851628082ee210ae00b07532d80d667f53891d20d8f0dc8076"
+        },
+        "check": {
+          "name": "check-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.439,
+          "log": "tmp/duema-phase-1703/check-final.log",
+          "logSha256": "90ed5acd91b83c76080c29e035cdf2e026ccb94c3242741cced891b0f3cc50cc"
+        },
+        "focused": {
+          "passed": 48,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1703-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 13.961,
+              "log": "tmp/duema-phase-1703/focused.log",
+              "passed": 32,
+              "logSha256": "bddacc212ead31391e0e531c1f87d4e54d559d7d7e0de61c7e8818a94fe93ff6"
+            },
+            {
+              "name": "focused-fixtures-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Bolsled uses current|^Swan pays five|^Exact QA41453 creature|^Ignored or sealed Swan",
+                "tests/standard1703-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.72,
+              "log": "tmp/duema-phase-1703/focused-fixtures-fixed.log",
+              "passed": 8,
+              "logSha256": "52d2ba7e62f4a58e1d4bdf1e88abafa7799132eb4550c47d68740123433d8109"
+            },
+            {
+              "name": "focused-edges",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Exact QA41453 may|^Swan distinguishes|^Bolsled an actual|^Swan entry on",
+                "tests/standard1703-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.779,
+              "log": "tmp/duema-phase-1703/focused-edges.log",
+              "passed": 6,
+              "logSha256": "4385f223aed32aac27d46921cd1d4700a0e5db702fd2ee86df3db60a4ea49788"
+            },
+            {
+              "name": "focused-bolsled-infinity-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Bolsled",
+                "tests/standard1703-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.886,
+              "log": "tmp/duema-phase-1703/focused-bolsled-infinity-fixed.log",
+              "passed": 14,
+              "logSha256": "fa5e2d4a47943649dbd71ff4fc490b096f29cca23f6df732d64e04c520cf5718"
+            }
+          ],
+          "coverage": "40 original cases:32 initially passed and8 pass after fixture repairs.8 extra edges:6 first-pass and2 infinite-power cases fixed;12 repeated finite Bolsled cases in the final14 count once."
+        },
+        "related-discard-entry": {
+          "passed": 129,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "related-discard-entry",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1282-effects.test.mjs",
+                "tests/standard488-effects.test.mjs",
+                "tests/standard250-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 17.573,
+              "log": "tmp/duema-phase-1703/related-discard-entry.log",
+              "passed": 128,
+              "logSha256": "f4527fba388ee2b2cd591879556372eaa085ec7c61e6e71f4ff3ee1d0addf4c2"
+            },
+            {
+              "name": "related-blocker-expectation-fixed",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Mekagenji QA34384",
+                "tests/standard488-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.56,
+              "log": "tmp/duema-phase-1703/related-blocker-expectation-fixed.log",
+              "passed": 1,
+              "logSha256": "85f7acee2edfb1ee1514ec7a1a010a4119b4e254db1cd1385d32e33dfb5f67ce"
+            }
+          ],
+          "coverage": "128 first-pass cases and1 obsolete Blocker expectation corrected to actual QA34384 ability presence, including selecting and destroying both printed-ignored and granted Blockers."
+        }
+      },
+      "totalTestsPassed": 242,
+      "hashes": {
+        "dist/cards.json": "27c0d3fe27236fb6ec331d1d32cf1a3ddbb0472f866f27fa9a0012e192419ddd",
+        "dist/engine.js": "12657cf2e3b842a763c64979fa702a0d1b34a0f04c257599772da100510aa2fe",
+        "dist/six-photo-rules.js": "5d877c782fc80bdfc8407c948da359d6a93b2953b0528f6fbf6d5b89b55244bb",
+        "tests/standard488-effects.test.mjs": "8fefd21f16bbc14a5f93d5a56f94fd964277b5469fb22408b6da8fd005e42162",
+        "dist/online-compatibility.js": "cd3722519ab881481885598688f5d35607c743b0b3f86657aae8c61b0f49666d",
+        "dist/card-images.js": "b28e3e9d6d7c486ed01703ea1e386f860583ed534388ec2783648bf17ae2282f",
+        "tools/target9000-card-spec.json": "3e57a198645cab42e0b2841eca3f4b16531940098237e906f6576421af3fb566",
+        "tests/standard1703-effects.test.mjs": "32546742f4ee409143dfc864aadc512aa8f06e7eb287b4380e25ae74bcb7ff49"
+      },
+      "engineVersion": "0.602.220",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1703-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 13.961,
+          "log": "tmp/duema-phase-1703/focused.log"
+        },
+        {
+          "name": "related-discard-entry",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1282-effects.test.mjs",
+            "tests/standard488-effects.test.mjs",
+            "tests/standard250-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 17.573,
+          "log": "tmp/duema-phase-1703/related-discard-entry.log"
+        },
+        {
+          "name": "focused-edges",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Exact QA41453 may|^Swan distinguishes|^Bolsled an actual|^Swan entry on",
+            "tests/standard1703-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.779,
+          "log": "tmp/duema-phase-1703/focused-edges.log"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1703.json",
+      "supported": 9348,
+      "pending": 2477,
+      "reason": "Complete Feiwon Star other-small-creature entry tap, Bolsled real Dragon discard power destruction, and White Swan both-player shields/threshold/break tap.",
+      "validationNotes": [
+        "Start/post-verification actual nameKey counts9345/9348. Baseline1beb09c4, clean tree/staging, previous batch/test processes all complete. Existing definitions, IDs, catalogue, image URLs, aliases, physical references and save formats preserved.",
+        "Three full official faces/basic information/mana/current restrictions and all7 exact print images reviewed: Feiwon Star2, Bolsled1, Swan4. Four exact reprints add no names. Original green Feiwon search hits are distinct. Swan later plus-marked power art still has base5000 and complete same abilities.",
+        "Feiwon Star uses native Light/Rexstar evolution, W break, Star replacement and mandatory other-own-creature entry watcher. Paid/effect entries, cost4 boundary, self/opponent/noncreature exclusion, multiple sources and actual Genmu ignore verified.",
+        "Bolsled optionally discards an actual Dragon creature using the native actual-discard continuation, then mandates destroying one targetable opponent at current power no greater than the discarded creature. Boundaries, real power modifiers, no target, wrong race, unselectable/sealed targets, creature attack cancellation, source ignore and real infinity Dragon target/JSON resume tested. Infinite discarded power imposes no upper bound, avoiding string infinity numeric comparison; finite cases stay bounded.",
+        "Swan adds each player actual top2 as separate private shields in active-player order using native ShieldTop. Its5-shield threshold counts groups and follows changing counts. Every actual own broken shield queues a mandatory tap regardless of Swan tap state; spell breaks trigger, nonbreak shield moves/destruction and enemy breaks do not. Ignored/sealed sources and opponent-turn effect entry/Waldo entry suppression verified.",
+        "Exact QA41453 tested in both seats: actual Holy Spark finishes before Swan tap; actual Aqua Surfer enters first and its entry ability and Swan may be chosen in either order through native entryOrder. No trigger timing or save-format change was needed.",
+        "48 distinct focused and194 affected regressions pass,total242. Swan choice encrypted round-trip hides other account hand and preserves legal actions/physical UIDs. Legal40-card seeded game finishes preserving80 IDs and JSON actions. Final check/audit/target9500/nameKey/baseline invariants pass.",
+        "Fixture repairs: buff is attack-only, so current enemy power uses a real powerModifier; the paid-source fixture adds its new UID to the pre-injection physical baseline; actual Aqua Surfer isdm05-024, and Shield Trigger entry ordering uses native entryOrder; sealed cards have no creature power. Infinity boundary additionally exposed and repaired the real new Bolsled filter bug.",
+        "The related standard488 Mekagenji test had an obsolete expectation that ignored printed Blocker disappears. Official QA34384 says the ability still exists. Corrected the expected selectable targets and verified actual destruction of both ignored printed and granted Blockers without restoring block permission; no old card definition changed.",
+        "Positron Sign official originals/reprints3 and all images reviewed, but held because exact QA47359 requires currently unregistered Shisan Fairydm25rp3-029 and complete global deck departure handling. It is unregistered and uncounted; no partial implementation added.",
+        "Historical whole npm test interrupted/unconfirmed, individual/long/reprint/user deferrals and publication records remain unchanged. No repeated whole long group, push/publication or Netlify update."
+      ],
+      "held": [
+        {
+          "id": "dm32-015",
+          "name": "ポジトロン・サイン",
+          "reason": "Official QA47359 needs actual unregistered Shisan Fairy dm25rp3-029 to reproduce spell execution while its library departure is prohibited. Hold until its complete ability and all zone paths are supported; not added or counted.",
+          "sources": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm32-015",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-se08",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-004",
+            "https://dm.takaratomy.co.jp/rule/qa/47359/"
+          ],
+          "officialFacesStatsAndThreeImagesReviewed": true,
+          "rulingSha256": "09a889ff4fa1b66874630ef28641bce14a6ab8f07b6bb1cd39be6c68f129cf38"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "promoy16-053",
+          "name": "ビギニング・ザ・メラビート",
+          "reason": "Verify summon-only mandatory JOE Joker hand deployment and exact delayed bottom/draw."
+        },
+        {
+          "id": "dmpcd02-a07",
+          "name": "モノノフ・ルピア",
+          "reason": "Verify full Bolmeteus creature search and actual Musha attack shield-to-grave watcher."
+        },
+        {
+          "id": "dmrp18-s02",
+          "name": "ビシャモンス ＜ハンニバル.Star＞",
+          "reason": "Verify native Dark/Rexstar Star evolution, triple break, exact two-card grave bottom payment at attack end or self destruction."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1702,
-    "nextPhase": 1703,
+    "lastVerifiedPhase": 1703,
+    "nextPhase": 1704,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm32-015",
-        "name": "ポジトロン・サイン",
-        "reason": "Verify four-card private look, optional S-Trigger spell, ordered bottom before unpaid cast and native trigger."
+        "id": "promoy16-053",
+        "name": "ビギニング・ザ・メラビート",
+        "reason": "Verify summon-only mandatory JOE Joker hand deployment and exact delayed bottom/draw."
       },
       {
-        "id": "sp-007",
-        "name": "ボルスレッド・ファイアー・ドラゴン",
-        "reason": "Verify attack optional real Dragon discard, discarded creature power comparison and enemy destruction."
+        "id": "dmpcd02-a07",
+        "name": "モノノフ・ルピア",
+        "reason": "Verify full Bolmeteus creature search and actual Musha attack shield-to-grave watcher."
       },
       {
-        "id": "dmrp22-2A",
-        "name": "ホワイト・スワン",
-        "reason": "Verify both-player two shields, five-shield power/W threshold and each actual own shield-break target tap."
+        "id": "dmrp18-s02",
+        "name": "ビシャモンス ＜ハンニバル.Star＞",
+        "reason": "Verify native Dark/Rexstar Star evolution, triple break, exact two-card grave bottom payment at attack end or self destruction."
       }
     ],
     "steps": [
@@ -544165,23 +544500,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1702,
-      "baseline": "c8836a86",
-      "supportedNames": 9345,
-      "artifact": "tools/target9500-registration-checkpoint-1702.json",
-      "checkedAt": "2026-11-23T04:19:33.285Z"
+      "phase": 1703,
+      "baseline": "1beb09c4",
+      "supportedNames": 9348,
+      "artifact": "tools/target9500-registration-checkpoint-1703.json",
+      "checkedAt": "2026-11-23T04:32:04.772Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T04:19:33.285Z",
+      "checkedAt": "2026-11-23T04:32:04.772Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9345,
-      "remainingNames": 155,
+      "currentNames": 9348,
+      "remainingNames": 152,
       "duplicateNames": 0,
-      "engineVersion": "0.602.219",
+      "engineVersion": "0.602.220",
       "added": [
         {
           "id": "dmr12-008",
@@ -545282,6 +545617,18 @@
         {
           "id": "promoy16-114",
           "name": "キング・ザ・スロットン"
+        },
+        {
+          "id": "dmrp18-012",
+          "name": "フェイウォン ＜モーリッツ.Star＞"
+        },
+        {
+          "id": "sp-007",
+          "name": "ボルスレッド・ファイアー・ドラゴン"
+        },
+        {
+          "id": "dmrp22-2A",
+          "name": "ホワイト・スワン"
         }
       ],
       "results": {
@@ -545397,14 +545744,14 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "3f283928e53c033bd18e7b71fc177ec2bb748108d01cc5109a05f1d05653c822",
-        "dist/engine.js": "884eea9e5bb3f95bef38966b0bdfbdb6a30af5ed2d5b4054529e0851090e51b6",
-        "dist/six-photo-rules.js": "c811ec0232da11d06bdbabac4ef8043975f7f09f4a777012571e7a104f1f807f",
-        "dist/fifteen-photo-rules.js": "53335b70739e07cc2aa88ebd36fc40f4fa8929751b11ad456251fc5e9f4b8681",
-        "dist/online-compatibility.js": "660ca26a9a15075d994485b8dd69dacea1d94d0ba118bd408f29bba31bb5eb82",
-        "dist/card-images.js": "4c5885771d9203acfe5bdbf157e20857665c4e7af6b4fb74e177698be3280c78",
-        "tools/target9000-card-spec.json": "2cd10644a4dfc0765ea899dd3eaf83de29a60071d0d7d1bc517c9ed4fb86ee59",
-        "tests/standard1702-effects.test.mjs": "eeb3b92c7bba1536690451a684a4ee48679e6a0eb0a6317cd26eb4f64369b7c2"
+        "dist/cards.json": "27c0d3fe27236fb6ec331d1d32cf1a3ddbb0472f866f27fa9a0012e192419ddd",
+        "dist/engine.js": "12657cf2e3b842a763c64979fa702a0d1b34a0f04c257599772da100510aa2fe",
+        "dist/six-photo-rules.js": "5d877c782fc80bdfc8407c948da359d6a93b2953b0528f6fbf6d5b89b55244bb",
+        "tests/standard488-effects.test.mjs": "8fefd21f16bbc14a5f93d5a56f94fd964277b5469fb22408b6da8fd005e42162",
+        "dist/online-compatibility.js": "cd3722519ab881481885598688f5d35607c743b0b3f86657aae8c61b0f49666d",
+        "dist/card-images.js": "b28e3e9d6d7c486ed01703ea1e386f860583ed534388ec2783648bf17ae2282f",
+        "tools/target9000-card-spec.json": "3e57a198645cab42e0b2841eca3f4b16531940098237e906f6576421af3fb566",
+        "tests/standard1703-effects.test.mjs": "32546742f4ee409143dfc864aadc512aa8f06e7eb287b4380e25ae74bcb7ff49"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -545468,14 +545815,14 @@
       },
       "phaseRange": [
         1614,
-        1702
+        1703
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 275,
+      "addedNames": 278,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
-        "name": "check",
+        "name": "check-final",
         "command": [
           "npm",
           "run",
@@ -545483,9 +545830,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.731,
-        "log": "tmp/duema-phase-1702/check.log",
-        "logSha256": "7411fdc0fda19dc762c456145f1fc03755d1d0430f00cf83e5d4590e20bcc653"
+        "seconds": 20.439,
+        "log": "tmp/duema-phase-1703/check-final.log",
+        "logSha256": "90ed5acd91b83c76080c29e035cdf2e026ccb94c3242741cced891b0f3cc50cc"
       },
       "latestAudit": {
         "name": "audit",
@@ -545495,11 +545842,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.818,
-        "log": "tmp/duema-phase-1702/audit.log",
-        "logSha256": "169aacf74920d93c1d0d8cba838c586cd6987330ffa68b8eb76aab283d95407e"
+        "seconds": 11.638,
+        "log": "tmp/duema-phase-1703/audit.log",
+        "logSha256": "1305063f6334e29bd0da37bc58404c6b33f9b5f8cd5c8b7614eecf0ecfaf0259"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1702.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1703.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -546617,11 +546964,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9345,
-      "remaining": 155,
+      "currentNames": 9348,
+      "remaining": 152,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T04:19:33.285Z",
+      "checkedAt": "2026-11-23T04:32:04.772Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -598766,11 +599113,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1702,
+    "phase": 1703,
     "threshold": 9500,
-    "supportedNames": 9345,
-    "pendingNames": 2480,
-    "checkedAt": "2026-11-23T04:19:33.285Z",
+    "supportedNames": 9348,
+    "pendingNames": 2477,
+    "checkedAt": "2026-11-23T04:32:04.772Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -598779,7 +599126,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1702.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1703.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
