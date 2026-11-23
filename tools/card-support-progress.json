@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9474,
-  "pendingNames": 2349,
-  "phase": 1748,
+  "supportedNames": 9476,
+  "pendingNames": 2347,
+  "phase": 1749,
   "added": 2,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1363,
+    "クリーチャー": 1361,
     "呪文": 261,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1738,
+    "未対応の能力文": 1736,
     "複数面・特殊カードタイプまたは情報不足": 506,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -557080,36 +557080,323 @@
         }
       ],
       "next": "次の10分間隔の回でphase1749から3〜5種類の完全対応を継続。実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1749,
+      "checkedAt": "2026-11-23T23:27:16.681Z",
+      "baseline": "88ce4f4a",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9474,
+      "currentNames": 9476,
+      "remainingNames": 24,
+      "added": [
+        {
+          "id": "dmex13-047",
+          "name": "機械を絡繰るケムリ"
+        },
+        {
+          "id": "dm04-003",
+          "name": "凶骨の邪将クエイクス"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "88ce4f4a",
+        "originalDefinitionsUnchanged": 9474,
+        "added": 2,
+        "uniqueNames": 9476,
+        "uniqueIds": 9476,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 1,
+        "existingImageUrlsUnchanged": 9474,
+        "existingImageReferenceRowsUnchanged": 11751,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 1106
+      },
+      "results": {
+        "focused-complete": {
+          "name": "focused-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1749-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.723,
+          "log": "tmp/duema-phase-1749/focused-complete.log",
+          "passed": 43,
+          "logSha256": "71a754b99c37fcd0f880e7118a8a4a07c846bda8253ff6c4f12b80522c8fb88d"
+        },
+        "related-end": {
+          "name": "related-end",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Vader",
+            "tests/standard1015-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.546,
+          "log": "tmp/duema-phase-1749/related-end.log",
+          "passed": 6,
+          "logSha256": "a77522946493e828117b5f2a7ea8a672ff3e33d2b14da5136308d2ff081d0894"
+        },
+        "related-discard": {
+          "name": "related-discard",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=Akunohana|Quakes|Kuro changes|Kuro discards",
+            "tests/standard983-effects.test.mjs",
+            "tests/standard1534-effects.test.mjs",
+            "tests/standard773-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.525,
+          "log": "tmp/duema-phase-1749/related-discard.log",
+          "passed": 8,
+          "logSha256": "ca9c98c80cee2f25d3c0c0be40a2d85237a8be4dabf98c0f5c19920cd1ac0b9f"
+        },
+        "related-online": {
+          "name": "related-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.077,
+          "log": "tmp/duema-phase-1749/related-online.log",
+          "passed": 12,
+          "logSha256": "d6fc037d61462a86867e04a2325dac04473a9c72607068e74b4da76297d609e0"
+        },
+        "research": {
+          "name": "research",
+          "command": [
+            "node",
+            "tmp/duema-phase-1749/research.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.628,
+          "log": "tmp/duema-phase-1749/research.log",
+          "logSha256": "c95fbf68a241046f12a5f4281016a1e0850c603758ce1fceb23f507b1861a533"
+        },
+        "prints": {
+          "name": "prints",
+          "command": [
+            "node",
+            "tmp/duema-phase-1749/prints.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.918,
+          "log": "tmp/duema-phase-1749/prints.log",
+          "logSha256": "104f433677b323080871f1c6bb00482a8c0577a51e036752c005dd7f881b3d12"
+        },
+        "twin-research-confirmed": {
+          "name": "twin-research-confirmed",
+          "command": [
+            "node",
+            "tmp/duema-phase-1749/twin-research.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.294,
+          "log": "tmp/duema-phase-1749/twin-research-confirmed.log",
+          "logSha256": "5c17fdf2d5586d37c4d13f520c7c58a1600171cd5be5a50bb2d5069883b7ed29"
+        },
+        "twin-confirmed": {
+          "name": "twin-confirmed",
+          "command": [
+            "node",
+            "tmp/duema-phase-1749/twin-confirmed.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.246,
+          "log": "tmp/duema-phase-1749/twin-confirmed.log",
+          "logSha256": "736f3809eeead720f43877fac95f09916b8d1c0a8ba84102c45d655fdc122e66"
+        },
+        "official-complete": {
+          "name": "official-complete",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1749.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.349,
+          "log": "tmp/duema-phase-1749/official-complete.log",
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "rulings": {
+          "name": "rulings",
+          "command": [
+            "python3",
+            "tmp/duema-phase-1749/rulings.py"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.9,
+          "log": "tmp/duema-phase-1749/rulings.log",
+          "logSha256": "ba517199874518f02cbfeb7e081f86b06c6ecd2d83de9d69a6b7d68be136c897"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.918,
+          "log": "tmp/duema-phase-1749/check.log",
+          "logSha256": "bb276c8d6b96607c1f7cfe23c8dc8638766d739c5009d967a26a1499b94ffe48"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.774,
+          "log": "tmp/duema-phase-1749/audit.log",
+          "logSha256": "b8ea8efeba07830aca71d488143370a58480da33834c5a8dc1231c9eb8b7b188"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.483,
+          "log": "tmp/duema-phase-1749/target9500.log",
+          "logSha256": "ccdec40da8bff85d96a4d8d1a545c4b1a03d538b5ca07c82401bf0a634ce68f3"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1749/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.416,
+          "log": "tmp/duema-phase-1749/invariants.log",
+          "logSha256": "c01165ed4f8b1a5ea15568c6ade3cf6bc40c7aa3b871fd5030998e339497462b"
+        }
+      },
+      "totalTestsPassed": 69,
+      "hashes": {
+        "dist/cards.json": "6320dd901a40bc3ca3167116f41281b3de2992cb061a7d3c720d97a60081443d",
+        "dist/engine.js": "10b43836fd0fac4f7ab110a5c378ef9123c6fda43b9697229bd96407d1c07ef6",
+        "dist/six-photo-rules.js": "7c746823113d343db189c96f8bf7ffe6d28d069fec125556e04a1ff911bf8e7e",
+        "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
+        "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "cb9f2aa7948143bcd183eb2ae21f7e01609c6dc48695d77ee608a01de692eda9",
+        "dist/online-compatibility.js": "e320a8f7058b41683abccd407d9c9d1d46e87a0329769c653cc3c3cc14e9dcb8",
+        "dist/card-images.js": "553380ff827d66d13ec7d73b9726314c490566320fb5413fe22040f53f108de5",
+        "tools/target9000-card-spec.json": "9c54187c3085b7d8a5816ef453815188ba767aff2236f45c5de4646d77da36ff",
+        "tests/standard1749-effects.test.mjs": "ccfb7192ab863b70dceb41550f513d2b84c4e15fd0a5dfebb6374fa05d66bbdd"
+      },
+      "engineVersion": "0.602.266",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1749-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.663,
+          "log": "tmp/duema-phase-1749/focused.log",
+          "logSha256": "0b6f3cdf69f5bb075815497aa0d1164b5a8fb823c6c99cc96077f2f7f9ef2dcd"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1749.json",
+      "supported": 9476,
+      "pending": 2347,
+      "reason": "Fully native complete Kemuri mandatory own-end mill and creature draw; Quakes other own Dark creature count blind discard and W breaker. Compared already registered phase1534 Quakes Twinpact without counting it again.",
+      "validationNotes": [
+        "Actual data nameKey9474→9476. Two complete new canonical names Kemuri and original Quakes. Three original/reprint pages and images checked, full printed ability/type/cost/power/race/mana1/current limit4 verified. Quakes original dm04-003 retained, dm18-008 added only as native catalogue alias with equivalent full-face strict pins; no duplicate definition. Kemuri has only original print.",
+        "Kemuri reuses blocker/noAttack plus native own-end MillMatch520 with real creature-face test and mandatory draw1. Paid3/1000, actual blocking, no attacks, ordinary creature/spell/real Twinpact, official QA34341 mandatory draw, opponent-end/ignored/sealed exclusions, sequential multiple sources and short-library mill/draw deck-out boundaries tested both seats. No optional skip added to its mandatory effect.",
+        "Quakes uses native CountBlindDiscard983 with other-incarnation exclusion and Dark creature filter, then native blind-slot selection. Paid7/6000/W/fresh sickness, other own Dark0/1/3 count, enemy/Nature/source exclusion, whole short0/1/2-card hands, actual Dark multicolor ally, sealed ally with two seals and real Dark Command entry unseal, actual Tignus hand protection, and actual unblocked double break verified. Blind pending choices survive encrypted JSON, nonactor actions empty, hidden identities absent from actor action list; AI inspection pure and physical cards conserved.",
+        "Compared the distinct Quakes/QuakesHand Twinpact official image and both complete faces. Existing ID dm24ex2-047 was already supported in phase1534, detected before overwriting existing pins or definitions; restored it solely as existingCards comparison evidence, not a third addition. Slash full-name search returned an overly broad list; first-face exact query confirms all3 relevant results and the one Twinpact print. Existing Twinpact specification remains byte-for-byte unchanged.",
+        "43 final focused cases plus affected Vader/Akunohana/existing Quakes Twinpact/blind-discard/online-save regressions pass. Initial Tignus ID and multicolor fixture corrected to actual printed cards; sealed ally uses two seals because real Quakes Dark Command removes one at entry. Earlier wrong card names did not alter runtime. All final checks pass. npm run check/audit/target/invariants confirm9474 existing definitions, IDs, prior pins, images, details and catalogue rows preserved. Engine version only; no new shared gameplay or save format changes.",
+        "CavalierShark held because MarshalExchange breaks and permits ST, while this card returns without break/ST. Yabasugiru requires exact opposing destruction choice/replacement and deploy continuation; neither partially counted. Historical pending cards, print checks and interrupted full-suite status preserved. No full npm test or old long group rerun. Local verified batch only, no push/Pages/Netlify; continue phase1750 toward9500, remaining24."
+      ],
+      "held": [
+        {
+          "id": "dm07-009",
+          "name": "キャバリア・シャーク",
+          "reason": "MarshalExchange1648 breaks shields and allows S triggers; this card retrieves without breaking or S triggers. Needs independent full exchange path; not counted."
+        },
+        {
+          "id": "dmr05-058",
+          "name": "ヤバスギル・ラップ",
+          "reason": "Opponent decision to destroy selected creature, decline/replaced destruction and subsequent any hand/grave deployment need exact conditional tracking; defer shared changes."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm07-009",
+          "name": "キャバリア・シャーク",
+          "reason": "MarshalExchange1648 breaks shields and allows S triggers; this card retrieves without breaking or S triggers. Needs independent full exchange path; not counted."
+        },
+        {
+          "id": "dmr05-058",
+          "name": "ヤバスギル・ラップ",
+          "reason": "Opponent decision to destroy selected creature, decline/replaced destruction and subsequent any hand/grave deployment need exact conditional tracking; defer shared changes."
+        }
+      ],
+      "next": "次の10分間隔の回でphase1750から3〜5種類の完全対応を継続。実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1748,
-    "nextPhase": 1749,
+    "lastVerifiedPhase": 1749,
+    "nextPhase": 1750,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm06-035",
-        "name": "超空要塞バビロン",
-        "reason": "A native g208 grant of g439Tap would overwrite existing tap abilities instead of adding an independent option; defer full multiple-tap-ability support, not partial registration."
-      },
-      {
-        "id": "dm06-011",
-        "name": "守護聖天アーク・バイン",
-        "reason": "Same multiple independent granted tap abilities requirement as Babylon; defer shared-path change per native-only batch instructions."
-      },
-      {
         "id": "dm07-009",
         "name": "キャバリア・シャーク",
-        "reason": "Review native MarshalExchange1648 for optional two-card shield exchange without ST before considering full support."
+        "reason": "MarshalExchange1648 breaks shields and allows S triggers; this card retrieves without breaking or S triggers. Needs independent full exchange path; not counted."
       },
       {
         "id": "dmr05-058",
         "name": "ヤバスギル・ラップ",
-        "reason": "Review native opposing destroy-or-deploy decision and exact owner/source semantics; defer if shared changes required."
+        "reason": "Opponent decision to destroy selected creature, decline/replaced destruction and subsequent any hand/grave deployment need exact conditional tracking; defer shared changes."
       }
     ],
     "steps": [
-      "次の10分間隔の回でphase1749から3〜5種類の完全対応を継続。実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+      "次の10分間隔の回でphase1750から3〜5種類の完全対応を継続。実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -557988,23 +558275,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1748,
-      "baseline": "41e73f3f",
-      "supportedNames": 9474,
-      "artifact": "tools/target9500-registration-checkpoint-1748.json",
-      "checkedAt": "2026-11-23T23:17:08.075Z"
+      "phase": 1749,
+      "baseline": "88ce4f4a",
+      "supportedNames": 9476,
+      "artifact": "tools/target9500-registration-checkpoint-1749.json",
+      "checkedAt": "2026-11-23T23:27:16.681Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T23:17:08.075Z",
+      "checkedAt": "2026-11-23T23:27:16.681Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9474,
-      "remainingNames": 26,
+      "currentNames": 9476,
+      "remainingNames": 24,
       "duplicateNames": 0,
-      "engineVersion": "0.602.265",
+      "engineVersion": "0.602.266",
       "added": [
         {
           "id": "dmr12-008",
@@ -559621,6 +559908,14 @@
         {
           "id": "dm20-s02",
           "name": "無敵巨兵オメガブラックZ"
+        },
+        {
+          "id": "dmex13-047",
+          "name": "機械を絡繰るケムリ"
+        },
+        {
+          "id": "dm04-003",
+          "name": "凶骨の邪将クエイクス"
         }
       ],
       "results": {
@@ -559736,17 +560031,17 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "faff1d83fc30e7b14d43ef196d837c245357c785d51581462ad2dd845fb04564",
-        "dist/engine.js": "28a738bfea8fa4d7f8c1eb808dad25a68a1eaf79b32f4adffefc17285e042cf8",
+        "dist/cards.json": "6320dd901a40bc3ca3167116f41281b3de2992cb061a7d3c720d97a60081443d",
+        "dist/engine.js": "10b43836fd0fac4f7ab110a5c378ef9123c6fda43b9697229bd96407d1c07ef6",
         "dist/six-photo-rules.js": "7c746823113d343db189c96f8bf7ffe6d28d069fec125556e04a1ff911bf8e7e",
         "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
         "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/catalogue.json": "a0577b021e6614d11c805bbb51d06d7fabb3447183854d244bade8dda412b9a4",
-        "dist/online-compatibility.js": "5302b85b3ee2df4d58d878875c858ecb37293947da6c5e1e2592184bbfd4c1c9",
-        "dist/card-images.js": "6077da21300bb990c300adb4497083a0141eac5c5a8e7b446b9a94f8e4c23043",
-        "tools/target9000-card-spec.json": "73b5d8ba493e198b97dcf9b84ea881c0a00c40e9768f415029c6d3c69527baa3",
-        "tests/standard1748-effects.test.mjs": "25ae80869d20f269c29ed8956dbcd9bb1165978ee784fb767c8137d80c5f0ff1"
+        "dist/catalogue.json": "cb9f2aa7948143bcd183eb2ae21f7e01609c6dc48695d77ee608a01de692eda9",
+        "dist/online-compatibility.js": "e320a8f7058b41683abccd407d9c9d1d46e87a0329769c653cc3c3cc14e9dcb8",
+        "dist/card-images.js": "553380ff827d66d13ec7d73b9726314c490566320fb5413fe22040f53f108de5",
+        "tools/target9000-card-spec.json": "9c54187c3085b7d8a5816ef453815188ba767aff2236f45c5de4646d77da36ff",
+        "tests/standard1749-effects.test.mjs": "ccfb7192ab863b70dceb41550f513d2b84c4e15fd0a5dfebb6374fa05d66bbdd"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -559810,10 +560105,10 @@
       },
       "phaseRange": [
         1614,
-        1748
+        1749
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 404,
+      "addedNames": 406,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -559825,23 +560120,23 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.858,
-        "log": "tmp/duema-phase-1748/check.log",
-        "logSha256": "bd79af6fcfcd16548119d8948c2f53a6d0e6905b84d97504a5f495e88ae1a2a6"
+        "seconds": 20.918,
+        "log": "tmp/duema-phase-1749/check.log",
+        "logSha256": "bb276c8d6b96607c1f7cfe23c8dc8638766d739c5009d967a26a1499b94ffe48"
       },
       "latestAudit": {
-        "name": "audit-target",
+        "name": "audit",
         "command": [
           "node",
           "tools/audit-card-support.mjs"
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.724,
-        "log": "tmp/duema-phase-1748/audit-target.log",
-        "logSha256": "7babded59fb56f493672114ac880a6cd2e62cf3fff9eaa230c75e9937a90e416"
+        "seconds": 11.774,
+        "log": "tmp/duema-phase-1749/audit.log",
+        "logSha256": "b8ea8efeba07830aca71d488143370a58480da33834c5a8dc1231c9eb8b7b188"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1748.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1749.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -560959,11 +561254,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9474,
-      "remaining": 26,
+      "currentNames": 9476,
+      "remaining": 24,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T23:17:08.075Z",
+      "checkedAt": "2026-11-23T23:27:16.681Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -561305,7 +561600,7 @@
       "checkedAt": "2026-11-23T22:20:44.237Z",
       "startNames": 9465,
       "target": 9500,
-      "remaining": 26,
+      "remaining": 24,
       "batchSize": "3–5 (remaining fewer allowed)",
       "validation": "Keep official full-text/stat/image/restriction/reprint/ruling checks, focused and affected regression tests, npm run check, actual nameKey count and progress. Do not repeat passed tests without new changes or concerns; no full npm test or old long group reruns.",
       "completionTiming": "10 minutes is a start cadence, not a guaranteed completion time. Skip duplicate work while prior run is active.",
@@ -561314,9 +561609,9 @@
         "pages": false,
         "netlify": false
       },
-      "currentNames": 9474,
-      "lastCompletedPhase": 1748,
-      "lastCompletedAt": "2026-11-23T23:17:08.075Z"
+      "currentNames": 9476,
+      "lastCompletedPhase": 1749,
+      "lastCompletedAt": "2026-11-23T23:27:16.681Z"
     }
   },
   "registeredCardVerification": {
@@ -613190,11 +613485,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1748,
+    "phase": 1749,
     "threshold": 9500,
-    "supportedNames": 9474,
-    "pendingNames": 2349,
-    "checkedAt": "2026-11-23T23:17:08.075Z",
+    "supportedNames": 9476,
+    "pendingNames": 2347,
+    "checkedAt": "2026-11-23T23:27:16.681Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -613203,7 +613498,7 @@
     "mode": "heartbeat",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1748.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1749.json",
     "resume": "ユーザーの10分間隔の追加再開指示。現在9465種類、phase1745から開始し9500で停止。各回3〜5種類を影響範囲に応じて検証、ローカルコミットまで。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

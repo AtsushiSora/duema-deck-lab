@@ -49786,5 +49786,111 @@
         }
       ]
     }
+  },
+  "dmex13-047": {
+    "phase": 1749,
+    "faces": [
+      {
+        "name": "機械を絡繰るケムリ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。それがクリーチャーなら、カードを１枚引く。",
+        "race": "デビルマスク/月光王国",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g174End": [
+        {
+          "op": "MillMatch520",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm04-003": {
+    "phase": 1749,
+    "faces": [
+      {
+        "name": "凶骨の邪将クエイクス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他の闇のクリーチャー１体につき、相手の手札から１枚見ないで選び、持ち主の墓地に置く。相手の手札の枚数がそれ以下の場合には、相手は手札すべてを持ち主の墓地に置く。\nW(ダブル)・ブレイカー",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountBlindDiscard983",
+          "zone": "battle",
+          "g329Other": true,
+          "filter": {
+            "color": "闇"
+          }
+        }
+      ]
+    }
+  },
+  "dm18-008": {
+    "phase": 1749,
+    "faces": [
+      {
+        "name": "凶骨の邪将クエイクス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の他の闇のクリーチャー１体につき相手の手札を１枚見ないで選び、捨てさせる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountBlindDiscard983",
+          "zone": "battle",
+          "g329Other": true,
+          "filter": {
+            "color": "闇"
+          }
+        }
+      ]
+    }
   }
 }

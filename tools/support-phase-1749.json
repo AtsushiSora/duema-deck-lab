@@ -1,0 +1,547 @@
+{
+  "phase": 1749,
+  "checkedAt": "2026-11-23T23:20:45.313Z",
+  "baseCount": 9474,
+  "target": 9500,
+  "description": "Fully native complete Kemuri mandatory own-end mill and creature draw; Quakes other own Dark creature count blind discard and W breaker. Compared already registered phase1534 Quakes Twinpact without counting it again.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34341/",
+      "sha256": "3485e9b086dc8dbbf44f897aef409073c041e296013294a1a67f8ba3bebf1f7f",
+      "checkedAt": "2026-11-23T23:22:46.794181+00:00",
+      "result": "Kemuri mills a real Twinpact at own turn end and must draw because it is also a creature; both seats reproduce actual native end-turn behavior, with ordinary creature/spell and deck-out boundaries.",
+      "reproduced": true,
+      "test": "tests/standard1749-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmex13-047",
+      "name": "機械を絡繰るケムリ",
+      "canonicalId": "dmex13-047",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-047",
+      "faces": [
+        {
+          "name": "機械を絡繰るケムリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。それがクリーチャーなら、カードを１枚引く。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g174End": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-047.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0f1de1a7252a2f339c345d782f8bc112c66ec04a4038c1f3d7d647789fd28e9b",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:20:45.313Z",
+        "reason": "Full official image viewed: Kemuri3/1000/blocker/no attack/mandatory own-end mill1 then draw if creature; Quakes7/6000/DemonCommand/W and other own Dark creature count blind discard; all mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmex13-047"
+        ],
+        "result": "Complete official same-name search checked: Kemuri only original; Quakes2 equivalent prints; new distinct Gequakes excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:20:45.313Z",
+        "sha256": "7406fad04ade30821f0ff9998907f6879d2112316b76a7c3db81eedd99080133",
+        "facesMatched": true,
+        "imageSha256": "0f1de1a7252a2f339c345d782f8bc112c66ec04a4038c1f3d7d647789fd28e9b"
+      }
+    },
+    {
+      "id": "dm04-003",
+      "name": "凶骨の邪将クエイクス",
+      "canonicalId": "dm04-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-003",
+      "faces": [
+        {
+          "name": "凶骨の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他の闇のクリーチャー１体につき、相手の手札から１枚見ないで選び、持ち主の墓地に置く。相手の手札の枚数がそれ以下の場合には、相手は手札すべてを持ち主の墓地に置く。\nW(ダブル)・ブレイカー",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountBlindDiscard983",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "color": "闇"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-003.jpg",
+      "imageReviewed": true,
+      "imageSha256": "b4864eebb0d95697b2ddb19713906efa134f576521388348be7cb39d6c4ea203",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:20:45.313Z",
+        "reason": "Full official image viewed: Kemuri3/1000/blocker/no attack/mandatory own-end mill1 then draw if creature; Quakes7/6000/DemonCommand/W and other own Dark creature count blind discard; all mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm04-003",
+          "dm18-008"
+        ],
+        "result": "Complete official same-name search checked: Kemuri only original; Quakes2 equivalent prints; new distinct Gequakes excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:20:45.313Z",
+        "sha256": "3285d8b2ee13db94f93e18de40622f14dd0342886751bc1d4aebd3cc203aeb69",
+        "facesMatched": true,
+        "imageSha256": "b4864eebb0d95697b2ddb19713906efa134f576521388348be7cb39d6c4ea203"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm18-008",
+      "name": "凶骨の邪将クエイクス",
+      "canonicalId": "dm04-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-008",
+      "faces": [
+        {
+          "name": "凶骨の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の他の闇のクリーチャー１体につき相手の手札を１枚見ないで選び、捨てさせる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountBlindDiscard983",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "color": "闇"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-008.jpg",
+      "imageReviewed": true,
+      "imageSha256": "69371779af9b12c4b4e58e82c7f33a35ff9ed8967242847c7b3b51b4605b0c7f",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:20:45.313Z",
+        "reason": "Full official image viewed: Kemuri3/1000/blocker/no attack/mandatory own-end mill1 then draw if creature; Quakes7/6000/DemonCommand/W and other own Dark creature count blind discard; all mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm04-003",
+          "dm18-008"
+        ],
+        "result": "Complete official same-name search checked: Kemuri only original; Quakes2 equivalent prints; new distinct Gequakes excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T23:20:45.313Z",
+        "sha256": "c46779186d5a9578ad0524bc02ef4624d58ec4fb96f4f79fadf64bab0a3d657e",
+        "facesMatched": true,
+        "imageSha256": "69371779af9b12c4b4e58e82c7f33a35ff9ed8967242847c7b3b51b4605b0c7f"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dm18-008",
+      "canonicalId": "dm04-003"
+    }
+  ],
+  "held": [
+    {
+      "id": "dm07-009",
+      "name": "キャバリア・シャーク",
+      "reason": "MarshalExchange1648 breaks shields and allows S triggers; this card retrieves without breaking or S triggers. Needs independent full exchange path; not counted."
+    },
+    {
+      "id": "dmr05-058",
+      "name": "ヤバスギル・ラップ",
+      "reason": "Opponent decision to destroy selected creature, decline/replaced destruction and subsequent any hand/grave deployment need exact conditional tracking; defer shared changes."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T23:20:45.313Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex13-047": 4,
+      "dm04-003": 4,
+      "dm18-008": 4,
+      "dm24ex2-047": 4
+    }
+  },
+  "existingCards": [
+    {
+      "id": "dm24ex2-047",
+      "name": "凶骨の邪将クエイクス / クエイクス・ハンド",
+      "canonicalId": "dm24ex2-047",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-047",
+      "faces": [
+        {
+          "name": "凶骨の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが出た時、自分の他の闇のクリーチャー１体につき、相手の手札を１枚見ないで選び、捨てさせる。\nＷ・ブレイカー",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "クエイクス・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体選び、破壊する。\n相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountBlindDiscard983",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            }
+          }
+        ],
+        "spellFace": {
+          "type": "spell",
+          "name": "クエイクス・ハンド",
+          "cost": 6,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              },
+              "spell": true
+            },
+            {
+              "op": "BlindDiscard773",
+              "n": 1,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-047a.jpg",
+      "imageReviewed": true,
+      "imageSha256": "1f785cae30f970e1bcc745ff0005f20773127fc32ce9e0ac750ad09926389531",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T23:25:10.221Z",
+        "reason": "Full official Twinpact image viewed: Dark creature7/6000/DemonCommand/W and other-own-Dark blind discard; spell6/S trigger/untapped opposing creature destruction then blind discard1; mana1. Both faces implemented under one physical ID."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm24ex2-047"
+        ],
+        "result": "First-face exact official name search has3 results: two original creature prints, one distinct Twinpact. Twinpact only current exact full-name print."
+      },
+      "alreadyRegisteredPhase": 1534,
+      "notCountedAsAddition": true,
+      "verification": {
+        "checkedAt": "2026-11-23T23:20:45.313Z",
+        "sha256": "c8f826fd72eb0f3a41caf38e26e177a05bc6667a40eb81a3edbff0df80324e18",
+        "facesMatched": true,
+        "imageSha256": "1f785cae30f970e1bcc745ff0005f20773127fc32ce9e0ac750ad09926389531"
+      }
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-23T23:27:16.681Z",
+    "results": {
+      "focused-complete": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1749-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.723,
+        "log": "tmp/duema-phase-1749/focused-complete.log",
+        "passed": 43,
+        "logSha256": "71a754b99c37fcd0f880e7118a8a4a07c846bda8253ff6c4f12b80522c8fb88d"
+      },
+      "related-end": {
+        "name": "related-end",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Vader",
+          "tests/standard1015-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.546,
+        "log": "tmp/duema-phase-1749/related-end.log",
+        "passed": 6,
+        "logSha256": "a77522946493e828117b5f2a7ea8a672ff3e33d2b14da5136308d2ff081d0894"
+      },
+      "related-discard": {
+        "name": "related-discard",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Akunohana|Quakes|Kuro changes|Kuro discards",
+          "tests/standard983-effects.test.mjs",
+          "tests/standard1534-effects.test.mjs",
+          "tests/standard773-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.525,
+        "log": "tmp/duema-phase-1749/related-discard.log",
+        "passed": 8,
+        "logSha256": "ca9c98c80cee2f25d3c0c0be40a2d85237a8be4dabf98c0f5c19920cd1ac0b9f"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.077,
+        "log": "tmp/duema-phase-1749/related-online.log",
+        "passed": 12,
+        "logSha256": "d6fc037d61462a86867e04a2325dac04473a9c72607068e74b4da76297d609e0"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1749/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.628,
+        "log": "tmp/duema-phase-1749/research.log",
+        "logSha256": "c95fbf68a241046f12a5f4281016a1e0850c603758ce1fceb23f507b1861a533"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1749/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.918,
+        "log": "tmp/duema-phase-1749/prints.log",
+        "logSha256": "104f433677b323080871f1c6bb00482a8c0577a51e036752c005dd7f881b3d12"
+      },
+      "twin-research-confirmed": {
+        "name": "twin-research-confirmed",
+        "command": [
+          "node",
+          "tmp/duema-phase-1749/twin-research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.294,
+        "log": "tmp/duema-phase-1749/twin-research-confirmed.log",
+        "logSha256": "5c17fdf2d5586d37c4d13f520c7c58a1600171cd5be5a50bb2d5069883b7ed29"
+      },
+      "twin-confirmed": {
+        "name": "twin-confirmed",
+        "command": [
+          "node",
+          "tmp/duema-phase-1749/twin-confirmed.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.246,
+        "log": "tmp/duema-phase-1749/twin-confirmed.log",
+        "logSha256": "736f3809eeead720f43877fac95f09916b8d1c0a8ba84102c45d655fdc122e66"
+      },
+      "official-complete": {
+        "name": "official-complete",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1749.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.349,
+        "log": "tmp/duema-phase-1749/official-complete.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "rulings": {
+        "name": "rulings",
+        "command": [
+          "python3",
+          "tmp/duema-phase-1749/rulings.py"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.9,
+        "log": "tmp/duema-phase-1749/rulings.log",
+        "logSha256": "ba517199874518f02cbfeb7e081f86b06c6ecd2d83de9d69a6b7d68be136c897"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.918,
+        "log": "tmp/duema-phase-1749/check.log",
+        "logSha256": "bb276c8d6b96607c1f7cfe23c8dc8638766d739c5009d967a26a1499b94ffe48"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.774,
+        "log": "tmp/duema-phase-1749/audit.log",
+        "logSha256": "b8ea8efeba07830aca71d488143370a58480da33834c5a8dc1231c9eb8b7b188"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.483,
+        "log": "tmp/duema-phase-1749/target9500.log",
+        "logSha256": "ccdec40da8bff85d96a4d8d1a545c4b1a03d538b5ca07c82401bf0a634ce68f3"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1749/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.416,
+        "log": "tmp/duema-phase-1749/invariants.log",
+        "logSha256": "c01165ed4f8b1a5ea15568c6ade3cf6bc40c7aa3b871fd5030998e339497462b"
+      }
+    },
+    "totalTestsPassed": 69,
+    "focusedTestsPassed": 43,
+    "relatedTestsPassed": 26
+  },
+  "validationNotes": [
+    "Actual data nameKey9474→9476. Two complete new canonical names Kemuri and original Quakes. Three original/reprint pages and images checked, full printed ability/type/cost/power/race/mana1/current limit4 verified. Quakes original dm04-003 retained, dm18-008 added only as native catalogue alias with equivalent full-face strict pins; no duplicate definition. Kemuri has only original print.",
+    "Kemuri reuses blocker/noAttack plus native own-end MillMatch520 with real creature-face test and mandatory draw1. Paid3/1000, actual blocking, no attacks, ordinary creature/spell/real Twinpact, official QA34341 mandatory draw, opponent-end/ignored/sealed exclusions, sequential multiple sources and short-library mill/draw deck-out boundaries tested both seats. No optional skip added to its mandatory effect.",
+    "Quakes uses native CountBlindDiscard983 with other-incarnation exclusion and Dark creature filter, then native blind-slot selection. Paid7/6000/W/fresh sickness, other own Dark0/1/3 count, enemy/Nature/source exclusion, whole short0/1/2-card hands, actual Dark multicolor ally, sealed ally with two seals and real Dark Command entry unseal, actual Tignus hand protection, and actual unblocked double break verified. Blind pending choices survive encrypted JSON, nonactor actions empty, hidden identities absent from actor action list; AI inspection pure and physical cards conserved.",
+    "Compared the distinct Quakes/QuakesHand Twinpact official image and both complete faces. Existing ID dm24ex2-047 was already supported in phase1534, detected before overwriting existing pins or definitions; restored it solely as existingCards comparison evidence, not a third addition. Slash full-name search returned an overly broad list; first-face exact query confirms all3 relevant results and the one Twinpact print. Existing Twinpact specification remains byte-for-byte unchanged.",
+    "43 final focused cases plus affected Vader/Akunohana/existing Quakes Twinpact/blind-discard/online-save regressions pass. Initial Tignus ID and multicolor fixture corrected to actual printed cards; sealed ally uses two seals because real Quakes Dark Command removes one at entry. Earlier wrong card names did not alter runtime. All final checks pass. npm run check/audit/target/invariants confirm9474 existing definitions, IDs, prior pins, images, details and catalogue rows preserved. Engine version only; no new shared gameplay or save format changes.",
+    "CavalierShark held because MarshalExchange breaks and permits ST, while this card returns without break/ST. Yabasugiru requires exact opposing destruction choice/replacement and deploy continuation; neither partially counted. Historical pending cards, print checks and interrupted full-suite status preserved. No full npm test or old long group rerun. Local verified batch only, no push/Pages/Netlify; continue phase1750 toward9500, remaining24."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm07-009",
+      "name": "キャバリア・シャーク",
+      "reason": "MarshalExchange1648 breaks shields and allows S triggers; this card retrieves without breaking or S triggers. Needs independent full exchange path; not counted."
+    },
+    {
+      "id": "dmr05-058",
+      "name": "ヤバスギル・ラップ",
+      "reason": "Opponent decision to destroy selected creature, decline/replaced destruction and subsequent any hand/grave deployment need exact conditional tracking; defer shared changes."
+    }
+  ]
+}

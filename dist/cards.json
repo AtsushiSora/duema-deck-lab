@@ -302491,15 +302491,82 @@
       ],
       "supportBatch": "phase-1748",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-047",
+      "name": "機械を絡繰るケムリ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。それがクリーチャーなら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-047",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g174End": [
+        {
+          "op": "MillMatch520",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1749",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-003",
+      "name": "凶骨の邪将クエイクス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他の闇のクリーチャー１体につき、相手の手札から１枚見ないで選び、持ち主の墓地に置く。相手の手札の枚数がそれ以下の場合には、相手は手札すべてを持ち主の墓地に置く。\nW(ダブル)・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountBlindDiscard983",
+          "zone": "battle",
+          "g329Other": true,
+          "filter": {
+            "color": "闇"
+          }
+        }
+      ],
+      "supportBatch": "phase-1749",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1748,
-    "checkedAt": "2026-11-23T23:12:24.457Z",
-    "baseCount": 9472,
+    "phase": 1749,
+    "checkedAt": "2026-11-23T23:20:45.313Z",
+    "baseCount": 9474,
     "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9474,
+    "totalCount": 9476,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -331174,6 +331241,21 @@
         "newEffectCards": 1,
         "newVanillaCards": 0,
         "totalCount": 9472,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1748,
+        "checkedAt": "2026-11-23T23:12:24.457Z",
+        "baseCount": 9472,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9474,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
