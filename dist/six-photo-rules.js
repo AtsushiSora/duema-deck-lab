@@ -438,7 +438,9 @@ export function createSixPhotoRules(api){
  const livePower199=(s,x,inCombat)=>api.power(x,!!inCombat&&(x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0)),s);
  const evolutionOrLinkedGod=(x,c)=>api.isEvolution(x)||!!(x.godLinks?.length&&race(c,'ゴッド'));
  const physicalVictory1686=x=>[x,...(x.godLinks||[])].some(y=>hasVictoryRarity1686(card({...y,godLinks:null,g1357Copies:null,g393JCopies:null}).name));
+ const cJoe1704=x=>card(x).joeDiscount!==undefined;
  function matches(s,p,x,f={}){
+  if(f.g1704Joe&&!cJoe1704(x))return false;
   if(f.g1686Victory&&!physicalVictory1686(x))return false;
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
@@ -2346,7 +2348,7 @@ export function createSixPhotoRules(api){
    uid:x.uid,incarnation:x.incarnation||0,controller:t.controller??t.p,
    title:card(x).name+'をタップする？',defs:[{op:'SelfTap314',g536Source:true}]
   }),put);
-  if(t.delayed){x.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.controller??t.p};if(t.drawOnBottom)x.g35DrawOnBottom=true;}if(t.grant){(x.g34Grants??=[]).push({turn:s.turn,...t.grant});}}}
+  if(t.delayed){x.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.controller??t.p,...(t.g1704DelayedDraw?{g1704DelayedDraw:true}:{})};if(t.drawOnBottom)x.g35DrawOnBottom=true;}if(t.grant){(x.g34Grants??=[]).push({turn:s.turn,...t.grant});}}}
  // Mana-triggered self buffs and optional hand refills use only public state.
  function spaceScore455(s,t,defs){return defs.reduce((n,d)=>{const own=s.players[t.p];if(d.op==='Sequence')return n+spaceScore455(s,t,d.defs);if(d.op==='NextReduction456')return n+(s.active===t.p?Math.min(20,d.amount*4):0);if(d.op==='DrawUpTo')return n+Math.min(d.n,Math.max(0,own.deck.length-1))*10;if(d.op==='DiscardAll244')return n-own.hand.length*8;if(d.op==='OpponentSelect'){const rows=creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,d.filter));return n+(rows.length?10+Math.min(...rows.map(y=>cost(effective(y,s))*2)):0);}if(d.op==='Target'&&d.owner==='self'){const rows=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,d.filter)),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value));return n+Math.max(0,...rows.filter(y=>legal.has(y.uid)).map(y=>d.grant?.slayer?8:s.active===t.p&&!y.tapped?8+(d.g455ExtraBreak?6:0):0));}if(d.op==='SelfBoost313'||d.op==='SelfExtraBreak444'){const x=live(s,t);return n+(x&&s.active===t.p&&!x.tapped?8:0);}return n+modeScore(s,t,[d]);},0);}
  // Each player chooses their own card in turn order, before either selected card moves.
@@ -4218,7 +4220,22 @@ export function createSixPhotoRules(api){
   if(moves.size)move(s,[...moves.values()]);
   break;
  }
- case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host&&(!t.g774Banky||!host.x.sealed))move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p,...(t.toOwnerGrave?{toOwnerGrave:true}:{})}]);break;}
+ case'g34_DelayedMove532':{
+  const host=sourceHost474(s,t);
+  if(host&&(!t.g774Banky||!host.x.sealed)){
+   if(t.g1704DelayedDraw&&!host.x.g35DrawOnBottom){
+    host.x.g35DrawOnBottom={g1704Controller:t.p};
+    put(s,task('g34_ClearDelayedDraw1704',t.p,t.source,{owner:host.p,target:host.x.uid,targetIncarnation:host.x.incarnation||0}));
+   }
+   move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p,...(t.g1704DelayedDraw?{toOwnerDeck:true}:{}),...(t.toOwnerGrave?{toOwnerGrave:true}:{})}]);
+  }
+  break;
+ }
+ case'g34_ClearDelayedDraw1704':{
+  const y=s.players[t.owner].battle.find(y=>y.uid===t.target&&(y.incarnation||0)===t.targetIncarnation);
+  if(y)delete y.g35DrawOnBottom;
+  break;
+ }
  case'g34_OpponentBattleWin986':{
   const source=sourceHost474(s,t);
   const tapped=source&&!source.x.sealed?source.x.tapped:t.lastTapped;
@@ -5810,6 +5827,18 @@ export function createSixPhotoRules(api){
  case'g34_HatchHunter841':{
   const y=own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
   if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
+  break;
+ }
+ case'g34_BishamonCost1704':{
+  const selected=t.selected||[],rows=own.grave.filter(y=>!selected.some(r=>r.uid===y.uid));
+  if(selected.length===2){
+   for(const r of selected)if(own.grave.some(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial))zoneMove(s,t.p,'grave',r.uid,'deck',t);
+   break;
+  }
+  if(selected.length+rows.length<2){start(s,t,[{op:'SelfDestroy'}]);break;}
+  choice(s,{...t,selected},'山札の下に置く墓地のカードを2枚選ぶ（選ばなければこのクリーチャーを破壊）',[
+   ...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},10-cost(card(y)),y.cardId)),skip()
+  ]);
   break;
  }
  case'g34_BothShieldTop1703':
@@ -8579,6 +8608,9 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_BishamonCost1704':
+  if(v)put(s,{...t,selected:[...t.selected,v]});else start(s,t,[{op:'SelfDestroy'}]);
+  break;
  case'g34_SpikeMode1702':{
   const y=own.battle.find(y=>y.uid===t.target&&(y.incarnation||0)===t.targetIncarnation&&!y.sealed&&api.isCreature(s,y));
   if(y){
@@ -11060,7 +11092,7 @@ export function createSixPhotoRules(api){
     task:task('g34_GraveReturn754',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,condition,
      ...(g971GraveDeployEnd?{deploy:true}:{})})});
   }
-  const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
+  const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to,...(d.g1704DelayedDraw?{g1704DelayedDraw:true}:{})})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   // Rule 603.4 checks the host's tapped state when the end-step ability resolves.
   if(p===s.active&&(card(x).weaponBlocker||card(x).g1475TappedRelease))add(x,[E('UltoRelease1361')]);
   const manaLeftEnd=card(x).g811ManaLeftEnd;

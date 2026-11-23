@@ -1,0 +1,446 @@
+{
+  "phase": 1704,
+  "checkedAt": "2026-11-23T04:38:30.196Z",
+  "baseCount": 9348,
+  "target": 9500,
+  "description": "Complete Beginning summon-only latest optional JOE Joker deployment with delayed-only bottom draw, and Bishamon Star exact optional two-card grave attempt at attack end.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39848/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 39848,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39848/",
+      "sha256": "cb4e198db73967c34244d8f8676a60e45aa773a476ed7d7588867cf1b2c0e217",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1704-effects.test.mjs",
+      "testNamePrefix": "Exact QA39848",
+      "bothPlayersVerified": true,
+      "scope": "Actual Xuan and actual Apuru each prohibit grave movement; two-card attempted payment still satisfies condition."
+    }
+  ],
+  "cards": [
+    {
+      "id": "promoy16-053",
+      "name": "ビギニング・ザ・メラビート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-053",
+      "faces": [
+        {
+          "name": "ビギニング・ザ・メラビート",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nマスター・メラビート：このクリーチャーが召喚によってバトルゾーンに出た時、「Ｊ・Ｏ・Ｅ」能力を持つジョーカーズを１体、自分の手札からバトルゾーンに出す。このターンの終わりに、それを自分の山札の一番下に置く。下に置いたら、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g1698SummonEntry": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ",
+              "g1704Joe": true
+            },
+            "delayed": "deck",
+            "g1704DelayedDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-053.jpg",
+      "imageReviewed": true,
+      "imageSha256": "a30eae41f62e2f83550b105398c785765f370cf99a16ab6a9dd3ee051e571ee6",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "promoy16-053",
+          "dmex03-g03",
+          "dmbd03-003"
+        ],
+        "result": "Original Beginning and two reprints, and Bishamon Star original images and complete faces reviewed. Latest Beginning DMEX03 is optional under comprehensive rule109.1; Bishamon Deeken twin is distinct."
+      },
+      "currentPrint": {
+        "id": "dmex03-g03",
+        "name": "ビギニング・ザ・メラビート",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-g03",
+        "faces": [
+          {
+            "name": "ビギニング・ザ・メラビート",
+            "typeText": "クリーチャー",
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ],
+            "cost": 6,
+            "costText": "6",
+            "abilityText": "スピードアタッカー\nマスター・メラビート：このクリーチャーが召喚によってバトルゾーンに出た時、「Ｊ・Ｏ・Ｅ」能力を持つジョーカーズを１体、自分の手札からバトルゾーンに出してもよい。このターンの終わりに、それを自分の山札の一番下に置く。下に置いたら、カードを１枚引く。",
+            "race": "ジョーカーズ",
+            "powerText": "5000",
+            "missingFields": []
+          }
+        ],
+        "useRulesText": true,
+        "verification": {
+          "checkedAt": "2026-11-23T04:38:30.196Z",
+          "sha256": "bf7876fd3b6e86874b8b5492a694a309259c3520b2cc4e3e083b58e3171d432c",
+          "facesMatched": true
+        }
+      },
+      "textUpdateEvidence": {
+        "rule": "109.1",
+        "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+        "reason": "Latest DMEX03 reprint changes deployment to optional; original IDs and official original faces retained."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:38:30.196Z",
+        "sha256": "eddf3ef23b53983ac800f15b50a467792d294833ef16540db224aa76d5844b81",
+        "facesMatched": true,
+        "imageSha256": "a30eae41f62e2f83550b105398c785765f370cf99a16ab6a9dd3ee051e571ee6"
+      }
+    },
+    {
+      "id": "dmrp18-s02",
+      "name": "ビシャモンス ＜ハンニバル.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s02",
+      "faces": [
+        {
+          "name": "ビシャモンス ＜ハンニバル.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを２枚、自分の墓地から山札の下に置いてもよい。そうしなければ、このクリーチャーを破壊する。",
+          "race": "マフィ・ギャング/デーモン・コマンド/レクスターズ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 3,
+        "g474AttackEnd": [
+          {
+            "op": "BishamonCost1704"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-s02.jpg",
+      "imageReviewed": true,
+      "imageSha256": "863b9b0b8ba6c7da8c7001172591a886ea6b6564fc517bbcb498303d1c87f91c",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmrp18-s02"
+        ],
+        "result": "Original Beginning and two reprints, and Bishamon Star original images and complete faces reviewed. Latest Beginning DMEX03 is optional under comprehensive rule109.1; Bishamon Deeken twin is distinct."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T04:38:30.196Z",
+        "sha256": "40074e947e61a797222b68f3edcc8e26a83b95e5dc2ad75b4b5a004383ba9aac",
+        "facesMatched": true,
+        "imageSha256": "863b9b0b8ba6c7da8c7001172591a886ea6b6564fc517bbcb498303d1c87f91c"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [
+    {
+      "id": "dmex03-g03",
+      "name": "ビギニング・ザ・メラビート",
+      "canonicalId": "promoy16-053",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-g03",
+      "faces": [
+        {
+          "name": "ビギニング・ザ・メラビート",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nマスター・メラビート：このクリーチャーが召喚によってバトルゾーンに出た時、「Ｊ・Ｏ・Ｅ」能力を持つジョーカーズを１体、自分の手札からバトルゾーンに出してもよい。このターンの終わりに、それを自分の山札の一番下に置く。下に置いたら、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "bf7876fd3b6e86874b8b5492a694a309259c3520b2cc4e3e083b58e3171d432c",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-g03.jpg",
+          "file": "tmp/duema-phase-1704/dmex03-g03-0.jpg",
+          "sha256": "ffd6ed7a71bc3c4c0fafc16ebd221cb1994c298abdffa6e9f45ff21240750e87"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmbd03-003",
+      "name": "ビギニング・ザ・メラビート",
+      "canonicalId": "promoy16-053",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-003",
+      "faces": [
+        {
+          "name": "ビギニング・ザ・メラビート",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nマスター・メラビート：このクリーチャーが召喚によってバトルゾーンに出た時、「Ｊ・Ｏ・Ｅ」能力を持つジョーカーズを１体、自分の手札からバトルゾーンに出す。このターンの終わりに、それを自分の山札の一番下に置く。下に置いたら、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "ad44f79c6e40d91b38b3a423d281e4ab7447f3e1e360137b37dcebcef2745a37",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd03-003.jpg",
+          "file": "tmp/duema-phase-1704/dmbd03-003-0.jpg",
+          "sha256": "56fa00fb450585782b9fe891ff2c0d0334737a28ea6d66b2b04a8db163370ebd"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [
+    {
+      "id": "dmpcd02-a07",
+      "name": "モノノフ・ルピア",
+      "reason": "Exact QA40784 ruby-name search needs actual unregistered Super Dragon B Crimson promoy8-002. Hold until complete deck evolution/Fire Bird conditional trigger-shield burn and ruby identity are implemented and tested. No partial search registered or counted.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a07",
+        "https://dm.takaratomy.co.jp/rule/qa/40784/"
+      ],
+      "officialFacesStatsAndImageReviewed": true,
+      "rulingSha256": "eb89c608d33f5ce0d8199b4b9585c2459aa3b680d9c38c3887809139cab86b61"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T04:38:30.196Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy16-053": 4,
+      "dmrp18-s02": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T04:47:35.146Z",
+    "results": {
+      "related-delays": {
+        "name": "related-delays",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard532-effects.test.mjs",
+          "tests/travel-interactions.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 30.044,
+        "log": "tmp/duema-phase-1704/related-delays.log",
+        "passed": 126,
+        "logSha256": "947d9ab79a6973b84a2e6d2875f598c43c4ab5e2f72e130e294a2fad33f51523"
+      },
+      "related-summon-online": {
+        "name": "related-summon-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1698-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.31,
+        "log": "tmp/duema-phase-1704/related-summon-online.log",
+        "passed": 98,
+        "logSha256": "5e5a5d0dc3e8d82c2e48b5c4d922911f180117e3140c121e24d7ec596ff3a958"
+      },
+      "related-borrow-copy": {
+        "name": "related-borrow-copy",
+        "command": [
+          "node",
+          "--test",
+          "tests/requested393-joker.test.mjs",
+          "tests/photo159-combat-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.31,
+        "log": "tmp/duema-phase-1704/related-borrow-copy.log",
+        "passed": 59,
+        "logSha256": "69a38242d6756efcaa13ba59fcca35cb2d4afdba411b20cb26daada692e4d15a"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.838,
+        "log": "tmp/duema-phase-1704/check.log",
+        "logSha256": "e7b73874baef923f72f966ff2c29b43b6679ded070e39d1de2328979959bb68b"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.115,
+        "log": "tmp/duema-phase-1704/audit.log",
+        "logSha256": "0d4ab4e99f3ce35bdcc9d6822deb1b47aef155d36d8691efdd74ecbb71382e2f"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.347,
+        "log": "tmp/duema-phase-1704/target9500.log",
+        "logSha256": "a71f75a644cb56384d5d0cbd5ceba319e0b12b1885f54349ad508956a7f141ac"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1704/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.508,
+        "log": "tmp/duema-phase-1704/invariants.log",
+        "logSha256": "3580c94d55d86990675d6a1b0d01e355ac77b9350a83b10563588ec08d6b660b"
+      },
+      "official": {
+        "name": "official-complete",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1704.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.862,
+        "log": "tmp/duema-phase-1704/official-complete.log",
+        "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+      },
+      "focused": {
+        "passed": 47,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1704-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 7.229,
+            "log": "tmp/duema-phase-1704/focused.log",
+            "passed": 45,
+            "logSha256": "0c4eb158072e9c5a5aefc1500b1f8ff850985d76b49463c0f78b5fd40be21172"
+          },
+          {
+            "name": "focused-inherited-summon-fixed",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^A real evolution inheriting",
+              "tests/standard1704-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.116,
+            "log": "tmp/duema-phase-1704/focused-inherited-summon-fixed.log",
+            "passed": 2,
+            "logSha256": "b2725577cfabad3a11d41045ec2173ede5e7bab03c7a0c957acf991fc4c1f13e"
+          }
+        ],
+        "coverage": "45 original cases passed initially.2 additional inherited-copy cases pass after correcting the fixture: only the copied Beginning ability, not MAX-G printed abilities, transfers to the evolution."
+      }
+    },
+    "totalTestsPassed": 330,
+    "focusedTestsPassed": 47,
+    "relatedTestsPassed": 283
+  },
+  "validationNotes": [
+    "Start/post-verification actual nameKey counts9348/9350. Baselinea9165ada, clean tree/staging, no running prior work/tests. Existing9348 definitions, IDs, catalogue, aliases, image references, save formats and prior pending records preserved.",
+    "Batch deliberately contains2 complete cards rather than padding with partial Mononofu. Beginning3 exact prints and Bishamon Star1 full faces/stats/mana/current limits and all4 official images reviewed; Mononofu single official image/full face separately reviewed and held. Two Beginning reprints add no names; Bishamon Deeken twin search result excluded.",
+    "Beginning latest DMEX03 reprint makes JOE Joker deployment optional, unlike original/provisional mandatory text. Comprehensive rule109.1 uses latest published text. Original ID and original faces retained; currentPrint provides actual latest optional game text. No special mana or old-definition change.",
+    "Only one formerly unsupported details.json row promoy16-053 was refreshed: official JOE typography changed ASCII to fullwidth, NFKC-equivalent, plus its checked date. All other details rows/fields are deep-equal to baseline. Initial preparation stopped at this exact mismatch and official verification had no manifest; both failures recorded and resolved after evidence-based metadata correction.",
+    "Beginning uses native summon-only g1698 entry and native hand deployment of a JOE Joker creature, never JOE payment or summon. End-of-turn return follows current evolution/controller while returning physical cards to owners and drawing for the original delayed controller. The draw flag is enabled only for the specified delayed movement and cleared after a failed attempt; earlier unrelated bottom movement does not draw. Early departure/reentry, source leaving, ability-ignored recipient, real Star evolution, controller-change JSON and encrypted pending state verified.",
+    "Borrowed whole-entry enumeration now includes g1698SummonEntry before literal selection. Actual Dr.Fuji copies Beginning even without a summon; literal Beginning/Lionel/Owen and a real evolution inheriting MAX-G copied Beginning are tested. The inherited fixture initially incorrectly expected MAX-G printed own-entry ability to transfer; only copied abilities transfer, and both seats pass after fixture repair.",
+    "Bishamon uses native Dark/Rexstar Star evolution, paid3, printed15000 and triple break. Its optional attack-end payment reserves exactly2 distinct physical grave cards and preserves chosen bottom order. Decline before/after the first choice moves no partial payment and destroys only Star top. Fewer0/1 cards cannot pay; actual Genmu suppresses the attack-end ability.",
+    "Exact QA39848 reproduced in both seats using actual Xuan and Apuru: 2 grave cards may be selected and attempted even while locked; both remain in grave and Bishamon is not destroyed. Condition checks the attempted action rather than actual zone movement.",
+    "47 focused and283 affected regressions pass,total330. Delayed/controller/evolution and existing JOE interactions126, summon sources/online98, borrowed/copied Joker abilities59. Legal40-card seeded game finishes with80 conserved IDs and JSON-equivalent actions. Check/audit/target9500/nameKey/invariants pass.",
+    "Mononofu held because exact QA40784 needs the currently unregistered B Crimson ruby-name source. Its complete deck evolution and Fire Bird conditional shield-trigger burn will be paired with Mononofu in a subsequent normal batch. No partial Mononofu definition, fake battle source, duplicate or unverifiable support count added.",
+    "Whole npm test interrupted/unconfirmed and all historical individual/long/reprint/user deferrals preserved. No repeated long whole group, push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmpcd02-a07",
+      "name": "モノノフ・ルピア",
+      "reason": "Pair complete Bolmeteus search/Musha attack shield burn with actual ruby-name B Crimson source for QA40784."
+    },
+    {
+      "id": "promoy8-002",
+      "name": "超竜Bクリムゾン",
+      "reason": "Needed for Mononofu exact ruby search QA40784; implement full deck evolution and Fire Bird conditional shield-trigger burn before counting."
+    },
+    {
+      "id": "dm11-019",
+      "name": "ロイヤル・ドリアン",
+      "reason": "Verify original and exact reprints, native shield trigger and physical evolution-top-to-owner-mana movement across both players."
+    }
+  ]
+}

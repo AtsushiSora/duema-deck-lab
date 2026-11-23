@@ -297940,19 +297940,89 @@
       ],
       "supportBatch": "phase-1703",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-053",
+      "name": "ビギニング・ザ・メラビート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "スピードアタッカー\nマスター・メラビート：このクリーチャーが召喚によってバトルゾーンに出た時、「Ｊ・Ｏ・Ｅ」能力を持つジョーカーズを１体、自分の手札からバトルゾーンに出してもよい。このターンの終わりに、それを自分の山札の一番下に置く。下に置いたら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-053",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1698SummonEntry": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ",
+            "g1704Joe": true
+          },
+          "delayed": "deck",
+          "g1704DelayedDraw": true
+        }
+      ],
+      "supportBatch": "phase-1704",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-s02",
+      "name": "ビシャモンス ＜ハンニバル.Star＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 15000,
+      "race": "マフィ・ギャング/デーモン・コマンド/レクスターズ",
+      "text": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー\nこのクリーチャーの攻撃の終わりに、カードを２枚、自分の墓地から山札の下に置いてもよい。そうしなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s02",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 3,
+      "g474AttackEnd": [
+        {
+          "op": "BishamonCost1704"
+        }
+      ],
+      "supportBatch": "phase-1704",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1703,
-    "checkedAt": "2026-11-23T04:24:25.132Z",
-    "baseCount": 9345,
-    "newEffectCards": 3,
+    "phase": 1704,
+    "checkedAt": "2026-11-23T04:38:30.196Z",
+    "baseCount": 9348,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9348,
+    "totalCount": 9350,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/41453/"
+      "https://dm.takaratomy.co.jp/rule/qa/39848/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -325868,6 +325938,22 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/31545/",
           "https://dm.takaratomy.co.jp/rule/qa/34384/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1703,
+        "checkedAt": "2026-11-23T04:24:25.132Z",
+        "baseCount": 9345,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9348,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41453/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
