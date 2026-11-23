@@ -3,7 +3,7 @@ export function createRedzoneRules(api){
  const {card,cost,colors,effective,power,creatures,put,task,choice,opt,skip,remove,clear,move,draw,enqueue,log,targetOptions}=api;
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
- const matches=(s,a,c)=>api.isCreature(s,a)&&(!c.invasion.evolution||api.isEvolution(a))&&(c.invasion.anyCreature||(c.invasion.categories||['コマンド']).some(q=>String(effective(a,s).race).includes(q)))&&cost(effective(a,s))>=(c.invasion.min||0)&&(c.invasion.anyColor||colors(effective(a,s)).some(v=>c.invasion.colors.includes(v)));
+ const matches=(s,a,c)=>api.isCreature(s,a)&&(!c.invasion.evolution||api.isEvolution(a))&&(c.invasion.anyCreature||(c.invasion.categories||['コマンド']).some(q=>String(effective(a,s).race).includes(q)))&&cost(effective(a,s))>=(c.invasion.min||0)&&(c.invasion.exactCost===undefined||cost(effective(a,s))===c.invasion.exactCost)&&(c.invasion.anyColor||colors(effective(a,s)).some(v=>c.invasion.colors.includes(v)));
  function psychicInvasion1349(s,t){
   const own=s.players[t.p];
   const x=own.extra.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);

@@ -301762,15 +301762,128 @@
       "g1739TappedAttackLock": true,
       "supportBatch": "phase-1739",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-032",
+      "name": "「天馬の騎兵」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "メタリカ/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカパワー：このクリーチャーが進化する時、このターン、自分のクリーチャーが攻撃できない効果をすべて無視する。（ただし、召喚酔いは無効にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-032",
+      "limit": 4,
+      "gStrike": true,
+      "g397Shinka": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "g1739AttackFreedom": "all"
+          },
+          "g1106ExternalUntilEnd": true
+        }
+      ],
+      "supportBatch": "phase-1740",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-024",
+      "name": "Duplicates of G.O.D.",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 15500,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "究極進化：進化クリーチャー１体の上に置く。\n侵略：光のコスト９の進化クリーチャー（自分の光のコスト９の進化クリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nT・ブレイカー\nこのクリーチャーが出た時、このターン、相手は呪文を唱えることができず、コストが９より小さいクリーチャーを召喚できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-024",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "invasion": {
+        "origins": [
+          "hand"
+        ],
+        "colors": [
+          "光"
+        ],
+        "anyCreature": true,
+        "exactCost": 9,
+        "evolution": true
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SpellLock489",
+          "expires": "end"
+        },
+        {
+          "op": "Lock",
+          "g1740UntilEnd": true,
+          "limit": {
+            "kind": "summon",
+            "max": 8
+          }
+        }
+      ],
+      "supportBatch": "phase-1740",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-s04",
+      "name": "「疾風」の鬼 フウジン天",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デモニオ/鬼札王国",
+      "text": "自分の他のクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s04",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1740EntrantHaste": true
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1740",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1739,
-    "checkedAt": "2026-11-23T11:33:17.563Z",
-    "baseCount": 9450,
+    "phase": 1740,
+    "checkedAt": "2026-11-23T11:50:05.067Z",
+    "baseCount": 9453,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9453,
+    "totalCount": 9456,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -330310,6 +330423,21 @@
         "newEffectCards": 2,
         "newVanillaCards": 0,
         "totalCount": 9450,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1739,
+        "checkedAt": "2026-11-23T11:33:17.563Z",
+        "baseCount": 9450,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9453,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

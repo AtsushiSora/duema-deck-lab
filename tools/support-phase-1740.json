@@ -1,0 +1,609 @@
+{
+  "phase": 1740,
+  "checkedAt": "2026-11-23T11:50:05.067Z",
+  "baseCount": 9453,
+  "target": 9500,
+  "description": "Complete Tenma Shinka attack freedom except sickness/GStrike; Duplicates ultimate/invasion and own-turn9+ summon/spell prohibition; Fuujin entrant-specific optional shield sacrifice haste and OniTime4000/W.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40437/",
+      "scope": "Invasion conditions checked at attack declaration; Shibaine->Chutopia chain cannot newly declare Duplicates.",
+      "sha256": "562b9fb4aceeac6f77a7e4f7a72a5460318c8c59b477ad57dbb0091c8c554550",
+      "method": "Native eligibility at declaration reproduced with real Light9 non-evolution Mauchu, Light9 evolution Gio, wrong-cost evolution ThunderMoon and ordinary cards. Duplicates is absent from the declaration list before any intervening evolution. The two named original QA prerequisites are not needed to test that required eligibility condition.",
+      "reproduced": true,
+      "test": "tests/standard1740-effects.test.mjs",
+      "bothPlayersVerified": true
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39424/",
+      "scope": "Attempted own shield movement suffices for follow-up even when movement is replaced.",
+      "sha256": "b911dc345d12b1fbe0aef34860b0a8d363f4e741dbebb7d8d2cb254b411f424c",
+      "reproduced": true,
+      "test": "tests/standard1740-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-032",
+      "name": "「天馬の騎兵」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-032",
+      "faces": [
+        {
+          "name": "「天馬の騎兵」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカパワー：このクリーチャーが進化する時、このターン、自分のクリーチャーが攻撃できない効果をすべて無視する。（ただし、召喚酔いは無効にならない）",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g397Shinka": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "grant": {
+              "g1739AttackFreedom": "all"
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-032.jpg",
+      "imageReviewed": true,
+      "imageSha256": "73078910ba1bbbe9970974d7e63468127926e6b3e306c6356f53d7e13434cb81",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:50:05.067Z",
+        "reason": "Full original/reprint image reviewed, printed mana1/type/cost/race/power/full ability. Fuujin original HTML3000 omits the printed plus marker; all3 printed art show3000+ and same base power3000/OniTime4000/W. DM24EX3 andDM24RP4 share identical image bytes."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmrp18-032"
+        ],
+        "result": "Exact-name official search and product list; full text/art of all originals/reprints reviewed; excluded similar-name different cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "sha256": "98515652fa24891121f31bf525eb2aca43f671761f19dfb413441204016721e4",
+        "facesMatched": true,
+        "imageSha256": "73078910ba1bbbe9970974d7e63468127926e6b3e306c6356f53d7e13434cb81"
+      }
+    },
+    {
+      "id": "dmex17-024",
+      "name": "Duplicates of G.O.D.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-024",
+      "faces": [
+        {
+          "name": "Duplicates of G.O.D.",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "究極進化：進化クリーチャー１体の上に置く。\n侵略：光のコスト９の進化クリーチャー（自分の光のコスト９の進化クリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nT・ブレイカー\nこのクリーチャーが出た時、このターン、相手は呪文を唱えることができず、コストが９より小さいクリーチャーを召喚できない。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "15500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "invasion": {
+          "origins": [
+            "hand"
+          ],
+          "colors": [
+            "光"
+          ],
+          "anyCreature": true,
+          "exactCost": 9,
+          "evolution": true
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SpellLock489",
+            "expires": "end"
+          },
+          {
+            "op": "Lock",
+            "g1740UntilEnd": true,
+            "limit": {
+              "kind": "summon",
+              "max": 8
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-024.jpg",
+      "imageReviewed": true,
+      "imageSha256": "502747cb9a996222403ba86121c9d9e68bcc9df5560767c22e30c6fd77c011e1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:50:05.067Z",
+        "reason": "Full original/reprint image reviewed, printed mana1/type/cost/race/power/full ability. Fuujin original HTML3000 omits the printed plus marker; all3 printed art show3000+ and same base power3000/OniTime4000/W. DM24EX3 andDM24RP4 share identical image bytes."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmex17-024"
+        ],
+        "result": "Exact-name official search and product list; full text/art of all originals/reprints reviewed; excluded similar-name different cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "sha256": "f1c6362fe0a290f561576a6251183af1477fa008ac8c310dbd4de0b1c33a861b",
+        "facesMatched": true,
+        "imageSha256": "502747cb9a996222403ba86121c9d9e68bcc9df5560767c22e30c6fd77c011e1"
+      }
+    },
+    {
+      "id": "dmrp15-s04",
+      "name": "「疾風」の鬼 フウジン天",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s04",
+      "faces": [
+        {
+          "name": "「疾風」の鬼 フウジン天",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の他のクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "g1740EntrantHaste": true
+        },
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-s04.jpg",
+      "imageReviewed": true,
+      "imageSha256": "2cdbaf6cfb7a8af88c273b476eb2d512555428f148f458d115d4234263856e0c",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:50:05.067Z",
+        "reason": "Full original/reprint image reviewed, printed mana1/type/cost/race/power/full ability. Fuujin original HTML3000 omits the printed plus marker; all3 printed art show3000+ and same base power3000/OniTime4000/W. DM24EX3 andDM24RP4 share identical image bytes."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm24ex3-rp4TR5",
+          "dm24rp4-TR05",
+          "dmrp15-s04"
+        ],
+        "result": "Exact-name official search and product list; full text/art of all originals/reprints reviewed; excluded similar-name different cards."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "sha256": "024a09596bbf3913ad3cf8011fbd5d63539bcd3e7591d9ba8c17fbf33fcf6b75",
+        "facesMatched": true,
+        "imageSha256": "2cdbaf6cfb7a8af88c273b476eb2d512555428f148f458d115d4234263856e0c"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp4TR5",
+      "name": "「疾風」の鬼 フウジン天",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4TR5",
+      "faces": [
+        {
+          "name": "「疾風」の鬼 フウジン天",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の他のクリーチャーが出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "g1740EntrantHaste": true
+        },
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "canonicalId": "dmrp15-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4TR5.jpg",
+      "imageReviewed": true,
+      "imageSha256": "efb74d177c50fb4b84134bda353e7e5f0dd5dd3d954abf0d6d42bc48254fb885",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:50:05.067Z",
+        "reason": "Full original/reprint image reviewed, printed mana1/type/cost/race/power/full ability. Fuujin original HTML3000 omits the printed plus marker; all3 printed art show3000+ and same base power3000/OniTime4000/W. DM24EX3 andDM24RP4 share identical image bytes."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "sha256": "1460783963f6e41addad87fad26110e419615040e4846a6f661a87693bffb42f",
+        "facesMatched": true,
+        "imageSha256": "efb74d177c50fb4b84134bda353e7e5f0dd5dd3d954abf0d6d42bc48254fb885"
+      }
+    },
+    {
+      "id": "dm24rp4-TR05",
+      "name": "「疾風」の鬼 フウジン天",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-TR05",
+      "faces": [
+        {
+          "name": "「疾風」の鬼 フウジン天",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の他のクリーチャーが出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "g1740EntrantHaste": true
+        },
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "canonicalId": "dmrp15-s04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-TR05.jpg",
+      "imageReviewed": true,
+      "imageSha256": "efb74d177c50fb4b84134bda353e7e5f0dd5dd3d954abf0d6d42bc48254fb885",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T11:50:05.067Z",
+        "reason": "Full original/reprint image reviewed, printed mana1/type/cost/race/power/full ability. Fuujin original HTML3000 omits the printed plus marker; all3 printed art show3000+ and same base power3000/OniTime4000/W. DM24EX3 andDM24RP4 share identical image bytes."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T11:50:05.067Z",
+        "sha256": "cbc9a692cb655fc6fd2ec4e0ad2f68a96b44fb09852ef10e5e07ade5eb58c815",
+        "facesMatched": true,
+        "imageSha256": "efb74d177c50fb4b84134bda353e7e5f0dd5dd3d954abf0d6d42bc48254fb885"
+      }
+    }
+  ],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T11:50:05.067Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-032": 4,
+      "dmex17-024": 4,
+      "dmrp15-s04": 4,
+      "dm24ex3-rp4TR5": 4,
+      "dm24rp4-TR05": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T11:59:27.471Z",
+    "results": {
+      "related-entry": {
+        "name": "related-entry",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard762-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.433,
+        "log": "tmp/duema-phase-1740/related-entry.log",
+        "passed": 8,
+        "logSha256": "6c7ca3ee1ac92b9ca585faae481dbb7f8b4c6a106774b60438a4cd3d77431bac"
+      },
+      "related-shinka": {
+        "name": "related-shinka",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Shinka|Genmu|buried|ignored|M-deck",
+          "tests/standard397-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.096,
+        "log": "tmp/duema-phase-1740/related-shinka.log",
+        "passed": 58,
+        "logSha256": "2eda93a6060169c156cfee3c57ecff809e0806f85873a63f0190035cc974934b"
+      },
+      "related-invasion": {
+        "name": "related-invasion",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=invasion|Red F first|Red F uses",
+          "tests/redzone-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.821,
+        "log": "tmp/duema-phase-1740/related-invasion.log",
+        "passed": 5,
+        "logSha256": "218bb04c6e13001e01025e817e1de534173bf04aa8e03620a13308d9acdf5a29"
+      },
+      "related-lock": {
+        "name": "related-lock",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=spell|Spell|Holy|G Strike|timed",
+          "tests/standard489-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.049,
+        "log": "tmp/duema-phase-1740/related-lock.log",
+        "passed": 32,
+        "logSha256": "e5a88a8b00931db3ac70ef142c92a30e05433e7b680e842a681468c6944916b0"
+      },
+      "related-freedom": {
+        "name": "related-freedom",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1739-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.268,
+        "log": "tmp/duema-phase-1740/related-freedom.log",
+        "passed": 73,
+        "logSha256": "7c3beecb03a4535ca11267d225cfaef97f90937dd902748224acc1da1ee8b5d9"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.856,
+        "log": "tmp/duema-phase-1740/related-online.log",
+        "passed": 55,
+        "logSha256": "1a12c67d7dd9670b9c5a63097196641c46088e8cc72804d146a2c91492be7b32"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1740.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.628,
+        "log": "tmp/duema-phase-1740/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.656,
+        "log": "tmp/duema-phase-1740/check.log",
+        "logSha256": "c6c703bac935e3d53c668ee7b38dcc0bf9d67ee4b62aa4f3b3cf4ba13c196554"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.416,
+        "log": "tmp/duema-phase-1740/audit.log",
+        "logSha256": "e5dbc0091a4933d24625d745ee5a9c3970e8fec47ba6ec3a251d53a2453dce9c"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.378,
+        "log": "tmp/duema-phase-1740/target9500.log",
+        "logSha256": "d25837c2db87cae8ef600528a863f533f58866906727aac54a83545b56390cea"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1740/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.382,
+        "log": "tmp/duema-phase-1740/invariants.log",
+        "logSha256": "7af0d0a610741e138eeb960f8fd95c91dc15ce6ee967e215c328aa7e81786376"
+      },
+      "focused": {
+        "passed": 63,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1740-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 1.821,
+            "log": "tmp/duema-phase-1740/focused.log",
+            "logSha256": "7e3da85cabb2fa7afd4ed2c6b5a8925dd8f14630ce55771a4fd5f49c4e0df0ed"
+          },
+          {
+            "name": "focused-fix",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=Tenma actual Shinka|Tenma Shinka|Tenma actual shield|Tenma ignored|Fuujin shield stack",
+              "tests/standard1740-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.089,
+            "log": "tmp/duema-phase-1740/focused-fix.log",
+            "logSha256": "c05fdaa135135e7d6901366e5d44a8aba080cb578cb31a0e2d9d2413573c04b6"
+          },
+          {
+            "name": "focused-additional",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=pending optional grant|two independent|does not override|ignored by actual|on opponents|actual opposing STrigger|nonLight evolution|removed original|encrypted room|AI is pure",
+              "tests/standard1740-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.085,
+            "log": "tmp/duema-phase-1740/focused-additional.log",
+            "logSha256": "d9c7904060597aad99e1a60fba07480c1af1f76cf60b678ea96a67d890ec0495"
+          },
+          {
+            "name": "focused-duration",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=actual nonsummon during|resolved creature effect",
+              "tests/standard1740-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 0.675,
+            "log": "tmp/duema-phase-1740/focused-duration.log",
+            "logSha256": "e5b9b5b05f24e16280949386a352ec267302ab2b6a1c72bf0c8cc99f0f03ab79"
+          },
+          {
+            "name": "focused-zaha",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=QA39424",
+              "tests/standard1740-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.374,
+            "log": "tmp/duema-phase-1740/focused-zaha.log",
+            "logSha256": "0b9ebe882a2b0364e56820716571edcd537c4488aaadb58b7b32b9812a46aa19"
+          }
+        ],
+        "coverage": "63 unique cases, corrected wrong evolution-card and GStrike action/ShieldStack fixture expectations; every final case passes."
+      }
+    },
+    "totalTestsPassed": 294,
+    "focusedTestsPassed": 63,
+    "relatedTestsPassed": 231
+  },
+  "validationNotes": [
+    "Actual nameKey9453→9456; all9453 old definitions/IDs/catalogue/details/images/pins preserved.3 canonical full definitions,5 original/reprint art/pages reviewed, same-name reprints not counted. Fuujin official original HTML omits printed power plus marker: all reviewed printed art says3000+, same base3000 and full conditional+4000/W.",
+    "Tenma paid3/GStrike and actual Shinka through existing Gio evolution verified, current own creatures full attack freedom excluding summoning sickness, no untap, enemy unaffected, source ignored/sealed prevents trigger, pending effect persists after evolved host leaves and after Genmu appears. Reuses phase1739 effect with optional undefined spell-cost guard for nonspell resolved effects; native Diamond/Heavens/Portal regressions pass.",
+    "Duplicates uses ultimate evolution over any evolution and full exact Light9/evolution invasion including any race. Added narrow optional exactCost check to existing invasion matcher; all old invasion rows unchanged. Declaration eligibility on real Mauchu/Gio/wrong-cost cards, free attack continuation, T breaker, paid9, JSON and pure AI passed. Native summon max8/spell restriction ends at current turn end, including actual offturn nonsummon; source departure keeps resolved restriction, own player and nonsummon unaffected, opposing real DemonHand ST unavailable.",
+    "Fuujin reuses existing other-entry watcher and entrant UID/incarnation grant with a narrow speed-attacker mode on native EntryMach762. Optional whole-shield sacrifice supports actual Zaha shield retention, stacked physical shields, multiple independent sources, no-shield/ignored/self/enemy exclusions, pending trigger after source departure, Genmu target ability ignore and turn expiry. Native live OniTime sum<=6 grants+4000/W and removes above6. Encrypted shield decisions/80-card legal save/AI pure verified.63 focused unique cases plus affected short regressions/check/audit/count/target/invariants pass; historical pending and full-suite interrupted status unchanged; no push/publication/Netlify."
+  ],
+  "nextCandidates": [
+    {
+      "id": "sp-005",
+      "name": "凶星王ダーク・ヒドラ",
+      "reason": "Reuse native same-race grave recovery on own entry including self and full W breaker."
+    },
+    {
+      "id": "dm31-005",
+      "name": "星狼凰マスター・オブ・デスティニー",
+      "reason": "Native distinct Samurai/Knight evolutionV, optional mana ST spell then optional mana CrossGear deployment."
+    },
+    {
+      "id": "dm19-s01",
+      "name": "超神星ヴィーナス・ラ・セイントマザー",
+      "reason": "Native three distinct Guardian/GreatMecha/ArcSeraphim bases and optional under-card leave replacement."
+    }
+  ]
+}

@@ -2882,7 +2882,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_EntryMach762':{
   const host=sourceHost474(s,t.subject)?.x;
-  if(host&&!host.sealed&&api.isCreature(s,host))applyGrant(s,{...t,grant:{machFighter:true}},host);
+  if(host&&!host.sealed&&api.isCreature(s,host))applyGrant(s,{...t,grant:t.g1740Haste?{speedAttacker:true}:{machFighter:true}},host);
   break;
  }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
@@ -7292,7 +7292,7 @@ export function createSixPhotoRules(api){
  case'g34_PlayerAttackResponse741':
   (s.extLimits??=[]).push({kind:'g741PlayerAttackResponse',who:t.p,source:t.source,defs:t.defs,expires:'start'});
   break;
- case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??t.p,expires:'start',
+ case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??(t.g1740UntilEnd?s.active:t.p),expires:t.g1740UntilEnd?'end':'start',
   ...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
  case'g34_UntapTeam934':{
   const source=t.g179Other?sourceHost474(s,t)?.x:null;
@@ -10565,6 +10565,7 @@ export function createSixPhotoRules(api){
     if(races.length)queue(s,owner,x,[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{creature:true,any:races.map(g724ExactRace=>({g724ExactRace}))}}]);
    }
    else if(watch.g1632DestroyEntrant)queue(s,owner,x,[{op:'ExactMove',owner:p,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0,g403Refs:api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})),followEvolution:true}]);
+   else if(watch.g1740EntrantHaste)queue(s,owner,x,[{op:'ShieldGrave',optional:true,then:[{op:'EntryMach762',subject:{uid:y.uid,incarnation:y.incarnation||0},g1740Haste:true}]}]);
    else if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });

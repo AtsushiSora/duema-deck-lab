@@ -48280,5 +48280,203 @@
       "g825Meteor": "shuffleEnemy1739",
       "g1739TappedAttackLock": true
     }
+  },
+  "dmrp18-032": {
+    "phase": 1740,
+    "faces": [
+      {
+        "name": "「天馬の騎兵」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカパワー：このクリーチャーが進化する時、このターン、自分のクリーチャーが攻撃できない効果をすべて無視する。（ただし、召喚酔いは無効にならない）",
+        "race": "メタリカ/レクスターズ",
+        "powerText": "2500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g397Shinka": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "grant": {
+            "g1739AttackFreedom": "all"
+          },
+          "g1106ExternalUntilEnd": true
+        }
+      ]
+    }
+  },
+  "dmex17-024": {
+    "phase": 1740,
+    "faces": [
+      {
+        "name": "Duplicates of G.O.D.",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "究極進化：進化クリーチャー１体の上に置く。\n侵略：光のコスト９の進化クリーチャー（自分の光のコスト９の進化クリーチャーが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nT・ブレイカー\nこのクリーチャーが出た時、このターン、相手は呪文を唱えることができず、コストが９より小さいクリーチャーを召喚できない。",
+        "race": "エンジェル・コマンド/侵略者",
+        "powerText": "15500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "invasion": {
+        "origins": [
+          "hand"
+        ],
+        "colors": [
+          "光"
+        ],
+        "anyCreature": true,
+        "exactCost": 9,
+        "evolution": true
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SpellLock489",
+          "expires": "end"
+        },
+        {
+          "op": "Lock",
+          "g1740UntilEnd": true,
+          "limit": {
+            "kind": "summon",
+            "max": 8
+          }
+        }
+      ]
+    }
+  },
+  "dm24ex3-rp4TR5": {
+    "phase": 1740,
+    "faces": [
+      {
+        "name": "「疾風」の鬼 フウジン天",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の他のクリーチャーが出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "3000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314OtherEntry": {
+        "who": "self",
+        "g1740EntrantHaste": true
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      }
+    }
+  },
+  "dm24rp4-TR05": {
+    "phase": 1740,
+    "faces": [
+      {
+        "name": "「疾風」の鬼 フウジン天",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の他のクリーチャーが出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "3000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314OtherEntry": {
+        "who": "self",
+        "g1740EntrantHaste": true
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      }
+    }
+  },
+  "dmrp15-s04": {
+    "phase": 1740,
+    "faces": [
+      {
+        "name": "「疾風」の鬼 フウジン天",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の他のクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置いてもよい。そうしたら、そのターン、そのクリーチャーに「スピードアタッカー」を与える。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314OtherEntry": {
+        "who": "self",
+        "g1740EntrantHaste": true
+      },
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      }
+    }
   }
 }
