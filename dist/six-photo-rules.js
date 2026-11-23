@@ -11067,6 +11067,7 @@ export function createSixPhotoRules(api){
     auras:own.battle.filter(x=>x.auraTo1352?.uid===host.uid&&x.auraTo1352.incarnation===host.incarnation).map(x=>({uid:x.uid,serial:(x.zoneSerial||0)+1}))}]:[];
   })),
   ...(g1256HandEvolutionWatch.some(x=>x.length)?{g1256HandEvolutionWatch}:{}),
+  g1745DragonGrave:s.players.map(own=>own.grave.filter(x=>!x.faceDown&&card(x).g1745GraveDragon).map(x=>({uid:x.uid,serial:x.zoneSerial||0}))),
   g1145GraveWatch:s.players.map(own=>own.grave.flatMap(x=>{
    const minCost=card(x).g1145GraveDeathMinCost;
    return !x.faceDown&&minCost!==undefined?[{uid:x.uid,serial:x.zoneSerial||0,minCost}]:[];
@@ -11118,6 +11119,13 @@ export function createSixPhotoRules(api){
   if(to==='grave'&&destroy&&snapshot?.g1672CreatureRefs?.some(ref=>ref.p===p&&key(ref)===key(x))){
    if(s.g1672Destroyed?.turn!==s.turn)s.g1672Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1672Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
+  }
+  // Attached Auras move with an actually destroyed host (310.8a / 701.6a).
+  const destroyedAura1745=!destroy&&card(x).type==='aura'&&x.auraTo1352&&s.leaving?.rows.some(row=>
+   row.player===p&&row.uid===x.auraTo1352.uid&&row.to==='grave'&&row.destroy!==false&&row.plan.kind==='leave');
+  if(to==='grave'&&(destroy||destroyedAura1745)&&victim?.g1248DragonElement&&victim.name!=='黒神龍グールジェネレイド')for(const ref of snapshot?.g1745DragonGrave?.[p]||[]){
+   const source=s.players[p].grave.find(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial);
+   if(source)send(s,p,source,'GraveSummonWatch766',{serial:ref.serial});
   }
   if(victim){
    // Battle-result destruction is finalized before victory effects and Slayer (Q&A 42495–42496).
