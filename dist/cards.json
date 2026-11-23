@@ -296896,24 +296896,120 @@
       ],
       "supportBatch": "phase-1692",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd06-001",
+      "name": "偽りの名オレワレオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "エンジェル・コマンド/アンノウン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分の「ブロッカー」を持つクリーチャーの、相手を攻撃できない能力を無効にする。ただし、そのクリーチャーの召喚酔いは無効にならない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1693BlockerAttack": true,
+      "supportBatch": "phase-1693",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-010",
+      "name": "光器の裏技ディーヴァ・ライブ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のメカ・デル・ソルがあれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、自分のクリーチャーの、攻撃できない能力はすべて無効になる。（ただし、召喚酔いは無効にならない）\nターンの終わりに、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-010",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "creature": true,
+            "race": "メカ・デル・ソル"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "g1693OwnAttackFree": true
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        },
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "spell": true,
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1693",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-031",
+      "name": "ダブル・リボルバードラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターン中に、このクリーチャーがタップされていた場合、相手のクリーチャーがバトルゾーンに出る時、そのクリーチャーはバトルゾーンに出るかわりに持ち主の墓地に置かれる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-031",
+      "limit": 4,
+      "breaker": 2,
+      "g1693TappedEntryGrave": true,
+      "supportBatch": "phase-1693",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1692,
-    "checkedAt": "2026-11-22T23:39:04.142Z",
-    "baseCount": 9311,
+    "phase": 1693,
+    "checkedAt": "2026-11-22T23:53:32.371Z",
+    "baseCount": 9314,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9314,
+    "totalCount": 9317,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa_old/35461/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37926/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36683/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
-      "https://dm.takaratomy.co.jp/rule/qa/31568/",
-      "https://dm.takaratomy.co.jp/rule/qa/33443/",
-      "https://dm.takaratomy.co.jp/rule/qa/43800/",
-      "https://dm.takaratomy.co.jp/rule/qa/43801/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36943/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36945/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36053/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36054/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36055/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -324642,6 +324738,27 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/qa/39385/",
           "https://dm.takaratomy.co.jp/rule/qa/33594/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1692,
+        "checkedAt": "2026-11-22T23:39:04.142Z",
+        "baseCount": 9311,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9314,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/35461/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37926/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+          "https://dm.takaratomy.co.jp/rule/qa/31568/",
+          "https://dm.takaratomy.co.jp/rule/qa/33443/",
+          "https://dm.takaratomy.co.jp/rule/qa/43800/",
+          "https://dm.takaratomy.co.jp/rule/qa/43801/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

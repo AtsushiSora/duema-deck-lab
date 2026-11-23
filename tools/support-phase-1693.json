@@ -1,0 +1,432 @@
+{
+  "phase": 1693,
+  "checkedAt": "2026-11-22T23:53:32.371Z",
+  "baseCount": 9314,
+  "target": 9500,
+  "description": "オレワレオの自分ブロッカーの攻撃不可能力無効、ディーヴァライブのGゼロ・ターン中能力無効・終了時アンタップ、ダブルリボルバーのタップ/自ターン条件の登場置換を全能力対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/36683/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36943/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36945/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36053/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36054/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36055/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 36683,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36683/",
+      "sha256": "87dc237ca25af370ef8633ce46e6bac72a5a8188e17744e862d18e37a6cd9ae4",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    },
+    {
+      "id": 36684,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+      "sha256": "49c217a148df178542aa0aaf6600f84d94dca2768e444f434dea0e8d603b5ce7",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs",
+      "scope": "正確なオレワレオ/ディーヴァと実スローリー/高飛車姫プリンで効果との区別を再現。ノーブルの原本実行は含めない。"
+    },
+    {
+      "id": 36943,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36943/",
+      "sha256": "1d4237608c7be2ea9d8bdf47a49a8f2064214f4490b6497c517877cedbbd0b20",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    },
+    {
+      "id": 36944,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36944/",
+      "sha256": "4fd3eba88295bf6e176ea695fe8269eb58e548da290926114e233935c602e179",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs",
+      "scope": "正確なオレワレオ/ディーヴァと実スローリー/高飛車姫プリンで効果との区別を再現。ノーブルの原本実行は含めない。"
+    },
+    {
+      "id": 36945,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36945/",
+      "sha256": "35038337b9e4fbc122e5c8b974b66856aa06d51867e84a8cee8f974c69e1a370",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    },
+    {
+      "id": 36053,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36053/",
+      "sha256": "b6fc93773768acb85659812ab5aebda3ab1a6a44c666c78b1809c3db83eed348",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    },
+    {
+      "id": 36054,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36054/",
+      "sha256": "04edd61d96af155d6c7f73726b3fb61cc41809561a832d24b4dfc0fc319fd335",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    },
+    {
+      "id": 36055,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36055/",
+      "sha256": "492df43221a9dd76d0c64385a29b8e9de0582fbba278cb0759307530f3735768",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1693-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dmd06-001",
+      "name": "偽りの名オレワレオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-001",
+      "faces": [
+        {
+          "name": "偽りの名オレワレオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分の「ブロッカー」を持つクリーチャーの、相手を攻撃できない能力を無効にする。ただし、そのクリーチャーの召喚酔いは無効にならない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1693BlockerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-001.jpg",
+      "imageReviewed": true,
+      "imageSha256": "e5edbaa3f7a3dd351982576b1adc26f8b1030c19fe0e93620e06797a1d4264b9",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmd06-001"
+        ],
+        "result": "公式同名検索は各1版。原本3版の全文・基本情報・画像・マナ数1を照合。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:53:32.371Z",
+        "sha256": "dff45e977c0332192c99b248bab674137d9450b7fc0a279fd4feaff9117060b2",
+        "facesMatched": true,
+        "imageSha256": "e5edbaa3f7a3dd351982576b1adc26f8b1030c19fe0e93620e06797a1d4264b9"
+      }
+    },
+    {
+      "id": "dmr10-010",
+      "name": "光器の裏技ディーヴァ・ライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-010",
+      "faces": [
+        {
+          "name": "光器の裏技ディーヴァ・ライブ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のメカ・デル・ソルがあれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、自分のクリーチャーの、攻撃できない能力はすべて無効になる。（ただし、召喚酔いは無効にならない）\nターンの終わりに、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "creature": true,
+              "race": "メカ・デル・ソル"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g1693OwnAttackFree": true
+            },
+            "g1106ExternalUntilEnd": true,
+            "spell": true
+          },
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "spell": true,
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-010.jpg",
+      "imageReviewed": true,
+      "imageSha256": "710c4b8772b8414445ea15e40770996726b437be2acaba34587be3f56c040be5",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmr10-010"
+        ],
+        "result": "公式同名検索は各1版。原本3版の全文・基本情報・画像・マナ数1を照合。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:53:32.371Z",
+        "sha256": "4ebba77747da63f266eed20ef31fef98796c3d808f0bbd8b4bcaa3254f6407ba",
+        "facesMatched": true,
+        "imageSha256": "710c4b8772b8414445ea15e40770996726b437be2acaba34587be3f56c040be5"
+      }
+    },
+    {
+      "id": "dm36-031",
+      "name": "ダブル・リボルバードラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-031",
+      "faces": [
+        {
+          "name": "ダブル・リボルバードラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターン中に、このクリーチャーがタップされていた場合、相手のクリーチャーがバトルゾーンに出る時、そのクリーチャーはバトルゾーンに出るかわりに持ち主の墓地に置かれる。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1693TappedEntryGrave": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-031.jpg",
+      "imageReviewed": true,
+      "imageSha256": "06bc54cac6a5bc36f50345df50886571fe783c23deea4cdcfebf32d8c242c372",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm36-031"
+        ],
+        "result": "公式同名検索は各1版。原本3版の全文・基本情報・画像・マナ数1を照合。"
+      },
+      "verification": {
+        "checkedAt": "2026-11-22T23:53:32.371Z",
+        "sha256": "3b0ef1f1fe33611383b2f4812935f756dcba40f876ae76364d5da62ac5d98e04",
+        "facesMatched": true,
+        "imageSha256": "06bc54cac6a5bc36f50345df50886571fe783c23deea4cdcfebf32d8c242c372"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-22T23:53:32.371Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd06-001": 4,
+      "dmr10-010": 4,
+      "dm36-031": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T00:00:38.384Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1693.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.324,
+        "log": "tmp/duema-phase-1693/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "related-attack": {
+        "name": "related-attack",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1331-effects.test.mjs",
+          "tests/standard677-effects.test.mjs",
+          "tests/standard1675-effects.test.mjs",
+          "tests/standard396-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 34.071,
+        "log": "tmp/duema-phase-1693/related-attack.log",
+        "passed": 262,
+        "failed": 0,
+        "logSha256": "9f3988eca3b1e867cfcd4d20534aa76c6a9cb59aa9a03efe17ab9d5af6a55f82"
+      },
+      "related-entry": {
+        "name": "related-entry",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1452-effects.test.mjs",
+          "tests/standard1096-effects.test.mjs",
+          "tests/standard1365-effects.test.mjs",
+          "tests/standard1692-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.572,
+        "log": "tmp/duema-phase-1693/related-entry.log",
+        "passed": 128,
+        "failed": 0,
+        "logSha256": "2cc7b24987c7354d2bb36efa975a2e99db5fcb4c37a2ef114acf46dcc98e1750"
+      },
+      "check-final": {
+        "name": "check-final",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 29.032,
+        "log": "tmp/duema-phase-1693/check-final.log",
+        "logSha256": "36d03087f5f4a10fee33f44071fa74dc7095072cad228eb7bf8d3fa1f66b765d"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.939,
+        "log": "tmp/duema-phase-1693/audit.log",
+        "logSha256": "e9ceb838d76cb7bf099734bed3746ac611b56ce9d2bf627751bba623081f3dac"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.382,
+        "log": "tmp/duema-phase-1693/target9500.log",
+        "logSha256": "62dbf99c068de0607768a24fabf5538847b43e6c603d35eca735e3f16acaad38"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1693/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.116,
+        "log": "tmp/duema-phase-1693/invariants.log",
+        "logSha256": "76f935b5671645bf809cce3cd66bd48f7c7e8d33d97fa1fa8e57a0d7149db91a"
+      },
+      "focused-sealed-final": {
+        "name": "focused-sealed-final",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Double Revolver checks.*sealed",
+          "tests/standard1693-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.483,
+        "log": "tmp/duema-phase-1693/focused-sealed-final.log",
+        "passed": 2,
+        "failed": 0,
+        "logSha256": "a82ad77dcca6800863f7382fec3f8e6004cb7b298245547893b81fe3578bfc25"
+      },
+      "focused": {
+        "status": "passed-in-split-verification",
+        "passed": 55,
+        "failed": 0,
+        "scope": "57個の全固有テストのうち55個はfocused-finalで通過。残る封印2件は実封印の配置を直したfocused-sealed-finalで通過。既に通過した合法対戦2seedの再実行はしない。",
+        "priorRun": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1693-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 70.271,
+          "log": "tmp/duema-phase-1693/focused-final.log",
+          "logSha256": "de7c532409b097d1a5fe72678adbef4ef4959fd87054b0ee41c4973bd8ca5707"
+        },
+        "coverageVerified": 57
+      }
+    },
+    "totalTestsPassed": 447,
+    "focusedTestsPassed": 57,
+    "relatedTestsPassed": 390
+  },
+  "validationNotes": [
+    "開始HEAD99f7bcf3、作業ツリー・ステージ空、既存プロセスなし。AGENTSと進捗、前回266件、全体/長時間群の未確認を確認。nameKey9314から開始。",
+    "原本3版、公式同名検索各1版、全画像3枚を目視確認。全文・基本情報・マナ数1・殿堂制限・関連公式裁定8件を照合。部分実装と同名再録は加算しない。",
+    "オレワレオはブロッカーを持つ自分のクリーチャーの固有攻撃禁止だけを動的に無効化。ディーヴァはGゼロを既存の種族条件・使用ゾーン権限で実行し、解決時の自分クリーチャーへ当ターンの能力無効を適用、終了時はその時点の自分クリーチャー全体をアンタップ。召喚酔い・タップ状態・アンタップ対象への攻撃ルールは維持。色限定/ブロッカー限定攻撃の禁止も実カードで確認。",
+    "QA36683/36943/36945を実4-W/ラウラギガ/モルガラとタップ・未タップ対象、召喚酔いで検証。QA36684/36944は前phase1692で未登録だった正確な2カードを追加して、実スローリーと実高飛車姫プリンの効果を無効にしないことを両席で再現。ノーブルは同QAの例示本文を照合し、未登録原本での実行を行ったとは扱わない。",
+    "ダブルリボルバーは既存の登場置換を使用し、現在の自身タップ/自身ターン/有効能力を判定。実アクアサーファーのST召喚を登場前に墓地へ置き、CIPと登場回数を発生させない。サイキックは墓地経由で超次元に戻す。墓地から墓地はゾーン移動しない。いずれも両席で公式QA36053/36054/36055を再現。",
+    "固有テストで一般の非召喚Putが登場置換前に移動serialを増やしていた問題を検出。元のserial/tappedを登場オプションに保持し、同一墓地への置換では元の状態に戻す。封印ケースは実封印を持たない仮のsealed真偽値がルール処理で消える配置誤りを修正し、実封印カードを付けて2件を再検証。源が封印/裏向き/能力無効の時には置換しない明示ガードも追加。",
+    "固有57件は55件通過と配置修正後2件の分割結果で全対象を網羅。攻撃禁止・プリン・ダイヤモンド・ウッズ・Gゼロ262件、登場置換/サイキック/山札置換/前3呪文/通信128件、合計447件通過。合法40枚2seed対戦で全物理UID・JSON合法手維持。両席で効果と未公開手札の選択を暗号化保存・復元・相手投影。",
+    "check/audit/target9500/既存定義不変を通過。nameKey9317種類・重複0、既存9314定義とID・画像・ピン・カタログ・保存形式を維持。過去の中断テスト・保留・個別未確認・公開履歴は保持し、push/公開/Netlify更新なし。"
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "reason": "相手ターンの相手盾追加を墓地に置換する全経路を照合。"
+    },
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "reason": "同じ盾追加置換とスピードアタッカーを全能力対応。"
+    },
+    {
+      "id": "dmx19-s17",
+      "name": "龍素記号Cg ダイシャリン",
+      "reason": "全自呪文へのチャージャー付与と既存終了先置換の優先関係を照合。"
+    }
+  ]
+}

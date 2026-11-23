@@ -38413,5 +38413,110 @@
         }
       ]
     }
+  },
+  "dmd06-001": {
+    "phase": 1693,
+    "faces": [
+      {
+        "name": "偽りの名オレワレオ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分の「ブロッカー」を持つクリーチャーの、相手を攻撃できない能力を無効にする。ただし、そのクリーチャーの召喚酔いは無効にならない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "9500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1693BlockerAttack": true
+    }
+  },
+  "dmr10-010": {
+    "phase": 1693,
+    "faces": [
+      {
+        "name": "光器の裏技ディーヴァ・ライブ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "G・ゼロ - バトルゾーンに自分のメカ・デル・ソルがあれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、自分のクリーチャーの、攻撃できない能力はすべて無効になる。（ただし、召喚酔いは無効にならない）\nターンの終わりに、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "creature": true,
+            "race": "メカ・デル・ソル"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "g1693OwnAttackFree": true
+          },
+          "g1106ExternalUntilEnd": true,
+          "spell": true
+        },
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "spell": true,
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm36-031": {
+    "phase": 1693,
+    "faces": [
+      {
+        "name": "ダブル・リボルバードラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターン中に、このクリーチャーがタップされていた場合、相手のクリーチャーがバトルゾーンに出る時、そのクリーチャーはバトルゾーンに出るかわりに持ち主の墓地に置かれる。",
+        "race": "アーマード・ドラゴン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1693TappedEntryGrave": true
+    }
   }
 }
