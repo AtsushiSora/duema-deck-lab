@@ -6009,11 +6009,24 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_NeoWave1726':{
+  const ids=look(s,{...t,n:3,public:true});
+  const refs=own.deck.filter(x=>ids.includes(x.uid)).map(x=>({uid:x.uid,serial:x.zoneSerial||0}));
+  put(s,{...t,op:'g34_Execute',origin:'deck',spellOnly:true,trigger:true,optional:true,g1616Refs:refs,g1726WaveRefs:refs,g1726Prior:s.effectSerial||0,
+   g1660PublicPeek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'公開した山札'})),
+   g408Decline:[{op:'NeoWaveRest1726',refs}],title:'公開したS・トリガー呪文を1枚ずつ唱える（任意）'});
+  break;
+ }
+ case'g34_NeoWaveRest1726':{
+  const ids=t.refs.filter(r=>own.deck.some(x=>x.uid===r.uid&&(x.zoneSerial||0)===r.serial)).map(r=>r.uid);
+  for(const r of t.refs)if(!ids.includes(r.uid))release(s,t.p,r.uid);
+  put(s,{...t,op:'g34_Order',ids,rest:'bottom',ordered:[]});break;
+ }
  case'g34_DrumSpirit1718':{
   const host=sourceHost474(s,t)?.x;
   const names=host&&!host.sealed&&api.isCreature(s,host)?battleNames676(s,host):t.g399Attacker?.g1081Names||[];
   start(s,t,[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',
-   filter:{creature:true,nonEvolution:true,any:names.map(g201ExactName=>({g201ExactName}))}}]);
+   ...(t.tapped?{tapped:true}:{}),filter:{creature:true,...(t.g1726Copy?{}:{nonEvolution:true}),any:names.map(g201ExactName=>({g201ExactName}))}}]);
   break;
  }
  case'g34_BioKAttackerSearch1081':{
@@ -9210,7 +9223,7 @@ export function createSixPhotoRules(api){
   if(v){const y=own.grave.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)zoneMove(s,t.p,'grave',y.uid,'hand',t);}
   else start(s,t,[{op:'SpellFinish416',to:'hand'}]);
   break;
- case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1675ExtraSummon&&(!y||(y.zoneSerial||0)!==v.serial1675||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(t.g1675ExtraSummon&&v.g1104Back?psychicBack1104(y):y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1675ExtraSummon&&(c.type!=='creature'||cost(c)>t.max||!matches(s,t.p,v.g1104Back?psychicBack1104(y):y,t.filter)||!api.canCast(s,t.p,c,v.origin)||!api.canEnter(s,t.p,c,{origin:v.origin,execution:true})))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face,...(t.g1675ExtraSummon?{g1104Back:!!v.g1104Back}:{})});else cast(s,t.p,v.uid,true,null,v.face,t.g1675ExtraSummon&&v.g1104Back?{g1321PsychicBack:true}:null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1675ExtraSummon&&(!y||(y.zoneSerial||0)!==v.serial1675||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(t.g1675ExtraSummon&&v.g1104Back?psychicBack1104(y):y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1675ExtraSummon&&(c.type!=='creature'||cost(c)>t.max||!matches(s,t.p,v.g1104Back?psychicBack1104(y):y,t.filter)||!api.canCast(s,t.p,c,v.origin)||!api.canEnter(s,t.p,c,{origin:v.origin,execution:true})))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(t.g1726WaveRefs){release(s,t.p,v.uid);api.enqueue(s,t.p,{source:t.source,effect:'extended',g1726Continue:true,g1726Prior:t.g1726Prior,task:{...t,g1616Refs:t.g1616Refs.filter(r=>r.uid!==v.uid)}});}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face,...(t.g1675ExtraSummon?{g1104Back:!!v.g1104Back}:{})});else cast(s,t.p,v.uid,true,null,v.face,t.g1675ExtraSummon&&v.g1104Back?{g1321PsychicBack:true}:null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_FirstDiscardUse1268':
   if(v&&firstDiscardOptions1268(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face)){
    if(v.type==='spell')cast(s,t.p,v.uid,true,null,v.face,null,'grave','カードの能力');

@@ -379,6 +379,10 @@ export function createSamuraiRules(api){
   for(const g of attached(s,p,x)){
    if(!active(s,g))continue;
    const gear=card(g);
+   if(gear.g1726ArmoredCopy&&!g.faceDown&&!g.sealed&&!api.isEvolution(x)&&String(effective(x,s,true).race).includes('アーマード・ドラゴン'))
+    on(s,p,g,'g34_DrumSpirit1718',{uid:x.uid,incarnation:x.incarnation||0,tapped:true,g1726Copy:true,
+     g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,g1081Names:api.attackNames1726(s,x)}});
+   if(gear.g1726NeoWave&&!g.faceDown&&!g.sealed)on(s,p,g,'g34_NeoWave1726');
    if(gear.g1724FinalGrant&&!g.faceDown&&!g.sealed)
     on(s,p,g,'g18_FinalGrant1724',{uid:x.uid,incarnation:x.incarnation||0});
    if(gear.g1723FirstGodUntap&&!g.faceDown&&!g.sealed&&godAttacks.length===1&&s.players[1-p].battle.some(y=>y.uid===s.attack?.target&&String(effective(y,s,true).race).includes('ゴッド')))

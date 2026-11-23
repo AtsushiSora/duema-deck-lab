@@ -266,7 +266,7 @@ export function createExtendedRules(api){
  const jaou=createJaouRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const giant=createGiantRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock,canLeave,canSacrifice1723:(s,p,x)=>canLeave(s,p,x,{destroy:true,replacement:true})&&!six.zeroSafe(s,x)&&!six.destroySafe409(s,x)});
  const gachi=createGachiroboRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
- const samurai=createSamuraiRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock,canLeave,canSacrifice1723:(s,p,x)=>canLeave(s,p,x,{destroy:true,replacement:true})&&!six.zeroSafe(s,x)&&!six.destroySafe409(s,x)});
+ const samurai=createSamuraiRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock,canLeave,attackNames1726:six.attackNames1081,canSacrifice1723:(s,p,x)=>canLeave(s,p,x,{destroy:true,replacement:true})&&!six.zeroSafe(s,x)&&!six.destroySafe409(s,x)});
  const lionel=createLionelRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock,canLeave,triggersAllowed:hunter.triggersAllowed,triggerLocked597});
  const kenji=createKenjiRules({...api,creatures,put,task,choice,opt,skip,targetOptions,canLeave});
  const travel=createTravelRules({...api,creatures,put,task,choice,opt,skip,targetOptions,lock,shieldTo,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
