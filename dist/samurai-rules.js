@@ -191,6 +191,13 @@ export function createSamuraiRules(api){
      g.weaponTo={uid:x.uid,incarnation:x.incarnation||0};
   }
  },
+ battleTasks1719(s,p,x){
+  if(x.sealed||!api.isCreature(s,x))return [];
+  return attached(s,p,x).filter(g=>card(g).g1719CrossBattle&&!g.faceDown&&!g.sealed&&active(s,g)).map(g=>({
+   controller:p,source:g.cardId,player:p,elementSource:true,
+   host:{uid:g.uid,incarnation:g.incarnation||0},defs:card(g).g1719CrossBattle
+  }));
+ },
  battleWins(s,p,w){
   const host=s.players[p].battle.find(x=>x.uid===w?.uid&&(w.incarnation===undefined||(x.incarnation||0)===w.incarnation));
   if(!host||host.sealed||!api.isCreature(s,host))return [];
@@ -257,7 +264,7 @@ export function createSamuraiRules(api){
   }
   return count;
  },
- power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length+(card(g).g1717CrossTappedPower?card(g).g1717CrossTappedPower*s.players.flatMap(own=>own.battle).filter(y=>y.tapped&&!y.sealed&&!y.faceDown&&api.isCreature(s,y)).length:0)+(card(g).g1715CrossPower?(paired(s,p,x,card(g).g1715CrossPower.name)?card(g).g1715CrossPower.paired:card(g).g1715CrossPower.base):0),0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
+ power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;const crossed=attached(s,p,x).filter(g=>!g.faceDown&&!g.sealed&&live(s,p,g)===x);return crossed.filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g1713CrossGearPower||0)*crossed.length+(card(g).g1719CrossCostPower?cost(c)*card(g).g1719CrossCostPower:0)+(card(g).g1717CrossTappedPower?card(g).g1717CrossTappedPower*s.players.flatMap(own=>own.battle).filter(y=>y.tapped&&!y.sealed&&!y.faceDown&&api.isCreature(s,y)).length:0)+(card(g).g1715CrossPower?(paired(s,p,x,card(g).g1715CrossPower.name)?card(g).g1715CrossPower.paired:card(g).g1715CrossPower.base):0),0)+(x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
   // Phase1716: finish S Trigger X before resolving entry triggers. Command unsealing is queued next, ahead of this task.
@@ -284,6 +291,9 @@ export function createSamuraiRules(api){
    if(!active(s,g))continue;
    const gear=card(g);
    if(gear.doss)on(s,p,g,'g18_Mekraid');
+   if(gear.g1719CrossAttackBreak&&!g.faceDown&&!g.sealed)on(s,p,g,'g34_Break497',{
+    uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g828BattleBreaker:x.cardId
+   });
    if(gear.g931CrossAttack&&!g.faceDown)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack,
     ...(gear.g931CrossAttack.some(d=>d.g828CompareAttacker)?{g399Attacker:{uid:x.uid,incarnation:x.incarnation||0}}:{})
    });

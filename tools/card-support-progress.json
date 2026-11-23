@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11823,
-  "supportedNames": 9395,
-  "pendingNames": 2428,
-  "phase": 1718,
+  "supportedNames": 9398,
+  "pendingNames": 2425,
+  "phase": 1719,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -171,7 +171,7 @@
     "Mono Artifact": 1,
     "D2フィールド": 10,
     "禁断フィールド": 1,
-    "クロスギア": 20,
+    "クロスギア": 17,
     "進化クリーチャー(進化GV)": 12,
     "タマシード/クリーチャー": 3,
     "土地": 1,
@@ -222,7 +222,7 @@
   },
   "reasons": {
     "未対応の能力文": 1766,
-    "複数面・特殊カードタイプまたは情報不足": 552,
+    "複数面・特殊カードタイプまたは情報不足": 549,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
     "未対応のシンカパワー": 2,
@@ -548041,27 +548041,316 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1719,
+      "checkedAt": "2026-11-23T07:12:47.443Z",
+      "baseline": "5f80f0b3",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9395,
+      "currentNames": 9398,
+      "remainingNames": 102,
+      "added": [
+        {
+          "id": "dm28-039",
+          "name": "鬼装オーガ・フィスト"
+        },
+        {
+          "id": "dmc56-004",
+          "name": "竜装 シデン・レジェンド"
+        },
+        {
+          "id": "dm28-051",
+          "name": "流闘シャーク・バンカー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "5f80f0b3",
+        "originalDefinitionsUnchanged": 9395,
+        "added": 3,
+        "uniqueNames": 9398,
+        "uniqueIds": 9398,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9395,
+        "existingImageReferenceRowsUnchanged": 11613,
+        "officialPrintsReviewed": 3,
+        "officialImagesReviewed": 3,
+        "existingPinsUnchanged": 968
+      },
+      "results": {
+        "related-battle-cross-power": {
+          "name": "related-battle-cross-power",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1305-effects.test.mjs",
+            "tests/standard1237-effects.test.mjs",
+            "tests/standard1600-effects.test.mjs",
+            "tests/standard1601-effects.test.mjs",
+            "tests/standard1710-effects.test.mjs",
+            "tests/standard408-effects.test.mjs",
+            "tests/standard497-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 18.74,
+          "log": "tmp/duema-phase-1719/related-battle-cross-power.log",
+          "passed": 225,
+          "logSha256": "32b50ff074931d92ce386eb30a1483cddfd5fa1f02aa759c219de0734b306c52"
+        },
+        "related-online-save": {
+          "name": "related-online-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.6,
+          "log": "tmp/duema-phase-1719/related-online-save.log",
+          "passed": 55,
+          "logSha256": "7fe939cd42989e93a2ec0cc6743ba0bcc614b15bda971133651ab9b568885992"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1719.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.299,
+          "log": "tmp/duema-phase-1719/official.log",
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.598,
+          "log": "tmp/duema-phase-1719/check.log",
+          "logSha256": "7f94ffbef8fad038d0f735a000ac62867c59fd53adadf16530685955fdd68fd0"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.574,
+          "log": "tmp/duema-phase-1719/audit.log",
+          "logSha256": "5a099dd0dcc42983fd0b5ef2347d7a607d8ac36c9f98b0358fe163e7c138215f"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.433,
+          "log": "tmp/duema-phase-1719/target9500.log",
+          "logSha256": "3849c850d3adf7ac1facae0962d5e63281084ec0b65a82c95249f40c601f7642"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1719/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.406,
+          "log": "tmp/duema-phase-1719/invariants.log",
+          "logSha256": "a5dfd36304534cc3ccd32014bd7f53ca5547b14b9b21ba85a7f7bd8994846348"
+        },
+        "focused": {
+          "passed": 46,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1719-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 5.674,
+              "log": "tmp/duema-phase-1719/focused.log",
+              "passed": 36,
+              "logSha256": "7621dcd7dec5a191819d9254f46def8efafb26bf1ceb192bdee3356fc37895ce"
+            },
+            {
+              "name": "focused-corrections",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Shiden Legend (uses actual|initial shield)|^Ogre recross",
+                "tests/standard1719-effects.test.mjs"
+              ],
+              "code": 1,
+              "timedout": false,
+              "seconds": 0.774,
+              "log": "tmp/duema-phase-1719/focused-corrections.log",
+              "passed": 4,
+              "logSha256": "3a908e4b0b3944d6833ec094483b63da32be6b216a337da3986fd3fe9196122f"
+            },
+            {
+              "name": "focused-surfer",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Shiden Legend initial shield",
+                "tests/standard1719-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.541,
+              "log": "tmp/duema-phase-1719/focused-surfer.log",
+              "passed": 2,
+              "logSha256": "b55e427a089faa5914f6d33f3dd82fc02526973b2950ad3fe50b92cc393c5a6c"
+            },
+            {
+              "name": "focused-power-timing",
+              "command": [
+                "node",
+                "--test",
+                "--test-name-pattern=^Shark draw changes|^Ogre power calculation",
+                "tests/standard1719-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 0.648,
+              "log": "tmp/duema-phase-1719/focused-power-timing.log",
+              "passed": 6,
+              "logSha256": "18058fd112dfdd3327a58f6a759afc94920a53d1bd7f5f9d8ce1fa3d9e395a29"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 326,
+      "hashes": {
+        "dist/cards.json": "22638b17d8b24f17648f03e56dda14495bbe0469c01683e75f4bc97ff145bee7",
+        "dist/engine.js": "b53d8e27f6fc94ec142891f7a9d89ceca99148f3212690eb6da0b243ddc19993",
+        "dist/samurai-rules.js": "6c0dddbbf92ea3f1b47b8dd9d0baff00741272c4534abb59ae291433db535fb4",
+        "dist/extended-rules.js": "f40a21d26a27ea7abb7775103963186e0c6ea4664b6bec2b87f268ed2daeb878",
+        "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "063cd029b9b5b88f4e8b2579bae8e8db64dbe34a066d2c0d22162261f4e30696",
+        "dist/card-images.js": "759a2b974ba4da548776801469d9053e0cc79f04de1a914fce2796d75821e4a7",
+        "tools/target9000-card-spec.json": "94b91158ad0dca5c59a4d24fb847201e9bce79bf6cd45f2eba9d16ba782f96fb",
+        "tests/standard1719-effects.test.mjs": "d2042841f54f4ec405bc39cc6710e3b132712f75e8901a4fa7d269d60c766e45"
+      },
+      "engineVersion": "0.602.236",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1719-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 5.674,
+          "log": "tmp/duema-phase-1719/focused.log",
+          "logSha256": "7621dcd7dec5a191819d9254f46def8efafb26bf1ceb192bdee3356fc37895ce"
+        },
+        {
+          "name": "focused-corrections",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Shiden Legend (uses actual|initial shield)|^Ogre recross",
+            "tests/standard1719-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.774,
+          "log": "tmp/duema-phase-1719/focused-corrections.log",
+          "logSha256": "3a908e4b0b3944d6833ec094483b63da32be6b216a337da3986fd3fe9196122f"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1719.json",
+      "supported": 9398,
+      "pending": 2425,
+      "reason": "Full Ogre Fist cost-based power/lower-power block restriction, Shiden Legend crossed power/creature attack break/free crossing, Shark Banker power/optional pre-comparison battle draw",
+      "validationNotes": [
+        "Actual nameKey9395→9398 from clean5f80f0b3, staged none/no prior repository work. All9395 previous definitions/IDs/details/catalogue/aliases/old image rows/pins unchanged. Whole3 original faces, images, Samurais/basic stats/mana/current restriction limits and exact-name official product lists verified;17 fuzzy Shiden query hits filtered to the actual single original.",
+        "Ogre Fist external cost-based1000 power stacks using printed/current battlefield card cost without summon discounts. ExactQA34875 actual Bolshack summoned for4 still gets6000, actual evolution changes cost, infinity has no NaN; lower-power blocker restriction is granted and ignored with host while external power remains.",
+        "Shiden Legend adds3000 external power, reuses native free-cross name permission for actual Shiden Dragon and independently charges normal generation/cross. Its gear-owned attack trigger carries exact host UID/incarnation into native creature Break497, preserving Shield Burn, S Trigger interrupts, zero-shield no false direct win and cross source ignoring distinctions.",
+        "Shark Banker adds2000 and independent optional1 draw at battle initiation. Narrow gear task hook joins existing pre-comparison battle frame with element source, both attack/defense/forced battle, multiple sources, muted host/source/seal, encrypted storage. Actual Rebellion Kwakuiri hand-dependent power flips winner only after taking the draw, proving comparison occurs after draw. No unblocked-player phantom battle draw.",
+        "46 unique focused tests pass by aggregate. Initial4 fixture failures used wrong White Dragon ID and Surfer extended action; corrected actual dm06-s08 and native effect targets and reran affected only. Extra6 new timing/infinity cases pass.225 affected battle-frame/cross/block/creature-break regressions plus55 online/save tests pass,total326; check20.598s,audit11.574s,count/invariants/target9500 all pass.",
+        "Historical whole-suite/long/exact-card/reprint/user deferrals untouched. No whole npm test, repeated broad long group, push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm14-070",
+          "name": "ネオ・スレッジハンマー",
+          "reason": "Whole Power Attacker3000 and blocked-host creature break1."
+        },
+        {
+          "id": "dmex18-044",
+          "name": "超銀河弓 ANOTHER",
+          "reason": "Whole alternative crossing payment and external20000 plus granted Powered Breaker; inspect official cost symbol."
+        },
+        {
+          "id": "dmex16-041",
+          "name": "超銀河槍 THE END",
+          "reason": "Whole9000/Powered Breaker, attack lower-power destroy then shield break; inspect original print/identity."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1718,
-    "nextPhase": 1719,
+    "lastVerifiedPhase": 1719,
+    "nextPhase": 1720,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm28-039",
-        "name": "鬼装オーガ・フィスト",
-        "reason": "Full cost-based external crossed power and granted lower-power block restriction."
+        "id": "dm14-070",
+        "name": "ネオ・スレッジハンマー",
+        "reason": "Whole Power Attacker3000 and blocked-host creature break1."
       },
       {
-        "id": "dmc56-004",
-        "name": "竜装 シデン・レジェンド",
-        "reason": "Full crossed power/attack one shield break/free cross by Shiden Dragon name."
+        "id": "dmex18-044",
+        "name": "超銀河弓 ANOTHER",
+        "reason": "Whole alternative crossing payment and external20000 plus granted Powered Breaker; inspect official cost symbol."
       },
       {
-        "id": "dm28-051",
-        "name": "流闘シャーク・バンカー",
-        "reason": "Full crossed power and gear-owned optional draw when host battles."
+        "id": "dmex16-041",
+        "name": "超銀河槍 THE END",
+        "reason": "Whole9000/Powered Breaker, attack lower-power destroy then shield break; inspect original print/identity."
       }
     ],
     "steps": [
@@ -548946,23 +549235,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1718,
-      "baseline": "e2681d4e",
-      "supportedNames": 9395,
-      "artifact": "tools/target9500-registration-checkpoint-1718.json",
-      "checkedAt": "2026-11-23T07:05:26.553Z"
+      "phase": 1719,
+      "baseline": "5f80f0b3",
+      "supportedNames": 9398,
+      "artifact": "tools/target9500-registration-checkpoint-1719.json",
+      "checkedAt": "2026-11-23T07:12:47.443Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T07:05:26.553Z",
+      "checkedAt": "2026-11-23T07:12:47.443Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9395,
-      "remainingNames": 105,
+      "currentNames": 9398,
+      "remainingNames": 102,
       "duplicateNames": 0,
-      "engineVersion": "0.602.235",
+      "engineVersion": "0.602.236",
       "added": [
         {
           "id": "dmr12-008",
@@ -550263,6 +550552,18 @@
         {
           "id": "dm14-058",
           "name": "ヘル・ダブルクロー"
+        },
+        {
+          "id": "dm28-039",
+          "name": "鬼装オーガ・フィスト"
+        },
+        {
+          "id": "dmc56-004",
+          "name": "竜装 シデン・レジェンド"
+        },
+        {
+          "id": "dm28-051",
+          "name": "流闘シャーク・バンカー"
         }
       ],
       "results": {
@@ -550378,16 +550679,16 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "3b5594e2d98012b7aca98756d7fc252de96b916e45f1d091f3d7c70e81ee6aa1",
-        "dist/engine.js": "0ba9a6d14dc6cbdb0285643f2547866108c556105a1619d6d52ad306cf6f8c73",
-        "dist/samurai-rules.js": "c999e29f65237cbf3ef1a9f96e222cd8cbf3a15f400a78be3815f8a0f027496c",
-        "dist/extended-rules.js": "115b003fb59abb9df91deeddc639cee10eea1c3c5fb75870b5c456a0d896cb78",
+        "dist/cards.json": "22638b17d8b24f17648f03e56dda14495bbe0469c01683e75f4bc97ff145bee7",
+        "dist/engine.js": "b53d8e27f6fc94ec142891f7a9d89ceca99148f3212690eb6da0b243ddc19993",
+        "dist/samurai-rules.js": "6c0dddbbf92ea3f1b47b8dd9d0baff00741272c4534abb59ae291433db535fb4",
+        "dist/extended-rules.js": "f40a21d26a27ea7abb7775103963186e0c6ea4664b6bec2b87f268ed2daeb878",
         "dist/six-photo-rules.js": "c6fa5f75e7a1fe92ac372105fd31a06736d90c14a5900a99727601bc78a76cc0",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "7f8bfbfe1d52c66e3a05202902a7d16ee0440a365abefd8e789712497d598e5e",
-        "dist/card-images.js": "353ca8c4d9911271c74a3bdb64cd999f87a566f820e44ca1a3012b7369f36417",
-        "tools/target9000-card-spec.json": "16f1dcb35081838ff2c3300d37997e7d267c5a2d52c01f2e777a4cd55d91fa35",
-        "tests/standard1718-effects.test.mjs": "8fcab15b585d01f009c2c37e45c6f476485311b0202ce2aec6d1e75de8eac175"
+        "dist/online-compatibility.js": "063cd029b9b5b88f4e8b2579bae8e8db64dbe34a066d2c0d22162261f4e30696",
+        "dist/card-images.js": "759a2b974ba4da548776801469d9053e0cc79f04de1a914fce2796d75821e4a7",
+        "tools/target9000-card-spec.json": "94b91158ad0dca5c59a4d24fb847201e9bce79bf6cd45f2eba9d16ba782f96fb",
+        "tests/standard1719-effects.test.mjs": "d2042841f54f4ec405bc39cc6710e3b132712f75e8901a4fa7d269d60c766e45"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -550451,10 +550752,10 @@
       },
       "phaseRange": [
         1614,
-        1718
+        1719
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 325,
+      "addedNames": 328,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -550466,9 +550767,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.399,
-        "log": "tmp/duema-phase-1718/check.log",
-        "logSha256": "4c982de068007dbf44cf5bd4b064cf5ddd67e96959886eee1585070d691b7067"
+        "seconds": 20.598,
+        "log": "tmp/duema-phase-1719/check.log",
+        "logSha256": "7f94ffbef8fad038d0f735a000ac62867c59fd53adadf16530685955fdd68fd0"
       },
       "latestAudit": {
         "name": "audit",
@@ -550478,11 +550779,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.746,
-        "log": "tmp/duema-phase-1718/audit.log",
-        "logSha256": "f8a09469c10155b837cc9835521cf7b1f06466b26493e1c078704bbcdb38d4fe"
+        "seconds": 11.574,
+        "log": "tmp/duema-phase-1719/audit.log",
+        "logSha256": "5a099dd0dcc42983fd0b5ef2347d7a607d8ac36c9f98b0358fe163e7c138215f"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1718.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1719.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -551600,11 +551901,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9395,
-      "remaining": 105,
+      "currentNames": 9398,
+      "remaining": 102,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T07:05:26.553Z",
+      "checkedAt": "2026-11-23T07:12:47.443Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -603782,11 +604083,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1718,
+    "phase": 1719,
     "threshold": 9500,
-    "supportedNames": 9395,
-    "pendingNames": 2428,
-    "checkedAt": "2026-11-23T07:05:26.553Z",
+    "supportedNames": 9398,
+    "pendingNames": 2425,
+    "checkedAt": "2026-11-23T07:12:47.443Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -603795,7 +604096,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1718.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1719.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,
