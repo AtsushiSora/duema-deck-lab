@@ -302393,15 +302393,113 @@
       ],
       "supportBatch": "phase-1747",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-043",
+      "name": "爆山伏 リンクウッド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヒューマノイド爆",
+      "text": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが３枚以上あれば、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがヒューマノイドであれば、自分の手札に加える。それ以外であれば、自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-043",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfMana",
+          "n": 3,
+          "color": "火",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "race": "ヒューマノイド"
+                  }
+                }
+              ],
+              "rest": "bottom"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1748",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-s02",
+      "name": "無敵巨兵オメガブラックZ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "グレートメカオー",
+      "text": "進化-自分のグレートメカオー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から４枚を表向きにしてもよい。その中からグレートメカオー１体とキカイヒーロー１体を手札に加え、残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-s02",
+      "limit": 4,
+      "evolution": {
+        "category": "グレートメカオー"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "山札の上から4枚を表向きにする？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 4,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "race": "グレートメカオー"
+                  }
+                },
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "race": "キカイヒーロー"
+                  }
+                }
+              ],
+              "rest": "bottom",
+              "g255Distribute": true,
+              "g791OrderRest": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1748",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1747,
-    "checkedAt": "2026-11-23T23:02:04.663Z",
-    "baseCount": 9471,
-    "newEffectCards": 1,
+    "phase": 1748,
+    "checkedAt": "2026-11-23T23:12:24.457Z",
+    "baseCount": 9472,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9472,
+    "totalCount": 9474,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -331061,6 +331159,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9471,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1747,
+        "checkedAt": "2026-11-23T23:02:04.663Z",
+        "baseCount": 9471,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9472,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

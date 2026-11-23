@@ -49637,5 +49637,154 @@
         }
       ]
     }
+  },
+  "dmx26-032": {
+    "phase": 1748,
+    "faces": [
+      {
+        "name": "爆山伏 リンクウッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが３枚以上あれば、自分の山札の上から１枚目を表向きにする。それがヒューマノイドなら、自分の手札に加える。それ以外なら、自分の山札の一番下に置く。",
+        "race": "ヒューマノイド爆",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfMana",
+          "n": 3,
+          "color": "火",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "race": "ヒューマノイド"
+                  }
+                }
+              ],
+              "rest": "bottom"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx18-043": {
+    "phase": 1748,
+    "faces": [
+      {
+        "name": "爆山伏 リンクウッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが３枚以上あれば、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがヒューマノイドであれば、自分の手札に加える。それ以外であれば、自分の山札の一番下に置く。",
+        "race": "ヒューマノイド爆",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "IfMana",
+          "n": 3,
+          "color": "火",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "race": "ヒューマノイド"
+                  }
+                }
+              ],
+              "rest": "bottom"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm20-s02": {
+    "phase": 1748,
+    "faces": [
+      {
+        "name": "無敵巨兵オメガブラックZ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化-自分のグレートメカオー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から４枚を表向きにしてもよい。その中からグレートメカオー１体とキカイヒーロー１体を手札に加え、残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー",
+        "race": "グレートメカオー",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "category": "グレートメカオー"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "山札の上から4枚を表向きにする？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 4,
+              "public": true,
+              "stages": [
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "race": "グレートメカオー"
+                  }
+                },
+                {
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "race": "キカイヒーロー"
+                  }
+                }
+              ],
+              "rest": "bottom",
+              "g255Distribute": true,
+              "g791OrderRest": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
