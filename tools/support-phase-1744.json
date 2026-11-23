@@ -1,0 +1,263 @@
+{
+  "phase": 1744,
+  "checkedAt": "2026-11-23T12:46:36.242Z",
+  "baseCount": 9464,
+  "target": 9500,
+  "description": "User requested priority single card complete Dogiradis Third with native EXlife/revolution plus full final spell and once-per-turn cast recovery; publish requested separately, no Netlify update.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44121/",
+      "checkedAt": "2026-11-23T12:57:29.875235+00:00",
+      "sha256": "b63ee5a30481d34fcc664f4ff97c4672b581cf392e41a0e5df0a8f9d1d3af1cb",
+      "summary": "Revolution plus declared Jaoumon: EXlife restores shield, OniEnd shield-zero condition is rechecked at resolution and cannot cast. Declining Final explicitly, exact original cards on both seats.",
+      "reproduced": true,
+      "test": "tests/standard1744-effects.test.mjs",
+      "bothPlayersVerified": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-018",
+      "name": "頂上縫合 ドギラディス勝3rd",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-018",
+      "faces": [
+        {
+          "name": "頂上縫合 ドギラディス勝3rd",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "EXライフ\n革命チェンジ：多色のコスト５以上のドラゴン\nT・ブレイカー\nファイナル革命：このクリーチャーが「革命チェンジ」によって出た時、そのターン中に他の「ファイナル革命」をまだ使っていなければ、コスト６以下の多色の呪文を１枚、自分の手札またはマナゾーンからコストを支払わずに唱えてもよい。\n各ターンに一度、自分が多色の呪文を唱えた時、それを墓地から手札に戻してもよい。",
+          "race": "ディスペクター/メガ・コマンド・ドラゴン/グレートメカオー",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "rev": {
+          "race": "ドラゴン",
+          "multicolor": true,
+          "min": 5,
+          "g486Current": true
+        },
+        "breaker": 3,
+        "finalRev": "dogiradis1744",
+        "g1744CastRecovery": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-018.jpg",
+      "imageReviewed": true,
+      "imageSha256": "eae47609d8ed020a8c40ad106e4af2ac85da570262d47c764c7f80edc28b6b35",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-23T12:46:36.242Z",
+        "reason": "Full printed art reviewed:8 WaterNature/13000/EXlife/Dragon multicolor5 revolution/T/final multi spell<=6 from hand or mana/per-turn one multi spell recovery/mana1."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm23ex2-018"
+        ],
+        "result": "Exact official same-name search and full product list show only original DM23EX2."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T12:46:36.242Z",
+        "sha256": "1aae780b7385e411864e71a8b7da4fc17f25ae32add41e98e75ac4b0e3bde13d",
+        "facesMatched": true,
+        "imageSha256": "eae47609d8ed020a8c40ad106e4af2ac85da570262d47c764c7f80edc28b6b35"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "promoy9-040",
+      "name": "爆竜パーフェクトストーム・XX",
+      "reason": "Earlier1744 candidate research only; implementation not started because user requested Dogiradis priority and publication. Resume next batch, no count."
+    },
+    {
+      "id": "dm22-s03",
+      "name": "黒神龍グールジェネレイド",
+      "reason": "Earlier1744 candidate research found9 print pages/images; image review and QA41120/implementation not yet started. Deferred to next batch for user priority, no count."
+    },
+    {
+      "id": "dmrp06-019",
+      "name": "整刑医 ルックス",
+      "reason": "Earlier1744 candidate research found3 prints; image review and implementation not started. Deferred to next batch for user priority, no count."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T12:46:36.242Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-018": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T12:58:42.651Z",
+    "results": {
+      "focused-complete": {
+        "name": "focused-complete",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1744-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.029,
+        "log": "tmp/duema-phase-1744/focused-complete.log",
+        "passed": 43,
+        "logSha256": "cf20b2e3bc8a395adb91b1da697d29b3ccb620787cc9cfeb6f2e642d51462602"
+      },
+      "related-revolution": {
+        "name": "related-revolution",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard486-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 22.473,
+        "log": "tmp/duema-phase-1744/related-revolution.log",
+        "passed": 144,
+        "logSha256": "98398b540785c85ffbbd0ca5d81af818988b44725849d97cd15820d7f3b39217"
+      },
+      "related-jaou": {
+        "name": "related-jaou",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Jaoumon|oni spells|declared oni|Buster|Cycle",
+          "tests/jaou-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.102,
+        "log": "tmp/duema-phase-1744/related-jaou.log",
+        "passed": 14,
+        "logSha256": "996baf0c3156fae27c0cd612ea22be2851d84feb39c04b935f4f8a5a2e5eab80"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.704,
+        "log": "tmp/duema-phase-1744/related-online.log",
+        "passed": 55,
+        "logSha256": "72ee9c3b6e0aac6648c30a1e4019663317ad7c681e00645ed83dfb30786896d9"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1744.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.562,
+        "log": "tmp/duema-phase-1744/official.log",
+        "logSha256": "27017780b8aa199e53aefbcbfc4ca7ed66ff1f5d05752c9a5b0695d5a1197030"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.471,
+        "log": "tmp/duema-phase-1744/check.log",
+        "logSha256": "378ffa59b0d7b1a29a0858cb07d2936f217fb87ef96725fd42351fd9d23174c6"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.217,
+        "log": "tmp/duema-phase-1744/audit.log",
+        "logSha256": "8dc9a6f1e9021f89040f5220a043ec105b758c307e4877a986047d2d8e6d9d6d"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.472,
+        "log": "tmp/duema-phase-1744/target9500.log",
+        "logSha256": "c6e5b14be43786609543b91b3bb1ee8c8565db7f48a700f7aafb21d33a64a7c7"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1744/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.374,
+        "log": "tmp/duema-phase-1744/invariants.log",
+        "logSha256": "36420eda6d349cdc6ce402790a64ed634d7e09175a5ec784c3e8d2ceb776f4dc"
+      }
+    },
+    "totalTestsPassed": 256,
+    "focusedTestsPassed": 43,
+    "relatedTestsPassed": 213
+  },
+  "validationNotes": [
+    "User-requested priority card dm23ex2-018: full official face, basic stats, mana1, image and current restriction limit4 checked; exact official same-name search finds only original DM23EX2 print. Existing9464 card definitions, IDs, name normalization, catalogue/details, images and strict pins unchanged; actual nameKey9464→9465, no duplicate or reprint counted.",
+    "Reuses native EXlife, multicolor cost>=5 Dragon revolution and T breaker. Paid8/13000/fresh sickness, actual revolution swap and EXlife shield, wrong civilization/tribe exclusion, EXlife removal replacement, shared Final history and entry condition tested on both seats.",
+    "Final executes optional one actual spell face with multicolor and cost<=6 from hand or mana free using native Execute. Actual2 and6 casts, rejection mono/creature/cost7 SSS, no spending, origin labels and mono creature/multicolor spell Twinpact verified.",
+    "Each source incarnation can optionally recover an actually cast multicolor spell once each turn; native used keys and grave UID/incarnation/zone serial checks. Decline followed by later acceptance, separate copies, actual opposing-turn OniEnd, locked grave, Charger to mana, ignored/sealed source, source departure with pending trigger, Twinpact and full combined King spell recovery verified. Frozen mana King component retained rather than returned.",
+    "Official QA44121 reproduced exactly with KatsuKing, Dogiradis and Jaoumon. Both declarations occur first, Dogiradis exchange first, EXlife leaves both players with one shield; explicitly declining Final and resolving pending OniEnd does not cast. Both seats pass. Official response saved with SHA256.",
+    "All43 final focused cases and213 related cases pass (144 native revolution,14 Jaoumon/Cycle/Buster,55 online/runtime/deck-history). Initial EXlife fixture incorrectly expected optional replacement, and QA fixture AI accidentally chose the free Final spell; corrected manual resolution and all final focused cases pass. Old failed attempt logs preserved. npm run check/audit/target/invariants pass. Full npm test remains interrupted/unverified and prior pending items unchanged.",
+    "This local registration commit is verified. User separately requests push and GitHub Pages publication now; prepare release0.722.19 next. Netlify remains unchanged and will not be deployed."
+  ],
+  "nextCandidates": [
+    {
+      "id": "promoy9-040",
+      "name": "爆竜パーフェクトストーム・XX",
+      "reason": "Earlier1744 candidate research only; implementation not started because user requested Dogiradis priority and publication. Resume next batch, no count."
+    },
+    {
+      "id": "dm22-s03",
+      "name": "黒神龍グールジェネレイド",
+      "reason": "Earlier1744 candidate research found9 print pages/images; image review and QA41120/implementation not yet started. Deferred to next batch for user priority, no count."
+    },
+    {
+      "id": "dmrp06-019",
+      "name": "整刑医 ルックス",
+      "reason": "Earlier1744 candidate research found3 prints; image review and implementation not started. Deferred to next batch for user priority, no count."
+    }
+  ]
+}

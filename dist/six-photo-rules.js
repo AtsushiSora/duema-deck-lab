@@ -2891,6 +2891,16 @@ export function createSixPhotoRules(api){
    move(s,[{player,uid:attacker.uid,to:'mana',controller:player}]);
   break;
  }
+ case'g34_DogiradisFinal1744':{
+  if(s.finalUsed?.[t.p])break;
+  (s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;
+  start(s,t,[{op:'Execute',zones:['hand','mana'],spellOnly:true,max:6,optional:true,
+   filter:{g228Face:{type:'spell',multicolor:true,max:6}}}]);break;
+ }
+ case'g34_ReturnCastSpell1744':{
+  if(used792(s,t,t)||!t.refs.some(r=>api.canMoveZone(s,r.owner,'grave')&&s.players[r.owner].grave.some(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial&&(y.incarnation||0)===r.incarnation)))break;
+  choice(s,t,t.spellName+'を墓地から手札に戻す？',[opt('手札に戻す',true,20),skip()]);break;
+ }
  case'g34_RaceRecovery1741':{
   const copiedSelf=t.g1741EntrySelf&&card(t.source).copyOf;
   const ref=copiedSelf?t:t.g1741Subject;
@@ -7363,7 +7373,7 @@ export function createSixPhotoRules(api){
         max!==undefined&&cost(c)>max||t.trigger&&!(c.trigger||c.triggerPlus||c.superTrigger)||
         !api.canCast(s,t.p,c,origin)||['creature','aura'].includes(type)&&(!api.canEnter(s,t.p,c,{origin,execution:true})||
         c.evolution&&!api.evolutionBases(s,t.p,c).length))return [];
-     const prefix=t.zones?.length>1?(origin==='hand'?'手札：':origin==='extra'?'超次元ゾーン：':'墓地：'):'';
+     const prefix=t.zones?.length>1?(({hand:'手札：',mana:'マナ：',grave:'墓地：',extra:'超次元ゾーン：'})[origin]||''):'';
      const value={uid:y.uid,face,origin,...(t.g1675ExtraSummon?{serial1675:original.zoneSerial||0,...(y!==original?{g1104Back:true}:{})}:{}),...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})};
      return [opt(prefix+c.name,value,t.g555FinishTo?spellScore555(s,t,c):20+cost(c),y.cardId)];
     });
@@ -8544,6 +8554,10 @@ export function createSixPhotoRules(api){
   if(s.winner===null&&uids.length)api.breakShields(s,t.p,uids);else s.breakContext=null;
   break;
  }
+ case'g34_ReturnCastSpell1744':if(v&&!used792(s,t,t)){
+  (s.once??={})[onceKey792(t,t)]=s.turn;
+  for(const r of t.refs){const y=s.players[r.owner].grave.find(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial&&(y.incarnation||0)===r.incarnation);if(y)zoneMove(s,r.owner,'grave',y.uid,'hand',t);}
+ }break;
  case'g34_Offer':if(v){
   if(t.g792Once){
    if(used792(s,t,t))break;
@@ -10200,6 +10214,12 @@ export function createSixPhotoRules(api){
    if(watcher.g1245HandSpellRecast||watcher.g1250RecastSacrifice)
     send(s,p,x,'RecastHandSpell1245',{target:inst.uid,serial:(inst.zoneSerial||0)+1,face,
      ...(watcher.g1250RecastSacrifice?{g1250Sacrifice:true}:{})});
+  }
+  if(inst&&colors(c).length>1)for(const x of creatures(s,p)){
+   if(x.sealed||!effective(x,s).g1744CastRecovery)continue;
+   const once={g792Once:'dogiradisReturn1744'};if(used792(s,x,once))continue;
+   const refs=api.allLayers(inst).map(y=>({uid:y.uid,owner:y.cardOwner??owner??p,incarnation:y.incarnation||0,serial:(y.zoneSerial||0)+1}));
+   send(s,p,x,'ReturnCastSpell1744',{...once,refs,spellName:c.name});
   }
   // The shared spell count has already recorded this cast, including free casts.
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
