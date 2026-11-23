@@ -1,0 +1,222 @@
+{
+  "phase": 1711,
+  "checkedAt": "2026-11-23T06:05:46.442Z",
+  "baseline": "d665d046",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9369,
+  "currentNames": 9373,
+  "remainingNames": 127,
+  "added": [
+    {
+      "id": "dm31-043",
+      "name": "フォーチュン・スロット"
+    },
+    {
+      "id": "dmr09-093",
+      "name": "ブータンの収穫"
+    },
+    {
+      "id": "dm03-017",
+      "name": "ブレイズ・キャノン"
+    },
+    {
+      "id": "dmr02-040",
+      "name": "光陰のリバイバー・スパイラル"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "d665d046",
+    "originalDefinitionsUnchanged": 9369,
+    "added": 4,
+    "uniqueNames": 9373,
+    "uniqueIds": 9373,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 0,
+    "existingImageUrlsUnchanged": 9369,
+    "existingImageReferenceRowsUnchanged": 11580,
+    "officialPrintsReviewed": 6,
+    "officialImagesReviewed": 6,
+    "existingPinsUnchanged": 933
+  },
+  "results": {
+    "related-public-look-grants": {
+      "name": "related-public-look-grants",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1660-effects.test.mjs",
+        "tests/standard818-effects.test.mjs",
+        "tests/standard282-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 32.572,
+      "log": "tmp/duema-phase-1711/related-public-look-grants.log",
+      "passed": 161,
+      "logSha256": "17a611368dd6adc6461c36174c089f734616ce1d82a38dd58d62947b62d89489"
+    },
+    "related-exile-recovery-online": {
+      "name": "related-exile-recovery-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1490-effects.test.mjs",
+        "tests/standard1491-effects.test.mjs",
+        "tests/online-runtime.test.mjs",
+        "tests/online-client.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.051,
+      "log": "tmp/duema-phase-1711/related-exile-recovery-online.log",
+      "passed": 103,
+      "logSha256": "791702073db91f1655f5498d83c9ff38216ad9fa9507c7cd2f040f0120d17eb7"
+    },
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1711.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.401,
+      "log": "tmp/duema-phase-1711/official.log",
+      "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.389,
+      "log": "tmp/duema-phase-1711/check.log",
+      "logSha256": "cd15289190463b78e60333b692e1397873601919a900c1989acfda7ee138c7e2"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 12.443,
+      "log": "tmp/duema-phase-1711/audit.log",
+      "logSha256": "c5d0c97a6e7c688cf203d8f56a6d03125f45fae90cd2dd20ae0b17b071d83b3f"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.43,
+      "log": "tmp/duema-phase-1711/target9500.log",
+      "logSha256": "d169d6048349fc9d49be9776a95f42b1e3e76de5dc4057eac2993ff48c145349"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-phase-1711/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.536,
+      "log": "tmp/duema-phase-1711/invariants.log",
+      "logSha256": "2e9cc70887d1eec842f928bf43f8b06baee53d08dd5f8bbdd0d31620a7f06e04"
+    },
+    "focused": {
+      "passed": 42,
+      "failed": 0,
+      "parts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1711-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.501,
+          "log": "tmp/duema-phase-1711/focused.log",
+          "passed": 42,
+          "logSha256": "d276c19c2ffa8941f51489ecc823f386c0496f4adf079196f2e98339043de475"
+        }
+      ],
+      "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+    }
+  },
+  "totalTestsPassed": 306,
+  "hashes": {
+    "dist/cards.json": "9cdd2bb45ca163bbe366a3ea7bf8a9f945e25d52570ba3d55800e5b4758518e8",
+    "dist/engine.js": "67ecbb55774c641edf1e2f3bdaf30b544e16a87f5ce322d7bf7bdbca3f8215c2",
+    "dist/samurai-rules.js": "e110898eb2f996cb583b1592a8bd91efd8d3708c02928c8e88f7b0ba8fc99147",
+    "dist/six-photo-rules.js": "95bc77797db7ce1c5f46d35011070ff6d06fcf963ebd73b0a6b70688beba4d7b",
+    "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+    "dist/online-compatibility.js": "13c4143c5795244816fff2364f7ade46b252319ccd2c017ab60035d4b4c4c72e",
+    "dist/card-images.js": "75e3e4a8fbe369edf47e9b8364d3e4d0db45f56d7e970b4ac1f5b1bc10b249be",
+    "tools/target9000-card-spec.json": "0a18a354b806bcda271759f4d6f9b331dad4afa8d5d2778755687b211e9340ea",
+    "tests/standard1711-effects.test.mjs": "570588b3919891ca4fb2f4ae071e6771ec3acea2777feaa3d5764e3f8875fe1f"
+  },
+  "engineVersion": "0.602.228",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1711.json",
+  "supported": 9373,
+  "pending": 2451,
+  "reason": "Complete Fortune Slot public top4 one-of-each-kind optional recovery/order, Bootan Harvest choice of2 Exile or1 creature recovery, Blaze Cannon all-Fire-mana snapshot grants, and Reviver Spiral own-color conditional owner top/hand.",
+  "validationNotes": [
+    "Actual nameKey counts9369/9373; clean baselined665d046 and no running prior work/tests. All9369 existing definitions, IDs, details, catalogue, aliases, images and pins unchanged. No runtime effect changes or save-format change.",
+    "Four complete official spells, six original/exact-reprint full faces and images, mana/current limits verified. Fortune Slot original/DMX14/DMX22 reprints add no names and resolve with their saved names to the original battle ID.",
+    "Fortune native public top4 recovery selects optional one each creature/spell/gear/castle without duplication and orders unchosen physical cards on the bottom. Short library, decline every kind, no draw, real free S Trigger and both-client public reveal/encrypted pending verified. Existing g1660PublicReveal exposes only the revealed4, opponent has no choices.",
+    "Harvest native Choose fully covers mandatory two distinct own Exile recoveries or one ordinary creature, real g1490Exile identifiers, unavailable second card, owner/grave restrictions, no spell substitution and real free trigger.",
+    "Blaze Cannon native IfOwn g282AllMana and current-own-creature GroupGrant364 provide attack-only4000 and actual W grant without overriding T. Exact QA35045 allows mixed-mana casting with no benefit; exact QA35046 never activates later when non-Fire mana leaves. Existing grants persist when mana changes, stack on repeated casts, exclude future arrivals/gears/opponent creatures and expire at end.",
+    "Reviver native own Light-or-Dark creature condition selects a mandatory opposing creature and sends it to its physical owners top or hand. Opponent colors and Light gears do not satisfy; ignored own color still counts. Actual control change preserves owner destination, real free S Trigger, paid4 and physical conservation verified.",
+    "42 unique focused cases pass on first execution and264 affected regressions pass,total306. Check21.389s, audit12.443s, nameKey/invariants/target9500 pass. No unrelated shared changes, partial definitions or duplicate names.",
+    "All historical whole-suite/individual/long/reprint/user deferrals preserved. No full npm test, repeated long group or push/publication/Netlify update."
+  ],
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "dm28-086",
+      "name": "助太刀メモリー・アクセラー",
+      "reason": "Verify full gear and optional draw on crossed-host attack."
+    },
+    {
+      "id": "dm28-102",
+      "name": "炎刃ズバット・アクセラー",
+      "reason": "Verify complete gear and crossed Power Attacker3000; distinct from Idaten Speed Attacker."
+    },
+    {
+      "id": "dm31-047",
+      "name": "邪扇 エアロ・フウゲツ",
+      "reason": "Verify full crossed power1000 and attack opponent-hand>=3 mandatory discard."
+    },
+    {
+      "id": "dm23ex1-066",
+      "name": "天装 カガヤキ・ミガタメ",
+      "reason": "Verify whole entry and crossed-host attack tap/freeze."
+    }
+  ],
+  "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+}

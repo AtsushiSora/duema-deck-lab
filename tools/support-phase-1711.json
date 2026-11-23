@@ -1,0 +1,579 @@
+{
+  "phase": 1711,
+  "checkedAt": "2026-11-23T06:02:12.622Z",
+  "baseCount": 9369,
+  "target": 9500,
+  "description": "Complete Fortune Slot public top4 one-of-each-kind optional recovery/order, Bootan Harvest choice of2 Exile or1 creature recovery, Blaze Cannon all-Fire-mana snapshot grants, and Reviver Spiral own-color conditional owner top/hand.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35045/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35046/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 35045,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35045/",
+      "sha256": "6e81876c8389b816cd3b1fda9740869515ba26be307d5b5a9368bd7c7e5f4a07",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1711-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA35045 mixed-mana casting remains legal and has no effect"
+    },
+    {
+      "id": 35046,
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35046/",
+      "sha256": "ee327eae35ff5d9d28fa0846ee3d38ab211524d6a828d4a1d79eaa63a5787b3c",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1711-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "Exact QA35046 later mana changes cannot activate a failed Blaze Cannon"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm31-043",
+      "name": "フォーチュン・スロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-043",
+      "faces": [
+        {
+          "name": "フォーチュン・スロット",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から４枚を表向きにする。その中から、クリーチャーを１体、呪文を１枚、クロスギアを１枚、城を１枚、手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "g1660PublicReveal": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "spell": true
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "g201Gear": true
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "castle"
+                  }
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-043.jpg",
+      "imageReviewed": true,
+      "imageSha256": "6518c64826d4b41bd8bebce191ec4305b890bfd7a9434da5768f98fb299883ac",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmx14-070",
+          "dmx22a-043",
+          "dm31-043"
+        ],
+        "result": "Exact official name searches and product lists confirm six full original/reprint faces and images; all reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:02:12.622Z",
+        "sha256": "595e39c6dc458e675ee53c9d659770d5f3797a17c4bb2c35f8b95da685c18e68",
+        "facesMatched": true,
+        "imageSha256": "6518c64826d4b41bd8bebce191ec4305b890bfd7a9434da5768f98fb299883ac"
+      }
+    },
+    {
+      "id": "dmr09-093",
+      "name": "ブータンの収穫",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-093",
+      "faces": [
+        {
+          "name": "ブータンの収穫",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼エグザイル・クリーチャーを２体、自分の墓地から手札に戻す。 　▼クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "エグザイル・クリーチャーを2体戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "g1490Exile": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "クリーチャーを1体戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-093.jpg",
+      "imageReviewed": true,
+      "imageSha256": "271e2695245e9b5259e530812ec08dfd19e874d656bf20e6ecc5ef8ff5441d79",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmr09-093"
+        ],
+        "result": "Exact official name searches and product lists confirm six full original/reprint faces and images; all reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:02:12.622Z",
+        "sha256": "bf112df85d220588034a7ffa8eefbeb602426a21d20cec93b088edbd8e339bdc",
+        "facesMatched": true,
+        "imageSha256": "271e2695245e9b5259e530812ec08dfd19e874d656bf20e6ecc5ef8ff5441d79"
+      }
+    },
+    {
+      "id": "dm03-017",
+      "name": "ブレイズ・キャノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-017",
+      "faces": [
+        {
+          "name": "ブレイズ・キャノン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のマナゾーンのカードがすべて火のカードであれば、このターン、バトルゾーンにある自分のクリーチャーはすべて「パワーアタッカー+4000」と 「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+4000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g282AllMana": {
+                "color": "火"
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "spell": true,
+                "grant": {
+                  "attackBonus": 4000,
+                  "g818DoubleBreaker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-017.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9a3e664b8463590691e37e50fc07baa506e6bd0d94d8c275137c3564d7a04101",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm03-017"
+        ],
+        "result": "Exact official name searches and product lists confirm six full original/reprint faces and images; all reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:02:12.622Z",
+        "sha256": "817dd5bee526a28696d50b050d9440bd8f0dd4e6c62b55b9085b0513c2cd1b5d",
+        "facesMatched": true,
+        "imageSha256": "9a3e664b8463590691e37e50fc07baa506e6bd0d94d8c275137c3564d7a04101"
+      }
+    },
+    {
+      "id": "dmr02-040",
+      "name": "光陰のリバイバー・スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-040",
+      "faces": [
+        {
+          "name": "光陰のリバイバー・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。バトルゾーンに自分の光または闇のクリーチャーがあれば、選んだクリーチャーを持ち主の山札の一番上に置く。なければ、それを持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "deckTop",
+                "toOwnerDeck": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "toOwnerHand": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-040.jpg",
+      "imageReviewed": true,
+      "imageSha256": "875c35f114d8585cc7a71dc7844584b568b55482d7861c3b0038c1423ba2160f",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dmr02-040"
+        ],
+        "result": "Exact official name searches and product lists confirm six full original/reprint faces and images; all reviewed."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:02:12.622Z",
+        "sha256": "b5e6b9f89dd5e8183f47285125f6bf14632fc9cf7e9ddc6a79939a954c736ff8",
+        "facesMatched": true,
+        "imageSha256": "875c35f114d8585cc7a71dc7844584b568b55482d7861c3b0038c1423ba2160f"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dmx14-070",
+      "name": "フォーチュン・スロット",
+      "canonicalId": "dm31-043",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-070",
+      "faces": [
+        {
+          "name": "フォーチュン・スロット",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から４枚をすべてのプレイヤーに見せる。その中から、クリーチャーを１体、呪文を１枚、クロスギアを１枚、城を１枚、手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "97ac16e2a3773f8addfdd5ee25b1768cb81570bb90b6b5367adcb788a1e7632a",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-070.jpg",
+          "file": "tmp/duema-phase-1711/dmx14-070-0.jpg",
+          "sha256": "fa6ed60e55b0fc93508d7aee5240c02f3861511c2970889cff00c63f31b8c279"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    },
+    {
+      "id": "dmx22a-043",
+      "name": "フォーチュン・スロット",
+      "canonicalId": "dm31-043",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-043",
+      "faces": [
+        {
+          "name": "フォーチュン・スロット",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から４枚を表向きにする。その中から、クリーチャーを１体、呪文を１枚、クロスギアを１枚、城を１枚、手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "6673ec5d66eb6f4518738ecefa5e9707c9d63f879f99ca25b3420e97dc3c898d",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-043.jpg",
+          "file": "tmp/duema-phase-1711/dmx22a-043-0.jpg",
+          "sha256": "d3ff3e1957ac93b8102a040e1ac2905b3e634ccdb14a0e92134bab8c0af4b7d6"
+        }
+      ],
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true
+    }
+  ],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T06:02:12.622Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm31-043": 4,
+      "dmr09-093": 4,
+      "dm03-017": 4,
+      "dmr02-040": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T06:05:46.442Z",
+    "results": {
+      "related-public-look-grants": {
+        "name": "related-public-look-grants",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1660-effects.test.mjs",
+          "tests/standard818-effects.test.mjs",
+          "tests/standard282-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 32.572,
+        "log": "tmp/duema-phase-1711/related-public-look-grants.log",
+        "passed": 161,
+        "logSha256": "17a611368dd6adc6461c36174c089f734616ce1d82a38dd58d62947b62d89489"
+      },
+      "related-exile-recovery-online": {
+        "name": "related-exile-recovery-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1490-effects.test.mjs",
+          "tests/standard1491-effects.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.051,
+        "log": "tmp/duema-phase-1711/related-exile-recovery-online.log",
+        "passed": 103,
+        "logSha256": "791702073db91f1655f5498d83c9ff38216ad9fa9507c7cd2f040f0120d17eb7"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1711.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.401,
+        "log": "tmp/duema-phase-1711/official.log",
+        "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 21.389,
+        "log": "tmp/duema-phase-1711/check.log",
+        "logSha256": "cd15289190463b78e60333b692e1397873601919a900c1989acfda7ee138c7e2"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 12.443,
+        "log": "tmp/duema-phase-1711/audit.log",
+        "logSha256": "c5d0c97a6e7c688cf203d8f56a6d03125f45fae90cd2dd20ae0b17b071d83b3f"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.43,
+        "log": "tmp/duema-phase-1711/target9500.log",
+        "logSha256": "d169d6048349fc9d49be9776a95f42b1e3e76de5dc4057eac2993ff48c145349"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1711/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.536,
+        "log": "tmp/duema-phase-1711/invariants.log",
+        "logSha256": "2e9cc70887d1eec842f928bf43f8b06baee53d08dd5f8bbdd0d31620a7f06e04"
+      },
+      "focused": {
+        "passed": 42,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1711-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 5.501,
+            "log": "tmp/duema-phase-1711/focused.log",
+            "passed": 42,
+            "logSha256": "d276c19c2ffa8941f51489ecc823f386c0496f4adf079196f2e98339043de475"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 306,
+    "focusedTestsPassed": 42,
+    "relatedTestsPassed": 264
+  },
+  "validationNotes": [
+    "Actual nameKey counts9369/9373; clean baselined665d046 and no running prior work/tests. All9369 existing definitions, IDs, details, catalogue, aliases, images and pins unchanged. No runtime effect changes or save-format change.",
+    "Four complete official spells, six original/exact-reprint full faces and images, mana/current limits verified. Fortune Slot original/DMX14/DMX22 reprints add no names and resolve with their saved names to the original battle ID.",
+    "Fortune native public top4 recovery selects optional one each creature/spell/gear/castle without duplication and orders unchosen physical cards on the bottom. Short library, decline every kind, no draw, real free S Trigger and both-client public reveal/encrypted pending verified. Existing g1660PublicReveal exposes only the revealed4, opponent has no choices.",
+    "Harvest native Choose fully covers mandatory two distinct own Exile recoveries or one ordinary creature, real g1490Exile identifiers, unavailable second card, owner/grave restrictions, no spell substitution and real free trigger.",
+    "Blaze Cannon native IfOwn g282AllMana and current-own-creature GroupGrant364 provide attack-only4000 and actual W grant without overriding T. Exact QA35045 allows mixed-mana casting with no benefit; exact QA35046 never activates later when non-Fire mana leaves. Existing grants persist when mana changes, stack on repeated casts, exclude future arrivals/gears/opponent creatures and expire at end.",
+    "Reviver native own Light-or-Dark creature condition selects a mandatory opposing creature and sends it to its physical owners top or hand. Opponent colors and Light gears do not satisfy; ignored own color still counts. Actual control change preserves owner destination, real free S Trigger, paid4 and physical conservation verified.",
+    "42 unique focused cases pass on first execution and264 affected regressions pass,total306. Check21.389s, audit12.443s, nameKey/invariants/target9500 pass. No unrelated shared changes, partial definitions or duplicate names.",
+    "All historical whole-suite/individual/long/reprint/user deferrals preserved. No full npm test, repeated long group or push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm28-086",
+      "name": "助太刀メモリー・アクセラー",
+      "reason": "Verify full gear and optional draw on crossed-host attack."
+    },
+    {
+      "id": "dm28-102",
+      "name": "炎刃ズバット・アクセラー",
+      "reason": "Verify complete gear and crossed Power Attacker3000; distinct from Idaten Speed Attacker."
+    },
+    {
+      "id": "dm31-047",
+      "name": "邪扇 エアロ・フウゲツ",
+      "reason": "Verify full crossed power1000 and attack opponent-hand>=3 mandatory discard."
+    },
+    {
+      "id": "dm23ex1-066",
+      "name": "天装 カガヤキ・ミガタメ",
+      "reason": "Verify whole entry and crossed-host attack tap/freeze."
+    }
+  ]
+}

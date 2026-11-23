@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-23",
   "catalogueNames": 11824,
-  "supportedNames": 9369,
-  "pendingNames": 2455,
-  "phase": 1710,
-  "added": 3,
+  "supportedNames": 9373,
+  "pendingNames": 2451,
+  "phase": 1711,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -155,7 +155,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1390,
-    "呪文": 270,
+    "呪文": 266,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1772,
+    "未対応の能力文": 1769,
     "複数面・特殊カードタイプまたは情報不足": 572,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 13,
@@ -229,7 +229,7 @@
     "未対応のD2フィールド能力": 10,
     "複雑な進化条件": 11,
     "未対応のスリリング・スリー効果": 2,
-    "未対応の選択能力": 9,
+    "未対応の選択能力": 8,
     "コスト・文明の個別処理が必要": 2,
     "未対応のスーパー・S・トリガー能力": 4,
     "未対応のスペース・チャージ条件": 4,
@@ -545885,32 +545885,254 @@
         }
       ],
       "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1711,
+      "checkedAt": "2026-11-23T06:05:46.442Z",
+      "baseline": "d665d046",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9369,
+      "currentNames": 9373,
+      "remainingNames": 127,
+      "added": [
+        {
+          "id": "dm31-043",
+          "name": "フォーチュン・スロット"
+        },
+        {
+          "id": "dmr09-093",
+          "name": "ブータンの収穫"
+        },
+        {
+          "id": "dm03-017",
+          "name": "ブレイズ・キャノン"
+        },
+        {
+          "id": "dmr02-040",
+          "name": "光陰のリバイバー・スパイラル"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "d665d046",
+        "originalDefinitionsUnchanged": 9369,
+        "added": 4,
+        "uniqueNames": 9373,
+        "uniqueIds": 9373,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 0,
+        "existingImageUrlsUnchanged": 9369,
+        "existingImageReferenceRowsUnchanged": 11580,
+        "officialPrintsReviewed": 6,
+        "officialImagesReviewed": 6,
+        "existingPinsUnchanged": 933
+      },
+      "results": {
+        "related-public-look-grants": {
+          "name": "related-public-look-grants",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1660-effects.test.mjs",
+            "tests/standard818-effects.test.mjs",
+            "tests/standard282-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.572,
+          "log": "tmp/duema-phase-1711/related-public-look-grants.log",
+          "passed": 161,
+          "logSha256": "17a611368dd6adc6461c36174c089f734616ce1d82a38dd58d62947b62d89489"
+        },
+        "related-exile-recovery-online": {
+          "name": "related-exile-recovery-online",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1490-effects.test.mjs",
+            "tests/standard1491-effects.test.mjs",
+            "tests/online-runtime.test.mjs",
+            "tests/online-client.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.051,
+          "log": "tmp/duema-phase-1711/related-exile-recovery-online.log",
+          "passed": 103,
+          "logSha256": "791702073db91f1655f5498d83c9ff38216ad9fa9507c7cd2f040f0120d17eb7"
+        },
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1711.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.401,
+          "log": "tmp/duema-phase-1711/official.log",
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.389,
+          "log": "tmp/duema-phase-1711/check.log",
+          "logSha256": "cd15289190463b78e60333b692e1397873601919a900c1989acfda7ee138c7e2"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.443,
+          "log": "tmp/duema-phase-1711/audit.log",
+          "logSha256": "c5d0c97a6e7c688cf203d8f56a6d03125f45fae90cd2dd20ae0b17b071d83b3f"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.43,
+          "log": "tmp/duema-phase-1711/target9500.log",
+          "logSha256": "d169d6048349fc9d49be9776a95f42b1e3e76de5dc4057eac2993ff48c145349"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-phase-1711/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.536,
+          "log": "tmp/duema-phase-1711/invariants.log",
+          "logSha256": "2e9cc70887d1eec842f928bf43f8b06baee53d08dd5f8bbdd0d31620a7f06e04"
+        },
+        "focused": {
+          "passed": 42,
+          "failed": 0,
+          "parts": [
+            {
+              "name": "focused",
+              "command": [
+                "node",
+                "--test",
+                "tests/standard1711-effects.test.mjs"
+              ],
+              "code": 0,
+              "timedout": false,
+              "seconds": 5.501,
+              "log": "tmp/duema-phase-1711/focused.log",
+              "passed": 42,
+              "logSha256": "d276c19c2ffa8941f51489ecc823f386c0496f4adf079196f2e98339043de475"
+            }
+          ],
+          "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+        }
+      },
+      "totalTestsPassed": 306,
+      "hashes": {
+        "dist/cards.json": "9cdd2bb45ca163bbe366a3ea7bf8a9f945e25d52570ba3d55800e5b4758518e8",
+        "dist/engine.js": "67ecbb55774c641edf1e2f3bdaf30b544e16a87f5ce322d7bf7bdbca3f8215c2",
+        "dist/samurai-rules.js": "e110898eb2f996cb583b1592a8bd91efd8d3708c02928c8e88f7b0ba8fc99147",
+        "dist/six-photo-rules.js": "95bc77797db7ce1c5f46d35011070ff6d06fcf963ebd73b0a6b70688beba4d7b",
+        "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
+        "dist/online-compatibility.js": "13c4143c5795244816fff2364f7ade46b252319ccd2c017ab60035d4b4c4c72e",
+        "dist/card-images.js": "75e3e4a8fbe369edf47e9b8364d3e4d0db45f56d7e970b4ac1f5b1bc10b249be",
+        "tools/target9000-card-spec.json": "0a18a354b806bcda271759f4d6f9b331dad4afa8d5d2778755687b211e9340ea",
+        "tests/standard1711-effects.test.mjs": "570588b3919891ca4fb2f4ae071e6771ec3acea2777feaa3d5764e3f8875fe1f"
+      },
+      "engineVersion": "0.602.228",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1711.json",
+      "supported": 9373,
+      "pending": 2451,
+      "reason": "Complete Fortune Slot public top4 one-of-each-kind optional recovery/order, Bootan Harvest choice of2 Exile or1 creature recovery, Blaze Cannon all-Fire-mana snapshot grants, and Reviver Spiral own-color conditional owner top/hand.",
+      "validationNotes": [
+        "Actual nameKey counts9369/9373; clean baselined665d046 and no running prior work/tests. All9369 existing definitions, IDs, details, catalogue, aliases, images and pins unchanged. No runtime effect changes or save-format change.",
+        "Four complete official spells, six original/exact-reprint full faces and images, mana/current limits verified. Fortune Slot original/DMX14/DMX22 reprints add no names and resolve with their saved names to the original battle ID.",
+        "Fortune native public top4 recovery selects optional one each creature/spell/gear/castle without duplication and orders unchosen physical cards on the bottom. Short library, decline every kind, no draw, real free S Trigger and both-client public reveal/encrypted pending verified. Existing g1660PublicReveal exposes only the revealed4, opponent has no choices.",
+        "Harvest native Choose fully covers mandatory two distinct own Exile recoveries or one ordinary creature, real g1490Exile identifiers, unavailable second card, owner/grave restrictions, no spell substitution and real free trigger.",
+        "Blaze Cannon native IfOwn g282AllMana and current-own-creature GroupGrant364 provide attack-only4000 and actual W grant without overriding T. Exact QA35045 allows mixed-mana casting with no benefit; exact QA35046 never activates later when non-Fire mana leaves. Existing grants persist when mana changes, stack on repeated casts, exclude future arrivals/gears/opponent creatures and expire at end.",
+        "Reviver native own Light-or-Dark creature condition selects a mandatory opposing creature and sends it to its physical owners top or hand. Opponent colors and Light gears do not satisfy; ignored own color still counts. Actual control change preserves owner destination, real free S Trigger, paid4 and physical conservation verified.",
+        "42 unique focused cases pass on first execution and264 affected regressions pass,total306. Check21.389s, audit12.443s, nameKey/invariants/target9500 pass. No unrelated shared changes, partial definitions or duplicate names.",
+        "All historical whole-suite/individual/long/reprint/user deferrals preserved. No full npm test, repeated long group or push/publication/Netlify update."
+      ],
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm28-086",
+          "name": "助太刀メモリー・アクセラー",
+          "reason": "Verify full gear and optional draw on crossed-host attack."
+        },
+        {
+          "id": "dm28-102",
+          "name": "炎刃ズバット・アクセラー",
+          "reason": "Verify complete gear and crossed Power Attacker3000; distinct from Idaten Speed Attacker."
+        },
+        {
+          "id": "dm31-047",
+          "name": "邪扇 エアロ・フウゲツ",
+          "reason": "Verify full crossed power1000 and attack opponent-hand>=3 mandatory discard."
+        },
+        {
+          "id": "dm23ex1-066",
+          "name": "天装 カガヤキ・ミガタメ",
+          "reason": "Verify whole entry and crossed-host attack tap/freeze."
+        }
+      ],
+      "next": "9500まで3〜5種類の完全対応バッチを継続。過去の未確認項目を保持し、全体npm testと同じ長時間群を再実行しない。push・公開・Netlify更新なし。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1710,
-    "nextPhase": 1711,
+    "lastVerifiedPhase": 1711,
+    "nextPhase": 1712,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm31-043",
-        "name": "フォーチュン・スロット",
-        "reason": "Verify public top4 optional one per creature/spell/gear/castle and ordered rest, Shield Trigger."
+        "id": "dm28-086",
+        "name": "助太刀メモリー・アクセラー",
+        "reason": "Verify full gear and optional draw on crossed-host attack."
       },
       {
-        "id": "dmr09-093",
-        "name": "ブータンの収穫",
-        "reason": "Verify complete choice between two Exile recoveries and one creature recovery, Shield Trigger."
+        "id": "dm28-102",
+        "name": "炎刃ズバット・アクセラー",
+        "reason": "Verify complete gear and crossed Power Attacker3000; distinct from Idaten Speed Attacker."
       },
       {
-        "id": "dm03-017",
-        "name": "ブレイズ・キャノン",
-        "reason": "Verify all own mana Fire condition and native current-own-creature attack bonus/W grants."
+        "id": "dm31-047",
+        "name": "邪扇 エアロ・フウゲツ",
+        "reason": "Verify full crossed power1000 and attack opponent-hand>=3 mandatory discard."
       },
       {
-        "id": "dmr02-040",
-        "name": "光陰のリバイバー・スパイラル",
-        "reason": "Verify full mandatory target, own Light-or-Dark conditional owner deck-top/hand and Shield Trigger."
+        "id": "dm23ex1-066",
+        "name": "天装 カガヤキ・ミガタメ",
+        "reason": "Verify whole entry and crossed-host attack tap/freeze."
       }
     ],
     "steps": [
@@ -546795,23 +547017,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1710,
-      "baseline": "00dc9d14",
-      "supportedNames": 9369,
-      "artifact": "tools/target9500-registration-checkpoint-1710.json",
-      "checkedAt": "2026-11-23T05:59:44.884Z"
+      "phase": 1711,
+      "baseline": "d665d046",
+      "supportedNames": 9373,
+      "artifact": "tools/target9500-registration-checkpoint-1711.json",
+      "checkedAt": "2026-11-23T06:05:46.442Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-23T05:59:44.884Z",
+      "checkedAt": "2026-11-23T06:05:46.442Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9369,
-      "remainingNames": 131,
+      "currentNames": 9373,
+      "remainingNames": 127,
       "duplicateNames": 0,
-      "engineVersion": "0.602.227",
+      "engineVersion": "0.602.228",
       "added": [
         {
           "id": "dmr12-008",
@@ -548008,6 +548230,22 @@
         {
           "id": "dm23ex1-079",
           "name": "炎刃 イダテン・アクセラー"
+        },
+        {
+          "id": "dm31-043",
+          "name": "フォーチュン・スロット"
+        },
+        {
+          "id": "dmr09-093",
+          "name": "ブータンの収穫"
+        },
+        {
+          "id": "dm03-017",
+          "name": "ブレイズ・キャノン"
+        },
+        {
+          "id": "dmr02-040",
+          "name": "光陰のリバイバー・スパイラル"
         }
       ],
       "results": {
@@ -548123,15 +548361,15 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "121369a794cea7e3ce26ef7a7ee12489486ae968fc5f9cecbd67a0cd0d99664d",
-        "dist/engine.js": "4452cd5a74bb76f780dba793a96c90a074e1196e82e30f284a1e45fdf73f001d",
+        "dist/cards.json": "9cdd2bb45ca163bbe366a3ea7bf8a9f945e25d52570ba3d55800e5b4758518e8",
+        "dist/engine.js": "67ecbb55774c641edf1e2f3bdaf30b544e16a87f5ce322d7bf7bdbca3f8215c2",
         "dist/samurai-rules.js": "e110898eb2f996cb583b1592a8bd91efd8d3708c02928c8e88f7b0ba8fc99147",
         "dist/six-photo-rules.js": "95bc77797db7ce1c5f46d35011070ff6d06fcf963ebd73b0a6b70688beba4d7b",
         "dist/details.json": "ec097b59d78a510cf35d29d772039279129a58e4a312b9c1af2c176d658a3876",
-        "dist/online-compatibility.js": "5b5a41bd464a621d05930b088b30c047f2a3d1f4ac46781d92f35b4b7670fdb2",
-        "dist/card-images.js": "d748aa9130d1e7918463cdc2986568c719257272d8dc7d43bcf2c91097acc31e",
-        "tools/target9000-card-spec.json": "dd56d40a81951c0a4d77f64565eefeb109e984fbe8d3430fc9da6375a27f5995",
-        "tests/standard1710-effects.test.mjs": "398b53dd870d80ab87006fcd1de12bdc156ebd234cb033a7d14794b1b7470089"
+        "dist/online-compatibility.js": "13c4143c5795244816fff2364f7ade46b252319ccd2c017ab60035d4b4c4c72e",
+        "dist/card-images.js": "75e3e4a8fbe369edf47e9b8364d3e4d0db45f56d7e970b4ac1f5b1bc10b249be",
+        "tools/target9000-card-spec.json": "0a18a354b806bcda271759f4d6f9b331dad4afa8d5d2778755687b211e9340ea",
+        "tests/standard1711-effects.test.mjs": "570588b3919891ca4fb2f4ae071e6771ec3acea2777feaa3d5764e3f8875fe1f"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -548195,10 +548433,10 @@
       },
       "phaseRange": [
         1614,
-        1710
+        1711
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 299,
+      "addedNames": 303,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -548210,9 +548448,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.885,
-        "log": "tmp/duema-phase-1710/check.log",
-        "logSha256": "7fd79a049a7437d40c72803adf21756eb4542dea948b6fa6aadc735550f118a0"
+        "seconds": 21.389,
+        "log": "tmp/duema-phase-1711/check.log",
+        "logSha256": "cd15289190463b78e60333b692e1397873601919a900c1989acfda7ee138c7e2"
       },
       "latestAudit": {
         "name": "audit",
@@ -548222,11 +548460,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 11.332,
-        "log": "tmp/duema-phase-1710/audit.log",
-        "logSha256": "84b602f4ab81de32f06cb9cd48ba9e44c00d14df82c45df8b717d43cc40dde28"
+        "seconds": 12.443,
+        "log": "tmp/duema-phase-1711/audit.log",
+        "logSha256": "c5d0c97a6e7c688cf203d8f56a6d03125f45fae90cd2dd20ae0b17b071d83b3f"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1710.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1711.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -549344,11 +549582,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9369,
-      "remaining": 131,
+      "currentNames": 9373,
+      "remaining": 127,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-23T05:59:44.884Z",
+      "checkedAt": "2026-11-23T06:05:46.442Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -601493,11 +601731,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1710,
+    "phase": 1711,
     "threshold": 9500,
-    "supportedNames": 9369,
-    "pendingNames": 2455,
-    "checkedAt": "2026-11-23T05:59:44.884Z",
+    "supportedNames": 9373,
+    "pendingNames": 2451,
+    "checkedAt": "2026-11-23T06:05:46.442Z",
     "registrationStopped": false,
     "status": "resumed-by-user",
     "automationId": "duema-deck-lab",
@@ -601506,7 +601744,7 @@
     "mode": "manual-current-session",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1710.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1711.json",
     "resume": "ユーザーの明示的な再開指示後にHEAD・作業ツリー・前回テスト/プロセスを確認し、nameKey9297とphase1686の結果を起点に再開する。目標9500まで203種類。自動で次バッチを始めない。",
     "previousStop": {
       "phase": 1660,

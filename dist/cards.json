@@ -298606,19 +298606,240 @@
       "g1312CrossSpeed": true,
       "supportBatch": "phase-1710",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-043",
+      "name": "フォーチュン・スロット",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から４枚を表向きにする。その中から、クリーチャーを１体、呪文を１枚、クロスギアを１枚、城を１枚、手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "g1660PublicReveal": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "spell": true
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "g201Gear": true
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "castle"
+                }
+              }
+            }
+          ],
+          "rest": "bottom"
+        }
+      ],
+      "supportBatch": "phase-1711",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-093",
+      "name": "ブータンの収穫",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼エグザイル・クリーチャーを２体、自分の墓地から手札に戻す。 　▼クリーチャーを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-093",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "エグザイル・クリーチャーを2体戻す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 2,
+                  "filter": {
+                    "creature": true,
+                    "g1490Exile": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "クリーチャーを1体戻す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1711",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-017",
+      "name": "ブレイズ・キャノン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンのカードがすべて火のカードであれば、このターン、バトルゾーンにある自分のクリーチャーはすべて「パワーアタッカー+4000」と 「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+4000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g282AllMana": {
+              "color": "火"
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "spell": true,
+              "grant": {
+                "attackBonus": 4000,
+                "g818DoubleBreaker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1711",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-040",
+      "name": "光陰のリバイバー・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。バトルゾーンに自分の光または闇のクリーチャーがあれば、選んだクリーチャーを持ち主の山札の一番上に置く。なければ、それを持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-040",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "deckTop",
+              "toOwnerDeck": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "toOwnerHand": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1711",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1710,
-    "checkedAt": "2026-11-23T05:55:22.870Z",
-    "baseCount": 9366,
-    "newEffectCards": 3,
+    "phase": 1711,
+    "checkedAt": "2026-11-23T06:02:12.622Z",
+    "baseCount": 9369,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9369,
+    "totalCount": 9373,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43462/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35045/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35046/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -326657,6 +326878,22 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/36187/",
           "https://dm.takaratomy.co.jp/rule/qa/39123/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1710,
+        "checkedAt": "2026-11-23T05:55:22.870Z",
+        "baseCount": 9366,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9369,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/"
         ],
         "next": [
           "9500へ公式全文対応を継続"
