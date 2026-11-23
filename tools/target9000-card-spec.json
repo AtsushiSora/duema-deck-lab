@@ -42286,5 +42286,136 @@
         }
       ]
     }
+  },
+  "dm28-102": {
+    "phase": 1712,
+    "faces": [
+      {
+        "name": "炎刃ズバット・アクセラー",
+        "typeText": "クロスギア",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーは「パワーアタッカー+3000」を得る。(「パワーアタッカー+3000」を得たクリーチャーのパワーは、攻撃中、+3000される)",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g1707CrossAttackBonus": 3000
+    }
+  },
+  "dm31-047": {
+    "phase": 1712,
+    "faces": [
+      {
+        "name": "邪扇 エアロ・フウゲツ",
+        "typeText": "クロスギア",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+1000される。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札が３枚以上あれば、相手はその中から１枚選んで捨てる。",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g123CrossPower": 1000,
+      "g931CrossAttack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm31-029": {
+    "phase": 1712,
+    "faces": [
+      {
+        "name": "邪装 コウモリック・チェーン",
+        "typeText": "クロスギア",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000され、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g931CrossAttack": [
+        {
+          "op": "GroupPower",
+          "owner": "both",
+          "filter": {
+            "creature": true
+          },
+          "power": -1000,
+          "ownPower": 2000
+        }
+      ]
+    }
+  },
+  "dm28-086": {
+    "phase": 1712,
+    "faces": [
+      {
+        "name": "助太刀メモリー・アクセラー",
+        "typeText": "クロスギア",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+        "race": "サムライ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "gear",
+      "g931CrossAttack": [
+        {
+          "op": "Offer",
+          "title": "カードを1枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
   }
 }

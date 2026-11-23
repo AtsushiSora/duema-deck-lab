@@ -298826,20 +298826,104 @@
       ],
       "supportBatch": "phase-1711",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-102",
+      "name": "炎刃ズバット・アクセラー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーは「パワーアタッカー+3000」を得る。(「パワーアタッカー+3000」を得たクリーチャーのパワーは、攻撃中、+3000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-102",
+      "limit": 4,
+      "g1707CrossAttackBonus": 3000,
+      "supportBatch": "phase-1712",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-047",
+      "name": "邪扇 エアロ・フウゲツ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 1,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+1000される。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札が３枚以上あれば、相手はその中から１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-047",
+      "limit": 4,
+      "g123CrossPower": 1000,
+      "g931CrossAttack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "min": 3
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1712",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-029",
+      "name": "邪装 コウモリック・チェーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 2,
+      "power": 0,
+      "race": "サムライ",
+      "text": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000され、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-029",
+      "limit": 4,
+      "g931CrossAttack": [
+        {
+          "op": "GroupPower",
+          "owner": "both",
+          "filter": {
+            "creature": true
+          },
+          "power": -1000,
+          "ownPower": 2000
+        }
+      ],
+      "supportBatch": "phase-1712",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1711,
-    "checkedAt": "2026-11-23T06:02:12.622Z",
-    "baseCount": 9369,
-    "newEffectCards": 4,
+    "phase": 1712,
+    "checkedAt": "2026-11-23T06:08:59.533Z",
+    "baseCount": 9373,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9373,
+    "totalCount": 9376,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35045/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35046/"
+      "https://dm.takaratomy.co.jp/rule/qa/43462/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -326894,6 +326978,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/43462/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1711,
+        "checkedAt": "2026-11-23T06:02:12.622Z",
+        "baseCount": 9369,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9373,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35045/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35046/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

@@ -1,0 +1,543 @@
+{
+  "phase": 1712,
+  "checkedAt": "2026-11-23T06:08:59.533Z",
+  "baseCount": 9373,
+  "target": 9500,
+  "description": "Complete Zubatto crossed Power Attacker3000, Aero power1000/conditional opponent-owned discard, and Koumorick full all-player power changes. Preserve existing Memory Accelerator through a verified print-name alias without adding a battle definition.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/"
+  ],
+  "rulingVerification": [
+    {
+      "id": 43462,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43462/",
+      "sha256": "647b6162ef8b254103c2fcff7d83e942929a01a61c9344dd1aa0edf1864c0008",
+      "confirmed": true,
+      "reproduced": true,
+      "test": "tests/standard1712-effects.test.mjs",
+      "bothPlayersVerified": true,
+      "scope": "QA43462 ordinary paid generation/crossing and independent gear behavior"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm28-102",
+      "name": "炎刃ズバット・アクセラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-102",
+      "faces": [
+        {
+          "name": "炎刃ズバット・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーは「パワーアタッカー+3000」を得る。(「パワーアタッカー+3000」を得たクリーチャーのパワーは、攻撃中、+3000される)",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g1707CrossAttackBonus": 3000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-102.jpg",
+      "imageReviewed": true,
+      "imageSha256": "282f916e83a226b709364a134f54e48119594dea9dbd1a979a80895f9e34dc24",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm28-102"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:08:59.533Z",
+        "sha256": "bec6f656b7f97c8b0b8e4a08f97326eabcc1ef9b833a5a277afa2ddb959b3b23",
+        "facesMatched": true,
+        "imageSha256": "282f916e83a226b709364a134f54e48119594dea9dbd1a979a80895f9e34dc24"
+      }
+    },
+    {
+      "id": "dm31-047",
+      "name": "邪扇 エアロ・フウゲツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-047",
+      "faces": [
+        {
+          "name": "邪扇 エアロ・フウゲツ",
+          "typeText": "クロスギア",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+1000される。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札が３枚以上あれば、相手はその中から１枚選んで捨てる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 1000,
+        "g931CrossAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "min": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-047.jpg",
+      "imageReviewed": true,
+      "imageSha256": "ff652ce18036198e8bd8ad2a64c03ee6829f995cc894142b817d45f2f53d5eb1",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm31-047"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:08:59.533Z",
+        "sha256": "eb7776ebdebf9c9edec2c5d5f946f83d1aebc9d942d549a5085bb7563f194dad",
+        "facesMatched": true,
+        "imageSha256": "ff652ce18036198e8bd8ad2a64c03ee6829f995cc894142b817d45f2f53d5eb1"
+      }
+    },
+    {
+      "id": "dm31-029",
+      "name": "邪装 コウモリック・チェーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-029",
+      "faces": [
+        {
+          "name": "邪装 コウモリック・チェーン",
+          "typeText": "クロスギア",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000され、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "GroupPower",
+            "owner": "both",
+            "filter": {
+              "creature": true
+            },
+            "power": -1000,
+            "ownPower": 2000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-029.jpg",
+      "imageReviewed": true,
+      "imageSha256": "3195d3649a8460b7e9c7706acb07819d94a9886d7427cfaa0cd06a94848049ba",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "prints": [
+          "dm31-029"
+        ],
+        "result": "Whole official exact-name search and product list; originals only."
+      },
+      "verification": {
+        "checkedAt": "2026-11-23T06:08:59.533Z",
+        "sha256": "d4193a1ce491e28d9bfa6c16dcee6e7d8efea79d22940ae2819fcc67bbc9afbe",
+        "facesMatched": true,
+        "imageSha256": "3195d3649a8460b7e9c7706acb07819d94a9886d7427cfaa0cd06a94848049ba"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm28-086",
+      "name": "助太刀メモリー・アクセラー",
+      "canonicalId": "dmpcd02-a11",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-086",
+      "faces": [
+        {
+          "name": "助太刀メモリー・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア: このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "e4ad696397c081a7df6f2f38250798b78b7bb3cb41d4bd63aee635d088cc3899",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-086.jpg",
+          "file": "tmp/duema-phase-1712/dm28-086-0.jpg",
+          "sha256": "d911ac6eda553f035fca24c686e1407a5ee5aff977ce1bd3139bd3290aa492b2"
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-086.jpg",
+      "imageReviewed": true,
+      "imageSha256": "d911ac6eda553f035fca24c686e1407a5ee5aff977ce1bd3139bd3290aa492b2",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "checkedAt": "2026-11-23T06:08:59.533Z",
+        "sha256": "e4ad696397c081a7df6f2f38250798b78b7bb3cb41d4bd63aee635d088cc3899",
+        "facesMatched": true,
+        "imageSha256": "d911ac6eda553f035fca24c686e1407a5ee5aff977ce1bd3139bd3290aa492b2"
+      }
+    }
+  ],
+  "existingCards": [
+    {
+      "id": "dmpcd02-a11",
+      "name": "助太刀 メモリー・アクセラー",
+      "canonicalId": "dmpcd02-a11",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a11",
+      "faces": [
+        {
+          "name": "助太刀 メモリー・アクセラー",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "37f4982372968aec1f00d8982b0e22b78d329cbcedd92837cee0a16262acd181",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a11.jpg",
+          "file": "tmp/duema-phase-1712/dmpcd02-a11-0.jpg",
+          "sha256": "46616cc52c556454b97c318dc7903116f48e82dbdde875e176fc249517253c57"
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g931CrossAttack": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a11.jpg",
+      "imageReviewed": true,
+      "imageSha256": "46616cc52c556454b97c318dc7903116f48e82dbdde875e176fc249517253c57",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "checkedAt": "2026-11-23T06:08:59.533Z",
+        "sha256": "37f4982372968aec1f00d8982b0e22b78d329cbcedd92837cee0a16262acd181",
+        "facesMatched": true,
+        "imageSha256": "46616cc52c556454b97c318dc7903116f48e82dbdde875e176fc249517253c57"
+      }
+    }
+  ],
+  "nameAliases": [
+    {
+      "from": "助太刀メモリー・アクセラー",
+      "to": "助太刀 メモリー・アクセラー",
+      "canonicalId": "dmpcd02-a11",
+      "reason": "Both full original/reprint official faces, images, mana and restrictions match; keep phase1561 canonical ID/definition."
+    }
+  ],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dm23ex1-066",
+      "name": "天装 カガヤキ・ミガタメ",
+      "canonicalId": "dm23ex1-066",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-066",
+      "faces": [
+        {
+          "name": "天装 カガヤキ・ミガタメ",
+          "typeText": "クロスギア",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガーX（このクロスギアをシールドゾーンから手札に加える時、コストを支払わずにすぐジェネレートし、自分のクリーチャー１体にクロスしてもよい）\nクロスギア（自分のターン中、このクロスギアのコストを支払ってクリーチャー１体にクロスしてもよい。そのクリーチャーが離れても、このクロスギアは残る）\nこのクロスギアが出た時、またはこれをクロスしたクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。",
+          "race": "エンジェル・コマンド/アーマード・サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "htmlSha256": "824bb3d82c6949b7b7cb2ce33473ad2282ab1121824edbcdd9c053c530ce88ba",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-066.jpg",
+          "file": "tmp/duema-phase-1712/dm23ex1-066-0.jpg",
+          "sha256": "989b95d03d4915cb3c9c45061fa6b790fa62072547e7f1ae1f3befe39dc23038"
+        }
+      ],
+      "imageReviewed": true,
+      "status": "not-registered",
+      "reason": "S Trigger X is not implemented: mandatory free crossing when own creatures exist, generation with none, Command seal removal before choosing the free-cross host (QA43456/43760), plus full entry/attack tap-freeze. No partial registration.",
+      "rulings": [
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43456/",
+          "confirmed": true,
+          "reproduced": false
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/43760/",
+          "confirmed": true,
+          "reproduced": false
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44661/",
+          "confirmed": true,
+          "reproduced": false
+        }
+      ]
+    }
+  ],
+  "duplicateCandidates": [
+    {
+      "id": "dm28-086",
+      "name": "助太刀メモリー・アクセラー",
+      "existingId": "dmpcd02-a11",
+      "existingName": "助太刀 メモリー・アクセラー",
+      "result": "Verified official whitespace variation of an existing complete card, zero names added."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-23T06:08:59.533Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-102": 4,
+      "dm31-047": 4,
+      "dm31-029": 4,
+      "dm28-086": 4,
+      "dmpcd02-a11": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-23T06:12:53.663Z",
+    "results": {
+      "related-gear-power-draw": {
+        "name": "related-gear-power-draw",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1561-effects.test.mjs",
+          "tests/standard1707-effects.test.mjs",
+          "tests/standard214-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.837,
+        "log": "tmp/duema-phase-1712/related-gear-power-draw.log",
+        "passed": 105,
+        "logSha256": "3169d0f7238ea542818d74a29f8ca9f56909eb8b147128e20a79ca6c8abeeb40"
+      },
+      "related-alias-save-online": {
+        "name": "related-alias-save-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/target9500-verification.test.mjs",
+          "tests/account.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs",
+          "tests/online-runtime.test.mjs",
+          "tests/online-client.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.164,
+        "log": "tmp/duema-phase-1712/related-alias-save-online.log",
+        "passed": 102,
+        "logSha256": "8da55f14389d5112e5501c261424b533ea50c0e02a9d5eed935428ad2ca7edb4"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1712.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.326,
+        "log": "tmp/duema-phase-1712/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.252,
+        "log": "tmp/duema-phase-1712/check.log",
+        "logSha256": "3667a1e31bf873d1151de2190605f8d8a838ecf84a37ba87ca3265fec350898b"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.474,
+        "log": "tmp/duema-phase-1712/audit.log",
+        "logSha256": "359732e2cbf2eb27bf1101d6590338a3bc364d17cc39a9714b91d37291b01c88"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.426,
+        "log": "tmp/duema-phase-1712/target9500.log",
+        "logSha256": "869cd49c608dc989220311dd7e74f764bcf2e30589d3a15f80b971d1e64029c8"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1712/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.366,
+        "log": "tmp/duema-phase-1712/invariants.log",
+        "logSha256": "a14c4f26db205ecd9be0d2caa027cd1b7ac254c21163d0c5e90a1aa9f224acc7"
+      },
+      "focused": {
+        "passed": 35,
+        "failed": 0,
+        "parts": [
+          {
+            "name": "focused",
+            "command": [
+              "node",
+              "--test",
+              "tests/standard1712-effects.test.mjs"
+            ],
+            "code": 1,
+            "timedout": false,
+            "seconds": 9.388,
+            "log": "tmp/duema-phase-1712/focused.log",
+            "passed": 21,
+            "logSha256": "b3d8a51015cfc015f2cc70a0742ed0d748da65ab8cf949cf054e36499390bade"
+          },
+          {
+            "name": "focused-discard-isolated-from-shield-hand",
+            "command": [
+              "node",
+              "--test",
+              "--test-name-pattern=^Aero checks|^Two Aero|^Ignored crossed gear",
+              "tests/standard1712-effects.test.mjs"
+            ],
+            "code": 0,
+            "timedout": false,
+            "seconds": 1.254,
+            "log": "tmp/duema-phase-1712/focused-discard-isolated-from-shield-hand.log",
+            "passed": 14,
+            "logSha256": "86370fad0c4c36c1384ddc3d9f2497d3fd0aac107d9489d0fb00bbdfa29578c6"
+          }
+        ],
+        "coverage": "Latest outcome of every unique case aggregated across initial execution and focused corrections; repeat passes are not added."
+      }
+    },
+    "totalTestsPassed": 242,
+    "focusedTestsPassed": 35,
+    "relatedTestsPassed": 207
+  },
+  "validationNotes": [
+    "Actual nameKey counts9373/9376; clean baseline5d989bac and no prior running work/tests. All9373 existing battle definitions/IDs/details/images/pins preserved; no runtime effect changes or save-format change.",
+    "Three complete original gear faces/images, original/current Memory faces/images and held Kaga image reviewed,total6 images. Current mana and restrictions matched on all5 active rows. Zubatto differs from Idaten in both name and full ability: Power Attacker3000 rather than Speed Attacker, not an alias.",
+    "Zubatto native crossed attack bonus stacks per physical gear, applies only while attacking and disappears on recross/gear ignore/recipient ignore. It grants no haste. Aero native external power1000 persists on ignored host, and gear-owned attack trigger checks actual opposing hand>=3 at resolution; the opponent selects one mandatory discard. Two triggers recheck after the first leaves only2 cards; encrypted pending actions belong only to the discarder.",
+    "Koumorick native single GroupPower across both players applies current own +2000/opposing -1000 in one operation, kills zero power, excludes noncreature gears/seals, affects ignored creatures, includes ignored attacking host while gear is active, excludes later arrivals and expires at end. Independent physical gear persists after host departure.",
+    "Original Memory dm28-086 is the existing phase1561 dmpcd02-a11 with official space variation. Both full official prints and images/pins/limits verified; explicit name alias preserves existing ID/name/definition. Saved2+2 resolves4 without input mutation and unrelated significant spaces remain meaningful. Catalogue registeredNameCount11824 to11823 only; every catalogue row and ID preserved. Existing guarded campaign extension accepts only full verified print evidence.",
+    "Kaga dm23ex1-066 held unregistered: S Trigger X needs mandatory free crossing with existing creatures, no-host generation, and Command seal removal before selecting the cross host (QA43456/43760); full entry/attack tap-freeze also required. Official full face/image and relevant QA44661 retained; none marked reproduced or counted.",
+    "35 unique focused cases and207 affected regressions pass,total242. Check20.252s, audit11.474s, target9500 and invariants pass. Initial discard-fixture hand totals accidentally included a broken shield added after attack; corrected fixtures attack actual tapped creatures to isolate discard. No runtime behavior changed to hide the failure.",
+    "Historical whole-suite/individual/long/reprint/user deferrals unchanged. No whole npm test, repeated long group or push/publication/Netlify update."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm31-039",
+      "name": "天装 ニチリーン・ニョライ",
+      "reason": "Verify complete gear and continuous power per crossed gear."
+    },
+    {
+      "id": "dm31-023",
+      "name": "聖装 ネビュラ・ウイング",
+      "reason": "Verify whole power1500 and free crossing other gears to its host."
+    },
+    {
+      "id": "dm32-110",
+      "name": "メガ・イノセントソード",
+      "reason": "Verify whole power3000 and any-race evolution permission without changing base race."
+    }
+  ]
+}
