@@ -8,7 +8,7 @@ import{standardCardSpec}from'./standard-card-spec.mjs';
 const waveName=name=>nameKey(name).replace(/[〜～~]/g,'~');
 const printBasic=(faces,waveDash=false)=>faces.map(({abilityText,...basic})=>({...basic,
  ...(waveDash?{name:waveName(basic.name)}:{}),
- typeText:basic.typeText==='進化クリーチャー(超無限進化・Ω)'?'進化クリーチャー':basic.typeText}));
+ typeText:['進化クリーチャー(超無限進化・Ω)','進化クリーチャー(墓地進化)'].includes(basic.typeText?.normalize('NFKC'))?'進化クリーチャー':basic.typeText}));
 // Preserve every saved entry. Verified print names may merge display counts without removing IDs.
 export function assertVerifiedCatalogueExtension(before,current,{supported,manifests}){
  const remaining=structuredClone(current),added=[];
