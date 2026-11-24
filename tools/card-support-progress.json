@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-24",
   "catalogueNames": 11823,
-  "supportedNames": 9491,
-  "pendingNames": 2332,
-  "phase": 1756,
-  "added": 4,
+  "supportedNames": 9496,
+  "pendingNames": 2327,
+  "phase": 1757,
+  "added": 5,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -163,7 +163,7 @@
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 199,
+    "進化クリーチャー": 196,
     "スター進化クリーチャー": 49,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -187,7 +187,7 @@
     "DGフィールド": 1,
     "進化クリーチャー（超無限進化）": 3,
     "ドラグハート・ウエポン": 34,
-    "進化クリーチャー(進化V)": 11,
+    "進化クリーチャー(進化V)": 9,
     "キング・セル": 4,
     "NEO GRクリーチャー": 1,
     "エグザイル・クリーチャー": 20,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1722,
+    "未対応の能力文": 1719,
     "複数面・特殊カードタイプまたは情報不足": 505,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -234,7 +234,7 @@
     "未対応のスペース・チャージ条件": 4,
     "未対応のシンカパワー": 1,
     "未対応のレインボーナス効果": 1,
-    "未対応の進化V能力": 11,
+    "未対応の進化V能力": 9,
     "未対応のスペース・チャージ効果": 2,
     "未対応の光臨条件": 2,
     "既存名の別表記": 4,
@@ -412,12 +412,12 @@
         "name": "暗黒皇グレイテスト・シーザー"
       },
       {
-        "id": "dm22-030",
-        "name": "炎彗星アステロイド・ガウス"
+        "id": "sp-022",
+        "name": "光彗星アステロイド・ルクサス"
       },
       {
-        "id": "dm22-021",
-        "name": "光彗星アステロイド・マイン"
+        "id": "dm34-003",
+        "name": "死神の魔龍虫ビャハ"
       }
     ],
     "未対応のスペース・チャージ効果": [
@@ -559343,15 +559343,254 @@
       "held": [],
       "nextCandidates": [],
       "next": "ユーザー指示の手動13種類追加を次のphase1757で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
+    },
+    {
+      "phase": 1757,
+      "checkedAt": "2026-11-24T00:56:09.646Z",
+      "baseline": "591aaa7b",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9491,
+      "currentNames": 9496,
+      "remainingNames": 4,
+      "added": [
+        {
+          "id": "dm22-030",
+          "name": "炎彗星アステロイド・ガウス"
+        },
+        {
+          "id": "dm22-021",
+          "name": "光彗星アステロイド・マイン"
+        },
+        {
+          "id": "dmd22-002",
+          "name": "悪魔龍王 ロックダウン"
+        },
+        {
+          "id": "dmx11-057",
+          "name": "偽りの大菜王 マツ・ボックリ"
+        },
+        {
+          "id": "dmr01-009",
+          "name": "大魂蟲オオ・ヘラクレス"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "591aaa7b",
+        "originalDefinitionsUnchanged": 9491,
+        "added": 5,
+        "uniqueNames": 9496,
+        "uniqueIds": 9496,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 3,
+        "existingImageUrlsUnchanged": 9491,
+        "existingImageReferenceRowsUnchanged": 11781,
+        "officialPrintsReviewed": 8,
+        "officialImagesReviewed": 8,
+        "existingPinsUnchanged": 1136
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1757.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.866,
+          "log": "tmp/duema-phase-1757/official.log",
+          "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+        },
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1757-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.691,
+          "log": "tmp/duema-phase-1757/focused.log",
+          "passed": 33,
+          "logSha256": "b915fb728a34ca613e1da56db8460fa5ee5fdbca01b89d4c4fb9a285703764ba"
+        },
+        "related-trigger": {
+          "name": "related-trigger",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^evolution S.trigger is usable",
+            "tests/kenji-photo.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.676,
+          "log": "tmp/duema-phase-1757/related-trigger.log",
+          "passed": 1,
+          "logSha256": "47bec8660cf88f3ac82f785be34cb76a5d92a1cd066c2eca45d290a6cbe12b48"
+        },
+        "related-v": {
+          "name": "related-v",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Starman requires|^Starman adds",
+            "tests/standard700-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.85,
+          "log": "tmp/duema-phase-1757/related-v.log",
+          "passed": 2,
+          "logSha256": "4d821bfd8756dccc7211fb3092557f4bb6bdf0e48e058f87118d0a87c4f4d28f"
+        },
+        "related-zones": {
+          "name": "related-zones",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Parasrapt|^hand summons and direct deployments|^all-creature permissions",
+            "tests/standard450-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.485,
+          "log": "tmp/duema-phase-1757/related-zones.log",
+          "passed": 3,
+          "logSha256": "058ca8611ab4f61955427af613a2054d70c14c8c52b6332de88d57ad84e067db"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.532,
+          "log": "tmp/duema-phase-1757/target9500.log",
+          "logSha256": "9af1c5d75c77fba81b598a713261dfec02295f5113dcaf6270da40fdebc42565"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-bulk13/invariants.mjs",
+            "1757"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.484,
+          "log": "tmp/duema-phase-1757/invariants.log",
+          "logSha256": "f6f902bffe654d9adbe4cbd9c9e958a3c4f9db375c13abf0cf39265b93411973"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.154,
+          "log": "tmp/duema-phase-1757/audit.log",
+          "logSha256": "e506fd7853f408ce00d0ba4745b34db9f7b81bf640b3f48bfb9f111041232cc7"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.592,
+          "log": "tmp/duema-phase-1757/check.log",
+          "logSha256": "63a19be4efa7aad5bcb41e830cc8ba95c76a19f632f1281425f9a542a45aeada"
+        }
+      },
+      "totalTestsPassed": 39,
+      "hashes": {
+        "dist/cards.json": "3e0f9a1047cbf258def86273905f47c6bffd0cbfb51ed42df16cba0e89393616",
+        "dist/engine.js": "c6d6aca30826460d171708cd248dec3edb562f1fd900913ad6d82bef32378a5a",
+        "dist/six-photo-rules.js": "e8b6205212777fa20ab054b9b957b67cf6e1ca6b6473d0ad1733acb2113d953b",
+        "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
+        "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "e09840fd6abe9edcfe03f9ddce1e2181a32e3dbc18b793234bac888346b489fb",
+        "dist/online-compatibility.js": "395665432629d95371009e92134f289316dd9133ca95f72d493a8e2558d886fd",
+        "dist/card-images.js": "a4e3490a89e02a16a1f1cd3b2c8c6bca961d54071581390f36a7fe9cf1b7465f",
+        "tools/target9000-card-spec.json": "61a6b78fbc2d536a08a7df25f409ab67185ea00b9df94417638500438f6689f0",
+        "tools/verify-catalogue-extension.mjs": "5a8aa13626c6cd5a7d713a52428e045140e07845573ac182feff467a0d87fb25",
+        "tests/target9500-bulk-fixture.mjs": "acc10f468725b654279fbe1b6156f7d72effd729a233b5861b411282a0060389",
+        "tests/standard1757-effects.test.mjs": "08fdbe7cbe4deae3e37b9eaaf434a32efba981c7c49e1a595a2379e42e10db10"
+      },
+      "engineVersion": "0.602.274",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1757-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.538,
+          "log": "tmp/duema-phase-1757/focused-first.log",
+          "logSha256": "7030db6d94b3e978493dae9010f4076ba940eeb0b2dba6c1f485fe751e6c0e17"
+        },
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1757-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.623,
+          "log": "tmp/duema-phase-1757/focused-second.log",
+          "logSha256": "44a78c2f77ee93e2f651f2271df7aa7b9d8c841449f6f67c20be409a6cb4455d"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1757.json",
+      "supported": 9496,
+      "pending": 2327,
+      "reason": "Bulk13 trial grouped native abilities batch 1757. Full text, stats, image, restrictions and reprints verified; no shared gameplay changes.",
+      "validationNotes": [
+        "Bulk13 trial batch2 actual nameKey9491→9496. Five complete original IDs Gauss/Mine/Rockdown/MatsuBokkuri/Hercules plus3 equivalent Gauss/Mine print aliases. All8 official full images/pages/stats/mana1/current limit4 reviewed. Existing9491 definitions/catalogue rows/details/images/pins unchanged; common gameplay unchanged in this batch.",
+        "Gauss and Mine native two-condition evolutionV accepts any two of specified tribes including same tribe, rejects repeated/single/enemy/wrong/sealed bases, retains original two physical stacks and inherited tapped state through encrypted selection. Gauss uses required existing g32EvoTrigger flag, original first preflight omission corrected in both new pins and definition. Native ShieldTrigger declaration may occur before execution legality; Gauss declaration without pair never executes and remains in hand, actual pair free summon proven via triggerEvolve then complex base selection. Mine opponent spell/ability targeting protection, own effect selection, attack legality, ignore and11000 Wbreaker verified.",
+        "Rockdown official HTML has corrupted ?6000. Reviewed original full image unambiguously prints minus6000; manifest records printedAbilityText, SHA and reason. Runtime uses image-confirmed text while original details unchanged. PaidDark5 normal evolution, mandatory opposing target,6000 destruction threshold, survivor/end expiry, protected enemies and realGG suppression tested.",
+        "MatsuBokkuri Veg evolution pays7, all matching grave cards including evolution move to mana while unrelated remains; optional0/1/3 mana recovery accepts any card types, preserves physical identities and actor at saved blocker stage. Hercules Hunter evolution6/W, current6mana boundary allows actual nonEvolution Gaiash6 but not7/evolution/unrelated/hidden mana; tapped mana may be deployed without summon payment. Source ignore no trigger, accept/decline and encrypted chooser verified.",
+        "Initial preflight lacked required g32EvoTrigger, then7 fixture/flow expectations corrected: ShieldTrigger declaration and triggerEvolve precede g31 selection; final block choice belongs to defender; chosen GoldenTomoe fixture was an evolution so replaced with actual nonEvolutionHunter Gaiash. Logs retained separately. All33 focused and selected V/trigger/zone regressions, check/audit/target9500/invariants pass. No new unverified item, all historical pending/fullsuite status preserved. No repeated old long groups, push/Pages/Netlify. Continue final4 manually;10minute automation PAUSED."
+      ],
+      "held": [],
+      "nextCandidates": [],
+      "next": "ユーザー指示の手動13種類追加を次のphase1758で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1756,
-    "nextPhase": 1757,
+    "lastVerifiedPhase": 1757,
+    "nextPhase": 1758,
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
-      "ユーザー指示の手動13種類追加を次のphase1757で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
+      "ユーザー指示の手動13種類追加を次のphase1758で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -560230,23 +560469,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1756,
-      "baseline": "a51f3dac",
-      "supportedNames": 9491,
-      "artifact": "tools/target9500-registration-checkpoint-1756.json",
-      "checkedAt": "2026-11-24T00:51:57.878Z"
+      "phase": 1757,
+      "baseline": "591aaa7b",
+      "supportedNames": 9496,
+      "artifact": "tools/target9500-registration-checkpoint-1757.json",
+      "checkedAt": "2026-11-24T00:56:09.646Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-24T00:51:57.878Z",
+      "checkedAt": "2026-11-24T00:56:09.646Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9491,
-      "remainingNames": 9,
+      "currentNames": 9496,
+      "remainingNames": 4,
       "duplicateNames": 0,
-      "engineVersion": "0.602.273",
+      "engineVersion": "0.602.274",
       "added": [
         {
           "id": "dmr12-008",
@@ -561931,6 +562170,26 @@
         {
           "id": "dmx11-016",
           "name": "偽りの悪魔神 バロム・ミステリー"
+        },
+        {
+          "id": "dm22-030",
+          "name": "炎彗星アステロイド・ガウス"
+        },
+        {
+          "id": "dm22-021",
+          "name": "光彗星アステロイド・マイン"
+        },
+        {
+          "id": "dmd22-002",
+          "name": "悪魔龍王 ロックダウン"
+        },
+        {
+          "id": "dmx11-057",
+          "name": "偽りの大菜王 マツ・ボックリ"
+        },
+        {
+          "id": "dmr01-009",
+          "name": "大魂蟲オオ・ヘラクレス"
         }
       ],
       "results": {
@@ -562046,19 +562305,19 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "e4851a47cf0d6364bd38dc0a64a20c1c51de8b15b2e08e9f0eb51f2c37fe7c9b",
-        "dist/engine.js": "73fd9c5b2569038155bde134803c54d1871f18910be9b1b5c63cbba894fa00be",
+        "dist/cards.json": "3e0f9a1047cbf258def86273905f47c6bffd0cbfb51ed42df16cba0e89393616",
+        "dist/engine.js": "c6d6aca30826460d171708cd248dec3edb562f1fd900913ad6d82bef32378a5a",
         "dist/six-photo-rules.js": "e8b6205212777fa20ab054b9b957b67cf6e1ca6b6473d0ad1733acb2113d953b",
         "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
         "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/catalogue.json": "3b7bbd9c97117ab6f8da99f1ec3b7f771d72c93f6b757ec084f7e4e32dcdc4fd",
-        "dist/online-compatibility.js": "c8f78fed0ac530eb00710544254983922fe07daf77e28672aaa99d1beef10d24",
-        "dist/card-images.js": "a772597effed55205125ce601050a9a9dd27cd5faee87ce659330d5f0392cad8",
-        "tools/target9000-card-spec.json": "f1fce13442b499a288396b34f8c35849542b5e0138e0343fb1b89b4f685a5c3a",
+        "dist/catalogue.json": "e09840fd6abe9edcfe03f9ddce1e2181a32e3dbc18b793234bac888346b489fb",
+        "dist/online-compatibility.js": "395665432629d95371009e92134f289316dd9133ca95f72d493a8e2558d886fd",
+        "dist/card-images.js": "a4e3490a89e02a16a1f1cd3b2c8c6bca961d54071581390f36a7fe9cf1b7465f",
+        "tools/target9000-card-spec.json": "61a6b78fbc2d536a08a7df25f409ab67185ea00b9df94417638500438f6689f0",
         "tools/verify-catalogue-extension.mjs": "5a8aa13626c6cd5a7d713a52428e045140e07845573ac182feff467a0d87fb25",
         "tests/target9500-bulk-fixture.mjs": "acc10f468725b654279fbe1b6156f7d72effd729a233b5861b411282a0060389",
-        "tests/standard1756-effects.test.mjs": "ddebe95469dfff9a20003fba9e17a8a6634540f5ca3c09abce6a0e5db1e8f21a"
+        "tests/standard1757-effects.test.mjs": "08fdbe7cbe4deae3e37b9eaaf434a32efba981c7c49e1a595a2379e42e10db10"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -562122,10 +562381,10 @@
       },
       "phaseRange": [
         1614,
-        1756
+        1757
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 421,
+      "addedNames": 426,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -562137,9 +562396,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 20.391,
-        "log": "tmp/duema-phase-1756/check.log",
-        "logSha256": "9e07572905a218612a19aca4a7109b7613785db0fbf563aceb2499cdd2d9e0ed"
+        "seconds": 20.592,
+        "log": "tmp/duema-phase-1757/check.log",
+        "logSha256": "63a19be4efa7aad5bcb41e830cc8ba95c76a19f632f1281425f9a542a45aeada"
       },
       "latestAudit": {
         "name": "audit",
@@ -562149,11 +562408,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.973,
-        "log": "tmp/duema-phase-1756/audit.log",
-        "logSha256": "c760b494c1052dc2c4d589269398c3ac5bdae8d12a891f779eac69adf9bc7ba3"
+        "seconds": 11.154,
+        "log": "tmp/duema-phase-1757/audit.log",
+        "logSha256": "e506fd7853f408ce00d0ba4745b34db9f7b81bf640b3f48bfb9f111041232cc7"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1756.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1757.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -563271,11 +563530,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9491,
-      "remaining": 9,
+      "currentNames": 9496,
+      "remaining": 4,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-24T00:51:57.878Z",
+      "checkedAt": "2026-11-24T00:56:09.646Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -563617,7 +563876,7 @@
       "checkedAt": "2026-11-23T22:20:44.237Z",
       "startNames": 9465,
       "target": 9500,
-      "remaining": 9,
+      "remaining": 4,
       "batchSize": "3–5 (remaining fewer allowed)",
       "validation": "Keep official full-text/stat/image/restriction/reprint/ruling checks, focused and affected regression tests, npm run check, actual nameKey count and progress. Do not repeat passed tests without new changes or concerns; no full npm test or old long group reruns.",
       "completionTiming": "10 minutes is a start cadence, not a guaranteed completion time. Skip duplicate work while prior run is active.",
@@ -563626,18 +563885,19 @@
         "pages": false,
         "netlify": false
       },
-      "currentNames": 9491,
-      "lastCompletedPhase": 1756,
-      "lastCompletedAt": "2026-11-24T00:51:57.878Z"
+      "currentNames": 9496,
+      "lastCompletedPhase": 1757,
+      "lastCompletedAt": "2026-11-24T00:56:09.646Z"
     },
     "bulk13Trial": {
       "status": "in-progress",
       "startNames": 9487,
-      "currentNames": 9491,
+      "currentNames": 9496,
       "target": 9500,
-      "addedNames": 4,
+      "addedNames": 9,
       "phases": [
-        1756
+        1756,
+        1757
       ],
       "method": "Preselect13 across common existing ability paths, share official research and generic test scaffolding, validate and commit4/5/4. No successful tests repeated absent a change; one native ManaBirth evolution defect fixed.",
       "automaticRegistrationPaused": true,
@@ -615519,11 +615779,11 @@
     }
   },
   "registrationStop": {
-    "phase": 1756,
+    "phase": 1757,
     "threshold": 9500,
-    "supportedNames": 9491,
-    "pendingNames": 2332,
-    "checkedAt": "2026-11-24T00:51:57.878Z",
+    "supportedNames": 9496,
+    "pendingNames": 2327,
+    "checkedAt": "2026-11-24T00:56:09.646Z",
     "registrationStopped": false,
     "status": "manual-bulk13",
     "automationId": "duema-deck-lab",
@@ -615532,7 +615792,7 @@
     "mode": "heartbeat",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1756.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1757.json",
     "resume": "ユーザーの10分間隔の追加再開指示。現在9465種類、phase1745から開始し9500で停止。各回3〜5種類を影響範囲に応じて検証、ローカルコミットまで。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
