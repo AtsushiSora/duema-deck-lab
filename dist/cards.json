@@ -302965,22 +302965,172 @@
       "breaker": 2,
       "supportBatch": "phase-1755",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-033",
+      "name": "防壁の玉 ライブ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジャスティス・オーブ",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドをひとつ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-033",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "escape": true,
+      "supportBatch": "phase-1756",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-s09",
+      "name": "ヘビー級ヘビー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 19000,
+      "race": "グランセクト/スペシャルズ",
+      "text": "究極進化：自分の進化クリーチャー１体の上に置く。\nQ・ブレイカー（このクリーチャーはシールドを４つブレイクする）\n自分のクリーチャーは、それよりパワーが小さいクリーチャーにブロックされない。\nマナ爆誕６（このクリーチャーを自分のマナゾーンから、コスト６を支払って召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-s09",
+      "limit": 4,
+      "evolution": {
+        "evolution": true
+      },
+      "ultimateEvolution": true,
+      "breaker": 4,
+      "g569Aura": {
+        "filter": {
+          "creature": true
+        }
+      },
+      "g296ManaBirth": 6,
+      "supportBatch": "phase-1756",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-101",
+      "name": "蒼狼設計図",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から４枚を見る。その中からクリーチャーを１体とクリーチャーではないカードを１枚相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-101",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "optional": true,
+              "reveal": true
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "nonCreature": true
+              },
+              "optional": true,
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1756",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-016",
+      "name": "偽りの悪魔神 バロム・ミステリー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "デーモン・コマンド/アンノウン",
+      "text": "進化-自分のデーモン・コマンド１体の上に置く。\n自分のデーモン・コマンドがバトルに勝った時、カードを１枚引いてもよい。その後、進化ではないデーモン・コマンドを１体、自分の手札からバトルゾーンに出してもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-016",
+      "limit": 4,
+      "evolution": {
+        "race": "デーモン・コマンド"
+      },
+      "g252WinWatch": {
+        "filter": {
+          "creature": true,
+          "race": "デーモン・コマンド"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "デーモン・コマンド"
+            }
+          }
+        ]
+      },
+      "breaker": 3,
+      "supportBatch": "phase-1756",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1755,
-    "checkedAt": "2026-11-24T00:27:17.168Z",
-    "baseCount": 9484,
-    "newEffectCards": 3,
+    "phase": 1756,
+    "checkedAt": "2026-11-24T00:46:44.710Z",
+    "baseCount": 9487,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9487,
+    "totalCount": 9491,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35861/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35862/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35863/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35864/"
+      "https://dm.takaratomy.co.jp/rule/qa/31803/",
+      "https://dm.takaratomy.co.jp/rule/qa/40379/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -331767,6 +331917,25 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
           "https://dm.takaratomy.co.jp/rule/qa/44620/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1755,
+        "checkedAt": "2026-11-24T00:27:17.168Z",
+        "baseCount": 9484,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9487,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35861/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35862/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35863/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35864/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

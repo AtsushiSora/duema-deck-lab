@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-24",
   "catalogueNames": 11823,
-  "supportedNames": 9487,
-  "pendingNames": 2336,
-  "phase": 1755,
-  "added": 3,
+  "supportedNames": 9491,
+  "pendingNames": 2332,
+  "phase": 1756,
+  "added": 4,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,14 +156,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1358,
-    "呪文": 258,
+    "クリーチャー": 1357,
+    "呪文": 257,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 32,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 201,
+    "進化クリーチャー": 199,
     "スター進化クリーチャー": 49,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1726,
+    "未対応の能力文": 1722,
     "複数面・特殊カードタイプまたは情報不足": 505,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -559107,26 +559107,251 @@
         }
       ],
       "next": "次の10分間隔の回でphase1756から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+    },
+    {
+      "phase": 1756,
+      "checkedAt": "2026-11-24T00:51:57.878Z",
+      "baseline": "a51f3dac",
+      "status": "verified-local",
+      "kind": "registration-toward-9500",
+      "target": 9500,
+      "before": 9487,
+      "currentNames": 9491,
+      "remainingNames": 9,
+      "added": [
+        {
+          "id": "dmr16s-033",
+          "name": "防壁の玉 ライブ"
+        },
+        {
+          "id": "dmex03-s09",
+          "name": "ヘビー級ヘビー"
+        },
+        {
+          "id": "dmex17-101",
+          "name": "蒼狼設計図"
+        },
+        {
+          "id": "dmx11-016",
+          "name": "偽りの悪魔神 バロム・ミステリー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "baseline": "a51f3dac",
+        "originalDefinitionsUnchanged": 9487,
+        "added": 4,
+        "uniqueNames": 9491,
+        "uniqueIds": 9491,
+        "duplicateNames": 0,
+        "catalogueExistingDataUnchanged": true,
+        "newOfficialPrintAliases": 2,
+        "existingImageUrlsUnchanged": 9487,
+        "existingImageReferenceRowsUnchanged": 11775,
+        "officialPrintsReviewed": 6,
+        "officialImagesReviewed": 6,
+        "existingPinsUnchanged": 1130
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1756.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.485,
+          "log": "tmp/duema-phase-1756/official.log",
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "focused": {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1756-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.69,
+          "log": "tmp/duema-phase-1756/focused.log",
+          "passed": 37,
+          "logSha256": "4392b955d3374a6ea09bd80ada0600fe8c2017ea009390ec60cee5d85236279c"
+        },
+        "rulings": {
+          "name": "rulings",
+          "command": [
+            "node",
+            "tmp/duema-bulk13/qa.mjs",
+            "1756"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.947,
+          "log": "tmp/duema-phase-1756/rulings.log",
+          "logSha256": "498e3191ff16ec42c8777505721e6fca83302469caa73eb013671e6aef1ab279"
+        },
+        "related-save": {
+          "name": "related-save",
+          "command": [
+            "node",
+            "--test",
+            "tests/online-runtime.test.mjs",
+            "tests/deck-copy.test.mjs",
+            "tests/deck-history.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.81,
+          "log": "tmp/duema-phase-1756/related-save.log",
+          "passed": 12,
+          "logSha256": "f40f65cb28bb32188e2aaa9fd1c24333889007e8943ad58a90b220b03e246ab5"
+        },
+        "related-aura": {
+          "name": "related-aura",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Dashing still affects|^power attacker bonus|^powered blocker bonus|^Jira counts",
+            "tests/standard569-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.039,
+          "log": "tmp/duema-phase-1756/related-aura.log",
+          "passed": 9,
+          "logSha256": "91668bff5eb79d402a5abb2fc04c0c6d3ead0236ea2dd4c0194c5f99e434e1eb"
+        },
+        "related-birth": {
+          "name": "related-birth",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^Mana Birth|^printed cost|^Snow Fairy|^reduction prohibition|^another mana-summon|^two Mana Birth|^mana charged|^manual payment|^a mana-origin|^optional Snow|^one chosen|UI exposes real mana actions",
+            "tests/standard296-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.13,
+          "log": "tmp/duema-phase-1756/related-birth.log",
+          "passed": 25,
+          "logSha256": "0b732701c910d483cf14f2d89242e7c75c0e74e64557384df6c021dce2c06087"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.391,
+          "log": "tmp/duema-phase-1756/check.log",
+          "logSha256": "9e07572905a218612a19aca4a7109b7613785db0fbf563aceb2499cdd2d9e0ed"
+        },
+        "target9500": {
+          "name": "target9500",
+          "command": [
+            "node",
+            "tools/verify-target9500.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.597,
+          "log": "tmp/duema-phase-1756/target9500.log",
+          "logSha256": "69ea35179f2ce30d26ec9b0a3e9255bcd82e57fc8b691bcd5746f7c74e919151"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/duema-bulk13/invariants.mjs",
+            "1756"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.601,
+          "log": "tmp/duema-phase-1756/invariants.log",
+          "logSha256": "abd697f3198122c4fd8d100b757c61b9179af6c26b4ea6a0ce5262c046cdfd27"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.973,
+          "log": "tmp/duema-phase-1756/audit.log",
+          "logSha256": "c760b494c1052dc2c4d589269398c3ac5bdae8d12a891f779eac69adf9bc7ba3"
+        }
+      },
+      "totalTestsPassed": 83,
+      "hashes": {
+        "dist/cards.json": "e4851a47cf0d6364bd38dc0a64a20c1c51de8b15b2e08e9f0eb51f2c37fe7c9b",
+        "dist/engine.js": "73fd9c5b2569038155bde134803c54d1871f18910be9b1b5c63cbba894fa00be",
+        "dist/six-photo-rules.js": "e8b6205212777fa20ab054b9b957b67cf6e1ca6b6473d0ad1733acb2113d953b",
+        "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
+        "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
+        "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+        "dist/catalogue.json": "3b7bbd9c97117ab6f8da99f1ec3b7f771d72c93f6b757ec084f7e4e32dcdc4fd",
+        "dist/online-compatibility.js": "c8f78fed0ac530eb00710544254983922fe07daf77e28672aaa99d1beef10d24",
+        "dist/card-images.js": "a772597effed55205125ce601050a9a9dd27cd5faee87ce659330d5f0392cad8",
+        "tools/target9000-card-spec.json": "f1fce13442b499a288396b34f8c35849542b5e0138e0343fb1b89b4f685a5c3a",
+        "tools/verify-catalogue-extension.mjs": "5a8aa13626c6cd5a7d713a52428e045140e07845573ac182feff467a0d87fb25",
+        "tests/target9500-bulk-fixture.mjs": "acc10f468725b654279fbe1b6156f7d72effd729a233b5861b411282a0060389",
+        "tests/standard1756-effects.test.mjs": "ddebe95469dfff9a20003fba9e17a8a6634540f5ca3c09abce6a0e5db1e8f21a"
+      },
+      "engineVersion": "0.602.273",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "resolvedAttempts": [
+        {
+          "name": "focused",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1756-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.599,
+          "log": "tmp/duema-phase-1756/focused-first.log",
+          "logSha256": "59d1b67ca27ef2264325f3ba3a7a37f4f65cfb186c7c40b2d4d64db3886e1e1c"
+        }
+      ],
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "manifest": "tools/support-phase-1756.json",
+      "supported": 9491,
+      "pending": 2332,
+      "reason": "Bulk13 trial grouped native abilities batch 1756. Full text, stats, image, restrictions and reprints verified; no shared gameplay changes.",
+      "validationNotes": [
+        "Bulk13 manual trial batch1: preselected13 canonical names together using native compatibility scan, rejecting flavor-name/reprint duplicates; official research shared, batches4/5/4. Actual nameKey9487→9491,4new originals and2 equivalent BaromMystery reprints. All6 full official images/pages/stat/mana1/limit4 verified. Original catalogue IDs, current details and older9487 definitions unchanged.",
+        "Live full5000/blocker/noPlayerAttack/Escape tested both seats and accepts/declines real ShieldTrigger shield without casting; emptyshield/ignore/bounce exclude Escape. Heavy ultimate19k/Q hand3 accepts evolved NEO QA31803, rejects unevolved/ordinary, all-own independent relative-power aura includes ability-ignored recipients, equal/larger blockers and source disable boundaries tested.",
+        "Found and fixed existing native ManaBirth omission: evolution ManaBirth actions now carry eligible selected base UID through alternative payment and entry; no legal evolution base means no action. Ordinary ManaBirth actions unchanged. Heavy alternative6 actual selected mana, encrypted payment continuation and cancellation preserve both base and source; old ManaBirth UI/cost/reducer/zone prohibition/source ownership and online/save regressions pass. Shared fix limited to source ability actions/base passing.",
+        "Bluewolf Look4 can choose up to one creature and one noncreature separately and shows chosen cards, remaining order bottom preserved. Exact QA40379 Twinpact creature cannot count as noncreature; first test incorrectly inspected later bottom-order options as noncreature choices, corrected task-phase assertion. Real ShieldTrigger free cast. BaromMystery evolves Demon paying Light7; optional draw and later optional nonEvolution Demon deployment independent, newly drawn Demon eligible, other Demon ally wins and exclusions, immediate Tbreak and save continuations pass.",
+        "First focused run37-predecessor36 had4 failures:2 exposed ManaBirth missing base fixed in shared path,2 Bluewolf test task-stage assumptions corrected without effect change. Failed log preserved separately. Required focused and affected regressions pass, npmcheck/audit/target9500/old-ID and full definition/image/pin/catalogue invariants pass. Historical registered/reprint/long-test/fullsuite pending preserved exactly. No full npmtest or old interrupted groups. No push/Pages/Netlify. Auto10minute registration remains PAUSED; continue remaining9 manually."
+      ],
+      "held": [],
+      "nextCandidates": [],
+      "next": "ユーザー指示の手動13種類追加を次のphase1757で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1755,
-    "nextPhase": 1756,
+    "lastVerifiedPhase": 1756,
+    "nextPhase": 1757,
     "workInProgress": null,
-    "nextCandidates": [
-      {
-        "id": "dmx11-058",
-        "name": "味頭領ドン・ドリアン",
-        "reason": "Native g31 zone mana is not implemented: candidate pool defaults to battle, while zones mana special path requires one-per-distinct-zone and cannot represent3 matching mana bases. New full manaGV mechanism needed, no partial registration."
-      },
-      {
-        "id": "dm03-004",
-        "name": "超竜ジャバハ",
-        "reason": "Printed independent attacking power modification must work on ability-ignored recipients; g208 attackBonus grants PowerAttacker and is suppressed on ignored recipients. Need independent attack-only continuous power path before registration."
-      }
-    ],
+    "nextCandidates": [],
     "steps": [
-      "次の10分間隔の回でphase1756から完全対応を継続。保留候補は理由を踏まえ別の既存処理で全能力を再現できる候補を選ぶ。前回実行中なら重複作業しない。9500で停止。旧保留・中断状態を維持し、push・公開・Netlify更新なし。"
+      "ユーザー指示の手動13種類追加を次のphase1757で継続。10分ごとの自動追加はPAUSEDのまま。公式照合・固有/関連回帰・check・nameKey実測・既存ID保存形式の維持・検証済みコミットを行い9500で停止。"
     ],
     "knownIssues": [
       "初版・同弾別版・再録3種の両面と画像を確認。表裏で異なるターン条件と、移動させる能力の発生源がバトルゾーンにある相手クリーチャーか相手の呪文かを識別して、他の離脱置換と一緒に検証するまで保留。",
@@ -560005,23 +560230,23 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1755,
-      "baseline": "75ce09f9",
-      "supportedNames": 9487,
-      "artifact": "tools/target9500-registration-checkpoint-1755.json",
-      "checkedAt": "2026-11-24T00:30:56.793Z"
+      "phase": 1756,
+      "baseline": "a51f3dac",
+      "supportedNames": 9491,
+      "artifact": "tools/target9500-registration-checkpoint-1756.json",
+      "checkedAt": "2026-11-24T00:51:57.878Z"
     },
     "registrationSession": {
       "phase": 1614,
-      "checkedAt": "2026-11-24T00:30:56.793Z",
+      "checkedAt": "2026-11-24T00:51:57.878Z",
       "status": "active",
       "baseline": "b705d51aa89ada4f647b9dfd94fc973cd2bb7060",
       "target": 9500,
       "startNames": 9070,
-      "currentNames": 9487,
-      "remainingNames": 13,
+      "currentNames": 9491,
+      "remainingNames": 9,
       "duplicateNames": 0,
-      "engineVersion": "0.602.272",
+      "engineVersion": "0.602.273",
       "added": [
         {
           "id": "dmr12-008",
@@ -561690,6 +561915,22 @@
         {
           "id": "dm22-005",
           "name": "伝説のサンテ・ガト・デ・パコ"
+        },
+        {
+          "id": "dmr16s-033",
+          "name": "防壁の玉 ライブ"
+        },
+        {
+          "id": "dmex03-s09",
+          "name": "ヘビー級ヘビー"
+        },
+        {
+          "id": "dmex17-101",
+          "name": "蒼狼設計図"
+        },
+        {
+          "id": "dmx11-016",
+          "name": "偽りの悪魔神 バロム・ミステリー"
         }
       ],
       "results": {
@@ -561805,18 +562046,19 @@
       },
       "totalTestsPassed": 498,
       "hashes": {
-        "dist/cards.json": "fd6627761d467565e341c4139e8a834382ef8c46de7b4a99803695888eaef6d8",
-        "dist/engine.js": "39cd01eb5ad029b294ee3bd54160be74fae2b67d7bef52f306d0b1b3b8ec7a92",
-        "dist/six-photo-rules.js": "7c746823113d343db189c96f8bf7ffe6d28d069fec125556e04a1ff911bf8e7e",
+        "dist/cards.json": "e4851a47cf0d6364bd38dc0a64a20c1c51de8b15b2e08e9f0eb51f2c37fe7c9b",
+        "dist/engine.js": "73fd9c5b2569038155bde134803c54d1871f18910be9b1b5c63cbba894fa00be",
+        "dist/six-photo-rules.js": "e8b6205212777fa20ab054b9b957b67cf6e1ca6b6473d0ad1733acb2113d953b",
         "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
         "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
         "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
-        "dist/catalogue.json": "d3469ab87606892bd1e2ab15e74e4b8ba3adaf14a58bfe0c6ef4c4c18984a33a",
-        "dist/online-compatibility.js": "c9ab3bf8d9c3b64824e2d7e10d90ddc2386f93f379ef8a1a285fe1ac4845b26a",
-        "dist/card-images.js": "cfa9031c51589b13ee81c75ecd9f7b1c8de6ac8488d2d040b1927c90ab95796d",
-        "tools/target9000-card-spec.json": "5e6965071971376dc6313a74d0e97b85726226f9ce03619d0f8fa7735b3b10c1",
+        "dist/catalogue.json": "3b7bbd9c97117ab6f8da99f1ec3b7f771d72c93f6b757ec084f7e4e32dcdc4fd",
+        "dist/online-compatibility.js": "c8f78fed0ac530eb00710544254983922fe07daf77e28672aaa99d1beef10d24",
+        "dist/card-images.js": "a772597effed55205125ce601050a9a9dd27cd5faee87ce659330d5f0392cad8",
+        "tools/target9000-card-spec.json": "f1fce13442b499a288396b34f8c35849542b5e0138e0343fb1b89b4f685a5c3a",
         "tools/verify-catalogue-extension.mjs": "5a8aa13626c6cd5a7d713a52428e045140e07845573ac182feff467a0d87fb25",
-        "tests/standard1755-effects.test.mjs": "74a969957b1538af53f7cb3b329c440f73c6e0c6d70ebb6ea16b252e75ce07e2"
+        "tests/target9500-bulk-fixture.mjs": "acc10f468725b654279fbe1b6156f7d72effd729a233b5861b411282a0060389",
+        "tests/standard1756-effects.test.mjs": "ddebe95469dfff9a20003fba9e17a8a6634540f5ca3c09abce6a0e5db1e8f21a"
       },
       "invariants": {
         "baseline": "b705d51a",
@@ -561880,10 +562122,10 @@
       },
       "phaseRange": [
         1614,
-        1755
+        1756
       ],
       "artifact": "tools/target9500-registration-checkpoint-1614.json",
-      "addedNames": 417,
+      "addedNames": 421,
       "existingDefinitionsUnchanged": 9070,
       "remainingVerification": "追加カード3種類の全能力の固有検証は完了。過去の全体npm testと本ケースの合否未確認は別に保持。 ユーザー保留2件を保持。",
       "latestCheck": {
@@ -561895,9 +562137,9 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 19.954,
-        "log": "tmp/duema-phase-1755/check.log",
-        "logSha256": "a1e693bbfa23d52064a597eacecc7e07c4cba32103c2e43be15225022b90a5ab"
+        "seconds": 20.391,
+        "log": "tmp/duema-phase-1756/check.log",
+        "logSha256": "9e07572905a218612a19aca4a7109b7613785db0fbf563aceb2499cdd2d9e0ed"
       },
       "latestAudit": {
         "name": "audit",
@@ -561907,11 +562149,11 @@
         ],
         "code": 0,
         "timedout": false,
-        "seconds": 10.268,
-        "log": "tmp/duema-phase-1755/audit.log",
-        "logSha256": "cef97f98e8793d26660b4dd7e672f666a9f724fa20c5c2fe298eb1e740a836c1"
+        "seconds": 10.973,
+        "log": "tmp/duema-phase-1756/audit.log",
+        "logSha256": "c760b494c1052dc2c4d589269398c3ac5bdae8d12a891f779eac69adf9bc7ba3"
       },
-      "latestBatch": "tools/target9500-registration-checkpoint-1755.json",
+      "latestBatch": "tools/target9500-registration-checkpoint-1756.json",
       "latestPublication": {
         "version": "0.722.8",
         "sourceCommit": "3a959a2181ad862edbdebf485f1786c9dbdd4070",
@@ -563029,11 +563271,11 @@
       "target": 9500,
       "startNames": 9073,
       "baseline": "fd23b7ca",
-      "currentNames": 9487,
-      "remaining": 13,
+      "currentNames": 9491,
+      "remaining": 9,
       "status": "active",
       "instruction": "目標9,500まで追加して",
-      "checkedAt": "2026-11-24T00:30:56.793Z",
+      "checkedAt": "2026-11-24T00:51:57.878Z",
       "pauseInstruction": "この登録が終わったら一旦登録を止めて",
       "pausedAtCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
       "resumeInstruction": "再開して",
@@ -563370,12 +563612,12 @@
     },
     "registrationCadence": {
       "automationId": "duema-deck-lab",
-      "status": "ACTIVE",
+      "status": "PAUSED",
       "intervalMinutes": 10,
       "checkedAt": "2026-11-23T22:20:44.237Z",
       "startNames": 9465,
       "target": 9500,
-      "remaining": 13,
+      "remaining": 9,
       "batchSize": "3–5 (remaining fewer allowed)",
       "validation": "Keep official full-text/stat/image/restriction/reprint/ruling checks, focused and affected regression tests, npm run check, actual nameKey count and progress. Do not repeat passed tests without new changes or concerns; no full npm test or old long group reruns.",
       "completionTiming": "10 minutes is a start cadence, not a guaranteed completion time. Skip duplicate work while prior run is active.",
@@ -563384,9 +563626,26 @@
         "pages": false,
         "netlify": false
       },
-      "currentNames": 9487,
-      "lastCompletedPhase": 1755,
-      "lastCompletedAt": "2026-11-24T00:30:56.793Z"
+      "currentNames": 9491,
+      "lastCompletedPhase": 1756,
+      "lastCompletedAt": "2026-11-24T00:51:57.878Z"
+    },
+    "bulk13Trial": {
+      "status": "in-progress",
+      "startNames": 9487,
+      "currentNames": 9491,
+      "target": 9500,
+      "addedNames": 4,
+      "phases": [
+        1756
+      ],
+      "method": "Preselect13 across common existing ability paths, share official research and generic test scaffolding, validate and commit4/5/4. No successful tests repeated absent a change; one native ManaBirth evolution defect fixed.",
+      "automaticRegistrationPaused": true,
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
     }
   },
   "registeredCardVerification": {
@@ -615260,20 +615519,20 @@
     }
   },
   "registrationStop": {
-    "phase": 1755,
+    "phase": 1756,
     "threshold": 9500,
-    "supportedNames": 9487,
-    "pendingNames": 2336,
-    "checkedAt": "2026-11-24T00:30:56.793Z",
+    "supportedNames": 9491,
+    "pendingNames": 2332,
+    "checkedAt": "2026-11-24T00:51:57.878Z",
     "registrationStopped": false,
-    "status": "resumed-by-user",
+    "status": "manual-bulk13",
     "automationId": "duema-deck-lab",
     "automationStatus": "ACTIVE",
     "automationStatusVerifiedAt": "2026-11-23T22:20:44.237Z",
     "mode": "heartbeat",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
     "registrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
-    "checkpoint": "tools/target9500-registration-checkpoint-1755.json",
+    "checkpoint": "tools/target9500-registration-checkpoint-1756.json",
     "resume": "ユーザーの10分間隔の追加再開指示。現在9465種類、phase1745から開始し9500で停止。各回3〜5種類を影響範囲に応じて検証、ローカルコミットまで。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

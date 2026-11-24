@@ -11513,12 +11513,16 @@ export function createSixPhotoRules(api){
    for(const permit of permits)for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){if(c.manaSummon&&snowReducers===undefined)continue;const payment={...c,summonOrigin:'mana',executionUid:x.uid,...(snowReducers?{snowReducers}:{})};if(api.canPay(s,p,payment))out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'mana',manaPermit:permit,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+'をマナから召喚する'+(snowReducers?'・軽減の使用先を選ぶ':'')});}
   }
   for(const x of own.mana){const c=card(x);if(x.faceDown||c.g296ManaBirth===undefined||!api.canCast(s,p,c,'mana')||!api.canEnter(s,p,c,{origin:'mana',execution:true}))continue;
+   // Evolution Mana Birth must carry the chosen base through payment and entry.
+   const bases=c.evolution?api.evolutionBases(s,p,c).filter(y=>y.uid!==x.uid):[null];
+   for(const base of bases){
+   const evolution=base?{baseUid:base.uid}:{},baseLabel=base?'・'+card(base).name+'の上に進化':'';
    if(c.g296ManaBirth===0){
-    out.push({kind:'play',alternative:'sixPhoto',role:'manaBirth296',uid:x.uid,cardId:x.cardId,origin:'mana',cost:0,
-     label:c.name+'をマナ爆誕（0マナ）で召喚'});
+    out.push({kind:'play',alternative:'sixPhoto',role:'manaBirth296',uid:x.uid,cardId:x.cardId,origin:'mana',...evolution,cost:0,
+     label:c.name+'をマナ爆誕（0マナ）で召喚'+baseLabel});
     continue;
    }
-   for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){const payment={...c,cost:c.g296ManaBirth,printedCost:c.cost,summonOrigin:'mana',executionUid:x.uid,...(snowReducers?{snowReducers}:{})};if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'manaBirth296',uid:x.uid,cardId:x.cardId,origin:'mana',...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+'をマナ爆誕で召喚（'+api.summonCost(s,p,payment)+'マナ）'+(snowReducers?'・軽減の使用先を選ぶ':'')});}}
+   for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){const payment={...c,cost:c.g296ManaBirth,printedCost:c.cost,summonOrigin:'mana',executionUid:x.uid,...(base?{g27BaseUid:base.uid}:{}),...(snowReducers?{snowReducers}:{})};if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'manaBirth296',uid:x.uid,cardId:x.cardId,origin:'mana',...evolution,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+'をマナ爆誕で召喚（'+api.summonCost(s,p,payment)+'マナ）'+baseLabel+(snowReducers?'・軽減の使用先を選ぶ':'')});}}}
 
   for(const x of own.grave)for(const[face,c]of faces(card(x)).entries()){
    const permits=gravePermits294(s,p,x,c),payment={...c,summonOrigin:'grave',executionUid:x.uid};
@@ -11554,7 +11558,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
   }
   if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){
    const amount=card(a.cardId).g296ManaBirth;
-   cast(s,p,a.uid,amount===0,null,0,amount===0?null:{cost:amount},'mana','マナ爆誕',false,null,a.snowReducers??null);
+   cast(s,p,a.uid,amount===0,a.baseUid??null,0,amount===0?null:{cost:amount},'mana','マナ爆誕',false,null,a.snowReducers??null);
    return;
   }put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
