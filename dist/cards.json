@@ -302784,19 +302784,80 @@
       ],
       "supportBatch": "phase-1753",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm27-012",
+      "name": "獰猛なる大地",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれをバトルゾーンに出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-012",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "faceUp": true
+          }
+        },
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "faceUp": true
+          },
+          "g803DeployForOwner": true
+        },
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "to": "mana",
+          "toOwnerMana": true,
+          "g984OnePerSide": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+        }
+      ],
+      "supportBatch": "phase-1754",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1753,
-    "checkedAt": "2026-11-24T00:03:42.274Z",
-    "baseCount": 9482,
+    "phase": 1754,
+    "checkedAt": "2026-11-24T00:14:08.357Z",
+    "baseCount": 9483,
     "newEffectCards": 1,
     "newVanillaCards": 0,
-    "totalCount": 9483,
+    "totalCount": 9484,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39123/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
+      "https://dm.takaratomy.co.jp/rule/qa/44620/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -331550,6 +331611,22 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35157/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35064/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1753,
+        "checkedAt": "2026-11-24T00:03:42.274Z",
+        "baseCount": 9482,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9483,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39123/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

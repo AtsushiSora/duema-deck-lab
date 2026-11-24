@@ -1,0 +1,833 @@
+{
+  "phase": 1754,
+  "checkedAt": "2026-11-24T00:14:08.357Z",
+  "baseCount": 9483,
+  "target": 9500,
+  "description": "Complete native DomanEarth own then opposing non-evolution face-up mana deployment and simultaneous one creature per side to owners mana; original plus5 reprint aliases.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
+    "https://dm.takaratomy.co.jp/rule/qa/44620/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
+      "sha256": "9fe9e2963b0c64e8f9bcab6d1dd9696fdc3e41e27ef9bc61bf5b1b50e0bfdda9",
+      "checkedAt": "2026-11-24T00:16:40.689884+00:00",
+      "result": "Exact DomanEarth deploys actual SpellDelfin, opposing hand immediately visible and spell lock active while spell still resolves; returning Delfin in same spell removes its continuous effects. Both seats reproduced.",
+      "reproduced": true,
+      "test": "tests/standard1754-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/44620/",
+      "sha256": "adce54d4b7362323954c622d296bc58f4cda0b52fb74aab6a3f8c1fe173c0ce1",
+      "checkedAt": "2026-11-24T00:16:41.459731+00:00",
+      "result": "Exact DomanEarth excludes face-down mana on both sides even when hidden physical face is creature; evolution/spell/seed mana also excluded, real face-up non-evolution entrants legal. Both seats reproduced.",
+      "reproduced": true,
+      "test": "tests/standard1754-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm27-012",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-012",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれをバトルゾーンに出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-012.jpg",
+      "imageReviewed": true,
+      "imageSha256": "8e07cbe90809b63da52a4a530b71a015088f95f6b44d2eec9c32cfdd13e4b4e8",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "7453cab57ee32b29fa3b25b67babd308a21ed2157d160eb943840fd072c4e655",
+        "facesMatched": true,
+        "imageSha256": "8e07cbe90809b63da52a4a530b71a015088f95f6b44d2eec9c32cfdd13e4b4e8"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy12-046",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-046",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれをバトルゾーンに出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-046.jpg",
+      "imageReviewed": true,
+      "imageSha256": "a2da7840cd984b427c73710ae931419b94af51206638cbeb4da087cce2b529d0",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "0693d0b9de3df5319f401398a9a5d0d0fe20b7d2cb5543ff0e054e076217ad60",
+        "facesMatched": true,
+        "imageSha256": "a2da7840cd984b427c73710ae931419b94af51206638cbeb4da087cce2b529d0"
+      }
+    },
+    {
+      "id": "dm23rp2-SP02",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-SP02",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンから出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれを出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-SP02.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4293d858fb3d92d3cbf7de89d1458c642a6c334a1b227d4f3d2d7612db6a1279",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "4f88225aeef56b40e67fdfbd175359d04b8746109fbf98399a985b948edd26f4",
+        "facesMatched": true,
+        "imageSha256": "4293d858fb3d92d3cbf7de89d1458c642a6c334a1b227d4f3d2d7612db6a1279"
+      }
+    },
+    {
+      "id": "dm23rp2x-SP02",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-SP02",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンから出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれを出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-SP02.jpg",
+      "imageReviewed": true,
+      "imageSha256": "4293d858fb3d92d3cbf7de89d1458c642a6c334a1b227d4f3d2d7612db6a1279",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "dd586984f715c6ea112e08dc52ea077d9bdf69ed9a7961d2d08185b1953c7a2d",
+        "facesMatched": true,
+        "imageSha256": "4293d858fb3d92d3cbf7de89d1458c642a6c334a1b227d4f3d2d7612db6a1279"
+      }
+    },
+    {
+      "id": "dmex02-018",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-018",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれをバトルゾーンに出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-018.jpg",
+      "imageReviewed": true,
+      "imageSha256": "8e8e826f1dbb69d9e569a5e1f9857291f7786dc4d217d28f9941e8f70436ccd9",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "7971e746d163a4b59b34621c34b54848c9984eb6cc1000e5e203b4cb01b2aaa2",
+        "facesMatched": true,
+        "imageSha256": "8e8e826f1dbb69d9e569a5e1f9857291f7786dc4d217d28f9941e8f70436ccd9"
+      }
+    },
+    {
+      "id": "dmx09-027",
+      "name": "獰猛なる大地",
+      "canonicalId": "dm27-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-027",
+      "faces": [
+        {
+          "name": "獰猛なる大地",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。相手のマナゾーンから進化ではないクリーチャーを１体選び、相手はそれをバトルゾーンに出す。その後、バトルゾーンから自分と相手のクリーチャーを１体ずつ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            }
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "faceUp": true
+            },
+            "g803DeployForOwner": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "mana",
+            "toOwnerMana": true,
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "自分と相手のクリーチャーを1体ずつマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-027.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0df9d3285160d9ee42e634fa6f22a549a875ca3e29b473989dac86252c4c930b",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:14:08.357Z",
+        "reason": "All6 full official print images reviewed, Nature8/spell/mana1 and complete own then opposing non-evolution mana deployment followed by one creature per side to owners mana. RP2X SP2 image650x908 is byte-identical SHA to RP2 SP2 full artwork, both viewed/compared. Modern omission of battle-zone wording equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "promoy12-046",
+          "dm23rp2-SP02",
+          "dm23rp2x-SP02",
+          "dmex02-018",
+          "dmx09-027",
+          "dm27-012"
+        ],
+        "result": "Official exact-name search6 results all reviewed; original dm27-012 plus5 equivalent reprints count once."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "sha256": "c4bea9058e9154a6bb8c1847b0020ad88777f595957247f717088a9f12a7a7d6",
+        "facesMatched": true,
+        "imageSha256": "0df9d3285160d9ee42e634fa6f22a549a875ca3e29b473989dac86252c4c930b"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "promoy12-046",
+      "canonicalId": "dm27-012"
+    },
+    {
+      "id": "dm23rp2-SP02",
+      "canonicalId": "dm27-012"
+    },
+    {
+      "id": "dm23rp2x-SP02",
+      "canonicalId": "dm27-012"
+    },
+    {
+      "id": "dmex02-018",
+      "canonicalId": "dm27-012"
+    },
+    {
+      "id": "dmx09-027",
+      "canonicalId": "dm27-012"
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr22-016",
+      "name": "ブラック・タッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-016",
+      "reason": "Requires highest-cost opposing full-hand selection and exact discarded-card cost continuation into mandatory grave recovery including Twinpact cost choice. Existing inspected discard/HandFollow paths do not provide that complete sequence."
+    },
+    {
+      "id": "dm10-007",
+      "name": "天動の化身",
+      "reason": "Native ManaExchange753 exchanges individual battlefield/mana elements, not simultaneous entire hand and mana. Defer full simultaneous swap."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-24T00:14:08.357Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm27-012": 4,
+      "promoy12-046": 4,
+      "dm23rp2-SP02": 4,
+      "dm23rp2x-SP02": 4,
+      "dmex02-018": 4,
+      "dmx09-027": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-24T00:17:43.375Z",
+    "results": {
+      "focused": {
+        "name": "focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1754-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.252,
+        "log": "tmp/duema-phase-1754/focused.log",
+        "passed": 31,
+        "logSha256": "2abb8986e9141d54baea0f3b19810889489716fe2cbc35c9fc4fa5ce72c1807a"
+      },
+      "related-deploy": {
+        "name": "related-deploy",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Real and Death",
+          "tests/standard803-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.357,
+        "log": "tmp/duema-phase-1754/related-deploy.log",
+        "passed": 6,
+        "logSha256": "124255bc8f978fd2920e1480e303600d7256b7aeb6378fb5dd4a66dd5b498ae4"
+      },
+      "related-both": {
+        "name": "related-both",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Shared Destruction Blade|A forced opposing",
+          "tests/standard984-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.6,
+        "log": "tmp/duema-phase-1754/related-both.log",
+        "passed": 3,
+        "logSha256": "69e47aac1bdbdac586fe345d1f781586462e5cf00d69d48c3774fc31f2684b61"
+      },
+      "related-delfin": {
+        "name": "related-delfin",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=Delfin",
+          "tests/standard1333-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.466,
+        "log": "tmp/duema-phase-1754/related-delfin.log",
+        "passed": 3,
+        "logSha256": "ea914ab9f07948f28aedc41079e7b1f1e0849234d0ae245a6fadb85c6b10e729"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.833,
+        "log": "tmp/duema-phase-1754/related-online.log",
+        "passed": 12,
+        "logSha256": "4ef91c6c1275831c418cbe7d3f651f0922d498cf35d409856e8d31f8dd786045"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1754/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.66,
+        "log": "tmp/duema-phase-1754/research.log",
+        "logSha256": "42ed8a19ca42628890bce2ea61cc32271c8449ff89231a34507acb7787e76265"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1754/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 5.606,
+        "log": "tmp/duema-phase-1754/prints.log",
+        "logSha256": "2e33da27b78b3acd41c111a1e496df7dd2a22361eb472e5eafc656ad1e08c21b"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1754.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.445,
+        "log": "tmp/duema-phase-1754/official.log",
+        "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+      },
+      "rulings": {
+        "name": "rulings",
+        "command": [
+          "python3",
+          "tmp/duema-phase-1754/rulings.py"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.575,
+        "log": "tmp/duema-phase-1754/rulings.log",
+        "logSha256": "3dfd13e0dd7751cde39bac5ee265ab21015189a3de5a90767c18bfd33011cfae"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.726,
+        "log": "tmp/duema-phase-1754/check.log",
+        "logSha256": "f8328c922c8c17e135658cbc643c0821e9d48811bb2fc5e3a0d8ebb3154e7c6a"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.666,
+        "log": "tmp/duema-phase-1754/audit.log",
+        "logSha256": "e58e9eca91b437cea0db499cd3ef8a8423845fe6731ddd4c38a0c3441a1df316"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.492,
+        "log": "tmp/duema-phase-1754/target9500.log",
+        "logSha256": "e258eb323f6e2d945c9e59b917a0fcbaaaaa4d86c7f0aa6343092e50043e31ed"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1754/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.486,
+        "log": "tmp/duema-phase-1754/invariants.log",
+        "logSha256": "f74d6523a70376fb8444132e64bffca49ed4e83b146241314d14b5804465cf23"
+      }
+    },
+    "totalTestsPassed": 55,
+    "focusedTestsPassed": 31,
+    "relatedTestsPassed": 24
+  },
+  "validationNotes": [
+    "Actual data nameKey9483→9484. One complete DomanEarth original dm27-012, plus5 equivalent print aliases. All6 official full pages/images, Nature8/spell/mana1/current limit4 verified. Full strict pins cover modern shortened wording without altering meaning. RP2X SP2 source image650x908 byte-identical SHA to reviewed RP2 SP2 image; no unavailable image inferred from duplicate UI thumbnail. Five reprints not counted as new names.",
+    "Native Select own face-up non-evolution mana creature, then opponent mana choice by caster with g803DeployForOwner; then anyOwner g984OnePerSide Select snapshots one creature on each side before simultaneous return to physical owner mana. Paid8, caster retains every choice, keep new entrants and return other creatures, same-side second selection excluded, original spell ends in grave. Both seats preserve all physical cards.",
+    "Exact official QA44620 excludes face-down mana on both sides even when physical hidden card is creature. Evolution/spell/seed mana not deployed. No eligible own/opposing/both mana pools still allow later return clauses. Actual BronzeArm entry ramp waits until spell movements complete even if Bronze itself returns. Evolution stack and borrowed creature move to their physical owners mana. Opposing Onikamasu unselectability excludes only the protected opponent target; available own target still moves.",
+    "Exact official QA35484 actual SpellDelfin immediately reveals opponent hand and locks spells at intermediate deployment, and its continuous restrictions stop after same-spell return to mana. Pending own mana/opponent mana/both battle/one selected battle choices survive encrypted JSON, actor only, pure AI and simultaneous movement boundary preserved. All6 original/reprint saved IDs merge once; legal40 deck and80-card format retained.",
+    "All31 focused cases passed on first run. Affected RealAndDeath opponent-owned deployment, SharedDestructionBlade one-per-side simultaneous choices, Delfin continuous effects and online-save regressions pass. npm run check/audit/target9500/invariants confirm9483 existing definitions/IDs/pins/images/catalogue rows/details unchanged. Engine version only, no common gameplay/validation changes. Required verification completed without repeated successful runs or whole npm test.",
+    "BlackTouch held because highest opposing hand cost and exact discarded physical-card cost continuation to mandatory grave recovery need full handling including Twinpact cost choice. Tendou whole simultaneous hand/mana swap differs from single-element ManaExchange753. Historical registered-card/reprint/long-test/full-suite pending preserved exactly. No push/Pages/Netlify. Continue phase1755 toward9500, remaining16."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmr22-016",
+      "name": "ブラック・タッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-016",
+      "reason": "Requires highest-cost opposing full-hand selection and exact discarded-card cost continuation into mandatory grave recovery including Twinpact cost choice. Existing inspected discard/HandFollow paths do not provide that complete sequence."
+    },
+    {
+      "id": "dm10-007",
+      "name": "天動の化身",
+      "reason": "Native ManaExchange753 exchanges individual battlefield/mana elements, not simultaneous entire hand and mana. Defer full simultaneous swap."
+    }
+  ]
+}
