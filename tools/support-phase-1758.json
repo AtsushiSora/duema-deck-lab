@@ -1,0 +1,621 @@
+{
+  "phase": 1758,
+  "checkedAt": "2026-11-24T00:59:01.190Z",
+  "baseline": "5e26545a",
+  "baseCount": 9496,
+  "target": 9500,
+  "description": "Bulk13 trial grouped native abilities batch 1758. Full text, stats, image, restrictions and reprints verified; no shared gameplay changes.",
+  "bulkTrial": {
+    "startNames": 9487,
+    "target": 9500,
+    "totalNewNames": 13,
+    "batchSizes": [
+      4,
+      5,
+      4
+    ],
+    "automaticRegistrationPaused": true
+  },
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40623/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40623/",
+      "sha256": "46477aabc8b112868de82dd8e373909153a8f5dc9567f699577c174ec0c4705d",
+      "checkedAt": "2026-11-24T01:02:41.021Z",
+      "reproduced": true,
+      "test": "tests/standard1758-effects.test.mjs",
+      "result": "Actual JO twice evolves to Bolmomo, Canbero invasion stack and two inherited ShinkaPower resolutions reproduced."
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm25-002",
+      "name": "超鎧亜キングダム・ゲオルグ",
+      "canonicalId": "dm25-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-002",
+      "faces": [
+        {
+          "name": "超鎧亜キングダム・ゲオルグ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、バトルゾーンにある進化ではないクリーチャー１体をタップまたはアンタップしてもよい。(まず何を攻撃するか選んでから、タップまたはアンタップするクリーチャーを選ぶ)\nW・ブレイカー",
+          "race": "ロスト・クルセイダー",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "optional": true,
+            "g235TapOrUntap": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-002.jpg",
+      "imageReviewed": true,
+      "imageSha256": "8af80d2b04ca892a7bb6630216f18640fa69fed91019afd314651b040698b190",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:59:01.190Z",
+        "reason": "Reviewed full official image and all stats, mana1, evolution and every ability. Strict original and reprint faces pinned separately; modern shorthand equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm25-002"
+        ],
+        "result": "All official search results inspected, exact name filtered, all exact print images reviewed. Distinct similarly named cards excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "sha256": "33613b078801676f5cab04bcf69670d3cb4026f7b911659e2e345aedb7f6af97",
+        "facesMatched": true,
+        "imageSha256": "8af80d2b04ca892a7bb6630216f18640fa69fed91019afd314651b040698b190"
+      }
+    },
+    {
+      "id": "dmex17-011",
+      "name": "ボルメテウス・モモキング",
+      "canonicalId": "dmex17-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-011",
+      "faces": [
+        {
+          "name": "ボルメテウス・モモキング",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のパワー3000以下のクリーチャーをすべて破壊する",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のシールドを1つ墓地に置く",
+                "defs": [
+                  {
+                    "op": "ShieldMove685",
+                    "n": 1,
+                    "to": "grave",
+                    "required": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-011.jpg",
+      "imageReviewed": true,
+      "imageSha256": "88c7006112249050f712bac1dc711bc0a9d86bb65607f6e7d114c5d097a3e6e0",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:59:01.190Z",
+        "reason": "Reviewed full official image and all stats, mana1, evolution and every ability. Strict original and reprint faces pinned separately; modern shorthand equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm24bd3-006",
+          "dmex17-011"
+        ],
+        "result": "All official search results inspected, exact name filtered, all exact print images reviewed. Distinct similarly named cards excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "sha256": "0b8d0115a7974db80bf081e6deb6f832a1ea5175ac8c58747f65db29f0edbd21",
+        "facesMatched": true,
+        "imageSha256": "88c7006112249050f712bac1dc711bc0a9d86bb65607f6e7d114c5d097a3e6e0"
+      }
+    },
+    {
+      "id": "dmrp17-s02",
+      "name": "マニフェスト ＜マルコ.Star＞",
+      "canonicalId": "dmrp17-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-s02",
+      "faces": [
+        {
+          "name": "マニフェスト ＜マルコ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nこのクリーチャーが攻撃する時、カードを３枚引き、その後、自分の手札を１枚捨てる。",
+          "race": "トリックス/サイバーロード/レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "optional": true,
+            "g179Other": true,
+            "to": "hand",
+            "toOwnerHand": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-s02.jpg",
+      "imageReviewed": true,
+      "imageSha256": "9debaea3e5420e1678da93f72a5f02feadb3b30dca74868482f39b8e560264ea",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:59:01.190Z",
+        "reason": "Reviewed full official image and all stats, mana1, evolution and every ability. Strict original and reprint faces pinned separately; modern shorthand equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmrp17-s02"
+        ],
+        "result": "All official search results inspected, exact name filtered, all exact print images reviewed. Distinct similarly named cards excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "sha256": "d15229a80850075add1af2e232240838066c231154885f1356410b5d202439e0",
+        "facesMatched": true,
+        "imageSha256": "9debaea3e5420e1678da93f72a5f02feadb3b30dca74868482f39b8e560264ea"
+      }
+    },
+    {
+      "id": "dmr17-s05",
+      "name": "革命魔王 キラー・ザ・キル",
+      "canonicalId": "dmr17-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s05",
+      "faces": [
+        {
+          "name": "革命魔王 キラー・ザ・キル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分の闇のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、闇以外のクリーチャーをすべて破壊する。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、自分の墓地にある進化以外の闇のクリーチャーをすべてバトルゾーンに出す。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "闇"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "notColor": "闇"
+            }
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "革命2",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": "all",
+                    "deploy": true,
+                    "filter": {
+                      "creature": true,
+                      "nonEvolution": true,
+                      "color": "闇"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s05.jpg",
+      "imageReviewed": true,
+      "imageSha256": "3cfa2d9477b72738338ff79d8686ab33fb1b77f8f7711f728d00577a4ac73244",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:59:01.190Z",
+        "reason": "Reviewed full official image and all stats, mana1, evolution and every ability. Strict original and reprint faces pinned separately; modern shorthand equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmr17-s05"
+        ],
+        "result": "All official search results inspected, exact name filtered, all exact print images reviewed. Distinct similarly named cards excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "sha256": "0af73cac6b6739ab24078f38a4d8e065dd9c77d3d9fc6ff23bd1797197b08a59",
+        "facesMatched": true,
+        "imageSha256": "3cfa2d9477b72738338ff79d8686ab33fb1b77f8f7711f728d00577a4ac73244"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd3-006",
+      "name": "ボルメテウス・モモキング",
+      "canonicalId": "dmex17-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd3-006",
+      "faces": [
+        {
+          "name": "ボルメテウス・モモキング",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スター進化：レクスターズまたは火の、クリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のパワー3000以下のクリーチャーをすべて破壊する",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のシールドを1つ墓地に置く",
+                "defs": [
+                  {
+                    "op": "ShieldMove685",
+                    "n": 1,
+                    "to": "grave",
+                    "required": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd3-006.jpg",
+      "imageReviewed": true,
+      "imageSha256": "cb77caf2d54f4b6509e8910e9d873724bf445823c95d5ea01e7cb1aeccdb342b",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:59:01.190Z",
+        "reason": "Reviewed full official image and all stats, mana1, evolution and every ability. Strict original and reprint faces pinned separately; modern shorthand equivalent."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm24bd3-006",
+          "dmex17-011"
+        ],
+        "result": "All official search results inspected, exact name filtered, all exact print images reviewed. Distinct similarly named cards excluded."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "sha256": "16ddb3b656d0d889edda8dec9118c595bea17fbd5b70da9a1ea381970d6f217f",
+        "facesMatched": true,
+        "imageSha256": "cb77caf2d54f4b6509e8910e9d873724bf445823c95d5ea01e7cb1aeccdb342b"
+      }
+    }
+  ],
+  "reprints": [
+    {
+      "id": "dm24bd3-006",
+      "canonicalId": "dmex17-011"
+    }
+  ],
+  "held": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-24T00:59:01.190Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25-002": 4,
+      "dmex17-011": 4,
+      "dmrp17-s02": 4,
+      "dmr17-s05": 4,
+      "dm24bd3-006": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-24T01:04:03.812Z",
+    "results": {
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1758.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.926,
+        "log": "tmp/duema-phase-1758/official.log",
+        "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+      },
+      "focused": {
+        "name": "focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1758-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.048,
+        "log": "tmp/duema-phase-1758/focused.log",
+        "passed": 32,
+        "logSha256": "f5f9e2b117332b5e225f87b6e1e0cd0748c991342b90ef7692fc53c48a978578"
+      },
+      "related-jo": {
+        "name": "related-jo",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Momoking JO evolves|^JO repeated Shinka|^RX evolves",
+          "tests/champion-combat-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.908,
+        "log": "tmp/duema-phase-1758/related-jo.log",
+        "passed": 3,
+        "logSha256": "efe9af4f8c1c92a1bfbb735f446f8f54d16f2205999256a03ed9f2ee3696ce6a"
+      },
+      "related-order": {
+        "name": "related-order",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Bolucci resolves independent",
+          "tests/standard1033-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.965,
+        "log": "tmp/duema-phase-1758/related-order.log",
+        "passed": 2,
+        "logSha256": "18f26d331adb1d0482aec098e1e10618bed35c7bcf74899e2d021ac3de5b85ba"
+      },
+      "related-tap": {
+        "name": "related-tap",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^tap effects notify|^tap/untap continuation|^CPU chooses an enemy tap|^sealed cards, tamaseeds",
+          "tests/standard235-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.031,
+        "log": "tmp/duema-phase-1758/related-tap.log",
+        "passed": 4,
+        "logSha256": "d8c25c13b751de034a5e1de73e6305f07365607f919320023b695dd614ec3c7e"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 11.085,
+        "log": "tmp/duema-phase-1758/audit.log",
+        "logSha256": "ce2593ef48c3c8bf57d45fe5f10745b7702e3da366726b3338545c5d7151da9d"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.361,
+        "log": "tmp/duema-phase-1758/check.log",
+        "logSha256": "6798de7ef2491e9107152134357022d86ac0ecc3abf956f34deb649d156d726b"
+      },
+      "focused-breaker": {
+        "name": "focused-breaker",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Bolmomo and Killer printed W breaker",
+          "tests/standard1758-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.613,
+        "log": "tmp/duema-phase-1758/focused-breaker.log",
+        "passed": 1,
+        "logSha256": "62f84e489c215440d0443d84bea3b41397c333919a3771e69151253781a9a34f"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.483,
+        "log": "tmp/duema-phase-1758/target9500.log",
+        "logSha256": "c2f6a55b7fce5522f879d8db7b4f381080fe1b03bc0957dc4a45e5b8207e9cd6"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-bulk13/invariants.mjs",
+          "1758"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.439,
+        "log": "tmp/duema-phase-1758/invariants.log",
+        "logSha256": "ef300572347f07d4d6fc4aeec432726bc77479e4a5fe77e9ff1d51bc1471ae12"
+      }
+    },
+    "totalTestsPassed": 42,
+    "focusedTestsPassed": 33,
+    "relatedTestsPassed": 9
+  },
+  "validationNotes": [
+    "Bulk13 trial final batch actual nameKey9496 to9500. Georg/Bolmomo/MarcoStar/KillerTheKill4 complete original IDs plus equivalent Bolmomo print dm24bd3-006. All5 official pages/full images/stats/mana1/current limit4 and exact-name search results reviewed. Across13 originals6 reprints19 full official images; no similarly named original counted as reprint. All9496 prior definitions, catalogue rows, details, image URLs and pins retained. No shared gameplay changes in this batch.",
+    "Georg paid6 multicolor evolution, optional own/enemy nonEvolution target followed by tap/untap choice, enemy blocker untapped before block step, own untap can enable subsequent attack, protected/evolution targets excluded and ignored source tested. Encrypted saved target/direction keeps chooser and identity. Bolmomo Fire/Rex Star evolution pays7, either mandatory3000-or-less current-power sweep (untargetable not immune to sweep) or chosen entire shield bundle direct to grave without STrigger. Star top-only hand/grave removal restores base.",
+    "Marco Water/Rex Star evolution pays4, optional own/foe other creature to actual owner hand with source exclusion/protected foe, mandatory attack draw3 then discard1 including newly drawn cards; both players and encrypted continuation verified. Killer paidDark8, independent sweep and Revolution2 entries offer chosen resolution order;2/3 shield boundary, all required own Dark nonEvolution grave returns, Dark multicolor preserved/nonDark and colorless destroyed, opponent grave/evolution excluded, GG cancels both entry abilities. Bolmomo/Killer Wbreaker and immediate evolution attack verified separately.",
+    "OfficialQA40623 reproduced with actual JO, two real Bolmomo hand copies and declared Canbero invasion using normal attack/evolution/entry/attack-end choices, both seats. First evolution removes top and draws1; second stacks Canbero and resolves two inherited Shinka powers, each removing top and drawing, ultimately restoring untapped JO. Room encryption during pending Shinka preserved complete physical identities and legal actions.",
+    "Initial official verification was blocked by sandboxDNS and succeeded with authorized network access. Initial10 test failures were fixture errors: Shauna is not a blocker, Borg base power is2000, Gaiash is WaterNature rather than Dark, Heavy is Nature rather than colorless and Onikamasu is Water rather than Dark. Replaced with actual matching registered cards. Next remaining fixture expected a no-player-attack blocker to attack with no creature target; own attacker fixture corrected. Both failure logs retained. No runtime defect or unresolved new-card verification remains in phase1758.",
+    "Focused33 plus related9 tests pass: native tap/untap locks/incarnation/AI, JO/RX inherited Shinka and independent Revolution entry ordering. npm run check, support audit, target9500 verification and exact old-data invariants all pass. Full npm test remains interrupted/unconfirmed and all historical card/print/long-test/user deferrals preserved byte-equivalent at their structured keys. No push, publication or Netlify update. Manual trial complete9500; normal registration stopped and10minute automation remains PAUSED."
+  ],
+  "nextCandidates": []
+}

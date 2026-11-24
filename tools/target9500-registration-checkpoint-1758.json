@@ -1,0 +1,264 @@
+{
+  "phase": 1758,
+  "checkedAt": "2026-11-24T01:04:03.812Z",
+  "baseline": "5e26545a",
+  "status": "verified-local",
+  "kind": "registration-toward-9500",
+  "target": 9500,
+  "before": 9496,
+  "currentNames": 9500,
+  "remainingNames": 0,
+  "added": [
+    {
+      "id": "dm25-002",
+      "name": "超鎧亜キングダム・ゲオルグ"
+    },
+    {
+      "id": "dmex17-011",
+      "name": "ボルメテウス・モモキング"
+    },
+    {
+      "id": "dmrp17-s02",
+      "name": "マニフェスト ＜マルコ.Star＞"
+    },
+    {
+      "id": "dmr17-s05",
+      "name": "革命魔王 キラー・ザ・キル"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "baseline": "5e26545a",
+    "originalDefinitionsUnchanged": 9496,
+    "added": 4,
+    "uniqueNames": 9500,
+    "uniqueIds": 9500,
+    "duplicateNames": 0,
+    "catalogueExistingDataUnchanged": true,
+    "newOfficialPrintAliases": 1,
+    "existingImageUrlsUnchanged": 9496,
+    "existingImageReferenceRowsUnchanged": 11789,
+    "officialPrintsReviewed": 5,
+    "officialImagesReviewed": 5,
+    "existingPinsUnchanged": 1144
+  },
+  "results": {
+    "official": {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1758.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.926,
+      "log": "tmp/duema-phase-1758/official.log",
+      "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+    },
+    "focused": {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1758-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.048,
+      "log": "tmp/duema-phase-1758/focused.log",
+      "passed": 32,
+      "logSha256": "f5f9e2b117332b5e225f87b6e1e0cd0748c991342b90ef7692fc53c48a978578"
+    },
+    "related-jo": {
+      "name": "related-jo",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^Momoking JO evolves|^JO repeated Shinka|^RX evolves",
+        "tests/champion-combat-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.908,
+      "log": "tmp/duema-phase-1758/related-jo.log",
+      "passed": 3,
+      "logSha256": "efe9af4f8c1c92a1bfbb735f446f8f54d16f2205999256a03ed9f2ee3696ce6a"
+    },
+    "related-order": {
+      "name": "related-order",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^Bolucci resolves independent",
+        "tests/standard1033-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.965,
+      "log": "tmp/duema-phase-1758/related-order.log",
+      "passed": 2,
+      "logSha256": "18f26d331adb1d0482aec098e1e10618bed35c7bcf74899e2d021ac3de5b85ba"
+    },
+    "related-tap": {
+      "name": "related-tap",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^tap effects notify|^tap/untap continuation|^CPU chooses an enemy tap|^sealed cards, tamaseeds",
+        "tests/standard235-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.031,
+      "log": "tmp/duema-phase-1758/related-tap.log",
+      "passed": 4,
+      "logSha256": "d8c25c13b751de034a5e1de73e6305f07365607f919320023b695dd614ec3c7e"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 11.085,
+      "log": "tmp/duema-phase-1758/audit.log",
+      "logSha256": "ce2593ef48c3c8bf57d45fe5f10745b7702e3da366726b3338545c5d7151da9d"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.361,
+      "log": "tmp/duema-phase-1758/check.log",
+      "logSha256": "6798de7ef2491e9107152134357022d86ac0ecc3abf956f34deb649d156d726b"
+    },
+    "focused-breaker": {
+      "name": "focused-breaker",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^Bolmomo and Killer printed W breaker",
+        "tests/standard1758-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.613,
+      "log": "tmp/duema-phase-1758/focused-breaker.log",
+      "passed": 1,
+      "logSha256": "62f84e489c215440d0443d84bea3b41397c333919a3771e69151253781a9a34f"
+    },
+    "target9500": {
+      "name": "target9500",
+      "command": [
+        "node",
+        "tools/verify-target9500.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.483,
+      "log": "tmp/duema-phase-1758/target9500.log",
+      "logSha256": "c2f6a55b7fce5522f879d8db7b4f381080fe1b03bc0957dc4a45e5b8207e9cd6"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/duema-bulk13/invariants.mjs",
+        "1758"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.439,
+      "log": "tmp/duema-phase-1758/invariants.log",
+      "logSha256": "ef300572347f07d4d6fc4aeec432726bc77479e4a5fe77e9ff1d51bc1471ae12"
+    }
+  },
+  "totalTestsPassed": 42,
+  "hashes": {
+    "dist/cards.json": "d3f35eb0fb4207e5769f3c79ff7216d8ea14d3067c4afaa96e3bb6491e4c9694",
+    "dist/engine.js": "006345a397067703ce319fd1a41d300f55bbce95e99bfb46e475c9f2b88b4341",
+    "dist/six-photo-rules.js": "e8b6205212777fa20ab054b9b957b67cf6e1ca6b6473d0ad1733acb2113d953b",
+    "dist/extended-rules.js": "8bbacb8000f3c8ebe8aba54381ff0883a8efb2e68fe3747e17525e864e3c51f5",
+    "dist/shield-photo-rules.js": "bc805e0c5efdd6c0f00a2cbadd1964d3cc89ec93b3e517833164e0940712ccc5",
+    "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+    "dist/catalogue.json": "6077a7ef2e53052cbc39f1a68f28e70df84c7d5c6276eee48102acb19e59c9a0",
+    "dist/online-compatibility.js": "f4ddcaa0d615c6bc37e34262ff9885b2331e4cb29c5a08398ef67a0b25f5c1a6",
+    "dist/card-images.js": "a8509a2c2b11067d80edac16f322142ec6132c66204211abcd49a0020ca86b80",
+    "tools/target9000-card-spec.json": "37909330d857878de3064e5fcc94ff9199470584a2444f2b08c5e76aad2df9fc",
+    "tools/verify-catalogue-extension.mjs": "5a8aa13626c6cd5a7d713a52428e045140e07845573ac182feff467a0d87fb25",
+    "tests/target9500-bulk-fixture.mjs": "acc10f468725b654279fbe1b6156f7d72effd729a233b5861b411282a0060389",
+    "tests/standard1758-effects.test.mjs": "ca086d937a180ce4674eb1224c15672bd4ad562326488706269e6fb0a15d32c8"
+  },
+  "engineVersion": "0.602.275",
+  "registeredCardVerificationPending": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "resolvedAttempts": [
+    {
+      "name": "official",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1758.json"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.143,
+      "log": "tmp/duema-phase-1758/official-network.log",
+      "logSha256": "d102123397631a7028964208bf95ddd71bf8c10fe706792a97267b2d532d3287"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1758-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.205,
+      "log": "tmp/duema-phase-1758/focused-first.log",
+      "logSha256": "dde413856c3936eb4d31ea0ed0c4a8894f617767cf976931ba020c5ca8c6a599"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1758-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.699,
+      "log": "tmp/duema-phase-1758/focused-second.log",
+      "logSha256": "4bc9f1becfafb2545ac1e6e54ae6c9af7d375045ba8ff495b547cc7d4c322a6c"
+    }
+  ],
+  "publication": {
+    "pushed": false,
+    "deployed": false,
+    "netlifyUpdated": false
+  },
+  "manifest": "tools/support-phase-1758.json",
+  "supported": 9500,
+  "pending": 2323,
+  "reason": "Bulk13 trial grouped native abilities batch 1758. Full text, stats, image, restrictions and reprints verified; no shared gameplay changes.",
+  "validationNotes": [
+    "Bulk13 trial final batch actual nameKey9496 to9500. Georg/Bolmomo/MarcoStar/KillerTheKill4 complete original IDs plus equivalent Bolmomo print dm24bd3-006. All5 official pages/full images/stats/mana1/current limit4 and exact-name search results reviewed. Across13 originals6 reprints19 full official images; no similarly named original counted as reprint. All9496 prior definitions, catalogue rows, details, image URLs and pins retained. No shared gameplay changes in this batch.",
+    "Georg paid6 multicolor evolution, optional own/enemy nonEvolution target followed by tap/untap choice, enemy blocker untapped before block step, own untap can enable subsequent attack, protected/evolution targets excluded and ignored source tested. Encrypted saved target/direction keeps chooser and identity. Bolmomo Fire/Rex Star evolution pays7, either mandatory3000-or-less current-power sweep (untargetable not immune to sweep) or chosen entire shield bundle direct to grave without STrigger. Star top-only hand/grave removal restores base.",
+    "Marco Water/Rex Star evolution pays4, optional own/foe other creature to actual owner hand with source exclusion/protected foe, mandatory attack draw3 then discard1 including newly drawn cards; both players and encrypted continuation verified. Killer paidDark8, independent sweep and Revolution2 entries offer chosen resolution order;2/3 shield boundary, all required own Dark nonEvolution grave returns, Dark multicolor preserved/nonDark and colorless destroyed, opponent grave/evolution excluded, GG cancels both entry abilities. Bolmomo/Killer Wbreaker and immediate evolution attack verified separately.",
+    "OfficialQA40623 reproduced with actual JO, two real Bolmomo hand copies and declared Canbero invasion using normal attack/evolution/entry/attack-end choices, both seats. First evolution removes top and draws1; second stacks Canbero and resolves two inherited Shinka powers, each removing top and drawing, ultimately restoring untapped JO. Room encryption during pending Shinka preserved complete physical identities and legal actions.",
+    "Initial official verification was blocked by sandboxDNS and succeeded with authorized network access. Initial10 test failures were fixture errors: Shauna is not a blocker, Borg base power is2000, Gaiash is WaterNature rather than Dark, Heavy is Nature rather than colorless and Onikamasu is Water rather than Dark. Replaced with actual matching registered cards. Next remaining fixture expected a no-player-attack blocker to attack with no creature target; own attacker fixture corrected. Both failure logs retained. No runtime defect or unresolved new-card verification remains in phase1758.",
+    "Focused33 plus related9 tests pass: native tap/untap locks/incarnation/AI, JO/RX inherited Shinka and independent Revolution entry ordering. npm run check, support audit, target9500 verification and exact old-data invariants all pass. Full npm test remains interrupted/unconfirmed and all historical card/print/long-test/user deferrals preserved byte-equivalent at their structured keys. No push, publication or Netlify update. Manual trial complete9500; normal registration stopped and10minute automation remains PAUSED."
+  ],
+  "held": [],
+  "nextCandidates": [],
+  "next": "13種類の手動一括追加を検証・コミットして9500種類に到達。通常登録と10分ごとの自動登録は停止。旧保留と中断の検証状態を維持。push・公開・Netlify更新なし。"
+}

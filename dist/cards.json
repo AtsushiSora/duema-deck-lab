@@ -303336,18 +303336,231 @@
       "breaker": 2,
       "supportBatch": "phase-1757",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-002",
+      "name": "超鎧亜キングダム・ゲオルグ",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ロスト・クルセイダー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、バトルゾーンにある進化ではないクリーチャー１体をタップまたはアンタップしてもよい。(まず何を攻撃するか選んでから、タップまたはアンタップするクリーチャーを選ぶ)\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-002",
+      "limit": 4,
+      "evolution": {
+        "multicolor": true
+      },
+      "g34Attack": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "g235TapOrUntap": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "breaker": 2,
+      "supportBatch": "phase-1758",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-011",
+      "name": "ボルメテウス・モモキング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のシールドを１つ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-011",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のパワー3000以下のクリーチャーをすべて破壊する",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "相手のシールドを1つ墓地に置く",
+              "defs": [
+                {
+                  "op": "ShieldMove685",
+                  "n": 1,
+                  "to": "grave",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1758",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-s02",
+      "name": "マニフェスト ＜マルコ.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "トリックス/サイバーロード/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nこのクリーチャーが攻撃する時、カードを３枚引き、その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-s02",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "g179Other": true,
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1758",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-s05",
+      "name": "革命魔王 キラー・ザ・キル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "デーモン・コマンド・ドラゴン/革命軍",
+      "text": "進化-自分の闇のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、闇以外のクリーチャーをすべて破壊する。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、自分の墓地にある進化以外の闇のクリーチャーをすべてバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s05",
+      "limit": 4,
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notColor": "闇"
+          }
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": "all",
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "color": "闇"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1758",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1757,
-    "checkedAt": "2026-11-24T00:52:25.962Z",
-    "baseCount": 9491,
-    "newEffectCards": 5,
+    "phase": 1758,
+    "checkedAt": "2026-11-24T00:59:01.190Z",
+    "baseCount": 9496,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9496,
+    "totalCount": 9500,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/40623/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -332170,6 +332383,21 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/31803/",
           "https://dm.takaratomy.co.jp/rule/qa/40379/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1757,
+        "checkedAt": "2026-11-24T00:52:25.962Z",
+        "baseCount": 9491,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9496,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "9500へ公式全文対応を継続"

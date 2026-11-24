@@ -51493,5 +51493,296 @@
       ],
       "breaker": 2
     }
+  },
+  "dm25-002": {
+    "phase": 1758,
+    "faces": [
+      {
+        "name": "超鎧亜キングダム・ゲオルグ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光/水/闇",
+        "civilizations": [
+          "光",
+          "水",
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、バトルゾーンにある進化ではないクリーチャー１体をタップまたはアンタップしてもよい。(まず何を攻撃するか選んでから、タップまたはアンタップするクリーチャーを選ぶ)\nW・ブレイカー",
+        "race": "ロスト・クルセイダー",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "multicolor": true
+      },
+      "g34Attack": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "g235TapOrUntap": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "breaker": 2
+    }
+  },
+  "dm24bd3-006": {
+    "phase": 1758,
+    "faces": [
+      {
+        "name": "ボルメテウス・モモキング",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スター進化：レクスターズまたは火の、クリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のシールドを１つ選び、持ち主の墓地に置く。",
+        "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のパワー3000以下のクリーチャーをすべて破壊する",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "相手のシールドを1つ墓地に置く",
+              "defs": [
+                {
+                  "op": "ShieldMove685",
+                  "n": 1,
+                  "to": "grave",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex17-011": {
+    "phase": 1758,
+    "faces": [
+      {
+        "name": "ボルメテウス・モモキング",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のシールドを１つ選び、持ち主の墓地に置く。",
+        "race": "ジョーカーズ/アーマード・ドラゴン/レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のパワー3000以下のクリーチャーをすべて破壊する",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "相手のシールドを1つ墓地に置く",
+              "defs": [
+                {
+                  "op": "ShieldMove685",
+                  "n": 1,
+                  "to": "grave",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp17-s02": {
+    "phase": 1758,
+    "faces": [
+      {
+        "name": "マニフェスト ＜マルコ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nこのクリーチャーが攻撃する時、カードを３枚引き、その後、自分の手札を１枚捨てる。",
+        "race": "トリックス/サイバーロード/レクスターズ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "g179Other": true,
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmr17-s05": {
+    "phase": 1758,
+    "faces": [
+      {
+        "name": "革命魔王 キラー・ザ・キル",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "進化-自分の闇のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、闇以外のクリーチャーをすべて破壊する。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、自分の墓地にある進化以外の闇のクリーチャーをすべてバトルゾーンに出す。",
+        "race": "デーモン・コマンド・ドラゴン/革命軍",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notColor": "闇"
+          }
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": "all",
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "color": "闇"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }
