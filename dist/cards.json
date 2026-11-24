@@ -302844,20 +302844,143 @@
       ],
       "supportBatch": "phase-1754",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm33-s01",
+      "name": "白騎士の聖霊王 HEAVEN",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "エンジェル・コマンド",
+      "text": "進化-自分のエンジェル・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして、持ち主のシールドゾーンに裏向きにして置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-s01",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "notColor": "光"
+          }
+        }
+      ],
+      "supportBatch": "phase-1755",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd16-001",
+      "name": "聖霊龍王 ヴィブロス・ヘブン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "進化-自分のエンジェル・コマンドまたはドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-001",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "エンジェル・コマンド"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "notColor": "光"
+          }
+        }
+      ],
+      "supportBatch": "phase-1755",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-005",
+      "name": "伝説のサンテ・ガト・デ・パコ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ドリームメイト/アーク・セラフィム",
+      "text": "進化-自分のドリームメイト１体の上に置く。\n自分のドリームメイトの召喚コストを １少なくしてもよい。ただし、コストは１より小さくならない。\n自分の他のドリームメイトをバトルゾーンに出した時、カードを１枚引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-005",
+      "limit": 4,
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "race": "ドリームメイト"
+          },
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "ドリームメイト"
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-1755",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1754,
-    "checkedAt": "2026-11-24T00:14:08.357Z",
-    "baseCount": 9483,
-    "newEffectCards": 1,
+    "phase": 1755,
+    "checkedAt": "2026-11-24T00:27:17.168Z",
+    "baseCount": 9484,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9484,
+    "totalCount": 9487,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
-      "https://dm.takaratomy.co.jp/rule/qa/44620/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35861/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35862/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35863/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35864/"
     ],
     "next": [
       "9500へ公式全文対応を継続"
@@ -331627,6 +331750,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/39123/"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1754,
+        "checkedAt": "2026-11-24T00:14:08.357Z",
+        "baseCount": 9483,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9484,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35484/",
+          "https://dm.takaratomy.co.jp/rule/qa/44620/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

@@ -1,0 +1,477 @@
+{
+  "phase": 1755,
+  "checkedAt": "2026-11-24T00:27:17.168Z",
+  "baseCount": 9484,
+  "target": 9500,
+  "description": "Complete native HEAVEN and Vivlos non-Light both-side owner shield sweeps with distinct evolution bases, plus SanteGato optional Dreammate discount and mandatory other-entry draw.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35861/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35862/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35863/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35864/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35861/",
+      "sha256": "0430fa002fd4b44533e2250703edcc055c13e52951444f84453cbd0657e2ef2e",
+      "checkedAt": "2026-11-24T00:30:10.561736+00:00",
+      "result": "Both HEAVEN and Vivlos shield own and opposing nonLight creatures; both player seats tested with paid evolution and physical conservation.",
+      "reproduced": true,
+      "test": "tests/standard1755-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35862/",
+      "sha256": "d280b4d841a4bc880e9a61a8fa783885800bfdf1626219a2eb8a071384d3f9a0",
+      "checkedAt": "2026-11-24T00:30:11.353071+00:00",
+      "result": "Light/Water multicolor survives both matching sweeps; actual colorless vanilla creature is shielded. Both seats tested.",
+      "reproduced": true,
+      "test": "tests/standard1755-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35863/",
+      "sha256": "9d3ddd4aa8ecdec12a3a01669977a23cd027b60ace7507d2d51695646479070a",
+      "checkedAt": "2026-11-24T00:30:12.067386+00:00",
+      "result": "Movement log retains public former creature name while room projection exposes only shield count/groups and no hidden identity or faceUp shield.",
+      "reproduced": true,
+      "test": "tests/standard1755-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35864/",
+      "sha256": "2c68e3863f7f894850ec99803fd86308b0656057b0dc687774acf426370657d5",
+      "checkedAt": "2026-11-24T00:30:12.788844+00:00",
+      "result": "Evolution top and base separate into individual hidden shields, each sent to physical owner including borrowed opposing stack.",
+      "reproduced": true,
+      "test": "tests/standard1755-effects.test.mjs"
+    }
+  ],
+  "cards": [
+    {
+      "id": "dm33-s01",
+      "name": "白騎士の聖霊王 HEAVEN",
+      "canonicalId": "dm33-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-s01",
+      "faces": [
+        {
+          "name": "白騎士の聖霊王 HEAVEN",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分のエンジェル・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして、持ち主のシールドゾーンに裏向きにして置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "エンジェル・コマンド",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "エンジェル・コマンド"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "creature": true,
+              "notColor": "光"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-s01.jpg",
+      "imageReviewed": true,
+      "imageSha256": "0cb0e6ea16b70a5f7b336cae038adf20302543cfd6b66751ea52d2884648c101",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:27:17.168Z",
+        "reason": "All3 full official original images reviewed: evolution conditions, all abilities, Light8/15000 mana1 or Nature7/7000 mana1. Printed text agrees with parsed official HTML."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm33-s01"
+        ],
+        "result": "Official name searches totals11/13/1; every result inspected and exact normalized-name filter retains only original. Other Heaven and SpiritDragonKing cards are distinct names, not aliases."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:27:17.168Z",
+        "sha256": "381b20a6e3eae0ee4f6e82febabd75551b5c364567169761e92c7d4067ac8fe5",
+        "facesMatched": true,
+        "imageSha256": "0cb0e6ea16b70a5f7b336cae038adf20302543cfd6b66751ea52d2884648c101"
+      }
+    },
+    {
+      "id": "dmd16-001",
+      "name": "聖霊龍王 ヴィブロス・ヘブン",
+      "canonicalId": "dmd16-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-001",
+      "faces": [
+        {
+          "name": "聖霊龍王 ヴィブロス・ヘブン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分のエンジェル・コマンドまたはドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "エンジェル・コマンド"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "creature": true,
+              "notColor": "光"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd16-001.jpg",
+      "imageReviewed": true,
+      "imageSha256": "37897d7566b380ee5294a5356ac72dd069e54ba7cca26d6e29defc997479051c",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:27:17.168Z",
+        "reason": "All3 full official original images reviewed: evolution conditions, all abilities, Light8/15000 mana1 or Nature7/7000 mana1. Printed text agrees with parsed official HTML."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dmd16-001"
+        ],
+        "result": "Official name searches totals11/13/1; every result inspected and exact normalized-name filter retains only original. Other Heaven and SpiritDragonKing cards are distinct names, not aliases."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:27:17.168Z",
+        "sha256": "0b2715d91bde80ebf5935594a10f8f52cf6bda46d2421ac474b41b0bd8e472d6",
+        "facesMatched": true,
+        "imageSha256": "37897d7566b380ee5294a5356ac72dd069e54ba7cca26d6e29defc997479051c"
+      }
+    },
+    {
+      "id": "dm22-005",
+      "name": "伝説のサンテ・ガト・デ・パコ",
+      "canonicalId": "dm22-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-005",
+      "faces": [
+        {
+          "name": "伝説のサンテ・ガト・デ・パコ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のドリームメイト１体の上に置く。\n自分のドリームメイトの召喚コストを １少なくしてもよい。ただし、コストは１より小さくならない。\n自分の他のドリームメイトをバトルゾーンに出した時、カードを１枚引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドリームメイト/アーク・セラフィム",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ドリームメイト"
+            },
+            "amount": 1,
+            "g560Optional": true
+          }
+        ],
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "ドリームメイト"
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-005.jpg",
+      "imageReviewed": true,
+      "imageSha256": "023ec5efa721107c3de996973f13e53b82f9ba075f7c88a4a679e46898083171",
+      "allAbilitiesAndBasicInformationMatched": true,
+      "imageMetadataReview": {
+        "reviewedAt": "2026-11-24T00:27:17.168Z",
+        "reason": "All3 full official original images reviewed: evolution conditions, all abilities, Light8/15000 mana1 or Nature7/7000 mana1. Printed text agrees with parsed official HTML."
+      },
+      "reprintVerification": {
+        "prints": [
+          "dm22-005"
+        ],
+        "result": "Official name searches totals11/13/1; every result inspected and exact normalized-name filter retains only original. Other Heaven and SpiritDragonKing cards are distinct names, not aliases."
+      },
+      "verification": {
+        "checkedAt": "2026-11-24T00:27:17.168Z",
+        "sha256": "301a576bed033c7e95cfbb5ddab6bd8543b65695a469871ef5c44e1db85bd655",
+        "facesMatched": true,
+        "imageSha256": "023ec5efa721107c3de996973f13e53b82f9ba075f7c88a4a679e46898083171"
+      }
+    }
+  ],
+  "printAliases": [],
+  "reprints": [],
+  "held": [
+    {
+      "id": "dmx11-058",
+      "name": "味頭領ドン・ドリアン",
+      "reason": "Native g31 zone mana is not implemented: candidate pool defaults to battle, while zones mana special path requires one-per-distinct-zone and cannot represent3 matching mana bases. New full manaGV mechanism needed, no partial registration."
+    },
+    {
+      "id": "dm03-004",
+      "name": "超竜ジャバハ",
+      "reason": "Printed independent attacking power modification must work on ability-ignored recipients; g208 attackBonus grants PowerAttacker and is suppressed on ignored recipients. Need independent attack-only continuous power path before registration."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-24T00:27:17.168Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm33-s01": 4,
+      "dmd16-001": 4,
+      "dm22-005": 4
+    }
+  },
+  "validation": {
+    "checkedAt": "2026-11-24T00:30:56.793Z",
+    "results": {
+      "focused": {
+        "name": "focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/standard1755-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.298,
+        "log": "tmp/duema-phase-1755/focused.log",
+        "passed": 36,
+        "logSha256": "c8befba361f5a9d4df79af47e93921ad370b0f9d7e9e23da5a407d1fb2153684"
+      },
+      "related-shield": {
+        "name": "related-shield",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^Lionel Wind",
+          "tests/standard872-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.034,
+        "log": "tmp/duema-phase-1755/related-shield.log",
+        "passed": 2,
+        "logSha256": "87a9e45caa87803d3091b62090145d4513e9e8bb83bf838e27deab8d71733158"
+      },
+      "related-watch": {
+        "name": "related-watch",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^GG stops self-entry|^ignored or genuinely sealed watchers",
+          "tests/standard250-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.592,
+        "log": "tmp/duema-phase-1755/related-watch.log",
+        "passed": 2,
+        "logSha256": "c0b9ef61103e899e39aad8d3c5a365036e3777be91b9a090b24a072d6aa4a6dd"
+      },
+      "related-payment": {
+        "name": "related-payment",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^manual mana selection|^optional aura payment|^optional reductions do not remove|^optional sources combine|^mandatory and optional reductions combine",
+          "tests/standard560-effects.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.081,
+        "log": "tmp/duema-phase-1755/related-payment.log",
+        "passed": 5,
+        "logSha256": "8550b6eadb701b0f49ab496f052056a9fddd5126c4a662773f1ad5e48527fc85"
+      },
+      "related-online": {
+        "name": "related-online",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-runtime.test.mjs",
+          "tests/deck-copy.test.mjs",
+          "tests/deck-history.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.697,
+        "log": "tmp/duema-phase-1755/related-online.log",
+        "passed": 12,
+        "logSha256": "641464f401180965d07b519840c78229999965bbad49b3630ed9df6b487e5d94"
+      },
+      "research": {
+        "name": "research",
+        "command": [
+          "node",
+          "tmp/duema-phase-1755/research.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.7,
+        "log": "tmp/duema-phase-1755/research.log",
+        "logSha256": "5b9d53461d1513a1f0d0bcd8df72e44c1570c2a41e577484ccfed7067d08e10b"
+      },
+      "prints": {
+        "name": "prints",
+        "command": [
+          "node",
+          "tmp/duema-phase-1755/prints.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 13.309,
+        "log": "tmp/duema-phase-1755/prints.log",
+        "logSha256": "a64edd740b6cf890525268272999c79bb65c9da3177d60279004dbccdc378f35"
+      },
+      "official": {
+        "name": "official",
+        "command": [
+          "node",
+          "tools/verify-support-manifest.mjs",
+          "tools/support-phase-1755.json"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.323,
+        "log": "tmp/duema-phase-1755/official.log",
+        "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+      },
+      "rulings": {
+        "name": "rulings",
+        "command": [
+          "python3",
+          "tmp/duema-phase-1755/rulings.py"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 3.098,
+        "log": "tmp/duema-phase-1755/rulings.log",
+        "logSha256": "1328ba92078d29059077c01cc28a3dff69eecb87ef0476e6377805980483f45c"
+      },
+      "check": {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 19.954,
+        "log": "tmp/duema-phase-1755/check.log",
+        "logSha256": "a1e693bbfa23d52064a597eacecc7e07c4cba32103c2e43be15225022b90a5ab"
+      },
+      "audit": {
+        "name": "audit",
+        "command": [
+          "node",
+          "tools/audit-card-support.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 10.268,
+        "log": "tmp/duema-phase-1755/audit.log",
+        "logSha256": "cef97f98e8793d26660b4dd7e672f666a9f724fa20c5c2fe298eb1e740a836c1"
+      },
+      "target9500": {
+        "name": "target9500",
+        "command": [
+          "node",
+          "tools/verify-target9500.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.439,
+        "log": "tmp/duema-phase-1755/target9500.log",
+        "logSha256": "e7403c0bc34247eff54c34b682507fc09288784ac47c22d8bd37550627a14464"
+      },
+      "invariants": {
+        "name": "invariants",
+        "command": [
+          "node",
+          "tmp/duema-phase-1755/invariants.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.451,
+        "log": "tmp/duema-phase-1755/invariants.log",
+        "logSha256": "1017d9acebb14ef96fe812b995aaa82f5e1f6af9e3bef1cd837cec1681e91412"
+      }
+    },
+    "totalTestsPassed": 57,
+    "focusedTestsPassed": 36,
+    "relatedTestsPassed": 21
+  },
+  "validationNotes": [
+    "Actual data nameKey9484→9487. Three complete distinct originals HEAVEN dm33-s01, Vivlos dmd16-001 and SanteGato dm22-005. Official search results11/13/1 all inspected; exact names retain only original3, other similarly named Heaven/SpiritDragonKing cards excluded. Full3 images and strict full text/basic info/mana1/current limit4 reviewed. Different HEAVEN and Vivlos evolution conditions preserved; not flavor-name aliases.",
+    "Native both-side nonLight Sweep toOwnerShields handles paid8 evolution, Light-containing multicolor exemption and real colorless vanilla, separates evolution top/base into individual hidden shields and sends each physical card to owner. Non-targeting affects Onikamasu; shield movement is not destruction so Giran does not revive. Sealed creatures and inactive seeds excluded; actual Omega substitution returns stack to hand. Distinct AngelCommand versus AngelCommand-or-Dragon evolution and immediate15000 triplebreak verified.",
+    "Exact official QA35861 both sides, QA35862 Light multi exemption, QA35864 individual evolution-layer shields and QA35863 public movement evidence without hidden shield identity leakage reproduced. Room projection exposes shieldCount/groups only and no hidden card identity or faceUp records. HEAVEN/Vivlos own entry triggers stopped by actual evolved GG.",
+    "Native SanteGato Dreammate evolution, optional1 discount with minimum1, g250EntryDraw mandatory other Dreammate draw and W breaker complete. Paid7 never self-triggers; optional0/1/cancel, stacking, exclusions and physical identity verified. Other entry from effect deployment on either turn draws, including under GG and Genmu-ignored entrant, while Brakkio entry silence suppresses. Ignored/sealed/departed source loses both aura and watch. Pending evolution/payment encrypted JSON actor-only roundtrip and manual chosen2mana payment pass; legal40 and80-card saves preserved.",
+    "Initial5 focused failures were fixture expectations: colorless Shangrila has Omega and correctly goes to hand, so ordinary colorless case uses actual vanilla TheSokan; room projection intentionally uses shieldCount/groups rather than shields property. Failed log preserved separately; corrected complete36 focused pass. Added real Genmu fixture to ignored-entrant case and manual mana test. Related2 shield+2 watch+5 optional-payment+12 online/save tests pass (57 total). npmcheck/audit/target9500/invariants pass,9484 old definitions/IDs/pins/images/catalogue/details unchanged. Engine version only, no common gameplay changes.",
+    "DonDorian held because native repeated matching manaGV bases need full new mechanism; g31 zone mana defaults to battle and distinct zones path cannot express3 same-zone bases. Javaha held because independent attack-only continuous power modification must affect ignored recipients unlike PowerAttacker aura grants. No partial registration. Historical registered/reprint/long/full-suite unverified preserved exactly. No push/Pages/Netlify. Continue phase1756 toward9500, remaining13."
+  ],
+  "nextCandidates": [
+    {
+      "id": "dmx11-058",
+      "name": "味頭領ドン・ドリアン",
+      "reason": "Native g31 zone mana is not implemented: candidate pool defaults to battle, while zones mana special path requires one-per-distinct-zone and cannot represent3 matching mana bases. New full manaGV mechanism needed, no partial registration."
+    },
+    {
+      "id": "dm03-004",
+      "name": "超竜ジャバハ",
+      "reason": "Printed independent attacking power modification must work on ability-ignored recipients; g208 attackBonus grants PowerAttacker and is suppressed on ignored recipients. Need independent attack-only continuous power path before registration."
+    }
+  ]
+}

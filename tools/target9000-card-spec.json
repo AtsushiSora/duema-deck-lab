@@ -50685,5 +50685,135 @@
         }
       ]
     }
+  },
+  "dm33-s01": {
+    "phase": 1755,
+    "faces": [
+      {
+        "name": "白騎士の聖霊王 HEAVEN",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "進化-自分のエンジェル・コマンド１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして、持ち主のシールドゾーンに裏向きにして置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "エンジェル・コマンド",
+        "powerText": "15000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "notColor": "光"
+          }
+        }
+      ]
+    }
+  },
+  "dmd16-001": {
+    "phase": 1755,
+    "faces": [
+      {
+        "name": "聖霊龍王 ヴィブロス・ヘブン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "進化-自分のエンジェル・コマンドまたはドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある光以外のクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+        "race": "エンジェル・コマンド・ドラゴン",
+        "powerText": "15000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "エンジェル・コマンド"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "shields",
+          "toOwnerShields": true,
+          "filter": {
+            "creature": true,
+            "notColor": "光"
+          }
+        }
+      ]
+    }
+  },
+  "dm22-005": {
+    "phase": 1755,
+    "faces": [
+      {
+        "name": "伝説のサンテ・ガト・デ・パコ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "進化-自分のドリームメイト１体の上に置く。\n自分のドリームメイトの召喚コストを １少なくしてもよい。ただし、コストは１より小さくならない。\n自分の他のドリームメイトをバトルゾーンに出した時、カードを１枚引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ドリームメイト/アーク・セラフィム",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "race": "ドリームメイト"
+          },
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "ドリームメイト"
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "breaker": 2
+    }
   }
 }
