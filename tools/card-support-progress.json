@@ -559855,6 +559855,7 @@
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
+      "最強CPUの密な革命チェンジへの対策候補と、軽減役が8枚以上いる相手への登場時除去候補を認識するよう修正。回帰失敗を修正し、個別再検証を集約した102件とcheckが通過。初戦28対戦の比較では総合勝率は変わらず、別条件では勝てる先攻後攻が入れ替わる。元の初戦2敗は残るが、既存の敗北学習で再構築した次の対戦は2条件とも勝利。詳細はtools/ai-revolution-verification.json。9,500種類・ID・保存形式と過去の未検証を保持。ローカルのみ、登録・push・公開・Netlify更新なし。",
       "CPUの革命チェンジ・侵略系への3敗を再現し、メインフェイズでマッハファイターの有利なバトルを過小評価する判断を改善。固有・関連141件、check、32対戦が完了。最初の12対戦は9勝→10勝、追加4対戦は前後1勝3敗。革命チェンジ系の元の2敗は残り、対策構築・序盤判断の調査候補としてtools/ai-matchup-verification.jsonに記録。9,500種類、既存ID・保存形式と過去の未検証事項を保持。ローカルのみ、登録・push・公開・Netlify更新なし。",
       "CPU終盤の必須ブロッカー温存と9〜12体の勝ち筋探索を改善。固有・関連134件、6系統×先攻後攻×改良前後24対戦、check通過。比較は前後とも12戦9勝で勝率向上は未確認。詳細はtools/ai-endgame-verification.json。9,500種類・既存IDと保存形式、過去の未検証事項を保持。登録停止中、ローカルのみでpush・公開・Netlify更新なし。",
       "最強CPUの9,500種類向け構築・能力選択を改良。109件とcheck通過、詳細はtools/strongest-cpu-9500-verification.json。ローカルのみ、公開とNetlifyは未更新。",
@@ -564291,6 +564292,38 @@
       "remainingWeakMatchups": [
         "revolution-0 seed95104",
         "revolution-1 seed95104"
+      ],
+      "publication": {
+        "pushed": false,
+        "pagesPublished": false,
+        "netlifyUpdated": false
+      }
+    },
+    "latestAiRevolutionChange": {
+      "checkedAt": "2026-11-25T03:48:36.378Z",
+      "status": "verified-local-not-published",
+      "baseline": "a3ea4557",
+      "artifact": "tools/ai-revolution-verification.json",
+      "engineVersion": "0.602.279",
+      "aiVersion": "2.3.440",
+      "buildVersion": 3,
+      "supportedNames": 9500,
+      "testsPassed": 102,
+      "comparisonGames": 28,
+      "primaryWinsBeforeAfter": [
+        10,
+        10
+      ],
+      "holdoutWinsBeforeAfter": [
+        1,
+        1
+      ],
+      "nativeAdaptationGames": 4,
+      "rebuiltWins": 2,
+      "strengthGainConfirmed": false,
+      "remainingWeakMatchups": [
+        "fresh revolution-0 seed95104",
+        "fresh revolution-1 seed95104"
       ],
       "publication": {
         "pushed": false,

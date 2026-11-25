@@ -1,8 +1,9 @@
 import {parentPort,workerData} from 'node:worker_threads';
 import * as live from '../dist/engine.js';
 import {arrangeStrongestCPU} from '../dist/strongest-cpu.js';
-const {cards,game,baselineUrl,policy}=workerData,baseline=await import(baselineUrl);live.setCards(cards);baseline.setCards(cards);
-const s=live.createGame([game.target,game.cpu],{seed:game.seed,first:game.first});arrangeStrongestCPU(s);
+const {cards,game,baselineUrl,baselineBuildUrl,policy,buildPolicy}=workerData,baseline=await import(baselineUrl);live.setCards(cards);baseline.setCards(cards);
+const arrange=buildPolicy==='baseline'?(await import(baselineBuildUrl)).arrangeStrongestCPU:arrangeStrongestCPU;
+const s=live.createGame([game.target,game.cpu],{seed:game.seed,first:game.first});arrange(s);
 const physical=()=>live.physicalCards(s).map(x=>x.uid).sort(),ids=JSON.stringify(physical()),latency=[];let decisions=0;
 while(s.winner===null&&s.actions<1000&&s.turn<80){
  const player=live.getLegalActions(s)[0]?.player;if(player===undefined)break;

@@ -343,18 +343,18 @@ test('the strongest CPU selects the new spell and resource counters for compatib
  }
 });
 
-test('the strongest CPU picks untapped removal and shield defense for compatible matchups',()=>{
+test('the strongest CPU picks untapped removal, early reducer answers and shield defense for compatible matchups',()=>{
  const matchups=[
-  ['starter25-07','dmrp05-035'],
+  ['starter25-07',['dmrp05-035','dm23sd1-011','dm24rp3-068']],
   ['env-magic-practice','dmr17-044'],
   ['env-giant-practice','dmrp06-020'],
   ['env-gp2026-sara','dmrp12-006']
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,beforeSmallBoardCounters);
+  const build=buildStrongestCPU(target,seeds,beforeSmallBoardCounters),answers=Array.isArray(id)?id:[id];
   assert.deepEqual(e.validateDeck(build.deck),[]);
-  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+  assert.ok(build.deck.cards.some(r=>answers.includes(r.id)),answers.map(id=>e.card(id).name).join(' / '));
  }
 });
 
@@ -532,20 +532,20 @@ test('the strongest CPU uses G-NEO deployment responses suited to the opposing d
  assert.ok(!buildStrongestCPU(target,seeds,data.cards).deck.cards.some(r=>e.card(r.id).supportBatch==='phase-621'));
 });
 
-test('the strongest CPU selects the new combat cards for compatible opposing decks',()=>{
+test('the strongest CPU selects combat cards or early reducer answers for compatible opposing decks',()=>{
  const matchups=[
   ['starter25-03','dm25rp3-008'],
-  ['starter25-07','dm23rp1-031'],
+  ['starter25-07',['dm23rp1-031','dm23sd1-011','dm24rp3-068']],
   ['starter25-22','dm30-037']
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,beforeSpellBoardResponses);
+  const build=buildStrongestCPU(target,seeds,beforeSpellBoardResponses),answers=Array.isArray(id)?id:[id];
   assert.deepEqual(e.validateDeck(build.deck),[]);
-  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
-  for(const color of e.civilizations(e.card(id))){
+  const selected=build.deck.cards.find(r=>answers.includes(r.id));assert.ok(selected,answers.map(id=>e.card(id).name).join(' / '));
+  for(const color of e.civilizations(e.card(selected.id))){
    const sources=build.deck.cards.reduce((n,r)=>n+(e.civilizations(e.card(r.id)).includes(color)?r.count:0),0);
-   assert.ok(sources>=8,e.card(id).name+' '+color);
+   assert.ok(sources>=8,e.card(selected.id).name+' '+color);
   }
  }
  const target=seeds.find(d=>d.id==='env-gospel-practice');

@@ -1,0 +1,3436 @@
+{
+  "checkedAt": "2026-11-25T03:48:36.378Z",
+  "status": "verified-local-not-published",
+  "baseline": "a3ea4557",
+  "engineVersion": "0.602.279",
+  "aiVersion": "2.3.440",
+  "buildVersion": 3,
+  "supportedNames": 9500,
+  "newCards": 0,
+  "changes": [
+    "Recognize dense revolution/invasion plans (at least12 cards) as nonsummon threats, while preserving the established invasion counter threshold. Do not confuse a hand change with deployment from graveyard or mana.",
+    "Against8 or more Chara/Koppi cost reducers, admit payable cheap bodies with unconditional entry removal. Ignore evolved-only entry, attack effects, self-removal and complex target filters for this role.",
+    "Retain40-card legality, color supply, overlap and support constraints. Existing generated-cache versioning rejectsv2 entries for lazy rebuilding without rewriting user decks or deleting saved data."
+  ],
+  "officialSources": [
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-019",
+      "supports": "Skull reacts to nonsummon entry, not ordinary paid summons."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-005",
+      "supports": "Val has revolution change and an entry ability. Native tests confirm the entry ability still resolves when Skull destroys Val."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-011",
+      "supports": "Zaag has low-cost element removal on entry."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-068",
+      "supports": "Shoma has low-cost element removal on entry."
+    }
+  ],
+  "verification": [
+    {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu-revolution.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 45.264,
+      "log": "tmp/ai-revolution-9500/focused-final.log",
+      "logSha256": "364ad30f99f030faa5d6d57260c1e5f1d090856ae335902629616ae42c4af9d0",
+      "resolvedBy": "focused-controls",
+      "reason": "New test used a historical deck as an original-format seed. Replaced that seed with a valid practice deck."
+    },
+    {
+      "name": "related-strongest-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs",
+        "tests/strongest-cpu-modern.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 39.104,
+      "log": "tmp/ai-revolution-9500/related-strongest-final.log",
+      "logSha256": "e57054b94b6089035b73046ec5f5e060e06e4c6c520cf025c169442a96a0e7b1",
+      "resolvedBy": "removal-regression",
+      "reason": "A test assertion message referred to selected outside its scope. Corrected it and reran the affected regression."
+    },
+    {
+      "name": "related-worker-save",
+      "command": [
+        "node",
+        "--test",
+        "tests/ai-decision.test.mjs",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 16.036,
+      "log": "tmp/ai-revolution-9500/related-worker-save.log",
+      "logSha256": "3475a463b5b3392d13b9672d322108357f79739183d93946e5a09a4b76f428d4"
+    },
+    {
+      "name": "focused-controls",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^moderate",
+        "tests/strongest-cpu-revolution.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.49,
+      "log": "tmp/ai-revolution-9500/focused-controls.log",
+      "logSha256": "e0a70a1e23d174205baa5a136d9954eb787d22c0bb61775537ecf15d16a2ca1c"
+    },
+    {
+      "name": "removal-regression",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^the strongest CPU drafts the new removal triggers",
+        "tests/strongest-cpu.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.547,
+      "log": "tmp/ai-revolution-9500/removal-regression.log",
+      "logSha256": "d9b02eaf1fa32eb3b15ace53685fb4725d9625d1cb3e33aaf12963571319ceb9"
+    },
+    {
+      "name": "baseline-matrix",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=a3ea4557",
+        "--policy=baseline",
+        "--build=baseline",
+        "--output=tmp/ai-revolution-9500/baseline-matrix.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 82.687,
+      "log": "tmp/ai-revolution-9500/baseline-matrix.log",
+      "logSha256": "f48c6953bc2d43c2cb852d7f7f982c4d861195fb7f4592ca82635fb2747e4cff"
+    },
+    {
+      "name": "current-matrix",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=a3ea4557",
+        "--policy=baseline",
+        "--build=current",
+        "--output=tmp/ai-revolution-9500/current-matrix.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 78.498,
+      "log": "tmp/ai-revolution-9500/current-matrix.log",
+      "logSha256": "605ead2a3bff84f16a3b343c8a30ac5034e34203ca372a2b45d979089c2789fb"
+    },
+    {
+      "name": "baseline-holdout",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=a3ea4557",
+        "--policy=baseline",
+        "--build=baseline",
+        "--categories=revolution",
+        "--seed-offset=101",
+        "--output=tmp/ai-revolution-9500/baseline-holdout.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.916,
+      "log": "tmp/ai-revolution-9500/baseline-holdout.log",
+      "logSha256": "df9fdb098e171aae7ad584646f0e602e23151e1ccf8aae268ff58bb0b925075c"
+    },
+    {
+      "name": "candidate-holdout",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=a3ea4557",
+        "--policy=baseline",
+        "--build=current",
+        "--categories=revolution",
+        "--seed-offset=101",
+        "--output=tmp/ai-revolution-9500/candidate-holdout.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 17.656,
+      "log": "tmp/ai-revolution-9500/candidate-holdout.log",
+      "logSha256": "7d2dabe663a43f0cbbbfb7ced07f9092deaef57187aab700e2c86d7bb5d2882f"
+    },
+    {
+      "name": "check-final",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.967,
+      "log": "tmp/ai-revolution-9500/check-final.log",
+      "logSha256": "d0e4d67e4152b5d1bacb0f543414331439dd8a97e2f9c37a9ad0ae0150457a2f"
+    },
+    {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/ai-revolution-9500/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.588,
+      "log": "tmp/ai-revolution-9500/invariants.log",
+      "logSha256": "ae157f434c5fb533f3675bfe90426cbe27438edde7d67dd8c2f4194561953dde"
+    },
+    {
+      "name": "final-drafts",
+      "command": [
+        "node",
+        "tmp/ai-revolution-9500/final-drafts.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.82,
+      "log": "tmp/ai-revolution-9500/final-drafts.log",
+      "logSha256": "36fed37b838b7daa989bc8d524df63e947eb04e4b9416db51843fd6619dc60d2"
+    }
+  ],
+  "unitTestsPassed": 102,
+  "testCoverage": {
+    "revolution classification detects hand changes independently of invasion and off-hand deployment": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "revolution draft can use a payable nonsummon counter without an invasion quota": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "reducer draft adds unconditional early removal and keeps conditional NEO entry out of that role": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "a seed without Fire sources does not acquire unpayable Fire answers": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native entry removal destroys the early reducer dmbd15-006 seat0": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native entry removal destroys the early reducer dm23sd1-014 seat0": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native entry removal destroys the early reducer dmbd15-006 seat1": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native entry removal destroys the early reducer dm23sd1-014 seat1": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native nonsummon counter removes a changed Val while the declared entry ability still resolves seat0": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native nonsummon counter removes a changed Val while the declared entry ability still resolves seat1": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native nonsummon counter does not remove a normally paid Val seat0": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "native nonsummon counter does not remove a normally paid Val seat1": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "v2 generated caches remain intact and are rejected for lazy rebuilding": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "defeat feedback rebuilds a legal response and wins the recorded next match first0": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "defeat feedback rebuilds a legal response and wins the recorded next match first1": {
+      "passed": true,
+      "lastRun": "focused-final"
+    },
+    "moderate change or a single reducer package does not force a nonsummon counter env-magic-practice": {
+      "passed": true,
+      "lastRun": "focused-controls"
+    },
+    "moderate change or a single reducer package does not force a nonsummon counter starter25-18": {
+      "passed": true,
+      "lastRun": "focused-controls"
+    },
+    "new compiled roles recognize draw attack choices, sweep and shield burn, crystal mana and spell lock": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "self destruction and opposing draws are not mistaken for positive generic roles": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "evolution support matches real Fire and Rexstars, excludes spells, self and unknown complex requirements": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "Fly support needs reachable Zeniths and enough real face-down mana producers": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "full supported catalogue build adopts Fly with retained sources, remains legal and never mutates source or target decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "Fly is not inserted into an unrelated FireNature seed even against a spell deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "new Star evolution can enter a compatible JO deck and retained Fire or Rex bases keep it usable": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "a lone Fire creature cannot support adding Star evolutions to a predominantly Nature deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "old generated builds are regenerated while existing deck and save objects stay intact": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "CPU can execute real Fly change from a Zenith and preserves hidden-mana identities 0": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "CPU can execute real Fly change from a Zenith and preserves hidden-mana identities 1": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "new build opening preserves80 cards, human private zones and JSON continuations 0": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "new build opening preserves80 cards, human private zones and JSON continuations 1": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "real Star entry AI chooses sweeping small enemies or burning an unguarded shield": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "production strongest worker builds the new compatible candidate and returns progress without changing input": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the cache key tracks card counts and rules, not a deck name, tags or row order": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "counterbuilding produces a tailored legal forty, changes by matchup and never changes any registered deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "invalid cards, missing seeds and stale or malformed cache entries cannot launch a CPU match": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "CPU arrangement preserves every physical card, leaves human cards and both shield sets untouched and uses CPU information only": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "arranged games retain legal choices, card conservation and JSON resume through opening turns for either first player": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "defeat feedback uses actual public plays, ignores hidden draws and other outcomes, and is idempotent and bounded": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "a loss changes the learned matchup and counter list, preserves legal forty and invalidates only older revisions": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier counter pool uses entry and grave counters in compatible matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU adopts the new counters against spell chains and expensive deployment": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier counter pool uses 防鎧 and ハチ公 against discard-heavy decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier pool selects all three grave counters across compatible matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier attack counters are selected against aggressive matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "フィオナ remains an available counter against spell-heavy マジック and 水魔導具": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the pool before blocker counters selects sweep counters suited to the opposing deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the pool before blocker counters adopts creature-trigger counters against Dragon Girls": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier pool selects grave counters against 墓地ソース and アビス": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the earlier blocker counters provide removal and unblockable attacks against defensive decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU counters expensive creatures that can come out early": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU favors non-multicolored removal when most enemy creatures are eligible": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU uses R・R・R against fast decks and keeps the deck legal": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU chooses ジェネシス against decks with low-cost support elements": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects hand and board disruption for appropriate matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU takes ドゥモグラ against spell-rich ゴスペル and 水魔導具": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects クリスタント・バーナミア against aggressive decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU targets off-hand entries and noncreature support in the relevant matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU brings MAX triggers against decks with many large creatures": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU uses tempo counters against fast evolutions, Mach Fighters and cheap support": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects the new spell and resource counters for compatible decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU picks untapped removal, early reducer answers and shield defense for compatible matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects the new sweepers against low-power or low-cost creatures": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects the new blocker answers against appropriate decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU chooses grave and matching-name counters for compatible decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU attacks before 8-axis Gacharobo can establish its large creatures": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU picks a two-entry cap for batch, invasion and creature trigger decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU picks element removal for Mecha, Samurai and Lionel decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU picks shield pressure suited to each opposing deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU counters early multicolor cards, Tamaseeds and spell-heavy decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU chooses the new G-NEO cards for their matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU uses G-NEO deployment responses suited to the opposing deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU selects combat cards or early reducer answers for compatible opposing decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts the new spell-linked creatures for distinct matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts and prepares the new entry responses for distinct matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU adds the new hand protection in appropriate matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts the new removal triggers for different opposing boards": {
+      "passed": true,
+      "lastRun": "removal-regression"
+    },
+    "the strongest CPU chooses attack defense for fast and heavy opposing decks": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts new recovery triggers for distinct opposing boards": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts Magician against small attackers and Echo with playable follow-ups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts Advent and Noval with usable follow-ups for distinct matchups": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts sealing against few Commands and destruction for a graveyard deck": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "the strongest CPU drafts the new small-creature answers with suitable allies": {
+      "passed": true,
+      "lastRun": "related-strongest-final"
+    },
+    "worker results return a choice without executing or mutating the live match; initialization is reused": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "cancelled or replaced workers cannot deliver an old action or disable the new worker": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "unavailable or failed workers use the established policy and do not repeatedly restart": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "asynchronous thinking keeps pause available, announces first and waits before executing one validated move": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "pause, next, reset and disposal reject late choices without executing another move": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "changed positions, human choices, dialogs and background state cannot consume a pending choice": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "worker failure pauses the clock for retry instead of stalling silently or executing a fallback move": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "production worker chooses the identical action while the main event loop remains responsive": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "a complete match through the production worker preserves seeded outcomes and all eighty identities": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "own deck copied for an opponent has independent identity and editable card rows": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "opponent and own collections can each keep the same forty cards without overwriting each other": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "selecting an existing opponent composition reuses its name and identity even after renaming": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "invalid destination and non-forty decks cannot enter a collection through selection": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "changed saves archive only prior content and do not mutate any original data": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "new decks and equivalent row reordering or timestamps do not create redundant revisions": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "restoring keeps deck identity, creation and favorite but clears newer content metadata and archives the displaced version": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "snapshots cannot recursively retain histories and differences count cards instead of array order": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "opponent histories stay separate even with matching IDs and deletion affects only its own revisions": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "per-deck and global limits bound storage without nesting old snapshots": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    },
+    "malformed stored history entries do not prevent a normal save": {
+      "passed": true,
+      "lastRun": "related-worker-save"
+    }
+  },
+  "baselineRegression": {
+    "name": "baseline-focused",
+    "command": [
+      "node",
+      "--test",
+      "--test-name-pattern=^revolution classification|^revolution draft|^reducer draft",
+      "tests/strongest-cpu-revolution.test.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 1.506,
+    "log": "tmp/ai-revolution-9500/baseline-focused.log",
+    "expectedFailure": true,
+    "failed": 3,
+    "logSha256": "99962feda7baae07cc317ed0c6506cb312bdc196325190edfa78cffff891ece8",
+    "resolution": "The three classification/drafting regressions fail on the frozen old builder and pass after the changes."
+  },
+  "regressionCorrections": {
+    "initialRun": {
+      "name": "related-strongest",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs",
+        "tests/strongest-cpu-modern.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 52.502,
+      "log": "tmp/ai-revolution-9500/related-strongest.log"
+    },
+    "initialFailures": 4,
+    "resolution": "Scoped new roles to dense change/reducer packages to retain Magic and FireBird strategies. Two historical assertions for the Armored target now accept the newly recognized entry-removal answers; native tests verify those answers against both reducer types in both seats. Other matchup expectations are unchanged.",
+    "testFixtureCorrections": "Two later test-only failures were corrected and the affected cases rerun. Coverage is merged by unique test name, using the last result; all102 are passing. Whole failed commands are retained above rather than relabeled as passing."
+  },
+  "comparison": {
+    "games": 28,
+    "reports": {
+      "baseline-matrix": {
+        "baseline": "a3ea4557",
+        "engineVersion": "0.602.279",
+        "aiVersion": "2.3.440",
+        "cards": 9500,
+        "policy": "baseline",
+        "buildPolicy": "baseline",
+        "seedOffset": 0,
+        "categories": [
+          "rush",
+          "blocker-control",
+          "graveyard",
+          "spell-engine",
+          "revolution",
+          "evolution"
+        ],
+        "method": "Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+        "cases": [
+          {
+            "id": "rush-0",
+            "category": "rush",
+            "first": 0,
+            "seed": 95100,
+            "targetId": "practice-rg",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-098",
+                "count": 2
+              },
+              {
+                "id": "dm23bd6-001",
+                "count": 2
+              },
+              {
+                "id": "dm23rp1-070",
+                "count": 2
+              },
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 2
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 2
+              },
+              {
+                "id": "dm25rp3-037",
+                "count": 4
+              },
+              {
+                "id": "dm26ex1-N020",
+                "count": 2
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-028",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "rush-1",
+            "category": "rush",
+            "first": 1,
+            "seed": 95100,
+            "targetId": "practice-rg",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-098",
+                "count": 2
+              },
+              {
+                "id": "dm23bd6-001",
+                "count": 2
+              },
+              {
+                "id": "dm23rp1-070",
+                "count": 2
+              },
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 2
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 2
+              },
+              {
+                "id": "dm25rp3-037",
+                "count": 4
+              },
+              {
+                "id": "dm26ex1-N020",
+                "count": 2
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-028",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "blocker-control-0",
+            "category": "blocker-control",
+            "first": 0,
+            "seed": 95101,
+            "targetId": "practice-wu",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-086",
+                "count": 1
+              },
+              {
+                "id": "dm23ex1-003",
+                "count": 3
+              },
+              {
+                "id": "dm23rp1-013",
+                "count": 1
+              },
+              {
+                "id": "dm23rp2-015",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S02",
+                "count": 1
+              },
+              {
+                "id": "dm24bd4-007",
+                "count": 4
+              },
+              {
+                "id": "dm24ex1-028",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-006",
+                "count": 1
+              },
+              {
+                "id": "dm25rp3-036",
+                "count": 4
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-020",
+                "count": 4
+              },
+              {
+                "id": "dmrp15-km1",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": "blocker-control-1",
+            "category": "blocker-control",
+            "first": 1,
+            "seed": 95101,
+            "targetId": "practice-wu",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-086",
+                "count": 1
+              },
+              {
+                "id": "dm23ex1-003",
+                "count": 3
+              },
+              {
+                "id": "dm23rp1-013",
+                "count": 1
+              },
+              {
+                "id": "dm23rp2-015",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S02",
+                "count": 1
+              },
+              {
+                "id": "dm24bd4-007",
+                "count": 4
+              },
+              {
+                "id": "dm24ex1-028",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-006",
+                "count": 1
+              },
+              {
+                "id": "dm25rp3-036",
+                "count": 4
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-020",
+                "count": 4
+              },
+              {
+                "id": "dmrp15-km1",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": "graveyard-0",
+            "category": "graveyard",
+            "first": 0,
+            "seed": 95102,
+            "targetId": "env-scs9-niigata-rose",
+            "cpuCards": [
+              {
+                "id": "dm14-025",
+                "count": 4
+              },
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm30-013",
+                "count": 4
+              },
+              {
+                "id": "dmex02-009",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": "graveyard-1",
+            "category": "graveyard",
+            "first": 1,
+            "seed": 95102,
+            "targetId": "env-scs9-niigata-rose",
+            "cpuCards": [
+              {
+                "id": "dm14-025",
+                "count": 4
+              },
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm30-013",
+                "count": 4
+              },
+              {
+                "id": "dmex02-009",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": "spell-engine-0",
+            "category": "spell-engine",
+            "first": 0,
+            "seed": 95103,
+            "targetId": "env-gospel-practice",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm25rp2-017",
+                "count": 4
+              },
+              {
+                "id": "dmex14-050",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              },
+              {
+                "id": "dmrp07-s05",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "spell-engine-1",
+            "category": "spell-engine",
+            "first": 1,
+            "seed": 95103,
+            "targetId": "env-gospel-practice",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm25rp2-017",
+                "count": 4
+              },
+              {
+                "id": "dmex14-050",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              },
+              {
+                "id": "dmrp07-s05",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "first": 0,
+            "seed": 95104,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-031",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              },
+              {
+                "id": "dmrp12-017",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "first": 1,
+            "seed": 95104,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-031",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              },
+              {
+                "id": "dmrp12-017",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "evolution-0",
+            "category": "evolution",
+            "first": 0,
+            "seed": 95105,
+            "targetId": "starter25-23",
+            "cpuCards": [
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-047",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-061",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-019",
+                "count": 4
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex16-081",
+                "count": 4
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "evolution-1",
+            "category": "evolution",
+            "first": 1,
+            "seed": 95105,
+            "targetId": "starter25-23",
+            "cpuCards": [
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-047",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-061",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-019",
+                "count": 4
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex16-081",
+                "count": 4
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "caseHash": "32690f7acbcb27f5e985ff478022f8cecb5e5cb9426588b2bc1f536701f098f4",
+        "targetCaseHash": "58c35773508945ccf26ee249461bc25cb886a9bbf8e948683304007416ab8c1f",
+        "results": [
+          {
+            "id": "rush-1",
+            "category": "rush",
+            "targetId": "practice-rg",
+            "target": "火自然ビート",
+            "policy": "baseline",
+            "seed": 95100,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 11,
+            "actions": 81,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 3.798292000001311,
+              "p95": 612.8386659999996,
+              "max": 2054.3012500000004
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "rush-0",
+            "category": "rush",
+            "targetId": "practice-rg",
+            "target": "火自然ビート",
+            "policy": "baseline",
+            "seed": 95100,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 102,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 65,
+            "latencyMs": {
+              "median": 3.381833999999799,
+              "p95": 1161.919167,
+              "max": 1765.1526250000006
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "blocker-control-0",
+            "category": "blocker-control",
+            "targetId": "practice-wu",
+            "target": "光水ブロッカー",
+            "policy": "baseline",
+            "seed": 95101,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 10,
+            "actions": 74,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 2.266583000000537,
+              "p95": 900.055042,
+              "max": 1182.4714999999997
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "blocker-control-1",
+            "category": "blocker-control",
+            "targetId": "practice-wu",
+            "target": "光水ブロッカー",
+            "policy": "baseline",
+            "seed": 95101,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 9,
+            "actions": 62,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 42,
+            "latencyMs": {
+              "median": 4.507458000000042,
+              "p95": 578.9383339999986,
+              "max": 753.7991669999974
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "graveyard-0",
+            "category": "graveyard",
+            "targetId": "env-scs9-niigata-rose",
+            "target": "墓地ソース（ろーず）",
+            "policy": "baseline",
+            "seed": 95102,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 10,
+            "actions": 65,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 32,
+            "latencyMs": {
+              "median": 8.737249999998312,
+              "p95": 572.6685419999994,
+              "max": 577.007583999999
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "graveyard-1",
+            "category": "graveyard",
+            "targetId": "env-scs9-niigata-rose",
+            "target": "墓地ソース（ろーず）",
+            "policy": "baseline",
+            "seed": 95102,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 9,
+            "actions": 61,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 31,
+            "latencyMs": {
+              "median": 10.493665999998484,
+              "p95": 515.8725830000003,
+              "max": 609.5630420000016
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "spell-engine-0",
+            "category": "spell-engine",
+            "targetId": "env-gospel-practice",
+            "target": "水晶ゴスペル（無視無視ノンノン）",
+            "policy": "baseline",
+            "seed": 95103,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 71,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 33,
+            "latencyMs": {
+              "median": 3.8196249999964493,
+              "p95": 243.66729200000555,
+              "max": 359.1151249999966
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "spell-engine-1",
+            "category": "spell-engine",
+            "targetId": "env-gospel-practice",
+            "target": "水晶ゴスペル（無視無視ノンノン）",
+            "policy": "baseline",
+            "seed": 95103,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 17,
+            "actions": 137,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 60,
+            "latencyMs": {
+              "median": 1.5574169999963487,
+              "p95": 357.3759579999969,
+              "max": 983.6626660000038
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95104,
+            "first": 0,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 13,
+            "actions": 96,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 43,
+            "latencyMs": {
+              "median": 6.280417000001762,
+              "p95": 659.5912499999977,
+              "max": 2162.190499999997
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "evolution-0",
+            "category": "evolution",
+            "targetId": "starter25-23",
+            "target": "No.23 火水闇レッドゾーン",
+            "policy": "baseline",
+            "seed": 95105,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 84,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 55,
+            "latencyMs": {
+              "median": 2.2854999999981374,
+              "p95": 670.5704169999954,
+              "max": 2602.9881250000035
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "evolution-1",
+            "category": "evolution",
+            "targetId": "starter25-23",
+            "target": "No.23 火水闇レッドゾーン",
+            "policy": "baseline",
+            "seed": 95105,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 11,
+            "actions": 74,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 3.2234170000010636,
+              "p95": 460.11037500000384,
+              "max": 905.3921669999982
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95104,
+            "first": 1,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 14,
+            "actions": 180,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 65,
+            "latencyMs": {
+              "median": 17.39658299999428,
+              "p95": 913.5672500000001,
+              "max": 2936.26675000001
+            },
+            "physicalCards": 80
+          }
+        ],
+        "summary": {
+          "games": 12,
+          "completed": 12,
+          "cpuWins": 10,
+          "unresolved": 0
+        }
+      },
+      "current-matrix": {
+        "baseline": "a3ea4557",
+        "engineVersion": "0.602.279",
+        "aiVersion": "2.3.440",
+        "cards": 9500,
+        "policy": "baseline",
+        "buildPolicy": "current",
+        "seedOffset": 0,
+        "categories": [
+          "rush",
+          "blocker-control",
+          "graveyard",
+          "spell-engine",
+          "revolution",
+          "evolution"
+        ],
+        "method": "Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+        "cases": [
+          {
+            "id": "rush-0",
+            "category": "rush",
+            "first": 0,
+            "seed": 95100,
+            "targetId": "practice-rg",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-098",
+                "count": 2
+              },
+              {
+                "id": "dm23bd6-001",
+                "count": 2
+              },
+              {
+                "id": "dm23rp1-070",
+                "count": 2
+              },
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 2
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 2
+              },
+              {
+                "id": "dm25rp3-037",
+                "count": 4
+              },
+              {
+                "id": "dm26ex1-N020",
+                "count": 2
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-028",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "rush-1",
+            "category": "rush",
+            "first": 1,
+            "seed": 95100,
+            "targetId": "practice-rg",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-098",
+                "count": 2
+              },
+              {
+                "id": "dm23bd6-001",
+                "count": 2
+              },
+              {
+                "id": "dm23rp1-070",
+                "count": 2
+              },
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 2
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 2
+              },
+              {
+                "id": "dm25rp3-037",
+                "count": 4
+              },
+              {
+                "id": "dm26ex1-N020",
+                "count": 2
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-028",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "blocker-control-0",
+            "category": "blocker-control",
+            "first": 0,
+            "seed": 95101,
+            "targetId": "practice-wu",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-086",
+                "count": 1
+              },
+              {
+                "id": "dm23ex1-003",
+                "count": 3
+              },
+              {
+                "id": "dm23rp1-013",
+                "count": 1
+              },
+              {
+                "id": "dm23rp2-015",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S02",
+                "count": 1
+              },
+              {
+                "id": "dm24bd4-007",
+                "count": 4
+              },
+              {
+                "id": "dm24ex1-028",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-006",
+                "count": 1
+              },
+              {
+                "id": "dm25rp3-036",
+                "count": 4
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-020",
+                "count": 4
+              },
+              {
+                "id": "dmrp15-km1",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": "blocker-control-1",
+            "category": "blocker-control",
+            "first": 1,
+            "seed": 95101,
+            "targetId": "practice-wu",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-086",
+                "count": 1
+              },
+              {
+                "id": "dm23ex1-003",
+                "count": 3
+              },
+              {
+                "id": "dm23rp1-013",
+                "count": 1
+              },
+              {
+                "id": "dm23rp2-015",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S02",
+                "count": 1
+              },
+              {
+                "id": "dm24bd4-007",
+                "count": 4
+              },
+              {
+                "id": "dm24ex1-028",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-018",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-006",
+                "count": 1
+              },
+              {
+                "id": "dm25rp3-036",
+                "count": 4
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp06-020",
+                "count": 4
+              },
+              {
+                "id": "dmrp15-km1",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": "graveyard-0",
+            "category": "graveyard",
+            "first": 0,
+            "seed": 95102,
+            "targetId": "env-scs9-niigata-rose",
+            "cpuCards": [
+              {
+                "id": "dm14-025",
+                "count": 4
+              },
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm30-013",
+                "count": 4
+              },
+              {
+                "id": "dmex02-009",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": "graveyard-1",
+            "category": "graveyard",
+            "first": 1,
+            "seed": 95102,
+            "targetId": "env-scs9-niigata-rose",
+            "cpuCards": [
+              {
+                "id": "dm14-025",
+                "count": 4
+              },
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm30-013",
+                "count": 4
+              },
+              {
+                "id": "dmex02-009",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": "spell-engine-0",
+            "category": "spell-engine",
+            "first": 0,
+            "seed": 95103,
+            "targetId": "env-gospel-practice",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm25rp2-017",
+                "count": 4
+              },
+              {
+                "id": "dmex14-050",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              },
+              {
+                "id": "dmrp07-s05",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "spell-engine-1",
+            "category": "spell-engine",
+            "first": 1,
+            "seed": 95103,
+            "targetId": "env-gospel-practice",
+            "cpuCards": [
+              {
+                "id": "dm22ex1-011",
+                "count": 4
+              },
+              {
+                "id": "dm22ex2-S07",
+                "count": 2
+              },
+              {
+                "id": "dm23rp4-017",
+                "count": 1
+              },
+              {
+                "id": "dm24ex2-036",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-019",
+                "count": 1
+              },
+              {
+                "id": "dm25rp2-017",
+                "count": 4
+              },
+              {
+                "id": "dmex14-050",
+                "count": 4
+              },
+              {
+                "id": "dmex17-102",
+                "count": 4
+              },
+              {
+                "id": "dmex18-s13",
+                "count": 4
+              },
+              {
+                "id": "dmr17-l02",
+                "count": 2
+              },
+              {
+                "id": "dmrp01-041",
+                "count": 4
+              },
+              {
+                "id": "dmrp05-049",
+                "count": 2
+              },
+              {
+                "id": "dmrp07-s05",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "first": 0,
+            "seed": 95104,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-011",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-068",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "first": 1,
+            "seed": 95104,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-011",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-068",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "evolution-0",
+            "category": "evolution",
+            "first": 0,
+            "seed": 95105,
+            "targetId": "starter25-23",
+            "cpuCards": [
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-047",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-061",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-019",
+                "count": 4
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex16-081",
+                "count": 4
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "evolution-1",
+            "category": "evolution",
+            "first": 1,
+            "seed": 95105,
+            "targetId": "starter25-23",
+            "cpuCards": [
+              {
+                "id": "dm23rp3-013",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-047",
+                "count": 4
+              },
+              {
+                "id": "dm24bd5-010",
+                "count": 4
+              },
+              {
+                "id": "dm24ex2-096",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-061",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-S11",
+                "count": 4
+              },
+              {
+                "id": "dm25rp1-019",
+                "count": 4
+              },
+              {
+                "id": "dmex06-024",
+                "count": 3
+              },
+              {
+                "id": "dmex16-081",
+                "count": 4
+              },
+              {
+                "id": "dmex17-020",
+                "count": 1
+              },
+              {
+                "id": "dmrp06-s09",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "caseHash": "afc2edca3b79c85ef39242ca0f3252ab287fc06e17fc90b0a4894a29ff662c49",
+        "targetCaseHash": "58c35773508945ccf26ee249461bc25cb886a9bbf8e948683304007416ab8c1f",
+        "results": [
+          {
+            "id": "rush-1",
+            "category": "rush",
+            "targetId": "practice-rg",
+            "target": "火自然ビート",
+            "policy": "baseline",
+            "seed": 95100,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 11,
+            "actions": 81,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 5.190500000000611,
+              "p95": 619.6410829999986,
+              "max": 2045.8605419999994
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "rush-0",
+            "category": "rush",
+            "targetId": "practice-rg",
+            "target": "火自然ビート",
+            "policy": "baseline",
+            "seed": 95100,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 102,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 65,
+            "latencyMs": {
+              "median": 3.708834000000934,
+              "p95": 1234.2654160000002,
+              "max": 1813.455
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "blocker-control-0",
+            "category": "blocker-control",
+            "targetId": "practice-wu",
+            "target": "光水ブロッカー",
+            "policy": "baseline",
+            "seed": 95101,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 10,
+            "actions": 74,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 1.464749999999185,
+              "p95": 903.9002499999988,
+              "max": 1177.3642919999984
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "blocker-control-1",
+            "category": "blocker-control",
+            "targetId": "practice-wu",
+            "target": "光水ブロッカー",
+            "policy": "baseline",
+            "seed": 95101,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 9,
+            "actions": 62,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 42,
+            "latencyMs": {
+              "median": 4.49712499999805,
+              "p95": 617.9292919999971,
+              "max": 764.5485420000005
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "graveyard-0",
+            "category": "graveyard",
+            "targetId": "env-scs9-niigata-rose",
+            "target": "墓地ソース（ろーず）",
+            "policy": "baseline",
+            "seed": 95102,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 10,
+            "actions": 65,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 32,
+            "latencyMs": {
+              "median": 8.538457999995444,
+              "p95": 569.7562089999992,
+              "max": 592.5995839999996
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "graveyard-1",
+            "category": "graveyard",
+            "targetId": "env-scs9-niigata-rose",
+            "target": "墓地ソース（ろーず）",
+            "policy": "baseline",
+            "seed": 95102,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 9,
+            "actions": 61,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 31,
+            "latencyMs": {
+              "median": 5.896874999998545,
+              "p95": 518.0969159999986,
+              "max": 632.5738749999946
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "spell-engine-0",
+            "category": "spell-engine",
+            "targetId": "env-gospel-practice",
+            "target": "水晶ゴスペル（無視無視ノンノン）",
+            "policy": "baseline",
+            "seed": 95103,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 71,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 33,
+            "latencyMs": {
+              "median": 4.045500000000175,
+              "p95": 244.9038750000036,
+              "max": 361.7458750000005
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "spell-engine-1",
+            "category": "spell-engine",
+            "targetId": "env-gospel-practice",
+            "target": "水晶ゴスペル（無視無視ノンノン）",
+            "policy": "baseline",
+            "seed": 95103,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 17,
+            "actions": 137,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 60,
+            "latencyMs": {
+              "median": 1.5591250000070431,
+              "p95": 360.789042000004,
+              "max": 1037.867167000004
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95104,
+            "first": 0,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 13,
+            "actions": 124,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 47,
+            "latencyMs": {
+              "median": 9.961916000000201,
+              "p95": 646.4733749999941,
+              "max": 1191.3112919999985
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "evolution-0",
+            "category": "evolution",
+            "targetId": "starter25-23",
+            "target": "No.23 火水闇レッドゾーン",
+            "policy": "baseline",
+            "seed": 95105,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 12,
+            "actions": 84,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 55,
+            "latencyMs": {
+              "median": 2.0617500000007567,
+              "p95": 641.7099589999998,
+              "max": 2566.823540999998
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "evolution-1",
+            "category": "evolution",
+            "targetId": "starter25-23",
+            "target": "No.23 火水闇レッドゾーン",
+            "policy": "baseline",
+            "seed": 95105,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 11,
+            "actions": 74,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 48,
+            "latencyMs": {
+              "median": 3.1780409999919357,
+              "p95": 444.1362500000105,
+              "max": 995.4472909999895
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95104,
+            "first": 1,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 14,
+            "actions": 166,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 57,
+            "latencyMs": {
+              "median": 14.427209000001312,
+              "p95": 1082.241833,
+              "max": 1204.330584000003
+            },
+            "physicalCards": 80
+          }
+        ],
+        "summary": {
+          "games": 12,
+          "completed": 12,
+          "cpuWins": 10,
+          "unresolved": 0
+        }
+      },
+      "baseline-holdout": {
+        "baseline": "a3ea4557",
+        "engineVersion": "0.602.278",
+        "aiVersion": "2.3.439",
+        "cards": 9500,
+        "policy": "baseline",
+        "buildPolicy": "baseline",
+        "seedOffset": 101,
+        "categories": [
+          "revolution"
+        ],
+        "method": "Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+        "cases": [
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "first": 0,
+            "seed": 95205,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-031",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              },
+              {
+                "id": "dmrp12-017",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "first": 1,
+            "seed": 95205,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-031",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              },
+              {
+                "id": "dmrp12-017",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "caseHash": "d2af49b88cf2cb45502c3b3b83417bd6d9c8643d65f2e9c720044160d2c577b0",
+        "targetCaseHash": "1d08adaf8532bf41bd6c63ecdf4e303701974b8ac1273a8d11d2d5b969132374",
+        "results": [
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95205,
+            "first": 1,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 12,
+            "actions": 97,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 35,
+            "latencyMs": {
+              "median": 3.7269999999998618,
+              "p95": 451.4442909999998,
+              "max": 669.031708
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95205,
+            "first": 0,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 14,
+            "actions": 110,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 52,
+            "latencyMs": {
+              "median": 6.745082999999795,
+              "p95": 592.0899579999996,
+              "max": 674.0770000000002
+            },
+            "physicalCards": 80
+          }
+        ],
+        "summary": {
+          "games": 2,
+          "completed": 2,
+          "cpuWins": 1,
+          "unresolved": 0
+        }
+      },
+      "candidate-holdout": {
+        "baseline": "a3ea4557",
+        "engineVersion": "0.602.278",
+        "aiVersion": "2.3.439",
+        "cards": 9500,
+        "policy": "baseline",
+        "buildPolicy": "current",
+        "seedOffset": 101,
+        "categories": [
+          "revolution"
+        ],
+        "method": "Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+        "cases": [
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "first": 0,
+            "seed": 95205,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-011",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-068",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "first": 1,
+            "seed": 95205,
+            "targetId": "starter25-07",
+            "cpuCards": [
+              {
+                "id": "dm23ex2-037",
+                "count": 4
+              },
+              {
+                "id": "dm23rp1-S1",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-005",
+                "count": 4
+              },
+              {
+                "id": "dm23rp3-S07",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-010",
+                "count": 4
+              },
+              {
+                "id": "dm23rp4-S05",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-011",
+                "count": 4
+              },
+              {
+                "id": "dm23sd1-014",
+                "count": 4
+              },
+              {
+                "id": "dm24rp3-068",
+                "count": 4
+              },
+              {
+                "id": "dm24rp4-040",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "caseHash": "c5981d61011a9421cf2bc7280c542c63dc63f9bebc3c9a1cfa1652cb476cdfd5",
+        "targetCaseHash": "1d08adaf8532bf41bd6c63ecdf4e303701974b8ac1273a8d11d2d5b969132374",
+        "results": [
+          {
+            "id": "revolution-1",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95205,
+            "first": 1,
+            "winner": 1,
+            "cpuWon": true,
+            "turns": 9,
+            "actions": 45,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 26,
+            "latencyMs": {
+              "median": 8.622708999999304,
+              "p95": 505.0821669999996,
+              "max": 804.2060419999998
+            },
+            "physicalCards": 80
+          },
+          {
+            "id": "revolution-0",
+            "category": "revolution",
+            "targetId": "starter25-07",
+            "target": "No.07 火光アーマード",
+            "policy": "baseline",
+            "seed": 95205,
+            "first": 0,
+            "winner": 0,
+            "cpuWon": false,
+            "turns": 11,
+            "actions": 115,
+            "unresolved": false,
+            "reason": null,
+            "decisions": 50,
+            "latencyMs": {
+              "median": 4.768458999998984,
+              "p95": 743.6695,
+              "max": 991.2873749999999
+            },
+            "physicalCards": 80
+          }
+        ],
+        "summary": {
+          "games": 2,
+          "completed": 2,
+          "cpuWins": 1,
+          "unresolved": 0
+        }
+      }
+    },
+    "changedOutcomes": [
+      {
+        "sample": "baseline-holdout",
+        "id": "revolution-1",
+        "seed": 95205,
+        "before": 0,
+        "after": 1
+      },
+      {
+        "sample": "baseline-holdout",
+        "id": "revolution-0",
+        "seed": 95205,
+        "before": 1,
+        "after": 0
+      }
+    ],
+    "strengthGainConfirmed": false,
+    "interpretation": "Both builders won10/12 primary games. Both won1/2 held-out revolution games, but the winning first-player cases swapped. The original two fresh-game losses remain. No overall fresh-game strength gain is established."
+  },
+  "adaptation": {
+    "nativeGames": 4,
+    "seed": 95104,
+    "firstPlayers": [
+      0,
+      1
+    ],
+    "freshLosses": 2,
+    "rebuiltWins": 2,
+    "learningLogicChanged": false,
+    "method": "Existing learnStrongestDefeat and previousBuild produce a legal next deck after each native defeat. Finalv3 native tests win the next game in both first-player conditions, conserve80 identities after every legal action and verify feedback invariance to hidden cards.",
+    "diagnosticRun": {
+      "name": "learning",
+      "command": [
+        "node",
+        "tmp/ai-revolution-9500/learning.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 40.817,
+      "log": "tmp/ai-revolution-9500/learning.log"
+    },
+    "diagnosticResults": [
+      {
+        "first": 0,
+        "round": 0,
+        "base": "No.07 火光アーマード",
+        "winner": 0,
+        "turns": 13,
+        "actions": 124,
+        "deck": [
+          {
+            "id": "dm23ex2-037",
+            "count": 4
+          },
+          {
+            "id": "dm23rp1-S1",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-005",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-010",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-S05",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-011",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-014",
+            "count": 4
+          },
+          {
+            "id": "dm24rp3-068",
+            "count": 4
+          },
+          {
+            "id": "dm24rp4-040",
+            "count": 4
+          }
+        ],
+        "learning": null
+      },
+      {
+        "first": 0,
+        "round": 1,
+        "base": "前回の対策デッキ",
+        "winner": 1,
+        "turns": 12,
+        "actions": 68,
+        "deck": [
+          {
+            "id": "dm23ex2-037",
+            "count": 4
+          },
+          {
+            "id": "dm23rp1-S1",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-047",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-010",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-S05",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-011",
+            "count": 4
+          },
+          {
+            "id": "dm24rp3-068",
+            "count": 4
+          },
+          {
+            "id": "dm26ex4-071",
+            "count": 4
+          },
+          {
+            "id": "dmrp12-017",
+            "count": 4
+          }
+        ],
+        "learning": {
+          "key": "[2,\"0.602.278\",\"d3f35eb0fb4207e5769f3c79ff7216d8ea14d3067c4afaa96e3bb6491e4c9694\",\"original\",\"\",\"[[\\\"dm16-s04\\\",2],[\\\"dm23ex2-037\\\",4],[\\\"dm23rp3-005\\\",4],[\\\"dm23rp3-S07\\\",4],[\\\"dm23rp4-010\\\",4],[\\\"dm23rp4-OR2\\\",4],[\\\"dm23rp4-S05\\\",4],[\\\"dm23sd1-014\\\",4],[\\\"dm24rp4-040\\\",4],[\\\"dmbd15-006\\\",4],[\\\"dmc27-004\\\",2]]\"]",
+          "revision": 1,
+          "losses": 1,
+          "weights": {
+            "rush": 0.6631578947368421,
+            "spells": 0,
+            "grave": 0,
+            "cheat": 0.5526315789473684,
+            "large": 0.22105263157894733,
+            "discard": 0
+          },
+          "threats": [
+            {
+              "id": "dm23rp3-005",
+              "score": 8
+            },
+            {
+              "id": "dmbd15-006",
+              "score": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "score": 2
+            },
+            {
+              "id": "dm23rp4-OR2",
+              "score": 2
+            },
+            {
+              "id": "dm23rp4-S05",
+              "score": 2
+            },
+            {
+              "id": "dm23rp4-010",
+              "score": 1
+            }
+          ],
+          "failed": [
+            {
+              "signature": "[[\"dm23ex2-037\",4],[\"dm23rp1-S1\",4],[\"dm23rp3-005\",4],[\"dm23rp3-S07\",4],[\"dm23rp4-010\",4],[\"dm23rp4-S05\",4],[\"dm23sd1-011\",4],[\"dm23sd1-014\",4],[\"dm24rp3-068\",4],[\"dm24rp4-040\",4]]",
+              "losses": 1
+            }
+          ],
+          "games": [
+            "probe-0-0"
+          ]
+        }
+      },
+      {
+        "first": 1,
+        "round": 0,
+        "base": "No.07 火光アーマード",
+        "winner": 0,
+        "turns": 14,
+        "actions": 166,
+        "deck": [
+          {
+            "id": "dm23ex2-037",
+            "count": 4
+          },
+          {
+            "id": "dm23rp1-S1",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-005",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-010",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-S05",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-011",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-014",
+            "count": 4
+          },
+          {
+            "id": "dm24rp3-068",
+            "count": 4
+          },
+          {
+            "id": "dm24rp4-040",
+            "count": 4
+          }
+        ],
+        "learning": null
+      },
+      {
+        "first": 1,
+        "round": 1,
+        "base": "前回の対策デッキ",
+        "winner": 1,
+        "turns": 15,
+        "actions": 137,
+        "deck": [
+          {
+            "id": "dm23ex2-037",
+            "count": 4
+          },
+          {
+            "id": "dm23rp1-S1",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-047",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-010",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-S05",
+            "count": 4
+          },
+          {
+            "id": "dm23sd1-011",
+            "count": 4
+          },
+          {
+            "id": "dm24rp3-068",
+            "count": 4
+          },
+          {
+            "id": "dm26ex4-071",
+            "count": 4
+          },
+          {
+            "id": "dmrp12-017",
+            "count": 4
+          }
+        ],
+        "learning": {
+          "key": "[2,\"0.602.278\",\"d3f35eb0fb4207e5769f3c79ff7216d8ea14d3067c4afaa96e3bb6491e4c9694\",\"original\",\"\",\"[[\\\"dm16-s04\\\",2],[\\\"dm23ex2-037\\\",4],[\\\"dm23rp3-005\\\",4],[\\\"dm23rp3-S07\\\",4],[\\\"dm23rp4-010\\\",4],[\\\"dm23rp4-OR2\\\",4],[\\\"dm23rp4-S05\\\",4],[\\\"dm23sd1-014\\\",4],[\\\"dm24rp4-040\\\",4],[\\\"dmbd15-006\\\",4],[\\\"dmc27-004\\\",2]]\"]",
+          "revision": 1,
+          "losses": 1,
+          "weights": {
+            "rush": 0.595,
+            "spells": 0,
+            "grave": 0,
+            "cheat": 0.45499999999999996,
+            "large": 0.42,
+            "discard": 0
+          },
+          "threats": [
+            {
+              "id": "dm23rp4-OR2",
+              "score": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "score": 3
+            },
+            {
+              "id": "dm23rp4-010",
+              "score": 3
+            },
+            {
+              "id": "dm23rp4-S05",
+              "score": 3
+            },
+            {
+              "id": "dm24rp4-040",
+              "score": 3
+            },
+            {
+              "id": "dmc27-004",
+              "score": 2
+            },
+            {
+              "id": "dm23sd1-014",
+              "score": 1
+            },
+            {
+              "id": "dmbd15-006",
+              "score": 1
+            }
+          ],
+          "failed": [
+            {
+              "signature": "[[\"dm23ex2-037\",4],[\"dm23rp1-S1\",4],[\"dm23rp3-005\",4],[\"dm23rp3-S07\",4],[\"dm23rp4-010\",4],[\"dm23rp4-S05\",4],[\"dm23sd1-011\",4],[\"dm23sd1-014\",4],[\"dm24rp3-068\",4],[\"dm24rp4-040\",4]]",
+              "losses": 1
+            }
+          ],
+          "games": [
+            "probe-1-0"
+          ]
+        }
+      }
+    ],
+    "note": "The diagnostic report predates the cache-version bump. The finalv3 native tests repeat the two adaptation conditions successfully; this verifies existing learning rather than implementing new learning logic."
+  },
+  "finalDraftChecks": {
+    "checked": [
+      {
+        "report": "current-matrix",
+        "id": "rush-0",
+        "targetId": "practice-rg"
+      },
+      {
+        "report": "current-matrix",
+        "id": "blocker-control-0",
+        "targetId": "practice-wu"
+      },
+      {
+        "report": "current-matrix",
+        "id": "graveyard-0",
+        "targetId": "env-scs9-niigata-rose"
+      },
+      {
+        "report": "current-matrix",
+        "id": "spell-engine-0",
+        "targetId": "env-gospel-practice"
+      },
+      {
+        "report": "current-matrix",
+        "id": "revolution-0",
+        "targetId": "starter25-07"
+      },
+      {
+        "report": "current-matrix",
+        "id": "evolution-0",
+        "targetId": "starter25-23"
+      },
+      {
+        "report": "candidate-holdout",
+        "id": "revolution-0",
+        "targetId": "starter25-07"
+      }
+    ],
+    "sourceSha256": "77e361157f072e8575ffc272bb8dfc304daa3bf091a7b09f7f5e83f8b7423442",
+    "rulesAndTurnPolicyUnchanged": true
+  },
+  "invariants": {
+    "baseline": "a3ea4557",
+    "uniqueNames": 9500,
+    "uniqueIds": 9500,
+    "duplicateNames": 0,
+    "originalDefinitionsAndIdsUnchanged": 9500,
+    "saveFormatsUnchanged": true,
+    "historicalPendingUnchanged": true,
+    "publicationUnchanged": true,
+    "registrationStopped": true,
+    "automation": "PAUSED"
+  },
+  "limitations": [
+    "The original revolution cases still lose when starting without feedback. The held-out swap includes one improved and one worsened outcome; candidate recognition does not establish a general win-rate gain.",
+    "These counters do not prevent all ordinary summons or cancel already-triggered entry abilities.",
+    "Fixed-condition learned wins do not guarantee adaptation wins against every opponent or seed.",
+    "No deletion or migration of oldv2 caches or version-keyed learning was introduced. Cross-version learning reuse remains outside this change.",
+    "Historical full npm test remains interrupted/unconfirmed. Old broad long-running groups and full npm test were not rerun; previous pending items remain intact.",
+    "Each command has a570-second kill limit. Every comparison completed inside its60-second/1000-action/80-turn case limits."
+  ],
+  "publication": {
+    "pushed": false,
+    "pagesPublished": false,
+    "netlifyUpdated": false
+  },
+  "sourceSha256": {
+    "dist/strongest-cpu.js": "77e361157f072e8575ffc272bb8dfc304daa3bf091a7b09f7f5e83f8b7423442",
+    "dist/engine.js": "be2a145a7908ead71ffc7ca87ab92e7470660c6199bf2c571697343bead4b779",
+    "dist/release.json": "74ccbbaad6e8f40eb844bfef2b534fc4ee9bb58ce5fb959b79b83363129fbb63",
+    "dist/online-compatibility.js": "7900c31517a7976b9352da215dfd597d74e46241f4feb0c7776258ff5f4c8741",
+    "tests/strongest-cpu-revolution.test.mjs": "3b07697a89334597b571704d360608f46361916e25f15f7b6be0312091f689db",
+    "tests/strongest-cpu.test.mjs": "4069855541e40d7ae2fdafe5ef57964f4dc7f49575d4d3442844c578c9a4e252",
+    "tests/strongest-cpu-modern.test.mjs": "4e102078fb156def26ab09a75b700ffb0a22a972b103886bc3c3e8c1b67e011d",
+    "tools/benchmark-ai-endgame.mjs": "eeff10d3f4393e4de1c1f8f3d6408a00d1c75bbc0f1174b5163766f97372c49e",
+    "tools/benchmark-ai-endgame-worker.mjs": "1aaea0a7c6bc20d353f6c1c8d1e48bcc3fe590b32eccb8f6f898c5731b9c3947"
+  },
+  "reproduce": {
+    "before": "node tools/benchmark-ai-endgame.mjs --baseline=a3ea4557 --policy=baseline --build=baseline --output=tmp/revolution-before.json",
+    "after": "node tools/benchmark-ai-endgame.mjs --baseline=a3ea4557 --policy=baseline --build=current --output=tmp/revolution-after.json",
+    "holdoutOptions": "--categories=revolution --seed-offset=101",
+    "native": "node --test tests/strongest-cpu-revolution.test.mjs"
+  }
+}

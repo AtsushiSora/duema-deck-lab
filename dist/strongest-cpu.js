@@ -1,7 +1,7 @@
 import {card,playFaces,civilizations,validateDeck,manaPayment,manaValue} from './engine.js';
 import {strongestCardRoles,strongestCardSupport} from './strongest-card-roles.js';
 import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.722.20';
-export const STRONGEST_BUILD_VERSION=2;
+export const STRONGEST_BUILD_VERSION=3;
 const finite=n=>Number.isFinite(Number(n))?Number(n):30;
 const rowsSignature=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return JSON.stringify([...counts].sort(([a],[b])=>a.localeCompare(b)));};
 export function strongestDeckKey(deck){return JSON.stringify([STRONGEST_BUILD_VERSION,ONLINE_COMPATIBILITY.engineVersion,ONLINE_COMPATIBILITY.rulesHash,deck?.format||'original',deck?.historicalId||'',rowsSignature(deck?.cards)]);}
@@ -219,10 +219,21 @@ function deploymentResponse621(c,profile){
 function neoCounter620(c,profile){
  if(c.supportBatch!=='phase-620')return 0;
  const {counts}=profile;
- if(c.g403Bloom)return counts.invasion>=8&&counts.offHandEntry>=8?58:0;
+ // Keep the established invasion response; dense revolution plans also use nonsummon entries.
+ if(c.g403Bloom)return counts.invasion>=8&&counts.offHandEntry>=8||counts.changeEntry>=12?58:0;
  if(c.g178Block)return counts.fast>=8&&counts.cheap>=14&&counts.smallBody>=14?64:0;
  if(c.ddd)return counts.blocks>=14&&counts.large>=6&&counts.cheap>=12?68:0;
  return counts.large>=28&&counts.batchDeployment===0&&counts.offHandEntry<=8?72:0;
+}
+function earlyReducerRemoval(c,profile){
+ if(c.type!=='creature'||c.cost>3||c.evolution||c.evolvedEntryOnly||profile.earlyReducers.reduce((n,r)=>n+r.count,0)<8)return 0;
+ // Only unconditional entry removal with simple printed bounds. Conditional
+ // evolutions, attack effects and self-removal cannot answer the early setup.
+ const targets=(c.g34Tasks||[]).filter(d=>d.op==='Target'&&d.to==='grave'&&!d.both&&(d.owner===undefined||d.owner==='opponent')&&
+  d.filter&&Object.keys(d.filter).every(k=>['max','maxPower','creature'].includes(k)));
+ const matched=profile.earlyReducers.reduce((n,r)=>n+(targets.some(d=>
+  (d.filter.max===undefined||r.cost<=d.filter.max)&&(d.filter.maxPower===undefined||r.power<=d.filter.maxPower))?r.count:0),0);
+ return matched>=4?56*Math.min(1,matched/8)+(c.trigger?8:0):0;
 }
 function executionTax619(c,profile){
  const tax=c.g619Tax;
@@ -305,8 +316,8 @@ const features=c=>{
  f.roles=()=>roles??=strongestCardRoles(c);f.spellHate||=!!c.g1698FlySpellLock;return f;
 };
 export function analyzeStrongestTarget(deck){
- const counts={commands:0,cheap:0,lowCostElements:0,smallMultiBody:0,fast:0,fastEntry:0,machEntry:0,spell:0,spellOnly:0,openingBoost:0,grave:0,cheat:0,large:0,body:0,discard:0,tiny:0,smallBody:0,lowCostBodies:0,lowPowerBodies:0,under4000:0,blocks:0,earlyDeployment:0,offHandEntry:0,targetRemoval:0,nonMultiBody:0,cheapSupport:0,repeatedBodies:0,repeatedLightNatureSpells:0,batchDeployment:0,gear:0,largeSupport:0,shieldBuilders:0,multiExecution:0,earlyMultiExecution:0,invasion:0,seedOnly:0,noncreatureExecution:0},costs=new Map();
- const shieldTriggers={all:0,spell:0,creature:0};
+ const counts={commands:0,cheap:0,lowCostElements:0,smallMultiBody:0,fast:0,fastEntry:0,machEntry:0,spell:0,spellOnly:0,openingBoost:0,grave:0,cheat:0,large:0,body:0,discard:0,tiny:0,smallBody:0,lowCostBodies:0,lowPowerBodies:0,under4000:0,blocks:0,earlyDeployment:0,offHandEntry:0,targetRemoval:0,nonMultiBody:0,cheapSupport:0,repeatedBodies:0,repeatedLightNatureSpells:0,batchDeployment:0,gear:0,largeSupport:0,shieldBuilders:0,multiExecution:0,earlyMultiExecution:0,invasion:0,changeEntry:0,seedOnly:0,noncreatureExecution:0},costs=new Map();
+ const shieldTriggers={all:0,spell:0,creature:0},earlyReducers=[];
  let cost=0;
  for(const r of deck.cards){const f=features(card(r.id));cost+=f.cost*r.count;
   if(f.faces.some(face=>batchDeployEffects.has(face.effect)||hasOperation(face.g34Tasks,'Select',d=>d.deploy&&(d.n==='all'||d.n>=2))))counts.batchDeployment+=r.count;
@@ -314,6 +325,9 @@ export function analyzeStrongestTarget(deck){
   if(f.faces.some(face=>['seed','field'].includes(face.type)&&finite(face.cost)>=4))counts.largeSupport+=r.count;
   if(f.faces.some(addsShields618))counts.shieldBuilders+=r.count;
   if(f.faces.some(face=>face.invasion))counts.invasion+=r.count;
+  if(f.faces.some(face=>face.rev||face.invasion))counts.changeEntry+=r.count;
+  const reducer=f.faces.find(face=>face.type==='creature'&&face.cost<=3&&(face.chara||face.koppi));
+  if(reducer)earlyReducers.push({cost:reducer.cost,power:reducer.power,count:r.count});
   if(f.faces.every(face=>civilizations(face).length>1)){
    counts.multiExecution+=r.count;
    if(f.faces.every(face=>finite(face.cost)<=5))counts.earlyMultiExecution+=r.count;
@@ -341,7 +355,7 @@ export function analyzeStrongestTarget(deck){
   for(const key of ['fast','spell','grave','cheat','body','discard','tiny','blocks','earlyDeployment','offHandEntry','targetRemoval','nonMultiBody','cheapSupport'])if(f[key]&&(key!=='fast'||f.bodyCost<=5))counts[key]+=r.count;if(f.faces.some(face=>face.type==='creature'&&finite(face.power)<=3000))counts.smallBody+=r.count;if(f.body&&f.bodyCost<=3)counts.cheap+=r.count;if(f.body&&f.bodyCost>=7)counts.large+=r.count;const n=Math.min(20,f.cost);costs.set(n,(costs.get(n)||0)+r.count);}
  const weights={rush:Math.min(1,(counts.cheap+counts.fast)/22),spells:counts.spell/40,grave:Math.min(1,counts.grave/12),cheat:Math.min(1,counts.cheat/12),large:Math.min(1,counts.large/16),discard:Math.min(1,Math.max(0,counts.discard-4)/10)};
  const labels={rush:'序盤の攻めへの防御・除去',spells:'呪文中心の展開を妨害',grave:'墓地利用を抑える',cheat:'踏み倒し・特殊な登場を牽制',large:'大型が並ぶ前の攻めと除去',discard:'手札破壊に備える'};
- const priorities=Object.entries(weights).sort((a,b)=>b[1]-a[1]);return {counts,weights,shieldTriggers,averageCost:cost/40,priorities:priorities.filter(([,n])=>n>=.2).slice(0,3).map(([key])=>labels[key]),main:priorities[0][0],commonCost:[...costs].sort((a,b)=>b[1]-a[1])[0]?.[0]||0};
+ const priorities=Object.entries(weights).sort((a,b)=>b[1]-a[1]);return {counts,weights,shieldTriggers,earlyReducers,averageCost:cost/40,priorities:priorities.filter(([,n])=>n>=.2).slice(0,3).map(([key])=>labels[key]),main:priorities[0][0],commonCost:[...costs].sort((a,b)=>b[1]-a[1])[0]?.[0]||0};
 }
 const learningKeys=['rush','spells','grave','cheat','large','discard'];
 const bounded=(value,max=1000)=>Number.isFinite(value)?Math.max(0,Math.min(max,value)):0;
@@ -370,7 +384,7 @@ function utility(c,f,profile){
  const w=profile.weights;let v=6+(f.body?Math.min(8,finite(c.power)/1500):0)+(f.attacker?4:0)+(f.cost<=3?5:0)+(f.draw?6:0)+(f.ramp?7:0)+(f.trigger?4:0)+(f.fast?5:0)+(f.removal?5:0);
  v+=(f.block?13:0)*w.rush+(f.trigger?16:0)*w.rush+(f.removal?9:0)*Math.max(w.rush,w.large)+(f.spellHate?35:0)*w.spells+(f.cheatHate?35:0)*w.cheat+(f.symmetricGraveLock?40:f.graveHate?32:0)*w.grave+(f.fast?9:0)*w.large+(f.discardHate?38:0)*w.discard+(c.g591HandShield?18:0)*Math.min(w.cheat,w.discard);
  if(f.openingRamp)v+=f.openingRamp*Math.min(1,.4+.6*Math.max(w.rush,w.large));
- v+=handBoardResponse(c,profile)+spellHandResponse(c,profile)+largeRemoval608(c,profile)+protectsLarge608(c,profile)+tempoResponse609(c,profile)+resourceResponse610(c,profile)+untappedResponse611(c,profile)+smallBoardResponse612(c,profile)+graveResponse614(c,profile)+f.attackPressure+repeatedDeployment616(c,profile)+elementRemoval617(c,profile)+shieldPressure618(c,profile)+executionTax619(c,profile)+neoCounter620(c,profile)+deploymentResponse621(c,profile)+combatResponse622(c,profile)+spellBoardResponse623(c,profile)+entryResponse624(c,profile)+discardResponse625(c,profile)+removalResponse626(c,profile)+attackDefense627(c,profile)+recoveryDefense628(c,profile)+drawTempo629(c,profile)+handDeployment630(c,profile)+darkControl631(c,profile)+smallCreatureResponse632(c,profile);
+ v+=earlyReducerRemoval(c,profile)+handBoardResponse(c,profile)+spellHandResponse(c,profile)+largeRemoval608(c,profile)+protectsLarge608(c,profile)+tempoResponse609(c,profile)+resourceResponse610(c,profile)+untappedResponse611(c,profile)+smallBoardResponse612(c,profile)+graveResponse614(c,profile)+f.attackPressure+repeatedDeployment616(c,profile)+elementRemoval617(c,profile)+shieldPressure618(c,profile)+executionTax619(c,profile)+neoCounter620(c,profile)+deploymentResponse621(c,profile)+combatResponse622(c,profile)+spellBoardResponse623(c,profile)+entryResponse624(c,profile)+discardResponse625(c,profile)+removalResponse626(c,profile)+attackDefense627(c,profile)+recoveryDefense628(c,profile)+drawTempo629(c,profile)+handDeployment630(c,profile)+darkControl631(c,profile)+smallCreatureResponse632(c,profile);
  if(f.answersSupport)v+=34*Math.min(1,profile.counts.cheapSupport/10);
  if(c.g607HandOnly)v+=54*Math.min(1,Math.max(0,(profile.counts.offHandEntry-7)/6));
  if(c.g591Discard==='opponentEffect607')v+=16*w.discard;
@@ -477,7 +491,7 @@ export function buildStrongestCPU(target,seeds,implemented,{onProgress=()=>{},le
     if(!supportCache.has(supportKey))supportCache.set(supportKey,strongestCardSupport(c,seed.rows,id=>card(id),base=>info.get(base.id).roles()));
     support={...supportCache.get(supportKey)};support.required=needsEvolution?'evolution':'rev';if((needsEvolution?support.evolutionCount:support.revCount)<6)return false;support.bonus=Math.min(16,(needsEvolution?support.evolutionCount:support.revCount)*2)+(support.joCount>=4?18:0)+(f.roles().spellLock?12*profile.weights.spells:0);seed.base.supports.set(c.id,support);}
    const modern=!!support&&(support.joCount>=4||f.roles().spellLock&&profile.weights.spells>=.3||f.roles().draw&&f.roles().removal&&profile.counts.body>=12||f.roles().sweep&&profile.counts.smallBody>=8||f.roles().shieldBurn&&profile.shieldTriggers.all>=4);
-   return (f.cost<=8||needsChange)&&(modern||trusted.has(c.id)||f.cheatHate||f.spellHate||f.spellResponse||f.graveHate||f.graveResponse&&profile.weights.grave>=.35||c.g598UnpaidBottom&&profile.weights.cheat>=.5||f.discardHate||f.entryStop||f.powerStop||(smallCreatureResponse632(c,profile)>0&&(c.g571Saver?protectedAllies.largePower>=6:smallAllies>=12)||darkControl631(c,profile)>0&&(c.gStrike||graveSupport>=6)||handDeployment630(c,profile)>0&&(c.normalCharger?echoSupport>=6&&seed.base.high>=6:cheapDeployments>=10)||drawTempo629(c,profile)>0&&(!c.ddd||echoSupport>=6&&seed.base.attackers>=16)||recoveryDefense628(c,profile)>0&&(c.ddd||seed.base.attackers>=18)||attackDefense627(c,profile)>0||removalResponse626(c,profile)>0&&(c.type==='spell'||earlyFire>=12)||entryResponse624(c,profile)>0||spellBoardResponse623(c,profile)>0&&spellSupport>=8||combatResponse622(c,profile)>0||deploymentResponse621(c,profile)>0||neoCounter620(c,profile)>0||executionTax619(c,profile)>=28)&&f.colors.every(color=>(seed.base.sources.get(color)||0)>=8)||shieldPressure618(c,profile)>=28&&(!c.g204SpellWatch||spellSupport>=8)||elementRemoval617(c,profile)>=24||repeatedDeployment616(c,profile)>=28||earlyFire>=10&&f.attackPressure>=22||graveResponse614(c,profile)>=22||smallBoardResponse612(c,profile)>=22||untappedResponse611(c,profile)>=22||resourceResponse610(c,profile)>=22||tempoResponse609(c,profile)>=22||largeRemoval608(c,profile)>=22||protectsLarge608(c,profile)>=16&&protectedAllies[c.g608Protect.min?"cost":"power"]>=8||c.g607HandOnly&&profile.counts.offHandEntry>=10||f.answersSupport&&profile.counts.cheapSupport>=8||f.swarmResponse||f.openingRamp||handBoardResponse(c,profile)>=16||spellHandResponse(c,profile)>=20||f.defensiveTrigger&&profile.weights.rush>=.65||f.nonMultiRemoval&&profile.counts.nonMultiBody>=26||c.g601UnpaidDestroy&&profile.weights.cheat>=.5||c.g601OffHandMana&&Math.min(profile.weights.grave,profile.weights.cheat)>=.5||f.earlyDeploymentResponse&&profile.counts.earlyDeployment>=9||f.blockerResponse&&profile.counts.blocks>=8||f.shieldLock&&profile.shieldTriggers[f.shieldLock.type||'all']>=8)&&(!f.shieldLock?.allColors||['光','水','闇','火','自然'].every(color=>creatureColors.has(color)))&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id)||support?.evolutionCount>=6);}).sort((a,b)=>((utilities.get(b.id)+(seed.base.supports.get(b.id)?.bonus||0))-(utilities.get(a.id)+(seed.base.supports.get(a.id)?.bonus||0)))||a.id.localeCompare(b.id)).slice(0,28);
+   return (f.cost<=8||needsChange)&&(modern||trusted.has(c.id)||f.cheatHate||f.spellHate||f.spellResponse||f.graveHate||f.graveResponse&&profile.weights.grave>=.35||c.g598UnpaidBottom&&profile.weights.cheat>=.5||f.discardHate||f.entryStop||f.powerStop||(smallCreatureResponse632(c,profile)>0&&(c.g571Saver?protectedAllies.largePower>=6:smallAllies>=12)||darkControl631(c,profile)>0&&(c.gStrike||graveSupport>=6)||handDeployment630(c,profile)>0&&(c.normalCharger?echoSupport>=6&&seed.base.high>=6:cheapDeployments>=10)||drawTempo629(c,profile)>0&&(!c.ddd||echoSupport>=6&&seed.base.attackers>=16)||recoveryDefense628(c,profile)>0&&(c.ddd||seed.base.attackers>=18)||attackDefense627(c,profile)>0||removalResponse626(c,profile)>0&&(c.type==='spell'||earlyFire>=12)||entryResponse624(c,profile)>0||spellBoardResponse623(c,profile)>0&&spellSupport>=8||combatResponse622(c,profile)>0||deploymentResponse621(c,profile)>0||neoCounter620(c,profile)>0||earlyReducerRemoval(c,profile)>0||executionTax619(c,profile)>=28)&&f.colors.every(color=>(seed.base.sources.get(color)||0)>=8)||shieldPressure618(c,profile)>=28&&(!c.g204SpellWatch||spellSupport>=8)||elementRemoval617(c,profile)>=24||repeatedDeployment616(c,profile)>=28||earlyFire>=10&&f.attackPressure>=22||graveResponse614(c,profile)>=22||smallBoardResponse612(c,profile)>=22||untappedResponse611(c,profile)>=22||resourceResponse610(c,profile)>=22||tempoResponse609(c,profile)>=22||largeRemoval608(c,profile)>=22||protectsLarge608(c,profile)>=16&&protectedAllies[c.g608Protect.min?"cost":"power"]>=8||c.g607HandOnly&&profile.counts.offHandEntry>=10||f.answersSupport&&profile.counts.cheapSupport>=8||f.swarmResponse||f.openingRamp||handBoardResponse(c,profile)>=16||spellHandResponse(c,profile)>=20||f.defensiveTrigger&&profile.weights.rush>=.65||f.nonMultiRemoval&&profile.counts.nonMultiBody>=26||c.g601UnpaidDestroy&&profile.weights.cheat>=.5||c.g601OffHandMana&&Math.min(profile.weights.grave,profile.weights.cheat)>=.5||f.earlyDeploymentResponse&&profile.counts.earlyDeployment>=9||f.blockerResponse&&profile.counts.blocks>=8||f.shieldLock&&profile.shieldTriggers[f.shieldLock.type||'all']>=8)&&(!f.shieldLock?.allColors||['光','水','闇','火','自然'].every(color=>creatureColors.has(color)))&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id)||support?.evolutionCount>=6);}).sort((a,b)=>((utilities.get(b.id)+(seed.base.supports.get(b.id)?.bonus||0))-(utilities.get(a.id)+(seed.base.supports.get(a.id)?.bonus||0)))||a.id.localeCompare(b.id)).slice(0,28);
   let rows=seed.rows,score=seed.score;
   // Route-aware bonuses are local to this seed and require retained support.
   const routeScore=next=>scoreDeck(next,seed.base);
