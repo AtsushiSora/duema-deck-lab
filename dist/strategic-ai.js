@@ -277,7 +277,7 @@ export function createStrategicAI(api){
   const lethal=routes.winning.size>0;
   const defensiveHero=['hakuoh','kira'].includes(hero(s,p))||['gate','gods'].includes(legendProfile(hero(s,p))?.style);
   const reserve=new Set();
-  if(defensiveHero&&!lethal&&me.shields.length<=2){
+  if(!lethal&&me.shields.length<=2){
    // Estimate only the visible counterattack after untapping. Existing attack
    // locks still apply, so this does not invent threats from a hidden hand.
    const future={...ctx,active:1-p,turn:ctx.turn+1,players:ctx.players.map((own,i)=>({...own,battle:own.battle.map(x=>i===1-p&&api.canUntap(x)?{...x,tapped:false}:x)}))};

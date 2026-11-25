@@ -1,0 +1,2191 @@
+{
+  "checkedAt": "2026-11-25T02:51:16.009766+00:00",
+  "status": "verified-local-not-published",
+  "baseline": "06c3cfc4",
+  "engineVersion": "0.602.277",
+  "aiVersion": "2.3.438",
+  "supportedNames": 9500,
+  "newCards": 0,
+  "scope": [
+    "対戦相手6系統・先攻後攻をそろえた最強CPUの比較",
+    "公開盤面から判断する終盤の攻撃・防御の改善"
+  ],
+  "changes": [
+    {
+      "problem": "通常CPU・最強CPUが最後のブロッカーまで攻撃に使い、公開盤面で防げる次ターンの直接攻撃を許していた。",
+      "fix": "既存の防御役キャラクター向けブロッカー温存処理を全CPUに適用。残りシールド0〜2で、温存により相手の公開盤面の勝ち筋を防げる場合だけ必要なブロッカーを残す。自分の即時勝利、余剰ブロッカー、既存のターン終了時アンタップの扱いを維持。",
+      "coverage": "両席×シールド0/1/2、余剰ブロッカー、即時勝利の優先、実際の次ターンのブロックまで検証。"
+    },
+    {
+      "problem": "9体の攻撃で勝てる盤面でも、勝ち筋探索の8体上限により弱い相手クリーチャーへの攻撃を優先し、勝ち筋を失う場面があった。",
+      "fix": "公開盤面の勝ち筋探索を最大12体へ拡張。探索上限1800ノード、ブロッカー5体・シールド10枚の上限と保守的な打ち切りは維持。",
+      "coverage": "9体で8枚を割って直接攻撃する実エンジンの両席再現、12体境界、13体・探索予算切れの保守的動作。"
+    }
+  ],
+  "baselineReproduction": {
+    "name": "baseline-endgame",
+    "command": [
+      "node",
+      "--test",
+      "tests/ai-endgame.test.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 0.848,
+    "log": "tmp/ai-tactics-9500/baseline-endgame.log",
+    "expectedFailure": true,
+    "tests": 14,
+    "passed": 3,
+    "failed": 11,
+    "logSha256": "f24af3b2685104c4899bc962842f2db515d9bb5586d27d1fb18e9ce22aef7097",
+    "resolution": "修正前に失敗したブロッカー温存・9体攻撃・上限境界を修正。最終版は実ターンのブロック検証1件を追加し、終盤固有15件と関連21件の計36件が通過。"
+  },
+  "verification": [
+    {
+      "name": "endgame-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/ai-endgame.test.mjs",
+        "tests/character-tactics.test.mjs",
+        "tests/ai-tactics.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.654,
+      "log": "tmp/ai-tactics-9500/endgame-final.log",
+      "logSha256": "15891007989286dfdd21171a9a588645e515d7b0f6afaba657d9568b8ee660e6",
+      "testsPassed": 36
+    },
+    {
+      "name": "related-strategic",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^strategic mana|^strategic policy casts|^strategic own-list|^strategic looting|^strategic planning uses|^known deck information|^strategic attacks prioritize|^strategic planner never|^strategic search|^strategic policy is invariant|^strategic seal removal",
+        "tests/strategic-ai.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.15,
+      "log": "tmp/ai-tactics-9500/related-strategic.log",
+      "logSha256": "446e1adb126dcdcf4065ef3384d916d1d581a22e99e4b415f9897285eb5829bb",
+      "testsPassed": 13
+    },
+    {
+      "name": "related-worker-save",
+      "command": [
+        "node",
+        "--test",
+        "tests/ai-decision.test.mjs",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 15.704,
+      "log": "tmp/ai-tactics-9500/related-worker-save.log",
+      "logSha256": "6e5a4c76ceb8237762b8ee1914cb25274e767c83f3591d4fa80aa6e0f7cedb45",
+      "testsPassed": 20
+    },
+    {
+      "name": "related-strongest",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs",
+        "tests/strongest-cpu-modern.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 40.358,
+      "log": "tmp/ai-tactics-9500/related-strongest.log",
+      "logSha256": "79e6c4ff7a30437ac5f5248c1dd4b06c3dd8f2af5fe9046a5f74b98f36902eb7",
+      "testsPassed": 65
+    },
+    {
+      "name": "baseline-matrix",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=06c3cfc4",
+        "--policy=baseline",
+        "--output=tmp/ai-tactics-9500/baseline-comparison.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 61.844,
+      "log": "tmp/ai-tactics-9500/baseline-matrix.log",
+      "logSha256": "b690b1fbbca0d4951f232a0e61fc1e1220d094f2a5c00457ed266e28ddc7284b"
+    },
+    {
+      "name": "current-matrix",
+      "command": [
+        "node",
+        "tools/benchmark-ai-endgame.mjs",
+        "--baseline=06c3cfc4",
+        "--policy=current",
+        "--output=tmp/ai-tactics-9500/current-comparison.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 62.16,
+      "log": "tmp/ai-tactics-9500/current-matrix.log",
+      "logSha256": "c0876066118a0dc77a0b6122eb934b3f846dc7e4f86f31cfda5a5ef8e3bbf945"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.769,
+      "log": "tmp/ai-tactics-9500/check.log",
+      "logSha256": "473f7f35caa9a68426fded3fa7a7cacc789a62e38b68e89bc6783cb70db989fa"
+    },
+    {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/ai-tactics-9500/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.7,
+      "log": "tmp/ai-tactics-9500/invariants.log",
+      "logSha256": "0d4f8269efa9b4e6e3c6f4a3f66155c317fa6094f5c5c5d496b0e650b0f5012d"
+    }
+  ],
+  "unitTestsPassed": 134,
+  "comparison": {
+    "baseline": {
+      "baseline": "06c3cfc4",
+      "engineVersion": "0.602.276",
+      "aiVersion": "2.3.437",
+      "cards": 9500,
+      "policy": "baseline",
+      "method": "Six real opposing archetypes; same generated CPU lists, game seeds and first players. Opponent always uses the baseline AI. Only CPU turn policy changes. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+      "cases": [
+        {
+          "id": "rush-0",
+          "category": "rush",
+          "first": 0,
+          "seed": 95100,
+          "targetId": "practice-rg",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-098",
+              "count": 2
+            },
+            {
+              "id": "dm23bd6-001",
+              "count": 2
+            },
+            {
+              "id": "dm23rp1-070",
+              "count": 2
+            },
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 2
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 2
+            },
+            {
+              "id": "dm25rp3-037",
+              "count": 4
+            },
+            {
+              "id": "dm26ex1-N020",
+              "count": 2
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-028",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "rush-1",
+          "category": "rush",
+          "first": 1,
+          "seed": 95100,
+          "targetId": "practice-rg",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-098",
+              "count": 2
+            },
+            {
+              "id": "dm23bd6-001",
+              "count": 2
+            },
+            {
+              "id": "dm23rp1-070",
+              "count": 2
+            },
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 2
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 2
+            },
+            {
+              "id": "dm25rp3-037",
+              "count": 4
+            },
+            {
+              "id": "dm26ex1-N020",
+              "count": 2
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-028",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "blocker-control-0",
+          "category": "blocker-control",
+          "first": 0,
+          "seed": 95101,
+          "targetId": "practice-wu",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-086",
+              "count": 1
+            },
+            {
+              "id": "dm23ex1-003",
+              "count": 3
+            },
+            {
+              "id": "dm23rp1-013",
+              "count": 1
+            },
+            {
+              "id": "dm23rp2-015",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S02",
+              "count": 1
+            },
+            {
+              "id": "dm24bd4-007",
+              "count": 4
+            },
+            {
+              "id": "dm24ex1-028",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-006",
+              "count": 1
+            },
+            {
+              "id": "dm25rp3-036",
+              "count": 4
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-020",
+              "count": 4
+            },
+            {
+              "id": "dmrp15-km1",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": "blocker-control-1",
+          "category": "blocker-control",
+          "first": 1,
+          "seed": 95101,
+          "targetId": "practice-wu",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-086",
+              "count": 1
+            },
+            {
+              "id": "dm23ex1-003",
+              "count": 3
+            },
+            {
+              "id": "dm23rp1-013",
+              "count": 1
+            },
+            {
+              "id": "dm23rp2-015",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S02",
+              "count": 1
+            },
+            {
+              "id": "dm24bd4-007",
+              "count": 4
+            },
+            {
+              "id": "dm24ex1-028",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-006",
+              "count": 1
+            },
+            {
+              "id": "dm25rp3-036",
+              "count": 4
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-020",
+              "count": 4
+            },
+            {
+              "id": "dmrp15-km1",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": "graveyard-0",
+          "category": "graveyard",
+          "first": 0,
+          "seed": 95102,
+          "targetId": "env-scs9-niigata-rose",
+          "cpuCards": [
+            {
+              "id": "dm14-025",
+              "count": 4
+            },
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm30-013",
+              "count": 4
+            },
+            {
+              "id": "dmex02-009",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "id": "graveyard-1",
+          "category": "graveyard",
+          "first": 1,
+          "seed": 95102,
+          "targetId": "env-scs9-niigata-rose",
+          "cpuCards": [
+            {
+              "id": "dm14-025",
+              "count": 4
+            },
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm30-013",
+              "count": 4
+            },
+            {
+              "id": "dmex02-009",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "id": "spell-engine-0",
+          "category": "spell-engine",
+          "first": 0,
+          "seed": 95103,
+          "targetId": "env-gospel-practice",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm25rp2-017",
+              "count": 4
+            },
+            {
+              "id": "dmex14-050",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            },
+            {
+              "id": "dmrp07-s05",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "spell-engine-1",
+          "category": "spell-engine",
+          "first": 1,
+          "seed": 95103,
+          "targetId": "env-gospel-practice",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm25rp2-017",
+              "count": 4
+            },
+            {
+              "id": "dmex14-050",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            },
+            {
+              "id": "dmrp07-s05",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "revolution-0",
+          "category": "revolution",
+          "first": 0,
+          "seed": 95104,
+          "targetId": "starter25-07",
+          "cpuCards": [
+            {
+              "id": "dm23ex2-037",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-031",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-S1",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-005",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-010",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S05",
+              "count": 4
+            },
+            {
+              "id": "dm23sd1-014",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-040",
+              "count": 4
+            },
+            {
+              "id": "dmrp12-017",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "revolution-1",
+          "category": "revolution",
+          "first": 1,
+          "seed": 95104,
+          "targetId": "starter25-07",
+          "cpuCards": [
+            {
+              "id": "dm23ex2-037",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-031",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-S1",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-005",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-010",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S05",
+              "count": 4
+            },
+            {
+              "id": "dm23sd1-014",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-040",
+              "count": 4
+            },
+            {
+              "id": "dmrp12-017",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "evolution-0",
+          "category": "evolution",
+          "first": 0,
+          "seed": 95105,
+          "targetId": "starter25-23",
+          "cpuCards": [
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-047",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-061",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-019",
+              "count": 4
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex16-081",
+              "count": 4
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "evolution-1",
+          "category": "evolution",
+          "first": 1,
+          "seed": 95105,
+          "targetId": "starter25-23",
+          "cpuCards": [
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-047",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-061",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-019",
+              "count": 4
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex16-081",
+              "count": 4
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        }
+      ],
+      "caseHash": "32690f7acbcb27f5e985ff478022f8cecb5e5cb9426588b2bc1f536701f098f4",
+      "results": [
+        {
+          "id": "rush-1",
+          "category": "rush",
+          "targetId": "practice-rg",
+          "target": "火自然ビート",
+          "policy": "baseline",
+          "seed": 95100,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 11,
+          "actions": 81,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 2.6733750000003056,
+            "p95": 447.1253749999996,
+            "max": 1628.8721249999999
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "rush-0",
+          "category": "rush",
+          "targetId": "practice-rg",
+          "target": "火自然ビート",
+          "policy": "baseline",
+          "seed": 95100,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 12,
+          "actions": 102,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 65,
+          "latencyMs": {
+            "median": 2.2707919999993464,
+            "p95": 831.8422919999994,
+            "max": 1250.5094580000004
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "blocker-control-0",
+          "category": "blocker-control",
+          "targetId": "practice-wu",
+          "target": "光水ブロッカー",
+          "policy": "baseline",
+          "seed": 95101,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 10,
+          "actions": 74,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 1.2838340000016615,
+            "p95": 726.3826659999977,
+            "max": 943.1841669999994
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "blocker-control-1",
+          "category": "blocker-control",
+          "targetId": "practice-wu",
+          "target": "光水ブロッカー",
+          "policy": "baseline",
+          "seed": 95101,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 9,
+          "actions": 62,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 42,
+          "latencyMs": {
+            "median": 4.083166000000347,
+            "p95": 458.106917000001,
+            "max": 682.5517919999984
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "graveyard-1",
+          "category": "graveyard",
+          "targetId": "env-scs9-niigata-rose",
+          "target": "墓地ソース（ろーず）",
+          "policy": "baseline",
+          "seed": 95102,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 9,
+          "actions": 61,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 31,
+          "latencyMs": {
+            "median": 5.405500000000757,
+            "p95": 461.20191700000214,
+            "max": 487.5993329999983
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "graveyard-0",
+          "category": "graveyard",
+          "targetId": "env-scs9-niigata-rose",
+          "target": "墓地ソース（ろーず）",
+          "policy": "baseline",
+          "seed": 95102,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 10,
+          "actions": 71,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 32,
+          "latencyMs": {
+            "median": 7.236000000000786,
+            "p95": 547.4542090000032,
+            "max": 681.9916249999987
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "spell-engine-0",
+          "category": "spell-engine",
+          "targetId": "env-gospel-practice",
+          "target": "水晶ゴスペル（無視無視ノンノン）",
+          "policy": "baseline",
+          "seed": 95103,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 12,
+          "actions": 71,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 33,
+          "latencyMs": {
+            "median": 3.5646659999983967,
+            "p95": 190.87029200000325,
+            "max": 305.89958399999887
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "spell-engine-1",
+          "category": "spell-engine",
+          "targetId": "env-gospel-practice",
+          "target": "水晶ゴスペル（無視無視ノンノン）",
+          "policy": "baseline",
+          "seed": 95103,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 17,
+          "actions": 137,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 60,
+          "latencyMs": {
+            "median": 1.3618330000026617,
+            "p95": 397.5020829999994,
+            "max": 1008.0702909999964
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "revolution-0",
+          "category": "revolution",
+          "targetId": "starter25-07",
+          "target": "No.07 火光アーマード",
+          "policy": "baseline",
+          "seed": 95104,
+          "first": 0,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 13,
+          "actions": 96,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 43,
+          "latencyMs": {
+            "median": 4.028500000000349,
+            "p95": 716.6963749999995,
+            "max": 1063.978916
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "evolution-0",
+          "category": "evolution",
+          "targetId": "starter25-23",
+          "target": "No.23 火水闇レッドゾーン",
+          "policy": "baseline",
+          "seed": 95105,
+          "first": 0,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 13,
+          "actions": 76,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 41,
+          "latencyMs": {
+            "median": 2.671374999998079,
+            "p95": 403.4353339999943,
+            "max": 1715.6376669999954
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "evolution-1",
+          "category": "evolution",
+          "targetId": "starter25-23",
+          "target": "No.23 火水闇レッドゾーン",
+          "policy": "baseline",
+          "seed": 95105,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 11,
+          "actions": 74,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 2.1151669999962905,
+            "p95": 282.3545000000013,
+            "max": 542.2030000000013
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "revolution-1",
+          "category": "revolution",
+          "targetId": "starter25-07",
+          "target": "No.07 火光アーマード",
+          "policy": "baseline",
+          "seed": 95104,
+          "first": 1,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 14,
+          "actions": 180,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 65,
+          "latencyMs": {
+            "median": 12.921416000004683,
+            "p95": 536.7417910000004,
+            "max": 1846.0924589999995
+          },
+          "physicalCards": 80
+        }
+      ],
+      "summary": {
+        "games": 12,
+        "completed": 12,
+        "cpuWins": 9,
+        "unresolved": 0
+      }
+    },
+    "current": {
+      "baseline": "06c3cfc4",
+      "engineVersion": "0.602.277",
+      "aiVersion": "2.3.438",
+      "cards": 9500,
+      "policy": "current",
+      "method": "Six real opposing archetypes; same generated CPU lists, game seeds and first players. Opponent always uses the baseline AI. Only CPU turn policy changes. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.",
+      "cases": [
+        {
+          "id": "rush-0",
+          "category": "rush",
+          "first": 0,
+          "seed": 95100,
+          "targetId": "practice-rg",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-098",
+              "count": 2
+            },
+            {
+              "id": "dm23bd6-001",
+              "count": 2
+            },
+            {
+              "id": "dm23rp1-070",
+              "count": 2
+            },
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 2
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 2
+            },
+            {
+              "id": "dm25rp3-037",
+              "count": 4
+            },
+            {
+              "id": "dm26ex1-N020",
+              "count": 2
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-028",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "rush-1",
+          "category": "rush",
+          "first": 1,
+          "seed": 95100,
+          "targetId": "practice-rg",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-098",
+              "count": 2
+            },
+            {
+              "id": "dm23bd6-001",
+              "count": 2
+            },
+            {
+              "id": "dm23rp1-070",
+              "count": 2
+            },
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 2
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 2
+            },
+            {
+              "id": "dm25rp3-037",
+              "count": 4
+            },
+            {
+              "id": "dm26ex1-N020",
+              "count": 2
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-028",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "blocker-control-0",
+          "category": "blocker-control",
+          "first": 0,
+          "seed": 95101,
+          "targetId": "practice-wu",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-086",
+              "count": 1
+            },
+            {
+              "id": "dm23ex1-003",
+              "count": 3
+            },
+            {
+              "id": "dm23rp1-013",
+              "count": 1
+            },
+            {
+              "id": "dm23rp2-015",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S02",
+              "count": 1
+            },
+            {
+              "id": "dm24bd4-007",
+              "count": 4
+            },
+            {
+              "id": "dm24ex1-028",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-006",
+              "count": 1
+            },
+            {
+              "id": "dm25rp3-036",
+              "count": 4
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-020",
+              "count": 4
+            },
+            {
+              "id": "dmrp15-km1",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": "blocker-control-1",
+          "category": "blocker-control",
+          "first": 1,
+          "seed": 95101,
+          "targetId": "practice-wu",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-086",
+              "count": 1
+            },
+            {
+              "id": "dm23ex1-003",
+              "count": 3
+            },
+            {
+              "id": "dm23rp1-013",
+              "count": 1
+            },
+            {
+              "id": "dm23rp2-015",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S02",
+              "count": 1
+            },
+            {
+              "id": "dm24bd4-007",
+              "count": 4
+            },
+            {
+              "id": "dm24ex1-028",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-018",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-006",
+              "count": 1
+            },
+            {
+              "id": "dm25rp3-036",
+              "count": 4
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp06-020",
+              "count": 4
+            },
+            {
+              "id": "dmrp15-km1",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": "graveyard-0",
+          "category": "graveyard",
+          "first": 0,
+          "seed": 95102,
+          "targetId": "env-scs9-niigata-rose",
+          "cpuCards": [
+            {
+              "id": "dm14-025",
+              "count": 4
+            },
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm30-013",
+              "count": 4
+            },
+            {
+              "id": "dmex02-009",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "id": "graveyard-1",
+          "category": "graveyard",
+          "first": 1,
+          "seed": 95102,
+          "targetId": "env-scs9-niigata-rose",
+          "cpuCards": [
+            {
+              "id": "dm14-025",
+              "count": 4
+            },
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm30-013",
+              "count": 4
+            },
+            {
+              "id": "dmex02-009",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "id": "spell-engine-0",
+          "category": "spell-engine",
+          "first": 0,
+          "seed": 95103,
+          "targetId": "env-gospel-practice",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm25rp2-017",
+              "count": 4
+            },
+            {
+              "id": "dmex14-050",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            },
+            {
+              "id": "dmrp07-s05",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "spell-engine-1",
+          "category": "spell-engine",
+          "first": 1,
+          "seed": 95103,
+          "targetId": "env-gospel-practice",
+          "cpuCards": [
+            {
+              "id": "dm22ex1-011",
+              "count": 4
+            },
+            {
+              "id": "dm22ex2-S07",
+              "count": 2
+            },
+            {
+              "id": "dm23rp4-017",
+              "count": 1
+            },
+            {
+              "id": "dm24ex2-036",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-019",
+              "count": 1
+            },
+            {
+              "id": "dm25rp2-017",
+              "count": 4
+            },
+            {
+              "id": "dmex14-050",
+              "count": 4
+            },
+            {
+              "id": "dmex17-102",
+              "count": 4
+            },
+            {
+              "id": "dmex18-s13",
+              "count": 4
+            },
+            {
+              "id": "dmr17-l02",
+              "count": 2
+            },
+            {
+              "id": "dmrp01-041",
+              "count": 4
+            },
+            {
+              "id": "dmrp05-049",
+              "count": 2
+            },
+            {
+              "id": "dmrp07-s05",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "revolution-0",
+          "category": "revolution",
+          "first": 0,
+          "seed": 95104,
+          "targetId": "starter25-07",
+          "cpuCards": [
+            {
+              "id": "dm23ex2-037",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-031",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-S1",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-005",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-010",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S05",
+              "count": 4
+            },
+            {
+              "id": "dm23sd1-014",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-040",
+              "count": 4
+            },
+            {
+              "id": "dmrp12-017",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "revolution-1",
+          "category": "revolution",
+          "first": 1,
+          "seed": 95104,
+          "targetId": "starter25-07",
+          "cpuCards": [
+            {
+              "id": "dm23ex2-037",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-031",
+              "count": 4
+            },
+            {
+              "id": "dm23rp1-S1",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-005",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-S07",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-010",
+              "count": 4
+            },
+            {
+              "id": "dm23rp4-S05",
+              "count": 4
+            },
+            {
+              "id": "dm23sd1-014",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-040",
+              "count": 4
+            },
+            {
+              "id": "dmrp12-017",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "evolution-0",
+          "category": "evolution",
+          "first": 0,
+          "seed": 95105,
+          "targetId": "starter25-23",
+          "cpuCards": [
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-047",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-061",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-019",
+              "count": 4
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex16-081",
+              "count": 4
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": "evolution-1",
+          "category": "evolution",
+          "first": 1,
+          "seed": 95105,
+          "targetId": "starter25-23",
+          "cpuCards": [
+            {
+              "id": "dm23rp3-013",
+              "count": 4
+            },
+            {
+              "id": "dm23rp3-047",
+              "count": 4
+            },
+            {
+              "id": "dm24bd5-010",
+              "count": 4
+            },
+            {
+              "id": "dm24ex2-096",
+              "count": 4
+            },
+            {
+              "id": "dm24rp3-061",
+              "count": 4
+            },
+            {
+              "id": "dm24rp4-S11",
+              "count": 4
+            },
+            {
+              "id": "dm25rp1-019",
+              "count": 4
+            },
+            {
+              "id": "dmex06-024",
+              "count": 3
+            },
+            {
+              "id": "dmex16-081",
+              "count": 4
+            },
+            {
+              "id": "dmex17-020",
+              "count": 1
+            },
+            {
+              "id": "dmrp06-s09",
+              "count": 4
+            }
+          ]
+        }
+      ],
+      "caseHash": "32690f7acbcb27f5e985ff478022f8cecb5e5cb9426588b2bc1f536701f098f4",
+      "results": [
+        {
+          "id": "rush-1",
+          "category": "rush",
+          "targetId": "practice-rg",
+          "target": "火自然ビート",
+          "policy": "current",
+          "seed": 95100,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 11,
+          "actions": 81,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 2.447374999999738,
+            "p95": 453.35200000000077,
+            "max": 1630.1864999999998
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "rush-0",
+          "category": "rush",
+          "targetId": "practice-rg",
+          "target": "火自然ビート",
+          "policy": "current",
+          "seed": 95100,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 12,
+          "actions": 102,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 65,
+          "latencyMs": {
+            "median": 2.1825840000001335,
+            "p95": 836.0972919999995,
+            "max": 1244.4462919999987
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "blocker-control-0",
+          "category": "blocker-control",
+          "targetId": "practice-wu",
+          "target": "光水ブロッカー",
+          "policy": "current",
+          "seed": 95101,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 10,
+          "actions": 74,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 1.174250000000029,
+            "p95": 716.1332920000023,
+            "max": 908.5434999999998
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "blocker-control-1",
+          "category": "blocker-control",
+          "targetId": "practice-wu",
+          "target": "光水ブロッカー",
+          "policy": "current",
+          "seed": 95101,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 9,
+          "actions": 62,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 42,
+          "latencyMs": {
+            "median": 3.7768340000002354,
+            "p95": 422.2171670000007,
+            "max": 681.11175
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "graveyard-1",
+          "category": "graveyard",
+          "targetId": "env-scs9-niigata-rose",
+          "target": "墓地ソース（ろーず）",
+          "policy": "current",
+          "seed": 95102,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 9,
+          "actions": 61,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 31,
+          "latencyMs": {
+            "median": 4.986249999998108,
+            "p95": 473.44083300000057,
+            "max": 496.3942079999979
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "graveyard-0",
+          "category": "graveyard",
+          "targetId": "env-scs9-niigata-rose",
+          "target": "墓地ソース（ろーず）",
+          "policy": "current",
+          "seed": 95102,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 10,
+          "actions": 71,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 32,
+          "latencyMs": {
+            "median": 6.9598339999975,
+            "p95": 552.3137920000008,
+            "max": 699.7719590000015
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "spell-engine-0",
+          "category": "spell-engine",
+          "targetId": "env-gospel-practice",
+          "target": "水晶ゴスペル（無視無視ノンノン）",
+          "policy": "current",
+          "seed": 95103,
+          "first": 0,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 12,
+          "actions": 71,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 33,
+          "latencyMs": {
+            "median": 3.842040999999881,
+            "p95": 186.15229199999885,
+            "max": 319.92495800000324
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "spell-engine-1",
+          "category": "spell-engine",
+          "targetId": "env-gospel-practice",
+          "target": "水晶ゴスペル（無視無視ノンノン）",
+          "policy": "current",
+          "seed": 95103,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 17,
+          "actions": 137,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 60,
+          "latencyMs": {
+            "median": 1.2729160000017146,
+            "p95": 305.07558399999834,
+            "max": 843.5279579999988
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "revolution-0",
+          "category": "revolution",
+          "targetId": "starter25-07",
+          "target": "No.07 火光アーマード",
+          "policy": "current",
+          "seed": 95104,
+          "first": 0,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 13,
+          "actions": 96,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 43,
+          "latencyMs": {
+            "median": 4.09533399999782,
+            "p95": 535.8815830000021,
+            "max": 1079.5348749999976
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "evolution-0",
+          "category": "evolution",
+          "targetId": "starter25-23",
+          "target": "No.23 火水闇レッドゾーン",
+          "policy": "current",
+          "seed": 95105,
+          "first": 0,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 13,
+          "actions": 76,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 41,
+          "latencyMs": {
+            "median": 2.4703329999974812,
+            "p95": 401.68329200000153,
+            "max": 1777.9540420000048
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "evolution-1",
+          "category": "evolution",
+          "targetId": "starter25-23",
+          "target": "No.23 火水闇レッドゾーン",
+          "policy": "current",
+          "seed": 95105,
+          "first": 1,
+          "winner": 1,
+          "cpuWon": true,
+          "turns": 11,
+          "actions": 74,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 48,
+          "latencyMs": {
+            "median": 2.147666000004392,
+            "p95": 297.5112919999956,
+            "max": 545.4121660000019
+          },
+          "physicalCards": 80
+        },
+        {
+          "id": "revolution-1",
+          "category": "revolution",
+          "targetId": "starter25-07",
+          "target": "No.07 火光アーマード",
+          "policy": "current",
+          "seed": 95104,
+          "first": 1,
+          "winner": 0,
+          "cpuWon": false,
+          "turns": 14,
+          "actions": 180,
+          "unresolved": false,
+          "reason": null,
+          "decisions": 65,
+          "latencyMs": {
+            "median": 12.808750000003783,
+            "p95": 541.9890840000007,
+            "max": 1803.6790830000027
+          },
+          "physicalCards": 80
+        }
+      ],
+      "summary": {
+        "games": 12,
+        "completed": 12,
+        "cpuWins": 9,
+        "unresolved": 0
+      }
+    },
+    "totalGames": 24,
+    "sameInputs": true,
+    "interpretation": "改良前後とも12戦9勝。今回の固定条件では総合勝率の向上を確認していない。再現した終盤2場面の改善を固有テストで確認。"
+  },
+  "invariants": {
+    "baseline": "06c3cfc4",
+    "uniqueNames": 9500,
+    "uniqueIds": 9500,
+    "duplicateNames": 0,
+    "originalDefinitionsAndIdsUnchanged": 9500,
+    "saveFormatsUnchanged": true,
+    "historicalPendingUnchanged": true,
+    "publicationUnchanged": true,
+    "registrationStopped": true,
+    "automation": "PAUSED"
+  },
+  "sourceSha256": {
+    "dist/strategic-ai.js": "cc2965624d20058cbc94802108553e6725575166e86e6b870d4eefc715904b7a",
+    "dist/attack-plan.js": "cb41f40890f6d0d122881f29a323515e8dc715290e98ddb5d76ed37653d54073",
+    "dist/engine.js": "3bb51f85907beb1629d926c82437b4e51ce95a0f71cbc2fe995d89618fcb0c9d",
+    "dist/release.json": "2b3147b58d15e3a7505246b90ea936d357cdcce647614f7859faf47bbec519d9",
+    "dist/online-compatibility.js": "1f465cad05f238562d80e184610a6d77acff3b0797e5a8cc5ccd42dec91047cd",
+    "tests/ai-endgame.test.mjs": "253392cc3e4d22f5f4ab9926d597132080c980f6208bb5a783039e7846b75d47",
+    "tests/character-tactics.test.mjs": "4bc82b44de91695451967290990632e9719f7b1ed9ed2c4af09042f210266b28",
+    "tools/benchmark-ai-endgame.mjs": "a9ce9b7296f4913b318f9f065bbed3cba65d28208c0a45f62c6f1a7da9b8811f",
+    "tools/benchmark-ai-endgame-worker.mjs": "0c3deece95a151292851fa1a472723883ce4c860498b1778ba3e8a13a0dadd9e"
+  },
+  "limitations": [
+    "6系統ごと1シード・先攻後攻の固定条件であり、全相性・全カードでの強さを保証しない。",
+    "公開盤面の勝ち筋は隠れたシールドトリガー、手札、山札順、将来のドローや仮想的な革命チェンジを推測しない。",
+    "12体・5ブロッカー・10シールド・1800ノードの範囲を越える勝ち筋は確定扱いしない。",
+    "過去の全体npm testは中断・合否未確認のまま。過去の長時間群・全体npm testは再実行していない。登録・再録・長時間検証などの既存の未確認事項は保持。",
+    "比較は各ケース60秒のプロセス安全上限と1000行動/80ターン上限を使用。今回の24対戦はすべて範囲内で決着。AIの判断には実時間打ち切りを導入していない。",
+    "学習データの更新間引き・引き継ぎ方法や新しい構築種の追加は今回の対象外。"
+  ],
+  "publication": {
+    "pushed": false,
+    "pagesPublished": false,
+    "netlifyUpdated": false
+  },
+  "reproduce": {
+    "baseline": "node tools/benchmark-ai-endgame.mjs --baseline=06c3cfc4 --policy=baseline --output=tmp/ai-baseline.json",
+    "current": "node tools/benchmark-ai-endgame.mjs --baseline=06c3cfc4 --policy=current --output=tmp/ai-current.json",
+    "note": "必要時に比較を再現する手順。今回通過した同一群の自動再実行や登録の再開は設定しない。"
+  }
+}

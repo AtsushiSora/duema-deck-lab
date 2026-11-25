@@ -2,7 +2,7 @@
 // shields, future draws, attack triggers or hypothetical revolution cards.
 export function visibleFinishRoutes(attackers,blockers,shields,{protectedPlayer=false,maxNodes=1800}={}){
  const winning=new Set(),memo=new Map();let nodes=0;
- if(protectedPlayer||attackers.length>8||blockers.length>5||shields>10)return {winning,nodes};
+ if(protectedPlayer||attackers.length>12||blockers.length>5||shields>10)return {winning,nodes};
  const visit=(am,bm,n)=>{
   if(!am)return false;
   const key=am+':'+bm+':'+n;if(memo.has(key))return memo.get(key);

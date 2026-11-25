@@ -13,7 +13,7 @@ test('unblockable hits, no-break hits and protected players retain their actual 
  assert.equal(visibleFinishRoutes([{uid:'hit',damage:3,blockers:[]}],[],0,{protectedPlayer:true}).winning.size,0);
 });
 test('oversized attack plans and exhausted budgets never claim a forced finish',()=>{
- assert.equal(visibleFinishRoutes(Array.from({length:9},(_,i)=>({uid:''+i,damage:1,blockers:[]})),[],1).winning.size,0);
+ assert.equal(visibleFinishRoutes(Array.from({length:13},(_,i)=>({uid:''+i,damage:1,blockers:[]})),[],1).winning.size,0);
  const r=visibleFinishRoutes(Array.from({length:8},(_,i)=>({uid:''+i,damage:1,blockers:['b','c']})),['b','c'],7,{maxNodes:2});assert.equal(r.winning.size,0);assert.ok(r.nodes<=2);
 });
 test('White attacks through a visible finish instead of trading with a tapped creature',()=>{
