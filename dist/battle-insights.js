@@ -5,13 +5,15 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const layers=x=>[x,...(x.under||[]).flatMap(layers),...(x.godLinks||[]).flatMap(layers),...(x.psychicLinks||[]).flatMap(layers)];
 const side=p=>p===0?'自分':'相手';
 const number=n=>n===Infinity||n==='∞'?'∞':Number(n).toLocaleString('ja-JP');
-export function effectExpiry(s,e){
+export function effectExpiry(s,e,{viewer=0}={}){
+ const side=p=>p===viewer?'自分':'相手';
  const who=Number.isInteger(e.who)?e.who:s.active;
  if(e.expires==='end')return who===s.active?'このターン終了まで':side(who)+'のターン終了まで';
  if(e.expires==='start')return e.afterTurns===undefined?'次の'+side(who)+'のターン開始まで':side(who)+'のターン開始時に解除判定';
  return 'カードの条件を満たすまで';
 }
-export function creatureStatusModel(s,player,uid){
+export function creatureStatusModel(s,player,uid,{viewer=0,actions=null}={}){
+ const side=p=>p===viewer?'自分':'相手';
  if(![0,1].includes(player))return null;
  const own=s.players[player],x=own.battle.find(x=>x.uid===uid);if(!x)return null;
  const position=own.battle.indexOf(x)+1;
@@ -20,13 +22,13 @@ export function creatureStatusModel(s,player,uid){
  const allowed=creature&&canCreatureAttack(s,player,x),locked=creature&&attackLocked(s,player,x);
  if(creature){
   if(x.tapped)reasons.push('タップ中');
-  if(c.noAttack&&!c.g1226PlayerAttack)reasons.push('このカードの能力で攻撃できない');
+  if(!allowed&&c.noAttack&&!c.g1226PlayerAttack)reasons.push('このカードの能力で攻撃できない');
   if(locked)reasons.push('カードの効果で攻撃できない');
   if(!allowed&&!reasons.length)reasons.push(x.entered===s.turn&&!isEvolution(x)&&!c.speedAttacker&&!c.machFighter?'出たターンの攻撃条件を満たしていない（召喚酔いなど）':'攻撃に必要な条件を満たしていない');
  }
  const rows=[['状態',x.tapped?'タップ中':'アンタップ']];
  if(creature){rows.push(['現在のパワー',number(power(x,x.uid===s.attack?.attacker,s))]);
-  const legal=s.active===player&&s.phase==='attack'&&!s.decision?getLegalActions(s).some(a=>a.kind==='attack'&&a.uid===uid):null;
+  const legal=s.active===player&&s.phase==='attack'&&!s.decision?(actions||getLegalActions(s)).some(a=>a.kind==='attack'&&a.uid===uid):null;
   rows.push(['攻撃',s.winner!==null?'対戦終了':reasons.length?reasons.join(' / '):legal===false?'選べる攻撃先がない':s.active!==player?'現在は'+side(s.active)+'のターン（持ち主の攻撃ステップで判定）':s.decision?'能力・支払いの選択を解決中':s.phase!=='attack'?side(player)+'の攻撃ステップで攻撃可能':'攻撃可能']);
   if(c.g38BattleBonus)effects.push({name:'バトル中のパワー +'+number(c.g38BattleBonus),until:'この能力が有効な間（通常のパワーには含まない）'});
   if(c.noCreatureAttack||c.noAttack&&c.g1226PlayerAttack)effects.push({name:'クリーチャーには攻撃できない',until:'この能力が有効な間'});
@@ -37,11 +39,16 @@ export function creatureStatusModel(s,player,uid){
  }
  if(abilitiesIgnored(s,x))effects.push({name:'能力が無効になっている',until:'無効にする効果が有効な間'});
  const physical=layers(x),matches=l=>l.player===player&&(!l.uid||physical.some(y=>y.uid===l.uid&&(y.incarnation||0)===(l.incarnation||0)))&&(l.cost===undefined||playFaces(card(x)).some(f=>Number(f.cost)===(l.cost==='∞'?Infinity:Number(l.cost))))&&(l.spellCost===undefined||!spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
- for(const l of s.extLimits||[])if(matches(l)&&((l.kind==='attack'&&locked)||l.kind==='block'))effects.push({name:l.kind==='attack'?(l.reason==='gStrike'?'G・ストライク：攻撃不可':'攻撃不可'):'ブロック不可',until:effectExpiry(s,l)});
+ for(const l of s.extLimits||[])if(matches(l)&&((l.kind==='attack'&&locked)||l.kind==='block'))effects.push({name:l.kind==='attack'?(l.reason==='gStrike'?'G・ストライク：攻撃不可':'攻撃不可'):'ブロック不可',until:effectExpiry(s,l,{viewer})});
  if(locked&&!effects.some(e=>e.name.includes('攻撃不可')))effects.push({name:'攻撃制限',until:'制限しているカードの条件を満たすまで'});
- for(const l of x.powerModifiers||[])effects.push({name:'パワー '+(l.amount>=0?'+':'')+number(l.amount),until:effectExpiry(s,l)});
+ for(const l of x.powerModifiers||[]){
+  if(l.spellCost!==undefined&&spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})||l.grantedAbility&&abilitiesIgnored(s,x))continue;
+  const amount=l.amount==='-infinity'?'-∞':number(l.amount);
+  const name=l.fixedPower!==undefined?'パワー固定 '+number(l.fixedPower):l.multiplier!==undefined?'パワー ×'+number(l.multiplier):l.amount!==undefined?'パワー '+(l.amount>=0?'+':'')+amount:null;
+  if(name)effects.push({name:(l.attackOnly?'攻撃中のみ：':'')+name,until:l.g1237BattleToken?'このバトル終了まで':effectExpiry(s,l,{viewer})});
+ }
  if(!canUntap(x)){
-  for(const l of x.tapLocks||[])effects.push({name:'アンタップ制限',until:typeof l==='number'?'次の'+side(l)+'のターン開始まで':effectExpiry(s,{...l,expires:'start'})});
+  for(const l of x.tapLocks||[])effects.push({name:'アンタップ制限',until:typeof l==='number'?'次の'+side(l)+'のターン開始まで':effectExpiry(s,{...l,expires:'start'},{viewer})});
   if(x.g32NoUntap||x.g34NoUntap)effects.push({name:'アンタップ制限',until:'カードの条件を満たすまで'});
  }
  if(skipsStartUntap(s,x))effects.push({name:'次の'+side(player)+'のターン開始時にアンタップしない',until:'次の'+side(player)+'のターン開始時に解除判定'});

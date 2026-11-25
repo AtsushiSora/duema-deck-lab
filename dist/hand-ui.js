@@ -1,3 +1,5 @@
+import {handUnavailableReason} from './card-use-status.js';
+export {handUnavailableReason} from './card-use-status.js';
 import {card,getLegalActions,playFaces,canCastSpell,canEnterCreature,civilizations,summonCost,paymentPool,manaPayment,manaValue,evolutionBases} from './engine.js';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -33,17 +35,6 @@ export function handCardModel(s,uid,faceIndex=0,legal=getLegalActions(s)){
  else if(!faceActions.length&&face.type==='spell'&&!canCastSpell(s,0,face,'hand'))status='カードの効果による使用制限で、この呪文は唱えられません';
  else if(!faceActions.length&&c.dream&&s.players[0].battle.some(x=>x.cardId===c.id))status='同名のドリーム・クリーチャーが場にいます';
  return {inst,card:c,faces,face,index,human,actions,faceActions,destinations,status,canUse:faceActions.length>0};
-}
-export function handUnavailableReason(s,inst,face){
- if(face.type==='spell'&&!canCastSpell(s,0,face,'hand'))return 'カードの効果による使用制限で、この呪文は唱えられません';
- if(face.type==='creature'&&s.players[0].entryLimitThisTurn&&(s.players[0].enteredThisTurn||0)>=1)return 'このターンに出せるクリーチャーの上限に達しています';
- if(face.type==='creature'&&face.g280NeedsSpell&&!(s.players[0].spellsThisTurn||0))return 'このターンに呪文を唱えてから召喚できます';
- if(face.type==='creature'&&!canEnterCreature(s,0,face,{origin:'hand'}))return 'カードの効果による制限で、今は場に出せません';
- if(face.evolution&&!face.neoEvolution&&!face.sMax&&!evolutionBases(s,0,face).length)return '条件に合う進化元がありません。進化条件をカード情報で確認できます';
- const cost=summonCost(s,0,{...face,summonOrigin:'hand'}),pool=paymentPool(s,0,[],face),available=pool.filter(x=>!x.tapped).reduce((n,x)=>n+(x.paymentValue??manaValue(card(x))),0);
- if(available<cost)return `通常の使用に必要なマナが不足しています（必要${cost} / 使用可能${available}）。別の出し方にも条件があります`;
- if(!manaPayment(pool,{...face,cost}))return '通常の使用に必要な文明を支払えません。多色カードは文明ごとに別のマナが必要です';
- return '今は使用できる行動がありません。カード固有の召喚条件・使用制限や、別の出し方の条件を確認してください';
 }
 export function preferredHandFace(s,uid,legal=getLegalActions(s)){
  const model=handCardModel(s,uid,0,legal);if(!model||model.faceActions.length)return 0;

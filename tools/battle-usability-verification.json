@@ -1,0 +1,675 @@
+{
+  "checkedAt": "2026-11-25T07:11:00.807Z",
+  "status": "verified-local-not-published",
+  "baseline": "29f44b01a0caae9ddc1bbbf72e6302c057224c6f",
+  "scope": [
+    "Distinguish sending/confirmation, opponent choice, ordinary wait, and reconnect states without exposing private decision titles.",
+    "Project canonical normal available mana, own unavailable hand reasons, and public field state/effect expiry with viewer-relative ownership.",
+    "Reuse existing CPU status and hand explanations; correct fixed/multiplied/battle-only/negative-infinite power labels and overridden attack prohibitions.",
+    "Image/list browsing for graveyard, extra and abyss zones; legal own summons first; preserve view mode during room refresh.",
+    "Phone hand collapse with retained scroll; larger resource/close/action buttons; safe-area padding; portrait drawer leaves part of the board visible."
+  ],
+  "supportedNames": 9500,
+  "newCards": 0,
+  "tests": {
+    "uniquePassed": 357,
+    "groups": [
+      {
+        "name": "focused-fixed",
+        "command": [
+          "node",
+          "--test",
+          "tests/battle-usability.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/hand-ui.test.mjs",
+          "tests/battle-insights.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 1.043,
+        "log": "tmp/battle-usability/focused-fixed.log",
+        "passed": 80
+      },
+      {
+        "name": "app-client",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs",
+          "tests/online-client.test.mjs",
+          "tests/online-live.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 5.294,
+        "log": "tmp/battle-usability/app-client.log",
+        "passed": 140
+      },
+      {
+        "name": "server-projection",
+        "command": [
+          "node",
+          "--test",
+          "--test-name-pattern=^(?!.*(?:complete two-account|new No|No[0-9]|Viride accepts|Golgy accounts)).*",
+          "tests/online-server.test.mjs",
+          "tests/online-runtime.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 235.429,
+        "log": "tmp/battle-usability/server-projection.log",
+        "passed": 62
+      },
+      {
+        "name": "final-focused",
+        "command": [
+          "node",
+          "--test",
+          "tests/battle-usability.test.mjs",
+          "tests/battle-insights.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.773,
+        "log": "tmp/battle-usability/final-focused.log",
+        "passed": 22
+      },
+      {
+        "name": "related-manual",
+        "command": [
+          "node",
+          "--test",
+          "tests/manual-ui.test.mjs",
+          "tests/mana-payment.test.mjs",
+          "tests/battle-layout.test.mjs",
+          "tests/board-fit.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 221.62,
+        "log": "tmp/battle-usability/related-manual.log",
+        "passed": 74
+      },
+      {
+        "name": "final-app",
+        "command": [
+          "node",
+          "--test",
+          "tests/online-app.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 6.124,
+        "log": "tmp/battle-usability/final-app.log",
+        "passed": 74
+      }
+    ],
+    "check": {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.173,
+      "log": "tmp/battle-usability/final-check.log"
+    },
+    "fullSuiteStatus": "Historical full npm test remains interrupted/unconfirmed; it was not rerun.",
+    "olderPendingUnchanged": true
+  },
+  "mobile": {
+    "command": [
+      "node",
+      "tools/verify-battle-usability-mobile.mjs"
+    ],
+    "results": [
+      {
+        "width": 320,
+        "height": 568,
+        "open": {
+          "viewport": [
+            320,
+            568
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 9,
+            "y": 520,
+            "width": 302,
+            "height": 44,
+            "bottom": 564,
+            "right": 311
+          },
+          "handToggle": {
+            "x": 225,
+            "y": 396,
+            "width": 82,
+            "height": 44,
+            "bottom": 440,
+            "right": 307
+          },
+          "field": {
+            "x": 11,
+            "y": 323.5,
+            "width": 249,
+            "height": 70.5,
+            "bottom": 394,
+            "right": 260
+          },
+          "drawer": null
+        },
+        "folded": {
+          "viewport": [
+            320,
+            568
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 9,
+            "y": 520,
+            "width": 302,
+            "height": 44,
+            "bottom": 564,
+            "right": 311
+          },
+          "handToggle": {
+            "x": 236,
+            "y": 474,
+            "width": 71,
+            "height": 44,
+            "bottom": 518,
+            "right": 307
+          },
+          "field": {
+            "x": 11,
+            "y": 362.5,
+            "width": 249,
+            "height": 109.5,
+            "bottom": 472,
+            "right": 260
+          },
+          "drawer": null
+        },
+        "selected": {
+          "viewport": [
+            320,
+            568
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 114,
+            "y": 520,
+            "width": 197,
+            "height": 44,
+            "bottom": 564,
+            "right": 311
+          },
+          "handToggle": {
+            "x": 236,
+            "y": 474,
+            "width": 71,
+            "height": 44,
+            "bottom": 518,
+            "right": 307
+          },
+          "field": {
+            "x": 11,
+            "y": 362.5,
+            "width": 249,
+            "height": 109.5,
+            "bottom": 472,
+            "right": 260
+          },
+          "drawer": {
+            "x": 4,
+            "y": 220.609375,
+            "width": 312,
+            "height": 248.390625,
+            "bottom": 469,
+            "right": 316
+          }
+        },
+        "zone": {
+          "open": true,
+          "x": 16,
+          "right": 304,
+          "bottom": 533.90625,
+          "images": 12
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "open": {
+          "viewport": [
+            390,
+            844
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 9,
+            "y": 796,
+            "width": 372,
+            "height": 44,
+            "bottom": 840,
+            "right": 381
+          },
+          "handToggle": {
+            "x": 295,
+            "y": 672,
+            "width": 82,
+            "height": 44,
+            "bottom": 716,
+            "right": 377
+          },
+          "field": {
+            "x": 11,
+            "y": 466.5,
+            "width": 319,
+            "height": 202.5,
+            "bottom": 669,
+            "right": 330
+          },
+          "drawer": null
+        },
+        "folded": {
+          "viewport": [
+            390,
+            844
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 9,
+            "y": 796,
+            "width": 372,
+            "height": 44,
+            "bottom": 840,
+            "right": 381
+          },
+          "handToggle": {
+            "x": 306,
+            "y": 750,
+            "width": 71,
+            "height": 44,
+            "bottom": 794,
+            "right": 377
+          },
+          "field": {
+            "x": 11,
+            "y": 505.5,
+            "width": 319,
+            "height": 241.5,
+            "bottom": 747,
+            "right": 330
+          },
+          "drawer": null
+        },
+        "selected": {
+          "viewport": [
+            390,
+            844
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 114,
+            "y": 796,
+            "width": 267,
+            "height": 44,
+            "bottom": 840,
+            "right": 381
+          },
+          "handToggle": {
+            "x": 306,
+            "y": 750,
+            "width": 71,
+            "height": 44,
+            "bottom": 794,
+            "right": 377
+          },
+          "field": {
+            "x": 11,
+            "y": 505.5,
+            "width": 319,
+            "height": 241.5,
+            "bottom": 747,
+            "right": 330
+          },
+          "drawer": {
+            "x": 4,
+            "y": 297.890625,
+            "width": 382,
+            "height": 447.109375,
+            "bottom": 745,
+            "right": 386
+          }
+        },
+        "zone": {
+          "open": true,
+          "x": 16,
+          "right": 374,
+          "bottom": 793.359375,
+          "images": 12
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "open": {
+          "viewport": [
+            844,
+            390
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 11,
+            "y": 343,
+            "width": 822,
+            "height": 44,
+            "bottom": 387,
+            "right": 833
+          },
+          "handToggle": {
+            "x": 747,
+            "y": 243,
+            "width": 82,
+            "height": 36,
+            "bottom": 279,
+            "right": 829
+          },
+          "field": {
+            "x": 433,
+            "y": 171,
+            "width": 349,
+            "height": 70,
+            "bottom": 241,
+            "right": 782
+          },
+          "drawer": null
+        },
+        "folded": {
+          "viewport": [
+            844,
+            390
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 11,
+            "y": 343,
+            "width": 822,
+            "height": 44,
+            "bottom": 387,
+            "right": 833
+          },
+          "handToggle": {
+            "x": 758,
+            "y": 301,
+            "width": 71,
+            "height": 36,
+            "bottom": 337,
+            "right": 829
+          },
+          "field": {
+            "x": 433,
+            "y": 171,
+            "width": 349,
+            "height": 124,
+            "bottom": 295,
+            "right": 782
+          },
+          "drawer": null
+        },
+        "selected": {
+          "viewport": [
+            844,
+            390
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 116,
+            "y": 343,
+            "width": 717,
+            "height": 44,
+            "bottom": 387,
+            "right": 833
+          },
+          "handToggle": {
+            "x": 758,
+            "y": 301,
+            "width": 71,
+            "height": 36,
+            "bottom": 337,
+            "right": 829
+          },
+          "field": {
+            "x": 433,
+            "y": 171,
+            "width": 349,
+            "height": 124,
+            "bottom": 295,
+            "right": 782
+          },
+          "drawer": {
+            "x": 422,
+            "y": 118,
+            "width": 412,
+            "height": 174,
+            "bottom": 292,
+            "right": 834
+          }
+        },
+        "zone": {
+          "open": true,
+          "x": 152,
+          "right": 692,
+          "bottom": 366.59375,
+          "images": 12
+        }
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "open": {
+          "viewport": [
+            1280,
+            800
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 95,
+            "y": 752,
+            "width": 1090,
+            "height": 44,
+            "bottom": 796,
+            "right": 1185
+          },
+          "handToggle": {
+            "x": 1099,
+            "y": 628,
+            "width": 82,
+            "height": 44,
+            "bottom": 672,
+            "right": 1181
+          },
+          "field": {
+            "x": 101,
+            "y": 454,
+            "width": 1078,
+            "height": 132,
+            "bottom": 586,
+            "right": 1179
+          },
+          "drawer": null
+        },
+        "folded": {
+          "viewport": [
+            1280,
+            800
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 95,
+            "y": 752,
+            "width": 1090,
+            "height": 44,
+            "bottom": 796,
+            "right": 1185
+          },
+          "handToggle": {
+            "x": 1110,
+            "y": 706,
+            "width": 71,
+            "height": 44,
+            "bottom": 750,
+            "right": 1181
+          },
+          "field": {
+            "x": 101,
+            "y": 493,
+            "width": 1078,
+            "height": 171,
+            "bottom": 664,
+            "right": 1179
+          },
+          "drawer": null
+        },
+        "selected": {
+          "viewport": [
+            1280,
+            800
+          ],
+          "overflow": false,
+          "primary": {
+            "x": 200,
+            "y": 752,
+            "width": 985,
+            "height": 44,
+            "bottom": 796,
+            "right": 1185
+          },
+          "handToggle": {
+            "x": 1110,
+            "y": 706,
+            "width": 71,
+            "height": 44,
+            "bottom": 750,
+            "right": 1181
+          },
+          "field": {
+            "x": 101,
+            "y": 493,
+            "width": 1078,
+            "height": 171,
+            "bottom": 664,
+            "right": 1179
+          },
+          "drawer": {
+            "x": 94,
+            "y": 132,
+            "width": 1092,
+            "height": 569,
+            "bottom": 701,
+            "right": 1186
+          }
+        },
+        "zone": {
+          "open": true,
+          "x": 370,
+          "right": 910,
+          "bottom": 752,
+          "images": 12
+        }
+      }
+    ],
+    "errors": [],
+    "preview": "Synthetic projected room; local placeholder art; no accounts or production services used.",
+    "screenshots": [
+      "tmp/battle-usability/mobile-320-open.png",
+      "tmp/battle-usability/mobile-320.png",
+      "tmp/battle-usability/mobile-320-zone.png",
+      "tmp/battle-usability/mobile-390-open.png",
+      "tmp/battle-usability/mobile-390.png",
+      "tmp/battle-usability/mobile-390-zone.png",
+      "tmp/battle-usability/mobile-844-open.png",
+      "tmp/battle-usability/mobile-844.png",
+      "tmp/battle-usability/mobile-844-zone.png",
+      "tmp/battle-usability/mobile-1280-open.png",
+      "tmp/battle-usability/mobile-1280.png",
+      "tmp/battle-usability/mobile-1280-zone.png"
+    ]
+  },
+  "performance": {
+    "fixture": {
+      "creatures": 20,
+      "handPerPlayer": 8,
+      "manaPerPlayer": 10
+    },
+    "before": {
+      "medianMs": 48.40154099999995,
+      "maxMs": 95.82770900000003
+    },
+    "after": {
+      "medianMs": 59.734290999999985,
+      "maxMs": 67.45941700000003
+    }
+  },
+  "invariants": {
+    "preserved": {
+      "dist/cards.json": "d3f35eb0fb4207e5769f3c79ff7216d8ea14d3067c4afaa96e3bb6491e4c9694",
+      "dist/details.json": "41c675fb62ca5f25df04c2f15803d72bbb7bcd18e42a605ab14db9ff77992fb9",
+      "dist/catalogue.json": "6077a7ef2e53052cbc39f1a68f28e70df84c7d5c6276eee48102acb19e59c9a0",
+      "dist/card-images.js": "a8509a2c2b11067d80edac16f322142ec6132c66204211abcd49a0020ca86b80",
+      "dist/card-name-aliases.js": "0cff65bd809201dcb000906fbe2095322f50d52bb6bb4b2a5511db4c76b3d46e",
+      "dist/engine.js": "82f3f625d793a1d87d0f9e5515253d286e124f952a9b640d4a128b3c572c47ca",
+      "dist/online-compatibility.js": "782766b6c5feb92ca994d45b63d7c224497f6a89bff6a50ef8104554b07a1579",
+      "dist/release.json": "27c8ab0872d46f8792593a861511c9e85c77c935f04f9dee729f18b6848daafe",
+      "package.json": "1362d6a84b44e13d9f97be1d324d90cf03037b3b4723d7cb24f762f97564c0de",
+      "package-lock.json": "55ff89cb7118569c2f7a6906cef9c0495d0e7b832621dc1ca4a5aa61312ec52e"
+    },
+    "idsAndSaveFormatsUnchanged": true,
+    "roomProtocol": 1,
+    "projectionOnlyAdditive": true,
+    "canonicalActionsUnchanged": true,
+    "uniqueIds": 9500
+  },
+  "sourceSha256": {
+    "dist/app.js": "8212815be8af3c673499aaacb9f818a9bc10dfa3b4a54d383caec2d9c0101e3a",
+    "dist/online-ui.js": "1435b3bbdcc94a7d5cbfce3315f90c4156cbcecdf39f47d4b1891fe04a7f5ce3",
+    "dist/online.css": "db6c9f3451f23365813003154b40a82bbe8e3bb9817b795810140f5b769b8589",
+    "dist/hand-ui.js": "313c71373837deb140cb837a60e941c34b35e81b1c20a349baecc91538a08475",
+    "dist/card-use-status.js": "540d11c9e1ecf4c10019e0efc03d654a5def8f7a659c656cdad3128e94be2b5b",
+    "dist/battle-insights.js": "2392f660876f6a2946d8e3ceb9bf3a0360669acc57d53dd1198675352a50f307",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "tests/battle-usability.test.mjs": "7f939b8927d6d50b15514a29f3bb470d7128b797009f34d4887fcd591af42128",
+    "tests/online-app.test.mjs": "0b7823eafc05cc702c75b87cbb442036942ef6e8f52d9755769f3dc4a20b92c2",
+    "tools/verify-battle-usability-mobile.mjs": "ab782e2b8da8f2a8dbd58b0af324a66d75cb88346b21933d467d171f9e54af3a"
+  },
+  "resolvedAttempts": [
+    {
+      "run": "focused",
+      "issue": "Own unavailable-hand annotation was missing from the initial projection edit.",
+      "resolution": "Fixed projection of both seats, passed the focused and full server/app regressions."
+    },
+    {
+      "issue": "Local browser verification harness initially had a404 handler, template quoting and opponent-zone selector problem.",
+      "resolution": "Corrected only the test harness; the committed verification tool completed all four viewports without runtime exceptions."
+    }
+  ],
+  "limitations": [
+    "No authenticated production account match or physical phone test was performed. Local two-identity encrypted service tests and synthetic Chrome viewport checks are the measured evidence.",
+    "Available mana is the canonical normal mana-zone total. Card-specific payment pools remain authoritative in the existing payment picker.",
+    "Only effects covered by the existing status model are listed; the interface explicitly directs users to card abilities for other conditions. Unavailable special-use cases retain a general explanation rather than inventing a permission.",
+    "No gameplay engine, card definitions, save schema, or existing IDs changed. Historical pending card/print/full-suite items remain open."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false,
+    "requiresExplicitUserInstruction": true
+  },
+  "registration": {
+    "stopped": true,
+    "automation": "PAUSED"
+  }
+}

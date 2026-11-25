@@ -434,3 +434,12 @@ test('live app sync receives a friend joining and resigning through revision not
 test('live app sync leaves the current selection and operation token intact for an unchanged notification',async()=>{
  const h=harness({live:true});await h.login();await h.click('online-create');await h.friend();await h.click('online-card',{uid:h.read('onlineState.room.game.players[0].hand[0].uid')});const selected=h.read('onlineSelected'),context=h.read('onlineActionScope.token');await h.read('onlineClient.refresh()');assert.equal(h.read('onlineSelected'),selected);assert.equal(h.read('onlineActionScope.token'),context);await h.click('online-primary',{revision:String(h.read('onlineState.room.revision'))});assert.equal(h.game().actions,1);h.read('onlineClient.dispose()');
 });
+
+test('phone hand folding and zone display switching stay local and survive fresh room snapshots',async()=>{
+ const h=harness();await h.login();await h.click('online-create');await h.friend();const revision=h.read('onlineState.room.revision');
+ await h.click('online-hand-toggle');assert.equal(h.read('onlineHandCollapsed'),true);assert.match(h.root.innerHTML,/is-hand-collapsed/);
+ await h.read('onlineClient.refresh()');assert.match(h.root.innerHTML,/is-hand-collapsed/);assert.equal(h.read('onlineState.room.revision'),revision);
+ await h.click('online-zone',{player:'0',zone:'grave'});await h.click('online-zone-view',{mode:'list'});assert.equal(h.read('onlineDialog.displayMode'),'list');assert.match(h.dialog.innerHTML,/is-list/);
+ await h.read('onlineClient.refresh()');assert.match(h.dialog.innerHTML,/is-list/);assert.equal(h.read('onlineState.room.revision'),revision);
+ await h.click('close-dialog');await h.click('online-hand-toggle');assert.equal(h.read('onlineHandCollapsed'),false);h.read('onlineClient.dispose()');
+});
