@@ -1,0 +1,532 @@
+{
+  "checkedAt": "2026-11-25T01:39:08.240Z",
+  "status": "verified-local-not-published",
+  "baseline": "fc5ca53d",
+  "scope": "Improve strongest CPU construction for supported9500-card catalogue, reachable high-cost revolution changes and compatible Star evolutions; correct native ShieldMove685 mode evaluation.",
+  "engineVersion": "0.602.276",
+  "strongestBuildVersion": 2,
+  "supportedNames": 9500,
+  "addedCards": 0,
+  "changes": [
+    "Read compiled Draw/Look, Ramp/face-down mana, targeted removal/sweep, shield burn and Fly spell lock to identify compatible construction routes. Preserve established dedicated counter scoring.",
+    "Introduce high-cost Revolution Change cards only with at least6 reachable matching sources; introduced copy count cannot exceed source count/2. Conditional Crystal Soul/GZero sources retain at least8 face-down mana enablers. New simple evolutions require enough matching bases; complex/dynamic conditions remain conservative and the engine retains actual legality.",
+    "Reward only newly introduced copies, so an existing revolution-heavy seed does not gain an artificial scoring advantage. Keep original8 seeds/28 candidates/6 rounds/12 removal-row search caps. Cache identical route conditions per seed, reuse counts per round and evaluate opening features once per card ID. Defer compiled role walks until a route or seed support needs them.",
+    "Recognize an available opposing ShieldMove685-to-grave choice in native mode scoring: Bolmomo chooses shield burn against an empty/too-large opposing board and sweep against multiple small enemies. No zone movement or card abilities changed.",
+    "Regenerate only stale derived CPU builds using build version2. Existing decks/history/save format,9500 definitions and IDs, old unpublished verification items and stopped registration preserved."
+  ],
+  "results": {
+    "focused-lazy": {
+      "name": "focused-lazy",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu-modern.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.197,
+      "log": "tmp/strongest-cpu-9500/focused-lazy.log",
+      "passed": 15,
+      "logSha256": "e12610c90e14b8557f26a342c62b34e39be51129a419fc5b6c8c401dcbe704d8"
+    },
+    "related-verified": {
+      "name": "related-verified",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 40.051,
+      "log": "tmp/strongest-cpu-9500/related-verified.log",
+      "passed": 50,
+      "logSha256": "337a38fcc5314cc9943182d1d3e033c2fef33151e90c8630fa69e6fffe39dfc6"
+    },
+    "related-new-cards": {
+      "name": "related-new-cards",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1758-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.668,
+      "log": "tmp/strongest-cpu-9500/related-new-cards.log",
+      "passed": 33,
+      "logSha256": "6df322be1383b9d53fc88481844ed1a226c3485b0063b10ebb3755f17ef8ef9e"
+    },
+    "related-save": {
+      "name": "related-save",
+      "command": [
+        "node",
+        "--test",
+        "tests/deck-copy.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.466,
+      "log": "tmp/strongest-cpu-9500/related-save.log",
+      "passed": 11,
+      "logSha256": "02109be0fcfe1d29f362118bdbf804bf3518223bd56565d3e9c7b25cfeff66e6"
+    },
+    "check-verified": {
+      "name": "check-verified",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.425,
+      "log": "tmp/strongest-cpu-9500/check-verified.log",
+      "logSha256": "542a389e19989a9ea4863131d836fe7b4bcef74adda228df523d0d70d6b5a162"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/strongest-cpu-9500/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.646,
+      "log": "tmp/strongest-cpu-9500/invariants.log",
+      "logSha256": "f65e378aa1491c59993d049976e966ee6c5e6d42c14a7618ff8c90c7ef2e6dc5"
+    },
+    "performance-lazy": {
+      "name": "performance-lazy",
+      "command": [
+        "node",
+        "tools/benchmark-strongest-cpu.mjs",
+        "--baseline=fc5ca53d",
+        "--runs=5",
+        "--output=tmp/strongest-cpu-9500/performance-lazy.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.647,
+      "log": "tmp/strongest-cpu-9500/performance-lazy.log",
+      "logSha256": "2d7605205d0b5c3ad058dcd7aa5f701c8c677db7a9bc4274fe996599f8eb4b29"
+    },
+    "final-paired-matches": {
+      "name": "final-paired-matches",
+      "command": [
+        "node",
+        "tmp/strongest-cpu-9500/matches-final.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 69.483,
+      "log": "tmp/strongest-cpu-9500/final-paired-matches.log",
+      "logSha256": "dccb154852a9cc88cf063f69f0465ce50f28df09baa30dce61251171428bb17d"
+    }
+  },
+  "totalTestsPassed": 109,
+  "tests": {
+    "focused": 15,
+    "existingStrongest": 50,
+    "affectedNewCards": 33,
+    "saveHistory": 11
+  },
+  "performance": {
+    "engineVersion": "0.602.276",
+    "cards": 9500,
+    "seedDecks": 52,
+    "runs": 5,
+    "baseline": "fc5ca53d",
+    "method": "Same supported card data and seed decks, alternating local construction policies. Host timings are not a phone/browser latency guarantee.",
+    "results": [
+      {
+        "targetId": "practice-rg",
+        "target": "火自然ビート",
+        "policy": "baseline",
+        "samplesMs": [
+          384,
+          314,
+          304,
+          293,
+          307
+        ],
+        "medianMs": 307
+      },
+      {
+        "targetId": "practice-rg",
+        "target": "火自然ビート",
+        "policy": "current",
+        "samplesMs": [
+          383,
+          341,
+          322,
+          312,
+          325
+        ],
+        "medianMs": 325
+      },
+      {
+        "targetId": "env-scs9-niigata-rose",
+        "target": "墓地ソース（ろーず）",
+        "policy": "baseline",
+        "samplesMs": [
+          303,
+          286,
+          282,
+          292,
+          283
+        ],
+        "medianMs": 286
+      },
+      {
+        "targetId": "env-scs9-niigata-rose",
+        "target": "墓地ソース（ろーず）",
+        "policy": "current",
+        "samplesMs": [
+          327,
+          306,
+          318,
+          305,
+          300
+        ],
+        "medianMs": 306
+      }
+    ]
+  },
+  "pairedMatches": {
+    "baselineSource": "matches.json",
+    "baselineEngine": "0.602.275",
+    "updatedEngine": "0.602.276",
+    "method": "Same seeds and first players, same public-information AI, same crystal Zenith seed deck; only baseline vs new counterbuilding/opening policy differs. Small16-game sample, not a universal strength claim.",
+    "results": [
+      {
+        "target": "火自然ビート",
+        "kind": "baseline",
+        "seed": 95011,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 14,
+        "actions": 85,
+        "ms": 10427,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "baseline",
+        "seed": 95011,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 9,
+        "actions": 56,
+        "ms": 5796,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "baseline",
+        "seed": 95012,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 14,
+        "actions": 94,
+        "ms": 9959,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "baseline",
+        "seed": 95012,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 13,
+        "actions": 76,
+        "ms": 6728,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "呪文中心",
+        "kind": "baseline",
+        "seed": 95011,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 14,
+        "actions": 76,
+        "ms": 5207,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "呪文中心",
+        "kind": "baseline",
+        "seed": 95011,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 11,
+        "actions": 63,
+        "ms": 5105,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "呪文中心",
+        "kind": "baseline",
+        "seed": 95012,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 16,
+        "actions": 83,
+        "ms": 4575,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "呪文中心",
+        "kind": "baseline",
+        "seed": 95012,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 13,
+        "actions": 76,
+        "ms": 4933,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "updated",
+        "seed": 95011,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 14,
+        "actions": 85,
+        "ms": 10546,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "updated",
+        "seed": 95011,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 9,
+        "actions": 56,
+        "ms": 5783,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "updated",
+        "seed": 95012,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 14,
+        "actions": 94,
+        "ms": 9776,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "火自然ビート",
+        "kind": "updated",
+        "seed": 95012,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 13,
+        "actions": 76,
+        "ms": 6376,
+        "unresolved": false,
+        "flyCopies": 0
+      },
+      {
+        "target": "呪文中心",
+        "kind": "updated",
+        "seed": 95011,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 12,
+        "actions": 77,
+        "ms": 7785,
+        "unresolved": false,
+        "flyCopies": 4
+      },
+      {
+        "target": "呪文中心",
+        "kind": "updated",
+        "seed": 95011,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 11,
+        "actions": 69,
+        "ms": 6169,
+        "unresolved": false,
+        "flyCopies": 4
+      },
+      {
+        "target": "呪文中心",
+        "kind": "updated",
+        "seed": 95012,
+        "first": 0,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 24,
+        "actions": 141,
+        "ms": 12318,
+        "unresolved": false,
+        "flyCopies": 4
+      },
+      {
+        "target": "呪文中心",
+        "kind": "updated",
+        "seed": 95012,
+        "first": 1,
+        "winner": 1,
+        "cpuWon": true,
+        "turn": 19,
+        "actions": 112,
+        "ms": 10129,
+        "unresolved": false,
+        "flyCopies": 4
+      }
+    ]
+  },
+  "comparison": {
+    "baselineWins": 8,
+    "baselineGames": 8,
+    "updatedWins": 8,
+    "updatedGames": 8,
+    "unresolved": 0,
+    "conclusion": "Both8/8 in this small controlled sample; no general win-rate increase claimed. Final matched-game policy preceded only the pure lazy-role evaluation optimization; final15+50 cases verify that optimization."
+  },
+  "invariants": {
+    "baseline": "fc5ca53d",
+    "uniqueNames": 9500,
+    "uniqueIds": 9500,
+    "duplicateNames": 0,
+    "originalDefinitionsAndIdsUnchanged": 9500,
+    "saveFormatsUnchanged": true,
+    "historicalPendingUnchanged": true,
+    "publicationUnchanged": true,
+    "registrationStopped": true,
+    "automation": "PAUSED"
+  },
+  "hashes": {
+    "dist/strongest-cpu.js": "4e812078887419d32987371d7f776cc4c14f1a8d9a85e2236ed6a76926da9d7e",
+    "dist/strongest-card-roles.js": "aecfa52126a4922c6fd94484837510361edacc05d606226e51bac1144120c121",
+    "dist/six-photo-rules.js": "e62138a1a13f8d29182c518b06dc804fc2dff91ae2afab3370582df7da8a4daa",
+    "dist/engine.js": "2d499f78de5b9bedaaa7d38cf5852af83797182003f7803f1d23ed18821c8edf",
+    "dist/online-compatibility.js": "7ac1dafa342ca1bf24efce6c62d104dbe7aabd987600d219c8ca60170b04eb7b",
+    "dist/release.json": "fe6443271c28245a2e2f4f4270761ccf46fde2addfca65a40601da66fa67e9f2",
+    "tests/strongest-cpu-modern.test.mjs": "cb555ef719fc85007701f07a7fd1d493bab9ab7aab76988917c88283a923d252",
+    "tools/benchmark-strongest-cpu.mjs": "042a0401b939d9af4dbeb8519eb4122dc9845bd790b3be1932120c74cbdb02d4"
+  },
+  "resolvedAttempts": [
+    {
+      "name": "updated-build",
+      "command": [
+        "node",
+        "tmp/strongest-cpu-9500/benchmark.mjs",
+        "updated"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.142,
+      "log": "tmp/strongest-cpu-9500/updated-build-syntax.log",
+      "logSha256": "a37959041259b8546e2233eb691415d40c510b9ce6b3da2e43fc9886b6e43aaa"
+    },
+    {
+      "name": "related-strongest",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 28.086,
+      "log": "tmp/strongest-cpu-9500/related-strongest.log",
+      "logSha256": "8d931acfe7f34f190a120b25ffec40294f69db57ef47db16f030c99c47f573e2"
+    },
+    {
+      "name": "related-refined",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 38.987,
+      "log": "tmp/strongest-cpu-9500/related-refined.log",
+      "logSha256": "4a8dca88392b69d7c6945a693a8336db57589bc3df1781f44d4eeedfdebd9371"
+    },
+    {
+      "name": "related-diagnostic",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^the earlier counter pool uses entry|^the pool before blocker counters adopts creature|^the earlier pool selects grave|^the strongest CPU counters expensive|^the strongest CPU brings MAX|^the strongest CPU selects the new spell and resource",
+        "tmp/strongest-cpu-9500/diagnostic.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.51,
+      "log": "tmp/strongest-cpu-9500/related-diagnostic.log",
+      "logSha256": "c62cbb1df39c5d48dca22758a0e1308afeb6e6531161cf3bba4edab7c5819b74"
+    },
+    {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/strongest-cpu-modern.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 3.259,
+      "log": "tmp/strongest-cpu-9500/focused-final.log",
+      "logSha256": "a534d83f29ec188063778edc49a09d19032b37ecc3bbec34b208deb5e78559a2"
+    }
+  ],
+  "resolutionNotes": [
+    "Broad generic scalar bonuses initially displaced established dedicated counters; retained existing scalar evaluation and restricted supplementary bonuses to useful, supported routes.",
+    "A second defect rewarded every existing copy in a seed: bonuses now apply only to additions beyond original seed counts. Original50 strongest CPU tests pass without changing them.",
+    "Actual Bolmomo AI chose an empty sweep because ShieldMove685 mode value was absent; the new mode case fixes this and the exact two-choice test passes.",
+    "Initial scripted edit contained a syntax error fixed before validation. Failed runs retained; only final passing runs count."
+  ],
+  "limitations": [
+    "Representative2-deck construction median increased about18–20ms for route analysis, from286–307ms to306–325ms on this Mac. No browser/mobile latency claim or global speedup.",
+    "Small16-game comparison is not a global strength evaluation. Full npm test and historical long groups were not rerun or marked resolved.",
+    "No new archetype generation from scratch; changes adapt existing seed decks. Complex evolution conditions outside conservative static matching remain engine-legal when played but are not newly drafted by this helper."
+  ],
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pagesPublished": false,
+    "netlifyUpdated": false
+  },
+  "registration": {
+    "stopped": true,
+    "automation": "PAUSED"
+  }
+}

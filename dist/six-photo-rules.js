@@ -2321,6 +2321,12 @@ export function createSixPhotoRules(api){
   if(d.op==='RecoverAll326'){score+=recoveryScore326(s,{...t,...d});continue;}
   if(d.op==='Draw'||d.op==='Ramp'){drainCount+=d.n||0;if(drainCount>=deckCount)return d.op==='Draw'&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:-1000;score+=(d.n||0)*(d.op==='Draw'?(own.hand.length<3?12:8):(own.mana.length<6?16:7));}
   else if(d.op==='Target'){const rows=(d.element?opp.battle:creatures(s,1-t.p)).filter(y=>!y.sealed&&matches(s,1-t.p,y,d.filter)&&(!d.tap||!y.tapped)),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value));score+=Math.max(0,...rows.filter(y=>legal.has(y.uid)).map(y=>d.tap?8+cost(effective(y,s)):12+cost(effective(y,s))*2+api.power(y,false,s)/3000-(d.to==='mana'?2:0)));}
+  else if(d.op==='ShieldMove685'&&d.to==='grave'){
+   const target=d.owner==='self'?own:opp;
+   const available=Array.isArray(target.shields)?target.shields.filter(y=>d.optionalExact?api.shieldCards(y).every(x=>!x.g37ShieldHeld):api.shieldCards(y).some(x=>!x.g37ShieldHeld)).length:Number(target.shields)||0;
+   const amount=d.optionalExact&&available<d.n?0:d.n==='all'?available:Math.min(available,Number(d.n)||1);
+   score+=amount*(d.owner==='self'?-12:18);
+  }
   else if(d.op==='ManaChoose582'){
    const mine=manaRows582(s,t.p,d).length,theirs=manaRows582(s,1-t.p,d).length;
    if(d.keep)score+=Math.max(0,(d.who==='opponent'?theirs:mine)-d.n)*(d.who==='opponent'?12:-12);
