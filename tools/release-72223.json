@@ -1,0 +1,140 @@
+{
+  "version": "0.722.23",
+  "checkedAt": "2026-11-25T10:48:14.049Z",
+  "status": "validated-ready-for-pages-only-push",
+  "implementationCommit": "b0965e37",
+  "featureEvidence": "tools/playmat-verification.json",
+  "implementationTestsPassed": 92,
+  "releaseTestsPassed": 16,
+  "supportedNames": 9505,
+  "newCards": 0,
+  "cacheModules": [
+    "ai-decision-worker.js",
+    "ai-decision.js",
+    "ai-playback.js",
+    "app-updates.js",
+    "app.js",
+    "battle-insights.js",
+    "battle-visuals.js",
+    "card-art.js",
+    "card-images.js",
+    "card-use-status.js",
+    "champion-combat-rules.js",
+    "choice-summary.js",
+    "draw.js",
+    "engine.js",
+    "extended-rules.js",
+    "hand-ui.js",
+    "log-card-links.js",
+    "manual-ui.js",
+    "online-compatibility.js",
+    "online.js",
+    "photo167-rules.js",
+    "playmat.js",
+    "release-notes.js",
+    "screenshot-report.js",
+    "shield-photo-rules.js",
+    "six-photo-rules.js",
+    "strongest-card-roles.js",
+    "strongest-cpu-worker.js",
+    "strongest-cpu.js",
+    "tournament-simulation.js",
+    "tournament-worker.js",
+    "worker.js"
+  ],
+  "validation": {
+    "runs": [
+      {
+        "name": "release-tests",
+        "command": [
+          "node",
+          "--test",
+          "tests/app-updates.test.mjs",
+          "tests/playmat.test.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 0.432,
+        "log": "tmp/push-playmat/release-tests.log",
+        "passed": 16,
+        "logSha256": "29341126f65239a952ecb3047531f7a9fa59b86a3abce085ed4e80fe96c0c0a7"
+      },
+      {
+        "name": "check",
+        "command": [
+          "npm",
+          "run",
+          "check"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 20.083,
+        "log": "tmp/push-playmat/check.log",
+        "logSha256": "c438e946c61325238965a05cda9d83a7f8ca2558b2f9bfde4083f3b8ce7fa13b"
+      },
+      {
+        "name": "browser",
+        "command": [
+          "node",
+          "tmp/playmat/app-browser.mjs"
+        ],
+        "code": 0,
+        "timedout": false,
+        "seconds": 2.013,
+        "log": "tmp/push-playmat/browser.log",
+        "logSha256": "0ddd9ed3e6d7472c050a696c08fa164964c21a3ae15a180aab4dcb1f5d639c3b"
+      }
+    ],
+    "version": "0.722.23",
+    "engineVersion": "0.602.282",
+    "supportedNames": 9505,
+    "applicationBodiesUnchanged": true,
+    "hashes": {
+      "index.html": "ae85912e5bcad2bcdedc3d5fd7067e4f628ca91bb918f97c1236e180effd7aaa",
+      "app.js": "876427f1c2e4709e08e9bf288415f89594e5f8940be36c548dc2015c139985ae",
+      "app-updates.js": "0b5c9331967815ba893461ff765916995b83a411c9095efed7928c2b2f21d9b6",
+      "release-notes.js": "c941d41a32b7d83941c39e90f41190fabf34162a4608bd38a16d5603064de133",
+      "release.json": "f57cbbeebe5897f2621a3a074438121cf1e5ae9e94087752d4b43fdff40656aa",
+      "playmat.js": "d993c343e75b543c166f65f3065a6d8121895bf8887e3853843471dd04c72959",
+      "playmat.css": "9f38321cd142a3d3c98505eed4db1f4c01d952202754f297f8334483de198360",
+      "engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+      "extended-rules.js": "24c1a3f26e6e17a50f5d3408b118f145ce73fcf6062cef33d22044f0b004eea6",
+      "six-photo-rules.js": "b371d4df31aa1e9fea7395fa72d9c55b0f82539929e122fbac11b6b8d8a38b14",
+      "shield-photo-rules.js": "495316f10159f6b3d750a8f3257284f7642869668de123b754d5d6eeeea8d929",
+      "photo167-rules.js": "95546ebdba6ee2edc04a7ef35c54ae193a0d26fbdec7a1600ead42bc80e48a23",
+      "champion-combat-rules.js": "aa22242c0f6885d6110b99044e3cd573f11145ba59ab34b7fcb24d93c3c28ebb",
+      "card-images.js": "7995f65722ec601b9b68119f0db228b600877443801ccca3c0e20b7747c5a35d",
+      "online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+      "cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+      "catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+      "details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e"
+    }
+  },
+  "netlify": {
+    "updated": false,
+    "before": {
+      "checkedAt": "2026-11-25T10:47:12.343Z",
+      "netlify": {
+        "stopBuilds": true,
+        "publishedDeployId": "6b0339a3c70a75ba4e6a5808",
+        "publishedAt": "2026-11-22T18:51:24.628Z"
+      },
+      "hooks": [
+        {
+          "id": 701628730,
+          "active": false,
+          "host": "api.netlify.com"
+        }
+      ]
+    },
+    "workflow": "workflow_dispatch only",
+    "excludedByUserPolicy": true
+  },
+  "pages": {
+    "url": "https://atsushisora.github.io/duema-deck-lab/?app_update=0.722.23",
+    "pushed": false,
+    "publiclyVerified": false
+  },
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認"
+}
