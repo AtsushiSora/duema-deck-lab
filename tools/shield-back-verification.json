@@ -1,0 +1,268 @@
+{
+  "checkedAt": "2026-11-25T10:59:55.711Z",
+  "baseline": "84601f5f",
+  "status": "verified-local-not-published",
+  "scope": "Use the existing official Duel Masters card-back asset for both face-down shield rails on every CPU/friend layout. Keep numbers, attack/selection/EX borders and existing face-up art.",
+  "asset": {
+    "path": "dist/assets/home-card-back.jpg",
+    "sourceEvidence": "dist/assets/home-card-back-source.md",
+    "sha256": "e91113e6e132a7e04a0ca4220f5cddd832e6d8a6ee22d38a311522391f0312f2",
+    "imageBytesUnchanged": true
+  },
+  "changes": {
+    "sharedRule": "shield-rail.css (portrait phones do not load manual-theme.css)",
+    "faceUpShieldsExcluded": true,
+    "numberBadge": "Same number and aria label, dark background over artwork",
+    "onlineNumbersWrapped": true,
+    "boardAndTouchGeometryUnchanged": true,
+    "noPrivateCardIdentifiersAdded": true
+  },
+  "results": {
+    "ui": {
+      "name": "ui",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-ui.test.mjs",
+        "tests/battle-usability.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.672,
+      "log": "tmp/shield-back/ui.log",
+      "passed": 61,
+      "logSha256": "f0735286255f79f115c452730ea7efd01c4349bcd66ab05c8c044e74d7d53866"
+    },
+    "manual": {
+      "name": "manual",
+      "command": [
+        "node",
+        "tmp/playmat/short-manual.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.072,
+      "log": "tmp/shield-back/manual.log",
+      "passed": 20,
+      "logSha256": "5e0f90ca1cf1a6d5e8fcc5d9044792ccd853ae02c70743589228919898668801"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.989,
+      "log": "tmp/shield-back/check.log",
+      "logSha256": "c438e946c61325238965a05cda9d83a7f8ca2558b2f9bfde4083f3b8ce7fa13b"
+    },
+    "browser-fixed": {
+      "name": "browser-fixed",
+      "command": [
+        "node",
+        "tmp/shield-back/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.749,
+      "log": "tmp/shield-back/browser-fixed.log",
+      "logSha256": "a03d20c671b8a4165bac1608857140b1729739342e07f99cbeb7a420b8b47692"
+    }
+  },
+  "totalTestsPassed": 81,
+  "browser": {
+    "layouts": [
+      {
+        "mode": "online",
+        "width": 320,
+        "height": 568,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "online",
+        "width": 390,
+        "height": 844,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "online",
+        "width": 844,
+        "height": 390,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "online",
+        "width": 1280,
+        "height": 800,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "manual",
+        "width": 320,
+        "height": 568,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "manual",
+        "width": 390,
+        "height": 844,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "manual",
+        "width": 844,
+        "height": 390,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      },
+      {
+        "mode": "manual",
+        "width": 1280,
+        "height": 800,
+        "shieldCount": 10,
+        "allBackImages": true,
+        "numbers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  "resolvedAttempt": {
+    "name": "browser",
+    "command": [
+      "node",
+      "tmp/shield-back/browser.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 1.951,
+    "log": "tmp/shield-back/browser.log",
+    "logSha256": "8630ce9fc93dd35fa973d8fbf1f08892777d720552aa48c743de438c3e5b453c",
+    "reason": "Browser-check script used a Node viewport variable without interpolating it into the browser expression. Corrected; all8 layouts now pass."
+  },
+  "supportedNames": 9505,
+  "newCards": 0,
+  "gameAndSaveFormatsUnchanged": true,
+  "historicalPendingUnchanged": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "hashes": {
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/shield-rail.css": "f8a766683d5c45496d492f8b8265924851dba37601519c32bae0edc4b2bb8d13"
+  },
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}

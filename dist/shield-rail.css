@@ -1,4 +1,7 @@
 /* Keep shields visible at the edge; use the enlarged picker for touch targets. */
+/* Portrait phones do not load manual-theme.css; share the real card back in every layout. */
+.play-board .shield-tile:not(.is-face-up){background:#10263c url('assets/home-card-back.jpg') center/cover no-repeat;color:#fff6d6;text-shadow:0 1px 2px #000}
+.play-board .shield-tile>.shield-tile-number{position:absolute;inset:auto auto 1px 2px;z-index:2;padding:0 3px;border-radius:3px;background:#061626e8;color:#fff6d6;font-size:9px;line-height:12px;pointer-events:none}
 .shield-rail-open{border:0;background:transparent;color:inherit;display:flex;align-items:center;justify-content:center;gap:3px;padding:0;min-width:44px;min-height:44px;cursor:pointer}
 .shield-rail-open>small{font-size:9px;opacity:.7}.shield-rail-open:focus-visible{outline:2px solid #78edc4;outline-offset:-2px;border-radius:6px}
 .manual-playing .shield-tiles .shield-tile.is-face-up{background:#17364a}
