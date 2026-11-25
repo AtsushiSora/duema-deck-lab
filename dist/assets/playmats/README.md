@@ -1,7 +1,7 @@
-# 市販ラバーマットの参照画像
+# プレイマットの参照画像
 
-メーカー公式の商品紹介で、商品名と対応する詳細画像を確認した5柄です。
-画像ファイルは取得した公式JPEGを加工せず保存しています。描画時の拡大・暗さ・位置・相手側の180度回転はCSSで行います。
+メーカー公式の商品紹介で確認した5柄と、販売店の商品ページで確認した大会柄3柄、計8柄です。
+画像ファイルは各掲載元から取得したJPEGを加工せず保存しています。描画時の拡大・暗さ・位置・相手側の180度回転はCSSで行います。
 
 - 逆転こそが、カードゲームだ。モノクロver. — protect169
 - ドギラゴン＆レッドゾーン — protect168
@@ -9,7 +9,14 @@
 - ドラゴン娘になりたくないっ！ Jack-Pot ver. — page/2/#protect133（詳細画像132_o.jpg）
 - ドラゴン娘になりたくないっ！ — page/2/#protect120（詳細画像119_o.jpg、公式掲載の縦長柄）
 
-出典:
+販売店掲載の大会柄（メーカーの公式ページとは別の出典）:
+- GP6th S級不死 デッドゾーン — https://fullahead-dm.com/shopdetail/000000031503/dmplaymat/page1/recommend/
+- GP6th 終末の時計 ザ・クロック — https://fullahead-dm.com/shopdetail/000000031504/dmplaymat/page1/recommend/
+- GP8th 超戦龍覇 モルトNEXT — https://fullahead-dm.com/shopdetail/000000031518/dmplaymat/page1/recommend/
+
+大会柄の掲載画像は幅400pxです。拡大時は元画像の解像度に応じて粗くなります。商品名と商品ページのog:image、および商品画像を照合し、透かしや余白の除去、描き足しは行っていません。画像を追加しただけで、転載ライセンスや権利者の承諾を取得したという記録ではありません。公開は今回の作業に含めません。
+
+メーカー掲載分の出典:
 - https://dm.takaratomy.co.jp/product/supplies/
 - https://dm.takaratomy.co.jp/product/supplies/page/2/
 

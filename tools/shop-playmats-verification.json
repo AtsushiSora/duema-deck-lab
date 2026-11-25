@@ -1,0 +1,431 @@
+{
+  "checkedAt": "2026-11-25T20:36:23.648Z",
+  "baseline": "ff71ec750303a954c370773011888f094c1c1d6d",
+  "status": "verified-local-not-published",
+  "feature": "Add three retailer-sourced GP creature playmat images and identify source links neutrally",
+  "before": 5,
+  "after": 8,
+  "products": [
+    {
+      "id": "retail-gp-deadzone",
+      "name": "GP6th S級不死 デッドゾーン",
+      "image": "https://makeshop-multi-images.akamaized.net/fullaheaddm/itemimages/000000031503_GyUxKm8.jpg",
+      "source": "https://fullahead-dm.com/shopdetail/000000031503/dmplaymat/page1/recommend/",
+      "local": "assets/playmats/gp-deadzone.jpg",
+      "sha256": "c5ff9a167f97a62acfa811e3e5637bf164251b19e99e6bf871a1b5daab1dee16",
+      "checkedAt": "2026-11-25T20:34:25.961Z",
+      "sourceHtmlSha256": "3c0e50c51c31c19142d890dd606968cf07fb5e147853028c8cbf520e1771e510",
+      "provider": "フルアヘッド",
+      "productTitle": "【サプライ】 プレイマット GP6th S級不死 デッドゾーン【宅急便のみ】",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    },
+    {
+      "id": "retail-gp-clock",
+      "name": "GP6th 終末の時計 ザ・クロック",
+      "image": "https://makeshop-multi-images.akamaized.net/fullaheaddm/itemimages/000000031504_jP1monU.jpg",
+      "source": "https://fullahead-dm.com/shopdetail/000000031504/dmplaymat/page1/recommend/",
+      "local": "assets/playmats/gp-clock.jpg",
+      "sha256": "8a9da379507526116d8f69b3032c520517041b76365cf376a924056463698f17",
+      "checkedAt": "2026-11-25T20:34:26.110Z",
+      "sourceHtmlSha256": "c702b88c8bf30a14289162f1d5d512fd96cc11e05038057a48572cc83d93597b",
+      "provider": "フルアヘッド",
+      "productTitle": "【サプライ】 プレイマット GP6th 終末の時計 ザ・クロック【宅急便のみ】",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    },
+    {
+      "id": "retail-gp-molt-next",
+      "name": "GP8th 超戦龍覇 モルトNEXT",
+      "image": "https://makeshop-multi-images.akamaized.net/fullaheaddm/itemimages/000000031518_oUvPulv.jpg",
+      "source": "https://fullahead-dm.com/shopdetail/000000031518/dmplaymat/page1/recommend/",
+      "local": "assets/playmats/gp-molt-next.jpg",
+      "sha256": "17d18d21a55ca36ffed4f0e11d91ab78007f2ed82a58cf78e0f4b7fde8d8009b",
+      "checkedAt": "2026-11-25T20:34:26.158Z",
+      "sourceHtmlSha256": "815f45b18e185248fc705b60d2da85293038ab427b2325502f357e0eddc5c375",
+      "provider": "フルアヘッド",
+      "productTitle": "【サプライ】 プレイマット GP8th 超戦龍覇 モルトNEXT【宅急便のみ】",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    }
+  ],
+  "imageDimensions": {
+    "gp-deadzone.jpg": [
+      400,
+      217
+    ],
+    "gp-clock.jpg": [
+      400,
+      220
+    ],
+    "gp-molt-next.jpg": [
+      400,
+      189
+    ]
+  },
+  "behavior": {
+    "independentSides": true,
+    "opponentArtRotationDegrees": 180,
+    "cardAndTextRotation": false,
+    "noExternalImagesAtRuntime": true,
+    "existingStorageShape": true,
+    "productSourceLabel": "画像の掲載元・商品情報 ↗"
+  },
+  "results": [
+    {
+      "name": "playmat",
+      "command": [
+        "node",
+        "--test",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.198,
+      "log": "tmp/shop-playmats/playmat.log",
+      "passed": 14,
+      "logSha256": "b271e61f3214992c46c41db5d973f4ad2e0328229a82e084f406185e42b4d4ad"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.762,
+      "log": "tmp/shop-playmats/related.log",
+      "passed": 63,
+      "logSha256": "119d5c3453656458ea0e3bf708d1054e6fc2d2c741408c646180500dd7b9b80a"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tmp/shop-playmats/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 8.938,
+      "log": "tmp/shop-playmats/browser.log",
+      "passed": 0,
+      "logSha256": "83d82843084811edb46c194a01f8db3e129ec2c37b8ac401364851654c062c03"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.021,
+      "log": "tmp/shop-playmats/check.log",
+      "passed": 0,
+      "logSha256": "ddf3a0c31de7b0600c9923eb193dfee811c973fde37c3f63100721c5c289afb9"
+    }
+  ],
+  "totalTestsPassed": 77,
+  "browser": {
+    "layouts": [
+      {
+        "mode": "online",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "width": 312,
+          "height": 267,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 16,
+          "right": 304,
+          "bottom": 533.90625,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "online",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "width": 382,
+          "height": 543,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 16,
+          "right": 374,
+          "bottom": 793.359375,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "online",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "width": 832,
+          "height": 124,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 92,
+          "right": 752,
+          "bottom": 366.59375,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "online",
+        "width": 1280,
+        "height": 800,
+        "geometry": {
+          "width": 1100,
+          "height": 499,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 310,
+          "right": 970,
+          "bottom": 752,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "width": 320,
+          "height": 424,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 16,
+          "right": 304,
+          "bottom": 554,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "width": 390,
+          "height": 650,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 16,
+          "right": 374,
+          "bottom": 830,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "width": 551.046875,
+          "height": 392,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 92,
+          "right": 752,
+          "bottom": 376,
+          "pressed": "true",
+          "controls": 4
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 1280,
+        "height": 800,
+        "geometry": {
+          "width": 826.40625,
+          "height": 692,
+          "overflow": false,
+          "background": "radial-gradient(rgba(0, 0, 0, 0) 20%, rgba(151, 225, 175, 0.25) 21%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 31%, rgba(162, 215, 159, 0.22) 32%, rgba(0, 0, 0, 0) 33%), repeating-conic-gradient(from 45deg, rgb(18, 63, 52) 0deg, rgb(18, 63, 52) 45deg, rgb(23, 49, 46) 45deg, rgb(23, 49, 46) 90deg)",
+          "field": "rgb(9, 25, 28)"
+        },
+        "settings": {
+          "open": true,
+          "x": 310,
+          "right": 970,
+          "bottom": 752,
+          "pressed": "true",
+          "controls": 4
+        }
+      }
+    ],
+    "products": [
+      {
+        "preset": "retail-gyakuten-mono",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect169",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/gyakuten-mono.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dogiragon-redzone",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect168",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/dogiragon-redzone.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dragon-girls-aoharu",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect141",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/dragon-girls-aoharu.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dragon-girls-jack-pot",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/page/2/#protect133",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/dragon-girls-jack-pot.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dragon-girls-original",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/page/2/#protect120",
+        "productHidden": false,
+        "imageWidth": 550,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/dragon-girls-original.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-gp-deadzone",
+        "source": "https://fullahead-dm.com/shopdetail/000000031503/dmplaymat/page1/recommend/",
+        "productHidden": false,
+        "imageWidth": 400,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/gp-deadzone.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-gp-clock",
+        "source": "https://fullahead-dm.com/shopdetail/000000031504/dmplaymat/page1/recommend/",
+        "productHidden": false,
+        "imageWidth": 400,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/gp-clock.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-gp-molt-next",
+        "source": "https://fullahead-dm.com/shopdetail/000000031518/dmplaymat/page1/recommend/",
+        "productHidden": false,
+        "imageWidth": 400,
+        "background": "url(\"http://127.0.0.1:51270/dist/assets/playmats/gp-molt-next.jpg\")",
+        "controlsEnabled": true
+      }
+    ],
+    "split": {
+      "own": "retail-gp-molt-next",
+      "opponent": "retail-dogiragon-redzone",
+      "ownImage": "url(\"http://127.0.0.1:51270/dist/assets/playmats/gp-molt-next.jpg\")",
+      "opponentImage": "url(\"http://127.0.0.1:51270/dist/assets/playmats/dogiragon-redzone.jpg\")",
+      "ownTransform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opponentTransform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "opponentFieldTransform": "none",
+      "previewTransform": "matrix(-1, 0, 0, -1, 0, 0)"
+    },
+    "reloadRestored": true,
+    "errors": [],
+    "environment": "Isolated local headless Chrome using projected online room and manual battle fixtures"
+  },
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+    "dist/shield-rail.css": "f8a766683d5c45496d492f8b8265924851dba37601519c32bae0edc4b2bb8d13",
+    "dist/playmat.css": "0e39b0c879deb1d8df52de7c858b8d678ee7c942e451f4f3cb2e458e42de5ad6",
+    "dist/playmat.js": "46d726ba1cf5b176ee5514c64412bd0252753d7c7c26a41d3ae9e6e8d371e1a7",
+    "dist/retail-playmats.js": "17cbc9d9bc570bb8fc24c7c5557c10e74b5e29cc554fafd101c6bc4e0b4bbf1f",
+    "tests/playmat.test.mjs": "d67c3361eed29fe04111b1e56c766d53faf2dde34ce9049a0039f2b99efdd119",
+    "dist/assets/playmats/sources.json": "11a12f091046c3a5afb03a17874cfdfefb6b6c45c076f4fe9cfdfd02beebfd00"
+  },
+  "preserved": [
+    "dist/cards.json",
+    "dist/catalogue.js",
+    "dist/catalogue.json",
+    "dist/details.json",
+    "dist/engine.js",
+    "dist/manual-ui.js",
+    "dist/online-ui.js",
+    "dist/online.js",
+    "dist/account-data.js",
+    "dist/online-compatibility.js",
+    "dist/shield-rail.css",
+    "dist/playmat.css"
+  ],
+  "existingFiveProductsUnchanged": true,
+  "uniqueNamesBefore": 9505,
+  "uniqueNamesAfter": 9505,
+  "newCards": 0,
+  "olderPendingUnchanged": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "sourceReview": {
+    "productTitleAndOgImageMatched": true,
+    "retailerCompanyPage": "https://fullahead-dm.com/company_info.html",
+    "explicitReuseLicenceConfirmed": false,
+    "imagesNotDescribedAsManufacturerHosted": true
+  },
+  "limitations": [
+    "Retailer images are 400px wide and appear softer when enlarged.",
+    "Physical mobile devices and a new authenticated live two-account match were not exercised.",
+    "This record verifies product/image correspondence, not an acquired image reuse licence."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}

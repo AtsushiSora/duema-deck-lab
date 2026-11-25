@@ -1,4 +1,4 @@
-// Product artwork verified against the manufacturer’s official supplies pages.
+// Product artwork verified against the linked manufacturer or retailer page.
 export const RETAIL_PLAYMATS=[
   {
     "id": "retail-gyakuten-mono",
@@ -29,5 +29,23 @@ export const RETAIL_PLAYMATS=[
     "name": "ドラゴン娘になりたくないっ！",
     "local": "assets/playmats/dragon-girls-original.jpg",
     "source": "https://dm.takaratomy.co.jp/product/supplies/page/2/#protect120"
+  },
+  {
+    "id": "retail-gp-deadzone",
+    "name": "GP6th S級不死 デッドゾーン",
+    "local": "assets/playmats/gp-deadzone.jpg",
+    "source": "https://fullahead-dm.com/shopdetail/000000031503/dmplaymat/page1/recommend/"
+  },
+  {
+    "id": "retail-gp-clock",
+    "name": "GP6th 終末の時計 ザ・クロック",
+    "local": "assets/playmats/gp-clock.jpg",
+    "source": "https://fullahead-dm.com/shopdetail/000000031504/dmplaymat/page1/recommend/"
+  },
+  {
+    "id": "retail-gp-molt-next",
+    "name": "GP8th 超戦龍覇 モルトNEXT",
+    "local": "assets/playmats/gp-molt-next.jpg",
+    "source": "https://fullahead-dm.com/shopdetail/000000031518/dmplaymat/page1/recommend/"
   }
 ];
