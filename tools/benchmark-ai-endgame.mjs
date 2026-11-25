@@ -15,6 +15,9 @@ const args=new Map(process.argv.slice(2).map(s=>{const i=s.indexOf('=');return [
 assert.match(reference,/^[a-f0-9]{7,40}$/i);assert.ok(['baseline','current'].includes(policy));
 const buildPolicy=args.get('--build')||'current';assert.ok(['baseline','current'].includes(buildPolicy));
 const seedOffset=Number(args.get('--seed-offset')||0),categories=args.get('--categories')?.split(',');
+const caseId=args.get('--case'),caseTimeoutMs=Number(args.get('--case-timeout-ms')||60000),concurrency=Number(args.get('--concurrency')||2);
+assert.ok(Number.isSafeInteger(caseTimeoutMs)&&caseTimeoutMs>=1000&&caseTimeoutMs<=300000,'Invalid case timeout');
+assert.ok([1,2].includes(concurrency),'Invalid concurrency');
 assert.ok(Number.isSafeInteger(seedOffset)&&seedOffset>=0&&seedOffset<=1000000,'Invalid seed offset');
 if(categories)assert.ok(categories.length&&categories.every(x=>['rush','blocker-control','graveyard','spell-engine','revolution','evolution'].includes(x)),'Invalid category');
 const root=new URL('../',import.meta.url),directory=new URL('tmp/ai-endgame-'+reference+'/',root);fs.mkdirSync(directory,{recursive:true});
@@ -26,22 +29,24 @@ const read=name=>JSON.parse(fs.readFileSync(new URL('dist/'+name,root))),data=re
 const baselineEngine=await import(new URL('baseline-engine.mjs',directory));baselineEngine.setCards(data.cards);
 const builder=buildPolicy==='baseline'?(await import(new URL('baseline-builder.mjs',directory))).buildStrongestCPU:buildStrongestCPU;
 const registry=createCatalogue(read('catalogue.json'),data.cards,read('details.json')),decks=[...PRESETS,...resolveEnvironmentDecks(registry),...resolveStarter25Decks(registry)],config=[['rush','practice-rg'],['blocker-control','practice-wu'],['graveyard','env-scs9-niigata-rose'],['spell-engine','env-gospel-practice'],['revolution','starter25-07'],['evolution','starter25-23']],games=[];
+if(caseId)assert.ok(config.some(([category])=>[0,1].some(first=>caseId===category+'-'+first)),'Invalid case');
 for(const [index,[category,id]]of config.entries()){
- if(categories&&!categories.includes(category))continue;
+ if(categories&&!categories.includes(category)||caseId&&!caseId.startsWith(category+'-'))continue;
  const target=decks.find(d=>d.id===id);assert.ok(target,id);assert.deepEqual(e.validateDeck(target),[]);
  const cpu=builder(target,decks,data.cards).deck;
- for(const first of[0,1])games.push({id:category+'-'+first,category,target,cpu,first,seed:95100+index+seedOffset});
+ for(const first of[0,1])if(!caseId||caseId===category+'-'+first)games.push({id:category+'-'+first,category,target,cpu,first,seed:95100+index+seedOffset});
 }
-const results=[],report={baseline:reference,engineVersion:e.ENGINE_VERSION,aiVersion:e.AI_VERSION,cards:data.cards.length,policy,buildPolicy,seedOffset,categories:categories||config.map(x=>x[0]),method:'Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a60-second process safety limit; game rules and AI decisions never use that wall clock.',cases:games.map(({target,cpu,...x})=>({...x,targetId:target.id,cpuCards:cpu.cards})),caseHash:createHash('sha256').update(JSON.stringify(games)).digest('hex'),targetCaseHash:createHash('sha256').update(JSON.stringify(games.map(({cpu,...x})=>x))).digest('hex'),results};
+assert.ok(games.length,'No matching cases');
+const results=[],report={baseline:reference,engineVersion:e.ENGINE_VERSION,aiVersion:e.AI_VERSION,cards:data.cards.length,policy,buildPolicy,seedOffset,categories:categories||config.map(x=>x[0]),caseId,caseTimeoutMs,concurrency,method:'Paired real opposing archetypes with recorded CPU lists. Opponent always uses the frozen baseline AI. Build and CPU turn policy are selected independently; compare targetCaseHash for builder comparisons and caseHash when decks must also match. Physical80-card identities checked after every action. Each isolated case has a bounded process safety limit; game rules and AI decisions never use that wall clock.',cases:games.map(({target,cpu,...x})=>({...x,targetId:target.id,cpuCards:cpu.cards})),caseHash:createHash('sha256').update(JSON.stringify(games)).digest('hex'),targetCaseHash:createHash('sha256').update(JSON.stringify(games.map(({cpu,...x})=>x))).digest('hex'),results};
 const save=()=>{if(output)fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');};save();
 async function run(game){return await new Promise(resolve=>{
  const worker=new Worker(new URL('./benchmark-ai-endgame-worker.mjs',import.meta.url),{workerData:{cards:data.cards,game,baselineUrl:new URL('baseline-engine.mjs',directory).href,baselineBuildUrl:new URL('baseline-builder.mjs',directory).href,policy,buildPolicy}});let done=false;
  const finish=async row=>{if(done)return;done=true;clearTimeout(timer);await worker.terminate();resolve(row);};
  const failed=reason=>({id:game.id,category:game.category,targetId:game.target.id,policy,seed:game.seed,first:game.first,winner:null,cpuWon:false,unresolved:true,reason});
- const timer=setTimeout(()=>finish(failed('60-second-safety-limit')),60000);
+ const timer=setTimeout(()=>finish(failed(caseTimeoutMs+'ms-safety-limit')),caseTimeoutMs);
  worker.once('message',row=>finish(row));worker.once('error',error=>finish(failed(error.message)));
  worker.once('exit',code=>{if(!done)finish(failed('worker-exit-'+code));});
  });}
-let next=0;await Promise.all(Array.from({length:2},async()=>{while(next<games.length){const game=games[next++],row=await run(game);results.push(row);save();console.log(JSON.stringify(row));}}));
+let next=0;await Promise.all(Array.from({length:concurrency},async()=>{while(next<games.length){const game=games[next++],row=await run(game);results.push(row);save();console.log(JSON.stringify(row));}}));
 report.summary={games:results.length,completed:results.filter(r=>!r.unresolved).length,cpuWins:results.filter(r=>r.cpuWon).length,unresolved:results.filter(r=>r.unresolved).length};save();console.log(JSON.stringify(report.summary));
 if(report.summary.unresolved)process.exitCode=1;

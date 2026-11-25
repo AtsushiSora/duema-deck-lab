@@ -46,3 +46,18 @@ export function strongestCardSupport(c,rows,lookup,getRoles=strongestCardRoles){
  const count=ids=>rows.reduce((n,r)=>n+(ids.has(r.id)?r.count:0),0);
  return {rev,conditionalRev,faceDownIds,evolution,jo,revCount:count(rev),evolutionCount:count(evolution),joCount:count(jo)};
 }
+
+// Preserve an established early reduction plan, not merely its expensive bodies.
+// Unknown reduction conditions remain outside this conservative static estimate.
+export function strongestOpeningSupport(rows,lookup){
+ const count=ids=>rows.reduce((n,r)=>n+(ids.has(r.id)?r.count:0),0),reducers=new Set(),payload=new Set();
+ for(const r of rows){const c=lookup(r.id);
+  if(c.type!=='creature'||c.cost>3||!c.chara&&!c.koppi)continue;
+  const targets=rows.filter(y=>{const d=lookup(y.id);return d.type==='creature'&&d.cost>=4&&
+   (c.chara&&String(d.race).includes('ドラゴン')||c.koppi&&String(d.race).includes('アーマード'));});
+  if(targets.reduce((n,r)=>n+r.count,0)<8)continue;
+  reducers.add(r.id);for(const y of targets)payload.add(y.id);
+ }
+ const sources=count(reducers);
+ return {reducers,payload,minimum:sources>=4?Math.min(6,sources):0};
+}

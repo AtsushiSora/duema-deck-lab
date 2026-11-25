@@ -1,7 +1,7 @@
 import {card,playFaces,civilizations,validateDeck,manaPayment,manaValue} from './engine.js';
-import {strongestCardRoles,strongestCardSupport} from './strongest-card-roles.js';
+import {strongestCardRoles,strongestCardSupport,strongestOpeningSupport} from './strongest-card-roles.js';
 import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.722.20';
-export const STRONGEST_BUILD_VERSION=3;
+export const STRONGEST_BUILD_VERSION=4;
 const finite=n=>Number.isFinite(Number(n))?Number(n):30;
 const rowsSignature=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return JSON.stringify([...counts].sort(([a],[b])=>a.localeCompare(b)));};
 export function strongestDeckKey(deck){return JSON.stringify([STRONGEST_BUILD_VERSION,ONLINE_COMPATIBILITY.engineVersion,ONLINE_COMPATIBILITY.rulesHash,deck?.format||'original',deck?.historicalId||'',rowsSignature(deck?.cards)]);}
@@ -439,6 +439,8 @@ function structuralScore(rows,info,utilities,base){
  if(hasNewAdvent&&(echoTargets<6||high<6)||hasNewNoval&&cheapDeployments<10)return -Infinity;
  if(hasNewBeetle&&largeAllies<6||hasNewHorror&&smallAllies<10)return -Infinity;
  if(overlap<28||attackers<Math.min(8,base.attackers)||high<Math.min(4,base.high))return -Infinity;
+ if(base.opening?.minimum&&rows.reduce((n,r)=>n+(base.opening.payload.has(r.id)?r.count:0),0)>=4&&
+  rows.reduce((n,r)=>n+(base.opening.reducers.has(r.id)?r.count:0),0)<base.opening.minimum)return -Infinity;
  if(spellResponseColors.size&&(spells<8||[...spellResponseColors].some(color=>(colors.get(color)||0)<8)))return -Infinity;
  score-=symmetricGraveLock*Math.max(0,graveReliant-4)*2+Math.max(0,12-early)*14+Math.max(0,high-12)*8+Math.max(0,ramp-12)*5;
  for(const color of base.colors)score-=Math.max(0,Math.min(8,base.sources.get(color)||0)-(colors.get(color)||0))*12;
@@ -461,7 +463,9 @@ export function buildStrongestCPU(target,seeds,implemented,{onProgress=()=>{},le
  const seen=new Set(),valid=[];
  for(const d of seeds){const rows=asRows(countRows(d.cards||[])),plain={cards:rows,format:'original'},sig=rowsSignature(rows);if(seen.has(sig)||validateDeck(plain).length)continue;seen.add(sig);
   const counts=countRows(rows),colors=[...new Set(rows.flatMap(r=>info.get(r.id).colors))],sources=new Map(colors.map(color=>[color,rows.reduce((n,r)=>n+(info.get(r.id).colors.includes(color)?r.count:0),0)])),raceCounts=new Map();for(const r of rows)for(const race of ['ドラゴン','アビス','ジョーカーズ','コマンド','魔導具','メタリカ','ジャイアント','ファイアー・バード'])if(info.get(r.id).race.includes(race))raceCounts.set(race,(raceCounts.get(race)||0)+r.count);
-  const base={counts,colors,sources,raceCounts,races:[...raceCounts].filter(([,n])=>n>=16).map(([race])=>race),attackers:rows.reduce((n,r)=>n+(info.get(r.id).attacker?r.count:0),0),high:rows.reduce((n,r)=>n+((info.get(r.id).body&&info.get(r.id).bodyCost>=6||!info.get(r.id).body&&info.get(r.id).cost>=6)?r.count:0),0)};
+  // Preserve the seed's opening in a fresh matchup. Observed defeats must be
+  // allowed to replace that plan rather than being locked into its setup cards.
+  const base={counts,colors,sources,raceCounts,opening:feedback.losses?null:strongestOpeningSupport(rows,card),races:[...raceCounts].filter(([,n])=>n>=16).map(([race])=>race),attackers:rows.reduce((n,r)=>n+(info.get(r.id).attacker?r.count:0),0),high:rows.reduce((n,r)=>n+((info.get(r.id).body&&info.get(r.id).bodyCost>=6||!info.get(r.id).body&&info.get(r.id).cost>=6)?r.count:0),0)};
   valid.push({rows,base,name:d.name,score:scoreDeck(rows,base)});
  }
  if(!valid.length)throw Error('対策構築の基になる対応済みデッキがありません');
