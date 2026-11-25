@@ -227,6 +227,27 @@ export function createStrategicAI(api){
   let shields=opp.shields.length;for(const hit of hits){if(shields===0)return api.directAttackProtected(s,1-p)?(opp.shields.length-shields)*5:110;shields=Math.max(0,shields-hit);}
   return (opp.shields.length-shields)*5;
  }
+ function entryBattleTempo(s,p){
+  // Main-action search stops before attacks. Give partial credit for a fresh
+  // Mach Fighter's favorable battle, rather than valuing only cards drawn.
+  // Score one target only; several attackers must not claim the same removal.
+  if(s.active!==p||s.decision)return 0;
+  const fresh=s.players[p].battle.filter(x=>x.entered===s.turn&&effective(x,s).machFighter);
+  if(!fresh.length)return 0;
+  const view={...s,phase:'attack'};mark(view);let best=0;
+  for(const a of legal(view)){
+   if(a.kind!=='attack'||a.target==='player')continue;
+   const x=fresh.find(x=>x.uid===a.uid),y=s.players[1-p].battle.find(x=>x.uid===a.target);
+   if(!x||!y)continue;
+   const enemy=effective(y,s),ap=api.matchupPower(x,y,true,s,false),bp=api.matchupPower(y,x,false,s,true);
+   // Redirected battles, protected stacks and a first-battle Flare are not
+   // ordinary removals. Leave those uncertain outcomes to the effect policy.
+   if(api.blockersFor(view,1-p,x).length||enemy.slayer||enemy.exLife||y.under?.length||
+      !(s.g7Battles?.[1-p]||0)&&s.players[1-p].battle.some(z=>effective(z,s).flare))continue;
+   if(ap>bp&&!api.battleSafe(s,y,x,ap))best=Math.max(best,creatureValue(s,y)*.8);
+  }
+  return best;
+ }
  function value(s,p){
   if(s.winner!==null)return s.winner===p?100000:-100000;
   const own=s.players[p],opp=s.players[1-p],mana=own.mana.length;
@@ -243,7 +264,7 @@ export function createStrategicAI(api){
   const championPlan=own.battle.some(x=>card(x).g40Acashic&&effective(x,s).g40Acashic)?80:own.mana.some(x=>card(x).g40Acashic)&&own.hand.some(x=>card(x).g40Fiona)?50:0;
   return board(s,p)-board(s,1-p)*1.08+hand+gravePlan+heroPlan+championPlan-opp.hand.length*5+
    Math.min(mana,7)*(hero(s,p)?18:11)+Math.max(0,Math.min(mana-7,5))*3+colors*2+safety+
-   pressure(s,p)-(own.shields.length<danger?18:0)-(own.deck.length<=3?(4-own.deck.length)*16:0);
+   pressure(s,p)+entryBattleTempo(s,p)-(own.shields.length<danger?18:0)-(own.deck.length<=3?(4-own.deck.length)*16:0);
  }
  function candidates(s,ranked=rank(s)){
   const rows=ranked.filter(r=>!r.a.cardId||card(r.a.cardId)?.type!=='unknown');
