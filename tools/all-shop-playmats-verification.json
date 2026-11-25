@@ -1,0 +1,1394 @@
+{
+  "checkedAt": "2026-11-25T22:15:51.189Z",
+  "baseline": "1bcbf548bbba8137c23ba7c00ed1d0b8aea7083f",
+  "status": "verified-local-not-published",
+  "feature": "Complete the retailer playmat category, excluding sample-marked images and duplicate designs",
+  "listingCount": 159,
+  "pages": [
+    {
+      "page": 1,
+      "source": "https://fullahead-dm.com/shopbrand/dmplaymat/",
+      "htmlSha256": "58b04b4dbd987b4ac4d1b50cf9f67f69b646cc1c79b546280b33af434d9cc119",
+      "products": 50
+    },
+    {
+      "page": 2,
+      "source": "https://fullahead-dm.com/shopbrand/dmplaymat/page2/recommend/",
+      "htmlSha256": "c35aa3ebf152a6bb8ad30fd92e71eb85e41051724850dce6107a9cf274964aa7",
+      "products": 50
+    },
+    {
+      "page": 3,
+      "source": "https://fullahead-dm.com/shopbrand/dmplaymat/page3/recommend/",
+      "htmlSha256": "63a98b82f9d31e213befa5e8144bc30608612583b456de6843c8c15048e70aed",
+      "products": 50
+    },
+    {
+      "page": 4,
+      "source": "https://fullahead-dm.com/shopbrand/dmplaymat/page4/recommend/",
+      "htmlSha256": "9dc67f314f6d90b4b1814d4dcfea7ed797b979f4bda969627da870f3e4cf639c",
+      "products": 9
+    }
+  ],
+  "before": 58,
+  "added": 85,
+  "after": 143,
+  "coverage": {
+    "existing": 53,
+    "added": 85,
+    "excluded-sample": 19,
+    "duplicate": 2
+  },
+  "coverageManifest": "tools/all-shop-playmats-review.json",
+  "sampleReviewMethod": "All159 images visually reviewed in full-image contact sheets; faint/ambiguous overlays additionally reviewed at a larger display size. OCR output was not used.",
+  "optionalOcr": {
+    "status": "failed-environment-not-used",
+    "attempted": 159,
+    "recognized": 0,
+    "errors": 159,
+    "error": "Vision nilError and sandbox_extension_issue_file Operation not permitted for the model cache",
+    "seconds": 507.253,
+    "logSha256": "599b4ffd269521adb8881973e50d42f7acb552e07bee10f0a79976544a72e06d",
+    "rerun": false
+  },
+  "optionalOcrRun": {
+    "name": "ocr",
+    "command": [
+      "tmp/all-shop-playmats/ocr",
+      "tmp/all-shop-playmats"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 507.253,
+    "log": "tmp/all-shop-playmats/ocr.log",
+    "passed": 0,
+    "logSha256": "599b4ffd269521adb8881973e50d42f7acb552e07bee10f0a79976544a72e06d"
+  },
+  "results": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.481,
+      "log": "tmp/all-shop-playmats/focused.log",
+      "passed": 16,
+      "logSha256": "21394a71789af9457782219175e81fd7e14e42da602b828c1596f07a9c782e80"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.042,
+      "log": "tmp/all-shop-playmats/related.log",
+      "passed": 63,
+      "logSha256": "ce676ec6d01d1e32d31b0942b34b06dc25319d82ccc168791db6dd90d0dde277"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.282,
+      "log": "tmp/all-shop-playmats/check.log",
+      "passed": 0,
+      "logSha256": "3cee2cdb94d0cae765b731ee7c17f5c281e1123c87d496fbb87494404b4e8d50"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tmp/all-shop-playmats/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 76.714,
+      "log": "tmp/all-shop-playmats/browser.log",
+      "passed": 0,
+      "logSha256": "0228d907aeb21b5675a40f7599430363937fa45acc95c936696b9e9604463927"
+    },
+    {
+      "name": "app-browser",
+      "command": [
+        "node",
+        "tmp/all-shop-playmats/app-browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.401,
+      "log": "tmp/all-shop-playmats/app-browser.log",
+      "passed": 0,
+      "logSha256": "0ddd9ed3e6d7472c050a696c08fa164964c21a3ae15a180aab4dcb1f5d639c3b"
+    }
+  ],
+  "totalTestsPassed": 79,
+  "browser": {
+    "layouts": [
+      {
+        "mode": "online",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "online",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "online",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "online",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      },
+      {
+        "mode": "manual",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "search": {
+          "matches": [
+            "retail-gp-deadzone"
+          ],
+          "count": "1 / 143柄",
+          "zero": 0,
+          "emptyShown": true,
+          "restored": 143,
+          "savedUnchanged": true
+        }
+      }
+    ],
+    "all143DesignsSelectedOnBothSides": true,
+    "opponentArtRotationDegrees": 180,
+    "cardsAndControlsUpright": true,
+    "productResults": [
+      {
+        "id": "retail-gyakuten-mono",
+        "width": 1000,
+        "height": 583,
+        "bothSides": true,
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect169"
+      },
+      {
+        "id": "retail-dogiragon-redzone",
+        "width": 1000,
+        "height": 583,
+        "bothSides": true,
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect168"
+      },
+      {
+        "id": "retail-dragon-girls-aoharu",
+        "width": 1000,
+        "height": 583,
+        "bothSides": true,
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect141"
+      },
+      {
+        "id": "retail-dragon-girls-jack-pot",
+        "width": 1000,
+        "height": 583,
+        "bothSides": true,
+        "source": "https://dm.takaratomy.co.jp/product/supplies/page/2/#protect133"
+      },
+      {
+        "id": "retail-dragon-girls-original",
+        "width": 550,
+        "height": 943,
+        "bothSides": true,
+        "source": "https://dm.takaratomy.co.jp/product/supplies/page/2/#protect120"
+      },
+      {
+        "id": "retail-gp-deadzone",
+        "width": 400,
+        "height": 217,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031503/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-gp-clock",
+        "width": 400,
+        "height": 220,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031504/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-gp-molt-next",
+        "width": 400,
+        "height": 189,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031518/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031556",
+        "width": 400,
+        "height": 203,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031556/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031580",
+        "width": 400,
+        "height": 198,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031580/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031581",
+        "width": 400,
+        "height": 208,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031581/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031590",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031590/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031603",
+        "width": 400,
+        "height": 193,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031603/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031604",
+        "width": 400,
+        "height": 207,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031604/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000032658",
+        "width": 400,
+        "height": 226,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000032658/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000038714",
+        "width": 400,
+        "height": 203,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000038714/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000029756",
+        "width": 400,
+        "height": 216,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000029756/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000029757",
+        "width": 400,
+        "height": 215,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000029757/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031486",
+        "width": 400,
+        "height": 192,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031486/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031487",
+        "width": 400,
+        "height": 175,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031487/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031488",
+        "width": 400,
+        "height": 204,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031488/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031489",
+        "width": 400,
+        "height": 205,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031489/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031490",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031490/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031491",
+        "width": 400,
+        "height": 205,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031491/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031492",
+        "width": 400,
+        "height": 189,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031492/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031493",
+        "width": 400,
+        "height": 195,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031493/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031494",
+        "width": 400,
+        "height": 195,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031494/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031495",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031495/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031498",
+        "width": 400,
+        "height": 202,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031498/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031499",
+        "width": 400,
+        "height": 210,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031499/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031500",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031500/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031501",
+        "width": 400,
+        "height": 204,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031501/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031502",
+        "width": 400,
+        "height": 224,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031502/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031505",
+        "width": 400,
+        "height": 214,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031505/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031507",
+        "width": 400,
+        "height": 200,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031507/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031508",
+        "width": 400,
+        "height": 200,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031508/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031509",
+        "width": 400,
+        "height": 198,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031509/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031513",
+        "width": 400,
+        "height": 210,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031513/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031520",
+        "width": 400,
+        "height": 193,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031520/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031522",
+        "width": 400,
+        "height": 273,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031522/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031524",
+        "width": 400,
+        "height": 205,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031524/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031525",
+        "width": 400,
+        "height": 217,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031525/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031530",
+        "width": 400,
+        "height": 218,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031530/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031532",
+        "width": 400,
+        "height": 231,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031532/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031533",
+        "width": 400,
+        "height": 229,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031533/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031537",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031537/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031538",
+        "width": 400,
+        "height": 197,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031538/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031540",
+        "width": 400,
+        "height": 201,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031540/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031541",
+        "width": 400,
+        "height": 186,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031541/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031547",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031547/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031548",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031548/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031549",
+        "width": 400,
+        "height": 178,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031549/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031552",
+        "width": 400,
+        "height": 197,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031552/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031554",
+        "width": 400,
+        "height": 193,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031554/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031555",
+        "width": 400,
+        "height": 200,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031555/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031557",
+        "width": 400,
+        "height": 204,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031557/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031559",
+        "width": 400,
+        "height": 225,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031559/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031561",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031561/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031515",
+        "width": 353,
+        "height": 170,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031515/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031607",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031607/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000029758",
+        "width": 400,
+        "height": 179,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000029758/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031496",
+        "width": 400,
+        "height": 201,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031496/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031497",
+        "width": 400,
+        "height": 214,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031497/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031506",
+        "width": 240,
+        "height": 129,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031506/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031511",
+        "width": 240,
+        "height": 122,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031511/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031512",
+        "width": 317,
+        "height": 159,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031512/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031514",
+        "width": 400,
+        "height": 203,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031514/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031516",
+        "width": 353,
+        "height": 170,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031516/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031517",
+        "width": 353,
+        "height": 170,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031517/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031519",
+        "width": 400,
+        "height": 188,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031519/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031521",
+        "width": 400,
+        "height": 193,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031521/dmplaymat/page1/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031527",
+        "width": 225,
+        "height": 116,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031527/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031531",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031531/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031534",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031534/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031535",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031535/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031536",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031536/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031539",
+        "width": 400,
+        "height": 220,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031539/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031542",
+        "width": 276,
+        "height": 150,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031542/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031543",
+        "width": 300,
+        "height": 177,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031543/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031544",
+        "width": 372,
+        "height": 187,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031544/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031545",
+        "width": 313,
+        "height": 150,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031545/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031546",
+        "width": 291,
+        "height": 146,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031546/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031551",
+        "width": 244,
+        "height": 110,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031551/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031553",
+        "width": 240,
+        "height": 115,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031553/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031558",
+        "width": 350,
+        "height": 191,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031558/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031562",
+        "width": 400,
+        "height": 234,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031562/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031563",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031563/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031569",
+        "width": 400,
+        "height": 194,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031569/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031570",
+        "width": 400,
+        "height": 197,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031570/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031571",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031571/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031572",
+        "width": 400,
+        "height": 196,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031572/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031573",
+        "width": 341,
+        "height": 170,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031573/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031574",
+        "width": 400,
+        "height": 196,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031574/dmplaymat/page2/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031575",
+        "width": 400,
+        "height": 201,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031575/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031576",
+        "width": 341,
+        "height": 170,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031576/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031577",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031577/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031578",
+        "width": 400,
+        "height": 198,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031578/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031579",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031579/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031582",
+        "width": 400,
+        "height": 207,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031582/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031583",
+        "width": 400,
+        "height": 211,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031583/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031584",
+        "width": 400,
+        "height": 198,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031584/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031586",
+        "width": 400,
+        "height": 208,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031586/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031587",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031587/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031588",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031588/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031589",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031589/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031591",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031591/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031592",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031592/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031593",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031593/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031594",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031594/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031595",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031595/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031596",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031596/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031597",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031597/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031598",
+        "width": 400,
+        "height": 230,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031598/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031599",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031599/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031600",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031600/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031601",
+        "width": 400,
+        "height": 232,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031601/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031602",
+        "width": 400,
+        "height": 203,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031602/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031605",
+        "width": 400,
+        "height": 209,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031605/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031606",
+        "width": 400,
+        "height": 203,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031606/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031608",
+        "width": 400,
+        "height": 216,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031608/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031609",
+        "width": 400,
+        "height": 201,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031609/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031611",
+        "width": 400,
+        "height": 201,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031611/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031613",
+        "width": 400,
+        "height": 215,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031613/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031614",
+        "width": 400,
+        "height": 295,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031614/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031615",
+        "width": 400,
+        "height": 270,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031615/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031616",
+        "width": 400,
+        "height": 235,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031616/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031617",
+        "width": 400,
+        "height": 237,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031617/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031618",
+        "width": 400,
+        "height": 235,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031618/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031619",
+        "width": 400,
+        "height": 238,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031619/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031620",
+        "width": 400,
+        "height": 238,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031620/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031621",
+        "width": 400,
+        "height": 230,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031621/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031622",
+        "width": 400,
+        "height": 206,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031622/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031623",
+        "width": 400,
+        "height": 236,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031623/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031624",
+        "width": 400,
+        "height": 233,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031624/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000031625",
+        "width": 400,
+        "height": 221,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000031625/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000032655",
+        "width": 400,
+        "height": 219,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000032655/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000032656",
+        "width": 400,
+        "height": 223,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000032656/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000032657",
+        "width": 400,
+        "height": 222,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000032657/dmplaymat/page3/recommend/"
+      },
+      {
+        "id": "retail-shop-000000032661",
+        "width": 400,
+        "height": 238,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000032661/dmplaymat/page4/recommend/"
+      },
+      {
+        "id": "retail-shop-000000033945",
+        "width": 400,
+        "height": 227,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000033945/dmplaymat/page4/recommend/"
+      },
+      {
+        "id": "retail-shop-000000033946",
+        "width": 400,
+        "height": 220,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000033946/dmplaymat/page4/recommend/"
+      },
+      {
+        "id": "retail-shop-000000033949",
+        "width": 400,
+        "height": 217,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000033949/dmplaymat/page4/recommend/"
+      },
+      {
+        "id": "retail-shop-000000038713",
+        "width": 400,
+        "height": 199,
+        "bothSides": true,
+        "source": "https://fullahead-dm.com/shopdetail/000000038713/dmplaymat/page4/recommend/"
+      }
+    ],
+    "reloadRestored": true,
+    "actualApp": {
+      "menu": "app menu → display settings → playmat",
+      "savedPreset": "retail-shop-000000031547",
+      "reloadRestored": true,
+      "errors": []
+    },
+    "environment": "Isolated local headless Chrome; projected online room and manual battle fixtures, plus actual app entry. No new authenticated live two-account match."
+  },
+  "imageReviewArtifacts": [
+    {
+      "path": "tmp/all-shop-playmats/review-0.png",
+      "sha256": "9ae48f841896e99f76526aa5e1d86df26755fd0871a058bdd504179c0174c105"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-1.png",
+      "sha256": "3646ef861070b52389875c4c966d4f81211fd7e549ee79f98f888b675a869774"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-2.png",
+      "sha256": "85f1627c1ebb3b0258aba0dc7273f713ed7f7590cac030592901ccbfa7140119"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-3.png",
+      "sha256": "d4461e172f5622611b80e46202b831dfb75c5567319eabc57d3a701c2c4b3dda"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-4.png",
+      "sha256": "acccbafc94c32fa9c0af5378cd6b39f787bc2a19143108643c8f6ccbae14302c"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-5.png",
+      "sha256": "944d30fb7195919ecabbdaeee7cb85b606eea2cbe4dc4eed2cdb767f51e2a218"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-6.png",
+      "sha256": "8a7630cccc3103a001b764ce8fe2c6a1eb2b5eca8cf74ccc989ec3c811959486"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-7.png",
+      "sha256": "020b3899975d92d07c779e71913726b66917b92b696e0adedfb5db0da31cf5ca"
+    },
+    {
+      "path": "tmp/all-shop-playmats/review-8.png",
+      "sha256": "b823d3e08c3a126eb4aa8548d995bf9e987a09120974a6d5f1ae09ac3ada35ba"
+    },
+    {
+      "path": "tmp/all-shop-playmats/inspect-0.png",
+      "sha256": "c0941f211fea90725b3c316ed625b56fc17aa8f1fdfe26f7433405e8c7cc7602"
+    },
+    {
+      "path": "tmp/all-shop-playmats/inspect-1.png",
+      "sha256": "1c97aa97f4becdf70266501b18ee7aaad50765104c251acd58ae30cc9a007b34"
+    },
+    {
+      "path": "tmp/all-shop-playmats/inspect-2.png",
+      "sha256": "c9609d6aedb6e8b4dc46870ca4eb8b202788cacb9a6437ed913660cce3d11f73"
+    },
+    {
+      "path": "tmp/all-shop-playmats/inspect-3.png",
+      "sha256": "d08f02faa16d7c0f3ae3a4e68a2c7cc769e565f96b22b79b3ac6bb19b75fbc84"
+    }
+  ],
+  "preserved": [
+    "dist/cards.json",
+    "dist/catalogue.js",
+    "dist/catalogue.json",
+    "dist/details.json",
+    "dist/engine.js",
+    "dist/manual-ui.js",
+    "dist/online-ui.js",
+    "dist/online.js",
+    "dist/account-data.js",
+    "dist/online-compatibility.js",
+    "dist/shield-rail.css",
+    "dist/playmat.js",
+    "dist/playmat.css",
+    "dist/release.json"
+  ],
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+    "dist/shield-rail.css": "f8a766683d5c45496d492f8b8265924851dba37601519c32bae0edc4b2bb8d13",
+    "dist/playmat.js": "2ea254eba5405feab273fe69d51ca66be12c0eade1a7d816c9a038d3845d5d10",
+    "dist/playmat.css": "60b1ca4d7442e9e7f2ddf42f12c389f7aeb37a9688449718ee102f58885819b8",
+    "dist/release.json": "36f14d98c983faaa4364d9508ed36d745f927412e2f25ecbb881380cbcdcf48a",
+    "dist/assets/playmats/sources.json": "fdaa5e15cf75ff0716b7075d56670f90f41596300bf64ba7dd3446f056fab577",
+    "dist/retail-playmats.js": "b2f0902a425ef883122458ed73de06c58d3375bbb4756f19581665df66834015",
+    "tests/playmat.test.mjs": "cd41a9b4614a2b3fafdd56a5a02d9c8c861ba87f14b6a61c72f088352e9574fe",
+    "tools/all-shop-playmats-review.json": "642c9eb50fc757c1b0dee3f8cb515166578a0617b64946b7f0805bb8e3660637"
+  },
+  "old58PresetsAndImagesUnchanged": true,
+  "gameAndAppearanceStorageUnchanged": true,
+  "uniqueNamesBefore": 9505,
+  "uniqueNamesAfter": 9505,
+  "newCards": 0,
+  "olderPendingUnchanged": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "limitations": [
+    "Some retailer images are small product photos, including packaging creases or white margins. Original JPEG bytes retained without image editing.",
+    "Optional Vision OCR failed for all159 images due to environment restrictions; it supplies no evidence of sample absence. Manual review is the completed fallback.",
+    "Coverage is a snapshot of the159 listed products at the recorded time; future retailer catalogue changes are outside this snapshot.",
+    "Physical mobile devices and a new authenticated live two-account match were not exercised."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
