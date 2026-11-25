@@ -1,0 +1,303 @@
+{
+  "checkedAt": "2026-11-25T10:43:40.844Z",
+  "baseline": "45041ded",
+  "status": "verified-local-not-published",
+  "feature": "Device-local playmat for CPU, spectator and friend-match boards",
+  "access": [
+    "対戦メニュー → プレイマット",
+    "メニュー → 表示設定 → プレイマットを変更"
+  ],
+  "behavior": {
+    "presets": [
+      "標準",
+      "深緑の紋章",
+      "蒼の波紋",
+      "紅の炎紋"
+    ],
+    "customImages": 1,
+    "acceptedTypes": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "inputLimitBytes": 8388608,
+    "persistedLimitBytes": 2097152,
+    "longestSidePixels": 2048,
+    "controls": {
+      "brightness": [
+        30,
+        90
+      ],
+      "scale": [
+        100,
+        180
+      ],
+      "horizontal": [
+        0,
+        100
+      ],
+      "vertical": [
+        0,
+        100
+      ]
+    },
+    "storage": "Separate IndexedDB duema.playmat.v1 in this browser and origin; one atomic record includes the settings and processed JPEG Blob. No deck localStorage, game state, account sync or online request fields.",
+    "reset": true,
+    "imageDeletion": true,
+    "defaultPreservesExistingBoardStyle": true,
+    "imageAndSettingsAutomaticallySaved": true,
+    "selectionIsDeviceLocal": true
+  },
+  "results": {
+    "focused-slider": {
+      "name": "focused-slider",
+      "command": [
+        "node",
+        "--test",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.089,
+      "log": "tmp/playmat/focused-slider.log",
+      "passed": 9,
+      "logSha256": "4c324c9a8b629f12f93e6a933d2025329779dcc87f5fcdadd29a7efa8d4c84ae"
+    },
+    "related-display": {
+      "name": "related-display",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.564,
+      "log": "tmp/playmat/related-display.log",
+      "passed": 63,
+      "logSha256": "13872a09c35abedf70de1fbf782b9b277491a41aacc884c336532ab8f40632b4"
+    },
+    "manual-display": {
+      "name": "manual-display",
+      "command": [
+        "node",
+        "tmp/playmat/short-manual.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.042,
+      "log": "tmp/playmat/manual-display.log",
+      "passed": 20,
+      "logSha256": "d08f2e822dab1719f18b764054fb6ef3fc101239e66add60595c1a238b67ccd1"
+    },
+    "browser-slider-fixed": {
+      "name": "browser-slider-fixed",
+      "command": [
+        "node",
+        "tmp/playmat/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.798,
+      "log": "tmp/playmat/browser-slider-fixed.log",
+      "logSha256": "13097168f1d1a2fb32e9d054cd2f9bed6cf051a28afe1c6c9d3154cdcb7b8e56"
+    },
+    "app-browser-final": {
+      "name": "app-browser-final",
+      "command": [
+        "node",
+        "tmp/playmat/app-browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.378,
+      "log": "tmp/playmat/app-browser-final.log",
+      "logSha256": "0ddd9ed3e6d7472c050a696c08fa164964c21a3ae15a180aab4dcb1f5d639c3b"
+    },
+    "final-check": {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.947,
+      "log": "tmp/playmat/final-check.log",
+      "logSha256": "d7cfdd6e3a6f9f369f292a8b6f4a6e96a35326c2b51dfb4d91b95497923588e8"
+    }
+  },
+  "totalTestsPassed": 92,
+  "browser": {
+    "viewports": [
+      {
+        "mode": "online",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "online",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "online",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "online",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "manual",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "manual",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "manual",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "dialogFits": true
+      },
+      {
+        "mode": "manual",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "dialogFits": true
+      }
+    ],
+    "artAndControlsDoNotChangeBoardDimensions": true,
+    "gameAndProjectionUnchanged": true,
+    "validImageUIImport": true,
+    "imageDownscalesTo2048": true,
+    "rangeReleasePersists": true,
+    "customReloadRestored": true,
+    "invalidImportKeepsExistingImage": true,
+    "imageDeleted": true,
+    "actualAppMenuAndReload": {
+      "menu": "app menu → display settings → playmat",
+      "savedPreset": "ember",
+      "reloadRestored": true,
+      "errors": []
+    },
+    "errors": []
+  },
+  "hashes": {
+    "dist/playmat.js": "d993c343e75b543c166f65f3065a6d8121895bf8887e3853843471dd04c72959",
+    "dist/playmat.css": "9f38321cd142a3d3c98505eed4db1f4c01d952202754f297f8334483de198360",
+    "dist/app.js": "8391f589aecbbdaefc25a4a255cbce8a0ec3f0c5933b193ae01ffd808ca08b99",
+    "dist/index.html": "79c0fef21dabdb36a7ef0271d9c84d0067f2c851768c4113b6e9674c2042b502",
+    "tests/playmat.test.mjs": "1254f254822d5c564dbaba985796848cba635a50af67128137025405378b3163",
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "4189fcd2c56bb5ab7b998e58a04bef3eee65c2957f280f29d518cab2f08c1809",
+    "dist/online.js": "feac9f78985c3d42293b89005229cfcd6e90fd082fc7d9cc7f886c727eb9267a",
+    "dist/online-ui.js": "1435b3bbdcc94a7d5cbfce3315f90c4156cbcecdf39f47d4b1891fe04a7f5ce3",
+    "dist/manual-ui.js": "c5e5e3a004b4cf61a197630c740e2958a5261188c3587443363202cbd1ee7105",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+    "dist/release.json": "c5b0d0ad08ecd0749949f8f00244e8ffe8e00b19280ba725eafb547bda1ff046",
+    "package.json": "35093846d53fa32e5c419601b772be2e3f710104ff33585539a67ff38ab8de1c"
+  },
+  "supportedNames": 9505,
+  "newCards": 0,
+  "unchanged": [
+    "dist/cards.json",
+    "dist/catalogue.json",
+    "dist/details.json",
+    "dist/engine.js",
+    "dist/online.js",
+    "dist/online-ui.js",
+    "dist/manual-ui.js",
+    "dist/account-data.js",
+    "dist/online-compatibility.js",
+    "dist/release.json",
+    "package.json"
+  ],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "interruptedVerification": {
+    "name": "related",
+    "command": [
+      "node",
+      "--test",
+      "tests/battle-usability.test.mjs",
+      "tests/manual-ui.test.mjs",
+      "tests/online-ui.test.mjs",
+      "tests/display-preferences.test.mjs"
+    ],
+    "code": -9,
+    "timedout": false,
+    "seconds": 161.466,
+    "log": "tmp/playmat/related.log",
+    "logSha256": "e78b83b3b36549c9b10bba6d5d72a82d07c3c24e71214b4cc9ef7ba33319c6c7",
+    "status": "interrupted-unconfirmed",
+    "target": "tests/manual-ui.test.mjs: manual UI complete game: seed 1..30",
+    "reason": "Broad UI module unexpectedly included30 complete-game seeds. Only this turn’s process group7078 was stopped after161.466s. No long-game pass inferred;20 deterministic display cases were selected by positive names and passed. Do not restart this broad command.",
+    "requiredFeatureVerificationPending": false
+  },
+  "resolvedFailure": {
+    "name": "browser-import-ui",
+    "command": [
+      "node",
+      "tmp/playmat/browser.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 8.908,
+    "log": "tmp/playmat/browser-import-ui.log",
+    "logSha256": "642479857b401da071f2f6b52297ab9f70f3b7295d8ed6d832a7b3a36f64fd91",
+    "reason": "Actual UI test found range value read after sync had restored the prior value. Capture the selected value before saving refreshes controls. New regression and full real-image UI import/adjust/reload test now pass."
+  },
+  "discardedZeroCaseCommand": {
+    "name": "related-manual-short",
+    "command": [
+      "node",
+      "--test",
+      "--test-name-pattern=^(?!$)manual UI complete",
+      "tests/playmat.test.mjs"
+    ],
+    "code": 0,
+    "timedout": false,
+    "seconds": 0.085,
+    "log": "tmp/playmat/related-manual-short.log",
+    "passed": 1,
+    "logSha256": "7ff09c8515a30f4ab60408b17835e04b4f4d6838c0324fb1064f6b6c5f5c92a5"
+  },
+  "limitations": [
+    "Desktop Chrome mobile viewport emulation; physical iPhone/Android not exercised.",
+    "Friend-match board used locally projected room data, not a newly authenticated live two-account match.",
+    "Images stay in the current origin/browser and do not synchronize between GitHub Pages and Netlify or devices."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  },
+  "next": "ユーザーから公開指示があった場合に、表示キャッシュ・リリース版を更新して検証後に公開する。Netlify更新は明示指示がある場合のみ。"
+}

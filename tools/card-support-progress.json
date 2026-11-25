@@ -564818,6 +564818,45 @@
       "pages": "https://atsushisora.github.io/duema-deck-lab/?app_update=0.722.22",
       "workflowRun": "https://github.com/AtsushiSora/duema-deck-lab/actions/runs/45567374965",
       "publicFilesMatched": 12
+    },
+    "latestPlaymatChange": {
+      "checkedAt": "2026-11-25T10:43:40.844Z",
+      "status": "verified-local-not-published",
+      "baseline": "45041ded",
+      "evidence": "tools/playmat-verification.json",
+      "supportedNames": 9505,
+      "newCards": 0,
+      "testsPassed": 92,
+      "check": "passed",
+      "mobileAndDesktopLayouts": 8,
+      "gameAndAccountFormatsUnchanged": true,
+      "olderPendingUnchanged": true,
+      "interruptedVerification": {
+        "name": "related",
+        "command": [
+          "node",
+          "--test",
+          "tests/battle-usability.test.mjs",
+          "tests/manual-ui.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/display-preferences.test.mjs"
+        ],
+        "code": -9,
+        "timedout": false,
+        "seconds": 161.466,
+        "log": "tmp/playmat/related.log",
+        "logSha256": "e78b83b3b36549c9b10bba6d5d72a82d07c3c24e71214b4cc9ef7ba33319c6c7",
+        "status": "interrupted-unconfirmed",
+        "target": "tests/manual-ui.test.mjs: manual UI complete game: seed 1..30",
+        "reason": "Broad UI module unexpectedly included30 complete-game seeds. Only this turn’s process group7078 was stopped after161.466s. No long-game pass inferred;20 deterministic display cases were selected by positive names and passed. Do not restart this broad command.",
+        "requiredFeatureVerificationPending": false
+      },
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlify": false
+      },
+      "next": "ユーザーから公開指示があった場合に、表示キャッシュ・リリース版を更新して検証後に公開する。Netlify更新は明示指示がある場合のみ。"
     }
   },
   "registeredCardVerification": {
