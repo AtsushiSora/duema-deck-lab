@@ -1,0 +1,254 @@
+{
+  "checkedAt": "2026-11-25T22:36:42.378Z",
+  "baseline": "55a2bb8c78b384ffe3f548fd0b493b16b044bf35",
+  "status": "verified-local-not-published",
+  "feature": "Place playmat selection immediately below the deck name in creation/editing; remember artwork by deck ID and apply automatically in battles",
+  "placement": "Deck creation/editing → deck name → playmat thumbnail and select button → format selector",
+  "behavior": {
+    "keyedByDeckId": true,
+    "renamingAndEditingCardsRetainsMat": true,
+    "newDraftIdRetainedOnResume": true,
+    "copiesInheritExplicitMatOnce": true,
+    "copiedDeckChangesIndependent": true,
+    "ownAndOpponentDeckBindings": true,
+    "opponentArtRotationDegrees": 180,
+    "unconfiguredDecksUseExistingSideDefaults": true,
+    "queuedSavesRetainOriginalDeckId": true,
+    "staleLoadsDoNotRepaintAnotherDeck": true,
+    "failedReadDoesNotOverwriteUnknownSettings": true,
+    "failedWriteRetainsSavedImage": true
+  },
+  "storage": {
+    "database": "duema.playmat.v1",
+    "version": 1,
+    "objectStore": "settings",
+    "legacyKey": "current (same shape and semantics when unbound)",
+    "newDeckKeys": "deck:\"<existing deck ID>\"",
+    "newRoomKeys": "room:[\"<account UID>\",\"<room code>\"]",
+    "roomValues": {
+      "deckId": "<local deck ID used to create/join the room>"
+    },
+    "oldClientsCannotEraseDeckMatsBySavingCurrent": true,
+    "noDeckCardOrHistorySchemaChanges": true,
+    "customImagesLocalOnly": true,
+    "accountDeckPayloadsUnchanged": true
+  },
+  "results": [
+    {
+      "name": "focused-copy",
+      "command": [
+        "node",
+        "--test",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.256,
+      "log": "tmp/deck-playmats/focused-copy.log",
+      "passed": 22,
+      "logSha256": "ec76ce28efa928ae2866d7b5c3b1707b0fd63a8ef2a1630d4c33709fc647e3bb"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/deck-history.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.931,
+      "log": "tmp/deck-playmats/related.log",
+      "passed": 113,
+      "logSha256": "34897fd8a7e7467a08ace0021c25463decf86d4f19c2e6ddd7386c087e2a1ac5"
+    },
+    {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.182,
+      "log": "tmp/deck-playmats/final-check.log",
+      "passed": 0,
+      "logSha256": "3cee2cdb94d0cae765b731ee7c17f5c281e1123c87d496fbb87494404b4e8d50"
+    },
+    {
+      "name": "final-browser",
+      "command": [
+        "node",
+        "tmp/deck-playmats/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 5.917,
+      "log": "tmp/deck-playmats/final-browser.log",
+      "passed": 0,
+      "logSha256": "9f7492e7fb538408bc43adaec23201bba82cfe1a1d7864e5e2fb62f0f2ff8bd0"
+    }
+  ],
+  "totalTestsPassed": 135,
+  "browser": {
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "x": 16,
+          "right": 304,
+          "top": 365.984375,
+          "nameBottom": 353.984375,
+          "overflow": false
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "x": 16,
+          "right": 374,
+          "top": 347.984375,
+          "nameBottom": 335.984375,
+          "overflow": false
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "x": 28,
+          "right": 414,
+          "top": 396.453125,
+          "nameBottom": 384.453125,
+          "overflow": false
+        }
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "geometry": {
+          "x": 148,
+          "right": 632,
+          "top": 401.28125,
+          "nameBottom": 389.28125,
+          "overflow": false
+        }
+      }
+    ],
+    "editorEntry": true,
+    "newDeckDraftMatRestored": true,
+    "twoDeckSettingsRestored": true,
+    "deckPayloadsUnchanged": true,
+    "battle": {
+      "own": "forest",
+      "opponent": "retail-gp-clock",
+      "rotation": "matrix(-1, 0, 0, -1, 0, 0)",
+      "fieldRotation": "none"
+    },
+    "online": {
+      "fakeClient": true,
+      "hostPreset": "forest",
+      "reloadUsesRoomDeckInsteadOfCurrentSelection": true,
+      "guestPreset": "retail-gp-clock",
+      "accountIsolation": true
+    },
+    "errors": [],
+    "fixture": "Real local app UI; account and room APIs replaced in the local test server by deterministic stubs. CPU battle uses the actual engine. No live accounts or deployed service were changed."
+  },
+  "screenshots": [
+    {
+      "path": "tmp/deck-playmats/editor-320.png",
+      "sha256": "c151dbbc5406162089beadd55295039a29f893e79dfd5c2fb4fad27a0fc115b2"
+    },
+    {
+      "path": "tmp/deck-playmats/editor-390.png",
+      "sha256": "0aab2e29168088f92b4c8c0e9fec106d93dce678e9ce36ab5701995f8adfc378"
+    },
+    {
+      "path": "tmp/deck-playmats/editor-844.png",
+      "sha256": "96002fcbb706a800b7aa1719a54e3ee61f45f17f256b33eedc789fc373c230ca"
+    },
+    {
+      "path": "tmp/deck-playmats/editor-1280.png",
+      "sha256": "6524c2a9ce2f7bbde1af89847f79b8a71aed28747f92a39b0b4d00a565eb7699"
+    },
+    {
+      "path": "tmp/deck-playmats/battle.png",
+      "sha256": "690919723634321f5de9dc4be8ab5338d7960f3197fdab64f781f6e786fa8fe1"
+    },
+    {
+      "path": "tmp/deck-playmats/new-deck.png",
+      "sha256": "4a26fa62dd9b29540f7f706845ac68433aba1faf58048e6a88f1369bbaa17686"
+    }
+  ],
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/deck-history.js": "a051fbb67aba236211c47af37341e1e90f598022d96f59df20e7fc7e5b2db827",
+    "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
+    "dist/deck-copy.js": "70fb2970993936c9bed2a4ae068db5a6c82439a84bd6c3ec055452a95b2ccf19",
+    "dist/online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+    "dist/shield-rail.css": "f8a766683d5c45496d492f8b8265924851dba37601519c32bae0edc4b2bb8d13",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "dist/retail-playmats.js": "b2f0902a425ef883122458ed73de06c58d3375bbb4756f19581665df66834015",
+    "dist/assets/playmats/sources.json": "fdaa5e15cf75ff0716b7075d56670f90f41596300bf64ba7dd3446f056fab577",
+    "tools/all-shop-playmats-review.json": "642c9eb50fc757c1b0dee3f8cb515166578a0617b64946b7f0805bb8e3660637",
+    "dist/app.js": "425f674f3b353f9660d3ad4f84bc6601bc16e1386bc187a13085545c296124ab",
+    "dist/playmat.js": "cfe5dff73520d155785f4917f7babe40e32935472e72c7f7abe2ae18b100735b",
+    "dist/playmat.css": "972958db719da6b80f41ef3b450a0e82f0e0f1621b47fc4c2b57cc2bdd51ed06",
+    "tests/playmat.test.mjs": "b106e08a9b8ddab72b87b43e488da5d19f0fbf399b4b0d30a5bf290b0c181c03"
+  },
+  "preserved": [
+    "dist/cards.json",
+    "dist/catalogue.js",
+    "dist/catalogue.json",
+    "dist/details.json",
+    "dist/engine.js",
+    "dist/manual-ui.js",
+    "dist/online-ui.js",
+    "dist/online.js",
+    "dist/account-data.js",
+    "dist/deck-history.js",
+    "dist/editor-draft.js",
+    "dist/deck-copy.js",
+    "dist/online-compatibility.js",
+    "dist/shield-rail.css",
+    "server/duel-core.mjs",
+    "server/duel-handler.mjs",
+    "dist/retail-playmats.js",
+    "dist/assets/playmats/sources.json",
+    "tools/all-shop-playmats-review.json"
+  ],
+  "supportedNamesBefore": 9505,
+  "supportedNamesAfter": 9505,
+  "newCards": 0,
+  "playmatDesigns": 143,
+  "olderPendingUnchanged": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "limitations": [
+    "Settings are stored in this browser/origin; they are not synchronized through the account deck payload or deck export.",
+    "Online rooms created before the local deck association was recorded use the existing common mat setting on resume.",
+    "Online create/join/resume and account isolation were checked using stubs, not a new authenticated live two-account match.",
+    "Physical mobile devices were not exercised; isolated Chrome viewport tests were used."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
