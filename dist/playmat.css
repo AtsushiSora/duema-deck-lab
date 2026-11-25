@@ -1,15 +1,24 @@
-/* The artwork stays behind the board; cards, controls and hit areas keep their layout. */
-:root{--playmat-image:none;--playmat-shade:.35;--playmat-scale:1;--playmat-x:50%;--playmat-y:50%}
-html[data-playmat="forest"],.playmat-swatch[data-mat="forest"]{--playmat-pattern:radial-gradient(ellipse at 50% 50%,transparent 20%,#97e1af40 21%,transparent 22%,transparent 31%,#a2d79f38 32%,transparent 33%),repeating-conic-gradient(from 45deg at 50% 50%,#123f34 0deg 45deg,#17312e 45deg 90deg)}
-html[data-playmat="ocean"],.playmat-swatch[data-mat="ocean"]{--playmat-pattern:repeating-radial-gradient(ellipse at 50% 50%,#102d48 0 24px,#254e68 25px 27px,#102e47 28px 52px)}
-html[data-playmat="ember"],.playmat-swatch[data-mat="ember"]{--playmat-pattern:repeating-conic-gradient(from 25deg at 50% 50%,#6a2928 0deg 15deg,#361e2c 15deg 30deg)}
-html[data-playmat="custom"]{--playmat-pattern:var(--playmat-image)}
-html[data-playmat]:not([data-playmat="standard"]) .play-board,.playmat-preview{position:relative;isolation:isolate;overflow:hidden;background:#09191c}
-html[data-playmat]:not([data-playmat="standard"]) .play-board::before,.playmat-preview::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background-image:var(--playmat-pattern,radial-gradient(ellipse at 35% 100%,#1d4c4b,#122b3e 68%,#102436));background-size:cover;background-position:var(--playmat-x) var(--playmat-y);transform:scale(var(--playmat-scale));transform-origin:var(--playmat-x) var(--playmat-y)}
-html[data-playmat]:not([data-playmat="standard"]) .play-board::after,.playmat-preview::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:rgb(0 0 0 / var(--playmat-shade))}
-html[data-playmat]:not([data-playmat="standard"]) .play-board :is(.own-field,.opponent-field){background:transparent}
-html[data-playmat]:not([data-playmat="standard"]) .play-board :is(.play-player,.play-resources,.zone-caption){background:#071318df;border-radius:5px;color:#eef6f0}
-html[data-playmat]:not([data-playmat="standard"]) .play-board :is(.play-player,.play-resources) small{color:#b9d0cc}
+/* Only the image layers rotate. Card text, controls and hit targets stay upright. */
+.play-board .own-field,.playmat-preview[data-playmat-preview="own"]{--mat-shade:var(--own-playmat-shade,.35);--mat-scale:var(--own-playmat-scale,1);--mat-x:var(--own-playmat-x,50%);--mat-y:var(--own-playmat-y,50%);--mat-rotation:0deg}
+html[data-playmat="forest"] .play-board .own-field,html[data-playmat="forest"] .playmat-preview[data-playmat-preview="own"]{--mat-pattern:radial-gradient(ellipse at 50% 50%,transparent 20%,#97e1af40 21%,transparent 22%,transparent 31%,#a2d79f38 32%,transparent 33%),repeating-conic-gradient(from 45deg at 50% 50%,#123f34 0deg 45deg,#17312e 45deg 90deg)}
+html[data-playmat="ocean"] .play-board .own-field,html[data-playmat="ocean"] .playmat-preview[data-playmat-preview="own"]{--mat-pattern:repeating-radial-gradient(ellipse at 50% 50%,#102d48 0 24px,#254e68 25px 27px,#102e47 28px 52px)}
+html[data-playmat="ember"] .play-board .own-field,html[data-playmat="ember"] .playmat-preview[data-playmat-preview="own"]{--mat-pattern:repeating-conic-gradient(from 25deg at 50% 50%,#6a2928 0deg 15deg,#361e2c 15deg 30deg)}
+html[data-playmat="custom"] .play-board .own-field,html[data-playmat="custom"] .playmat-preview[data-playmat-preview="own"]{--mat-pattern:var(--own-playmat-image)}
+html[data-playmat^="retail-"] .play-board .own-field,html[data-playmat^="retail-"] .playmat-preview[data-playmat-preview="own"]{--mat-pattern:var(--own-playmat-retail-image)}
+.play-board .opponent-field,.playmat-preview[data-playmat-preview="opponent"]{--mat-shade:var(--opponent-playmat-shade,.35);--mat-scale:var(--opponent-playmat-scale,1);--mat-x:var(--opponent-playmat-x,50%);--mat-y:var(--opponent-playmat-y,50%);--mat-rotation:180deg}
+html[data-opponent-playmat="forest"] .play-board .opponent-field,html[data-opponent-playmat="forest"] .playmat-preview[data-playmat-preview="opponent"]{--mat-pattern:radial-gradient(ellipse at 50% 50%,transparent 20%,#97e1af40 21%,transparent 22%,transparent 31%,#a2d79f38 32%,transparent 33%),repeating-conic-gradient(from 45deg at 50% 50%,#123f34 0deg 45deg,#17312e 45deg 90deg)}
+html[data-opponent-playmat="ocean"] .play-board .opponent-field,html[data-opponent-playmat="ocean"] .playmat-preview[data-playmat-preview="opponent"]{--mat-pattern:repeating-radial-gradient(ellipse at 50% 50%,#102d48 0 24px,#254e68 25px 27px,#102e47 28px 52px)}
+html[data-opponent-playmat="ember"] .play-board .opponent-field,html[data-opponent-playmat="ember"] .playmat-preview[data-playmat-preview="opponent"]{--mat-pattern:repeating-conic-gradient(from 25deg at 50% 50%,#6a2928 0deg 15deg,#361e2c 15deg 30deg)}
+html[data-opponent-playmat="custom"] .play-board .opponent-field,html[data-opponent-playmat="custom"] .playmat-preview[data-playmat-preview="opponent"]{--mat-pattern:var(--opponent-playmat-image)}
+html[data-opponent-playmat^="retail-"] .play-board .opponent-field,html[data-opponent-playmat^="retail-"] .playmat-preview[data-playmat-preview="opponent"]{--mat-pattern:var(--opponent-playmat-retail-image)}
+.playmat-swatch[data-mat="forest"]{--playmat-pattern:radial-gradient(ellipse at 50% 50%,transparent 20%,#97e1af40 21%,transparent 22%,transparent 31%,#a2d79f38 32%,transparent 33%),repeating-conic-gradient(from 45deg at 50% 50%,#123f34 0deg 45deg,#17312e 45deg 90deg)}
+.playmat-swatch[data-mat="ocean"]{--playmat-pattern:repeating-radial-gradient(ellipse at 50% 50%,#102d48 0 24px,#254e68 25px 27px,#102e47 28px 52px)}
+.playmat-swatch[data-mat="ember"]{--playmat-pattern:repeating-conic-gradient(from 25deg at 50% 50%,#6a2928 0deg 15deg,#361e2c 15deg 30deg)}
+html[data-playmat]:not([data-playmat="standard"]) .play-board .own-field,html[data-opponent-playmat]:not([data-opponent-playmat="standard"]) .play-board .opponent-field,.playmat-preview{position:relative;isolation:isolate;overflow:hidden;background:#09191c}
+html[data-playmat]:not([data-playmat="standard"]) .play-board .own-field::before,html[data-opponent-playmat]:not([data-opponent-playmat="standard"]) .play-board .opponent-field::before,.playmat-preview::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background-image:var(--mat-pattern,radial-gradient(ellipse at 35% 100%,#1d4c4b,#122b3e 68%,#102436));background-size:cover;background-position:var(--mat-x) var(--mat-y);transform:rotate(var(--mat-rotation)) scale(var(--mat-scale));transform-origin:center}
+html[data-playmat]:not([data-playmat="standard"]) .play-board .own-field::after,html[data-opponent-playmat]:not([data-opponent-playmat="standard"]) .play-board .opponent-field::after,.playmat-preview::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:rgb(0 0 0 / var(--mat-shade))}
+html[data-playmat]:not([data-playmat="standard"]) .play-board .own-field :is(.play-player,.play-resources,.zone-caption),html[data-opponent-playmat]:not([data-opponent-playmat="standard"]) .play-board .opponent-field :is(.play-player,.play-resources,.zone-caption){background:#071318df;border-radius:5px;color:#eef6f0}
+html[data-playmat]:not([data-playmat="standard"]) .play-board .own-field :is(.play-player,.play-resources) small,html[data-opponent-playmat]:not([data-opponent-playmat="standard"]) .play-board .opponent-field :is(.play-player,.play-resources) small{color:#b9d0cc}
 dialog:has(.playmat-settings){background:#0d1b20;color:#edf5eb;border:1px solid #607e71;max-width:660px}
 dialog:has(.playmat-settings) :is(h2,legend,label){color:#edf5eb}
 dialog:has(.playmat-settings) :is(.small,small){color:#b5cac4}
@@ -26,6 +35,12 @@ dialog:has(.playmat-settings) .dialog-head button{color:#c3dfd0}
 .playmat-presets button{padding:8px;min-width:0;min-height:76px;background:#122129;border:1px solid #425956;border-radius:10px;color:#e4eeea;font:inherit;font-size:12px;cursor:pointer}
 .playmat-presets button[aria-pressed="true"]{border:2px solid #b4e0a8;background:#254a38;box-shadow:0 0 0 2px #b4e0a81a}
 .playmat-presets button:disabled{opacity:.5;cursor:default}
+.playmat-retail{grid-template-columns:repeat(2,minmax(0,1fr))}
+.playmat-retail button{display:flex;flex-direction:column;gap:8px;text-align:left;line-height:1.5;overflow:hidden}
+.playmat-retail img{display:block;width:100%;height:auto;aspect-ratio:1000/584;object-fit:contain;border-radius:5px;background:#071318}
+.playmat-retail button>span{display:block;overflow-wrap:anywhere}
+.playmat-product:not([hidden]){display:grid;gap:6px}
+.playmat-product a{color:#a9e5ce;text-decoration:underline;min-height:32px;display:flex;align-items:center}
 .playmat-presets button:focus-visible,.playmat-settings input:focus-visible{outline:3px solid #f5d98d;outline-offset:3px}
 .playmat-swatch{display:block;height:30px;border-radius:5px;margin-bottom:7px;background-image:var(--playmat-pattern,linear-gradient(135deg,#1d4c4b,#102436));background-size:cover;background-position:center}
 .playmat-swatch[data-mat="standard"]{--playmat-pattern:linear-gradient(135deg,#1d4c4b,#102436)}
@@ -43,4 +58,7 @@ dialog:has(.playmat-settings) .dialog-head button{color:#c3dfd0}
 .playmat-tools .btn{min-height:44px;font-size:12px}
 .playmat-settings [role="status"]{font-size:12px;line-height:1.7}
 @media(max-width:420px){.playmat-presets{grid-template-columns:repeat(2,minmax(0,1fr))}.playmat-adjustments{grid-template-columns:1fr;gap:10px}.playmat-preview{min-height:140px}.playmat-tools .btn{width:100%}}
-@media(forced-colors:active){.play-board::before,.play-board::after,.playmat-preview::before,.playmat-preview::after{display:none!important}.playmat-preview{background:Canvas;color:CanvasText}}
+@media(forced-colors:active){:is(.own-field,.opponent-field)::before,:is(.own-field,.opponent-field)::after,.playmat-preview::before,.playmat-preview::after{display:none!important}.playmat-preview{background:Canvas;color:CanvasText}}
+
+.playmat-side-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px}.playmat-side-switch button{font:inherit;font-size:13px;min-height:44px;padding:8px;border:1px solid #607e71;border-radius:8px;background:#152d31;color:#e1eee5;cursor:pointer}.playmat-side-switch button[aria-pressed="true"]{background:#315a40;border:2px solid #b3dd9d}.playmat-side-switch button:focus-visible{outline:3px solid #f5d98d;outline-offset:2px}
+.playmat-side-switch{position:sticky;top:0;z-index:5;padding:8px 0;background:#0d1b20}

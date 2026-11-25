@@ -1,0 +1,328 @@
+{
+  "checkedAt": "2026-11-25T11:14:20.742Z",
+  "baseline": "e20d68f4",
+  "status": "verified-local-not-published",
+  "feature": "Three verified retail mat designs; independent own/opponent settings with only opponent artwork rotated180 degrees",
+  "source": "https://dm.takaratomy.co.jp/product/supplies/",
+  "sourceListing": {
+    "requested": "https://takaratomymall.jp/shop/goods/goods_recommendation.aspx?page=1&tags=ラバーマット,デュエマ",
+    "directFetchStatus": 403,
+    "fallback": "Manufacturer official supplies page, exact product title and linked full product artwork",
+    "allStoreListingProductsClaimed": false
+  },
+  "products": [
+    {
+      "id": "retail-gyakuten-mono",
+      "name": "逆転こそが、カードゲームだ。モノクロver.",
+      "image": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/protect/169_o.jpg",
+      "source": "https://dm.takaratomy.co.jp/product/supplies/#protect169",
+      "local": "assets/playmats/gyakuten-mono.jpg",
+      "sha256": "bf57eb6e03c37b54dc2746fd0aa9597efb0788531ecdbc79108f7e852de9f4a0",
+      "checkedAt": "2026-11-25T11:05:51.793Z",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    },
+    {
+      "id": "retail-dogiragon-redzone",
+      "name": "ドギラゴン＆レッドゾーン",
+      "image": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/protect/168_o.jpg",
+      "source": "https://dm.takaratomy.co.jp/product/supplies/#protect168",
+      "local": "assets/playmats/dogiragon-redzone.jpg",
+      "sha256": "c4194eebfd52a601ded0a9479bc457448882e0d514a9e102dae6b683feff66aa",
+      "checkedAt": "2026-11-25T11:05:52.241Z",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    },
+    {
+      "id": "retail-dragon-girls-aoharu",
+      "name": "ドラゴン娘になりたくないっ！ アオハル組ver.",
+      "image": "https://dm.takaratomy.co.jp/wp-content/themes/dm2019/img/product/protect/141_o.jpg",
+      "source": "https://dm.takaratomy.co.jp/product/supplies/#protect141",
+      "local": "assets/playmats/dragon-girls-aoharu.jpg",
+      "sha256": "aac323492d20accf85e56771f179222a3e2eceecb2eae8a3aa611165f7101694",
+      "checkedAt": "2026-11-25T11:05:52.493Z",
+      "imageReviewed": true,
+      "imageBytesUnmodified": true
+    }
+  ],
+  "behavior": {
+    "independentSides": [
+      "own",
+      "opponent"
+    ],
+    "opponentArtRotationDegrees": 180,
+    "cardsLabelsAndButtonsRotated": false,
+    "brightnessPositionAndZoomIndependent": true,
+    "customImagesPerSide": 1,
+    "legacyPreferences": "Existing top-level settings and custom image retained for own side; on first read of an older record the same setting initializes opponent side. Later opponent preferences are an optional additive opponent field in the same IndexedDB record. Deck, account and game save formats do not change.",
+    "customImagesNotSentToOpponent": true,
+    "noRemoteImagesLoadedAtRuntime": true,
+    "selectedSideSwitchSticky": true,
+    "productSourceLink": true
+  },
+  "results": {
+    "final-focused": {
+      "name": "final-focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.133,
+      "log": "tmp/retail-playmats/final-focused.log",
+      "passed": 14,
+      "logSha256": "d4e0305c4b3b1d03ab6105cb98486d82c53427127d9556572fba8bcbb75a366d"
+    },
+    "related": {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.606,
+      "log": "tmp/retail-playmats/related.log",
+      "passed": 63,
+      "logSha256": "7359f2b07ed1f9175f1a913b57563c8a62f8bfc9f6c566294927232ed7f645a0"
+    },
+    "manual-display": {
+      "name": "manual-display",
+      "command": [
+        "node",
+        "tmp/playmat/short-manual.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.098,
+      "log": "tmp/retail-playmats/manual-display.log",
+      "passed": 20,
+      "logSha256": "83a9c07767641a3d807d56cd38b4ff5e41f66e024ca1ad3c90efe23c5ba12c46"
+    },
+    "final-browser": {
+      "name": "final-browser",
+      "command": [
+        "node",
+        "tmp/retail-playmats/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.072,
+      "log": "tmp/retail-playmats/final-browser.log",
+      "logSha256": "65a696a49b061c541df1dae59280f86938df3f52f6f9da149f1344d2e2b61599"
+    },
+    "final-app-browser": {
+      "name": "final-app-browser",
+      "command": [
+        "node",
+        "tmp/playmat/app-browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.445,
+      "log": "tmp/retail-playmats/final-app-browser.log",
+      "logSha256": "0ddd9ed3e6d7472c050a696c08fa164964c21a3ae15a180aab4dcb1f5d639c3b"
+    },
+    "final-check": {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.873,
+      "log": "tmp/retail-playmats/final-check.log",
+      "logSha256": "c438e946c61325238965a05cda9d83a7f8ca2558b2f9bfde4083f3b8ce7fa13b"
+    }
+  },
+  "totalTestsPassed": 97,
+  "browser": {
+    "layouts": [
+      {
+        "mode": "online",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "online",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "online",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "online",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "manual",
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "manual",
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "manual",
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "dialogOpen": true
+      },
+      {
+        "mode": "manual",
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "dialogOpen": true
+      }
+    ],
+    "products": [
+      {
+        "preset": "retail-gyakuten-mono",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect169",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:50474/dist/assets/playmats/gyakuten-mono.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dogiragon-redzone",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect168",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:50474/dist/assets/playmats/dogiragon-redzone.jpg\")",
+        "controlsEnabled": true
+      },
+      {
+        "preset": "retail-dragon-girls-aoharu",
+        "source": "https://dm.takaratomy.co.jp/product/supplies/#protect141",
+        "productHidden": false,
+        "imageWidth": 1000,
+        "background": "url(\"http://127.0.0.1:50474/dist/assets/playmats/dragon-girls-aoharu.jpg\")",
+        "controlsEnabled": true
+      }
+    ],
+    "split": {
+      "own": "retail-dragon-girls-aoharu",
+      "opponent": "retail-dogiragon-redzone",
+      "ownImage": "url(\"http://127.0.0.1:50474/dist/assets/playmats/dragon-girls-aoharu.jpg\")",
+      "opponentImage": "url(\"http://127.0.0.1:50474/dist/assets/playmats/dogiragon-redzone.jpg\")",
+      "ownTransform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opponentTransform": "matrix(-1, 0, 0, -1, 0, 0)",
+      "opponentFieldTransform": "none",
+      "previewTransform": "matrix(-1, 0, 0, -1, 0, 0)"
+    },
+    "reloadRestored": true,
+    "errors": [],
+    "actualApp": "Menu → Display settings → Playmat, select and reload verified in isolated local Chrome"
+  },
+  "hashes": {
+    "dist/playmat.js": "3ac6157dfb0974204c418a5406bc2f6b73e58d66fd783aa7b47b0541544a5559",
+    "dist/playmat.css": "0e39b0c879deb1d8df52de7c858b8d678ee7c942e451f4f3cb2e458e42de5ad6",
+    "dist/retail-playmats.js": "47cb6ef659d5e2f9310983d347d739ada546f2439bcc706c03d90d278831f402",
+    "dist/assets/playmats/sources.json": "54ec59c0d1461241e2ee64f2ab6a10005dbb99492b8ce166f01f16aee7577bfd",
+    "tests/playmat.test.mjs": "f321f2dc517f117d23a6597a4bd58471085a49f21289a2c64a339f9f429839f2",
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/online-compatibility.js": "021d6208b0b8549fe8b1af74636f82ae5f8718a3a138a44d2234f2b62fe2acc9",
+    "dist/shield-rail.css": "f8a766683d5c45496d492f8b8265924851dba37601519c32bae0edc4b2bb8d13"
+  },
+  "supportedNames": 9505,
+  "newCards": 0,
+  "preserved": [
+    "dist/cards.json",
+    "dist/catalogue.json",
+    "dist/details.json",
+    "dist/engine.js",
+    "dist/manual-ui.js",
+    "dist/online-ui.js",
+    "dist/online.js",
+    "dist/account-data.js",
+    "dist/online-compatibility.js",
+    "dist/shield-rail.css"
+  ],
+  "olderPendingUnchanged": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "testHarnessCorrections": [
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tmp/retail-playmats/browser.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 5.431,
+      "log": "tmp/retail-playmats/browser.log",
+      "logSha256": "854fc931f3c59db1299c03eea1b19b6d4a018696e628525e76c92a50b2f57a09",
+      "resolution": "Browser harness corrected for async import syntax and the fixture page base URL; final8-layout and3-design tests pass."
+    },
+    {
+      "name": "browser-fixed",
+      "command": [
+        "node",
+        "tmp/retail-playmats/browser.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 4.193,
+      "log": "tmp/retail-playmats/browser-fixed.log",
+      "logSha256": "faabbf0270daea41204014c4bfc14c1d8415af084fd77289bab3334aab480982",
+      "resolution": "Browser harness corrected for async import syntax and the fixture page base URL; final8-layout and3-design tests pass."
+    },
+    {
+      "name": "split-browser",
+      "command": [
+        "node",
+        "tmp/retail-playmats/browser.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 4.927,
+      "log": "tmp/retail-playmats/split-browser.log",
+      "logSha256": "faabbf0270daea41204014c4bfc14c1d8415af084fd77289bab3334aab480982",
+      "resolution": "Browser harness corrected for async import syntax and the fixture page base URL; final8-layout and3-design tests pass."
+    }
+  ],
+  "limitations": [
+    "Physical iPhone/Android devices and a new authenticated live two-account match were not exercised; local Chrome viewport emulation and projected room data were used.",
+    "Product patterns are limited to the three fully verified official designs; no store-wide completeness claim."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
