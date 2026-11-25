@@ -245,6 +245,7 @@ export function createSixPhotoRules(api){
  function sympathyAmount500(s,p,c){
   const r=c.g211Sympathy;
   if(!r)return 0;
+  if(r.zone==='shields')return s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp).length*r.amount;
   if(r.g1632SameRace)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&sharesRace(effective(x,s,true),c)).length*r.amount;
   return s.players[p].battle.filter(x=>!x.sealed&&(r.filter.seed?(card(x).type==='seed'||card(x).natureAce4):
    (r.elements?!x.faceDown:api.isCreature(s,x))&&matches(s,p,x,r.filter))).length*r.amount;
@@ -1653,13 +1654,14 @@ export function createSixPhotoRules(api){
  function moveZoneSelection583(s,t,rows,owner=t.p){
   if(!api.canMoveZone(s,owner,t.origin)||t.origin==='hand'&&t.to==='mana'&&!api.canHandMana(s,owner))return [];
   const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,owner)?'grave':t.to;
-  if(dest===t.origin)return [];
+  if(dest===t.origin||dest==='shields'&&!api.canAddShield(s,owner))return [];
   const origin=s.players[owner][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
-  for(const x of moved){clear(x,dest);if(dest==='mana'&&t.faceDown){x.faceDown=true;x.tapped=!!t.tapped;}}
+  for(const x of moved){clear(x,dest);if(dest==='shields'&&t.g657FaceUp)x.faceUp=true;if(dest==='mana'&&t.faceDown){x.faceDown=true;x.tapped=!!t.tapped;}}
   if(t.toOwnerGrave&&dest==='grave'){
    for(const p of [s.active,1-s.active])api.addZone(s,p,dest,...moved.filter(x=>(x.cardOwner??owner)===p));
   }else api.addZone(s,owner,dest,...moved);
   if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,owner,x);
+  if(dest==='shields')for(const x of moved)api.notifyShieldAdded(s,owner,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
   return moved;
  }

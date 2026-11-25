@@ -1,0 +1,439 @@
+{
+  "phase": 1759,
+  "checkedAt": "2026-11-25T08:44:32.359Z",
+  "baseline": "27edf0c9",
+  "baseCount": 9500,
+  "description": "Two explicitly requested shield cards, plus two King Cells necessary to reproduce official QA49427. Ordinary registration and automation stay paused.",
+  "requestedCards": [
+    "dm22ex1-016",
+    "dm26rp3-006"
+  ],
+  "verificationDependencies": [
+    "dmrp20-km3",
+    "dmrp20-km4"
+  ],
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49427/",
+    "https://dm.takaratomy.co.jp/rule/qa/49428/"
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49427/",
+      "sha256": "c73f14309e69d8226c9e371a5fe040994652cb54dbe2db68c804d9f46e11c7f3",
+      "checkedAt": "2026-11-25T08:37:47.167Z",
+      "reproduced": true,
+      "tests": "tests/standard1759-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49428/",
+      "sha256": "8815b57312c8311ffe0c5fd28ab5bb2d2aace99daa7674795af940fb6ab09cbb",
+      "checkedAt": "2026-11-25T08:37:47.739Z",
+      "reproduced": true,
+      "tests": "tests/standard1759-effects.test.mjs"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "checkedAt": "2026-11-25T08:39:47.737Z",
+    "matches": [
+      {
+        "name": "新世界王の権威",
+        "present": false
+      },
+      {
+        "name": "新世界王の思想",
+        "present": false
+      },
+      {
+        "name": "新世界王の闘気",
+        "present": false
+      }
+    ],
+    "limits": {
+      "dm22ex1-016": 4,
+      "dm26rp3-006": 4,
+      "dmrp20-km3": 4,
+      "dmrp20-km4": 4
+    },
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments"
+  },
+  "cards": [
+    {
+      "id": "dm22ex1-016",
+      "name": "「正義全帝」",
+      "canonicalId": "dm22ex1-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-016",
+      "faces": [
+        {
+          "name": "「正義全帝」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "{GS} G・ストライク\nギャラクシールド [lw06]\nこのクリーチャーを表向きでシールドゾーンに置いた時、カードを３枚引いてもよい。\n自分のターンのはじめに、このクリーチャーが表向きでシールドゾーンにあれば、コストを支払ったものとして召喚する。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を好きな枚数、表向きにシールド化する。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "breaker": 3,
+        "g1412GalaxyShield": {
+          "cost": 6,
+          "civilizations": [
+            "光",
+            "水"
+          ]
+        },
+        "g660ShieldEntry": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": "all",
+            "optional": true,
+            "g583Group": true,
+            "g657FaceUp": true,
+            "title": "表向きでシールド化する手札を好きな枚数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-016.jpg",
+      "imageSha256": "bc4e250786c97c3674ae310d98908a673d144389799594b6647afd92145580e4",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "sha256": "5a92a9f4d6d69b0d732a87f967546dfb3fb3ed38c5499f293eacbc1cc0351c18",
+        "facesMatched": true,
+        "checkedAt": "2026-11-25T08:37:03.919Z",
+        "imageSha256": "bc4e250786c97c3674ae310d98908a673d144389799594b6647afd92145580e4"
+      },
+      "currentPrint": {
+        "id": "dm26rp3-TD005",
+        "name": "「正義全帝」",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-TD005",
+        "faces": [
+          {
+            "name": "「正義全帝」",
+            "typeText": "クリーチャー",
+            "civilizationText": "光/水",
+            "civilizations": [
+              "光",
+              "水"
+            ],
+            "cost": 8,
+            "costText": "8",
+            "abilityText": "{GS} G・ストライク\nギャラクシールド [lw06]（このカードを実行するコストのかわりに、 [lw06]を支払ってこのカードを表向きでシールド化してもよい）\nこのカードを表向きでシールドゾーンに置いた時、カードを３枚引いてもよい。\n自分のターンのはじめに、このクリーチャーが表向きでシールドゾーンにあれば、コストを支払ったものとして召喚する。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を好きな枚数、表向きでシールド化する。",
+            "race": "メタリカ/チーム銀河",
+            "powerText": "15000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "manaValue": 1,
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-TD005.jpg",
+        "imageSha256": "9b79594b6f376882bce85df3286c855c05565fcf8da899ac92eebe4573c389ba",
+        "verification": {
+          "sha256": "a4860b827b71aefa8045470826c39b1f2c98317f87fcb2dc7e0fdff29e9e9ffc",
+          "facesMatched": true,
+          "checkedAt": "2026-11-25T08:37:04.786Z"
+        },
+        "qa": [],
+        "useRulesText": true,
+        "imageReviewed": true
+      },
+      "reprintVerification": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-TD005",
+        "referenceSource": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-016",
+        "originalIdPreserved": true,
+        "comparison": "Current card wording and reminder text; the same full abilities and stats. Latest source is used for rules text."
+      }
+    },
+    {
+      "id": "dm26rp3-006",
+      "name": "煌風逆夢 サヴェスヴァーク",
+      "canonicalId": "dm26rp3-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-006",
+      "faces": [
+        {
+          "name": "煌風逆夢 サヴェスヴァーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "W・シンパシー：自分のシールドゾーンにある表向きのカード（このカードの実行コストを、自分のシールドゾーンにある表向きのカード１枚につき２少なくする。ただしコストは１以下にならない）\nEXライフ\nマッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を表向きにする。その中から１枚を表向きでシールド化し、もう１枚をマナゾーンに置く。\nカードが表向きで自分のシールドゾーンに置かれた時、カードを１枚引いてもよい。\n自分の手札にあるクリーチャーすべてに「W・シンパシー：自分のシールドゾーンにある表向きのカード」を与える。",
+          "race": "ディスペクター/マスター・ドラゴン/メタリカ/グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "exLife": true,
+        "machFighter": true,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 2,
+          "zone": "shields",
+          "filter": {}
+        },
+        "g1759FaceUpDraw": true,
+        "g1759HandShieldSympathy": true,
+        "g34Attack": [
+          {
+            "op": "Look",
+            "n": 2,
+            "public": true,
+            "g1660PublicReveal": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields",
+                "g657FaceUp": true
+              },
+              {
+                "n": 1,
+                "to": "mana",
+                "tapMulticolor": true
+              }
+            ],
+            "rest": "keep"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-006.jpg",
+      "imageSha256": "1c7573475cc2ebb7a97e809b2161283e088c234eaffd43351ac3fd275ffb3280",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "sha256": "c069d6dabe75c8e0534e997f874caad975e963841567a9341310f6b46723e4d8",
+        "facesMatched": true,
+        "checkedAt": "2026-11-25T08:37:05.580Z",
+        "imageSha256": "1c7573475cc2ebb7a97e809b2161283e088c234eaffd43351ac3fd275ffb3280"
+      }
+    },
+    {
+      "id": "dmrp20-km3",
+      "name": "新世界王の権威",
+      "canonicalId": "dmrp20-km3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km3",
+      "faces": [
+        {
+          "name": "新世界王の権威",
+          "typeText": "キング・セル",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": null,
+          "costText": "",
+          "abilityText": "{GS} G・ストライク\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": [
+            "cost"
+          ]
+        },
+        {
+          "name": "Volzeos-Balamord",
+          "typeText": "キング・クリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+          "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+          "powerText": "555555",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "cell",
+        "cost": "∞",
+        "gStrike": true,
+        "redCircleMana": true,
+        "g50KingParts": [
+          "新世界王の権威",
+          "新世界王の思想",
+          "新世界王の闘気"
+        ],
+        "g50KingFace": {
+          "name": "Volzeos-Balamord",
+          "type": "creature",
+          "cost": 9,
+          "civ": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "power": 555555,
+          "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+          "text": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間、ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+          "speedAttacker": true,
+          "breaker": "∞",
+          "exLife": true,
+          "extraExLife": true,
+          "g50Volzeos": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-km3a.jpg",
+      "imageSha256": "15468a2d3159db1ef524085addc51082131f22cfa8b65c3e95baf7675ec73f8d",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "sha256": "d020fe5ae57aa1dc8eb4ec880ee5a14761ea1a99d30b1b36fc3e5b48b204c636",
+        "facesMatched": true,
+        "checkedAt": "2026-11-25T08:39:45.406Z",
+        "imageSha256": "15468a2d3159db1ef524085addc51082131f22cfa8b65c3e95baf7675ec73f8d",
+        "scope": "Exact first face HTML; combined abilities/stats from km5 HTML (one comma after 間 differs from split image text); combined type and full common face visually confirmed across three official split images"
+      },
+      "combinedFaceEvidence": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km5",
+        "sha256": "602fcbbaab9feac803f913acbf96977b9aa2daab6a658183226f2b674f353141",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-km5a.jpg",
+        "imageSha256": "b39f140641f9639ca1de0a425b2a1ed3c1fcba451ad84de4d60b0841c4cea94b",
+        "fields": [
+          "type",
+          "power",
+          "abilities"
+        ],
+        "review": "Three official split images jointly confirm King Creature, power555555 and the complete common face. Printed cell cost is absent; cell rules retain infinity as the engine sentinel."
+      }
+    },
+    {
+      "id": "dmrp20-km4",
+      "name": "新世界王の思想",
+      "canonicalId": "dmrp20-km4",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km4",
+      "faces": [
+        {
+          "name": "新世界王の思想",
+          "typeText": "キング・セル",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": null,
+          "costText": "",
+          "abilityText": "{GS} G・ストライク\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": [
+            "cost"
+          ]
+        },
+        {
+          "name": "Volzeos-Balamord",
+          "typeText": "キング・クリーチャー",
+          "civilizationText": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+          "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+          "powerText": "555555",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "cell",
+        "cost": "∞",
+        "gStrike": true,
+        "redCircleMana": true,
+        "g50KingParts": [
+          "新世界王の権威",
+          "新世界王の思想",
+          "新世界王の闘気"
+        ],
+        "g50KingFace": {
+          "name": "Volzeos-Balamord",
+          "type": "creature",
+          "cost": 9,
+          "civ": "光/水/闇/火/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "power": 555555,
+          "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+          "text": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間、ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+          "speedAttacker": true,
+          "breaker": "∞",
+          "exLife": true,
+          "extraExLife": true,
+          "g50Volzeos": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-km4a.jpg",
+      "imageSha256": "b058df6b3fa51b0109d86de08e90483636a84d8bc3b7e9ca6a5112657f3ea332",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "verification": {
+        "sha256": "2caaf7d8e83379f214da05c24d5890e21d6a7c6a705d7e469ecb4ec8a77c21ab",
+        "facesMatched": true,
+        "checkedAt": "2026-11-25T08:39:46.339Z",
+        "imageSha256": "b058df6b3fa51b0109d86de08e90483636a84d8bc3b7e9ca6a5112657f3ea332",
+        "scope": "Exact first face HTML; combined abilities/stats from km5 HTML (one comma after 間 differs from split image text); combined type and full common face visually confirmed across three official split images"
+      },
+      "combinedFaceEvidence": {
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km5",
+        "sha256": "602fcbbaab9feac803f913acbf96977b9aa2daab6a658183226f2b674f353141",
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-km5a.jpg",
+        "imageSha256": "b39f140641f9639ca1de0a425b2a1ed3c1fcba451ad84de4d60b0841c4cea94b",
+        "fields": [
+          "type",
+          "power",
+          "abilities"
+        ],
+        "review": "Three official split images jointly confirm King Creature, power555555 and the complete common face. Printed cell cost is absent; cell rules retain infinity as the engine sentinel."
+      }
+    }
+  ]
+}

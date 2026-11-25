@@ -116,7 +116,12 @@ export function createShieldPhotoRules(api){
   return allyPower+activeUp(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
  },
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
- discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
+ discount(s,p,c){
+  if(c.type!=='creature'||c.crossing)return 0;
+  const n=up(s,p).length;if(!n)return 0;
+  const sources=(c.summonOrigin||'hand')==='hand'?creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&effective(x,s).g1759HandShieldSympathy).length:0;
+  return (c.g33FaceDiscount||0)+sources*n*2;
+ },
  decorate(s,p,x,c){
   if(c.type!=='creature')return c;
   if(armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};
@@ -133,10 +138,12 @@ export function createShieldPhotoRules(api){
   return c;
  },
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},
+ minimumCost1759(s,p,c,n){return n>0&&c.type==='creature'&&!c.crossing&&(c.summonOrigin||'hand')==='hand'&&up(s,p).length&&creatures(s,p).some(x=>!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&effective(x,s).g1759HandShieldSympathy)?Math.max(1,colors(c).length,n):n;},
  guard(s,p,x){return ad(effective(x,s))&&creatures(s,p).some(y=>effective(y,s).g33Kaku);},
  shieldAdded(s,p,x,options={}){
   if(options.fortified1746)for(const y of creatures(s,p))if(!y.sealed&&!y.faceDown&&effective(y,s).g1746CastleEntry&&!api.ignored(s,y))api.enqueue(s,p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('g34_Choose',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0,controller:p,modes:[{label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},{label:'クリーチャーを1体手札に戻す',defs:[{op:'Target',anyOwner:true,to:'hand',toOwnerHand:true}]},{label:'使わない',defs:[]}]})});
   if(!x.faceUp)return;
+  for(const y of creatures(s,p))if(!y.sealed&&!y.faceDown&&!api.ignored(s,y)&&effective(y,s).g1759FaceUpDraw)api.enqueue(s,p,shieldEffect(p,y,[{op:'Draw',n:1,optional:true}]));
   const active=!shieldAbilitiesMuted(s,p);
   if(active&&card(x).g657FaceUpEntry)api.enqueue(s,p,{
    uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Select',p,x.cardId,{

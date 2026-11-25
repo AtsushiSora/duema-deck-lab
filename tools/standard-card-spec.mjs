@@ -1,3 +1,4 @@
+import {requestedCardSpec1759} from './requested-card-spec-1759.mjs';
 import {target9000CardSpec} from './target9000-card-spec.mjs';
 import {target8500CardSpec} from './target8500-card-spec.mjs';
 import {requestedCardSpec1372} from './requested-card-spec-1372.mjs';
@@ -2462,6 +2463,7 @@ const brainCoralSpec=()=>({effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
 }]});
 
 export function standardCardSpec(d,{phase=165}={}){
+ if(phase>=1759){const spec=requestedCardSpec1759(d,phase);if(spec)return spec;}
  if(phase>=1472){const spec=target9000CardSpec(d,phase);if(spec)return spec;}
  if(phase>=1379){const spec=target8500CardSpec(d,phase);if(spec)return spec;}
  // Repair only the complete formatting variants pinned to these official prints.

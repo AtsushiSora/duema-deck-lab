@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-11-24",
+  "checkedAt": "2026-11-25T09:00:49.832Z",
   "catalogueNames": 11823,
-  "supportedNames": 9500,
-  "pendingNames": 2323,
-  "phase": 1758,
+  "supportedNames": 9504,
+  "pendingNames": 2319,
+  "phase": 1759,
   "added": 4,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1357,
+    "クリーチャー": 1355,
     "呪文": 257,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -188,7 +188,7 @@
     "進化クリーチャー（超無限進化）": 3,
     "ドラグハート・ウエポン": 34,
     "進化クリーチャー(進化V)": 9,
-    "キング・セル": 4,
+    "キング・セル": 2,
     "NEO GRクリーチャー": 1,
     "エグザイル・クリーチャー": 20,
     "進化クリーチャー(墓地進化V)": 1,
@@ -221,8 +221,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1716,
-    "複数面・特殊カードタイプまたは情報不足": 505,
+    "未対応の能力文": 1714,
+    "複数面・特殊カードタイプまたは情報不足": 503,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -559847,11 +559847,229 @@
       "nextCandidates": [],
       "next": "13種類の手動一括追加を検証・コミットして9500種類に到達。通常登録と10分ごとの自動登録は停止。旧保留と中断の検証状態を維持。push・公開・Netlify更新なし。",
       "verifiedCommit": "b985152e56d066268edcc63fcae43194f8aa96ca"
+    },
+    {
+      "phase": 1759,
+      "checkedAt": "2026-11-25T09:00:49.832Z",
+      "baseline": "27edf0c9",
+      "kind": "explicit-request-and-ruling-dependencies",
+      "status": "verified-local",
+      "before": 9500,
+      "currentNames": 9504,
+      "added": [
+        {
+          "id": "dm22ex1-016",
+          "name": "「正義全帝」"
+        },
+        {
+          "id": "dm26rp3-006",
+          "name": "煌風逆夢 サヴェスヴァーク"
+        },
+        {
+          "id": "dmrp20-km3",
+          "name": "新世界王の権威"
+        },
+        {
+          "id": "dmrp20-km4",
+          "name": "新世界王の思想"
+        }
+      ],
+      "requestedCards": [
+        "dm22ex1-016",
+        "dm26rp3-006"
+      ],
+      "verificationDependencies": [
+        "dmrp20-km3",
+        "dmrp20-km4"
+      ],
+      "duplicateNames": 0,
+      "supported": 9504,
+      "pending": 2319,
+      "manifest": "tools/support-phase-1759.json",
+      "evidence": "tools/phase-1759-verification.json",
+      "invariants": {
+        "baseline": "27edf0c9",
+        "originalDefinitionsUnchanged": 9500,
+        "added": [
+          {
+            "id": "dm22ex1-016",
+            "name": "「正義全帝」"
+          },
+          {
+            "id": "dm26rp3-006",
+            "name": "煌風逆夢 サヴェスヴァーク"
+          },
+          {
+            "id": "dmrp20-km3",
+            "name": "新世界王の権威"
+          },
+          {
+            "id": "dmrp20-km4",
+            "name": "新世界王の思想"
+          }
+        ],
+        "uniqueNames": 9504,
+        "uniqueIds": 9504,
+        "duplicateNames": 0,
+        "catalogueAndDetailsUnchanged": true,
+        "existingImagesUnchanged": 9500,
+        "existingImageReferencesUnchanged": 11794,
+        "officialDefinitionsReviewed": 4,
+        "additionalReprintReviewed": 1,
+        "existingCombinedFaceReference": "dmrp20-km5",
+        "priorPendingPreserved": true,
+        "saveFormatUnchanged": true,
+        "checkedAt": "2026-11-25T08:59:43.000Z"
+      },
+      "results": {
+        "complete-definitions": {
+          "name": "complete-definitions",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1759-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.201,
+          "log": "tmp/card-1759/complete-definitions.log",
+          "passed": 21,
+          "logSha256": "da7c19d59a609cff5a8a0a38d07976b397c0de35a4240ab6dd622299976f946b"
+        },
+        "games": {
+          "name": "games",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1759-games.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 14.856,
+          "log": "tmp/card-1759/games.log",
+          "passed": 2,
+          "logSha256": "e16e293be5155eee9000404cd5f5fb1aadf9139fa0f20cff1f7aa08fa7839294"
+        },
+        "shield-regressions": {
+          "name": "shield-regressions",
+          "command": [
+            "node",
+            "--test",
+            "tests/photo167-effects.test.mjs",
+            "tests/standard1412-effects.test.mjs",
+            "tests/shield-photo.test.mjs",
+            "tests/standard1343-effects.test.mjs",
+            "tests/standard583-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 416.381,
+          "log": "tmp/card-1759/shield-regressions.log",
+          "passed": 129,
+          "logSha256": "3f5b5471646972ce2c1eb3a173502acb4ee1b958ec7efe1137c19d6056954640"
+        },
+        "cost-king-regressions": {
+          "name": "cost-king-regressions",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard211-effects.test.mjs",
+            "tests/standard500-effects.test.mjs",
+            "tests/champion-combat-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 35.953,
+          "log": "tmp/card-1759/cost-king-regressions.log",
+          "passed": 107,
+          "logSha256": "9d8e2eff41d9571fff0dd672125f5ffced807ec8456c0dd4f1510486c7c7fd4a"
+        },
+        "online-payment": {
+          "name": "online-payment",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=^(room storage is|creating, joining|the server validates|HTTP middleware|online public effect references|only the mana controller|a face-down mana payment|online stacked shields)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.705,
+          "log": "tmp/card-1759/online-payment.log",
+          "passed": 9,
+          "logSha256": "530c2725eeefa07c43e35477076a135fcc7cd881043e7dd63311366ff873d7ec"
+        },
+        "mana-hand-regressions": {
+          "name": "mana-hand-regressions",
+          "command": [
+            "node",
+            "--test",
+            "tests/mana-payment.test.mjs",
+            "tests/hand-ui.test.mjs",
+            "tests/online-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.14,
+          "log": "tmp/card-1759/mana-hand-regressions.log",
+          "passed": 74,
+          "logSha256": "63a3bedbcd94d3b836dc2bd078c41e80e601f6861c14639d58742ea0b33c8629"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.568,
+          "log": "tmp/card-1759/check.log",
+          "logSha256": "1140b2a4af3f4c934dfb335007e28b7fa347ebf1096c4c3a2dc2e4f8e79d4dcb"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.235,
+          "log": "tmp/card-1759/audit.log",
+          "logSha256": "fa18bc65fc7cfae687780b062f083dbea41c5a9536dda0969122a5183396ac1b"
+        },
+        "final-audit-verified": {
+          "name": "final-audit-verified",
+          "command": [
+            "node",
+            "tmp/card-1759/final-audit.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.09,
+          "log": "tmp/card-1759/final-audit-verified.log",
+          "logSha256": "0bee181bd684b6c00777148af0d51d2bcff9a23a31f89482e676d04a2fc41d3d"
+        }
+      },
+      "totalTestsPassed": 342,
+      "engineVersion": "0.602.281",
+      "registeredCardVerificationPending": [],
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      },
+      "held": [],
+      "nextCandidates": [],
+      "next": "今回の個別依頼を完了。通常登録と10分ごとの自動実行は停止を維持。新しい指示があるまで追加・push・公開・Netlify更新を行わない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1758,
-    "nextPhase": 1759,
+    "lastVerifiedPhase": 1759,
+    "nextPhase": 1760,
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
@@ -559937,15 +560155,11 @@
       "不明な不透明 メモッタと究極の虚 ジャシン＝ヴリドガルドが対戦未対応のため、QA 48925の組み合わせは実行できない。通常の進化元から誘発することと墓地の制限は固有テストで確認済み。"
     ],
     "restartSteps": [
-      "開始時にHEAD・差分・ステージ・AGENTS・進捗と前回テスト、実行中プロセスを確認。別作業が実行中なら重複しない。",
-      "実データdist/cards.jsonのnameKey件数は9219種類・重複0、9500まで残り281。自動ハートビートはPAUSEDのまま、ユーザー依頼の目標をこのセッションで継続。",
-      "検証済みphase1660とtools/target9500-registration-checkpoint-1660.jsonのハッシュ・実測を確認。元のカード定義とID、catalogueの再録エイリアスと保存形式を維持。",
-      "phase1661で未対応3〜5種類を目安に公式全文・基本情報・画像・制限・再録・裁定を照合し、能力全体を実装。固有テストと関連回帰、npm run check、監査とtarget9500不変条件とnameKey再集計後、検証済み差分を明示ステージしてローカルコミットする。",
-      "全体npm testは再実行せず、中断・合否未確認を維持。既存の長時間群は同じ一括実行を繰り返さず独立に分割する。今回の固有検証から過去の未確認項目が解消したとは推定しない。",
-      "ユーザー保留の公式照合2件は明示依頼まで再開しない。9500到達で件数増加目的の登録を停止。",
-      "push・公開・Netlify更新には別途指示が必要。現在のカード追加工程では実施しない。"
+      "最新コミット、作業ツリー・ステージ済み差分、AGENTS.md、進捗、既存の作業・テストプロセスを確認する。",
+      "通常登録・10分ごとの自動実行はPAUSEDを維持。次の個別追加や公開は新しいユーザー指示に従う。",
+      "過去のカード・再録・長時間検証の保留は既存記録を維持し、一括npm testや中断した長時間群を再実行しない。"
     ],
-    "registrationStatus": "active-manual-local-only",
+    "registrationStatus": "paused-after-explicit-addition",
     "verificationMode": "ガイアール・ホールの合計8は実カードで確認済み。今回の5種類は既存の超次元展開でも条件を満たす面を選べる。従来のサイキックの他の展開元については、選択肢の順序と旧対戦の再現を展開元ごとに検証する。破壊されない対象の選択、QA 38717とQA 36348の指定カードは依存カードの対応後に確認する。ツインパクト混成100戦はシード1〜100を分割して検証済み。 QA 38714は実カードで確認済み。QA 40363はアシッド・テクノで確認済み。希望のジョー星を必要とする2件は依存カードへの対応後に確認する。 QA 44192はタンクリオ-L8・パトファール-P4・シェケダン・ドメチアーレで確認済み。QA 44196は偽りの嘘 ネメシスの対応後に実カードで確認する。 快速のハッチャキのシールド・ゴー単独の置換は確認済み。ザハ・エルハの対応後に競合を実カードで確認する。",
     "nextRequestedCards": [],
     "printVerificationPending": [
@@ -560567,16 +560781,24 @@
       }
     ],
     "lastExplicitUserAddition": {
-      "phase": 1411,
-      "cards": [
-        "dm23rp2-S03",
-        "dmrp13-s08"
+      "phase": 1759,
+      "requestedCards": [
+        "dm22ex1-016",
+        "dm26rp3-006"
+      ],
+      "verificationDependencies": [
+        "dmrp20-km3",
+        "dmrp20-km4"
       ],
       "status": "verified-local",
-      "supportedNames": 8231,
-      "testsPassed": 859,
-      "reprintsVerified": 5,
-      "originalDefinitionsUnchanged": 8074
+      "supportedNames": 9504,
+      "testsPassed": 342,
+      "evidence": "tools/phase-1759-verification.json",
+      "publication": {
+        "pushed": false,
+        "deployed": false,
+        "netlifyUpdated": false
+      }
     },
     "parkedRegistrationWork": {
       "kind": "Galaxyshield parameterization",
@@ -562734,23 +562956,16 @@
       "previousRequestedCardVerification": "tools/requested-card-verification-1603.json"
     },
     "latestRequestedCards": {
-      "checkedAt": "2026-11-21T08:37:45.550Z",
-      "record": "tools/requested-card-verification-1603.json",
+      "checkedAt": "2026-11-25T09:00:49.832Z",
+      "phase": 1759,
       "status": "all-requested-cards-verified-local",
       "ids": [
-        "dm25ex1-036",
-        "dmex04-007",
-        "dm26rp3-049",
-        "dm24bd2-011",
-        "dmx13-013",
-        "dm23ex3-S02",
-        "dm23ex3-S01",
-        "dm26ex4-002",
-        "dm26ex5-031"
+        "dm22ex1-016",
+        "dm26rp3-006"
       ],
-      "added": 5,
-      "reverified": 4,
-      "remaining": []
+      "added": 4,
+      "remaining": [],
+      "record": "tools/phase-1759-verification.json"
     },
     "previousRegistrationSessions": [
       {
@@ -616367,6 +616582,20 @@
     "resumeInstruction": "再開して",
     "previousRegistrationCommit": "f570428c6a39c70e954861dc8f26c2297433c111",
     "registrationCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
-    "reachedCommit": "b985152e56d066268edcc63fcae43194f8aa96ca"
+    "reachedCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
+    "latestExplicitAddition": {
+      "phase": 1759,
+      "currentNames": 9504,
+      "requestedCards": [
+        "dm22ex1-016",
+        "dm26rp3-006"
+      ],
+      "verificationDependencies": [
+        "dmrp20-km3",
+        "dmrp20-km4"
+      ],
+      "evidence": "tools/phase-1759-verification.json",
+      "normalRegistrationStillStopped": true
+    }
   }
 }

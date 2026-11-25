@@ -303548,22 +303548,221 @@
       ],
       "supportBatch": "phase-1758",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-016",
+      "name": "「正義全帝」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "メタリカ/チーム銀河",
+      "text": "{GS} G・ストライク\nギャラクシールド [lw06]（このカードを実行するコストのかわりに、 [lw06]を支払ってこのカードを表向きでシールド化してもよい）\nこのカードを表向きでシールドゾーンに置いた時、カードを３枚引いてもよい。\n自分のターンのはじめに、このクリーチャーが表向きでシールドゾーンにあれば、コストを支払ったものとして召喚する。\nT・ブレイカー\nこのクリーチャーが出た時、自分の手札を好きな枚数、表向きでシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-016",
+      "limit": 4,
+      "gStrike": true,
+      "breaker": 3,
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光",
+          "水"
+        ]
+      },
+      "g660ShieldEntry": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": "all",
+          "optional": true,
+          "g583Group": true,
+          "g657FaceUp": true,
+          "title": "表向きでシールド化する手札を好きな枚数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-006",
+      "name": "煌風逆夢 サヴェスヴァーク",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "ディスペクター/マスター・ドラゴン/メタリカ/グランセクト",
+      "text": "W・シンパシー：自分のシールドゾーンにある表向きのカード（このカードの実行コストを、自分のシールドゾーンにある表向きのカード１枚につき２少なくする。ただしコストは１以下にならない）\nEXライフ\nマッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を表向きにする。その中から１枚を表向きでシールド化し、もう１枚をマナゾーンに置く。\nカードが表向きで自分のシールドゾーンに置かれた時、カードを１枚引いてもよい。\n自分の手札にあるクリーチャーすべてに「W・シンパシー：自分のシールドゾーンにある表向きのカード」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-006",
+      "limit": 4,
+      "breaker": 3,
+      "exLife": true,
+      "machFighter": true,
+      "g211Sympathy": {
+        "amount": 2,
+        "minimum": 2,
+        "zone": "shields",
+        "filter": {}
+      },
+      "g1759FaceUpDraw": true,
+      "g1759HandShieldSympathy": true,
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "g1660PublicReveal": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            },
+            {
+              "n": 1,
+              "to": "mana",
+              "tapMulticolor": true
+            }
+          ],
+          "rest": "keep"
+        }
+      ],
+      "supportBatch": "phase-1759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-km3",
+      "name": "新世界王の権威",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "cell",
+      "cost": "∞",
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。\n【呪文面】\n自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km3",
+      "limit": 4,
+      "gStrike": true,
+      "redCircleMana": true,
+      "g50KingParts": [
+        "新世界王の権威",
+        "新世界王の思想",
+        "新世界王の闘気"
+      ],
+      "g50KingFace": {
+        "name": "Volzeos-Balamord",
+        "type": "creature",
+        "cost": 9,
+        "civ": "光/水/闇/火/自然",
+        "civilizations": [
+          "光",
+          "水",
+          "闇",
+          "火",
+          "自然"
+        ],
+        "power": 555555,
+        "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+        "text": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間、ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+        "speedAttacker": true,
+        "breaker": "∞",
+        "exLife": true,
+        "extraExLife": true,
+        "g50Volzeos": true
+      },
+      "supportBatch": "phase-1759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-km4",
+      "name": "新世界王の思想",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "cell",
+      "cost": "∞",
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。\n【呪文面】\n自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-km4",
+      "limit": 4,
+      "gStrike": true,
+      "redCircleMana": true,
+      "g50KingParts": [
+        "新世界王の権威",
+        "新世界王の思想",
+        "新世界王の闘気"
+      ],
+      "g50KingFace": {
+        "name": "Volzeos-Balamord",
+        "type": "creature",
+        "cost": 9,
+        "civ": "光/水/闇/火/自然",
+        "civilizations": [
+          "光",
+          "水",
+          "闇",
+          "火",
+          "自然"
+        ],
+        "power": 555555,
+        "race": "ディスペクター/ニュー・ワールド・ドラゴン",
+        "text": "自分の手札またはマナゾーンに３種のキング・セル《新世界王の権威》《新世界王の思想》《新世界王の闘気》が揃っていれば、合体させ、コストを支払ってこのキング・クリーチャーを召喚してもよい。\nエクストラEXライフ（このクリーチャーを出す時、自分の山札の上から２枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドのうち１つを墓地に置く）\nスピードアタッカー\nワールド・ブレイカー\nこのクリーチャーは、出たターンの間、ブロックされない。\nこのクリーチャーが攻撃する時、相手は自身の手札をすべて捨てる。\n自分が「G・ストライク」を使った時、自分の山札の上から１枚目をマナゾーンに置き、相手のクリーチャーを１体選んでタップしてもよい。",
+        "speedAttacker": true,
+        "breaker": "∞",
+        "exLife": true,
+        "extraExLife": true,
+        "g50Volzeos": true
+      },
+      "supportBatch": "phase-1759",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1758,
-    "checkedAt": "2026-11-24T00:59:01.190Z",
-    "baseCount": 9496,
+    "phase": 1759,
+    "checkedAt": "2026-11-25T08:44:32.359Z",
+    "baseCount": 9500,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9500,
+    "totalCount": 9504,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40623/"
+      "https://dm.takaratomy.co.jp/rule/qa/49427/",
+      "https://dm.takaratomy.co.jp/rule/qa/49428/"
     ],
     "next": [
-      "9500へ公式全文対応を継続"
+      "Ordinary registration remains stopped; only explicitly requested additions."
     ],
     "history": [
       {
@@ -332398,6 +332597,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "9500へ公式全文対応を継続"
+        ]
+      },
+      {
+        "phase": 1758,
+        "checkedAt": "2026-11-24T00:59:01.190Z",
+        "baseCount": 9496,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9500,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40623/"
         ],
         "next": [
           "9500へ公式全文対応を継続"

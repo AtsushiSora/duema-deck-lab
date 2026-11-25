@@ -22,6 +22,6 @@ export function createPhoto167Rules(api){
  function alternative(s,p,a){const x=s.players[p].hand.find(x=>x.uid===a.uid);if(!x)throw Error('唱えるカードがありません');x.g167CraftAlt=true;api.cast(s,p,a.uid,false,null,0,{cost:1,civilizations:['火'],g40PayNormally:true},'hand');}
  function effect(s,p,c,uid){if(c.g167Eva){put(s,lock(p,c.id,{uid}));return true;}if(c.g167Craft){const f=s.extSpells?.find(f=>f.inst.uid===uid),defs=[];if(f?.inst.g167CraftAlt)defs.push(task('g34_Select',p,c.id,{origin:'battle',to:'grave',n:1,filter:{element:true},title:'破壊する自分のエレメントを1つ選ぶ'}));defs.push(task('g34_Target',p,c.id,{to:'grave',element:true,filter:{element:true,max:4},title:'破壊するコスト4以下の相手のエレメントを選ぶ'}));put(s,...defs);return true;}return false;}
  function shieldAdded(s,p,x){if(x.faceUp&&card(x).g167Eva)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:lock(p,x.cardId,{uid:x.uid})});}
- function start(s,p){return s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&eva(card(x))&&!x.g37ShieldHeld).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g167_GalaxySummon',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));}
+ function start(s,p){if(api.shieldAbilitiesMuted?.(s,p))return [];return s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&eva(card(x))&&!x.g37ShieldHeld).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g167_GalaxySummon',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));}
  return{run,chosen,mainActions,galaxy,alternative,effect,shieldAdded,start};
 }
