@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-11-25T09:00:49.832Z",
-  "catalogueNames": 11823,
-  "supportedNames": 9504,
+  "checkedAt": "2026-11-25T10:26:22.192Z",
+  "catalogueNames": 11824,
+  "supportedNames": 9505,
   "pendingNames": 2319,
-  "phase": 1759,
-  "added": 4,
+  "phase": 1760,
+  "added": 1,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -560065,11 +560065,171 @@
       "held": [],
       "nextCandidates": [],
       "next": "今回の個別依頼を完了。通常登録と10分ごとの自動実行は停止を維持。新しい指示があるまで追加・push・公開・Netlify更新を行わない。"
+    },
+    {
+      "phase": 1760,
+      "checkedAt": "2026-11-25T10:26:22.192Z",
+      "baseline": "8505ca21",
+      "kind": "explicit-single-card-request",
+      "status": "verified-local",
+      "before": 9504,
+      "currentNames": 9505,
+      "added": [
+        {
+          "id": "dm26bd1-021",
+          "name": "北武の炎 ボルメテウス・ブラック / ボルメテウス・ソウル"
+        }
+      ],
+      "duplicateNames": 0,
+      "supported": 9505,
+      "pending": 2319,
+      "printAliases": [
+        {
+          "id": "dm26bd1-SP006",
+          "canonicalId": "dm26bd1-021"
+        }
+      ],
+      "manifest": "tools/support-phase-1760.json",
+      "evidence": "tools/phase-1760-verification.json",
+      "invariants": {
+        "checkedAt": "2026-11-25T10:25:42.424Z",
+        "baseline": "8505ca21",
+        "originalDefinitionsUnchanged": 9504,
+        "uniqueNames": 9505,
+        "uniqueIds": 9505,
+        "added": 1,
+        "duplicateNames": 0,
+        "oldCatalogueRowsUnchanged": 11827,
+        "oldDetailsRowsUnchanged": 11827,
+        "addedCatalogueCanonicalNames": 1,
+        "addedPrintAliases": 1,
+        "existingImageUrlsUnchanged": 9504,
+        "existingReferenceImagesUnchanged": 11798,
+        "detailsValidation": {
+          "registered": 11828,
+          "complete": 11793,
+          "partial": 35,
+          "faces": 12729
+        },
+        "oldSavedIdsAndFormatsPreserved": true,
+        "oldPendingPreserved": true
+      },
+      "results": {
+        "official": {
+          "name": "official",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1760.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.363,
+          "log": "tmp/card-1760/official.log",
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "focused-final": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1760-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.115,
+          "log": "tmp/card-1760/focused-final.log",
+          "passed": 18,
+          "logSha256": "0284a6bf741850f8fff7890176863c001bc60da15aa30199b4e46cb5b160cec1"
+        },
+        "related": {
+          "name": "related",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1529-effects.test.mjs",
+            "tests/standard1530-effects.test.mjs",
+            "tests/utility76-effects.test.mjs",
+            "tests/requested394-effects.test.mjs",
+            "tests/standard181-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 39.381,
+          "log": "tmp/card-1760/related.log",
+          "passed": 114,
+          "logSha256": "b6ead23cd51d5c7f87c0279fe5f85ce599a54789f69cf8d57ea4d65ee81ed242"
+        },
+        "games": {
+          "name": "games",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1760-games.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.878,
+          "log": "tmp/card-1760/games.log",
+          "passed": 2,
+          "logSha256": "cf648658d45a5468cef5b3071efb3676445345649e1041c175f2399e4cd1fb20"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.878,
+          "log": "tmp/card-1760/check.log",
+          "logSha256": "d7cfdd6e3a6f9f369f292a8b6f4a6e96a35326c2b51dfb4d91b95497923588e8"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.25,
+          "log": "tmp/card-1760/audit.log",
+          "logSha256": "053c9084e4ab42eff3a0035ea40b33bc07a6ba86b77c41e3e760a39a30ddb8ba"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/card-1760/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.742,
+          "log": "tmp/card-1760/invariants.log",
+          "logSha256": "2a5f702851739a1a91a73c918860afa441adf38bacc7efa9775f1fdc5ba9a667"
+        }
+      },
+      "totalTestsPassed": 134,
+      "registeredCardVerificationPending": [],
+      "engineVersion": "0.602.282",
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushAuthorized": true,
+        "pushedAtVerification": false,
+        "netlifyUpdated": false,
+        "netlifyExplicitlyExcluded": true
+      },
+      "held": [],
+      "nextCandidates": [],
+      "next": "依頼カードの追加完了。検証済みコミットをユーザー指示によりpushする。Netlify更新と通常の自動登録は行わない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1759,
-    "nextPhase": 1760,
+    "lastVerifiedPhase": 1760,
+    "nextPhase": 1761,
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
@@ -560781,24 +560941,16 @@
       }
     ],
     "lastExplicitUserAddition": {
-      "phase": 1759,
-      "requestedCards": [
-        "dm22ex1-016",
-        "dm26rp3-006"
-      ],
-      "verificationDependencies": [
-        "dmrp20-km3",
-        "dmrp20-km4"
-      ],
+      "phase": 1760,
       "status": "verified-local",
-      "supportedNames": 9504,
-      "testsPassed": 342,
-      "evidence": "tools/phase-1759-verification.json",
-      "publication": {
-        "pushed": false,
-        "deployed": false,
-        "netlifyUpdated": false
-      }
+      "requestedCards": [
+        "dm26bd1-021"
+      ],
+      "supportedNames": 9505,
+      "testsPassed": 134,
+      "evidence": "tools/phase-1760-verification.json",
+      "pushAuthorized": true,
+      "netlifyUpdated": false
     },
     "parkedRegistrationWork": {
       "kind": "Galaxyshield parameterization",
@@ -562956,16 +563108,15 @@
       "previousRequestedCardVerification": "tools/requested-card-verification-1603.json"
     },
     "latestRequestedCards": {
-      "checkedAt": "2026-11-25T09:00:49.832Z",
-      "phase": 1759,
+      "phase": 1760,
+      "checkedAt": "2026-11-25T10:26:22.192Z",
       "status": "all-requested-cards-verified-local",
       "ids": [
-        "dm22ex1-016",
-        "dm26rp3-006"
+        "dm26bd1-021"
       ],
-      "added": 4,
+      "added": 1,
       "remaining": [],
-      "record": "tools/phase-1759-verification.json"
+      "record": "tools/phase-1760-verification.json"
     },
     "previousRegistrationSessions": [
       {
@@ -616584,18 +616735,13 @@
     "registrationCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
     "reachedCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
     "latestExplicitAddition": {
-      "phase": 1759,
-      "currentNames": 9504,
+      "phase": 1760,
+      "currentNames": 9505,
       "requestedCards": [
-        "dm22ex1-016",
-        "dm26rp3-006"
+        "dm26bd1-021"
       ],
-      "verificationDependencies": [
-        "dmrp20-km3",
-        "dmrp20-km4"
-      ],
-      "evidence": "tools/phase-1759-verification.json",
-      "normalRegistrationStillStopped": true
+      "normalRegistrationStillStopped": true,
+      "evidence": "tools/phase-1760-verification.json"
     }
   }
 }
