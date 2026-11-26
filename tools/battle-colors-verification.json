@@ -1,0 +1,322 @@
+{
+  "checkedAt": "2026-11-26T02:12:19.692Z",
+  "baseline": "9408ea377e9988dff83477ebae00921ba64c3972",
+  "status": "verified-local-not-published",
+  "feature": "Choose battle UI colours independently of per-deck playmat artwork",
+  "placement": [
+    "App menu → 表示設定 → 対戦画面の色",
+    "Manual/spectator match menu → 表示設定",
+    "Online match menu → 画面の色・表示設定"
+  ],
+  "themes": [
+    "標準（白・緑）",
+    "ブルー",
+    "パープル",
+    "ボルドー",
+    "ダーク",
+    "ベージュ"
+  ],
+  "storage": {
+    "key": "duema.displayPreferences.v1",
+    "addedField": "battleTheme",
+    "scope": "device/browser/origin only",
+    "legacyDefault": "standard",
+    "deckAndHistoryFormatsUnchanged": true,
+    "failedSaveRetainsStoredAndDisplayedChoice": true
+  },
+  "behavior": {
+    "immediatePreviewAndSave": true,
+    "manualAndOnline": true,
+    "standardLookRetained": true,
+    "cardArtworkAndPrintedColoursUnchanged": true,
+    "perDeckPlaymatsIndependent": true,
+    "outsideBattleColoursUnchanged": true,
+    "forcedColoursRespected": true
+  },
+  "results": [
+    {
+      "name": "preferences",
+      "command": [
+        "node",
+        "--test",
+        "tests/app-improvements.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.723,
+      "log": "tmp/battle-colors/preferences.log",
+      "passed": 6,
+      "logSha256": "e47dd5f40f021974745e6d66119271c25bf5312f98afe8ab8991c139f0b34610"
+    },
+    {
+      "name": "colors-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-colors.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.129,
+      "log": "tmp/battle-colors/colors-final.log",
+      "passed": 15,
+      "logSha256": "47301619fa7036c196b234f3dbe7110b53109794803ee9fa04be16bd8dd290b9"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/battle-zoom.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.667,
+      "log": "tmp/battle-colors/related.log",
+      "passed": 128,
+      "logSha256": "8c475c569560776ae05f1f9df81b3cfa555fcc85542d5f0ea3129a0c9edb4fa6"
+    },
+    {
+      "name": "check-final",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.047,
+      "log": "tmp/battle-colors/check-final.log",
+      "passed": 0,
+      "logSha256": "334128cc1c667291e2506d4322507bdb6489e23c413b523ee93b863b2b7a94bd"
+    },
+    {
+      "name": "browser-complete",
+      "command": [
+        "node",
+        "tmp/battle-colors/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.782,
+      "log": "tmp/battle-colors/browser-complete.log",
+      "passed": 0,
+      "logSha256": "adcc05dd0b627d29a708ec731a44c849f35f93838c476d46ac8da9dfab7dfe13"
+    }
+  ],
+  "testsPassed": 149,
+  "browser": {
+    "layouts": [
+      {
+        "width": 320,
+        "height": 568,
+        "overflow": false,
+        "boardWidth": 320,
+        "boardHeight": 364,
+        "theme": "blue",
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "boardWidth": 390,
+        "boardHeight": 591,
+        "theme": "blue",
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "overflow": false,
+        "boardWidth": 551.046875,
+        "boardHeight": 353,
+        "theme": "blue",
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "boardWidth": 826.40625,
+        "boardHeight": 641,
+        "theme": "blue",
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      }
+    ],
+    "palettes": [
+      {
+        "theme": "blue",
+        "panel": "rgb(29, 52, 84)",
+        "text": "rgb(238, 245, 255)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 255, 255)",
+        "field": "rgb(19, 36, 62)",
+        "fieldText": "rgb(238, 245, 255)",
+        "handText": "rgb(238, 245, 255)",
+        "handBackground": "rgb(29, 52, 84)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      },
+      {
+        "theme": "violet",
+        "panel": "rgb(59, 43, 80)",
+        "text": "rgb(246, 240, 255)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 255, 255)",
+        "field": "rgb(39, 29, 57)",
+        "fieldText": "rgb(246, 240, 255)",
+        "handText": "rgb(246, 240, 255)",
+        "handBackground": "rgb(59, 43, 80)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      },
+      {
+        "theme": "crimson",
+        "panel": "rgb(77, 42, 53)",
+        "text": "rgb(255, 241, 244)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 255, 255)",
+        "field": "rgb(55, 28, 39)",
+        "fieldText": "rgb(255, 241, 244)",
+        "handText": "rgb(255, 241, 244)",
+        "handBackground": "rgb(77, 42, 53)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      },
+      {
+        "theme": "slate",
+        "panel": "rgb(48, 57, 64)",
+        "text": "rgb(244, 246, 248)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 255, 255)",
+        "field": "rgb(32, 38, 44)",
+        "fieldText": "rgb(244, 246, 248)",
+        "handText": "rgb(244, 246, 248)",
+        "handBackground": "rgb(48, 57, 64)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      },
+      {
+        "theme": "sand",
+        "panel": "rgb(242, 231, 210)",
+        "text": "rgb(59, 44, 30)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 255, 255)",
+        "field": "rgb(255, 249, 236)",
+        "fieldText": "rgb(59, 44, 30)",
+        "handText": "rgb(59, 44, 30)",
+        "handBackground": "rgb(242, 231, 210)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      },
+      {
+        "theme": "standard",
+        "panel": "rgba(0, 0, 0, 0)",
+        "text": "rgb(21, 43, 64)",
+        "button": "rgba(0, 0, 0, 0)",
+        "buttonText": "rgb(255, 248, 229)",
+        "field": "rgb(6, 14, 22)",
+        "fieldText": "rgb(241, 243, 245)",
+        "handText": "rgb(22, 87, 55)",
+        "handBackground": "rgb(234, 244, 239)",
+        "own": "forest",
+        "opponent": "retail-gp-clock"
+      }
+    ],
+    "themeCount": 6,
+    "legacyDefaultUnchanged": true,
+    "failedSaveRevertedWithoutChangingRadioValues": true,
+    "reloadRestored": true,
+    "cardArtworkAndPrintedColoursUnchanged": true,
+    "deckPayloadsUnchanged": true,
+    "playmatSettingsUnchanged": true,
+    "online": {
+      "theme": "violet",
+      "hand": "rgb(59, 43, 80)",
+      "dock": "rgb(39, 29, 57)",
+      "own": "forest",
+      "opponent": "standard"
+    },
+    "menuPageUnaffected": true,
+    "onlineVerification": "Actual local UI with deterministic account/online stubs; no live accounts or deployed service touched",
+    "errors": []
+  },
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account.js": "44c4cdde58946d22248b64323e42c1f531cf80b28e6a019fbf4cef929d505351",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/deck-history.js": "a051fbb67aba236211c47af37341e1e90f598022d96f59df20e7fc7e5b2db827",
+    "dist/deck-copy.js": "70fb2970993936c9bed2a4ae068db5a6c82439a84bd6c3ec055452a95b2ccf19",
+    "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
+    "dist/playmat.js": "8a3505ce796333bd2b35f17958c989966746195bdcbdbbce1d0a32a2ad83c331",
+    "dist/playmat.css": "dba03a1af7c7fb74577f730cb67f5dcf0660587b534820b6c2cf6dfb8a26f705",
+    "dist/retail-playmats.js": "b2f0902a425ef883122458ed73de06c58d3375bbb4756f19581665df66834015",
+    "dist/assets/playmats/sources.json": "fdaa5e15cf75ff0716b7075d56670f90f41596300bf64ba7dd3446f056fab577",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "dist/app.js": "77a8a9b80f903b814124c9f5433a1591351c4c1815656deaac45f1d7f7e5659e",
+    "dist/display-preferences.js": "de10ab74e48d9b6d04ccc28c26ba7bf8a270e885866c30cdedaf8eba7fc17413",
+    "dist/battle-colors.css": "5a514cad4d6860481aceaf74a09731eff4d90aaf27601e853d540d836df76f8b",
+    "dist/index.html": "61c5ec26fab22e2a19f39d278b5344d620805c6097197ab1ef309789dfc30b82",
+    "tests/app-improvements.test.mjs": "605a21d7585e7b50d1ff5743f2fcf8df1f381dad7c05998ef813cf6801d355eb",
+    "tests/battle-colors.test.mjs": "98810a932c667616816d04b5a898c9cc97934dc303b1fda20be2cd9feeacac0e"
+  },
+  "screenshots": [
+    {
+      "path": "tmp/battle-colors/settings.png",
+      "sha256": "6d2516a13aeabdaeb495e5156d09c5c4da4ccd5d106062e5a08f37650b05bef1"
+    },
+    {
+      "path": "tmp/battle-colors/manual-320.png",
+      "sha256": "404107b17b85391a5fbe5e95d712addb7daa911a0b6f9bd67215bf0a03fb335c"
+    },
+    {
+      "path": "tmp/battle-colors/manual-390.png",
+      "sha256": "be30b36f99fad69a6b791e33bdcb696b796917af49634ab49ce8bd3c668f16ff"
+    },
+    {
+      "path": "tmp/battle-colors/manual-844.png",
+      "sha256": "14dbe7c9dc8e47158f861f4ab91cba2aacad6f2bc0722846c0183fade38a4d93"
+    },
+    {
+      "path": "tmp/battle-colors/manual-1280.png",
+      "sha256": "0045043b2009f56998da10c1bb0954fab45e0c59fafef629dceb1f58eee2f9f7"
+    },
+    {
+      "path": "tmp/battle-colors/online.png",
+      "sha256": "351db6efee1f58327c6ca50c72a10212c5333ae19fe302244ba2056c80abba07"
+    }
+  ],
+  "supportedNamesBefore": 9505,
+  "supportedNamesAfter": 9505,
+  "newCards": 0,
+  "playmatDesigns": 143,
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "limitations": [
+    "Online UI verified with deterministic local account/room stubs, not a new live two-account match.",
+    "Viewport checks use isolated Chrome, not physical mobile devices.",
+    "Preferences are local and are not synchronized with account decks or exports."
+  ],
+  "verificationCorrections": [
+    "Updated dialog-specific CSS to prevent legacy dark field styles from reducing readability in the light sand palette.",
+    "Corrected browser harness reload synchronization, hand heading selector and pre-match colour comparison; waited for a nonempty Chrome debugging port. Final browser run passed."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
