@@ -6657,9 +6657,26 @@ export function createSixPhotoRules(api){
  case'g34_Sweep':{
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave',cardSweep=to==='grave'&&t.filter?.notColor==='闇'&&card(t.source).g34ElementSweep;
-  const sweepMatch=(p,y)=>{if(!cardSweep)return matches(s,p,y,t.filter);const view=y.sealed?{...y,sealed:false}:y;return !(y.sealed&&api.isCreature(s,view))&&matches(s,p,view,{...t.filter,element:false});};
+  if(cardSweep){
+   // Snapshot every physical target before seals are removed (QA42659/42660).
+   const targets=players.flatMap(p=>s.players[p].battle.flatMap(top=>{
+    const view=top.sealed?{...top,sealed:false}:top;
+    if(top.sealed&&api.isCreature(s,view))return [];
+    return api.allLayers(top).filter(x=>{
+     const physical=x===top?{...view,godLinks:null,psychicLinks:null,
+      ...(top.psychicLinks?.length?{psychicCell:true}:{})}:x;
+     const definition=x===top&&!top.godLinks?.length&&!top.psychicLinks?.length?
+      effective(view,s):api.zoneCard(s,p,physical,'battle');
+     const roots=[top,...(top.godLinks||[]),...(top.psychicLinks||[])];
+     return (roots.includes(x)?[definition]:faces(definition)).some(c=>!colors(c).includes('闇'));
+    }).map(x=>({player:p,uid:x.uid}));
+   }));
+   for(const p of players)api.moveSealsToGrave1156(s,p,(s.players[p].seals||[]).map(x=>x.uid));
+   api.moveBattleCardSweep(s,targets,t.controller??t.p);
+   break;
+  }
   const rows=players.flatMap(p=>s.players[p].battle
-   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&(!t.g1660CreatureOnly||!y.sealed&&api.isCreature(s,y))&&sweepMatch(p,y)&&y.uid!==t.excludeUid&&!t.excludeUids?.includes(y.uid)
+   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&(!t.g1660CreatureOnly||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&!t.excludeUids?.includes(y.uid)
     &&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))
     &&(!t.g994ExcludeRaces||!y.sealed&&!t.g994ExcludeRaces.some(r=>race(effective(y,s),r)))
     &&(!t.g1041Colored||!y.sealed&&!y.faceDown&&colors(effective(y,s)).length>0))
@@ -6669,11 +6686,6 @@ export function createSixPhotoRules(api){
     ...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
     ...(t.toOwnerMana?{toOwnerMana:true}:{}),...(to==='mana'&&t.tapped?{tapped:true}:{}),
     ...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
-  // Capture the sweep before unsealing: ignored creatures must not become new targets (QA42660).
-  // Seals are colourless battlefield cards, regardless of the hidden card's printed civilisation.
-  if(cardSweep){
-   for(const p of players)api.moveSealsToGrave1156(s,p,(s.players[p].seals||[]).map(x=>x.uid));
-  }
   if(rows.length){
    if(t.g994OrderBottom){
     const orders=[s.active,1-s.active].flatMap(p=>{

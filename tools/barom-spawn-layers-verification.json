@@ -1,0 +1,288 @@
+{
+  "checkedAt": "2026-11-26T12:36:57.112Z",
+  "baseline": "f7038276e569c6d5fa3bdcdc68bb632ca2fdafc9",
+  "status": "verified-local-not-published",
+  "cardIds": [
+    "dm22ex2-002",
+    "dm25ex4-S03"
+  ],
+  "scope": "Resolve the pending physical-layer verification for Barom Spawn: evolution sources, linked cards, simultaneous replacements and persisted pending decisions.",
+  "officialSources": [
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/42659/",
+      "finding": "Non-dark cards below other cards are affected by the sweep."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/42660/",
+      "finding": "All seals are destroyed; sealed creatures remain ignored for that sweep."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/40423/",
+      "finding": "A matching physical God component makes the linked creature leave; the owner can choose either component under the God state-based rule."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/39561/",
+      "finding": "Star evolution replacement preserves a base even if the base and top were both hit by a simultaneous card sweep."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/40612/",
+      "finding": "A creature replacement resolves once for the simultaneous movement of its component cards; remaining component movements stop."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/34398/",
+      "finding": "Buried twinpacts can be referenced through their spell side."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "finding": "Rules 200.3a, 801.4, 804.1b/804.7, 806.1b–f, 810.3 and 813; civilization matching of buried twinpacts is inferred from appropriate-face rules and QA34398."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-036",
+      "finding": "Chabanla uses a destroy-to-hand replacement for the creature."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-s02",
+      "finding": "Later Javelin replacement wording confirmed, as already recorded in support phase 1638; original ID/data retained."
+    }
+  ],
+  "reproduction": {
+    "initialCases": 6,
+    "initialFailed": 5,
+    "log": {
+      "name": "baseline",
+      "command": [
+        "node",
+        "--test",
+        "tests/barom-spawn-layers.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.362,
+      "log": "tmp/barom-spawn-layers/baseline.log",
+      "logSha256": "49e6bdf07a057279b528be28100629ee0d290c8a3eaa96850734f6e981ce5f6b"
+    },
+    "finding": "Top-level selection missed buried cards and physical non-dark God parts; ordinary evolution moved surviving dark bases away with its top.",
+    "expectationsRefined": "Initial God and Star expectations were corrected against QA40423 and QA39561; final tests and implementation reflect the corrected rulings."
+  },
+  "implementation": {
+    "physicalTargetsSnapshottedBeforeSeals": true,
+    "existingMoveReplacementBatchReused": true,
+    "buriedMovesPersistedWithPendingChoice": true,
+    "noNestedMovementBatch": true,
+    "normalEvolutionReconstructsDarkBase": true,
+    "godOwnerChoiceReused": true,
+    "starAndExLifeReplaceComponentGroup": true,
+    "destroyToHandMovesEntireStack": true,
+    "buriedTwinpactAppropriateFaces": true,
+    "independentOrdinaryElementSweepsUnchanged": true,
+    "engineVersionBefore": "0.602.283",
+    "engineVersionAfter": "0.602.284"
+  },
+  "finalRuns": [
+    {
+      "name": "target-pass",
+      "command": [
+        "node",
+        "--test",
+        "tests/barom-spawn-layers.test.mjs",
+        "tests/barom-spawn-seals.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.691,
+      "log": "tmp/barom-spawn-layers/target-pass.log",
+      "passed": 36,
+      "logSha256": "79eaa458d75683e83db917a7533e508f5d40f95446bb8e9256f70ad57111ba2a"
+    },
+    {
+      "name": "final-regression",
+      "command": [
+        "node",
+        "--test",
+        "tests/six-photo.test.mjs",
+        "tests/fifteen-photo.test.mjs",
+        "tests/standard1140-effects.test.mjs",
+        "tests/standard1156-effects.test.mjs",
+        "tests/standard694-effects.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/app-updates.test.mjs",
+        "tests/standard1355-effects.test.mjs",
+        "tests/standard1356-effects.test.mjs",
+        "tests/standard1334-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.705,
+      "log": "tmp/barom-spawn-layers/final-regression.log",
+      "passed": 365,
+      "logSha256": "5f46ddb971941b493b6c418f99dbc70aaddb9be29a1dc1c7ddc98859b71a6bda"
+    },
+    {
+      "name": "final-replacement",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Javelin",
+        "tests/standard1638-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.651,
+      "log": "tmp/barom-spawn-layers/final-replacement.log",
+      "passed": 7,
+      "logSha256": "be26ab1eef44fa887742e1be5492ca91866d48a25245f66633ca89b1bfc611a4"
+    },
+    {
+      "name": "final-server-focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=room storage|online NewWorld|online seals|turn ownership|negative infinity|leave replacement|resignation|concurrent actions|public effect references|face-down mana|numeric declaration",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.667,
+      "log": "tmp/barom-spawn-layers/final-server-focused.log",
+      "passed": 12,
+      "logSha256": "949931f7e7b7113fa50a873ab5cfffb0fa4a5c8ee5e6e5ce67eb9af01285e97b"
+    },
+    {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.268,
+      "log": "tmp/barom-spawn-layers/final-check.log",
+      "passed": 0,
+      "logSha256": "d5da71f4ea77dc673ab28dbe0a54ef83300813b3ec973c3fb8e2873c1b1d872a"
+    }
+  ],
+  "finalScopedTestsPassed": 420,
+  "supplementalEarlierRuns": [
+    {
+      "name": "regression-movement",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard579-effects.test.mjs",
+        "tests/standard1355-effects.test.mjs",
+        "tests/standard1356-effects.test.mjs",
+        "tests/standard1084-effects.test.mjs",
+        "tests/standard1131-effects.test.mjs",
+        "tests/standard304-effects.test.mjs",
+        "tests/standard303-effects.test.mjs",
+        "tests/standard305-effects.test.mjs",
+        "tests/standard306-effects.test.mjs",
+        "tests/standard1334-effects.test.mjs",
+        "tests/standard1357-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 42.689,
+      "log": "tmp/barom-spawn-layers/regression-movement.log",
+      "passed": 374,
+      "logSha256": "07ce5487d157b2c2cefe9d2c379700b7a3f455574c9dc57d13b9d7ea82ec8347"
+    },
+    {
+      "name": "phoenix-card-movement",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=Savak|deck-evolution|Genmu prevents|V evolution|Xeno delayed",
+        "tests/phoenix-photo.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.882,
+      "log": "tmp/barom-spawn-layers/phoenix-card-movement.log",
+      "passed": 5,
+      "logSha256": "07162eab3715fc86c5433802a547ffb7faef729bd551d63167b57ab306ec891f"
+    },
+    {
+      "name": "regression-online-server",
+      "command": [
+        "node",
+        "--test",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 229.032,
+      "log": "tmp/barom-spawn-layers/regression-online-server.log",
+      "passed": 61,
+      "logSha256": "27aa91b3d1c0e88bc4b732bc9a48bb3f71a30990d43d67e2797f8afcabc58707"
+    }
+  ],
+  "supplementalRunNote": "Broader movement/Phoenix/server suites passed earlier in this change. Final narrow corrections were rechecked with the final case, replacement, related regression and focused server runs; the full long group was not restarted.",
+  "abortedDuplicateSplit": {
+    "name": "final-server-split",
+    "command": [
+      "node",
+      "--test",
+      "--test-name-pattern=^(?!a complete two-account game|new No02|new No03)",
+      "tests/online-server.test.mjs"
+    ],
+    "code": 1,
+    "timedout": false,
+    "seconds": 71.855,
+    "log": "tmp/barom-spawn-layers/final-server-split.log",
+    "reason": "Negative selection still included already-passed long games; only this task-owned process was stopped, and final-server-focused was used. No unresolved coverage item: the earlier complete server suite passed."
+  },
+  "coverage": [
+    "Both seats, nested evolution sources, physical UID/card-count conservation",
+    "Ordinary reconstruction and Star evolution with dark and non-dark bases",
+    "Both linked God root orientations and either departing component",
+    "Sources under linked Gods",
+    "Sealed creature sources excluded before unsealing; sealed non-creature retained from prior regression",
+    "G-NEO replacement before source movement; EX Life for the entire hit stack",
+    "Per-source Jashin triggers, including no duplicate triggers",
+    "Psychic link release through JSON restore; shared dark civilizations; indestructible linked Psychic",
+    "Buried twinpact faces contrasted with their exposed creature side",
+    "Actual New World sources; queued sweep under an active Joe Star field",
+    "Pending EX Life choice encrypted with the production room serializer, restored, projected for both accounts, then resolved with identical legal actions"
+  ],
+  "supportedNamesBefore": 9505,
+  "supportedNamesAfter": 9505,
+  "newCards": 0,
+  "preservedHashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/card-images.js": "7995f65722ec601b9b68119f0db228b600877443801ccca3c0e20b7747c5a35d",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/deck-history.js": "a051fbb67aba236211c47af37341e1e90f598022d96f59df20e7fc7e5b2db827",
+    "dist/deck-copy.js": "70fb2970993936c9bed2a4ae068db5a6c82439a84bd6c3ec055452a95b2ccf19",
+    "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7"
+  },
+  "changedHashes": {
+    "dist/engine.js": "93299b70848faa3da33aa4a673dd928fa09e285cfce083e9f4c93c25685738de",
+    "dist/six-photo-rules.js": "29a86450a30d4ed279359cb2a15efedb79a097ad8429d0eaef1af394dfebccc8",
+    "dist/online-compatibility.js": "781b88b17cff5e7e346dff3fa0e4256732c39bb5872ffa4298c184475f968cc1",
+    "dist/release.json": "a97817adf6b4848b15442926eacfc875dd57e28252c4a541ad01094b294d1077",
+    "tests/barom-spawn-layers.test.mjs": "1f9a84e0b15ccf8d8a0b1e1b18fd9fa9550875a17c8bfcebee03ade7e333ef57"
+  },
+  "saveFormatsAndIdsPreserved": true,
+  "resolvedFollowUpVerification": [
+    "Evolution bases and linked parts in non-seal full-card sweep cases"
+  ],
+  "followUpVerification": [],
+  "fullSuiteStatus": "中断・合否未確認",
+  "limitations": [
+    "No authenticated live browser two-account test or physical-device test was performed. Local production room encryption/projection and server tests were used.",
+    "Historical unrelated pending items and full-suite status remain unchanged.",
+    "This engine update is local only; Pages remains 0.722.30 / engine 0.602.283, and Netlify is unchanged."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}

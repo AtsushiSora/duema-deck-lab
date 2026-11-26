@@ -565203,13 +565203,7 @@
       "newCards": 0,
       "saveFormatUnchanged": true,
       "olderPendingUnchanged": true,
-      "followUpVerification": [
-        {
-          "cardId": "dm22ex2-002",
-          "target": "Evolution bases and linked parts in non-seal full-card sweep cases",
-          "reason": "Existing sweep selection is top-level. This patch fixes seals and the sealed non-creature exception; a separate physical-layer selection audit is still needed and is not marked verified by this report."
-        }
-      ],
+      "followUpVerification": [],
       "publication": {
         "pushed": true,
         "pages": true,
@@ -565218,7 +565212,12 @@
         "sourceCommit": "36595363ccc55927cfac0f6cb335deef732dce37",
         "url": "https://atsushisora.github.io/duema-deck-lab/?app_update=0.722.30"
       },
-      "next": "今回のpush依頼に従い検証済みの封印修正をPagesへ公開。進化元・リンク部品の全カード処理は別途の未完了項目として保持し、QA42659/総合ルール200.3a・804.1bに沿った実装と固有・関連回帰を行う。Netlify更新は別途明示指示時のみ。"
+      "next": "今回の進化元・リンク部品の検証は解消。次のpush指示時にアプリ版とimport graph/cacheを更新して公開する。Netlifyは別途明示指示時のみ。",
+      "layerFollowUp": {
+        "status": "resolved-locally-not-published",
+        "evidence": "tools/barom-spawn-layers-verification.json",
+        "engineVersion": "0.602.284"
+      }
     },
     "latestPagesRelease72230": {
       "version": "0.722.30",
@@ -565242,6 +565241,30 @@
       "url": "https://atsushisora.github.io/duema-deck-lab/?app_update=0.722.30",
       "verifiedPublishedFiles": 180,
       "publishedBrowserVerified": true
+    },
+    "latestBaromSpawnLayers": {
+      "checkedAt": "2026-11-26T12:36:57.112Z",
+      "status": "verified-local-not-published",
+      "evidence": "tools/barom-spawn-layers-verification.json",
+      "baseline": "f7038276e569c6d5fa3bdcdc68bb632ca2fdafc9",
+      "cardIds": [
+        "dm22ex2-002",
+        "dm25ex4-S03"
+      ],
+      "engineVersion": "0.602.284",
+      "supportedNames": 9505,
+      "newCards": 0,
+      "finalScopedTestsPassed": 420,
+      "check": "passed",
+      "followUpVerification": [],
+      "olderPendingUnchanged": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlify": false
+      },
+      "next": "今回の進化元・リンク部品の検証は解消。次のpush指示時にアプリ版とimport graph/cacheを更新して公開する。Netlifyは別途明示指示時のみ。"
     }
   },
   "registeredCardVerification": {
