@@ -398,7 +398,7 @@ function deckReadiness(d){
  return validateDeck(d).length?{label:'構成・使用制限を確認',kind:'amber'}:{label:'対戦可能',kind:'green'};
 }
 function readinessHTML(d){const r=deckReadiness(d);return `<span class="badge readiness ${r.kind}">${r.kind==='green'?icon('check',11):icon('info',11)}${r.label}</span>`;}
-function randomOpponentHTML(){return `<div class="random-opponent"><button type="button" class="btn full" data-action="random-opponent" aria-label="相手デッキをランダムで選ぶ">${icon('shuffle',16)}ランダムで選ぶ</button><small>保存済み・環境・25の王道から</small></div>`;}
+function randomOpponentHTML(){return `<div class="random-opponent"><button type="button" class="btn full" data-action="random-opponent" aria-label="相手デッキをランダムで選ぶ">${icon('shuffle',16)}ランダムで選ぶ</button><small>保存済み・環境・25の王道から · マットもランダム</small></div>`;}
 function randomOpponentCandidates(){
  const unique=new Map();
  for(const d of [...opponentDecks(),...saved.decks,...environmentDecks,...starterDecks]){
@@ -408,11 +408,12 @@ function randomOpponentCandidates(){
  }
  return [...unique.values()];
 }
+function randomizeOpponentPlaymat(deck){void playmat.randomizeDeck(deck.id).catch(()=>toast('相手デッキは選びましたが、プレイマットを保存できませんでした。'));}
 function chooseRandomOpponent(){
  const candidates=randomOpponentCandidates();if(!candidates.length){toast('対戦可能なデッキがありません。40枚の構成と対応状況を確認してください');return;}
  const current=selectedOpponent(),signature=current?deckSignature(current):null,others=candidates.filter(x=>x.signature!==signature),pool=others.length?others:candidates;
  const chosen=pool[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0]/4294967296*pool.length)].deck;
- randomOpponent={...clone(chosen),id:uid(),category:'相手'};selectedOpp=randomOpponent.id;opponentQuery='';allOpp=false;comparisonId=null;
+ randomOpponent={...clone(chosen),id:uid(),category:'相手'};randomizeOpponentPlaymat(randomOpponent);selectedOpp=randomOpponent.id;opponentQuery='';allOpp=false;comparisonId=null;
  closeDialog();view='battle';render();toast('相手：'+randomOpponent.name);
 }
 function deckSignature(d){return JSON.stringify([deckFormat(d),...['cards',...extraDeckKeys].map(zone=>registry.resolveRows(d[zone]||[]).sort((a,b)=>a.id.localeCompare(b.id)))]);}
@@ -430,7 +431,7 @@ async function randomBattleAfterResult(){
  const old=battle;await loadTournamentSources();if(battle!==old)return;
  const pool=tournamentCandidates(),different=pool.filter(d=>deckSignature(d)!==deckSignature(old.decks[1])),choices=different.length?different:pool;if(!choices.length){toast('対戦可能な相手デッキがありません');return;}
  const o=choices[randomSeed()%choices.length],reason=matchBlockReason(old.decks[0],[o]);if(reason){toast(reason);return;}
- recordManualOutcome();randomOpponent={...clone(o),id:uid(),category:'相手'};selectedOpp=randomOpponent.id;allOpp=false;comparisonId=null;mode=old.spectator?'spectate':'manual';closeDialog();beginManualBattle(old.decks[0],randomOpponent,{practice:old.practice,spectator:!!old.spectator});toast('相手：'+randomOpponent.name);
+ recordManualOutcome();randomOpponent={...clone(o),id:uid(),category:'相手'};randomizeOpponentPlaymat(randomOpponent);selectedOpp=randomOpponent.id;allOpp=false;comparisonId=null;mode=old.spectator?'spectate':'manual';closeDialog();beginManualBattle(old.decks[0],randomOpponent,{practice:old.practice,spectator:!!old.spectator});toast('相手：'+randomOpponent.name);
 }
 function activeTournament(){return saved.localTournament&&validLocalTournament(saved.localTournament)?saved.localTournament:null;}
 function tournamentCheckpoint(){const t=activeTournament();return t&&saved.tournamentBattle?.tournamentId===t.id&&humanTournamentMatch(t)?.id===saved.tournamentBattle?.matchId?saved.tournamentBattle:null;}
@@ -818,7 +819,7 @@ function opponentChoice(d,action,label){const errors=registrationErrors(d),unsup
 function opponentSourceButton(title,note,action,extra=''){return `<button class="source-choice" data-action="${action}" ${extra}><span><strong>${title}</strong><small>${note}</small></span>${icon('chevron',15)}</button>`;}
 function showOpponentPicker(){
  if(view==='battle'&&matchFormat()===ADVANCE){showSavedOpponentPicker();return;}
- showDialog('相手の選び方',`<div class="opponent-picker-sources">${opponentSourceButton('ランダムで選ぶ','保存済み・環境・25の王道から','random-opponent','aria-label="相手デッキをランダムで選ぶ"')}${opponentSourceButton('保存したデッキ','相手一覧・マイデッキ','opponent-saved')}${opponentSourceButton('環境デッキ','年代別の大会構成から','choose-environment','data-role="opponent" aria-label="相手の環境デッキを選ぶ"')}${opponentSourceButton('歴代の優勝デッキ','公式大会の構成から','choose-champions','data-role="opponent"')}${opponentSourceButton('25の王道デッキ','公式25種類から','choose-starter25','data-role="opponent"')}</div><button class="details-link mt16" data-action="new-opponent">相手デッキを新しく作る・登録する ${icon('plus',13)}</button>`);}
+ showDialog('相手の選び方',`<div class="opponent-picker-sources">${opponentSourceButton('ランダムで選ぶ','保存済み・環境・25の王道から · マットもランダム','random-opponent','aria-label="相手デッキをランダムで選ぶ"')}${opponentSourceButton('保存したデッキ','相手一覧・マイデッキ','opponent-saved')}${opponentSourceButton('環境デッキ','年代別の大会構成から','choose-environment','data-role="opponent" aria-label="相手の環境デッキを選ぶ"')}${opponentSourceButton('歴代の優勝デッキ','公式大会の構成から','choose-champions','data-role="opponent"')}${opponentSourceButton('25の王道デッキ','公式25種類から','choose-starter25','data-role="opponent"')}</div><button class="details-link mt16" data-action="new-opponent">相手デッキを新しく作る・登録する ${icon('plus',13)}</button>`);}
 function savedOpponentListHTML(){const matches=d=>matchesFormat(d)&&norm(d.name).includes(norm(opponentQuery)),friends=opponentDecks().filter(matches),mine=saved.decks.filter(matches);return `<h3 class="mt16 mb16">登録した相手</h3>${friends.map(d=>`<div class="saved-opponent-row">${opponentChoice(d,'pick-opponent','相手デッキ')}<button class="details-link" data-action="edit-opponent" data-id="${esc(d.id)}">編集する</button></div>`).join('')||'<p class="small">一致する相手がありません。</p>'}<h3 class="mt24 mb16">マイデッキから選ぶ</h3>${mine.map(d=>opponentChoice(d,'mine-as-opponent','マイデッキ')).join('')||'<p class="small">一致するマイデッキがありません。</p>'}`;}
 function showSavedOpponentPicker(){opponentQuery='';showDialog('保存したデッキから相手を選ぶ',`<div class="search-wrap">${icon('search',17)}<input class="field" id="opponent-search" placeholder="デッキ名で検索" aria-label="相手のデッキ名で検索" value="${esc(opponentQuery)}"></div><div id="saved-opponent-results">${savedOpponentListHTML()}</div>`,`${view==='battle'&&matchFormat()===ADVANCE?
   '<button class="btn" data-action="new-opponent">相手デッキを作る</button><button class="btn" data-action="random-opponent">ランダムで選ぶ</button>':

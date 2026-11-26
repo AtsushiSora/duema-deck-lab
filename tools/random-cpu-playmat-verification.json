@@ -1,0 +1,158 @@
+{
+  "checkedAt": "2026-11-26T02:30:49.108Z",
+  "baseline": "409f11670edd628c20a6526863d881dfc0d612d3",
+  "status": "verified-local-ready-for-authorized-pages-push",
+  "feature": "CPU random opponent selection also chooses a bundled product/event playmat",
+  "pool": 143,
+  "entrypoints": [
+    "ランダムで選ぶ",
+    "相手を変えて再戦"
+  ],
+  "behavior": {
+    "newRandomOpponentCloneGetsNewMat": true,
+    "avoidImmediateRepeatWithinControllerSession": true,
+    "stableOnRenderAndSameMatchResume": true,
+    "originalSavedDeckMatsNeverOverwritten": true,
+    "ownMatUnchanged": true,
+    "normalExplicitOpponentSelectionUnchanged": true,
+    "privateUploadsExcludedFromPool": true,
+    "opponentArtRotation": 180
+  },
+  "storage": {
+    "database": "duema.playmat.v1",
+    "version": 1,
+    "store": "settings",
+    "key": "deck:\"<fresh random-opponent clone ID>\"",
+    "noNewDeckOrHistoryFields": true,
+    "commonSettingsNotReintroduced": true,
+    "onFailure": "Game selection remains usable; toast explains appearance could not be saved"
+  },
+  "results": [
+    {
+      "name": "focused",
+      "command": [
+        "node",
+        "--test",
+        "tests/random-cpu-playmat.test.mjs",
+        "tests/playmat.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.198,
+      "log": "tmp/random-cpu-playmat/focused.log",
+      "passed": 28,
+      "logSha256": "89b518e1c7d6a918ae2db20a85ef76c41edeae539ccd860c836f97f45340e5d0"
+    },
+    {
+      "name": "related",
+      "command": [
+        "node",
+        "--test",
+        "tests/app-improvements.test.mjs",
+        "tests/battle-colors.test.mjs",
+        "tests/battle-usability.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/deck-history.test.mjs",
+        "tests/recent-match.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.776,
+      "log": "tmp/random-cpu-playmat/related.log",
+      "passed": 89,
+      "logSha256": "7ee2a2d26b7fe3f63cf943763793c999e3bd72638bdf7b8ea9b253277aef982c"
+    },
+    {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.985,
+      "log": "tmp/random-cpu-playmat/check.log",
+      "passed": 0,
+      "logSha256": "0c50cc9fd6f199ea0561477cbc85ac585bbec7a69e03ea1e33e2e8f00eed866d"
+    },
+    {
+      "name": "browser-final",
+      "command": [
+        "node",
+        "tmp/random-cpu-playmat/browser.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.07,
+      "log": "tmp/random-cpu-playmat/browser-final.log",
+      "passed": 0,
+      "logSha256": "2611554702f9ea77aea5104a1774d0286bc9621e9667b9325121045fd2c35274"
+    }
+  ],
+  "testsPassed": 117,
+  "browser": {
+    "layouts": [
+      {
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "overflow": false,
+        "rotation": "matrix(-1, 0, 0, -1, 0, 0)"
+      }
+    ],
+    "firstRandom": "retail-shop-000000031489",
+    "secondRandom": "retail-shop-000000031615",
+    "newCloneIds": true,
+    "sourceAndOwnMatUnchanged": true,
+    "newSelectionRerolled": true,
+    "normalRenderKeptMat": true,
+    "lastSetupAfterReloadKeptMat": true,
+    "explicitOpponentMatStillApplied": true,
+    "deckPayloadsUnchanged": true,
+    "errors": []
+  },
+  "postResultVerification": "Actual handler executed with controlled dependencies in Node VM for manual/spectator result paths and active/tournament exclusion. No full-match completion was needed in the browser.",
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/engine.js": "e89f61ed82c172580c18c78c36fef1bd1bf71669915da5aa5ea893ef855fc770",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account.js": "44c4cdde58946d22248b64323e42c1f531cf80b28e6a019fbf4cef929d505351",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/deck-history.js": "a051fbb67aba236211c47af37341e1e90f598022d96f59df20e7fc7e5b2db827",
+    "dist/deck-copy.js": "70fb2970993936c9bed2a4ae068db5a6c82439a84bd6c3ec055452a95b2ccf19",
+    "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
+    "dist/recent-match.js": "acf43a48f4f7daadb41a74a828382a590f8f3564d624f6dea6ac15130c6627cb",
+    "dist/playmat.css": "dba03a1af7c7fb74577f730cb67f5dcf0660587b534820b6c2cf6dfb8a26f705",
+    "dist/battle-colors.css": "5a514cad4d6860481aceaf74a09731eff4d90aaf27601e853d540d836df76f8b",
+    "dist/display-preferences.js": "de10ab74e48d9b6d04ccc28c26ba7bf8a270e885866c30cdedaf8eba7fc17413",
+    "dist/retail-playmats.js": "b2f0902a425ef883122458ed73de06c58d3375bbb4756f19581665df66834015",
+    "dist/assets/playmats/sources.json": "fdaa5e15cf75ff0716b7075d56670f90f41596300bf64ba7dd3446f056fab577",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "dist/app.js": "c846fc73262f84a3938282467c6501247bd77797a49c1197fbe1d4b6d2396f59",
+    "dist/playmat.js": "767c1f3f31196c2682bd78e815b098a0b91b722e4d72e312320ce34e0c4479d4",
+    "tests/random-cpu-playmat.test.mjs": "de1aec2b35f53395a905348b8e5fefb0ed06cb87cd2ceb92ca6d7c5bf9016d60"
+  },
+  "supportedNamesBefore": 9505,
+  "supportedNamesAfter": 9505,
+  "newCards": 0,
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "authorizedPagesPush": true,
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
