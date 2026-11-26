@@ -1,0 +1,148 @@
+{
+  "checkedAt": "2026-11-26T11:36:01.362Z",
+  "baseline": "1e6cdd6f2fd9121a6d2198f2a4d681fb33f450be",
+  "status": "verified-local-not-published",
+  "reportedInteraction": {
+    "spawn": {
+      "id": "dm22ex2-002",
+      "name": "悪魔神バロムスポーン"
+    },
+    "skull": {
+      "id": "dm25ex4-S03",
+      "name": "覇王の頭蓋 髑髏魔城"
+    }
+  },
+  "officialSources": [
+    {
+      "url": "https://dm.takaratomy.co.jp/rule/qa/42660/",
+      "finding": "All seals are destroyed regardless of printed civilisation; sealed creatures remain ignored; sealed non-creatures are not ignored."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-002",
+      "finding": "Non-dark cards in the battle zone are destroyed."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-029",
+      "finding": "Reprint ability checked; existing ID retained."
+    },
+    {
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-S03",
+      "finding": "Seven seals, cannot leave with seals, once-per-turn removal, all-seals-removed self-destruction followed by dark creature revival."
+    }
+  ],
+  "reproduction": {
+    "beforeFix": {
+      "ownSkullRemainingSeals": 6,
+      "opposingSkullRemainingSeals": 7
+    },
+    "reason": "The sweep only considered top-level battle elements and did not move seal cards. The command entry rule removed at most one before the missing sweep."
+  },
+  "implementation": {
+    "snapshotBeforeSealRemoval": true,
+    "existingPhysicalSealMovementReused": true,
+    "lastSealTriggersSkullOnce": true,
+    "sealedCreatureNotNewlyTargeted": true,
+    "sealedNonCreatureIncluded": true,
+    "ordinaryElementSweepsUnchanged": true,
+    "commandOnlyRemovalStillOne": true,
+    "engineVersionBefore": "0.602.282",
+    "engineVersionAfter": "0.602.283",
+    "onlineCompatibilityAndReleaseManifestAligned": true
+  },
+  "results": [
+    {
+      "name": "targeted-complete",
+      "command": [
+        "node",
+        "--test",
+        "tests/barom-spawn-seals.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.874,
+      "log": "tmp/barom-spawn-seals/targeted-complete.log",
+      "passed": 7,
+      "logSha256": "23d1d6388eb33751bb8bb12c5c8bec68b76d090014ebd40977e5244bcc9d2733"
+    },
+    {
+      "name": "regression-complete",
+      "command": [
+        "node",
+        "--test",
+        "tests/six-photo.test.mjs",
+        "tests/fifteen-photo.test.mjs",
+        "tests/standard1140-effects.test.mjs",
+        "tests/standard1156-effects.test.mjs",
+        "tests/standard694-effects.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/app-updates.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 7.656,
+      "log": "tmp/barom-spawn-seals/regression-complete.log",
+      "passed": 331,
+      "logSha256": "d44360a0331446b43b28bc253e53a57538a3d14ee3aa6a82b428e1957c6bd31b"
+    },
+    {
+      "name": "final-check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.569,
+      "log": "tmp/barom-spawn-seals/final-check.log",
+      "passed": 0,
+      "logSha256": "aa8370ce9d688b5701c253bb5ebe4e80e7fa6a48e4e96d0f188a09570f83f911"
+    }
+  ],
+  "testsPassed": 338,
+  "saveRestore": "JSON round trip during actual evolution selection preserves legal actions, all seal moves and revival; physical UID/card count conserved",
+  "hashes": {
+    "dist/cards.json": "e2c61d63ffe41909339e3da649cbbef68c54ae6351f0b5ad176396df1c35696e",
+    "dist/catalogue.js": "6627fec4845685e1a7bae8318ef2384363bf837a6dd9b952999575ae674bcd07",
+    "dist/catalogue.json": "6757341ca5131d56da6fd5014789f8eb01d8b77953f89502df1c05a8a018a83e",
+    "dist/details.json": "ed8489e17ae87ebdbea035b8c55db47f8137300e54a061276413bfc8b54e275e",
+    "dist/app.js": "01ccc417bd372d807be278dd5b8d3ec0d03d40e456ac521f582cb72611102aea",
+    "dist/manual-ui.js": "4c1b8425eef2086ac751c8551fc29da0e923d076a43006fbd6f41d38f3291e39",
+    "dist/online-ui.js": "3747bb4e089d3b51b39991b9c150c6bdb4cb8845e7b13348a155017ec010991d",
+    "dist/online.js": "eef076e99d99aaf5274ced6f1512602cd15c0e598284c5d6f6d254ed9d2a0ac6",
+    "dist/account-data.js": "258b5b95c7388265444582403fe0c7a208856c85ba6d8fa22a5899e2a26a25e7",
+    "dist/deck-history.js": "a051fbb67aba236211c47af37341e1e90f598022d96f59df20e7fc7e5b2db827",
+    "dist/deck-copy.js": "70fb2970993936c9bed2a4ae068db5a6c82439a84bd6c3ec055452a95b2ccf19",
+    "dist/editor-draft.js": "a52547c5287e3d49cd8ad2fbb907fc543bc7f69cf0769e3473b2712e6ec9273a",
+    "dist/fifteen-photo-rules.js": "fc16f0a97a4da7bfaf15155f23829ed646276b3fb89992aaca20d3966d8b7e12",
+    "server/duel-core.mjs": "817773bc62d6dee04a96949813ef29cde77ce383c39850286e879be097a0d635",
+    "server/duel-handler.mjs": "d39d43a973bba1c3189fd1c7a9456b34e090df40f88a7d9fbc5e6d0f398bfae7",
+    "dist/engine.js": "9456786368bc437a84db734b478d8bee9166161226a8b61c8617d3dc3de5f3fe",
+    "dist/online-compatibility.js": "5eefe5edcaa49295e36566760122b70fa335d7c054c5926ad16f4fa2ab7a40eb",
+    "dist/release.json": "e62a2a3e64701072bf7c2813fa8a83dafd8aa6fe42a2c842176aff945d1cf1d1",
+    "dist/six-photo-rules.js": "869ec4fdcae89b8762195f7e3d7b812679a86880fd74b840bc9aa5faebc6b63a",
+    "tests/barom-spawn-seals.test.mjs": "e7741a5c2c8a527024856a2651205476c7c19962772f30139d0210fb15e3d539"
+  },
+  "supportedNamesBefore": 9505,
+  "supportedNamesAfter": 9505,
+  "newCards": 0,
+  "existingIdsDecksHistoryAndSaveFormatsPreserved": true,
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "followUpVerification": [
+    {
+      "cardId": "dm22ex2-002",
+      "target": "Evolution bases and linked parts in non-seal full-card sweep cases",
+      "reason": "Existing sweep selection is top-level. This patch fixes seals and the sealed non-creature exception; a separate physical-layer selection audit is still needed and is not marked verified by this report."
+    }
+  ],
+  "limitations": [
+    "No new authenticated live two-account test or physical-device test. Shared engine effects and local client/server regression were tested.",
+    "Public Pages and Netlify still run the previous engine until a separately authorized publication."
+  ],
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlify": false
+  }
+}
