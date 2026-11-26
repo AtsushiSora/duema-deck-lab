@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T10:26:22.192Z",
+  "checkedAt": "2026-11-26",
   "catalogueNames": 11824,
   "supportedNames": 9505,
   "pendingNames": 2319,
@@ -565215,7 +565215,26 @@
         "pages": false,
         "netlify": false
       },
-      "next": "公開指示があった場合に、残るバロムスポーンの進化元・リンク部品を対象とする全カード処理の検証を解消し、app版とimport graph/cacheを更新して公開する。Netlify更新は別途の明示指示時のみ。"
+      "next": "今回のpush依頼に従い検証済みの封印修正をPagesへ公開。進化元・リンク部品の全カード処理は別途の未完了項目として保持し、QA42659/総合ルール200.3a・804.1bに沿った実装と固有・関連回帰を行う。Netlify更新は別途明示指示時のみ。"
+    },
+    "latestPagesRelease72230": {
+      "version": "0.722.30",
+      "status": "validated-ready-for-pages-only-push",
+      "evidence": "tools/release-72230.json",
+      "implementationCommit": "41f91807",
+      "supportedNames": 9505,
+      "newCards": 0,
+      "releaseTestsPassed": 57,
+      "check": "passed",
+      "netlifyUpdated": false,
+      "olderPendingUnchanged": true,
+      "followUpVerification": [
+        {
+          "cardId": "dm22ex2-002",
+          "target": "Evolution bases and linked parts in non-seal full-card sweep cases",
+          "reason": "Existing sweep selection is top-level. This patch fixes seals and the sealed non-creature exception; a separate physical-layer selection audit is still needed and is not marked verified by this report."
+        }
+      ]
     }
   },
   "registeredCardVerification": {
