@@ -1,0 +1,271 @@
+{
+  "phase": 1787,
+  "checkedAt": "2026-11-27T10:48:08.188Z",
+  "baseline": "449c8e6322f40b5996608b95f648b4606efc4dde",
+  "baseCount": 9581,
+  "target": 10000,
+  "description": "Complete native Mafi Gang end-step revival and other-entry temporary power sweep, plus Knight/Samurai top-three public recovery and opponent-turn discard replacement. Reuse existing end-step ordering, race matching across card types, bottom ordering and optional discard deployment.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31819/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35641/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd08-b-002",
+      "name": "メガロ・デストロイト",
+      "canonicalId": "dmbd08-b-002",
+      "printId": "dmbd08-b-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-002",
+      "faces": [
+        {
+          "name": "メガロ・デストロイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンの終わりに、コスト４以下の進化ではないマフィ・ギャングを１体、自分の墓地からバトルゾーンに出す。\n自分の他のマフィ・ギャングがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "マフィ・ギャング",
+              "max": 4
+            }
+          }
+        ],
+        "g314OtherEntry": {
+          "who": "self",
+          "other": true,
+          "filter": {
+            "race": "マフィ・ギャング"
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "power": -1000
+            }
+          ],
+          "g765Element": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-b-002.jpg",
+      "imageSha256": "8860de8921671621827c7943b42dbcbe96dc4c8bbcd8552f637634f096397ed6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd08-b-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd08-b-002"
+        ],
+        "allSearchIds": [
+          "dmbd08-b-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:48:08.188Z",
+        "sha256": "eb8a4f261dd8560371105186f5539485244bbad0bcf0bf6ee3aeff53842b48e0",
+        "facesMatched": true,
+        "imageSha256": "8860de8921671621827c7943b42dbcbe96dc4c8bbcd8552f637634f096397ed6"
+      }
+    },
+    {
+      "id": "dm28-017",
+      "name": "氷牙提督マティアス卿",
+      "canonicalId": "dm28-017",
+      "printId": "dm28-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-017",
+      "faces": [
+        {
+          "name": "氷牙提督マティアス卿",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からナイトをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+          "race": "グランド・デビル/ナイト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "discardDeploy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 3,
+                "to": "hand",
+                "filter": {
+                  "race": "ナイト"
+                },
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-017.jpg",
+      "imageSha256": "b1e4fdd6378186aee5c66c623c210e571559844238bfc719e202bca7579c0015",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm28-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm28-017"
+        ],
+        "allSearchIds": [
+          "dm28-017"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:48:08.188Z",
+        "sha256": "4aec63896c97782497b27e047b1106aa7fcc2f37640030bfae3c1aac682a2f0b",
+        "facesMatched": true,
+        "imageSha256": "b1e4fdd6378186aee5c66c623c210e571559844238bfc719e202bca7579c0015"
+      }
+    },
+    {
+      "id": "dm28-018",
+      "name": "海王提督ラネーバ・早雲",
+      "canonicalId": "dm28-018",
+      "printId": "dm28-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-018",
+      "faces": [
+        {
+          "name": "海王提督ラネーバ・早雲",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からサムライをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+          "race": "ポセイディア・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "discardDeploy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 3,
+                "to": "hand",
+                "filter": {
+                  "race": "サムライ"
+                },
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-018.jpg",
+      "imageSha256": "d427703e564f278caff039ae3f591c92330b34f585e64c98ecf5731ce476b1ba",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm28-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm28-018"
+        ],
+        "allSearchIds": [
+          "dm28-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:48:08.188Z",
+        "sha256": "f718125f7c15bf37979d47ddb5a15d7d286f0b792d85432a171f950f8a57ae54",
+        "facesMatched": true,
+        "imageSha256": "d427703e564f278caff039ae3f591c92330b34f585e64c98ecf5731ce476b1ba"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31819/",
+      "sha256": "112d98a02f10504263594dc08f775918fd6c0c83afb94c2e51d6d756fa7a9304",
+      "checkedAt": "2026-11-27T10:48:08.188Z",
+      "reproduced": true,
+      "tests": "tests/standard1787-effects.test.mjs",
+      "reproduction": "Actual Megalo: play a Mafi to reduce a 2000-power target to 1000, then actual mandatory cost-four Mafi revival at own end adds a second reduction before cleanup and destroys the target. Exclude cost-five, cost-four evolution, wrong race and actual Mafi tamaseed from revival.",
+      "result": "Actual Megalo: play a Mafi to reduce a 2000-power target to 1000, then actual mandatory cost-four Mafi revival at own end adds a second reduction before cleanup and destroys the target. Exclude cost-five, cost-four evolution, wrong race and actual Mafi tamaseed from revival."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
+      "sha256": "7d86a19ccdc7a2f231fd598535dda74ce5689e6b77a507203278a6744744e70b",
+      "checkedAt": "2026-11-27T10:48:08.188Z",
+      "reproduced": true,
+      "tests": "tests/standard1787-effects.test.mjs",
+      "reproduction": "Actual original creature: on opponent turn, both self-caused and enemy-caused discard offer true/false optional replacement. Accept/decline both verified, with encrypted room restoration and private hand masking. Own-turn self-discard never deploys; actual Ghost Touch on enemy turn deploys without payment. Entry reveals three and recovers all Knight/Samurai cards, including spells/gear, with exact bottom ordering.",
+      "result": "Actual original creature: on opponent turn, both self-caused and enemy-caused discard offer true/false optional replacement. Accept/decline both verified, with encrypted room restoration and private hand masking. Own-turn self-discard never deploys; actual Ghost Touch on enemy turn deploys without payment. Entry reveals three and recovers all Knight/Samurai cards, including spells/gear, with exact bottom ordering."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35641/",
+      "sha256": "26e9c07e42ce376332801b4cb2c8705c6fe7d7af9b9d318a3dc421cbb519d376",
+      "checkedAt": "2026-11-27T10:48:08.188Z",
+      "reproduced": true,
+      "tests": "tests/standard1787-effects.test.mjs",
+      "reproduction": "Actual original creature: on opponent turn, both self-caused and enemy-caused discard offer true/false optional replacement. Accept/decline both verified, with encrypted room restoration and private hand masking. Own-turn self-discard never deploys; actual Ghost Touch on enemy turn deploys without payment. Entry reveals three and recovers all Knight/Samurai cards, including spells/gear, with exact bottom ordering.",
+      "result": "Actual original creature: on opponent turn, both self-caused and enemy-caused discard offer true/false optional replacement. Accept/decline both verified, with encrypted room restoration and private hand masking. Own-turn self-discard never deploys; actual Ghost Touch on enemy turn deploys without payment. Entry reveals three and recovers all Knight/Samurai cards, including spells/gear, with exact bottom ordering."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:48:08.188Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd08-b-002": 4,
+      "dm28-017": 4,
+      "dm28-018": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial dedicated failures were fixture choices: discard replacement decline is false (not null), and the enemy discard spell was corrected from unrelated registered dm01-074 to actual Ghost Touch dm01-094. Final tests pass for both optional outcomes and both discard controllers. During full-clause review, Megalo other-Mafi watcher was explicitly set to native g765Element so actual Mafi tamaseeds also trigger it. A dedicated actual dm26rp3-066 entry/revival-exclusion regression passed; the updated native specification and compatibility fingerprint passed npm run check. Existing related definitions/shared code unchanged after the passing related group."
+  }
+}

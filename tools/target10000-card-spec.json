@@ -5197,5 +5197,140 @@
         }
       ]
     }
+  },
+  "dmbd08-b-002": {
+    "phase": 1787,
+    "faces": [
+      {
+        "name": "メガロ・デストロイト",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分のターンの終わりに、コスト４以下の進化ではないマフィ・ギャングを１体、自分の墓地からバトルゾーンに出す。\n自分の他のマフィ・ギャングがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "マフィ・ギャング",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "マフィ・ギャング",
+            "max": 4
+          }
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "other": true,
+        "filter": {
+          "race": "マフィ・ギャング"
+        },
+        "defs": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "power": -1000
+          }
+        ],
+        "g765Element": true
+      }
+    }
+  },
+  "dm28-017": {
+    "phase": 1787,
+    "faces": [
+      {
+        "name": "氷牙提督マティアス卿",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からナイトをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+        "race": "グランド・デビル/ナイト",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "discardDeploy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "ナイト"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm28-018": {
+    "phase": 1787,
+    "faces": [
+      {
+        "name": "海王提督ラネーバ・早雲",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からサムライをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+        "race": "ポセイディア・ドラゴン/サムライ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "discardDeploy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "サムライ"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

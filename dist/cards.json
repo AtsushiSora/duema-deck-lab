@@ -306830,20 +306830,146 @@
       ],
       "supportBatch": "phase-1786",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd08-b-002",
+      "name": "メガロ・デストロイト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "マフィ・ギャング",
+      "text": "自分のターンの終わりに、コスト４以下の進化ではないマフィ・ギャングを１体、自分の墓地からバトルゾーンに出す。\n自分の他のマフィ・ギャングがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-002",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "マフィ・ギャング",
+            "max": 4
+          }
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "other": true,
+        "filter": {
+          "race": "マフィ・ギャング"
+        },
+        "defs": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "power": -1000
+          }
+        ],
+        "g765Element": true
+      },
+      "supportBatch": "phase-1787",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-017",
+      "name": "氷牙提督マティアス卿",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "グランド・デビル/ナイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からナイトをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-017",
+      "limit": 4,
+      "discardDeploy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "ナイト"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1787",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-018",
+      "name": "海王提督ラネーバ・早雲",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "ポセイディア・ドラゴン/サムライ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中からサムライをすべて手札に加え、残りを好きな順序で山札の一番下に戻す。\n相手のターン中に、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-018",
+      "limit": 4,
+      "discardDeploy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "サムライ"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1787",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1786,
-    "checkedAt": "2026-11-27T10:43:20.424Z",
-    "baseCount": 9578,
+    "phase": 1787,
+    "checkedAt": "2026-11-27T10:48:08.188Z",
+    "baseCount": 9581,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9581,
+    "totalCount": 9584,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34335/",
-      "https://dm.takaratomy.co.jp/rule/qa/34202/",
-      "https://dm.takaratomy.co.jp/rule/qa/34203/"
+      "https://dm.takaratomy.co.jp/rule/qa/31819/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35641/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -336097,6 +336223,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/34351/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1786,
+        "checkedAt": "2026-11-27T10:43:20.424Z",
+        "baseCount": 9578,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9581,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34335/",
+          "https://dm.takaratomy.co.jp/rule/qa/34202/",
+          "https://dm.takaratomy.co.jp/rule/qa/34203/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

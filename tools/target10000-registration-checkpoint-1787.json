@@ -1,0 +1,162 @@
+{
+  "phase": 1787,
+  "checkedAt": "2026-11-27T10:52:52.260Z",
+  "baseline": "449c8e6322f40b5996608b95f648b4606efc4dde",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9581,
+  "currentNames": 9584,
+  "remainingNames": 416,
+  "added": [
+    {
+      "id": "dmbd08-b-002",
+      "name": "メガロ・デストロイト"
+    },
+    {
+      "id": "dm28-017",
+      "name": "氷牙提督マティアス卿"
+    },
+    {
+      "id": "dm28-018",
+      "name": "海王提督ラネーバ・早雲"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1787,
+    "baseline": "449c8e6322f40b5996608b95f648b4606efc4dde",
+    "originalDefinitionsUnchanged": 9581,
+    "uniqueNames": 9584,
+    "uniqueIds": 9584,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11845,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9581,
+    "existingImageReferenceRowsUnchanged": 11916,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1787": {
+      "name": "official-1787",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1787.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.415,
+      "log": "tmp/duema-target-10000/official-1787.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1787-final": {
+      "name": "focused-1787-final2",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1787-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.291,
+      "log": "tmp/duema-target-10000/focused-1787-final2.log",
+      "passed": 25,
+      "logSha256": "c75819d8cbdca8634804c15c323c7f364dde077b533027648a08fb59ed9dffc4"
+    },
+    "related-1787": {
+      "name": "related-1787",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?!.*(?:legal forty|full legal|complete forty|CPU match|forty-card|CPU game)).*",
+        "tests/standard314-effects.test.mjs",
+        "tests/standard591-effects.test.mjs",
+        "tests/standard1778-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 39.945,
+      "log": "tmp/duema-target-10000/related-1787.log",
+      "passed": 174,
+      "logSha256": "77eb0073506b931c2c8d4434848f49ac5a076d44dfb39a52c47b107cf194c03e"
+    },
+    "check-1787": {
+      "name": "check-1787",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.384,
+      "log": "tmp/duema-target-10000/check-1787.log",
+      "passed": 0,
+      "logSha256": "72bc417dc36d8caa91f06e32ac6017512d51b99c2a5cf4b5934822e6eabe8777"
+    },
+    "audit-1787": {
+      "name": "audit-1787",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.902,
+      "log": "tmp/duema-target-10000/audit-1787.log",
+      "passed": 0,
+      "logSha256": "0db7b2ccf4ad8c3b96dae3e96c332f6a0a7467f3acf93a0afeef7ac22a8b2261"
+    },
+    "invariants-1787": {
+      "name": "invariants-1787",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/invariants.mjs",
+        "1787"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.704,
+      "log": "tmp/duema-target-10000/invariants-1787.log",
+      "passed": 0,
+      "logSha256": "c2d3a340de98f79224e13484b255c82ba28495ddc2f07637aef22ce399f1b1a0"
+    }
+  },
+  "totalTestsPassed": 199,
+  "manifest": "tools/support-phase-1787.json",
+  "supported": 9584,
+  "pending": 2257,
+  "engineVersion": "0.602.311",
+  "held": [],
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "focused-1787",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1787-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.537,
+      "log": "tmp/duema-target-10000/focused-1787.log",
+      "reason": "Initial dedicated failures were fixture choices: discard replacement decline is false (not null), and the enemy discard spell was corrected from unrelated registered dm01-074 to actual Ghost Touch dm01-094. Final tests pass for both optional outcomes and both discard controllers. During full-clause review, Megalo other-Mafi watcher was explicitly set to native g765Element so actual Mafi tamaseeds also trigger it. A dedicated actual dm26rp3-066 entry/revival-exclusion regression passed; the updated native specification and compatibility fingerprint passed npm run check. Existing related definitions/shared code unchanged after the passing related group."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}
