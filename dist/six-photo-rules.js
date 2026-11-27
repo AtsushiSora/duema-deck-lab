@@ -1349,7 +1349,7 @@ export function createSixPhotoRules(api){
   if(t.defs[0]?.op==='ManaDeploy523')return list(s,{p:t.p,origin:'mana',deploy:true,filter:{creature:true,max:own.mana.length}}).length?20:-1;
   return creatures(s,1-t.p).some(x=>!x.sealed&&!x.tapped)&&creatures(s,t.p).some(x=>!x.sealed)?10:-1;
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(origin!=='battle'||!t.g1654CreatureOrMana||api.isCreature(s,x))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&fitsCostSlots1669(s,t,p,x,origin)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1633ExtraOrigins?.includes(origin)||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){if(t.g1779PhysicalOwnCards){const p=t.owner??t.p;return [...cardMoveRows579(s,{...t,p,owner:p,zones:['hand','battle']}).values()].filter(r=>!(t.selected||[]).includes(r.x.uid)&&api.targetable(s,p,p,r.x));}const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||t.g1009AfterMoveAttempt||t.g1011ChooseBeforeMove||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).flatMap(x=>extraFaces1104(x,t,origin)).filter(x=>(t.g1121RepeatTarget||!(t.selected||[]).includes(x.uid))&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&(!t.g179Other||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(!t.g899RampTapped||!api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)))&&(origin!=='battle'||!t.g1654CreatureOrMana||api.isCreature(s,x))&&matches(s,p,x,t.filter)&&matchesDeathDeployment960(t,x)&&fitsCostSlots1669(s,t,p,x,origin)&&(!t.g1593DistinctNames||!(t.selected||[]).some(uid=>{const selected=own[origin]?.find(y=>y.uid===uid);return selected&&creatureFaceName(card(selected))===creatureFaceName(card(x));}))&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g1633ExtraOrigins?.includes(origin)||t.g1114HandAndDeck&&origin==='hand'||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||(t.implicitBattleSelection&&!x.sealed)||t.g1046NoChoiceProtection&&!externalProtection565(s,x).g1082ChoiceProtected||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.g1121RepeatTarget&&t.selected.includes(x.uid))return -20;
@@ -1757,6 +1757,13 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1779PhysicalOwnCards){
+   const owner=t.owner??t.p,rows=t.rows||[],hand=rows.filter(r=>r.origin==='hand').map(r=>r.uid);
+   if(hand.length)api.discardSelected(s,owner,hand,t.source,t.controller??t.p);
+   const battlefield=rows.filter(r=>r.origin==='battle').map(r=>({player:r.p,uid:r.uid}));
+   if(battlefield.length)api.moveBattleCardSweep(s,battlefield,t.controller??t.p);
+   return;
+  }
   if(t.g1564SelectedPower!==undefined){for(const r of t.rows||[]){const y=s.players[r.p].battle.find(x=>x.uid===r.uid&&!x.sealed&&api.isCreature(s,x));if(y)(y.powerModifiers??=[]).push({amount:t.g1564SelectedPower,expires:'end',who:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}api.powerCleanup(s);return;}
   if(t.g1255HasteEntrant){
    const [selected]=t.rows||[];
@@ -4672,6 +4679,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ReturnBases939':returnBases939(s,t);break;
+ case'g34_OwnCards1779':put(s,{...t,op:'g34_Select',p:1-t.p,owner:1-t.p,controller:t.controller??t.p,
+  g1779PhysicalOwnCards:true,n:t.n,selected:[],rows:[],to:'grave',filter:{},
+  title:'手札または場から墓地に置く自分のカードを'+t.n+'枚選ぶ'});break;
+ case'g34_Lose1779':api.finish(s,1-t.p,card(t.source).name+'：指定されたターンの終わりに敗北','loss');break;
  case'g34_Lose975':api.finish(s,1-t.p,card(t.source).name+'：自分のクリーチャーがこのクリーチャーだけなので敗北','loss');break;
  case'g34_Win871':api.finish(s,t.p,card(t.source).name+'：'+(t.reason||'自分の同名クリーチャーが4体揃って勝利'));break;
  case'g34_DeckBase1067':{
@@ -11323,7 +11334,7 @@ export function createSixPhotoRules(api){
   if(ready.length)put(s,...ready);
   return !!ready.length;
  },
- end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);
+ end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=[...collect537(s,'turnEnd',s.active),...collect537(s,'nextOwnEnd',s.active)];
   for(const x of s.players[s.active].grave){
    const {g971GraveEnd,g971GraveDeployEnd}=card(x);
    const condition=!x.faceDown&&(g971GraveDeployEnd||g971GraveEnd);

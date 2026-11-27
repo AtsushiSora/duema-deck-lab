@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11840,
-  "supportedNames": 9558,
-  "pendingNames": 2282,
-  "phase": 1778,
+  "supportedNames": 9561,
+  "pendingNames": 2279,
+  "phase": 1779,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -157,7 +157,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1331,
-    "呪文": 255,
+    "呪文": 252,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 26,
@@ -230,9 +230,9 @@
     "未対応のスリリング・スリー効果": 2,
     "未対応の選択能力": 6,
     "コスト・文明の個別処理が必要": 2,
-    "未対応のスーパー・S・トリガー能力": 4,
     "未対応のスペース・チャージ条件": 4,
     "未対応のシンカパワー": 1,
+    "未対応のスーパー・S・トリガー能力": 1,
     "未対応のレインボーナス効果": 1,
     "未対応の進化V能力": 9,
     "未対応のスペース・チャージ効果": 2,
@@ -366,20 +366,6 @@
         "name": "魅惑のロイヤル・エイリアン"
       }
     ],
-    "未対応のスーパー・S・トリガー能力": [
-      {
-        "id": "dmrp03-023",
-        "name": "ジバボン３兄弟"
-      },
-      {
-        "id": "dmrp06-036",
-        "name": "スパーク×スパーク"
-      },
-      {
-        "id": "dm26rp3-019",
-        "name": "ドドンガ轟キャイエス"
-      }
-    ],
     "未対応のスペース・チャージ条件": [
       {
         "id": "dmr03-008",
@@ -398,6 +384,12 @@
       {
         "id": "dmrp22-019",
         "name": "ダイナボルト ＜カツドン.Star＞"
+      }
+    ],
+    "未対応のスーパー・S・トリガー能力": [
+      {
+        "id": "dm26rp3-019",
+        "name": "ドドンガ轟キャイエス"
       }
     ],
     "未対応のレインボーナス効果": [
@@ -563463,11 +563455,192 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1779,
+      "checkedAt": "2026-11-27T09:39:18.854Z",
+      "baseline": "3d9ba8925643fe0729ebeb5f02e8c8c06692c50f",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9558,
+      "currentNames": 9561,
+      "remainingNames": 439,
+      "added": [
+        {
+          "id": "dmrp03-023",
+          "name": "ジバボン３兄弟"
+        },
+        {
+          "id": "dmrp06-036",
+          "name": "スパーク×スパーク"
+        },
+        {
+          "id": "dmex19-031",
+          "name": "魔王の傲慢"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1779,
+        "baseline": "3d9ba8925643fe0729ebeb5f02e8c8c06692c50f",
+        "originalDefinitionsUnchanged": 9558,
+        "uniqueNames": 9561,
+        "uniqueIds": 9561,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11844,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9558,
+        "existingImageReferenceRowsUnchanged": 11883,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1779": {
+          "name": "official-1779",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1779.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.207,
+          "log": "tmp/duema-target-10000/official-1779.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1779-final": {
+          "name": "focused-1779-expanded",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1779-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.415,
+          "log": "tmp/duema-target-10000/focused-1779-expanded.log",
+          "passed": 19,
+          "logSha256": "dc917e4ec35a8849aede65f9b67940c4e44ce9d0ffbb3533be96ddb9043b7707"
+        },
+        "related-1779": {
+          "name": "related-1779",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?!legal forty CPU|two legal supported forties)(?:.*)",
+            "tests/standard437-effects.test.mjs",
+            "tests/standard537-effects.test.mjs",
+            "tests/standard579-effects.test.mjs",
+            "tests/standard581-effects.test.mjs",
+            "tests/standard1489-effects.test.mjs",
+            "tests/standard1013-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.758,
+          "log": "tmp/duema-target-10000/related-1779.log",
+          "passed": 267,
+          "logSha256": "047d6681aec4e05a828157e843724a679dedfb2c482147eb4d977154f8fb64ca"
+        },
+        "check-1779": {
+          "name": "check-1779",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.806,
+          "log": "tmp/duema-target-10000/check-1779.log",
+          "passed": 0,
+          "logSha256": "be1262752d96417237a42cae80b9cb1ba9939fcbc2d73c86d58b0f798e65befd"
+        },
+        "audit-1779": {
+          "name": "audit-1779",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.094,
+          "log": "tmp/duema-target-10000/audit-1779.log",
+          "passed": 0,
+          "logSha256": "61630678b8e83225315ccf0613fa2bb9ea94eec11e26d1b4978edbc054f3c7fd"
+        },
+        "invariants-1779": {
+          "name": "invariants-1779",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1779"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.72,
+          "log": "tmp/duema-target-10000/invariants-1779.log",
+          "passed": 0,
+          "logSha256": "4ae88aa5ecdf057ae0c2e6b2bc6c58689dddbda2005adc2f2bdc727f38a8d55c"
+        },
+        "related-online-1779": {
+          "name": "related-online-1779",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.764,
+          "log": "tmp/duema-target-10000/related-online-1779.log",
+          "passed": 5,
+          "logSha256": "1b3adf05b331fea45736803822cc811dbc50fb26b7305d472461b6d9f788d0fa"
+        }
+      },
+      "totalTestsPassed": 291,
+      "manifest": "tools/support-phase-1779.json",
+      "supported": 9561,
+      "pending": 2279,
+      "engineVersion": "0.602.303",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1779",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1779-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.252,
+          "log": "tmp/duema-target-10000/focused-1779.log",
+          "reason": "Initial 15 behavior tests passed; metadata assertion exposed original official HTML omission of Jokers race. Both official images and reprint HTML confirm race; explicit pinned race override and metadata evidence added, with regression coverage for spell-in-mana Jokers count."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1778,
-    "nextPhase": 1779,
+    "lastVerifiedPhase": 1779,
+    "nextPhase": 1780,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -564380,11 +564553,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1778,
-      "baseline": "9b0d4fbe437b925413a6e6ce15eb12fade08b528",
-      "supportedNames": 9558,
-      "artifact": "tools/target10000-registration-checkpoint-1778.json",
-      "checkedAt": "2026-11-27T09:27:41.559Z"
+      "phase": 1779,
+      "baseline": "3d9ba8925643fe0729ebeb5f02e8c8c06692c50f",
+      "supportedNames": 9561,
+      "artifact": "tools/target10000-registration-checkpoint-1779.json",
+      "checkedAt": "2026-11-27T09:39:18.854Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -567442,8 +567615,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9558,
-      "remaining": 442,
+      "currentNames": 9561,
+      "remaining": 439,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -567451,8 +567624,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1778,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1778.json",
+      "lastPhase": 1779,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1779.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -567473,7 +567646,15 @@
           "next": "Verify complete official sources and optional tapped-mana leave replacement for both seed and carrying creature."
         }
       ],
-      "resumeProcedure": "Check HEAD, clean/staged changes, AGENTS.md and running work; recount actual dist/cards.json names with dist/catalogue.js nameKey. Latest phase 1771 is verified. Continue at phase 1772 toward exactly 10000; preserve older deferrals. Temporary shared research/config/scripts remain in tmp/duema-target-10000. Do not push, publish or update Netlify."
+      "resumeProcedure": "Check HEAD, clean/staged changes, AGENTS.md and running work; recount actual dist/cards.json names with dist/catalogue.js nameKey. Latest phase 1771 is verified. Continue at phase 1772 toward exactly 10000; preserve older deferrals. Temporary shared research/config/scripts remain in tmp/duema-target-10000. Do not push, publish or update Netlify.",
+      "heldCandidates": [
+        {
+          "id": "promoy19-065",
+          "name": "「祝え！この物語の終幕を！」",
+          "reason": "Official four print images and full text verified; QA40940 depends on unsupported dmex18-014 paid hand/grave execution after attack with Vivid alternative cost. Held without adding a partial card or incrementing name count.",
+          "manifest": "tools/support-phase-1776.json"
+        }
+      ]
     },
     "resolvedRegistrationValidations": [
       {
@@ -568611,8 +568792,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9558,
-      "remaining": 442,
+      "currentNames": 9561,
+      "remaining": 439,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -568620,8 +568801,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1778,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1778.json",
+      "lastPhase": 1779,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1779.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -620539,10 +620720,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1778,
+    "phase": 1779,
     "threshold": 10000,
-    "supportedNames": 9558,
-    "pendingNames": 2282,
+    "supportedNames": 9561,
+    "pendingNames": 2279,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -620551,7 +620732,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1778.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1779.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

@@ -305933,18 +305933,148 @@
       ],
       "supportBatch": "phase-1778",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-023",
+      "name": "ジバボン３兄弟",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のパワー6000以下のクリーチャーを１体破壊する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、相手のパワー12000以下のクリーチャーを１体破壊する。\nxB相手のクリーチャーをすべて破壊する。次の自分のターンの終わりに、自分はゲームに負ける。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-023",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 6
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 12000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "Schedule537",
+          "when": "nextOwnEnd",
+          "defs": [
+            {
+              "op": "Lose1779"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1779",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-036",
+      "name": "スパーク×スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\nバトルゾーンにある、コスト６以下の進化ではないカードを１枚選び、裏向きにして持ち主のシールドゾーンに新しいシールドとして置く。\nxBこの呪文を自分の手札から唱えた後、この呪文を墓地からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-036",
+      "limit": 4,
+      "superTrigger": true,
+      "g1489SuperRecast": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "to": "shields",
+          "anyOwner": true,
+          "max": 6,
+          "g813NonEvolution": true
+        }
+      ],
+      "g437Super": [],
+      "supportBatch": "phase-1779",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex19-031",
+      "name": "魔王の傲慢",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のアンタップしているクリーチャーを１体破壊する。\nxB相手は、バトルゾーンまたは手札にある自身のカードを合計７枚選び、墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-031",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "OwnCards1779",
+          "n": 7
+        }
+      ],
+      "supportBatch": "phase-1779",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1778,
-    "checkedAt": "2026-11-27T09:23:57.288Z",
-    "baseCount": 9555,
+    "phase": 1779,
+    "checkedAt": "2026-11-27T09:31:55.589Z",
+    "baseCount": 9558,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9558,
+    "totalCount": 9561,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37862/"
+      "https://dm.takaratomy.co.jp/rule/qa/31613/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335080,6 +335210,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/43920/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1778,
+        "checkedAt": "2026-11-27T09:23:57.288Z",
+        "baseCount": 9555,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9558,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37862/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

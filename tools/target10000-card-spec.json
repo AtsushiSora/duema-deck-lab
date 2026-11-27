@@ -3802,5 +3802,213 @@
         }
       ]
     }
+  },
+  "dmrp03-023": {
+    "phase": 1779,
+    "faces": [
+      {
+        "name": "ジバボン３兄弟",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のパワー6000以下のクリーチャーを１体破壊する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、相手のパワー12000以下のクリーチャーを１体破壊する。\nxB相手のクリーチャーをすべて破壊する。次の自分のターンの終わりに、自分はゲームに負ける。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 6
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 12000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "Schedule537",
+          "when": "nextOwnEnd",
+          "defs": [
+            {
+              "op": "Lose1779"
+            }
+          ]
+        }
+      ],
+      "race": "ジョーカーズ"
+    }
+  },
+  "dmex04-024": {
+    "phase": 1779,
+    "faces": [
+      {
+        "name": "ジバボン３兄弟",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のパワー6000以下のクリーチャーを１体破壊する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、相手のパワー12000以下のクリーチャーを１体破壊する。\nxB相手のクリーチャーをすべて破壊する。次の自分のターンの終わりに、自分はゲームに負ける。",
+        "race": "ジョーカーズ",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g539Jokers": 6
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 12000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        {
+          "op": "Schedule537",
+          "when": "nextOwnEnd",
+          "defs": [
+            {
+              "op": "Lose1779"
+            }
+          ]
+        }
+      ],
+      "race": "ジョーカーズ"
+    }
+  },
+  "dmrp06-036": {
+    "phase": 1779,
+    "faces": [
+      {
+        "name": "スパーク×スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\nバトルゾーンにある、コスト６以下の進化ではないカードを１枚選び、裏向きにして持ち主のシールドゾーンに新しいシールドとして置く。\nxBこの呪文を自分の手札から唱えた後、この呪文を墓地からコストを支払わずに唱えてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "g1489SuperRecast": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "to": "shields",
+          "anyOwner": true,
+          "max": 6,
+          "g813NonEvolution": true
+        }
+      ],
+      "g437Super": []
+    }
+  },
+  "dmex19-031": {
+    "phase": 1779,
+    "faces": [
+      {
+        "name": "魔王の傲慢",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のアンタップしているクリーチャーを１体破壊する。\nxB相手は、バトルゾーンまたは手札にある自身のカードを合計７枚選び、墓地に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "OwnCards1779",
+          "n": 7
+        }
+      ]
+    }
   }
 }

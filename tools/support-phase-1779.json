@@ -1,0 +1,364 @@
+{
+  "phase": 1779,
+  "checkedAt": "2026-11-27T09:31:55.589Z",
+  "baseline": "3d9ba8925643fe0729ebeb5f02e8c8c06692c50f",
+  "baseCount": 9558,
+  "target": 10000,
+  "description": "Complete Super S-trigger spells, including mandatory Jibabon sweep and next-own-end loss, native Spark recast, and opponent-owned seven-physical-card selection across hand and battlefield. Reuse existing serializable physical-card sweep and discard replacement flow.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31613/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-023",
+      "name": "ジバボン３兄弟",
+      "canonicalId": "dmrp03-023",
+      "printId": "dmrp03-023",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-023",
+      "faces": [
+        {
+          "name": "ジバボン３兄弟",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のパワー6000以下のクリーチャーを１体破壊する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、相手のパワー12000以下のクリーチャーを１体破壊する。\nxB相手のクリーチャーをすべて破壊する。次の自分のターンの終わりに、自分はゲームに負ける。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 6
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 12000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnEnd",
+            "defs": [
+              {
+                "op": "Lose1779"
+              }
+            ]
+          }
+        ],
+        "race": "ジョーカーズ"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-023.jpg",
+      "imageSha256": "f53ae24560b6f14287c13dc948a741ea2571c1bdeb810cb83ad2b7140aa212e7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-023-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-023",
+          "dmex04-024"
+        ],
+        "allSearchIds": [
+          "dmrp03-023",
+          "dmex04-024"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:31:55.589Z",
+        "sha256": "b4987febadae7443fdc34811b20bb9fbf32c2f329b918a9362e17f2be958b99d",
+        "facesMatched": true,
+        "imageSha256": "f53ae24560b6f14287c13dc948a741ea2571c1bdeb810cb83ad2b7140aa212e7"
+      }
+    },
+    {
+      "id": "dmrp06-036",
+      "name": "スパーク×スパーク",
+      "canonicalId": "dmrp06-036",
+      "printId": "dmrp06-036",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-036",
+      "faces": [
+        {
+          "name": "スパーク×スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\nバトルゾーンにある、コスト６以下の進化ではないカードを１枚選び、裏向きにして持ち主のシールドゾーンに新しいシールドとして置く。\nxBこの呪文を自分の手札から唱えた後、この呪文を墓地からコストを支払わずに唱えてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "g1489SuperRecast": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "shields",
+            "anyOwner": true,
+            "max": 6,
+            "g813NonEvolution": true
+          }
+        ],
+        "g437Super": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-036.jpg",
+      "imageSha256": "a8f77a00ef1b6549d804801c07e381a341ab6d4d4abd24b255ca3a59d5c17d5d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp06-036-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp06-036"
+        ],
+        "allSearchIds": [
+          "dmrp06-036"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:31:55.589Z",
+        "sha256": "a24982f5058e364a52297e6ccb5c5539a578101ccb9c04f4d02882db4a495c6d",
+        "facesMatched": true,
+        "imageSha256": "a8f77a00ef1b6549d804801c07e381a341ab6d4d4abd24b255ca3a59d5c17d5d"
+      }
+    },
+    {
+      "id": "dmex19-031",
+      "name": "魔王の傲慢",
+      "canonicalId": "dmex19-031",
+      "printId": "dmex19-031",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-031",
+      "faces": [
+        {
+          "name": "魔王の傲慢",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のアンタップしているクリーチャーを１体破壊する。\nxB相手は、バトルゾーンまたは手札にある自身のカードを合計７枚選び、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "OwnCards1779",
+            "n": 7
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-031.jpg",
+      "imageSha256": "20a8b428ce9e20f8762a04ac51cb2e1b9015d1fca9dcf8071ff2ae1d9d2b6fa8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex19-031-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex19-031"
+        ],
+        "allSearchIds": [
+          "dmex19-031"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:31:55.589Z",
+        "sha256": "c2b1f4a07b5d11cb7857d0936c1fd941fe33f46fed0ca0535fb4c6b30dffc4aa",
+        "facesMatched": true,
+        "imageSha256": "20a8b428ce9e20f8762a04ac51cb2e1b9015d1fca9dcf8071ff2ae1d9d2b6fa8"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-024",
+      "name": "ジバボン３兄弟",
+      "canonicalId": "dmrp03-023",
+      "printId": "dmex04-024",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-024",
+      "faces": [
+        {
+          "name": "ジバボン３兄弟",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のパワー6000以下のクリーチャーを１体破壊する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、相手のパワー12000以下のクリーチャーを１体破壊する。\nxB相手のクリーチャーをすべて破壊する。次の自分のターンの終わりに、自分はゲームに負ける。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 6
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 12000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnEnd",
+            "defs": [
+              {
+                "op": "Lose1779"
+              }
+            ]
+          }
+        ],
+        "race": "ジョーカーズ"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-024.jpg",
+      "imageSha256": "0ece0de3eb2d47f33730aedda283162eb044044469f89dd9df96333d9db7ad2a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex04-024-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-023",
+          "dmex04-024"
+        ],
+        "allSearchIds": [
+          "dmrp03-023",
+          "dmex04-024"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:31:55.589Z",
+        "sha256": "85ae252506d0f69543590f9f977e604494bd96c8cc13c45b0d34b43b9cabef40",
+        "facesMatched": true,
+        "imageSha256": "0ece0de3eb2d47f33730aedda283162eb044044469f89dd9df96333d9db7ad2a"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31613/",
+      "sha256": "bfe9283c2993e14ef385a1fae283d63cf19fae1d8f0bb1ecc94a9f52ee7ca3ec",
+      "checkedAt": "2026-11-27T09:31:55.589Z",
+      "reproduced": true,
+      "tests": "tests/standard1779-effects.test.mjs",
+      "reproduction": "Actual last-shield Jibabon with six Jokers resolves both ordinary removals, compulsory super sweep, then loses at next own end after JSON restoration; no decline offered.",
+      "result": "Actual last-shield Jibabon with six Jokers resolves both ordinary removals, compulsory super sweep, then loses at next own end after JSON restoration; no decline offered."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T09:31:55.589Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-023": 4,
+      "dmrp06-036": 4,
+      "dmex19-031": 4,
+      "dmex04-024": 4
+    }
+  },
+  "basicInformationEvidence": {
+    "cardId": "dmrp03-023",
+    "field": "race",
+    "value": "ジョーカーズ",
+    "reason": "Original official HTML omits the race. Both full original and reprint images visibly print ジョーカーズ, and the reprint HTML also confirms it. Preserve raw official faces; apply this image-confirmed race as an explicit definition override.",
+    "sources": [
+      "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-023.jpg",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-024"
+    ]
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial 15 behavior tests passed; metadata assertion exposed original official HTML omission of Jokers race. Both official images and reprint HTML confirm race; explicit pinned race override and metadata evidence added, with regression coverage for spell-in-mana Jokers count."
+  }
+}
