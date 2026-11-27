@@ -1194,9 +1194,9 @@ export function createSixPhotoRules(api){
  function zoneMove(s,p,from,uid,to,t={}){if(!api.canMoveZone(s,p,from)||from==='hand'&&to==='mana'&&!api.canHandMana(s,p))return;const shieldOwner=t.g904ShieldOwner??p;if(to==='shields'&&!api.canAddShield(s,shieldOwner)){if(from==='deck')release(s,p,uid);return;}const own=s.players[p];if(from==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??p}]);return;}if(from==='mana'&&to==='grave')api.markCarolFromMana(s,p,own.mana.find(x=>x.uid===uid));const x=remove(own[from],uid);if(!x)return;if(from==='deck')release(s,p,uid);let dest=to;if(from==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p))dest='grave';if(to==='mana'&&!(from==='hand'&&t.g182HandMana)&&api.manaRedirect(s,p))dest='grave';if(from==='deck')dest=api.deckDestination1365(s,p,to,dest);clear(x,dest);if(dest==='shields'&&t.g657FaceUp)x.faceUp=true;if(dest==='mana'){if(t.faceDown){x.faceDown=true;x.tapped=!!t.tapped;}else if(t.tapped)x.tapped=true;}if(t.g183Return&&dest==='deckTop')own.deck.unshift(x);else api.addZone(s,dest==='shields'?shieldOwner:dest==='hand'&&t.toOwnerHand?(x.cardOwner??p):p,dest,x);if(from==='hand'&&dest==='mana')api.handMana(s,p,x);if(dest==='shields')api.notifyShieldAdded(s,shieldOwner,x);return dest!=='grave'||own.grave.includes(x);}
  const attacking587=(s,x)=>x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
  const currentPower506=(s,x)=>api.power(x,attacking587(s,x),s);
- function lowestPower741(s,rows){
+ function lowestPower741(s,rows,extreme='min'){
   const eligible=rows.filter(y=>!y.sealed);
-  const power=Math.min(...eligible.map(y=>currentPower506(s,y)));
+  const power=Math[extreme](...eligible.map(y=>currentPower506(s,y)));
   return eligible.filter(y=>currentPower506(s,y)===power);
  }
  function fitsPower506(s,t,x){
@@ -6844,7 +6844,7 @@ export function createSixPhotoRules(api){
    const name=exactName('ボルメテウス・武者・ドラゴン');
    if(host?battleNames676(s,host).includes(name):exactName(card(t.source).name)===name)
     t={...t,filter:{...t.filter,maxPower:12000}};
-  }const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>y.uid!==t.excludeUid&&matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;
+  }const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>y.uid!==t.excludeUid&&matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower||t.g1778MaxPower?lowestPower741(s,eligible,t.g1778MaxPower?'max':'min'):eligible;
   // An instruction to act on one's own card can omit 「選ぶ」 (QA 45224).
   const moveForRaid=t.owner==='self'&&t.g587AfterSelection&&t.after?.[0]?.op==='Raid767';
   const options=t.g1044ImplicitTap||t.implicitSelection

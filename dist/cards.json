@@ -305816,18 +305816,135 @@
       },
       "supportBatch": "phase-1777",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-006",
+      "name": "ルネッザーンス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 9000,
+      "race": "ジョーカーズ",
+      "text": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。\nW・ブレイカー\nスピードアタッカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からジョーカーズをすべて手札に加え、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-006",
+      "limit": 4,
+      "joeDiscount": 2,
+      "g591Discard": "opponentEffect",
+      "breaker": 2,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "ジョーカーズ"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1778",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd07-a-004",
+      "name": "虫取りアーミー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ジョーカーズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からジョーカーズをすべて手札に加え、残りを好きな順序で山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-004",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "race": "ジョーカーズ"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1778",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-l02",
+      "name": "ZEROの侵略 ブラックアウト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ソニック・コマンド/侵略者ZERO",
+      "text": "W・ブレイカー\n侵略ZERO：相手のターンの終わりに、そのターン相手がコストを支払わずにクリーチャーをバトルゾーンに出していたら、このクリーチャーを自分の手札からバトルゾーンに出してもよい。\nこのクリーチャーが攻撃する時、バトルゾーンに自分のD２フィールドがあれば、相手のパワーが一番大きいクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-l02",
+      "limit": 4,
+      "breaker": 2,
+      "g1315InvasionZero": true,
+      "g1563InvasionDeploy": true,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g580D2Field": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "g1778MaxPower": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1778",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1777,
-    "checkedAt": "2026-11-27T09:19:57.348Z",
-    "baseCount": 9552,
+    "phase": 1778,
+    "checkedAt": "2026-11-27T09:23:57.288Z",
+    "baseCount": 9555,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9555,
+    "totalCount": 9558,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43920/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37862/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -334948,6 +335065,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39893/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1777,
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "baseCount": 9552,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9555,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43920/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
