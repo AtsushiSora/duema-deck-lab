@@ -312612,17 +312612,173 @@
       },
       "supportBatch": "phase-1834",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd10-003",
+      "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "メタリカ",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nNEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n【呪文面】\n自分の山札の上から３枚を表向きにする。その中から光のカードをすべて自分の手札に加え、その後、残りをすべて自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-003",
+      "limit": 4,
+      "g168Sympathy": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "spellFace": {
+        "name": "ジャスティス・シェイパー",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "g1826PublicReveal": true,
+            "rest": "grave",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "anyFaceColor": "光"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1835",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-013",
+      "name": "審絆 ジェイラ/フレイム・ジェイル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7500,
+      "race": "メタリカ",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のシールドゾーンにある、コスト３以下のクリーチャーとコスト３以下の呪文すべてに「S・トリガー」を与える。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー7000以下のクリーチャーを\n１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-013",
+      "limit": 4,
+      "g168Sympathy": true,
+      "breaker": 2,
+      "g1557ShieldTrigger": {
+        "types": [
+          "creature",
+          "spell"
+        ],
+        "max": 3
+      },
+      "spellFace": {
+        "name": "フレイム・ジェイル",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 7000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1835",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-015",
+      "name": "無法地帯 マクラーゲン/無法警報PSY",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。\n【呪文面】\nカードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、カードを１枚、自分のシールドゾーンから墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-015",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "untargetable": true,
+      "spellFace": {
+        "name": "無法警報PSY",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1
+          },
+          {
+            "op": "ShieldGrave",
+            "cardOnly": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1835",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1834,
-    "checkedAt": "2026-11-27T20:16:55.802Z",
-    "baseCount": 9712,
+    "phase": 1835,
+    "checkedAt": "2026-11-27T20:26:57.647Z",
+    "baseCount": 9715,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9715,
+    "totalCount": 9718,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/31719/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -342631,6 +342787,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/43466/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1834,
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "baseCount": 9712,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9715,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

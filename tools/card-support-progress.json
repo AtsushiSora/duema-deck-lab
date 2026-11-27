@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9715,
-  "pendingNames": 2134,
-  "phase": 1834,
+  "supportedNames": 9718,
+  "pendingNames": 2131,
+  "phase": 1835,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,14 +156,14 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1260,
+    "クリーチャー": 1258,
     "呪文": 241,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 168,
     "スター進化クリーチャー": 45,
-    "NEOクリーチャー": 40,
+    "NEOクリーチャー": 39,
     "オレガ・オーラ": 11,
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
@@ -220,7 +220,7 @@
   },
   "reasons": {
     "未対応の能力文": 1591,
-    "複数面・特殊カードタイプまたは情報不足": 450,
+    "複数面・特殊カードタイプまたは情報不足": 447,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -575251,27 +575251,276 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1835,
+      "checkedAt": "2026-11-27T20:34:25.304Z",
+      "baseline": "886e8f17b90c563f1fe747701d75b044c5ce919a",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9715,
+      "currentNames": 9718,
+      "remainingNames": 282,
+      "added": [
+        {
+          "id": "dmsd10-003",
+          "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
+        },
+        {
+          "id": "dmrp11-013",
+          "name": "審絆 ジェイラ/フレイム・ジェイル"
+        },
+        {
+          "id": "dmrp05-015",
+          "name": "無法地帯 マクラーゲン/無法警報PSY"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1835,
+        "baseline": "886e8f17b90c563f1fe747701d75b044c5ce919a",
+        "originalDefinitionsUnchanged": 9715,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9718,
+        "uniqueIds": 9718,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9715,
+        "existingImageReferenceRowsUnchanged": 12173,
+        "officialPrintsReviewed": 6,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1835": {
+          "name": "official-1835",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1835.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.903,
+          "log": "tmp/duema-target-10000/official-1835.log",
+          "passed": 0,
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "focused-1835-final": {
+          "name": "focused-1835-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1835-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.956,
+          "log": "tmp/duema-target-10000/focused-1835-final.log",
+          "passed": 112,
+          "logSha256": "36dda106110104bbacb383281cd64b236d735be79f6660d394cff3de633ff6a2"
+        },
+        "related-1835": {
+          "name": "related-1835",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:complete execution of |creature sympathy counts only own current creatures, excludes seeds, seals and buried cards, and floors at one|sympathy payment is selectable, leaves printed cost intact and needs its civilization|all four grave-summon cards can be paid from grave without Abyss Rush delayed return|grave NEO summons allow either a matching water-dark-fire base or no evolution|grave summon obeys grave-zone and non-hand entry prohibitions|all three Abyss Rush creatures may attack players immediately and return that physical card to bottom at turn end|ordinary hand summons of Abyss Rush cards do not gain immediate player attacks or return at end|all seven Hyper Energy cards retain ordinary summoning and a separate selectable reduction method|Hyper Energy excludes tapped, sealed and same-cost donors, can be cancelled, and floors at one|reduction prohibition hides Hyper Energy and forces the normal printed cost|new Hyper Energy entry effects ramp exactly one or destroy the chosen enemy after payment|ST grant qualifies only matching shield faces and only live providers |Glaliss protects each ally by its own civilization |Suur Mees can tap after its own or an allied attack target was fixed |Dracroix grants additive power and an additional break only to printed vanilla attackers |paid original cost and native entry |conditional ST uses the actual face race, color and cost |Marshal Prince entry tap includes its own arrival and only other matching arrivals |Natura Scorpion taps the selected creature then sends it to its actual owners mana |Destiny Ryusei optionally searches any colorless card, publicly reveals chosen only and shuffles |Lunarsberg evolves on a real Dragon and destruction deploys up to2 nonEvolution dark creatures cost7 or below |Clam Dunk draws3 then returns exactly2 in the selected bottom order, without exposing extra identities|Mardek actually triggers as a creature and later Smash Bursts without moving the body|Haiorida shields top1 and its own shield addition GR summons once, keeps blocker and exact IDs|Haiorida responds to later friendly shield additions, with no trigger for enemy shields|Genwaku graves exactly one card of a stacked shield, preserving the other and all physical IDs |La Zuneyoma ramps once per physical shield card leaving, cannot attack player and can guard an ally|Aurora selects any number of whole shields to mana, with shield-leave ramps and saved state |Sword inspects three, reveals only a valid card taken, and orders the rest |Eye targets one opposing creature and skips only its next start untap|Eye can trigger from a face-up stack, and can reattach only with a shield remaining |Gate draws before offering one hand blocker of any civilization |Rage draws exactly one and attaches to the chosen shield group from hand|Rage from grave draws but keeps the external deck destination, and ignored Rage cannot draw or attach|phase1746 paid full cost printed power breaker and fresh sickness |Ogapu actual paid castle chooses draw bounce either owner or neither |Ogapu can return itself and each actual castle and each source gets its own optional trigger |Ogapu actual free castle placement through existing |Ogapu QA35756 actual Emeral castle card hidden shield placement never triggers |Ogapu faceup ordinary shield card enemy castle ignored and sealed observer do not trigger |Daisharin own real multicolor spell gains Charger without registry mutation and only one physical mana card |Daisharin cast-time Charger remains when its own spell returns Daisharin to hand |Daisharin enemy casts ignored or sealed aura never grants Charger |Daisharin real Twinpact chosen spell side gains Charger for its entire physical card |Daisharin free grave origin actual native Execute gives Charger and respects original Charger |Daisharin actual Lucky Darts shield spell gains Charger and leaves original shield physically once |Unknown paid summon chooses whole hand group before native deployment then grants opponent extra turn |Unknown optional zero or partial hand deployment still grants opponent extra turn |Unknown existing native cheating into battle is not a summon and grants no extra turn |Unknown actual free Execute summons and existing Valhalla prevents opponent bonus turn |Unknown native hand deployment supports a real existing evolution base and unblocked T attack |phase1746 encrypted pending decisions preserve hidden actions pure AI and physical cards |Daisharin Genmu ignores granted Charger on low cost spell and leaves physical spell grave |Daisharin QA43076 analogous actual SmashBurst casts in place and Charger never moves its body |Daisharin and actual Cyclone offer both own replacement destinations and resume JSON |Daisharin and Labereez grant two own replacements to an ordinary paid spell |Daisharin granted Charger respects actual Reality Void hand-to-mana prohibition with Cyclone fallback )",
+            "tests/standard168-effects.test.mjs",
+            "tests/standard1557-effects.test.mjs",
+            "tests/standard1559-effects.test.mjs",
+            "tests/standard1591-effects.test.mjs",
+            "tests/standard1028-effects.test.mjs",
+            "tests/standard1746-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.224,
+          "log": "tmp/duema-target-10000/related-1835.log",
+          "passed": 213,
+          "logSha256": "d259f596dbe7bac027fc6347cb806ee265f737556fe96e2b571dd77a035d9069"
+        },
+        "check-1835": {
+          "name": "check-1835",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.762,
+          "log": "tmp/duema-target-10000/check-1835.log",
+          "passed": 0,
+          "logSha256": "8abfd0adcaa0519589edc93e6848a7030704d74ff26581598afe62d7dc4810d6"
+        },
+        "audit-1835": {
+          "name": "audit-1835",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.472,
+          "log": "tmp/duema-target-10000/audit-1835.log",
+          "passed": 0,
+          "logSha256": "8b21406cb6be4fa6ffd44d0da7a59ef477c7fd5aefd554620d766b2bf51abd40"
+        },
+        "invariants-1835": {
+          "name": "invariants-1835",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1835"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.716,
+          "log": "tmp/duema-target-10000/invariants-1835.log",
+          "passed": 0,
+          "logSha256": "c2722e4f68a4795fb8686dc128ec71a93d82b95fc101ae9289d5751eef06716f"
+        },
+        "related-online-1835": {
+          "name": "related-online-1835",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.38,
+          "log": "tmp/duema-target-10000/related-online-1835.log",
+          "passed": 5,
+          "logSha256": "890dac65a7221a4d5a0112fa93a6509d10e65e5bcf0f6e683a5e35b7df1e1677"
+        },
+        "extra-1835-captured-trigger": {
+          "name": "extra-1835-captured-trigger",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^Jeira granted S-trigger captured",
+            "tests/standard1835-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.781,
+          "log": "tmp/duema-target-10000/extra-1835-captured-trigger.log",
+          "passed": 2,
+          "logSha256": "8751775891a7797fba11639cc482010c5b27e098b878f058f035cea7cab68bd4"
+        },
+        "extra-1835-face-and-seed": {
+          "name": "extra-1835-face-and-seed",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Jeira never uses|Current NEO wording)",
+            "tests/standard1835-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.646,
+          "log": "tmp/duema-target-10000/extra-1835-face-and-seed.log",
+          "passed": 4,
+          "logSha256": "d93785f3ca5fd50de806ad492ccfb6e869a4f736aab53744ad13b9ca0b7675ed"
+        }
+      },
+      "totalTestsPassed": 336,
+      "manifest": "tools/support-phase-1835.json",
+      "supported": 9718,
+      "pending": 2131,
+      "engineVersion": "0.602.359",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmex17-124",
+          "name": "熱血姫様プリン / 狩人秘伝ハンター・ファイア",
+          "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
+        },
+        {
+          "id": "dmrp08-017",
+          "name": "満開軍艦 グラービエ/過激カキアゲイン",
+          "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
+        },
+        {
+          "id": "dmex04-036",
+          "name": "龍聖霊ウルフェウス/ヘブンの衝撃",
+          "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
+        }
+      ],
+      "verificationScope": "Three complete twinpacts and six official full print images/basic data, restrictions and exact-name full reprint search verified. Shinren creature sympathy counts only own current creatures with floor1 and keeps required civilization, paid both optional Light NEO and no-evolution paths; actual Light Shinkalize seed is a legal current-wording NEO base but not a creature for sympathy. W2/6000 and normal sickness versus evolution immediate attack. Justice Shaper public top3 all Light cards including Light spell-only twinpact face, mandatory all recovery, no extra fourth card, nonLight remainder grave, short deck exhaustion and actual QQQX public reveal permission. Jeira7500/W2 and creature sympathy; g1557 existing grant extended only with optional types whitelist, all old providers unaffected. Actual shield break grants by each creature/spell face printed cost<=3, excludes seed/gear/castle, source ignored/sealed/departed/enemy, both zero-mana creature and spell triggers; Mixel cheap front never grants its expensive spell half. Native double break captures and declares both Apocalypse Day and granted creature before resolution: after Apocalypse destroys Jeira, declared low-cost creature still summons. Flame Jail paid6 and genuine spell S-trigger/current7000 threshold excludes own/7500. Mclargen11000 blocker/W2 and opposing-creature choice protection, self Glory Muscle choice allowed, actual opposing Demon Hand/Aqua Surfer excluded, actual nonchoosing Apocalypse still destroys, ignored protection restores targeting. PSY Draw1 then exact own hand1 new facedown shield then exactly one physical own shield-zone card grave; new/old card, root/inner stack, actual attached crest and faceup G-castle, no fabricated shield when draw loses. Own hand choice privacy and opponent projection tested. Both seats, hidden-information/read-only AI, mana orientation, encrypted duel service. Focused112 plus distinct two captured-trigger and four face/seed extra cases passed, related213 and online5 passed. npm check/audit/old-data invariants passed; no full test or previous long group rerun; all previous pending preserved.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1835",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1835-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.462,
+          "log": "tmp/duema-target-10000/focused-1835.log",
+          "reason": "Initial fixture used extended-effect choice helper for native evolve and expected missing civilizations arrays on old single-face definitions; changed to native evolve/baseUid and civ fallback. Native Demon Hand and Aqua Surfer decisions expose actions.targets, not extended decision.choices; assertions corrected to actual legal target actions. Extra double-break fixture initially expected Apocalypse execution before the second S-trigger declaration; corrected to declare both then choose Apocalypse trigger resolution first. All failures were fixture errors and raw logs retained; no implementation change was needed after the first successful focused gate."
+        },
+        {
+          "name": "extra-1835-captured-trigger",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^Jeira granted S-trigger captured",
+            "tests/standard1835-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.669,
+          "log": "tmp/duema-target-10000/extra-1835-captured-trigger-previous-1795811522130091000.log",
+          "originalLog": "tmp/duema-target-10000/extra-1835-captured-trigger.log",
+          "reason": "Initial fixture used extended-effect choice helper for native evolve and expected missing civilizations arrays on old single-face definitions; changed to native evolve/baseUid and civ fallback. Native Demon Hand and Aqua Surfer decisions expose actions.targets, not extended decision.choices; assertions corrected to actual legal target actions. Extra double-break fixture initially expected Apocalypse execution before the second S-trigger declaration; corrected to declare both then choose Apocalypse trigger resolution first. All failures were fixture errors and raw logs retained; no implementation change was needed after the first successful focused gate."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1834,
-    "nextPhase": 1835,
+    "lastVerifiedPhase": 1835,
+    "nextPhase": 1836,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmsd10-003",
-        "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+        "id": "dmex17-124",
+        "name": "熱血姫様プリン / 狩人秘伝ハンター・ファイア",
+        "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
       },
       {
-        "id": "dmrp11-013",
-        "name": "審絆 ジェイラ/フレイム・ジェイル",
-        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+        "id": "dmrp08-017",
+        "name": "満開軍艦 グラービエ/過激カキアゲイン",
+        "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
       },
       {
-        "id": "dmrp05-015",
-        "name": "無法地帯 マクラーゲン/無法警報PSY",
-        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+        "id": "dmex04-036",
+        "name": "龍聖霊ウルフェウス/ヘブンの衝撃",
+        "reason": "Research complete native twinpact: Hunter Attack Chance and compulsory filtered fight with Smash Burst; two-own-spell attack condition and mandatory draw/discard; grave Angel Command/Dragon condition and optional hand S-trigger spell cast, plus nonEvolution shield removal. Verify all print images, restrictions and associated rulings before implementing both faces."
       }
     ],
     "steps": [
@@ -576165,11 +576414,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1834,
-      "baseline": "807b94d7ff3869fed58c4cff62ed2cd3583b5735",
-      "supportedNames": 9715,
-      "artifact": "tools/target10000-registration-checkpoint-1834.json",
-      "checkedAt": "2026-11-27T20:24:22.890Z"
+      "phase": 1835,
+      "baseline": "886e8f17b90c563f1fe747701d75b044c5ce919a",
+      "supportedNames": 9718,
+      "artifact": "tools/target10000-registration-checkpoint-1835.json",
+      "checkedAt": "2026-11-27T20:34:25.304Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -579227,8 +579476,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9715,
-      "remaining": 285,
+      "currentNames": 9718,
+      "remaining": 282,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -579236,8 +579485,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1834,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1834.json",
+      "lastPhase": 1835,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1835.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -580498,8 +580747,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9715,
-      "remaining": 285,
+      "currentNames": 9718,
+      "remaining": 282,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -580507,8 +580756,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1834,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1834.json",
+      "lastPhase": 1835,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1835.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -582243,6 +582492,435 @@
         "exactPrints": 5,
         "allImagesReviewed": true,
         "regulationVerificationPending": false
+      },
+      {
+        "phase": 1835,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmsd10-003.json",
+        "lastVerifiedCodeCommit": "3f714c1651743d6bd5e0d485a3d4b3522287eafa",
+        "cards": [
+          {
+            "id": "dmsd10-003",
+            "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+            "searchSha256": "f32412acf17c168371430f2b9ba39531e7bdab12023de58e7831829fe3644f56",
+            "searchIds": [
+              "dm25ex3-TF25",
+              "dm25rp2-T04",
+              "dmex19-040",
+              "dmsd10-003"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmsd10-003",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-003",
+                "faces": [
+                  {
+                    "name": "審絆の鎮り 新蓮",
+                    "typeText": "NEOクリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nNEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+                    "race": "メタリカ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "ジャスティス・シェイパー",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて自分の手札に加え、その後、残りをすべて自分の墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd10-003",
+                "printedManaValue": 1,
+                "htmlSha256": "5acd52ce4d6496d49bf0f580b204ed7e0c9ccbbfbb42f872a848445cc518ba5a",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-003a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmsd10-003-0.jpg",
+                    "sha256": "481676ad22666ada263e73a6a66df21481b9b697d515c21d9a363d3c5f6fc50a"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm25ex3-TF25",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TF25",
+                "faces": [
+                  {
+                    "name": "審絆の鎮り 新蓮",
+                    "typeText": "NEOクリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストを、自分のクリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+                    "race": "メタリカ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "ジャスティス・シェイパー",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、残りを墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd10-003",
+                "printedManaValue": 1,
+                "htmlSha256": "da076803486529a58d2d9f218b8e1a37d4c3dfdbd982f0a181f0a74a5d407d99",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TF25a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex3-TF25-0.jpg",
+                    "sha256": "0ff98de9971c91a638c87aa45f7a183ded70404f716e20475c9f84e2a8bb0dfb"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm25rp2-T04",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-T04",
+                "faces": [
+                  {
+                    "name": "審絆の鎮り 新蓮",
+                    "typeText": "NEOクリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "シンパシー：クリーチャー（自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+                    "race": "メタリカ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "ジャスティス・シェイパー",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、残りを墓地に置く。",
+                    "race": "",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd10-003",
+                "printedManaValue": 1,
+                "htmlSha256": "0d229cf559ee666aa622fc4244b483523676924e00b551753a5e9a7b3a97353d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-T04a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp2-T04-0.jpg",
+                    "sha256": "2f9d586acdfdf2378808d40e5c4050daea1b3f5309d99211b18e4d4ba074ed1e"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dmex19-040",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-040",
+                "faces": [
+                  {
+                    "name": "審絆の鎮り 新蓮",
+                    "typeText": "NEOクリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "シンパシー：クリーチャー（自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+                    "race": "メタリカ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "ジャスティス・シェイパー",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、その後、残りをすべて墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd10-003",
+                "printedManaValue": 1,
+                "htmlSha256": "9869a77ef3598d080eff5a7d6ff31f5ecc04b94eb4ca7c66459bbe9b0cc87c1d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-040a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex19-040-0.jpg",
+                    "sha256": "4c4d1b87e88aea2eb676affd6a62062836262e1d55c8a27bb3de9c9ff4abc3a6"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [],
+            "searchTotal": 4,
+            "searchPaginationComplete": true,
+            "imageReviewed": true,
+            "allExactPrintImagesReviewed": true,
+            "planning": "Native g168Sympathy; optional Light NEO evolution and W2. Spell public top3 all cards with a Light face to hand, mandatory rest grave, empty/short deck and deck-movement prohibitions. Image original says creature below, reprints clarify card below: use current native NEO rules, retain original metadata."
+          },
+          {
+            "id": "dmrp11-013",
+            "name": "審絆 ジェイラ/フレイム・ジェイル",
+            "searchSha256": "d193f760048eacce1bd64db38298d025e3065200d0568570ae740baa7bdfd801",
+            "searchIds": [
+              "dmrp10-s02",
+              "dmrp12-066",
+              "dmrp11-013",
+              "dmsd10-005",
+              "dmsd10-004",
+              "dmrp12-015",
+              "dm23ex2-039",
+              "dmrp11-001",
+              "dm25ex3-TF25",
+              "dm25rp2-T04",
+              "dmex19-040",
+              "dmsd10-003",
+              "dmrp10-066",
+              "dmrp11-s02"
+            ],
+            "excluded": [
+              {
+                "id": "dmrp10-s02",
+                "name": "大審絆官 イマムーグ"
+              },
+              {
+                "id": "dmrp12-066",
+                "name": "審絆 カラモサ"
+              },
+              {
+                "id": "dmsd10-005",
+                "name": "審絆 パプルガン"
+              },
+              {
+                "id": "dmsd10-004",
+                "name": "審絆 バンジョルノ"
+              },
+              {
+                "id": "dmrp12-015",
+                "name": "審絆の勇み 陽彩"
+              },
+              {
+                "id": "dm23ex2-039",
+                "name": "審絆の彩り 喜望 / キーボード・アクセス"
+              },
+              {
+                "id": "dmrp11-001",
+                "name": "審絆の彩り 喜望 / キーボード・アクセス"
+              },
+              {
+                "id": "dm25ex3-TF25",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
+              },
+              {
+                "id": "dm25rp2-T04",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
+              },
+              {
+                "id": "dmex19-040",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
+              },
+              {
+                "id": "dmsd10-003",
+                "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
+              },
+              {
+                "id": "dmrp10-066",
+                "name": "審絆の阻み 六華"
+              },
+              {
+                "id": "dmrp11-s02",
+                "name": "聖審絆官 シェムパザーレ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmrp11-013",
+                "name": "審絆 ジェイラ/フレイム・ジェイル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-013",
+                "faces": [
+                  {
+                    "name": "審絆 ジェイラ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のシールドゾーンにある、コスト３以下のクリーチャーとコスト３以下の呪文すべてに「S・トリガー」を与える。",
+                    "race": "メタリカ",
+                    "powerText": "7500",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "フレイム・ジェイル",
+                    "typeText": "呪文",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー7000以下のクリーチャーを\n１体、破壊する。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp11-013",
+                "printedManaValue": 1,
+                "htmlSha256": "cddb7159279b4ead2fba9ad3c692e945eb4a05ceec05067b214d10c3d14cdf3b",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-013a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp11-013-0.jpg",
+                    "sha256": "86d16705df51e003d64d1cad1cbb104c7c223a6d885a29fbecdd45118ffdf39f"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [],
+            "searchTotal": 14,
+            "searchPaginationComplete": true,
+            "imageReviewed": true,
+            "allExactPrintImagesReviewed": true,
+            "planning": "Native creature sympathy W2; shield ST grants must be matched for creature and spell faces separately cost<=3, with the granting source present at break declaration; back6Fire ST destroys current power<=7000. Do not assume a generic all-card trigger grant covers correct face costs."
+          },
+          {
+            "id": "dmrp05-015",
+            "name": "無法地帯 マクラーゲン/無法警報PSY",
+            "searchSha256": "074535af4fc0545265af088b799acad1f98dee664d026d5200fe788541c08e41",
+            "searchIds": [
+              "dmrp05-015"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp05-015",
+                "name": "無法地帯 マクラーゲン/無法警報PSY",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-015",
+                "faces": [
+                  {
+                    "name": "無法地帯 マクラーゲン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。",
+                    "race": "ムートピア",
+                    "powerText": "11000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "無法警報PSY",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、カードを１枚、自分のシールドゾーンから墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp05-015",
+                "printedManaValue": 1,
+                "htmlSha256": "0ce0855d713e7df740b98dc87212897567d0401ec86b89377f77b0dd45c2a846",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-015a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp05-015-0.jpg",
+                    "sha256": "4a9dc0be7a4fa4b0d401c7cd27c4371283daa15e03878b19993e50af2e2f92cd"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/31719/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/31719/",
+                "sha256": "308a304e5d5b266bfe84ba11f3f069768f6685f54a16f7e3fab847f17f58e5b5",
+                "body": "よくある質問 Q《》で「カードを１枚、自分のシールドゾーンから墓地に置く。」とありますが、裁きの紋章や城を墓地に置いてもいいですか？ Aはい、シールドゾーンにあるカードであればかまいません。その結果シールドの枚数が増えたとしても問題ありません。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+              }
+            ],
+            "searchTotal": 1,
+            "searchPaginationComplete": true,
+            "imageReviewed": true,
+            "allExactPrintImagesReviewed": true,
+            "planning": "Blocker W2 untargetable; Draw1 then mandatory own hand1 new facedown shield, then choose a PHYSICAL own shield-zone card to grave. QA31719 explicitly permits a crest or castle; test these actual attachments and shield-card groups, not only one naked shield. Native shield-card selectors preferred; if exact castle/crest case cannot be reproduced, record reason and choose another candidate."
+          }
+        ],
+        "implementationStarted": true,
+        "regulationVerificationPending": false,
+        "notes": "No new pins, definitions or partial counts. Official search fully enumerated4,14,1 results; exact prints4,1,1, all six images visually inspected. Next phase starts from9715, implement and verify both faces before counting. Earlier pending records and paused automation preserved; no publication.",
+        "completedPhase": 1835,
+        "completedManifest": "tools/support-phase-1835.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -582266,433 +582944,7 @@
         "replacementEvidence": "tmp/duema-target-10000/related-ui-1829-focused.log"
       }
     ],
-    "nextCandidateResearch": {
-      "phase": 1835,
-      "status": "official-research-and-full-images-reviewed",
-      "research": "tmp/duema-target-10000/research-dmsd10-003.json",
-      "lastVerifiedCodeCommit": "3f714c1651743d6bd5e0d485a3d4b3522287eafa",
-      "cards": [
-        {
-          "id": "dmsd10-003",
-          "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-          "searchSha256": "f32412acf17c168371430f2b9ba39531e7bdab12023de58e7831829fe3644f56",
-          "searchIds": [
-            "dm25ex3-TF25",
-            "dm25rp2-T04",
-            "dmex19-040",
-            "dmsd10-003"
-          ],
-          "excluded": [],
-          "prints": [
-            {
-              "id": "dmsd10-003",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-003",
-              "faces": [
-                {
-                  "name": "審絆の鎮り 新蓮",
-                  "typeText": "NEOクリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nNEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
-                  "race": "メタリカ",
-                  "powerText": "6000",
-                  "missingFields": []
-                },
-                {
-                  "name": "ジャスティス・シェイパー",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて自分の手札に加え、その後、残りをすべて自分の墓地に置く。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmsd10-003",
-              "printedManaValue": 1,
-              "htmlSha256": "5acd52ce4d6496d49bf0f580b204ed7e0c9ccbbfbb42f872a848445cc518ba5a",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-003a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmsd10-003-0.jpg",
-                  "sha256": "481676ad22666ada263e73a6a66df21481b9b697d515c21d9a363d3c5f6fc50a"
-                }
-              ],
-              "qa": []
-            },
-            {
-              "id": "dm25ex3-TF25",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TF25",
-              "faces": [
-                {
-                  "name": "審絆の鎮り 新蓮",
-                  "typeText": "NEOクリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストを、自分のクリーチャー１体につき１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
-                  "race": "メタリカ",
-                  "powerText": "6000",
-                  "missingFields": []
-                },
-                {
-                  "name": "ジャスティス・シェイパー",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、残りを墓地に置く。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmsd10-003",
-              "printedManaValue": 1,
-              "htmlSha256": "da076803486529a58d2d9f218b8e1a37d4c3dfdbd982f0a181f0a74a5d407d99",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TF25a.jpg",
-                  "file": "tmp/duema-target-10000/research/dm25ex3-TF25-0.jpg",
-                  "sha256": "0ff98de9971c91a638c87aa45f7a183ded70404f716e20475c9f84e2a8bb0dfb"
-                }
-              ],
-              "qa": []
-            },
-            {
-              "id": "dm25rp2-T04",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-T04",
-              "faces": [
-                {
-                  "name": "審絆の鎮り 新蓮",
-                  "typeText": "NEOクリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "シンパシー：クリーチャー（自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
-                  "race": "メタリカ",
-                  "powerText": "6000",
-                  "missingFields": []
-                },
-                {
-                  "name": "ジャスティス・シェイパー",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、残りを墓地に置く。",
-                  "race": "",
-                  "powerText": "6000",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmsd10-003",
-              "printedManaValue": 1,
-              "htmlSha256": "0d229cf559ee666aa622fc4244b483523676924e00b551753a5e9a7b3a97353d",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-T04a.jpg",
-                  "file": "tmp/duema-target-10000/research/dm25rp2-T04-0.jpg",
-                  "sha256": "2f9d586acdfdf2378808d40e5c4050daea1b3f5309d99211b18e4d4ba074ed1e"
-                }
-              ],
-              "qa": []
-            },
-            {
-              "id": "dmex19-040",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-040",
-              "faces": [
-                {
-                  "name": "審絆の鎮り 新蓮",
-                  "typeText": "NEOクリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "シンパシー：クリーチャー（自分のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nNEO進化：光のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
-                  "race": "メタリカ",
-                  "powerText": "6000",
-                  "missingFields": []
-                },
-                {
-                  "name": "ジャスティス・シェイパー",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "自分の山札の上から３枚を表向きにする。その中から光のカードをすべて手札に加え、その後、残りをすべて墓地に置く。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmsd10-003",
-              "printedManaValue": 1,
-              "htmlSha256": "9869a77ef3598d080eff5a7d6ff31f5ecc04b94eb4ca7c66459bbe9b0cc87c1d",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-040a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmex19-040-0.jpg",
-                  "sha256": "4c4d1b87e88aea2eb676affd6a62062836262e1d55c8a27bb3de9c9ff4abc3a6"
-                }
-              ],
-              "qa": []
-            }
-          ],
-          "qa": [],
-          "searchTotal": 4,
-          "searchPaginationComplete": true,
-          "imageReviewed": true,
-          "allExactPrintImagesReviewed": true,
-          "planning": "Native g168Sympathy; optional Light NEO evolution and W2. Spell public top3 all cards with a Light face to hand, mandatory rest grave, empty/short deck and deck-movement prohibitions. Image original says creature below, reprints clarify card below: use current native NEO rules, retain original metadata."
-        },
-        {
-          "id": "dmrp11-013",
-          "name": "審絆 ジェイラ/フレイム・ジェイル",
-          "searchSha256": "d193f760048eacce1bd64db38298d025e3065200d0568570ae740baa7bdfd801",
-          "searchIds": [
-            "dmrp10-s02",
-            "dmrp12-066",
-            "dmrp11-013",
-            "dmsd10-005",
-            "dmsd10-004",
-            "dmrp12-015",
-            "dm23ex2-039",
-            "dmrp11-001",
-            "dm25ex3-TF25",
-            "dm25rp2-T04",
-            "dmex19-040",
-            "dmsd10-003",
-            "dmrp10-066",
-            "dmrp11-s02"
-          ],
-          "excluded": [
-            {
-              "id": "dmrp10-s02",
-              "name": "大審絆官 イマムーグ"
-            },
-            {
-              "id": "dmrp12-066",
-              "name": "審絆 カラモサ"
-            },
-            {
-              "id": "dmsd10-005",
-              "name": "審絆 パプルガン"
-            },
-            {
-              "id": "dmsd10-004",
-              "name": "審絆 バンジョルノ"
-            },
-            {
-              "id": "dmrp12-015",
-              "name": "審絆の勇み 陽彩"
-            },
-            {
-              "id": "dm23ex2-039",
-              "name": "審絆の彩り 喜望 / キーボード・アクセス"
-            },
-            {
-              "id": "dmrp11-001",
-              "name": "審絆の彩り 喜望 / キーボード・アクセス"
-            },
-            {
-              "id": "dm25ex3-TF25",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
-            },
-            {
-              "id": "dm25rp2-T04",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
-            },
-            {
-              "id": "dmex19-040",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
-            },
-            {
-              "id": "dmsd10-003",
-              "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー"
-            },
-            {
-              "id": "dmrp10-066",
-              "name": "審絆の阻み 六華"
-            },
-            {
-              "id": "dmrp11-s02",
-              "name": "聖審絆官 シェムパザーレ"
-            }
-          ],
-          "prints": [
-            {
-              "id": "dmrp11-013",
-              "name": "審絆 ジェイラ/フレイム・ジェイル",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-013",
-              "faces": [
-                {
-                  "name": "審絆 ジェイラ",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 8,
-                  "costText": "8",
-                  "abilityText": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のシールドゾーンにある、コスト３以下のクリーチャーとコスト３以下の呪文すべてに「S・トリガー」を与える。",
-                  "race": "メタリカ",
-                  "powerText": "7500",
-                  "missingFields": []
-                },
-                {
-                  "name": "フレイム・ジェイル",
-                  "typeText": "呪文",
-                  "civilizationText": "火",
-                  "civilizations": [
-                    "火"
-                  ],
-                  "cost": 6,
-                  "costText": "6",
-                  "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー7000以下のクリーチャーを\n１体、破壊する。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmrp11-013",
-              "printedManaValue": 1,
-              "htmlSha256": "cddb7159279b4ead2fba9ad3c692e945eb4a05ceec05067b214d10c3d14cdf3b",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-013a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmrp11-013-0.jpg",
-                  "sha256": "86d16705df51e003d64d1cad1cbb104c7c223a6d885a29fbecdd45118ffdf39f"
-                }
-              ],
-              "qa": []
-            }
-          ],
-          "qa": [],
-          "searchTotal": 14,
-          "searchPaginationComplete": true,
-          "imageReviewed": true,
-          "allExactPrintImagesReviewed": true,
-          "planning": "Native creature sympathy W2; shield ST grants must be matched for creature and spell faces separately cost<=3, with the granting source present at break declaration; back6Fire ST destroys current power<=7000. Do not assume a generic all-card trigger grant covers correct face costs."
-        },
-        {
-          "id": "dmrp05-015",
-          "name": "無法地帯 マクラーゲン/無法警報PSY",
-          "searchSha256": "074535af4fc0545265af088b799acad1f98dee664d026d5200fe788541c08e41",
-          "searchIds": [
-            "dmrp05-015"
-          ],
-          "excluded": [],
-          "prints": [
-            {
-              "id": "dmrp05-015",
-              "name": "無法地帯 マクラーゲン/無法警報PSY",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-015",
-              "faces": [
-                {
-                  "name": "無法地帯 マクラーゲン",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 8,
-                  "costText": "8",
-                  "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n呪文の効果やクリーチャーの能力によって相手がクリーチャーを選ぶ時、このクリーチャーは選ばれない。",
-                  "race": "ムートピア",
-                  "powerText": "11000",
-                  "missingFields": []
-                },
-                {
-                  "name": "無法警報PSY",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "カードを１枚引き、その後、自分の手札を１枚裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。その後、カードを１枚、自分のシールドゾーンから墓地に置く。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "status": "complete",
-              "parserVersion": 2,
-              "canonicalId": "dmrp05-015",
-              "printedManaValue": 1,
-              "htmlSha256": "0ce0855d713e7df740b98dc87212897567d0401ec86b89377f77b0dd45c2a846",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-015a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmrp05-015-0.jpg",
-                  "sha256": "4a9dc0be7a4fa4b0d401c7cd27c4371283daa15e03878b19993e50af2e2f92cd"
-                }
-              ],
-              "qa": [
-                "https://dm.takaratomy.co.jp/rule/qa/31719/"
-              ]
-            }
-          ],
-          "qa": [
-            {
-              "source": "https://dm.takaratomy.co.jp/rule/qa/31719/",
-              "sha256": "308a304e5d5b266bfe84ba11f3f069768f6685f54a16f7e3fab847f17f58e5b5",
-              "body": "よくある質問 Q《》で「カードを１枚、自分のシールドゾーンから墓地に置く。」とありますが、裁きの紋章や城を墓地に置いてもいいですか？ Aはい、シールドゾーンにあるカードであればかまいません。その結果シールドの枚数が増えたとしても問題ありません。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
-            }
-          ],
-          "searchTotal": 1,
-          "searchPaginationComplete": true,
-          "imageReviewed": true,
-          "allExactPrintImagesReviewed": true,
-          "planning": "Blocker W2 untargetable; Draw1 then mandatory own hand1 new facedown shield, then choose a PHYSICAL own shield-zone card to grave. QA31719 explicitly permits a crest or castle; test these actual attachments and shield-card groups, not only one naked shield. Native shield-card selectors preferred; if exact castle/crest case cannot be reproduced, record reason and choose another candidate."
-        }
-      ],
-      "implementationStarted": false,
-      "regulationVerificationPending": true,
-      "notes": "No new pins, definitions or partial counts. Official search fully enumerated4,14,1 results; exact prints4,1,1, all six images visually inspected. Next phase starts from9715, implement and verify both faces before counting. Earlier pending records and paused automation preserved; no publication."
-    }
+    "nextCandidateResearch": null
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
@@ -634565,10 +634817,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1834,
+    "phase": 1835,
     "threshold": 10000,
-    "supportedNames": 9715,
-    "pendingNames": 2134,
+    "supportedNames": 9718,
+    "pendingNames": 2131,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -634577,7 +634829,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1834.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1835.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
