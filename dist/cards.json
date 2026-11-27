@@ -305004,15 +305004,117 @@
       ],
       "supportBatch": "phase-1769",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-014",
+      "name": "アクア・スターガール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の、リキッド・ピープルまたはハンター１つにつき、相手のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-014",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "g1770OwnElementCount": {
+            "raceAny": [
+              "リキッド・ピープル",
+              "ハンター"
+            ]
+          },
+          "filter": {
+            "creature": true
+          },
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g190Freeze": "self"
+        }
+      ],
+      "supportBatch": "phase-1770",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-017",
+      "name": "剛撃妖精ユキハナ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャイアント/スノーフェアリー",
+      "text": "相手のターンにこのクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出してもよい。\nこのクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\n自分のスノーフェアリー・カードをマナゾーンに置いた時、それをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-017",
+      "limit": 4,
+      "discardDeploy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g1770ManaUntapRace": "スノーフェアリー",
+      "supportBatch": "phase-1770",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-025",
+      "name": "“真友”チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "B・A・D ３（このクリーチャーを、コストを３少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\n自分のビートジョッキーを召喚するコストを最大２少なくする。ただしコストは０以下にならない。\n自分の他のクリーチャーがバトルゾーンに出た時、そのクリーチャーに「スピードアタッカー」を与えてもよい。そうしたら、そのターンの終わりにそのクリーチャーを破壊する。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-025",
+      "limit": 4,
+      "bad": 3,
+      "g175Bad": true,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ビートジョッキー"
+          },
+          "amount": 2,
+          "g560Optional": true
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "self",
+        "other": true,
+        "g1770HasteDestroy": true
+      },
+      "supportBatch": "phase-1770",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1769,
-    "checkedAt": "2026-11-27T08:18:15.006Z",
-    "baseCount": 9529,
+    "phase": 1770,
+    "checkedAt": "2026-11-27T08:26:52.298Z",
+    "baseCount": 9532,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9532,
+    "totalCount": 9535,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -334018,6 +334120,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9529,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1769,
+        "checkedAt": "2026-11-27T08:18:15.006Z",
+        "baseCount": 9529,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9532,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

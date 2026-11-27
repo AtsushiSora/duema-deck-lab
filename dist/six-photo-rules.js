@@ -2924,6 +2924,13 @@ export function createSixPhotoRules(api){
   if(host&&!host.sealed&&api.isCreature(s,host))applyGrant(s,{...t,grant:t.g1740Haste?{speedAttacker:true}:{machFighter:true}},host);
   break;
  }
+ case'g34_EntryHasteDestroy1770':{
+  const host=sourceHost474(s,t.subject)?.x;
+  if(!host||host.sealed||!api.isCreature(s,host))break;
+  applyGrant(s,{...t,g1146UntilLeave:true,g1058FollowUnit:true,grant:{speedAttacker:true}},host);
+  host.g34Delayed={turn:s.turn,to:'grave',source:t.source,controller:t.p};
+  break;
+ }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
  case'g34_SelfHandEvolution1577':{
   const host=sourceHost474(s,t)?.x;
@@ -5604,6 +5611,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Select':{
+  if(t.g1770OwnElementCount){
+   const n=own.battle.filter(x=>!x.sealed&&!x.faceDown&&matches(s,t.p,x,t.g1770OwnElementCount)).length;
+   if(!n)break;
+   t={...t,n};
+  }
   if(api.implicitChoice1369(t))t={...t,implicitSelection:true,implicitBattleSelection:true};
   if(t.g1132EntryTarget){
    const host=sourceHost474(s,t.g1132EntryTarget);
@@ -10134,9 +10146,9 @@ export function createSixPhotoRules(api){
    if(x.sealed)return [];
    const {g1632ManaEntryGrave:manaEntryGrave,g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,
     g1160FirstMultiManaDraw:firstMultiDraw,g1162FirstManaRecycle:recycle,g1168ManaEntryMulti:entryMulti,
-    g1182FirstMultiManaUntap:firstMultiUntap,g1520TwinMana:twinOnly,g1520TwinManaUntap:twinUntap}=effective(x,s);
-   return manaEntryGrave||rules||untap||defs||firstMultiDraw||recycle||firstMultiUntap||twinUntap
-    ?[{x,manaEntryGrave,rules:rules||[],untap,defs:s.g20LeavingUids?.includes(x.uid)&&twinOnly?undefined:defs,entryRace,firstMultiDraw,recycle,entryMulti,firstMultiUntap,twinOnly,twinUntap:!s.g20LeavingUids?.includes(x.uid)&&twinUntap}]:[];
+    g1182FirstMultiManaUntap:firstMultiUntap,g1520TwinMana:twinOnly,g1520TwinManaUntap:twinUntap,g1770ManaUntapRace:raceUntap}=effective(x,s);
+   return manaEntryGrave||rules||untap||defs||firstMultiDraw||recycle||firstMultiUntap||twinUntap||raceUntap
+    ?[{x,manaEntryGrave,rules:rules||[],untap,defs:s.g20LeavingUids?.includes(x.uid)&&twinOnly?undefined:defs,entryRace,firstMultiDraw,recycle,entryMulti,firstMultiUntap,twinOnly,twinUntap:!s.g20LeavingUids?.includes(x.uid)&&twinUntap,raceUntap:!s.g20LeavingUids?.includes(x.uid)&&raceUntap}]:[];
   });
   const crystalSources=s.players[p].battle.filter(x=>!x.sealed&&card(x).g1175CrystalField&&effective(x,s).g1175CrystalField);
   for(const x of cards){
@@ -10148,10 +10160,13 @@ export function createSixPhotoRules(api){
    const manaCard=x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana');
    const actual=api.manaColors(manaCard,s,p);
    if(manaCard.spellFace){const prior=s.leaving?.snapshot?.six?.selfLeaves?.find(y=>y.p===p&&y.uid===x.uid);if(prior?.g1520TwinMana&&prior.g807ManaEntry)queue(s,p,prior,prior.g807ManaEntry,prior.cardId,p);if(prior?.g1520TwinManaUntap)api.enqueue(s,p,{uid:prior.uid,incarnation:prior.incarnation,source:prior.cardId,effect:'extended',task:task('g159R_ManaUntap',p,prior.cardId,{target:x.uid,serial:x.zoneSerial||0})});}
+   const priorRaceUntap=s.leaving?.snapshot?.six?.selfLeaves?.find(y=>y.p===p&&y.uid===x.uid&&y.g1770ManaUntapRace);
+   if(priorRaceUntap&&faces(manaCard).some(c=>race(c,priorRaceUntap.g1770ManaUntapRace)))api.enqueue(s,p,{uid:priorRaceUntap.uid,incarnation:priorRaceUntap.incarnation,source:priorRaceUntap.cardId,effect:'extended',task:task('g159R_ManaUntap',p,priorRaceUntap.cardId,{target:x.uid,serial:x.zoneSerial||0})});
 
    // Each qualifying card in a simultaneous first placement triggers (QA48286).
    if(firstMulti&&actual.length>1)(s.g1160FirstMultiManaTurn??=[null,null])[p]=s.turn;
    for(const source of sources){
+    if(source.raceUntap&&faces(manaCard).some(c=>race(c,source.raceUntap)))api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});
     if(source.manaEntryGrave)send(s,p,source.x,'ManaEntryGrave1632',{target:x.uid,serial:x.zoneSerial||0});
     if(source.twinUntap&&manaCard.spellFace)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});
     if(firstMulti&&source.firstMultiDraw&&actual.length>1)
@@ -10633,6 +10648,7 @@ export function createSixPhotoRules(api){
     if(races.length)queue(s,owner,x,[{op:'RaceRecovery1741',g1741Subject:{uid:y.uid,incarnation:y.incarnation||0},g1741Races:races,g1741EntrySelf:x.uid===y.uid}]);
    }
    else if(watch.g1632DestroyEntrant)queue(s,owner,x,[{op:'ExactMove',owner:p,to:'grave',target:y.uid,targetIncarnation:y.incarnation||0,g403Refs:api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})),followEvolution:true}]);
+   else if(watch.g1770HasteDestroy)queue(s,owner,x,[{op:'Offer',defs:[{op:'EntryHasteDestroy1770',subject:{uid:y.uid,incarnation:y.incarnation||0}}]}]);
    else if(watch.g1740EntrantHaste)queue(s,owner,x,[{op:'ShieldGrave',optional:true,then:[{op:'EntryMach762',subject:{uid:y.uid,incarnation:y.incarnation||0},g1740Haste:true}]}]);
    else if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
@@ -11114,7 +11130,7 @@ export function createSixPhotoRules(api){
    ...(dragonElement1248(c)?{g1248DragonElement:true}:{}),
    ...(!x.sealed&&c.type==='creature'&&{g1145Cost:cost(c)===Infinity?'∞':cost(c)}),
    ...(!x.sealed&&!x.faceDown&&c.g1124Jingi?{jingi:c.g1124Jingi}:{}),
-   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1284BattleRevival?{g1284BattleRevival:true}:{}),...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s),sharedDeaths1556=(c.g406Inherited||[]).flatMap(({grants:g})=>g.g172Death?[structuredClone(g.g172Death)]:[]);return c.g172Death||c.g172Leave||c.g1520TwinMana||c.g1520TwinManaUntap||sharedDeaths1556.length?[{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,...(sharedDeaths1556.length?{g1556SurvivorDeaths:sharedDeaths1556}:{}),g1520TwinMana:c.g1520TwinMana,g1520TwinManaUntap:c.g1520TwinManaUntap,g807ManaEntry:c.g807ManaEntry,g172Death:c.g172Death,
+   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,...(!x.sealed&&!x.faceDown&&c.g1284BattleRevival?{g1284BattleRevival:true}:{}),...(!x.sealed&&!x.faceDown&&c.g1139OtherCreatureLeaves?{g1139OtherCreatureLeaves:c.g1139OtherCreatureLeaves}:{}),elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s),sharedDeaths1556=(c.g406Inherited||[]).flatMap(({grants:g})=>g.g172Death?[structuredClone(g.g172Death)]:[]);return c.g172Death||c.g172Leave||c.g1520TwinMana||c.g1520TwinManaUntap||c.g1770ManaUntapRace||sharedDeaths1556.length?[{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,...(sharedDeaths1556.length?{g1556SurvivorDeaths:sharedDeaths1556}:{}),g1520TwinMana:c.g1520TwinMana,g1520TwinManaUntap:c.g1520TwinManaUntap,g1770ManaUntapRace:c.g1770ManaUntapRace,g807ManaEntry:c.g807ManaEntry,g172Death:c.g172Death,
    ...(c.g172Death?.some(d=>d.g960FormerBases)?{formerBases960:(x.under||[]).flatMap(api.allLayers)
     .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped||d.g1012Tapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};
   if(snapshot.death303.some(row=>row.watch?.defs.some(d=>d.g1192VictimPower))){
