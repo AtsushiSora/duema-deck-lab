@@ -1,3 +1,4 @@
+import {requestedCardSpec1761} from './requested-card-spec-1761.mjs';
 import {requestedCardSpec1760} from './requested-card-spec-1760.mjs';
 import {requestedCardSpec1759} from './requested-card-spec-1759.mjs';
 import {target9000CardSpec} from './target9000-card-spec.mjs';
@@ -2464,6 +2465,7 @@ const brainCoralSpec=()=>({effect:'sixPhoto',g34Tasks:[{op:'Draw',n:3},{
 }]});
 
 export function standardCardSpec(d,{phase=165}={}){
+ if(phase>=1761){const spec=requestedCardSpec1761(d,phase);if(spec)return spec;}
  if(phase>=1760){const spec=requestedCardSpec1760(d,phase);if(spec)return spec;}
  if(phase>=1759){const spec=requestedCardSpec1759(d,phase);if(spec)return spec;}
  if(phase>=1472){const spec=target9000CardSpec(d,phase);if(spec)return spec;}

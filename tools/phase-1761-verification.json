@@ -1,0 +1,255 @@
+{
+  "phase": 1761,
+  "checkedAt": "2026-11-27T06:52:12.362Z",
+  "baseline": "7b0dad815be7e0b6977640b52757a003e1592b95",
+  "status": "verified-local-ready-for-authorized-push",
+  "requestedCards": [
+    {
+      "id": "dmrp14-km2",
+      "name": "「正義帝」"
+    }
+  ],
+  "reprintAliases": [
+    {
+      "id": "dmex19-ms02",
+      "canonicalId": "dmrp14-km2"
+    }
+  ],
+  "before": 9505,
+  "currentNames": 9506,
+  "invariants": {
+    "baseline": "7b0dad815be7e0b6977640b52757a003e1592b95",
+    "originalDefinitionsUnchanged": 9505,
+    "uniqueNames": 9506,
+    "uniqueIds": 9506,
+    "added": 1,
+    "duplicateNames": 0,
+    "oldCatalogueIdsPreserved": true,
+    "detailsUnchanged": true,
+    "addedPrintAliases": 1,
+    "existingImageUrlsUnchanged": 9505,
+    "oldReferenceImagesUnchanged": 11800,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "olderPendingPreserved": true
+  },
+  "manifest": "tools/support-phase-1761.json",
+  "results": {
+    "verify-manifest": {
+      "name": "verify-manifest",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1761.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.311,
+      "log": "tmp/card-1761/verify-manifest.log",
+      "passed": 0,
+      "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+    },
+    "focused-effects-complete": {
+      "name": "focused-effects-complete",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1761-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.15,
+      "log": "tmp/card-1761/focused-effects-complete.log",
+      "passed": 21,
+      "logSha256": "5466ad560765c9b5ed5167c88dba5928e060ed5e3a1a25665dae3048b68799d5"
+    },
+    "related-shields": {
+      "name": "related-shields",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1303-effects.test.mjs",
+        "tests/standard1339-effects.test.mjs",
+        "tests/standard1343-effects.test.mjs",
+        "tests/standard1366-effects.test.mjs",
+        "tests/standard1412-effects.test.mjs",
+        "tests/standard1759-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.966,
+      "log": "tmp/card-1761/related-shields.log",
+      "passed": 93,
+      "logSha256": "8ebad763d58cb64f08b778facf01da21df3bfbad1d6cb958e0210cafd59486ca"
+    },
+    "related-engine-client": {
+      "name": "related-engine-client",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1162-effects.test.mjs",
+        "tests/standard208-effects.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 30.516,
+      "log": "tmp/card-1761/related-engine-client.log",
+      "passed": 156,
+      "logSha256": "a32b2940967b6c3abf3ebd917df42234489f89118c47b5b3640d503826fd237b"
+    },
+    "related-online-server-focused": {
+      "name": "related-online-server-focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=room storage|creating, joining|self-play|waiting invitation|racing for the second|turn ownership|repeated move request|concurrent actions|resignation|HTTP middleware|Firestore|stacked shields|NewWorld|seals hide|twinpact face|public effect references|concurrent room creation|face-down mana|online attack projection|mismatched client rules",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.676,
+      "log": "tmp/card-1761/related-online-server-focused.log",
+      "passed": 22,
+      "logSha256": "8861c8469130e6b9af50a7d276b6b33d4577e5e3abd0c91350b3de1c9d3981a0"
+    },
+    "check": {
+      "name": "check",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 26.597,
+      "log": "tmp/card-1761/check.log",
+      "passed": 0,
+      "logSha256": "9bdbac7a4fa151dc4e9b24f81208c4f57bf9587bbc6cf2eea5ba6272ddc206ba"
+    },
+    "audit": {
+      "name": "audit",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.051,
+      "log": "tmp/card-1761/audit.log",
+      "passed": 0,
+      "logSha256": "3cf114018db0dc484220fa60ee702242fd55ea918fb7266b2c8c0877ebd723bc"
+    },
+    "invariants": {
+      "name": "invariants",
+      "command": [
+        "node",
+        "tmp/card-1761/invariants.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.857,
+      "log": "tmp/card-1761/invariants.log",
+      "passed": 0,
+      "logSha256": "942b623335c0bf8b0b087385181d8a003c482e6071db1b6042f9f943fc38860b"
+    },
+    "new-deck-games": {
+      "name": "focused-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1761-effects.test.mjs",
+        "tests/standard1761-games.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 32.114,
+      "log": "tmp/card-1761/focused-final.log",
+      "passed": 2,
+      "note": "Only the two complete forty-card games counted here; the 19 older effect cases in this initial run are superseded by focused-effects-complete.",
+      "logSha256": "4bfca4baf803149e171e23bf5090147b0b4ab1fbb7821dde165427efe577f917"
+    }
+  },
+  "totalTestsPassed": 294,
+  "coverage": [
+    "Official original and EX19 reprint full abilities/basic information/images/mana1/limit4; preserved canonical ID and saved-deck alias resolution.",
+    "Normal eight-mana summon; six-mana light/water Galaxyshield; paid own-start summon; face-down/muted shield exceptions.",
+    "QA33599/33600 self and simultaneous other shields receive triggers; grouped physical cards, ordinary recovery, simultaneous recovery, source departure, own-turn and no-trigger/mute exceptions.",
+    "All-own-creature attack protection and unblockable grant includes self, excludes opponent, permits spell selection and ordinary attacks; inactive sources stop aura; actual T breaker.",
+    "QA33605 one multicolor Justice enables both Galaxy MAX modes.",
+    "Pending shield triggers encrypted/restored and projected privately for both seats; two legal forty-card CPU matches preserve 80 identities through every JSON save."
+  ],
+  "engineVersion": "0.602.285",
+  "aiVersion": "2.3.441",
+  "officialRulings": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33599/",
+      "sha256": "8a934f1c126d279ce9b3b693aa9b6d3a05efdff520e712959483364dd66b7b21",
+      "checkedAt": "2026-11-27T06:41:30.809Z",
+      "reproduced": true,
+      "tests": "tests/standard1761-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33600/",
+      "sha256": "376c055ea681e5daba89de1085a694a22b7653988715fd16fe8b2122fe9b039c",
+      "checkedAt": "2026-11-27T06:41:31.362Z",
+      "reproduced": true,
+      "tests": "tests/standard1761-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33605/",
+      "sha256": "fac3473ec3c5e01c96c722bf4a85d73eec8fbad57a1c8b6e93cbb73ff6300987",
+      "checkedAt": "2026-11-27T06:41:31.902Z",
+      "reproduced": true,
+      "tests": "tests/standard1761-effects.test.mjs"
+    }
+  ],
+  "newCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "longTestPolicy": "Full npm test not run. Final server regression uses explicit affected protocol/projection/storage titles, excluding existing unrelated full-game simulations. New Justice forty-card and encrypted-pending tests cover this addition; historical full-suite status remains interrupted/unconfirmed.",
+  "abortedAttempts": [
+    {
+      "name": "related-engine-online",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1162-effects.test.mjs",
+        "tests/standard208-effects.test.mjs",
+        "tests/online-client.test.mjs",
+        "tests/online-server.test.mjs",
+        "tests/online-ui.test.mjs"
+      ],
+      "code": -9,
+      "timedout": false,
+      "seconds": 176.347,
+      "log": "tmp/card-1761/related-engine-online.log",
+      "reason": "Regression selection included existing unrelated long complete-game simulations. This invocation alone was stopped within four minutes. Final positive selection verifies affected authentication, synchronization, shield projection, encryption and persistence; new-card complete games pass separately. No passing result is claimed for aborted groups."
+    },
+    {
+      "name": "related-online-server-scoped",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=^(?!a complete two-account game|new No02|new No03)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": -9,
+      "timedout": false,
+      "seconds": 239.09,
+      "log": "tmp/card-1761/related-online-server-scoped.log",
+      "reason": "Regression selection included existing unrelated long complete-game simulations. This invocation alone was stopped within four minutes. Final positive selection verifies affected authentication, synchronization, shield projection, encryption and persistence; new-card complete games pass separately. No passing result is claimed for aborted groups."
+    }
+  ],
+  "publication": {
+    "pushAuthorized": true,
+    "pushedAtVerification": false,
+    "netlifyUpdated": false,
+    "netlifyExplicitlyExcluded": true
+  },
+  "registration": {
+    "normalRegistrationStopped": true,
+    "automationStatus": "PAUSED",
+    "nextCandidates": []
+  }
+}

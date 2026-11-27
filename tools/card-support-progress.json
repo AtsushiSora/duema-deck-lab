@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-11-26",
+  "checkedAt": "2026-11-27",
   "catalogueNames": 11824,
-  "supportedNames": 9505,
-  "pendingNames": 2319,
-  "phase": 1760,
+  "supportedNames": 9506,
+  "pendingNames": 2318,
+  "phase": 1761,
   "added": 1,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1355,
+    "クリーチャー": 1354,
     "呪文": 257,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1714,
+    "未対応の能力文": 1713,
     "複数面・特殊カードタイプまたは情報不足": 503,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -560225,11 +560225,187 @@
       "held": [],
       "nextCandidates": [],
       "next": "依頼カードの追加完了。検証済みコミットをユーザー指示によりpushする。Netlify更新と通常の自動登録は行わない。"
+    },
+    {
+      "phase": 1761,
+      "checkedAt": "2026-11-27T06:52:12.362Z",
+      "baseline": "7b0dad815be7e0b6977640b52757a003e1592b95",
+      "kind": "explicit-single-card-request",
+      "status": "verified-local",
+      "before": 9505,
+      "currentNames": 9506,
+      "added": [
+        {
+          "id": "dmrp14-km2",
+          "name": "「正義帝」"
+        }
+      ],
+      "duplicateNames": 0,
+      "supported": 9506,
+      "pending": 2318,
+      "printAliases": [
+        {
+          "id": "dmex19-ms02",
+          "canonicalId": "dmrp14-km2"
+        }
+      ],
+      "manifest": "tools/support-phase-1761.json",
+      "evidence": "tools/phase-1761-verification.json",
+      "results": {
+        "verify-manifest": {
+          "name": "verify-manifest",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1761.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.311,
+          "log": "tmp/card-1761/verify-manifest.log",
+          "passed": 0,
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "focused-effects-complete": {
+          "name": "focused-effects-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1761-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.15,
+          "log": "tmp/card-1761/focused-effects-complete.log",
+          "passed": 21,
+          "logSha256": "5466ad560765c9b5ed5167c88dba5928e060ed5e3a1a25665dae3048b68799d5"
+        },
+        "related-shields": {
+          "name": "related-shields",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1303-effects.test.mjs",
+            "tests/standard1339-effects.test.mjs",
+            "tests/standard1343-effects.test.mjs",
+            "tests/standard1366-effects.test.mjs",
+            "tests/standard1412-effects.test.mjs",
+            "tests/standard1759-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.966,
+          "log": "tmp/card-1761/related-shields.log",
+          "passed": 93,
+          "logSha256": "8ebad763d58cb64f08b778facf01da21df3bfbad1d6cb958e0210cafd59486ca"
+        },
+        "related-engine-client": {
+          "name": "related-engine-client",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1162-effects.test.mjs",
+            "tests/standard208-effects.test.mjs",
+            "tests/online-client.test.mjs",
+            "tests/online-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 30.516,
+          "log": "tmp/card-1761/related-engine-client.log",
+          "passed": 156,
+          "logSha256": "a32b2940967b6c3abf3ebd917df42234489f89118c47b5b3640d503826fd237b"
+        },
+        "related-online-server-focused": {
+          "name": "related-online-server-focused",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern=room storage|creating, joining|self-play|waiting invitation|racing for the second|turn ownership|repeated move request|concurrent actions|resignation|HTTP middleware|Firestore|stacked shields|NewWorld|seals hide|twinpact face|public effect references|concurrent room creation|face-down mana|online attack projection|mismatched client rules",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.676,
+          "log": "tmp/card-1761/related-online-server-focused.log",
+          "passed": 22,
+          "logSha256": "8861c8469130e6b9af50a7d276b6b33d4577e5e3abd0c91350b3de1c9d3981a0"
+        },
+        "check": {
+          "name": "check",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 26.597,
+          "log": "tmp/card-1761/check.log",
+          "passed": 0,
+          "logSha256": "9bdbac7a4fa151dc4e9b24f81208c4f57bf9587bbc6cf2eea5ba6272ddc206ba"
+        },
+        "audit": {
+          "name": "audit",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.051,
+          "log": "tmp/card-1761/audit.log",
+          "passed": 0,
+          "logSha256": "3cf114018db0dc484220fa60ee702242fd55ea918fb7266b2c8c0877ebd723bc"
+        },
+        "invariants": {
+          "name": "invariants",
+          "command": [
+            "node",
+            "tmp/card-1761/invariants.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.857,
+          "log": "tmp/card-1761/invariants.log",
+          "passed": 0,
+          "logSha256": "942b623335c0bf8b0b087385181d8a003c482e6071db1b6042f9f943fc38860b"
+        },
+        "new-deck-games": {
+          "name": "focused-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1761-effects.test.mjs",
+            "tests/standard1761-games.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 32.114,
+          "log": "tmp/card-1761/focused-final.log",
+          "passed": 2,
+          "note": "Only the two complete forty-card games counted here; the 19 older effect cases in this initial run are superseded by focused-effects-complete.",
+          "logSha256": "4bfca4baf803149e171e23bf5090147b0b4ab1fbb7821dde165427efe577f917"
+        }
+      },
+      "totalTestsPassed": 294,
+      "registeredCardVerificationPending": [],
+      "engineVersion": "0.602.285",
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushAuthorized": true,
+        "pushedAtVerification": false,
+        "netlifyUpdated": false,
+        "netlifyExplicitlyExcluded": true
+      },
+      "held": [],
+      "nextCandidates": [],
+      "next": "依頼カードの追加完了。検証済みコミットをpushしてPagesへ反映。Netlifyと通常の自動登録は更新しない。"
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1760,
-    "nextPhase": 1761,
+    "lastVerifiedPhase": 1761,
+    "nextPhase": 1762,
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
@@ -560941,14 +561117,14 @@
       }
     ],
     "lastExplicitUserAddition": {
-      "phase": 1760,
+      "phase": 1761,
       "status": "verified-local",
       "requestedCards": [
-        "dm26bd1-021"
+        "dmrp14-km2"
       ],
-      "supportedNames": 9505,
-      "testsPassed": 134,
-      "evidence": "tools/phase-1760-verification.json",
+      "supportedNames": 9506,
+      "testsPassed": 294,
+      "evidence": "tools/phase-1761-verification.json",
       "pushAuthorized": true,
       "netlifyUpdated": false
     },
@@ -563108,15 +563284,15 @@
       "previousRequestedCardVerification": "tools/requested-card-verification-1603.json"
     },
     "latestRequestedCards": {
-      "phase": 1760,
-      "checkedAt": "2026-11-25T10:26:22.192Z",
+      "phase": 1761,
+      "checkedAt": "2026-11-27T06:52:12.362Z",
       "status": "all-requested-cards-verified-local",
       "ids": [
-        "dm26bd1-021"
+        "dmrp14-km2"
       ],
       "added": 1,
       "remaining": [],
-      "record": "tools/phase-1760-verification.json"
+      "record": "tools/phase-1761-verification.json"
     },
     "previousRegistrationSessions": [
       {
@@ -617210,13 +617386,13 @@
     "registrationCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
     "reachedCommit": "b985152e56d066268edcc63fcae43194f8aa96ca",
     "latestExplicitAddition": {
-      "phase": 1760,
-      "currentNames": 9505,
+      "phase": 1761,
+      "currentNames": 9506,
       "requestedCards": [
-        "dm26bd1-021"
+        "dmrp14-km2"
       ],
       "normalRegistrationStillStopped": true,
-      "evidence": "tools/phase-1760-verification.json"
+      "evidence": "tools/phase-1761-verification.json"
     }
   }
 }
