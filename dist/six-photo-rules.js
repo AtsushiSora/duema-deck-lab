@@ -429,7 +429,7 @@ export function createSixPhotoRules(api){
   const op=/^(?:g35_|g393[CDJP]_|g9Number$)/.test(d.op)?d.op:'g34_'+d.op;
   return task(op,p,source,{...more,...d,op,p:d.p??p,source});
  });
- const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1184LastRaces!==undefined?{g1184LastRaces:t.g1184LastRaces}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
+ const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.g1771HostCost!==undefined?{g1771HostCost:t.g1771HostCost}:{}),...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1184LastRaces!==undefined?{g1184LastRaces:t.g1184LastRaces}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  function tapSource748(s,t){
@@ -6556,6 +6556,12 @@ export function createSixPhotoRules(api){
    start(s,t,[{op:'Execute',origin:'grave',spellOnly:true,optional:true,g1578Exact:{uid:y.uid,serial:y.zoneSerial||0}}]);
   break;
  }
+ case'g34_MillHostCost1771':{
+  const host=sourceHost474(s,t)?.x;
+  const n=host?cost(effective(host,s)):t.g1771HostCost??cost(card(t.source));
+  start(s,t,[{op:'Mill',n:n===Infinity?'∞':n,optional:!!t.optional}]);
+  break;
+ }
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -9461,6 +9467,9 @@ export function createSixPhotoRules(api){
  }
  function queue(s,p,x,defs,source=x.cardId,elementOrigin1411){
   const more={defs,...(elementOrigin1411===undefined?{}:{elementOrigin1411})};
+  if(defs?.some(d=>d.op==='MillHostCost1771')){
+   const n=cost(effective(x,s));more.g1771HostCost=n===Infinity?'∞':n;
+  }
   if(defs?.some(d=>d.op==='AttackLookDeploy1317')){
    const currentCost=cost(effective(x,s));
    more.g399Attacker={uid:x.uid,incarnation:x.incarnation||0,cost:currentCost===Infinity?'∞':currentCost};
@@ -11446,9 +11455,10 @@ export function createSixPhotoRules(api){
  evolutionBase397(s,p,x){
   if(x.sealed||!s.players[p].battle.includes(x)||api.ignored(s,x))return;
   const c=effective(x,s),defs=c.g397Shinka;
-  if(!defs)return;
-  if(defs.some(d=>d.op==='ShinkaHost544'&&d.mode==='belowCost'))send(s,p,x,'Sequence',{defs,g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,cost:null}});
-  else queue(s,p,x,defs);
+  if(defs?.some(d=>d.op==='ShinkaHost544'&&d.mode==='belowCost'))send(s,p,x,'Sequence',{defs,g399Attacker:{uid:x.uid,incarnation:x.incarnation||0,cost:null}});
+  else if(defs)queue(s,p,x,defs);
+  for(const {source,grants}of c.g404Inherited||[])
+   if(grants.g397Shinka)queue(s,p,x,grants.g397Shinka,source);
  },
  spellChoiceProtected1674(s,chooser,owner,x){
   return chooser!==owner&&api.isSpellChoice(s)&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&

@@ -11,6 +11,7 @@ export function borrowedAttackAbilities(s,p,x,reference,api){
    task:more.g1370Condition?{op:'g34_BorrowCondition1370',p,source,uid,incarnation,controller:p,condition:more.g1370Condition,task:{op,p,source,uid,incarnation,controller:p,...more}}:{op,p,source,uid,incarnation,controller:p,...more}});
  };
  const sequence=(label,defs,more={},original=x.cardId)=>add(label,'g34_Sequence',{
+  ...(defs.some(d=>d.op==='MillHostCost1771')?{g1771HostCost:api.cost(c)===Infinity?'∞':api.cost(c)}:{}),
   ...(defs.some(d=>d.op==='AttackLookDeploy1317')?{g399Attacker:{uid,incarnation,cost:api.cost(api.card(reference.source))}}:{}),
   defs:structuredClone(defs),...more},original);
  const native=(label,effect,more={})=>out.push({player:p,uid,incarnation,source:sourceFor(x.cardId),original:x.cardId,label,effect,...more});
