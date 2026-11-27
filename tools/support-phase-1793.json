@@ -1,0 +1,332 @@
+{
+  "phase": 1793,
+  "checkedAt": "2026-11-27T11:45:49.807Z",
+  "baseline": "8edeba87b8ef3fbaf7b1ff2939b9d0dc79113751",
+  "baseCount": 9601,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36398/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmx04-s02",
+      "name": "暗黒GUY・ゼロ・ロマノフ",
+      "canonicalId": "dmx04-s02",
+      "printId": "dmx04-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-s02",
+      "faces": [
+        {
+          "name": "暗黒GUY・ゼロ・ロマノフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から闇のカードを１枚選び、自分の墓地に置いてもよい。その後、山札をシャッフルする。\nこのクリーチャーが攻撃する時、コスト６以下の闇の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。その後、その呪文を自分の山札の一番下に置く。\nW・ブレイカー",
+          "race": "ダークロード/ドラゴン・ゾンビ/ハンター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "color": "闇"
+                },
+                "reveal": true
+              }
+            ],
+            "g841DeckPeek": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "grave",
+            "max": 6,
+            "spellOnly": true,
+            "optional": true,
+            "g555FinishTo": "deck",
+            "g556SpellColor": "闇"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-s02.jpg",
+      "imageSha256": "f67111428731cf462e50128ce011d6f2f0fd668ced2101043d532f3ea13e58b3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx04-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx04-s02"
+        ],
+        "allSearchIds": [
+          "dmx04-s02"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T11:45:49.807Z",
+        "sha256": "80bbf62f1517e94decd3ac83f2da4d470b4525414bd34f1948b00fb8e4185830",
+        "facesMatched": true,
+        "imageSha256": "f67111428731cf462e50128ce011d6f2f0fd668ced2101043d532f3ea13e58b3"
+      }
+    },
+    {
+      "id": "dmrp07-033",
+      "name": "カリバー・サンクチュアリ",
+      "canonicalId": "dmrp07-033",
+      "printId": "dmrp07-033",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-033",
+      "faces": [
+        {
+          "name": "カリバー・サンクチュアリ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。こうしてタップしたクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": "all",
+            "optional": true,
+            "g187OwnPick": true,
+            "g899RampTapped": true,
+            "g1793TapCount": true,
+            "filter": {
+              "creature": true,
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-033.jpg",
+      "imageSha256": "8be45631730d1174c4a134b91d7580f3d98fe0df9ed23d6ff2fb51ff45aaebd9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp07-033-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-033"
+        ],
+        "allSearchIds": [
+          "dmrp07-033"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T11:45:49.807Z",
+        "sha256": "4156e47be6f7917c50a5fc2a7c06d55e8b0663b8b20af1a99a134a30bdff52cf",
+        "facesMatched": true,
+        "imageSha256": "8be45631730d1174c4a134b91d7580f3d98fe0df9ed23d6ff2fb51ff45aaebd9"
+      }
+    },
+    {
+      "id": "dm23rp4-070",
+      "name": "蓄明呪文「マブシコワ・チャージャー」",
+      "canonicalId": "dm23rp4-070",
+      "printId": "dm23rp4-070",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-070",
+      "faces": [
+        {
+          "name": "蓄明呪文「マブシコワ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各プレイヤーのシールドを最大１つずつ選び、持ち主の墓地に置いてもよい。その後、こうしてシールドを選ばれたプレイヤーは、自身の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnShieldGraves697",
+            "g1793OptionalCaster": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-070.jpg",
+      "imageSha256": "02fe99694115479bd238138d3529e7bb3aa51d1d0967411170bad1e56e76f9ad",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp4-070-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23rp4-070",
+          "dm23rp4x-070"
+        ],
+        "allSearchIds": [
+          "dm23rp4-070",
+          "dm23rp4x-070"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T11:45:49.807Z",
+        "sha256": "16718602195930b7cfc5c537c79c5f8a8cd11ee7e8fb5165cb88a2830641274d",
+        "facesMatched": true,
+        "imageSha256": "02fe99694115479bd238138d3529e7bb3aa51d1d0967411170bad1e56e76f9ad"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp4x-070",
+      "name": "蓄明呪文「マブシコワ・チャージャー」",
+      "canonicalId": "dm23rp4-070",
+      "printId": "dm23rp4x-070",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-070",
+      "faces": [
+        {
+          "name": "蓄明呪文「マブシコワ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各プレイヤーのシールドを最大１つずつ選び、持ち主の墓地に置いてもよい。その後、こうしてシールドを選ばれたプレイヤーは、自身の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnShieldGraves697",
+            "g1793OptionalCaster": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-070.jpg",
+      "imageSha256": "a9fb8b569a8c5bc8be6c9131dc1117f1d72c47c337a5e46e3d138b3735627bfd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp4x-070-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23rp4-070",
+          "dm23rp4x-070"
+        ],
+        "allSearchIds": [
+          "dm23rp4-070",
+          "dm23rp4x-070"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T11:45:49.807Z",
+        "sha256": "45b9b7d7117c0f561a117fac473194ca6c6e7ec95e353ede47e5638419d2b194",
+        "facesMatched": true,
+        "imageSha256": "a9fb8b569a8c5bc8be6c9131dc1117f1d72c47c337a5e46e3d138b3735627bfd"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36398/",
+      "sha256": "bb485d5b7fbfb957b1ce348ce8688e86f03dcfe0af724e68098eedce2d391abd",
+      "checkedAt": "2026-11-27T11:45:49.807Z",
+      "reproduced": true,
+      "tests": "tests/standard1793-effects.test.mjs",
+      "reproduction": "QA36398 actual Dark GUY attacks, casts actual Demon Hand from grave before block declaration, destroys the opposing actual Shauna blocker, then double-breaks. JSON and encrypted room continuation preserve all physical UIDs.",
+      "result": "QA36398 actual Dark GUY attacks, casts actual Demon Hand from grave before block declaration, destroys the opposing actual Shauna blocker, then double-breaks. JSON and encrypted room continuation preserve all physical UIDs."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm02-044",
+      "name": "ギガスタンド",
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35021/",
+      "reason": "Old official QA35021 pays its discard using Aqua Soldier returned by another simultaneous destruction replacement. Native batch plans reserve existing hand cards before committing moves; reproducing a generated payment card and current erratum requires a dedicated complete batch, not partial registration."
+    },
+    {
+      "id": "dm26ex3-008",
+      "name": "ジュラ子・リューバー＜LOVEですわ＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-008",
+      "reason": "All exact prints and QA49216 researched. Full clause requires opponent selection of face-up physical battle/mana cards including evolution sources and simultaneous non-destruction moves. Existing element-only/creature-only select is insufficient; dedicated complete mixed-zone movement required."
+    },
+    {
+      "id": "dmx15-s02",
+      "name": "邪眼右神ニューオーダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s02",
+      "reason": "Official sole printing researched. Native g31 God linking covers fixed pairs and Heavy/Death/Metal structure, not the full free left/central/right God Nova structure. No partial attack-only registration."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T11:45:49.807Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx04-s02": 4,
+      "dmrp07-033": 4,
+      "dm23rp4-070": 4,
+      "dm23rp4x-070": 4
+    }
+  },
+  "validationNotes": {
+    "scope": "Three originals and all four original/reprint images reviewed. Dark GUY uses native private whole-deck filtered search, shuffle, optional grave execution and finish destination. Calibur extends the existing actual-tap-count branch only with a targeted tap follow-up. Mabushikowa extends the native preselection/deferred shield-move continuation with optional caster choices and refill based on selected players.",
+    "spellFinishEvidence": "Dark GUY and original Romanov I have the same full grave casting and after-cast bottom instruction; existing native finish path and general rule609.8a preserve Charger self-replacement priority. No speculative movement from mana after a Charger is introduced.",
+    "resolvedAttempts": "Initial fixtures incorrectly treated Dark GUY as colorless, counted a multicolor Charger entering tapped as paid mana, and used an unattached aura on a face-down vanilla shield. Corrected to official Dark stats, distinguish three paid mana from the tapped Charger, and actually attach Zaha onto a GR creature protecting an actual face-up Shield Go card. Dark GUY entry spec was corrected from a type-qualified filter without a card type to the native all-card color search, then upgraded to native Look with reveal of the chosen card and full controller-only deck inspection. All final checks use the corrected full ability and retain earlier failed logs."
+  },
+  "generalRulesVerification": {
+    "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+    "sections": [
+      "609.8a",
+      "609.9",
+      "609.9a"
+    ],
+    "reproduction": "Dark GUY preserves Bone Odori Charger mana self replacement. Both shield choices precede either movement; optional zero/one/both choices are verified for both caster seats, with physical stacked shields and real deferred Zaha shield protection restored through encrypted online storage."
+  }
+}

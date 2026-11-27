@@ -307591,17 +307591,133 @@
       },
       "supportBatch": "phase-1792",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx04-s02",
+      "name": "暗黒GUY・ゼロ・ロマノフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ダークロード/ドラゴン・ゾンビ/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から闇のカードを１枚選び、自分の墓地に置いてもよい。その後、山札をシャッフルする。\nこのクリーチャーが攻撃する時、コスト６以下の闇の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。その後、その呪文を自分の山札の一番下に置く。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-s02",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "grave",
+              "optional": true,
+              "filter": {
+                "color": "闇"
+              },
+              "reveal": true
+            }
+          ],
+          "g841DeckPeek": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "grave",
+          "max": 6,
+          "spellOnly": true,
+          "optional": true,
+          "g555FinishTo": "deck",
+          "g556SpellColor": "闇"
+        }
+      ],
+      "supportBatch": "phase-1793",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-033",
+      "name": "カリバー・サンクチュアリ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。こうしてタップしたクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-033",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "g187OwnPick": true,
+          "g899RampTapped": true,
+          "g1793TapCount": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1793",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-070",
+      "name": "蓄明呪文「マブシコワ・チャージャー」",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "各プレイヤーのシールドを最大１つずつ選び、持ち主の墓地に置いてもよい。その後、こうしてシールドを選ばれたプレイヤーは、自身の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-070",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OwnShieldGraves697",
+          "g1793OptionalCaster": true
+        }
+      ],
+      "supportBatch": "phase-1793",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1792,
-    "checkedAt": "2026-11-27T11:32:22.177Z",
-    "baseCount": 9598,
+    "phase": 1793,
+    "checkedAt": "2026-11-27T11:45:49.807Z",
+    "baseCount": 9601,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9601,
+    "totalCount": 9604,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36398/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -336948,6 +337064,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/34325/",
           "https://dm.takaratomy.co.jp/rule/qa/45791/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1792,
+        "checkedAt": "2026-11-27T11:32:22.177Z",
+        "baseCount": 9598,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9601,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

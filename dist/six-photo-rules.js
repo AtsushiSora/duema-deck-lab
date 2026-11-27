@@ -1965,7 +1965,7 @@ export function createSixPhotoRules(api){
    api.tap(s,r.p,x);
    if(x.tapped)n++;
   }
-  if(n)start(s,t,[{op:'Ramp',n}]);
+  if(n)start(s,t,t.g1793TapCount?[{op:'Select',owner:'opponent',origin:'battle',n,filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを'+n+'体選ぶ'}]:[{op:'Ramp',n}]);
   return;
  }if(t.deploy){
   if(t.g1117ShowTime){
@@ -5005,16 +5005,17 @@ export function createSixPhotoRules(api){
   const owners=t.owners??(t.opponentOnly?[1-t.p]:[s.active,1-s.active].filter(p=>!t.moreOnly||s.players[p].shields.length===most));
   const [owner,...rest]=owners,to=t.to??'grave',zone=to==='mana'?'マナゾーン':'墓地';
   if(owner===undefined){
-   const picks=t.picks||[];
+   const picks=t.picks||[],refill=t.g1793RefillOwners??(t.g1793OptionalCaster?picks.map(r=>r.owner):[]);
    for(const [i,{owner,uid}] of picks.entries()){
     const moved=api.moveShield(s,owner,uid,to);
-    if(api.deferShieldMove1352(s,{...t,op:'g34_OwnShieldGravesDone1352',picks:picks.slice(i+1),owner1352:owner}))break;
+    if(api.deferShieldMove1352(s,{...t,op:'g34_OwnShieldGravesDone1352',picks:picks.slice(i+1),owner1352:owner,...(t.g1793OptionalCaster?{g1793RefillOwners:refill}:{})}))return true;
     if(moved.length)api.log(s,owner,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を'+zone+'に置いた',{cardId:t.source});
    }
+   if(t.g1793OptionalCaster)start(s,t,refill.map(p=>({op:'ShieldTop',p,n:1})));
    break;
   }
   const options=ownShieldGraveOptions(s,owner),next={...t,owners:rest};
-  if(options.length)choice(s,{...next,chooser:owner},zone+'に置く自分のシールドを1つ選ぶ',options,owner);
+  if(options.length)choice(s,{...next,chooser:owner},zone+'に置く'+(t.g1793OptionalCaster?(owner===t.p?'自分の':'相手の'):'自分の')+'シールドを1つ選ぶ',t.g1793OptionalCaster?[...options,skip()]:options,t.g1793OptionalCaster?t.p:owner);
   else put(s,next);
   break;
  }
@@ -8329,7 +8330,7 @@ export function createSixPhotoRules(api){
   }else if(t.elseDefs)start(s,t,t.elseDefs);
  }else if(t.elseDefs)start(s,t,t.elseDefs);
  break;
- case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
+ case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),...(v?[{owner:t.chooser,uid:v}]:[])]});break;
  case'g34_WarpRifle922':{
   const player=s.players.findIndex(side=>side.battle.some(y=>y.uid===v));
   if(player<0)break;

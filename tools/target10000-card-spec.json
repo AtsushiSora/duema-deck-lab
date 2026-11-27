@@ -6464,5 +6464,159 @@
         "minMana": 4
       }
     }
+  },
+  "dmx04-s02": {
+    "phase": 1793,
+    "faces": [
+      {
+        "name": "暗黒GUY・ゼロ・ロマノフ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から闇のカードを１枚選び、自分の墓地に置いてもよい。その後、山札をシャッフルする。\nこのクリーチャーが攻撃する時、コスト６以下の闇の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。その後、その呪文を自分の山札の一番下に置く。\nW・ブレイカー",
+        "race": "ダークロード/ドラゴン・ゾンビ/ハンター",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "grave",
+              "optional": true,
+              "filter": {
+                "color": "闇"
+              },
+              "reveal": true
+            }
+          ],
+          "g841DeckPeek": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "grave",
+          "max": 6,
+          "spellOnly": true,
+          "optional": true,
+          "g555FinishTo": "deck",
+          "g556SpellColor": "闇"
+        }
+      ]
+    }
+  },
+  "dmrp07-033": {
+    "phase": 1793,
+    "faces": [
+      {
+        "name": "カリバー・サンクチュアリ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを好きな数、タップしてもよい。こうしてタップしたクリーチャー１体につき、相手のクリーチャーを１体選び、タップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "g187OwnPick": true,
+          "g899RampTapped": true,
+          "g1793TapCount": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          }
+        }
+      ]
+    }
+  },
+  "dm23rp4-070": {
+    "phase": 1793,
+    "faces": [
+      {
+        "name": "蓄明呪文「マブシコワ・チャージャー」",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "各プレイヤーのシールドを最大１つずつ選び、持ち主の墓地に置いてもよい。その後、こうしてシールドを選ばれたプレイヤーは、自身の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OwnShieldGraves697",
+          "g1793OptionalCaster": true
+        }
+      ]
+    }
+  },
+  "dm23rp4x-070": {
+    "phase": 1793,
+    "faces": [
+      {
+        "name": "蓄明呪文「マブシコワ・チャージャー」",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "各プレイヤーのシールドを最大１つずつ選び、持ち主の墓地に置いてもよい。その後、こうしてシールドを選ばれたプレイヤーは、自身の山札の上から１枚目をシールド化する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OwnShieldGraves697",
+          "g1793OptionalCaster": true
+        }
+      ]
+    }
   }
 }
