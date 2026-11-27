@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9612,
-  "pendingNames": 2231,
-  "phase": 1796,
+  "supportedNames": 9615,
+  "pendingNames": 2228,
+  "phase": 1797,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -163,7 +163,7 @@
     "タマシード": 26,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 189,
+    "進化クリーチャー": 186,
     "スター進化クリーチャー": 47,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1635,
+    "未対応の能力文": 1632,
     "複数面・特殊カードタイプまたは情報不足": 497,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -566992,11 +566992,202 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1797,
+      "checkedAt": "2026-11-27T12:43:59.797Z",
+      "baseline": "2ff2530ad68b0cc8b3f996c03756142d4e2aea83",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9612,
+      "currentNames": 9615,
+      "remainingNames": 385,
+      "added": [
+        {
+          "id": "sp-029",
+          "name": "魔皇グレンベルク"
+        },
+        {
+          "id": "dm19-017",
+          "name": "魔皇バルパス"
+        },
+        {
+          "id": "dm19-041",
+          "name": "聖帝ファルマハート"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1797,
+        "baseline": "2ff2530ad68b0cc8b3f996c03756142d4e2aea83",
+        "originalDefinitionsUnchanged": 9612,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9615,
+        "uniqueIds": 9615,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9612,
+        "existingImageReferenceRowsUnchanged": 11972,
+        "officialPrintsReviewed": 5,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1797": {
+          "name": "official-1797",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1797.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.338,
+          "log": "tmp/duema-target-10000/official-1797.log",
+          "passed": 0,
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "focused-1797-final": {
+          "name": "focused-1797-boundaries",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Glenberg cost-three|Balpas inclusive cost-three)",
+            "tests/standard1797-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.725,
+          "log": "tmp/duema-target-10000/focused-1797-boundaries.log",
+          "passed": 2,
+          "logSha256": "d318d315431367ab2372643c679f2f5d5d53efba35507d18cd8e7afc3d06402f"
+        },
+        "related-1797": {
+          "name": "related-1797",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard579-effects.test.mjs",
+            "tests/standard814-effects.test.mjs",
+            "tests/standard1796-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.699,
+          "log": "tmp/duema-target-10000/related-1797.log",
+          "passed": 81,
+          "logSha256": "51b0825e4ec4498a34c011156ed31fea076f20c574fd609255c9fcf9fa3643e3"
+        },
+        "check-1797": {
+          "name": "check-1797",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.647,
+          "log": "tmp/duema-target-10000/check-1797.log",
+          "passed": 0,
+          "logSha256": "d8ca44b9e06f07d4f66e5bb6a624861f4366822ec9d83d816d0bb713a4e23301"
+        },
+        "audit-1797": {
+          "name": "audit-1797",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.824,
+          "log": "tmp/duema-target-10000/audit-1797.log",
+          "passed": 0,
+          "logSha256": "e4ed090cc48716cdefb9baf1d9086b9d71f202f970d9b45431a5b6db885efe04"
+        },
+        "invariants-1797": {
+          "name": "invariants-1797",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1797"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.815,
+          "log": "tmp/duema-target-10000/invariants-1797.log",
+          "passed": 0,
+          "logSha256": "30a3906517de03b4539a8b63194dddca60de7bbfb326c6ff767ac5bd9be05f48"
+        },
+        "focused-1797-core": {
+          "name": "focused-1797-core",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1797-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.906,
+          "log": "tmp/duema-target-10000/focused-1797-final.log",
+          "passed": 38,
+          "logSha256": "d5737f1264a42fc4850a522955dccb73723f8b1967b27c7c71771df513df7268"
+        }
+      },
+      "totalTestsPassed": 121,
+      "manifest": "tools/support-phase-1797.json",
+      "supported": 9615,
+      "pending": 2228,
+      "engineVersion": "0.602.321",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "official-1797",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1797.json"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.142,
+          "log": "tmp/duema-target-10000/official-1797-previous-1795783242128159000.log",
+          "originalLog": "tmp/duema-target-10000/official-1797.log",
+          "reason": "Initial official verification needed network sandbox escalation (ENOTFOUND); retry fetched and matched all official prints. Eight initial tests used an extended-choice helper for native evolution and passed a string rather than {uid} to projectRoom; corrected native evolve/baseUid actions and authenticated user-object projection. Card definitions and engine behavior did not change. Original 38 core tests pass; two added cost-boundary assertions run separately without repeating the 38 passed tests."
+        },
+        {
+          "name": "focused-1797",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1797-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.656,
+          "log": "tmp/duema-target-10000/focused-1797.log",
+          "reason": "Initial official verification needed network sandbox escalation (ENOTFOUND); retry fetched and matched all official prints. Eight initial tests used an extended-choice helper for native evolution and passed a string rather than {uid} to projectRoom; corrected native evolve/baseUid actions and authenticated user-object projection. Card definitions and engine behavior did not change. Original 38 core tests pass; two added cost-boundary assertions run separately without repeating the 38 passed tests."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1796,
-    "nextPhase": 1797,
+    "lastVerifiedPhase": 1797,
+    "nextPhase": 1798,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -567909,11 +568100,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1796,
-      "baseline": "9d7da0f79ee91b44d4f9e5669af89d332b750d76",
-      "supportedNames": 9612,
-      "artifact": "tools/target10000-registration-checkpoint-1796.json",
-      "checkedAt": "2026-11-27T12:35:35.489Z"
+      "phase": 1797,
+      "baseline": "2ff2530ad68b0cc8b3f996c03756142d4e2aea83",
+      "supportedNames": 9615,
+      "artifact": "tools/target10000-registration-checkpoint-1797.json",
+      "checkedAt": "2026-11-27T12:43:59.797Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -570971,8 +571162,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9612,
-      "remaining": 388,
+      "currentNames": 9615,
+      "remaining": 385,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -570980,8 +571171,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1796,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1796.json",
+      "lastPhase": 1797,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1797.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -572209,8 +572400,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9612,
-      "remaining": 388,
+      "currentNames": 9615,
+      "remaining": 385,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572218,8 +572409,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1796,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1796.json",
+      "lastPhase": 1797,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1797.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -624209,10 +624400,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1796,
+    "phase": 1797,
     "threshold": 10000,
-    "supportedNames": 9612,
-    "pendingNames": 2231,
+    "supportedNames": 9615,
+    "pendingNames": 2228,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -624221,7 +624412,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1796.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1797.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

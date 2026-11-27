@@ -308077,20 +308077,163 @@
       ],
       "supportBatch": "phase-1796",
       "supportKind": "effect"
+    },
+    {
+      "id": "sp-029",
+      "name": "魔皇グレンベルク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "グランド・デビル",
+      "text": "進化-自分のグランド・デビル１体の上に置く。\nメテオバーン-自分のクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-029",
+      "limit": 4,
+      "evolution": {
+        "race": "グランド・デビル"
+      },
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "MeteorSources1796",
+              "n": 1,
+              "to": "grave",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "deploy": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "max": 3
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1797",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-017",
+      "name": "魔皇バルパス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "グランド・デビル",
+      "text": "進化-自分のグランド・デビル１体の上に置く。\nメテオバーン - クリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるコスト３以下のカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-017",
+      "limit": 4,
+      "evolution": {
+        "race": "グランド・デビル"
+      },
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "both",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "MeteorSources1796",
+              "n": 1,
+              "to": "grave",
+              "defs": [
+                {
+                  "op": "BattleCardMove579",
+                  "anyOwner": true,
+                  "to": "hand",
+                  "max": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1797",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-041",
+      "name": "聖帝ファルマハート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アーク・セラフィム",
+      "text": "進化-自分のアーク・セラフィム１体の上に置く。\nメテオバーン -相手のクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーアンタップされ、そのターンの終わりまで「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-041",
+      "limit": 4,
+      "evolution": {
+        "race": "アーク・セラフィム"
+      },
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "MeteorSources1796",
+              "n": 1,
+              "to": "grave",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                },
+                {
+                  "op": "SelfGrant754",
+                  "grant": {
+                    "blocker": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1797",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1796,
-    "checkedAt": "2026-11-27T12:26:53.937Z",
-    "baseCount": 9609,
+    "phase": 1797,
+    "checkedAt": "2026-11-27T12:40:26.595Z",
+    "baseCount": 9612,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9612,
+    "totalCount": 9615,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41756/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35965/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35418/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337497,6 +337640,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39663/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1796,
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "baseCount": 9609,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9612,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41756/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35965/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

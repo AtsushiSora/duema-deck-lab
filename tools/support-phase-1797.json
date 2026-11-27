@@ -1,0 +1,454 @@
+{
+  "phase": 1797,
+  "checkedAt": "2026-11-27T12:40:26.595Z",
+  "baseline": "2ff2530ad68b0cc8b3f996c03756142d4e2aea83",
+  "baseCount": 9612,
+  "target": 10000,
+  "description": "Three complete native race evolutions with distinct own/either/opponent attack watches. Reuse optional exact physical Meteor payment, grave creature deployment, any-owner physical battlefield card bounce and source untap/temporary blocker. Official Cross Gear bounce and battle-continuation rulings reproduced.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35418/"
+  ],
+  "cards": [
+    {
+      "id": "sp-029",
+      "name": "魔皇グレンベルク",
+      "canonicalId": "sp-029",
+      "printId": "sp-029",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-029",
+      "faces": [
+        {
+          "name": "魔皇グレンベルク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のグランド・デビル１体の上に置く。\nメテオバーン-自分のクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "グランド・デビル"
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "MeteorSources1796",
+                "n": 1,
+                "to": "grave",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "deploy": true,
+                    "optional": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-029.jpg",
+      "imageSha256": "7addae60b396576923f2967608304fe19727af9cf9de7319b571b2ce4da26184",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/sp-029-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "sp-029"
+        ],
+        "allSearchIds": [
+          "sp-029"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "sha256": "f793bbfd7fb90d87003dea940938954fd5dfa207eaf76922e642f8496047d7ac",
+        "facesMatched": true,
+        "imageSha256": "7addae60b396576923f2967608304fe19727af9cf9de7319b571b2ce4da26184"
+      }
+    },
+    {
+      "id": "dm19-017",
+      "name": "魔皇バルパス",
+      "canonicalId": "dm19-017",
+      "printId": "dm19-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-017",
+      "faces": [
+        {
+          "name": "魔皇バルパス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のグランド・デビル１体の上に置く。\nメテオバーン - クリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるコスト３以下のカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "グランド・デビル"
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "both",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "MeteorSources1796",
+                "n": 1,
+                "to": "grave",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "anyOwner": true,
+                    "to": "hand",
+                    "max": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-017.jpg",
+      "imageSha256": "cb02f7557ced62131fbfcbe21082f5ad6e10258bc0256b4f80db2b3c051bf397",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm19-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm19-017",
+          "promoy5-012"
+        ],
+        "allSearchIds": [
+          "promoy5-012",
+          "dm19-017"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "sha256": "2ff1a088c22fc601d46e965f2bbd61f2f6c81747877c4adeedcc21b9ff8cbe0c",
+        "facesMatched": true,
+        "imageSha256": "cb02f7557ced62131fbfcbe21082f5ad6e10258bc0256b4f80db2b3c051bf397"
+      }
+    },
+    {
+      "id": "dm19-041",
+      "name": "聖帝ファルマハート",
+      "canonicalId": "dm19-041",
+      "printId": "dm19-041",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-041",
+      "faces": [
+        {
+          "name": "聖帝ファルマハート",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のアーク・セラフィム１体の上に置く。\nメテオバーン -相手のクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーアンタップされ、そのターンの終わりまで「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーク・セラフィム",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アーク・セラフィム"
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "MeteorSources1796",
+                "n": 1,
+                "to": "grave",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  },
+                  {
+                    "op": "SelfGrant754",
+                    "grant": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-041.jpg",
+      "imageSha256": "1ca8dcf75f016ed174f0f2b803b2ae7b87e759ce9f07b1eb90a3a4e518ae2002",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm19-041-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm19-041",
+          "promoy5-003"
+        ],
+        "allSearchIds": [
+          "promoy5-003",
+          "dm19-041"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "sha256": "7f10fdd77470fb0995cd575228d58bac21071b1283f67318692b2b3ffea76668",
+        "facesMatched": true,
+        "imageSha256": "1ca8dcf75f016ed174f0f2b803b2ae7b87e759ce9f07b1eb90a3a4e518ae2002"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy5-012",
+      "name": "魔皇バルパス",
+      "canonicalId": "dm19-017",
+      "printId": "promoy5-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-012",
+      "faces": [
+        {
+          "name": "魔皇バルパス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分のグランド・デビル１体の上に置く。\nメテオバーン：クリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるコスト３以下のカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "グランド・デビル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "グランド・デビル"
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "both",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "MeteorSources1796",
+                "n": 1,
+                "to": "grave",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "anyOwner": true,
+                    "to": "hand",
+                    "max": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-012.jpg",
+      "imageSha256": "82ce8118df965da2f3dec6f2abb93dc33b36ed5d9504f163d10ef22d7af78076",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy5-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm19-017",
+          "promoy5-012"
+        ],
+        "allSearchIds": [
+          "promoy5-012",
+          "dm19-017"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "sha256": "83f92b3407bdd93e4fcb92f16fc45316b9e513c53a58e78acab873e6230bf684",
+        "facesMatched": true,
+        "imageSha256": "82ce8118df965da2f3dec6f2abb93dc33b36ed5d9504f163d10ef22d7af78076"
+      }
+    },
+    {
+      "id": "promoy5-003",
+      "name": "聖帝ファルマハート",
+      "canonicalId": "dm19-041",
+      "printId": "promoy5-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-003",
+      "faces": [
+        {
+          "name": "聖帝ファルマハート",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分のアーク・セラフィム１体の上に置く。\nメテオバーン：相手のクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーアンタップされ、そのターンの終わりまで「ブロッカー」を得る。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーク・セラフィム",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アーク・セラフィム"
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "MeteorSources1796",
+                "n": 1,
+                "to": "grave",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  },
+                  {
+                    "op": "SelfGrant754",
+                    "grant": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-003.jpg",
+      "imageSha256": "a911c218e6c8a4741ce423b75f1349fb0b562ec0e1926178297db1c84391264c",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy5-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm19-041",
+          "promoy5-003"
+        ],
+        "allSearchIds": [
+          "promoy5-003",
+          "dm19-041"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "sha256": "f744b1f09b8a52c315636dea01396225b44565314091c793c4b88dc46fecfd8c",
+        "facesMatched": true,
+        "imageSha256": "a911c218e6c8a4741ce423b75f1349fb0b562ec0e1926178297db1c84391264c"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
+      "sha256": "14d0cf874183afb1ae7ee1aaa63df617e3790456fb1029b4651e02a9698a9f9a",
+      "checkedAt": "2026-11-27T12:40:26.595Z",
+      "reproduced": true,
+      "tests": "tests/standard1797-effects.test.mjs",
+      "reproduction": "Four owner combinations exercise a Cross Gear battlefield card returned to its actual owner hand, before and after encrypted room restore.",
+      "result": "Four owner combinations exercise a Cross Gear battlefield card returned to its actual owner hand, before and after encrypted room restore."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35418/",
+      "sha256": "9826c74a5d9f132ca54c00d5a64ab0b5d651e0c05d2ee1197c6e84d2fe47101b",
+      "checkedAt": "2026-11-27T12:40:26.595Z",
+      "reproduced": true,
+      "tests": "tests/standard1797-effects.test.mjs",
+      "reproduction": "Enemy attacks the tapped actual Pharmaheart; after source payment it untaps and gains blocker; declining a block still resolves that already-legal creature battle, enemy attacker dies, shields unchanged.",
+      "result": "Enemy attacks the tapped actual Pharmaheart; after source payment it untaps and gains blocker; declining a block still resolves that already-legal creature battle, enemy attacker dies, shields unchanged."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T12:40:26.595Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "sp-029": 4,
+      "dm19-017": 4,
+      "dm19-041": 4,
+      "promoy5-012": 4,
+      "promoy5-003": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "focused-1797-core",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1797-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.906,
+      "log": "tmp/duema-target-10000/focused-1797-final.log",
+      "passed": 38,
+      "logSha256": "d5737f1264a42fc4850a522955dccb73723f8b1967b27c7c71771df513df7268"
+    }
+  ],
+  "validationNotes": {
+    "resolvedAttempts": "Initial official verification needed network sandbox escalation (ENOTFOUND); retry fetched and matched all official prints. Eight initial tests used an extended-choice helper for native evolution and passed a string rather than {uid} to projectRoom; corrected native evolve/baseUid actions and authenticated user-object projection. Card definitions and engine behavior did not change. Original 38 core tests pass; two added cost-boundary assertions run separately without repeating the 38 passed tests."
+  }
+}
