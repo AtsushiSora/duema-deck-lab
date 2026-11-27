@@ -1,0 +1,445 @@
+{
+  "phase": 1815,
+  "checkedAt": "2026-11-27T16:01:21.864Z",
+  "baseline": "75613235f76bee532966f26bb592cac713762317",
+  "baseCount": 9664,
+  "target": 10000,
+  "description": "Two complete cards jointly reproduce official QA39323: five civilizations across all battlefield cards condition both G-zero and mandatory own destruction-to-hand; Walsura Prince observes other own actual summons, optionally destroys that exact creature, then obligatorily reveals and deploys a shared-civilization creature or adds a nonmatching card to hand. Reuse native ExactMove afterAttempt, public look, exact Put and zone movement, including replacement and original IDs.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39323/",
+    "https://dm.takaratomy.co.jp/rule/qa/39323/"
+  ],
+  "cards": [
+    {
+      "id": "dm16-s01",
+      "name": "五連の精霊オファニス",
+      "canonicalId": "dm16-s01",
+      "printId": "dm16-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-s01",
+      "faces": [
+        {
+          "name": "五連の精霊オファニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ-バトルゾーンに５文明すべてのカードがそろっていれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーが破壊される時、バトルゾーンに５文明すべてのカードが揃っていれば、そのクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334Both": true,
+              "color": "光",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "水",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "闇",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "火",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "自然",
+              "faceUp": true
+            }
+          ]
+        },
+        "g390DestroyToHand": {
+          "self": true,
+          "filter": {
+            "creature": true
+          },
+          "condition": {
+            "all": [
+              {
+                "g334Both": true,
+                "color": "光",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "水",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "闇",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "火",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "自然",
+                "faceUp": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-s01.jpg",
+      "imageSha256": "e0d383eb8059937e788bc39d420f59cea29c6c55b8a445fc9adfac95ed46c860",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm16-s01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm16-s01",
+          "dmx19-s12",
+          "dmex08-252"
+        ],
+        "allSearchIds": [
+          "dmx19-s12",
+          "dm16-s01",
+          "dmex08-252"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:01:21.864Z",
+        "sha256": "696531e705cf620eca1f0291dd65e5b28a6f538bcd11bfee7f9033dc6ff983b9",
+        "facesMatched": true,
+        "imageSha256": "e0d383eb8059937e788bc39d420f59cea29c6c55b8a445fc9adfac95ed46c860"
+      }
+    },
+    {
+      "id": "dmr21-002",
+      "name": "ワルスラ・プリンスS",
+      "canonicalId": "dmr21-002",
+      "printId": "dmr21-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-002",
+      "faces": [
+        {
+          "name": "ワルスラ・プリンスS",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分の他のクリーチャーを召喚した時、そのクリーチャーを破壊してもよい。そうしたら、自分の山札の上から１枚目を表向きにする。それが、破壊したクリーチャーと同じ文明を持つクリーチャーなら、バトルゾーンに出す。そうでなければ、自分の手札に加える。",
+          "race": "マジック・コマンド/イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1815PrinceSummon": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-002.jpg",
+      "imageSha256": "fdc8fe04bd3380df4c84ab61e16b0bb8813c1b12a21489c9ed979bf564742373",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr21-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr21-002"
+        ],
+        "allSearchIds": [
+          "dmr21-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:01:21.864Z",
+        "sha256": "8b9cac3e92deaa96e4b4f9a926697bbed8b1c3228fcf0f70f0a1fa9912237021",
+        "facesMatched": true,
+        "imageSha256": "fdc8fe04bd3380df4c84ab61e16b0bb8813c1b12a21489c9ed979bf564742373"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx19-s12",
+      "name": "五連の精霊オファニス",
+      "canonicalId": "dm16-s01",
+      "printId": "dmx19-s12",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s12",
+      "faces": [
+        {
+          "name": "五連の精霊オファニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ - バトルゾーンに５文明すべてのカードがそろっていれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーが破壊される時、バトルゾーンに５文明すべてのカードが揃っていれば、そのクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334Both": true,
+              "color": "光",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "水",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "闇",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "火",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "自然",
+              "faceUp": true
+            }
+          ]
+        },
+        "g390DestroyToHand": {
+          "self": true,
+          "filter": {
+            "creature": true
+          },
+          "condition": {
+            "all": [
+              {
+                "g334Both": true,
+                "color": "光",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "水",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "闇",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "火",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "自然",
+                "faceUp": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s12.jpg",
+      "imageSha256": "bad37c4691ef3782e4272ae14572403242f0c32eae6012a8b54b162fbcaae575",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx19-s12-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm16-s01",
+          "dmx19-s12",
+          "dmex08-252"
+        ],
+        "allSearchIds": [
+          "dmx19-s12",
+          "dm16-s01",
+          "dmex08-252"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:01:21.864Z",
+        "sha256": "f831d8b02a0ae4589f232e1fee75261104f249441fcbaf05995c967d583b26f1",
+        "facesMatched": true,
+        "imageSha256": "bad37c4691ef3782e4272ae14572403242f0c32eae6012a8b54b162fbcaae575"
+      }
+    },
+    {
+      "id": "dmex08-252",
+      "name": "五連の精霊オファニス",
+      "canonicalId": "dm16-s01",
+      "printId": "dmex08-252",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-252",
+      "faces": [
+        {
+          "name": "五連の精霊オファニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ：バトルゾーンに５文明すべてのカードが揃っていれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のクリーチャーが破壊される時、バトルゾーンに５文明すべてのカードが揃っていれば、そのクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334Both": true,
+              "color": "光",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "水",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "闇",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "火",
+              "faceUp": true
+            },
+            {
+              "g334Both": true,
+              "color": "自然",
+              "faceUp": true
+            }
+          ]
+        },
+        "g390DestroyToHand": {
+          "self": true,
+          "filter": {
+            "creature": true
+          },
+          "condition": {
+            "all": [
+              {
+                "g334Both": true,
+                "color": "光",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "水",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "闇",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "火",
+                "faceUp": true
+              },
+              {
+                "g334Both": true,
+                "color": "自然",
+                "faceUp": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-252.jpg",
+      "imageSha256": "8552543eb7f980e0452b147179eba14bca56c31d33e43deba82cbd3861cd9e6b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex08-252-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm16-s01",
+          "dmx19-s12",
+          "dmex08-252"
+        ],
+        "allSearchIds": [
+          "dmx19-s12",
+          "dm16-s01",
+          "dmex08-252"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:01:21.864Z",
+        "sha256": "0a97142ddef201dde0b9ae276322b70c48e35e0ba0d9f131b33f3ac44dda5798",
+        "facesMatched": true,
+        "imageSha256": "8552543eb7f980e0452b147179eba14bca56c31d33e43deba82cbd3861cd9e6b"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39323/",
+      "sha256": "3449958bb4ed526f3fdb4f676e988fe106b5ed23d4594cd99feaeaecb102fad3",
+      "checkedAt": "2026-11-27T16:01:21.864Z",
+      "reproduced": true,
+      "tests": "tests/standard1815-effects.test.mjs",
+      "reproduction": "QA39323 actual Prince plus five-color Verde summons Offanis using G-zero. Elect destruction, mandatory Offanis replacement returns it to hand; Prince still reveals and places a matching Light creature into battle or adds a nonmatching Fire creature to hand. Both seats, encrypted restoration and real duel service moves pass.",
+      "result": "QA39323 actual Prince plus five-color Verde summons Offanis using G-zero. Elect destruction, mandatory Offanis replacement returns it to hand; Prince still reveals and places a matching Light creature into battle or adds a nonmatching Fire creature to hand. Both seats, encrypted restoration and real duel service moves pass."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39323/",
+      "sha256": "3449958bb4ed526f3fdb4f676e988fe106b5ed23d4594cd99feaeaecb102fad3",
+      "checkedAt": "2026-11-27T16:01:21.864Z",
+      "reproduced": true,
+      "tests": "tests/standard1815-effects.test.mjs",
+      "reproduction": "QA39323 actual Prince plus five-color Verde summons Offanis using G-zero. Elect destruction, mandatory Offanis replacement returns it to hand; Prince still reveals and places a matching Light creature into battle or adds a nonmatching Fire creature to hand. Both seats, encrypted restoration and real duel service moves pass.",
+      "result": "QA39323 actual Prince plus five-color Verde summons Offanis using G-zero. Elect destruction, mandatory Offanis replacement returns it to hand; Prince still reveals and places a matching Light creature into battle or adds a nonmatching Fire creature to hand. Both seats, encrypted restoration and real duel service moves pass."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:01:21.864Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm16-s01": 4,
+      "dmr21-002": 4,
+      "dmx19-s12": 4,
+      "dmex08-252": 4
+    }
+  },
+  "validationNotes": {
+    "coverage": "66 focused tests cover both seats and both owners of dynamic five-color Verde, noncreature battlefield cards, unavailable colors and paid/G-zero execution, all own destruction bundles, simultaneous whole-board destruction and external protection on ignored recipients. Full Prince paid summon, ordinary other-own paid/free/mana summons versus nonsummon/enemy/self, optional decline, exact recipient and public one-card reveal, partial multicolor match, distinct twinpact creature/spell colors, colorless not a civilization, mandatory evolution, entry prevention, deck inspection lock, queued departed source, encrypted restore and two actual encrypted duel-service QA39323 replays. 294 related and five online tests pass.",
+    "resolvedAttempts": "Initial new-card condition used g370 sumBoth, which reads enemy changing civilizations using the requesting owner; replaced only this new specification with the existing g334Both per-owner all-battlefield-card condition. No older card specification or shared counter changed. Test fixtures corrected Prince summoning sickness using a real turn cycle, a genuine non-summon-entry prohibition (Senno rather than an unrelated GR lock), and a real Fire Bird evolution base.",
+    "batchSize": "Keep the two-card QA39323 cohort complete rather than force a third card whose extra rulings still need another full implementation. Next official evidence is already downloaded for Mestapo and Amate Radial; unregistered and uncounted until their full interactions are implemented.",
+    "reprints": "All three Offanis official prints and the one Prince official print reviewed in full with unchanged original IDs and raw detail rows."
+  }
+}

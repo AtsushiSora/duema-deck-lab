@@ -6079,6 +6079,24 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_PrinceDestroy1815':{
+  const host=sourceHost474(s,t.g1815Subject);
+  if(!host||host.p!==t.p||host.x.sealed||!api.isCreature(s,host.x))break;
+  start(s,t,[{op:'ExactMove',owner:t.p,target:host.x.uid,targetIncarnation:host.x.incarnation||0,
+   to:'grave',optional:true,afterAttempt:[{op:'PrinceReveal1815',g1815Colors:colors(effective(host.x,s,true))}]}]);
+  break;
+ }
+ case'g34_PrinceReveal1815':{
+  const [uid]=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  release(s,t.p,uid);
+  const c=card(y);
+  if(c.type==='creature'&&colors(c).some(color=>t.g1815Colors.includes(color)))
+   start(s,t,[{op:'Put',origin:'deck',target:uid,execution:false}]);
+  else zoneMove(s,t.p,'deck',uid,'hand',t);
+  api.deckCheck(s,t.p);
+  break;
+ }
  case'g34_SearchCast1641':{
   const ids=look(s,{...t,n:own.deck.length}),options=ids.flatMap(uid=>{
    const y=own.deck.find(y=>y.uid===uid);
@@ -10675,6 +10693,11 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed&&options.execution===true)for(const watcher of creatures(s,p)){
+   if(watcher.uid!==y.uid&&!watcher.sealed&&!watcher.faceDown&&
+      effective(watcher,s).g1815PrinceSummon)
+    send(s,p,watcher,'PrinceDestroy1815',{g1815Subject:{uid:y.uid,incarnation:y.incarnation||0}});
+  }
   if(creature&&!y.sealed)for(const limit of s.extLimits||[])if(limit.kind==='g1804EntryDestroy'&&limit.player===p){
    queue(s,limit.who,{cardId:limit.source},[{op:'ExactMove',owner:p,to:'grave',
     g403Refs:api.allLayers(y).map(x=>({uid:x.uid,incarnation:x.incarnation||0})),followEvolution:true}]);
