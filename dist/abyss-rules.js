@@ -23,7 +23,7 @@ export function createAbyssRules(api){
   return sources.flatMap(x=>{
    const c=card(x),eligibleColors=c.strikeBackColors||[c.strikeBackColor||'闇'];
    const payments=t.costs.map(uid=>own.hand.find(y=>y.uid===uid)).filter(y=>y&&y.uid!==x.uid&&faces(card(y)).some(f=>
-    c.strikeBackRace?String(f.race).includes(c.strikeBackRace):colors(f).some(color=>eligibleColors.includes(color))
+    c.strikeBackRace||c.strikeBackRaces?.length?(c.strikeBackRaces||[c.strikeBackRace]).some(race=>String(f.race).includes(race)):colors(f).some(color=>eligibleColors.includes(color))
    ));
    return payments.map(y=>opt(c.name+'：'+card(y).name+'を捨ててS・バック',{uid:x.uid,cost:y.uid},35,x.cardId));
   });

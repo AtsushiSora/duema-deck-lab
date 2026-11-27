@@ -304874,15 +304874,145 @@
       "g473OpponentSpellLock": true,
       "supportBatch": "phase-1768",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S004",
+      "name": "フェリックス・ミザリィ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\nNEO進化クリーチャーとして召喚するなら、このクリーチャーの召喚コストを２少なくする。\nNEO進化：闇のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置く。その後、闇のコスト６以下の、進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S004",
+      "limit": 4,
+      "graveSummon": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g1059NeoSummonDiscount": 2,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "color": "闇",
+            "nonEvolution": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1769",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-007",
+      "name": "翔竜提督アークピッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/ファイアー・バード",
+      "text": "W・ブレイカー\n相手のターンにこのクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出す。\nこのクリーチャーが出た時、自分の山札の上から５枚を見る。その中からドラゴン・カードとフェニックス・カードをそれぞれ１枚まで、表向きにしてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-007",
+      "limit": 4,
+      "breaker": 2,
+      "g591Discard": "opponentTurn",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "race": "ドラゴン"
+              },
+              "reveal": true
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "race": "フェニックス"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1769",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-013",
+      "name": "アクア・ヘッドガール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "ストライク・バック S・バック：リキッド・ピープルまたはハンター（指定のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-013",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackRaces": [
+        "リキッド・ピープル",
+        "ハンター"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1769",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1768,
-    "checkedAt": "2026-11-27T08:13:17.253Z",
-    "baseCount": 9526,
+    "phase": 1769,
+    "checkedAt": "2026-11-27T08:18:15.006Z",
+    "baseCount": 9529,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9529,
+    "totalCount": 9532,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -333876,6 +334006,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/42661/",
           "https://dm.takaratomy.co.jp/rule/qa/45568/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1768,
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "baseCount": 9526,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9529,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
