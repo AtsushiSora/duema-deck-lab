@@ -1,0 +1,169 @@
+{
+  "phase": 1829,
+  "checkedAt": "2026-11-27T18:58:24.266Z",
+  "baseline": "de822b23234c3469e2d80345c12cc46f299b2999",
+  "baseCount": 9699,
+  "target": 10000,
+  "description": "Full Library of Alexandria activated mana ability as a land: exact seven-card hand, own turn before attacks, no normal hand use, printed mana one. Includes the QA40866 opportunity after start triggers and before the normal turn draw, as well as before/after mana charging and during main; never during unresolved effects. Amadeus and Oni Spear held for exhaustive conditional self-destruction and stay-replacement classification.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40866/"
+  ],
+  "cards": [
+    {
+      "id": "dmex18-032",
+      "name": "Library of Alexandria",
+      "canonicalId": "dmex18-032",
+      "printId": "dmex18-032",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-032",
+      "faces": [
+        {
+          "name": "Library of Alexandria",
+          "typeText": "土地",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 0,
+          "costText": "0",
+          "abilityText": "自分のターン中、攻撃の前に、自分の手札がちょうど７枚なら、マナゾーンにあるこのカードをタップしてもよい。そうしたら、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "land",
+        "g1829Library": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-032.jpg",
+      "imageSha256": "177b8961b94232b573819ec860beb7f8b1ef00ff73f53e28df70710901eb2d92",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex18-032-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex18-032"
+        ],
+        "allSearchIds": [
+          "dmex17-024",
+          "dm26rp2-TR002",
+          "dmex04-006",
+          "dmex18-032",
+          "dmex08-049"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T18:58:24.266Z",
+        "sha256": "a440aaf33c37f67a17fb07bd2aac9eece708d3c46a23509aabfbf3c9b4d43f22",
+        "facesMatched": true,
+        "imageSha256": "177b8961b94232b573819ec860beb7f8b1ef00ff73f53e28df70710901eb2d92"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40866/",
+      "sha256": "fdbe2cd5b337e063546b8bf6bd100f855d177ae0935cfcfd4fde4ddbc92865d2",
+      "checkedAt": "2026-11-27T18:58:24.266Z",
+      "reproduced": true,
+      "tests": "tests/standard1829-effects.test.mjs",
+      "reproduction": "QA40866の全タイミングを実測。土地typeとして通常使用禁止・マナ1。自分の手札7枚・表向きアンタップのマナのみで起動。開始時のアンタップと待機能力の解決後、通常ドロー前の選択窓・チャージ前後・メインで起動可、攻撃ステップでは不可。初期手札6枚から通常ドロー後7枚でも起動可。ヴェール・バビロニア／ターミネーターの実際の置換・ウイングアイモス通常ドロー追加との区別・ブルックスの実際のドロー誘発の解決待ちと2枚目の土地の再起動を確認。手動画面の実行ボタンとオンラインのマナ選択・暗号化サービス両席を検証。関連QA40865は攻撃ステップの一般制限を実在の登録済みタップ能力で検証し、未登録ワンケングレンオーの固有進化能力を再現したとは扱わない。",
+      "result": "QA40866の全タイミングを実測。土地typeとして通常使用禁止・マナ1。自分の手札7枚・表向きアンタップのマナのみで起動。開始時のアンタップと待機能力の解決後、通常ドロー前の選択窓・チャージ前後・メインで起動可、攻撃ステップでは不可。初期手札6枚から通常ドロー後7枚でも起動可。ヴェール・バビロニア／ターミネーターの実際の置換・ウイングアイモス通常ドロー追加との区別・ブルックスの実際のドロー誘発の解決待ちと2枚目の土地の再起動を確認。手動画面の実行ボタンとオンラインのマナ選択・暗号化サービス両席を検証。関連QA40865は攻撃ステップの一般制限を実在の登録済みタップ能力で検証し、未登録ワンケングレンオーの固有進化能力を再現したとは扱わない。"
+    }
+  ],
+  "held": [
+    {
+      "id": "dm28-006",
+      "name": "黒神龍アマデウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-006",
+      "reason": "公式全文・基本情報・単一収録・全画像とQA_old35648を確認。マナと墓地を合わせた同名判定、自壊条件の再評価、留まる置換が続く場合の処理と他の待機中効果との順序を完全実装・検証していないため保留。Tブレイカーだけを実装して加算しない。"
+    },
+    {
+      "id": "dmrp15-019",
+      "name": "鬼槍の一撃",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-019",
+      "reason": "公式全文・基本情報・単一収録・全画像とQA34212を確認。鬼タイムの場に留まる効果の無視を、常在の保護・任意のエスケープ・他カードの犠牲・進化元・オーラ等の全置換に適用し、他ゾーンへ置換する効果と区別する共通処理が未実装のため保留。全体4000火力だけの部分実装は行わない。"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T18:58:24.266Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex18-032": 4
+    }
+  },
+  "supplementalTimingRuling": {
+    "source": "https://dm.takaratomy.co.jp/rule/qa/40865/",
+    "sha256": "c51a21b6f6270e9dcce35057eb3d286c1f884dd836633ca5c49a4dd104ccc174",
+    "actualTimingTest": "No Library action is permitted after an actual attack-step tap ability, even when no attack was declared",
+    "namedCreature": "dm07-053 Spring Breeze Fairy Popple used as an actual registered tap-ability creature; Wan-Ken-Glen-Oh is not registered and its evolution-specific ability is not claimed reproduced.",
+    "scope": "The stated prohibition is caused solely by the attack-step timing; verified with the actual registered alternative tap ability and at entry to attack before any attack declaration."
+  },
+  "additionalValidation": [
+    {
+      "name": "related-ui-1829-focused",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:both public mana strips show every card and its tap state without changing the game|phone restores the classic mana counters, placement highlight and AI anchors without changing the game|the board conceals opposing face-down mana identities while its owner can inspect them|Galaxyshield adds one face-up tile and reveals only public shield cards|manual screen renders the three phase steps, current guidance, readable cards and only valid engine action buttons|selecting an attacker highlights legal creature and shield targets without executing the attack or reading shield contents|quadruple and infinity breakers expose a player attack and preserve their subsequent shield-selection decisions|single effect targets, blockers and evolution bases can be selected from the board, while ambiguous multi-target choices cannot|Mugen Crime and mana-return selections show the selected count and retain unambiguous board selection|many choices can be filtered without changing action ids, losing decline choices or mutating the engine|the screen never exposes opponent private hand or shield card ids, including while AI is declaring a hand ability|end-turn review appears only for an available attack and cannot replace or bypass engine permission|normal and twinpact hand actions expose legal faces, disabled reasons and an ability-details button|mana summons remain accessible and the desktop hand stays visible during attacks even after panel minimization|desktop hand stays visible with every card during mana payment without changing the pending decision|card names and log content are escaped, while current public power and game restrictions remain readable|NewWorld fields show stored cards and use state and Mugen choices show progress and board targets|Redzone hand and zone controls expose Pandora and extra summons with sealed hosts inert|Murder hand view and sealing targets are usable from the same manual board|board badges count nested evolution sources on both sides and refresh after source removal|both seats see their own field below the opponent and every hand card in a single shelf|selected card actions retain server ids, never fall back to unrelated moves and always allow a return to all choices|inspection remains available while disconnected but submitting a move is disabled, and private faces stay hidden|required choices, number declarations, result and malicious labels remain usable and escaped in the overlay|online board shows stacked shield card counts with no hidden card identities|online fields show NewWorld bases and its one-use state instead of creature power|an attached aura identifies its visible host on the online field|online badges and the selected-card drawer count all nested sources, while hidden cards expose none|an equipped weapon identifies its host and a released Dragheart requests the reverse art|lobby chooses one shared deck before create or join and removes the AI shortcut|an invitation preserves the escaped code and places joining before room creation|lobby blocks creation and joining when no playable deck exists or a request is pending|a selected playable |grave alternate summons show their methods and never create a move absent from the server|ordinary online moves carry their room revision and retain multi-card effect targets when a creature is selected|online attack context names and highlights the attacker and creature target at seat |online shield targets and direct attacks are distinguished without revealing hidden identities|numeric entry is separate from legal candidates, shows its server minimum and escapes drafts|a selected field |a permanent connection error explains that automatic retries are paused while manual reconnect stays available|online dialog renderer rejects invalid scopes, protects hidden faces and labels stale data|online action context |online action context is escaped without exposing an account identifier in the markup|mana list illustrations preserve actions and tapped state while hidden mana never requests a face |online board mana previews use the same public faces for both players and retain the existing zone button|mana payment illustrations use visible cards and preserve selection IDs, confirmation and hidden originals |empty mana and missing image callbacks remain readable|publicly revealed cards stay inspectable by both accounts while private inspection remains actor-only |a mana Pegasus with an ultimate base and exactly five untapped mana exposes an explicit summon in desktop and phone UI|the displayed mana action proceeds through evolution and manual payment, using that same physical card once|missing ultimate evolution base is explained instead of silently hiding the card, including an ordinary evolution base|five mana in total with one tapped is insufficient and its reason identifies unused mana or colors|the mana Pegasus may itself be tapped if five other mana can pay; a missing Nature payment is explained|main-step, turn and in-flight resolution restrictions produce explanations, never forged actions|a genuine summon restriction is shown and removing it restores the same legal summon|the ability permits only the Pegasus itself from mana, not every creature when Pegasus is on the field|other mana permissions such as Gaia also appear, and their actual one-use limit is preserved|opponent inspection never offers its mana as a human summon or leaks a facedown identity)",
+        "tests/manual-ui.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/mana-summon-ui.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.162,
+      "log": "tmp/duema-target-10000/related-ui-1829-focused.log",
+      "passed": 81,
+      "logSha256": "73b92dbcb732834f24bb5980d1669a8dec8dbc67a0fc1fb55e0460a7264b2889"
+    }
+  ],
+  "incompleteVerification": [
+    {
+      "name": "related-ui-1829",
+      "command": [
+        "node",
+        "--test",
+        "tests/manual-ui.test.mjs",
+        "tests/online-ui.test.mjs",
+        "tests/mana-summon-ui.test.mjs"
+      ],
+      "code": -9,
+      "timedout": false,
+      "seconds": 85.406,
+      "log": "tmp/duema-target-10000/related-ui-1829.log",
+      "status": "interrupted-unconfirmed",
+      "target": "tests/manual-ui.test.mjs: manual UI complete game: seed 1..30",
+      "reason": "UIの機能回帰に不要な30シードの一括対戦が含まれたため、今回の新規プロセスグループだけ85.406秒で停止。個々の対戦や一括群の合格は推定しない。同じ長時間群は再実行しない。手動UI・通信UI・マナ操作の決定的81件を肯定名指定で別分割して通過。",
+      "logSha256": "d28fa3c6429569476b419f93e3fc391877b346779e13c7b8170622c10a504edf",
+      "replacementEvidence": "tmp/duema-target-10000/related-ui-1829-focused.log"
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "QA40866の全タイミングを実測。土地typeとして通常使用禁止・マナ1。自分の手札7枚・表向きアンタップのマナのみで起動。開始時のアンタップと待機能力の解決後、通常ドロー前の選択窓・チャージ前後・メインで起動可、攻撃ステップでは不可。初期手札6枚から通常ドロー後7枚でも起動可。ヴェール・バビロニア／ターミネーターの実際の置換・ウイングアイモス通常ドロー追加との区別・ブルックスの実際のドロー誘発の解決待ちと2枚目の土地の再起動を確認。手動画面の実行ボタンとオンラインのマナ選択・暗号化サービス両席を検証。関連QA40865は攻撃ステップの一般制限を実在の登録済みタップ能力で検証し、未登録ワンケングレンオーの固有進化能力を再現したとは扱わない。",
+    "resolvedAttempts": "初回固有の2失敗は、暴れ馬の任意マナ追加がRampではなくOfferを経由するfixture期待値を修正。最終固有62件通過。不要な30シードUI群はincompleteVerificationへ中断のまま分け、修正済みや合格として扱わない。",
+    "nextCandidates": [
+      {
+        "id": "dmex04-057",
+        "name": "偽りの名 13 / 種族選別"
+      },
+      {
+        "id": "dmbd08-a-001",
+        "name": "暴命天 バラギアラ / ガイアの目覚め"
+      },
+      {
+        "id": "dmex15-b004",
+        "name": "白騎士の聖霊王アルカディアス / 完全決闘"
+      }
+    ]
+  }
+}

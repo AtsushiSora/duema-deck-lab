@@ -7507,6 +7507,14 @@ export function createSixPhotoRules(api){
   if(rows.length>=4-selected.length)choice(s,t,'山札の下に戻すカードを4枚選ぶ（'+selected.length+'/4）',[...rows.map(x=>opt(card(x).name,x.uid,10,x.cardId)),skip()]);
   break;
  }
+ case'g34_LibraryWindow1829':{
+  const rows=api.librarySources1829(s,t.p);
+  if(rows.length)choice(s,t,'通常のドローの前にLibrary of Alexandriaを使う？',[
+   ...rows.map(x=>opt(card(x).name+'をタップして1枚引く',x.uid,own.deck.length>2?15:-1000,x.cardId)),
+   opt('使わず通常のドローへ進む',null,0)
+  ]);
+  break;
+ }
  case'g34_GravePick598':{
   if(t.g1828OpponentGrave&&t.owner===undefined)t={...t,owner:1-t.p};
   if(t.owner===undefined){
@@ -8052,6 +8060,10 @@ export function createSixPhotoRules(api){
  case'g34_DiasGrave1821':
   if(t.owner===undefined){if(v===0||v===1)put(s,{...t,owner:v,selected:[]});}
   else if(v){const x=s.players[t.owner].grave.find(x=>x.uid===v);if(x&&!t.selected.some(r=>r.uid===v))put(s,{...t,selected:[...t.selected,{uid:v,serial:x.zoneSerial||0}]});}
+  break;
+ case'g34_LibraryWindow1829':
+  if(v)api.activateLibrary1829(s,t.p,v);
+  else if(s.startStep)s.startStep.libraryDeclined1829=true;
   break;
  case'g34_GravePick598':
   if(t.owner===undefined){if(v===0||v===1)put(s,{...t,owner:v,selected:[]});}

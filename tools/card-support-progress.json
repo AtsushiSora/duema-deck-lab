@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9699,
-  "pendingNames": 2150,
-  "phase": 1828,
-  "added": 2,
+  "supportedNames": 9700,
+  "pendingNames": 2149,
+  "phase": 1829,
+  "added": 1,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -174,7 +174,6 @@
     "クロスギア": 2,
     "進化クリーチャー(進化GV)": 6,
     "タマシード/クリーチャー": 3,
-    "土地": 1,
     "サイキック・クリーチャー": 83,
     "進化クロスギア": 1,
     "進化クリーチャー(手札進化)": 2,
@@ -221,7 +220,7 @@
   },
   "reasons": {
     "未対応の能力文": 1591,
-    "複数面・特殊カードタイプまたは情報不足": 466,
+    "複数面・特殊カードタイプまたは情報不足": 465,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -573686,24 +573685,267 @@
       },
       "resolvedAttempts": [],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1829,
+      "checkedAt": "2026-11-27T19:07:36.775Z",
+      "baseline": "de822b23234c3469e2d80345c12cc46f299b2999",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9699,
+      "currentNames": 9700,
+      "remainingNames": 300,
+      "added": [
+        {
+          "id": "dmex18-032",
+          "name": "Library of Alexandria"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1829,
+        "baseline": "de822b23234c3469e2d80345c12cc46f299b2999",
+        "originalDefinitionsUnchanged": 9699,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9700,
+        "uniqueIds": 9700,
+        "added": 1,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9699,
+        "existingImageReferenceRowsUnchanged": 12143,
+        "officialPrintsReviewed": 1,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1829": {
+          "name": "official-1829",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1829.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.292,
+          "log": "tmp/duema-target-10000/official-1829.log",
+          "passed": 0,
+          "logSha256": "27017780b8aa199e53aefbcbfc4ca7ed66ff1f5d05752c9a5b0695d5a1197030"
+        },
+        "focused-1829-final": {
+          "name": "focused-1829-c",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1829-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.192,
+          "log": "tmp/duema-target-10000/focused-1829-c.log",
+          "passed": 62,
+          "logSha256": "1580be3e98620c4b8e35fce3d6493ef050081c21bd00749bdf80d1f182cc088a"
+        },
+        "related-1829": {
+          "name": "related-1829",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* complete verified face, art, stats, mana, restriction and strict phase boundary|two legal forties cover all twelve complete silent skills|[^\\n]* paid summon has no silent effect on entry and pays the printed cost|[^\\n]* can remain tapped and queue its effect before the ordinary draw for player |[^\\n]* may untap instead and resolves only the normal draw|[^\\n]* does not offer an untapped, sealed or untap-prohibited source|[^\\n]* cannot replace untapping when its ability is ignored by Genmu|the six-cost silent skill remains active under Genmu and activated silent skills are not attack or entry triggers stopped by GG|all silent decisions happen before any card untaps or any silent effect resolves|a waiting silent ability survives its source being destroyed by another silent skill|silent and actual-untap abilities enter the same priority queue after untapping|silent draw happens before normal drawing and both are subject to real deck-out rules|silent choice precedes restricted mana untapping, which finishes before silent effects or drawing|AI uses beneficial shield additions but declines known deck-out and unfavorable symmetric destruction|the same tapped creature can use a silent skill on successive own turns, never on the opponent turn|Hustle Berry ramps the exact top card with multicolor tapping before the normal draw|Hanasaki may reveal a creature from the library or decline and still shuffles before drawing |Giga recovery honors an opponent grave lock while the source remains tapped|Luna returns up to three distinct mana cards and can stop early |Rindahof taps only the chosen opposing creatures and allows selecting none|Sodalite lets the opponent choose their creature, includes their untargetable creature, and stays unblockable|Blood destroys only an opposing blocker when the silent skill resolves|silent choices appear in manual play with a source and meaningful labels; AI analysis is pure and hides opposing cards|manual DDD instructions use the declared card civilization and distinguish spells from NEO summons|duplicate, missing, unknown and differently timed silent clauses cannot be registered|Phase 729 validates three complete printed cards and keeps the catalogue IDs|Death Specter evolves on an allied Ghost and shares Slayer only with allied Ghosts while present|Medusa evolves only on Cyber Viruses and an entry draw stays at one card|Medusa chooses separately before its normal draw |first player skips the opening draw and declining a later extra draw avoids deck-out|Mint is unblockable only while crossed |Mint can sacrifice its last cross gear after losing a battle, including after restore|Mint can choose which cross gear to lose, or decline a spell destruction replacement|Mint can use a gear already in the same destruction batch without moving it twice|Mint cannot replace return to hand, and no gear is moved|An ignored Medusa gives only the normal draw and an ignored Mint cannot replace destruction|Lupia charges two fewer mana for hand and grave Dragons, with a floor of one|Lupia each copy grants one separate summon, restored on the next turn after JSON round-trip|Lupia provides neither cost reduction nor grave access while abilities are ignored|Moth draws no extra cards at opposing tie or higher opposing power |two allied maxima still give one extra per Moth, with the choice independent per copy|the extra draw is optional against an empty battlefield|QA35241 Milpolo can receive the extra draw, and that Moth cannot also enhance the regular draw|declining the extra Milpolo draw lets Moth offer it for the regular draw|Darts collects both private selections before discard and can draw one of two cards|Darts counts only actual discards and allows the other side to have an empty or protected hand|Darts gives no draw when both hands are empty after it enters|Elegance offers one mana card per opposing actual draw|Elegance lets Unknown creatures repeatedly summon from mana and pay with themselves \\(QA36581\\)|Elegance loses its mana permission when its ability is ignored or its source leaves|Veil can choose its first draw only, even in a multi-draw effect |Veil can replace the first draw on the opposing turn, then the next turn resets the count|Veil makes the opponent choose one discard for each actual draw after the first|Veil’s replacement can win when the second card is the last card \\(QA44088\\)|Painty can enter with or without NEO evolution and weakens all other creatures on both sides|Painty gives one independently optional blind discard per shield broken|Painty cannot use Break Bonus after leaving to a Shield Trigger \\(QA31809\\)|Alice pauses the draw for Vivid Draw and can return that same revealed card \\(QA 40504\\)|Vivid Draw can be declined and the discount requires both water and fire|Kung Fu discards the whole hand at the opposing turn end and draws two before the normal draw|Entering the attack step prevents a new Vivid Draw declaration and the turn end expires the previous reveal|Vivid Draw combines with an optional ordinary summon reduction \\(QA 34197\\)|QA43060: both shuffle sources replace the whole Luna mill without exposing or losing cards|QA40832: neither shuffle source allows Molnarlk to destroy an opponent creature|native mana and shield placements stay in the library and do not generate arrivals|replacement priority and choice survive saving, and chosen grave placement does not chain|QA39943 keeps Deddam’s first hand card and shuffles the other two|QA43789 Fox keeps a chosen hand creature, or shuffles all four if mana is chosen|QA39981 stops Jolly’s old look after the first mana placement is replaced|a shuffling replacement cannot chain onto Amodegoras’s draw replacement|QA41296 Fire Now starts with mana and ends its old three-card look when shuffled|QA49081 Redmad cannot use the unknown shuffled card’s cost to destroy|Hogan can deploy a shuffle source itself before its continuous ability starts|a source already in battle replaces a Hogan creature entry and preserves every card|QQ forbids shuffling, so a replaced blind mill preserves library order and identities|an ignored or sealed source does not replace milling, and Genmu suppresses its cheap ability|normal draws still leave the library, and later hand discards cannot be mistaken for deck moves|each replacement-owning player gets priority on their turn, without a second replacement|QA40785 a hidden Stone Tablet card grants no creature power, and VV seals stay in the library|QA42507 Vision resolves a deck spell before returning it, and a played seed never enters|Brooks triggers once for each actual own draw and places selected hand cards in tapped mana|Brooks does not trigger for opposing draws and its spell draws exactly two|Summer optionally discards its entire hand and draws actual discard count plus one |Summer does not count a discarded card replaced into mana by Amodegoras|Moon revives exactly two eligible cost-three-or-less creatures and excludes a cost-four creature|Hamurabi may deploy a Light non-evolution of cost at most three from hand and may decline|Hamuratis checks opposing current mana, leaves equal-cost creatures and sends all larger ones below deck in the opponents chosen order|Terminator paid eight preserves the actual last five deck cards and mills the entire preceding batch with all UIDs conserved, QA36951 |Terminator normal entry mill obeys actual Brakkio silence, but its static final-draw replacement remains available |Each replaced final draw returns exactly one chosen public grave card, never draws or moves the final deck card, and resumes encrypted |Terminator cannot replace a nonfinal draw or a draw with an unavailable grave card; actual last draw loses, QA36952 |Recovering the only grave card during a multi-draw leaves no legal replacement for the next final draw |Terminator and actual Babylonia coexist as separately named draw replacements without chaining |Terminator can prevent the actual final draw before Shako wins, while declining retains Shako last-draw win |Crystal Reincarnation QA45061 with no target neither reveals nor shuffles either deck and still costs four |Crystal chooses either players actual element and mandatorily puts an eligible revealed element onto its owners battlefield |Crystal publicly reveals a non-element and sends it to the bottom, rather than casting it or adding it to hand |Crystal owner handling follows the physical owner of a borrowed element, preserving the other controllers deck |Crystal respects actual untargetability, ignores sealed creatures and excludes non-element cores |Crystal still reveals publicly under the actual QQQX private-look and shuffle prohibition, without shuffling the targets deck |A revealed matching element blocked by an actual hand-only entry restriction remains on top rather than taking the non-element bottom branch |Crystal actual S-Trigger from a broken shield pays no mana and mandatorily resolves its chosen element and reveal |Crystal non-element bottom order is exact under a shuffle prohibition and public reveal is not a private look |Terminator last draw recovery works on the opposing turn and keeps the choice with the drawing player |Crystal mandatory Aura entry attaches to an existing or newly summoned actual GR and survives encrypted continuation |Crystal revealed evolution uses actual legal bases, and an unavailable evolution remains on top |Actual encrypted duel service preserves mana selection, target ownership, final draw replacement and every physical card )",
+            "tests/standard496-effects.test.mjs",
+            "tests/standard729-effects.test.mjs",
+            "tests/standard1178-effects.test.mjs",
+            "tests/standard1273-effects.test.mjs",
+            "tests/standard1335-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1528-effects.test.mjs",
+            "tests/standard1826-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 7.161,
+          "log": "tmp/duema-target-10000/related-1829.log",
+          "passed": 272,
+          "logSha256": "6312bf678bca86bc00b821abeb7ecda5c093946bad170790a6799cfd09e5c576"
+        },
+        "check-1829": {
+          "name": "check-1829",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.567,
+          "log": "tmp/duema-target-10000/check-1829.log",
+          "passed": 0,
+          "logSha256": "5c10e0b0c32fd4c27fed4c07ef5b3182292ed0ccd26d5470653bd3157fbe8ef6"
+        },
+        "audit-1829": {
+          "name": "audit-1829",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 13.812,
+          "log": "tmp/duema-target-10000/audit-1829.log",
+          "passed": 0,
+          "logSha256": "312cc3946425aa5bcbc1865367dfd7b5b99d009a889a2d19bee452ba8a3bad2c"
+        },
+        "invariants-1829": {
+          "name": "invariants-1829",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1829"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.812,
+          "log": "tmp/duema-target-10000/invariants-1829.log",
+          "passed": 0,
+          "logSha256": "e7da26b4d1629ce8eb11a479ccbfa312c7956ac196546288dabecf36b2625f75"
+        },
+        "related-online-1829": {
+          "name": "related-online-1829",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.005,
+          "log": "tmp/duema-target-10000/related-online-1829.log",
+          "passed": 5,
+          "logSha256": "61e886466f1b13db6c9f2d6c705656c9049b865315ebcb3104b9822b45749637"
+        },
+        "related-ui-1829-focused": {
+          "name": "related-ui-1829-focused",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:both public mana strips show every card and its tap state without changing the game|phone restores the classic mana counters, placement highlight and AI anchors without changing the game|the board conceals opposing face-down mana identities while its owner can inspect them|Galaxyshield adds one face-up tile and reveals only public shield cards|manual screen renders the three phase steps, current guidance, readable cards and only valid engine action buttons|selecting an attacker highlights legal creature and shield targets without executing the attack or reading shield contents|quadruple and infinity breakers expose a player attack and preserve their subsequent shield-selection decisions|single effect targets, blockers and evolution bases can be selected from the board, while ambiguous multi-target choices cannot|Mugen Crime and mana-return selections show the selected count and retain unambiguous board selection|many choices can be filtered without changing action ids, losing decline choices or mutating the engine|the screen never exposes opponent private hand or shield card ids, including while AI is declaring a hand ability|end-turn review appears only for an available attack and cannot replace or bypass engine permission|normal and twinpact hand actions expose legal faces, disabled reasons and an ability-details button|mana summons remain accessible and the desktop hand stays visible during attacks even after panel minimization|desktop hand stays visible with every card during mana payment without changing the pending decision|card names and log content are escaped, while current public power and game restrictions remain readable|NewWorld fields show stored cards and use state and Mugen choices show progress and board targets|Redzone hand and zone controls expose Pandora and extra summons with sealed hosts inert|Murder hand view and sealing targets are usable from the same manual board|board badges count nested evolution sources on both sides and refresh after source removal|both seats see their own field below the opponent and every hand card in a single shelf|selected card actions retain server ids, never fall back to unrelated moves and always allow a return to all choices|inspection remains available while disconnected but submitting a move is disabled, and private faces stay hidden|required choices, number declarations, result and malicious labels remain usable and escaped in the overlay|online board shows stacked shield card counts with no hidden card identities|online fields show NewWorld bases and its one-use state instead of creature power|an attached aura identifies its visible host on the online field|online badges and the selected-card drawer count all nested sources, while hidden cards expose none|an equipped weapon identifies its host and a released Dragheart requests the reverse art|lobby chooses one shared deck before create or join and removes the AI shortcut|an invitation preserves the escaped code and places joining before room creation|lobby blocks creation and joining when no playable deck exists or a request is pending|a selected playable |grave alternate summons show their methods and never create a move absent from the server|ordinary online moves carry their room revision and retain multi-card effect targets when a creature is selected|online attack context names and highlights the attacker and creature target at seat |online shield targets and direct attacks are distinguished without revealing hidden identities|numeric entry is separate from legal candidates, shows its server minimum and escapes drafts|a selected field |a permanent connection error explains that automatic retries are paused while manual reconnect stays available|online dialog renderer rejects invalid scopes, protects hidden faces and labels stale data|online action context |online action context is escaped without exposing an account identifier in the markup|mana list illustrations preserve actions and tapped state while hidden mana never requests a face |online board mana previews use the same public faces for both players and retain the existing zone button|mana payment illustrations use visible cards and preserve selection IDs, confirmation and hidden originals |empty mana and missing image callbacks remain readable|publicly revealed cards stay inspectable by both accounts while private inspection remains actor-only |a mana Pegasus with an ultimate base and exactly five untapped mana exposes an explicit summon in desktop and phone UI|the displayed mana action proceeds through evolution and manual payment, using that same physical card once|missing ultimate evolution base is explained instead of silently hiding the card, including an ordinary evolution base|five mana in total with one tapped is insufficient and its reason identifies unused mana or colors|the mana Pegasus may itself be tapped if five other mana can pay; a missing Nature payment is explained|main-step, turn and in-flight resolution restrictions produce explanations, never forged actions|a genuine summon restriction is shown and removing it restores the same legal summon|the ability permits only the Pegasus itself from mana, not every creature when Pegasus is on the field|other mana permissions such as Gaia also appear, and their actual one-use limit is preserved|opponent inspection never offers its mana as a human summon or leaks a facedown identity)",
+            "tests/manual-ui.test.mjs",
+            "tests/online-ui.test.mjs",
+            "tests/mana-summon-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.162,
+          "log": "tmp/duema-target-10000/related-ui-1829-focused.log",
+          "passed": 81,
+          "logSha256": "73b92dbcb732834f24bb5980d1669a8dec8dbc67a0fc1fb55e0460a7264b2889"
+        }
+      },
+      "totalTestsPassed": 420,
+      "manifest": "tools/support-phase-1829.json",
+      "supported": 9700,
+      "pending": 2149,
+      "engineVersion": "0.602.353",
+      "held": [
+        {
+          "id": "dm28-006",
+          "name": "黒神龍アマデウス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-006",
+          "reason": "公式全文・基本情報・単一収録・全画像とQA_old35648を確認。マナと墓地を合わせた同名判定、自壊条件の再評価、留まる置換が続く場合の処理と他の待機中効果との順序を完全実装・検証していないため保留。Tブレイカーだけを実装して加算しない。"
+        },
+        {
+          "id": "dmrp15-019",
+          "name": "鬼槍の一撃",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-019",
+          "reason": "公式全文・基本情報・単一収録・全画像とQA34212を確認。鬼タイムの場に留まる効果の無視を、常在の保護・任意のエスケープ・他カードの犠牲・進化元・オーラ等の全置換に適用し、他ゾーンへ置換する効果と区別する共通処理が未実装のため保留。全体4000火力だけの部分実装は行わない。"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex04-057",
+          "name": "偽りの名 13 / 種族選別"
+        },
+        {
+          "id": "dmbd08-a-001",
+          "name": "暴命天 バラギアラ / ガイアの目覚め"
+        },
+        {
+          "id": "dmex15-b004",
+          "name": "白騎士の聖霊王アルカディアス / 完全決闘"
+        }
+      ],
+      "verificationScope": "QA40866の全タイミングを実測。土地typeとして通常使用禁止・マナ1。自分の手札7枚・表向きアンタップのマナのみで起動。開始時のアンタップと待機能力の解決後、通常ドロー前の選択窓・チャージ前後・メインで起動可、攻撃ステップでは不可。初期手札6枚から通常ドロー後7枚でも起動可。ヴェール・バビロニア／ターミネーターの実際の置換・ウイングアイモス通常ドロー追加との区別・ブルックスの実際のドロー誘発の解決待ちと2枚目の土地の再起動を確認。手動画面の実行ボタンとオンラインのマナ選択・暗号化サービス両席を検証。関連QA40865は攻撃ステップの一般制限を実在の登録済みタップ能力で検証し、未登録ワンケングレンオーの固有進化能力を再現したとは扱わない。",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [
+        {
+          "name": "related-ui-1829",
+          "command": [
+            "node",
+            "--test",
+            "tests/manual-ui.test.mjs",
+            "tests/online-ui.test.mjs",
+            "tests/mana-summon-ui.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 85.406,
+          "log": "tmp/duema-target-10000/related-ui-1829.log",
+          "status": "interrupted-unconfirmed",
+          "target": "tests/manual-ui.test.mjs: manual UI complete game: seed 1..30",
+          "reason": "UIの機能回帰に不要な30シードの一括対戦が含まれたため、今回の新規プロセスグループだけ85.406秒で停止。個々の対戦や一括群の合格は推定しない。同じ長時間群は再実行しない。手動UI・通信UI・マナ操作の決定的81件を肯定名指定で別分割して通過。",
+          "logSha256": "d28fa3c6429569476b419f93e3fc391877b346779e13c7b8170622c10a504edf",
+          "replacementEvidence": "tmp/duema-target-10000/related-ui-1829-focused.log"
+        }
+      ],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1829-a",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1829-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.398,
+          "log": "tmp/duema-target-10000/focused-1829-a.log",
+          "reason": "初回固有の2失敗は、暴れ馬の任意マナ追加がRampではなくOfferを経由するfixture期待値を修正。最終固有62件通過。不要な30シードUI群はincompleteVerificationへ中断のまま分け、修正済みや合格として扱わない。"
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1828,
-    "nextPhase": 1829,
+    "lastVerifiedPhase": 1829,
+    "nextPhase": 1830,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex18-032",
-        "name": "Library of Alexandria"
+        "id": "dmex04-057",
+        "name": "偽りの名 13 / 種族選別"
       },
       {
-        "id": "dm28-006",
-        "name": "黒神龍アマデウス"
+        "id": "dmbd08-a-001",
+        "name": "暴命天 バラギアラ / ガイアの目覚め"
       },
       {
-        "id": "dmrp15-019",
-        "name": "鬼槍の一撃"
+        "id": "dmex15-b004",
+        "name": "白騎士の聖霊王アルカディアス / 完全決闘"
       }
     ],
     "steps": [
@@ -574597,11 +574839,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1828,
-      "baseline": "79ee30fcec6a4570e0f251dbd0fadab74286de94",
-      "supportedNames": 9699,
-      "artifact": "tools/target10000-registration-checkpoint-1828.json",
-      "checkedAt": "2026-11-27T18:54:48.800Z"
+      "phase": 1829,
+      "baseline": "de822b23234c3469e2d80345c12cc46f299b2999",
+      "supportedNames": 9700,
+      "artifact": "tools/target10000-registration-checkpoint-1829.json",
+      "checkedAt": "2026-11-27T19:07:36.775Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -577659,8 +577901,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9699,
-      "remaining": 301,
+      "currentNames": 9700,
+      "remaining": 300,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -577668,8 +577910,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1828,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1828.json",
+      "lastPhase": 1829,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1829.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -578929,8 +579171,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9699,
-      "remaining": 301,
+      "currentNames": 9700,
+      "remaining": 300,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -578938,8 +579180,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1828,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1828.json",
+      "lastPhase": 1829,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1829.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -579381,6 +579623,54 @@
             "research": "tmp/duema-target-10000/research-dmsd08-002.json"
           }
         ]
+      },
+      {
+        "phase": 1829,
+        "research": "tmp/duema-target-10000/research-dmex18-032.json",
+        "allFullImagesReviewed": true,
+        "exactOfficialPrints": [
+          "dmex18-032",
+          "dm28-006",
+          "dmrp15-019"
+        ],
+        "implemented": [
+          "dmex18-032"
+        ],
+        "held": [
+          {
+            "id": "dm28-006",
+            "name": "黒神龍アマデウス",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-006",
+            "reason": "公式全文・基本情報・単一収録・全画像とQA_old35648を確認。マナと墓地を合わせた同名判定、自壊条件の再評価、留まる置換が続く場合の処理と他の待機中効果との順序を完全実装・検証していないため保留。Tブレイカーだけを実装して加算しない。"
+          },
+          {
+            "id": "dmrp15-019",
+            "name": "鬼槍の一撃",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-019",
+            "reason": "公式全文・基本情報・単一収録・全画像とQA34212を確認。鬼タイムの場に留まる効果の無視を、常在の保護・任意のエスケープ・他カードの犠牲・進化元・オーラ等の全置換に適用し、他ゾーンへ置換する効果と区別する共通処理が未実装のため保留。全体4000火力だけの部分実装は行わない。"
+          }
+        ]
+      }
+    ],
+    "additionalLongRunningVerification": [
+      {
+        "name": "related-ui-1829",
+        "command": [
+          "node",
+          "--test",
+          "tests/manual-ui.test.mjs",
+          "tests/online-ui.test.mjs",
+          "tests/mana-summon-ui.test.mjs"
+        ],
+        "code": -9,
+        "timedout": false,
+        "seconds": 85.406,
+        "log": "tmp/duema-target-10000/related-ui-1829.log",
+        "status": "interrupted-unconfirmed",
+        "target": "tests/manual-ui.test.mjs: manual UI complete game: seed 1..30",
+        "reason": "UIの機能回帰に不要な30シードの一括対戦が含まれたため、今回の新規プロセスグループだけ85.406秒で停止。個々の対戦や一括群の合格は推定しない。同じ長時間群は再実行しない。手動UI・通信UI・マナ操作の決定的81件を肯定名指定で別分割して通過。",
+        "logSha256": "d28fa3c6429569476b419f93e3fc391877b346779e13c7b8170622c10a504edf",
+        "replacementEvidence": "tmp/duema-target-10000/related-ui-1829-focused.log"
       }
     ]
   },
@@ -631255,10 +631545,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1828,
+    "phase": 1829,
     "threshold": 10000,
-    "supportedNames": 9699,
-    "pendingNames": 2150,
+    "supportedNames": 9700,
+    "pendingNames": 2149,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -631267,7 +631557,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1828.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1829.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
