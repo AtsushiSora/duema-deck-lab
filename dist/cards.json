@@ -308221,19 +308221,258 @@
       ],
       "supportBatch": "phase-1797",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-007",
+      "name": "超神星マーズ・ディザスター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 13000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のティラノ・ドレイク、ドリームメイト、ヒューマノイドのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、パワー4000以下のクリーチャーをすべて破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-007",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "g1660CreatureOnly": true,
+              "filter": {
+                "creature": true,
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1798",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-s04",
+      "name": "超神星ライラ・ボルストーム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 18000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のドラゴン・ゾンビ、アーマード・ドラゴン、アース・ドラゴンのいずれか３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、種族にドラゴンとある、進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出し、相手のパワー5000以下のクリーチャーを１体破壊し、相手のマナゾーンからカードを１枚選んで持ち主の墓地に置く。\nT・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-s04",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "ドラゴン"
+              }
+            },
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1798",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-001",
+      "name": "白騎士の無限龍ウルフェリオス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "エンジェル・コマンド/アポロニア・ドラゴン",
+      "text": "超無限進化 - 自分の光のクリーチャー１体以上の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から２枚を表向きにする。その中から、名前に《白騎士》とあるクリーチャーを好きな数、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-001",
+      "limit": 4,
+      "evolution": {
+        "civilization": "光"
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "光"
+          }
+        ],
+        "variable": true
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 2,
+              "public": true,
+              "g1660PublicReveal": true,
+              "rest": "bottom",
+              "filter": {
+                "creature": true,
+                "name": "白騎士"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1798",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1797,
-    "checkedAt": "2026-11-27T12:40:26.595Z",
-    "baseCount": 9612,
+    "phase": 1798,
+    "checkedAt": "2026-11-27T12:45:56.459Z",
+    "baseCount": 9615,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9615,
+    "totalCount": 9618,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35418/"
+      "https://dm.takaratomy.co.jp/rule/qa/46961/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35903/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35904/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337657,6 +337896,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/41756/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35965/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1797,
+        "checkedAt": "2026-11-27T12:40:26.595Z",
+        "baseCount": 9612,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9615,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35418/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

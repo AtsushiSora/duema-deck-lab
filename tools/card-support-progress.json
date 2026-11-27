@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9615,
-  "pendingNames": 2228,
-  "phase": 1797,
+  "supportedNames": 9618,
+  "pendingNames": 2225,
+  "phase": 1798,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -173,7 +173,7 @@
     "D2フィールド": 10,
     "禁断フィールド": 1,
     "クロスギア": 2,
-    "進化クリーチャー(進化GV)": 11,
+    "進化クリーチャー(進化GV)": 9,
     "タマシード/クリーチャー": 3,
     "土地": 1,
     "サイキック・クリーチャー": 83,
@@ -216,13 +216,13 @@
     "進化クリーチャー(マナ進化V)": 3,
     "進化クリーチャー(手札進化V)": 1,
     "DMフィールド": 2,
-    "進化クリーチャー(超無限進化)": 3,
+    "進化クリーチャー(超無限進化)": 2,
     "進化クリーチャー（進化GV）": 1,
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
     "未対応の能力文": 1632,
-    "複数面・特殊カードタイプまたは情報不足": 497,
+    "複数面・特殊カードタイプまたは情報不足": 494,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -567183,11 +567183,191 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1798,
+      "checkedAt": "2026-11-27T12:56:36.283Z",
+      "baseline": "b04a6d6c4ce346b2ec1559f447f543cb11daab8d",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9615,
+      "currentNames": 9618,
+      "remainingNames": 382,
+      "added": [
+        {
+          "id": "dm19-007",
+          "name": "超神星マーズ・ディザスター"
+        },
+        {
+          "id": "dm20-s04",
+          "name": "超神星ライラ・ボルストーム"
+        },
+        {
+          "id": "dm34-001",
+          "name": "白騎士の無限龍ウルフェリオス"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1798,
+        "baseline": "b04a6d6c4ce346b2ec1559f447f543cb11daab8d",
+        "originalDefinitionsUnchanged": 9615,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9618,
+        "uniqueIds": 9618,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9615,
+        "existingImageReferenceRowsUnchanged": 11977,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1798": {
+          "name": "official-1798",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1798.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.88,
+          "log": "tmp/duema-target-10000/official-1798.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1798-final": {
+          "name": "focused-1798-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1798-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.841,
+          "log": "tmp/duema-target-10000/focused-1798-final.log",
+          "passed": 33,
+          "logSha256": "1744a1c6be261954dcd4f1384162b27cbf097aed3c2830a7e2ed1c8df089ee3f"
+        },
+        "related-1798": {
+          "name": "related-1798",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard530-effects.test.mjs",
+            "tests/standard531-effects.test.mjs",
+            "tests/standard1660-effects.test.mjs",
+            "tests/phoenix-photo.test.mjs",
+            "tests/standard1796-effects.test.mjs",
+            "tests/standard1797-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 483.989,
+          "log": "tmp/duema-target-10000/related-1798.log",
+          "passed": 410,
+          "logSha256": "1754883654ceabe2ffc2847bcfc2687f42ed659bf7fdd0a03fc175066942ad10"
+        },
+        "check-1798": {
+          "name": "check-1798",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 35.256,
+          "log": "tmp/duema-target-10000/check-1798.log",
+          "passed": 0,
+          "logSha256": "842ff6759d8d1af53ee53da419d5ca2395f201dbd8fe475f145d8be758b8ec3e"
+        },
+        "audit-1798": {
+          "name": "audit-1798",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 16.711,
+          "log": "tmp/duema-target-10000/audit-1798.log",
+          "passed": 0,
+          "logSha256": "5b81e12bcbe9a1c26c9686e8bdc6078f4c706e333ad68303bfe27d3c137df72a"
+        },
+        "invariants-1798": {
+          "name": "invariants-1798",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1798"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.977,
+          "log": "tmp/duema-target-10000/invariants-1798.log",
+          "passed": 0,
+          "logSha256": "00915605da8b8946abe5c79c4fb00e08b095aa938e748e0a264a71d9b59ebee9"
+        },
+        "related-online-1798": {
+          "name": "related-online-1798",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.923,
+          "log": "tmp/duema-target-10000/related-online-1798.log",
+          "passed": 5,
+          "logSha256": "46a48b24e960c4b01d340df05992f50c926406cfcea0828c5423cb5708dbe28d"
+        }
+      },
+      "totalTestsPassed": 448,
+      "manifest": "tools/support-phase-1798.json",
+      "supported": 9618,
+      "pending": 2225,
+      "engineVersion": "0.602.322",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1798",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1798-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.182,
+          "log": "tmp/duema-target-10000/focused-1798.log",
+          "reason": "Corrected Ulpherios specification to civilization-only matching: native Phoenix matching treats {creature:true} as unconstrained, while its candidate pool already enforces creatures. Added explicit g1660PublicReveal inspection forwarding to native LookDeploy530 (same format as Look); both authenticated room seats now see revealed cards. Corrected Curved Wind fixture ID dmrp22-030 and native automatic completion before evolution-base selection. All 33 final focused tests pass."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1797,
-    "nextPhase": 1798,
+    "lastVerifiedPhase": 1798,
+    "nextPhase": 1799,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -568100,11 +568280,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1797,
-      "baseline": "2ff2530ad68b0cc8b3f996c03756142d4e2aea83",
-      "supportedNames": 9615,
-      "artifact": "tools/target10000-registration-checkpoint-1797.json",
-      "checkedAt": "2026-11-27T12:43:59.797Z"
+      "phase": 1798,
+      "baseline": "b04a6d6c4ce346b2ec1559f447f543cb11daab8d",
+      "supportedNames": 9618,
+      "artifact": "tools/target10000-registration-checkpoint-1798.json",
+      "checkedAt": "2026-11-27T12:56:36.283Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -571162,8 +571342,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9615,
-      "remaining": 385,
+      "currentNames": 9618,
+      "remaining": 382,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -571171,8 +571351,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1797,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1797.json",
+      "lastPhase": 1798,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1798.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -572400,8 +572580,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9615,
-      "remaining": 385,
+      "currentNames": 9618,
+      "remaining": 382,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572409,8 +572589,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1797,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1797.json",
+      "lastPhase": 1798,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1798.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -572526,6 +572706,16 @@
         "reason": "This turn stopped the node process group after 252.610 seconds with no reporter output from abyss-effects; no assertion verdict. Do not rerun the same broad group. The required changed exact-mill path and native Katana Rush behavior are covered by the passing focused tests and split related1616/450/1300/1784 tests.",
         "log": "tmp/duema-target-10000/related-1785.log",
         "note": "The path was subsequently used for the successful reduced group; its original zero-byte output and interrupted command/result remain recorded in runs.jsonl and checkpoint1785.resolvedAttempts. No assertion failure is being reported as a pass."
+      }
+    ],
+    "completedLongRegressionGroups": [
+      {
+        "phase": 1798,
+        "testsPassed": 410,
+        "seconds": 483.989,
+        "log": "tmp/duema-target-10000/related-1798.log",
+        "checkpoint": "tools/target10000-registration-checkpoint-1798.json",
+        "doNotRepeatUnchanged": true
       }
     ]
   },
@@ -624400,10 +624590,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1797,
+    "phase": 1798,
     "threshold": 10000,
-    "supportedNames": 9615,
-    "pendingNames": 2228,
+    "supportedNames": 9618,
+    "pendingNames": 2225,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -624412,7 +624602,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1797.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1798.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

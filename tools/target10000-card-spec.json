@@ -7950,5 +7950,356 @@
         }
       ]
     }
+  },
+  "dm19-007": {
+    "phase": 1798,
+    "faces": [
+      {
+        "name": "超神星マーズ・ディザスター",
+        "typeText": "進化クリーチャー(進化GV)",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化GV-自分のティラノ・ドレイク、ドリームメイト、ヒューマノイドのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、パワー4000以下のクリーチャーをすべて破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "フェニックス",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ティラノ・ドレイク"
+              },
+              {
+                "race": "ドリームメイト"
+              },
+              {
+                "race": "ヒューマノイド"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "g1660CreatureOnly": true,
+              "filter": {
+                "creature": true,
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm20-s04": {
+    "phase": 1798,
+    "faces": [
+      {
+        "name": "超神星ライラ・ボルストーム",
+        "typeText": "進化クリーチャー(進化GV)",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化GV-自分のドラゴン・ゾンビ、アーマード・ドラゴン、アース・ドラゴンのいずれか３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、種族にドラゴンとある、進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出し、相手のパワー5000以下のクリーチャーを１体破壊し、相手のマナゾーンからカードを１枚選んで持ち主の墓地に置く。\nT・ブレイカー",
+        "race": "フェニックス",
+        "powerText": "18000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "ドラゴン"
+              }
+            },
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex1-009": {
+    "phase": 1798,
+    "faces": [
+      {
+        "name": "超神星ライラ・ボルストーム",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化GV：ドラゴン・ゾンビ、アーマード・ドラゴン、アース・ドラゴンいずれかのクリーチャー３体の上に重ねつつ出す。\nＴ・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、墓地に置いてもよい。そうしたら、進化ではないドラゴン・クリーチャーを１体、自分の手札から出し、相手のパワー5000以下のクリーチャーを１体選んで破壊し、相手のマナゾーンにあるカードを１枚選んで持ち主の墓地に置く。",
+        "race": "フェニックス",
+        "powerText": "18000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "race": "アーマード・ドラゴン"
+              },
+              {
+                "race": "アース・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "ドラゴン"
+              }
+            },
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm34-001": {
+    "phase": 1798,
+    "faces": [
+      {
+        "name": "白騎士の無限龍ウルフェリオス",
+        "typeText": "進化クリーチャー(超無限進化)",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "超無限進化 - 自分の光のクリーチャー１体以上の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から２枚を表向きにする。その中から、名前に《白騎士》とあるクリーチャーを好きな数、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アポロニア・ドラゴン",
+        "powerText": "9500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "光"
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "光"
+          }
+        ],
+        "variable": true
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 2,
+              "public": true,
+              "g1660PublicReveal": true,
+              "rest": "bottom",
+              "filter": {
+                "creature": true,
+                "name": "白騎士"
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }
