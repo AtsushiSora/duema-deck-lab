@@ -306590,18 +306590,126 @@
       ],
       "supportBatch": "phase-1784",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-016",
+      "name": "ズン＝ドー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンに１度、クリーチャーを１体、自分の墓地から召喚してもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1785",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-s02",
+      "name": "無量大龍 ツェン・ミリアルデン",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ゼロ・ドラゴン/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃する時、「ムゲンクライム」能力を持つクリーチャーを１体、自分の手札または墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-s02",
+      "limit": 4,
+      "mugenCrime": 3,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g415Mugen": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1785",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-090",
+      "name": "カタナ＝タッガーナ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その中からアビスを１枚、手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-090",
+      "limit": 4,
+      "abyssRush": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 4,
+          "recover": true,
+          "filter": {
+            "anyFaceRace": "アビス"
+          },
+          "g1785PureRecovery": true
+        }
+      ],
+      "supportBatch": "phase-1785",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1784,
-    "checkedAt": "2026-11-27T10:23:47.456Z",
-    "baseCount": 9572,
+    "phase": 1785,
+    "checkedAt": "2026-11-27T10:36:20.441Z",
+    "baseCount": 9575,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9575,
+    "totalCount": 9578,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34206/"
+      "https://dm.takaratomy.co.jp/rule/qa/34351/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335825,6 +335933,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/32916/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1784,
+        "checkedAt": "2026-11-27T10:23:47.456Z",
+        "baseCount": 9572,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9575,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34206/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -6550,8 +6550,8 @@ export function createSixPhotoRules(api){
   const refs=moved.filter(y=>own.grave.includes(y)).map(y=>({uid:y.uid,serial:y.zoneSerial||0}));
   if(s.winner!==null)break;
   if(t.recover){
-   const options=api.canMoveZone(s,t.p,'grave')?refs.map(r=>{const y=own.grave.find(y=>y.uid===r.uid);return opt(card(y).name,r,10+cost(card(y)),y.cardId);}):[];
-   choice(s,{...t,refs},'今墓地に置いたカードを選び「このカード、気にいったぜ！」と言う？',[...options,skip()]);
+   const options=api.canMoveZone(s,t.p,'grave')?refs.filter(r=>{const y=own.grave.find(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial);return y&&matches(s,t.p,y,t.filter);}).map(r=>{const y=own.grave.find(y=>y.uid===r.uid);return opt(card(y).name,r,10+cost(card(y)),y.cardId);}):[];
+   choice(s,{...t,refs},t.g1785PureRecovery?'今墓地に置いたカードから手札に戻すカードを1枚まで選ぶ':'今墓地に置いたカードを選び「このカード、気にいったぜ！」と言う？',[...options,skip()]);
   }else start(s,t,[{op:'Execute',origin:'grave',spellOnly:true,optional:true,g1616Refs:refs,
    ...(t.max!==undefined?{max:t.max}:{}),...(t.spellColorsAny?{spellColorsAny:t.spellColorsAny}:{}),...(t.filter?{filter:t.filter}:{})}]);
   break;
@@ -9412,8 +9412,8 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_MillSequence1616':
-  if(v){const y=own.grave.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)zoneMove(s,t.p,'grave',y.uid,'hand',t);}
-  else start(s,t,[{op:'SpellFinish416',to:'hand'}]);
+  if(v){const y=own.grave.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y&&t.refs?.some(r=>r.uid===v.uid&&r.serial===v.serial)&&matches(s,t.p,y,t.filter)&&api.canMoveZone(s,t.p,'grave'))zoneMove(s,t.p,'grave',y.uid,'hand',t);}
+  else if(!t.g1785PureRecovery)start(s,t,[{op:'SpellFinish416',to:'hand'}]);
   break;
  case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1675ExtraSummon&&(!y||(y.zoneSerial||0)!==v.serial1675||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(t.g1675ExtraSummon&&v.g1104Back?psychicBack1104(y):y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1675ExtraSummon&&(c.type!=='creature'||cost(c)>t.max||!matches(s,t.p,v.g1104Back?psychicBack1104(y):y,t.filter)||!api.canCast(s,t.p,c,v.origin)||!api.canEnter(s,t.p,c,{origin:v.origin,execution:true})))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(t.g1726WaveRefs){release(s,t.p,v.uid);api.enqueue(s,t.p,{source:t.source,effect:'extended',g1726Continue:true,g1726Prior:t.g1726Prior,task:{...t,g1616Refs:t.g1616Refs.filter(r=>r.uid!==v.uid)}});}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face,...(t.g1675ExtraSummon?{g1104Back:!!v.g1104Back}:{})});else cast(s,t.p,v.uid,true,null,v.face,t.g1675ExtraSummon&&v.g1104Back?{g1321PsychicBack:true}:null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_FirstDiscardUse1268':

@@ -4840,5 +4840,165 @@
         }
       ]
     }
+  },
+  "dm25rp3-016": {
+    "phase": 1785,
+    "faces": [
+      {
+        "name": "ズン＝ドー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンに１度、クリーチャーを１体、自分の墓地から召喚してもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "アビスロイヤル",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      }
+    }
+  },
+  "dm25rp3-Sec17": {
+    "phase": 1785,
+    "faces": [
+      {
+        "name": "ズン＝ドー",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンに１度、クリーチャーを１体、自分の墓地から召喚してもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。",
+        "race": "アビスロイヤル",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "grave",
+        "filter": {
+          "creature": true
+        }
+      },
+      "g1300FirstGraveLeft": {
+        "defs": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex13-s02": {
+    "phase": 1785,
+    "faces": [
+      {
+        "name": "無量大龍 ツェン・ミリアルデン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃する時、「ムゲンクライム」能力を持つクリーチャーを１体、自分の手札または墓地からバトルゾーンに出してもよい。",
+        "race": "ゼロ・ドラゴン/チーム零",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 3,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g415Mugen": true
+          }
+        }
+      ]
+    }
+  },
+  "dm24ex2-090": {
+    "phase": 1785,
+    "faces": [
+      {
+        "name": "カタナ＝タッガーナ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その中からアビスを１枚、手札に戻してもよい。",
+        "race": "アビスロイヤル",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "abyssRush": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillSequence1616",
+          "n": 4,
+          "recover": true,
+          "filter": {
+            "anyFaceRace": "アビス"
+          },
+          "g1785PureRecovery": true
+        }
+      ]
+    }
   }
 }

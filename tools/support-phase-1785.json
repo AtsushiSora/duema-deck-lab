@@ -1,0 +1,316 @@
+{
+  "phase": 1785,
+  "checkedAt": "2026-11-27T10:36:20.441Z",
+  "baseline": "6066c9e47a065851bb73b39a757e2a02d4b0f72c",
+  "baseCount": 9575,
+  "target": 10000,
+  "description": "Complete native grave summon permission, first grave departure reduction, Mugen Crime and Abyss Rush. Reuse the actual Mugen ability filter; extend exact freshly-milled recovery with a race filter and a plain optional recovery variant without the legacy spell self-return.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/34351/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-016",
+      "name": "ズン＝ドー",
+      "canonicalId": "dm25rp3-016",
+      "printId": "dm25rp3-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-016",
+      "faces": [
+        {
+          "name": "ズン＝ドー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンに１度、クリーチャーを１体、自分の墓地から召喚してもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ],
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        "g1300FirstGraveLeft": {
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-016.jpg",
+      "imageSha256": "0985a76f548ad721bb0eadbd63c7f2e09f912d4f5b47ee889fa78543857184fd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25rp3-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25rp3-016",
+          "dm25rp3-Sec17"
+        ],
+        "allSearchIds": [
+          "dm25rp3-Sec17",
+          "dm25rp3-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:36:20.441Z",
+        "sha256": "e2d96a7bc4455ac43b5db938f2cd11370279fbfc4f14198291efafab22786e8c",
+        "facesMatched": true,
+        "imageSha256": "0985a76f548ad721bb0eadbd63c7f2e09f912d4f5b47ee889fa78543857184fd"
+      }
+    },
+    {
+      "id": "dmex13-s02",
+      "name": "無量大龍 ツェン・ミリアルデン",
+      "canonicalId": "dmex13-s02",
+      "printId": "dmex13-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-s02",
+      "faces": [
+        {
+          "name": "無量大龍 ツェン・ミリアルデン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃する時、「ムゲンクライム」能力を持つクリーチャーを１体、自分の手札または墓地からバトルゾーンに出してもよい。",
+          "race": "ゼロ・ドラゴン/チーム零",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "zones": [
+              "hand",
+              "grave"
+            ],
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g415Mugen": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-s02.jpg",
+      "imageSha256": "8afba23a35355410bd8f5c7f016d62d7b3a58d2e6f6381d3dcf240aa66935705",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex13-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex13-s02"
+        ],
+        "allSearchIds": [
+          "dmex14-s05",
+          "dmex13-s02",
+          "dmrp15-s08",
+          "dmrp16-s08",
+          "dmrp16-003",
+          "dmrp15-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:36:20.441Z",
+        "sha256": "bd1808c659e507cbd35967a9389db67da5e38590ac509fe55d0beb6bf6f0de60",
+        "facesMatched": true,
+        "imageSha256": "8afba23a35355410bd8f5c7f016d62d7b3a58d2e6f6381d3dcf240aa66935705"
+      }
+    },
+    {
+      "id": "dm24ex2-090",
+      "name": "カタナ＝タッガーナ",
+      "canonicalId": "dm24ex2-090",
+      "printId": "dm24ex2-090",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-090",
+      "faces": [
+        {
+          "name": "カタナ＝タッガーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。その中からアビスを１枚、手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillSequence1616",
+            "n": 4,
+            "recover": true,
+            "filter": {
+              "anyFaceRace": "アビス"
+            },
+            "g1785PureRecovery": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-090.jpg",
+      "imageSha256": "7d6ecc6bc1aa67be0090f114cdf0fe8d610a138fbac90ad28d9231d6a20ff097",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex2-090-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24ex2-090"
+        ],
+        "allSearchIds": [
+          "dm24ex2-090"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:36:20.441Z",
+        "sha256": "43fd45256e579a82b612c518c3aafb4f6052433b52acadf2e58e137cf0d179db",
+        "facesMatched": true,
+        "imageSha256": "7d6ecc6bc1aa67be0090f114cdf0fe8d610a138fbac90ad28d9231d6a20ff097"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp3-Sec17",
+      "name": "ズン＝ドー",
+      "canonicalId": "dm25rp3-016",
+      "printId": "dm25rp3-Sec17",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-Sec17",
+      "faces": [
+        {
+          "name": "ズン＝ドー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンに１度、クリーチャーを１体、自分の墓地から召喚してもよい。\n各ターン、はじめてカードが自分の墓地から離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ],
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "creature": true
+          }
+        },
+        "g1300FirstGraveLeft": {
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-Sec17.jpg",
+      "imageSha256": "d21deeb282fbe986a2aa5d5ae3cf7a14d6cd163367f2e254690a241b618bf763",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25rp3-Sec17-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25rp3-016",
+          "dm25rp3-Sec17"
+        ],
+        "allSearchIds": [
+          "dm25rp3-Sec17",
+          "dm25rp3-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:36:20.441Z",
+        "sha256": "94b12f67f11cab63e790cbc388c551556f1ec0dab467f1e69712074b99f97954",
+        "facesMatched": true,
+        "imageSha256": "d21deeb282fbe986a2aa5d5ae3cf7a14d6cd163367f2e254690a241b618bf763"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34351/",
+      "sha256": "863837901a50304ab5f32be1f7c923e0e5a9020b2e2a254e422386d1c450e237",
+      "checkedAt": "2026-11-27T10:36:20.441Z",
+      "reproduced": true,
+      "tests": "tests/standard1785-effects.test.mjs",
+      "reproduction": "QA34351: the actual registered Zanboron (dmsd16-012) is rejected in both hand and grave, while an actual Mugen Crime creature is selectable and enters without payment; private hand choice survives sealed room restoration.",
+      "result": "QA34351: the actual registered Zanboron (dmsd16-012) is rejected in both hand and grave, while an actual Mugen Crime creature is selectable and enters without payment; private hand choice survives sealed room restoration."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:36:20.441Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-016": 4,
+      "dmex13-s02": 4,
+      "dm24ex2-090": 4,
+      "dm25rp3-Sec17": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "The first related group was stopped by this turn after 252.610 seconds while abyss-effects remained active without reporter output; no assertion result was produced. Do not retry that broad group. The actual changed exact-mill recovery path is covered by all short phase1616 recovery, replacement and serial tests; phases450/1300/1784 cover reused summon/departure/Mugen paths. Katana native Abyss Rush is covered by dedicated paid summon, immediate attack, decline and delayed-return tests. The reduced related group and quick online regression passed. The historical whole suite remains interrupted/unconfirmed.",
+    "notRun": [
+      "Full npm test",
+      "Known long CPU groups",
+      "Broad abyss-effects group: interrupted, verdict unconfirmed"
+    ]
+  }
+}

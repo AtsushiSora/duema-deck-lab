@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11841,
-  "supportedNames": 9575,
-  "pendingNames": 2266,
-  "phase": 1784,
+  "supportedNames": 9578,
+  "pendingNames": 2263,
+  "phase": 1785,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1318,
+    "クリーチャー": 1315,
     "呪文": 252,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1667,
+    "未対応の能力文": 1664,
     "複数面・特殊カードタイプまたは情報不足": 500,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -564617,27 +564617,212 @@
       },
       "resolvedAttempts": [],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1785,
+      "checkedAt": "2026-11-27T10:43:18.868Z",
+      "baseline": "6066c9e47a065851bb73b39a757e2a02d4b0f72c",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9575,
+      "currentNames": 9578,
+      "remainingNames": 422,
+      "added": [
+        {
+          "id": "dm25rp3-016",
+          "name": "ズン＝ドー"
+        },
+        {
+          "id": "dmex13-s02",
+          "name": "無量大龍 ツェン・ミリアルデン"
+        },
+        {
+          "id": "dm24ex2-090",
+          "name": "カタナ＝タッガーナ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1785,
+        "baseline": "6066c9e47a065851bb73b39a757e2a02d4b0f72c",
+        "originalDefinitionsUnchanged": 9575,
+        "uniqueNames": 9578,
+        "uniqueIds": 9578,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11845,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9575,
+        "existingImageReferenceRowsUnchanged": 11908,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1785": {
+          "name": "official-1785",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1785.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.998,
+          "log": "tmp/duema-target-10000/official-1785.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1785-final": {
+          "name": "focused-1785-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1785-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.662,
+          "log": "tmp/duema-target-10000/focused-1785-final.log",
+          "passed": 23,
+          "logSha256": "88f8151f98f6e65c8f45c9b9d592b1b9136c25110182a63318123ec35c624679"
+        },
+        "related-1785": {
+          "name": "related-1785",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?!.*(?:legal forty CPU|AI inspection|phase1616 real forty)).*",
+            "tests/standard450-effects.test.mjs",
+            "tests/standard1300-effects.test.mjs",
+            "tests/standard1616-effects.test.mjs",
+            "tests/standard1784-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 37.8,
+          "log": "tmp/duema-target-10000/related-1785.log",
+          "passed": 145,
+          "logSha256": "59d631e48a38c3dddaa7ef98a5290c7b74bb4984f7bef132377fb6034c843334"
+        },
+        "check-1785": {
+          "name": "check-1785",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.949,
+          "log": "tmp/duema-target-10000/check-1785.log",
+          "passed": 0,
+          "logSha256": "83562e75d4de932c6c58de431c2c4bea997e83c7bfa1f119a075f07086bac412"
+        },
+        "audit-1785": {
+          "name": "audit-1785",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.685,
+          "log": "tmp/duema-target-10000/audit-1785.log",
+          "passed": 0,
+          "logSha256": "869b17b95c94cf78cc12a21b8e1227481d0e85aa76dd0ea5b013ae71ddca24e1"
+        },
+        "invariants-1785": {
+          "name": "invariants-1785",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1785"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.761,
+          "log": "tmp/duema-target-10000/invariants-1785.log",
+          "passed": 0,
+          "logSha256": "9b12532d9113d41fcb82c11a6a76591e2e5538ba0ff97a6cee250358ae1b3157"
+        },
+        "related-online-1785": {
+          "name": "related-online-1785",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.56,
+          "log": "tmp/duema-target-10000/related-online-1785.log",
+          "passed": 5,
+          "logSha256": "b15f1ccf72f85a9a51053de7c0b2fab9a58f2749bb1f92534a41bf85ce245aa9"
+        }
+      },
+      "totalTestsPassed": 173,
+      "manifest": "tools/support-phase-1785.json",
+      "supported": 9578,
+      "pending": 2263,
+      "engineVersion": "0.602.309",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "related-1785",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?!.*(?:legal forty CPU|AI inspection|phase1616 real forty|No13 AI|No13 random|No13 production|every supported borrowed)).*",
+            "tests/standard450-effects.test.mjs",
+            "tests/standard1300-effects.test.mjs",
+            "tests/standard1616-effects.test.mjs",
+            "tests/standard1784-effects.test.mjs",
+            "tests/abyss-effects.test.mjs"
+          ],
+          "code": -9,
+          "timedout": false,
+          "seconds": 252.61,
+          "log": "tmp/duema-target-10000/related-1785.log",
+          "reason": "The first related group was stopped by this turn after 252.610 seconds while abyss-effects remained active without reporter output; no assertion result was produced. Do not retry that broad group. The actual changed exact-mill recovery path is covered by all short phase1616 recovery, replacement and serial tests; phases450/1300/1784 cover reused summon/departure/Mugen paths. Katana native Abyss Rush is covered by dedicated paid summon, immediate attack, decline and delayed-return tests. The reduced related group and quick online regression passed. The historical whole suite remains interrupted/unconfirmed."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1784,
-    "nextPhase": 1785,
+    "lastVerifiedPhase": 1785,
+    "nextPhase": 1786,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm25rp3-016",
-        "name": "ズン＝ドー",
-        "reason": "Official research saved. Native mill 2, once-own-turn grave creature summon permission (g450ZoneSummon), first grave departure watch (g1300FirstGraveLeft) minus 4000."
+        "id": "dmex13-033",
+        "name": "罪無 メリゴ垓",
+        "reason": "Official complete image and single print checked; native CountPowerMinus1123 counts tapped own creatures at resolution. QA34335 snapshot reproduction next."
       },
       {
-        "id": "dmex13-s02",
-        "name": "無量大龍 ツェン・ミリアルデン",
-        "reason": "Official research saved. Native Mugen Crime 3 and optional hand/grave deploy; add explicit filter for creatures with Mugen Crime ability."
+        "id": "dmrp15-s08",
+        "name": "無量大龍 ドゥエ・ミリオーニ",
+        "reason": "Official complete image/single print checked; native Mugen3, minus11000 and opponent death optional draw; Official linked QA simultaneous source destruction next."
       },
       {
-        "id": "dm24ex2-090",
-        "name": "カタナ＝タッガーナ",
-        "reason": "Official research saved. Native Abyss Rush and exact mill sequence references; recovery must select an Abyss among only the four freshly milled cards, not any old grave card."
+        "id": "dmrp15-008",
+        "name": "那由多 アストロ宙ノ",
+        "reason": "Official original+dmex19-018 full images and stats checked; independent entry triggers via g527ExtraEntry, snapshot Slayer until own start, actual draw/discard count via native CountOwn538 and PlayerDraw461."
       }
     ],
     "steps": [
@@ -565531,11 +565716,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1784,
-      "baseline": "3f83ccd17c50b55dcf938749cdc53e852c1e4118",
-      "supportedNames": 9575,
-      "artifact": "tools/target10000-registration-checkpoint-1784.json",
-      "checkedAt": "2026-11-27T10:30:56.557Z"
+      "phase": 1785,
+      "baseline": "6066c9e47a065851bb73b39a757e2a02d4b0f72c",
+      "supportedNames": 9578,
+      "artifact": "tools/target10000-registration-checkpoint-1785.json",
+      "checkedAt": "2026-11-27T10:43:18.868Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -568593,8 +568778,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9575,
-      "remaining": 425,
+      "currentNames": 9578,
+      "remaining": 422,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -568602,8 +568787,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1784,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1784.json",
+      "lastPhase": 1785,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1785.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -569831,8 +570016,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9575,
-      "remaining": 425,
+      "currentNames": 9578,
+      "remaining": 422,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -569840,8 +570025,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1784,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1784.json",
+      "lastPhase": 1785,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1785.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -569948,7 +570133,7 @@
       "resumedOn": "2026-11-23"
     },
     "restartInstructions10000": "Start from latest local commit; check AGENTS, staged/unstaged diffs, progress, previous test results and existing processes; recount actual dist/cards.json names using dist/catalogue.js nameKey. Continue toward 10000 in fully verified 3–5-name batches using grouped official research and native tasks. Use tmp/duema-target-10000 scripts and tools/expand-standard-batch.mjs after successful official verification; apply.mjs then write-online-compatibility.mjs. Run own tests, relevant regressions and check; run audit before invariants sequentially. Preserve older pending/deferrals and full-suite interrupted status. No push/publication/Netlify or timed automation restart.",
-    "restartInstructions": "Resume grouped manual 10,000 target from the latest verified local commit; first inspect work/tree/index/processes/progress/AGENTS and nameKey actual count. Research reusable complete candidates in groups, validate and commit each small batch. Keep automation PAUSED. No push, publication, Netlify or full npm test. Do not count held incomplete crystal cards."
+    "restartInstructions": "Recount dist/cards.json names with catalogue.nameKey at start/end; check HEAD/status/index/AGENTS/progress/running jobs. Continue verified small batches toward 10,000. Use grouped official research and native complete effects. No full npm test, no broad abyss-effects retry, no push/Pages/Netlify; older pending retained."
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
@@ -621821,10 +622006,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1784,
+    "phase": 1785,
     "threshold": 10000,
-    "supportedNames": 9575,
-    "pendingNames": 2266,
+    "supportedNames": 9578,
+    "pendingNames": 2263,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -621833,7 +622018,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1784.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1785.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
