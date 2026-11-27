@@ -1,0 +1,164 @@
+{
+  "phase": 1788,
+  "checkedAt": "2026-11-27T10:58:42.682Z",
+  "baseline": "fdda4a4f6d6fab152dd26f79542cb30b08fdca28",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9584,
+  "currentNames": 9587,
+  "remainingNames": 413,
+  "added": [
+    {
+      "id": "dm25ex4-022",
+      "name": "怒流牙 セイント・イサ・マリア"
+    },
+    {
+      "id": "dmrp06-067",
+      "name": "貝獣 アッカイ"
+    },
+    {
+      "id": "dmex15-b008",
+      "name": "原初の決闘者 アダム"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1788,
+    "baseline": "fdda4a4f6d6fab152dd26f79542cb30b08fdca28",
+    "originalDefinitionsUnchanged": 9584,
+    "uniqueNames": 9587,
+    "uniqueIds": 9587,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11845,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9584,
+    "existingImageReferenceRowsUnchanged": 11919,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1788": {
+      "name": "official-1788",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1788.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.411,
+      "log": "tmp/duema-target-10000/official-1788.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1788-final": {
+      "name": "focused-1788-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1788-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.309,
+      "log": "tmp/duema-target-10000/focused-1788-final.log",
+      "passed": 20,
+      "logSha256": "4c2a8e5db5fff2003d98b8bc821ccaa673304764d822cf1f1967c4e0a1fce0fc"
+    },
+    "related-1788": {
+      "name": "related-1788",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?!.*(?:legal forty|full legal|complete forty|CPU match|forty-card|CPU game)).*",
+        "tests/standard261-effects.test.mjs",
+        "tests/standard314-effects.test.mjs",
+        "tests/standard1037-effects.test.mjs",
+        "tests/standard1316-effects.test.mjs",
+        "tests/standard1780-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 41.605,
+      "log": "tmp/duema-target-10000/related-1788.log",
+      "passed": 233,
+      "logSha256": "5c5726c4d85effcb2fc93309f46fe3a57d334fc6d4988895bad211c4ffaf24e4"
+    },
+    "check-1788": {
+      "name": "check-1788",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.379,
+      "log": "tmp/duema-target-10000/check-1788.log",
+      "passed": 0,
+      "logSha256": "a11040984582189f78878a3300c021e1cdc9a35f27020fd97a568854cd268679"
+    },
+    "audit-1788": {
+      "name": "audit-1788",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.938,
+      "log": "tmp/duema-target-10000/audit-1788.log",
+      "passed": 0,
+      "logSha256": "942603bb1cc28b9c456c3eee7efa44970be01256b98f8c32ffb5688f7e49a450"
+    },
+    "invariants-1788": {
+      "name": "invariants-1788",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/invariants.mjs",
+        "1788"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.704,
+      "log": "tmp/duema-target-10000/invariants-1788.log",
+      "passed": 0,
+      "logSha256": "1b880f1220a768462e60b7eb90aa0bddddbc4c2869202640e6c3d9abffafab68"
+    }
+  },
+  "totalTestsPassed": 253,
+  "manifest": "tools/support-phase-1788.json",
+  "supported": 9587,
+  "pending": 2254,
+  "engineVersion": "0.602.312",
+  "held": [],
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "focused-1788",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1788-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.081,
+      "log": "tmp/duema-target-10000/focused-1788.log",
+      "reason": "Initial two targeting assertions inspected only extended choices, while the original Demon Hand and Spiral Gate use native effect actions with targets. The fixture now inspects both supported action representations; all twenty final tests pass. No shared behavior changes. Actual S Back Light payment, zero mana execution, no self-turn draw, seed exclusions, Genmu suppression, real own spell cast/turn reset/no-cost-reduction ban, exact six-cost own-start deployment, encrypted restore and spell-only targeting protection are covered."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

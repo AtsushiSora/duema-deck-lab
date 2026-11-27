@@ -306956,20 +306956,129 @@
       ],
       "supportBatch": "phase-1787",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-022",
+      "name": "怒流牙 セイント・イサ・マリア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メカ・デル・ソル/シノビ",
+      "text": "ストライク・バック S・バック：光（光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nブロッカー ブロッカー\n相手のターン中に、自分のクリーチャーが出た時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-022",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColors": [
+        "光"
+      ],
+      "blocker": true,
+      "g314OtherEntry": {
+        "who": "self",
+        "g1324IncludeSelf": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1114OpponentTurn": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1788",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-067",
+      "name": "貝獣 アッカイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ムートピア",
+      "text": "このターン、自分が呪文を唱えていれば、このクリーチャーを召喚するコストは３少なくなる。ただし、コストは０以下にならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-067",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g261Discount": {
+        "filter": {
+          "g1037SpellCast": true
+        },
+        "amount": 3
+      },
+      "supportBatch": "phase-1788",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b008",
+      "name": "原初の決闘者 アダム",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ゴッド/クリエイター/オリジン",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚をマナゾーンに置く。\n自分のターンのはじめに、コスト６以下のクリーチャーを１体、自分のマナゾーンから出す。\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b008",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "spellUntargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 3
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1788",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1787,
-    "checkedAt": "2026-11-27T10:48:08.188Z",
-    "baseCount": 9581,
+    "phase": 1788,
+    "checkedAt": "2026-11-27T10:54:14.355Z",
+    "baseCount": 9584,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9584,
+    "totalCount": 9587,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31819/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35641/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -336240,6 +336349,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/34335/",
           "https://dm.takaratomy.co.jp/rule/qa/34202/",
           "https://dm.takaratomy.co.jp/rule/qa/34203/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1787,
+        "checkedAt": "2026-11-27T10:48:08.188Z",
+        "baseCount": 9581,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9584,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31819/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35641/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

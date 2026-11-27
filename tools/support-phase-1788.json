@@ -1,0 +1,304 @@
+{
+  "phase": 1788,
+  "checkedAt": "2026-11-27T10:54:14.355Z",
+  "baseline": "fdda4a4f6d6fab152dd26f79542cb30b08fdca28",
+  "baseCount": 9584,
+  "target": 10000,
+  "description": "Complete native light Strike Back and own creature-entry watch during opponent turn, mandatory spell-cast conditional summon discount, and Adam blocker/ramp/own-start mana deployment with opponent-spell target protection. All clauses use existing serializable mechanisms.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-022",
+      "name": "怒流牙 セイント・イサ・マリア",
+      "canonicalId": "dm25ex4-022",
+      "printId": "dm25ex4-022",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-022",
+      "faces": [
+        {
+          "name": "怒流牙 セイント・イサ・マリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ストライク・バック S・バック：光（光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのカードを実行する）\nブロッカー ブロッカー\n相手のターン中に、自分のクリーチャーが出た時、カードを１枚引いてもよい。",
+          "race": "メカ・デル・ソル/シノビ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColors": [
+          "光"
+        ],
+        "blocker": true,
+        "g314OtherEntry": {
+          "who": "self",
+          "g1324IncludeSelf": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g1114OpponentTurn": true
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-022.jpg",
+      "imageSha256": "87b90fc279545851576d03e2192f081a6b7595114f01b304712bfa521e1a17f6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex4-022-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25ex4-022"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:54:14.355Z",
+        "sha256": "a3349d5bd3a3de53094896fe619ae10ff0bc6673517cee12ed25f5377aec05a0",
+        "facesMatched": true,
+        "imageSha256": "87b90fc279545851576d03e2192f081a6b7595114f01b304712bfa521e1a17f6"
+      }
+    },
+    {
+      "id": "dmrp06-067",
+      "name": "貝獣 アッカイ",
+      "canonicalId": "dmrp06-067",
+      "printId": "dmrp06-067",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-067",
+      "faces": [
+        {
+          "name": "貝獣 アッカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン、自分が呪文を唱えていれば、このクリーチャーを召喚するコストは３少なくなる。ただし、コストは０以下にならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。",
+          "race": "ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g261Discount": {
+          "filter": {
+            "g1037SpellCast": true
+          },
+          "amount": 3
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-067.jpg",
+      "imageSha256": "0996e422d2a84b0f4ae2f7945923fb3cd57060867f8d19f04c4e9111a73ed40d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp06-067-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp06-067"
+        ],
+        "allSearchIds": [
+          "dmrp02-038",
+          "dmrp06-067",
+          "promoy17-074",
+          "dmrp02-069",
+          "dmrp03-070",
+          "dmsp01-013",
+          "dmrp06-037",
+          "dmrp05-017",
+          "dmrp12-076",
+          "dmrp06-039",
+          "dmrp03-065",
+          "dmrp05-040",
+          "dmrp05-066",
+          "dmrp01-040",
+          "dmrp04s-069",
+          "dmrp07-067",
+          "dmrp02-036",
+          "dmex02-083",
+          "dmrp07-069",
+          "promoy22-026",
+          "dm23ex2-Cho015",
+          "dmex02-072",
+          "dmrp05-067",
+          "dmrp09-015",
+          "dmrp08-069",
+          "dmrp03-035",
+          "dmrp01-071",
+          "dmex04-075",
+          "dmrp04m-047",
+          "dmrp01-037",
+          "dmrp01-069",
+          "dmrp05-038",
+          "promoy18-004",
+          "dmrp02-066",
+          "dmrp04m-045",
+          "dmrp08-035",
+          "dmrp04s-068",
+          "dmrp04s-035",
+          "dmrp04m-027",
+          "dmrp06-038",
+          "dmrp04s-070"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:54:14.355Z",
+        "sha256": "eb476cbda6f0f51bfcdcf3016b037d6397d16d4b7c9871b3c2ac77c524d16876",
+        "facesMatched": true,
+        "imageSha256": "0996e422d2a84b0f4ae2f7945923fb3cd57060867f8d19f04c4e9111a73ed40d"
+      }
+    },
+    {
+      "id": "dmex15-b008",
+      "name": "原初の決闘者 アダム",
+      "canonicalId": "dmex15-b008",
+      "printId": "dmex15-b008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b008",
+      "faces": [
+        {
+          "name": "原初の決闘者 アダム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚をマナゾーンに置く。\n自分のターンのはじめに、コスト６以下のクリーチャーを１体、自分のマナゾーンから出す。\n呪文の効果によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+          "race": "ゴッド/クリエイター/オリジン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "spellUntargetable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 3
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b008.jpg",
+      "imageSha256": "5095789b5d4fe48a1e93b5af891543393219dddbce6a149ce3594617d76d79b0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex15-b008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex15-b008"
+        ],
+        "allSearchIds": [
+          "dmrp19-s02",
+          "dmrp19-a05",
+          "dmrp19-b05",
+          "dm22ex1-ChoG03",
+          "dm22ex1-Cho04",
+          "dm26rp2-TR003",
+          "dm24ex3-rp2TR02",
+          "dm24rp2-TR02",
+          "dmr19-s03",
+          "dmex08-218",
+          "dmrp02-077",
+          "dmex15-b008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:54:14.355Z",
+        "sha256": "48dfba1d5991ace59aa33b1dbf52ba5a643b6ead806fdf4103dffd442cf83eff",
+        "facesMatched": true,
+        "imageSha256": "5095789b5d4fe48a1e93b5af891543393219dddbce6a149ce3594617d76d79b0"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:54:14.355Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-022": 4,
+      "dmrp06-067": 4,
+      "dmex15-b008": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial two targeting assertions inspected only extended choices, while the original Demon Hand and Spiral Gate use native effect actions with targets. The fixture now inspects both supported action representations; all twenty final tests pass. No shared behavior changes. Actual S Back Light payment, zero mana execution, no self-turn draw, seed exclusions, Genmu suppression, real own spell cast/turn reset/no-cost-reduction ban, exact six-cost own-start deployment, encrypted restore and spell-only targeting protection are covered."
+  }
+}
