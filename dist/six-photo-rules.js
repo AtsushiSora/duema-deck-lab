@@ -4486,7 +4486,8 @@ export function createSixPhotoRules(api){
   const rows=api.allLayers(host.x).map((y,i)=>({
    uid:y.uid,label:y.faceDown?'裏向きのカード '+(i+1):card(y).name,cardId:y.faceDown?null:y.cardId
   }));
-  if(rows.length>1)put(s,task('g78_BottomOrder',host.p,t.source,{rows,ordered:[],newCards:true,controller:t.controller??t.p}));
+  if(t.g1776Shuffle)put(s,task('g34_ShuffleOnMove673',t.p,t.source,{opponent:host.p,uids:rows.map(r=>r.uid)}));
+  else if(rows.length>1)put(s,task('g78_BottomOrder',host.p,t.source,{rows,ordered:[],newCards:true,controller:t.controller??t.p}));
   move(s,[{player:host.p,uid:host.x.uid,to:'deck',controller:t.controller??t.p}]);
   break;
  }

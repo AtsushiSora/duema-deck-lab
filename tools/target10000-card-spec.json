@@ -3058,5 +3058,94 @@
         }
       ]
     }
+  },
+  "dmrp16-002": {
+    "phase": 1776,
+    "faces": [
+      {
+        "name": "偽代助演 スケプティック",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ビビッドロー [ww03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ww03]支払って召喚してもよい）\nブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時、カードを３枚引き、その後、自分の手札を１枚山札の上に置く。その後、ターンの残りをとばす。",
+        "race": "ファイアー・バード/美孔麗王国",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 3,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "deckTop",
+          "n": 1,
+          "g183Return": true
+        },
+        {
+          "op": "Custom",
+          "name": "endTurn"
+        }
+      ]
+    }
+  },
+  "dmex13-s08": {
+    "phase": 1776,
+    "faces": [
+      {
+        "name": "劇の根源 マクガフィン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "ビビッドロー [wf03] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[wf03]支払って召喚してもよい）\nスピードアタッカー\nW・ブレイカー\n自分のターンの終わりに、相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルし、自分はこのクリーチャーを山札に加えてシャッフルする。その後、各プレイヤーはカードを１枚引く。",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 3,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 1,
+          "to": "deck",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g673ShuffleOnMove": true
+        },
+        {
+          "op": "SelfBottom734",
+          "g1776Shuffle": true
+        },
+        {
+          "op": "PlayersDraw461",
+          "n": 1
+        }
+      ]
+    }
   }
 }
