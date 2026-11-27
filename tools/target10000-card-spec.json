@@ -12189,5 +12189,150 @@
         "toOwner": true
       }
     }
+  },
+  "dm06-s07": {
+    "phase": 1814,
+    "faces": [
+      {
+        "name": "甲冑神龍エグゼキューター",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "進化ー自分のドラゴノイド１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の火のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\nバトルゾーンにある自分の火のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーのパワーは+3000される。",
+        "race": "ドラゴノイド",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ドラゴノイド"
+      },
+      "g1814TapAura": {
+        "color": "火",
+        "defs": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "power": 3000
+          }
+        ]
+      }
+    }
+  },
+  "dm06-011": {
+    "phase": 1814,
+    "faces": [
+      {
+        "name": "守護聖天アーク・バイン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化ー自分のガーディアン１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の光のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+        "race": "ガーディアン",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g1814TapAura": {
+        "color": "光",
+        "defs": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true
+          }
+        ]
+      }
+    }
+  },
+  "dm06-035": {
+    "phase": 1814,
+    "faces": [
+      {
+        "name": "超空要塞バビロン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化ー自分のコロニー・ビートル１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の自然のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\n自分の山札の上から１枚目を、自分のマナゾーンに置く。",
+        "race": "コロニー・ビートル",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "コロニー・ビートル"
+      },
+      "g1814TapAura": {
+        "color": "自然",
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm06-s05": {
+    "phase": 1814,
+    "faces": [
+      {
+        "name": "超幻獣グラザルド",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化ー自分のキマイラ１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の闇のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\n相手の手札からカードを１枚見ないで選び、持ち主の墓地に置く。",
+        "race": "キマイラ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "キマイラ"
+      },
+      "g1814TapAura": {
+        "color": "闇",
+        "defs": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9660,
-  "pendingNames": 2183,
-  "phase": 1813,
-  "added": 3,
+  "supportedNames": 9664,
+  "pendingNames": 2179,
+  "phase": 1814,
+  "added": 4,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -163,7 +163,7 @@
     "タマシード": 26,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 174,
+    "進化クリーチャー": 170,
     "スター進化クリーチャー": 45,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 11,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1617,
+    "未対応の能力文": 1613,
     "複数面・特殊カードタイプまたは情報不足": 472,
     "未対応のG・ゼロ条件": 7,
     "未対応の召喚時能力": 12,
@@ -570321,11 +570321,211 @@
       },
       "resolvedAttempts": [],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1814,
+      "checkedAt": "2026-11-27T15:57:39.228Z",
+      "baseline": "7cc4fd13c02164bd21efeba8b8a984d02e6fa2d8",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9660,
+      "currentNames": 9664,
+      "remainingNames": 336,
+      "added": [
+        {
+          "id": "dm06-s07",
+          "name": "甲冑神龍エグゼキューター"
+        },
+        {
+          "id": "dm06-011",
+          "name": "守護聖天アーク・バイン"
+        },
+        {
+          "id": "dm06-035",
+          "name": "超空要塞バビロン"
+        },
+        {
+          "id": "dm06-s05",
+          "name": "超幻獣グラザルド"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1814,
+        "baseline": "7cc4fd13c02164bd21efeba8b8a984d02e6fa2d8",
+        "originalDefinitionsUnchanged": 9660,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9664,
+        "uniqueIds": 9664,
+        "added": 4,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9660,
+        "existingImageReferenceRowsUnchanged": 12059,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1814": {
+          "name": "official-1814",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1814.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.249,
+          "log": "tmp/duema-target-10000/official-1814.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1814-final": {
+          "name": "focused-1814-service-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1814-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.141,
+          "log": "tmp/duema-target-10000/focused-1814-service-final.log",
+          "passed": 77,
+          "logSha256": "0de0cdc8ed71bbf99e9cf578b19818b8017bdce74ed72c97ac73599b96c5c967"
+        },
+        "related-1814": {
+          "name": "related-1814",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* summons without executing the tap ability and respects summoning sickness |tap draw or ramp pays no mana, counts no attack, does not break shields and cannot repeat while tapped |tap activation can be used again after a genuine turn cycle untaps the creature|tap activation is unavailable when |speed attacker permits immediate tap activation; GG does not suppress an activated ability, while Genmu ignores it|tap ability does not fire inherited attack triggers and tap costs still notify first-tap triggers|Europica can bounce either player, including itself, with protected enemies excluded |Europica pays tap before its effect; captured ability survives departure and JSON restoration|Gamar only destroys a tapped, targetable enemy creature|Gure Chain taps an opposing creature without dealing damage or breaking shields|Howlsk annihilates enemy creatures with current power at most 3000, without targeting or touching seeds and own creatures|Cosmogould returns a spell from mana, including a twinpact spell face, and rejects creatures|Chamilia searches a creature, reveals the chosen card and shuffles the rest without drawing|Chamilia can decline; mandatory target and recovery abilities can activate with no matching cards|Draw tap ability handles deck exhaustion through normal draw rules|compulsory legal attack targets do not prohibit the modern tap-ability alternative|manual mobile and desktop show direct legal tap buttons only during the attack step|AI values a safe tap draw, avoids deck-out, and does not mutate the game or read hidden enemy identities|[^\\n]* normal summon does not execute the tap effect, then enables it after sickness |Fencer controller chooses the opposing mana card, including face-down mana, without leaking its identity |Fencer cannot move mana protected by the controller’s Appul|Mist returns itself and all creatures with their full stacks, bypasses targeting and leaves gears and seeds |Galatianus privately orders every top-three permutation across JSON saves |Galatianus handles a short library without drawing or losing |King makes only the current friendly water creatures unblockable and the grant expires |King’s water grant bypasses an actual blocker during a later friendly attack|Shell Breeder returns only a creature from mana, allows a twinpact creature and preserves its identity|chosen friendly temporary grant applies only to that creature, includes self, then expires |Pulse Mars targets only an opposing blocker, including an already tapped blocker|Tank makes the opponent choose its own creature and does not target it |Grass Seed places up to three selected hand cards into mana and permits stopping early |Reverse Soul requires a dark creature on the same face and respects grave-zone locks|captured tap effects survive the source leaving and the opponent’s choices survive JSON|manual mobile and desktop offer all new tap abilities as direct legal buttons|AI evaluates new public effects without mutating or reading hidden identities |Phase 736 validates three complete printed cards and keeps the catalogue IDs|Greed chooses only matching hand creature faces and moves selected cards together after restore|Greed can decline its matching cards or name a race absent from hand and battle|Totem only triggers on another friendly creature and boosts all current Beast Folk once per entry|Totem lets a Beast Folk with T-Breaker choose the granted W-Breaker during a real attack|Gijo replaces its own attack, grants attack power and requires only matching legal attacks|Gijo cannot be used while summoning sick or to evade another Gijo obligation|Gijo cannot replace an attack when it has no legal target|Totem reprint preserves saved deck quantities and its verified artwork without a separate battle card|Kuro changes from either eligible tribe and discards the chosen hidden position |Kuro discards only on Revolution Change and only the opponent’s mana enters tapped|Kuro does not allow a two-cost Mecha to declare its Revolution Change|Mido ramps on Revolution Change then lets the player recover the exact new mana |Mido may leave the ramp in mana and does not ramp on a normal summon|Mido forces only attacks which can legally target it and does not force an attack|Rubel chooses an element and mana without tapping them or revealing face-down mana|Rubel affects just the next opponent start, after its source leaves|Rubel still allows effect-based untaps before the next turn and locks mana despite a movement prohibition|Rubel resolves either available zone when the other is empty|Rubel triggers on a five-cost Mecha Revolution Change as on a normal summon|[^\\n]* requires an available attack and eight untapped mana cards|cancelling the paid tap choice after seven picks leaves mana and creature unchanged|Vice inspects and discards exactly the selected opposing card after payment|Soldias returns the twinpact with a spell face from its own graveyard|Octaryx returns a card from either mana zone to its owner without exposing its face |a mandatory attack cannot be replaced with the paid tap ability |The named evolution requires an eligible real base, pays its full cost, and preserves all physical cards |Champion needs both Hunter and Alien on the same base, not one of each on different creatures|Fort grants an independent tap draw to each own Water creature including its evolved self |Fort draw permission respects the actual ability and attack state |Fort never overwrites or combines a Water creature native tap evolution ability: |Fort draw can lose to deck exhaustion, and its own evolution is immediately eligible|Granddiver cannot be attacked or attack creatures and cannot be blocked while double-breaking |Ignoring Granddiver removes all three attack restrictions while retaining its printed evolution|QA36650 Champion protects against a direct attack exactly while tapped |Champion does not prevent losses when its ability is absent |Champion prevents the actual iFormula X alternate win only while tapped: |QA36650 empty-deck loss is prevented while tapped and occurs as soon as protection ends|QA36651 an earlier blocked direct-attack win does not occur retroactively after Champion untaps|QA36656 Balgageyser leaves Champion atop the library when no base meets both races|Champion is a double breaker after an ordinary paid evolution|Native paid generation and separate paid crossing never turn a gear into a creature |Quake gives Slayer only to its crossed host and defeats a larger creature after its host dies |Quake Slayer copies stack with printed Slayer and remain limited to the current incarnation |Quake loses its grant when the gear or host is ignored or sealed but not simply under Genmu as a noncreature |Rifle taps its host instead of attacking and uses current enemy power through the native choice |Two Rifles offer distinct abilities and one activation destroys only one creature |Rifle respects phase, summoning sickness, tapping, no-attack, suppression and live attachment |Rifle allows a fresh speed attacker and its already activated ability survives the gear leaving |Kurt optional G-Zero generates without paying but crossing still pays printed Light cost |Kurt G-Zero requires a real own creature and never grants permission from mana or grave |Kurt external power stacks and persists on an ignored recipient while gear suppression and recrossing are immediate |Rifle pending target and distinct activation actions survive encrypted online storage without hidden enemy data |Rifle does not combine with or replace a hosts own printed tap ability |Rifle honors enemy target protection and excludes noncreature elements |Kurt G-Zero needs no mana or Light card but does not make crossing free |All three crossed gears follow a real evolution while retaining independent physical identities )",
+            "tests/standard439-effects.test.mjs",
+            "tests/standard440-effects.test.mjs",
+            "tests/standard736-effects.test.mjs",
+            "tests/standard773-effects.test.mjs",
+            "tests/standard804-effects.test.mjs",
+            "tests/standard1623-effects.test.mjs",
+            "tests/standard1706-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.547,
+          "log": "tmp/duema-target-10000/related-1814.log",
+          "passed": 211,
+          "logSha256": "aa2cf9b0673fbb99291861fab9bed2595a28f9d909b1652436ba01bb664912ec"
+        },
+        "check-1814": {
+          "name": "check-1814",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.343,
+          "log": "tmp/duema-target-10000/check-1814.log",
+          "passed": 0,
+          "logSha256": "ab7c50b0db2af2836f0e751a61c9a2fedaa5d2c201c1efe8744700802d9f3d6f"
+        },
+        "audit-1814": {
+          "name": "audit-1814",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.743,
+          "log": "tmp/duema-target-10000/audit-1814.log",
+          "passed": 0,
+          "logSha256": "6fec88b376bc3957bfae82d41ce028b222851e46c9a8e1f04510c080a76837ba"
+        },
+        "invariants-1814": {
+          "name": "invariants-1814",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1814"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.675,
+          "log": "tmp/duema-target-10000/invariants-1814.log",
+          "passed": 0,
+          "logSha256": "6ccc653023bf4e02a2b1e9efeae12baff8ac71e199f93c99954347b032f277e1"
+        },
+        "related-online-1814": {
+          "name": "related-online-1814",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.536,
+          "log": "tmp/duema-target-10000/related-online-1814.log",
+          "passed": 5,
+          "logSha256": "d1a170483c766279b663ee12eeb5172f0af44f1fe894a230e6a625e620af5f00"
+        }
+      },
+      "totalTestsPassed": 293,
+      "manifest": "tools/support-phase-1814.json",
+      "supported": 9664,
+      "pending": 2179,
+      "engineVersion": "0.602.338",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1814-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1814-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.531,
+          "log": "tmp/duema-target-10000/focused-1814-initial.log",
+          "reason": "Initial tests used Giga Slug as an attacking recipient, but its printed no-attack ability correctly prohibited activation; use Bone Assassin as eligible Dark recipient, retaining Giga Slug as legal Chimera evolution base. Later service assertions treated the intentionally text-only projected decision as the raw engine choice array; corrected assertions check opaque projected actions with no hidden IDs. Production behavior was correct in both cases."
+        },
+        {
+          "name": "focused-1814-server-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1814-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.149,
+          "log": "tmp/duema-target-10000/focused-1814-server-final.log",
+          "reason": "Initial tests used Giga Slug as an attacking recipient, but its printed no-attack ability correctly prohibited activation; use Bone Assassin as eligible Dark recipient, retaining Giga Slug as legal Chimera evolution base. Later service assertions treated the intentionally text-only projected decision as the raw engine choice array; corrected assertions check opaque projected actions with no hidden IDs. Production behavior was correct in both cases."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1813,
-    "nextPhase": 1814,
+    "lastVerifiedPhase": 1814,
+    "nextPhase": 1815,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -571238,11 +571438,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1813,
-      "baseline": "a7b812b8813c3850dc2a1abe99c747800eebe83a",
-      "supportedNames": 9660,
-      "artifact": "tools/target10000-registration-checkpoint-1813.json",
-      "checkedAt": "2026-11-27T15:50:38.222Z"
+      "phase": 1814,
+      "baseline": "7cc4fd13c02164bd21efeba8b8a984d02e6fa2d8",
+      "supportedNames": 9664,
+      "artifact": "tools/target10000-registration-checkpoint-1814.json",
+      "checkedAt": "2026-11-27T15:57:39.228Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -574300,8 +574500,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9660,
-      "remaining": 340,
+      "currentNames": 9664,
+      "remaining": 336,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -574309,8 +574509,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1813,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1813.json",
+      "lastPhase": 1814,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1814.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -575592,8 +575792,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9660,
-      "remaining": 340,
+      "currentNames": 9664,
+      "remaining": 336,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -575601,8 +575801,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1813,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1813.json",
+      "lastPhase": 1814,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1814.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -627731,10 +627931,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1813,
+    "phase": 1814,
     "threshold": 10000,
-    "supportedNames": 9660,
-    "pendingNames": 2183,
+    "supportedNames": 9664,
+    "pendingNames": 2179,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -627743,7 +627943,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1813.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1814.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

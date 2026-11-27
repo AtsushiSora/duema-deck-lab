@@ -310263,18 +310263,150 @@
       },
       "supportBatch": "phase-1813",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm06-s07",
+      "name": "甲冑神龍エグゼキューター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ドラゴノイド",
+      "text": "進化ー自分のドラゴノイド１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の火のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\nバトルゾーンにある自分の火のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s07",
+      "limit": 4,
+      "evolution": {
+        "race": "ドラゴノイド"
+      },
+      "g1814TapAura": {
+        "color": "火",
+        "defs": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "power": 3000
+          }
+        ]
+      },
+      "supportBatch": "phase-1814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-011",
+      "name": "守護聖天アーク・バイン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ガーディアン",
+      "text": "進化ー自分のガーディアン１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の光のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-011",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g1814TapAura": {
+        "color": "光",
+        "defs": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-035",
+      "name": "超空要塞バビロン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "コロニー・ビートル",
+      "text": "進化ー自分のコロニー・ビートル１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の自然のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\n自分の山札の上から１枚目を、自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-035",
+      "limit": 4,
+      "evolution": {
+        "race": "コロニー・ビートル"
+      },
+      "g1814TapAura": {
+        "color": "自然",
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-s05",
+      "name": "超幻獣グラザルド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "キマイラ",
+      "text": "進化ー自分のキマイラ１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の闇のクリーチャーをタップし、攻撃する代わりに次の能力を使ってもよい。\n相手の手札からカードを１枚見ないで選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s05",
+      "limit": 4,
+      "evolution": {
+        "race": "キマイラ"
+      },
+      "g1814TapAura": {
+        "color": "闇",
+        "defs": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1814",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1813,
-    "checkedAt": "2026-11-27T15:42:48.205Z",
-    "baseCount": 9657,
-    "newEffectCards": 3,
+    "phase": 1814,
+    "checkedAt": "2026-11-27T15:52:32.795Z",
+    "baseCount": 9660,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9660,
+    "totalCount": 9664,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40409/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -339950,6 +340082,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/33722/",
           "https://dm.takaratomy.co.jp/rule/qa/32418/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1813,
+        "checkedAt": "2026-11-27T15:42:48.205Z",
+        "baseCount": 9657,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9660,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40409/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
