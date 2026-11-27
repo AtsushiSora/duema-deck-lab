@@ -23,7 +23,17 @@ export function createUtilityDarkControl(api){
  case'g78_Gajira':choice(s,t,'墓地に置く相手のシールドを1つ選ぶ（S・トリガーは使えません）',s.players[1-t.p].shields.filter(x=>!api.shieldCards(x).some(y=>y.g37ShieldHeld)).map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',x.uid,api.shieldCards(x).length)));break;
  case'g78_Dotsuki':choice(s,t,'山札の一番下に置く相手のタップ中のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p).filter(x=>x.tapped)));break;
  case'g78_Alexei':{const options=targetOptions(s,t.p,[t.p,1-t.p].flatMap(p=>s.players[p].battle.filter(x=>!x.sealed&&(card(x).type==='gear'||/サムライ/.test(effective(x,s).race||'')))));choice(s,t,'山札の一番下に戻すサムライまたはクロスギアを1つまで選ぶ',[...options.map(o=>({...o,label:(own.battle.some(x=>x.uid===o.value)?'自分：':'相手：')+o.label,score:own.battle.some(x=>x.uid===o.value)?-10-o.score:15+o.score})),opt('戻さない',null,0)]);break;}
- case'g78_TopOrder':case'g78_BottomOrder':{const rows=t.rows.filter(r=>own.deck.some(x=>x.uid===r.uid)&&!t.ordered.includes(r.uid));if(rows.length>1)choice(s,t,t.op==='g78_TopOrder'?'山札の上から置く順に選ぶ（新しく置くカードのみ）':'山札の下に置く順に選ぶ（新しく置くカードのみ）',rows.map(r=>opt(r.label,r.uid,0,r.cardId)),t.g1041Chooser??t.p);else finishOrder(s,t,[...t.ordered,...rows.map(r=>r.uid)]);break;}
+ case'g78_TopOrder':case'g78_BottomOrder':{
+  if(t.g1803GroupedTop){
+   const remaining=t.rows.filter(r=>own.deck.some(x=>x.uid===r.uid)&&!t.ordered.includes(r.uid));
+   if(!remaining.length){finishOrder(s,t,t.ordered);break;}
+   const last=t.rows.find(r=>r.uid===t.ordered.at(-1)),inside=last&&remaining.filter(r=>(r.group1803??r.uid)===(last.group1803??last.uid));
+   const rows=inside?.length?inside:[...new Map(remaining.toReversed().map(r=>[r.group1803??r.uid,r])).values()].reverse();
+   if(rows.length===1)put(s,{...t,ordered:[...t.ordered,rows[0].uid]});
+   else choice(s,t,inside?.length?'この進化クリーチャーの進化元を上から選ぶ':'山札の上に置くクリーチャーの束を選ぶ',rows.map(r=>opt(r.label,r.uid,0,r.cardId)),t.g1041Chooser??t.p);
+   break;
+  }
+  const rows=t.rows.filter(r=>own.deck.some(x=>x.uid===r.uid)&&!t.ordered.includes(r.uid));if(rows.length>1)choice(s,t,t.op==='g78_TopOrder'?'山札の上から置く順に選ぶ（新しく置くカードのみ）':'山札の下に置く順に選ぶ（新しく置くカードのみ）',rows.map(r=>opt(r.label,r.uid,0,r.cardId)),t.g1041Chooser??t.p);else finishOrder(s,t,[...t.ordered,...rows.map(r=>r.uid)]);break;}
  default:throw Error('未実装の闇の妨害効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g78_'))return false;switch(t.op){

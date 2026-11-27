@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.31';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.21';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.326';
+export const ENGINE_VERSION='0.602.327';
 export const AI_VERSION='2.3.441';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -2680,13 +2680,13 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(topOrders[p].length||lGateBottom[p].length)shufflesAfterMoves[p].push(...cards);
   else shuffleLibrary(s,p,cards,source);
  };
- const orderTop=(p,cards)=>topOrders[p].push(...cards.map((x,i)=>({
-  uid:x.uid,label:x.faceDown?'裏向きのカード '+(i+1):card(x).name,cardId:x.faceDown?null:x.cardId
+ const orderTop=(p,cards,row)=>topOrders[p].push(...cards.map((x,i)=>({
+  ...(row?.g1803GroupedTop?{group1803:row.uid}:{}),uid:x.uid,label:x.faceDown?'裏向きのカード '+(i+1):card(x).name,cardId:x.faceDown?null:x.cardId
  })));
  const placeOnTop=(row,cards)=>{
   for(const owner of row.toOwnerDeck?[row.player,1-row.player]:[row.player]){
    const moved=row.toOwnerDeck?cards.filter(x=>(x.cardOwner??row.player)===owner):cards;
-   if(row.orderDeckTop&&!row.cardOnly)orderTop(owner,moved.filter(x=>!card(x.cardId)?.gr));
+   if((row.orderDeckTop||row.g1803GroupedTop)&&!row.cardOnly)orderTop(owner,moved.filter(x=>!card(x.cardId)?.gr),row);
    s.players[owner].deck.unshift(...moved);
    if(moved.some(x=>card(x.cardId)?.gr))returnExtraCards(s,owner,'deck');
   }
@@ -2961,7 +2961,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  for(const p of [0,1]){
   const rows=topOrders[p],shuffled=shufflesAfterMoves[p],keepOrder=!shuffled.length||deckLocked(s,p);
   if(shuffled.length)shuffleLibrary(s,p,shuffled);
-  if(keepOrder&&rows.length>1)orders.push(extra.task('g78_TopOrder',p,rows[0].cardId,{rows,ordered:[]}));
+  if(keepOrder&&rows.length>1)orders.push(extra.task('g78_TopOrder',p,rows[0].cardId,{rows,ordered:[],...(rows.some(x=>x.group1803)?{g1803GroupedTop:true}:{})}));
   const bottom=lGateBottom[p];
   if(keepOrder&&bottom.length>1)orders.push(extra.task('g78_BottomOrder',p,bottom[0].cardId,{rows:bottom,ordered:[],newCards:true}));
  }

@@ -6792,6 +6792,7 @@ export function createSixPhotoRules(api){
     ...(t.toOwnerHand?{toOwnerHand:true}:{}),
     ...(t.toOwnerShields?{toOwnerShields:true}:{}),
     ...(t.toOwnerDeck?{toOwnerDeck:true}:{}),
+    ...(t.g1803GroupedTop?{g1803GroupedTop:true}:{}),
     ...(t.toOwnerMana?{toOwnerMana:true}:{}),...(to==='mana'&&t.tapped?{tapped:true}:{}),
     ...(t.g1117ShieldDraw?{faceUp:true,toOwnerShields:true}:{})})));
   if(rows.length){

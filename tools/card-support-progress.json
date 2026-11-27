@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9629,
-  "pendingNames": 2214,
-  "phase": 1802,
+  "supportedNames": 9632,
+  "pendingNames": 2211,
+  "phase": 1803,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -163,7 +163,7 @@
     "タマシード": 26,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 180,
+    "進化クリーチャー": 179,
     "スター進化クリーチャー": 47,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -173,7 +173,7 @@
     "D2フィールド": 10,
     "禁断フィールド": 1,
     "クロスギア": 2,
-    "進化クリーチャー(進化GV)": 7,
+    "進化クリーチャー(進化GV)": 6,
     "タマシード/クリーチャー": 3,
     "土地": 1,
     "サイキック・クリーチャー": 83,
@@ -213,15 +213,15 @@
     "進化クリーチャー(墓地進化GV)": 1,
     "フェアリー・フィールド": 1,
     "進化サイキック・クリーチャー(超無限進化)": 1,
-    "進化クリーチャー(マナ進化V)": 3,
+    "進化クリーチャー(マナ進化V)": 2,
     "DMフィールド": 2,
     "進化クリーチャー(超無限進化)": 2,
     "進化クリーチャー（進化GV）": 1,
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1626,
-    "複数面・特殊カードタイプまたは情報不足": 491,
+    "未対応の能力文": 1625,
+    "複数面・特殊カードタイプまたは情報不足": 489,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -568078,11 +568078,191 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1803,
+      "checkedAt": "2026-11-27T13:40:38.954Z",
+      "baseline": "4d5bed73c8ed8ebd1371936cdc222ce794c476d8",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9629,
+      "currentNames": 9632,
+      "remainingNames": 368,
+      "added": [
+        {
+          "id": "dm28-s07",
+          "name": "超神星アレス・ヴァーミンガム"
+        },
+        {
+          "id": "dm21-s02",
+          "name": "超神星ネプチューン・シュトローム"
+        },
+        {
+          "id": "dm34-005",
+          "name": "超天星バルガライゾウ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1803,
+        "baseline": "4d5bed73c8ed8ebd1371936cdc222ce794c476d8",
+        "originalDefinitionsUnchanged": 9629,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9632,
+        "uniqueIds": 9632,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9629,
+        "existingImageReferenceRowsUnchanged": 11994,
+        "officialPrintsReviewed": 13,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1803": {
+          "name": "official-1803",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1803.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.402,
+          "log": "tmp/duema-target-10000/official-1803.log",
+          "passed": 0,
+          "logSha256": "5e4519d83f59ca1f11855109e24642b020b10f9ab86492565719d7fe4d97356e"
+        },
+        "focused-1803-final": {
+          "name": "focused-1803-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1803-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.209,
+          "log": "tmp/duema-target-10000/focused-1803-final.log",
+          "passed": 41,
+          "logSha256": "b2d5954b4456d3beff70443d51ed92f9e6267df30257ff3bd0d63a6a6047d1dd"
+        },
+        "related-1803": {
+          "name": "related-1803",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:QA36777|Shangrila selection|Shangrila may use|Shangrila base count|Shangrila optional multi-zone|Master paid7|Master cannot use|Venus paid6|Venus evolutionGV|actual multi-base evolution|GV requires|super-infinite Ulpherios|QA35904|QA35903|Ulpherios public|Ulpherios may deploy|Ekaterina can order|A simultaneous shuffle)",
+            "tests/standard1739-effects.test.mjs",
+            "tests/standard1741-effects.test.mjs",
+            "tests/standard1798-effects.test.mjs",
+            "tests/standard846-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.682,
+          "log": "tmp/duema-target-10000/related-1803.log",
+          "passed": 43,
+          "logSha256": "d2ebe9ccda3170e4780ebef7b5d7c8ca0907c9aa7df5ab45e1339b71653c2f5a"
+        },
+        "check-1803": {
+          "name": "check-1803",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.092,
+          "log": "tmp/duema-target-10000/check-1803.log",
+          "passed": 0,
+          "logSha256": "3b613ecba0936a1dcbfb10ad3d26252714590e98f6bc13cf54f5ef66a86bd151"
+        },
+        "audit-1803": {
+          "name": "audit-1803",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.797,
+          "log": "tmp/duema-target-10000/audit-1803.log",
+          "passed": 0,
+          "logSha256": "e28b977d6258cf236357b2923ec9278cc2af12124c03fed5335cf6a5ebc6d057"
+        },
+        "invariants-1803": {
+          "name": "invariants-1803",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1803"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.706,
+          "log": "tmp/duema-target-10000/invariants-1803.log",
+          "passed": 0,
+          "logSha256": "12f4ad6825a8010f12a1cd867dae141e2393fc3d182595f1e8d0b6e16aa1dde6"
+        },
+        "related-online-1803": {
+          "name": "related-online-1803",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.991,
+          "log": "tmp/duema-target-10000/related-online-1803.log",
+          "passed": 5,
+          "logSha256": "b12c6e07b39941b5a36e7b837bd5073f9a479d5516184a9c994c3a9b0ce5fbe8"
+        }
+      },
+      "totalTestsPassed": 89,
+      "manifest": "tools/support-phase-1803.json",
+      "supported": 9632,
+      "pending": 2211,
+      "engineVersion": "0.602.327",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1803",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1803-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.615,
+          "log": "tmp/duema-target-10000/focused-1803.log",
+          "reason": "Two initial failures used dm25ex1-044 as a Demon Command base, but its actual tribe is Shinobi/Phoenix. Replaced only the fixture with actual Demon Command dm01-s06. All final focused assertions pass."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1802,
-    "nextPhase": 1803,
+    "lastVerifiedPhase": 1803,
+    "nextPhase": 1804,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -568995,11 +569175,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1802,
-      "baseline": "fd0839f9b364a7a3347a1ea8334faead073638b5",
-      "supportedNames": 9629,
-      "artifact": "tools/target10000-registration-checkpoint-1802.json",
-      "checkedAt": "2026-11-27T13:33:41.669Z"
+      "phase": 1803,
+      "baseline": "4d5bed73c8ed8ebd1371936cdc222ce794c476d8",
+      "supportedNames": 9632,
+      "artifact": "tools/target10000-registration-checkpoint-1803.json",
+      "checkedAt": "2026-11-27T13:40:38.954Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -572057,8 +572237,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9629,
-      "remaining": 371,
+      "currentNames": 9632,
+      "remaining": 368,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572066,8 +572246,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1802,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1802.json",
+      "lastPhase": 1803,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1803.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -572088,7 +572268,7 @@
           "next": "Verify complete official sources and optional tapped-mana leave replacement for both seed and carrying creature."
         }
       ],
-      "resumeProcedure": "Check HEAD, clean/staged changes, AGENTS.md and running work; recount actual dist/cards.json names with dist/catalogue.js nameKey. Latest phase 1771 is verified. Continue at phase 1772 toward exactly 10000; preserve older deferrals. Temporary shared research/config/scripts remain in tmp/duema-target-10000. Do not push, publish or update Netlify.",
+      "resumeProcedure": "Inspect HEAD/tree/index/AGENTS/progress/previous tests/live processes and actual nameKey count. Phase1803 final verified at9632. Continue phase1804 from grouped research; review every image, follow all direct related rulings and prefer native rules. Preserve old deferrals; no full npm test, long-group repeats, automation restart or push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -573295,8 +573475,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9629,
-      "remaining": 371,
+      "currentNames": 9632,
+      "remaining": 368,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -573304,8 +573484,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1802,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1802.json",
+      "lastPhase": 1803,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1803.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -573326,7 +573506,7 @@
           "next": "Verify complete official sources and optional tapped-mana leave replacement for both seed and carrying creature."
         }
       ],
-      "resumeProcedure": "Check HEAD, clean/staged changes, AGENTS.md and running work; recount actual dist/cards.json names with dist/catalogue.js nameKey. Latest phase 1771 is verified. Continue at phase 1772 toward exactly 10000; preserve older deferrals. Temporary shared research/config/scripts remain in tmp/duema-target-10000. Do not push, publish or update Netlify.",
+      "resumeProcedure": "Inspect HEAD/tree/index/AGENTS/progress/previous tests/live processes and actual nameKey count. Phase1803 final verified at9632. Continue phase1804 from grouped research; review every image, follow all direct related rulings and prefer native rules. Preserve old deferrals; no full npm test, long-group repeats, automation restart or push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -573434,22 +573614,25 @@
       }
     ],
     "nextTarget10000Preparation": {
-      "research": "tmp/duema-target-10000/research-dm28-s07.json",
+      "research": "tmp/duema-target-10000/research-dm23-001.json",
       "candidates": [
         {
-          "id": "dm28-s07",
-          "name": "超神星アレス・ヴァーミンガム",
-          "status": "official-full-search-downloaded; images-not-yet-reviewed"
+          "id": "dm23-001",
+          "name": "無敵巨兵スパルタンJ",
+          "implementation": "Reuse native Meteor1741 leave replacement and after-block untap; verify battle/zero-power/decline/physical stack.",
+          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dm21-s02",
-          "name": "超神星ネプチューン・シュトローム",
-          "status": "official-full-search-downloaded; images-not-yet-reviewed"
+          "id": "dm34-006",
+          "name": "無限の聖霊王アルカイザム",
+          "implementation": "Super-infinite Blocker evolution; exact source payment must carry that paid card cost into Shield Plus beneath one existing shield; read QA_old35900 carefully.",
+          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dm34-005",
-          "name": "超天星バルガライゾウ",
-          "status": "official-full-search-downloaded; images-not-yet-reviewed"
+          "id": "dm25rp2-S11",
+          "name": "魔誕導師ブラックルシファー",
+          "implementation": "GNEO; optional one each from mana and grave on own entry/start; Meteor3 timed opposing entry destroy until own next start, including QA46827 and linked follow-up rulings.",
+          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
         }
       ],
       "timingHeld": [
@@ -625355,10 +625538,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1802,
+    "phase": 1803,
     "threshold": 10000,
-    "supportedNames": 9629,
-    "pendingNames": 2214,
+    "supportedNames": 9632,
+    "pendingNames": 2211,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -625367,7 +625550,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1802.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1803.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

@@ -46,7 +46,7 @@ export function createPhoenixRules(api){
  function finishBases(s,t){const own=s.players[t.p];if(t.mode==='cast'){const a=[...t.args];a[2]=t.selected;cast(s,t.p,...a);}else if(t.mode==='sasage'){put(s,{...t.payment,base:t.selected});}else{const x=remove(own.g31Holding,t.uid);if(x)enter(s,t.p,x,t.selected,t.options);}}
  function attach(s,p,x,ids,options={}){const c=card(x),d=definition(c),own=s.players[p];if(options.g31Force){const b=own.battle.find(y=>y.uid===ids);if(!b)throw Error('強制進化元がありません');ids=[ids];}
  if(d.zone==='deck'&&!options.g31Force){x.under=[];for(let i=0;i<d.count;i++){const y=api.takeTop(s,p);if(!y)break;y.faceDown=true;x.under.push(y);}api.deckCheck(s,p);return;}
- const rows=ids.map(uid=>{for(const zone of d.zones??['battle','grave']){const y=own[zone].find(y=>y.uid===uid);if(y)return{x:y,zone};}return null;});if(!options.g31Force&&(!completions(s,p,c,ids,{...options,exclude:x.uid})||!d.variable&&ids.length!==(d.zones??d.conditions).length)||rows.some(r=>!r)||new Set(ids).size!==ids.length)throw Error('進化元が正しくありません');x.under=rows.map(r=>r.x);
+ const rows=ids.map(uid=>{for(const zone of d.zones??['battle','grave']){const y=own[zone].find(y=>y.uid===uid);if(y)return{x:y,zone};}return null;});if(!options.g31Force&&(!completions(s,p,c,ids,{...options,exclude:x.uid})||!d.variable&&ids.length!==(d.g1803BaseCount??(d.zones??d.conditions).length))||rows.some(r=>!r)||new Set(ids).size!==ids.length)throw Error('進化元が正しくありません');x.under=rows.map(r=>r.x);
  const field=rows.filter(r=>r.zone==='battle').map(r=>r.x);for(const b of field){api.evolutionBase(s,p,b);api.inherit(s,b,x);if(s.attack?.attacker===b.uid)s.attack.attacker=x.uid;if(s.attack?.target===b.uid)s.attack.target=x.uid;}
  x.tapped=x.tapped||field.some(b=>b.tapped);x.buff=field.reduce((n,b)=>n+(b.buff||0),0);x.powerModifiers=field.flatMap(b=>structuredClone(b.powerModifiers||[]));x.tapLocks=field.flatMap(b=>b.tapLocks||[]);x.unblocked=field.some(b=>b.unblocked);x.buffSources=field.flatMap(b=>structuredClone(b.buffSources||[]));for(const key of ['justDiverActive','skipUntap','g19Protected'])if(field.some(b=>b[key]))x[key]=true;if(field.some(b=>b.gospelSpeed===s.turn))x.gospelSpeed=s.turn;for(const b of field)if(b.g19Blocker!==undefined)x.g19Blocker=b.g19Blocker;for(const r of rows){remove(own[r.zone],r.x.uid);if(r.zone!=='battle'){clear(r.x,'battle');if(r.zone==='grave')r.x.g1236GraveArrival=s.turn;}}api.log(s,p,'evolve',rows.length+'体から'+c.name+'へ進化',{cardId:c.id});
  }
@@ -117,7 +117,7 @@ export function createPhoenixRules(api){
  }
  case'g31_Bases':{
   if(t.g1369ChosenCount&&t.selected.length>=t.g1369ChosenCount){finishBases(s,t);break;}
-  const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=(d.zones??d.conditions)?.length;
+  const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=d.g1803BaseCount??(d.zones??d.conditions)?.length;
  if(d.minCards){
   const rows=cardCountPool(s,t.p,c,options),selected=rows.filter(r=>t.selected.includes(r.x.uid)),total=baseCardCount(selected);
   const available=rows.filter(r=>!t.selected.includes(r.x.uid)),valid=selected.length===t.selected.length&&total>=d.minCards;

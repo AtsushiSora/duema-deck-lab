@@ -1,0 +1,1402 @@
+{
+  "phase": 1803,
+  "checkedAt": "2026-11-27T13:35:57.616Z",
+  "baseline": "4d5bed73c8ed8ebd1371936cdc222ce794c476d8",
+  "baseCount": 9629,
+  "target": 10000,
+  "description": "Three full Phoenix evolutions with exact native Meteor payment, explicit same-mana-zone multi-base selection, grouped deck-top return and public Dragon deployment.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35471/",
+    "https://dm.takaratomy.co.jp/rule/qa/39993/"
+  ],
+  "cards": [
+    {
+      "id": "dm28-s07",
+      "name": "超神星アレス・ヴァーミンガム",
+      "canonicalId": "dm28-s07",
+      "printId": "dm28-s07",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s07",
+      "faces": [
+        {
+          "name": "超神星アレス・ヴァーミンガム",
+          "typeText": "進化クリーチャー(マナ進化V)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ進化V-火のクリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその２体の上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうした場合、相手のコスト３以下の「ブロッカー」を持つクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 2,
+          "conditions": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "blocker": true,
+                  "max": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-s07.jpg",
+      "imageSha256": "c4256d292b092f9b31d3f2c05c83f4a798547394acbe3f8a574a5f115a6efa76",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm28-s07-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm28-s07",
+          "dmc55-021"
+        ],
+        "allSearchIds": [
+          "dm28-s07",
+          "dmc55-021"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "840174463c00e49e654d3a7dfe70ac8f3a00215ff878688f4e86ab9aafabf944",
+        "facesMatched": true,
+        "imageSha256": "c4256d292b092f9b31d3f2c05c83f4a798547394acbe3f8a574a5f115a6efa76"
+      }
+    },
+    {
+      "id": "dm21-s02",
+      "name": "超神星ネプチューン・シュトローム",
+      "canonicalId": "dm21-s02",
+      "printId": "dm21-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s02",
+      "faces": [
+        {
+          "name": "超神星ネプチューン・シュトローム",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化GV-自分のグランド・デビル、デーモン・コマンド、エンジェル・コマンドのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自分自身のクリーチャーをすべて、持ち主の山札の一番上に好きな順序で置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "deckTop",
+                "toOwnerDeck": true,
+                "g1803GroupedTop": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-s02.jpg",
+      "imageSha256": "bb163e23c5fe6c7793038e8b4f6b7e9490e5d49d397d14619d6dba41e79ccaac",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm21-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm21-s02",
+          "dmc61-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allSearchIds": [
+          "dmc61-s02",
+          "dm21-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "148f8ec2a2a552cbd522963520474dfe3072ec296bd61c96127f47581dfb005f",
+        "facesMatched": true,
+        "imageSha256": "bb163e23c5fe6c7793038e8b4f6b7e9490e5d49d397d14619d6dba41e79ccaac"
+      }
+    },
+    {
+      "id": "dm34-005",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dm34-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-005",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV - ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-005.jpg",
+      "imageSha256": "66e86ecb4e6fe0335b1741561a809ee45719a6dfb8602624bd7ace6ec7a71d4b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "50a6fc0ffe2f28909d48bc3309ecbd12f442d70518fcb5266e925cbf38e4c213",
+        "facesMatched": true,
+        "imageSha256": "66e86ecb4e6fe0335b1741561a809ee45719a6dfb8602624bd7ace6ec7a71d4b"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc55-021",
+      "name": "超神星アレス・ヴァーミンガム",
+      "canonicalId": "dm28-s07",
+      "printId": "dmc55-021",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-021",
+      "faces": [
+        {
+          "name": "超神星アレス・ヴァーミンガム",
+          "typeText": "進化クリーチャー(マナ進化V)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ進化V-火のクリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその２体の上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうした場合、相手のコスト３以下の「ブロッカー」を持つクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 2,
+          "conditions": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "blocker": true,
+                  "max": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-021.jpg",
+      "imageSha256": "dc59487fe2d6ce5c4b514340b0cd57661aabb1193d794a1355c57384cd4041cb",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc55-021-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm28-s07",
+          "dmc55-021"
+        ],
+        "allSearchIds": [
+          "dm28-s07",
+          "dmc55-021"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "887390650eb25aa0d03329d1ca1c30009ef1b4d71a26bbfaf955c144f9e62e4b",
+        "facesMatched": true,
+        "imageSha256": "dc59487fe2d6ce5c4b514340b0cd57661aabb1193d794a1355c57384cd4041cb"
+      }
+    },
+    {
+      "id": "dmc61-s02",
+      "name": "超神星ネプチューン・シュトローム",
+      "canonicalId": "dm21-s02",
+      "printId": "dmc61-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc61-s02",
+      "faces": [
+        {
+          "name": "超神星ネプチューン・シュトローム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化GV-自分のグランド・デビル、デーモン・コマンド、エンジェル・コマンドのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自身のクリーチャーをすべて、持ち主の山札の一番上に好きな順序で置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "deckTop",
+                "toOwnerDeck": true,
+                "g1803GroupedTop": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc61-s02.jpg",
+      "imageSha256": "b78b9145fd01e010237c170af341bafe9f37f2dc73b78c421cbc5aa5e5f411b8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc61-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm21-s02",
+          "dmc61-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allSearchIds": [
+          "dmc61-s02",
+          "dm21-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "a02941693506e591e9b3603821498d30236c4c5d116d850fbab29b96c64e5ca5",
+        "facesMatched": true,
+        "imageSha256": "b78b9145fd01e010237c170af341bafe9f37f2dc73b78c421cbc5aa5e5f411b8"
+      }
+    },
+    {
+      "id": "dmc66-006",
+      "name": "超神星ネプチューン・シュトローム",
+      "canonicalId": "dm21-s02",
+      "printId": "dmc66-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-006",
+      "faces": [
+        {
+          "name": "超神星ネプチューン・シュトローム",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化GV-自分のグランド・デビル、デーモン・コマンド、エンジェル・コマンドのいずれか３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自身のクリーチャーをすべて、持ち主の山札の一番上に好きな順序で置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "deckTop",
+                "toOwnerDeck": true,
+                "g1803GroupedTop": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-006.jpg",
+      "imageSha256": "fec77a14368ebcdbe15c7cf9a2e611accd9adc3617417775e4ae18c290d98aa9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc66-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm21-s02",
+          "dmc61-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allSearchIds": [
+          "dmc61-s02",
+          "dm21-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "b80955c7fe178eebc3d8308f5749336b032c174a88fba98f8c2a8c97df5ceb39",
+        "facesMatched": true,
+        "imageSha256": "fec77a14368ebcdbe15c7cf9a2e611accd9adc3617417775e4ae18c290d98aa9"
+      }
+    },
+    {
+      "id": "dmc38-005",
+      "name": "超神星ネプチューン・シュトローム",
+      "canonicalId": "dm21-s02",
+      "printId": "dmc38-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc38-005",
+      "faces": [
+        {
+          "name": "超神星ネプチューン・シュトローム",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化GV-自分のグランド・デビル、デーモン・コマンド、エンジェル・コマンドのいずれか３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自分自身のクリーチャーをすべて、持ち主の山札の一番上に好きな順序で置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "デーモン・コマンド"
+                },
+                {
+                  "race": "エンジェル・コマンド"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "deckTop",
+                "toOwnerDeck": true,
+                "g1803GroupedTop": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc38-005.jpg",
+      "imageSha256": "636177600e863400775e6546d1297b04d5d786e1b439c2ccdcb3d00495644fc5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc38-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm21-s02",
+          "dmc61-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allSearchIds": [
+          "dmc61-s02",
+          "dm21-s02",
+          "dmc66-006",
+          "dmc38-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "3be5059e7ac3bd8eb3c75e12acd09e1248be3ebf63744332419b683a89dd3d38",
+        "facesMatched": true,
+        "imageSha256": "636177600e863400775e6546d1297b04d5d786e1b439c2ccdcb3d00495644fc5"
+      }
+    },
+    {
+      "id": "dmx11-014",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dmx11-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-014",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV-ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-014.jpg",
+      "imageSha256": "7488ba03afb727e92694e1f6fe5e43f9f91991c5b06a9fa284ca6895530fce9e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx11-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "081f5649a2cc5b1bd755e954c1882154ee350928151a0a5092ad0bf62fb44206",
+        "facesMatched": true,
+        "imageSha256": "7488ba03afb727e92694e1f6fe5e43f9f91991c5b06a9fa284ca6895530fce9e"
+      }
+    },
+    {
+      "id": "dmex01-038",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dmex01-038",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-038",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV：ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nT・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうしたら、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-038.jpg",
+      "imageSha256": "10288d6d1c0bdf19a3543d1a6e9fe69bf2e7505fae36abf8caf29d686abf2217",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex01-038-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "4d3c244f179d8d1bdbf1b39777df55dfdfc34ab0525faf4004994c1a2542bef1",
+        "facesMatched": true,
+        "imageSha256": "10288d6d1c0bdf19a3543d1a6e9fe69bf2e7505fae36abf8caf29d686abf2217"
+      }
+    },
+    {
+      "id": "dm23bd4-017",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dm23bd4-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-017",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV：ドラゴン３体を自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nT・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚墓地に置いてもよい。そうしたら、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数出してもよい。残りを墓地に置く。",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-017.jpg",
+      "imageSha256": "b1bb4a675f06fb19e2a204ea06f0e4a589d83bd9412a9bc25a9504bcfbc0a756",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd4-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "8df8c0bc7d1216f01793bc2113a0ee7587acfa961bc765f0b385c9869e271049",
+        "facesMatched": true,
+        "imageSha256": "b1bb4a675f06fb19e2a204ea06f0e4a589d83bd9412a9bc25a9504bcfbc0a756"
+      }
+    },
+    {
+      "id": "dmx17-004",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dmx17-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-004",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV-ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-004.jpg",
+      "imageSha256": "0374d6fcd172b84c59e920f78a1991e519447bb239ad1e63071994b1b2a23768",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx17-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "6a77c414351a64be739be092b4a71976fa068da417ca3a5d6f4bdc049c699de3",
+        "facesMatched": true,
+        "imageSha256": "0374d6fcd172b84c59e920f78a1991e519447bb239ad1e63071994b1b2a23768"
+      }
+    },
+    {
+      "id": "dmex16-003",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dmex16-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-003",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV：ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nT・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚墓地に置いてもよい。そうしたら、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数出してもよい。残りを墓地に置く。",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-003.jpg",
+      "imageSha256": "32a13e4c4d078d50fba4b38cb46a2b0c74220b111351b3ae4ba3d253bd49afb6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex16-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "d1c730bb0dc42d587f0051564308efef0ecac15a5ac2ca4e1758f19475060f9f",
+        "facesMatched": true,
+        "imageSha256": "32a13e4c4d078d50fba4b38cb46a2b0c74220b111351b3ae4ba3d253bd49afb6"
+      }
+    },
+    {
+      "id": "dmx22b-035",
+      "name": "超天星バルガライゾウ",
+      "canonicalId": "dm34-005",
+      "printId": "dmx22b-035",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-035",
+      "faces": [
+        {
+          "name": "超天星バルガライゾウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナ進化GV―ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nT・ブレイカー\nメテオバーン―このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうしたら、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。",
+          "race": "アース・ドラゴン/フェニックス/サムライ",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 3,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-035.jpg",
+      "imageSha256": "53daad1c51ae8a1c51000df3b25b33b50147739c95ff9e365276004b7f46c05a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx22b-035-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-005",
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allSearchIds": [
+          "dmx11-014",
+          "dmex01-038",
+          "dm23bd4-017",
+          "dm34-005",
+          "dmx17-004",
+          "dmex16-003",
+          "dmx22b-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:35:57.616Z",
+        "sha256": "6f2f877cfbc6987effc80781d304a635b2c31338071aafc74654b61d78df5cd8",
+        "facesMatched": true,
+        "imageSha256": "53daad1c51ae8a1c51000df3b25b33b50147739c95ff9e365276004b7f46c05a"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35471/",
+      "sha256": "b5493b02f77e1785067f6a4011c058ce000d261c3f290c0016fa7b1ac24de89a",
+      "checkedAt": "2026-11-27T13:35:57.616Z",
+      "reproduced": true,
+      "tests": "tests/standard1803-effects.test.mjs",
+      "reproduction": "Opponent orders two creature bundles in either order, reverses two evolution sources within one bundle, cannot interleave the other creature, and preserves encrypted restore/opponent projection/pure AI.",
+      "result": "Opponent orders two creature bundles in either order, reverses two evolution sources within one bundle, cannot interleave the other creature, and preserves encrypted restore/opponent projection/pure AI."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39993/",
+      "sha256": "0e1ea4838112690f85e42bb1f19193927cd5495d1e618d21f28e948f12090c95",
+      "checkedAt": "2026-11-27T13:35:57.616Z",
+      "reproduced": true,
+      "tests": "tests/standard1803-effects.test.mjs",
+      "reproduction": "Actual dmrp07-m01 QQQX prevents all Bargarizo inspection, deployment and movement of library cards after the exact three physical sources are paid.",
+      "result": "Actual dmrp07-m01 QQQX prevents all Bargarizo inspection, deployment and movement of library cards after the exact three physical sources are paid."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T13:35:57.616Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-s07": 4,
+      "dm21-s02": 4,
+      "dm34-005": 4,
+      "dmc55-021": 4,
+      "dmc61-s02": 4,
+      "dmc66-006": 4,
+      "dmc38-005": 4,
+      "dmx11-014": 4,
+      "dmex01-038": 4,
+      "dm23bd4-017": 4,
+      "dmx17-004": 4,
+      "dmex16-003": 4,
+      "dmx22b-035": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Two initial failures used dm25ex1-044 as a Demon Command base, but its actual tribe is Shinobi/Phoenix. Replaced only the fixture with actual Demon Command dm01-s06. All final focused assertions pass.",
+    "sharedChanges": "Native g31 evolution now accepts an explicit g1803BaseCount for multiple cards from one mana zone; existing zone-count defaults remain unchanged. Sweep optionally requests native grouped top-order metadata. Native g78_TopOrder then selects whole creature bundles, keeping the top card before its freely ordered evolution bases and prohibiting interleaving, as QA35471 states."
+  }
+}

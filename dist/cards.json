@@ -309086,18 +309086,219 @@
       ],
       "supportBatch": "phase-1802",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-s07",
+      "name": "超神星アレス・ヴァーミンガム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "フェニックス",
+      "text": "マナ進化V-火のクリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその２体の上に重ねつつバトルゾーンに出す。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうした場合、相手のコスト３以下の「ブロッカー」を持つクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s07",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zones": [
+          "mana"
+        ],
+        "g1739VariableZones": true,
+        "g1803BaseCount": 2,
+        "conditions": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1803",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-s02",
+      "name": "超神星ネプチューン・シュトローム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 13000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のグランド・デビル、デーモン・コマンド、エンジェル・コマンドのいずれか３体を重ねた上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自分自身のクリーチャーをすべて、持ち主の山札の一番上に好きな順序で置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s02",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "デーモン・コマンド"
+              },
+              {
+                "race": "エンジェル・コマンド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "デーモン・コマンド"
+              },
+              {
+                "race": "エンジェル・コマンド"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "デーモン・コマンド"
+              },
+              {
+                "race": "エンジェル・コマンド"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "deckTop",
+              "toOwnerDeck": true,
+              "g1803GroupedTop": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1803",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-005",
+      "name": "超天星バルガライゾウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 15000,
+      "race": "アース・ドラゴン/フェニックス/サムライ",
+      "text": "マナ進化GV - ドラゴンを３体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚を表向きにする。その中から進化ではないドラゴンを好きな数、バトルゾーンに出してもよい。残りを墓地に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-005",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zones": [
+          "mana"
+        ],
+        "g1739VariableZones": true,
+        "g1803BaseCount": 3,
+        "conditions": [
+          {
+            "race": "ドラゴン"
+          },
+          {
+            "race": "ドラゴン"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 3,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 3,
+              "public": true,
+              "g1660PublicReveal": true,
+              "rest": "grave",
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン",
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1803",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1802,
-    "checkedAt": "2026-11-27T13:20:03.127Z",
-    "baseCount": 9626,
+    "phase": 1803,
+    "checkedAt": "2026-11-27T13:35:57.616Z",
+    "baseCount": 9629,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9629,
+    "totalCount": 9632,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/32471/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35471/",
+      "https://dm.takaratomy.co.jp/rule/qa/39993/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -338600,6 +338801,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/39646/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35909/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1802,
+        "checkedAt": "2026-11-27T13:20:03.127Z",
+        "baseCount": 9626,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9629,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/32471/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
