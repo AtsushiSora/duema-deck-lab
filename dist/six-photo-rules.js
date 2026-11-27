@@ -7279,6 +7279,12 @@ export function createSixPhotoRules(api){
   const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
   start(s,t,[{op:'Target',power:-3000*n,g242PowerMinus:true}]);break;
  }
+ case'g34_AuraSelfGrave1809':{
+  // Move only the exact source Aura, even if it became an underlying card while waiting.
+  const host=sourceHost474(s,t),a=host&&api.allLayers(host.x).find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0));
+  if(a&&card(a).type==='aura')api.moveBattleCard(s,host.p,a.uid,'grave',{destroy:false,controller:t.p});
+  break;
+ }
  case'g34_AuraHostPower1808':{
   const host=auraHost1808(s,t);if(host)buff(s,host,t.power);break;
  }

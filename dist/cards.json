@@ -309790,19 +309790,134 @@
       ],
       "supportBatch": "phase-1808",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-060",
+      "name": "νχ スプノックル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 5,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "オーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれを付けたクリーチャーがバトルに勝った時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-060",
+      "limit": 4,
+      "auraPower": 2000,
+      "g1437HandAttach": true,
+      "g1808HostBattleWin": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "mana",
+              "tapMulticolor": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1809",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd12-g08",
+      "name": "幽鬼ブチャカティ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 3,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "これを付けたクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこれをクリーチャーに付けた時、相手は自身の手札を１枚選び、捨てる。\nこれを付けたクリーチャーが攻撃またはブロックした時、このオーラを自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd12-g08",
+      "limit": 4,
+      "auraPower": 0,
+      "g1421AuraGrants": {
+        "blocker": true
+      },
+      "g1421AuraAttach": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "g1434HostAttack": [
+        {
+          "op": "AuraSelfGrave1809"
+        }
+      ],
+      "g1809HostBlock": [
+        {
+          "op": "AuraSelfGrave1809"
+        }
+      ],
+      "supportBatch": "phase-1809",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-060",
+      "name": "ζχ ビュープレ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 6,
+      "power": 0,
+      "race": "グランセクト/デリートロン",
+      "text": "S・トリガー S・トリガー（このオーラをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nオーラが２枚以上付いた自分のGRクリーチャーが攻撃する時、これを自分の手札からそのクリーチャーに付けてもよい。\nこれをクリーチャーに付けた時、自分の山札の上から２枚を表向きにする。その中のオーラをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-060",
+      "limit": 4,
+      "auraPower": 2000,
+      "trigger": true,
+      "g1437HandAttach": true,
+      "g1421AuraAttach": [
+        {
+          "op": "Look",
+          "n": 2,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "aura": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1809",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1808,
-    "checkedAt": "2026-11-27T14:51:15.342Z",
-    "baseCount": 9644,
+    "phase": 1809,
+    "checkedAt": "2026-11-27T15:05:07.045Z",
+    "baseCount": 9647,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9647,
+    "totalCount": 9650,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41289/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31435/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -339402,6 +339517,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/32007/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1808,
+        "checkedAt": "2026-11-27T14:51:15.342Z",
+        "baseCount": 9644,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9647,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41289/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31435/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
