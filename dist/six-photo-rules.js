@@ -430,6 +430,11 @@ export function createSixPhotoRules(api){
   return task(op,p,source,{...more,...d,op,p:d.p??p,source});
  });
  const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.g1772CarrierCost!==undefined?{g1772CarrierCost:t.g1772CarrierCost}:{}),...(t.g1771HostCost!==undefined?{g1771HostCost:t.g1771HostCost}:{}),...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g1184LastRaces!==undefined?{g1184LastRaces:t.g1184LastRaces}:{}),...(t.g1059LastEvolution!==undefined?{g1059LastEvolution:t.g1059LastEvolution}:{}),...(t.g1064LastTapped!==undefined?{g1064LastTapped:t.g1064LastTapped}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
+ function auraHost1808(s,t){
+  const ref=t.host;if(!ref)return null;
+  return s.players[t.p].battle.find(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&
+   [...api.allLayers(x),...(x.g47ElementRefs||[])].some(r=>r.uid===ref.uid&&(r.incarnation||0)===(ref.incarnation||0)));
+ }
  // Delayed effects retain the attacking creature, independently of the watcher.
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  function tapSource748(s,t){
@@ -7269,6 +7274,17 @@ export function createSixPhotoRules(api){
   const host=own.battle.flatMap(y=>api.allLayers(y)).find(y=>y.uid===t.host?.uid&&(y.incarnation||0)===(t.host.incarnation||0));
   if(host&&api.attachedAuras1352(s,t.p,host).length>=t.min)start(s,t,t.defs);
   break;
+ }
+ case'g34_AuraMinus1808':{
+  const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
+  start(s,t,[{op:'Target',power:-3000*n,g242PowerMinus:true}]);break;
+ }
+ case'g34_AuraHostPower1808':{
+  const host=auraHost1808(s,t);if(host)buff(s,host,t.power);break;
+ }
+ case'g34_AuraGrPerCount1808':{
+  const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
+  start(s,t,Array.from({length:n},()=>({op:'AuraGr1353'})));break;
  }
  case'g34_AuraCountDraw1431':{
   const host=own.battle.find(x=>!x.sealed&&api.isCreature(s,x)&&api.allLayers(x).some(y=>y.uid===t.host?.uid&&(y.incarnation||0)===t.host.incarnation));
