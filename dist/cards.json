@@ -305486,18 +305486,155 @@
       ],
       "supportBatch": "phase-1774",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-010",
+      "name": "傾奇黙劇 アルレキヰノ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [ww05] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ww05] 支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃する時、コスト９以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-010",
+      "limit": 4,
+      "g1335VividDraw": 5,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "max": 9,
+          "spellOnly": true,
+          "optional": true,
+          "g555FinishTo": "deck"
+        }
+      ],
+      "supportBatch": "phase-1775",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-004",
+      "name": "傾国美女 ファムファタァル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [ff04]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ff04]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、このターン、自分のクリーチャーすべてのパワーを+6000し、「スピードアタッカー」「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーが破壊された時、相手のクリーチャーをパワーの合計が6000以下になるように２体まで選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-004",
+      "limit": 4,
+      "g1335VividDraw": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 6000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "speedAttacker": true,
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 6000
+        }
+      ],
+      "supportBatch": "phase-1775",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-s09",
+      "name": "驚言廻し コミックリリヰフ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [wf05] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [wf05]支払って召喚してもよい）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のパワー8000以下のクリーチャーを１体破壊する。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。\n自分のクリーチャーが破壊される時、墓地に置くかわりに山札の一番上に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s09",
+      "limit": 4,
+      "g1335VividDraw": 5,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 8000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Target",
+          "to": "hand"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g846DestroyToTop": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1775",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1774,
-    "checkedAt": "2026-11-27T09:04:37.323Z",
-    "baseCount": 9544,
+    "phase": 1775,
+    "checkedAt": "2026-11-27T09:07:57.931Z",
+    "baseCount": 9547,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9547,
+    "totalCount": 9550,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39097/"
+      "https://dm.takaratomy.co.jp/rule/qa/34324/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -334576,6 +334713,21 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1774,
+        "checkedAt": "2026-11-27T09:04:37.323Z",
+        "baseCount": 9544,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9547,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39097/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
         ]
       }
     ]

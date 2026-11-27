@@ -2912,5 +2912,151 @@
         }
       ]
     }
+  },
+  "dmex13-010": {
+    "phase": 1775,
+    "faces": [
+      {
+        "name": "傾奇黙劇 アルレキヰノ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ビビッドロー [ww05] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [ww05] 支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃する時、コスト９以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、その呪文を唱えた後、墓地に置くかわりに山札の下に置く。",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 5,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "max": 9,
+          "spellOnly": true,
+          "optional": true,
+          "g555FinishTo": "deck"
+        }
+      ]
+    }
+  },
+  "dmrp16-004": {
+    "phase": 1775,
+    "faces": [
+      {
+        "name": "傾国美女 ファムファタァル",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ビビッドロー [ff04]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[ff04]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、このターン、自分のクリーチャーすべてのパワーを+6000し、「スピードアタッカー」「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーが破壊された時、相手のクリーチャーをパワーの合計が6000以下になるように２体まで選び、破壊する。",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 6000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "speedAttacker": true,
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 6000
+        }
+      ]
+    }
+  },
+  "dmrp15-s09": {
+    "phase": 1775,
+    "faces": [
+      {
+        "name": "驚言廻し コミックリリヰフ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ビビッドロー [wf05] （自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを [wf05]支払って召喚してもよい）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のパワー8000以下のクリーチャーを１体破壊する。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。\n自分のクリーチャーが破壊される時、墓地に置くかわりに山札の一番上に置いてもよい。",
+        "race": "ムートピア/美孔麗王国",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1335VividDraw": 5,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 8000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "Target",
+          "to": "hand"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g846DestroyToTop": true
+          }
+        }
+      ]
+    }
   }
 }
