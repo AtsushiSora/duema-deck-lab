@@ -28,11 +28,36 @@ export function createFifteenPhotoRules(api){
     .filter(x=>!ordered.includes(x.uid)).map(x=>opt(card(x).name,x.uid,1,x.cardId)),t.owner);
    return;
   }
-  const board=s.players[t.owner].battle;
-  api.evolutionBase?.(s,t.owner,y,host);
-  for(const z of auras)clear(z,'under');
-  const orderedGroup=[...ordered.map(uid=>group.find(x=>x.uid===uid)),...group.filter(x=>!ordered.includes(x.uid))];
+  commitStack1352(s,t.owner,host,y,group,ordered);
+ }
+ function commitStack1352(s,owner,host,y,group,ordered){
+  const board=s.players[owner].battle;
+  api.evolutionBase?.(s,owner,y,host);
+  for(const z of group)if(z!==y)clear(z,'under');
+  const orderedGroup=[...ordered.map(uid=>group.find(x=>x.uid===uid)).filter(Boolean),...group.filter(x=>!ordered.includes(x.uid))];
   for(const z of orderedGroup){remove(board,z.uid);(host.under??=[]).push(z);}
+ }
+ function stackEach1805(s,t){
+  const index=t.ownerIndex??0,pairs=t.pairs||[],orders=t.orders||[];
+  if(index<2){
+   const owner=index===0?t.p:1-t.p,rows=creatures(s,owner).filter(x=>!x.sealed&&!x.faceDown);
+   if(rows.length<2){pending(s,t,'stackEach1805',{ownerIndex:index+1,host:null});return;}
+   target(s,{...t,owner,stackStage:'select'},t.host?'その下に置くクリーチャーを選ぶ':'下に重ねる先のクリーチャーを選ぶ',rows.filter(x=>x.uid!==t.host?.uid),true);
+   return;
+  }
+  const plans=pairs.flatMap((r,i)=>{
+   const board=s.players[r.owner].battle,host=board.find(x=>x.uid===r.host.uid&&(x.incarnation||0)===r.host.incarnation),y=board.find(x=>x.uid===r.victim.uid&&(x.incarnation||0)===r.victim.incarnation);
+   return host&&y&&!host.sealed&&!y.sealed&&api.isCreature(s,host)&&api.isCreature(s,y)&&api.canLeave(s,r.owner,y)?[{...r,i,host,y,group:[y,...api.attachedAuras1352(s,r.owner,y)]}]:[];
+  });
+  for(const r of plans){
+   const ordered=orders[r.i]||[];
+   if(ordered.length<r.group.length-1){
+    choice(s,{...t,stackStage:'order',pairIndex:r.i},'下に置く順番を選ぶ（上から）',r.group.filter(x=>!ordered.includes(x.uid)).map(x=>opt(card(x).name,x.uid,0,x.cardId)),r.y.cardOwner??r.owner);
+    return;
+   }
+  }
+  // Reserve every pair and Aura ordering before the first same-zone mutation.
+  for(const r of plans)commitStack1352(s,r.owner,r.host,r.y,r.group,orders[r.i]||[]);
  }
  const offer=(s,t,title,more={})=>choice(s,{...t,...more},title,[opt('使う',true,more.score??10),skip()]);
  const target=(s,t,title,list,optional=false)=>choice(s,t,title,[...targetOptions(s,t.p,list),...(optional?[skip()]:[])]);
@@ -189,6 +214,7 @@ export function createFifteenPhotoRules(api){
  }
  case'untapMana':{const selected=t.selected||[],ys=own.mana.filter(y=>!selected.includes(y.uid)&&api.canUntapMana(s,y));if(selected.length>=t.n||!ys.length)break;choice(s,{...t,selected},'アンタップするマナを選ぶ（'+selected.length+'/'+t.n+'）',ys.map(y=>opt(card(y).name,y.uid,y.tapped?10:0,y.cardId)));break;}
  case'scorpionAttack':give(s,t,[E('Ramp',{n:1}),S('mana',null,1,{max:own.mana.length+1,creatureOrSeed:true},{deploy:true,optional:true})]);break;
+ case'stackEach1805':stackEach1805(s,t);break;
  case'sixfall':{const rows=creatures(s,t.owner);if(rows.length<2)break;target(s,{...t,p:t.owner,controller:t.p,stage:t.stage||0},t.stage?'その下に置くクリーチャーを選ぶ':'下にカードを重ねるクリーチャーを選ぶ',rows.filter(y=>y.uid!==t.host),true);break;}
  case'alternative':alternative(s,t);break;
  case'fujiEnd':alternative(s,{...t,role:'fuji',selected:[]});break;
@@ -289,6 +315,18 @@ export function createFifteenPhotoRules(api){
  case'rebirth':if(v){pending(s,t,'rebirthPut',{sacrifice:v});move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'worldAttack':move(s,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).map(y=>({player:1-t.p,uid:y.uid,to:'grave'})));break;
  case'untapMana':{const y=own.mana.find(y=>y.uid===v);if(y&&api.canUntapMana(s,y))y.tapped=false;pending(s,t,'untapMana',{selected:[...t.selected,v]});break;}
+ case'stackEach1805':{
+  if(t.stackStage==='order'){
+   const orders=[...(t.orders||[])];orders[t.pairIndex]=[...(orders[t.pairIndex]||[]),v];pending(s,t,'stackEach1805',{orders});
+  }else if(!v)pending(s,t,'stackEach1805',{ownerIndex:(t.ownerIndex??0)+1,host:null});
+  else{
+   const y=s.players[t.owner].battle.find(x=>x.uid===v),ref=y&&{uid:y.uid,incarnation:y.incarnation||0};
+   if(!ref)break;
+   if(!t.host)pending(s,t,'stackEach1805',{host:ref});
+   else pending(s,t,'stackEach1805',{pairs:[...(t.pairs||[]),{owner:t.owner,host:t.host,victim:ref}],host:null,ownerIndex:(t.ownerIndex??0)+1});
+  }
+  break;
+ }
  case'sixfall':if(v){if(!t.host)pending(s,t,'sixfall',{host:v,stage:1});else{const board=s.players[t.owner].battle;stackSixfall1352(s,t,board.find(y=>y.uid===t.host),board.find(y=>y.uid===v));}}break;
  case'sixfallOrder1352':{
   const board=s.players[t.owner].battle;

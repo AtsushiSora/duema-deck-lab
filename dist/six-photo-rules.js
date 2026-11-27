@@ -4847,6 +4847,15 @@ export function createSixPhotoRules(api){
   else if(costs[0]>0)put(s,{...t,op:'g71_Plus',n:Math.min(costs[0],own.deck.length),g1804ExactPlus:true});
   break;
  }
+ case'g34_FaceUpGrave1805':{
+  const owner=1-t.p,enemy=s.players[owner],selected=t.selected||[];
+  const rows=[...enemy.battle.flatMap(top=>api.layers(top).filter(x=>!x.faceDown).map(x=>({x,origin:'battle'}))),
+   ...(api.canMoveZone(s,owner,'mana')?enemy.mana.filter(x=>!x.faceDown).map(x=>({x,origin:'mana'})):[])].filter(r=>!selected.some(x=>x.uid===r.x.uid));
+  if(selected.length>=(t.n??3)||!rows.length){api.moveFaceUpGrave1805(s,owner,selected);break;}
+  choice(s,t,'場・マナの表向きのカードを合計'+(t.n??3)+'枚選ぶ（'+selected.length+'枚選択済み）',
+   rows.map(({x,origin})=>opt((origin==='battle'?'場：':'マナ：')+card(x).name,{uid:x.uid,origin,serial:x.zoneSerial||0},-cost(card(x)),x.cardId)),owner);
+  break;
+ }
  case'g34_BattleManaReturn1802':api.returnBattleAndMana1802(s,t.p);break;
  case'g34_MeteorSources1796':{
   const host=sourceHost474(s,t),picked=t.picked||[],n=t.n??1;
@@ -8111,6 +8120,7 @@ export function createSixPhotoRules(api){
   }
  }break;
  case'g34_ShieldPlusCost1804':{const n=v==='∞'?own.deck.length:Number(v);if(n>0)put(s,{...t,op:'g71_Plus',n:Math.min(n,own.deck.length),g1804ExactPlus:true});break;}
+ case'g34_FaceUpGrave1805':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_HandUnder1131':if(v){
   const host=sourceHost474(s,t),origin=t.origin??'hand';
   if(!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,origin))break;

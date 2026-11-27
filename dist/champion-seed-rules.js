@@ -87,7 +87,7 @@ export function createSeedChampionRules(api){
  mainActions(s,p){if(s.active!==p||!movable(s,p,'mana'))return[];return active(s,p,'g47Drache').filter(w=>s.g47ManaSeedUsed?.[key(w)]!==s.turn).flatMap(w=>s.players[p].mana.filter(x=>card(x).type==='seed'&&usable(s,p,x,card(x),'mana')&&api.canPay(s,p,card(x))).map(x=>({kind:'play',alternative:'g47Seed',uid:x.uid,cardId:x.cardId,origin:'mana',g47Drache:ref(w),label:card(x).name+'をマナから実行する',cost:api.summonCost(s,p,card(x))})));},
  alternative(s,p,a){const w=s.players[p].battle.find(x=>key(x)===key(a.g47Drache)&&!api.ignored(s,x)&&effective(x,s).g47Drache);if(!w||s.g47ManaSeedUsed?.[key(w)]===s.turn||!movable(s,p,'mana'))return;(s.g47ManaSeedUsed??={})[key(w)]=s.turn;api.cast(s,p,a.uid,false,null,0,null,'mana','創世竜 Drache der’Zen');put(s,task('g47_ManaSeedRamp',p,w.cardId));},
  manaLeft(s,p,watchers=null){const first=s.g47ManaLeft?.[p]!==s.turn;(s.g47ManaLeft??=[])[p]=s.turn;if(first)for(const w of watchers??active(s,p,'g47Strato'))on(s,p,w,'StrataRamp');},
- noLose(s,p,kind){return kind!=='directAttack'&&active(s,p,'g47Valhalla').length>0;},
+ noLose(s,p,kind){return kind!=='directAttack'&&(active(s,p,'g47Valhalla').length>0||[0,1].some(owner=>active(s,owner,'g1805DirectOnly').some(x=>!x.sealed&&!x.faceDown)));},
  canAddTurn(s,p){return active(s,1-p,'g47Valhalla').length===0;},
  replaceEntry(s,p,x,base,options={}){if(s.active!==p||card(x).type!=='creature'||(s.players[p].enteredThisTurn||0)<2||!active(s,1-p,'g47Manhattan').length)return false;api.clear(x,'mana');api.addZone(s,p,'mana',x);api.log(s,p,'entryReplace',card(x).name+'はマンハッタンの心絵によりマナゾーンへ',{cardId:x.cardId});return true;},
  // Core leave processing chooses the active player's replacement before the other player's.

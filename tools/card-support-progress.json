@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9635,
-  "pendingNames": 2208,
-  "phase": 1804,
+  "supportedNames": 9638,
+  "pendingNames": 2205,
+  "phase": 1805,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,8 +156,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1291,
-    "呪文": 248,
+    "クリーチャー": 1289,
+    "呪文": 247,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 24,
     "タマシード": 26,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1623,
+    "未対応の能力文": 1620,
     "複数面・特殊カードタイプまたは情報不足": 488,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -568452,11 +568452,207 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1805,
+      "checkedAt": "2026-11-27T14:14:54.037Z",
+      "baseline": "41cc1e26cbc524e70d647963282f18739e6e6a8f",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9635,
+      "currentNames": 9638,
+      "remainingNames": 362,
+      "added": [
+        {
+          "id": "dm26ex3-008",
+          "name": "ジュラ子・リューバー＜LOVEですわ＞"
+        },
+        {
+          "id": "dm25ex2-074",
+          "name": "シラハノトキメキ"
+        },
+        {
+          "id": "dmex08-098",
+          "name": "ジャッジCREWニー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1805,
+        "baseline": "41cc1e26cbc524e70d647963282f18739e6e6a8f",
+        "originalDefinitionsUnchanged": 9635,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9638,
+        "uniqueIds": 9638,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9635,
+        "existingImageReferenceRowsUnchanged": 12015,
+        "officialPrintsReviewed": 7,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1805": {
+          "name": "official-1805",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1805.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.978,
+          "log": "tmp/duema-target-10000/official-1805.log",
+          "passed": 0,
+          "logSha256": "dee30b240bfdb6cf62bc73d37a94eb6ff294090cad529caf2fad39d6cb257e27"
+        },
+        "focused-1805-final": {
+          "name": "focused-1805-advanced-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1805-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.981,
+          "log": "tmp/duema-target-10000/focused-1805-advanced-final.log",
+          "passed": 52,
+          "logSha256": "824fb3e0af7d43c4776a2f07b048cbe18f78b8125eb80a4c844a0661ab3ca286"
+        },
+        "related-1805": {
+          "name": "related-1805",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:the print IDs from all seven official products resolve to one All Delete definition|All Delete sweeps hand, battle including layers, shields and grave, retaining mana and ownership|All Delete evaluates active Shield Force against the original shield \\(QA37768\\)|the shield-cast All Delete and the resolving Lucky Darts stay pending until resolution \\(QA39786\\)|All Delete moves the last seal, then releases the surviving Dokindam|canonical and reprint resolve to one fully verified aura|attaching to an existing or new GR grants power and an optional draw: |attaching a second aura triggers both, and destroying their host moves both to the grave|310\\.2a: a GR creature destroyed before attachment leaves the aura in its original hand slot|310\\.7: the aura stays attached after its GR creature evolves|310\\.8b: Sixfall lets the owner order the GR creature and its aura under another creature|QA40665: XXDDZ keeps its linked shield and still prohibits opposing spells|Schwarzring continues after attempting to put its protected shield into the grave|QA39077: Ragnarok counts only the shield cards that actually moved|QA40456: the owner chooses between Shield Go and keeping the shield: |rule 310\\.8 moves an attached aura with a GR creature chosen by Rakujo no Kei|Jokers Heart counts the GR and its aura before the GR returns to the extra deck|the four verified Psychic prints resolve to two physical card IDs with both faces|Psychic Eater lets the opponent choose the real Glen-Oh and it survives the destruction \\(QA 36427\\)|the actual Mushahole deploys Glen-Oh and Demon Hand can select it \\(QA 36426\\)|a losing Glen-Oh returns to its extra zone and a winning Glen-Oh survives Slayer \\(QA 36428\\)|turn-start awakening must link one eligible Glen-Oh and keeps physical card counts and modifiers|link release chooses either physical cell after a creature bounce or Rakujou card choice \\(806\\.1c\\)|the linked pair are separate cells under an evolution and do not relink when it leaves \\(QA 48139\\)|18 official Victory Psychic prints use three canonical IDs and the latest linked wording|Mixel returns the real Victory Gaiarl after the Hall gives the seventh mana \\(QA 38717\\)|Victory Gaiarl can attack an untapped creature on its entry turn only|Victory Ryusei taps charged mono mana and Prinn prohibits attack and block until its controller starts|V Awakening Link keeps the three actual cards and resolves before the next Hall instruction|if a link has two eligible copies of a piece, the controller chooses the three to flip|a battle win untaps Ore Dragon and its latest wording breaks two simultaneous shields|a targeted cell can release the link into two creatures while preserving phase and power \\(QA 40691\\)|the attacking player chooses which survivor continues an attack after link release \\(806\\.2a\\)|both survivors inherit Prinn’s lock and a cross gear follows the chosen survivor|three linked parts can be ordered under an evolution and return as cells after reconstruction|super-infinite evolution may use multiple complete creatures and preserves cost, physical stack and immediate evolution attack |super-infinite evolution cannot be used with no creature base |Fatal Spiral uses Origin or Dragon bases, counts all three buried physical cards, and allows declining its full bounce |QA35965: Fatal Spiral can choose itself and returns every physical evolution source with it|Fatal Spiral current stack count and last-known count both exclude the top evolution card|Universe cannot offer ten-source payment with only |Universe reserves ten distinct sources before any move, wins before blocking and conserves all physical cards |Universe cancellation after |Universe non-attack victory is stopped by an opponent Valhalla after all ten source cards have moved|Universe opponent Strato replacement is chosen before all ten sources move, and does not cancel the completed payment |QA41756: actual exploded Dolmaggedon buried as ten evolution sources causes its constant loss before Universe victory|Tatebue shields one exact hidden physical source, double breaks, and untaps only at this turn end |QA36790: Tatebue gets no end untap without its source payment |Tatebue is a real blocker after its delayed end untap|Fatal Spiral also evolves from an Origin that is not a Dragon and never selects an untargetable enemy|Universe pays exactly ten nested physical source cards in a chosen reverse order, retaining the established nested save format|Universe mixed Strato decisions move one multicolor source to tapped owner mana and nine to grave as one completed payment|Tatebue cannot elect a shield placement prohibited by the actual Fuujin continuous ability|The shield placement elected with an existing source may be replaced by Pippi; the completed optional attempt still schedules Tatebue untap|same-mana-zone evolution pays actual mana then consumes exactly distinct eligible physical bases |mana evolution rejects invalid or immovable bases |mana multi-base cancellation leaves the hand and mana untouched |Neptune paid GV permits any mix of the three eligible tribes and preserves complete bases |Ares exact one-source attack destroys every opposing blocker of current cost at most three |QA35471 Neptune lets the opponent order whole creature bundles and their bases without interleaving |Neptune returns untargetable creatures and handles a native leave replacement before its resulting deck order|Bargarizo public three-card inspection optionally deploys non-evolution Dragons and graves every remainder |Bargarizo cannot deploy an evolution Dragon or a non-creature Dragon spell and graves them|QA39993 actual QQQX prevents Bargarizo looking at, deploying or moving any library cards after payment|Meteor exact payment cannot grant an unpaid or partial effect |Neptune requires three separate eligible creatures and cannot use two or an unrelated third|Bargarizo public inspection respects the actual one-card Curved Wind limit|Spartan paid GreatMechaO evolution is a6500 W-breaking blocker with one physical base |Spartan untaps after actual blocking battle, including surviving defeat through Meteor |Spartan may consume one exact nested physical source instead of leaving for |Spartan ordinary departure occurs if Meteor is unavailable or declined |Arcaizum paid super-infinite evolution accepts several own blockers and rejects nonblockers |QA35900 Arcaizum puts exactly the paid card cost beneath one existing shield, without a new shield or public identities |Arcaizum can refer to either actual Twinpact face cost after paying that one source |Arcaizum handles zero cost, missing shield, shield-add prohibition and optional payment |Black Lucifer normal or GNEO paid6 entry optionally takes one mana and one grave card |Black Lucifer can decline each zone independently and cannot evolve onto a Water-only or Light-only creature|Black Lucifer own-start ability takes one each and respects actual Apul opposing zone restrictions|Black Lucifer exact Meteor3 repeatedly destroys only opposing entrants and persists after its source leaves |Black Lucifer produces no delayed destruction without a full elected payment |Black Lucifer delayed effect lasts through the opposing turn and expires at its own next start|QA46827 actual Yuzo resurrects actual Jenny with turn-player-priority delayed destruction |QA46831 RX evolving into Arcadias creates two delayed destructions and both physical creatures reach the grave|QA46830 actual revolution-zero Dogiragon and its Fire Bird are destroyed before its battle during Lucifer own turn|QA46829 Dogiragon resolves its entry battle before delayed destruction during the opposing turn|Arcaizum completes the elected payment through actual Strato mana replacement and still performs exact Shield Plus|Arcaizum places as many as possible if the library has fewer cards than the required cost and then loses by deck-out|Black Lucifer hidden mana selection does not leak the physical identity in action labels or opponent projection|Arcaizum infinity-cost physical source uses all available library cards without serializing a nonfinite task number)",
+            "tests/standard1347-effects.test.mjs",
+            "tests/standard1352-effects.test.mjs",
+            "tests/standard1355-effects.test.mjs",
+            "tests/standard1356-effects.test.mjs",
+            "tests/standard1796-effects.test.mjs",
+            "tests/standard1803-effects.test.mjs",
+            "tests/standard1804-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.806,
+          "log": "tmp/duema-target-10000/related-1805.log",
+          "passed": 157,
+          "logSha256": "470544d8eb5f507265a36cb8124f67a83726519fc355d9dc455f8f346e8e6516"
+        },
+        "check-1805": {
+          "name": "check-1805",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.391,
+          "log": "tmp/duema-target-10000/check-1805.log",
+          "passed": 0,
+          "logSha256": "c276375757119e5f541290591ff5bf3a4abd34b36d87e879003db4d619e45b32"
+        },
+        "audit-1805": {
+          "name": "audit-1805",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.766,
+          "log": "tmp/duema-target-10000/audit-1805.log",
+          "passed": 0,
+          "logSha256": "b22899545ad9c9a6299f01c5a9cf7be4b44c0c18bb36e730564bab1688906f06"
+        },
+        "invariants-1805": {
+          "name": "invariants-1805",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1805"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.734,
+          "log": "tmp/duema-target-10000/invariants-1805.log",
+          "passed": 0,
+          "logSha256": "887256b694715180a826952b3a8e631073bc14d23ba308b79be36abefd3a65b2"
+        },
+        "related-online-1805": {
+          "name": "related-online-1805",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.695,
+          "log": "tmp/duema-target-10000/related-online-1805.log",
+          "passed": 5,
+          "logSha256": "b561021b8882dc7d9b6e871106e7ca7a44de267c387b1cad7a7c981ebd35f827"
+        }
+      },
+      "totalTestsPassed": 214,
+      "manifest": "tools/support-phase-1805.json",
+      "supported": 9638,
+      "pending": 2205,
+      "engineVersion": "0.602.329",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1805",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1805-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.348,
+          "log": "tmp/duema-target-10000/focused-1805.log",
+          "reason": "The initial evolution fixture accidentally used Plasma Chaser dm02-002, which is not an evolution. Corrected to actual Crystal Lancer dm02-024 in the new tests and the existing QA35471 regression. Universe fixture corrected from nonexistent dmex01-021 to registered dmex01-022. Death-draw assertion now accounts for the three ordinary shield cards entering hand after Jura attack. Advanced fixtures account for automatic single-partner awakening and the required noBlock step before a shield trigger. Final52 focused tests all pass."
+        },
+        {
+          "name": "focused-1805-linked-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1805-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.846,
+          "log": "tmp/duema-target-10000/focused-1805-linked-final.log",
+          "reason": "The initial evolution fixture accidentally used Plasma Chaser dm02-002, which is not an evolution. Corrected to actual Crystal Lancer dm02-024 in the new tests and the existing QA35471 regression. Universe fixture corrected from nonexistent dmex01-021 to registered dmex01-022. Death-draw assertion now accounts for the three ordinary shield cards entering hand after Jura attack. Advanced fixtures account for automatic single-partner awakening and the required noBlock step before a shield trigger. Final52 focused tests all pass."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1804,
-    "nextPhase": 1805,
+    "lastVerifiedPhase": 1805,
+    "nextPhase": 1806,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -569369,11 +569565,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1804,
-      "baseline": "dfdd3d9ecf18270c48e7d411a3b5b67debde365f",
-      "supportedNames": 9635,
-      "artifact": "tools/target10000-registration-checkpoint-1804.json",
-      "checkedAt": "2026-11-27T13:53:36.225Z"
+      "phase": 1805,
+      "baseline": "41cc1e26cbc524e70d647963282f18739e6e6a8f",
+      "supportedNames": 9638,
+      "artifact": "tools/target10000-registration-checkpoint-1805.json",
+      "checkedAt": "2026-11-27T14:14:54.037Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -572431,8 +572627,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9635,
-      "remaining": 365,
+      "currentNames": 9638,
+      "remaining": 362,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572440,8 +572636,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1804,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1804.json",
+      "lastPhase": 1805,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1805.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -572462,7 +572658,7 @@
           "next": "Verify complete official sources and optional tapped-mana leave replacement for both seed and carrying creature."
         }
       ],
-      "resumeProcedure": "Inspect HEAD/tree/index/AGENTS/progress/previous tests/live processes and actual nameKey count. Phase1803 final verified at9632. Continue phase1804 from grouped research; review every image, follow all direct related rulings and prefer native rules. Preserve old deferrals; no full npm test, long-group repeats, automation restart or push/publication/Netlify.",
+      "resumeProcedure": "Inspect latest local commit, AGENTS, worktree/index, progress and previous test logs, running jobs and actual nameKey count. Phase1805 verified at9638. Next phase1806 grouped research in tmp/duema-target-10000/research-dm23ex2-053.json; confirm fetch finished and inspect all images. Prefer native conditions/reducers and exact evolution/alternative cost helpers, with strict full-wording pins. Preserve earlier pending/holds/deferrals. No full npm test, repeated long groups, automation restart, push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -572530,6 +572726,34 @@
           "canonicalName": "終断Δ ドルハカバ",
           "reason": "Official promotional image prints the same Delta symbol, stats and ability as the registered Delta card. Old HTML spells its reading as デルタ, so a plain name search separates it. Do not add a new definition/count or alter saved IDs.",
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-078"
+        },
+        {
+          "id": "dm02-044",
+          "name": "ギガスタンド",
+          "reason": "Official QA_old35021 permits paying another simultaneously hand-returned Aqua Soldier from an initially empty hand. Native returnDiscard1156 returns the source first and then discards, which would also allow paying with Gigastand itself. Full distinct payment eligibility/reservation and competing same-batch replacements need dedicated handling. No partial definition or count.",
+          "officialRulings": [
+            "https://dm.takaratomy.co.jp/rule/qa_old/35021/"
+          ],
+          "research": "tmp/duema-target-10000/research-dm02-044.json"
+        },
+        {
+          "id": "dm07-009",
+          "name": "キャバリア・シャーク",
+          "reason": "Both official full images reviewed. Original DM07 says up to2/optional; DM18 prints exactly2. Need authoritative current wording reconciliation plus one selected hand batch then same-number complete shield-group return without triggers. Reusing a one-card exchange twice would allow an incorrect intermediate reuse. No partial definition or count.",
+          "officialPrints": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm07-009",
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm18-024"
+          ],
+          "research": "tmp/duema-target-10000/research-dm02-044.json"
+        },
+        {
+          "id": "dmrp13-013",
+          "name": "「古の守護者」",
+          "reason": "Official QA40539 requires defending controller shield selection even against Sapphire burn. Text replaces any opposing selection of its shields, not only attack breaks. Native g1659ShieldChoose is limited to creature breaks and has active-player/burn exclusions, so setting that flag would be partial. Need general optional shield-selection interception across effects. No partial definition or count.",
+          "officialRulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/40539/"
+          ],
+          "research": "tmp/duema-target-10000/research-dm02-044.json"
         }
       ]
     },
@@ -573669,8 +573893,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9635,
-      "remaining": 365,
+      "currentNames": 9638,
+      "remaining": 362,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -573678,8 +573902,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1804,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1804.json",
+      "lastPhase": 1805,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1805.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -573700,7 +573924,7 @@
           "next": "Verify complete official sources and optional tapped-mana leave replacement for both seed and carrying creature."
         }
       ],
-      "resumeProcedure": "Inspect HEAD/tree/index/AGENTS/progress/previous tests/live processes and actual nameKey count. Phase1804 verified at9635 (implementation84c99e6f). Next phase1805 grouped research exists; review every image and full print/ruling data before pins or registration. Prefer native mechanisms. If a full semantic gap is too large, record it and select alternatives; never set a near-match flag as complete. Preserve all old pending and user deferrals. No full npm test, repeated known long groups, timed automation, push/publication/Netlify.",
+      "resumeProcedure": "Inspect latest local commit, AGENTS, worktree/index, progress and previous test logs, running jobs and actual nameKey count. Phase1805 verified at9638. Next phase1806 grouped research in tmp/duema-target-10000/research-dm23ex2-053.json; confirm fetch finished and inspect all images. Prefer native conditions/reducers and exact evolution/alternative cost helpers, with strict full-wording pins. Preserve earlier pending/holds/deferrals. No full npm test, repeated long groups, automation restart, push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -573836,24 +574060,24 @@
       }
     ],
     "nextTarget10000Preparation": {
-      "research": "tmp/duema-target-10000/research-dm26ex3-008.json",
+      "research": "tmp/duema-target-10000/research-dm23ex2-053.json",
       "candidates": [
         {
-          "id": "dm26ex3-008",
-          "name": "ジュラ子・リューバー＜LOVEですわ＞",
-          "implementation": "Affected opponent selects total3 face-up own battlefield or mana cards in one native batch; inspect QA49216.",
+          "id": "dm23ex2-053",
+          "name": "オ:マルグンサ",
+          "implementation": "Mana summon and exact current-cost3 Abyss evolution base; own Abyss element counts3/4 grant triple breaker and entry mana removal.",
           "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dm25ex2-074",
-          "name": "シラハノトキメキ",
-          "implementation": "Optional two-creature selection/under-stacking for each seat; inspect native stackSixfall1352 and owner ordering310.8b while preserving original effect chooser/targetability.",
+          "id": "dmsd20-011",
+          "name": "クリスタ ＜ヴォイジャ.Star＞",
+          "implementation": "Native star evolution/blocker; separate creature evolution and seed-use reductions1, floor1, ignoring and multiple copies.",
           "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dmex08-098",
-          "name": "ジャッジCREWニー",
-          "implementation": "All players cannot win or lose except creature attacks; inspect native loss/victory guards and QA33219, including deck exhaustion and constant loss vs actual direct attacks.",
+          "id": "dm24ex1-020",
+          "name": "ダイヤモンド・カミタイオ",
+          "implementation": "Optional fixed Nature1 summon when3 own Snow Fairy elements exist; Snow Fairy creature evolution, double breaker, independently optional tapped ramp1 then mana return1.",
           "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         }
       ],
@@ -573893,7 +574117,8 @@
           "reason": "Official QA40539 requires defending controller shield selection even against Sapphire burn. Text replaces any opposing selection of its shields, not only attack breaks. Native g1659ShieldChoose is limited to creature breaks and has active-player/burn exclusions, so setting that flag would be partial. Need general optional shield-selection interception across effects. No partial definition or count."
         }
       ],
-      "restart": "Inspect HEAD/tree/index/AGENTS/progress/previous tests/live processes and actual nameKey count. Phase1804 verified at9635 (implementation84c99e6f). Next phase1805 grouped research exists; review every image and full print/ruling data before pins or registration. Prefer native mechanisms. If a full semantic gap is too large, record it and select alternatives; never set a near-match flag as complete. Preserve all old pending and user deferrals. No full npm test, repeated known long groups, timed automation, push/publication/Netlify."
+      "restart": "Inspect latest local commit, AGENTS, worktree/index, progress and previous test logs, running jobs and actual nameKey count. Phase1805 verified at9638. Next phase1806 grouped research in tmp/duema-target-10000/research-dm23ex2-053.json; confirm fetch finished and inspect all images. Prefer native conditions/reducers and exact evolution/alternative cost helpers, with strict full-wording pins. Preserve earlier pending/holds/deferrals. No full npm test, repeated long groups, automation restart, push/publication/Netlify.",
+      "nativeReuseHint": "matchesEvolution currently has no numeric-cost predicate; do not assume {race,cost:3} checks cost. Add an explicit current-cost condition if needed. Native g349SummonAuras supports filter.evolution; g468UseReduction already supports g1282Tamaseed and amount. Fixed Nature1 optional summon must use a genuine alternative cost, not a four-mana reduction that would interact incorrectly with tax/no-reduction effects. Verify seed/evolution count boundaries and all three complete official images/rulings before registration."
     },
     "resolvedTarget10000Holds": [
       {
@@ -625777,10 +626002,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1804,
+    "phase": 1805,
     "threshold": 10000,
-    "supportedNames": 9635,
-    "pendingNames": 2208,
+    "supportedNames": 9638,
+    "pendingNames": 2205,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -625789,7 +626014,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1804.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1805.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
