@@ -306475,18 +306475,133 @@
       ],
       "supportBatch": "phase-1783",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-016",
+      "name": "罪無 ブリキン極",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃した時、コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-016",
+      "limit": 4,
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-1784",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-002",
+      "name": "無量大龍 ノヴェ・シエントス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ゼロ・ドラゴン/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [ww03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを、自身の山札の上または下のどちらかを選んで置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-002",
+      "limit": 4,
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "g1784OwnerDeckChoice": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "g1784OwnerDeckChoice": true
+        }
+      ],
+      "supportBatch": "phase-1784",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-003",
+      "name": "無量大龍 ヌンラーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ゼロ・ドラゴン/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、[dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\n自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-003",
+      "limit": 4,
+      "mugenCrime": 3,
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1784",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1783,
-    "checkedAt": "2026-11-27T10:14:11.094Z",
-    "baseCount": 9569,
+    "phase": 1784,
+    "checkedAt": "2026-11-27T10:23:47.456Z",
+    "baseCount": 9572,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9572,
+    "totalCount": 9575,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/32916/"
+      "https://dm.takaratomy.co.jp/rule/qa/34206/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335695,6 +335810,21 @@
         "totalCount": 9569,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1783,
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "baseCount": 9569,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9572,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/32916/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

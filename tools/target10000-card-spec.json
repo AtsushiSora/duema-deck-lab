@@ -4716,5 +4716,129 @@
         }
       ]
     }
+  },
+  "dmrp15-016": {
+    "phase": 1784,
+    "faces": [
+      {
+        "name": "罪無 ブリキン極",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃した時、コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+        "race": "マフィ・ギャング/チーム零",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ]
+    }
+  },
+  "dmrp15-002": {
+    "phase": 1784,
+    "faces": [
+      {
+        "name": "無量大龍 ノヴェ・シエントス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [ww03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを、自身の山札の上または下のどちらかを選んで置く。",
+        "race": "ゼロ・ドラゴン/チーム零",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "g1784OwnerDeckChoice": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "g1784OwnerDeckChoice": true
+        }
+      ]
+    }
+  },
+  "dmrp16-003": {
+    "phase": 1784,
+    "faces": [
+      {
+        "name": "無量大龍 ヌンラーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、[dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\n自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。",
+        "race": "ゼロ・ドラゴン/チーム零",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 3,
+      "breaker": 2,
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

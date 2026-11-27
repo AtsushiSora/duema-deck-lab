@@ -9094,8 +9094,20 @@ export function createSixPhotoRules(api){
   if(f){f.g1647ManaDecided=true;if(v===true){f.to='mana';f.g1647ExternalFinish=true;}}
   put(s,t.resume);break;
  }
+ case'g34_OwnerDeckChoice1784':{
+  const target=s.players[t.owner].battle.find(y=>y.uid===t.target&&(y.incarnation||0)===t.targetIncarnation);
+  if(target&&!target.sealed&&api.isCreature(s,target)&&['deckTop','deck'].includes(v))
+   move(s,[{player:t.owner,uid:target.uid,to:v,destroy:false,controller:t.owner,toOwnerDeck:true,g1089OrderDeck:true,orderDeckTop:true}]);
+  break;
+ }
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g1784OwnerDeckChoice){
+   const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);
+   if(target)choice(s,{...t,op:'g34_OwnerDeckChoice1784',target:v.uid,owner:v.p,targetIncarnation:target.incarnation||0},
+    '選ばれたクリーチャーを置く場所を選ぶ',[opt('自分の山札の上','deckTop',12),opt('自分の山札の下','deck',10)],v.p);
+   break;
+  }
   if(t.g1736MuteUntilStart){
    const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid&&!y.sealed&&api.isCreature(s,y));
    if(target)(s.extLimits??=[]).push({kind:'g34Mute',player:v.p,expires:'start',who:t.p,

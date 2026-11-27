@@ -1,0 +1,290 @@
+{
+  "phase": 1784,
+  "checkedAt": "2026-11-27T10:23:47.456Z",
+  "baseline": "3f83ccd17c50b55dcf938749cdc53e852c1e4118",
+  "baseCount": 9572,
+  "target": 10000,
+  "description": "Three complete Mugen Crime 3 creatures. Reuse native paid hand/grave summon, tapped ally payment, cheap-creature revival, attack watch and power cleanup. Add a target option that lets the affected owner choose library top/bottom and privately order the whole evolution stack using existing departure/order routines.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/34206/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-016",
+      "name": "罪無 ブリキン極",
+      "canonicalId": "dmrp15-016",
+      "printId": "dmrp15-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-016",
+      "faces": [
+        {
+          "name": "罪無 ブリキン極",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃した時、コスト３以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-016.jpg",
+      "imageSha256": "afa4c469a2a8c621bc68f300c59eb374ecc9bc2c7ebb1dfb121c5690988171f5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp15-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp15-016"
+        ],
+        "allSearchIds": [
+          "promoy19-060",
+          "dmrp15-034",
+          "dmex19-043",
+          "dmex14-029",
+          "dmrp15-090",
+          "dmrp15-037",
+          "dm23rp3-SP4",
+          "dmrp16-052",
+          "dm22ex2-043",
+          "dmex16-062",
+          "promoy19-096",
+          "dmrp16-064",
+          "dmsd16-003",
+          "dmrp16-069",
+          "dmex13-060",
+          "dmex18-062",
+          "dmbd22-022",
+          "dm24ex3-TF06",
+          "dm24rp1-T03",
+          "dmrp15-015",
+          "dmsd16-008",
+          "dm22ex2-069",
+          "dmsd16-004",
+          "dmrp15-065",
+          "dm22ex1-108",
+          "dmsd16-005",
+          "dmrp15-016",
+          "dmsd16-002",
+          "dmex13-033",
+          "dmrp16-034"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:23:47.456Z",
+        "sha256": "0e2bc4a0623f2dc4e72a83fa55b7d970a676edc0440cada28c2af83b279f14b0",
+        "facesMatched": true,
+        "imageSha256": "afa4c469a2a8c621bc68f300c59eb374ecc9bc2c7ebb1dfb121c5690988171f5"
+      }
+    },
+    {
+      "id": "dmrp15-002",
+      "name": "無量大龍 ノヴェ・シエントス",
+      "canonicalId": "dmrp15-002",
+      "printId": "dmrp15-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-002",
+      "faces": [
+        {
+          "name": "無量大龍 ノヴェ・シエントス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [ww03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを、自身の山札の上または下のどちらかを選んで置く。",
+          "race": "ゼロ・ドラゴン/チーム零",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "g1784OwnerDeckChoice": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "g1784OwnerDeckChoice": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-002.jpg",
+      "imageSha256": "f80ab52f2bfcc4dd4d40b4323e324e9a9113df66aba165c7770b0f820c601dcf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp15-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp15-002"
+        ],
+        "allSearchIds": [
+          "dmex14-s05",
+          "dmex13-s02",
+          "dmrp15-s08",
+          "dmrp16-s08",
+          "dmrp16-003",
+          "dmrp15-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:23:47.456Z",
+        "sha256": "198ab5291f89ebf4a5f5ba8b6483cc82400192caf61d9740a329a1209435fa03",
+        "facesMatched": true,
+        "imageSha256": "f80ab52f2bfcc4dd4d40b4323e324e9a9113df66aba165c7770b0f820c601dcf"
+      }
+    },
+    {
+      "id": "dmrp16-003",
+      "name": "無量大龍 ヌンラーン",
+      "canonicalId": "dmrp16-003",
+      "printId": "dmrp16-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-003",
+      "faces": [
+        {
+          "name": "無量大龍 ヌンラーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、[dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\n自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。",
+          "race": "ゼロ・ドラゴン/チーム零",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -4000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-003.jpg",
+      "imageSha256": "a4fd939780a6ac6286e21589af3a683bf501a2cc17d81aa3c32f8e0b40e873a0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp16-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp16-003"
+        ],
+        "allSearchIds": [
+          "dmex14-s05",
+          "dmex13-s02",
+          "dmrp15-s08",
+          "dmrp16-s08",
+          "dmrp16-003",
+          "dmrp15-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:23:47.456Z",
+        "sha256": "0a8630e4bcd89fd85e8c1ef4bf243167b95c1ccbb4593716235d6c0fa232300f",
+        "facesMatched": true,
+        "imageSha256": "a4fd939780a6ac6286e21589af3a683bf501a2cc17d81aa3c32f8e0b40e873a0"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34206/",
+      "sha256": "07f86e23a40415ea6ef88908555551156b481610715db128bfcff0466c9253e0",
+      "checkedAt": "2026-11-27T10:23:47.456Z",
+      "reproduced": true,
+      "tests": "tests/standard1784-effects.test.mjs",
+      "reproduction": "Actual Nove targets a legally based two-card Water evolution. Opponent chooses either top or bottom; both cards reach the same destination and their owner privately orders base then evolution. The order choice survives AES room encryption/restoration; the other player cannot see the private base UID in the projected room.",
+      "result": "Actual Nove targets a legally based two-card Water evolution. Opponent chooses either top or bottom; both cards reach the same destination and their owner privately orders base then evolution. The order choice survives AES room encryption/restoration; the other player cannot see the private base UID in the projected room."
+    }
+  ],
+  "held": [
+    {
+      "id": "promoy15-078",
+      "name": "終断デルタ ドルハカバ",
+      "status": "duplicate-print-excluded",
+      "canonicalId": "dmr23-043",
+      "canonicalName": "終断Δ ドルハカバ",
+      "reason": "Official promotional image prints the same Delta symbol, stats and ability as the registered Delta card. Old HTML spells its reading as デルタ, so a plain name search separates it. Do not add a new definition/count or alter saved IDs.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-078"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:23:47.456Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-016": 4,
+      "dmrp15-002": 4,
+      "dmrp16-003": 4
+    }
+  },
+  "validationNotes": {
+    "focusedCoverage": "Both initial and final 21 dedicated cases passed. Final version strengthens the revive boundary to an actual cost-4 excluded card and uses a legal Water evolution base for QA34206. No unexplained failure or partial registered ability remains.",
+    "candidateScan": "Native compiler scan found only dmex18-067 Kengren-O; already known same-name reprint of dm32-101, not a new type. Do not count spelling variants as new cards."
+  }
+}
