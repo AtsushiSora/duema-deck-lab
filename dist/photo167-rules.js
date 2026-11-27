@@ -9,8 +9,11 @@ export function createPhoto167Rules(api){
   case'g167_GalaxySummon':{
    const x=own.shields.flatMap(api.shieldCards).find(x=>x.uid===t.uid&&x.faceUp&&(x.zoneSerial||0)===t.serial&&!x.g37ShieldHeld),c=x&&card(x);
    if(!x||!eva(c)||!api.canMoveZone(s,t.p,'shields')||!api.canCast(s,t.p,c,'shields')||!api.canEnter(s,t.p,c,{origin:'shields',execution:true}))break;
-   const physical=api.removeShieldCard(s,t.p,x.uid);if(!physical)break;api.clear(physical,'battle');
-   const execution={ruleOrigin:'shields',origin:'shields',free:false,freeReason:'ギャラクシールド',alternativeCost:{fixedPayment:true,cost:cost(c)},paidMana:false,cost:cost(c),baseUid:null,face:0};
+   // A paid Galaxyshield spell remains a physical shield until it finishes (QA33402).
+   if(c.type==='spell'){api.castShieldSpell(s,t.p,x.uid,0,c.id,false,{paid:true,galaxy:true});break;}
+   const retained=!!api.shieldStaySource1352(s,t.p);
+   const physical=retained?x:api.removeShieldCard(s,t.p,x.uid);if(!physical)break;if(!retained)api.clear(physical,'battle');
+   const execution={ruleOrigin:'shields',origin:'shields',free:false,freeReason:'ギャラクシールド',alternativeCost:{fixedPayment:true,cost:cost(c)},paidMana:false,cost:cost(c),baseUid:null,face:0,...(retained?{originBlocked402:true,originAlreadyRetained1850:true}:{})};
    if(!api.beforeExecution(s,t.p,c,physical,execution))api.completeExecution(s,t.p,physical,c,execution);
    break;
   }

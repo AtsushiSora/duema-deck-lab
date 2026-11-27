@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9757,
-  "pendingNames": 2092,
-  "phase": 1849,
-  "added": 2,
+  "supportedNames": 9760,
+  "pendingNames": 2089,
+  "phase": 1850,
+  "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,8 +156,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1228,
-    "呪文": 238,
+    "クリーチャー": 1227,
+    "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1565,
+    "未対応の能力文": 1562,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -578685,33 +578685,230 @@
           "reason": "Regression harness initially referenced nonexistent standard49 filename and exited before running. Replaced with existing standard1349 group plus separate positive-selected redzone-effects original invasion3; all pass. No product failure or repeated long run."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6"
+    },
+    {
+      "phase": 1850,
+      "checkedAt": "2026-11-27T23:09:52.862Z",
+      "baseline": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9757,
+      "currentNames": 9760,
+      "remainingNames": 240,
+      "added": [
+        {
+          "id": "dmrp13-067",
+          "name": "三・騎・繚・乱"
+        },
+        {
+          "id": "dmex11-018",
+          "name": "団・鎧・鉄・壁"
+        },
+        {
+          "id": "dmrp14-012",
+          "name": "「修練の偶像」"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1850,
+        "baseline": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
+        "originalDefinitionsUnchanged": 9757,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9760,
+        "uniqueIds": 9760,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9757,
+        "existingImageReferenceRowsUnchanged": 12224,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1850": {
+          "name": "official-1850",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1850.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.375,
+          "log": "tmp/duema-target-10000/official-1850.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1850-final": {
+          "name": "focused-1850-lock",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1850-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.015,
+          "log": "tmp/duema-target-10000/focused-1850-lock.log",
+          "passed": 63,
+          "logSha256": "8b11a04170fd7afcf9052028e384463f7ac6475ad6c865ca078895043f8c01e9"
+        },
+        "related-1850": {
+          "name": "related-1850",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1850.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.9,
+          "log": "tmp/duema-target-10000/related-1850.log",
+          "passed": 84,
+          "logSha256": "8bc6d68c059fd56600b6c86e6b2fe35ae8a0714679c9b83e2db681f1fe4efb59"
+        },
+        "check-1850": {
+          "name": "check-1850",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.554,
+          "log": "tmp/duema-target-10000/check-1850.log",
+          "passed": 0,
+          "logSha256": "4a7f246ba1be556eb446990bf2be2bc59f201d7468e42a04cd0929222cba4d55"
+        },
+        "audit-1850": {
+          "name": "audit-1850",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.455,
+          "log": "tmp/duema-target-10000/audit-1850.log",
+          "passed": 0,
+          "logSha256": "460eaab6e2bc52aa2918da6ef0b94fdc167008c199ecbd86615e5afb113d47cc"
+        },
+        "invariants-1850": {
+          "name": "invariants-1850",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1850"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.822,
+          "log": "tmp/duema-target-10000/invariants-1850.log",
+          "passed": 0,
+          "logSha256": "d3ab04468100569a8cfe3ad0f70ab20d0d018549eea0854e9592696d7f9162da"
+        },
+        "related-online-1850": {
+          "name": "related-online-1850",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.666,
+          "log": "tmp/duema-target-10000/related-online-1850.log",
+          "passed": 5,
+          "logSha256": "a455eaaf63dbfcc7db25b66c538c8eb6b8c7b4d9b115c61063461d5b911e8b6c"
+        },
+        "extra-darts-1850": {
+          "name": "extra-darts-1850",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(Lucky Darts|stacked Lucky Darts|Darts handles)",
+            "tests/environment-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.542,
+          "log": "tmp/duema-target-10000/extra-darts-1850.log",
+          "passed": 4,
+          "logSha256": "c99e78018c4fb20d6a1c3b1901eb74e02714124d85a1711504044240860b3044"
+        }
+      },
+      "totalTestsPassed": 156,
+      "manifest": "tools/support-phase-1850.json",
+      "supported": 9760,
+      "pending": 2089,
+      "engineVersion": "0.602.374",
+      "held": [
+        {
+          "id": "dmrp15-km2",
+          "name": "メテヲシャワァ・ヲヲロラシアタァ",
+          "reason": "Full official text/search and two print downloads prepared, not implemented/count. Need review both full images and reproduce linked QA40940 actual DeadLuna attack-end paid execution using VividRo revealed before attack, plus full dynamic hand-cost entry restriction during attack. Preserve original ID/reprint; no partial Vivid draw-only registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm25rp4-031",
+          "name": "ガリア・ゾールの天宝",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+        },
+        {
+          "id": "dm25rp4-028",
+          "name": "キリューの虹勲章",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+        },
+        {
+          "id": "dm25rp4-047",
+          "name": "シェル・ファクトリーの地版",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+        }
+      ],
+      "verificationScope": "Three complete new unique cards, all1-result full exact searches/images, limit4. SanKi Water5 full draw3/Galaxy3; DanGai Light3 genuineST zero mana mandatory enemy tap then draw1/Galaxy2. Native paid Galaxy placement not execution, own-start cost-paid cast no current mana spend and no unpaid penalty, actual shield stays through spell resolution then native finish movement; literal QA33402 with real Zaha remains faceup and repeats next turn, normal finish grave, stacked physical companion untouched. Actual Daisharin normal Charger sends exact Galaxy spell to mana unless protected by Zaha; actual linked Garrows unpaid lock permits paid Galaxy execution. Shuren Light7/9500 blocker/W2/Galaxy4, continuous all OTHER own creature blocker aura from own live battle OR active faceup shield, applies new arrivals, not opponent/hidden/hand/grave/seeds; ignored/sealed battle source and actual Ziek shield mute disable aura; faceup source nested in shield stack active. Actual paid attempted creature summon under Zaha stays shield and records summon without entry/duplicate. Focused63 includes6 actual encrypted two-account service, save stable physical IDs, hidden-independent immutable AI and mana orientation; affected84, old LuckyDarts4, online5, check/audit9760/invariants passed. Existing original definitions/raw details/IDs/saves/old pending/fullSuite interrupted unchanged. No fullnpmtest/oldlonggroup/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1849,
-    "nextPhase": 1850,
+    "lastVerifiedPhase": 1850,
+    "nextPhase": 1851,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp13-067",
-        "name": "三・騎・繚・乱",
-        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        "id": "dm25rp4-031",
+        "name": "ガリア・ゾールの天宝",
+        "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
       },
       {
-        "id": "dmex11-018",
-        "name": "団・鎧・鉄・壁",
-        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        "id": "dm25rp4-028",
+        "name": "キリューの虹勲章",
+        "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
       },
       {
-        "id": "dmrp15-km2",
-        "name": "メテヲシャワァ・ヲヲロラシアタァ",
-        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
-      },
-      {
-        "id": "dmrp14-012",
-        "name": "「修練の偶像」",
-        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        "id": "dm25rp4-047",
+        "name": "シェル・ファクトリーの地版",
+        "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
       }
     ],
     "steps": [
@@ -579435,6 +579632,11 @@
         "id": "dmrp14-055",
         "name": "ライマー・サーベラ",
         "reason": "All official text/basic/image/full search/QA33628 reviewed, no implementation/count. QA33628 requires opponent hand1 plus creature1 moving to mana simultaneously: real Medaros at4 Light mana MUST leave even if chosen Light hand card becomes5. Sequential Select hand then battle would wrongly activate stay; needs native pre-move snapshot and simultaneous committed group before registration."
+      },
+      {
+        "id": "dmrp15-km2",
+        "name": "メテヲシャワァ・ヲヲロラシアタァ",
+        "reason": "Full official text/search and two print downloads prepared, not implemented/count. Need review both full images and reproduce linked QA40940 actual DeadLuna attack-end paid execution using VividRo revealed before attack, plus full dynamic hand-cost entry restriction during attack. Preserve original ID/reprint; no partial Vivid draw-only registration."
       }
     ],
     "lastExplicitUserAddition": {
@@ -579620,11 +579822,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1849,
-      "baseline": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
-      "supportedNames": 9757,
-      "artifact": "tools/target10000-registration-checkpoint-1849.json",
-      "checkedAt": "2026-11-27T23:01:51.413Z"
+      "phase": 1850,
+      "baseline": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
+      "supportedNames": 9760,
+      "artifact": "tools/target10000-registration-checkpoint-1850.json",
+      "checkedAt": "2026-11-27T23:09:52.862Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -582682,8 +582884,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9757,
-      "remaining": 243,
+      "currentNames": 9760,
+      "remaining": 240,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -582691,31 +582893,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1849,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1849.json",
+      "lastPhase": 1850,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1850.json",
       "nextCandidates": [
         {
-          "id": "dmrp13-067",
-          "name": "三・騎・繚・乱",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-031",
+          "name": "ガリア・ゾールの天宝",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmex11-018",
-          "name": "団・鎧・鉄・壁",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-028",
+          "name": "キリューの虹勲章",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmrp15-km2",
-          "name": "メテヲシャワァ・ヲヲロラシアタァ",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
-        },
-        {
-          "id": "dmrp14-012",
-          "name": "「修練の偶像」",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-047",
+          "name": "シェル・ファクトリーの地版",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         }
       ],
-      "resumeProcedure": "Phase1849 verified9757 names, remaining243. Next1850 native Galaxyshield/VividRo4 research downloaded, review complete images and all FAQs before implementation/gates/local commit. Preserve all holds and old pending/fullSuite interrupted, named FAQ question discrepancy evidence. No push/Pages/Netlify/automation restart/fullnpmtest/repeatoldlonggroups.",
+      "resumeProcedure": "Phase1850 verified9760 names, remaining240. Next1851 seed3 full official downloads prepared, review complete images and QA then full implementation/gates/local commit. Preserve all old pending/fullSuite interrupted/holds, Meteor paidVivid afterattack QA40940 preparation deferred until complete. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -582949,7 +583146,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+      "lastVerifiedCommit": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -582960,7 +583157,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb"
+      "lastVerifiedCodeCommit": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6"
     },
     "resolvedRegistrationValidations": [
       {
@@ -584076,8 +584273,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9757,
-      "remaining": 243,
+      "currentNames": 9760,
+      "remaining": 240,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584085,31 +584282,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1849,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1849.json",
+      "lastPhase": 1850,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1850.json",
       "nextCandidates": [
         {
-          "id": "dmrp13-067",
-          "name": "三・騎・繚・乱",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-031",
+          "name": "ガリア・ゾールの天宝",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmex11-018",
-          "name": "団・鎧・鉄・壁",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-028",
+          "name": "キリューの虹勲章",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmrp15-km2",
-          "name": "メテヲシャワァ・ヲヲロラシアタァ",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
-        },
-        {
-          "id": "dmrp14-012",
-          "name": "「修練の偶像」",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-047",
+          "name": "シェル・ファクトリーの地版",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         }
       ],
-      "resumeProcedure": "Phase1849 verified9757 names, remaining243. Next1850 native Galaxyshield/VividRo4 research downloaded, review complete images and all FAQs before implementation/gates/local commit. Preserve all holds and old pending/fullSuite interrupted, named FAQ question discrepancy evidence. No push/Pages/Netlify/automation restart/fullnpmtest/repeatoldlonggroups.",
+      "resumeProcedure": "Phase1850 verified9760 names, remaining240. Next1851 seed3 full official downloads prepared, review complete images and QA then full implementation/gates/local commit. Preserve all old pending/fullSuite interrupted/holds, Meteor paidVivid afterattack QA40940 preparation deferred until complete. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584343,7 +584535,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+      "lastVerifiedCommit": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584354,7 +584546,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb"
+      "lastVerifiedCodeCommit": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -590848,6 +591040,161 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1849.json"
+      },
+      {
+        "phase": 1850,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmrp13-067.json",
+        "cards": [
+          {
+            "id": "dmrp13-067",
+            "name": "三・騎・繚・乱",
+            "searchSha256": "9be10ab3b3d8cfd4c1c750bc207892a51034d77cd27158628cae1e773643abb3",
+            "searchIds": [
+              "dmrp13-067"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp13-067",
+                "name": "三・騎・繚・乱",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-067",
+                "faces": [
+                  {
+                    "name": "三・騎・繚・乱",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "ギャラクシールド [ww03]（このカードを使うコストの代わりに、 [ww03]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、この呪文が表向きでシールドゾーンにあれば、コストを支払ったものとして唱える。\nカードを３枚引く。",
+                    "race": "チーム銀河",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp13-067",
+                "printedManaValue": 1,
+                "htmlSha256": "d61fca530f60774a8758cd1d55568da206249378865bc6d551728ba8108dc99d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-067.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp13-067-0.jpg",
+                    "sha256": "802de9484e48573baef4fe80fef4d058a1681714812bacb44e8cf9338f1afa41"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/33402/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/33402/",
+                "sha256": "cb1cda290b690803073be9081d2794ef7453953eadb1830ef2be6d0ed58663c7",
+                "body": "よくある質問 Q自分のバトルゾーンに《極幻空 ザハ・エルハ》がある時、「ギャラクシールド」を持つ呪文の「自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば〜」という能力はどうなりますか？ A《極幻空 ザハ・エルハ》がいたとしても呪文を唱えることはできます。その後、唱えた呪文は墓地への移動を行えず、表向きでシールドゾーンに置かれたままになります。 一覧へ戻る 関連する質問 自分のシールドが1枚もない状態で《オールサンライズ》を唱えました。この場合、処理はどうなりますか？ 2022.5.20 自分の《極幻空 ザハ・エルハ》がバトルゾーンにあるときに《オールサンライズ》を唱えました。この場合、処理はどうなりますか？ 2022.5.20 自分の《極幻空 ザハ・エルハ》がバトルゾーンにいる状況です。自分の《覚醒連結 XXDDZ》の「攻撃する時」の能力で、自身の「EXライフ」シールドを墓地に置く際、《極幻空 ザハ・エルハ》の置換効果によって墓地に置けませんでした。この場合でも、相手は呪文を唱えられなくなりますか？ 2021.12.17 自分の《極幻空 ザハ・エルハ》がバトルゾーンにある状況です。自分の《覇王ノワールモナーク》の「出た時」の能力でシールドを５つ墓地に置く際、かわりにシールドゾーンに残りましたが、自分は墓地から闇のクリーチャーを５体手札に戻せますか？ 2021.12.17 バトルゾーンに自分の《極幻空 ザハ・エルハ》と、表向きで自分のシールドゾーンに置かれた《凄惨なる牙 パラノーマル》があります。相手が《オールデリート》を唱えた場合、《凄惨なる牙 パラノーマル》はどうなりますか？ 2021.10.22 自分の《極幻空 ザハ・エルハ》がバトルゾーンにある状況で、「EXライフ」で追加したシールドが残っている《聖魔連結王 ドルファディロム》がバトルゾーンを離れる際、処理はどうなりますか？ 2021.10.22 自分の《極幻空 ザハ・エルハ》がバトルゾーンにある状況で《オールデリート》を唱えました。この場合、自分のシールドゾーンのカードはどうなりますか？ 2021.10.22 自分の《極幻空 ザハ・エルハ》がバトルゾーンある状況で《魔王と天使 》を出しました。「出た時」の能力で自分のシールドを１つ墓地に置く際、かわりにシールドゾーンにとどまり、墓地に置けませんでした。この場合でも、相手のクリーチャー１体のパワーを-9000しますか？ 2021.9.24 自分の《極幻空 ザハ・エルハ》と《常氷接続 オプティマス・ブリザード》がバトルゾーンにある状況です。自分のターンのはじめに、シールドゾーンにある《「青空の大波」》を「自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば〜」という能力で出そうとし、《極幻空 ザハ・エルハ》の能力によってシールドゾーンにとどまりました。《常氷接続 オプティマス・ブリザード》の「自分のターンの終わりに」の能力はどうなりますか？ 2021.9.24 自分のバトルゾーンに《極幻空 ザハ・エルハ》がある時、「ギャラクシールド」を持つクリーチャーの「自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば〜」という能力はどうなりますか？ 2021.4.14 自分の《極幻空 ザハ・エルハ》がある状況で《魔王と天使のサイン》を唱えました。 呪文の効果で自分のシールドを墓地に置こうとした際、《極幻空 ザハ・エルハ》の効果でシールドは墓地に置かれるかわりにシールドゾーンに残りましたが、その場合でも自分のクリーチャーは「ブロッカー」を得ますか？ 2021.2.19 自分の《極幻空 ザハ・エルハ》がある状況で《黙示録、それはラグナロク》を唱えました。シールドを墓地に置く際にとどまりますが、置こうとした枚数より1枚多い枚数を新しくシールドに置けますか？ 類似例：《ギガジャドウ》 2020.12.15 バトルゾーンに自分の《極幻空 ザハ・エルハ》が付いたGRクリーチャーと、《カ"
+              }
+            ]
+          },
+          {
+            "id": "dmex11-018",
+            "name": "団・鎧・鉄・壁",
+            "searchSha256": "8326c2eb55463ecb615fd6eade4a449555413f126245df826e371fdb7d85ecd9",
+            "searchIds": [
+              "dmex11-018"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmex11-018",
+                "name": "団・鎧・鉄・壁",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-018",
+                "faces": [
+                  {
+                    "name": "団・鎧・鉄・壁",
+                    "typeText": "呪文",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nギャラクシールド [ll02]（このカードを使うコストの代わりに、 [ll02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n相手のクリーチャーを１体選び、タップする。\nカードを１枚引く。",
+                    "race": "チーム銀河",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex11-018",
+                "printedManaValue": 1,
+                "htmlSha256": "ab321218c31a2487f455dc9a9fdf81e78a9f9839c14d95e22e953f0abb389d9e",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-018.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex11-018-0.jpg",
+                    "sha256": "75f442db1aed11db22e4446be3cc4bf27d199fd0656acb7720fb7b0574a8e78e"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmrp14-012",
+            "name": "「修練の偶像」",
+            "searchSha256": "305b83de35dc88adc979b2fa6f843552cbd373086009d5a58c8407a87c6955b6",
+            "searchIds": [
+              "dmrp14-012"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp14-012",
+                "name": "「修練の偶像」",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-012",
+                "faces": [
+                  {
+                    "name": "「修練の偶像」",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ギャラクシールド [ll04]（このカードを使うコストの代わりに、 [ll04 ]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンまたは表向きで自分のシールドゾーンにあれば、自分の他のクリーチャーすべてに「ブロッカー」を与える。",
+                    "race": "メカ・デル・ソル/チーム銀河",
+                    "powerText": "9500",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp14-012",
+                "printedManaValue": 1,
+                "htmlSha256": "93c5a15ffa41942fc7e40e42bbcf98c8989be232bb73f3870417a25c3b30458a",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-012.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp14-012-0.jpg",
+                    "sha256": "7a742f3b1d5c215b621989290a57b2ef7627f08e333f2cda1df22b4b6f6a32e7"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1850.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -590872,31 +591219,26 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1850,
+      "phase": 1851,
       "status": "official-research-downloaded-full-images-and-rulings-pending-review",
-      "research": "tmp/duema-target-10000/research-dmrp13-067.json",
+      "research": "tmp/duema-target-10000/research-dm25rp4-031.json",
       "implementationStarted": false,
       "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dmrp13-067",
-          "name": "三・騎・繚・乱",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-031",
+          "name": "ガリア・ゾールの天宝",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmex11-018",
-          "name": "団・鎧・鉄・壁",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-028",
+          "name": "キリューの虹勲章",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         },
         {
-          "id": "dmrp15-km2",
-          "name": "メテヲシャワァ・ヲヲロラシアタァ",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
-        },
-        {
-          "id": "dmrp14-012",
-          "name": "「修練の偶像」",
-          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+          "id": "dm25rp4-047",
+          "name": "シェル・ファクトリーの地版",
+          "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
         }
       ]
     }
@@ -642772,10 +643114,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1849,
+    "phase": 1850,
     "threshold": 10000,
-    "supportedNames": 9757,
-    "pendingNames": 2092,
+    "supportedNames": 9760,
+    "pendingNames": 2089,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -642784,7 +643126,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1849.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1850.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

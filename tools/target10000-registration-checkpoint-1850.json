@@ -1,0 +1,201 @@
+{
+  "phase": 1850,
+  "checkedAt": "2026-11-27T23:09:52.862Z",
+  "baseline": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9757,
+  "currentNames": 9760,
+  "remainingNames": 240,
+  "added": [
+    {
+      "id": "dmrp13-067",
+      "name": "三・騎・繚・乱"
+    },
+    {
+      "id": "dmex11-018",
+      "name": "団・鎧・鉄・壁"
+    },
+    {
+      "id": "dmrp14-012",
+      "name": "「修練の偶像」"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1850,
+    "baseline": "1e1a40fc27877637f972e8b2db3b387e1b3d40b6",
+    "originalDefinitionsUnchanged": 9757,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9760,
+    "uniqueIds": 9760,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11853,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9757,
+    "existingImageReferenceRowsUnchanged": 12224,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1850": {
+      "name": "official-1850",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1850.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.375,
+      "log": "tmp/duema-target-10000/official-1850.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1850-final": {
+      "name": "focused-1850-lock",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1850-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.015,
+      "log": "tmp/duema-target-10000/focused-1850-lock.log",
+      "passed": 63,
+      "logSha256": "8b11a04170fd7afcf9052028e384463f7ac6475ad6c865ca078895043f8c01e9"
+    },
+    "related-1850": {
+      "name": "related-1850",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/related-1850.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.9,
+      "log": "tmp/duema-target-10000/related-1850.log",
+      "passed": 84,
+      "logSha256": "8bc6d68c059fd56600b6c86e6b2fe35ae8a0714679c9b83e2db681f1fe4efb59"
+    },
+    "check-1850": {
+      "name": "check-1850",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.554,
+      "log": "tmp/duema-target-10000/check-1850.log",
+      "passed": 0,
+      "logSha256": "4a7f246ba1be556eb446990bf2be2bc59f201d7468e42a04cd0929222cba4d55"
+    },
+    "audit-1850": {
+      "name": "audit-1850",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.455,
+      "log": "tmp/duema-target-10000/audit-1850.log",
+      "passed": 0,
+      "logSha256": "460eaab6e2bc52aa2918da6ef0b94fdc167008c199ecbd86615e5afb113d47cc"
+    },
+    "invariants-1850": {
+      "name": "invariants-1850",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/invariants.mjs",
+        "1850"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.822,
+      "log": "tmp/duema-target-10000/invariants-1850.log",
+      "passed": 0,
+      "logSha256": "d3ab04468100569a8cfe3ad0f70ab20d0d018549eea0854e9592696d7f9162da"
+    },
+    "related-online-1850": {
+      "name": "related-online-1850",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.666,
+      "log": "tmp/duema-target-10000/related-online-1850.log",
+      "passed": 5,
+      "logSha256": "a455eaaf63dbfcc7db25b66c538c8eb6b8c7b4d9b115c61063461d5b911e8b6c"
+    },
+    "extra-darts-1850": {
+      "name": "extra-darts-1850",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(Lucky Darts|stacked Lucky Darts|Darts handles)",
+        "tests/environment-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.542,
+      "log": "tmp/duema-target-10000/extra-darts-1850.log",
+      "passed": 4,
+      "logSha256": "c99e78018c4fb20d6a1c3b1901eb74e02714124d85a1711504044240860b3044"
+    }
+  },
+  "totalTestsPassed": 156,
+  "manifest": "tools/support-phase-1850.json",
+  "supported": 9760,
+  "pending": 2089,
+  "engineVersion": "0.602.374",
+  "held": [
+    {
+      "id": "dmrp15-km2",
+      "name": "メテヲシャワァ・ヲヲロラシアタァ",
+      "reason": "Full official text/search and two print downloads prepared, not implemented/count. Need review both full images and reproduce linked QA40940 actual DeadLuna attack-end paid execution using VividRo revealed before attack, plus full dynamic hand-cost entry restriction during attack. Preserve original ID/reprint; no partial Vivid draw-only registration."
+    }
+  ],
+  "nextCandidates": [
+    {
+      "id": "dm25rp4-031",
+      "name": "ガリア・ゾールの天宝",
+      "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+    },
+    {
+      "id": "dm25rp4-028",
+      "name": "キリューの虹勲章",
+      "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+    },
+    {
+      "id": "dm25rp4-047",
+      "name": "シェル・ファクトリーの地版",
+      "reason": "Next full seed entry/optional under-NEO-or-evolution/SuperSoulX research; full original and inherited abilities before counting."
+    }
+  ],
+  "verificationScope": "Three complete new unique cards, all1-result full exact searches/images, limit4. SanKi Water5 full draw3/Galaxy3; DanGai Light3 genuineST zero mana mandatory enemy tap then draw1/Galaxy2. Native paid Galaxy placement not execution, own-start cost-paid cast no current mana spend and no unpaid penalty, actual shield stays through spell resolution then native finish movement; literal QA33402 with real Zaha remains faceup and repeats next turn, normal finish grave, stacked physical companion untouched. Actual Daisharin normal Charger sends exact Galaxy spell to mana unless protected by Zaha; actual linked Garrows unpaid lock permits paid Galaxy execution. Shuren Light7/9500 blocker/W2/Galaxy4, continuous all OTHER own creature blocker aura from own live battle OR active faceup shield, applies new arrivals, not opponent/hidden/hand/grave/seeds; ignored/sealed battle source and actual Ziek shield mute disable aura; faceup source nested in shield stack active. Actual paid attempted creature summon under Zaha stays shield and records summon without entry/duplicate. Focused63 includes6 actual encrypted two-account service, save stable physical IDs, hidden-independent immutable AI and mana orientation; affected84, old LuckyDarts4, online5, check/audit9760/invariants passed. Existing original definitions/raw details/IDs/saves/old pending/fullSuite interrupted unchanged. No fullnpmtest/oldlonggroup/push/Pages/Netlify/automation.",
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "incompleteVerification": [],
+  "resolvedAttempts": [],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}
