@@ -3891,7 +3891,7 @@ export function createSixPhotoRules(api){
    put(s,{...t,op:'g34_FinishDiscardSummon1791'});
    api.discardAlternative1791(s,t.p,t.selected,t.source);break;
   }
-  choice(s,t,'召喚の代わりに捨てる'+plan.rule.colors[t.selected.length]+'の手札を選ぶ（'+t.selected.length+'/2）',[
+  choice(s,t,'代替コストとして捨てる'+discardSlotLabel1791(plan.rule.colors[t.selected.length])+'の手札を選ぶ（'+t.selected.length+'/'+plan.rule.colors.length+'）',[
    ...plan.rows.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),opt('召喚を取りやめる',null,-100)]);break;
  }
  case'g34_FinishDiscardSummon1791':{
@@ -10246,6 +10246,8 @@ export function createSixPhotoRules(api){
  },
  alchemistSummoned1670(s,p){alchemistUse1670(s,p);},
  played(s,p,c,x,origin,permit){
+  if(c.type==='spell'&&origin==='grave'&&typeof permit==='string'&&permit.startsWith('g1792:')){((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;x.finishTo='deck';}
+
   if(c.type!=='spell')terminalUse1292(s,p,c);
   const seed=c.type==='seed'||c.seedCreature||c.natureAce4;
   if(seed)qualifyingUse1224(s,p,c,x.uid,x.cardOwner??p);
@@ -11543,9 +11545,17 @@ export function createSixPhotoRules(api){
  },
  summonTapDonors1293,projectSummonTap1293,
  mainActions(s,p){const own=s.players[p],out=graveActions1226(s,p);
+  if(creatures(s,p).some(source=>!source.sealed&&!source.faceDown&&effective(source,s).g1792GraveSpell))
+  for(const x of own.grave)for(const [face,c]of faces(api.zoneCard(s,p,x,'grave')).entries()){
+   const permits=graveSpellPermits1792(s,p,x,c),payment={...c,summonOrigin:'grave',executionUid:x.uid};
+   if(!permits.length||!api.canCast(s,p,c,'grave')||!api.canPay(s,p,payment))continue;
+   for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,origin:'grave',face,manaPermit:permit,cost:api.summonCost(s,p,payment),label:c.name+'を墓地から唱える（メルカジーク・1ターンに1度）'});
+  }
+
   for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
+   if(!card(x).g1791DiscardSummon)continue;
    const plan=discardSummon1791(s,p,x,origin);if(!plan)continue;
-   for(const permit of plan.permits)out.push({kind:'play',alternative:'sixPhoto',role:'discardSummon1791',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,label:plan.c.name+'を手札2枚を捨てて召喚する'});
+   for(const permit of plan.permits)out.push({kind:'play',alternative:'sixPhoto',role:'discardSummon1791',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,label:plan.c.name+'を手札'+plan.rule.colors.length+'枚を捨てて召喚する'});
   }
   for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
    if(x.faceDown||!card(x).g1293SummonTap)continue;
@@ -11672,15 +11682,25 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    return;
   }put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
- // A replacement cost cannot itself be replaced (QA45791). Reserve distinct hand
- // cards before moving either, and keep only selections that can complete both slots.
+ // Keep the ordinary spell payment and face selection; only zone permission and
+ // the resulting finish destination are granted by each live source.
+ function graveSpellPermits1792(s,p,x,c){
+  if(s.active!==p||c.type!=='spell'||x.faceDown||!api.canMoveZone(s,p,'grave'))return [];
+  return creatures(s,p).flatMap(source=>{
+   const permit='g1792:'+key(source);
+   return !source.sealed&&!source.faceDown&&effective(source,s).g1792GraveSpell&&s.g450ZoneUses?.[p]?.[permit]!==s.turn?[permit]:[];
+  });
+ }
+ function discardSlotLabel1791(slot){return typeof slot==='string'?slot:slot.colorsAny.join('または')+(slot.creature?'のクリーチャー':'');}
+ // Reserve all distinct hand cards before paying. A replacement cost cannot
+ // itself be replaced (QA45791), and every remaining slot must be completable.
  function discardSummon1791(s,p,x,origin,selected=[]){
   const c=api.zoneCard(s,p,x,origin),rule=c.g1791DiscardSummon,own=s.players[p];
   if(!rule||x.faceDown||api.handAbilityIgnored(s,x)||own.mana.length<(rule.minMana||0)||
      !api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||
      !api.canEnter(s,p,c,{origin,execution:true})||!api.canExecuteUnpaid(s,p,c))return null;
   const permits=[...new Set(api.costAltPermits568(s,p,x,c,origin))];if(!permits.length)return null;
-  const hand=own.hand.filter(y=>y.uid!==x.uid),matches=(y,color)=>colors(api.zoneCard(s,p,y,'hand')).includes(color);
+  const hand=own.hand.filter(y=>y.uid!==x.uid),matches=(y,slot)=>{const c=api.zoneCard(s,p,y,'hand');return typeof slot==='string'?colors(c).includes(slot):faces(c).some(f=>(!slot.creature||f.type==='creature')&&(f.civilizations||String(f.civ).split('/')).some(color=>slot.colorsAny.includes(color)));};
   if(selected.length>rule.colors.length||new Set(selected).size!==selected.length||selected.some((uid,i)=>!hand.some(y=>y.uid===uid&&matches(y,rule.colors[i]))))return null;
   const complete=(i,used)=>i===rule.colors.length||hand.some(y=>!used.includes(y.uid)&&matches(y,rule.colors[i])&&complete(i+1,[...used,y.uid]));
   if(!complete(selected.length,selected))return null;

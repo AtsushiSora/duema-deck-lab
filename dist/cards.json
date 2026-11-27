@@ -307480,19 +307480,128 @@
       },
       "supportBatch": "phase-1791",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-004",
+      "name": "渦中の隠者 メルカジーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ムートピア",
+      "text": "W・ブレイカー\n自分の呪文を唱えるコストを１少なくしてもよい。ただし、コストは０以下にならない。\n自分のターンに一度、呪文を１枚、自分の墓地から唱えてもよい。唱えた後、墓地に置くかわりに山札の一番下に置く。\n自分が呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-004",
+      "limit": 4,
+      "breaker": 2,
+      "g485SpellReduction": 1,
+      "g1792GraveSpell": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1792",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25sp1-014",
+      "name": "庵野水晶",
+      "civ": "光/水/火",
+      "civilizations": [
+        "光",
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "キング・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、カードを２枚引く。\nこのクリーチャーが攻撃する時、コスト６以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。それを唱えた後、墓地のかわりに山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp1-014",
+      "limit": 4,
+      "blocker": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "max": 6,
+          "spellOnly": true,
+          "optional": true,
+          "g555FinishTo": "deck"
+        }
+      ],
+      "supportBatch": "phase-1792",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-052",
+      "name": "戯具 ザンブロク",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "自分のマナゾーンにカードが４枚以上あれば、コストを支払うかわりに、自分の手札から水または闇のクリーチャーを１体捨て、このクリーチャーを召喚してもよい。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-052",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1791DiscardSummon": {
+        "colors": [
+          {
+            "colorsAny": [
+              "水",
+              "闇"
+            ],
+            "creature": true
+          }
+        ],
+        "minMana": 4
+      },
+      "supportBatch": "phase-1792",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1791,
-    "checkedAt": "2026-11-27T11:23:52.469Z",
-    "baseCount": 9595,
+    "phase": 1792,
+    "checkedAt": "2026-11-27T11:32:22.177Z",
+    "baseCount": 9598,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9598,
+    "totalCount": 9601,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34325/",
-      "https://dm.takaratomy.co.jp/rule/qa/45791/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -336823,6 +336932,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35465/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1791,
+        "checkedAt": "2026-11-27T11:23:52.469Z",
+        "baseCount": 9595,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9598,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34325/",
+          "https://dm.takaratomy.co.jp/rule/qa/45791/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
