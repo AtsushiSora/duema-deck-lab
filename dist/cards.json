@@ -305706,18 +305706,128 @@
       ],
       "supportBatch": "phase-1776",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-015",
+      "name": "「流水の大楯」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "サイバー・クラスター/チーム銀河",
+      "text": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-015",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 2,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "g190Freeze": "self"
+        }
+      ],
+      "supportBatch": "phase-1777",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-066",
+      "name": "十・二・神・騎",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "チーム銀河",
+      "text": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-066",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 2,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1777",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-016",
+      "name": "幻墨杜氏 メンダ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分の呪文を唱えるコストを１少なくしてもよい。ただし、コストは０以下にならない。\n各ターン、自分がはじめて呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-016",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g485SpellReduction": 1,
+      "g204SpellWatch": {
+        "who": "self",
+        "g965FirstSpell": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1777",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1776,
-    "checkedAt": "2026-11-27T09:16:31.289Z",
-    "baseCount": 9550,
-    "newEffectCards": 2,
+    "phase": 1777,
+    "checkedAt": "2026-11-27T09:19:57.348Z",
+    "baseCount": 9552,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9552,
+    "totalCount": 9555,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39893/"
+      "https://dm.takaratomy.co.jp/rule/qa/43920/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -334823,6 +334933,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/34324/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1776,
+        "checkedAt": "2026-11-27T09:16:31.289Z",
+        "baseCount": 9550,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9552,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39893/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -1,0 +1,553 @@
+{
+  "phase": 1777,
+  "checkedAt": "2026-11-27T09:19:57.348Z",
+  "baseline": "442c93545f6da0d8b0491ed8705f488c98453431",
+  "baseCount": 9552,
+  "target": 10000,
+  "description": "Complete native Galaxyshield creature and spell plus optional spell-cost reduction and first-spell draw watcher. Existing face-up shield entry, Look ordering, blockers, spell discount and per-turn cast accounting are reused.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43920/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp13-015",
+      "name": "「流水の大楯」",
+      "canonicalId": "dmrp13-015",
+      "printId": "dmrp13-015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-015",
+      "faces": [
+        {
+          "name": "「流水の大楯」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "サイバー・クラスター/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self"
+          }
+        ],
+        "g660ShieldEntry": [
+          {
+            "op": "Target",
+            "g190Freeze": "self"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-015.jpg",
+      "imageSha256": "2074278ae423d8ce4ad1e41237ba738df9603c62274555f3750780a8579cf731",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp13-015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp13-015"
+        ],
+        "allSearchIds": [
+          "dmrp13-015"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "d03428cde6bafe6c675e33eac0cab98ccb382659aa813c2ad5740e28262d738c",
+        "facesMatched": true,
+        "imageSha256": "2074278ae423d8ce4ad1e41237ba738df9603c62274555f3750780a8579cf731"
+      }
+    },
+    {
+      "id": "dmrp14-066",
+      "name": "十・二・神・騎",
+      "canonicalId": "dmrp14-066",
+      "printId": "dmrp14-066",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-066",
+      "faces": [
+        {
+          "name": "十・二・神・騎",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の一番下に置く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-066.jpg",
+      "imageSha256": "088e6d2c23268c54c19ed0775abfa0453b899fc727f79547e808fe943b9855e8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp14-066-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-066",
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19"
+        ],
+        "allSearchIds": [
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19",
+          "dmrp14-066"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "539c425f7fcda726ef7ad859687f205563651c71d0f2d87d708f8c2141f5823f",
+        "facesMatched": true,
+        "imageSha256": "088e6d2c23268c54c19ed0775abfa0453b899fc727f79547e808fe943b9855e8"
+      }
+    },
+    {
+      "id": "dmrp07-016",
+      "name": "幻墨杜氏 メンダ",
+      "canonicalId": "dmrp07-016",
+      "printId": "dmrp07-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-016",
+      "faces": [
+        {
+          "name": "幻墨杜氏 メンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分の呪文を唱えるコストを１少なくしてもよい。ただし、コストは０以下にならない。\n各ターン、自分がはじめて呪文を唱えた時、カードを１枚引いてもよい。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g485SpellReduction": 1,
+        "g204SpellWatch": {
+          "who": "self",
+          "g965FirstSpell": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-016.jpg",
+      "imageSha256": "92027c1c74ba9b1c27bcda3f2b4c637c468c6cf131ef416b7d2f11b7dcddc85f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp07-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-016"
+        ],
+        "allSearchIds": [
+          "dm25rp1-065",
+          "dm24rp4-Sec23",
+          "dm24rp4-066",
+          "dmrp07-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "1ba56954f5b7a3e81e4aff7d3f1288e9676353c3cad21d3bbb6fee8f832d3c92",
+        "facesMatched": true,
+        "imageSha256": "92027c1c74ba9b1c27bcda3f2b4c637c468c6cf131ef416b7d2f11b7dcddc85f"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp21-TF17",
+      "name": "十・二・神・騎",
+      "canonicalId": "dmrp14-066",
+      "printId": "dmrp21-TF17",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-TF17",
+      "faces": [
+        {
+          "name": "十・二・神・騎",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-TF17.jpg",
+      "imageSha256": "f0a6901c826bb460164f22fd15610eb6cef49b4250caf31c7be8de75c12a9dd8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-TF17-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-066",
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19"
+        ],
+        "allSearchIds": [
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19",
+          "dmrp14-066"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "d37a721997fa2927c2a921411e5a484cfbc23ec1b8e219cf0d59eae8d4e31815",
+        "facesMatched": true,
+        "imageSha256": "f0a6901c826bb460164f22fd15610eb6cef49b4250caf31c7be8de75c12a9dd8"
+      }
+    },
+    {
+      "id": "dmrp22-TF19",
+      "name": "十・二・神・騎",
+      "canonicalId": "dmrp14-066",
+      "printId": "dmrp22-TF19",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-TF19",
+      "faces": [
+        {
+          "name": "十・二・神・騎",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TF19.jpg",
+      "imageSha256": "8d3037ceb81a827b6823a9d1149df30609c7c3b6d62f20ecfe5adc921b650f2d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-TF19-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-066",
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19"
+        ],
+        "allSearchIds": [
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19",
+          "dmrp14-066"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "88e427dc289567ebd98aec51fcd88744256150e79d45959d089878961d611466",
+        "facesMatched": true,
+        "imageSha256": "8d3037ceb81a827b6823a9d1149df30609c7c3b6d62f20ecfe5adc921b650f2d"
+      }
+    },
+    {
+      "id": "dmrp21-T17",
+      "name": "十・二・神・騎",
+      "canonicalId": "dmrp14-066",
+      "printId": "dmrp21-T17",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-T17",
+      "faces": [
+        {
+          "name": "十・二・神・騎",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-T17.jpg",
+      "imageSha256": "64c7998ee9f56ef9e8aeae21d003c6a65f611454d8d50a5a22efdcdb65ca1224",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-T17-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-066",
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19"
+        ],
+        "allSearchIds": [
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19",
+          "dmrp14-066"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "a3ff0f4f89ff9f88817bed85626fd9c8d8c006776726553138d53d23eb3a4922",
+        "facesMatched": true,
+        "imageSha256": "64c7998ee9f56ef9e8aeae21d003c6a65f611454d8d50a5a22efdcdb65ca1224"
+      }
+    },
+    {
+      "id": "dmrp22-T19",
+      "name": "十・二・神・騎",
+      "canonicalId": "dmrp14-066",
+      "printId": "dmrp22-T19",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-T19",
+      "faces": [
+        {
+          "name": "十・二・神・騎",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [ww02]（このカードを使うコストの代わりに、[ww02]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、この呪文が表向きで自分のシールドゾーンにあれば、コストを支払ったものとして唱える。\n自分の山札の上から４枚を見る。その中の１枚を手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g841DeckPeek": true,
+            "g791OrderRest": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-T19.jpg",
+      "imageSha256": "0eb3e8d6ef73aed1f64802f5687f51f89bbf8ac8e2760b63a560e19c971953ab",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-T19-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-066",
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19"
+        ],
+        "allSearchIds": [
+          "dmrp21-TF17",
+          "dmrp22-TF19",
+          "dmrp21-T17",
+          "dmrp22-T19",
+          "dmrp14-066"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:19:57.348Z",
+        "sha256": "3dbd1882a1c249397e495cfc070c0918c39fd3c7878adc6b49c5da7f0ad1da2e",
+        "facesMatched": true,
+        "imageSha256": "0eb3e8d6ef73aed1f64802f5687f51f89bbf8ac8e2760b63a560e19c971953ab"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43920/",
+      "sha256": "d3a532473a39ce179360ca3eb71affdc322a2a59e763068c17578a5f1d416845",
+      "checkedAt": "2026-11-27T09:19:57.348Z",
+      "reproduced": true,
+      "tests": "tests/standard1777-effects.test.mjs",
+      "reproduction": "QA43920 reproduced for registered spell Twelve with opposing Magia Del Fin spell lock: ordinary casting unavailable, paid Galaxyshield succeeds, locked own start leaves it face-up in shields, removing lock allows casting on a subsequent own start.",
+      "result": "QA43920 reproduced for registered spell Twelve with opposing Magia Del Fin spell lock: ordinary casting unavailable, paid Galaxyshield succeeds, locked own start leaves it face-up in shields, removing lock allows casting on a subsequent own start."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T09:19:57.348Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp13-015": 4,
+      "dmrp14-066": 4,
+      "dmrp07-016": 4,
+      "dmrp21-TF17": 4,
+      "dmrp22-TF19": 4,
+      "dmrp21-T17": 4,
+      "dmrp22-T19": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": [
+      "The initial new fixtures used a combined hand/shield-side choice instead of the actual sequential card and face-up choices, compared a pre-save object to the restored state, and expected Look rather than the actual LookPick stage. Fixtures corrected to real legal actions and restored UID lookup."
+    ]
+  }
+}
