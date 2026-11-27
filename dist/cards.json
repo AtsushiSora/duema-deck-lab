@@ -307928,18 +307928,169 @@
       ],
       "supportBatch": "phase-1795",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-022",
+      "name": "無限銀河ジ・エンド・オブ・ユニバース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 17000,
+      "race": "フェニックス",
+      "text": "超無限進化：自分のクリーチャー１体以上の上に置く。\nT・ブレイカー\nメガメテオバーン10：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚、墓地に置いてもよい。そうしたら、自分はゲームに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-022",
+      "limit": 4,
+      "evolution": {
+        "creature": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "creature": true
+          }
+        ],
+        "variable": true
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 10,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "メガメテオバーン10を使って勝利"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1796",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-007",
+      "name": "守護聖天タテブエ・ヤッホー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ガーディアン",
+      "text": "超無限進化-自分のクリーチャー１体以上の上に置く。\nブロッカー\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、そのターンの終わりにこのクリーチャーをアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-007",
+      "limit": 4,
+      "evolution": {
+        "creature": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "creature": true
+          }
+        ],
+        "variable": true
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "shields",
+          "defs": [
+            {
+              "op": "Schedule537",
+              "when": "turnEnd",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1796",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-s02",
+      "name": "無限龍ファタル・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ポセイディア・ドラゴン/オリジン",
+      "text": "超無限進化-自分のオリジンまたはドラゴンのいずれか１体以上を重ねた上に置く。\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーの下に重ねたカード１枚につき、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-s02",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "オリジン"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "オリジン"
+              },
+              {
+                "race": "ドラゴン"
+              }
+            ]
+          }
+        ],
+        "variable": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BouncePerSourceCard1060",
+          "g1796UnderCount": true,
+          "anyOwner": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1796",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1795,
-    "checkedAt": "2026-11-27T12:13:59.279Z",
-    "baseCount": 9607,
-    "newEffectCards": 2,
+    "phase": 1796,
+    "checkedAt": "2026-11-27T12:26:53.937Z",
+    "baseCount": 9609,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9609,
+    "totalCount": 9612,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39663/"
+      "https://dm.takaratomy.co.jp/rule/qa/41756/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35965/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337331,6 +337482,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36292/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36293/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1795,
+        "checkedAt": "2026-11-27T12:13:59.279Z",
+        "baseCount": 9607,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9609,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39663/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

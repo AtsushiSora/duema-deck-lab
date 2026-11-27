@@ -4438,9 +4438,9 @@ export function createSixPhotoRules(api){
  case'g34_BouncePerSourceCard1060':{
   // The first trigger can refer to the stack created by the second trigger (QA 47901).
   const host=sourceHost474(s,t)?.x;
-  const n=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1;
-  start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'hand',toOwnerHand:true,n,
-   filter:{creature:true},g173Targets:true,g193Select:true,title:'持ち主の手札に戻す相手のクリーチャーを'+n+'体選ぶ'}]);
+  const total=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1,n=Math.max(0,total-(t.g1796UnderCount?1:0));
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'hand',toOwnerHand:true,n,
+   ...(t.anyOwner?{anyOwner:true}:{}),...(t.optional?{optional:true}:{}),filter:{creature:true},g173Targets:true,g193Select:true,title:'持ち主の手札に戻す'+(t.anyOwner?'':'相手の')+'クリーチャーを'+n+'体'+(t.optional?'まで':'')+'選ぶ'}]);
   break;
  }
  case'g34_ManaBase1128':{
@@ -4836,6 +4836,33 @@ export function createSixPhotoRules(api){
    choice(s,t,card(victim).name+'をこのクリーチャーの下に置く？',[
     opt('下に置く',true,15,victim.cardId),skip()
    ]);
+  break;
+ }
+ case'g34_MeteorSources1796':{
+  const host=sourceHost474(s,t),picked=t.picked||[],n=t.n??1;
+  const under=host&&!host.x.sealed&&api.isCreature(s,host.x)?(host.x.under||[]).flatMap(api.allLayers):[];
+  if(under.length<n||picked.some(uid=>!under.some(x=>x.uid===uid))||t.to==='shields'&&!api.canAddShield(s,t.p))break;
+  if(picked.length===n){put(s,{...t,op:'g34_MeteorReplace1796',host:{uid:host.x.uid,incarnation:host.x.incarnation||0},plans:[]});break;}
+  choice(s,t,'メテオバーン：下のカード'+n+'枚を選ぶ（'+picked.length+'枚選択済み）',[
+   ...under.filter(x=>!picked.includes(x.uid)).map(x=>opt(x.faceDown?'裏向きの進化元':card(x).name,x.uid,30,x.faceDown?undefined:x.cardId)),skip()
+  ]);
+  break;
+ }
+ case'g34_MeteorReplace1796':{
+  const plans=t.plans||[],uid=t.picked[plans.length];
+  if(uid===undefined){
+   if(api.moveMeteorSources1796(s,t.p,t.host,plans,t.p)){
+    start(s,t,t.defs||[]);
+    // A constant forbidden-zone loss must precede the queued victory (QA41756).
+    api.powerCleanup(s);
+   }
+   break;
+  }
+  const replacements=t.to==='grave'?api.stratoReplacements(s,t.p):[];
+  if(replacements.length)choice(s,t,'進化元を墓地に置くかわりにマナに置く？',[
+   ...replacements.map(r=>opt(card(r.cardId).name+'を使う',true,10,r.cardId)),skip()
+  ],1-t.p);
+  else put(s,{...t,plans:[...plans,{uid,to:t.to}]});
   break;
  }
  case'g34_MeteorReload871':{
@@ -8081,6 +8108,8 @@ export function createSixPhotoRules(api){
    (host.x.under??=[]).push(victim);
   }
  }break;
+ case'g34_MeteorSources1796':if(v)put(s,{...t,picked:[...(t.picked||[]),v]});break;
+ case'g34_MeteorReplace1796':put(s,{...t,plans:[...t.plans,{uid:t.picked[t.plans.length],to:v?'mana':t.to}]});break;
  case'g34_MeteorReload871':{
   release(s,t.p,t.target);
   if(!v)break;

@@ -1,0 +1,638 @@
+{
+  "phase": 1796,
+  "checkedAt": "2026-11-27T12:26:53.937Z",
+  "baseline": "9d7da0f79ee91b44d4f9e5669af89d332b750d76",
+  "baseCount": 9609,
+  "target": 10000,
+  "description": "Three complete super-infinite evolutions using native multi-base summoning. Add exact optional physical source payment on one serializable movement batch, including opponent Strato replacement choices. Universe queues non-attack victory after state checks; Tatebue shields a source then schedules end untap; Fatal Spiral reuses source-card-count bounce with exact under count, optional own/enemy targets and native last-known stack information.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/41756/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35965/",
+    "https://dm.takaratomy.co.jp/rule/qa/39663/"
+  ],
+  "cards": [
+    {
+      "id": "dmex01-022",
+      "name": "無限銀河ジ・エンド・オブ・ユニバース",
+      "canonicalId": "dmex01-022",
+      "printId": "dmex01-022",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-022",
+      "faces": [
+        {
+          "name": "無限銀河ジ・エンド・オブ・ユニバース",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：自分のクリーチャー１体以上の上に置く。\nT・ブレイカー\nメガメテオバーン10：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚、墓地に置いてもよい。そうしたら、自分はゲームに勝つ。",
+          "race": "フェニックス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "creature": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 10,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "メガメテオバーン10を使って勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-022.jpg",
+      "imageSha256": "1fca34f0a91bc173dc3e6c032da3ece2d8d66b6059dc91817d8eee6e1c29b297",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex01-022-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-022",
+          "dm23rp1-TR3",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TR3",
+          "dmex01-022",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "eda5b3e4d36f18d61875abef4c1a9841f2f2d886c29caf6c989bfd45eaf994e2",
+        "facesMatched": true,
+        "imageSha256": "1fca34f0a91bc173dc3e6c032da3ece2d8d66b6059dc91817d8eee6e1c29b297"
+      }
+    },
+    {
+      "id": "dmr08-007",
+      "name": "守護聖天タテブエ・ヤッホー",
+      "canonicalId": "dmr08-007",
+      "printId": "dmr08-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-007",
+      "faces": [
+        {
+          "name": "守護聖天タテブエ・ヤッホー",
+          "typeText": "進化クリーチャー(超無限進化)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "超無限進化-自分のクリーチャー１体以上の上に置く。\nブロッカー\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。そうした場合、そのターンの終わりにこのクリーチャーをアンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ガーディアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "creature": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "shields",
+            "defs": [
+              {
+                "op": "Schedule537",
+                "when": "turnEnd",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-007.jpg",
+      "imageSha256": "bc88a6fcf07dfe903de2d464c518161eb8948678dd87f5fb8e8c5c0ae2ea2411",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr08-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr08-007"
+        ],
+        "allSearchIds": [
+          "dmr08-007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "cd728f3bc8eac46c59da87b791d7eff3dec8d3945d952f85dc88d9253377ad6d",
+        "facesMatched": true,
+        "imageSha256": "bc88a6fcf07dfe903de2d464c518161eb8948678dd87f5fb8e8c5c0ae2ea2411"
+      }
+    },
+    {
+      "id": "dm35-s02",
+      "name": "無限龍ファタル・スパイラル",
+      "canonicalId": "dm35-s02",
+      "printId": "dm35-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-s02",
+      "faces": [
+        {
+          "name": "無限龍ファタル・スパイラル",
+          "typeText": "進化クリーチャー(超無限進化)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化-自分のオリジンまたはドラゴンのいずれか１体以上を重ねた上に置く。\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーの下に重ねたカード１枚につき、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/オリジン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "オリジン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "オリジン"
+                },
+                {
+                  "race": "ドラゴン"
+                }
+              ]
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BouncePerSourceCard1060",
+            "g1796UnderCount": true,
+            "anyOwner": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-s02.jpg",
+      "imageSha256": "29061092b47c1f70d70808fa031456cdb186bb3542fd92468970c82fc8d0c6eb",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm35-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm35-s02",
+          "dmx19-s14"
+        ],
+        "allSearchIds": [
+          "dmx19-s14",
+          "dm35-s02"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "c0816e2a6768e37867c07185b0a01bcf6ddca8c86ba32f3cdeb74fb1e69fddcc",
+        "facesMatched": true,
+        "imageSha256": "29061092b47c1f70d70808fa031456cdb186bb3542fd92468970c82fc8d0c6eb"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp1-TR3",
+      "name": "無限銀河ジ・エンド・オブ・ユニバース",
+      "canonicalId": "dmex01-022",
+      "printId": "dm23rp1-TR3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-TR3",
+      "faces": [
+        {
+          "name": "無限銀河ジ・エンド・オブ・ユニバース",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：クリーチャー１体以上の上に置く。\nT・ブレイカー\nメガメテオバーン10：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚、墓地に置いてもよい。そうしたら、自分はゲームに勝つ。",
+          "race": "フェニックス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "creature": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 10,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "メガメテオバーン10を使って勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-TR3.jpg",
+      "imageSha256": "25174f7ca45590fba97eb1653de138d00c9540a04a2b73ec98d48abcce28cd5b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp1-TR3-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-022",
+          "dm23rp1-TR3",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TR3",
+          "dmex01-022",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "5a36c997afe3e918fa21e3779f8d4ee3ae31eaaf34717506b40ea9310a5429c1",
+        "facesMatched": true,
+        "imageSha256": "25174f7ca45590fba97eb1653de138d00c9540a04a2b73ec98d48abcce28cd5b"
+      }
+    },
+    {
+      "id": "dm26ex1-011",
+      "name": "無限銀河ジ・エンド・オブ・ユニバース",
+      "canonicalId": "dmex01-022",
+      "printId": "dm26ex1-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-011",
+      "faces": [
+        {
+          "name": "無限銀河ジ・エンド・オブ・ユニバース",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：クリーチャー１体以上の上に置く。\nT・ブレイカー\nメガメテオバーン10：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚、墓地に置いてもよい。そうしたら、自分はゲームに勝つ。",
+          "race": "フェニックス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "creature": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 10,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "メガメテオバーン10を使って勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-011.jpg",
+      "imageSha256": "7e4fab3228368ce390a5842ddd2806746445df2e4edfd64c451a8bdbda7aaa42",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex1-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-022",
+          "dm23rp1-TR3",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TR3",
+          "dmex01-022",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "f5e9ba259aef9f844a4efe4d86798737fa93e4df47ac51b2db4a7fb4d6508314",
+        "facesMatched": true,
+        "imageSha256": "7e4fab3228368ce390a5842ddd2806746445df2e4edfd64c451a8bdbda7aaa42"
+      }
+    },
+    {
+      "id": "dmex08-283",
+      "name": "無限銀河ジ・エンド・オブ・ユニバース",
+      "canonicalId": "dmex01-022",
+      "printId": "dmex08-283",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-283",
+      "faces": [
+        {
+          "name": "無限銀河ジ・エンド・オブ・ユニバース",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：自分のクリーチャー１体以上の上に置く。\nT・ブレイカー\nメガメテオバーン10：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚、墓地に置いてもよい。そうしたら、自分はゲームに勝つ。",
+          "race": "フェニックス",
+          "powerText": "17000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "creature": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 10,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "メガメテオバーン10を使って勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-283.jpg",
+      "imageSha256": "fa42a7dacf9c692aef220e0cbc6fb8d427d0c199a3a9c834255ff680733c6ec7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex08-283-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-022",
+          "dm23rp1-TR3",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TR3",
+          "dmex01-022",
+          "dm26ex1-011",
+          "dmex08-283"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "6d66646f5b8618292c89c49fa633f0a42fa9b9006c709189c7e9a1fb024aa866",
+        "facesMatched": true,
+        "imageSha256": "fa42a7dacf9c692aef220e0cbc6fb8d427d0c199a3a9c834255ff680733c6ec7"
+      }
+    },
+    {
+      "id": "dmx19-s14",
+      "name": "無限龍ファタル・スパイラル",
+      "canonicalId": "dm35-s02",
+      "printId": "dmx19-s14",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s14",
+      "faces": [
+        {
+          "name": "無限龍ファタル・スパイラル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化-自分のオリジンまたはドラゴンを１体以上重ねた上に置く。\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーの下に重ねたカード１枚につき、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー",
+          "race": "ポセイディア・ドラゴン/オリジン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "オリジン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "オリジン"
+                },
+                {
+                  "race": "ドラゴン"
+                }
+              ]
+            }
+          ],
+          "variable": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BouncePerSourceCard1060",
+            "g1796UnderCount": true,
+            "anyOwner": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s14.jpg",
+      "imageSha256": "725ff4f84acca98d3815f10240bda9f9df9a729565e57c337ee9a61d87098cd4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx19-s14-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm35-s02",
+          "dmx19-s14"
+        ],
+        "allSearchIds": [
+          "dmx19-s14",
+          "dm35-s02"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:26:53.937Z",
+        "sha256": "a03c684f034e6cf2cb2df866d6c48d9f3b668b7f0303ba03db4be5e877d05265",
+        "facesMatched": true,
+        "imageSha256": "725ff4f84acca98d3815f10240bda9f9df9a729565e57c337ee9a61d87098cd4"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41756/",
+      "sha256": "28a6b78540f97ff5d6a29b6f22aae1cf5eaf8a5e571306a6eead42771a95a174",
+      "checkedAt": "2026-11-27T12:26:53.937Z",
+      "reproduced": true,
+      "tests": "tests/standard1796-effects.test.mjs",
+      "reproduction": "Actual original five-card final forbidden start field is exploded through native unseal, evolved together with five creatures into Universe (ten recursively counted physical sources), then all ten are paid. Dolmaggedon constant-zone loss destroys creatures and defeats the controller before the queued Universe win. All UIDs conserved.",
+      "result": "Actual original five-card final forbidden start field is exploded through native unseal, evolved together with five creatures into Universe (ten recursively counted physical sources), then all ten are paid. Dolmaggedon constant-zone loss destroys creatures and defeats the controller before the queued Universe win. All UIDs conserved."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36790/",
+      "sha256": "c0eefcbb2340ed1bf563f7191848682f61dd75c2c96f077a4ba104c6c632584a",
+      "checkedAt": "2026-11-27T12:26:53.937Z",
+      "reproduced": true,
+      "tests": "tests/standard1796-effects.test.mjs",
+      "reproduction": "Tatebue with no remaining source or a declined one-source payment does not register delayed untap; a successful payment adds a hidden shield and untaps the same incarnation at this turn end.",
+      "result": "Tatebue with no remaining source or a declined one-source payment does not register delayed untap; a successful payment adds a hidden shield and untaps the same incarnation at this turn end."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35965/",
+      "sha256": "b6efae3b4aaa718884e8aaae885827fbec60bab9922d04680ad4742d71fa79ae",
+      "checkedAt": "2026-11-27T12:26:53.937Z",
+      "reproduced": true,
+      "tests": "tests/standard1796-effects.test.mjs",
+      "reproduction": "Fatal Spiral evolves from an actual Dragon carrying a nested physical base, selects itself and an opposing creature, and returns its complete original physical stack plus the selected enemy to their owners hands.",
+      "result": "Fatal Spiral evolves from an actual Dragon carrying a nested physical base, selects itself and an opposing creature, and returns its complete original physical stack plus the selected enemy to their owners hands."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39663/",
+      "sha256": "c94e26cbfff62995ab03499de200de2dfa63ad363ef10da1fbf3e3ef7396c0c9",
+      "checkedAt": "2026-11-27T12:35:01.668134+00:00",
+      "reproduced": true,
+      "tests": "tests/standard1796-effects.test.mjs",
+      "reproduction": "General if-you-do optional-action rule applied by analogy: an existing Tatebue source is selected and its elected shield placement is replaced by actual Pippi, so it reaches grave but the completed attempt still schedules end untap. No-source, decline and actual Fuujin prohibition do not pay and do not schedule. Direct card-specific no-source ruling QA_old36790 is separately reproduced.",
+      "result": "General if-you-do optional-action rule applied by analogy: an existing Tatebue source is selected and its elected shield placement is replaced by actual Pippi, so it reaches grave but the completed attempt still schedules end untap. No-source, decline and actual Fuujin prohibition do not pay and do not schedule. Direct card-specific no-source ruling QA_old36790 is separately reproduced."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm34-030",
+      "name": "無限超竜ボルザード",
+      "research": "tmp/duema-target-10000/research-dmex01-022.json",
+      "reason": "Full official original/HC print research saved; images not yet reviewed. One modal effect destroys a traditional castle fortifying an opponent shield. Only G-castles are currently registered as independent face-up shield cards, so those are not faithful substitutes for traditional fortification attachment/lifecycle. Need a fully implemented traditional castle test dependency plus native castle selection/destruction before registering all modes. No partial definition."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T12:26:53.937Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex01-022": 4,
+      "dmr08-007": 4,
+      "dm35-s02": 4,
+      "dm23rp1-TR3": 4,
+      "dm26ex1-011": 4,
+      "dmex08-283": 4,
+      "dmx19-s14": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial focused tests22/30 passed. All eight failures came from fixture assumptions about native multi-base evolution: the last eligible base auto-confirms, and old evolution sources stay nested rather than being flattened. Corrected test confirmation and recursive physical-source counting; preserved existing nested saves and added reverse-order nested payment coverage. No phoenix evolution code or save format was changed. Final focused35 passed, including actual exploded Dolmaggedon via the original five-card starting field, all ten source costs, Strato choices and current constant loss precedence."
+  }
+}
