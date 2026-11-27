@@ -1,0 +1,216 @@
+{
+  "phase": 1827,
+  "checkedAt": "2026-11-27T18:49:50.318Z",
+  "baseline": "9b35b60f03b45a42e7a091db8e059c883406dbc8",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9694,
+  "currentNames": 9697,
+  "remainingNames": 303,
+  "added": [
+    {
+      "id": "dmd32-008",
+      "name": "アルカディア・スパーク"
+    },
+    {
+      "id": "dmr11-031",
+      "name": "キャロルの空中ライブ"
+    },
+    {
+      "id": "dm17-009",
+      "name": "アクア・マイスター"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1827,
+    "baseline": "9b35b60f03b45a42e7a091db8e059c883406dbc8",
+    "originalDefinitionsUnchanged": 9694,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9697,
+    "uniqueIds": 9697,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11853,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9694,
+    "existingImageReferenceRowsUnchanged": 12129,
+    "officialPrintsReviewed": 10,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1827": {
+      "name": "official-1827",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1827.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.814,
+      "log": "tmp/duema-target-10000/official-1827.log",
+      "passed": 0,
+      "logSha256": "78c74120aa54a3701784cd0350fa6e1759599cb29c51254f0268ed91c96ecc09"
+    },
+    "focused-1827-final": {
+      "name": "focused-1827-c",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1827-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.445,
+      "log": "tmp/duema-target-10000/focused-1827-c.log",
+      "passed": 73,
+      "logSha256": "306ed8341a18648a7db4b27635775c2d5e0a906cd3e8a9bb0117fd8551f49233"
+    },
+    "related-1827": {
+      "name": "related-1827",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:[^\\n]*: can retrieve a matching card deep in the library, reveal as printed, and shuffle every remaining identity|optional decline and a search with no matching card still shuffle the whole library|named searches match the exact printed name, never unrelated creatures or the wrong card type|creature, dragon, fire-bird and cross-gear searches enforce distinct filters|Invincible Technology retrieves |a saved search uses the same deterministic shuffle and only releases its own looked cards|QX blocks both inspection and shuffle without exposing later cards or advancing RNG|Tsukaze limits full-library search to the top card and the whole library is shuffled afterward|S-trigger Minilobo and Goromaru search the defending player library|search adds to hand without drawing; only the selected cards are revealed to the opponent|Genmu and GG suppress matching entry searches; GG suppresses attack searches but not battle-win searches|[^\\n]* summons without executing the tap ability and respects summoning sickness |tap draw or ramp pays no mana, counts no attack, does not break shields and cannot repeat while tapped |tap activation can be used again after a genuine turn cycle untaps the creature|tap activation is unavailable when |speed attacker permits immediate tap activation; GG does not suppress an activated ability, while Genmu ignores it|tap ability does not fire inherited attack triggers and tap costs still notify first-tap triggers|Europica can bounce either player, including itself, with protected enemies excluded |Europica pays tap before its effect; captured ability survives departure and JSON restoration|Gamar only destroys a tapped, targetable enemy creature|Gure Chain taps an opposing creature without dealing damage or breaking shields|Howlsk annihilates enemy creatures with current power at most 3000, without targeting or touching seeds and own creatures|Cosmogould returns a spell from mana, including a twinpact spell face, and rejects creatures|Chamilia searches a creature, reveals the chosen card and shuffles the rest without drawing|Chamilia can decline; mandatory target and recovery abilities can activate with no matching cards|Draw tap ability handles deck exhaustion through normal draw rules|compulsory legal attack targets do not prohibit the modern tap-ability alternative|manual mobile and desktop show direct legal tap buttons only during the attack step|AI values a safe tap draw, avoids deck-out, and does not mutate the game or read hidden enemy identities|[^\\n]* normal summon does not execute the tap effect, then enables it after sickness |Fencer controller chooses the opposing mana card, including face-down mana, without leaking its identity |Fencer cannot move mana protected by the controller’s Appul|Mist returns itself and all creatures with their full stacks, bypasses targeting and leaves gears and seeds |Galatianus privately orders every top-three permutation across JSON saves |Galatianus handles a short library without drawing or losing |King makes only the current friendly water creatures unblockable and the grant expires |King’s water grant bypasses an actual blocker during a later friendly attack|Shell Breeder returns only a creature from mana, allows a twinpact creature and preserves its identity|chosen friendly temporary grant applies only to that creature, includes self, then expires |Pulse Mars targets only an opposing blocker, including an already tapped blocker|Tank makes the opponent choose its own creature and does not target it |Grass Seed places up to three selected hand cards into mana and permits stopping early |Reverse Soul requires a dark creature on the same face and respects grave-zone locks|captured tap effects survive the source leaving and the opponent’s choices survive JSON|manual mobile and desktop offer all new tap abilities as direct legal buttons|AI evaluates new public effects without mutating or reading hidden identities |Phase 731 validates three complete printed cards and keeps the catalogue IDs|Earth counts distinct civilizations of elements across both players, including a cross gear|Earth uses its current power for the number of shields broken |Fish counts only other allied water creatures and draws the chosen number |Fish can choose less than its deck size when the permitted count is larger|Lud counts other untapped allied creatures regardless of their civilization|Lud replaces destruction with a mandatory return to the deck and shuffle|Lud and Black Hawk offer a replacement choice that survives a save|Lud is inserted without shuffling if QX prohibits changing the deck order|Lud does not use the replacement when bounced or when discarded from mana|QA43060: both shuffle sources replace the whole Luna mill without exposing or losing cards|QA40832: neither shuffle source allows Molnarlk to destroy an opponent creature|native mana and shield placements stay in the library and do not generate arrivals|replacement priority and choice survive saving, and chosen grave placement does not chain|QA39943 keeps Deddam’s first hand card and shuffles the other two|QA43789 Fox keeps a chosen hand creature, or shuffles all four if mana is chosen|QA39981 stops Jolly’s old look after the first mana placement is replaced|a shuffling replacement cannot chain onto Amodegoras’s draw replacement|QA41296 Fire Now starts with mana and ends its old three-card look when shuffled|QA49081 Redmad cannot use the unknown shuffled card’s cost to destroy|Hogan can deploy a shuffle source itself before its continuous ability starts|a source already in battle replaces a Hogan creature entry and preserves every card|QQ forbids shuffling, so a replaced blind mill preserves library order and identities|an ignored or sealed source does not replace milling, and Genmu suppresses its cheap ability|normal draws still leave the library, and later hand discards cannot be mistaken for deck moves|each replacement-owning player gets priority on their turn, without a second replacement|QA40785 a hidden Stone Tablet card grants no creature power, and VV seals stay in the library|QA42507 Vision resolves a deck spell before returning it, and a played seed never enters|Pacific start trigger returns source, hand and grave, then draws three before the normal draw |Pacific still resets other zones and draws after its source has left; it never moves a reincarnated source|Pacific respects grave movement locks while still returning its source and hand|KUMPU may be summoned normally or G-NEO evolved on any creature |KUMPU allows foreign-color ordinary and NEO evolution on all own creatures |KUMPU changes only the evolution civilization test, not races, printed mana colors, sealed or ignored abilities|Rinne can replace its own destruction, or decline it |Rinne simultaneous destruction allows independently chosen zero, some or all eligible creatures|Rinne excludes bounce and ability suppression; an opposing Rinne does not protect own creatures|Rinne does not chain its replacement onto destruction used to pay a Saver replacement \\(QA35893\\)|Pacific start trigger does not fire on the opponent turn or while its abilities are ignored |Pacific reset respects the shuffle lock and preserves every card through insertion choices|Fuuta QA35699 protects own Shinobi including itself from any ordinary bottom-deck move |Fuuta offers only bottom deck and own Shinobi, declines safely, and cannot pay empty mana |Fuuta QA32473 analogue preserves itself for native bottom selection without requiring Ninja Strike |Fuuta QA35698 actual Ninja Strike return stays replaced through later turn ends |Arctic may tap its untapped source to protect another own Gransect from each destination |Arctic cannot protect itself, non-Gransects, enemy Gransects or use a tapped/ignored/sealed source |Arctic two sources protect each other, one source cannot pay twice in a simultaneous departure |Arctic pays its tap even when its source leaves in the same simultaneous move |Arctic remains an ordinary Guardman and cannot attack players or redirect a player attack |Michael draws optionally for each destroyed own Mado and ignores other races, opponents and non-destruction moves |Michael QA31687 actual Desuzaku with four Mado below draws four and preserves every card |Michael observes Mado below a non-evolution GNEO that stays while its cards move to grave |Michael below-card draws require a creature host and actual grave arrival, never mana or hand |Michael leaving simultaneously cannot observe other destroyed creatures or their cards below |Michael can decline each draw separately and has no trigger for ordinary Mado spell resolution |Michael Tee Zolis doubles Mado destruction but not under-card grave arrival |Fuuta spends a distinct physical mana card for each simultaneously protected Shinobi |Arctic does not keep a zero-power Gransect alive after paying its tap once |phase1677 manual mana uses exactly the selected physical cards before native execution |phase1677 pending replacement or optional draw AI plans are pure and independent of unknown enemy cards |phase1677 pending replacement or optional draw survives encrypted room projection |Fuuta and Jinnai offer independent alternatives and one replacement never chains into the other |Michael does not draw when Mado spells below actual New World field move to grave |Arctic source still protects an ability-ignored Gransect and the protection may be declined |Michael nested Mado layers each count once when a real creature stack is destroyed |Fuuta actual Apul mana prohibition prevents paying the replacement without moving any mana |phase1739 full original2 spells art limits exact names and strict native specs|Heavens chooses one own current Blocker pays2 and gives4000 W breaker plus actual shield attack |Both spells leave tapped creature unable to attack and do not untap it |Both spells preserve summoning sickness and do not confer speed attacker |QA35120 Miracle Portal allows noAttack blocker player attack only and cannot attack tapped creature |Heavens full attack restriction override permits an old noAttack Blocker to attack creatures |QA36799 Heavens selected blocker attacks past tapped Shangrila |Both spells apply only selected creature expire at end and do not affect later entry |Genmu spell ignore prevents all permission buffs and unblockability |Portal chosen target is unblockable even if an opposing untapped Blocker exists |Heavens target filter sees granted Blocker and excludes opponent or nonBlocker |phase1739 target choice JSON encrypted restore hides other player actions and preserves80 card format |QA36777 Shangrila paid ultra infinite Omega any1\\+ Guardian combination |Shangrila selection rejects wrong race face-down mana and locked grave, permits same-zone multiples and cancel |Shangrila tapped locks all enemy player and creature attacks, untapped ignored or sealed source does not |Shangrila Meteor may remove exactly1 base then shuffle chosen entire opponent stack and retain source T breaker |Shangrila Meteor can decline or execute with no enemy, and no base gives no Meteor decision |Shangrila native Eternal Omega returns whole evolution to owner hand from real removal |Heavens and Portal externally applied permission survives target ability ignoring and follows evolution UID layers |QA36779 Shangrila prevents even a forced attacker from declaring any attack |Heavens permission disappears after actual return and fresh reentry instead of leaking to same physical UID |Real Woods and Diamond Cutter retain existing attack freedom against tapped Shangrila |Shangrila may use its selected mana Guardian to pay the11 mana before attaching it |Heavens removes color-only and Blocker-only creature attack limits but retains target protections |Shangrila base count stays with summoner while Yomino chooses battlefield bases only |Shangrila optional multi-zone evolution continuation restores through encrypted room with same native choices |Terminator paid eight preserves the actual last five deck cards and mills the entire preceding batch with all UIDs conserved, QA36951 |Terminator normal entry mill obeys actual Brakkio silence, but its static final-draw replacement remains available |Each replaced final draw returns exactly one chosen public grave card, never draws or moves the final deck card, and resumes encrypted |Terminator cannot replace a nonfinal draw or a draw with an unavailable grave card; actual last draw loses, QA36952 |Recovering the only grave card during a multi-draw leaves no legal replacement for the next final draw |Terminator and actual Babylonia coexist as separately named draw replacements without chaining |Terminator can prevent the actual final draw before Shako wins, while declining retains Shako last-draw win |Crystal Reincarnation QA45061 with no target neither reveals nor shuffles either deck and still costs four |Crystal chooses either players actual element and mandatorily puts an eligible revealed element onto its owners battlefield |Crystal publicly reveals a non-element and sends it to the bottom, rather than casting it or adding it to hand |Crystal owner handling follows the physical owner of a borrowed element, preserving the other controllers deck |Crystal respects actual untargetability, ignores sealed creatures and excludes non-element cores |Crystal still reveals publicly under the actual QQQX private-look and shuffle prohibition, without shuffling the targets deck |A revealed matching element blocked by an actual hand-only entry restriction remains on top rather than taking the non-element bottom branch |Crystal actual S-Trigger from a broken shield pays no mana and mandatorily resolves its chosen element and reveal |Crystal non-element bottom order is exact under a shuffle prohibition and public reveal is not a private look |Terminator last draw recovery works on the opposing turn and keeps the choice with the drawing player |Crystal mandatory Aura entry attaches to an existing or newly summoned actual GR and survives encrypted continuation |Crystal revealed evolution uses actual legal bases, and an unavailable evolution remains on top |Actual encrypted duel service preserves mana selection, target ownership, final draw replacement and every physical card )",
+        "tests/standard201-effects.test.mjs",
+        "tests/standard439-effects.test.mjs",
+        "tests/standard440-effects.test.mjs",
+        "tests/standard731-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/standard1614-effects.test.mjs",
+        "tests/standard1677-effects.test.mjs",
+        "tests/standard1739-effects.test.mjs",
+        "tests/standard1826-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.305,
+      "log": "tmp/duema-target-10000/related-1827.log",
+      "passed": 423,
+      "logSha256": "26190e00d919ed0e4d188786b46e710c1d11628af6beeea8b5ad2d0b60bbf0f5"
+    },
+    "check-1827": {
+      "name": "check-1827",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 23.871,
+      "log": "tmp/duema-target-10000/check-1827.log",
+      "passed": 0,
+      "logSha256": "d42b073857c8d428bb4b4eb3af616fd12bb7a062863ad375d6acdd69454d5bc5"
+    },
+    "audit-1827": {
+      "name": "audit-1827",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 13.349,
+      "log": "tmp/duema-target-10000/audit-1827.log",
+      "passed": 0,
+      "logSha256": "037aca4aaf0f4dce664c6ddfcced4527c2cc85179e97984f6df18b4478f969f5"
+    },
+    "invariants-1827": {
+      "name": "invariants-1827",
+      "command": [
+        "node",
+        "tools/verify-target10000-invariants.mjs",
+        "1827"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.775,
+      "log": "tmp/duema-target-10000/invariants-1827.log",
+      "passed": 0,
+      "logSha256": "69a4b17ba3ac39dc8813cdb4baf5015c4a973570cfffff06fa0de428b6fc7fbc"
+    },
+    "related-online-1827": {
+      "name": "related-online-1827",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.802,
+      "log": "tmp/duema-target-10000/related-online-1827.log",
+      "passed": 5,
+      "logSha256": "d53bf07b954d81d8958ea6e0838761fe5ae747e174231d5e8696909ec3d29bc8"
+    }
+  },
+  "totalTestsPassed": 501,
+  "manifest": "tools/support-phase-1827.json",
+  "supported": 9697,
+  "pending": 2152,
+  "engineVersion": "0.602.351",
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "dmsd08-002",
+      "name": "バツトラの父"
+    },
+    {
+      "id": "dmrp12-081",
+      "name": "トムライ 丙-三式"
+    },
+    {
+      "id": "dm22rp2-031",
+      "name": "ネオマッハ・ダイヤエンジン"
+    }
+  ],
+  "verificationScope": "公式10画像（原版3・再録7）と全検索結果を照合。QA45060対象なしでも相手が1枚引きシャッフルしない。QA_old37001対象なしなら持ち主未確定で誰も引かない。QA32473は実際のアルカディア・スパークと不死火フウタ・ドラグーンでマナ1枚の置換と後続ドローを両席で再現。両モードの条件・印刷順、Sトリガー、実際の無視・封印・召喚酔い・Genmu・QQQX、進化クロスギア除外、登場禁止、所有者の違い、任意の2枚ドロー（0枚か2枚のみ）、不成立の検索でもシャッフル、暗号化対戦の各選択を検証。水晶転生のシャッフルを実際の山札移動と一体にし、エターナルΩで手札へ戻る場合はシャッフルせず後続の公開を実施。ネイティブのシャッフル先を物理カードの持ち主へ振り分け、離脱が手札に置換された場合に元のシャッフルフラグが移動先を上書きする不具合も修正。前バッチ95件を含む関連回帰423件通過。",
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "research-1827",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/research.mjs",
+        "dmd32-008",
+        "dmr11-031",
+        "dm17-009"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.141,
+      "log": "tmp/duema-target-10000/research-1827-previous-1795804894497684000.log",
+      "originalLog": "tmp/duema-target-10000/research-1827.log",
+      "reason": "最初の研究fetchはsandbox DNS不可のため承認済み公式読取りで成功。初期expand呼出しを正式な--phase=1827へ修正し、公式照合後に適用。初回固有テストでゲーム終了時の解決中呪文を墓地と決めつけるfixtureを修正。検索禁止を新しい持ち主の山札検索にも適用。実際のエターナルΩでシャッフルフラグが手札移動を上書きする共通処理を修正し、追加テストと影響する回帰を通過。全失敗ログを保持。"
+    },
+    {
+      "name": "focused-1827-a",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1827-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.242,
+      "log": "tmp/duema-target-10000/focused-1827-a.log",
+      "reason": "最初の研究fetchはsandbox DNS不可のため承認済み公式読取りで成功。初期expand呼出しを正式な--phase=1827へ修正し、公式照合後に適用。初回固有テストでゲーム終了時の解決中呪文を墓地と決めつけるfixtureを修正。検索禁止を新しい持ち主の山札検索にも適用。実際のエターナルΩでシャッフルフラグが手札移動を上書きする共通処理を修正し、追加テストと影響する回帰を通過。全失敗ログを保持。"
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

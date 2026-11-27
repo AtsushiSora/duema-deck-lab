@@ -15466,5 +15466,756 @@
       ],
       "g1826LastDrawReturn": true
     }
+  },
+  "dmd32-008": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエンジェル・コマンドがあれば、両方を選んでもよい。 ▼相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルし、その後カードを１枚引く。 ▼相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm26ex5-DP017": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー\n次の中から１回選ぶ。自分のエンジェル・コマンドがあれば、両方選んでもよい。\n▶相手のクリーチャーを１体選ぶ。相手は、それを山札に加えてシャッフルし、相手はカードを１枚引く。\n▶相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm23bd7-041": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。自分のエンジェル・コマンドがあれば、両方を選んでもよい。\n▶相手のクリーチャーを１体選ぶ。相手は、それを山札に加えてシャッフルし、カードを１枚引く。\n▶相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm23ex2-058": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。自分のエンジェル・コマンドがあれば、両方を選んでもよい。\n▶相手のクリーチャーを１体選ぶ。相手はそれを山札に加えてシャッフルする。その後、相手はカードを１枚引く。\n▶相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm24ex2-054": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。自分のエンジェル・コマンドがあれば、両方選んでもよい。\n▶相手のクリーチャーを１体選ぶ。相手は、それを山札に加えてシャッフルし、相手はカードを１枚引く。\n▶相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex15-b077": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。バトルゾーンに自分のエンジェル・コマンドがあれば、両方を選んでもよい。\n▶相手のクリーチャーを１体選ぶ。相手はそれを山札に加えてシャッフルし、その後カードを１枚引く。\n▶相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp06-g04": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。バトルゾーンに自分のエンジェル・コマンドがあれば、両方を選んでもよい。\n▼相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルする。その後、相手はカードを１枚引く。\n▼相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex06-047": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アルカディア・スパーク",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。バトルゾーンに自分のエンジェル・コマンドがあれば、両方を選んでもよい。\n→相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルし、その後カードを１枚引く。\n→相手のクリーチャーをすべてタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr11-031": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "キャロルの空中ライブ",
+        "typeText": "呪文",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるクリーチャーを１体選ぶ。持ち主はそのクリーチャーを自身の山札に加えてシャッフルする。その後、そのプレイヤーはカードを２枚引いてもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "deck",
+          "g1739Shuffle": true,
+          "g1827OwnerAfter": [
+            {
+              "op": "Offer",
+              "title": "カードを2枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm17-009": {
+    "phase": 1827,
+    "faces": [
+      {
+        "name": "アクア・マイスター",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の 能力を使ってもよい。\nバトルゾーンにあるクロスギアを１枚選び、持ち主の墓地に置く。そのプレイヤーは自分自身の山札を見る。その中から進化ではないクロスギアを１枚、そのプレイヤー自身が選び、コストを支払わずにバトルゾーンに出してもよい。その後、山札をシャッフルする。",
+        "race": "リキッド・ピープル",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g439Tap": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "to": "grave",
+          "g1827OwnerAfter": [
+            {
+              "op": "Select",
+              "origin": "deck",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "g405Search": true,
+              "filter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "after": [
+                {
+                  "op": "Shuffle405"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

@@ -311615,20 +311615,187 @@
       "g1826LastDrawReturn": true,
       "supportBatch": "phase-1826",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd32-008",
+      "name": "アルカディア・スパーク",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分のエンジェル・コマンドがあれば、両方を選んでもよい。 ▼相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルし、その後カードを１枚引く。 ▼相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd32-008",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手1体を山札へ戻し相手が1枚引く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャーをすべてタップする",
+              "defs": [
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "filter": {
+                    "creature": true,
+                    "race": "エンジェル・コマンド"
+                  },
+                  "min": 1
+                }
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "deck",
+                  "g1739Shuffle": true
+                },
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "owner": "opponent"
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1827",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-031",
+      "name": "キャロルの空中ライブ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるクリーチャーを１体選ぶ。持ち主はそのクリーチャーを自身の山札に加えてシャッフルする。その後、そのプレイヤーはカードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-031",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "deck",
+          "g1739Shuffle": true,
+          "g1827OwnerAfter": [
+            {
+              "op": "Offer",
+              "title": "カードを2枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1827",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-009",
+      "name": "アクア・マイスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "リキッド・ピープル",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の 能力を使ってもよい。\nバトルゾーンにあるクロスギアを１枚選び、持ち主の墓地に置く。そのプレイヤーは自分自身の山札を見る。その中から進化ではないクロスギアを１枚、そのプレイヤー自身が選び、コストを支払わずにバトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-009",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "to": "grave",
+          "g1827OwnerAfter": [
+            {
+              "op": "Select",
+              "origin": "deck",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "g405Search": true,
+              "filter": {
+                "g201Gear": true,
+                "nonEvolution": true
+              },
+              "after": [
+                {
+                  "op": "Shuffle405"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1827",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1826,
-    "checkedAt": "2026-11-27T18:30:44.935Z",
-    "baseCount": 9692,
-    "newEffectCards": 2,
+    "phase": 1827,
+    "checkedAt": "2026-11-27T18:44:24.882Z",
+    "baseCount": 9694,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9694,
+    "totalCount": 9697,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45061/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36952/"
+      "https://dm.takaratomy.co.jp/rule/qa/45060/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37001/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -341511,6 +341678,23 @@
         "totalCount": 9692,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1826,
+        "checkedAt": "2026-11-27T18:30:44.935Z",
+        "baseCount": 9692,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9694,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45061/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36952/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

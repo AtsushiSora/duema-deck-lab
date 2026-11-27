@@ -9346,11 +9346,21 @@ export function createSixPhotoRules(api){
    if(y)(s.extLimits??=[]).push({kind:'g1818DeathDraw',player:t.p,source:t.source,
     ref:{uid:y.uid,incarnation:y.incarnation||0},n:t.g1818DeathDraw,turn:s.turn,expires:'end',who:s.active});
   }
+  if(t.g1827OwnerAfter){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y){const owner=y.cardOwner??v.p;
+    move(s,[{player:v.p,uid:y.uid,to:t.to,destroy:t.to==='grave',controller:t.p,
+     ...(t.to==='deck'?{toOwnerDeck:true,g731Shuffling:!!t.g1739Shuffle}:{toOwnerGrave:true})}]);
+    if(!t.g1827OwnerAfter.some(d=>d.op==='Select'&&d.origin==='deck')||!api.deckLocked(s,owner))
+     start(s,{...t,p:owner},t.g1827OwnerAfter);
+   }
+   break;
+  }
   if(t.g1826Transmute){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y){const owner=y.cardOwner??v.p;
-    move(s,[{player:v.p,uid:y.uid,to:'deck',toOwnerDeck:true,destroy:false,controller:t.p}]);
-    start(s,{...t,p:owner},[{op:'Shuffle405'},{op:'RevealTop514',g1826PublicReveal:true,filter:{g1826Element:true},to:'battle',elseTo:'deck'}]);
+    move(s,[{player:v.p,uid:y.uid,to:'deck',toOwnerDeck:true,g731Shuffling:true,destroy:false,controller:t.p}]);
+    start(s,{...t,p:owner},[{op:'RevealTop514',g1826PublicReveal:true,filter:{g1826Element:true},to:'battle',elseTo:'deck'}]);
    }
    break;
   }
