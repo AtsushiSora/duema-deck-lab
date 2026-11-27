@@ -2172,6 +2172,12 @@ export function createSixPhotoRules(api){
    return;
   }
   api.addZone(s,owner,'deck',...moved);
+  if(t.g1828OwnerOrder){
+   const bottom=moved.filter(x=>s.players[owner].deck.includes(x));
+   if(bottom.length>1)put(s,task('g78_BottomOrder',owner,t.source,{
+    rows:bottom.map(x=>({uid:x.uid,label:card(x).name,cardId:x.cardId})),
+    ordered:[],newCards:true,controller:t.p}));
+  }
   if(t.mode==='draw'&&selected.length)start(s,t,[{op:'Draw',n:1}]);
   if(t.mode==='destroy'){
    start(s,t,[{op:'Target',to:'grave',optional:true,filter:{max:selected.length}}]);
@@ -7502,6 +7508,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GravePick598':{
+  if(t.g1828OpponentGrave&&t.owner===undefined)t={...t,owner:1-t.p};
   if(t.owner===undefined){
    const options=[t.p,1-t.p].filter(p=>t.g1109RequiredShuffle||s.players[p].grave.length&&(!t.upTo||api.canMoveZone(s,p,'grave')))
     .map(p=>opt(p===t.p?'自分の墓地':'相手の墓地',p,gravePickPlayerScore598(s,t,p)));

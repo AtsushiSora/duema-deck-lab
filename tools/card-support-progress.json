@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9697,
-  "pendingNames": 2152,
-  "phase": 1827,
-  "added": 3,
+  "supportedNames": 9699,
+  "pendingNames": 2150,
+  "phase": 1828,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -168,7 +168,7 @@
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
-    "GRクリーチャー": 15,
+    "GRクリーチャー": 13,
     "D2フィールド": 10,
     "禁断フィールド": 1,
     "クロスギア": 2,
@@ -221,7 +221,7 @@
   },
   "reasons": {
     "未対応の能力文": 1591,
-    "複数面・特殊カードタイプまたは情報不足": 468,
+    "複数面・特殊カードタイプまたは情報不足": 466,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -573500,24 +573500,210 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1828,
+      "checkedAt": "2026-11-27T18:54:48.800Z",
+      "baseline": "79ee30fcec6a4570e0f251dbd0fadab74286de94",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9697,
+      "currentNames": 9699,
+      "remainingNames": 301,
+      "added": [
+        {
+          "id": "dmsd08-002",
+          "name": "バツトラの父"
+        },
+        {
+          "id": "dmrp12-081",
+          "name": "トムライ 丙-三式"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1828,
+        "baseline": "79ee30fcec6a4570e0f251dbd0fadab74286de94",
+        "originalDefinitionsUnchanged": 9697,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9699,
+        "uniqueIds": 9699,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9697,
+        "existingImageReferenceRowsUnchanged": 12139,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1828": {
+          "name": "official-1828",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1828.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.028,
+          "log": "tmp/duema-target-10000/official-1828.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1828-final": {
+          "name": "focused-1828-a",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1828-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.483,
+          "log": "tmp/duema-target-10000/focused-1828-a.log",
+          "passed": 59,
+          "logSha256": "f3bdb290ecc7f4974f02710c83d105f929b4ce707fc358a1a83b5c115c21ae2d"
+        },
+        "related-1828": {
+          "name": "related-1828",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:ポクチン chooses either player and shuffles their whole grave into the existing deck|ポクチン watches only the opponent’s turn and only entries without mana payment|printed zero stays free, while an applied one-mana floor and required civilization still count as payment|ポクチン does not follow a free entrant that returned itself to hand before resolution|タイフン picks from a single grave, keeps the chosen order and can draw again on attack|タイフン can decline without a draw and can select cards in a locked grave without moving them|アザファウスト lets the grave owner order selected cards before the summoner chooses removal|アザファウスト can use S・トリガー and selecting zero permits a zero-cost target|ショベル only shuffles after selecting a card and cannot attack|Agasion may draw one or decline with a Darkness creature face in its own grave|Agasion excludes the spell face, Darkness seeds, the enemy grave, and facedown cards|Agasion also triggers on direct deployment, respects ignored abilities, and only reads the grave|Fukuro reduces named creature summons and spell casts, including another Fukuro|Fukuro uses the executing name of a twinpact and does not reduce cross payments|Fukuro stacks with a one-mana floor and obeys suppression and control|Batten is optional, resolves after the attacker’s ability, and stops before blocker declaration|Batten can decline and does not trigger for a creature attack or while already tapped or ignored|each Batten resolves separately and an already used copy cannot stop another attack|a Batten that changed incarnation cannot pay for a pending cancellation|Extra Hole selects one graveyard and returns at most two cards before deploying \\(QA 36096\\)|Extra Hole shuffles the chosen player’s deck with zero cards or an empty graveyard \\(QA 36097\\)|Extra Hole adds cards at chosen positions when Q\\.Q\\.QX\\. prevents shuffling \\(QA 31783\\)|Extra Hole still shuffles when a rule prevents cards leaving the selected graveyard|White Black privately inspects a shield and may replace a different player’s shield \\(QA 36476\\)|White Black may replace the same shield and deploys when no shields exist|Killer Megane declares before a private hand look, uses printed costs, and counts each Twinpact once|Killer Megane can decline the draw and deploys at most two water faces for total cost seven|Killer Megane can still deploy against an empty hand|[^\\n]* offers G Zero exactly at its required own battle condition and retains the printed paid route |D2S protects own creatures from attacks and, only with an own D2 field, opposing spell choices |Shadan Q may tap itself to stop a player attack, but its tapped state prevents repeated use |Flash Duel taps all opposing creatures and protects current own Angel Commands through the opponent turn even if their abilities are ignored|Flash Duel counts an Angel Command tamaseed as the fifth element for G Zero and also prevents its attempted removal|QA49601/49602 Rising NEX accepts two physical cards across creatures, Shinkalize, noncreature sources or linked Gods |QA49602 one physical creature, attachments, foreign or sealed units cannot supply the missing evolution card |Rising NEX evolves on the actual combined three-card Volzeos and preserves every King Cell |Rising NEX publicly selects any number of Dragon or Fire Bird creatures and ramps all unchosen cards |Rising NEX external protection includes itself, survives recipient ignore, and permits actual destruction |Ignoring or sealing Rising NEX removes its global grants and non-destruction protection |Dias mandatory entry minus kills a small opposing creature and its own end mills exactly two |Dias attack declaration requires sixteen own grave cards and cannot borrow enemy grave cards |QA49606 Dias returns exact four, lets their owner order, and completes its Q-break attack after dropping below sixteen |Dias may decline the optional grave selection before commitment without a partial move or forced bottom choice |Dias opponent chooses one physical own battlefield card or hand, including an evolution source and original owner deck |Perfect Eighty native Shield Force stays through destruction and bounce, untaps at own end and expires with the exact shield |Perfect Eighty may decline Shield Force and does not survive zero power even when its force shield remains |Perfect Eighty attack draws one before optionally deploying a Light blocker from the resulting hand and W-breaks |Perfect Eighty globally blocks creature and noncreature elements from every non-hand origin, while allowing hand and battle transformation |Perfect Eighty hand-only gate requires its live unignored source |Perfect Eighty simultaneous deck entry does not prevent its companion, and its restriction applies immediately after the group |An established Perfect Eighty blocks actual grave deployment and allows actual hand deployment without affecting spells |Dias still attempts its follow-up after choosing four locked grave cards, without pretending that they moved |Dias stale selected grave incarnation cannot be moved by a restored choice |Perfect Eighty leaves seals as non-elements and does not prevent paying a spell or moving existing battlefield cards |Actual encrypted duel service preserves all new evolution, grave owner-order and Shield Force decisions |Rising NEX and Dias retain their printed triple and quadruple breaker counts in actual attacks |Rising NEX power stacks from other copies and buffs ignored allies, while destruction remains allowed |QA49602 Rising NEX evolves on an actual awakened two-card Psychic Link, keeping both printed cells |Perfect Eighty new simultaneous-entry restriction uses the same group snapshot for grave and deck batches )",
+            "tests/standard598-effects.test.mjs",
+            "tests/standard979-effects.test.mjs",
+            "tests/standard1109-effects.test.mjs",
+            "tests/standard1508-effects.test.mjs",
+            "tests/standard1821-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.733,
+          "log": "tmp/duema-target-10000/related-1828.log",
+          "passed": 139,
+          "logSha256": "7634ee909f0a9a005dcecc648ab4f31c80866435a42ff3451cf8cc96142abb77"
+        },
+        "check-1828": {
+          "name": "check-1828",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.519,
+          "log": "tmp/duema-target-10000/check-1828.log",
+          "passed": 0,
+          "logSha256": "6340af49ff53fbadf1337747a04438053e21b1292f0d513d80bedef68a2952ea"
+        },
+        "audit-1828": {
+          "name": "audit-1828",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.472,
+          "log": "tmp/duema-target-10000/audit-1828.log",
+          "passed": 0,
+          "logSha256": "8507bfd87a74a37afc7eb8550bc48722850a38490292e4938b77517d83d01cfe"
+        },
+        "invariants-1828": {
+          "name": "invariants-1828",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1828"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.787,
+          "log": "tmp/duema-target-10000/invariants-1828.log",
+          "passed": 0,
+          "logSha256": "9b1d5d598c9e2fde222734672d48623bdea597af8eff08b25dce36292d17fb71"
+        },
+        "related-online-1828": {
+          "name": "related-online-1828",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.845,
+          "log": "tmp/duema-target-10000/related-online-1828.log",
+          "passed": 5,
+          "logSha256": "d6123fdba6733d02d4e52dfe47875e3275dbdb1e0ab464130b8fa0a08010963f"
+        }
+      },
+      "totalTestsPassed": 203,
+      "manifest": "tools/support-phase-1828.json",
+      "supported": 9699,
+      "pending": 2150,
+      "engineVersion": "0.602.352",
+      "held": [
+        {
+          "id": "dm22rp2-031",
+          "name": "ネオマッハ・ダイヤエンジン",
+          "reason": "原版・DM22-RP2X再録の公式能力全文・基本情報・全画像を照合。全自軍が持つ攻撃禁止能力の無効化について、自己条件の攻撃制限と外部効果・召喚酔いを区別する共通処理の網羅検証が未完了のため保留。公開3枚回収だけの部分実装は行わず未加算。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-031",
+          "research": "tmp/duema-target-10000/research-dmsd08-002.json"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex18-032",
+          "name": "Library of Alexandria"
+        },
+        {
+          "id": "dm28-006",
+          "name": "黒神龍アマデウス"
+        },
+        {
+          "id": "dmrp15-019",
+          "name": "鬼槍の一撃"
+        }
+      ],
+      "verificationScope": "公式6画像を全確認、今回の2GRと各再録の全文・コスト3・パワー1000/3000・マナ0を照合。バツトラの父QA39328は実際の勝利宣言 鬼丸「覇」のガチンコジャッジ勝利と追加ターン登録が先に完了し、その後の攻撃中止がそれらを取り消さないことを両席で再現。登場ターンでもタップによる中止可、タップ済み・無視・封印・クリーチャーへの攻撃では不可。トムライはコントローラーが0/1/2/3枚選択し、相手が実際の山札下への並びを決定。墓地禁止、空墓地、登場能力禁止、GRの各ゾーン離脱後の帰還と再登場、暗号化対戦での選択プレイヤー切替・UID保存を確認。",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1827,
-    "nextPhase": 1828,
+    "lastVerifiedPhase": 1828,
+    "nextPhase": 1829,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmsd08-002",
-        "name": "バツトラの父"
+        "id": "dmex18-032",
+        "name": "Library of Alexandria"
       },
       {
-        "id": "dmrp12-081",
-        "name": "トムライ 丙-三式"
+        "id": "dm28-006",
+        "name": "黒神龍アマデウス"
       },
       {
-        "id": "dm22rp2-031",
-        "name": "ネオマッハ・ダイヤエンジン"
+        "id": "dmrp15-019",
+        "name": "鬼槍の一撃"
       }
     ],
     "steps": [
@@ -574411,11 +574597,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1827,
-      "baseline": "9b35b60f03b45a42e7a091db8e059c883406dbc8",
-      "supportedNames": 9697,
-      "artifact": "tools/target10000-registration-checkpoint-1827.json",
-      "checkedAt": "2026-11-27T18:49:50.318Z"
+      "phase": 1828,
+      "baseline": "79ee30fcec6a4570e0f251dbd0fadab74286de94",
+      "supportedNames": 9699,
+      "artifact": "tools/target10000-registration-checkpoint-1828.json",
+      "checkedAt": "2026-11-27T18:54:48.800Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -577473,8 +577659,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9697,
-      "remaining": 303,
+      "currentNames": 9699,
+      "remaining": 301,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -577482,8 +577668,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1827,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1827.json",
+      "lastPhase": 1828,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1828.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -578743,8 +578929,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9697,
-      "remaining": 303,
+      "currentNames": 9699,
+      "remaining": 301,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -578752,8 +578938,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1827,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1827.json",
+      "lastPhase": 1828,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1828.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -579168,6 +579354,33 @@
           "Terminator QA_old36951: decks of zero through five leave all available cards and mill none. QA_old36952 explicitly forbids replacing the final draw when no grave card can be returned; then actual last draw loses. Do not approximate an empty grave as an allowed no-op replacement. Extend native saved draw-choice transaction only with correct mixed replacement sources, no replacement chaining, manual choices and safe grave-movement locks."
         ],
         "noCardsCountedFromResearch": true
+      },
+      {
+        "research": "tmp/duema-target-10000/research-dmsd08-002.json",
+        "checkedAt": "2026-11-27T18:54:48.375Z",
+        "phase": 1828,
+        "exactPrintsReviewed": [
+          "dmsd08-002",
+          "dmsp04-002",
+          "dmrp12-081",
+          "dmbd22-013",
+          "dm22rp2-031",
+          "dm22rp2x-031"
+        ],
+        "allFullImagesReviewed": true,
+        "implemented": [
+          "dmsd08-002",
+          "dmrp12-081"
+        ],
+        "held": [
+          {
+            "id": "dm22rp2-031",
+            "name": "ネオマッハ・ダイヤエンジン",
+            "reason": "原版・DM22-RP2X再録の公式能力全文・基本情報・全画像を照合。全自軍が持つ攻撃禁止能力の無効化について、自己条件の攻撃制限と外部効果・召喚酔いを区別する共通処理の網羅検証が未完了のため保留。公開3枚回収だけの部分実装は行わず未加算。",
+            "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-031",
+            "research": "tmp/duema-target-10000/research-dmsd08-002.json"
+          }
+        ]
       }
     ]
   },
@@ -631042,10 +631255,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1827,
+    "phase": 1828,
     "threshold": 10000,
-    "supportedNames": 9697,
-    "pendingNames": 2152,
+    "supportedNames": 9699,
+    "pendingNames": 2150,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -631054,7 +631267,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1827.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1828.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
