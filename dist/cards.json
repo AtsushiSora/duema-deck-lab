@@ -304543,17 +304543,209 @@
       ],
       "supportBatch": "phase-1766",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S003",
+      "name": "クリスタル・ツヴァイランサーP’S",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "リキッド・ピープル",
+      "text": "G・ゼロ：自分のリキッド・ピープルが４つ以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n進化：リキッド・ピープル・クリーチャー１体の上に置く。\nジャストダイバー\nT・ブレイカー\n自分のリキッド・ピープルはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S003",
+      "limit": 4,
+      "evolution": {
+        "race": "リキッド・ピープル"
+      },
+      "breaker": 3,
+      "justDiver": true,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "リキッド・ピープル"
+              },
+              "min": 4
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "リキッド・ピープル"
+          },
+          "grants": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1767",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-DP029",
+      "name": "ノワー・ルピア",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "自分のターンの終わりに、自分の山札の上から１枚を墓地に置く。\n自分のフェニックス・クリーチャーの召喚コストを１少なくする。そのコストが６以上なら、追加で１少なくする。ただしコストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP029",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "Mill",
+          "n": 1
+        }
+      ],
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "フェニックス"
+          },
+          "amount": 1
+        },
+        {
+          "filter": {
+            "creature": true,
+            "race": "フェニックス",
+            "min": 6
+          },
+          "amount": 1
+        }
+      ],
+      "supportBatch": "phase-1767",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-001",
+      "name": "デス・ザ・チョイス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12000,
+      "race": "デーモン・コマンド・ドラゴン/革命軍",
+      "text": "革命０トリガー：クリーチャーが自分を攻撃する時、自分のシールドが１つもなければ、このクリーチャーを手札から見せてもよい。そうしたら、自分の山札の上から１枚目を表向きにする。そのカードが闇の進化ではないクリーチャーなら出し、このクリーチャーをその上に置く。\n進化：闇のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手のタップしているクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-001",
+      "limit": 4,
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 3,
+      "g50RevolutionColor": "闇",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "tapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1767",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-080",
+      "name": "神豚 ブータンPUNK / ブータン両成敗",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アウトレイジMAX/オラクル",
+      "text": "ウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神豚》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《神》とあるエグザイル・クリーチャーは出せない。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のクリーチャーを１体選んで破壊し、その後、自分のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-080",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "神",
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g220NameAny": [
+              "神豚"
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "ブータン両成敗",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-1767",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1766,
-    "checkedAt": "2026-11-27T08:03:38.101Z",
-    "baseCount": 9519,
-    "newEffectCards": 3,
+    "phase": 1767,
+    "checkedAt": "2026-11-27T08:07:58.617Z",
+    "baseCount": 9522,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9522,
+    "totalCount": 9526,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/42661/",
+      "https://dm.takaratomy.co.jp/rule/qa/45568/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -333513,6 +333705,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9519,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1766,
+        "checkedAt": "2026-11-27T08:03:38.101Z",
+        "baseCount": 9519,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9522,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
