@@ -1,0 +1,332 @@
+{
+  "phase": 1847,
+  "checkedAt": "2026-11-27T22:46:31.674Z",
+  "baseline": "d4ccc987a9b65971db3adfcd89791d4445ab4173",
+  "baseCount": 9749,
+  "target": 10000,
+  "description": "Complete Goemon other-Samurai-creature optional drawing and Samurai generation, Inferu full MachFighter/T3/attack mill-recover/death mana creature10 and Fushigibirth12min2, Raimer Chant public top3 mandatory creature hand and tapped rest mana/Fushigibirth9min1, all existing native operations.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35670/"
+  ],
+  "cards": [
+    {
+      "id": "dm28-047",
+      "name": "歌舞機ロイド・ゴエモン",
+      "canonicalId": "dm28-047",
+      "printId": "dm28-047",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-047",
+      "faces": [
+        {
+          "name": "歌舞機ロイド・ゴエモン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の他のサムライ１体につき１枚、カードを引いてもよい。\n侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)",
+          "race": "グレートメカオー/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "samuraiGenerate": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "creature": true,
+              "race": "サムライ"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-047.jpg",
+      "imageSha256": "afe07bff87a926748c4cfbf9fe1bdc85f0a9d302a666c32aebebddb73ba92594",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm28-047-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm28-047"
+        ],
+        "allSearchIds": [
+          "dm28-047"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:46:31.674Z",
+        "sha256": "c81f5495ed1525b659c2aa0b3e574959beb87d99f5a031a854a0afa8fed7885d",
+        "facesMatched": true,
+        "imageSha256": "afe07bff87a926748c4cfbf9fe1bdc85f0a9d302a666c32aebebddb73ba92594"
+      }
+    },
+    {
+      "id": "dmrp13-s10",
+      "name": "インフェル龍樹",
+      "canonicalId": "dmrp13-s10",
+      "printId": "dmrp13-s10",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s10",
+      "faces": [
+        {
+          "name": "インフェル龍樹",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "マッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置き、その後、カードを１枚、自分の墓地からマナゾーンに置く。\nこのクリーチャーが破壊された時、コスト10以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。\nフシギバース [dn12]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn12]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+          "race": "ジャイアント・ドラゴン/不死樹王国",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "fushigibirth": 12,
+        "fushiMin": 2,
+        "g402FushiColors": [
+          "闇",
+          "自然"
+        ],
+        "g34Attack": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 10
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-s10.jpg",
+      "imageSha256": "1757ab8e079584dd8504fa618d73fb3f06b76e7c068f39671aa0ef28fd7f22d1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp13-s10-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp13-s10"
+        ],
+        "allSearchIds": [
+          "dmrp13-s10"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:46:31.674Z",
+        "sha256": "7b06cb8ca831623ee4f138e2f14fcd01a37998516a0e4d3df63ee3f4b4ef9849",
+        "facesMatched": true,
+        "imageSha256": "1757ab8e079584dd8504fa618d73fb3f06b76e7c068f39671aa0ef28fd7f22d1"
+      }
+    },
+    {
+      "id": "dmex10-003",
+      "name": "ライマー・チャント",
+      "canonicalId": "dmex10-003",
+      "printId": "dmex10-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-003",
+      "faces": [
+        {
+          "name": "ライマー・チャント",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体選んで手札に加え、残りをタップしてマナゾーンに置く。\nフシギバース [nn09]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [nn09] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01].より少なくならない）",
+          "race": "グランセクト/不死樹王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "fushigibirth": 9,
+        "fushiMin": 1,
+        "g402FushiColors": [
+          "自然"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "restTapped": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-003.jpg",
+      "imageSha256": "4f0d22238285b63aacbd3147a268956f5ed0486a103af317ae1c317322accfe8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex10-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex10-003"
+        ],
+        "allSearchIds": [
+          "dmex10-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:46:31.674Z",
+        "sha256": "1c7ab6810049792cdd796b3e67307170f40c604bec345b36276d3f4d789f6f7b",
+        "facesMatched": true,
+        "imageSha256": "4f0d22238285b63aacbd3147a268956f5ed0486a103af317ae1c317322accfe8"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35670/",
+      "sha256": "519ef834c4d94c23924c0f8e691408e6b7d4ae131446e92f03eb2ffba7b43fc7",
+      "checkedAt": "2026-11-27T22:46:31.674Z",
+      "reproduced": true,
+      "tests": "tests/standard1847-effects.test.mjs",
+      "reproduction": "Literal QA_old35670: own OTHER Samurai creatures only, never Samurai crossgears (including gear generated before drawing), enemy/buried/sealed/hand/grave excluded; independently optional generation and up-to-each drawing with either resolution order and partial decline tested in both seats.",
+      "result": "Literal QA_old35670: own OTHER Samurai creatures only, never Samurai crossgears (including gear generated before drawing), enemy/buried/sealed/hand/grave excluded; independently optional generation and up-to-each drawing with either resolution order and partial decline tested in both seats."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm24rp1-067",
+      "name": "解盗プーパン",
+      "reason": "Full official research/images complete, not registered. Needs native additional summon-cost payment of an entire selected shield group to hand without STrigger before actual Fire3 alternative payment; do not replace with an entry effect or partially count."
+    },
+    {
+      "id": "dmrp16-054",
+      "name": "回転者 シャッセロアー",
+      "reason": "Full official research/images/QA39101 complete, not registered. Needs actual VividRo-used method tracking through completed creature entry and spell casting; QA39101 literal Zabumpuru/Shonichirakubi must enter untapped before post-entry haste grant. No partial normal Vivid watcher."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:46:31.674Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-047": 4,
+      "dmrp13-s10": 4,
+      "dmex10-003": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm28-047",
+      "searchSha256": "c9b70af98365d5a16e7f203b65dc9d4ecb88f55cf8ae5726af334b35eebb39a7",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm28-047"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dm28-047"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All results enumerated on one page; all exact full official images reviewed."
+    },
+    {
+      "id": "dmrp13-s10",
+      "searchSha256": "96225f1a4ac833ade2faedbe853c99ee10b4610682856079921694d91cd0a941",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp13-s10"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp13-s10"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All results enumerated on one page; all exact full official images reviewed."
+    },
+    {
+      "id": "dmex10-003",
+      "searchSha256": "993b2acdb0ba90b9a4c8f518f130b297f05706ac483bac2e9ea692e42161a540",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmex10-003"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmex10-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All results enumerated on one page; all exact full official images reviewed."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three new unique names, three complete official searches/images, limit4 each, no aliases. Goemon Water6/2000 blocker/cannotattack, full independent optional Samurai generation hand gear free unattached and CountDraw other own live Samurai creatures only per literal QA35670, either trigger order and partial draw tested. Inferu Dark/Nature10/14000 MachFighter/T3, attack mill1 before mandatory ANY grave card mana including freshly milled spell and multicolor tapped orientation; death mandatory own mana creature<=10 including legal evolution/base and excludes11/spell/seed/enemy. Raimer Chant Nature6/4000 publicly reveals top3 to BOTH online seats, mandatory one creature to hand when legal and all rest tapped mana, no deeper fourth card. Both full native Fushigibirth from grave with distinct physical base tap/mana payment, correct colors/minimum, already-tapped base, normal summon costs, no base/enemy/sealed/wrong-color exclusion. Focused59 includes6 encrypted two-account service transactions, native manual mana selection completed before public inspection, saved exact physical identities and hidden-opponent-independent pure AI. Related173, online5, npmcheck, actual count9752 and old-ID/raw-data/pending-format invariants passed. No shared runtime logic changed. Old fullSuite interrupted and older holds preserved. No fullnpmtest/longgroup/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Corrected test-only assumptions: real Takion gear reduces Samurai summon cost6 to5, substituted passive Benkei for unrelated Violence gear watcher, corrected unsupported cost11 test ID and real AngelCommand evolution base, checked native reveal log text. Online service correctly pauses at manual mana payment before LookPick; advanced actual payment window before asserting public reveal. No product runtime defect or unverified new card remains.",
+    "nextCandidates": [
+      {
+        "id": "dmrp13-s05",
+        "name": "ダクライ龍樹",
+        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+      },
+      {
+        "id": "dmrp14-055",
+        "name": "ライマー・サーベラ",
+        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+      },
+      {
+        "id": "dmrp13-010",
+        "name": "ライマー・ドルイド",
+        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+      },
+      {
+        "id": "dmrp14-s03",
+        "name": "不死の墓守 シヴァンリンネ",
+        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+      }
+    ]
+  }
+}

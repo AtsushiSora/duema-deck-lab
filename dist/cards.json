@@ -314228,18 +314228,147 @@
       ],
       "supportBatch": "phase-1846",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-047",
+      "name": "歌舞機ロイド・ゴエモン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "グレートメカオー/サムライ",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の他のサムライ１体につき１枚、カードを引いてもよい。\n侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-047",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "samuraiGenerate": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "g329Other": true,
+          "filter": {
+            "creature": true,
+            "race": "サムライ"
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-1847",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s10",
+      "name": "インフェル龍樹",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 14000,
+      "race": "ジャイアント・ドラゴン/不死樹王国",
+      "text": "マッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置き、その後、カードを１枚、自分の墓地からマナゾーンに置く。\nこのクリーチャーが破壊された時、コスト10以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出す。\nフシギバース [dn12]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn12]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s10",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "fushigibirth": 12,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "max": 10
+          }
+        }
+      ],
+      "supportBatch": "phase-1847",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-003",
+      "name": "ライマー・チャント",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "グランセクト/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からクリーチャーを１体選んで手札に加え、残りをタップしてマナゾーンに置く。\nフシギバース [nn09]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [nn09] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01].より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-003",
+      "limit": 4,
+      "fushigibirth": 9,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "mana",
+          "restTapped": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1847",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1846,
-    "checkedAt": "2026-11-27T22:33:51.995Z",
-    "baseCount": 9746,
+    "phase": 1847,
+    "checkedAt": "2026-11-27T22:46:31.674Z",
+    "baseCount": 9749,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9749,
+    "totalCount": 9752,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31660/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35670/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344429,6 +344558,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40402/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1846,
+        "checkedAt": "2026-11-27T22:33:51.995Z",
+        "baseCount": 9746,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9749,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31660/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
