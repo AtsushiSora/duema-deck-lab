@@ -312318,19 +312318,178 @@
       },
       "supportBatch": "phase-1832",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-002",
+      "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6500,
+      "race": "メタリカ",
+      "text": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。\n【呪文面】\nカードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-002",
+      "limit": 4,
+      "breaker": 2,
+      "g1693BlockerAttack": true,
+      "g174End": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "アイ・オブ・ザ・タイガー",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "blocker": true,
+              "max": 5
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1833",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex16-006",
+      "name": "反逆龍 5000typeR / 無法頂上会談",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 12000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー\n【呪文面】\nカードを３枚引く。その後、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-006",
+      "limit": 4,
+      "graveCreatureReduction": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 5000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g1833CreatureHandOnly": true,
+      "speedAttacker": true,
+      "breaker": 3,
+      "spellFace": {
+        "name": "無法頂上会談",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-1833",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-032",
+      "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nクリーチャーを、墓地からバトルゾーンに出せない。\n呪文を墓地から唱えることはできない。\n【呪文面】\nバトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の手札に戻す。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-032",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1833GraveCreatureEntryLock": true,
+      "g592GraveSpellLock": true,
+      "spellFace": {
+        "name": "六奇怪の三 ～意志を持つ水～",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "nonCreature": true,
+            "to": "hand",
+            "toOwnerHand": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1833",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1832,
-    "checkedAt": "2026-11-27T19:42:59.067Z",
-    "baseCount": 9706,
+    "phase": 1833,
+    "checkedAt": "2026-11-27T20:07:35.607Z",
+    "baseCount": 9709,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9709,
+    "totalCount": 9712,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43957/",
-      "https://dm.takaratomy.co.jp/rule/qa/43488/"
+      "https://dm.takaratomy.co.jp/rule/qa/43466/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -342308,6 +342467,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31778/",
           "https://dm.takaratomy.co.jp/rule/qa/31757/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1832,
+        "checkedAt": "2026-11-27T19:42:59.067Z",
+        "baseCount": 9706,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9709,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43957/",
+          "https://dm.takaratomy.co.jp/rule/qa/43488/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

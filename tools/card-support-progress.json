@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9709,
-  "pendingNames": 2140,
-  "phase": 1832,
+  "supportedNames": 9712,
+  "pendingNames": 2137,
+  "phase": 1833,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1266,
+    "クリーチャー": 1263,
     "呪文": 241,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -220,7 +220,7 @@
   },
   "reasons": {
     "未対応の能力文": 1591,
-    "複数面・特殊カードタイプまたは情報不足": 456,
+    "複数面・特殊カードタイプまたは情報不足": 453,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -574715,27 +574715,274 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1833,
+      "checkedAt": "2026-11-27T20:14:22.126Z",
+      "baseline": "a36f02cf73be4375dc63b52c924c213232bed730",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9709,
+      "currentNames": 9712,
+      "remainingNames": 288,
+      "added": [
+        {
+          "id": "dmrp06-002",
+          "name": "奇石 トランキー / アイ・オブ・ザ・タイガー"
+        },
+        {
+          "id": "dmex16-006",
+          "name": "反逆龍 5000typeR / 無法頂上会談"
+        },
+        {
+          "id": "dmrp09-032",
+          "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1833,
+        "baseline": "a36f02cf73be4375dc63b52c924c213232bed730",
+        "originalDefinitionsUnchanged": 9709,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9712,
+        "uniqueIds": 9712,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9709,
+        "existingImageReferenceRowsUnchanged": 12162,
+        "officialPrintsReviewed": 6,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1833": {
+          "name": "official-1833",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1833.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.486,
+          "log": "tmp/duema-target-10000/official-1833.log",
+          "passed": 0,
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "focused-1833-final": {
+          "name": "focused-1833-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1833-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.752,
+          "log": "tmp/duema-target-10000/focused-1833-final.log",
+          "passed": 128,
+          "logSha256": "3dfe2d2f0bbdd82a250979d9e7eb6c5ae84ec4c6c225e141a2cf56ed29d2591b"
+        },
+        "related-1833": {
+          "name": "related-1833",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* can remove a buried seed or seal and excludes creature cards|Idea applies the correct inclusive cost range for each mode|Rakujou can return an own evolution top while its former base stays|cost matching uses only the active face of a twinpact in play and either cost when it is underneath|Hamukatsu can send one chosen opposing multicolor card to its owner’s tapped mana|Hamukatsu’s sweep respects a current attack-only power bonus|Oni Time performs a second selection only at six shields or fewer |Dodonga uses the card selection before the extra last-shield sweep|Dekabetta bounces an eligible buried twinpact on tapping and gains civil-count benefits|HEAVEN Kid excludes itself and shields one selected opposing card face down|Suiryo can bottom a buried card without moving its host or draw three|force targeting applies only if the forced card is selectable|型破の兎 ramps first, then shuffles only the chosen grave under its owner’s deck|バース＝ターブ uses its shield trigger and retains blocker and slayer|かぼちゃ prevents moving either grave but cards can still enter it|かぼちゃ permits paying creature ムゲンクライム but rejects grave spell casting before payment|GO-YAMA-58 prevents an opposing grave deployment and allows the opponent to play cards from hand|the GO-YAMA-58 Super Soul grants stack power and a breaker without inheriting the entry lock|a GO-YAMA-58 on the opposing board allows a creature’s shield trigger from hand|a host inherits the Melteo battle bonus without the entry effect|邪閃光 returns an element to the deck and gains its second mode from an Abyss|リュウセイ・シャドウ enters without an optional prompt when an enemy spell or seed discards it|リュウセイ・シャドウ can place a large creature in mana when played normally|リュウセイ・シャドウ stays a normal discard when discarded by its own player’s spell|a Creative that entered before MediCrea can be attacked and chosen \\(QA40245\\)|Creative tests the entering card cost against the opponent mana count |Creative supplies a one-mana Sasage reduction for a Dispector|Creative follows an entrant underneath Bolshack Dogiragon and the owner orders the stack|Creative sees Miradante arrive when the named-ability suppressor leaves \\(QA40250\\)|Kira restricts off-hand entry for both players, including Fushigiverse \\(|Kira permits Death March to take a graveyard evolution base \\(QA39672\\)|Kira permits putting a cast spell under New World \\(QA39670\\)|Kira blocks VV-8 seals on either side while the two cards can still be taken \\(QA39669\\)|Kira also prevents seals placed by Eichi no Tettai|Kira can reveal G Strike and prevent a second attacker for the turn|Brakkio prevents granted Just Diver and native entry abilities while leaving static grants \\(QA40533\\)|Brakkio leaves EX Life and triggers belonging to other creatures intact \\(QA40534/40536\\)|Brakkio leaves same-side watchers active when another creature enters|the manual board identifies Brakkio as the source of entry suppression|Brakkio suppresses both of Miradante’s entry abilities after Revolution Change|Brakkio has World Breaker and its ability can be ignored|Brakkio distinguishes entry from a battlefield-only Dead Damd stack \\(|Joka offers a draw for each actual friendly tap, including on the enemy turn, and expires at own next start |Joka resolved spell effects stack independently and survive the spell leaving its shield |Joka does not watch enemy taps and its effect is removed exactly at the caster next start|Kenju returns only actual entries whose current cost exceeds their own mana count, keeping exact identity through JSON |Kenju compares each GR creature with mana even though its summon counts as paid|[^\\n]* Sabaki pays a real broken shield Crest and resolves its persistent effect for free|Semi-final draws exactly3 then discards3, stays a noncreature and its Shinkalize supports a real evolution|QA43467 Semi-final allows exactly one paid grave summon per seed per turn, only with an empty hand |Semi-final checks hand size and own turn, excludes spells, and removing the provider revokes its grave permission|Bruce in the grave can only summon itself, pays eight, and mills exactly three on entering |Battlefield Bruce permits repeated paid non-evolution Death Puppet and Outrage summons in the same turn |Bruce permissions require a live own provider and own main phase |Bruce never grants spell execution or opponent grave access, and insufficient or wrong-color mana still blocks summoning|The pre-existing Bozu permission remains once per turn and independent of the unlimited Bruce provider|Six Sense revived by real paid Bruce summon must choose one legal cost-six-or-less non-evolution from the grave |Six Sense entering from |Six Sense revived with no legal target finishes without an optional or impossible choice|Six Sense entry is muted by Brakkio and the source may leave after triggering without losing the selected revival|Katsudon mills the actual top two and boosts only when both are Outrage including MAX |Katsudon receives no boost from older Outrage cards already in grave or from a replaced mill|Katsudon repeats the attack trigger for a second attack in one turn and adds each successful boost|Actual W breaker |Orewaleo dynamically removes own blockers intrinsic attack prohibitions, without clearing summoning sickness \\(QA36683\\) |Diva covers present creatures only, removes all three intrinsic restrictions, keeps fresh and untapped-target rules \\(QA36943/36945\\) |Diva G-Zero uses a real own Mecha Del Sol only and preserves spell zone access |Actual Slowly effect remains with |Actual Princess effect still stops the second attacker with |Diva end trigger untaps all current own creatures including later entries |Ignoring cost-five spells suppresses Diva grants and delayed untap |Double Revolver checks current tap, turn and active ability before replacement |Double Revolver intercepts an actual shield-trigger summon before its bounce entry ability \\(QA36053\\) |Double Revolver preserves same-grave identity and returns psychic to extra \\(QA36054/36055\\) |[^\\n]* uses its real double breaker|[^\\n]* removes intrinsic color and Blocker-only attack restrictions of actual granted blockers |Orewaleo retains actual blocker and double breaker without granting speed |Diva and a pending Revolver replacement preserve encrypted online choices and hidden cards |DOOM selects multiple real grave creatures before paying and evolves with those cards only|DOOM requires at least one grave creature and may select enough cards to become affordable|DOOM meteor moves one under-card to grave, gives minus9000 and can revive that very card|DOOM without an under-card cannot use any of the meteor follow-up effects|DOOM free deployment also selects grave bases without paying or creating entry events for bases|Bra suppresses self and allied creature entry triggers but leaves attack triggers and opponent triggers intact|Bra does not suppress a seed entry ability or an already queued creature effect|Bra fushigibirth has a nature1 minimum and taps its material before moving it|grave creature cost reduction counts twinpacts as creatures but not spells, seeds or face down cards|GT destroys small creatures on both sides and stops summons but allows direct deployment|Obuza takes the current grave creature count on entry resolution and preserves its printed9 cost|Kaibyaku mills3 before choosing a mandatory grave creature for hand|Ura can take exactly5 grave creatures in selected order and destroy one opponent creature|Ura can decline attaching5 and cannot take fewer|Ura replaces a leave with five chosen below cards sent to bottom in chosen order|Ura replaces library defeat before pending death effects and restores the suspended resolution|a non-evolution Ura top removed by Oni never reconstructs its attached cards|Dom triggers once for each other own entering creature and permits one mana summon each own turn|Abaku mills5 and destroys itself unless Oni Time applied at the trigger moment|Abaku can summon from grave and has speed attacker, mach fighter and triple breaker|Flame Yobinion and optional discard draw are independent entry effects|Flame direct deployment has its entry effect but does not trigger Yobinion|Door applies two separate minus4000 choices and can stack them on the same surviving creature|Door spell is ignored under Genmu while its cost7 creature effect remains active|Timp counts its own entry as the second creature and captures an optional self destruction|Timp destruction lets the opponent choose and does not target protected or just-diver creatures|Neo dragon has attack-only power15000 and spell-face ramps one mana)",
+            "tests/standard579-effects.test.mjs",
+            "tests/standard592-effects.test.mjs",
+            "tests/standard607-effects.test.mjs",
+            "tests/standard1275-effects.test.mjs",
+            "tests/standard1597-effects.test.mjs",
+            "tests/standard1620-effects.test.mjs",
+            "tests/standard1693-effects.test.mjs",
+            "tests/grave-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.651,
+          "log": "tmp/duema-target-10000/related-1833.log",
+          "passed": 172,
+          "logSha256": "0b71628618c40e2d905a70039a9c1a1e4bc2c8a36d35babaf368dc6e69901520"
+        },
+        "check-1833": {
+          "name": "check-1833",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.242,
+          "log": "tmp/duema-target-10000/check-1833.log",
+          "passed": 0,
+          "logSha256": "c21e244e29304259ecc5c41feecee7d3c354a99e1686c24a9b8b12d84b707105"
+        },
+        "audit-1833": {
+          "name": "audit-1833",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.563,
+          "log": "tmp/duema-target-10000/audit-1833.log",
+          "passed": 0,
+          "logSha256": "db3ac8abc8bf7eba56165aa3b4ff78730c6508a631139cb65e0c4b7a4067e475"
+        },
+        "invariants-1833": {
+          "name": "invariants-1833",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1833"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.703,
+          "log": "tmp/duema-target-10000/invariants-1833.log",
+          "passed": 0,
+          "logSha256": "cdcf72d912363ded217dd0607665357ea4dbc0134a2e55b7f4044b369da4dbc0"
+        },
+        "related-online-1833": {
+          "name": "related-online-1833",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.431,
+          "log": "tmp/duema-target-10000/related-online-1833.log",
+          "passed": 5,
+          "logSha256": "e9427c6eea34f98ab74c4b0180da92a52b6015f4926b03c0c307b60388aa97f8"
+        },
+        "extra-1833-owner": {
+          "name": "extra-1833-owner",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^Physical owner hand routing",
+            "tests/standard1833-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.675,
+          "log": "tmp/duema-target-10000/extra-1833-owner.log",
+          "passed": 4,
+          "logSha256": "a9850ad39b1936b3385053b1b0c09dcf01503b0dab3879d9c6ffe32819bd7137"
+        }
+      },
+      "totalTestsPassed": 309,
+      "manifest": "tools/support-phase-1833.json",
+      "supported": 9712,
+      "pending": 2137,
+      "engineVersion": "0.602.357",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmsd08-010",
+          "name": "イッコダス・ケイジ/種デスティニー",
+          "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+        },
+        {
+          "id": "dmrp12-030",
+          "name": "スピナッチ・パンツァー/スピナー・ブル",
+          "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+        },
+        {
+          "id": "dmrp12-025",
+          "name": "チョウハツ・チュリス/ロンゲスト・ウェイ",
+          "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+        }
+      ],
+      "verificationScope": "Three complete twinpacts, six official full-print images and all original IDs/reprints verified. Tranky native blocker attack prohibition invalidation preserves summoning sickness, other creatures/opponents/external Slowly restrictions, source validity and own-end current blocker untap; spell draw precedes optional <=5 blocker deployment, actual newly drawn card, actual blocker evolution, decline and deck exhaustion. TypeR grave discount counts own current creature cards including twins once with floor1; held self excluded in actual Mask QA43466, repeated on three original cards, actual grave entry QA39989 allowed before own restriction begins. Both-side simultaneous <=5000 current-power destruction, actual Glory Muscle makes a2000 creature6000, seed/6000/sealed creature preserved, speed/T3; creature-only hand-entry lock never blocks noncreatures and respects source ignored/sealed/departed states. Spell draws3 then exact selected discard2 and encrypted decision continuation. Harten actual blocker/no-player-attack; both-player grave creature entry and grave-spell casting bans distinct from grave departure, actual Mugen Crime and Inferno Sign blocked, Dark Reverse recovery allowed. Back printed2 bounces opposing exact physical noncreature card, including seeds/gears/fields/buried seed/seal, excludes own cards and creature cards under an evolution, mandatory draw even no target; physical-owner hand routing including changed-control buried/seal snapshots. Both seats, genuine mana orientations, actual Genmu spell suppression, AI hidden information and encrypted duel service. Focused128 plus later4 physical-owner tests, related172 and online5 passed; npm check, audit and old-data invariants passed. All prior long/full-suite pending records preserved.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1833",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1833-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.031,
+          "log": "tmp/duema-target-10000/focused-1833.log",
+          "reason": "New fixtures initially used legacy buff which is attack-only, a wrongly guessed recovery spell ID and assumed all twinpacts were multicolor. Corrected to actual Glory Muscle +4000, actual Dark Reverse and Tranky single-Light mana. Initial high-power excluded target Jackie correctly made the buff spell infinitely costly; replaced by actual King Orion6000. All failed logs retained; no old pending removed. Before pin verification completed, native Sweep needed explicit both:true and BattleCardMove579 explicit toOwnerHand propagation; those implementation corrections are fully included in passing tests. Official treasure dmrp22-TR1 HTML lists mana dash but its full official image visibly prints1: exact image hash and reviewed reason preserved via existing manaImageEvidence verification."
+        },
+        {
+          "name": "focused-1833-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1833-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.774,
+          "log": "tmp/duema-target-10000/focused-1833-final-previous-1795810303924789000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1833-final.log",
+          "reason": "New fixtures initially used legacy buff which is attack-only, a wrongly guessed recovery spell ID and assumed all twinpacts were multicolor. Corrected to actual Glory Muscle +4000, actual Dark Reverse and Tranky single-Light mana. Initial high-power excluded target Jackie correctly made the buff spell infinitely costly; replaced by actual King Orion6000. All failed logs retained; no old pending removed. Before pin verification completed, native Sweep needed explicit both:true and BattleCardMove579 explicit toOwnerHand propagation; those implementation corrections are fully included in passing tests. Official treasure dmrp22-TR1 HTML lists mana dash but its full official image visibly prints1: exact image hash and reviewed reason preserved via existing manaImageEvidence verification."
+        },
+        {
+          "name": "focused-1833-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1833-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.37,
+          "log": "tmp/duema-target-10000/focused-1833-final-previous-1795810346734436000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1833-final.log",
+          "reason": "New fixtures initially used legacy buff which is attack-only, a wrongly guessed recovery spell ID and assumed all twinpacts were multicolor. Corrected to actual Glory Muscle +4000, actual Dark Reverse and Tranky single-Light mana. Initial high-power excluded target Jackie correctly made the buff spell infinitely costly; replaced by actual King Orion6000. All failed logs retained; no old pending removed. Before pin verification completed, native Sweep needed explicit both:true and BattleCardMove579 explicit toOwnerHand propagation; those implementation corrections are fully included in passing tests. Official treasure dmrp22-TR1 HTML lists mana dash but its full official image visibly prints1: exact image hash and reviewed reason preserved via existing manaImageEvidence verification."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1832,
-    "nextPhase": 1833,
+    "lastVerifiedPhase": 1833,
+    "nextPhase": 1834,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp06-002",
-        "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
-        "reason": "Investigate full common blocker attack freedom and untap plus blocker deployment, grave-dependent cost reduction and creature-only hand-entry restriction, or both-player grave-creature entry and grave-spell casting prohibition; verify every official print and complete both faces before registering."
+        "id": "dmsd08-010",
+        "name": "イッコダス・ケイジ/種デスティニー",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
       },
       {
-        "id": "dmex16-006",
-        "name": "反逆龍 5000typeR / 無法頂上会談",
-        "reason": "Investigate full common blocker attack freedom and untap plus blocker deployment, grave-dependent cost reduction and creature-only hand-entry restriction, or both-player grave-creature entry and grave-spell casting prohibition; verify every official print and complete both faces before registering."
+        "id": "dmrp12-030",
+        "name": "スピナッチ・パンツァー/スピナー・ブル",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
       },
       {
-        "id": "dmrp09-032",
-        "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～",
-        "reason": "Investigate full common blocker attack freedom and untap plus blocker deployment, grave-dependent cost reduction and creature-only hand-entry restriction, or both-player grave-creature entry and grave-spell casting prohibition; verify every official print and complete both faces before registering."
+        "id": "dmrp12-025",
+        "name": "チョウハツ・チュリス/ロンゲスト・ウェイ",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
       }
     ],
     "steps": [
@@ -575629,11 +575876,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1832,
-      "baseline": "fa87eef8a2a910f5f0dacfb8165c9710f3bbfdac",
-      "supportedNames": 9709,
-      "artifact": "tools/target10000-registration-checkpoint-1832.json",
-      "checkedAt": "2026-11-27T19:58:55.967Z"
+      "phase": 1833,
+      "baseline": "a36f02cf73be4375dc63b52c924c213232bed730",
+      "supportedNames": 9712,
+      "artifact": "tools/target10000-registration-checkpoint-1833.json",
+      "checkedAt": "2026-11-27T20:14:22.126Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -578691,8 +578938,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9709,
-      "remaining": 291,
+      "currentNames": 9712,
+      "remaining": 288,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -578700,8 +578947,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1832,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1832.json",
+      "lastPhase": 1833,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1833.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -579962,8 +580209,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9709,
-      "remaining": 291,
+      "currentNames": 9712,
+      "remaining": 288,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -579971,8 +580218,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1832,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1832.json",
+      "lastPhase": 1833,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1833.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -581206,6 +581453,484 @@
         "completedPhase": 1832,
         "completedManifest": "tools/support-phase-1832.json",
         "status": "implemented-and-verified"
+      },
+      {
+        "research": "tmp/duema-target-10000/research-dmrp06-002.json",
+        "checkedAt": "2026-11-27T20:01:56.451Z",
+        "implementationStarted": true,
+        "allSixFullOfficialImagesReviewed": true,
+        "regulationVerificationPending": false,
+        "lastVerifiedCodeCommit": "dc349eed",
+        "cards": [
+          {
+            "id": "dmrp06-002",
+            "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
+            "exactOfficialPrints": [
+              "dmrp06-002",
+              "dmex19-004"
+            ],
+            "allSearchIds": [
+              "dmex18-052",
+              "dmrp01-062",
+              "dmsd02-010",
+              "dmrp08-063",
+              "dmrp08-030",
+              "dmrp19-061",
+              "dmrp07-030",
+              "dmrp06-035",
+              "dm22rp2-028",
+              "dm22rp2x-028",
+              "dmrp12-017",
+              "dmrp03-063",
+              "dmrp02-064",
+              "dmrp04s-062",
+              "dmsp01-011",
+              "dmbd07-b-008",
+              "dmrp08-012",
+              "dmrp03-062",
+              "dmrp02-032",
+              "dmrp15-060",
+              "dmrp04s-030",
+              "dmrp06-012",
+              "dmrp10-035",
+              "dmrp11-069",
+              "dmrp09-011",
+              "dmsd07-006",
+              "dmsd02-004",
+              "dmrp02-063",
+              "dmex07-033",
+              "dmrp01-032",
+              "dmrp02-060",
+              "dmbd04-014",
+              "dmrp06-002",
+              "dmex19-004",
+              "dmrp12-014",
+              "dmrp07-061",
+              "dmsd02-006",
+              "dmrp04s-029",
+              "dmrp20-coro03",
+              "dmrp20-060",
+              "dmrp08-003",
+              "dmrp05-063",
+              "dm26bd1-ex019",
+              "promoy24-108",
+              "promoy18-016",
+              "promoy18-019",
+              "promoy17-003",
+              "promoy17-015",
+              "dm23ex2-ChoG011",
+              "dmrp21-TF5",
+              "dmrp22-TF7",
+              "dmrp21-T5",
+              "dmrp22-T7",
+              "dmbd15-se9",
+              "dmbd15-be9",
+              "dmrp05-011",
+              "dm22bd2-015",
+              "dmex12-026",
+              "dmbd07-b-011",
+              "dmex04-065",
+              "dmrp04m-008",
+              "dmrp02-031",
+              "dmrp04s-058",
+              "dmrp01-064",
+              "dmrp04m-043",
+              "dmrp04m-041",
+              "promoy17-075",
+              "dmsd10-008",
+              "dmsd02-002",
+              "dmex02-025",
+              "dmbd04-006"
+            ],
+            "searchPages": [
+              {
+                "page": 1,
+                "total": 71,
+                "ids": [
+                  "dmex18-052",
+                  "dmrp01-062",
+                  "dmsd02-010",
+                  "dmrp08-063",
+                  "dmrp08-030",
+                  "dmrp19-061",
+                  "dmrp07-030",
+                  "dmrp06-035",
+                  "dm22rp2-028",
+                  "dm22rp2x-028",
+                  "dmrp12-017",
+                  "dmrp03-063",
+                  "dmrp02-064",
+                  "dmrp04s-062",
+                  "dmsp01-011",
+                  "dmbd07-b-008",
+                  "dmrp08-012",
+                  "dmrp03-062",
+                  "dmrp02-032",
+                  "dmrp15-060",
+                  "dmrp04s-030",
+                  "dmrp06-012",
+                  "dmrp10-035",
+                  "dmrp11-069",
+                  "dmrp09-011",
+                  "dmsd07-006",
+                  "dmsd02-004",
+                  "dmrp02-063",
+                  "dmex07-033",
+                  "dmrp01-032",
+                  "dmrp02-060",
+                  "dmbd04-014",
+                  "dmrp06-002",
+                  "dmex19-004",
+                  "dmrp12-014",
+                  "dmrp07-061",
+                  "dmsd02-006",
+                  "dmrp04s-029",
+                  "dmrp20-coro03",
+                  "dmrp20-060",
+                  "dmrp08-003",
+                  "dmrp05-063",
+                  "dm26bd1-ex019",
+                  "promoy24-108",
+                  "promoy18-016",
+                  "promoy18-019",
+                  "promoy17-003",
+                  "promoy17-015",
+                  "dm23ex2-ChoG011",
+                  "dmrp21-TF5"
+                ],
+                "sha256": "0694b18797a9164052e87fc4ebdc099f892747720b02d22c40a29338f5bc47bb"
+              },
+              {
+                "page": 2,
+                "total": 71,
+                "ids": [
+                  "dmrp22-TF7",
+                  "dmrp21-T5",
+                  "dmrp22-T7",
+                  "dmbd15-se9",
+                  "dmbd15-be9",
+                  "dmrp05-011",
+                  "dm22bd2-015",
+                  "dmex12-026",
+                  "dmbd07-b-011",
+                  "dmex04-065",
+                  "dmrp04m-008",
+                  "dmrp02-031",
+                  "dmrp04s-058",
+                  "dmrp01-064",
+                  "dmrp04m-043",
+                  "dmrp04m-041",
+                  "promoy17-075",
+                  "dmsd10-008",
+                  "dmsd02-002",
+                  "dmex02-025",
+                  "dmbd04-006"
+                ],
+                "sha256": "73752bbe6e6752fcff09177cd3104796aef2a0289433c1e04c488a9adef2c24a"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmrp06-002",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-002",
+                "faces": [
+                  {
+                    "name": "奇石 トランキー",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
+                    "race": "メタリカ",
+                    "powerText": "6500",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "アイ・オブ・ザ・タイガー",
+                    "typeText": "呪文",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "0d10774d5db8f901bf7981d889ae88d67ec53aa4a0672163edb8fc5772df1737",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-002a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp06-002-0.jpg",
+                    "sha256": "9d502cc5fe25494ab81429c459876d74751732e35dcae7168f3e7191eae1f721"
+                  }
+                ]
+              },
+              {
+                "id": "dmex19-004",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-004",
+                "faces": [
+                  {
+                    "name": "奇石 トランキー",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
+                    "race": "メタリカ",
+                    "powerText": "6500",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "アイ・オブ・ザ・タイガー",
+                    "typeText": "呪文",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "23f5d3ccb1e63063287cf8b74f72093b04c387e3e093ac25a2bf910425d7f2d2",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-004a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex19-004-0.jpg",
+                    "sha256": "dffd02b51b218368c93fb0978dbf88cc8562d7e67ef4258188bb9c6328d1800f"
+                  }
+                ]
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmex16-006",
+            "name": "反逆龍 5000typeR / 無法頂上会談",
+            "exactOfficialPrints": [
+              "dmex16-006",
+              "dmrp22-TR1",
+              "dm23ex1-008"
+            ],
+            "allSearchIds": [
+              "dmrp22-TR1",
+              "dmex16-006",
+              "dm23ex1-008"
+            ],
+            "prints": [
+              {
+                "id": "dmex16-006",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-006",
+                "faces": [
+                  {
+                    "name": "反逆龍 5000typeR",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 12,
+                    "costText": "12",
+                    "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
+                    "race": "アウトレイジMAX",
+                    "powerText": "12000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "無法頂上会談",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "カードを３枚引く。その後、自分の手札を２枚捨てる。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "24e0a1cecefd07c9f88d121f3daf43f3d05c1b52c2e702b1f5a9a2d440565b17",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-006a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex16-006-0.jpg",
+                    "sha256": "5f1d61d87559b62fb9167f6b15c86bbffc2a7783ebf6e3b69c92b84cfc7571a7"
+                  }
+                ]
+              },
+              {
+                "id": "dmrp22-TR1",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-TR1",
+                "faces": [
+                  {
+                    "name": "反逆龍 5000typeR",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 12,
+                    "costText": "12",
+                    "abilityText": "自分の墓地にあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。",
+                    "race": "アウトレイジMAX",
+                    "powerText": "12000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "無法頂上会談",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "*カードを３枚引く。その後自分の手札を２枚捨てる。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "a5f296b708382cd2543dfdabdb206d7513692c9f9114e4976f47743c2e929479",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TR1a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp22-TR1-0.jpg",
+                    "sha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e"
+                  }
+                ]
+              },
+              {
+                "id": "dm23ex1-008",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-008",
+                "faces": [
+                  {
+                    "name": "反逆龍 5000typeR",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 12,
+                    "costText": "12",
+                    "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
+                    "race": "アウトレイジMAX",
+                    "powerText": "12000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "無法頂上会談",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "カードを３枚引き、自分の手札を２枚捨てる。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "66a5383a1d52560841e982cc02c48794b5f182f615f752611dad400e4a10be10",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-008a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm23ex1-008-0.jpg",
+                    "sha256": "0ccef4f873144277442e1d38f36ce26331455bde3cd9ab43ba814a7ce19b603d"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/43466/",
+                "sha256": "214ae807fb122b448fbd4bc375b1464bac128d54790df9306445aed49154d5d8",
+                "body": "よくある質問 Q自分の《エル・セミファイナルのマスク》がバトルゾーンにあり、自分の手札が１枚もなく、墓地に《反逆龍 5000typeR / 無法頂上会談》を含むクリーチャーが７体ある状況です。 《エル・セミファイナルのマスク》の「自分の墓地から召喚してもよい」を使い墓地から≪反逆龍 5000typeR≫を召喚する際、支払うコストはいくつ少なくなりますか？ 類似例：《不死帝 ブルース》《暴走龍 5000GT》 A支払うコストは６少なくなります。 能力で実際にマナコストを少なくするのは、召喚する≪反逆龍 5000typeR≫が保留状態になった後です。 保留状態になっているカードは墓地の枚数として数えませんので、コストは６のみ少なくなります。 （総合ルール 409.1c,601.1a,601.1e） 一覧へ戻る 関連する質問 《エル・セミファイナルのマスク》の能力「自分のターン中、自分の手札が１枚もなければ、クリーチャーを１体、自分の墓地から召喚してもよい」は、１ターンに何度でも使えますか？ 2023.7.21 相手の《暴走龍 5000GT》がバトルゾーンにいて、自分のシールドゾーンに《「雷光の聖騎士」》と《「敬虔なる警官」》がある状況です。自分のターンのはじめに《「雷光の聖騎士」》を先にバトルゾーンに出し、「出た時」の能力で相手の《暴走龍 5000GT》をシールド化してから《「敬虔なる警官」》を召喚できますか？ 2022.7.28 自分の墓地に呪文が４枚以上あり、相手の《暴走龍 5000GT》がバトルゾーンにいる状況です。自分はGR召喚をする際、《P.R.D. クラッケンバイン》を表向きにしました。この《P.R.D. クラッケンバイン》はバトルゾーンに出せますか？ 2022.5.20 自分の《追憶人形ラビリピト》がバトルゾーンにいる状況で、自分のターン中に《暴走龍 5000GT》を召喚した時、「出た時」の能力で《追憶人形ラビリピト》が破壊されますが、「自分のターン中に、コスト８以上のクリーチャーを召喚した時」の能力はトリガーしますか？ 2021.10.22 相手の《絶十 》がバトルゾーンにいる状況で、自分の墓地にある《大樹王 ギガンディダノス》の「フシギバース」を使用できますか？ 類似例：《反逆龍 5000typeR / 無法頂上会談》《検問の守り 輝羅》 2021.9.24 《反逆龍 5000typeR / 無法頂上会談》自身は、手札以外のゾーンからバトルゾーンに出せますか？ 2021.7.16 自分は《偽りの名 13/種族選別》の呪文側を唱えました。自分の山札の上から《暴走龍 5000GT》と《反逆龍 5000typeR / 無法頂上会談》と《無限超邪 クロスファイア》の３枚が表向きになりました。これらをアウトレイジ・アウトレイジMAX・アウトレイジ・ドラゴンとして手札に加えられますか？ 2021.7.16 相手の《暴走龍 5000GT》がいる状況で、自分は《知識と流転と時空の決断》を唱えました。相手の《暴走龍 5000GT》を手札に戻してから、パワー5000以下のGRクリーチャーをバトルゾーンに出せますか？ 2020.11.13 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト "
+              }
+            ]
+          },
+          {
+            "id": "dmrp09-032",
+            "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～",
+            "exactOfficialPrints": [
+              "dmrp09-032"
+            ],
+            "allSearchIds": [
+              "dmrp09-032"
+            ],
+            "prints": [
+              {
+                "id": "dmrp09-032",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-032",
+                "faces": [
+                  {
+                    "name": "墓標の封じ 遥典",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nクリーチャーを、墓地からバトルゾーンに出せない。\n呪文を墓地から唱えることはできない。",
+                    "race": "メタリカ",
+                    "powerText": "3500",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "六奇怪の三 ～意志を持つ水～",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の手札に戻す。\nカードを１枚引く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "htmlSha256": "77ffac0860e9d2b89ac586997c430dee89b0509165ebe1484f1db8dfc11c0db7",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-032a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp09-032-0.jpg",
+                    "sha256": "61ea9f6285cce1d6524a088dc7244f058eacd49422ad6d497350050a22e4d8dc"
+                  }
+                ]
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "notes": [
+          "Tranky official name search has71 results; both pages and all71 IDs were checked. Two exact twinpact prints only. Reuse actual g1693BlockerAttack common source if all attack-prohibiting ability versus external restrictions and summoning sickness are verified, plus own blocker end untap and draw-then-optional blocker<=5 deployment.",
+          "5000typeR has three exact prints; global source restriction applies only to CREATURE entry from non-hand zones. Existing g1275HandOnly is a broader all-card restriction and must not be reused unchanged. Source hand-only rule must not prohibit its own initial grave summon before entry. QA43466 needs actual registered dm23ex1-060 El Semifinal Mask: seven grave creatures including itself give six discount after it is held. Registered dmr10-v01 Blues is also the official analogous example.",
+          "Halt grave-origin creature entry and grave-origin spell casting for BOTH players while Harten is live; distinguish creature-only prohibition from other grave card movement/entry. Full back spell can choose non-creature battle cards, not only top-level elements; investigate printed non-creature cards versus undercards/seals using official rules before implementation.",
+          "No phase1833 manifest, pins or implementation started. Preserve every previous pending long group and all user-deferred items; do not rerun full npm test."
+        ],
+        "completedPhase": 1833,
+        "completedManifest": "tools/support-phase-1833.json",
+        "status": "implemented-and-verified"
       }
     ],
     "additionalLongRunningVerification": [
@@ -581229,481 +581954,7 @@
         "replacementEvidence": "tmp/duema-target-10000/related-ui-1829-focused.log"
       }
     ],
-    "nextCandidateResearch": {
-      "research": "tmp/duema-target-10000/research-dmrp06-002.json",
-      "checkedAt": "2026-11-27T20:01:56.451Z",
-      "implementationStarted": false,
-      "allSixFullOfficialImagesReviewed": true,
-      "regulationVerificationPending": true,
-      "lastVerifiedCodeCommit": "dc349eed",
-      "cards": [
-        {
-          "id": "dmrp06-002",
-          "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
-          "exactOfficialPrints": [
-            "dmrp06-002",
-            "dmex19-004"
-          ],
-          "allSearchIds": [
-            "dmex18-052",
-            "dmrp01-062",
-            "dmsd02-010",
-            "dmrp08-063",
-            "dmrp08-030",
-            "dmrp19-061",
-            "dmrp07-030",
-            "dmrp06-035",
-            "dm22rp2-028",
-            "dm22rp2x-028",
-            "dmrp12-017",
-            "dmrp03-063",
-            "dmrp02-064",
-            "dmrp04s-062",
-            "dmsp01-011",
-            "dmbd07-b-008",
-            "dmrp08-012",
-            "dmrp03-062",
-            "dmrp02-032",
-            "dmrp15-060",
-            "dmrp04s-030",
-            "dmrp06-012",
-            "dmrp10-035",
-            "dmrp11-069",
-            "dmrp09-011",
-            "dmsd07-006",
-            "dmsd02-004",
-            "dmrp02-063",
-            "dmex07-033",
-            "dmrp01-032",
-            "dmrp02-060",
-            "dmbd04-014",
-            "dmrp06-002",
-            "dmex19-004",
-            "dmrp12-014",
-            "dmrp07-061",
-            "dmsd02-006",
-            "dmrp04s-029",
-            "dmrp20-coro03",
-            "dmrp20-060",
-            "dmrp08-003",
-            "dmrp05-063",
-            "dm26bd1-ex019",
-            "promoy24-108",
-            "promoy18-016",
-            "promoy18-019",
-            "promoy17-003",
-            "promoy17-015",
-            "dm23ex2-ChoG011",
-            "dmrp21-TF5",
-            "dmrp22-TF7",
-            "dmrp21-T5",
-            "dmrp22-T7",
-            "dmbd15-se9",
-            "dmbd15-be9",
-            "dmrp05-011",
-            "dm22bd2-015",
-            "dmex12-026",
-            "dmbd07-b-011",
-            "dmex04-065",
-            "dmrp04m-008",
-            "dmrp02-031",
-            "dmrp04s-058",
-            "dmrp01-064",
-            "dmrp04m-043",
-            "dmrp04m-041",
-            "promoy17-075",
-            "dmsd10-008",
-            "dmsd02-002",
-            "dmex02-025",
-            "dmbd04-006"
-          ],
-          "searchPages": [
-            {
-              "page": 1,
-              "total": 71,
-              "ids": [
-                "dmex18-052",
-                "dmrp01-062",
-                "dmsd02-010",
-                "dmrp08-063",
-                "dmrp08-030",
-                "dmrp19-061",
-                "dmrp07-030",
-                "dmrp06-035",
-                "dm22rp2-028",
-                "dm22rp2x-028",
-                "dmrp12-017",
-                "dmrp03-063",
-                "dmrp02-064",
-                "dmrp04s-062",
-                "dmsp01-011",
-                "dmbd07-b-008",
-                "dmrp08-012",
-                "dmrp03-062",
-                "dmrp02-032",
-                "dmrp15-060",
-                "dmrp04s-030",
-                "dmrp06-012",
-                "dmrp10-035",
-                "dmrp11-069",
-                "dmrp09-011",
-                "dmsd07-006",
-                "dmsd02-004",
-                "dmrp02-063",
-                "dmex07-033",
-                "dmrp01-032",
-                "dmrp02-060",
-                "dmbd04-014",
-                "dmrp06-002",
-                "dmex19-004",
-                "dmrp12-014",
-                "dmrp07-061",
-                "dmsd02-006",
-                "dmrp04s-029",
-                "dmrp20-coro03",
-                "dmrp20-060",
-                "dmrp08-003",
-                "dmrp05-063",
-                "dm26bd1-ex019",
-                "promoy24-108",
-                "promoy18-016",
-                "promoy18-019",
-                "promoy17-003",
-                "promoy17-015",
-                "dm23ex2-ChoG011",
-                "dmrp21-TF5"
-              ],
-              "sha256": "0694b18797a9164052e87fc4ebdc099f892747720b02d22c40a29338f5bc47bb"
-            },
-            {
-              "page": 2,
-              "total": 71,
-              "ids": [
-                "dmrp22-TF7",
-                "dmrp21-T5",
-                "dmrp22-T7",
-                "dmbd15-se9",
-                "dmbd15-be9",
-                "dmrp05-011",
-                "dm22bd2-015",
-                "dmex12-026",
-                "dmbd07-b-011",
-                "dmex04-065",
-                "dmrp04m-008",
-                "dmrp02-031",
-                "dmrp04s-058",
-                "dmrp01-064",
-                "dmrp04m-043",
-                "dmrp04m-041",
-                "promoy17-075",
-                "dmsd10-008",
-                "dmsd02-002",
-                "dmex02-025",
-                "dmbd04-006"
-              ],
-              "sha256": "73752bbe6e6752fcff09177cd3104796aef2a0289433c1e04c488a9adef2c24a"
-            }
-          ],
-          "prints": [
-            {
-              "id": "dmrp06-002",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-002",
-              "faces": [
-                {
-                  "name": "奇石 トランキー",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
-                  "race": "メタリカ",
-                  "powerText": "6500",
-                  "missingFields": []
-                },
-                {
-                  "name": "アイ・オブ・ザ・タイガー",
-                  "typeText": "呪文",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 4,
-                  "costText": "4",
-                  "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "0d10774d5db8f901bf7981d889ae88d67ec53aa4a0672163edb8fc5772df1737",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-002a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmrp06-002-0.jpg",
-                  "sha256": "9d502cc5fe25494ab81429c459876d74751732e35dcae7168f3e7191eae1f721"
-                }
-              ]
-            },
-            {
-              "id": "dmex19-004",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-004",
-              "faces": [
-                {
-                  "name": "奇石 トランキー",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 7,
-                  "costText": "7",
-                  "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
-                  "race": "メタリカ",
-                  "powerText": "6500",
-                  "missingFields": []
-                },
-                {
-                  "name": "アイ・オブ・ザ・タイガー",
-                  "typeText": "呪文",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 4,
-                  "costText": "4",
-                  "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "23f5d3ccb1e63063287cf8b74f72093b04c387e3e093ac25a2bf910425d7f2d2",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-004a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmex19-004-0.jpg",
-                  "sha256": "dffd02b51b218368c93fb0978dbf88cc8562d7e67ef4258188bb9c6328d1800f"
-                }
-              ]
-            }
-          ],
-          "qa": []
-        },
-        {
-          "id": "dmex16-006",
-          "name": "反逆龍 5000typeR / 無法頂上会談",
-          "exactOfficialPrints": [
-            "dmex16-006",
-            "dmrp22-TR1",
-            "dm23ex1-008"
-          ],
-          "allSearchIds": [
-            "dmrp22-TR1",
-            "dmex16-006",
-            "dm23ex1-008"
-          ],
-          "prints": [
-            {
-              "id": "dmex16-006",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-006",
-              "faces": [
-                {
-                  "name": "反逆龍 5000typeR",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "火",
-                  "civilizations": [
-                    "火"
-                  ],
-                  "cost": 12,
-                  "costText": "12",
-                  "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
-                  "race": "アウトレイジMAX",
-                  "powerText": "12000",
-                  "missingFields": []
-                },
-                {
-                  "name": "無法頂上会談",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "カードを３枚引く。その後、自分の手札を２枚捨てる。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "24e0a1cecefd07c9f88d121f3daf43f3d05c1b52c2e702b1f5a9a2d440565b17",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-006a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmex16-006-0.jpg",
-                  "sha256": "5f1d61d87559b62fb9167f6b15c86bbffc2a7783ebf6e3b69c92b84cfc7571a7"
-                }
-              ]
-            },
-            {
-              "id": "dmrp22-TR1",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-TR1",
-              "faces": [
-                {
-                  "name": "反逆龍 5000typeR",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "火",
-                  "civilizations": [
-                    "火"
-                  ],
-                  "cost": 12,
-                  "costText": "12",
-                  "abilityText": "自分の墓地にあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。",
-                  "race": "アウトレイジMAX",
-                  "powerText": "12000",
-                  "missingFields": []
-                },
-                {
-                  "name": "無法頂上会談",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "*カードを３枚引く。その後自分の手札を２枚捨てる。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "a5f296b708382cd2543dfdabdb206d7513692c9f9114e4976f47743c2e929479",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TR1a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmrp22-TR1-0.jpg",
-                  "sha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e"
-                }
-              ]
-            },
-            {
-              "id": "dm23ex1-008",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-008",
-              "faces": [
-                {
-                  "name": "反逆龍 5000typeR",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "火",
-                  "civilizations": [
-                    "火"
-                  ],
-                  "cost": 12,
-                  "costText": "12",
-                  "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
-                  "race": "アウトレイジMAX",
-                  "powerText": "12000",
-                  "missingFields": []
-                },
-                {
-                  "name": "無法頂上会談",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "カードを３枚引き、自分の手札を２枚捨てる。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "66a5383a1d52560841e982cc02c48794b5f182f615f752611dad400e4a10be10",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-008a.jpg",
-                  "file": "tmp/duema-target-10000/research/dm23ex1-008-0.jpg",
-                  "sha256": "0ccef4f873144277442e1d38f36ce26331455bde3cd9ab43ba814a7ce19b603d"
-                }
-              ]
-            }
-          ],
-          "qa": [
-            {
-              "source": "https://dm.takaratomy.co.jp/rule/qa/43466/",
-              "sha256": "214ae807fb122b448fbd4bc375b1464bac128d54790df9306445aed49154d5d8",
-              "body": "よくある質問 Q自分の《エル・セミファイナルのマスク》がバトルゾーンにあり、自分の手札が１枚もなく、墓地に《反逆龍 5000typeR / 無法頂上会談》を含むクリーチャーが７体ある状況です。 《エル・セミファイナルのマスク》の「自分の墓地から召喚してもよい」を使い墓地から≪反逆龍 5000typeR≫を召喚する際、支払うコストはいくつ少なくなりますか？ 類似例：《不死帝 ブルース》《暴走龍 5000GT》 A支払うコストは６少なくなります。 能力で実際にマナコストを少なくするのは、召喚する≪反逆龍 5000typeR≫が保留状態になった後です。 保留状態になっているカードは墓地の枚数として数えませんので、コストは６のみ少なくなります。 （総合ルール 409.1c,601.1a,601.1e） 一覧へ戻る 関連する質問 《エル・セミファイナルのマスク》の能力「自分のターン中、自分の手札が１枚もなければ、クリーチャーを１体、自分の墓地から召喚してもよい」は、１ターンに何度でも使えますか？ 2023.7.21 相手の《暴走龍 5000GT》がバトルゾーンにいて、自分のシールドゾーンに《「雷光の聖騎士」》と《「敬虔なる警官」》がある状況です。自分のターンのはじめに《「雷光の聖騎士」》を先にバトルゾーンに出し、「出た時」の能力で相手の《暴走龍 5000GT》をシールド化してから《「敬虔なる警官」》を召喚できますか？ 2022.7.28 自分の墓地に呪文が４枚以上あり、相手の《暴走龍 5000GT》がバトルゾーンにいる状況です。自分はGR召喚をする際、《P.R.D. クラッケンバイン》を表向きにしました。この《P.R.D. クラッケンバイン》はバトルゾーンに出せますか？ 2022.5.20 自分の《追憶人形ラビリピト》がバトルゾーンにいる状況で、自分のターン中に《暴走龍 5000GT》を召喚した時、「出た時」の能力で《追憶人形ラビリピト》が破壊されますが、「自分のターン中に、コスト８以上のクリーチャーを召喚した時」の能力はトリガーしますか？ 2021.10.22 相手の《絶十 》がバトルゾーンにいる状況で、自分の墓地にある《大樹王 ギガンディダノス》の「フシギバース」を使用できますか？ 類似例：《反逆龍 5000typeR / 無法頂上会談》《検問の守り 輝羅》 2021.9.24 《反逆龍 5000typeR / 無法頂上会談》自身は、手札以外のゾーンからバトルゾーンに出せますか？ 2021.7.16 自分は《偽りの名 13/種族選別》の呪文側を唱えました。自分の山札の上から《暴走龍 5000GT》と《反逆龍 5000typeR / 無法頂上会談》と《無限超邪 クロスファイア》の３枚が表向きになりました。これらをアウトレイジ・アウトレイジMAX・アウトレイジ・ドラゴンとして手札に加えられますか？ 2021.7.16 相手の《暴走龍 5000GT》がいる状況で、自分は《知識と流転と時空の決断》を唱えました。相手の《暴走龍 5000GT》を手札に戻してから、パワー5000以下のGRクリーチャーをバトルゾーンに出せますか？ 2020.11.13 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト "
-            }
-          ]
-        },
-        {
-          "id": "dmrp09-032",
-          "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～",
-          "exactOfficialPrints": [
-            "dmrp09-032"
-          ],
-          "allSearchIds": [
-            "dmrp09-032"
-          ],
-          "prints": [
-            {
-              "id": "dmrp09-032",
-              "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-032",
-              "faces": [
-                {
-                  "name": "墓標の封じ 遥典",
-                  "typeText": "クリーチャー",
-                  "civilizationText": "光",
-                  "civilizations": [
-                    "光"
-                  ],
-                  "cost": 3,
-                  "costText": "3",
-                  "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nクリーチャーを、墓地からバトルゾーンに出せない。\n呪文を墓地から唱えることはできない。",
-                  "race": "メタリカ",
-                  "powerText": "3500",
-                  "missingFields": []
-                },
-                {
-                  "name": "六奇怪の三 ～意志を持つ水～",
-                  "typeText": "呪文",
-                  "civilizationText": "水",
-                  "civilizations": [
-                    "水"
-                  ],
-                  "cost": 2,
-                  "costText": "2",
-                  "abilityText": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の手札に戻す。\nカードを１枚引く。",
-                  "race": "",
-                  "powerText": "",
-                  "missingFields": []
-                }
-              ],
-              "htmlSha256": "77ffac0860e9d2b89ac586997c430dee89b0509165ebe1484f1db8dfc11c0db7",
-              "images": [
-                {
-                  "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-032a.jpg",
-                  "file": "tmp/duema-target-10000/research/dmrp09-032-0.jpg",
-                  "sha256": "61ea9f6285cce1d6524a088dc7244f058eacd49422ad6d497350050a22e4d8dc"
-                }
-              ]
-            }
-          ],
-          "qa": []
-        }
-      ],
-      "notes": [
-        "Tranky official name search has71 results; both pages and all71 IDs were checked. Two exact twinpact prints only. Reuse actual g1693BlockerAttack common source if all attack-prohibiting ability versus external restrictions and summoning sickness are verified, plus own blocker end untap and draw-then-optional blocker<=5 deployment.",
-        "5000typeR has three exact prints; global source restriction applies only to CREATURE entry from non-hand zones. Existing g1275HandOnly is a broader all-card restriction and must not be reused unchanged. Source hand-only rule must not prohibit its own initial grave summon before entry. QA43466 needs actual registered dm23ex1-060 El Semifinal Mask: seven grave creatures including itself give six discount after it is held. Registered dmr10-v01 Blues is also the official analogous example.",
-        "Halt grave-origin creature entry and grave-origin spell casting for BOTH players while Harten is live; distinguish creature-only prohibition from other grave card movement/entry. Full back spell can choose non-creature battle cards, not only top-level elements; investigate printed non-creature cards versus undercards/seals using official rules before implementation.",
-        "No phase1833 manifest, pins or implementation started. Preserve every previous pending long group and all user-deferred items; do not rerun full npm test."
-      ]
-    }
+    "nextCandidateResearch": null
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
@@ -633576,10 +633827,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1832,
+    "phase": 1833,
     "threshold": 10000,
-    "supportedNames": 9709,
-    "pendingNames": 2140,
+    "supportedNames": 9712,
+    "pendingNames": 2137,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -633588,7 +633839,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1832.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1833.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

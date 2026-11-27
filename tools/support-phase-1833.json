@@ -1,0 +1,873 @@
+{
+  "phase": 1833,
+  "checkedAt": "2026-11-27T20:07:35.607Z",
+  "baseline": "a36f02cf73be4375dc63b52c924c213232bed730",
+  "baseCount": 9709,
+  "target": 10000,
+  "description": "Three complete twinpacts: current blocker attack prohibition invalidation and end untap with draw/deploy; exact held-card grave discount, simultaneous power sweep and creature-only hand entry restriction; both-player grave creature entry/spell cast lock and physical noncreature card bounce plus draw.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43466/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-002",
+      "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
+      "canonicalId": "dmrp06-002",
+      "printId": "dmrp06-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-002",
+      "faces": [
+        {
+          "name": "奇石 トランキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
+          "race": "メタリカ",
+          "powerText": "6500",
+          "missingFields": []
+        },
+        {
+          "name": "アイ・オブ・ザ・タイガー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1693BlockerAttack": true,
+        "g174End": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "アイ・オブ・ザ・タイガー",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "max": 5
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-002a.jpg",
+      "imageSha256": "9d502cc5fe25494ab81429c459876d74751732e35dcae7168f3e7191eae1f721",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp06-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp06-002",
+          "dmex19-004"
+        ],
+        "allSearchIds": [
+          "dmex18-052",
+          "dmrp01-062",
+          "dmsd02-010",
+          "dmrp08-063",
+          "dmrp08-030",
+          "dmrp19-061",
+          "dmrp07-030",
+          "dmrp06-035",
+          "dm22rp2-028",
+          "dm22rp2x-028",
+          "dmrp12-017",
+          "dmrp03-063",
+          "dmrp02-064",
+          "dmrp04s-062",
+          "dmsp01-011",
+          "dmbd07-b-008",
+          "dmrp08-012",
+          "dmrp03-062",
+          "dmrp02-032",
+          "dmrp15-060",
+          "dmrp04s-030",
+          "dmrp06-012",
+          "dmrp10-035",
+          "dmrp11-069",
+          "dmrp09-011",
+          "dmsd07-006",
+          "dmsd02-004",
+          "dmrp02-063",
+          "dmex07-033",
+          "dmrp01-032",
+          "dmrp02-060",
+          "dmbd04-014",
+          "dmrp06-002",
+          "dmex19-004",
+          "dmrp12-014",
+          "dmrp07-061",
+          "dmsd02-006",
+          "dmrp04s-029",
+          "dmrp20-coro03",
+          "dmrp20-060",
+          "dmrp08-003",
+          "dmrp05-063",
+          "dm26bd1-ex019",
+          "promoy24-108",
+          "promoy18-016",
+          "promoy18-019",
+          "promoy17-003",
+          "promoy17-015",
+          "dm23ex2-ChoG011",
+          "dmrp21-TF5",
+          "dmrp22-TF7",
+          "dmrp21-T5",
+          "dmrp22-T7",
+          "dmbd15-se9",
+          "dmbd15-be9",
+          "dmrp05-011",
+          "dm22bd2-015",
+          "dmex12-026",
+          "dmbd07-b-011",
+          "dmex04-065",
+          "dmrp04m-008",
+          "dmrp02-031",
+          "dmrp04s-058",
+          "dmrp01-064",
+          "dmrp04m-043",
+          "dmrp04m-041",
+          "promoy17-075",
+          "dmsd10-008",
+          "dmsd02-002",
+          "dmex02-025",
+          "dmbd04-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "0d10774d5db8f901bf7981d889ae88d67ec53aa4a0672163edb8fc5772df1737",
+        "facesMatched": true,
+        "imageSha256": "9d502cc5fe25494ab81429c459876d74751732e35dcae7168f3e7191eae1f721"
+      }
+    },
+    {
+      "id": "dmex16-006",
+      "name": "反逆龍 5000typeR / 無法頂上会談",
+      "canonicalId": "dmex16-006",
+      "printId": "dmex16-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-006",
+      "faces": [
+        {
+          "name": "反逆龍 5000typeR",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
+          "race": "アウトレイジMAX",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "無法頂上会談",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを３枚引く。その後、自分の手札を２枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCreatureReduction": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g1833CreatureHandOnly": true,
+        "speedAttacker": true,
+        "breaker": 3,
+        "spellFace": {
+          "name": "無法頂上会談",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-006a.jpg",
+      "imageSha256": "5f1d61d87559b62fb9167f6b15c86bbffc2a7783ebf6e3b69c92b84cfc7571a7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex16-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex16-006",
+          "dmrp22-TR1",
+          "dm23ex1-008"
+        ],
+        "allSearchIds": [
+          "dmrp22-TR1",
+          "dmex16-006",
+          "dm23ex1-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "24e0a1cecefd07c9f88d121f3daf43f3d05c1b52c2e702b1f5a9a2d440565b17",
+        "facesMatched": true,
+        "imageSha256": "5f1d61d87559b62fb9167f6b15c86bbffc2a7783ebf6e3b69c92b84cfc7571a7"
+      }
+    },
+    {
+      "id": "dmrp09-032",
+      "name": "墓標の封じ 遥典/六奇怪の三 ～意志を持つ水～",
+      "canonicalId": "dmrp09-032",
+      "printId": "dmrp09-032",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-032",
+      "faces": [
+        {
+          "name": "墓標の封じ 遥典",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nクリーチャーを、墓地からバトルゾーンに出せない。\n呪文を墓地から唱えることはできない。",
+          "race": "メタリカ",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "六奇怪の三 ～意志を持つ水～",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の手札に戻す。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g1833GraveCreatureEntryLock": true,
+        "g592GraveSpellLock": true,
+        "spellFace": {
+          "name": "六奇怪の三 ～意志を持つ水～",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BattleCardMove579",
+              "nonCreature": true,
+              "to": "hand",
+              "toOwnerHand": true
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-032a.jpg",
+      "imageSha256": "61ea9f6285cce1d6524a088dc7244f058eacd49422ad6d497350050a22e4d8dc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp09-032-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-032"
+        ],
+        "allSearchIds": [
+          "dmrp09-032"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "77ffac0860e9d2b89ac586997c430dee89b0509165ebe1484f1db8dfc11c0db7",
+        "facesMatched": true,
+        "imageSha256": "61ea9f6285cce1d6524a088dc7244f058eacd49422ad6d497350050a22e4d8dc"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex19-004",
+      "name": "奇石 トランキー / アイ・オブ・ザ・タイガー",
+      "canonicalId": "dmrp06-002",
+      "printId": "dmex19-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-004",
+      "faces": [
+        {
+          "name": "奇石 トランキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\n自分の「ブロッカー」を持つクリーチャーの、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）\n自分のターンの終わりに、自分の「ブロッカー」を持つクリーチャーをすべてアンタップする。",
+          "race": "メタリカ",
+          "powerText": "6500",
+          "missingFields": []
+        },
+        {
+          "name": "アイ・オブ・ザ・タイガー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを１枚引く。その後、コスト５以下の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1693BlockerAttack": true,
+        "g174End": [
+          {
+            "op": "GroupUntap",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "アイ・オブ・ザ・タイガー",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "blocker": true,
+                "max": 5
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-004a.jpg",
+      "imageSha256": "dffd02b51b218368c93fb0978dbf88cc8562d7e67ef4258188bb9c6328d1800f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex19-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp06-002",
+          "dmex19-004"
+        ],
+        "allSearchIds": [
+          "dmex18-052",
+          "dmrp01-062",
+          "dmsd02-010",
+          "dmrp08-063",
+          "dmrp08-030",
+          "dmrp19-061",
+          "dmrp07-030",
+          "dmrp06-035",
+          "dm22rp2-028",
+          "dm22rp2x-028",
+          "dmrp12-017",
+          "dmrp03-063",
+          "dmrp02-064",
+          "dmrp04s-062",
+          "dmsp01-011",
+          "dmbd07-b-008",
+          "dmrp08-012",
+          "dmrp03-062",
+          "dmrp02-032",
+          "dmrp15-060",
+          "dmrp04s-030",
+          "dmrp06-012",
+          "dmrp10-035",
+          "dmrp11-069",
+          "dmrp09-011",
+          "dmsd07-006",
+          "dmsd02-004",
+          "dmrp02-063",
+          "dmex07-033",
+          "dmrp01-032",
+          "dmrp02-060",
+          "dmbd04-014",
+          "dmrp06-002",
+          "dmex19-004",
+          "dmrp12-014",
+          "dmrp07-061",
+          "dmsd02-006",
+          "dmrp04s-029",
+          "dmrp20-coro03",
+          "dmrp20-060",
+          "dmrp08-003",
+          "dmrp05-063",
+          "dm26bd1-ex019",
+          "promoy24-108",
+          "promoy18-016",
+          "promoy18-019",
+          "promoy17-003",
+          "promoy17-015",
+          "dm23ex2-ChoG011",
+          "dmrp21-TF5",
+          "dmrp22-TF7",
+          "dmrp21-T5",
+          "dmrp22-T7",
+          "dmbd15-se9",
+          "dmbd15-be9",
+          "dmrp05-011",
+          "dm22bd2-015",
+          "dmex12-026",
+          "dmbd07-b-011",
+          "dmex04-065",
+          "dmrp04m-008",
+          "dmrp02-031",
+          "dmrp04s-058",
+          "dmrp01-064",
+          "dmrp04m-043",
+          "dmrp04m-041",
+          "promoy17-075",
+          "dmsd10-008",
+          "dmsd02-002",
+          "dmex02-025",
+          "dmbd04-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "23f5d3ccb1e63063287cf8b74f72093b04c387e3e093ac25a2bf910425d7f2d2",
+        "facesMatched": true,
+        "imageSha256": "dffd02b51b218368c93fb0978dbf88cc8562d7e67ef4258188bb9c6328d1800f"
+      }
+    },
+    {
+      "id": "dmrp22-TR1",
+      "name": "反逆龍 5000typeR / 無法頂上会談",
+      "canonicalId": "dmex16-006",
+      "printId": "dmrp22-TR1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-TR1",
+      "faces": [
+        {
+          "name": "反逆龍 5000typeR",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "自分の墓地にあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。",
+          "race": "アウトレイジMAX",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "無法頂上会談",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "*カードを３枚引く。その後自分の手札を２枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCreatureReduction": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g1833CreatureHandOnly": true,
+        "speedAttacker": true,
+        "breaker": 3,
+        "spellFace": {
+          "name": "無法頂上会談",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TR1a.jpg",
+      "imageSha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-TR1-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "manaImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TR1a.jpg",
+        "sha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e",
+        "htmlManaValue": 0,
+        "printedManaValue": 1,
+        "reviewedAt": "2026-11-27T20:07:35.607Z",
+        "reason": "Full official image visibly prints mana 1, matching same-name original and current reprints. This printing HTML omits its mana value; keep raw HTML metadata and verify the exact official image hash."
+      },
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex16-006",
+          "dmrp22-TR1",
+          "dm23ex1-008"
+        ],
+        "allSearchIds": [
+          "dmrp22-TR1",
+          "dmex16-006",
+          "dm23ex1-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "manaVerification": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-TR1a.jpg",
+        "sha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e",
+        "htmlManaValue": 0,
+        "printedManaValue": 1,
+        "reviewedAt": "2026-11-27T20:07:35.607Z",
+        "reason": "Full official image visibly prints mana 1, matching same-name original and current reprints. This printing HTML omits its mana value; keep raw HTML metadata and verify the exact official image hash.",
+        "checkedAt": "2026-11-27T20:07:35.607Z"
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "a5f296b708382cd2543dfdabdb206d7513692c9f9114e4976f47743c2e929479",
+        "facesMatched": true,
+        "imageSha256": "11c643b8a808e5e59093c97d5f92a727b30fec80d8e325c04e678923d4ae365e"
+      }
+    },
+    {
+      "id": "dm23ex1-008",
+      "name": "反逆龍 5000typeR / 無法頂上会談",
+      "canonicalId": "dmex16-006",
+      "printId": "dm23ex1-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-008",
+      "faces": [
+        {
+          "name": "反逆龍 5000typeR",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、パワー5000以下のクリーチャーをすべて破壊する。\nすべてのプレイヤーは、手札からしかクリーチャーを出せない。\nスピードアタッカー\nT・ブレイカー",
+          "race": "アウトレイジMAX",
+          "powerText": "12000",
+          "missingFields": []
+        },
+        {
+          "name": "無法頂上会談",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを３枚引き、自分の手札を２枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCreatureReduction": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g1833CreatureHandOnly": true,
+        "speedAttacker": true,
+        "breaker": 3,
+        "spellFace": {
+          "name": "無法頂上会談",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-008a.jpg",
+      "imageSha256": "0ccef4f873144277442e1d38f36ce26331455bde3cd9ab43ba814a7ce19b603d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex1-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex16-006",
+          "dmrp22-TR1",
+          "dm23ex1-008"
+        ],
+        "allSearchIds": [
+          "dmrp22-TR1",
+          "dmex16-006",
+          "dm23ex1-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "sha256": "66a5383a1d52560841e982cc02c48794b5f182f615f752611dad400e4a10be10",
+        "facesMatched": true,
+        "imageSha256": "0ccef4f873144277442e1d38f36ce26331455bde3cd9ab43ba814a7ce19b603d"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43466/",
+      "sha256": "214ae807fb122b448fbd4bc375b1464bac128d54790df9306445aed49154d5d8",
+      "checkedAt": "2026-11-27T20:07:35.607Z",
+      "reproduced": true,
+      "tests": "tests/standard1833-effects.test.mjs",
+      "reproduction": "QA43466 actual El Semifinal Mask, zero hand, TypeR and six other grave creatures: TypeR held/execution UID excluded, six-mana summon, Mask seed remains. Both seats and encrypted duel-service actual grave summon tested; original GT/Obuza/Uragiridamus also checked through actual Mask permission.",
+      "result": "QA43466 actual El Semifinal Mask, zero hand, TypeR and six other grave creatures: TypeR held/execution UID excluded, six-mana summon, Mask seed remains. Both seats and encrypted duel-service actual grave summon tested; original GT/Obuza/Uragiridamus also checked through actual Mask permission."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39989/",
+      "sha256": "3c9c7da2d12a1dea17dd5e610f4eb63de927e4ad264c0bf003ff9d486c5e26af",
+      "checkedAt": "2026-11-27T20:14:21.695Z",
+      "reproduced": true,
+      "tests": "tests/standard1833-effects.test.mjs",
+      "reproduction": "QA39989 actual Inferno Gate deploys TypeR from grave before its battlefield-only hand-entry restriction begins. Existing TypeR then rejects further grave creature entries. Both seats; original banned spell used only in an engine rules fixture, no deck restriction changed.",
+      "result": "QA39989 actual Inferno Gate deploys TypeR from grave before its battlefield-only hand-entry restriction begins. Existing TypeR then rejects further grave creature entries. Both seats; original banned spell used only in an engine rules fixture, no deck restriction changed."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T20:07:35.607Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-002": 4,
+      "dmex16-006": 4,
+      "dmrp09-032": 4,
+      "dmex19-004": 4,
+      "dmrp22-TR1": 4,
+      "dm23ex1-008": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1833-owner",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Physical owner hand routing",
+        "tests/standard1833-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.675,
+      "log": "tmp/duema-target-10000/extra-1833-owner.log",
+      "passed": 4,
+      "logSha256": "a9850ad39b1936b3385053b1b0c09dcf01503b0dab3879d9c6ffe32819bd7137"
+    }
+  ],
+  "supplementalOfficialEvidence": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39989/",
+      "sha256": "3c9c7da2d12a1dea17dd5e610f4eb63de927e4ad264c0bf003ff9d486c5e26af",
+      "body": "よくある質問 Q《反逆龍 5000typeR / 無法頂上会談》自身は、手札以外のゾーンからバトルゾーンに出せますか？ Aはい、出せます。このクリーチャーの「すべてのプレイヤーは、手札からしかクリーチャーを出せない。」の能力は、バトルゾーンにいる間のみ機能します。 （総合ルール 110.3d） 一覧へ戻る 関連する質問 自分の《エル・セミファイナルのマスク》がバトルゾーンにあり、自分の手札が１枚もなく、墓地に《反逆龍 5000typeR / 無法頂上会談》を含むクリーチャーが７体ある状況です。 《エル・セミファイナルのマスク》の「自分の墓地から召喚してもよい」を使い墓地から≪反逆龍 5000typeR≫を召喚する際、支払うコストはいくつ少なくなりますか？ 類似例：《不死帝 ブルース》《暴走龍 5000GT》 2023.7.21 相手の《絶十 》がバトルゾーンにいる状況で、自分の墓地にある《大樹王 ギガンディダノス》の「フシギバース」を使用できますか？ 類似例：《反逆龍 5000typeR / 無法頂上会談》《検問の守り 輝羅》 2021.9.24 自分は《偽りの名 13/種族選別》の呪文側を唱えました。自分の山札の上から《暴走龍 5000GT》と《反逆龍 5000typeR / 無法頂上会談》と《無限超邪 クロスファイア》の３枚が表向きになりました。これらをアウトレイジ・アウトレイジMAX・アウトレイジ・ドラゴンとして手札に加えられますか？ 2021.7.16 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41079/",
+      "sha256": "6723ec355d15bb3e48969ff7a59c52db7ccdeefea96718f3208208e554388253",
+      "body": "よくある質問 Q自分の《アッカン・ペロケット》の「出た時」の能力で、相手の《「楯騎士」 》の下にある《SMAPONの心絵》を選び、墓地に置けますか？ 類似例：《インフェル星樹》 Aはい、墓地に置けます。進化クリーチャーの下に置かれているタマシードも、クリーチャーではないカードです。 一覧へ戻る 関連する質問 自分の《インフェル星樹》の「出た時」の能力で、相手の«終焉の禁断 ドルマゲドンX≫を構成している禁断コアを１枚選び、マナゾーンに置けますか？ 参照：《Forbidden Star ～世界最後の日～》 2024.3.13 《インフェル星樹》の「出た時」の能力で、２人のプレイヤーのクリーチャーではないカードを１枚ずつマナゾーンに置けますか？ 2024.1.19 自分の封印されている《インフェル星樹》がいる状況で、２体目の《インフェル星樹》を出し、「出た時」の能力で、１体目の《インフェル星樹》に置かれている封印をマナゾーンに置きました。この時、自分は何枚カードを引きますか？ 2022.12.16 バトルゾーンの相手のカードが《深淵の支配者 ジャシン》のみで、《深淵の支配者 ジャシン》がクリーチャーではなくなっている状況です。 《インフェル星樹》の「出た時」の能力で、その相手の《深淵の支配者 ジャシン》を「クリーチャーではないカード」として選び、マナゾーンに置けますか？ 2022.12.16 《インフェル星樹》がバトルゾーンからマナゾーンに置かれた時、自身の「バトルゾーンから自分のマナゾーンにカードが置かれた時」の能力はトリガーしますか？ 2022.6.3 《ハイパー・ギガタック/ギガタック・ハイパー・トラップ》の呪文側を唱えて、《インフェル星樹》と他のクリーチャー１体をバトルゾーンから自分のマナゾーンに置きました。「バトルゾーンから自分のマナゾーンにカードが置かれた時」の能力で、カードを２枚引けますか？ 2022.6.3 《インフェル星樹》の「出た時」の能力で、バトルゾーンの封印や、進化クリーチャーの下に置かれているタマシードを選んでマナゾーンに置けますか？ 2022.4.22 「シンカライズ」はどういう能力ですか？ 2022.4.8 タマシードとはなんですか？ 2022.4.8 自分のNEOクリーチャーを出す際、「NEO進化」クリーチャーとして「シンカライズ」を持つタマシードの上に重ねられますか？ 参照：《ギガントウサギロボ・フューチャーX》《SMAPONの心絵》 2022.4.8 《SMAPONの心絵》を捨てた時、《ジョット・ガン・ジョラゴン》の「ジョラゴン・ビッグ１」はトリガーしますか？ 類似例：《ジョギラゴン＆ジョニー ～Jの旅路～》 2022.4.8 《SMAPONの心絵》を進化元にした《オーリリア 》がバトルゾーンを離れる際、「スター進化」によって、かわりに一番上のカードが離れました。進化元となった《SMAPONの心絵》を、再構築によってバトルゾーンに残せますか？ 2022.4.8 タマシードの持つ「シンカライズ」は、「墓地進化」や「マナ進化」の進化元として選べますか？ 参照：《SMAPONの心絵》《死神術士デスマーチ》《密林の総督ハックル・キリンソーヤ》 2022.4.8 《スロットンの心絵》の「出た時」の能力で《「楯騎士」 》を《スロットンの心絵》の上に進化し、「ブロッカー」を与えました。 同じターン中に《「楯騎士」 》がバトルゾーンを離れた場合、再構築で残った《スロットンの心絵》も「ブロッカー」を得ていますか？ 2022.4.8 《極限龍神メタル》の「出た時」の能力で、相手の≪Volzeos-Balamord≫を構成しているカードを１枚選び、墓地に置けますか？ 類似例：≪唯我独尊ガイアール・オレドラゴン≫《エンドレス・フローズン・カーニバル》《インフェル星樹》 参照：《勝利のリュウセイ・カイザー》《新世界王の闘気》 2021.12.17 《極限龍神メタル》の「出た時」の能力で、相手の≪唯我独尊ガイアール・オレドラゴン≫や≪極真龍魂 オール・オーバー・ザ・ワールド≫を構成しているカードを１枚選び、墓地に置けますか？ 類似例：《エンドレス・フローズン・カーニバル》《インフェル星樹》 参照：《龍魂城閣 レッドゥル》《勝利のリ"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33293/",
+      "sha256": "c65b5497f871c902f385cf73549afc184d428bf67a2dddf1305a4598dd39da6f",
+      "body": "よくある質問 Q《アッカン・ペロケット》で進化元のクリーチャーカードを選ぶことはできますか？ 類似例：《インフェル星樹》 Aいいえ、《アッカン・ペロケット》の能力はカード指定で「クリーチャー」という特性を参照しているので、進化元のクリーチャーは選べません。 一覧へ戻る 関連する質問 自分の《インフェル星樹》の「出た時」の能力で、相手の«終焉の禁断 ドルマゲドンX≫を構成している禁断コアを１枚選び、マナゾーンに置けますか？ 参照：《Forbidden Star ～世界最後の日～》 2024.3.13 《インフェル星樹》の「出た時」の能力で、２人のプレイヤーのクリーチャーではないカードを１枚ずつマナゾーンに置けますか？ 2024.1.19 自分の封印されている《インフェル星樹》がいる状況で、２体目の《インフェル星樹》を出し、「出た時」の能力で、１体目の《インフェル星樹》に置かれている封印をマナゾーンに置きました。この時、自分は何枚カードを引きますか？ 2022.12.16 バトルゾーンの相手のカードが《深淵の支配者 ジャシン》のみで、《深淵の支配者 ジャシン》がクリーチャーではなくなっている状況です。 《インフェル星樹》の「出た時」の能力で、その相手の《深淵の支配者 ジャシン》を「クリーチャーではないカード」として選び、マナゾーンに置けますか？ 2022.12.16 《インフェル星樹》がバトルゾーンからマナゾーンに置かれた時、自身の「バトルゾーンから自分のマナゾーンにカードが置かれた時」の能力はトリガーしますか？ 2022.6.3 《ハイパー・ギガタック/ギガタック・ハイパー・トラップ》の呪文側を唱えて、《インフェル星樹》と他のクリーチャー１体をバトルゾーンから自分のマナゾーンに置きました。「バトルゾーンから自分のマナゾーンにカードが置かれた時」の能力で、カードを２枚引けますか？ 2022.6.3 《インフェル星樹》の「出た時」の能力で、バトルゾーンの封印や、進化クリーチャーの下に置かれているタマシードを選んでマナゾーンに置けますか？ 2022.4.22 自分の《アッカン・ペロケット》の「出た時」の能力で、相手の《「楯騎士」 》の下にある《SMAPONの心絵》を選び、墓地に置けますか？ 類似例：《インフェル星樹》 2022.4.8 《極限龍神メタル》の「出た時」の能力で、相手の≪Volzeos-Balamord≫を構成しているカードを１枚選び、墓地に置けますか？ 類似例：≪唯我独尊ガイアール・オレドラゴン≫《エンドレス・フローズン・カーニバル》《インフェル星樹》 参照：《勝利のリュウセイ・カイザー》《新世界王の闘気》 2021.12.17 《極限龍神メタル》の「出た時」の能力で、相手の≪唯我独尊ガイアール・オレドラゴン≫や≪極真龍魂 オール・オーバー・ザ・ワールド≫を構成しているカードを１枚選び、墓地に置けますか？ 類似例：《エンドレス・フローズン・カーニバル》《インフェル星樹》 参照：《龍魂城閣 レッドゥル》《勝利のリュウセイ・カイザー》 2021.10.22 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ "
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
+      "sha256": "148ce462c4484580e7c78ce90110b34f7fa26b024fd449362169925ed7d1a389",
+      "body": "召喚に関する裁定変更のお知らせ | デュエル・マスターズ ロゴ：タカラトミー 検索 閉じる キーワード検索 検索 商品名やジャンル名などのキーワードを入力してください English Japanase 公式ショッピング サイト メニュー おもちゃをさがす ブランドからさがす ジャンルからさがす 「好き」をさがす トップページ 商品情報 商品情報 商品情報トップ 閉じる ブランドからさがす トミカ リカちゃん プラレール トランスフォーマー デュエルマスターズ ディズニー アニア ポケットモンスター その他の ブランドを 見る ジャンルからさがす くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ 「好き」をさがす 「好き」な項目を選んでおもちゃを発見しよう「好き」をさがす 対象年齢からさがす 50音順からさがす 商品リリース イベント・キャンペーン 会社情報 会社情報 会社情報トップ 閉じる トップメッセージ 会社概要 採用情報 公式ショッピングサイト・店舗紹介 共遊玩具 採用情報 投資家情報 サステナビリティ お客様相談室 お客様相談室 お客様相談室トップ 閉じる よくあるご質問 / お問い合わせ お客様へのお知らせ 取扱説明書 お客さまとのつながり 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 取扱説明書をさがす よくあるご質問 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 デュエル・マスターズ メニュー はじめての方へ はじめての方へ はじめかた あそびかた もっとつよくなりたいキミへ イベント・大会 イベント・大会 イベント総合案内 デュエル・マスターズサポートアプリ 25周年ツアー 店頭特別大会 カジュアルイベント デュエパラ店舗 ＃デュエ募交流会 ファンフェスティバル ファンイベントサポート 競技イベント 全国大会 グランプリ 超CS チャンピオンシップ（CS） ガチデュエバトル DMPランキング 公式Discordサーバー イベントにご参加される方へ 商品情報 商品情報 商品情報 カードリスト ルール ルール 総合ルール よくある質問（Q&A） 殿堂レギュレーション デュエパーティー 罰則適用 認定ジャッジ試験 デュエル・マスターズからのお願い お問い合わせ アニメ・動画 アニメ・動画 アニメ デュエチューブリーグ デュエマ対戦動画 お家でデュエマ よみもの よみもの クリエイターズ・レター 大会記事（テキストカバレージ） マナ姉と学ぼう！ 謎解きページ デッキ開発部 リモートデュエマのススメ 20周年特設サイト アーカイブ 店舗の方へ 店舗の方へ 店舗の方へお願い 公認イベントを開催される方へ お問い合わせ 商品情報 カード検索カード検索 トップ 総合ルール 召喚に関する裁定変更のお知らせ 召喚に関する裁定変更のお知らせ 掲載日：2021年4月14日 「バトルゾーンにクリーチャーを出せない状況でのクリーチャーの召喚」について裁定変更がありましたので、お知らせいたします。 変更前の裁定 クリーチャーをバトルゾーンに出せない状況でも、クリーチャー・カードを使用して、それを召喚することができる。 召喚した結果、そのクリーチャーはバトルゾーンに出ないので、手札にとどまる。 ↓ 変更後の裁定 クリーチャーをバトルゾーンに出せない状況では、クリーチャー・カードを使用することができない。 よって、クリーチャーを召喚することもできない。 クリーチャーをバトルゾーンに出せない状況とは、以下の条件のいずれかを満たす状況のことを指します。 １．能力や効果によってバトルゾーンにクリーチャーが出ることが禁止されている状況(《ラドン・ベップバーン》など、任意の条件により出ることが禁止されている場合を除く) ２．進化クリーチャーの進化元が存在していない状況（デッキ進化や手札進化など、召喚手順の中で条件を満たすか否か決定する場合を除く） 裁定変更に伴い、今後は以下の通りの処理となります。 例1 Ｑ：相手の《バリバリ・ケドケド》がバトルゾーンにいる状況で、自分はマナゾーンから《陰陽の舞》の「マナ爆誕０」を使用できますか？ Ａ：いいえ、できません。マナゾーンからクリーチャーをバトルゾーンに出せない状況では、マナゾーンからクリーチャー・カードを使用し、召喚することもできません。召喚ができないので召喚手順を開始できず、「マナ爆誕」の代替コストによる召喚を行うこともできません。 例2 Q：相手の《ジェイ-SHOCKER》の能力により、自分はコスト8のカードがバトルゾーンに出せない状況です。 この状況で《煉獄の悪魔龍 フォーエバー・オカルト》の代替コストによる召喚を行い、自分のクリーチャーを3体破壊できますか？ A：いいえ、できません。コスト8のカードがバトルゾーンに出せない状況では、コスト8のクリーチャー・カードを使用し、召喚することもできません。召喚ができないので召喚手順を開始できず、代替コストを支払うこともできません。 例3 Ｑ：相手の《ジェイ-SHOCKER》の能力によりコスト6のクリーチャーがバトルゾーンに出せない状態です。この時、コスト6の《「蒼刀の輝将」》の「ギャラクシールド」を使えますか？ Ａ：いいえ、使えません。バトルゾーンに出すことが禁止されている状況では、召喚を行うこともできません。召喚を行うことができない状況では「ギャラクシールド」を使うこともできないので、《「蒼刀の輝将」》をシールドゾーンに表向きで置くこともできません。 例4 Q：バトルゾーンに相手の《ラドン・ベップバーン》がいて、自分はマナゾーンにアンタップ状態のカードが8枚あり、最大8コスト支払える状況です。自分のターン中、自分は手札から《煉獄の悪魔龍 フォーエバー・オカルト》を召喚できますか？ また、召喚できる場合、代替コストを支払うことはできますか？ A：召喚できますが、代替コストによる召喚はできません。《ラドン・ベップバーン》の能力により、マナゾーンをタップして召喚する以外の方法ではクリーチャーがバトルゾーンに出ません。8コスト支払って《煉獄の悪魔龍 フォーエバー・オカルト》を召喚することはできますが、代替コストを支払ってマナゾーンのカードをタップせずに召喚することはできません。 また、裁定変更後もクリーチャーをバトルゾーンに出せない状況で「Ｓ・トリガー」や「ニンジャ・ストライク」など、クリーチャーを召喚する能力の使用宣言をすることは可能です。 ただし、その解決を行うタイミングでも引き続きクリーチャーをバトルゾーンに出せない状況だった場合、召喚を行うことはできません。 例１ Ｑ：相手の《ジェイ-SHOCKER》の能力によりコスト6のカードがバトルゾーンに出せない状態です。この状況で相手のクリーチャーが攻撃してきた時、自分は手札から《轟牙忍 ハヤブサリュウ》の「ニンジャ・ストライク」を宣言し、召喚を行えますか？ Ａ：「ニンジャ・ストライク」の使用宣言はできますが、召喚は行えません。結果的に《轟牙忍 ハヤブサリュウ》は手札にとどまり、何も起こりません。 例2 Ｑ：相手の手札は3枚です。相手の《メテヲシャワァ・ヲヲロラシアタァ》が攻撃し、自分のシールドをブレイクした際、自分は《終末の時計 ザ・クロック》の「S・トリガー」を宣言できますか？ Ａ：はい、宣言できます。また、他の呪文の「S・トリガー」などで《メテヲシャワァ・ヲヲロラシアタァ》がバトルゾーンを離れたり、相手の手札が3枚より少なくなっていた場合、宣言した《終末の時計 ザ・クロック》をそのまま召喚することが可能です。 また、以下のような「かわりにバトルゾーン以外のゾーンに置かれる」状況や、「特定のゾーンを離れない」状況では、引き続きクリーチャーの召喚を行うことが可能です。 例１ Q：バトルゾーンに自分の《FORBIDDEN STAR ～世界最後の日～》があり、相手には《龍世界 ドラゴ大王》がいます。この状況で、自分は《終断Δ ドルハカバ》を召喚できますか？ また、この召喚によって《FORBIDDEN STAR ～世界最後の日～》の封印を１つ外せますか？ A：はい、召喚できますし、封印を外せます。《終断Δ ドルハカバ》は結果的にバトルゾーンに出るかわりに墓地に置かれます。 例２ Q：バトルゾーンに自分の《FORBIDDEN STAR ～世界最後の日～》があり、相手には《封鎖の誓い 玄渦》がいます。この状況で、自分は墓地にある《終断Δ ドルハカバ》を召喚できますか？ また、この召喚によって《FORBIDDEN STAR ～世界最後の日～》の封印を１つ外せますか？ A：はい、召喚できますし、封印を外せます。《終断Δ ドルハカバ》は結果的に墓地にとどまります。 今回の裁定変更において、一部の方に混乱を招いた事をお詫び申し上げます。 引き続き、デュエル・マスターズをよろしくお願い致します。 総合ルールのトップに戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+    }
+  ],
+  "supplementalVerification": {
+    "sources": [
+      "https://dm.takaratomy.co.jp/rule/qa/39989/",
+      "https://dm.takaratomy.co.jp/rule/qa/41079/",
+      "https://dm.takaratomy.co.jp/rule/qa/33293/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
+    ],
+    "scope": "QA41079/33293 explain the identical noncreature CARD filter: buried seeds and seals are selectable, buried creature cards are excluded. Reproduced with actual newly registered Harten spell and physical snapshots; not a claim to implement the other named cards. Official rulechange31627 distinguishes entry prohibitions (cannot start grave creature summons) from a grave-zone movement lock; Harten rejects actual Mugen Crime before payment, preserves ordinary grave recovery and both-player hand spells. Generic deck-origin, mana, shield, extra, GR, hand and grave entry gates checked for both seats, and actual GR/Inferno Sign/Mask paths verified."
+  },
+  "validationNotes": {
+    "rulingScope": "Three complete twinpacts, six official full-print images and all original IDs/reprints verified. Tranky native blocker attack prohibition invalidation preserves summoning sickness, other creatures/opponents/external Slowly restrictions, source validity and own-end current blocker untap; spell draw precedes optional <=5 blocker deployment, actual newly drawn card, actual blocker evolution, decline and deck exhaustion. TypeR grave discount counts own current creature cards including twins once with floor1; held self excluded in actual Mask QA43466, repeated on three original cards, actual grave entry QA39989 allowed before own restriction begins. Both-side simultaneous <=5000 current-power destruction, actual Glory Muscle makes a2000 creature6000, seed/6000/sealed creature preserved, speed/T3; creature-only hand-entry lock never blocks noncreatures and respects source ignored/sealed/departed states. Spell draws3 then exact selected discard2 and encrypted decision continuation. Harten actual blocker/no-player-attack; both-player grave creature entry and grave-spell casting bans distinct from grave departure, actual Mugen Crime and Inferno Sign blocked, Dark Reverse recovery allowed. Back printed2 bounces opposing exact physical noncreature card, including seeds/gears/fields/buried seed/seal, excludes own cards and creature cards under an evolution, mandatory draw even no target; physical-owner hand routing including changed-control buried/seal snapshots. Both seats, genuine mana orientations, actual Genmu spell suppression, AI hidden information and encrypted duel service. Focused128 plus later4 physical-owner tests, related172 and online5 passed; npm check, audit and old-data invariants passed. All prior long/full-suite pending records preserved.",
+    "resolvedAttempts": "New fixtures initially used legacy buff which is attack-only, a wrongly guessed recovery spell ID and assumed all twinpacts were multicolor. Corrected to actual Glory Muscle +4000, actual Dark Reverse and Tranky single-Light mana. Initial high-power excluded target Jackie correctly made the buff spell infinitely costly; replaced by actual King Orion6000. All failed logs retained; no old pending removed. Before pin verification completed, native Sweep needed explicit both:true and BattleCardMove579 explicit toOwnerHand propagation; those implementation corrections are fully included in passing tests. Official treasure dmrp22-TR1 HTML lists mana dash but its full official image visibly prints1: exact image hash and reviewed reason preserved via existing manaImageEvidence verification.",
+    "nextCandidates": [
+      {
+        "id": "dmsd08-010",
+        "name": "イッコダス・ケイジ/種デスティニー",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+      },
+      {
+        "id": "dmrp12-030",
+        "name": "スピナッチ・パンツァー/スピナー・ブル",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+      },
+      {
+        "id": "dmrp12-025",
+        "name": "チョウハツ・チュリス/ロンゲスト・ウェイ",
+        "reason": "Research complete twinpact front and back, every exact print and rulings. Prioritize native battle-win GR, attack-target redirection/battle-loss mana movement, or next-opponent-turn compulsory player attack; do not register partial implementation."
+      }
+    ]
+  }
+}

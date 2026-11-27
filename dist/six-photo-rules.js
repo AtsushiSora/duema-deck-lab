@@ -579,7 +579,7 @@ export function createSixPhotoRules(api){
  function moveSelectedCard581(s,t,row,to){
   const {p,x,origin}=row;
   if(origin==='battle')api.moveBattleCard(s,p,x.uid,to,{destroy:to==='grave'&&!t.g815PutInGrave,controller:t.controller??t.p,
-   ...(t.toOwnerGrave?{destinationOwner:x.cardOwner??p,toOwnerGrave:true}:{}),...(t.toOwnerDeck?{destinationOwner:x.cardOwner??p,toOwnerDeck:true}:{})});
+   ...(t.toOwnerGrave?{destinationOwner:x.cardOwner??p,toOwnerGrave:true}:{}),...(t.toOwnerDeck?{destinationOwner:x.cardOwner??p,toOwnerDeck:true}:{}),...(t.toOwnerHand?{destinationOwner:x.cardOwner??p,toOwnerHand:true}:{})});
   else if(origin==='hand'&&to==='grave')api.discardSelected(s,p,[x.uid],t.source,t.controller??t.p);
   else zoneMove(s,p,origin,x.uid,to,{...t,g183Return:to==='deckTop'});
  }
