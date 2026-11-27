@@ -312478,18 +312478,151 @@
       },
       "supportBatch": "phase-1833",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-010",
+      "name": "イッコダス・ケイジ/種デスティニー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\n【呪文面】\nバトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-010",
+      "limit": 4,
+      "machFighter": true,
+      "g189BattleWin": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "spellFace": {
+        "name": "種デスティニー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "max": 2,
+            "to": "grave",
+            "toOwnerGrave": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1834",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-030",
+      "name": "スピナッチ・パンツァー/スピナー・ブル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "グランセクト",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。\nこのクリーチャーがバトルに負けた時、相手クリーチャーを持ち主のマナゾーンに置く。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-030",
+      "limit": 4,
+      "breaker": 2,
+      "g431AttackMe": true,
+      "g1834BattleLossMana": true,
+      "spellFace": {
+        "name": "スピナー・ブル",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 1,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1834",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-025",
+      "name": "チョウハツ・チュリス/ロンゲスト・ウェイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ビートジョッキー",
+      "text": "パワーアタッカー+5000（攻撃中、このクリーチャーのパワーを+5000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、次の相手のターン、相手のクリーチャーはすべて、可能なら自分を攻撃する。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー5000以下のクリーチャーを１体選んで裏向きにし、新しいシールドとして持ち主のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-025",
+      "limit": 4,
+      "attackBonus": 5000,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ForceGroup546",
+          "when": "nextOpponent",
+          "g1834PlayerOnly": true
+        }
+      ],
+      "spellFace": {
+        "name": "ロンゲスト・ウェイ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1834",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1833,
-    "checkedAt": "2026-11-27T20:07:35.607Z",
-    "baseCount": 9709,
+    "phase": 1834,
+    "checkedAt": "2026-11-27T20:16:55.802Z",
+    "baseCount": 9712,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9712,
+    "totalCount": 9715,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43466/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -342483,6 +342616,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/43957/",
           "https://dm.takaratomy.co.jp/rule/qa/43488/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1833,
+        "checkedAt": "2026-11-27T20:07:35.607Z",
+        "baseCount": 9709,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9712,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43466/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -17,7 +17,11 @@ export function forceAttackTargets(s,p,actions,api){
  const creatureAttackers=new Set(actions.filter(a=>a.kind==='attack'&&creatureOnlyTargets.has(a.target)).map(a=>a.uid));
  // A player-attack obligation applies only when that creature can legally attack the player.
  // Competing compulsory targets remain alternatives; neither grants an attack permission.
- const requiredPlayers=new Set(actions.filter(a=>a.kind==='attack'&&a.target==='player'&&api.effective(s.players[p].battle.find(x=>x.uid===a.uid),s).g540MustPlayer).map(a=>a.uid));
+ const forcePlayer=(s.extLimits||[]).some(l=>l.kind==='g546Force'&&l.g1834PlayerOnly&&l.player===p&&
+  (l.when!=='nextOpponent'||s.active===1-l.controller&&s.turn>l.turn)&&
+  (l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));
+ const requiredPlayers=new Set(actions.filter(a=>a.kind==='attack'&&a.target==='player'&&
+  (forcePlayer||api.effective(s.players[p].battle.find(x=>x.uid===a.uid),s).g540MustPlayer)).map(a=>a.uid));
  // Defender instructions constrain a declared attack without forcing an attack this turn.
  const defendPlayer=s.players[1-p].battle.some(x=>!x.sealed&&api.effective(x,s).g896AttackPlayer);
  const players=new Set([...requiredPlayers,...(defendPlayer?actions.filter(a=>a.kind==='attack'&&a.target==='player').map(a=>a.uid):[])]);

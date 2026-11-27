@@ -1,0 +1,636 @@
+{
+  "phase": 1834,
+  "checkedAt": "2026-11-27T20:16:55.802Z",
+  "baseline": "807b94d7ff3869fed58c4cff62ed2cd3583b5735",
+  "baseCount": 9712,
+  "target": 10000,
+  "description": "Complete twinpacts using native battle-win GR and physical-card removal, compulsory legal creature targets and battle-loss opponent mana return, and a next-opponent-turn player attack obligation through existing serializable force timing; both Light spells include real S-triggers.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd08-010",
+      "name": "イッコダス・ケイジ/種デスティニー",
+      "canonicalId": "dmsd08-010",
+      "printId": "dmsd08-010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-010",
+      "faces": [
+        {
+          "name": "イッコダス・ケイジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "種デスティニー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g189BattleWin": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "spellFace": {
+          "name": "種デスティニー",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BattleCardMove579",
+              "max": 2,
+              "to": "grave",
+              "toOwnerGrave": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd08-010a.jpg",
+      "imageSha256": "ef729fdbf474328e1048035413e0e7550d37583f6bbdc655f75ab5c2aa945427",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd08-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd08-010",
+          "dmex05-036",
+          "dmrp09-026"
+        ],
+        "allSearchIds": [
+          "dmex05-036",
+          "dmsd08-010",
+          "dmrp09-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "sha256": "ef602e076706728e9f59af8a05a35ace9e5c2e87b2e3837a16dd646875952a58",
+        "facesMatched": true,
+        "imageSha256": "ef729fdbf474328e1048035413e0e7550d37583f6bbdc655f75ab5c2aa945427"
+      }
+    },
+    {
+      "id": "dmrp12-030",
+      "name": "スピナッチ・パンツァー/スピナー・ブル",
+      "canonicalId": "dmrp12-030",
+      "printId": "dmrp12-030",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-030",
+      "faces": [
+        {
+          "name": "スピナッチ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。\nこのクリーチャーがバトルに負けた時、相手クリーチャーを持ち主のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "8000",
+          "missingFields": []
+        },
+        {
+          "name": "スピナー・ブル",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g431AttackMe": true,
+        "g1834BattleLossMana": true,
+        "spellFace": {
+          "name": "スピナー・ブル",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "tap": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-030a.jpg",
+      "imageSha256": "92e3cabb7178099a1a05bbad024a0fd1bfb89d9fe84bf0776b8fc12a84d6bf8a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp12-030-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp12-030"
+        ],
+        "allSearchIds": [
+          "dmrp12-030"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "sha256": "e064d2325a15214da480055fcd80c68fb482eff839459915c9073e3f1ece3043",
+        "facesMatched": true,
+        "imageSha256": "92e3cabb7178099a1a05bbad024a0fd1bfb89d9fe84bf0776b8fc12a84d6bf8a"
+      }
+    },
+    {
+      "id": "dmrp12-025",
+      "name": "チョウハツ・チュリス/ロンゲスト・ウェイ",
+      "canonicalId": "dmrp12-025",
+      "printId": "dmrp12-025",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-025",
+      "faces": [
+        {
+          "name": "チョウハツ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "パワーアタッカー+5000（攻撃中、このクリーチャーのパワーを+5000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、次の相手のターン、相手のクリーチャーはすべて、可能なら自分を攻撃する。",
+          "race": "ビートジョッキー",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ロンゲスト・ウェイ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー5000以下のクリーチャーを１体選んで裏向きにし、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 5000,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ForceGroup546",
+            "when": "nextOpponent",
+            "g1834PlayerOnly": true
+          }
+        ],
+        "spellFace": {
+          "name": "ロンゲスト・ウェイ",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "toOwnerShields": true,
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-025a.jpg",
+      "imageSha256": "40437a468798b0bf22463e0c21d991a8c864e0973217bbd9b5bda89f1615e462",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp12-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp12-025"
+        ],
+        "allSearchIds": [
+          "dmrp12-025"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "sha256": "53dd869bbe58dafd72b0b4c497cc751892459b7b65e9f1ce1484299e716ef803",
+        "facesMatched": true,
+        "imageSha256": "40437a468798b0bf22463e0c21d991a8c864e0973217bbd9b5bda89f1615e462"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex05-036",
+      "name": "イッコダス・ケイジ/種デスティニー",
+      "canonicalId": "dmsd08-010",
+      "printId": "dmex05-036",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-036",
+      "faces": [
+        {
+          "name": "イッコダス・ケイジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "種デスティニー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g189BattleWin": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "spellFace": {
+          "name": "種デスティニー",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BattleCardMove579",
+              "max": 2,
+              "to": "grave",
+              "toOwnerGrave": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-036a.jpg",
+      "imageSha256": "6971595533f732647de157dec58854a80e5236df3b37aa56cfc0150fa03ae5e8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex05-036-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-036a.jpg",
+        "sha256": "6971595533f732647de157dec58854a80e5236df3b37aa56cfc0150fa03ae5e8",
+        "reviewedAt": "2026-11-27T20:16:55.802Z",
+        "reason": "Full original official twinpact image and all current reprints visually reviewed: spell is 自然. Old original HTML leaves only its civilization field blank.",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ]
+          }
+        ]
+      },
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd08-010",
+          "dmex05-036",
+          "dmrp09-026"
+        ],
+        "allSearchIds": [
+          "dmex05-036",
+          "dmsd08-010",
+          "dmrp09-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "sha256": "1c0fb122fbd3ecfaa3791a2f3a27ba6c2ace9b693964a5490ff7356c7bbd7f77",
+        "facesMatched": true,
+        "imageSha256": "6971595533f732647de157dec58854a80e5236df3b37aa56cfc0150fa03ae5e8"
+      }
+    },
+    {
+      "id": "dmrp09-026",
+      "name": "イッコダス・ケイジ/種デスティニー",
+      "canonicalId": "dmsd08-010",
+      "printId": "dmrp09-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-026",
+      "faces": [
+        {
+          "name": "イッコダス・ケイジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "種デスティニー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g189BattleWin": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "spellFace": {
+          "name": "種デスティニー",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BattleCardMove579",
+              "max": 2,
+              "to": "grave",
+              "toOwnerGrave": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-026a.jpg",
+      "imageSha256": "49e369c11829336ebd2df5f66c97db355d91798bc333cb54d9cd01852f1e5571",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp09-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd08-010",
+          "dmex05-036",
+          "dmrp09-026"
+        ],
+        "allSearchIds": [
+          "dmex05-036",
+          "dmsd08-010",
+          "dmrp09-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:16:55.802Z",
+        "sha256": "b94b15ede1eda2ad7a38d7acf6ab261136cea5663779c23b30201f05263f3a85",
+        "facesMatched": true,
+        "imageSha256": "49e369c11829336ebd2df5f66c97db355d91798bc333cb54d9cd01852f1e5571"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33076/",
+      "sha256": "2eaab8cf49b63d36d3ec9936d3c76f8d32dfa40475b59e23712272e3b229960e",
+      "checkedAt": "2026-11-27T20:24:14.933Z",
+      "reproduced": true,
+      "tests": "tests/standard1834-effects.test.mjs",
+      "reproduction": "QA33076 exact victorious battle opponent, not another enemy. Actual Panzer loses on either turn, sends actual Shauna9500 to mana; smaller actual always-win Kumo4000 also sent, with its subsequent native Mega Last Burst explicitly declined to inspect the mana destination. Tie, winning then dying to actual Slayer, ordinary bounce and ignored Panzer do not create a false loss trigger. Exact physical-owner routing verified in control-change snapshot.",
+      "result": "QA33076 exact victorious battle opponent, not another enemy. Actual Panzer loses on either turn, sends actual Shauna9500 to mana; smaller actual always-win Kumo3000 also sent, with its subsequent native Mega Last Burst explicitly declined to inspect the mana destination. Tie, winning then dying to actual Slayer, ordinary bounce and ignored Panzer do not create a false loss trigger. Exact physical-owner routing verified in control-change snapshot."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31778/",
+      "sha256": "33a54615059c6b44a01b5ece066d1ce553bd53b0fa3a9561639eecf34ca1677f",
+      "checkedAt": "2026-11-27T20:24:14.934Z",
+      "reproduced": true,
+      "tests": "tests/standard1834-effects.test.mjs",
+      "reproduction": "QA31778 actual cost-two Lemongrass top is selected by actual Seed Destiny, arrives in grave and offers native Last Burst; declining preserves the same grave UID. Buried cards/seals use their actual physical movement path and are not counted as creature destruction. Both seats.",
+      "result": "QA31778 actual cost-two Lemongrass top is selected by actual Seed Destiny, arrives in grave and offers native Last Burst; declining preserves the same grave UID. Buried cards/seals use their actual physical movement path and are not counted as creature destruction. Both seats."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T20:16:55.802Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd08-010": 4,
+      "dmrp12-030": 4,
+      "dmrp12-025": 4,
+      "dmex05-036": 4,
+      "dmrp09-026": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "related-1834-card",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(QA31778|Seed Destiny|a buried|[^:]* can remove a buried)",
+        "tests/standard1831-effects.test.mjs",
+        "tests/standard579-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.277,
+      "log": "tmp/duema-target-10000/related-1834-card.log",
+      "passed": 11,
+      "logSha256": "9881d53f5d8abed4003345e7044a0a729623ca3ea1be151dbc455abb699eb4a7"
+    },
+    {
+      "name": "extra-1834-power",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^Longest Way S-trigger cannot select",
+        "tests/standard1834-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.598,
+      "log": "tmp/duema-target-10000/extra-1834-power.log",
+      "passed": 2,
+      "logSha256": "01ce6c7d29a43b8b8d800589f94dfc4ea538f0138c938aaec989832bb126d0d1"
+    }
+  ],
+  "supplementalOfficialEvidence": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33076/",
+      "sha256": "2eaab8cf49b63d36d3ec9936d3c76f8d32dfa40475b59e23712272e3b229960e",
+      "body": "よくある質問 Q≪スピナッチ・パンツァー≫が持つ「このクリーチャーがバトルに負けた時」の能力でマナゾーンに置くのはどのクリーチャーですか？ A≪スピナッチ・パンツァー≫にバトルで勝ったクリーチャーです。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31563/",
+      "sha256": "915c9f30be2d24406147fb4825db032b81465cdf80ec084692045ad82bba3627",
+      "body": "よくある質問 Q《チョモランマッチョ》がバトルゾーンにいる時に《チョートッQ》を出しました。《チョートッQ》でクリーチャーに攻撃しなければいけませんか？ Aいいえ、《チョートッQ》がバトルゾーンに出た時に攻撃できるのはプレイヤーだけです。《チョモランマッチョ》は可能であればクリーチャーを攻撃するように指示しているだけなので、可能ではない場合攻撃する必要はありません。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43292/",
+      "sha256": "f17e1862c1cfff3879e7521877001b41e00e30be67987d8545f9d15d3a03d99f",
+      "body": "よくある質問 Q相手の《流星のガイアッシュ・カイザー》がバトルゾーンにいる状況です。 自分は《勝熱と弾丸と自由の決断》を唱えて、「このターン、自分のクリーチャー１体は相手プレイヤーを攻撃できる」を選びました。 このターンに出た自分のクリーチャーを効果で選んだ場合、そのクリーチャーは相手プレイヤーを攻撃できますか？ 類似例：《ボン・キゴマイム / ♪やせ蛙 ラッキーナンバー ここにあり》の「相手のクリーチャーが出た時」の能力、《奇天烈 シャッフ》の「出た時または攻撃する時」の能力、《爆藍月 スケルハンター》 Aいいえ、攻撃できません。この場合は「攻撃できない」効果が優先されます。「攻撃できる」という効果と「攻撃できない」という効果が同時にある場合、「攻撃できない」という効果が優先されます。 （総合ルール 101.2） 一覧へ戻る 関連する質問 《烈しき切札 ドギラゴン逆》の「極限ファイナル革命」の効果を受け、相手のカードの効果で離れなくなっている自分の《ベイB セガーレ》がいます。 この状況で相手が「G・ゼロ」や「S・トリガー」、「D・D・D」の効果でマナゾーンの枚数よりコストが大きいクリーチャーを召喚する際、《ベイB セガーレ》の「相手が、自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーを出す時」の置換効果は適用できますか？ 参照：《護英雄 タップ・ド・レイユ》《圧倒するレオパルズ・ホーン》《轟く邪道 レッドゾーン》 2026.7.9 《燃え尽きぬ館 レッド・プロミネンス》の「各ターン、クリーチャーを１体、自分のマナゾーンから召喚してもよい。そうしたら、自分の山札の上から１枚をタップしてマナゾーンに置いてもよい」で、マナゾーンから《流星のガイアッシュ・カイザー》を「相手のターンの終わりに」の能力でコストを支払わずに召喚したり、《光牙忍ハヤブサマル》を「ニンジャ・ストライク」でコストを支払わずに召喚したりできますか？ 2026.4.10 相手のターン中、相手は「跳次元召喚２」で《時空のネビュラ マティーニ》を出しました。 このターンの終わりに、自分は《流星のガイアッシュ・カイザー》を「相手のターンの終わりに」の能力でコストを支払わずに召喚できますか？ 参照：《スパイラル・テレポートホール》 類似例：《ヴェネラック-F5》 2026.2.13 《コアラ大佐の虹勲章》の「超魂X」能力には「自分のクリーチャーが持つ、攻撃できない能力を無視する」とありますが、この能力で自分の《ボン・キゴマイム / ♪やせ蛙 ラッキーナンバー ここにあり》の「相手のクリーチャーが出た時」の能力や、自分の《爆藍月 スケルハンター》の「相手のクリーチャーは、出たターン、攻撃できない」も無視されてしまいますか？ 類似例：《喜びの夜 エルボロム・ハッピー》 2025.12.19 バトルゾーンに相手の《万能バンノー》がいる状況で、このターンに出した《爆銀王剣 バトガイ刃斗》が「龍解」し≪爆熱王ＤＸ バトガイ銀河≫になりました。 この≪爆熱王ＤＸ バトガイ銀河≫は、このターン攻撃できますか？ 類似例：《ボン・キゴマイム / ♪やせ蛙 ラッキーナンバー ここにあり》 2025.11.14 自分のターン中、相手の《天革の騎令嬢 ミラクルステラ》がバトルゾーンにいる状況で、自分は《轟く邪道 レッドゾーン》を召喚して出しました。 このターン中に相手の「S・トリガー」などで《轟く邪道 レッドゾーン》がバトルゾーンを離れた場合、残った自分のクリーチャーは相手の《天革の騎令嬢 ミラクルステラ》の効果で攻撃できなくなりますか？ 類似例：《ボン・キゴマイム / ♪やせ蛙 ラッキーナンバー ここにあり》の「相手のクリーチャーが出た時」の能力 2025.9.19 「自分のクリーチャーは、相手のカードによる攻撃できない効果を無視して攻撃できる」とはなんですか？ 参照：《轟く邪道 レッドゾーン》 2025.9.19 相手のターン中、相手は闇のクリーチャー２体をバトルゾーンに出しました。 同じターン中に続けて、相手は《邪侵入》を唱えて《漆黒の深淵 ジャシン帝》をバトルゾーンに出しました。 このターンの終わりに、自分は《真気楼と誠偽感の決断》を「相手のターンの終わりに」の能力で唱えられま"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41262/",
+      "sha256": "cad839269c439d5eb49d5405f41a7fbfa4449eaf3a224c9b111ecfc44fa98171",
+      "body": "よくある質問 Q《ガチャダマン》の「出た時」の能力で《The ジョギラゴン・アバレガン》をGR召喚しました。そのターン、その《The ジョギラゴン・アバレガン》は「マッハファイター」で相手のクリーチャーを攻撃できますか？ Aはい、相手のクリーチャーを攻撃できます。召喚酔いにより相手プレイヤーを攻撃できないので、「可能なら相手プレイヤーを攻撃する」は適用されません。 一覧へ戻る 関連する質問 《The ジョギラゴン・アバレガン》が攻撃した時、《天ニ煌メク龍終ノ裁キ》の「アタック・チャンス」と《革命類侵略目 パラスキング》の「侵略」の使用の宣言をしました。先に《天ニ煌メク龍終ノ裁キ》の効果を解決し、自分のマスター・ドラゴンをすべてアンタップさせてから《革命類侵略目 パラスキング》に進化して、相手のシールドを３つブレイクできますか？ 2021.10.22 自分の《ガイアール・カイザー》と《The ジョギラゴン・アバレガン》、相手の《モモキング -旅丸-》がバトルゾーンにいる状況です。 自分の《The ジョギラゴン・アバレガン》の「攻撃する時」の能力で自分のシールドをブレイクする際、《ガイアール・カイザー》の置換効果を使い、そのシールドを手札に加えるかわりに墓地に置きました。超次元ゾーンから墓地に置いたカードと同じコストのハンター・サイキック・クリーチャーを出す際、《モモキング -旅丸-》の置換効果はどうなりますか？ 2021.7.16 《燃えろ！アポロソくん》が攻撃する時《ジョギラゴン＆ジョニー ～Jの旅路～》の「革命チェンジ」能力を宣言をしました。入れ替えてから《燃えろ！アポロソくん》の「攻撃する時」の能力と《ジョギラゴン＆ジョニー ～Jの旅路～》の「出た時」の能力は、どちらから先に解決しますか？ 類似例：《The ジョギラゴン・アバレガン》 2020.12.15 《The ジョギラゴン・アバレガン》などの能力で、攻撃クリーチャーが自分のシールドをブレイクしていた場合にも「キリフダッシュ」を使えますか？ 2020.3.13 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード"
+    }
+  ],
+  "supplementalVerification": {
+    "sources": [
+      "https://dm.takaratomy.co.jp/rule/qa/33076/",
+      "https://dm.takaratomy.co.jp/rule/qa/31563/",
+      "https://dm.takaratomy.co.jp/rule/qa/43292/",
+      "https://dm.takaratomy.co.jp/rule/qa/41262/"
+    ],
+    "scope": "QA33076 directly reproduced. QA31563/43292/41262 establish that compulsory attacks do not grant permission or bypass prohibitions; the same player-attack obligation is tested via actual Chohatsu affecting a freshly summoned Mach Fighter Ikkodas, which can attack a creature but not the player. Actual Q/Chototsu and other existing cards covered by selected phase540 regressions. No claim to newly register all the other cards appearing in supplemental questions."
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmsd08-010",
+      "searchSha256": "630b2234b0bf09f1b14b6cca0686ad0ffdeead28e565839af5fc08d54254b066",
+      "allSearchIds": [
+        "dmex05-036",
+        "dmsd08-010",
+        "dmrp09-026"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmsd08-010",
+        "dmex05-036",
+        "dmrp09-026"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All first-page results:3,1,1 respectively; no truncation."
+    },
+    {
+      "id": "dmrp12-030",
+      "searchSha256": "2ed0fa48533bfb2275504f188f37161c7d78d18d631d42917f3d7fdb202d6fdc",
+      "allSearchIds": [
+        "dmrp12-030"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp12-030"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All first-page results:3,1,1 respectively; no truncation."
+    },
+    {
+      "id": "dmrp12-025",
+      "searchSha256": "cfbee8fa9cf91b555456bd069a989e0c1bb5a2f096270db0ea829a78f8df2a4d",
+      "allSearchIds": [
+        "dmrp12-025"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp12-025"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All first-page results:3,1,1 respectively; no truncation."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three complete twinpacts and five official print images/basic data, restrictions and all exact reprints checked. Ikkodas paid4/4000 Mach Fighter, actual untapped-target entry-turn attack and native battle-win top GR summon on either turn; tie/loss/emptyGR/entrylock/ignored-source no false GR. Seed Destiny pays1 and moves one exact opponent physical card cost<=2, including top creature/seed/gear/field, under-card or zero-cost facedown seal; physical owner grave, no target safe, actual Last Burst on a top creature. Panzer paid6/8000 W2, declared attacks redirected only to legally attackable source, never grants untapped/protected attack permission or forces declaration; multiple targets, seal/ignore. Exact victorious opponent on genuine battle loss, including smaller always-win Kumo, follows actual owner mana; tie/winning-Slayer/bounce/ignored cases excluded. Spinner Bull pays1, mandatory either-side creature tap and S-trigger. Chohatsu paid6/5000+attack5000 W2; native next-opponent force timing extended only with player target obligation, dynamic later Speed Attacker covered, source departure survives, recipient ignored still externally constrained, sickness/noPlayer/noAttack respected, competing legal Panzer/player targets remain alternatives and no end-turn escape, expires after the actual next opponent turn. Longest Way paid4 and genuine S-trigger chooses enemy current power<=5000 to a new facedown shield; an attacking Chohatsu current10000 is excluded despite printed5000. Both seats, exact mana orientation, physical card conservation, AI hidden information/read-only, encrypted server action/choice continuation. Full focused100, extra current-power2, related240 plus physical/LastBurst11 and online5 passed. npm check, audit, original IDs/data/saveformats invariants passed; all previous full/long-test interruptions retained.",
+    "resolvedAttempts": "Initial Panzer battle fixture tapped both participants so there was no legal attack; corrected only the attacker tap state. An expiry fixture did not retain a tapped creature target through its own normal untap; corrected with actual skip-untap state. Initial purported later speed attacker and Slayer IDs were not those abilities; replaced with actual Peekap dm05-049 and Bone Assassin dm01-088 and required nonempty attack choices. Eternal Omega Maximus correctly returned to hand rather than mana, and actual Kumo correctly offered Mega Last Burst from mana; replaced the normal victor with actual Shauna and explicitly declined Kumo Mega Last Burst. New Seed Destiny used a non-destruction flag incorrectly; actual QA31778 test caught missing Last Burst, so removed that flag. All failed attempt logs retained; final verified data includes corrections. Official reprint dmex05-036 lacks only spell civilization in HTML: full image shows Fire, matches both other prints, and exact image evidence records that narrow supplement.",
+    "nextCandidates": [
+      {
+        "id": "dmsd10-003",
+        "name": "審絆の鎮り 新蓮 / ジャスティス・シェイパー",
+        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+      },
+      {
+        "id": "dmrp11-013",
+        "name": "審絆 ジェイラ/フレイム・ジェイル",
+        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+      },
+      {
+        "id": "dmrp05-015",
+        "name": "無法地帯 マクラーゲン/無法警報PSY",
+        "reason": "Complete native twinpact candidates: creature sympathy and optional Light NEO evolution with public all-Light look/remainder grave; creature sympathy with low-cost shield trigger grants; untargetable blocker with own hand-to-shield and physical shield-to-grave selection. All official prints/images/full abilities and related QA must pass before counting."
+      }
+    ]
+  }
+}
