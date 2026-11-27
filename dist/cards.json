@@ -304241,17 +304241,128 @@
       ],
       "supportBatch": "phase-1763",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd08-001",
+      "name": "真実の聖霊王 レオ・ザ・スター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "エンジェル・コマンド/アンノウン/ハンター",
+      "text": "進化-自分のエンジェル・コマンド１体の上に置く。\nブロッカー\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\n自分の他のエンジェル・コマンドがバトルゾーンを離れる時、離れるかわりにバトルゾーンにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-001",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "blocker": true,
+      "breaker": 3,
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "エンジェル・コマンド"
+          },
+          "grants": {
+            "g577Stay": {
+              "anyPower": true
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1764",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-040",
+      "name": "超覚醒ゼウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13500,
+      "race": "エンジェル・コマンド/クリエイター",
+      "text": "進化―自分のエンジェル・コマンド１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のシールドを２つブレイクする。\n自分のシールドが５つ以上なら、自分の光のクリーチャーはバトルゾーンを離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-040",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "n": 2
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "g557Condition": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "min": 5
+            }
+          },
+          "grants": {
+            "g577Stay": {
+              "anyPower": true
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1764",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-001",
+      "name": "聖霊王ジャスティウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n進化ー自分のエンジェル・コマンド１体の上に置く。\nパワー5000以下の相手のクリーチャーは攻撃することができない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-001",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1067OpponentAttackPowerMax": 5000,
+      "supportBatch": "phase-1764",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1763,
-    "checkedAt": "2026-11-27T07:34:48.149Z",
-    "baseCount": 9510,
+    "phase": 1764,
+    "checkedAt": "2026-11-27T07:42:56.071Z",
+    "baseCount": 9513,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9513,
+    "totalCount": 9516,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36690/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36691/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -333169,6 +333280,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/43921/",
           "https://dm.takaratomy.co.jp/rule/qa/33585/",
           "https://dm.takaratomy.co.jp/rule/qa/49228/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1763,
+        "checkedAt": "2026-11-27T07:34:48.149Z",
+        "baseCount": 9510,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9513,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
