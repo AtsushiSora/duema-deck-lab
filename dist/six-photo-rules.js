@@ -56,7 +56,7 @@ export function createSixPhotoRules(api){
  const hasSoul=(c,soul)=>c.g558Souls?.includes(soul)||c.text?.includes('【'+soul+'・ソウル】');
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
  // A restricted origin permission belongs to one incarnation of its provider.
- function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return s.players[p].battle.filter(y=>api.isCreature(s,y)||card(y).type==='seed'&&card(y).g450ZoneSummon?.emptyHand).flatMap(y=>{const r=!y.sealed&&!y.faceDown&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.emptyHand||s.players[p].hand.length===0)&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&(r.unlimited||s.g450ZoneUses?.[p]?.[k]!==s.turn)&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
+ function zonePermits450(s,p,x,c,origin){if(s.active!==p||!['creature','seed'].includes(c.type)||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return s.players[p].battle.filter(y=>api.isCreature(s,y)||card(y).type==='seed'&&card(y).g450ZoneSummon?.emptyHand).flatMap(y=>{const r=!y.sealed&&!y.faceDown&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&(c.type==='creature'||r.seed&&c.type==='seed')&&r.origin===origin&&(!r.emptyHand||s.players[p].hand.length===0)&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&(r.unlimited||s.g450ZoneUses?.[p]?.[k]!==s.turn)&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
  const graveAuraUse1816=(s,p,x)=>(s.extLimits||[]).some(l=>l.kind==='g1816AuraGraveUse'&&l.player===p&&
@@ -68,7 +68,7 @@ export function createSixPhotoRules(api){
   ...zonePermits450(s,p,x,c,'grave')
  ];
  // Mana characteristics include both twinpact faces and live Courtney effects.
- const manaPermits297=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='mana'&&s.players[p].mana.includes(x)&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'mana')?['g1436:mana']:[]):s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
+ const manaPermits297=(s,p,x,c=card(x))=>c.type==='seed'?(!x.faceDown&&s.players[p].mana.includes(x)?zonePermits450(s,p,x,c,'mana'):[]):c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='mana'&&s.players[p].mana.includes(x)&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'mana')?['g1436:mana']:[]):s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
   ...(c.g297SelfManaSummon&&ownCondition(s,p,c.g297SelfManaSummon)?['g297:self']:[]),
   ...(s.extLimits||[]).filter(l=>l.kind==='g1288ManaSummon'&&!l.used&&l.player===p&&l.turn===s.turn&&
    l.refs.some(ref=>ref.uid===x.uid&&ref.serial===(x.zoneSerial||0))&&!spellGrantIgnored(s,l)).map(l=>l.permit),
@@ -10673,7 +10673,12 @@ export function createSixPhotoRules(api){
   const granted=s.extLimits?.find(l=>l.kind==='g1288ManaSummon'&&l.permit===permit);
   if(granted)granted.used=true;
  }
- consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type!=='spell')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ consumeOnce464(s,p,c,false);recordSummon463(s,p,c);if(c.type!=='spell')consumeReduction456(s,p,c);if((c.type==='creature'||c.type==='seed')&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:')){
+  ((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;
+  const provider=s.players[p].battle.find(y=>'g450:'+key(y)===permit);
+  const after=provider&&effective(provider,s).g450ZoneSummon?.afterUse;
+  if(after)start(s,{p,source:provider.cardId,uid:provider.uid,incarnation:provider.incarnation||0},after);
+ }if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  scheduleAltEnd1221(s,p,c,inst){
   if(s.endStep||!c.g568Alt?.end)return;
   (s.g537Delays??=[]).push({p,source:c.id,when:'turnEnd',turn:s.turn,
@@ -11066,7 +11071,7 @@ export function createSixPhotoRules(api){
   // Watch actual mana taps, for either player, including this source's own free entry.
   if(creature&&!y.sealed&&!options.paidMana)for(const owner of [s.active,1-s.active])
    for(const watcher of creatures(s,owner)){
-    if(watcher.sealed||!card(watcher).g1622UnpaidEntryDestroy||!effective(watcher,s).g1622UnpaidEntryDestroy)continue;
+    if(watcher.sealed||!card(watcher).g1622UnpaidEntryDestroy||!effective(watcher,s).g1622UnpaidEntryDestroy||card(watcher).g1622UnpaidEntryDestroy==='costUnpaid'&&options.costPaid)continue;
     queue(s,owner,watcher,[{op:'ExactMove',owner:p,to:'grave',filter:{creature:true},
      g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0})),
      followEvolution:'evolutionOnly',target:y.uid,targetIncarnation:y.incarnation||0}]);
@@ -12050,7 +12055,7 @@ export function createSixPhotoRules(api){
      out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'mana',manaPermit:permit,cost:0,freeSummon:'G・ゼロ',
       label:c.name+'をマナからG・ゼロで召喚する'});
    }
-   for(const permit of permits)for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){if(c.manaSummon&&snowReducers===undefined)continue;const payment={...c,summonOrigin:'mana',executionUid:x.uid,...(snowReducers?{snowReducers}:{})};if(api.canPay(s,p,payment))out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'mana',manaPermit:permit,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+'をマナから召喚する'+(snowReducers?'・軽減の使用先を選ぶ':'')});}
+   for(const permit of permits)for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){if(c.manaSummon&&snowReducers===undefined)continue;const payment={...c,summonOrigin:'mana',executionUid:x.uid,...(snowReducers?{snowReducers}:{})};if(api.canPay(s,p,payment))out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'mana',manaPermit:permit,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(c.type==='seed'?'をマナから実行する':'をマナから召喚する')+(snowReducers?'・軽減の使用先を選ぶ':'')});}
   }
   for(const x of own.mana){const c=card(x);if(x.faceDown||c.g296ManaBirth===undefined||!api.canCast(s,p,c,'mana')||!api.canEnter(s,p,c,{origin:'mana',execution:true}))continue;
    // Evolution Mana Birth must carry the chosen base through payment and entry.

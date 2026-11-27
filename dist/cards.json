@@ -315074,17 +315074,73 @@
       ],
       "supportBatch": "phase-1853",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd03-008",
+      "name": "キャタピラ親方",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nいずれかのプレイヤーがコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-008",
+      "limit": 4,
+      "joeDiscount": 1,
+      "speedAttacker": true,
+      "g1622UnpaidEntryDestroy": "costUnpaid",
+      "supportBatch": "phase-1854",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-023",
+      "name": "マスクド・ギガタック",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "グランセクト/レクスターズ",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n自分のターン中、自然のタマシードを１枚、自分のマナゾーンから使ってもよい。そうしたら、自分の山札の上から１枚目をマナゾーンにタップして置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-023",
+      "limit": 4,
+      "machFighter": true,
+      "g450ZoneSummon": {
+        "origin": "mana",
+        "seed": true,
+        "filter": {
+          "g295Tamaseed": true,
+          "color": "自然"
+        },
+        "afterUse": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1854",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1853,
-    "checkedAt": "2026-11-27T23:30:46.889Z",
-    "baseCount": 9766,
+    "phase": 1854,
+    "checkedAt": "2026-11-27T23:36:44.243Z",
+    "baseCount": 9768,
     "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9768,
+    "totalCount": 9770,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/41165/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -345376,6 +345432,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9766,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1853,
+        "checkedAt": "2026-11-27T23:30:46.889Z",
+        "baseCount": 9766,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9768,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

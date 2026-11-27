@@ -22039,5 +22039,90 @@
         }
       ]
     }
+  },
+  "dmbd03-008": {
+    "phase": 1854,
+    "faces": [
+      {
+        "name": "キャタピラ親方",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nいずれかのプレイヤーがコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+        "race": "ジョーカーズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "joeDiscount": 1,
+      "speedAttacker": true,
+      "g1622UnpaidEntryDestroy": "costUnpaid"
+    }
+  },
+  "dmex12-064": {
+    "phase": 1854,
+    "faces": [
+      {
+        "name": "キャタピラ親方",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nいずれかのプレイヤーがコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+        "race": "ジョーカーズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "joeDiscount": 1,
+      "speedAttacker": true,
+      "g1622UnpaidEntryDestroy": "costUnpaid"
+    }
+  },
+  "dmrp21-023": {
+    "phase": 1854,
+    "faces": [
+      {
+        "name": "マスクド・ギガタック",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n自分のターン中、自然のタマシードを１枚、自分のマナゾーンから使ってもよい。そうしたら、自分の山札の上から１枚目をマナゾーンにタップして置く。",
+        "race": "グランセクト/レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "machFighter": true,
+      "g450ZoneSummon": {
+        "origin": "mana",
+        "seed": true,
+        "filter": {
+          "g295Tamaseed": true,
+          "color": "自然"
+        },
+        "afterUse": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ]
+      }
+    }
   }
 }

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9768,
-  "pendingNames": 2081,
-  "phase": 1853,
+  "supportedNames": 9770,
+  "pendingNames": 2079,
+  "phase": 1854,
   "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1224,
+    "クリーチャー": 1222,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1557,
+    "未対応の能力文": 1555,
     "複数面・特殊カードタイプまたは情報不足": 434,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -579545,28 +579545,238 @@
           "reason": "Corrected public reveal assertion to real native reveal log (type=reveal/cardId=dm18-086), not nonexistent hand-move text. First expand refused before still-running official verification completed, did not mutate; succeeded after verified manifest. Related original group had one inherited failure; exact actual dm01-084 fixture was positively reproduced against baseline and new data, runtime confirmed unchanged, one failed case preserved as unresolved existing issue, passing related tests rerun with that case explicitly excluded."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "642188bae37ce772729a04721d7b9100cfff09fd"
+    },
+    {
+      "phase": 1854,
+      "checkedAt": "2026-11-27T23:42:23.510Z",
+      "baseline": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9768,
+      "currentNames": 9770,
+      "remainingNames": 230,
+      "added": [
+        {
+          "id": "dmbd03-008",
+          "name": "キャタピラ親方"
+        },
+        {
+          "id": "dmrp21-023",
+          "name": "マスクド・ギガタック"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1854,
+        "baseline": "642188bae37ce772729a04721d7b9100cfff09fd",
+        "originalDefinitionsUnchanged": 9768,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9770,
+        "uniqueIds": 9770,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9768,
+        "existingImageReferenceRowsUnchanged": 12236,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1854": {
+          "name": "official-1854",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1854.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.431,
+          "log": "tmp/duema-target-10000/official-1854.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1854-final": {
+          "name": "focused-1854-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1854-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.339,
+          "log": "tmp/duema-target-10000/focused-1854-final.log",
+          "passed": 48,
+          "logSha256": "5241f3b4112e475b0944649029184aad5baaaf73bca1629fcb1a0e49bac3e41a"
+        },
+        "related-1854": {
+          "name": "related-1854",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1854.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.273,
+          "log": "tmp/duema-target-10000/related-1854.log",
+          "passed": 105,
+          "logSha256": "aa7f850a35a8af87af2f8d6f19630a29dd657d2837d249816c5ef2c6af2255c9"
+        },
+        "check-1854": {
+          "name": "check-1854",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.441,
+          "log": "tmp/duema-target-10000/check-1854.log",
+          "passed": 0,
+          "logSha256": "4de499d5c3be0241f6cc237f799aa57b89816485d9d0dc681e64fce6f7af3124"
+        },
+        "audit-1854": {
+          "name": "audit-1854",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.537,
+          "log": "tmp/duema-target-10000/audit-1854.log",
+          "passed": 0,
+          "logSha256": "1e0e185b8bd3cad9f0b977cb2a8d8e53e7aae184e481b228d78ef52dea3a936c"
+        },
+        "invariants-1854": {
+          "name": "invariants-1854",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1854"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.857,
+          "log": "tmp/duema-target-10000/invariants-1854.log",
+          "passed": 0,
+          "logSha256": "44f0920f5f0a7dc8bd772ac1d700e94dbfd8b0182b278da6d7c386ee2ec6b8b2"
+        },
+        "related-online-1854": {
+          "name": "related-online-1854",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.615,
+          "log": "tmp/duema-target-10000/related-online-1854.log",
+          "passed": 5,
+          "logSha256": "a6be79b003e815bc9f948f1c66f9dda5673a8348a896896d252f4b57a7d4f11a"
+        }
+      },
+      "totalTestsPassed": 158,
+      "manifest": "tools/support-phase-1854.json",
+      "supported": 9770,
+      "pending": 2079,
+      "engineVersion": "0.602.378",
+      "held": [
+        {
+          "id": "dm01-024",
+          "name": "ギガベロス",
+          "reason": "Both exact original/promo full images/basic/text/limits/search inspected, no linked QA; full ability requires mandatory TWO OTHER battlefield-to-grave placements, otherwise self-to-grave. Existing SacrificeAlly413 is destruction/attempt payoff and cannot be reused blindly for non-destruction placement or incomplete two-card branch. Need confirm precise partial-count/placement-replacement behavior and extend exact atomic move continuation with genuine tests; no partial W-breaker/entry registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm26ex2-026",
+          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        },
+        {
+          "id": "dmsd11-004",
+          "name": "ティアンゴ・ハーミィ/ティアビタンG",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        },
+        {
+          "id": "dm23rp1-002",
+          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        }
+      ],
+      "verificationScope": "All2 complete canonical cards/1 Catapira alias, exact3 full images/text/basic/mana1/limit4 checked. Catapira JOE1 optional paid4 vsnormal5, both haste and end bottom-draw verified. Existing1622 exact unpaid entrant destruction reused with explicit costUnpaid mode: BOTH players/own free entry/zero-cost paid summon destroyed; nonzero cost paid using actual Bird substitute and no mana taps survives Catapira but still destroyed by actual early-shooter Magnum, preserving distinct printed conditions. Same exact entrant, no substitute sacrifice; source ignore/seals/left; pending watches survive source departure and independent entrant draw still resolves. Masked full native MachFighter; own-turn once source-instance permission extended native450 only exact seed opt-in; printed Nature TAMAseed scope includes actual Nature Tamaseed/Creature Hercules, excludes Dark/plain/faceDown and foreign/sealed/buried/ignored/Apul-locked. Actual payment/cancel/hand/direct use/independent2 providers/refresh covered, follow-use tapped ramp completes before actual executed seed own entry ramp; no duplicated top card. Native mana pool permits using the executed card itself (preserved). Focused48 includes4 real encrypted server tests, both Masked server cases execute actual mana seed across native manual payment/service projected legal IDs. Related450/1622/601/1704 and online5, check/audit9770/invariants pass. Existing phase1853 baseline blocker issue and all old pending/fullSuite preserved; no global pass claimed. No fullnpmtest/knownlonggroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1854",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1854-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.056,
+          "log": "tmp/duema-target-10000/focused-1854.log",
+          "reason": "Test fixture corrections: real seals need physical seal rows, otherwise refresh correctly removes synthetic sealed flag; source and entrant need same owner to choose independent trigger order (cross-player effects use legal active-player ordering); native mana execution payment pool legitimately includes its own physical card and original pool retained; after next turn begins, advance charge-phase assumption to main for mana-use legality assertion. Full-scope review caught and fixed new-spec initial pure-seed filter to g295Tamaseed so hybrid Tamaseed/Creature is also legal. Reran final48, check after changedspec; no new unresolved registered ability."
+        },
+        {
+          "name": "check-1854",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 20.188,
+          "log": "tmp/duema-target-10000/check-1854-previous-1795822907437362000.log",
+          "originalLog": "tmp/duema-target-10000/check-1854.log",
+          "reason": "Test fixture corrections: real seals need physical seal rows, otherwise refresh correctly removes synthetic sealed flag; source and entrant need same owner to choose independent trigger order (cross-player effects use legal active-player ordering); native mana execution payment pool legitimately includes its own physical card and original pool retained; after next turn begins, advance charge-phase assumption to main for mana-use legality assertion. Full-scope review caught and fixed new-spec initial pure-seed filter to g295Tamaseed so hybrid Tamaseed/Creature is also legal. Reran final48, check after changedspec; no new unresolved registered ability."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1853,
-    "nextPhase": 1854,
+    "lastVerifiedPhase": 1854,
+    "nextPhase": 1855,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmbd03-008",
-        "name": "キャタピラ親方",
-        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+        "id": "dm26ex2-026",
+        "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
       },
       {
-        "id": "dm01-024",
-        "name": "ギガベロス",
-        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+        "id": "dmsd11-004",
+        "name": "ティアンゴ・ハーミィ/ティアビタンG",
+        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
       },
       {
-        "id": "dmrp21-023",
-        "name": "マスクド・ギガタック",
-        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+        "id": "dm23rp1-002",
+        "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
       }
     ],
     "steps": [
@@ -580480,11 +580690,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1853,
-      "baseline": "b1527377c816f8fd73a54acc6505f4692cce7567",
-      "supportedNames": 9768,
-      "artifact": "tools/target10000-registration-checkpoint-1853.json",
-      "checkedAt": "2026-11-27T23:35:01.690Z"
+      "phase": 1854,
+      "baseline": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "supportedNames": 9770,
+      "artifact": "tools/target10000-registration-checkpoint-1854.json",
+      "checkedAt": "2026-11-27T23:42:23.510Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -583542,8 +583752,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9768,
-      "remaining": 232,
+      "currentNames": 9770,
+      "remaining": 230,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583551,26 +583761,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1853,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1853.json",
+      "lastPhase": 1854,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1854.json",
       "nextCandidates": [
         {
-          "id": "dmbd03-008",
-          "name": "キャタピラ親方",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm26ex2-026",
+          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dm01-024",
-          "name": "ギガベロス",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dmsd11-004",
+          "name": "ティアンゴ・ハーミィ/ティアビタンG",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dmrp21-023",
-          "name": "マスクド・ギガタック",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm23rp1-002",
+          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         }
       ],
-      "resumeProcedure": "Phase1853 verified9768 names, remaining232. Next1854 review groupedresearch, preserve new explicitly baseline-reproduced blocker issue and all old pending/fullSuite/holds. No fullnpmtest/longgroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1854 verified9770 names, remaining230. Next1855 review twinpact3 full research/images/QA; preserve older pending and baseline blocker issue. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -583804,7 +584014,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "b1527377c816f8fd73a54acc6505f4692cce7567",
+      "lastVerifiedCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -583815,7 +584025,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "b1527377c816f8fd73a54acc6505f4692cce7567",
+      "lastVerifiedCodeCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -583831,6 +584041,11 @@
           "id": "dm02-044",
           "name": "ギガスタンド",
           "reason": "Official2 prints/full text and QA downloaded as alternate candidate. Discard happens BEFORE return and cannot discard returning self, unlike existing g1608GraveReturnDiscard (return THEN mandatory discard including self). Need resource-reserved pre-discard replacement and exact QA reproduction; no partial registration. Images not visually reviewed yet."
+        },
+        {
+          "id": "dm01-024",
+          "name": "ギガベロス",
+          "reason": "Both exact original/promo full images/basic/text/limits/search inspected, no linked QA; full ability requires mandatory TWO OTHER battlefield-to-grave placements, otherwise self-to-grave. Existing SacrificeAlly413 is destruction/attempt payoff and cannot be reused blindly for non-destruction placement or incomplete two-card branch. Need confirm precise partial-count/placement-replacement behavior and extend exact atomic move continuation with genuine tests; no partial W-breaker/entry registration."
         }
       ],
       "baselineRegressionPending": [
@@ -584958,8 +585173,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9768,
-      "remaining": 232,
+      "currentNames": 9770,
+      "remaining": 230,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584967,26 +585182,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1853,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1853.json",
+      "lastPhase": 1854,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1854.json",
       "nextCandidates": [
         {
-          "id": "dmbd03-008",
-          "name": "キャタピラ親方",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm26ex2-026",
+          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dm01-024",
-          "name": "ギガベロス",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dmsd11-004",
+          "name": "ティアンゴ・ハーミィ/ティアビタンG",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dmrp21-023",
-          "name": "マスクド・ギガタック",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm23rp1-002",
+          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         }
       ],
-      "resumeProcedure": "Phase1853 verified9768 names, remaining232. Next1854 review groupedresearch, preserve new explicitly baseline-reproduced blocker issue and all old pending/fullSuite/holds. No fullnpmtest/longgroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1854 verified9770 names, remaining230. Next1855 review twinpact3 full research/images/QA; preserve older pending and baseline blocker issue. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -585220,7 +585435,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "b1527377c816f8fd73a54acc6505f4692cce7567",
+      "lastVerifiedCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -585231,7 +585446,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "b1527377c816f8fd73a54acc6505f4692cce7567",
+      "lastVerifiedCodeCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -585247,6 +585462,11 @@
           "id": "dm02-044",
           "name": "ギガスタンド",
           "reason": "Official2 prints/full text and QA downloaded as alternate candidate. Discard happens BEFORE return and cannot discard returning self, unlike existing g1608GraveReturnDiscard (return THEN mandatory discard including self). Need resource-reserved pre-discard replacement and exact QA reproduction; no partial registration. Images not visually reviewed yet."
+        },
+        {
+          "id": "dm01-024",
+          "name": "ギガベロス",
+          "reason": "Both exact original/promo full images/basic/text/limits/search inspected, no linked QA; full ability requires mandatory TWO OTHER battlefield-to-grave placements, otherwise self-to-grave. Existing SacrificeAlly413 is destruction/attempt payoff and cannot be reused blindly for non-destruction placement or incomplete two-card branch. Need confirm precise partial-count/placement-replacement behavior and extend exact atomic move continuation with genuine tests; no partial W-breaker/entry registration."
         }
       ],
       "baselineRegressionPending": [
@@ -592801,6 +593021,231 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1853.json"
+      },
+      {
+        "phase": 1854,
+        "status": "implemented-and-verified-two-other-candidate-held",
+        "research": "tmp/duema-target-10000/research-dmbd03-008.json",
+        "cards": [
+          {
+            "id": "dmbd03-008",
+            "name": "キャタピラ親方",
+            "searchSha256": "1106dd71810dd395e3582923484645afb57d8268fdf3c741eb8e0efde75825e1",
+            "searchIds": [
+              "dmex12-064",
+              "dmbd03-008"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmbd03-008",
+                "name": "キャタピラ親方",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-008",
+                "faces": [
+                  {
+                    "name": "キャタピラ親方",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nいずれかのプレイヤーがコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+                    "race": "ジョーカーズ",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmbd03-008",
+                "printedManaValue": 1,
+                "htmlSha256": "1ecaadbe9518a7c8781fdb21aad69e093711c1c2e3d2dce9413dca9447c3d63d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd03-008.jpg",
+                    "file": "tmp/duema-target-10000/research/dmbd03-008-0.jpg",
+                    "sha256": "2c516e54b5dd0d3f3f01157e5f0b57dd05787d019a6ae625799b2b320876fdd7"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dmex12-064",
+                "name": "キャタピラ親方",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-064",
+                "faces": [
+                  {
+                    "name": "キャタピラ親方",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nいずれかのプレイヤーがコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+                    "race": "ジョーカーズ",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmbd03-008",
+                "printedManaValue": 1,
+                "htmlSha256": "490a92bc22c300a853224041b5ef8661b84f49abd45741d65bb932f20e6c0845",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-064.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex12-064-0.jpg",
+                    "sha256": "af70044ca7c154ba7d6df3f42f5ea13f6ee6ff6d2e44eaf2d75283aacd630091"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm01-024",
+            "name": "ギガベロス",
+            "searchSha256": "d6b477d32e32389fab497086eb7044978d55af72c32995b728b83fa2b2e26583",
+            "searchIds": [
+              "promoy1-WINNER1",
+              "dm01-024"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm01-024",
+                "name": "ギガベロス",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-024",
+                "faces": [
+                  {
+                    "name": "ギガベロス",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャー２体を自分の墓地に置く。 そうしなければ、このクリーチャーを自分の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+                    "race": "キマイラ",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm01-024",
+                "printedManaValue": 1,
+                "htmlSha256": "6142fb37e2dc69f7bcf8a7d73200826648e1247431b91c26773f1bb8a45ff723",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-024.jpg",
+                    "file": "tmp/duema-target-10000/research/dm01-024-0.jpg",
+                    "sha256": "27bae229ebad52c6b516b7e13af4712091b76127ea849053febb5f9fb8289a54"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "promoy1-WINNER1",
+                "name": "ギガベロス",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy1-WINNER1",
+                "faces": [
+                  {
+                    "name": "ギガベロス",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャー2体を自分の墓地に置く。そうしなければ、このクリーチャーを自分の墓地に置く。\nW・ブレイカー（シールドを攻撃したとき、このクリーチャーはシールドを2枚ブレイクする。）",
+                    "race": "キマイラ",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm01-024",
+                "printedManaValue": 1,
+                "htmlSha256": "397cd5b889e04657f4e07842486f128ed01d0b9551a450976d883d6aa7ab76b7",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy1-WINNER1.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy1-WINNER1-0.jpg",
+                    "sha256": "491832baa3d22c9b2208405b7f54c36bac6277fde9a9181fa9f6d771c7b7eb50"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmrp21-023",
+            "name": "マスクド・ギガタック",
+            "searchSha256": "20ebc0de63b76a0519a08a3c71f7b70b6511261f6bfc44d16957605598dcd99c",
+            "searchIds": [
+              "dmrp21-023"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp21-023",
+                "name": "マスクド・ギガタック",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-023",
+                "faces": [
+                  {
+                    "name": "マスクド・ギガタック",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n自分のターン中、自然のタマシードを１枚、自分のマナゾーンから使ってもよい。そうしたら、自分の山札の上から１枚目をマナゾーンにタップして置く。",
+                    "race": "グランセクト/レクスターズ",
+                    "powerText": "4000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp21-023",
+                "printedManaValue": 1,
+                "htmlSha256": "7817bbec5234fc5eabfdef64c6c9e2a82088ea82b0f018c4d5713bd951bc996a",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-023.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp21-023-0.jpg",
+                    "sha256": "a8398f02c650c05c9bf61f9d1b1e133f56000011853ff03174a91842be0c1fab"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/41165/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/41165/",
+                "sha256": "06eb64b4ef8cef8c74698b962de7124330754908a2be9036e5dc2b09efc876ff",
+                "body": "よくある質問 Q《マスクド・ギガタック》の「自分のターン中、自然のタマシードを１枚、自分のマナゾーンから使ってもよい」でタマシードを使う際、そのマナコストを支払う必要がありますか？ Aはい、使う際はマナコストを支払う必要があります。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1854.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -592825,26 +593270,26 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1854,
+      "phase": 1855,
       "status": "official-full-search-downloaded-images-and-QA-pending-review",
-      "research": "tmp/duema-target-10000/research-dmbd03-008.json",
+      "research": "tmp/duema-target-10000/research-dm26ex2-026.json",
       "implementationStarted": false,
       "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dmbd03-008",
-          "name": "キャタピラ親方",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm26ex2-026",
+          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dm01-024",
-          "name": "ギガベロス",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dmsd11-004",
+          "name": "ティアンゴ・ハーミィ/ティアビタンG",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         },
         {
-          "id": "dmrp21-023",
-          "name": "マスクド・ギガタック",
-          "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+          "id": "dm23rp1-002",
+          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
         }
       ]
     }
@@ -644720,10 +645165,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1853,
+    "phase": 1854,
     "threshold": 10000,
-    "supportedNames": 9768,
-    "pendingNames": 2081,
+    "supportedNames": 9770,
+    "pendingNames": 2079,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -644732,7 +645177,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1853.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1854.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
