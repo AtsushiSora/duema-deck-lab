@@ -307068,15 +307068,122 @@
       ],
       "supportBatch": "phase-1788",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b027",
+      "name": "切札の里",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "名前に《ボルシャック》とある自分のクリーチャーの召喚コストを２少なくしてもよい。ただし、コストは０以下にはならない。\n名前に《ボルシャック》とある自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b027",
+      "limit": 4,
+      "g1789Dragonic": true,
+      "g290SummonAura": {
+        "g1789Dragonic": true,
+        "g560Optional": true,
+        "filter": {
+          "g832NameIncludes": "ボルシャック"
+        },
+        "amount": 2
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "ボルシャック"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1789",
+      "supportKind": "effect",
+      "g1458FieldAura": true
+    },
+    {
+      "id": "dm24ex2-055",
+      "name": "神化のカルマ シフォン",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "オラクル",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手の多色カードを使うコストを２多くする。\n自分の無色カードを使うコストを２少なくする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-055",
+      "limit": 4,
+      "gStrike": true,
+      "g619Tax": {
+        "kind": "multicolor",
+        "amount": 2
+      },
+      "g468UseReduction": {
+        "g756Colorless": true,
+        "g756ZeroFloor": true,
+        "amount": 2
+      },
+      "supportBatch": "phase-1789",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-024",
+      "name": "雪精 バケラッタ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "スノーフェアリー風",
+      "text": "このクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目をマナゾーンに置き、相手のシールドをひとつ選ぶ。相手はそのシールドを山札の一番下に置く。その後、相手は自身の山札の上から１枚目を裏向きのまま新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent"
+        }
+      ],
+      "supportBatch": "phase-1789",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1788,
-    "checkedAt": "2026-11-27T10:54:14.355Z",
-    "baseCount": 9584,
+    "phase": 1789,
+    "checkedAt": "2026-11-27T11:01:03.004Z",
+    "baseCount": 9587,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9587,
+    "totalCount": 9590,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -336366,6 +336473,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/31819/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35642/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35641/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1788,
+        "checkedAt": "2026-11-27T10:54:14.355Z",
+        "baseCount": 9584,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9587,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

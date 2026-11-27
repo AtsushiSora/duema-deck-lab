@@ -5453,5 +5453,122 @@
         }
       ]
     }
+  },
+  "dmex15-b027": {
+    "phase": 1789,
+    "faces": [
+      {
+        "name": "切札の里",
+        "typeText": "ドラゴニック・フィールド",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "名前に《ボルシャック》とある自分のクリーチャーの召喚コストを２少なくしてもよい。ただし、コストは０以下にはならない。\n名前に《ボルシャック》とある自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "field",
+      "g1789Dragonic": true,
+      "g290SummonAura": {
+        "g1789Dragonic": true,
+        "g560Optional": true,
+        "filter": {
+          "g832NameIncludes": "ボルシャック"
+        },
+        "amount": 2
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "ボルシャック"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g1458FieldAura": true
+    }
+  },
+  "dm24ex2-055": {
+    "phase": 1789,
+    "faces": [
+      {
+        "name": "神化のカルマ シフォン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手の多色カードを使うコストを２多くする。\n自分の無色カードを使うコストを２少なくする。",
+        "race": "オラクル",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g619Tax": {
+        "kind": "multicolor",
+        "amount": 2
+      },
+      "g468UseReduction": {
+        "g756Colorless": true,
+        "g756ZeroFloor": true,
+        "amount": 2
+      }
+    }
+  },
+  "dmr18-024": {
+    "phase": 1789,
+    "faces": [
+      {
+        "name": "雪精 バケラッタ",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "このクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目をマナゾーンに置き、相手のシールドをひとつ選ぶ。相手はそのシールドを山札の一番下に置く。その後、相手は自身の山札の上から１枚目を裏向きのまま新しいシールドとしてシールドゾーンに置く。",
+        "race": "スノーフェアリー風",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent"
+        }
+      ]
+    }
   }
 }

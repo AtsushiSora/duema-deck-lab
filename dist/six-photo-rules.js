@@ -179,7 +179,7 @@ export function createSixPhotoRules(api){
  // New optional auras choose their combined reduction independently for each summon.
  function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroMandatory:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>
   (!f.g990PrintedNoAbilities||matches(s,p,{cardId:c.id,uid:c.executionUid},{g990PrintedNoAbilities:true}))&&(!f.g1123ManaBirthFromMana||c.summonOrigin==='mana'&&c.g296ManaBirth!==undefined&&cost(c)>0)&&(!f.g836NameIds||f.g836NameIds.includes(c.id)||c.g1059DoubleCross)&&(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
-  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')&&!(r.g560D2Field&&d.type==='field'&&d.d2Field)&&!(r.g1480Fortress&&d.type==='field'&&d.dragheart)&&!(r.g1635Lunar&&d.type==='field'&&d.g1635Lunar)||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
+  for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')&&!(r.g560D2Field&&d.type==='field'&&d.d2Field)&&!(r.g1480Fortress&&d.type==='field'&&d.dragheart)&&!(r.g1635Lunar&&d.type==='field'&&d.g1635Lunar)&&!(r.g1789Dragonic&&d.type==='field'&&d.g1789Dragonic)||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;
    const count=r.g912CountRace?creatures(s,who).filter(y=>!y.sealed&&race(effective(y,s),r.g912CountRace)).length:1;
    const amount=r.amount*count;
    out[r.g560Optional?'optional':'mandatory']+=amount;
@@ -5197,6 +5197,7 @@ export function createSixPhotoRules(api){
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},score:owner===t.p?1:10
   })));
   if(options.length)choice(s,t,'山札の一番下に置き、新しいシールドと入れ替える',[...options,...(t.optional?[skip()]:[])]);
+  else if(t.owner==='opponent'&&!t.optional)start(s,t,[{op:'ShieldTop',n:1,opponent:true}]);
   break;
  }
  case'g34_ShieldGraveReplace1109':{
@@ -9904,14 +9905,15 @@ export function createSixPhotoRules(api){
  },
  variants456(s,p,actions){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative&&a.alternative!=='vividDraw1335'||a.g456Reduction!==undefined)continue;const face=faces(card(a.cardId))[a.face||0],c=a.alternative==='vividDraw1335'?{...face,cost:face.g1335VividDraw,printedCost:face.cost}:face,r=reductionRange456(s,p,c);for(let n=r.min;n<r.max;n++){const payment={...c,summonOrigin:a.origin||'hand',g456Reduction:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{}),...(a.g18Reducers!==undefined?{g18Reducers:a.g18Reducers}:{}),...(a.g26Reducers?{g26Reducers:a.g26Reducers}:{}),...(a.g42Reduction!==undefined?{g42Reduction:a.g42Reduction}:{})};if(api.canPay(s,p,payment))out.push({...a,g456Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:a.alternative?a.label+'（次回の軽減'+n+'）':c.name+'を次回の軽減'+n+'で使う'});}}return out;},
  variants463(s,p,actions){if(!creatures(s,p).some(y=>!y.sealed&&effective(y,s).g463FirstSummon)||creatures(s,1-p).some(y=>effective(y,s).noCostReduction))return actions;const out=[...actions];for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.freeSpell||a.alternative&&a.alternative!=='vividDraw1335'||a.g463Reduction!==undefined)continue;const face=faces(card(a.cardId))[a.face||0],c=a.alternative==='vividDraw1335'?{...face,cost:face.g1335VividDraw,printedCost:face.cost}:face,max=firstSummonMax463(s,p,c);for(let n=firstSummonMax463(s,p,c,true);n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g463Reduction:n,...Object.fromEntries(['g7Payment','snowReducers','magicReducers','g18Reducers','g26Reducers','g42Reduction','g456Reduction'].filter(k=>a[k]!==undefined).map(k=>[k,a[k]]))};if(api.canPay(s,p,payment))out.push({...a,g463Reduction:n,requiresMethod:true,cost:api.summonCost(s,p,payment),label:a.alternative?a.label+'（最初の召喚の軽減'+n+'）':c.name+'を最初の召喚の軽減'+n+'で使う'});}}return out;},
- useDiscount468(s,p,c){
+ useDiscount468(s,p,c,zeroOnly=false){
   if(c.crossing)return 0;
   const printedCost=cost({...c,cost:c.printedCost??c.cost});
-  let discount=race(c,'マジック')&&magicTerminal1292(s,p)?4:0;
+  let discount=!zeroOnly&&race(c,'マジック')&&magicTerminal1292(s,p)?4:0;
   for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const rule=effective(source,s).g468UseReduction;
-   if(!rule||rule.min!==undefined&&printedCost<rule.min)continue;
+   if(!rule||zeroOnly&&!rule.g756ZeroFloor||rule.min!==undefined&&printedCost<rule.min)continue;
+   if(rule.g756Colorless&&colors(c).length)continue;
    if(rule.g1282Tamaseed&&c.type!=='seed'&&!c.seedCreature&&!c.natureAce4)continue;
    if(rule.g896LaterSameKind&&!(c.type==='creature'?s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0:c.type==='spell'&&(s.players[p].spellsThisTurn||0)>0))continue;
    if(rule.race&&!race(c,rule.race))continue;
