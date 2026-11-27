@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.31';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.21';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.334';
+export const ENGINE_VERSION='0.602.335';
 export const AI_VERSION='2.3.441';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -288,6 +288,20 @@ function canSummonForAura1352(s,p){
 function auraPlacementPossible1352(s,p){
  return auraTargets1352(s,p).length>0||canSummonForAura1352(s,p);
 }
+function auraUseModes1811(s,p,c){
+ return [...auraTargets1352(s,p).map(x=>({...c,g1811AuraHost:{uid:x.uid,incarnation:x.incarnation||0}})),
+  ...(canSummonForAura1352(s,p)?[{...c,g1811AuraHost:null}]:[])];
+}
+function auraUseActions1811(s,p,a){
+ if(a.kind!=='play'||a.alternative||a.freeSummon||a.freeSpell)return [a];
+ const origin=a.origin||'hand',x=s.players[p][origin]?.find(x=>x.uid===a.uid),c=x&&playFaces(zoneCard(s,p,x,origin))[a.face||0];
+ if(c?.type!=='aura'||!c.g1811AuraReduction)return [a];
+ return auraUseModes1811(s,p,{...c,summonOrigin:origin,executionUid:x.uid}).filter(mode=>validMana(s,p,mode)).map(mode=>{
+  const cost=summonCost(s,p,mode),host=mode.g1811AuraHost&&auraHost1352(s,p,mode.g1811AuraHost);
+  return {...a,auraHost1811:mode.g1811AuraHost,requiresMethod:true,cost,
+   label:c.name+'を'+(host?card(host).name+'に付ける':'GR召喚して付ける')+'（'+cost+'マナ）'};
+ });
+}
 function equipmentHost1361(s,p,ref){
  return ref&&s.players[p].battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation);
 }
@@ -393,7 +407,7 @@ export function effectiveCard(inst,context,forPower=false){
  const powerFromAuras=attached.reduce((n,x)=>n+(card(x.cardId).auraPower||0),0);
  const poweredFromAuras=attached.some(x=>card(x.cardId).g1352Powered&&!abilitiesIgnored(context,x));
  const weaponGrants=context.players[owner].hasWeapons1361?context.players[owner].battle.filter(x=>!x.sealed&&!x.faceDown&&x.weaponTo?.uid===inst.uid&&x.weaponTo.incarnation===(inst.incarnation||0)&&!abilitiesIgnored(context,x)).map(x=>card(x).g1475WeaponGrants||{}):[];
- const grantsFromAuras=Object.assign({},...attached.filter(x=>!abilitiesIgnored(context,x)).map(x=>card(x.cardId).g1421AuraGrants||{}),...weaponGrants);
+ const grantsFromAuras=Object.assign({},...attached.filter(x=>!abilitiesIgnored(context,x)).map(x=>({...card(x.cardId).g1421AuraGrants,...(card(x).g1811TappedProtection&&inst.tapped?{untargetable:true}:{})})),...weaponGrants);
 
  // A resolved spell can change the recipient's race even while its own abilities are ignored.
  const races=inst.g34Grants?.flatMap(g=>g.raceAdd&&activeTurnGrant(context,g)?g.raceAdd:[]);
@@ -3341,6 +3355,7 @@ function hasEvolutionBaseDiscount1239(s,p,c){
 }
 // Quote eligible base choices when the choice changes the payment (QA41070).
 function summonModes384(s,p,c){
+ if(c.type==='aura'&&c.g1811AuraReduction&&c.g1811AuraHost===undefined)return auraUseModes1811(s,p,c);
  if(c.type!=='creature'||c.g27BaseUid!==undefined||
   !c.neoEvolution&&!c.g1362SoulShift&&!hasEvolutionBaseDiscount1239(s,p,c))return [c];
  const bases=evolutionBases(s,p,c);
@@ -3390,7 +3405,9 @@ function baseSummonCost297(s,p,c){
  const startUntapReduction=c.g1285StartUntapReduction&&turnUntap?.turn===s.turn&&turnUntap.player===p
   ?Math.min(turnUntap.count,Math.max(0,base-2)):0;
  const zeroUseReduction=extra.six.useDiscount468(s,p,c,true);
- const laterReduction=auraCost1431(s,p,c).reduction+startUntapReduction+(c.g1269Reduction||0)+(c.g1240DiscardPaid||0)+baseDiscount+soulShift+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const auraHost1811=c.g1811AuraHost&&auraHost1352(s,p,c.g1811AuraHost);
+ const attachedReduction1811=c.g1811AuraReduction&&auraHost1811&&attachedAuras1352(s,p,auraHost1811).length?c.g1811AuraReduction:0;
+ const laterReduction=attachedReduction1811+auraCost1431(s,p,c).reduction+startUntapReduction+(c.g1269Reduction||0)+(c.g1240DiscardPaid||0)+baseDiscount+soulShift+dddReduction+extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+once.summon+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  const applyExecutionReduction=total=>total>1?Math.max(1,total-once.execution):total;
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;
@@ -3978,6 +3995,15 @@ function beginAura1352(s,p,inst,entryOptions){
   return;
  }
  s.aura1352={player:p,inst,origin,originIndex,...(entryOptions.paidMana?{paidMana:true}:{})};
+ if(entryOptions.g1811AuraHost!==undefined){
+  if(entryOptions.g1811AuraHost){
+   const host=auraHost1352(s,p,entryOptions.g1811AuraHost);
+   delete s.aura1352;
+   if(host)attachAura1352(s,p,inst,host,origin,entryOptions);
+   else s.players[p][origin].splice(originIndex??s.players[p][origin].length,0,inst);
+  }else{s.aura1352.grUid=s.players[p].gr[0].uid;grSummon(s,p);}
+  return;
+ }
  s.decision={type:'aura1352',player:p,title:'オーラを付ける方法を選ぶ',source:inst.cardId};
 }
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
@@ -4416,7 +4442,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
   extra.spellCast(s,p,c,inst,ruleOrigin,face,paidMana);
  }
  if(c.type==='castle'){inst.faceUp=true;if(replaceShieldCards1781(s,p,[inst]).length){s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst,{fortified1746:true});extra.six.shieldAdded918(s,p);}}
- else if(c.type==='aura')beginAura1352(s,p,inst,{origin,auraOriginIndex,paidMana});
+ else if(c.type==='aura')beginAura1352(s,p,inst,{origin,auraOriginIndex,paidMana,...(!free&&alternativeCost?.g1811AuraHost!==undefined?{g1811AuraHost:alternativeCost.g1811AuraHost}:{})});
  else if(['creature','seed','gear','field','duelist'].includes(c.type)){
   const altEnd=!free&&!!alternativeCost?.g1221AltEnd;
   if(altEnd)extra.six.scheduleAltEnd1221(s,p,c,inst);
@@ -6129,6 +6155,7 @@ function legalActionsCore1363(s){
    return [{...action,label:card(own.battle.find(x=>x.uid===a.uid)).name+'で攻撃（攻撃先は相手が選択）',target:'player',g1089Targets:targets}];
   });
  }
+ out=out.flatMap(a=>auraUseActions1811(s,p,a));
  out=out.filter(a=>{
   if(a.kind!=='play'||!a.freeSummon&&a.cost!==0)return true;
   const c=playFaces(card(a.cardId))[a.face??0];
@@ -6398,7 +6425,8 @@ function applyStepCore1363(s,action){
  if(a.kind==='charge'){if(!canHandMana1647(s,p))return;const c=remove(s.players[p].hand,a.uid);c.tapped=manaCivilizations(card(c)).length>1;addZone(s,s.players[p],'mana',c);extra.handMana(s,p,c);s.metrics[p].charges++;s.phase='main';log(s,p,'charge',`${card(c).name}をマナへ`,{cardId:c.cardId});}
  if(a.kind==='skipCharge'){s.phase='main';log(s,p,'skip','マナチャージを省略');}
  if(a.kind==='galaxyShield')extra.photo167.galaxy(s,p,a);
- if(a.kind==='play'&&a.alternative==='sin1432'){
+ if(a.kind==='play'&&a.auraHost1811!==undefined){playCard(s,p,a.uid,false,null,a.face||0,{g1811AuraHost:a.auraHost1811},a.origin||'hand','オーラ使用',!!a.ownGraveCast,a.manaPermit,a.snowReducers,null,a.magicReducers,a.g7Payment,a.g18Reducers??null,a.g26Reducers??null,a.g42Reduction??null,a.g456Reduction??null,a.g463Reduction??null,a.g464Reducers??null);}
+ else if(a.kind==='play'&&a.alternative==='sin1432'){
   const c=playFaces(card(a.cardId))[a.face||0];
   playCard(s,p,a.uid,false,null,a.face||0,{g39Reduction:c.g1432Sin},'hand','無月の大罪');
   (s.g40BadDebt??=[]).push({p,source:c.id,turn:s.turn});

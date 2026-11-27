@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9652,
-  "pendingNames": 2191,
-  "phase": 1810,
+  "supportedNames": 9654,
+  "pendingNames": 2189,
+  "phase": 1811,
   "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -166,7 +166,7 @@
     "進化クリーチャー": 176,
     "スター進化クリーチャー": 46,
     "NEOクリーチャー": 41,
-    "オレガ・オーラ": 16,
+    "オレガ・オーラ": 14,
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
@@ -221,7 +221,7 @@
   },
   "reasons": {
     "未対応の能力文": 1617,
-    "複数面・特殊カードタイプまたは情報不足": 477,
+    "複数面・特殊カードタイプまたは情報不足": 475,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -569678,11 +569678,249 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1811,
+      "checkedAt": "2026-11-27T15:26:41.939Z",
+      "baseline": "fc08c23673aa67ed8615ad0a863aae230ce47e40",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9652,
+      "currentNames": 9654,
+      "remainingNames": 346,
+      "added": [
+        {
+          "id": "dmsd09-001",
+          "name": "極幻海 ゼー・ガギル"
+        },
+        {
+          "id": "dmrp10-020",
+          "name": "*/肆幻ウナバレズ/*"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1811,
+        "baseline": "fc08c23673aa67ed8615ad0a863aae230ce47e40",
+        "originalDefinitionsUnchanged": 9652,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9654,
+        "uniqueIds": 9654,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9652,
+        "existingImageReferenceRowsUnchanged": 12043,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1811": {
+          "name": "official-1811",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1811.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.353,
+          "log": "tmp/duema-target-10000/official-1811.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1811-final": {
+          "name": "focused-1811-all",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1811-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.722,
+          "log": "tmp/duema-target-10000/focused-1811-all.log",
+          "passed": 53,
+          "logSha256": "07919d9d31af92b7723090d0d8cbf56879a6a0829edda502ac0375ecdadecc57"
+        },
+        "related-1811": {
+          "name": "related-1811",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:canonical and reprint resolve to one fully verified aura|attaching to an existing or new GR grants power and an optional draw: |attaching a second aura triggers both, and destroying their host moves both to the grave|310\\.2a: a GR creature destroyed before attachment leaves the aura in its original hand slot|310\\.7: the aura stays attached after its GR creature evolves|310\\.8b: Sixfall lets the owner order the GR creature and its aura under another creature|QA40665: XXDDZ keeps its linked shield and still prohibits opposing spells|Schwarzring continues after attempting to put its protected shield into the grave|QA39077: Ragnarok counts only the shield cards that actually moved|QA40456: the owner chooses between Shield Go and keeping the shield: |rule 310\\.8 moves an attached aura with a GR creature chosen by Rakujo no Kei|Jokers Heart counts the GR and its aura before the GR returns to the extra deck|Soul Shift uses the selected matching top cards and quotes affordable choices \\(QA40885\\)|multi-base Soul Shift has a floor of one and can cancel without spending mana|Kengeki can use only a named Gouken evolution base and pays eight|Gouken privately looks at seven, evolves while attacking, and shuffles|Gouken can decline the evolution and still shuffles|opposing spell removal wins, while Dokindam Area seals first \\(QA40956\\)|zero power from opposing Eternal Nothing does not grant a win \\(QA40960\\)|Kerodi Frog keeps battlefield provenance after it leaves \\(QA40959\\)|Kubrick triggered in the graveyard does not grant a win \\(QA40957\\)|Slayer grants the win after its source loses the battle \\(old QA35986\\)|an opposing creature entry effect still wins after resuming the target prompt|Nyamibaun grants its GR host power; its optional bounce does not grant Kengeki a win \\(QA38763\\)|Nyamibaun can use an S-Trigger, summon its GR host, and decline the bounce|Kengeki put into the grave from a seal was never a battlefield creature \\(QA33286\\)|Tizoris does not duplicate the departure victory \\(QA41280\\)|losing a normal battle does not grant Kengeki a win \\(old QA35985\\)|a defeat replacement resumes the original departure without retrying the victory|Sandoronia draws three and puts exactly two chosen cards below the deck in order|Rutachino draws then discards a chosen own card|Astel lets the opponent choose two discards, and repeats after the aura is returned and used again|[^\\n]* prevents blocking through its own continuous effect |Sulnyan adds six thousand and powered breaker, but Invisible Aura has no power modifier|Genmu ignores the GR creature but not the aura attachment ability|Isaac taxes only opponent spells, stacks even on one host, stops with ignored Aura or sealed host and never taxes creatures|Isaac affects actual opposing spell payment then ceases after the host leaves|Chupakaru reduces only own Aura usage, stacks on one host and always floors at one|Megasword permits any evolution race, retains the Aura on evolution and ceases to permit when Aura ignored|Ganymede draws for every Aura on the chosen host, including itself but not other hosts |Brolo follows the host and only a battle-to-grave move triggers untapped mana |Brolo does not trigger when milled from outside battle|Chupakaru reductions are stopped by an opposing Diamondstar|Sin debts survive the Aura and its host leaving and each use owes its own creature|Opposing Diamondstar forbids the Sin reduction|Sin plus Chupakaru reduction is additive and floors payment at one|Jereini looks at the opposing hand and the Aura controller chooses exactly one discarded card|[^\\n]* grants powered breaker using the entire host power|Jokunma destroys its selected enemy on attach and free S-trigger cannot declare Sin or owe debt|[^\\n]* attaches free from hand during an own GR attack only at two or more attached Auras |[^\\n]* hand attachment may be declined and cannot use an Aura drawn after attack declaration|Nirangidra hand attachment resolves its own enter-attachment mana removal before the attack continues|Vitragatta checks enemy shields at attack end, after breaking shields |Tautemun optionally moves a cost-five-or-less mana Aura to the same host and never a creature |Hand attachment abilities do not trigger for an ordinary creature attack or an opposing GR attack|Rinne attaches only a cost four or less grave Aura to itself at mana drive three: |[^\\n]* returns every formerly attached Aura from grave, excludes other hosts and preserves serial identity|Build Zanging grants blocker and cannot attack, mills exactly one only on destruction, and offers the sin reduction|Sigmatys allows its host to attack untapped creatures on attachment turn and ends the temporary grant next turn|Aura actual paid execution attaches to an existing or newly summoned GR, grants printed power and preserves encrypted state |Zark is actually GR-summoned from the top, uses zero mana value and returns to GR on leaving |Soul Bringer saves its attached creature by destroying exactly another own creature, independently of ignored host abilities |Soul Bringer does not save a host with no payable other creature or inactive attachment |Soul Bringer does not replace non-destruction departure to |Edama optionally pays only its own exact attached Aura to grave and preserves host and other attachments on |Edama ability resides on its own active attachment |Edama itself can leave without protecting itself or paying a different attachment|QA32007 Zark pays exactly two chosen attached Auras in elected bottom order and retains the third |Zark cannot pay a partial Aura cost with only |Zark choosing one Aura then cancelling leaves the complete field and library unchanged before declining departure|Zark requires its own active ability but may pay ignored attachments |Actual Artificial Reality Charger simultaneous element bounce preserves Edama host, pays Edama once and returns every other Aura |Actual simultaneous element bounce lets Zark pay two attached Auras without their scheduled hand moves |Soul Bringer simultaneous destruction reservations never reuse the same sacrificed creature for two hosts|Two Zarks in the same element sweep pay distinct complete ordered Aura pairs and their controller orders the resulting bottom groups |Edama and Zark offer alternative complete replacements; choosing one Edama never consumes a second Aura|Edama paid movement into grave is a placement and does not falsely count as destruction|QA42981 actual Zark Ho Pitch can destroy one attached Aura element while leaving its GR host alive |Soul Bringer sacrifices actual Apple Churis and resolves that real destruction draw while its own host and Aura stay|Edama can be spent once but state-based zero-power loss after the power bonus disappears still removes its host |Two Edama copies may independently pay for two separate leave events and never both pay for the same event|Actual combat loss can be replaced by the Aura without untapping the defending GR |Aura protection follows actual evolution of its GR host and is still available on the fully evolved creature|The actual opponent element-leave watcher counts only paid Auras and never the saved host |Compound evolution combines Auras from two distinct GR bases onto the one resulting creature without losing either physical attachment|Multiple complete Aura payments are ordered before actual |New Aura actual printed paid execution attaches to existing/new GR and conserves all identities |Ranja counts ignored Aura cards, excludes Auras on other hosts and never targets an untargetable enemy or an own creature|Ranja mandatory attachment ability finishes cleanly with no eligible enemy|Ranja actual S-trigger Aura execution destroys a small attacking creature before any later attack|Tentacol each actual attachment adds4000 only to its own host and all temporary boosts expire at turn end |Two Tentacols create one trigger per live copy on the same host, and the second attachment triggers both exactly once|Tentacol attachment ability belongs to the Aura and handles |Tentacol already-resolved power boost remains after the Aura is removed and expires normally|QA41289 actual Fire/Dark GR evolution into Zero Phoenix combines both Tentacols without any new attachment trigger |Gappazeo actual attacking battle win performs one native paid GR summon per currently attached Aura |Gappazeo host battle watcher handles |Gappazeo win while defending triggers its own controller GR summon rather than the attacking player |Gappazeo two copies each resolve a complete GR count, and empty GR or prohibition never creates a blank choice|Actual newly GR-summoned Christmas may sacrifice itself before the attached Aura trigger resolves |Gappazeo executes all requested GR summons even when one available GR immediately dies to actual face-up Paranormal and returns to GR each time |Gappazeo real GR summons count as paid summons under actual opposing Aura Magnum|Gappazeo battle-win GR ability resolves before actual defeated Slayer destroys its host and moves the Aura|Ranja resolved power penalty remains for the whole turn even after Ranja itself is removed|Aura paid existing/new GR attachment grants full printed ability and preserves encrypted physical state |Buchakati attachment makes the opponent choose exactly one hidden discard and tolerates empty hand |Buchakati on host attack places only itself into grave without destroying the host or the other Aura |Buchakati actual blocker loses its Aura before battle but continues the already declared block |Buchakati Aura trigger follows active attachment independently of host ability suppression |Supnokkle battle win privately chooses one of top two to hand then puts remaining card into mana |Supnokkle battle-win ability handles |Native hand Aura attack attachment requires two existing Auras and may be declined |Hand Aura never attaches to an ordinary attacking creature or an opposing GR attack |Viewpre publicly recovers all and only Auras from top two, ordering the remaining non-Auras |Viewpre actual S-trigger Aura attaches without mana and resolves the complete public top-two effect |Pending Buchakati source placement follows the exact physical Aura beneath a creature after actual Sixfall |Pending Buchakati exact-source trigger never places a different incarnation of the returned and replayed Aura into grave|Buchakati two physical copies each place only themselves on the same host attack|Supnokkle uses native mana arrival and replacements for |Aura library effects finish safely at zero or one remaining library card without inventing cards |Full Aura paid execution attaches to existing or newly GR summoned host with printed boost and powered breaker |QA38570 Jeri draws the whole pre-destruction Aura count before any opponent-choice discard |Jeri triggers only for actual destruction of its host with an active Aura |Jeri two copies each draw their full snapshot count and discard only available opposing cards |Jeri draw exhaustion loses before any opponent discard and never interleaves draw-discard pairs|Jeri native Sin three is optional, pays actual cost and creates just one end-turn destruction debt |Kirujack attach mandatory grouped destruction counts all its current Auras including itself |QA32447 Kirujack first selects Pas Octan then may select a different creature before simultaneous destruction |Kirujack destruction deploys one cost-six-or-less Aura from grave to existing/new GR and resolves its attachment |Kirujack grave deployment distinguishes empty grave, active Aura and destruction |Jeri destruction snapshot includes ignored attached Auras, excludes other hosts and ignores an Aura that left earlier |Kirujack attachment still uses last-known Aura count after actual GR Christmas sacrifices its new host before that trigger |Kirujack mandatory multi-target choice uses all available eligible enemies without selecting an untargetable one |Jeri manual Sin payment can be cancelled, encrypted and completed with exactly one debt)",
+            "tests/standard1352-effects.test.mjs",
+            "tests/standard1362-effects.test.mjs",
+            "tests/standard1421-effects.test.mjs",
+            "tests/standard1431-effects.test.mjs",
+            "tests/standard1432-effects.test.mjs",
+            "tests/standard1437-effects.test.mjs",
+            "tests/standard1460-effects.test.mjs",
+            "tests/standard1807-effects.test.mjs",
+            "tests/standard1808-effects.test.mjs",
+            "tests/standard1809-effects.test.mjs",
+            "tests/standard1810-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.705,
+          "log": "tmp/duema-target-10000/related-1811.log",
+          "passed": 320,
+          "logSha256": "5737c58d99222bbc37f138d0478591c30941d95987cf373f1709b9655116c7b9"
+        },
+        "check-1811": {
+          "name": "check-1811",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.323,
+          "log": "tmp/duema-target-10000/check-1811.log",
+          "passed": 0,
+          "logSha256": "cd235a4e24de5d5c10d3d09b51ed452fe9006863f7b28af329e53078ae20dffc"
+        },
+        "audit-1811": {
+          "name": "audit-1811",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.635,
+          "log": "tmp/duema-target-10000/audit-1811.log",
+          "passed": 0,
+          "logSha256": "8c6c442bdfaf5cfcd24bd4d62d75b1cdabbee53b691d6ed6d4b3de29e71adde0"
+        },
+        "invariants-1811": {
+          "name": "invariants-1811",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1811"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.669,
+          "log": "tmp/duema-target-10000/invariants-1811.log",
+          "passed": 0,
+          "logSha256": "488a0b0438389e0e1684f88da38d58ce6836338f45cecec266c74bc77b288ae0"
+        },
+        "related-online-1811": {
+          "name": "related-online-1811",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.475,
+          "log": "tmp/duema-target-10000/related-online-1811.log",
+          "passed": 5,
+          "logSha256": "8a7a36501aafb5c3b360a650702d1c624ecd186c616d5313229a7e3c9d2c7737"
+        },
+        "ui-1811": {
+          "name": "ui-1811",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(normal and twinpact hand actions|mana summons remain|desktop hand stays visible|card names and log content|board badges count|both public mana|phone restores|the board conceals)",
+            "tests/manual-ui.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.386,
+          "log": "tmp/duema-target-10000/ui-1811.log",
+          "logSha256": "0843e646f29cd4a87cdd8b771a836aada75946951c21f7924aa769de08c82b21",
+          "passed": 8
+        }
+      },
+      "totalTestsPassed": 386,
+      "manifest": "tools/support-phase-1811.json",
+      "supported": 9654,
+      "pending": 2189,
+      "engineVersion": "0.602.335",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1811-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1811-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.463,
+          "log": "tmp/duema-target-10000/focused-1811-initial.log",
+          "reason": "Corrected initial fixture spell IDs: dm01-027 is opposing Demon Hand; own choice uses dm01-086 Spiral Gate and untargeted destruction uses actual dm27-001 Violence Heaven. Projected actions intentionally omit raw private action fields/cost, so compare authoritative labels/IDs and requiresMethod, then verify actual server moves. Single eligible target auto-completes native up-to-two choice; no extra null selection. Additional helper optimization returns non-play actions before looking up their source; focused and affected related regressions repeated against final production files. Source-Aura removal fixture initially used cost-three-or-less Zark Ho Pitch against a cost-six Aura; switched to existing unlimited element removal Shelf Garchelf."
+        },
+        {
+          "name": "focused-1811-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1811-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.846,
+          "log": "tmp/duema-target-10000/focused-1811-final.log",
+          "reason": "Corrected initial fixture spell IDs: dm01-027 is opposing Demon Hand; own choice uses dm01-086 Spiral Gate and untargeted destruction uses actual dm27-001 Violence Heaven. Projected actions intentionally omit raw private action fields/cost, so compare authoritative labels/IDs and requiresMethod, then verify actual server moves. Single eligible target auto-completes native up-to-two choice; no extra null selection. Additional helper optimization returns non-play actions before looking up their source; focused and affected related regressions repeated against final production files. Source-Aura removal fixture initially used cost-three-or-less Zark Ho Pitch against a cost-six Aura; switched to existing unlimited element removal Shelf Garchelf."
+        },
+        {
+          "name": "focused-1811-boundaries",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1811-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.726,
+          "log": "tmp/duema-target-10000/focused-1811-boundaries.log",
+          "reason": "Corrected initial fixture spell IDs: dm01-027 is opposing Demon Hand; own choice uses dm01-086 Spiral Gate and untargeted destruction uses actual dm27-001 Violence Heaven. Projected actions intentionally omit raw private action fields/cost, so compare authoritative labels/IDs and requiresMethod, then verify actual server moves. Single eligible target auto-completes native up-to-two choice; no extra null selection. Additional helper optimization returns non-play actions before looking up their source; focused and affected related regressions repeated against final production files. Source-Aura removal fixture initially used cost-three-or-less Zark Ho Pitch against a cost-six Aura; switched to existing unlimited element removal Shelf Garchelf."
+        },
+        {
+          "name": "focused-1811-complete",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1811-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.805,
+          "log": "tmp/duema-target-10000/focused-1811-complete.log",
+          "reason": "Corrected initial fixture spell IDs: dm01-027 is opposing Demon Hand; own choice uses dm01-086 Spiral Gate and untargeted destruction uses actual dm27-001 Violence Heaven. Projected actions intentionally omit raw private action fields/cost, so compare authoritative labels/IDs and requiresMethod, then verify actual server moves. Single eligible target auto-completes native up-to-two choice; no extra null selection. Additional helper optimization returns non-play actions before looking up their source; focused and affected related regressions repeated against final production files. Source-Aura removal fixture initially used cost-three-or-less Zark Ho Pitch against a cost-six Aura; switched to existing unlimited element removal Shelf Garchelf."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1810,
-    "nextPhase": 1811,
+    "lastVerifiedPhase": 1811,
+    "nextPhase": 1812,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -570595,11 +570833,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1810,
-      "baseline": "0a6b600924308a9a4a90622d3f9030d6912c35da",
-      "supportedNames": 9652,
-      "artifact": "tools/target10000-registration-checkpoint-1810.json",
-      "checkedAt": "2026-11-27T15:15:30.045Z"
+      "phase": 1811,
+      "baseline": "fc08c23673aa67ed8615ad0a863aae230ce47e40",
+      "supportedNames": 9654,
+      "artifact": "tools/target10000-registration-checkpoint-1811.json",
+      "checkedAt": "2026-11-27T15:26:41.939Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -573657,8 +573895,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9652,
-      "remaining": 348,
+      "currentNames": 9654,
+      "remaining": 346,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -573666,35 +573904,23 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1810,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1810.json",
+      "lastPhase": 1811,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1811.json",
       "nextCandidates": [
         {
           "id": "dmsd09-001",
           "name": "極幻海 ゼー・ガギル",
           "status": "official-research-ready",
-          "next": "Inspect all official images and full ruling evidence; implement complete conditional Aura use payment, protection or host destruction count as applicable."
+          "next": "Full official text and original image downloaded. Inspect image; implement conditional mandatory two-cost reduction only for a chosen already-Aura-attached host, with correct payment before committing the use, then optional up-to-two freeze until next own start."
         },
         {
           "id": "dmrp10-020",
           "name": "*/肆幻ウナバレズ/*",
           "status": "official-research-ready",
-          "next": "Inspect all official images and full ruling evidence; implement complete conditional Aura use payment, protection or host destruction count as applicable."
-        },
-        {
-          "id": "dmrp11-006",
-          "name": "罪修羅ジェリ奪カギュラ",
-          "status": "official-research-ready",
-          "next": "Inspect all official images and full ruling evidence; implement complete conditional Aura use payment, protection or host destruction count as applicable."
-        },
-        {
-          "id": "dmrp09-s07",
-          "name": "卍魔刃 キ・ルジャック",
-          "status": "official-research-ready",
-          "next": "Inspect all official images and full ruling evidence; implement complete conditional Aura use payment, protection or host destruction count as applicable."
+          "next": "Inspect original and dmbd12-h02 images; same conditional use-cost machinery plus external opponent selection protection only while its host is tapped, including ignored host/Aura distinctions."
         }
       ],
-      "resumeProcedure": "Inspect HEAD/AGENTS/tree/index/progress/logs/processes and actual nameKey count. Phase1809 verified at9650, goal remaining350. Next research tmp/duema-target-10000/research-dmsd09-001.json contains four candidates; preserve all old pending/holds. No full npm test/repeated long groups, automation restart, push/publication/Netlify.",
+      "resumeProcedure": "Inspect latest local commit, AGENTS, worktree/index, progress, previous test logs, running jobs and actual nameKey count. Phase1810 verified at9652 (348 remaining), checkpoint tools/target10000-registration-checkpoint-1810.json. Grouped official research tmp/duema-target-10000/research-dmsd09-001.json has next cost-reduction Aura pair. Prefer existing full native helpers; do not force a partial card into a batch. Preserve every older pending/hold/deferral and full-suite interrupted/unconfirmed status. No full npm test/repeated long groups, automation restart, push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -574942,8 +575168,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9652,
-      "remaining": 348,
+      "currentNames": 9654,
+      "remaining": 346,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -574951,23 +575177,35 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1810,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1810.json",
+      "lastPhase": 1811,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1811.json",
       "nextCandidates": [
         {
-          "id": "dmsd09-001",
-          "name": "極幻海 ゼー・ガギル",
-          "status": "official-research-ready",
-          "next": "Full official text and original image downloaded. Inspect image; implement conditional mandatory two-cost reduction only for a chosen already-Aura-attached host, with correct payment before committing the use, then optional up-to-two freeze until next own start."
+          "id": "dmrp10-s04",
+          "name": "極幻星 ジュデ・ルーカ",
+          "status": "official-research-ready-images-not-yet-inspected",
+          "next": "Inspect official image and QA33722; count broken shield groups per this attack and publicly deploy all cost<=6 revealed Auras together before bottom ordering."
         },
         {
-          "id": "dmrp10-020",
-          "name": "*/肆幻ウナバレズ/*",
-          "status": "official-research-ready",
-          "next": "Inspect original and dmbd12-h02 images; same conditional use-cost machinery plus external opponent selection protection only while its host is tapped, including ignored host/Aura distinctions."
+          "id": "dmrp10-s07",
+          "name": "罪修羅ジャ悪ペンドラ",
+          "status": "official-research-ready-images-not-yet-inspected",
+          "next": "Inspect official image and QA32418; use exact per-attack broken shield group count, native Sin2 and complete discard/mill order."
+        },
+        {
+          "id": "dmrp12-012",
+          "name": "ΦΦΝ ユリアンラウド",
+          "status": "official-research-ready-images-not-yet-inspected",
+          "next": "Inspect official image; preserve exact other-Aura identities and new GR summon receipts before moving each Aura, with no fresh attachment events unless native rules require."
+        },
+        {
+          "id": "dmrp12-s12",
+          "name": "ダンゴ武者",
+          "status": "official-research-ready-images-not-yet-inspected",
+          "next": "Inspect official image and QA33058; mandatory native private Look2, optional exact Aura to Aura-empty existing GR, including Giga Aura GR permission; no partial definition."
         }
       ],
-      "resumeProcedure": "Inspect latest local commit, AGENTS, worktree/index, progress, previous test logs, running jobs and actual nameKey count. Phase1810 verified at9652 (348 remaining), checkpoint tools/target10000-registration-checkpoint-1810.json. Grouped official research tmp/duema-target-10000/research-dmsd09-001.json has next cost-reduction Aura pair. Prefer existing full native helpers; do not force a partial card into a batch. Preserve every older pending/hold/deferral and full-suite interrupted/unconfirmed status. No full npm test/repeated long groups, automation restart, push/publication/Netlify.",
+      "resumeProcedure": "Inspect HEAD, AGENTS, tree/index, progress, previous logs, running jobs and actual nameKey count. Phase1811 verified at9654, remaining346; checkpoint tools/target10000-registration-checkpoint-1811.json. Next grouped official research tmp/duema-target-10000/research-dmrp10-s04.json completed, but four images must still be inspected. Prefer full existing native operations and exact per-attack shield-group counting. Preserve all old pending/holds/deferrals, interrupted full suite. No automation restart/full npm test/repeated long groups/push/publication/Netlify.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -627062,10 +627300,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1810,
+    "phase": 1811,
     "threshold": 10000,
-    "supportedNames": 9652,
-    "pendingNames": 2191,
+    "supportedNames": 9654,
+    "pendingNames": 2189,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -627074,7 +627312,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1810.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1811.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
