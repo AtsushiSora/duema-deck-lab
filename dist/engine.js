@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.31';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.21';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.345';
+export const ENGINE_VERSION='0.602.346';
 export const AI_VERSION='2.3.441';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -143,7 +143,7 @@ function joeOrder1363(s){
  }finally{checkingJoe1363.delete(s);}
 }
 function grantsCivilizations1363(c){
- return c.g1363JoeStar||c.casablanca||c.g51Courtney||c.g972TwinManaColors||c.g1114ManaRace||c.g1274AllBattleColors;
+ return c.g1822CrystalManaColors!==undefined||c.g1363JoeStar||c.casablanca||c.g51Courtney||c.g972TwinManaColors||c.g1114ManaRace||c.g1274AllBattleColors;
 }
 function nextColorOrder1363(s){return s.g1363ColorOrder=(s.g1363ColorOrder||0)+1;}
 // Both battle entries and temporary civilization grants use the same order.
@@ -3460,8 +3460,15 @@ function natureManaColors1261(s,p,c){
   card(x).g1261NatureManaColors&&!x.faceDown&&!abilitiesIgnored(s,x)))return printed;
  return [...new Set([...printed,'光','火'])];
 }
+// Only the owner's face-down mana gain civilizations from crystal armour.
+function crystalManaColors1822(s,p,joe=joeOrder1363(s)){
+ const own=s.players[p],count=own.mana.filter(x=>x.faceDown).length;
+ return own.battle.some(x=>!x.sealed&&!x.faceDown&&card(x).g1822CrystalManaColors!==undefined&&
+  count>=card(x).g1822CrystalManaColors&&colorEffectAfter1363(joe,x)&&!abilitiesIgnored(s,x));
+}
 export function manaColors(c,s=null,p=null,forPower=false){
- if(!s||p===null||c===FACE_DOWN||c===SEAL_CARD)return manaCivilizations(c);
+ if(!s||p===null||c===SEAL_CARD)return manaCivilizations(c);
+ if(c===FACE_DOWN||c.id===FACE_DOWN.id)return crystalManaColors1822(s,p)||allManaColors(s,p)?[...fullManaColors]:[];
  const joe=joeOrder1363(s);
  if(allManaColors(s,p,joe)||c.spellFace&&twinManaColors(s,p,joe)||raceManaColors(s,p,c,joe))return [...fullManaColors];
  return joe===null?natureManaColors1261(s,p,c):[];
@@ -3485,7 +3492,7 @@ export function paymentPool(s,p,exclude=[],c=null){
   const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
   const jokerPayment=!x.faceDown&&c.g1324JokerMana&&
    paymentType?.type==='creature'&&String(paymentType.race).includes('ジョーカーズ');
-  const anyColor=all||summonColors||twins&&c.spellFace||jokerPayment||!x.faceDown&&raceManaColors(s,p,c);
+  const anyColor=all||summonColors||x.faceDown&&crystalManaColors1822(s,p,joe)||twins&&c.spellFace||jokerPayment||!x.faceDown&&raceManaColors(s,p,c);
   const colors=x.faceDown||anyColor?null:joe===null?natureManaColors1261(s,p,c):[];
   const changedColors=colors&&(joe!==null||colors.length>manaCivilizations(c).length);
   return zero||fairy||origin||crystal||anyColor||changedColors?{...x,
@@ -6702,7 +6709,7 @@ export function rankHeuristicActions(s){
    if(n>0&&n>=me.deckCount&&!muted)return -1000;
   }
   if(c?.g527ExtraEntry&&['play','useTrigger'].includes(a.kind)){
-   const source=me[a.origin||'hand']?.find(x=>x.uid===a.uid),defs=[...(c.g34Tasks||[]),...eligibleExtraEntry527(c,a.origin??(a.kind==='useTrigger'?'shields':'hand')).flatMap(r=>r.defs)].flatMap(d=>d.op==='IfMana'?(me.mana.filter(y=>{const cs=manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),v,p);return d.multi?cs.length>1:cs.includes(d.color);}).length>=d.n?d.defs:[]):[d]).filter(d=>d.op!=='Discard'),danger=entryExhaustion236(c,source,{defs});if(danger!==null)return danger;
+   const source=me[a.origin||'hand']?.find(x=>x.uid===a.uid),defs=[...(c.g34Tasks||[]),...eligibleExtraEntry527(c,a.origin??(a.kind==='useTrigger'?'shields':'hand')).flatMap(r=>r.defs)].flatMap(d=>d.op==='IfMana'?(me.mana.filter(y=>{const cs=manaColors(card(y),v,p);return d.multi?cs.length>1:cs.includes(d.color);}).length>=d.n?d.defs:[]):[d]).filter(d=>d.op!=='Discard'),danger=entryExhaustion236(c,source,{defs});if(danger!==null)return danger;
   }
   if(a.kind==='extended'&&s.decision?.task?.op==='g34_Select'&&card(s.decision.task.source)?.supportBatch==='phase-384'&&s.decision.task.origin==='mana'&&s.decision.task.owner==='opponent'&&s.decision.task.to==='grave'){
    const uid=s.decision.choices[a.choice]?.value?.uid,x=them.mana.find(x=>x.uid===uid);return x?20+(x.tapped?0:12)+(x.faceDown?1:card(x).manaValue??1)*4:0;

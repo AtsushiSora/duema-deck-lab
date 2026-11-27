@@ -311220,20 +311220,132 @@
       "g1821ElementHandOnly": true,
       "supportBatch": "phase-1821",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-031",
+      "name": "「止まれども 無理やり回す 俺様が」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nD・D・D [ll02]（自分のクリーチャーが攻撃する時、このカードを [ll02]支払って自分の手札から実行してもよい）\n相手のクリーチャーを２体選び、タップする。次の自分のターンのはじめまで、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-031",
+      "limit": 4,
+      "trigger": true,
+      "ddd": {
+        "cost": 2,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "spell": true,
+          "g1116CreatureUntapLock": true
+        }
+      ],
+      "supportBatch": "phase-1822",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd6-009",
+      "name": "「あれが水晶の頂天に君臨する者の玉座だ！」",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "ゼニス",
+      "text": "{GS} G・ストライク（このタマシードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのタマシードが出た時、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、自分のマナゾーンにある裏向きのカードはすべての文明を持つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd6-009",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g1822CrystalManaColors": 4,
+      "supportBatch": "phase-1822",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-052",
+      "name": "「理想」の極 シャングリラ・エデン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 17000,
+      "race": "ガーディアン/ゼニス",
+      "text": "進化GV・Ω：自分の墓地、マナゾーン、バトルゾーンからクリーチャーを１体ずつ選び、その３体を重ねた上に置く。\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。相手はそれを自身の山札に加えてシャッフルする。\nこのクリーチャーがタップしている時、相手のクリーチャーは攻撃もブロックもできない。\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-052",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zones": [
+          "grave",
+          "mana",
+          "battle"
+        ],
+        "conditions": [
+          {
+            "creature": true
+          },
+          {
+            "creature": true
+          },
+          {
+            "creature": true
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Omega": true,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "deck",
+          "toOwnerDeck": true,
+          "g1739Shuffle": true,
+          "moveByTargetController": true
+        }
+      ],
+      "g1822TappedCombatLock": true,
+      "supportBatch": "phase-1822",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1821,
-    "checkedAt": "2026-11-27T17:21:16.082Z",
-    "baseCount": 9680,
+    "phase": 1822,
+    "checkedAt": "2026-11-27T17:38:37.295Z",
+    "baseCount": 9683,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9683,
+    "totalCount": 9686,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/49601/",
-      "https://dm.takaratomy.co.jp/rule/qa/49606/",
-      "https://dm.takaratomy.co.jp/rule/qa/49602/"
+      "https://dm.takaratomy.co.jp/rule/qa/40288/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -341043,6 +341155,23 @@
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1821,
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "baseCount": 9680,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9683,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/49601/",
+          "https://dm.takaratomy.co.jp/rule/qa/49606/",
+          "https://dm.takaratomy.co.jp/rule/qa/49602/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
         ]
       }
     ]

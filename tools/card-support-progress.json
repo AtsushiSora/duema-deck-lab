@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9683,
-  "pendingNames": 2166,
-  "phase": 1821,
+  "supportedNames": 9686,
+  "pendingNames": 2163,
+  "phase": 1822,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -157,13 +157,12 @@
   ],
   "pendingByType": {
     "クリーチャー": 1279,
-    "呪文": 245,
+    "呪文": 244,
     "GRクリーチャー": 16,
     "G-NEOクリーチャー": 24,
-    "タマシード": 26,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 170,
+    "進化クリーチャー": 169,
     "スター進化クリーチャー": 45,
     "NEOクリーチャー": 40,
     "オレガ・オーラ": 11,
@@ -180,6 +179,7 @@
     "進化クロスギア": 1,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
+    "タマシード": 25,
     "城": 21,
     "ドラグハート・フォートレス": 24,
     "禁断クリーチャー": 2,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1602,
+    "未対応の能力文": 1599,
     "複数面・特殊カードタイプまたは情報不足": 471,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -572072,30 +572072,281 @@
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
       "candidateRefresh": "The stale three-card Meteor Burn candidate list was checked against actual data and all three already belong to phase1797. Removed the draft phase1822 spec before preparation or staging, restored the exploratory helper change exactly, and selected three actually unsupported nameKey names. No duplicate was added and no unverified source change remains."
+    },
+    {
+      "phase": 1822,
+      "checkedAt": "2026-11-27T17:49:00.920Z",
+      "baseline": "42635d7dc9b7b47b1bba9ec4bb4377c12e4781bd",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9683,
+      "currentNames": 9686,
+      "remainingNames": 314,
+      "added": [
+        {
+          "id": "dm25rp3-031",
+          "name": "「止まれども 無理やり回す 俺様が」"
+        },
+        {
+          "id": "dm24bd6-009",
+          "name": "「あれが水晶の頂天に君臨する者の玉座だ！」"
+        },
+        {
+          "id": "dmex01-052",
+          "name": "「理想」の極 シャングリラ・エデン"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1822,
+        "baseline": "42635d7dc9b7b47b1bba9ec4bb4377c12e4781bd",
+        "originalDefinitionsUnchanged": 9683,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9686,
+        "uniqueIds": 9686,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9683,
+        "existingImageReferenceRowsUnchanged": 12115,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1822": {
+          "name": "official-1822",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1822.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.207,
+          "log": "tmp/duema-target-10000/official-1822.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1822-final": {
+          "name": "focused-1822-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1822-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.752,
+          "log": "tmp/duema-target-10000/focused-1822-final.log",
+          "passed": 94,
+          "logSha256": "4a46af3a5a884b8a27b7227d655d876efbe6c1aaa67fdf6b645d14a86dbaeb6c"
+        },
+        "related-1822": {
+          "name": "related-1822",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* updates continuously at each own mana threshold on either turn, including tapped mana|ignored and sealed |only the controller mana zone is counted, including player one and an empty mana zone|one five-civilization physical mana card counts once even with zero mana value; under-cards do not count|Twinpact faces contribute their combined civilizations to colored and multicolor conditions|Courtney grants current mana civilizations and ignoring or removing Courtney immediately removes the conditional stats|Genmu suppresses these cost-five-or-less creature abilities while their mana still exists|[^\\n]* summons with ordinary payment, preserves identities and remains enhanced after payment taps its mana|[^\\n]* applies power-attacker only as attacker in a real battle |Kabutowa can use Mach Fighter on its entry turn but cannot attack the player and respects protected targets|Eban uses its current conditional power to exclude weaker blockers |mana at shield-break resolution determines the actual breaker |Akatokuro targets only an untapped opponent creature; tapped, protected and tamaseed cards are excluded|Tap de Rayou chooses two different targets and commits both taps together, preserving a save between choices|Cogito allows exactly zero, one or two bounces |[^\\n]* S Trigger works during the opponent turn without any payment|GG suppresses entry removals while the static mana abilities and printed blocker continue|Rayou blocks with current mana power on the opponent turn|[^\\n]* pays printed cost, has normal summoning sickness and saves/resumes without losing physical cards|Assassin optional return can choose |Assassin does not return anything when even one own mana card lacks Water; opponent mana and other zones never invalidate it|Assassin accepts Water multicolor/twinpact mana and Courtney, but rejects untreated colorless or face-down mana|Assassin target protection is respected and returning its source does not repeat the entry effect|Galileo discounts only its controller first spell and requires at least five current Water mana |Galileo counts tapped Water, twins and five-color cards once each, but excludes raw face-down and colorless cards|Courtney can supply Galileo five current Water mana and removing its ability immediately revokes the discount|Galileo stacks with itself and Zapanpu, honors the one-mana floor and applies taxes before reductions|a real first spell pays three mana and a second spell pays full cost without consuming the allowance during previews|meeting mana armament after an earlier cast does not restore first-spell permission; a new turn resets both counts|a spell S Trigger remains free with Galileo and still consumes the first-spell count|Zack gains power only when all its own mana are tapped, including the empty-zone case |paying a normal Zack summon with the whole mana pool immediately enables its power bonus|Zack battle uses the current all-tapped bonus |Galileo discount and Zack power stop applying after |Assassin entry is suppressed under |[^\\n]* triggers once on its own low-cost summon |[^\\n]* watches current printed creature cost |[^\\n]* excludes opponent entry and own six-cost spells|[^\\n]* triggers on a free non-summoning deck deployment of a six-cost creature|[^\\n]* queued ability survives source departure and JSON saving|multiple ShiraUo watchers independently offer mana addition and preserve effect order|multiple OniZo watchers stack their power reduction and destroy at zero|multiple Moel watchers destroy separate legal targets|[^\\n]* honors Genmu, ignored or sealed watchers; GG suppresses only self entry|Ebinbee prevents native triggered untapping, remains after source departure and expires at the next controller turn|Ebinbee lock is inherited by evolution and retained across JSON until its proper expiry|Ebinbee target loses its old lock after leaving and returning to the battlefield|OniZo power reduction lasts only for the current turn and remains after later ability suppression|Moel uses current power at the 4000 boundary and respects target protection|ShiraUo mana addition is optional and preserves printed multicolor tap behavior |public AI decisions do not inspect hidden opponent hand and deck identities|[^\\n]* may turn an own mana face down in place, preserving tapped state, identity and JSON |[^\\n]* may decline while keeping prior effects and leaving every mana unchanged |Light spell shields before drawing and performs the optional flip last|Spiral checks printed cost six, bounces a legal enemy, then offers the mana flip|Hand destroys a creature while Frame can also destroy a cost-four seed and excludes more costly elements|Chili power loss is temporary and a creature reaching zero is destroyed before mana choice|Reload privately takes one card, orders all remaining cards below, and only then flips mana|Rasha taps its enemy through the next untap and can block an attack|Falcon takes a shield without allowing its S Trigger, then offers flipping a mana|Kinako mills the top two cards before its mana ability, and exhausting the deck stops later effects|Ken flips on every attack, remains summoning sick after ordinary entry and can also decline|[^\\n]* shield trigger works without mana and still flips if a mana is available|when no mana can be turned down, the optional ability completes without a stuck choice|already face-down cards are excluded and turning an untapped multicolor card does not tap it|old five-color zero mana becomes one colorless mana while an active zero-mana effect remains zero|turning a mana down is not moving it: Apul and deck-to-mana replacement do not stop the flip|Crystal Armament activates immediately on the second face-down mana without a zone entry|a face-down card loses its printed civilization for payment, while Courtney restores all civilizations|owners can inspect their hidden mana in the UI and observation while opponents cannot|AI avoids losing its last colored mana, prefers safe flips for visible Armament and remains pure|a queued mana flip resolves after its source leaves and does not change an already-spent mana|GG in evolution state stops creature entry abilities and Genmu ignores all applicable new cards|a stale choice cannot flip a card that left and returned to mana as a new zone object|[^\\n]* pays seven printed mana with four real mana cards, player |[^\\n]* still requires civilization and cannot use a tapped or missing crystal, player |[^\\n]* manual payment shows two mana, cancels exactly and survives JSON, player |ordinary seven-card payment is unchanged; the ability does not amplify face-up mana or battle-zone mana Birds|the last necessary crystal may exceed seven, but a removable surplus mana card is refused|a summon discount changes needed points without altering the printed cost or crystal value|Crystal Soul overrides prior zero values only on face-down mana, and remains local to this summon|Courtney can give crystal mana the missing civilization; a five-color physical card becomes two only face down|the mana boost is not a discount and works under cost-reduction prohibition and Genmu|a creature granted mana summoning can pay with itself before moving; facedown cards still cannot be summoned|[^\\n]* is a real shield summon with no mana, player |Ihakka destroys a selected enemy but excludes seeds and protected enemies; no target still finishes|Systis optionally freezes up to three, and attack and block return on its controller next start even if source leaves|[^\\n]* optional creature mana placement |Platt may move itself to mana and a multicolor target enters tapped|Dolushi draws first, then puts exactly one chosen physical hand card face down into a shield without using its trigger|Acid removes an element to the bottom and then lets the opponent draw; with no target it still draws|Dorian Hyper Energy uses distinct-cost donors, may cancel and pays remaining Nature mana|GG suppresses entry abilities but does not prevent Crystal Soul payment or S Trigger summoning|AI and hand UI see the amplified physical mana count, are pure and do not inspect enemy hidden cards|[^\\n]* protects against a current shared civilization, but not a colorless attacker|[^\\n]* bars same-color blockers but allows a blocker from a different civilization|Bulfarion charges tapped and breaks two shields when no eligible blocker interferes|Claude chooses a single own multicolor card and respects both zones |Claude resolves its shield trigger and untaps a dual-civilization twinpact in mana|Claude sees current mana civilizations without exposing the face of a card affected by Courtney|Claude can untap a multicolor Tamaseed in the battle zone|Duran DDD can evolve the attacker and offer an untap only at the first attack end|Duran can decline its first attack end untap while still breaking shields|Duran still triggers at attack end against evolved GG \\(QA 48740\\)|Harinsen counts only its own creatures and casts a spell exactly at the free cost limit|Harinsen can cast the spell face of an eligible twinpact|Harinsen can decline a legal spell without consuming it or mana|Paradiso returns exactly two own water creatures including itself, or as many as available|Paradiso offers exactly three draws followed by one discard and breaks three shields|Jeep enforces its errata, excluding opposing and evolved creatures while allowing ordinary NEO|Steam Operation requires a current-turn noncreature execution for a normal summon|Steam Operation can declare DDD before a spell and checks its condition when DDD resolves|Steam Operation can be put into the battle zone by a non-summon effect|Love repeats its tap lock after moving a hand card to the extra zone|Love can decline the hand move and may select the same target again|Love follows the same creature while it has that type and lifts the lock on a dormant ACE|Classic returns untargetable opponent creatures to their owners and leaves seeds and allies in place|Classic auras apply to later creatures, stack from distinct sources, and end when their source leaves|Classic lets an ally choose its own T-breaker or the granted Powered Breaker|Baza counts each matching graveyard card once even when both twinpact names match|Baza untaps when an opposing creature changes from untapped to tapped on either turn|Baza redirects a creature attack with Guardman and may use Escape to keep itself|King reveals the last three, deploys the cost-8 Joker and orders the other two above the old top|King can decline the deployment and returns every card in the selected order|Andasterion attacks a creature on entry and revives a Distas |Fushigibirth reaches its two-mana floor, requires both colors and produces EX Life on the grave summon|Protection shields the deck top and summons from extra with only the spell mana tapped|Ghost lets the opponent choose the mandatory discard before the optional summon|Ashidake checks civilizations after the optional hand ramp |Kyokutsuufuu replaces King’s bottom reveal with one card from the top|teleport requires every civilization and does not count the printed color of face-down mana|King uses G Strike from a broken shield and leaves its target untapped|Andasterion’s EX Life uses the actual top card to replace its first departure|Joe Star printed field and reprint preserve the canonical ID and Premium Hall limit|QA 38606 and QA 38701 apply to both players and all zones, including Verde and twinpact faces|Rule bulletin 31641 lets Acid Techno deploy originally colored options from hand and library|QA 38699 places a printed multicolored card untapped without changing its mana value|QA 38697 removes civilizations from a printed Kirifuda Dash cost|QA 40872 allows Birds to pay with any color regardless of Joe Star entry order|QA 38698 prevents a command from removing a same-civilization seal|a creature copying Lirin gains its own timestamp and recovers printed color when Joe Star leaves|Justice sympathy counts own current creatures and bottoms out at one mana |Justice sympathy excludes real seals and is disabled by opposing Diamond Star|Justice protects every allied creature from grave, hand and mana moves during only the next opposing turn |Justice does not stop seed and gear departures or shield, mana and hand card movement|Justice blocks battle destruction and power-zero rules destruction during the protected turn|Remember the Name destroys the selected foe and locks every same-name entry, attack and block until own start |Remember the Name stops blocking by a same-name existing creature without removing its blocker ability|Remember the Name still records the selected creature name when its destruction is replaced |Remember the Name with no opposing creature creates no prohibition|COMPLEX VORTEX destroys only an untapped enemy then independently offers an own sacrifice |COMPLEX VORTEX still permits its own sacrifice without an eligible enemy and skips it with no own creature |COMPLEX VORTEX destruction attempt with a destruction-to-hand replacement still returns the spell|New destruction spells execute from actual shields without paying mana |Delayed Justice and same-name restrictions survive moving the used spell card|Momo Mugen suppresses resolved mono-color Justice and name-lock effects, and ignoring that source restores them|Momo Mugen silences both instructions of a newly cast COMPLEX VORTEX|COMPLEX VORTEX returns after a selected sacrifice is prevented by a resolved Apocalypse spell|Ukon grants2000 to every own Dragon but no nonDragon or enemy and ignored recipient keeps external power |QA36435 Forever stops ordinary opposing Psychic player attack but permits creature attack and blocking |QA36434 Forever also stops actual Psychic Super KillerDragon and Evolution RedZoneBuster |Forever external restriction remains on ignored Psychic recipient and disappears with ignored source |Sakon own start exact3 cells link to19000 Fire T breaker and continuous own speed |Sakon link requires own unsealed exact partners usable source and own start |Gaiarl Ryusei forbids enemy Psychic creature and player attacks plus blocks but leaves nonPsychic combat legal |Gaiarl Ryusei suppression or sealing releases Psychic combat lock immediately |Gaiarl Ryusei optional mill may be declined without moving any library card |Gaiarl Ryusei mills2 together and uses each distinct card cost independently with no summed budget |Gaiarl Ryusei may decline either deployment independently and cannot select same physical Psychic twice |Gaiarl Ryusei one milled twinpact permits the larger printed cost and second independent ordinary card stays limited |Gaiarl Ryusei native back-face entry selection uses chosen face cost separately |Gaiarl Ryusei real entry ban prevents free Psychic deployment without cancelling the mill |Gaiarl Ryusei final2 library cards are optional and accepted mill loses before any extra entry |Gaiarl Ryusei native mandatory unlink returns chosen cell and remaining fronts lose linked auras |phase1734 encrypted per-card cost choice and own extra identities restore without exposing enemy cards |phase1734 real Diamond Cutter overrides enemy Psychic attack prohibition for player attack only |Gaiarl Ryusei real deck-shuffle replacement produces no milled-card deployment |Gaiarl Ryusei native Psychic choice AI rankings are pure and ignore opposing hidden cards |phase1739 full original2 spells art limits exact names and strict native specs|Heavens chooses one own current Blocker pays2 and gives4000 W breaker plus actual shield attack |Both spells leave tapped creature unable to attack and do not untap it |Both spells preserve summoning sickness and do not confer speed attacker |QA35120 Miracle Portal allows noAttack blocker player attack only and cannot attack tapped creature |Heavens full attack restriction override permits an old noAttack Blocker to attack creatures |QA36799 Heavens selected blocker attacks past tapped Shangrila |Both spells apply only selected creature expire at end and do not affect later entry |Genmu spell ignore prevents all permission buffs and unblockability |Portal chosen target is unblockable even if an opposing untapped Blocker exists |Heavens target filter sees granted Blocker and excludes opponent or nonBlocker |phase1739 target choice JSON encrypted restore hides other player actions and preserves80 card format |QA36777 Shangrila paid ultra infinite Omega any1\\+ Guardian combination |Shangrila selection rejects wrong race face-down mana and locked grave, permits same-zone multiples and cancel |Shangrila tapped locks all enemy player and creature attacks, untapped ignored or sealed source does not |Shangrila Meteor may remove exactly1 base then shuffle chosen entire opponent stack and retain source T breaker |Shangrila Meteor can decline or execute with no enemy, and no base gives no Meteor decision |Shangrila native Eternal Omega returns whole evolution to owner hand from real removal |Heavens and Portal externally applied permission survives target ability ignoring and follows evolution UID layers |QA36779 Shangrila prevents even a forced attacker from declaring any attack |Heavens permission disappears after actual return and fresh reentry instead of leaking to same physical UID |Real Woods and Diamond Cutter retain existing attack freedom against tapped Shangrila |Shangrila may use its selected mana Guardian to pay the11 mana before attaching it |Heavens removes color-only and Blocker-only creature attack limits but retains target protections |Shangrila base count stays with summoner while Yomino chooses battlefield bases only |Shangrila optional multi-zone evolution continuation restores through encrypted room with same native choices )",
+            "tests/standard267-effects.test.mjs",
+            "tests/standard285-effects.test.mjs",
+            "tests/standard291-effects.test.mjs",
+            "tests/standard426-effects.test.mjs",
+            "tests/standard434-effects.test.mjs",
+            "tests/standard806-effects.test.mjs",
+            "tests/standard1068-effects.test.mjs",
+            "tests/standard1116-effects.test.mjs",
+            "tests/standard1321-effects.test.mjs",
+            "tests/standard1363-effects.test.mjs",
+            "tests/standard1643-effects.test.mjs",
+            "tests/standard1734-effects.test.mjs",
+            "tests/standard1739-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 8.65,
+          "log": "tmp/duema-target-10000/related-1822.log",
+          "passed": 462,
+          "logSha256": "f422b49824d231c9b05ebc3f46a7b24ce01bb5ce46515bd5392306bfcaf98362"
+        },
+        "check-1822": {
+          "name": "check-1822",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.601,
+          "log": "tmp/duema-target-10000/check-1822.log",
+          "passed": 0,
+          "logSha256": "b2ca25b9e95464a8737c40145f7d8780c586a869699d9840fd4f83a01899cbf1"
+        },
+        "audit-1822": {
+          "name": "audit-1822",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.627,
+          "log": "tmp/duema-target-10000/audit-1822.log",
+          "passed": 0,
+          "logSha256": "7fa8643d9150ed92e504ee27168bc5e29d641cad877f79a68bb82800fe742cbf"
+        },
+        "invariants-1822": {
+          "name": "invariants-1822",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1822"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.71,
+          "log": "tmp/duema-target-10000/invariants-1822.log",
+          "passed": 0,
+          "logSha256": "5f917a0d9c8515e8756d56e542f883bb6f8a680eeb961f95ba40dcca8431f394"
+        },
+        "related-online-1822": {
+          "name": "related-online-1822",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.596,
+          "log": "tmp/duema-target-10000/related-online-1822.log",
+          "passed": 5,
+          "logSha256": "1e7d4c81cc60e7c191ac55028e7698afa8995516d4c0cfa334e0d05e29880573"
+        }
+      },
+      "totalTestsPassed": 561,
+      "manifest": "tools/support-phase-1822.json",
+      "supported": 9686,
+      "pending": 2163,
+      "engineVersion": "0.602.346",
+      "held": [
+        {
+          "id": "dmrp03-024",
+          "name": "“必駆”蛮触礼亞",
+          "research": "tmp/duema-target-10000/research-dm25rp3-031.json",
+          "reason": "Full official HTML/all-seven-print search and QA41564 were collected. BADS two-cost optional reduction is not currently represented by a full native spell-payment/discard-before-opponent-counter mechanism, and the optional native deployment/fight flag makes the subsequent enemy fight optional whereas the printed fight is mandatory. Correct payment order, no-reduction effects, exact delayed destruction and related counter/extra-turn rulings need full implementation and tests. Do not pin a partial definition or count this card. Print-image full review remains unfinished for the seven BADS prints."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp08-008",
+          "name": "“T-風” 戦車 ガンデルン",
+          "reason": "Verify full entry hand discard and conditional top-card viewing plus normal paid creature/spell use only with at most one hand card; preserve top-card privacy and old IDs."
+        },
+        {
+          "id": "dmrp11-m03",
+          "name": "“魔神轟怒”ブランド",
+          "reason": "Verify complete same-turn Fire creature entry counts after departures and source arrival, conditional haste/Power Attacker/W-breaker, and first-per-turn attack team untap at five entries. No current-battle-only approximation."
+        },
+        {
+          "id": "dmr18-007",
+          "name": "禁断",
+          "reason": "Verify both global attack prohibition and creature-specific seal-removal prohibition, including actual ignore-attack-lock permissions and spell removals before implementing the full card."
+        }
+      ],
+      "verificationScope": "All four official print images/full faces and current restrictions verified. Stop: native S-Trigger and actual DDD declaration/resolution/manual payment from both seats, mandatory two distinct available targetable creatures, exact-source until-own-start lock, evolution inheritance, no stale-incarnation lock and suppression/restoration by actual Genmu. Throne: optional single mana turn-down, exact four-card boundary, owner-only five civilizations, live ignored/sealed/departed source, actual Joe Star effect order including real post-Joe seed entry, correct actual/online colored payment, G-Strike, owner-only private face and generic mana-color conditions. Existing Courtney remains consistent between current face-down mana civilizations, payment and mana-armament conditions; no printed old definition changes. Eden: one actual creature from each required zone with the full battle evolution preserved, invalid/locked bases, mandatory owner-controller deck shuffle and actual QQQX prevention, tapped-source attack/block lock including later and ignored enemies, and native whole-evolution Eternal Omega. The separate named Beethoven-vs-Star choice in QA40288 is reviewed only as general evidence of full evolution return, not falsely reported as a literal named-card reproduction.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "official-1822",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1822.json"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.089,
+          "log": "tmp/duema-target-10000/official-1822-previous-1795801117622872000.log",
+          "originalLog": "tmp/duema-target-10000/official-1822.log",
+          "reason": "An abandoned draft in the previous turn selected already registered Meteor cards; prepare rejected them before any manifest/pin/data write, the exploratory helper change was restored, and the current phase uses three actually unsupported names. Initial focused fixture failures used the nonexistent ddd action instead of declareDDD/summonDDD, read pre-restore object references, compared optional printed civilizations fields directly, and expected Eternal Omega bases to go to grave. Corrected those against actual interfaces and official QA40288. Later fixtures omitted Joe Star activation state, looked for a nonexistent useGStrike action instead of gsDeclare/gsTarget, and placed QQQX on the wrong controlling side; corrected them. Added real source-entry timestamp and strict online private-face assertions. Replaced the provisional bare tap-lock selection flag with the existing spell-aware g1116 untap-lock machinery, so actual Genmu properly suppresses/restores the unresolved-duration prohibition. Final focused passes 94/94, filtered related 462/462, online five/five. No full npm test or known long game/worker/random-play group was run in this phase."
+        },
+        {
+          "name": "focused-1822-first",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1822-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.695,
+          "log": "tmp/duema-target-10000/focused-1822-first.log",
+          "reason": "An abandoned draft in the previous turn selected already registered Meteor cards; prepare rejected them before any manifest/pin/data write, the exploratory helper change was restored, and the current phase uses three actually unsupported names. Initial focused fixture failures used the nonexistent ddd action instead of declareDDD/summonDDD, read pre-restore object references, compared optional printed civilizations fields directly, and expected Eternal Omega bases to go to grave. Corrected those against actual interfaces and official QA40288. Later fixtures omitted Joe Star activation state, looked for a nonexistent useGStrike action instead of gsDeclare/gsTarget, and placed QQQX on the wrong controlling side; corrected them. Added real source-entry timestamp and strict online private-face assertions. Replaced the provisional bare tap-lock selection flag with the existing spell-aware g1116 untap-lock machinery, so actual Genmu properly suppresses/restores the unresolved-duration prohibition. Final focused passes 94/94, filtered related 462/462, online five/five. No full npm test or known long game/worker/random-play group was run in this phase."
+        },
+        {
+          "name": "focused-1822-second",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1822-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.708,
+          "log": "tmp/duema-target-10000/focused-1822-second.log",
+          "reason": "An abandoned draft in the previous turn selected already registered Meteor cards; prepare rejected them before any manifest/pin/data write, the exploratory helper change was restored, and the current phase uses three actually unsupported names. Initial focused fixture failures used the nonexistent ddd action instead of declareDDD/summonDDD, read pre-restore object references, compared optional printed civilizations fields directly, and expected Eternal Omega bases to go to grave. Corrected those against actual interfaces and official QA40288. Later fixtures omitted Joe Star activation state, looked for a nonexistent useGStrike action instead of gsDeclare/gsTarget, and placed QQQX on the wrong controlling side; corrected them. Added real source-entry timestamp and strict online private-face assertions. Replaced the provisional bare tap-lock selection flag with the existing spell-aware g1116 untap-lock machinery, so actual Genmu properly suppresses/restores the unresolved-duration prohibition. Final focused passes 94/94, filtered related 462/462, online five/five. No full npm test or known long game/worker/random-play group was run in this phase."
+        },
+        {
+          "name": "focused-1822-third",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1822-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.347,
+          "log": "tmp/duema-target-10000/focused-1822-third.log",
+          "reason": "An abandoned draft in the previous turn selected already registered Meteor cards; prepare rejected them before any manifest/pin/data write, the exploratory helper change was restored, and the current phase uses three actually unsupported names. Initial focused fixture failures used the nonexistent ddd action instead of declareDDD/summonDDD, read pre-restore object references, compared optional printed civilizations fields directly, and expected Eternal Omega bases to go to grave. Corrected those against actual interfaces and official QA40288. Later fixtures omitted Joe Star activation state, looked for a nonexistent useGStrike action instead of gsDeclare/gsTarget, and placed QQQX on the wrong controlling side; corrected them. Added real source-entry timestamp and strict online private-face assertions. Replaced the provisional bare tap-lock selection flag with the existing spell-aware g1116 untap-lock machinery, so actual Genmu properly suppresses/restores the unresolved-duration prohibition. Final focused passes 94/94, filtered related 462/462, online five/five. No full npm test or known long game/worker/random-play group was run in this phase."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1821,
-    "nextPhase": 1822,
+    "lastVerifiedPhase": 1822,
+    "nextPhase": 1823,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm25rp3-031",
-        "name": "「止まれども 無理やり回す 俺様が」",
-        "reason": "Verify complete S-Trigger and DDD paid Light execution, mandatory exact up-to-available two-creature tap and freeze through own next start using existing native selectors.",
-        "officialResearchStatus": "next grouped official full-text/all-print/image/restriction/ruling research required; not yet implemented or counted"
+        "id": "dmrp08-008",
+        "name": "“T-風” 戦車 ガンデルン",
+        "reason": "Verify full entry hand discard and conditional top-card viewing plus normal paid creature/spell use only with at most one hand card; preserve top-card privacy and old IDs."
       },
       {
-        "id": "dmrp03-024",
-        "name": "“必駆”蛮触礼亞",
-        "reason": "Verify full BADS two-cost discount/discard ordering, optional actual hand Beat Jockey deployment, mandatory enemy battle and exact-unit turn-end destruction using existing deployment/battle/delay machinery.",
-        "officialResearchStatus": "next grouped official full-text/all-print/image/restriction/ruling research required; not yet implemented or counted"
+        "id": "dmrp11-m03",
+        "name": "“魔神轟怒”ブランド",
+        "reason": "Verify complete same-turn Fire creature entry counts after departures and source arrival, conditional haste/Power Attacker/W-breaker, and first-per-turn attack team untap at five entries. No current-battle-only approximation."
       },
       {
-        "id": "dm24bd6-009",
-        "name": "「あれが水晶の頂天に君臨する者の玉座だ！」",
-        "reason": "Verify complete G-Strike, optional single mana turn-face-down and crystal-armour four global civilization changes for own face-down mana; preserve hidden identities and payments.",
-        "officialResearchStatus": "next grouped official full-text/all-print/image/restriction/ruling research required; not yet implemented or counted"
+        "id": "dmr18-007",
+        "name": "禁断",
+        "reason": "Verify both global attack prohibition and creature-specific seal-removal prohibition, including actual ignore-attack-lock permissions and spell removals before implementing the full card."
       }
     ],
     "steps": [
@@ -572989,11 +573240,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1821,
-      "baseline": "2f16da85962a2ba9702f418776402f66c0ae1d83",
-      "supportedNames": 9683,
-      "artifact": "tools/target10000-registration-checkpoint-1821.json",
-      "checkedAt": "2026-11-27T17:32:26.364Z"
+      "phase": 1822,
+      "baseline": "42635d7dc9b7b47b1bba9ec4bb4377c12e4781bd",
+      "supportedNames": 9686,
+      "artifact": "tools/target10000-registration-checkpoint-1822.json",
+      "checkedAt": "2026-11-27T17:49:00.920Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -576051,8 +576302,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9683,
-      "remaining": 317,
+      "currentNames": 9686,
+      "remaining": 314,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -576060,8 +576311,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1821,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1821.json",
+      "lastPhase": 1822,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1822.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -577343,8 +577594,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9683,
-      "remaining": 317,
+      "currentNames": 9686,
+      "remaining": 314,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -577352,8 +577603,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1821,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1821.json",
+      "lastPhase": 1822,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1822.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -629482,10 +629733,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1821,
+    "phase": 1822,
     "threshold": 10000,
-    "supportedNames": 9683,
-    "pendingNames": 2166,
+    "supportedNames": 9686,
+    "pendingNames": 2163,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -629494,7 +629745,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1821.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1822.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
