@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11841,
-  "supportedNames": 9578,
-  "pendingNames": 2263,
-  "phase": 1785,
+  "supportedNames": 9581,
+  "pendingNames": 2260,
+  "phase": 1786,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1315,
+    "クリーチャー": 1312,
     "呪文": 252,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1664,
+    "未対応の能力文": 1661,
     "複数面・特殊カードタイプまたは情報不足": 500,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -564802,27 +564802,192 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1786,
+      "checkedAt": "2026-11-27T10:47:37.780Z",
+      "baseline": "b5f122498d9ac0c3ec49dacf236a01e1318c4deb",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9578,
+      "currentNames": 9581,
+      "remainingNames": 419,
+      "added": [
+        {
+          "id": "dmex13-033",
+          "name": "罪無 メリゴ垓"
+        },
+        {
+          "id": "dmrp15-s08",
+          "name": "無量大龍 ドゥエ・ミリオーニ"
+        },
+        {
+          "id": "dmrp15-008",
+          "name": "那由多 アストロ宙ノ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1786,
+        "baseline": "b5f122498d9ac0c3ec49dacf236a01e1318c4deb",
+        "originalDefinitionsUnchanged": 9578,
+        "uniqueNames": 9581,
+        "uniqueIds": 9581,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11845,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9578,
+        "existingImageReferenceRowsUnchanged": 11912,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1786": {
+          "name": "official-1786",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1786.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.835,
+          "log": "tmp/duema-target-10000/official-1786.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1786-final": {
+          "name": "focused-1786-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1786-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.826,
+          "log": "tmp/duema-target-10000/focused-1786-final.log",
+          "passed": 27,
+          "logSha256": "7aac2c68d65074d8a7ec3128d5ee8dd2802363258024ebedfc9ea9c6d8bc24f1"
+        },
+        "related-1786": {
+          "name": "related-1786",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?!.*(?:legal forty|full legal|complete forty|CPU match|forty-card|CPU game)).*",
+            "tests/standard1123-effects.test.mjs",
+            "tests/standard538-effects.test.mjs",
+            "tests/standard527-effects.test.mjs",
+            "tests/standard521-effects.test.mjs",
+            "tests/standard586-effects.test.mjs",
+            "tests/standard461-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 38.284,
+          "log": "tmp/duema-target-10000/related-1786.log",
+          "passed": 413,
+          "logSha256": "049d7b7d82af9f75d15e509be9f0396f493ef645e469ddab69c991833252be52"
+        },
+        "check-1786": {
+          "name": "check-1786",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 31.144,
+          "log": "tmp/duema-target-10000/check-1786.log",
+          "passed": 0,
+          "logSha256": "06414b0e94118fa8babe6b01b0c60e63efb806cda88e04dcd82cb548a78805e5"
+        },
+        "audit-1786": {
+          "name": "audit-1786",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.982,
+          "log": "tmp/duema-target-10000/audit-1786.log",
+          "passed": 0,
+          "logSha256": "9110013fa6a1a2d4bcd6bb976465ce05055de143a42ffe98045fb16b824501b0"
+        },
+        "invariants-1786": {
+          "name": "invariants-1786",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1786"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.718,
+          "log": "tmp/duema-target-10000/invariants-1786.log",
+          "passed": 0,
+          "logSha256": "eb76ec1914b013c4fd1c36f3d20e38d6dc69a7ebf577656dec0e430ed7a6e3b7"
+        }
+      },
+      "totalTestsPassed": 440,
+      "manifest": "tools/support-phase-1786.json",
+      "supported": 9581,
+      "pending": 2260,
+      "engineVersion": "0.602.310",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1786",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1786-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.541,
+          "log": "tmp/duema-target-10000/focused-1786.log",
+          "reason": "Initial focused run failed only due to test fixture errors: sealed flags without actual attached seal cards were recalculated by the engine; optional Draw choices are numeric 0/1, not boolean/null; legacy buff was replaced with a persistent power modifier in the surviving-target fixture; an unregistered placeholder was replaced by actual registered Amodegoras. Final focused tests pass with physical seals and actual replacement cards. Both all-replaced and partially-replaced Astro draws assert the exact actual draw/discard counts. No shared engine behavior changes in this phase."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1785,
-    "nextPhase": 1786,
+    "lastVerifiedPhase": 1786,
+    "nextPhase": 1787,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex13-033",
-        "name": "罪無 メリゴ垓",
-        "reason": "Official complete image and single print checked; native CountPowerMinus1123 counts tapped own creatures at resolution. QA34335 snapshot reproduction next."
+        "id": "dmbd08-b-002",
+        "name": "メガロ・デストロイト",
+        "reason": "Official research downloaded for all exact prints and linked rulings; next review original/reprint images and reproduce full native entry/recovery/discard or end/watch abilities."
       },
       {
-        "id": "dmrp15-s08",
-        "name": "無量大龍 ドゥエ・ミリオーニ",
-        "reason": "Official complete image/single print checked; native Mugen3, minus11000 and opponent death optional draw; Official linked QA simultaneous source destruction next."
+        "id": "dm28-017",
+        "name": "氷牙提督マティアス卿",
+        "reason": "Official research downloaded for all exact prints and linked rulings; next review original/reprint images and reproduce full native entry/recovery/discard or end/watch abilities."
       },
       {
-        "id": "dmrp15-008",
-        "name": "那由多 アストロ宙ノ",
-        "reason": "Official original+dmex19-018 full images and stats checked; independent entry triggers via g527ExtraEntry, snapshot Slayer until own start, actual draw/discard count via native CountOwn538 and PlayerDraw461."
+        "id": "dm28-018",
+        "name": "海王提督ラネーバ・早雲",
+        "reason": "Official research downloaded for all exact prints and linked rulings; next review original/reprint images and reproduce full native entry/recovery/discard or end/watch abilities."
       }
     ],
     "steps": [
@@ -565716,11 +565881,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1785,
-      "baseline": "6066c9e47a065851bb73b39a757e2a02d4b0f72c",
-      "supportedNames": 9578,
-      "artifact": "tools/target10000-registration-checkpoint-1785.json",
-      "checkedAt": "2026-11-27T10:43:18.868Z"
+      "phase": 1786,
+      "baseline": "b5f122498d9ac0c3ec49dacf236a01e1318c4deb",
+      "supportedNames": 9581,
+      "artifact": "tools/target10000-registration-checkpoint-1786.json",
+      "checkedAt": "2026-11-27T10:47:37.780Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -568778,8 +568943,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9578,
-      "remaining": 422,
+      "currentNames": 9581,
+      "remaining": 419,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -568787,8 +568952,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1785,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1785.json",
+      "lastPhase": 1786,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1786.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -570016,8 +570181,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9578,
-      "remaining": 422,
+      "currentNames": 9581,
+      "remaining": 419,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -570025,8 +570190,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1785,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1785.json",
+      "lastPhase": 1786,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1786.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -622006,10 +622171,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1785,
+    "phase": 1786,
     "threshold": 10000,
-    "supportedNames": 9578,
-    "pendingNames": 2263,
+    "supportedNames": 9581,
+    "pendingNames": 2260,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -622018,7 +622183,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1785.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1786.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

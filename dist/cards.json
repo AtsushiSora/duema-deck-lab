@@ -306698,18 +306698,152 @@
       ],
       "supportBatch": "phase-1785",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-033",
+      "name": "罪無 メリゴ垓",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、バトルゾーンにある自分のタップしているクリーチャー１体につき、選んだクリーチャーのパワーを －2000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-033",
+      "limit": 4,
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPowerMinus1123",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "base": 0,
+          "per": 2000
+        }
+      ],
+      "supportBatch": "phase-1786",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-s08",
+      "name": "無量大龍 ドゥエ・ミリオーニ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ゼロ・ドラゴン/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－11000する。\n相手のクリーチャーが破壊された時、自分はカードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s08",
+      "limit": 4,
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -11000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -11000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1786",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-008",
+      "name": "那由多 アストロ宙ノ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次の自分のターンのはじめまで、自分のクリーチャーすべてに「スレイヤー」を与える。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のタップしているクリーチャー１体につき、カードを１枚引く。その後、こうして引いたカード１枚につき、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-008",
+      "limit": 4,
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "slayer": true
+          },
+          "g521UntilStart": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "タップしている自分のクリーチャーの数だけ引き、引いた枚数の手札を捨てる",
+          "defs": [
+            {
+              "op": "CountOwn538",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "mode": "select",
+              "def": {
+                "op": "PlayerDraw461",
+                "discard": "drawn"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1786",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1785,
-    "checkedAt": "2026-11-27T10:36:20.441Z",
-    "baseCount": 9575,
+    "phase": 1786,
+    "checkedAt": "2026-11-27T10:43:20.424Z",
+    "baseCount": 9578,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9578,
+    "totalCount": 9581,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34351/"
+      "https://dm.takaratomy.co.jp/rule/qa/34335/",
+      "https://dm.takaratomy.co.jp/rule/qa/34202/",
+      "https://dm.takaratomy.co.jp/rule/qa/34203/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335948,6 +336082,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/34206/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1785,
+        "checkedAt": "2026-11-27T10:36:20.441Z",
+        "baseCount": 9575,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9578,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34351/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

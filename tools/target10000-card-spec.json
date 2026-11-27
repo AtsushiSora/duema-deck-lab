@@ -5000,5 +5000,202 @@
         }
       ]
     }
+  },
+  "dmex13-033": {
+    "phase": 1786,
+    "faces": [
+      {
+        "name": "罪無 メリゴ垓",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、バトルゾーンにある自分のタップしているクリーチャー１体につき、選んだクリーチャーのパワーを －2000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "マフィ・ギャング/チーム零",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPowerMinus1123",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "base": 0,
+          "per": 2000
+        }
+      ]
+    }
+  },
+  "dmrp15-s08": {
+    "phase": 1786,
+    "faces": [
+      {
+        "name": "無量大龍 ドゥエ・ミリオーニ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－11000する。\n相手のクリーチャーが破壊された時、自分はカードを１枚引いてもよい。",
+        "race": "ゼロ・ドラゴン/チーム零",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 3,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -11000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -11000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g303DeathWatch": {
+        "opponent": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp15-008": {
+    "phase": 1786,
+    "faces": [
+      {
+        "name": "那由多 アストロ宙ノ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次の自分のターンのはじめまで、自分のクリーチャーすべてに「スレイヤー」を与える。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のタップしているクリーチャー１体につき、カードを１枚引く。その後、こうして引いたカード１枚につき、自分の手札を１枚捨てる。",
+        "race": "マフィ・ギャング/チーム零",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "slayer": true
+          },
+          "g521UntilStart": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "タップしている自分のクリーチャーの数だけ引き、引いた枚数の手札を捨てる",
+          "defs": [
+            {
+              "op": "CountOwn538",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "mode": "select",
+              "def": {
+                "op": "PlayerDraw461",
+                "discard": "drawn"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex19-018": {
+    "phase": 1786,
+    "faces": [
+      {
+        "name": "那由多 アストロ宙ノ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーが出た時、次の自分のターンのはじめまで、自分のクリーチャーすべてに「スレイヤー」を与える。\nこのクリーチャーが出た時、バトルゾーンにある自分のタップしているクリーチャー１体につき、カードを１枚引く。その後、こうして引いたカード１枚につき、自分の手札を１枚捨てる。",
+        "race": "マフィ・ギャング/チーム零",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenCrime": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "slayer": true
+          },
+          "g521UntilStart": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "タップしている自分のクリーチャーの数だけ引き、引いた枚数の手札を捨てる",
+          "defs": [
+            {
+              "op": "CountOwn538",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "mode": "select",
+              "def": {
+                "op": "PlayerDraw461",
+                "discard": "drawn"
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

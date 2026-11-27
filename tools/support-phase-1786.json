@@ -1,0 +1,397 @@
+{
+  "phase": 1786,
+  "checkedAt": "2026-11-27T10:43:20.424Z",
+  "baseline": "b5f122498d9ac0c3ec49dacf236a01e1318c4deb",
+  "baseCount": 9578,
+  "target": 10000,
+  "description": "Complete native Mugen Crime 2/3 creatures using current tapped-creature count snapshots, owner-specific death watch, separate entry abilities, temporary group Slayer and actual successful draw/discard accounting. Reuse all existing mechanisms without modifying shared rules.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/34335/",
+    "https://dm.takaratomy.co.jp/rule/qa/34202/",
+    "https://dm.takaratomy.co.jp/rule/qa/34203/"
+  ],
+  "cards": [
+    {
+      "id": "dmex13-033",
+      "name": "罪無 メリゴ垓",
+      "canonicalId": "dmex13-033",
+      "printId": "dmex13-033",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-033",
+      "faces": [
+        {
+          "name": "罪無 メリゴ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、バトルゾーンにある自分のタップしているクリーチャー１体につき、選んだクリーチャーのパワーを －2000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountPowerMinus1123",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "base": 0,
+            "per": 2000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-033.jpg",
+      "imageSha256": "2895e57b2349054d9bca7848db73d8cdd718ebeb460fb764ba47c9eed2380624",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex13-033-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex13-033"
+        ],
+        "allSearchIds": [
+          "promoy19-060",
+          "dmrp15-034",
+          "dmex19-043",
+          "dmex14-029",
+          "dmrp15-090",
+          "dmrp15-037",
+          "dm23rp3-SP4",
+          "dmrp16-052",
+          "dm22ex2-043",
+          "dmex16-062",
+          "promoy19-096",
+          "dmrp16-064",
+          "dmsd16-003",
+          "dmrp16-069",
+          "dmex13-060",
+          "dmex18-062",
+          "dmbd22-022",
+          "dm24ex3-TF06",
+          "dm24rp1-T03",
+          "dmrp15-015",
+          "dmsd16-008",
+          "dm22ex2-069",
+          "dmsd16-004",
+          "dmrp15-065",
+          "dm22ex1-108",
+          "dmsd16-005",
+          "dmrp15-016",
+          "dmsd16-002",
+          "dmex13-033",
+          "dmrp16-034"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:43:20.424Z",
+        "sha256": "100d1fc94a43c5f8fa9916c9f288ee7db7345f7f663e558397912907acf6f8d6",
+        "facesMatched": true,
+        "imageSha256": "2895e57b2349054d9bca7848db73d8cdd718ebeb460fb764ba47c9eed2380624"
+      }
+    },
+    {
+      "id": "dmrp15-s08",
+      "name": "無量大龍 ドゥエ・ミリオーニ",
+      "canonicalId": "dmrp15-s08",
+      "printId": "dmrp15-s08",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s08",
+      "faces": [
+        {
+          "name": "無量大龍 ドゥエ・ミリオーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－11000する。\n相手のクリーチャーが破壊された時、自分はカードを１枚引いてもよい。",
+          "race": "ゼロ・ドラゴン/チーム零",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -11000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "power": -11000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g303DeathWatch": {
+          "opponent": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-s08.jpg",
+      "imageSha256": "54aa0d81889b8de2c87d7b5915ead9f9976f9c8b35d012771c9bec580bc71698",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp15-s08-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp15-s08"
+        ],
+        "allSearchIds": [
+          "dmex14-s05",
+          "dmex13-s02",
+          "dmrp15-s08",
+          "dmrp16-s08",
+          "dmrp16-003",
+          "dmrp15-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:43:20.424Z",
+        "sha256": "d24e515e448ce0c4416d386b3e2b8a8b24b0df0d76053678ca2d4721c8560c41",
+        "facesMatched": true,
+        "imageSha256": "54aa0d81889b8de2c87d7b5915ead9f9976f9c8b35d012771c9bec580bc71698"
+      }
+    },
+    {
+      "id": "dmrp15-008",
+      "name": "那由多 アストロ宙ノ",
+      "canonicalId": "dmrp15-008",
+      "printId": "dmrp15-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-008",
+      "faces": [
+        {
+          "name": "那由多 アストロ宙ノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次の自分のターンのはじめまで、自分のクリーチャーすべてに「スレイヤー」を与える。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のタップしているクリーチャー１体につき、カードを１枚引く。その後、こうして引いたカード１枚につき、自分の手札を１枚捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "slayer": true
+            },
+            "g521UntilStart": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "タップしている自分のクリーチャーの数だけ引き、引いた枚数の手札を捨てる",
+            "defs": [
+              {
+                "op": "CountOwn538",
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                },
+                "mode": "select",
+                "def": {
+                  "op": "PlayerDraw461",
+                  "discard": "drawn"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-008.jpg",
+      "imageSha256": "8a6a8c1d1694100adcea9e466b17a75cd824a60031fda5a2cb5966199bb3ef48",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp15-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp15-008",
+          "dmex19-018"
+        ],
+        "allSearchIds": [
+          "dmrp15-008",
+          "dmex19-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:43:20.424Z",
+        "sha256": "1b3339567fa41b0ea64b632e920af443b585f2b54bc8eb1951bd5387d02ae4d6",
+        "facesMatched": true,
+        "imageSha256": "8a6a8c1d1694100adcea9e466b17a75cd824a60031fda5a2cb5966199bb3ef48"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex19-018",
+      "name": "那由多 アストロ宙ノ",
+      "canonicalId": "dmrp15-008",
+      "printId": "dmex19-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-018",
+      "faces": [
+        {
+          "name": "那由多 アストロ宙ノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーが出た時、次の自分のターンのはじめまで、自分のクリーチャーすべてに「スレイヤー」を与える。\nこのクリーチャーが出た時、バトルゾーンにある自分のタップしているクリーチャー１体につき、カードを１枚引く。その後、こうして引いたカード１枚につき、自分の手札を１枚捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "slayer": true
+            },
+            "g521UntilStart": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "タップしている自分のクリーチャーの数だけ引き、引いた枚数の手札を捨てる",
+            "defs": [
+              {
+                "op": "CountOwn538",
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                },
+                "mode": "select",
+                "def": {
+                  "op": "PlayerDraw461",
+                  "discard": "drawn"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-018.jpg",
+      "imageSha256": "82892e087ad7cb49c743b7dbf86e0d61b2900a02a7bcdbf6830236139f9a9dc9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex19-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp15-008",
+          "dmex19-018"
+        ],
+        "allSearchIds": [
+          "dmrp15-008",
+          "dmex19-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:43:20.424Z",
+        "sha256": "7f01935931a667b14d1437a55984aa128d9e8402a679a33b0535391e4514107d",
+        "facesMatched": true,
+        "imageSha256": "82892e087ad7cb49c743b7dbf86e0d61b2900a02a7bcdbf6830236139f9a9dc9"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34335/",
+      "sha256": "038665d826f9927354329b91dd91fc4ebf87c0e12ccf73d52b3582de044207f0",
+      "checkedAt": "2026-11-27T10:43:20.424Z",
+      "reproduced": true,
+      "tests": "tests/standard1786-effects.test.mjs",
+      "reproduction": "Actual Merigo, 0/1/2/4 tapped own creatures, real sealed cards, noncreature seed and buried/opposing exclusions: exactly -2000 per counted body, no further reduction when more allies tap later, and cleanup at turn end; actual Mugen taps also count.",
+      "result": "Actual Merigo, 0/1/2/4 tapped own creatures, real sealed cards, noncreature seed and buried/opposing exclusions: exactly -2000 per counted body, no further reduction when more allies tap later, and cleanup at turn end; actual Mugen taps also count."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34202/",
+      "sha256": "e4d7dc5e4126e357aeb0839149f0419417c1609ddfc8c2eef349d82892dd8e66",
+      "checkedAt": "2026-11-27T10:43:20.424Z",
+      "reproduced": true,
+      "tests": "tests/standard1786-effects.test.mjs",
+      "reproduction": "Actual dm14-015 Apocalypse Day destroys the actual Due and exactly five opposing creatures simultaneously; no draw triggers and no hand card is gained. Separate enemy destruction offers one optional draw, enemy bounce and own destruction do not.",
+      "result": "Actual dm14-015 Apocalypse Day destroys the actual Due and exactly five opposing creatures simultaneously; no draw triggers and no hand card is gained. Separate enemy destruction offers one optional draw, enemy bounce and own destruction do not."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34203/",
+      "sha256": "685248a426c7dc2a97cc80cdabdb37c98329dd5a4112221da8173e77c642d089",
+      "checkedAt": "2026-11-27T10:43:20.424Z",
+      "reproduced": true,
+      "tests": "tests/standard1786-effects.test.mjs",
+      "reproduction": "Actual Astro has two independently orderable entry abilities. Only currently present own creatures gain Slayer, including Astro; later entrants do not. Grant survives opponent turn and JSON, expires at own next start.",
+      "result": "Actual Astro has two independently orderable entry abilities. Only currently present own creatures gain Slayer, including Astro; later entrants do not. Grant survives opponent turn and JSON, expires at own next start."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:43:20.424Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex13-033": 4,
+      "dmrp15-s08": 4,
+      "dmrp15-008": 4,
+      "dmex19-018": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial focused run failed only due to test fixture errors: sealed flags without actual attached seal cards were recalculated by the engine; optional Draw choices are numeric 0/1, not boolean/null; legacy buff was replaced with a persistent power modifier in the surviving-target fixture; an unregistered placeholder was replaced by actual registered Amodegoras. Final focused tests pass with physical seals and actual replacement cards. Both all-replaced and partially-replaced Astro draws assert the exact actual draw/discard counts. No shared engine behavior changes in this phase."
+  }
+}
