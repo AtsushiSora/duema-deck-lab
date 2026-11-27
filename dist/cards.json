@@ -304445,15 +304445,113 @@
       "supportBatch": "phase-1765",
       "supportKind": "effect",
       "normalCharger": true
+    },
+    {
+      "id": "dm26ex5-DP022",
+      "name": "亡禍医 ヘモグロ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n自分のターンにこのクリーチャーが破壊された時、そのターンの終わりに自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "ScheduleGraveReturn644"
+        }
+      ],
+      "supportBatch": "phase-1766",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-DP027",
+      "name": "ヒメギャ・ルピア",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "ファイアー・バード/サムライ",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のサムライ・カードを実行するコストを１少なくする。ただしコストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP027",
+      "limit": 4,
+      "gStrike": true,
+      "g468UseReduction": {
+        "race": "サムライ",
+        "amount": 1
+      },
+      "supportBatch": "phase-1766",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-022",
+      "name": "アクア・インフォーマー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から４枚を見る。その中からリキッド・ピープル・カードまたはハンター・カードを１枚、表向きにしてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-022",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "raceAny": [
+                  "リキッド・ピープル",
+                  "ハンター"
+                ]
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1766",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1765,
-    "checkedAt": "2026-11-27T07:56:06.615Z",
-    "baseCount": 9516,
+    "phase": 1766,
+    "checkedAt": "2026-11-27T08:03:38.101Z",
+    "baseCount": 9519,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9519,
+    "totalCount": 9522,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -333403,6 +333501,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36690/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36691/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1765,
+        "checkedAt": "2026-11-27T07:56:06.615Z",
+        "baseCount": 9516,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9519,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

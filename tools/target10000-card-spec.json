@@ -1356,5 +1356,112 @@
       ],
       "normalCharger": true
     }
+  },
+  "dm26ex5-DP022": {
+    "phase": 1766,
+    "faces": [
+      {
+        "name": "亡禍医 ヘモグロ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\n自分のターンにこのクリーチャーが破壊された時、そのターンの終わりに自分の墓地から出す。",
+        "race": "マフィ・ギャング",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "ScheduleGraveReturn644"
+        }
+      ]
+    }
+  },
+  "dm26ex5-DP027": {
+    "phase": 1766,
+    "faces": [
+      {
+        "name": "ヒメギャ・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のサムライ・カードを実行するコストを１少なくする。ただしコストは０以下にならない。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "1500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g468UseReduction": {
+        "race": "サムライ",
+        "amount": 1
+      }
+    }
+  },
+  "dm26ex5-022": {
+    "phase": 1766,
+    "faces": [
+      {
+        "name": "アクア・インフォーマー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から４枚を見る。その中からリキッド・ピープル・カードまたはハンター・カードを１枚、表向きにしてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+        "race": "リキッド・ピープル/ハンター",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "raceAny": [
+                  "リキッド・ピープル",
+                  "ハンター"
+                ]
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
