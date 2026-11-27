@@ -3435,7 +3435,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_ManaTurn297':(s.extLimits??=[]).push({kind:'g297ManaTurn',player:t.p,controller:t.p,turn:s.turn,who:s.active,expires:'end'});break;
  case'g34_SelfManaFollow1468':{
-  if(sourceHost474(s,t))choice(s,t,'このクリーチャーをマナに置く？',[opt('マナに置く',true,10),skip()]);break;
+  if(sourceHost474(s,t))choice(s,t,t.g1841Bottom?'このクリーチャーを山札の下に置く？':'このクリーチャーをマナに置く？',[opt(t.g1841Bottom?'山札の下に置く':'マナに置く',true,10),skip()]);break;
  }
  case'g34_SelfMana297':{
   const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
@@ -7312,7 +7312,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_StarMemory1657':{
   // QA38617: capture the existing shield cards, not future shields or later visits.
-  (s.extLimits??=[]).push({kind:'g1193ShieldTrigger',player:t.p,expires:'end',who:t.p,
+  (s.extLimits??=[]).push({kind:'g1193ShieldTrigger',player:t.p,expires:t.g1841UntilStart?'start':'end',who:t.p,
    refs:own.shields.flatMap(api.shieldCards).map(x=>({uid:x.uid,serial:x.zoneSerial||0})),
    spellSource:t.source,spellCost:cost(card(t.source))});
   break;
@@ -8893,7 +8893,7 @@ export function createSixPhotoRules(api){
    (host.x.under??=[]).push(base);
   }
  }break;
- case'g34_SelfManaFollow1468':if(v&&sourceHost474(s,t))start(s,t,[{op:'SelfMana297',g536Source:true},...t.defs]);break;
+ case'g34_SelfManaFollow1468':if(v&&sourceHost474(s,t))start(s,t,[{op:t.g1841Bottom?'SelfBottom734':'SelfMana297',g536Source:true},...t.defs]);break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
  case'g34_GraveUse1226':if(v){
   const y=own.grave.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial&&!x.faceDown);

@@ -19731,5 +19731,155 @@
         }
       ]
     }
+  },
+  "dm11-015": {
+    "phase": 1841,
+    "faces": [
+      {
+        "name": "タリスマン・リザード",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "誰も、自分自身のクリーチャーの能力を使うことはできない。",
+        "race": "メルト・ウォリアー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1841TapLock": true
+    }
+  },
+  "dmrp16-s03": {
+    "phase": 1841,
+    "faces": [
+      {
+        "name": "月に彷徨うアビス",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このクリーチャーを山札の下に置いてもよい。そうしたら、相手のアンタップしているクリーチャーをすべて破壊する。",
+        "race": "デーモン・コマンド/月光王国",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g536ShieldLeft": [
+        {
+          "op": "SelfManaFollow1468",
+          "g1841Bottom": true,
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "untapped": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex08-049": {
+    "phase": 1841,
+    "faces": [
+      {
+        "name": "十極 ジョバンチュ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、コスト９のカードを好きな枚数、自分の墓地から手札に戻す。",
+        "race": "エンジェル・コマンド/侵略者/ナイト",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "Genesis of Drillball",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "自分の山札の上から２枚を裏向きのまま、それぞれ新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめまで、手札に加える自分のシールドカードすべてに「S・トリガー」を与える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "exactCost": 9
+              },
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "min": 9,
+                  "max": 9
+                }
+              },
+              {
+                "g228Face": {
+                  "type": "spell",
+                  "min": 9,
+                  "max": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "Genesis of Drillball",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          },
+          {
+            "op": "StarMemory1657",
+            "g1841UntilStart": true
+          }
+        ]
+      }
+    }
   }
 }

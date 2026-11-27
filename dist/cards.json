@@ -313401,20 +313401,145 @@
       ],
       "supportBatch": "phase-1840",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm11-015",
+      "name": "タリスマン・リザード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "メルト・ウォリアー",
+      "text": "誰も、自分自身のクリーチャーの能力を使うことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-015",
+      "limit": 4,
+      "g1841TapLock": true,
+      "supportBatch": "phase-1841",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-s03",
+      "name": "月に彷徨うアビス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "デーモン・コマンド/月光王国",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このクリーチャーを山札の下に置いてもよい。そうしたら、相手のアンタップしているクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-s03",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g536ShieldLeft": [
+        {
+          "op": "SelfManaFollow1468",
+          "g1841Bottom": true,
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "untapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1841",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-049",
+      "name": "十極 ジョバンチュ / Genesis of Drillball",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "エンジェル・コマンド/侵略者/ナイト",
+      "text": "ブロッカーブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、コスト９のカードを好きな枚数、自分の墓地から手札に戻す。\n【呪文面】\n自分の山札の上から２枚を裏向きのまま、それぞれ新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめまで、手札に加える自分のシールドカードすべてに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-049",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "exactCost": 9
+              },
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "min": 9,
+                  "max": 9
+                }
+              },
+              {
+                "g228Face": {
+                  "type": "spell",
+                  "min": 9,
+                  "max": 9
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "Genesis of Drillball",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          },
+          {
+            "op": "StarMemory1657",
+            "g1841UntilStart": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1841",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1840,
-    "checkedAt": "2026-11-27T21:36:34.713Z",
-    "baseCount": 9729,
+    "phase": 1841,
+    "checkedAt": "2026-11-27T21:48:17.362Z",
+    "baseCount": 9732,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9732,
+    "totalCount": 9735,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43591/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36458/",
-      "https://dm.takaratomy.co.jp/rule/qa/43470/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35197/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -343514,6 +343639,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36511/",
           "https://dm.takaratomy.co.jp/rule/qa/46131/",
           "https://dm.takaratomy.co.jp/rule/qa/46146/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1840,
+        "checkedAt": "2026-11-27T21:36:34.713Z",
+        "baseCount": 9729,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9732,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43591/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36458/",
+          "https://dm.takaratomy.co.jp/rule/qa/43470/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
