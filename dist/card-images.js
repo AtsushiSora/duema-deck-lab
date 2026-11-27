@@ -9565,5 +9565,8 @@ export const CARD_IMAGES={
   "dm26ex5-S006": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S006.jpg",
   "dm23rp4-036": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-036.jpg",
   "dmrp08-046": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-046.jpg",
-  "dm23ex3-003": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-003.jpg"
+  "dm23ex3-003": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-003.jpg",
+  "dmrp11-036": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-036.jpg",
+  "dmrp12-016": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-016.jpg",
+  "dmbd11-e01": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd11-e01.jpg"
 };

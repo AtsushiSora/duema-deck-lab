@@ -306248,18 +306248,145 @@
       ],
       "supportBatch": "phase-1781",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-036",
+      "name": "音奏 アサラト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メタリカ/ワンダフォース",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得、このクリーチャーの攻撃できない効果はすべて無効になる。（ただし、召喚酔いは無効にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-036",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1471GrCount": 3
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2,
+          "g1739AttackFreedom": "all"
+        }
+      },
+      "supportBatch": "phase-1782",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-016",
+      "name": "音奏 バグバイブス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のクリーチャーの攻撃できない効果はすべて無効になる。（ただし、召喚酔いは無効にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-016",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "g1739AttackFreedom": "all"
+          }
+        }
+      ],
+      "supportBatch": "phase-1782",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd11-e01",
+      "name": "無限砲 アリゲドドンガ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マッハファイター\nT・ブレイカー\n相手のターンのはじめに、GR召喚する。\nバトルゾーンに自分のGRクリーチャーが３体以上あれば、自分のジョーカーズすべてのパワーを+3000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-e01",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g179OpponentStart": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1471GrCount": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "power": 3000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "g557Condition": {
+            "g1471GrCount": 3
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1782",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1781,
-    "checkedAt": "2026-11-27T09:53:46.273Z",
-    "baseCount": 9563,
+    "phase": 1782,
+    "checkedAt": "2026-11-27T10:06:07.946Z",
+    "baseCount": 9566,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9566,
+    "totalCount": 9569,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46059/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335439,6 +335566,21 @@
         "totalCount": 9563,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1781,
+        "checkedAt": "2026-11-27T09:53:46.273Z",
+        "baseCount": 9563,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9566,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46059/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
