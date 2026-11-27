@@ -1547,14 +1547,14 @@ export function createSixPhotoRules(api){
  function dragheartOptions1361(s,t){
   const own=s.players[t.p];
   const mana=t.weaponOnly?new Set(own.mana.flatMap(x=>x.faceDown?[]:api.manaColors(card(x),s,t.p))):null;
-  return own.extra.filter(x=>{
-   const c=card(x);
+  return own.extra.flatMap(x=>card(x).g1824DoubleFortress?[x,{...x,dragheartFlipped:true}]:[x]).filter(x=>{
+   const c=api.zoneCard(s,t.p,x,'extra');
    if(!c.dragheart)return false;
    if(t.options)return t.options.some(r=>cost(c)<=r.max&&(!r.color||colors(c).includes(r.color)));
    if(t.max!==undefined)return cost(c)<=t.max;
    return t.weaponOnly?c.type==='weapon'&&cost(c)<=(t.weaponMax??4)&&colors(c).some(color=>mana.has(color)):
     cost(c)<=3||cost(c)<=5&&colors(c).includes('光');
-  }).filter(x=>api.canEnter(s,t.p,card(x),{origin:'extra',execution:false}));
+  }).filter(x=>api.canEnter(s,t.p,api.zoneCard(s,t.p,x,'extra'),{origin:'extra',execution:false}));
  }
  function selection(s,t){
   let candidates=t.anyOwner?[...list(s,{...t,owner:'opponent'}),...list(s,{...t,owner:'self'})]:list(s,t);
@@ -2585,7 +2585,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_DeployDragheart1361':{
-  const options=dragheartOptions1361(s,t).map(y=>opt(card(y).name,y.uid,20,y.cardId));
+  const options=dragheartOptions1361(s,t).map(y=>opt(card(y).name,y.dragheartFlipped?{uid:y.uid,back:true}:y.uid,20,y.cardId));
   if(options.length)choice(s,t,'超次元ゾーンから出すドラグハートを選ぶ',options);
   break;
  }
@@ -7766,9 +7766,10 @@ export function createSixPhotoRules(api){
  }
  case'g34_DeployWeapons1742':put(s,{...t,...(v?{selected:[...(t.selected||[]),v]}:{done:true})});break;
  case'g34_DeployDragheart1361':{
-  const y=dragheartOptions1361(s,t).find(y=>y.uid===v);
-  if(!y)break;
-  remove(own.extra,y.uid);
+  const selected=dragheartOptions1361(s,t).find(y=>y.uid===(v?.uid??v)&&!!y.dragheartFlipped===!!v?.back);
+  if(!selected)break;
+  const y=remove(own.extra,selected.uid);
+  if(selected.dragheartFlipped)y.dragheartFlipped=true;
   if(card(y).type==='weapon'){
    y.weaponTo={uid:t.uid,incarnation:t.incarnation||0};
    own.hasWeapons1361=true;

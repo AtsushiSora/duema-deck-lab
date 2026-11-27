@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9688,
-  "pendingNames": 2161,
-  "phase": 1823,
-  "added": 2,
+  "supportedNames": 9689,
+  "pendingNames": 2160,
+  "phase": 1824,
+  "added": 1,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -181,7 +181,7 @@
     "ドラグハート・タマシード": 1,
     "タマシード": 25,
     "城": 21,
-    "ドラグハート・フォートレス": 24,
+    "ドラグハート・フォートレス": 23,
     "禁断クリーチャー": 2,
     "ドリーム・クリーチャー": 4,
     "DGフィールド": 1,
@@ -221,7 +221,7 @@
   },
   "reasons": {
     "未対応の能力文": 1598,
-    "複数面・特殊カードタイプまたは情報不足": 470,
+    "複数面・特殊カードタイプまたは情報不足": 469,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -572587,27 +572587,229 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1824,
+      "checkedAt": "2026-11-27T18:11:48.983Z",
+      "baseline": "6e357ea460f98bed3e8ae38e74fe655e9320fcfd",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9688,
+      "currentNames": 9689,
+      "remainingNames": 311,
+      "added": [
+        {
+          "id": "dmx22b-026",
+          "name": "モーコリ娘選抜総選挙！"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1824,
+        "baseline": "6e357ea460f98bed3e8ae38e74fe655e9320fcfd",
+        "originalDefinitionsUnchanged": 9688,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9689,
+        "uniqueIds": 9689,
+        "added": 1,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9688,
+        "existingImageReferenceRowsUnchanged": 12122,
+        "officialPrintsReviewed": 1,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1824": {
+          "name": "official-1824",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1824.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.406,
+          "log": "tmp/duema-target-10000/official-1824.log",
+          "passed": 0,
+          "logSha256": "27017780b8aa199e53aefbcbfc4ca7ed66ff1f5d05752c9a5b0695d5a1197030"
+        },
+        "focused-1824-final": {
+          "name": "focused-1824-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1824-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.059,
+          "log": "tmp/duema-target-10000/focused-1824-final.log",
+          "passed": 55,
+          "logSha256": "e4d2e585f0ff19348f6bfea5902095fa8b9552ce348314933ac7c31b5799a24f"
+        },
+        "related-1824": {
+          "name": "related-1824",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:complete clauses reject unsupported continuations; prior standard manifests stay identical|[^\\n]* enters with ordinary payment, correct stats and no entry draw|[^\\n]* reacts before shields or blocking; its draw is optional and survives JSON reload|Anchor discards its own chosen card after drawing; decline never discards either hand|Dorunka watches both fire and nature, once for a multicolor attacker, and excludes water|Goldentire is a tamaseed, watches player and creature attacks, and never watches the opponent|own attacks do not trigger enemy-attack watchers, while a second enemy attack triggers again|two attack watchers each trigger once, with serializable ordering and unchanged physical cards|[^\\n]* draws after a matching win, including self when its condition fits|Algorus watches a defending Grand Devil win on the opponent turn|battle watchers ignore the wrong race or color, ties, losses and destruction outside a battle|duplicate battle watchers each draw once and keep choices after a save|ignored, sealed and Genmu-muted creature sources cannot trigger; GG does not stop another source|an already queued attack watcher survives source departure; a new incarnation cannot consume it|Anaris cannot attack and supplies Sasage two before a Dispector summon|whole clauses reject unsupported continuations and duplicate watchers while preserving prior manifests|[^\\n]* enters with ordinary payment and no entry draw|Birdman watches exactly the first attack each turn, including itself and repeat attack attempts after a save|declining the first attack draw still spends the first attack; a watcher entering after it cannot retrigger|first attack resets next turn and a blocked attack still counts|Aira optionally discards exactly one own card before drawing two, and cannot pay with an empty hand|Kaeranko watches only opponent creatures attacking in their entry turn, once per attack|Kaeranko also sees an evolution attacking in its entry turn|SANDAR watches player attacks at current power 6000, including attack bonuses; creature attacks do not qualify|Alice has two independent attack abilities; an Outrage of cost seven qualifies for both|Alice cost-seven exchange returns a chosen card to the top only when its draw was accepted|Arkzeos may deploy a light non-evolution blocker after either accepting or declining its draw|Arkzeos includes itself, permits declining deployment, and can deploy a newly drawn blocker|Arkzeos can deploy a printed cost-nine blocker and resolves its entry ability normally|NEO cards can enter normally or evolve only onto their printed civilizations|Arkzeos retains blocker, triple break and untargetability while allowing attacks and blocks against it|ignored, sealed and Genmu-muted sources cannot trigger; GG stops self only|multiple first-attack sources each trigger once; a queued ability survives source departure|unknown clauses, mismatched J-change reminder costs and complex Abare remain unsupported|[^\\n]* exchanges only the physical Joker, continues attack and survives JSON |[^\\n]* can decline J-change and ignored source cannot use it|new J-change preserves evolution restrictions and does not fire incoming attack triggers|Atsugi and Shoes can use Mach Fighter but cannot attack player on entry turn|Scop and Otento entry effects work on normal summon|Kotatsu can be paid for from mana and retains J-change|[^\\n]* Abare boosts actual first attacker once, not watcher |Shinobu mandatory ramp works only on first attack |Machoshibiro chooses and reveals creature from top two, orders remainder underneath |Wanpan lets opponent choose an untapped creature after attack target is declared |Kickbock targets opponent creature and Yawara locks next untap |Boibusa optional ramp and independent optional mana return work including decline |Poko returns chosen mana after tapped entry ramp and Tera sends chosen enemy to mana |[^\\n]* suppressed and sealed watchers do not trigger|multiple watchers order independently, original attacker gets combined boost after JSON|late watcher does not retrigger after earlier attack and opponent attacks do not trigger it|J-change before Abare does not give the exchanged attacker the pending boost|Abare before J-change is cleared on exchange, independent ramp still resolves|pending boost follows evolution of original attacker, not a reentered UID|watcher may leave after trigger without cancelling attacker boost|the weapon starts as one Advance extra card and cannot enter a main deck|Rozia uses its entry ability and never selects a Psychic as a Dragheart|Rozia grants Shield Saver only at five Light mana and the Galaxy is destroyed while Shield Force would protect it \\(QA40375\\)|Linkwood reveals one card and takes a Dragon or Draguner on its creature face|Linkwood requires a matching mana civilization for its spell|Jashin loses the weapon and Aura when another Darkness creature leaves, while its gear remains \\(QA48115\\)|Ultovelia flips in place when its host is tapped and returns front side up when removed|a sealed host keeps the weapon but cannot satisfy its tapped condition \\(QA42077 and QA45080\\)|Tokoshie redirects the weapon entering from extra and it returns without equipping|an untapped host keeps its weapon through the end of the turn|Ulto checks its host when its end-step ability resolves \\(rule 603\\.4\\)|Joe Star printed field and reprint preserve the canonical ID and Premium Hall limit|QA 38606 and QA 38701 apply to both players and all zones, including Verde and twinpact faces|Rule bulletin 31641 lets Acid Techno deploy originally colored options from hand and library|QA 38699 places a printed multicolored card untapped without changing its mana value|QA 38697 removes civilizations from a printed Kirifuda Dash cost|QA 40872 allows Birds to pay with any color regardless of Joe Star entry order|QA 38698 prevents a command from removing a same-civilization seal|a creature copying Lirin gains its own timestamp and recovers printed color when Joe Star leaves|[^\\n]* deploys a real Dragheart weapon from the extra zone onto itself and preserves its owner |[^\\n]* cannot deploy a Psychic or an ordinary main-deck card and resolves when no Dragheart is available|[^\\n]* dragon releases only from its own end step with its host tapped |[^\\n]* leaves equipment attached during an opposing end step and returns once with a departing host|Multiply grants unblockable only to its host, and its released creature also cannot be attacked|Greezie Horn and its released creature can attack an untapped opposing creature|Nebula prevents battle destruction only while its host or released creature is attacking |[^\\n]* releases at its own turn start only with at least two matching creatures |Eurubukka offers Nature-only optional reduction |Released Regil offers up to two reduction for creatures of any civilization with floor one |Zodiac boosts only allied Light before release, then all allied creatures including itself and untaps them at own end|[^\\n]* returns from battlefield removal to extra zone with one physical card|Discaldo lets the opponent choose its discard; the released Dokurocardo instead hides the hand and lets the attacker choose|Regil reduction never reduces a cost-two creature below one mana|phase1742 full three original/reprint faces art strict pins and two canonical names|Labiol paid6 actual DeathPuppet mana discards both whole hands and keeps3000 body |Labiol manual paid tribe only after cancel and JSON restoration |Labiol wrong already tapped tribe, free summon and nonsummon do not trigger |Labiol native opponent discard protection keeps only protected opponent hand |Glenmolt Double optionally chooses |Glenmolt Double may equip two copies of same weapon name unlike distinct-name King |Glenmolt Double empty or nonweapon extra resolves without choice and ignored source has no entry |Glenmolt Double departed source cannot put weapons and real removal returns attached weapons to extra |phase1742 weapon multi-selection survives encrypted restore and pure AI without opponent actions )",
+            "tests/standard252-effects.test.mjs",
+            "tests/standard253-effects.test.mjs",
+            "tests/standard399-effects.test.mjs",
+            "tests/standard1361-effects.test.mjs",
+            "tests/standard1363-effects.test.mjs",
+            "tests/standard1474-effects.test.mjs",
+            "tests/standard1475-effects.test.mjs",
+            "tests/standard1480-effects.test.mjs",
+            "tests/standard1742-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.586,
+          "log": "tmp/duema-target-10000/related-1824.log",
+          "passed": 209,
+          "logSha256": "7dcf86b050265c2d24f90deefb3e93b1621eeb70fc589a0d76a73dbfe0c07a95"
+        },
+        "check-1824": {
+          "name": "check-1824",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.555,
+          "log": "tmp/duema-target-10000/check-1824.log",
+          "passed": 0,
+          "logSha256": "a38b561fbfd6d23c77f02285c19204b90671ee1594f49029cc211115b9a2062a"
+        },
+        "audit-1824": {
+          "name": "audit-1824",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.581,
+          "log": "tmp/duema-target-10000/audit-1824.log",
+          "passed": 0,
+          "logSha256": "a0a7ee8819af26d3dc88f68a1549ba890b6123a5ed627925a3082081b4154a7c"
+        },
+        "invariants-1824": {
+          "name": "invariants-1824",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1824"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.767,
+          "log": "tmp/duema-target-10000/invariants-1824.log",
+          "passed": 0,
+          "logSha256": "8e1e9f908cdc7a8c3143f7042da0456ee6d8a1d237e22189cd6bca93efccfd8c"
+        },
+        "related-online-1824": {
+          "name": "related-online-1824",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.187,
+          "log": "tmp/duema-target-10000/related-online-1824.log",
+          "passed": 5,
+          "logSha256": "436c9a93d199e97cc66cccfbb59c515bfd4867df3e2ac3bc2e50ad8933984cdd"
+        }
+      },
+      "totalTestsPassed": 269,
+      "manifest": "tools/support-phase-1824.json",
+      "supported": 9689,
+      "pending": 2160,
+      "engineVersion": "0.602.348",
+      "held": [
+        {
+          "id": "dm09-006",
+          "name": "天光の精霊ミハイル",
+          "research": "tmp/duema-target-10000/research-dmx22b-026.json",
+          "reason": "Full official basic information and sole-print search collected. Hold complete global non-self battlefield-to-grave replacement until power-zero/state-based processing, destruction versus nondestructive grave movement, simultaneous source departure, replacement chaining and leave-stay suppression have exact reviewed evidence and measured tests. Official image was downloaded but full image review is not yet completed. No partial protection or card definition counted."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex18-049",
+          "name": "大雪原だョ！全員集合！",
+          "reason": "Official full text, only exact print and full image reviewed; QA40853 confirmed forbidden core lacks a printed mana number. Implement complete own multicolored mana-number-one override consistently in actual payments and mana summaries with timestamp order against World Tree Fairy/zero-mana effects; actual Forbidden Star cores available for exact ruling reproduction. Entry all-five-civilization mandatory ramp can reuse g568ManaColors. No partial pin yet."
+        },
+        {
+          "id": "dmr09-025",
+          "name": "減退の魔将スクリューマー",
+          "reason": "Fresh unsupported candidate: research exact prints and all official text for opponent deck-to-mana entry then visible chosen discard, including each moved card and movement locks."
+        },
+        {
+          "id": "dmrp04s-006",
+          "name": "凶鬼04号 ビビム",
+          "reason": "Fresh unsupported candidate: verify all official prints and full battlefield/grave departure triggers, each mandatory enemy minus3000, current grave-source incarnation, genuine spell and attack interactions."
+        }
+      ],
+      "verificationScope": "Both complete official Fortress faces and all basic information, zero printed mana, only exact print and both full art images checked. Actual Dragheart deployers choose either matching face from one extra-zone physical card. Nature-only and cost-two limits checked for front/back separately, normal return resets to front, paid deployment and face selection survive encrypted service reload. Optional native draw/ramp accept/decline, both seats, multiple copies, current attacking creature color, Genmu creature-only suppression, inactive field sources, deck-out and published back orientation tested. Shared dragheart selection now uses current extra-zone colors so actual Joe Star removes Nature eligibility. No novel global mana-number or grave-stay effect counted.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1824-a",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1824-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.5,
+          "log": "tmp/duema-target-10000/focused-1824-a.log",
+          "reason": "Initial fixture used null/true instead of the existing numeric 0/1 optional draw/ramp choices, selected a mono-Nature card for the Water multicolor case, and incorrectly started a game action with an already empty deck. Corrected to genuine multicolor Water vanilla and tested decline versus taking the final deck card. Full front spec explicitly pins field instead of the generic default creature before testing; both faces remain noncreatures. Old logs retained."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1823,
-    "nextPhase": 1824,
+    "lastVerifiedPhase": 1824,
+    "nextPhase": 1825,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmx22b-026",
-        "name": "モーコリ娘選抜総選挙！",
-        "reason": "Research both duelist faces and conditional Water draw/Nature ramp on own creature attacks; verify every reprint and optional decisions."
-      },
-      {
-        "id": "dm09-006",
-        "name": "天光の精霊ミハイル",
-        "reason": "Research complete non-self creature grave-replacement protection with actual shared removal and source-leaves timing; no partial protection."
-      },
-      {
         "id": "dmex18-049",
         "name": "大雪原だョ！全員集合！",
-        "reason": "Research complete field mana-number override for all own multicolored mana plus entry five-civilization ramp; validate actual payment consistency."
+        "reason": "Official full text, only exact print and full image reviewed; QA40853 confirmed forbidden core lacks a printed mana number. Implement complete own multicolored mana-number-one override consistently in actual payments and mana summaries with timestamp order against World Tree Fairy/zero-mana effects; actual Forbidden Star cores available for exact ruling reproduction. Entry all-five-civilization mandatory ramp can reuse g568ManaColors. No partial pin yet."
+      },
+      {
+        "id": "dmr09-025",
+        "name": "減退の魔将スクリューマー",
+        "reason": "Fresh unsupported candidate: research exact prints and all official text for opponent deck-to-mana entry then visible chosen discard, including each moved card and movement locks."
+      },
+      {
+        "id": "dmrp04s-006",
+        "name": "凶鬼04号 ビビム",
+        "reason": "Fresh unsupported candidate: verify all official prints and full battlefield/grave departure triggers, each mandatory enemy minus3000, current grave-source incarnation, genuine spell and attack interactions."
       }
     ],
     "steps": [
@@ -573501,11 +573703,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1823,
-      "baseline": "99b83fd0b417af7cc9f8bd4d91a7639627c48b43",
-      "supportedNames": 9688,
-      "artifact": "tools/target10000-registration-checkpoint-1823.json",
-      "checkedAt": "2026-11-27T18:04:43.477Z"
+      "phase": 1824,
+      "baseline": "6e357ea460f98bed3e8ae38e74fe655e9320fcfd",
+      "supportedNames": 9689,
+      "artifact": "tools/target10000-registration-checkpoint-1824.json",
+      "checkedAt": "2026-11-27T18:11:48.983Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -576563,8 +576765,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9688,
-      "remaining": 312,
+      "currentNames": 9689,
+      "remaining": 311,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -576572,8 +576774,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1823,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1823.json",
+      "lastPhase": 1824,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1824.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -577855,8 +578057,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9688,
-      "remaining": 312,
+      "currentNames": 9689,
+      "remaining": 311,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -577864,8 +578066,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1823,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1823.json",
+      "lastPhase": 1824,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1824.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -629994,10 +630196,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1823,
+    "phase": 1824,
     "threshold": 10000,
-    "supportedNames": 9688,
-    "pendingNames": 2161,
+    "supportedNames": 9689,
+    "pendingNames": 2160,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -630006,7 +630208,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1823.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1824.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
