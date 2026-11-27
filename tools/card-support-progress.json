@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9675,
-  "pendingNames": 2168,
-  "phase": 1818,
-  "added": 3,
+  "supportedNames": 9677,
+  "pendingNames": 2166,
+  "phase": 1819,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1281,
+    "クリーチャー": 1279,
     "呪文": 245,
     "GRクリーチャー": 16,
     "G-NEOクリーチャー": 24,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1604,
+    "未対応の能力文": 1602,
     "複数面・特殊カードタイプまたは情報不足": 471,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -571349,11 +571349,206 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1819,
+      "checkedAt": "2026-11-27T16:53:39.008Z",
+      "baseline": "4d101b5221f0617d5ddb3e0e57e44cec7832a19c",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9675,
+      "currentNames": 9677,
+      "remainingNames": 323,
+      "added": [
+        {
+          "id": "dm25sp2-008",
+          "name": "蒼斬しのぶ"
+        },
+        {
+          "id": "dm23bd4-005",
+          "name": "裏斬隠裏蒼頭 バルガリスク"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1819,
+        "baseline": "4d101b5221f0617d5ddb3e0e57e44cec7832a19c",
+        "originalDefinitionsUnchanged": 9675,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9677,
+        "uniqueIds": 9677,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9675,
+        "existingImageReferenceRowsUnchanged": 12100,
+        "officialPrintsReviewed": 5,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1819": {
+          "name": "official-1819",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1819.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.361,
+          "log": "tmp/duema-target-10000/official-1819.log",
+          "passed": 0,
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "focused-1819-final": {
+          "name": "focused-1819-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1819-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.961,
+          "log": "tmp/duema-target-10000/focused-1819-final.log",
+          "passed": 71,
+          "logSha256": "eccea84c3b0055efe08e00706cdc1f507a928f9ca10f61c3bfc4fd3e38d6665c"
+        },
+        "related-1819": {
+          "name": "related-1819",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* summoned Yobinion skips spells/equal costs, enters the first smaller card and saves UIDs |[^\\n]* can decline Yobinion without looking or shuffling|[^\\n]* deployment without a summon has no Yobinion trigger|[^\\n]* Ninja Strike threshold counts cards without requiring a civilization |[^\\n]* free summon returns that physical card to library bottom at turn end|[^\\n]* ordinary paid summon is allowed and does not acquire the Ninja return effect|Jamagen spell Yobinion uses its own cost, then the opponent sacrifices three creatures |Jamagen can decline its Yobinion and still performs the three sacrifices|no smaller creature returns every revealed card to bottom without falsely losing the deck|revealed evolution creatures require and use a real evolution base|an evolution hit with no legal base stays in the revealed cards and is returned to bottom|[^\\n]* S-trigger summons also get Yobinion|Genmu suppresses cheaper Yobinion creatures but does not suppress the six-cost spell|only one Ninja Strike is usable during a single attack|Ninja Strike is also available on own turn when an opposing creature blocks|Ninja summon can be declined after declaring and preserves the card in hand|Gold Viride entry taps two enemies and skips their next untap independently of its Yobinion|Horn Stron keeps Slayer and forces a random discard independently of its Yobinion|Yobinion Sniper freezes two targets until its controllers next turn|Volcanon HyperEnergy still uses printed cost for the following Yobinion|Gatsunder wins a battle against a larger printed power through its battle-only bonus|[^\\n]* Ninja Strike applies its printed own-creature power boost|Hayabusaryu can immediately block after entering through Ninja Strike|Vegas Launcher destroys a power-3000-or-less enemy on entering through Ninja Strike|Fokusit destroys an opposing blocker when summoned through Ninja Strike|Yurikama reveals a chosen creature from its top-four search after the free summon|Alice may decline the draw and loses before moving cards back when the library empties|Carne never sees its own summon, which consumes the first summon or cast for both players|Carne observes the first opponent shield-trigger cast or summon and distinct copies may decline|Carne ignores seed use and placements, and only destruction sends it to mana tapped|Prius privately inspects the full library, selects only an Arc Seraphim creature and shuffles the rest|Prius shuffles on a declined or fruitless search and honors a prohibition on looking or shuffling|Gaiaar Re attacks untapped creatures only on entry turn, and may attack the player immediately for two shields|Infinity can decline, use on a later Dragon leave, and use again on the next turn|Infinity puts Dragon creatures and Dragon seeds into battle and observes a Dragon seed leaving|Infinity leaves an unplaceable Dragon in the library and cannot reveal under Q\\.Q\\.QX\\.|Musha offers destruction on entry and attack at the inclusive current-power threshold|Musha sends a shield to the grave after a destruction attempt is replaced and still destroys with no shields|Royzer draws two, blocks and cannot be chosen by an enemy spell|Royzer recasts the Coral face of the same physical twinpact, never its Brain face \\(QA40924\\)|Royzer sees S-Trigger hand casts, but skips a spell that returns to hand \\(QA31709\\)|Kaitei normally draws and privately orders two hand cards, including on a first shield break|Kaitei Plus triggers independently and offers either spell face from one physical card \\(QA43786\\)|Kaitei Plus lets the player resolve its draw first and directly deploy a creature face \\(QA43787\\)|Kaitei may decline a reveal, and casting the last card loses before its ability \\(QA43078\\)|Homa draws before offering only light spells up to cost five and plays for no extra mana|a Creative that entered before MediCrea can be attacked and chosen \\(QA40245\\)|Creative tests the entering card cost against the opponent mana count |Creative supplies a one-mana Sasage reduction for a Dispector|Creative follows an entrant underneath Bolshack Dogiragon and the owner orders the stack|Creative sees Miradante arrive when the named-ability suppressor leaves \\(QA40250\\)|Kira restricts off-hand entry for both players, including Fushigiverse \\(|Kira permits Death March to take a graveyard evolution base \\(QA39672\\)|Kira permits putting a cast spell under New World \\(QA39670\\)|Kira blocks VV-8 seals on either side while the two cards can still be taken \\(QA39669\\)|Kira also prevents seals placed by Eichi no Tettai|Kira can reveal G Strike and prevent a second attacker for the turn|Brakkio prevents granted Just Diver and native entry abilities while leaving static grants \\(QA40533\\)|Brakkio leaves EX Life and triggers belonging to other creatures intact \\(QA40534/40536\\)|Brakkio leaves same-side watchers active when another creature enters|the manual board identifies Brakkio as the source of entry suppression|Brakkio suppresses both of Miradante’s entry abilities after Revolution Change|Brakkio has World Breaker and its ability can be ignored|Brakkio distinguishes entry from a battlefield-only Dead Damd stack \\(|[^\\n]* dragon releases only from its own end step with its host tapped |[^\\n]* leaves equipment attached during an opposing end step and returns once with a departing host|Multiply grants unblockable only to its host, and its released creature also cannot be attacked|Greezie Horn and its released creature can attack an untapped opposing creature|Nebula prevents battle destruction only while its host or released creature is attacking |Ordinary Ninja Strike uses only its printed mana-count threshold, with no required mana civilization |A normal paid Shinobi summon does not set Ninja Strike or incur a later deck return |Hanzo chooses exactly one enemy and applies current-turn minus6000 at the zero-power boundary |Hanzo optional shield-to-grave replacement needs actual Dark mana and never treats it as a shield break |Hanzo self replacement permits declining and stops on inactive condition |Orochi mandatory other-creature selection bottoms to the real owner and deploys the first revealed non-evolution creature |Orochi keeps an entry-prohibited revealed creature on top while the remaining public prefix is ordered on bottom |Orochi obeys the target owners actual QQQX restriction without moving a different library |Trent native replacement pays its exact body to deck bottom without destroying it for any allied leave destination |Trent permission rejects wrong scope or an unavailable source |QA39662 the actual Anaris draw after attack declaration cannot newly declare a just-drawn Ninja |Orochi genuine non-summon deployment still triggers an actual opposing Onikamas return after the chosen creature enters|Orochi publicly exposes exactly the revealed prefix to both seats and lets the library owner choose its bottom order |Trent can pay only one of two simultaneously leaving allies and never moves its reserved physical body twice |Trent may protect a different physical Trent while preserving the paid sources complete evolution bundle |Actual encrypted duel service resolves paid Shinobi, public owner decisions and replacement destinations for both seats |Orochi with no other eligible creature finishes without targeting itself |Orochi targeting a GR with no eligible creature left in its owners deck returns every revealed card without a false deck loss |Ninja Strike respects the full mana threshold, required civilization and physical end-turn return |Normal paid Shinobi summons use mana without creating a Ninja return |Deathproof delayed draw belongs to its controller and survives source departure or ignored recipient |Deathproof does not draw for a non-destruction departure |Deathproof expiry removes both Slayer and its delayed draw at end of the granting turn |Deathproof follows the same evolving unit but never a departed and reentered copy |Two resolved Deathproof effects on one creature each draw twice while protection prevents destruction |Saizo shuffles only its own entire grave and later mandatorily chooses any current own shield, even after source leaves |QA31585 Saizo next-own-start effect does nothing with no shields and still finishes its delay |Saizo grave recovery respects actual Apul zone lock but still shields and schedules the later move |Two-player Saizo entry is suppressed by actual Brakkio on either players turn without disabling Ninja Strike |Saizo current shield group moves all physical cards to mana, with multicolor cards tapped |Deathproof grants real Slayer in combat and draws twice after its recipient loses the battle |Deathproof delayed effect follows a changed controller but still draws for the original effect controller |Makibishi distinguishes actual creature-effect breaks of own shields from opposing creature-effect breaks |Makibishi triggers once for an actual double break and the opponent chooses its own untapped untargetable creature |Makibishi produces no eligible destruction for tapped enemies or inactive source |Each Makibishi copy triggers once and never destroys the attacking tapped creature |Makibishi ignores spell breaks, own-side breaks and shield movement without breaking |QA46953 Under Ninja Strike and ordinary Ninja Strike share a single use in the same attack |Actual encrypted duel service preserves delayed effects and private choices for either Shinobi controller )",
+            "tests/standard398-effects.test.mjs",
+            "tests/standard1247-effects.test.mjs",
+            "tests/standard1248-effects.test.mjs",
+            "tests/standard1251-effects.test.mjs",
+            "tests/standard1275-effects.test.mjs",
+            "tests/standard1475-effects.test.mjs",
+            "tests/standard1817-effects.test.mjs",
+            "tests/standard1818-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.629,
+          "log": "tmp/duema-target-10000/related-1819.log",
+          "passed": 305,
+          "logSha256": "3b8d673ada6d841a43a8d9ac6303c7614387e905f9786d980fed79e4e07dbcdd"
+        },
+        "check-1819": {
+          "name": "check-1819",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.024,
+          "log": "tmp/duema-target-10000/check-1819.log",
+          "passed": 0,
+          "logSha256": "c1dd53befc1f6377f2cb2349615314e48b5f948ef766c4c92ea999f1998dda26"
+        },
+        "audit-1819": {
+          "name": "audit-1819",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.631,
+          "log": "tmp/duema-target-10000/audit-1819.log",
+          "passed": 0,
+          "logSha256": "c571b5d9231afd2baecc9b3f78f683faf02accda94bac5bebc1288fdb95a5b77"
+        },
+        "invariants-1819": {
+          "name": "invariants-1819",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1819"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.726,
+          "log": "tmp/duema-target-10000/invariants-1819.log",
+          "passed": 0,
+          "logSha256": "f3637a02a2eb4062bba003c3e225fcd35f299631a1bc2f6b499afdc4eed91cea"
+        },
+        "related-online-1819": {
+          "name": "related-online-1819",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.421,
+          "log": "tmp/duema-target-10000/related-online-1819.log",
+          "passed": 5,
+          "logSha256": "0f587e3f33552496005534d22f766db1f583e31eaca30f3ac1047b71d03f0e5c"
+        }
+      },
+      "totalTestsPassed": 381,
+      "manifest": "tools/support-phase-1819.json",
+      "supported": 9677,
+      "pending": 2166,
+      "engineVersion": "0.602.343",
+      "held": [
+        {
+          "id": "dm26rp1-020",
+          "name": "呪遁の化身",
+          "registered": false,
+          "reason": "Full official text retrieved. Shield-to-hand/grave is an optional triggered ability for the exact physical card after its move, not a shield-break replacement. Complete handling must cover nonbreak transfers, stacked shield cards, burn, grave replacements, shield-trigger interruption and source/target departure. No partial definition or extra supported type has been added; investigate exact zone-arrival receipts before implementation.",
+          "research": "tmp/duema-target-10000/research-dm26rp1-020.json",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-020"
+        }
+      ],
+      "nextCandidates": [
+        "dm26bd1-SP003 ボルメテウス・ホワイト・ドラゴン・ネクサス",
+        "dm26bd1-SP004 西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+        "dm26ex5-S009 超天星ライゾウ「灼」",
+        "dm26rp1-020 呪遁の化身 is held until exact post-shield-departure handling is complete; do not count partial support."
+      ],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1819-a",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1819-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.836,
+          "log": "tmp/duema-target-10000/focused-1819-a.log",
+          "reason": "The initial focused run exposed a missing new-definition g183Return/to:deckTop flag and test fixture mistakes (wrong Dragon/draw-replacement IDs, a new tapped ramp counted as spent mana, a second Balgary entry consumed another top card, and native deployment choice represented as g34_Put rather than paid-summon evolve). Use actual Bolshack dm01-008 and Amodegoras dmrp19-s10, preserve only original mana in payment assertions and reproduce native effect decisions. A temporary defensive common SplitDeck edit was reverted; the new specification now follows the existing Alice flags. Final 71 tests pass."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1818,
-    "nextPhase": 1819,
+    "lastVerifiedPhase": 1819,
+    "nextPhase": 1820,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -572266,11 +572461,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1818,
-      "baseline": "0e688cf4c307f4dfa0d289884851b72cbccdc6fa",
-      "supportedNames": 9675,
-      "artifact": "tools/target10000-registration-checkpoint-1818.json",
-      "checkedAt": "2026-11-27T16:44:28.341Z"
+      "phase": 1819,
+      "baseline": "4d101b5221f0617d5ddb3e0e57e44cec7832a19c",
+      "supportedNames": 9677,
+      "artifact": "tools/target10000-registration-checkpoint-1819.json",
+      "checkedAt": "2026-11-27T16:53:39.008Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -575328,8 +575523,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9675,
-      "remaining": 325,
+      "currentNames": 9677,
+      "remaining": 323,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -575337,8 +575532,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1818,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1818.json",
+      "lastPhase": 1819,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1819.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -576620,8 +576815,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9675,
-      "remaining": 325,
+      "currentNames": 9677,
+      "remaining": 323,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -576629,8 +576824,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1818,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1818.json",
+      "lastPhase": 1819,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1819.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -628759,10 +628954,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1818,
+    "phase": 1819,
     "threshold": 10000,
-    "supportedNames": 9675,
-    "pendingNames": 2168,
+    "supportedNames": 9677,
+    "pendingNames": 2166,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -628771,7 +628966,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1818.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1819.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

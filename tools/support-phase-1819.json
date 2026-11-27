@@ -1,0 +1,423 @@
+{
+  "phase": 1819,
+  "checkedAt": "2026-11-27T16:47:22.195Z",
+  "baseline": "4d101b5221f0617d5ddb3e0e57e44cec7832a19c",
+  "baseCount": 9675,
+  "target": 10000,
+  "description": "Two complete Shinobi using native mana thresholds, Just Diver, blocker, three-card draw and ordered mandatory hand split to library top/bottom, plus optional public top reveal with a live mana-count Dragon-element gate. Do not force the third candidate before its broad shield-departure receipt handling is complete.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43052/"
+  ],
+  "cards": [
+    {
+      "id": "dm25sp2-008",
+      "name": "蒼斬しのぶ",
+      "canonicalId": "dm25sp2-008",
+      "printId": "dm25sp2-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp2-008",
+      "faces": [
+        {
+          "name": "蒼斬しのぶ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウラ・ニンジャ・ストライク６（水）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが６枚以上で水文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を２枚、好きな順序で山札の上か下に置く。",
+          "race": "ポセイディア・ドラゴン/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 6,
+        "ninjaColors": [
+          "水"
+        ],
+        "blocker": true,
+        "justDiver": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "to": "deckTop",
+            "g183Return": true,
+            "g1247SplitDeck": true,
+            "title": "山札に戻す手札を順に2枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25sp2-008.jpg",
+      "imageSha256": "d84d62cdf1cf01202a43ee57eae680af77c15729d66d0727810a8ae94360d05f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25sp2-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25sp2-008",
+          "dm25sp2-TD1",
+          "dm26ex3-049"
+        ],
+        "allSearchIds": [
+          "dm25sp2-TD1",
+          "dm25sp2-008",
+          "dm26ex3-049",
+          "dm26ex3-SEC010",
+          "dm26ex3-SEC010CHO",
+          "dm26ex3-028"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "sha256": "1abbd85b2bce64c25791b7ff988ea8a88f96121575ae2ce240cffecb0afa1186",
+        "facesMatched": true,
+        "imageSha256": "d84d62cdf1cf01202a43ee57eae680af77c15729d66d0727810a8ae94360d05f"
+      }
+    },
+    {
+      "id": "dm23bd4-005",
+      "name": "裏斬隠裏蒼頭 バルガリスク",
+      "canonicalId": "dm23bd4-005",
+      "printId": "dm23bd4-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-005",
+      "faces": [
+        {
+          "name": "裏斬隠裏蒼頭 バルガリスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、山札の上から１枚目を表向きにしてもよい。それが、自分のマナゾーンにあるカードの枚数以下のコストを持つドラゴン・エレメントなら、出す。そうでなければ、タップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 8,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上を公開する？",
+            "defs": [
+              {
+                "op": "InfinityTop1248",
+                "g1819ManaMaximum": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-005.jpg",
+      "imageSha256": "f206dc58ac302c3fc669148796b182587a657f50fb82da386bff7e09ae411102",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd4-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23bd4-005",
+          "dmart17-005"
+        ],
+        "allSearchIds": [
+          "dm23bd4-005",
+          "dmart17-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "sha256": "490cce9b4c5fa3fefecc881f57c312400d88b42ebf5fc0d933c7d9587f28fc3e",
+        "facesMatched": true,
+        "imageSha256": "f206dc58ac302c3fc669148796b182587a657f50fb82da386bff7e09ae411102"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25sp2-TD1",
+      "name": "蒼斬しのぶ",
+      "canonicalId": "dm25sp2-008",
+      "printId": "dm25sp2-TD1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp2-TD1",
+      "faces": [
+        {
+          "name": "蒼斬しのぶ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウラ・ニンジャ・ストライク６（水）\nブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を２枚、好きな順序で山札の上か下に置く。",
+          "race": "ポセイディア・ドラゴン/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 6,
+        "ninjaColors": [
+          "水"
+        ],
+        "blocker": true,
+        "justDiver": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "to": "deckTop",
+            "g183Return": true,
+            "g1247SplitDeck": true,
+            "title": "山札に戻す手札を順に2枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25sp2-TD1.jpg",
+      "imageSha256": "ec2582fd60de70c6a77c16101a56a0d98e9f03543a2fc212fac90f5050cfbcb3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25sp2-TD1-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25sp2-008",
+          "dm25sp2-TD1",
+          "dm26ex3-049"
+        ],
+        "allSearchIds": [
+          "dm25sp2-TD1",
+          "dm25sp2-008",
+          "dm26ex3-049",
+          "dm26ex3-SEC010",
+          "dm26ex3-SEC010CHO",
+          "dm26ex3-028"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "sha256": "9e14bac28d16660a77ecf2ebc40b85c660e396a719ef740179f9d3448a3b7f99",
+        "facesMatched": true,
+        "imageSha256": "ec2582fd60de70c6a77c16101a56a0d98e9f03543a2fc212fac90f5050cfbcb3"
+      }
+    },
+    {
+      "id": "dm26ex3-049",
+      "name": "蒼斬しのぶ",
+      "canonicalId": "dm25sp2-008",
+      "printId": "dm26ex3-049",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-049",
+      "faces": [
+        {
+          "name": "蒼斬しのぶ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウラ・ニンジャ・ストライク６（水）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが６枚以上で水文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を２枚、好きな順序で山札の上か下に置く。",
+          "race": "ポセイディア・ドラゴン/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 6,
+        "ninjaColors": [
+          "水"
+        ],
+        "blocker": true,
+        "justDiver": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "to": "deckTop",
+            "g183Return": true,
+            "g1247SplitDeck": true,
+            "title": "山札に戻す手札を順に2枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex3-049.jpg",
+      "imageSha256": "f16d832b5f3f03cfe98c75eb80f7c89876689cd22c045de1e7431cfd3db556fb",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex3-049-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25sp2-008",
+          "dm25sp2-TD1",
+          "dm26ex3-049"
+        ],
+        "allSearchIds": [
+          "dm25sp2-TD1",
+          "dm25sp2-008",
+          "dm26ex3-049",
+          "dm26ex3-SEC010",
+          "dm26ex3-SEC010CHO",
+          "dm26ex3-028"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "sha256": "788777619dcd640dd71e58842c86ab1c7ec029fe0292fa43ccf7d5af7a570f6c",
+        "facesMatched": true,
+        "imageSha256": "f16d832b5f3f03cfe98c75eb80f7c89876689cd22c045de1e7431cfd3db556fb"
+      }
+    },
+    {
+      "id": "dmart17-005",
+      "name": "裏斬隠裏蒼頭 バルガリスク",
+      "canonicalId": "dm23bd4-005",
+      "printId": "dmart17-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmart17-005",
+      "faces": [
+        {
+          "name": "裏斬隠裏蒼頭 バルガリスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ８（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、山札の上から１枚目を表向きにしてもよい。それが、自分のマナゾーンにあるカードの枚数以下のコストを持つドラゴンなら、出す。そうでなければ、タップしてマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/シノビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 8,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上を公開する？",
+            "defs": [
+              {
+                "op": "InfinityTop1248",
+                "g1819ManaMaximum": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmart17-005.jpg",
+      "imageSha256": "c868524557b374ddd5f2c40f4b84684415ad4bac188ee0f3d6d686edc4428e33",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmart17-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23bd4-005",
+          "dmart17-005"
+        ],
+        "allSearchIds": [
+          "dm23bd4-005",
+          "dmart17-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "sha256": "e67bf4f2a4da572e3925ebb5663b9d1e336b33128542698f9eeb34c779dfad5d",
+        "facesMatched": true,
+        "imageSha256": "c868524557b374ddd5f2c40f4b84684415ad4bac188ee0f3d6d686edc4428e33"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43052/",
+      "sha256": "bab8570977750c9af2071af8baaf01f0e13f486960bfbb05e29a9fedc79c4f80",
+      "checkedAt": "2026-11-27T16:47:22.195Z",
+      "reproduced": true,
+      "tests": "tests/standard1819-effects.test.mjs",
+      "reproduction": "QA43052: both seats, actual Reihou spell recovers its Dragon from four cards and returns the remaining three all on top, all on bottom, or one top/two bottom in selected order. The explicitly listed analogous Shinobu case additionally covers all three two-card splits and both selection orders, encrypted restoration, actual Amodegoras draw replacement and mandatory draw exhaustion.",
+      "result": "QA43052: both seats, actual Reihou spell recovers its Dragon from four cards and returns the remaining three all on top, all on bottom, or one top/two bottom in selected order. The explicitly listed analogous Shinobu case additionally covers all three two-card splits and both selection orders, encrypted restoration, actual Amodegoras draw replacement and mandatory draw exhaustion."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm26rp1-020",
+      "name": "呪遁の化身",
+      "registered": false,
+      "reason": "Full official text retrieved. Shield-to-hand/grave is an optional triggered ability for the exact physical card after its move, not a shield-break replacement. Complete handling must cover nonbreak transfers, stacked shield cards, burn, grave replacements, shield-trigger interruption and source/target departure. No partial definition or extra supported type has been added; investigate exact zone-arrival receipts before implementation.",
+      "research": "tmp/duema-target-10000/research-dm26rp1-020.json",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-020"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:47:22.195Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25sp2-008": 4,
+      "dm23bd4-005": 4,
+      "dm25sp2-TD1": 4,
+      "dm26ex3-049": 4,
+      "dmart17-005": 4
+    }
+  },
+  "validationNotes": {
+    "images": "All five complete official print images viewed: Shinobu 25SP2 original/TD1/26EX3 and Balgary 23BD4/ART17. Repeated Blocker text in official HTML is the icon label, not a second ability; every printed clause is implemented.",
+    "implementation": "Shinobu uses the same ordered Select + g1247SplitDeck + g183Return flags as the existing Alice. No change to that common mechanism remains. The only native change adds a per-task live mana maximum to existing InfinityTop1248 and keeps its revealed evolution public to both seats during base choice. All original card definitions remain unchanged.",
+    "resolvedAttempts": "The initial focused run exposed a missing new-definition g183Return/to:deckTop flag and test fixture mistakes (wrong Dragon/draw-replacement IDs, a new tapped ramp counted as spent mana, a second Balgary entry consumed another top card, and native deployment choice represented as g34_Put rather than paid-summon evolve). Use actual Bolshack dm01-008 and Amodegoras dmrp19-s10, preserve only original mana in payment assertions and reproduce native effect decisions. A temporary defensive common SplitDeck edit was reverted; the new specification now follows the existing Alice flags. Final 71 tests pass.",
+    "nextCandidates": [
+      "dm26bd1-SP003 ボルメテウス・ホワイト・ドラゴン・ネクサス",
+      "dm26bd1-SP004 西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+      "dm26ex5-S009 超天星ライゾウ「灼」",
+      "dm26rp1-020 呪遁の化身 is held until exact post-shield-departure handling is complete; do not count partial support."
+    ],
+    "resume": "Finish related/online checks, npm run check, actual nameKey audit and strict ID/save/pending invariants; explicitly stage only this verified two-card batch and locally commit. Continue toward 10000 without push/publication/Netlify or automation restart."
+  }
+}

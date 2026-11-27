@@ -5541,9 +5541,10 @@ export function createSixPhotoRules(api){
   const [uid]=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===uid);
   if(!y)break;
   const c=api.zoneCard(s,t.p,y,'deck');
-  if(dragonElement1248(c)){
+  if(dragonElement1248(c)&&(!t.g1819ManaMaximum||cost(c)<=own.mana.length)){
    release(s,t.p,uid);
-   put(s,{...t,op:'g34_Put',origin:'deck',target:uid});
+   put(s,{...t,op:'g34_Put',origin:'deck',target:uid,
+    ...(t.g1819ManaMaximum?{g1660PublicPeek:[{id:y.cardId,label:'公開した山札'}]}:{})});
   }else{
    zoneMove(s,t.p,'deck',uid,'mana',{tapped:true});
    api.deckCheck(s,t.p);
