@@ -1,0 +1,209 @@
+{
+  "phase": 1820,
+  "checkedAt": "2026-11-27T17:08:41.908Z",
+  "baseline": "7ee9aa0faf2d8f56595217862a3354b4c31f16d3",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9677,
+  "currentNames": 9680,
+  "remainingNames": 320,
+  "added": [
+    {
+      "id": "dm26bd1-SP003",
+      "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス"
+    },
+    {
+      "id": "dm26bd1-SP004",
+      "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク"
+    },
+    {
+      "id": "dm26ex5-S009",
+      "name": "超天星ライゾウ「灼」"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1820,
+    "baseline": "7ee9aa0faf2d8f56595217862a3354b4c31f16d3",
+    "originalDefinitionsUnchanged": 9677,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9680,
+    "uniqueIds": 9680,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": false,
+    "oldDetailsRowsUnchanged": 11847,
+    "newCatalogueNames": 3,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9677,
+    "existingImageReferenceRowsUnchanged": 12105,
+    "officialPrintsReviewed": 5,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1820": {
+      "name": "official-1820",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1820.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.274,
+      "log": "tmp/duema-target-10000/official-1820.log",
+      "passed": 0,
+      "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+    },
+    "focused-1820-final": {
+      "name": "focused-1820-origin-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1820-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.404,
+      "log": "tmp/duema-target-10000/focused-1820-origin-final.log",
+      "passed": 95,
+      "logSha256": "2cf7dde283c1c1456018d686584b4df763ec3635b8a34e9a2349b39fbd4c835f"
+    },
+    "related-1820": {
+      "name": "related-1820",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:[^\\n]* may save or spend its own reduction |[^\\n]* may reduce a later summon after an earlier matching creature|[^\\n]* accepts each printed color and excludes other colors|Flavnagnir checks the executed creature race and not its civilization or power|one selected provider is spent while another remains for the next summon|separate identical providers may be stacked on one summon|the one-mana floor remains and AI does not waste another reduction at that floor|without enough mana, confirmation is offered only after sufficient reductions are selected|canceling before payment preserves the hand, mana, uses and physical cards|a provider summoned earlier in the turn is immediately available for a later matching creature|each turn refreshes availability and the opponent keeps an independent use|a bounced and replayed provider is a new instance and may use its ability again|ignoring and restoring a used provider does not refresh its ability|ability ignore, seals, evolution sources and wrong owners do not supply reductions|Genmu and reduction prohibition prevent use without spending the optional opportunity|free S-trigger summons do not spend optional reductions during the opponents turn|spells and non-summon deployments do not spend optional summon reductions|creature-half colors match without inheriting an unused twinpact spell color|first-summon reductions and individually chosen once-per-turn reductions remain separate|next-use reductions and individually chosen once-per-turn reductions retain their own choices|NEO base selection and manual mana payment retain the chosen providers through JSON replay|reduced numeric cost does not remove civilization payment requirements|all six printed G Strikes can stop a chosen enemy without spending the summon reduction|AI selection remains pure, serializable and independent of opposing hidden card identities|Grizzly tapping from an enemy spell may deploy a cost-five-or-less creature or Aura from own mana |Grizzly may decline the optional deployment|Poetic Punishment destroys only a tapped enemy|Elgaiza can replace its own leaving by destroying an actual other creature |Welcome adds exactly the actual top card as a shield before tapping every enemy|Producer summons a GR on its normal entry and another on leaving|Apple Girls pays six for its spell face, deploys its exact physical Producer and moves it to mana at this turn end|Genmu ignores the deployed five-cost Producers GR abilities while its six-cost spell still schedules the mana move|Romanov mills exactly five then chooses one new spell of cost six or less, optionally |Romanov rejects changed grave visits and cannot cast when grave movement is locked|QA40188 Forever Princess shuffles the previous grave while the other four milled cards remain available|Win and Jashin recover exactly one newly milled card or return the spell itself |Win and Jashin can still return itself when a grave lock prevents recovery|milling the final cards loses immediately before any recovery or casting |G Cross evolves on an Armored Dragon or Fire Bird and pays five mana |G Cross mills one on attack and casts only that Fire hyperspatial spell |Blue pays chosen face, preserves exact physical card, and draws only on its spell face |Blue actually blocks a creature attack despite never being able to attack |Blue ultra-saver can replace any departure of an own Bolmeteus creature |Blue saver respects its own name filter, owner and ignored text |Blue may decline saving itself; its hand-cast spell draws and enters from hand through Tokoshie|Red replaces only opponents nonsummon entry during that opponents turn |Red neither affects its controllers nonsummon entry nor works with ignored creature text|Scrapper chooses any enemy elements with inclusive cost budget six, moves whole evolution and deploys its spell card |Scrapper can select zero and still deploys; an enemy protected from targeting is excluded|Scrapper S trigger uses no mana and self deployment occurs only after completing the chosen sweep|Miracle Fever declares exact full name and stops on either twin face, taking the entire revealed prefix |QA36292: whole revealed deck goes to hand then immediate deck-out when no card remains |Miracle Fever first-card match reveals and takes exactly one, with no order or optional refusal|QA36293: similar names remain separate declared names and unrevealed library identities remain private|Miracle Fever remains distinct from native Nocturnes named hand discard|Blue may ultra-save itself, but a second Blue cannot replace the destruction paid by that replacement|Miracle Fever respects native reveal replacement and library touch prohibition |Blue ordinary blocking and Red continuous replacement are suppressed by an actual Genmu on the field|same-mana-zone evolution pays actual mana then consumes exactly distinct eligible physical bases |mana evolution rejects invalid or immovable bases |mana multi-base cancellation leaves the hand and mana untouched |Neptune paid GV permits any mix of the three eligible tribes and preserves complete bases |Ares exact one-source attack destroys every opposing blocker of current cost at most three |QA35471 Neptune lets the opponent order whole creature bundles and their bases without interleaving |Neptune returns untargetable creatures and handles a native leave replacement before its resulting deck order|Bargarizo public three-card inspection optionally deploys non-evolution Dragons and graves every remainder |Bargarizo cannot deploy an evolution Dragon or a non-creature Dragon spell and graves them|QA39993 actual QQQX prevents Bargarizo looking at, deploying or moving any library cards after payment|Meteor exact payment cannot grant an unpaid or partial effect |Neptune requires three separate eligible creatures and cannot use two or an unrelated third|Bargarizo public inspection respects the actual one-card Curved Wind limit|Ninja Strike uses the printed threshold and civilization and returns the actual physical unit only at turn end |Normal paid Shinobi summons spend printed mana and remain in battle at turn end |QA43052 Shinobu mandatorily draws three, chooses any two hand cards and returns them in either ordered top-bottom split |Shinobu uses every available hand card if a draw replacement leaves fewer than two to return |Shinobu genuine Just Diver protects from targeting and attacks until its controllers next turn while retaining blocker |Balgary may decline its optional reveal without touching or exposing its library |Balgary deploys an eligible actual Dragon element, including noncreature seed and Cross Gear |Balgary puts a non-Dragon element, spell or over-mana-cost Dragon into tapped mana |Balgary checks current mana count at resolution at the exact Dragon-element cost boundary |Balgary cannot deploy a revealed creature through actual Senno and does not ramp that matching Dragon instead |Balgary reveals no card through actual QQQX and does not accidentally ramp the top card |Balgary public eligible evolution card remains visible to both seats while choosing its actual Dragon base |Actual Brakkio suppresses each new Shinobi entry ability without removing printed combat keywords |The existing Alice still returns any ordered top-bottom split using its original native flags |QA43052 actual Reihou spell recovers its Dragon and returns the remaining three in the stated ordered split |Shinobu mandatory three-card draw loses on deck exhaustion before returning any hand card |Actual encrypted duel service preserves Shinobi private hand ordering and public Dragon deployment )",
+        "tests/standard464-effects.test.mjs",
+        "tests/standard1529-effects.test.mjs",
+        "tests/standard1616-effects.test.mjs",
+        "tests/standard1794-effects.test.mjs",
+        "tests/standard1803-effects.test.mjs",
+        "tests/standard1819-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.795,
+      "log": "tmp/duema-target-10000/related-1820.log",
+      "passed": 244,
+      "logSha256": "183401d874a9585a85aa914c29c1642b8fac5d0135d590ed38722f777331085e"
+    },
+    "check-1820": {
+      "name": "check-1820",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.338,
+      "log": "tmp/duema-target-10000/check-1820.log",
+      "passed": 0,
+      "logSha256": "69de50fe1e09211dece94f6c698f0b773d8d53ebfa193e9e393df69e243c3eb3"
+    },
+    "audit-1820": {
+      "name": "audit-1820",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.693,
+      "log": "tmp/duema-target-10000/audit-1820.log",
+      "passed": 0,
+      "logSha256": "d5a0072218f87861d51e403e0bcfa5fb33423c38cfdba6226804802df7f6a62a"
+    },
+    "invariants-1820": {
+      "name": "invariants-1820",
+      "command": [
+        "node",
+        "tools/verify-target10000-invariants.mjs",
+        "1820"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.749,
+      "log": "tmp/duema-target-10000/invariants-1820.log",
+      "passed": 0,
+      "logSha256": "7410de474972f1ee318af5ae155c16c5591f5114bc3b652d224acc6b228db91e"
+    },
+    "related-online-1820": {
+      "name": "related-online-1820",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.199,
+      "log": "tmp/duema-target-10000/related-online-1820.log",
+      "passed": 5,
+      "logSha256": "d6bdbbb2524d0884ceb1b33b2cec8fbc71a57cf14428e0d2e3be3a8b2b8b29f4"
+    }
+  },
+  "totalTestsPassed": 344,
+  "manifest": "tools/support-phase-1820.json",
+  "supported": 9680,
+  "pending": 2166,
+  "engineVersion": "0.602.344",
+  "held": [],
+  "nextCandidates": [
+    "dm26ex5-S010 無限龍王ボルシャック・ライジングNEX",
+    "dm26ex5-006 大獄の封殺ディアス Z",
+    "dm26ex5-S001 八重の精霊パーフェクト・エイティー",
+    "Keep previously held dm26rp1-020 exact shield-arrival handling outside the count until complete."
+  ],
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "focused-1820-a",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1820-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 2.126,
+      "log": "tmp/duema-target-10000/focused-1820-a.log",
+      "reason": "First focused run passed 76/80. Four fixture assertions used a cost-six card as an over-seven target and an older Mach Fighter against an untapped creature. Corrected using a verified cost-eight first-set card and tapped battle target. Added six actual spell-origin/S-Trigger cases and an unnamed fixed-cost-payment guard. Final focused complete run passes 87/87; the code guards missing names when an unrelated ability asks about an unnamed fixed payment. Related regression initially passed 243/244: its old Blue/Tokoshie expectation incorrectly treated a hand-cast resolving spell as outside hand. Corrected that specific expected outcome under the verified current rule409.1c, preserved its draw assertions, and added eight both-seat hand/grave Tokoshie cases for Yellow and existing Blue. Final focused run is 95/95 and related regression is 244/244; all earlier failed logs are automatically archived by the runner."
+    },
+    {
+      "name": "related-1820",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:[^\\n]* may save or spend its own reduction |[^\\n]* may reduce a later summon after an earlier matching creature|[^\\n]* accepts each printed color and excludes other colors|Flavnagnir checks the executed creature race and not its civilization or power|one selected provider is spent while another remains for the next summon|separate identical providers may be stacked on one summon|the one-mana floor remains and AI does not waste another reduction at that floor|without enough mana, confirmation is offered only after sufficient reductions are selected|canceling before payment preserves the hand, mana, uses and physical cards|a provider summoned earlier in the turn is immediately available for a later matching creature|each turn refreshes availability and the opponent keeps an independent use|a bounced and replayed provider is a new instance and may use its ability again|ignoring and restoring a used provider does not refresh its ability|ability ignore, seals, evolution sources and wrong owners do not supply reductions|Genmu and reduction prohibition prevent use without spending the optional opportunity|free S-trigger summons do not spend optional reductions during the opponents turn|spells and non-summon deployments do not spend optional summon reductions|creature-half colors match without inheriting an unused twinpact spell color|first-summon reductions and individually chosen once-per-turn reductions remain separate|next-use reductions and individually chosen once-per-turn reductions retain their own choices|NEO base selection and manual mana payment retain the chosen providers through JSON replay|reduced numeric cost does not remove civilization payment requirements|all six printed G Strikes can stop a chosen enemy without spending the summon reduction|AI selection remains pure, serializable and independent of opposing hidden card identities|Grizzly tapping from an enemy spell may deploy a cost-five-or-less creature or Aura from own mana |Grizzly may decline the optional deployment|Poetic Punishment destroys only a tapped enemy|Elgaiza can replace its own leaving by destroying an actual other creature |Welcome adds exactly the actual top card as a shield before tapping every enemy|Producer summons a GR on its normal entry and another on leaving|Apple Girls pays six for its spell face, deploys its exact physical Producer and moves it to mana at this turn end|Genmu ignores the deployed five-cost Producers GR abilities while its six-cost spell still schedules the mana move|Romanov mills exactly five then chooses one new spell of cost six or less, optionally |Romanov rejects changed grave visits and cannot cast when grave movement is locked|QA40188 Forever Princess shuffles the previous grave while the other four milled cards remain available|Win and Jashin recover exactly one newly milled card or return the spell itself |Win and Jashin can still return itself when a grave lock prevents recovery|milling the final cards loses immediately before any recovery or casting |G Cross evolves on an Armored Dragon or Fire Bird and pays five mana |G Cross mills one on attack and casts only that Fire hyperspatial spell |Blue pays chosen face, preserves exact physical card, and draws only on its spell face |Blue actually blocks a creature attack despite never being able to attack |Blue ultra-saver can replace any departure of an own Bolmeteus creature |Blue saver respects its own name filter, owner and ignored text |Blue may decline saving itself; its spell draws before an entry replacement sends its physical card to mana|Red replaces only opponents nonsummon entry during that opponents turn |Red neither affects its controllers nonsummon entry nor works with ignored creature text|Scrapper chooses any enemy elements with inclusive cost budget six, moves whole evolution and deploys its spell card |Scrapper can select zero and still deploys; an enemy protected from targeting is excluded|Scrapper S trigger uses no mana and self deployment occurs only after completing the chosen sweep|Miracle Fever declares exact full name and stops on either twin face, taking the entire revealed prefix |QA36292: whole revealed deck goes to hand then immediate deck-out when no card remains |Miracle Fever first-card match reveals and takes exactly one, with no order or optional refusal|QA36293: similar names remain separate declared names and unrevealed library identities remain private|Miracle Fever remains distinct from native Nocturnes named hand discard|Blue may ultra-save itself, but a second Blue cannot replace the destruction paid by that replacement|Miracle Fever respects native reveal replacement and library touch prohibition |Blue ordinary blocking and Red continuous replacement are suppressed by an actual Genmu on the field|same-mana-zone evolution pays actual mana then consumes exactly distinct eligible physical bases |mana evolution rejects invalid or immovable bases |mana multi-base cancellation leaves the hand and mana untouched |Neptune paid GV permits any mix of the three eligible tribes and preserves complete bases |Ares exact one-source attack destroys every opposing blocker of current cost at most three |QA35471 Neptune lets the opponent order whole creature bundles and their bases without interleaving |Neptune returns untargetable creatures and handles a native leave replacement before its resulting deck order|Bargarizo public three-card inspection optionally deploys non-evolution Dragons and graves every remainder |Bargarizo cannot deploy an evolution Dragon or a non-creature Dragon spell and graves them|QA39993 actual QQQX prevents Bargarizo looking at, deploying or moving any library cards after payment|Meteor exact payment cannot grant an unpaid or partial effect |Neptune requires three separate eligible creatures and cannot use two or an unrelated third|Bargarizo public inspection respects the actual one-card Curved Wind limit|Ninja Strike uses the printed threshold and civilization and returns the actual physical unit only at turn end |Normal paid Shinobi summons spend printed mana and remain in battle at turn end |QA43052 Shinobu mandatorily draws three, chooses any two hand cards and returns them in either ordered top-bottom split |Shinobu uses every available hand card if a draw replacement leaves fewer than two to return |Shinobu genuine Just Diver protects from targeting and attacks until its controllers next turn while retaining blocker |Balgary may decline its optional reveal without touching or exposing its library |Balgary deploys an eligible actual Dragon element, including noncreature seed and Cross Gear |Balgary puts a non-Dragon element, spell or over-mana-cost Dragon into tapped mana |Balgary checks current mana count at resolution at the exact Dragon-element cost boundary |Balgary cannot deploy a revealed creature through actual Senno and does not ramp that matching Dragon instead |Balgary reveals no card through actual QQQX and does not accidentally ramp the top card |Balgary public eligible evolution card remains visible to both seats while choosing its actual Dragon base |Actual Brakkio suppresses each new Shinobi entry ability without removing printed combat keywords |The existing Alice still returns any ordered top-bottom split using its original native flags |QA43052 actual Reihou spell recovers its Dragon and returns the remaining three in the stated ordered split |Shinobu mandatory three-card draw loses on deck exhaustion before returning any hand card |Actual encrypted duel service preserves Shinobi private hand ordering and public Dragon deployment )",
+        "tests/standard464-effects.test.mjs",
+        "tests/standard1529-effects.test.mjs",
+        "tests/standard1616-effects.test.mjs",
+        "tests/standard1794-effects.test.mjs",
+        "tests/standard1803-effects.test.mjs",
+        "tests/standard1819-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 4.068,
+      "log": "tmp/duema-target-10000/related-1820-previous-1795799195073529000.log",
+      "originalLog": "tmp/duema-target-10000/related-1820.log",
+      "reason": "First focused run passed 76/80. Four fixture assertions used a cost-six card as an over-seven target and an older Mach Fighter against an untapped creature. Corrected using a verified cost-eight first-set card and tapped battle target. Added six actual spell-origin/S-Trigger cases and an unnamed fixed-cost-payment guard. Final focused complete run passes 87/87; the code guards missing names when an unrelated ability asks about an unnamed fixed payment. Related regression initially passed 243/244: its old Blue/Tokoshie expectation incorrectly treated a hand-cast resolving spell as outside hand. Corrected that specific expected outcome under the verified current rule409.1c, preserved its draw assertions, and added eight both-seat hand/grave Tokoshie cases for Yellow and existing Blue. Final focused run is 95/95 and related regression is 244/244; all earlier failed logs are automatically archived by the runner."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

@@ -310923,21 +310923,164 @@
       ],
       "supportBatch": "phase-1819",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26bd1-SP003",
+      "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+      "civ": "光/水/闇/火",
+      "civilizations": [
+        "光",
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。それがすべて異なる名前なら、その中からコスト７以下のカードを１枚、コストを支払わずに実行してもよい。こうして実行しなければ、その中からカードを１枚、自分の手札に戻してもよい。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP003",
+      "limit": 4,
+      "breaker": 2,
+      "shieldBurn": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "NexusMill1820"
+        }
+      ],
+      "supportBatch": "phase-1820",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26bd1-SP004",
+      "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ミリオン・フレイム",
+      "text": "各ターンに１度、自分の、名前に《ボルメテウス》とあるカードの実行コストを１少なくしてもよい。ただしコストは０以下にならない。\nエスケープ\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。\nこのカードを出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP004",
+      "limit": 4,
+      "g464OnceSummon": {
+        "execution": true,
+        "nameIncludes": "ボルメテウス",
+        "amount": 1
+      },
+      "escape": true,
+      "spellFace": {
+        "name": "ボルメテウス・スパーク",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "SelfSpellPut1529"
+          }
+        ]
+      },
+      "supportBatch": "phase-1820",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S009",
+      "name": "超天星ライゾウ「灼」",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 11000,
+      "race": "アース・ドラゴン/サムライ/フェニックス",
+      "text": "マナ進化V：ドラゴン・クリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが攻撃する時、またはバトルに勝った時、自分の山札の上から１枚を表向きにする。それがドラゴン・クリーチャーなら出してもよい。こうして出さなければ、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S009",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zones": [
+          "mana"
+        ],
+        "g1739VariableZones": true,
+        "g1803BaseCount": 2,
+        "conditions": [
+          {
+            "race": "ドラゴン"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "machFighter": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "mana",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "mana",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1820",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1819,
-    "checkedAt": "2026-11-27T16:47:22.195Z",
-    "baseCount": 9675,
-    "newEffectCards": 2,
+    "phase": 1820,
+    "checkedAt": "2026-11-27T16:58:20.745Z",
+    "baseCount": 9677,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9677,
+    "totalCount": 9680,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43052/"
+      "https://dm.takaratomy.co.jp/rule/qa/49656/",
+      "https://dm.takaratomy.co.jp/rule/qa/49659/",
+      "https://dm.takaratomy.co.jp/rule/qa/49657/",
+      "https://dm.takaratomy.co.jp/rule/qa/49658/"
     ],
     "next": [
-      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
     ],
     "history": [
       {
@@ -340708,6 +340851,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/43332/",
           "https://dm.takaratomy.co.jp/rule/qa/46953/",
           "https://dm.takaratomy.co.jp/rule/qa/31585/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1819,
+        "checkedAt": "2026-11-27T16:47:22.195Z",
+        "baseCount": 9675,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9677,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43052/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

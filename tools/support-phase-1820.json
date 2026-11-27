@@ -1,0 +1,574 @@
+{
+  "phase": 1820,
+  "checkedAt": "2026-11-27T16:58:20.745Z",
+  "baseline": "7ee9aa0faf2d8f56595217862a3354b4c31f16d3",
+  "baseCount": 9677,
+  "target": 10000,
+  "description": "Three new official catalogue names. Complete native shield burn, simultaneous milling with distinct assignable twinpact names and exact recovery/execute, once-per-turn optional named-card execution discount, Escape and spell self-deployment, plus physical two-Dragon mana evolution and public attack/battle-win Dragon deployment with mana fallback.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49656/",
+    "https://dm.takaratomy.co.jp/rule/qa/49659/",
+    "https://dm.takaratomy.co.jp/rule/qa/49657/",
+    "https://dm.takaratomy.co.jp/rule/qa/49658/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm26bd1-SP003",
+      "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+      "canonicalId": "dm26bd1-SP003",
+      "printId": "dm26bd1-SP003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP003",
+      "faces": [
+        {
+          "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇/火",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。それがすべて異なる名前なら、その中からコスト７以下のカードを１枚、コストを支払わずに実行してもよい。こうして実行しなければ、その中からカードを１枚、自分の手札に戻してもよい。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "shieldBurn": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NexusMill1820"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-SP003.jpg",
+      "imageSha256": "a00b46e240a6734bb132d2b2c1cfd4db8ccd01de561d8d925742005f106576b1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26bd1-SP003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26bd1-SP003",
+          "dm26bd1-001"
+        ],
+        "allSearchIds": [
+          "dm26bd1-SP003",
+          "dm26bd1-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "sha256": "42300b48cc6302a32747968271aca92ae80b1d425b59ac3ec2dde5cec6d8c3a0",
+        "facesMatched": true,
+        "imageSha256": "a00b46e240a6734bb132d2b2c1cfd4db8ccd01de561d8d925742005f106576b1"
+      }
+    },
+    {
+      "id": "dm26bd1-SP004",
+      "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+      "canonicalId": "dm26bd1-SP004",
+      "printId": "dm26bd1-SP004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP004",
+      "faces": [
+        {
+          "name": "西虎の炎 ボルメテウス・イエロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンに１度、自分の、名前に《ボルメテウス》とあるカードの実行コストを１少なくしてもよい。ただしコストは０以下にならない。\nエスケープ",
+          "race": "ミリオン・フレイム",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルメテウス・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。\nこのカードを出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g464OnceSummon": {
+          "execution": true,
+          "nameIncludes": "ボルメテウス",
+          "amount": 1
+        },
+        "escape": true,
+        "spellFace": {
+          "name": "ボルメテウス・スパーク",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll"
+            },
+            {
+              "op": "SelfSpellPut1529"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-SP004a.jpg",
+      "imageSha256": "ff84dc15ca48b21209557044c1ef304cd1d971e688ae34a507c0882dd3117a99",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26bd1-SP004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26bd1-SP004",
+          "dm26bd1-014"
+        ],
+        "allSearchIds": [
+          "dm26bd1-SP004",
+          "dm26bd1-014"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "sha256": "9236752c4b0d12c6a2a8400ce679ef55a0fd30f9f93060a038518df411f76195",
+        "facesMatched": true,
+        "imageSha256": "ff84dc15ca48b21209557044c1ef304cd1d971e688ae34a507c0882dd3117a99"
+      }
+    },
+    {
+      "id": "dm26ex5-S009",
+      "name": "超天星ライゾウ「灼」",
+      "canonicalId": "dm26ex5-S009",
+      "printId": "dm26ex5-S009",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S009",
+      "faces": [
+        {
+          "name": "超天星ライゾウ「灼」",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化V：ドラゴン・クリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが攻撃する時、またはバトルに勝った時、自分の山札の上から１枚を表向きにする。それがドラゴン・クリーチャーなら出してもよい。こうして出さなければ、マナゾーンに置く。",
+          "race": "アース・ドラゴン/サムライ/フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zones": [
+            "mana"
+          ],
+          "g1739VariableZones": true,
+          "g1803BaseCount": 2,
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "machFighter": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S009.jpg",
+      "imageSha256": "82c7e5510bb530b9048f918bda91391206f8e813345a47d845eb867fd972be91",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S009-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S009"
+        ],
+        "allSearchIds": [
+          "dm26ex5-S009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "sha256": "8a445efb18a714ccaa392f77ccdf8f3ee34baff8f38fe34062d174b84a41b207",
+        "facesMatched": true,
+        "imageSha256": "82c7e5510bb530b9048f918bda91391206f8e813345a47d845eb867fd972be91"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26bd1-001",
+      "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+      "canonicalId": "dm26bd1-SP003",
+      "printId": "dm26bd1-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-001",
+      "faces": [
+        {
+          "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇/火",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。それがすべて異なる名前なら、その中からコスト７以下のカードを１枚、コストを支払わずに実行してもよい。こうして実行しなければ、その中からカードを１枚、自分の手札に戻してもよい。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "shieldBurn": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NexusMill1820"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-001.jpg",
+      "imageSha256": "206ce80aba5a6ccfe6bc337d45398a0bd5517e581ee3a5684a4476c77e71a175",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26bd1-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26bd1-SP003",
+          "dm26bd1-001"
+        ],
+        "allSearchIds": [
+          "dm26bd1-SP003",
+          "dm26bd1-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "sha256": "0a5b9e5c6f43e83b20d3898ce8ff5b00553c8296384f19d6f7ccb469c5ccf808",
+        "facesMatched": true,
+        "imageSha256": "206ce80aba5a6ccfe6bc337d45398a0bd5517e581ee3a5684a4476c77e71a175"
+      }
+    },
+    {
+      "id": "dm26bd1-014",
+      "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+      "canonicalId": "dm26bd1-SP004",
+      "printId": "dm26bd1-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-014",
+      "faces": [
+        {
+          "name": "西虎の炎 ボルメテウス・イエロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンに１度、自分の、名前に《ボルメテウス》とあるカードの実行コストを１少なくしてもよい。ただしコストは０以下にならない。\nエスケープ（このクリーチャーが破壊される時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない）",
+          "race": "ミリオン・フレイム",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルメテウス・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。\nこのカードを出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g464OnceSummon": {
+          "execution": true,
+          "nameIncludes": "ボルメテウス",
+          "amount": 1
+        },
+        "escape": true,
+        "spellFace": {
+          "name": "ボルメテウス・スパーク",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll"
+            },
+            {
+              "op": "SelfSpellPut1529"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-014a.jpg",
+      "imageSha256": "84319c57ed82a1c15dc524031b383e53bb13c84a4f3c3bdfce83c33da4cb0d76",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26bd1-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26bd1-SP004",
+          "dm26bd1-014"
+        ],
+        "allSearchIds": [
+          "dm26bd1-SP004",
+          "dm26bd1-014"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "sha256": "e207a4c7b698f3f5bf64264b3c64ae22bc5c43fafafa8384b78dd6f726e4c405",
+        "facesMatched": true,
+        "imageSha256": "84319c57ed82a1c15dc524031b383e53bb13c84a4f3c3bdfce83c33da4cb0d76"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49656/",
+      "sha256": "e77eedc8346ddeb599018f4c0dd749a401ece562bf8ed359017466c9e9a8d140",
+      "checkedAt": "2026-11-27T16:58:20.745Z",
+      "reproduced": true,
+      "tests": "tests/standard1820-effects.test.mjs",
+      "reproduction": "Both seats: four distinct newly milled actual cards, decline legal execution and recover one exact just-milled card; original grave card excluded.",
+      "result": "Both seats: four distinct newly milled actual cards, decline legal execution and recover one exact just-milled card; original grave card excluded."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49659/",
+      "sha256": "554a88f52be4c3b7170ce7c036df1cf86c7303512ce19c0ada346cde4c986d3e",
+      "checkedAt": "2026-11-27T16:58:20.745Z",
+      "reproduced": true,
+      "tests": "tests/standard1820-effects.test.mjs",
+      "reproduction": "Both seats: actual opposing Nibaiken tapped by Yellow spell; Yellow is already on the battlefield when Nibaiken optional draw/discard decision is offered.",
+      "result": "Both seats: actual opposing Nibaiken tapped by Yellow spell; Yellow is already on the battlefield when Nibaiken optional draw/discard decision is offered."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49657/",
+      "sha256": "9a241764e319c15b5c031dde6bbb4e779b0f65cbe160b9f61f2adaf9e3f36622",
+      "body": "よくある質問 Q《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から《切札竜 ボルメテウス・リバース・ドラゴン》《CRYMAX ジャオウガ》《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》の４枚を墓地に置きました。 《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》２枚が墓地に置かれましたが、これらをそれぞれ異なる名前のカードとして扱って、４枚の中からコスト７以下のカードを実行できますか？ Aはい、コスト７以下のカードを実行できます。 ツインパクトカードの名前を効果で参照する際、そのうち片方の名前のみを参照します。 そのため、同じツインパクトカード２枚を、それぞれ異なる名前のカードとして扱えます。 （総合ルール 202.7. ） 一覧へ戻る 関連する質問 《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から名前が異なるカード４枚を墓地に置きました。 その中にコスト７以下のカードがあったのですが、実行したくないです。カードを実行せずに、その中から１枚を手札に加えられますか？ 2026.11.20 《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から《切札竜 ボルメテウス・リバース・ドラゴン》《CRYMAX ジャオウガ》《世界のY チャクラ・デル・フィン》《世界のY チャクラ・デル・フィン》の４枚を墓地に置きました。 同じ名前のカードがあったのですが、どうなりますか？ 2026.11.20 《禁鬼機関 ジャオウガ-8》の「自分のターンに１度、デモニオ・カードを自分の墓地から実行してもよい」で、自分はメインステップ中に墓地から《CRYMAX ジャオウガ》を召喚したいです。 この時、召喚コストを支払う必要はありますか？ 2026.7.17 自分の《切札竜 ボルメテウス・リバース・ドラゴン》が、相手のシールドをブレイクしてハイパーモードを解放しました。 この際、ブレイクしたシールドは「Zラッシュ」の「このクリーチャーが相手のシールドをブレイクする時、そのシールドを手札に加えるかわりに持ち主の山札の下に置く」によって山札の下に置かれますか？ 2026.4.10 相手の山札が残り１枚の状況で、ハイパーモードを解放した自分の《切札竜 ボルメテウス・リバース・ドラゴン》で相手のシールドを３つブレイクしようとしています。 この時、《切札竜 ボルメテウス・リバース・ドラゴン》の「相手のシールドをブレイクする時」の置換効果はどうなりますか？ 2026.4.10 相手の《魔素縫合 アモデゴラス》がいる状況です。 自分のハイパーモードを解放している《切札竜 ボルメテウス・リバース・ドラゴン》が相手のシールドを３つブレイクする際、ブレイクする時の置換効果はどうなりますか？ 2026.4.10 自分の山札が残り１枚の状況で、ハイパーモードを解放した自分の《切札竜 ボルメテウス・リバース・ドラゴン》で相手のシールドを３つブレイクしようとしています。 この時、《切札竜 ボルメテウス・リバース・ドラゴン》の「相手のシールドをブレイクする時」の置換効果はどうなりますか？ 2026.4.10 相手のターン中、相手のハイパーモードを解放している《切札竜 ボルメテウス・リバース・ドラゴン》が自分のシールドをブレイクする際、自分は「シールド・セイバー」の置換効果を適用できますか？ 参照：《森仙のJ ロマネスク》 2026.4.10 相手のターン中、相手のハイパーモードを解放している《切札竜 ボルメテウス・リバース・ドラゴン》が、自分の表向きの《我竜塔第七層 ハッスル・キャッスル》のようなG城をブレイクする際、それを《切札竜 ボルメテウス・リバース・ドラゴン》の置換効果で山札の下に置くか、G城の置換効果で墓地に置くか自分が決められますか？ 2026.4.10 自分の《CRYMAX ジャオウ",
+      "checkedAt": "2026-11-27T16:58:20.745Z",
+      "reproduced": true,
+      "tests": "tests/standard1820-effects.test.mjs",
+      "reproduction": "Both seats: actual Reverse Dragon, CRYMAX and two Red twinpacts; choose and execute the cost-seven Red spell face and deploy its same physical card, with no second recovery.",
+      "result": "Both seats: actual Reverse Dragon, CRYMAX and two Red twinpacts; choose and execute the cost-seven Red spell face and deploy its same physical card, with no second recovery."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49658/",
+      "sha256": "19efe9d2d56612741815a58e8e882f72a59b80b9b6dba39aa5e6d48bc66c8557",
+      "body": "よくある質問 Q《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から《切札竜 ボルメテウス・リバース・ドラゴン》《CRYMAX ジャオウガ》《世界のY チャクラ・デル・フィン》《世界のY チャクラ・デル・フィン》の４枚を墓地に置きました。 同じ名前のカードがあったのですが、どうなりますか？ A同じ名前のカードがあった場合、その中からコスト７以下のカードは実行できません。 実行しないので、その中から１枚を手札に戻せます。 一覧へ戻る 関連する質問 《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から名前が異なるカード４枚を墓地に置きました。 その中にコスト７以下のカードがあったのですが、実行したくないです。カードを実行せずに、その中から１枚を手札に加えられますか？ 2026.11.20 《ボルメテウス・ホワイト・ドラゴン・ネクサス》の「出た時」の能力で、自分の山札の上から《切札竜 ボルメテウス・リバース・ドラゴン》《CRYMAX ジャオウガ》《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》の４枚を墓地に置きました。 《南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー》２枚が墓地に置かれましたが、これらをそれぞれ異なる名前のカードとして扱って、４枚の中からコスト７以下のカードを実行できますか？ 2026.11.20 《禁鬼機関 ジャオウガ-8》の「自分のターンに１度、デモニオ・カードを自分の墓地から実行してもよい」で、自分はメインステップ中に墓地から《CRYMAX ジャオウガ》を召喚したいです。 この時、召喚コストを支払う必要はありますか？ 2026.7.17 《星門の精霊アケルナル / スターゲイズ・ゲート》の呪文側を唱えて、「Zラッシュ」に「ブロッカー」を持つ《世界のY チャクラ・デル・フィン》を手札からバトルゾーンに出せますか？ 2026.5.15 自分の《星姫械 エルナドンナ》と《世界のY チャクラ・デル・フィン》がバトルゾーンにいる状況です。 相手の《堕魔 グリデリア / 堕呪 フンズヴァイ》の「出た時」の能力で、山札から魔導具カード３枚が墓地に置かれ、自分の《世界のY チャクラ・デル・フィン》のパワーが-6000されました。 パワーが０になった《世界のY チャクラ・デル・フィン》がバトルゾーンを離れる際、《星姫械 エルナドンナ》の「各ターンに一度、自分の他のクリーチャーが離れる時、かわりに自分のシールドを１つ手札に加えてもよい」の置換効果を適用して自分のシールドを手札に加えたのですが、これによりシールドが離れるので、「Zラッシュ」でパワーが増えた《世界のY チャクラ・デル・フィン》はバトルゾーンに残りますか？ 2026.5.15 前の自分のターンに「Zラッシュ」でハイパーモードを解放した自分の《世界のY チャクラ・デル・フィン》がバトルゾーンにいる状況です。 相手のターン中、相手が《∞龍 ゲンムエンペラー》を出しました。 《∞龍 ゲンムエンペラー》の「コスト５以下のクリーチャーの能力とコスト５以下の呪文の効果を無視する」で、能力が無視された《世界のY チャクラ・デル・フィン》のパワーはどうなりますか？ 2026.5.15 「Zラッシュ」とはなんですか？ 2026.4.10 自分の《切札竜 ボルメテウス・リバース・ドラゴン》が、相手のシールドをブレイクしてハイパーモードを解放しました。 この際、ブレイクしたシールドは「Zラッシュ」の「このクリーチャーが相手のシールドをブレイクする時、そのシールドを手札に加えるかわりに持ち主の山札の下に置く」によって山札の下に置かれますか？ 2026.4.10 相手の山札が残り１枚の状況で、ハイパーモードを解放した自分の《切札竜 ボルメテウス・リバース・ドラゴン》で相手のシールドを３つブレイクしようとしています。 この時、《切札竜 ボルメ",
+      "checkedAt": "2026-11-27T16:58:20.745Z",
+      "reproduced": true,
+      "tests": "tests/standard1820-effects.test.mjs",
+      "reproduction": "Both seats: actual Reverse Dragon, CRYMAX and two Chakra cards; free execution not offered, recover one newly milled Reverse Dragon instead.",
+      "result": "Both seats: actual Reverse Dragon, CRYMAX and two Chakra cards; free execution not offered, recover one newly milled Reverse Dragon instead."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "catalogueAdditions": [
+    {
+      "id": "dm26bd1-SP003",
+      "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP003",
+      "faces": [
+        {
+          "name": "ボルメテウス・ホワイト・ドラゴン・ネクサス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇/火",
+          "civilizations": [
+            "光",
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置く。それがすべて異なる名前なら、その中からコスト７以下のカードを１枚、コストを支払わずに実行してもよい。こうして実行しなければ、その中からカードを１枚、自分の手札に戻してもよい。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "dm26bd1-SP004",
+      "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP004",
+      "faces": [
+        {
+          "name": "西虎の炎 ボルメテウス・イエロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターンに１度、自分の、名前に《ボルメテウス》とあるカードの実行コストを１少なくしてもよい。ただしコストは０以下にならない。\nエスケープ",
+          "race": "ミリオン・フレイム",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルメテウス・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。\nこのカードを出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "dm26ex5-S009",
+      "name": "超天星ライゾウ「灼」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S009",
+      "faces": [
+        {
+          "name": "超天星ライゾウ「灼」",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化V：ドラゴン・クリーチャーを２体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nマッハファイター\nW・ブレイカー\nこのクリーチャーが攻撃する時、またはバトルに勝った時、自分の山札の上から１枚を表向きにする。それがドラゴン・クリーチャーなら出してもよい。こうして出さなければ、マナゾーンに置く。",
+          "race": "アース・ドラゴン/サムライ/フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:58:20.745Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26bd1-SP003": 4,
+      "dm26bd1-SP004": 4,
+      "dm26ex5-S009": 4,
+      "dm26bd1-001": 4,
+      "dm26bd1-014": 4
+    }
+  },
+  "ruleEvidence": {
+    "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+    "sections": [
+      "202.7",
+      "409.1c"
+    ],
+    "verified": "Official current rules text confirms one name per twinpact when referenced, and the resolving card remains in its original zone. Actual Red twinpact assignment and Yellow/previous Blue origin checks are reproduced for both players."
+  },
+  "validationNotes": {
+    "images": "Five full official original/reprint images visually reviewed. Entire faces, mana 1, power, costs, civilizations, races and all ability clauses matched. Catalogue/details append only three genuinely new names and keep every old row and ID.",
+    "implementation": "Native same-mana-zone two-base Phoenix evolution, Mach Fighter, public one-card optional creature deployment/mana fallback and battle-win hook. Yellow reuses once-per-turn optional execution providers, Escape, TapAll and resolving-spell self-deployment. Name filter is opt-in for the new provider; existing providers are unchanged. SelfSpellPut now uses frame.spell.summonOrigin under official rule409.1c, covering existing Blue as well. Nexus reuses simultaneous mill, exact grave serial references, native free execution/decline and serial-checked optional recovery; at most four two-face name choices are assigned without conflating physical cards.",
+    "resolvedAttempts": "First focused run passed 76/80. Four fixture assertions used a cost-six card as an over-seven target and an older Mach Fighter against an untapped creature. Corrected using a verified cost-eight first-set card and tapped battle target. Added six actual spell-origin/S-Trigger cases and an unnamed fixed-cost-payment guard. Final focused complete run passes 87/87; the code guards missing names when an unrelated ability asks about an unnamed fixed payment. Related regression initially passed 243/244: its old Blue/Tokoshie expectation incorrectly treated a hand-cast resolving spell as outside hand. Corrected that specific expected outcome under the verified current rule409.1c, preserved its draw assertions, and added eight both-seat hand/grave Tokoshie cases for Yellow and existing Blue. Final focused run is 95/95 and related regression is 244/244; all earlier failed logs are automatically archived by the runner.",
+    "nextCandidates": [
+      "dm26ex5-S010 無限龍王ボルシャック・ライジングNEX",
+      "dm26ex5-006 大獄の封殺ディアス Z",
+      "dm26ex5-S001 八重の精霊パーフェクト・エイティー",
+      "Keep previously held dm26rp1-020 exact shield-arrival handling outside the count until complete."
+    ],
+    "resume": "Final code passes focused 95, related 244 and online 5 cases. Run final npm run check after the test expectation correction, then audit/nameKey and strict old-ID/save/pending invariants. Explicit local commit only; no push/publication/Netlify or automation restart."
+  }
+}

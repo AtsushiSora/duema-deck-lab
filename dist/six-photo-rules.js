@@ -291,7 +291,8 @@ export function createSixPhotoRules(api){
   return creatures(s,p).filter(x=>{
    const r=!x.sealed&&effective(x,s).g464OnceSummon;
    return r&&(r.execution||c.type==='creature')&&x[onceTurnField464(x,r)]!==s.turn&&
-    (!r.race||race(c,r.race))&&(!r.colors||r.colors.some(q=>colors(c).includes(q)));
+    (!r.race||race(c,r.race))&&(!r.colors||r.colors.some(q=>colors(c).includes(q)))&&
+    (!r.nameIncludes||exactName(c.name||'').includes(r.nameIncludes));
   });
  }
  function selectedOnce464(s,p,c){return onceProviders464(s,p,c).filter(x=>c.g464Reducers===undefined||c.g464Reducers.includes(key(x)));}
@@ -6536,7 +6537,10 @@ export function createSixPhotoRules(api){
   }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
   break;
  case'g34_WinOpponentGrave1530':if(s.players[1-t.p].grave.filter(x=>faces(api.zoneCard(s,1-t.p,x,'grave')).some(c=>c.type==='creature')).length>=t.n)api.finish(s,t.p,card(t.source).name+'：相手の墓地にクリーチャーが'+t.n+'体以上');break;
- case'g34_SelfSpellPut1529':{const i=(s.extSpells||[]).findIndex(f=>f.inst.uid===t.uid);if(i<0)break;const frame=s.extSpells[i];if(frame.virtual||!api.canEnter(s,t.p,card(frame.inst),{origin:'spell',execution:false}))break;s.extSpells.splice(i,1);enter(s,t.p,frame.inst,null,{origin:'spell',execution:false});if(t.delayed&&s.players[t.p].battle.some(x=>x.uid===frame.inst.uid))frame.inst.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.p};break;}
+ case'g34_SelfSpellPut1529':{const i=(s.extSpells||[]).findIndex(f=>f.inst.uid===t.uid);if(i<0)break;const frame=s.extSpells[i];
+  // Rule 409.1c: a resolving spell still belongs to the zone it was cast from.
+  const origin=frame.spell?.summonOrigin||frame.origin||'hand';
+  if(frame.virtual||!api.canEnter(s,t.p,card(frame.inst),{origin,execution:false}))break;s.extSpells.splice(i,1);enter(s,t.p,frame.inst,null,{origin,execution:false});if(t.delayed&&s.players[t.p].battle.some(x=>x.uid===frame.inst.uid))frame.inst.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.p};break;}
  case'g34_OjiCycle1528':api.discardSelected(s,t.p,own.hand.map(x=>x.uid),t.source,t.p,null,null,{...t,op:'g34_DrawAfterOji1528',g1528AllowZero:true});break;
  case'g34_BelowManaBounce1569':start(s,t,[{op:'Sweep',both:true,to:'hand',toOwnerHand:true,filter:{creature:true,belowCost:own.mana.length}}]);break;
  case'g34_DoubleShields1568':start(s,t,[{op:'ShieldTop',n:own.shields.length,g779Simultaneous:true}]);break;
@@ -6675,6 +6679,26 @@ export function createSixPhotoRules(api){
  case'g34_EachMill1534':
   put(s,...[s.active,1-s.active].map(p=>({...t,op:'g34_Mill',p,controller:t.controller??t.p})));
   break;
+ case'g34_NexusMill1820':{
+  const moved=api.mill(s,t.p,4,{together:true})||[];
+  if(s.winner!==null)break;
+  const rows=moved.filter(y=>own.grave.includes(y)),refs=rows.map(y=>({uid:y.uid,serial:y.zoneSerial||0}));
+  // Rule 202.7: each physical twinpact can supply either one of its two names.
+  const names=rows.map(y=>[...new Set(faces(card(y)).map(c=>exactName(creatureFaceName(c))))]);
+  const distinct=(i,used)=>i===names.length||names[i].some(name=>!used.includes(name)&&distinct(i+1,[...used,name]));
+  const recover={op:'NexusRecover1820',refs};
+  if(distinct(0,[]))start(s,t,[{op:'Execute',origin:'grave',max:7,optional:true,g1616Refs:refs,g408Decline:[recover]}]);
+  else start(s,t,[recover]);
+  break;
+ }
+ case'g34_NexusRecover1820':{
+  const rows=api.canMoveZone(s,t.p,'grave')?t.refs.flatMap(r=>{
+   const y=own.grave.find(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial);
+   return y?[opt(card(y).name,r,10+cost(card(y)),y.cardId)]:[];
+  }):[];
+  if(rows.length)choice(s,{...t,op:'g34_MillSequence1616',g1785PureRecovery:true},'今墓地に置いたカードを1枚まで手札に戻す',[...rows,skip()]);
+  break;
+ }
  case'g34_MillSequence1616':{
   const moved=api.mill(s,t.p,t.n,{together:true})||[];
   const refs=moved.filter(y=>own.grave.includes(y)).map(y=>({uid:y.uid,serial:y.zoneSerial||0}));
