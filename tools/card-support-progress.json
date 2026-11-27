@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9755,
-  "pendingNames": 2094,
-  "phase": 1848,
-  "added": 3,
+  "supportedNames": 9757,
+  "pendingNames": 2092,
+  "phase": 1849,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -161,9 +161,9 @@
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 166,
+    "進化クリーチャー": 165,
     "スター進化クリーチャー": 45,
-    "NEOクリーチャー": 38,
+    "NEOクリーチャー": 37,
     "オレガ・オーラ": 11,
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1567,
+    "未対応の能力文": 1565,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -578468,28 +578468,250 @@
           "reason": "Test-only correction: native MachFighter enables creature attacks on entry but not player attack; confirm actual untapped creature attack available then make source old before testing T3 player attack. All required tests now pass; no partial new card or unverified change."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb"
+    },
+    {
+      "phase": 1849,
+      "checkedAt": "2026-11-27T23:01:51.413Z",
+      "baseline": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9755,
+      "currentNames": 9757,
+      "remainingNames": 243,
+      "added": [
+        {
+          "id": "dmex18-045",
+          "name": "ワンケングレンオー ～弧月躍動～"
+        },
+        {
+          "id": "dmex18-042",
+          "name": "ケンゴウグレンオー ～蒼天飛翔～"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1849,
+        "baseline": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+        "originalDefinitionsUnchanged": 9755,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9757,
+        "uniqueIds": 9757,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9755,
+        "existingImageReferenceRowsUnchanged": 12222,
+        "officialPrintsReviewed": 2,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1849": {
+          "name": "official-1849",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1849.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.866,
+          "log": "tmp/duema-target-10000/official-1849.log",
+          "passed": 0,
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "focused-1849-final": {
+          "name": "focused-1849-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1849-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.113,
+          "log": "tmp/duema-target-10000/focused-1849-final.log",
+          "passed": 42,
+          "logSha256": "e8913c98340b6fe97970a2409d046b703662ea6dca8e61f5c28dbebaa1991699"
+        },
+        "related-1849": {
+          "name": "related-1849",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1849.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.442,
+          "log": "tmp/duema-target-10000/related-1849.log",
+          "passed": 243,
+          "logSha256": "e38c261df1dabd78eb2d34d093cad90a41446f71925f256f5bccb9399c9b38aa"
+        },
+        "check-1849": {
+          "name": "check-1849",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.914,
+          "log": "tmp/duema-target-10000/check-1849.log",
+          "passed": 0,
+          "logSha256": "1718fd4ecc6ed462b08eff8a4a363eec62a0ebb86b30701c47300d424b9dd0eb"
+        },
+        "audit-1849": {
+          "name": "audit-1849",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.496,
+          "log": "tmp/duema-target-10000/audit-1849.log",
+          "passed": 0,
+          "logSha256": "36029dfe37f9e01488f7537fbe78d82bdcd2b3f2c78a5ecb49b82af5714806c9"
+        },
+        "invariants-1849": {
+          "name": "invariants-1849",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1849"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.792,
+          "log": "tmp/duema-target-10000/invariants-1849.log",
+          "passed": 0,
+          "logSha256": "13109e8ef7d8787822dd83ad7d3ee5c8dea9ce17ee784da35bbbac23150588f2"
+        },
+        "related-online-1849": {
+          "name": "related-online-1849",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.651,
+          "log": "tmp/duema-target-10000/related-online-1849.log",
+          "passed": 5,
+          "logSha256": "25676fa8fc218ec0b002a7a86326c43bc5097f5a6753f3a4a8a1b2a2226a04b9"
+        },
+        "extra-redzone-1849": {
+          "name": "extra-redzone-1849",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(invasion from hand|battlefield S invasion|declared invasion)",
+            "tests/redzone-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.717,
+          "log": "tmp/duema-target-10000/extra-redzone-1849.log",
+          "passed": 3,
+          "logSha256": "e4f1e90770f606dea63e42de035fe75af9c5b498e3de25381d6ebe805763e586"
+        }
+      },
+      "totalTestsPassed": 293,
+      "manifest": "tools/support-phase-1849.json",
+      "supported": 9757,
+      "pending": 2092,
+      "engineVersion": "0.602.373",
+      "held": [
+        {
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "reason": "Already verified exact official reprint alias of canonical dm32-101 in phase1750 (wave-dash opt-in normalized evidence). Existing ID/spec/save aliases preserved; no new registration and no new-name count. Research substring results of Waterplay/Wan forms are distinct names, not reprints."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp13-067",
+          "name": "三・騎・繚・乱",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmex11-018",
+          "name": "団・鎧・鉄・壁",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmrp15-km2",
+          "name": "メテヲシャワァ・ヲヲロラシアタァ",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmrp14-012",
+          "name": "「修練の偶像」",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        }
+      ],
+      "verificationScope": "Two genuinely NEW forms, no forced third because Start is already supported alias. Wan Nature5/5000 optional NEO on own ANY Nature OR named Kenguren including Fire Start; no-base sickness versus evolved immediate tap, mandatory ramp1, full private deck search beyond7 optionally overlays actual named Ken and shuffles even decline. Linked QA40969 universal entry replacement-order mechanism verified with exact current legal printed target; explicit FAQ question-name mismatch retained, never permit illegal target. Ken Fire10/11000W2 named ordinary evolution and named hand-only invasion including older Wan forms, no non-Wan declaration or grave/mana use, exact attack/physical stack carriesW2 with no payment. ETB chooses optional enemy creatures total current power<=5000 then independently optional discard attempt (real Carol replacement still qualifies101.3a) followed by private top5 mandatory2 and ordered remaining bottom; zero targets and discard decline work, no own/too-large target. Focused42 includes4 encrypted two-account manual-payment/evolution transactions and pure hidden-independent AI/mana orientation; related regression plus3 original redzone hand/grave/battlefield/current-base tests, online5, check/audit9757/invariants passed. Native name-invasion matcher adds optional nameIncludes only, old invasion unchanged; NEO validator accepts exact existing supported name fragment and rejects arbitrary unknown name. All old IDs/definitions/raw details/saves/holds/fullSuite interrupted preserved, no fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "related-1849",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1849.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.048,
+          "log": "tmp/duema-target-10000/related-1849-previous-1795820423273978000.log",
+          "originalLog": "tmp/duema-target-10000/related-1849.log",
+          "reason": "Regression harness initially referenced nonexistent standard49 filename and exited before running. Replaced with existing standard1349 group plus separate positive-selected redzone-effects original invasion3; all pass. No product failure or repeated long run."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1848,
-    "nextPhase": 1849,
+    "lastVerifiedPhase": 1849,
+    "nextPhase": 1850,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex18-067",
-        "name": "ケングレンオー 〜出発〜",
-        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        "id": "dmrp13-067",
+        "name": "三・騎・繚・乱",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
       },
       {
-        "id": "dmex18-045",
-        "name": "ワンケングレンオー ～弧月躍動～",
-        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        "id": "dmex11-018",
+        "name": "団・鎧・鉄・壁",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
       },
       {
-        "id": "dmex18-042",
-        "name": "ケンゴウグレンオー ～蒼天飛翔～",
-        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        "id": "dmrp15-km2",
+        "name": "メテヲシャワァ・ヲヲロラシアタァ",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+      },
+      {
+        "id": "dmrp14-012",
+        "name": "「修練の偶像」",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
       }
     ],
     "steps": [
@@ -579398,11 +579620,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1848,
-      "baseline": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
-      "supportedNames": 9755,
-      "artifact": "tools/target10000-registration-checkpoint-1848.json",
-      "checkedAt": "2026-11-27T22:56:03.955Z"
+      "phase": 1849,
+      "baseline": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+      "supportedNames": 9757,
+      "artifact": "tools/target10000-registration-checkpoint-1849.json",
+      "checkedAt": "2026-11-27T23:01:51.413Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -582460,8 +582682,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9755,
-      "remaining": 245,
+      "currentNames": 9757,
+      "remaining": 243,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -582469,26 +582691,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1848,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1848.json",
+      "lastPhase": 1849,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1849.json",
       "nextCandidates": [
         {
-          "id": "dmex18-067",
-          "name": "ケングレンオー 〜出発〜",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp13-067",
+          "name": "三・騎・繚・乱",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-045",
-          "name": "ワンケングレンオー ～弧月躍動～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmex11-018",
+          "name": "団・鎧・鉄・壁",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-042",
-          "name": "ケンゴウグレンオー ～蒼天飛翔～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp15-km2",
+          "name": "メテヲシャワァ・ヲヲロラシアタァ",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmrp14-012",
+          "name": "「修練の偶像」",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         }
       ],
-      "resumeProcedure": "Phase1848 verified9755, remaining245. Continue manual grouped full implementation/gates/local commit; next Kenguren3 full research. Preserve all past holds and pending/fullSuite interrupted, new Sabera simultaneous QA33628 hold. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1849 verified9757 names, remaining243. Next1850 native Galaxyshield/VividRo4 research downloaded, review complete images and all FAQs before implementation/gates/local commit. Preserve all holds and old pending/fullSuite interrupted, named FAQ question discrepancy evidence. No push/Pages/Netlify/automation restart/fullnpmtest/repeatoldlonggroups.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -582722,7 +582949,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+      "lastVerifiedCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -582733,7 +582960,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65"
+      "lastVerifiedCodeCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb"
     },
     "resolvedRegistrationValidations": [
       {
@@ -583849,8 +584076,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9755,
-      "remaining": 245,
+      "currentNames": 9757,
+      "remaining": 243,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583858,26 +584085,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1848,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1848.json",
+      "lastPhase": 1849,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1849.json",
       "nextCandidates": [
         {
-          "id": "dmex18-067",
-          "name": "ケングレンオー 〜出発〜",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp13-067",
+          "name": "三・騎・繚・乱",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-045",
-          "name": "ワンケングレンオー ～弧月躍動～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmex11-018",
+          "name": "団・鎧・鉄・壁",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-042",
-          "name": "ケンゴウグレンオー ～蒼天飛翔～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp15-km2",
+          "name": "メテヲシャワァ・ヲヲロラシアタァ",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmrp14-012",
+          "name": "「修練の偶像」",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         }
       ],
-      "resumeProcedure": "Phase1848 verified9755, remaining245. Continue manual grouped full implementation/gates/local commit; next Kenguren3 full research. Preserve all past holds and pending/fullSuite interrupted, new Sabera simultaneous QA33628 hold. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1849 verified9757 names, remaining243. Next1850 native Galaxyshield/VividRo4 research downloaded, review complete images and all FAQs before implementation/gates/local commit. Preserve all holds and old pending/fullSuite interrupted, named FAQ question discrepancy evidence. No push/Pages/Netlify/automation restart/fullnpmtest/repeatoldlonggroups.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584111,7 +584343,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+      "lastVerifiedCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584122,7 +584354,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65"
+      "lastVerifiedCodeCommit": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -590475,6 +590707,147 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1848.json"
+      },
+      {
+        "phase": 1849,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmex18-067.json",
+        "cards": [
+          {
+            "id": "dmex18-045",
+            "name": "ワンケングレンオー ～弧月躍動～",
+            "searchSha256": "3012718c052a743b1fda6a8d9d68b64039d2167f2fb0d0886dcbd3a59d806b76",
+            "searchIds": [
+              "dmex18-045",
+              "dmc64-036",
+              "dm32-060",
+              "dm34-010",
+              "dmc64-020"
+            ],
+            "excluded": [
+              {
+                "id": "dmc64-036",
+                "name": "ワンケングレンオー ～月下咆哮～"
+              },
+              {
+                "id": "dm32-060",
+                "name": "ワンケングレンオー ～月下咆哮～"
+              },
+              {
+                "id": "dm34-010",
+                "name": "ワンケングレンオー～全速前進～"
+              },
+              {
+                "id": "dmc64-020",
+                "name": "ワンケングレンオー～全速前進～"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmex18-045",
+                "name": "ワンケングレンオー ～弧月躍動～",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-045",
+                "faces": [
+                  {
+                    "name": "ワンケングレンオー ～弧月躍動～",
+                    "typeText": "NEOクリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "NEO進化：自然のクリーチャーまたは名前に《ケングレンオー》とあるクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置く。\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt 自分の山札を見る。その中から、名前に《ケンゴウグレンオー》とあるクリーチャーを１体、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+                    "race": "フレイム・モンスター/エメラルド・モンスター",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex18-045",
+                "printedManaValue": 1,
+                "htmlSha256": "0e79637a61b6447e117deccbb7654aeed9482f945fd688f22246111dab34e3c1",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-045.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex18-045-0.jpg",
+                    "sha256": "2b3f4331ee9b3ee86883af73fc409d9caa88a1c42f3e1105af0d3235602ef4b1"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40969/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40969/",
+                "sha256": "49c3d6f9448b7127a0dc23d7a914c9c017705f1da719468efe5474435d1f905d",
+                "body": "よくある質問 Q自分の《弩闘！桃天守閣》があり、相手の《その子供、可憐につき》がバトルゾーンにいる状況です。 自分の《ワンケングレンオー ～弧月躍動～》の「このクリーチャーで攻撃するかわりに」を起動して《ゴウケンオー ～秘剣轟誕～》に進化する際、アンタップ状態でバトルゾーンに出ますか？ Aいいえ、タップ状態でバトルゾーンに出ます。《ゴウケンオー ～秘剣轟誕～》はタップ状態でバトルゾーンに出ようとするので、まず《弩闘！桃天守閣》の「自分のクリーチャーがタップしてバトルゾーンに出る時、かわりに」の置換効果が適用されます。その結果、アンタップ状態で出ることになるので、次に《その子供、可憐につき》の「タップしてバトルゾーンに出る」という状態定義効果が適用され、最終的に、タップ状態で出ることになります。 一覧へ戻る 関連する質問 自分の《弩闘！桃天守閣》がバトルゾーンにある状況です。 《機械神類 ヨミ》の「攻撃する時」の能力で、自分は墓地から《聖霊左機 コットン》を《機械神類 ヨミ》とリンクした状態で出したいのですが、リンクした《聖霊左機 コットン》《機械神類 ヨミ》は《弩闘！桃天守閣》の置換効果でアンタップしますか？ 2023.7.21 自分の《弩闘！桃天守閣》がバトルゾーンにある状況です。 自分は《冥逝邪夢》を唱えて、墓地から「出た時」の能力を持つクリーチャーを、タップして出すかわりにアンタップ状態で出しました。 《弩闘！桃天守閣》の置換効果が適用された状態でクリーチャーが出たので、《冥逝邪夢》の置換効果が適用されず、それらが出ることによってトリガーする能力がトリガーするようになりますか？ 2023.6.23 自分の《弩闘！桃天守閣》があり、相手の《「修羅」の頂 VAN・ベートーベン》がバトルゾーンにいる状況です。 自分のクリーチャーで攻撃した時に≪蒼き覚醒 ドギラゴンX≫の「P革命チェンジ」を使った場合、入れ替えはどうなりますか？ 参照：《轟く覚醒 レッドゾーン・バスター》 類似能力：「革命チェンジ」 2022.2.18 相手の《その子供、可憐につき》がバトルゾーンにいる状況で、自分は《ギガントウサギロボ・フューチャーX》を「NEO進化」を使ってバトルゾーンに出す場合、タップ状態で出ますか？ 類似例：《至高の魂 アビスベル＝ジャシン帝》の「G-NEO進化」 2022.2.18 《ゴウケンオー ～秘剣轟誕～》を「∞ ソウルシフト」で召喚する際、名前に≪グレンオー≫とある進化クリーチャーを選びました。《ゴウケンオー ～秘剣轟誕～》の召喚するコストは、その進化クリーチャーの進化元のクリーチャーのコストも合計して少なくなりますか？ 2022.2.18 自分のマナゾーンに《Library of Alexandria》があり、手札がちょうど７枚の状況です。自分の《ワンケングレンオー ～弧月躍動～》の「このクリーチャーで攻撃するかわりに」を起動してから《Library of Alexandria》の能力を起動してカードを引けますか？ 2022.2.18 自分の《弩闘！桃天守閣》がバトルゾーンにある状況です。自分の《ケングレンオー ～出発～》のタップ能力を起動して、《ワンケングレンオー～全速前進～》に進化しました。この《ワンケングレンオー～全速前進～》はアンタップ状態で進化しますか？ 2021.2.19 バトルゾーンに自分の《弩闘！桃天守閣》があり、相手の《龍世界 ドラゴ大王》がいる状況です。自分が《眠りの森のメイ様》をバトルゾーンに出す時、どちらの置換効果が適用されますか？ 2021.2.19 自分の《弩闘！桃天守閣》がバトルゾーンにある状況です。「革命チェンジ」や「侵略」によってタップ状態でバトルゾーンに出る自分のクリーチャーは、かわりにアンタップ状態でバトルゾーンに出ますか？ 2021.2.19 自分の《弩闘！桃天守閣》と、相手の《無修羅デジルムカデ》がバトルゾーンにある状況です。相手のターン中に相手は《ゴースト・タッチ》を唱えて自分の手札を1枚選びま"
+              }
+            ]
+          },
+          {
+            "id": "dmex18-042",
+            "name": "ケンゴウグレンオー ～蒼天飛翔～",
+            "searchSha256": "4aac92dc1a798d7fb2819db186f5dd6ec7eaf3bdd8e18b1a68d98c27710d35e6",
+            "searchIds": [
+              "dmex18-042",
+              "dm33-016",
+              "dmc64-025"
+            ],
+            "excluded": [
+              {
+                "id": "dm33-016",
+                "name": "ケンゴウグレンオー～天地鳴動～"
+              },
+              {
+                "id": "dmc64-025",
+                "name": "ケンゴウグレンオー～天地鳴動～"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmex18-042",
+                "name": "ケンゴウグレンオー ～蒼天飛翔～",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-042",
+                "faces": [
+                  {
+                    "name": "ケンゴウグレンオー ～蒼天飛翔～",
+                    "typeText": "進化クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 10,
+                    "costText": "10",
+                    "abilityText": "進化：名前に《ワンケングレンオー》とあるクリーチャー１体の上に置く。\n侵略：《ワンケングレンオー》（自分の《ワンケングレンオー》が攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。その後、自分の手札を１枚捨ててもよい。そうしたら、自分の山札の上から５枚見て、その中から２枚を手札に加える。残りを好きな順序で山札の下に置く。",
+                    "race": "フレイム・モンスター",
+                    "powerText": "11000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex18-042",
+                "printedManaValue": 1,
+                "htmlSha256": "4cd63e1e92746b774a59b3e874663566d54c9780766b6b00f1718b5792f258e5",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-042.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex18-042-0.jpg",
+                    "sha256": "27e2b86530b55c9f13695d14fc7df735ac27fea0ebf24116698a76c9c5454c18"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1849.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -590499,25 +590872,31 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1849,
-      "status": "official-research-in-progress",
-      "research": "tmp/duema-target-10000/research-dmex18-067.json",
+      "phase": 1850,
+      "status": "official-research-downloaded-full-images-and-rulings-pending-review",
+      "research": "tmp/duema-target-10000/research-dmrp13-067.json",
       "implementationStarted": false,
+      "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dmex18-067",
-          "name": "ケングレンオー 〜出発〜",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp13-067",
+          "name": "三・騎・繚・乱",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-045",
-          "name": "ワンケングレンオー ～弧月躍動～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmex11-018",
+          "name": "団・鎧・鉄・壁",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         },
         {
-          "id": "dmex18-042",
-          "name": "ケンゴウグレンオー ～蒼天飛翔～",
-          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+          "id": "dmrp15-km2",
+          "name": "メテヲシャワァ・ヲヲロラシアタァ",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+        },
+        {
+          "id": "dmrp14-012",
+          "name": "「修練の偶像」",
+          "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
         }
       ]
     }
@@ -642393,10 +642772,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1848,
+    "phase": 1849,
     "threshold": 10000,
-    "supportedNames": 9755,
-    "pendingNames": 2094,
+    "supportedNames": 9757,
+    "pendingNames": 2092,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -642405,7 +642784,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1848.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1849.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

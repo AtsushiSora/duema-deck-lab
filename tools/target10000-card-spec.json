@@ -21277,5 +21277,119 @@
         }
       ]
     }
+  },
+  "dmex18-045": {
+    "phase": 1849,
+    "faces": [
+      {
+        "name": "ワンケングレンオー ～弧月躍動～",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "NEO進化：自然のクリーチャーまたは名前に《ケングレンオー》とあるクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置く。\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt 自分の山札を見る。その中から、名前に《ケンゴウグレンオー》とあるクリーチャーを１体、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+        "race": "フレイム・モンスター/エメラルド・モンスター",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "自然"
+          },
+          {
+            "nameIncludes": "ケングレンオー"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "g439Tap": [
+        {
+          "op": "GoukenEvolution1362",
+          "allDeck": true,
+          "nameIncludes": "ケンゴウグレンオー"
+        }
+      ]
+    }
+  },
+  "dmex18-042": {
+    "phase": 1849,
+    "faces": [
+      {
+        "name": "ケンゴウグレンオー ～蒼天飛翔～",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "進化：名前に《ワンケングレンオー》とあるクリーチャー１体の上に置く。\n侵略：《ワンケングレンオー》（自分の《ワンケングレンオー》が攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。その後、自分の手札を１枚捨ててもよい。そうしたら、自分の山札の上から５枚見て、その中から２枚を手札に加える。残りを好きな順序で山札の下に置く。",
+        "race": "フレイム・モンスター",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "nameIncludes": "ワンケングレンオー"
+      },
+      "invasion": {
+        "origins": [
+          "hand"
+        ],
+        "anyCreature": true,
+        "anyColor": true,
+        "nameIncludes": "ワンケングレンオー"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 5000
+        },
+        {
+          "op": "DiscardFor248",
+          "g770DiscardAttempt": true,
+          "defs": [
+            {
+              "op": "Look",
+              "n": 5,
+              "g841DeckPeek": true,
+              "g791OrderRest": true,
+              "rest": "bottom",
+              "stages": [
+                {
+                  "n": 2,
+                  "to": "hand"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

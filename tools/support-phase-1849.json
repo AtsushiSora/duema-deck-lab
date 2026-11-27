@@ -1,0 +1,321 @@
+{
+  "phase": 1849,
+  "checkedAt": "2026-11-27T22:58:00.806Z",
+  "baseline": "bb34f3ecdc0d5be70bc9b7749c25bb47714e28bb",
+  "baseCount": 9755,
+  "target": 10000,
+  "description": "Two genuinely new Kenguren forms; Start wave-dash printing is already supported and not counted. Full Neo Fire-name OR Nature evolution, entry ramp/tap search evolution; named hand invasion, total-power5000 optional destruction then optional discard/private top5 mandatory2/ordered rest.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40969/"
+  ],
+  "cards": [
+    {
+      "id": "dmex18-045",
+      "name": "ワンケングレンオー ～弧月躍動～",
+      "canonicalId": "dmex18-045",
+      "printId": "dmex18-045",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-045",
+      "faces": [
+        {
+          "name": "ワンケングレンオー ～弧月躍動～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自然のクリーチャーまたは名前に《ケングレンオー》とあるクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置く。\nこのクリーチャーで攻撃するかわりに、タップして次のｔ能力を使ってもよい。\nt 自分の山札を見る。その中から、名前に《ケンゴウグレンオー》とあるクリーチャーを１体、このクリーチャーの上に置いてもよい。その後、山札をシャッフルする。",
+          "race": "フレイム・モンスター/エメラルド・モンスター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            },
+            {
+              "nameIncludes": "ケングレンオー"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g439Tap": [
+          {
+            "op": "GoukenEvolution1362",
+            "allDeck": true,
+            "nameIncludes": "ケンゴウグレンオー"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-045.jpg",
+      "imageSha256": "2b3f4331ee9b3ee86883af73fc409d9caa88a1c42f3e1105af0d3235602ef4b1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex18-045-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex18-045"
+        ],
+        "allSearchIds": [
+          "dmex18-045",
+          "dmc64-036",
+          "dm32-060",
+          "dm34-010",
+          "dmc64-020"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:58:00.806Z",
+        "sha256": "0e79637a61b6447e117deccbb7654aeed9482f945fd688f22246111dab34e3c1",
+        "facesMatched": true,
+        "imageSha256": "2b3f4331ee9b3ee86883af73fc409d9caa88a1c42f3e1105af0d3235602ef4b1"
+      }
+    },
+    {
+      "id": "dmex18-042",
+      "name": "ケンゴウグレンオー ～蒼天飛翔～",
+      "canonicalId": "dmex18-042",
+      "printId": "dmex18-042",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-042",
+      "faces": [
+        {
+          "name": "ケンゴウグレンオー ～蒼天飛翔～",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "進化：名前に《ワンケングレンオー》とあるクリーチャー１体の上に置く。\n侵略：《ワンケングレンオー》（自分の《ワンケングレンオー》が攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。その後、自分の手札を１枚捨ててもよい。そうしたら、自分の山札の上から５枚見て、その中から２枚を手札に加える。残りを好きな順序で山札の下に置く。",
+          "race": "フレイム・モンスター",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "nameIncludes": "ワンケングレンオー"
+        },
+        "invasion": {
+          "origins": [
+            "hand"
+          ],
+          "anyCreature": true,
+          "anyColor": true,
+          "nameIncludes": "ワンケングレンオー"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000
+          },
+          {
+            "op": "DiscardFor248",
+            "g770DiscardAttempt": true,
+            "defs": [
+              {
+                "op": "Look",
+                "n": 5,
+                "g841DeckPeek": true,
+                "g791OrderRest": true,
+                "rest": "bottom",
+                "stages": [
+                  {
+                    "n": 2,
+                    "to": "hand"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-042.jpg",
+      "imageSha256": "27e2b86530b55c9f13695d14fc7df735ac27fea0ebf24116698a76c9c5454c18",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex18-042-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex18-042"
+        ],
+        "allSearchIds": [
+          "dmex18-042",
+          "dm33-016",
+          "dmc64-025"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:58:00.806Z",
+        "sha256": "4cd63e1e92746b774a59b3e874663566d54c9780766b6b00f1718b5792f258e5",
+        "facesMatched": true,
+        "imageSha256": "27e2b86530b55c9f13695d14fc7df735ac27fea0ebf24116698a76c9c5454c18"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40969/",
+      "sha256": "49c3d6f9448b7127a0dc23d7a914c9c017705f1da719468efe5474435d1f905d",
+      "checkedAt": "2026-11-27T22:58:00.806Z",
+      "reproduced": true,
+      "tests": "tests/standard1849-effects.test.mjs",
+      "kind": "general-entry-replacement-order-verified-with-current-legal-target",
+      "reproduction": "QA40969 answers entry replacement order: inherited tapped entry -> actual Momo Castle replacement -> actual Karen static tapped-entry definition. Both seats tested with Castle on/off x Karen on/off and legal printed new Ken target, all exact physical evolutions. Current Wan full official image/text explicitly searches ケンゴウグレンオー; linked question names ゴウケンオー which is not a legal match for that current printed search. Do not allow the wrong target merely because it appears in the FAQ question. Reproduce the answer mechanism with legal Ken (tapped under Castle+Karen, untapped only Castle), retain this explicit question-name discrepancy and existing original QA40969 regression in standard1619. No ambiguous gameplay behavior or partial ability.",
+      "result": "QA40969 answers entry replacement order: inherited tapped entry -> actual Momo Castle replacement -> actual Karen static tapped-entry definition. Both seats tested with Castle on/off x Karen on/off and legal printed new Ken target, all exact physical evolutions. Current Wan full official image/text explicitly searches ケンゴウグレンオー; linked question names ゴウケンオー which is not a legal match for that current printed search. Do not allow the wrong target merely because it appears in the FAQ question. Reproduce the answer mechanism with legal Ken (tapped under Castle+Karen, untapped only Castle), retain this explicit question-name discrepancy and existing original QA40969 regression in standard1619. No ambiguous gameplay behavior or partial ability."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmex18-067",
+      "name": "ケングレンオー 〜出発〜",
+      "reason": "Already verified exact official reprint alias of canonical dm32-101 in phase1750 (wave-dash opt-in normalized evidence). Existing ID/spec/save aliases preserved; no new registration and no new-name count. Research substring results of Waterplay/Wan forms are distinct names, not reprints."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:58:00.806Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex18-045": 4,
+      "dmex18-042": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-redzone-1849",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(invasion from hand|battlefield S invasion|declared invasion)",
+        "tests/redzone-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.717,
+      "log": "tmp/duema-target-10000/extra-redzone-1849.log",
+      "passed": 3,
+      "logSha256": "e4f1e90770f606dea63e42de035fe75af9c5b498e3de25381d6ebe805763e586"
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmex18-045",
+      "searchSha256": "3012718c052a743b1fda6a8d9d68b64039d2167f2fb0d0886dcbd3a59d806b76",
+      "totalResults": 5,
+      "allSearchIds": [
+        "dmex18-045",
+        "dmc64-036",
+        "dm32-060",
+        "dm34-010",
+        "dmc64-020"
+      ],
+      "excluded": [
+        {
+          "id": "dmc64-036",
+          "name": "ワンケングレンオー ～月下咆哮～"
+        },
+        {
+          "id": "dm32-060",
+          "name": "ワンケングレンオー ～月下咆哮～"
+        },
+        {
+          "id": "dm34-010",
+          "name": "ワンケングレンオー～全速前進～"
+        },
+        {
+          "id": "dmc64-020",
+          "name": "ワンケングレンオー～全速前進～"
+        }
+      ],
+      "exactPrints": [
+        "dmex18-045"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All exact and other-name matches enumerated on one page. Every exact complete image reviewed."
+    },
+    {
+      "id": "dmex18-042",
+      "searchSha256": "4aac92dc1a798d7fb2819db186f5dd6ec7eaf3bdd8e18b1a68d98c27710d35e6",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dmex18-042",
+        "dm33-016",
+        "dmc64-025"
+      ],
+      "excluded": [
+        {
+          "id": "dm33-016",
+          "name": "ケンゴウグレンオー～天地鳴動～"
+        },
+        {
+          "id": "dmc64-025",
+          "name": "ケンゴウグレンオー～天地鳴動～"
+        }
+      ],
+      "exactPrints": [
+        "dmex18-042"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All exact and other-name matches enumerated on one page. Every exact complete image reviewed."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Two genuinely NEW forms, no forced third because Start is already supported alias. Wan Nature5/5000 optional NEO on own ANY Nature OR named Kenguren including Fire Start; no-base sickness versus evolved immediate tap, mandatory ramp1, full private deck search beyond7 optionally overlays actual named Ken and shuffles even decline. Linked QA40969 universal entry replacement-order mechanism verified with exact current legal printed target; explicit FAQ question-name mismatch retained, never permit illegal target. Ken Fire10/11000W2 named ordinary evolution and named hand-only invasion including older Wan forms, no non-Wan declaration or grave/mana use, exact attack/physical stack carriesW2 with no payment. ETB chooses optional enemy creatures total current power<=5000 then independently optional discard attempt (real Carol replacement still qualifies101.3a) followed by private top5 mandatory2 and ordered remaining bottom; zero targets and discard decline work, no own/too-large target. Focused42 includes4 encrypted two-account manual-payment/evolution transactions and pure hidden-independent AI/mana orientation; related regression plus3 original redzone hand/grave/battlefield/current-base tests, online5, check/audit9757/invariants passed. Native name-invasion matcher adds optional nameIncludes only, old invasion unchanged; NEO validator accepts exact existing supported name fragment and rejects arbitrary unknown name. All old IDs/definitions/raw details/saves/holds/fullSuite interrupted preserved, no fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Regression harness initially referenced nonexistent standard49 filename and exited before running. Replaced with existing standard1349 group plus separate positive-selected redzone-effects original invasion3; all pass. No product failure or repeated long run.",
+    "nextCandidates": [
+      {
+        "id": "dmrp13-067",
+        "name": "三・騎・繚・乱",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+      },
+      {
+        "id": "dmex11-018",
+        "name": "団・鎧・鉄・壁",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+      },
+      {
+        "id": "dmrp15-km2",
+        "name": "メテヲシャワァ・ヲヲロラシアタァ",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+      },
+      {
+        "id": "dmrp14-012",
+        "name": "「修練の偶像」",
+        "reason": "Next native Galaxyshield/VividRo grouped full research, all regular and alternative abilities plus linked rulings before registration."
+      }
+    ]
+  }
+}

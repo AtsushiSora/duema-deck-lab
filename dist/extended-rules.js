@@ -75,7 +75,7 @@ import {createGolgyRules} from './golgy-rules.js?v=0.722.3';
 import {createVirideRules} from './viride-rules.js';
 import {createHachiRules} from './hachi-rules.js?v=0.722.19';
 import {createAbyssRules} from './abyss-rules.js?v=0.722.3';
-import {createRedzoneRules} from './redzone-rules.js?v=0.722.19';
+import {createRedzoneRules} from './redzone-rules.js?v=0.722.20';
 import {createMadoRules} from './mado-rules.js?v=0.104.0';
 import {createGirlsRules} from './girls-rules.js?v=0.104.0';
 import {createMaruruRules} from './maruru-rules.js?v=0.104.0';
