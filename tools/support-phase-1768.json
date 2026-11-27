@@ -1,0 +1,473 @@
+{
+  "phase": 1768,
+  "checkedAt": "2026-11-27T08:13:17.253Z",
+  "baseline": "a0479b9550235be18be5cded13aa9a07ce294e10",
+  "baseCount": 9526,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex5-004",
+      "name": "アクア・エリート",
+      "canonicalId": "dm26ex5-004",
+      "printId": "dm26ex5-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-004",
+      "faces": [
+        {
+          "name": "アクア・エリート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを１枚引く。その後、このクリーチャーから進化できる、水のコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "SelfHandEvolution1577",
+            "max": 5,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "水"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-004.jpg",
+      "imageSha256": "a5f7bead40013f33354d30c006e308f61cd61502d36fc27b7b926927180607c5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-004"
+        ],
+        "allSearchIds": [
+          "dm26ex5-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "sha256": "c14fc990b79932af56988ec9c9766d521ae0d899654cdb1463b32b99f16395ec",
+        "facesMatched": true,
+        "imageSha256": "a5f7bead40013f33354d30c006e308f61cd61502d36fc27b7b926927180607c5"
+      }
+    },
+    {
+      "id": "dm26ex5-S002",
+      "name": "超閃機 ジャバジャックP’S",
+      "canonicalId": "dm26ex5-S002",
+      "printId": "dm26ex5-S002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S002",
+      "faces": [
+        {
+          "name": "超閃機 ジャバジャックP’S",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：リキッド・ピープル・クリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーが出た時、カードを４枚引いてもよい。そうしたら、自分の手札を２枚、好きな順序で山札の下に置く。\n相手のターン中、自分の他のリキッド・ピープルがあれば、このクリーチャーは相手に選ばれない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "リキッド・ピープル"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 4
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "deck",
+                "n": 2,
+                "g183Return": true,
+                "title": "山札の下に置く順に手札を2枚選ぶ"
+              }
+            ]
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "all": [
+              {
+                "g1114OpponentTurn": true
+              },
+              {
+                "g370BattleCount": {
+                  "other": true,
+                  "filter": {
+                    "race": "リキッド・ピープル"
+                  },
+                  "min": 1,
+                  "g557Elements": true
+                }
+              }
+            ]
+          },
+          "grants": {
+            "untargetable": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S002.jpg",
+      "imageSha256": "df727c0b6e63c22f6c39e7692311c1676bb83971bbad7fbfeeced1bb0a087782",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S002"
+        ],
+        "allSearchIds": [
+          "dmd17-003",
+          "dmx22a-s02",
+          "dmr12-s02",
+          "dm26ex5-S002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "sha256": "cffb6e65ec88fa6b1ff8f39b5a04ad62d8934c7f77f5fa3657fed7145b805b8c",
+        "facesMatched": true,
+        "imageSha256": "df727c0b6e63c22f6c39e7692311c1676bb83971bbad7fbfeeced1bb0a087782"
+      }
+    },
+    {
+      "id": "dm26ex5-S007",
+      "name": "龍聖霊マギア・デル・フィン",
+      "canonicalId": "dm26ex5-S007",
+      "printId": "dm26ex5-S007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S007",
+      "faces": [
+        {
+          "name": "龍聖霊マギア・デル・フィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+          "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "filter": {
+            "spell": true
+          },
+          "amount": 3000
+        },
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          }
+        ],
+        "g473OpponentSpellLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S007.jpg",
+      "imageSha256": "a8828dfe1c535d007081f18de42db9594f3f5f0126f303c3695c87322d5968b4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S007",
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004",
+          "dm26ex5-S007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "sha256": "5ddcaceb99b99bd4c2abffc860e315267379828b9cd2e6e83dbacbae2417bbf7",
+        "facesMatched": true,
+        "imageSha256": "a8828dfe1c535d007081f18de42db9594f3f5f0126f303c3695c87322d5968b4"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex5-SEC005CHO",
+      "name": "龍聖霊マギア・デル・フィン",
+      "canonicalId": "dm26ex5-S007",
+      "printId": "dm26ex5-SEC005CHO",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC005CHO",
+      "faces": [
+        {
+          "name": "龍聖霊マギア・デル・フィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+          "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "filter": {
+            "spell": true
+          },
+          "amount": 3000
+        },
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          }
+        ],
+        "g473OpponentSpellLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC005CHO.jpg",
+      "imageSha256": "92cd9ea2182ede73a93aa6705b92fd52ef5870c03e3dbf0d771626fbae938e45",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC005CHO-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S007",
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004",
+          "dm26ex5-S007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "sha256": "81226559e3d787b72cdd2b597c25916c14fdb5938d959d521a803d417b006a34",
+        "facesMatched": true,
+        "imageSha256": "92cd9ea2182ede73a93aa6705b92fd52ef5870c03e3dbf0d771626fbae938e45"
+      }
+    },
+    {
+      "id": "dm26ex5-SEC004",
+      "name": "龍聖霊マギア・デル・フィン",
+      "canonicalId": "dm26ex5-S007",
+      "printId": "dm26ex5-SEC004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC004",
+      "faces": [
+        {
+          "name": "龍聖霊マギア・デル・フィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+          "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "filter": {
+            "spell": true
+          },
+          "amount": 3000
+        },
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          }
+        ],
+        "g473OpponentSpellLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC004.jpg",
+      "imageSha256": "6970c173b46c4f054c0a71f506938f57b4ae5ace5b0b1aa0e7b597994a85bcb1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S007",
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC005CHO",
+          "dm26ex5-SEC004",
+          "dm26ex5-S007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T08:13:17.253Z",
+        "sha256": "10893dd3b300506e04df0cb344fdd5350813a05f8b4cc5ef036e2dae1434912d",
+        "facesMatched": true,
+        "imageSha256": "6970c173b46c4f054c0a71f506938f57b4ae5ace5b0b1aa0e7b597994a85bcb1"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "catalogueAdditions": [
+    {
+      "id": "dm26ex5-004",
+      "name": "アクア・エリート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-004",
+      "faces": [
+        {
+          "name": "アクア・エリート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを１枚引く。その後、このクリーチャーから進化できる、水のコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "id": "dm26ex5-S002",
+      "name": "超閃機 ジャバジャックP’S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S002",
+      "faces": [
+        {
+          "name": "超閃機 ジャバジャックP’S",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：リキッド・ピープル・クリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーが出た時、カードを４枚引いてもよい。そうしたら、自分の手札を２枚、好きな順序で山札の下に置く。\n相手のターン中、自分の他のリキッド・ピープルがあれば、このクリーチャーは相手に選ばれない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "id": "dm26ex5-S007",
+      "name": "龍聖霊マギア・デル・フィン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S007",
+      "faces": [
+        {
+          "name": "龍聖霊マギア・デル・フィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+          "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "status": "complete"
+    }
+  ],
+  "sharedRuleChange": "Extend SelfHandEvolution1577 with optional target-face filtering and NEO candidates, rechecked after saved decisions. Add Liquid People to the existing NEO race allowlist; no stored-state schema change.",
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T08:13:17.253Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex5-004": 4,
+      "dm26ex5-S002": 4,
+      "dm26ex5-S007": 4,
+      "dm26ex5-SEC005CHO": 4,
+      "dm26ex5-SEC004": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Normalized NEO to the established any-array representation and added the Liquid People tribe to its existing allowlist. Count other Liquid People elements (including tamaseeds) for Jabajack. Fixed test fixtures: exact verified card IDs, explicit unevolved NEO choice, legal Evo Rupia NEO base and effective-card powered breaker calculation."
+  }
+}

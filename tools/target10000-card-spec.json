@@ -1875,5 +1875,237 @@
         ]
       }
     }
+  },
+  "dm26ex5-004": {
+    "phase": 1768,
+    "faces": [
+      {
+        "name": "アクア・エリート",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが出た時、カードを１枚引く。その後、このクリーチャーから進化できる、水のコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+        "race": "リキッド・ピープル/ハンター",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "SelfHandEvolution1577",
+          "max": 5,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "水"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "dm26ex5-S002": {
+    "phase": 1768,
+    "faces": [
+      {
+        "name": "超閃機 ジャバジャックP’S",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "NEO進化：リキッド・ピープル・クリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーが出た時、カードを４枚引いてもよい。そうしたら、自分の手札を２枚、好きな順序で山札の下に置く。\n相手のターン中、自分の他のリキッド・ピープルがあれば、このクリーチャーは相手に選ばれない。",
+        "race": "リキッド・ピープル閃",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "リキッド・ピープル"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 4
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 2,
+              "g183Return": true,
+              "title": "山札の下に置く順に手札を2枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g1114OpponentTurn": true
+            },
+            {
+              "g370BattleCount": {
+                "other": true,
+                "filter": {
+                  "race": "リキッド・ピープル"
+                },
+                "min": 1,
+                "g557Elements": true
+              }
+            }
+          ]
+        },
+        "grants": {
+          "untargetable": true
+        }
+      }
+    }
+  },
+  "dm26ex5-S007": {
+    "phase": 1768,
+    "faces": [
+      {
+        "name": "龍聖霊マギア・デル・フィン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+        "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+        "powerText": "6000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "spell": true
+        },
+        "amount": 3000
+      },
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "g473OpponentSpellLock": true
+    }
+  },
+  "dm26ex5-SEC005CHO": {
+    "phase": 1768,
+    "faces": [
+      {
+        "name": "龍聖霊マギア・デル・フィン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+        "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+        "powerText": "6000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "spell": true
+        },
+        "amount": 3000
+      },
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "g473OpponentSpellLock": true
+    }
+  },
+  "dm26ex5-SEC004": {
+    "phase": 1768,
+    "faces": [
+      {
+        "name": "龍聖霊マギア・デル・フィン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+        "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+        "powerText": "6000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "spell": true
+        },
+        "amount": 3000
+      },
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "g473OpponentSpellLock": true
+    }
   }
 }

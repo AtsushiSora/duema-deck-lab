@@ -304733,19 +304733,158 @@
       },
       "supportBatch": "phase-1767",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-004",
+      "name": "アクア・エリート",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "このクリーチャーが出た時、カードを１枚引く。その後、このクリーチャーから進化できる、水のコスト５以下のクリーチャーを１体、自分の手札からこの上に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "SelfHandEvolution1577",
+          "max": 5,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "水"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S002",
+      "name": "超閃機 ジャバジャックP’S",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "リキッド・ピープル閃",
+      "text": "NEO進化：リキッド・ピープル・クリーチャー１体の上に置いてもよい。\nW・ブレイカー\nこのクリーチャーが出た時、カードを４枚引いてもよい。そうしたら、自分の手札を２枚、好きな順序で山札の下に置く。\n相手のターン中、自分の他のリキッド・ピープルがあれば、このクリーチャーは相手に選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S002",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "リキッド・ピープル"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 4
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "deck",
+              "n": 2,
+              "g183Return": true,
+              "title": "山札の下に置く順に手札を2枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g1114OpponentTurn": true
+            },
+            {
+              "g370BattleCount": {
+                "other": true,
+                "filter": {
+                  "race": "リキッド・ピープル"
+                },
+                "min": 1,
+                "g557Elements": true
+              }
+            }
+          ]
+        },
+        "grants": {
+          "untargetable": true
+        }
+      },
+      "supportBatch": "phase-1768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S007",
+      "name": "龍聖霊マギア・デル・フィン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 6000,
+      "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nパワード・ブレイカー\nこのクリーチャーのパワーを、自分の墓地にある呪文１枚につき+3000する。\nこのクリーチャーが攻撃する時、「S・トリガー」を持つ呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\n相手は呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S007",
+      "limit": 4,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "spell": true
+        },
+        "amount": 3000
+      },
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "g473OpponentSpellLock": true,
+      "supportBatch": "phase-1768",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1767,
-    "checkedAt": "2026-11-27T08:07:58.617Z",
-    "baseCount": 9522,
-    "newEffectCards": 4,
+    "phase": 1768,
+    "checkedAt": "2026-11-27T08:13:17.253Z",
+    "baseCount": 9526,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9526,
+    "totalCount": 9529,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/42661/",
-      "https://dm.takaratomy.co.jp/rule/qa/45568/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -333721,6 +333860,22 @@
         "totalCount": 9522,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1767,
+        "checkedAt": "2026-11-27T08:07:58.617Z",
+        "baseCount": 9522,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9526,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/42661/",
+          "https://dm.takaratomy.co.jp/rule/qa/45568/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
