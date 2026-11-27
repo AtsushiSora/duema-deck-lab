@@ -15402,5 +15402,69 @@
       "breaker": 2,
       "g1825SpellNameStay": "死神"
     }
+  },
+  "dm23ex3-011": {
+    "phase": 1826,
+    "faces": [
+      {
+        "name": "水晶転生",
+        "typeText": "呪文",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\nエレメントを１つ選ぶ。その持ち主はそれを山札に加えてシャッフルし、その後、自身の山札の上から１枚目を表向きにする。それがエレメントなら出し、そうでなければ山札の下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "filter": {
+            "g1826Element": true
+          },
+          "g1826Transmute": true
+        }
+      ]
+    }
+  },
+  "dmx15-s05": {
+    "phase": 1826,
+    "faces": [
+      {
+        "name": "世界の果て ターミネーター",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を下から５枚を残してすべて墓地に置く。\nW・ブレイカー\n自分の山札の最後の１枚を引く時、かわりにカードを１枚、自分の墓地から手札に戻してもよい。",
+        "race": "アウトレイジMAX",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillKeep1826",
+          "keep": 5
+        }
+      ],
+      "g1826LastDrawReturn": true
+    }
   }
 }

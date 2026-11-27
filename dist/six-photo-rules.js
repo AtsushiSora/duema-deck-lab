@@ -457,6 +457,7 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.g1826Element&&!['creature','seed','field','gear','aura','weapon','duelist'].includes(d.type))return false;
   if(f.g1813LinkedGod&&(!x.godLinks?.length||!race(d,'ゴッド')))return false;
   if(f.g1705CreatureNameIncludes&&!faces(c).some(face=>face.type==='creature'&&[face.name,...(face.g1705RubyNameParts||[])].some(name=>name.includes(f.g1705CreatureNameIncludes))))return false;
   if(f.g1705ExactBattleName&&!battleNames676(s,x).includes(exactName(f.g1705ExactBattleName)))return false;
@@ -1168,10 +1169,10 @@ export function createSixPhotoRules(api){
  function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||!!(c.g1697FireBattleSafe&&y&&colors(effective(y,s)).includes('火'))||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t,owner=t.p){
-  if(api.deckLocked(s,t.p))return [];
+  if(!t.g1826PublicReveal&&api.deckLocked(s,t.p))return [];
   const own=s.players[owner],held=reserved(own),ownLibrary=owner===t.p;
   const size=t.manaCountFilter?countDraw(s,t.p,{zone:'mana',filter:t.manaCountFilter}):t.n??3;
-  const n=ownLibrary?api.lookCount(s,t.p,size):size;
+  const n=ownLibrary&&!t.g1826PublicReveal?api.lookCount(s,t.p,size):size;
   const replaced=ownLibrary&&api.lookPublic(s,t.p);
   const publicLook=t.public||replaced;
   const fromBottom=t.fromBottom&&!replaced;
@@ -6739,6 +6740,7 @@ export function createSixPhotoRules(api){
   start(s,t,[{op:'Mill',n:n===Infinity?'∞':n,optional:!!t.optional}]);
   break;
  }
+ case'g34_MillKeep1826':api.mill(s,t.p,Math.max(0,own.deck.length-t.keep),{together:true});break;
  case'g34_Mill':{
   const p=t.opponent?1-t.p:t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -9343,6 +9345,14 @@ export function createSixPhotoRules(api){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
    if(y)(s.extLimits??=[]).push({kind:'g1818DeathDraw',player:t.p,source:t.source,
     ref:{uid:y.uid,incarnation:y.incarnation||0},n:t.g1818DeathDraw,turn:s.turn,expires:'end',who:s.active});
+  }
+  if(t.g1826Transmute){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y){const owner=y.cardOwner??v.p;
+    move(s,[{player:v.p,uid:y.uid,to:'deck',toOwnerDeck:true,destroy:false,controller:t.p}]);
+    start(s,{...t,p:owner},[{op:'Shuffle405'},{op:'RevealTop514',g1826PublicReveal:true,filter:{g1826Element:true},to:'battle',elseTo:'deck'}]);
+   }
+   break;
   }
   if(t.g1817Orochi){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);

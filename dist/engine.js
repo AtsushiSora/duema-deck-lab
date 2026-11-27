@@ -17,7 +17,7 @@ import {createExtendedRules} from './extended-rules.js?v=0.722.31';
 import {createStrategicAI} from './strategic-ai.js?v=0.722.21';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.602.349';
+export const ENGINE_VERSION='0.602.350';
 export const AI_VERSION='2.3.441';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixOriginalMetal','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
@@ -3061,7 +3061,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
    for(const aura of auras){remove(own.battle,aura.uid);extra.leaving(s,row.player,aura,false,batch.snapshot,to,false);}if(to==='grave'||row.cardOnly)rememberEvolutionGraveSources(s,row.player,top,to==='grave'?cards:creatureCards.slice(1),batch);if(row.g1089OrderDeck&&to==='deck')for(const owner of [row.player,1-row.player]){const rows=bottomCards(row,top).filter(r=>(cards.find(x=>x.uid===r.uid)?.cardOwner??row.player)===owner);if(rows.length>1)(batch.bottomOrders??=[]).push(extra.task('g78_BottomOrder',owner,top.cardId,{rows,ordered:[],newCards:true}));}if(row.cardOnly){const rest=cards.splice(1,creatureCards.length-1);for(const x of rest)clearBattleState(x,'grave');addZone(s,own,'grave',...rest);}extra.leaving(s,row.player,top,row.leaveKaku,batch.snapshot,to,row.destroy!==false&&to==='grave');for(const x of cards){clearBattleState(x,to);if(row.faceDown){x.faceDown=true;x.tapped=false;}else if(row.tapped&&to==='mana')x.tapped=true;if(to==='shields'&&(row.faceUp||auras.includes(x)))x.faceUp=true;}if(to==='deckTop')placeOnTop(row,cards);else if(row.shieldAttach)for(const x of cards)addShieldCard(s,row.player,row.shieldAttach,x);else if(row.g731Shuffling)returnAndShuffle(row,cards,top.cardId);else if(to==='shields'&&(auras.length||row.g1069DestroyShieldStack&&cards.length>1)){
    cards[0].shieldStack=cards.slice(1);
    if(row.replacement||row.g1781ShieldReplacement)addZoneReplacement1781(s,own,to,cards[0]);else addZone(s,own,to,cards[0]);
-  }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',abyss:'深淵ゾーン',deckTop:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン',abyss:'深淵ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
+  }else addDepartingCards(s,row,to,cards);if(to==='shields'&&!row.shieldAttach)for(const x of cards)extra.shieldAdded(s,row.toOwnerShields?x.cardOwner??row.player:row.player,x);log(s,row.player,'leave',`${card(top).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ',abyss:'深淵ゾーン',deck:row.g731Shuffling?'山札':'山札の下',deckTop:'山札の上',deckFourth:'山札の4枚目（横向き）',shields:'シールド',extra:'超次元ゾーン',abyss:'深淵ゾーン'}[to]}へ移動`,{cardId:top.cardId});}
  }
  for(const row of batch.rows)if(row.plan.kind==='jashin')extra.forcedDiscard(s,row.player,row.plan.cards,card(ownCardForRow(s,row)).id);
  const orders=[...(batch.bottomOrders||[])];
@@ -3616,12 +3616,23 @@ function executeManaMove(s,action,baseDecision=s.decision,payments=[],randomTape
 function babyloniaDraw(s,p,firstDraw){
  if(!manaTransaction)return null;
  const sources=s.players[p].battle.filter(x=>!abilitiesIgnored(s,x)&&
-  (card(x)?.g45Babylonia||firstDraw&&card(x)?.g1273FirstDrawReplacement&&isCreature(s,x)));
+  (card(x)?.g45Babylonia||firstDraw&&card(x)?.g1273FirstDrawReplacement&&isCreature(s,x)||card(x)?.g1826LastDrawReturn&&isCreature(s,x)&&s.players[p].deck.length===1&&canMoveZone(s,p,'grave')&&s.players[p].grave.length>0));
  if(!sources.length)return null;
  const tx=manaTransaction,index=tx.drawIndex++,selected=tx.drawChoices[index],source=selected?.sourceUid?sources.find(x=>x.uid===selected.sourceUid):sources[0];
  if(!source)throw Error('ドローの置換元を確認できません');
- if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace',replacementSources:sources.map(x=>({uid:x.uid,cardId:x.cardId}))});
+ if(selected===undefined)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'replace',replacementSources:sources.map(x=>({uid:x.uid,cardId:x.cardId,...(card(x).g1826LastDrawReturn?{kind:'graveReturn1826'}:{})}))});
  if(!selected.replace)return null;
+ if(card(source).g1826LastDrawReturn){
+  const cards=canMoveZone(s,p,'grave')?s.players[p].grave:[];
+  if(!cards.length)return null;
+  if(!selected.returnUid)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,
+   stage:'graveReturn1826',cards:cards.map(x=>({uid:x.uid,cardId:x.cardId}))});
+  const chosen=cards.find(x=>x.uid===selected.returnUid);
+  if(!chosen)throw Error('手札に戻す墓地のカードを確認できません');
+  remove(s.players[p].grave,chosen.uid);clearBattleState(chosen,'hand');addZone(s,p,'hand',chosen);
+  log(s,p,'drawReplace',card(source).name+'：最後のドローのかわりに'+card(chosen).name+'を墓地から手札へ戻す',{cardId:chosen.cardId,source:source.cardId});
+  return 0;
+ }
  const drawn=draw(s,p,2,{unreplaceable:true});if(s.winner!==null||!s.players[p].hand.length)return drawn;
  if(!selected.discard)throw new DrawSelectionRequired({player:p,source:source.cardId,drawIndex:index,stage:'discard',manaSource:!effectiveCard(source,s).g1611DrawDiscardWithinReplacement?extra.discardManaSource(s,p)?.cardId:undefined,cards:s.players[p].hand.map(x=>({uid:x.uid,cardId:x.cardId}))});
  if(!s.players[p].hand.some(x=>x.uid===selected.discard))throw Error('捨てる手札を確認できません');
@@ -5840,7 +5851,8 @@ function legalActionsCore1363(s){
    option('vividReveal',card(d.source).name+'を表向きにする',{reveal:true,cardId:d.source,score:5}),
    option('vividReveal','表向きにしない',{reveal:false,score:0})
   ].map((a,id)=>({...a,id,player:p}));
-  if(d.type==='drawReplacement')return (d.stage==='replace'?[...(d.replacementSources?.length>1?d.replacementSources.map(x=>option('replaceDraw',card(x.cardId).name+'で2枚引いて1枚捨てる',{replace:true,sourceUid:x.uid,cardId:x.cardId,score:10})):[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10})]),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.flatMap(x=>[
+  if(d.type==='drawReplacement'&&d.stage==='graveReturn1826')return d.cards.map((x,id)=>({...option('returnDraw1826',card(x.cardId).name+'を墓地から手札に戻す',{uid:x.uid,cardId:x.cardId,score:costValue(card(x.cardId))}),id,player:p}));
+  if(d.type==='drawReplacement')return (d.stage==='replace'?[...(d.replacementSources?.length>1||d.replacementSources?.some(x=>x.kind==='graveReturn1826')?d.replacementSources.map(x=>option('replaceDraw',card(x.cardId).name+(x.kind==='graveReturn1826'?'で墓地のカード1枚を手札に戻す':'で2枚引いて1枚捨てる'),{replace:true,sourceUid:x.uid,cardId:x.cardId,score:10})):[option('replaceDraw','2枚引いて1枚捨てる',{replace:true,score:10})]),option('replaceDraw','通常どおり1枚引く',{replace:false,score:0})]:d.cards.flatMap(x=>[
    option('discardDraw',card(x.cardId).name+'を捨てる',{uid:x.uid,cardId:x.cardId,score:-costValue(card(x.cardId))}),
    ...(d.manaSource?[option('discardDraw',card(x.cardId).name+'を捨てるかわりにマナへ置く',{uid:x.uid,cardId:x.cardId,toMana:true,score:15})]:[])
   ])).map((a,id)=>({...a,id,player:p}));
@@ -6216,7 +6228,7 @@ function stepWithEffect1363(s,action,manualMana){return withEffect(s,s.decision?
  if(s.decision?.type==='deckMove1365'){const d=s.decision,opts=getLegalActions(s),a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));if(!a)throw Error('選択できない行動です');const choices=[...d.deckChoices];choices[d.deckIndex]=a.choice;return executeManaMove(s,d.action,d.baseDecision,d.payments,d.randomTape,d.drawChoices,d.manualMana,choices);}
  if(s.decision?.type==='drawReplacement'){
   const d=s.decision,a=(typeof action==='number'?getLegalActions(s)[action]:getLegalActions(s).find(x=>JSON.stringify(x)===JSON.stringify(action)));if(!a)throw Error('選択できない行動です');
-  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='vividReveal'?{reveal:a.reveal}:a.kind==='replaceDraw'?{replace:a.replace,...(a.sourceUid?{sourceUid:a.sourceUid}:{})}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
+  const choices=structuredClone(d.drawChoices);choices[d.drawIndex]=a.kind==='vividReveal'?{reveal:a.reveal}:a.kind==='replaceDraw'?{replace:a.replace,...(a.sourceUid?{sourceUid:a.sourceUid}:{})}:a.kind==='returnDraw1826'?{...choices[d.drawIndex],returnUid:a.uid}:{...choices[d.drawIndex],discard:a.uid,...(a.toMana?{discardMana:true}:{})};
   return executeManaMove(s,d.action,d.baseDecision,d.payments,d.randomTape,choices,d.manualMana,d.deckChoices||[]);
  }
  if(s.decision?.type==='manaPayment'){
@@ -6226,7 +6238,7 @@ function stepWithEffect1363(s,action,manualMana){return withEffect(s,s.decision?
   if(a.kind==='confirmMana')return executeManaMove(s,d.action,d.baseDecision,[...d.payments,[...d.selected]],d.randomTape,d.drawChoices||[],d.manualMana??true,d.deckChoices||[]);
  }
  if(!manualMana&&(s.g1365DeckRules||s.players.some(own=>[...own.battle,...own.hand,...own.grave].some(x=>card(x).g1365DeckShuffle))||s.players.some(p=>p.deck.some(x=>card(x).g1335VividDraw))||
-  physicalCards(s).some(x=>card(x)?.g45Babylonia||card(x)?.g1273FirstDrawReplacement)))
+  physicalCards(s).some(x=>card(x)?.g45Babylonia||card(x)?.g1273FirstDrawReplacement||card(x)?.g1826LastDrawReturn)))
   return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action,s.decision,[],[],[],false);
  if(manualMana)return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action);
  return stepCore(s,action);

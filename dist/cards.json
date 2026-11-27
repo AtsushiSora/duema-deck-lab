@@ -311559,17 +311559,76 @@
       "g1825SpellNameStay": "死神",
       "supportBatch": "phase-1825",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-011",
+      "name": "水晶転生",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nエレメントを１つ選ぶ。その持ち主はそれを山札に加えてシャッフルし、その後、自身の山札の上から１枚目を表向きにする。それがエレメントなら出し、そうでなければ山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-011",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "filter": {
+            "g1826Element": true
+          },
+          "g1826Transmute": true
+        }
+      ],
+      "supportBatch": "phase-1826",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-s05",
+      "name": "世界の果て ターミネーター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を下から５枚を残してすべて墓地に置く。\nW・ブレイカー\n自分の山札の最後の１枚を引く時、かわりにカードを１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s05",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillKeep1826",
+          "keep": 5
+        }
+      ],
+      "g1826LastDrawReturn": true,
+      "supportBatch": "phase-1826",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1825,
-    "checkedAt": "2026-11-27T18:16:50.293Z",
-    "baseCount": 9689,
-    "newEffectCards": 3,
+    "phase": 1826,
+    "checkedAt": "2026-11-27T18:30:44.935Z",
+    "baseCount": 9692,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9692,
+    "totalCount": 9694,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/45061/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36952/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -341441,6 +341500,20 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1825,
+        "checkedAt": "2026-11-27T18:16:50.293Z",
+        "baseCount": 9689,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9692,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
         ]
       }
     ]

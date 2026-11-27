@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9692,
-  "pendingNames": 2157,
-  "phase": 1825,
-  "added": 3,
+  "supportedNames": 9694,
+  "pendingNames": 2155,
+  "phase": 1826,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,8 +156,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1276,
-    "呪文": 244,
+    "クリーチャー": 1275,
+    "呪文": 243,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1596,
+    "未対応の能力文": 1594,
     "複数面・特殊カードタイプまたは情報不足": 468,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -573039,11 +573039,234 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1826,
+      "checkedAt": "2026-11-27T18:42:02.774Z",
+      "baseline": "e7a182a87230ed91c0c01e154e20b9a9903a6abf",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9692,
+      "currentNames": 9694,
+      "remainingNames": 306,
+      "added": [
+        {
+          "id": "dm23ex3-011",
+          "name": "水晶転生"
+        },
+        {
+          "id": "dmx15-s05",
+          "name": "世界の果て ターミネーター"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1826,
+        "baseline": "e7a182a87230ed91c0c01e154e20b9a9903a6abf",
+        "originalDefinitionsUnchanged": 9692,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9694,
+        "uniqueIds": 9694,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9692,
+        "existingImageReferenceRowsUnchanged": 12127,
+        "officialPrintsReviewed": 2,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1826": {
+          "name": "official-1826",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1826.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.284,
+          "log": "tmp/duema-target-10000/official-1826.log",
+          "passed": 0,
+          "logSha256": "83a6544448b13d40ef8e0dddd7d702862b6ecd57930fdc6d88ec9a1c4bf45633"
+        },
+        "focused-1826-final": {
+          "name": "focused-1826-d",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1826-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.105,
+          "log": "tmp/duema-target-10000/focused-1826-d.log",
+          "passed": 95,
+          "logSha256": "a8a3942cccbe3cf40e68b489f333f22507f8e05da582eb8c1e5cfc6c087fcf5b"
+        },
+        "related-1826": {
+          "name": "related-1826",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* normal printed-cost summon and evolution base |[^\\n]* selects an actual card from the specified zone at own tapped turn end |[^\\n]* only triggers while tapped at its own turn end|[^\\n]* can decline and conserves its source zone while still shuffling a searched deck|ignored and sealed sources do not trigger; Genmu suppresses the cost-five source but not cost six|Kourin trigger is fixed at turn end and remains after source leaves or untaps|a newly deployed tapped Kourin creature does not trigger again during the same end step|distinct end abilities can resolve in either order and two searches cannot deploy the same physical card twice|declining or failing to find an eligible deck creature still shuffles without exposing other cards|QQ prevents looking at and shuffling the library for Kourin|Apul prevents mana and grave Kourin deployment and the current source is rechecked at execution|a non-hand entry restriction prevents deployment while a non-summon punishment destroys after entry|colorless Kourin excludes colored creatures and spells; mana Kourin excludes evolution creatures|deck Kourin may deploy an eligible evolution with a legal base and the grave Kourin may revive an evolution|selecting the final library card enters it and then applies deck-out without losing the physical card|ordinary race and cost limits exclude unrelated creatures, overcost creatures and spells|Oracle and two-tribe searches use exact printed maximums for both allowed tribe branches|Kourin does not pay mana or count as a summon and preserves pending choices through JSON restoration|AI analysis is immutable and independent of hidden opponent hand, shields and library identities|[^\\n]* pays its printed cost and uses its real entry or attack trigger |[^\\n]* publicly reveals before its optional free deployment and leaves a declined match on top |[^\\n]* leaves an ineligible top card in place without offering deployment |Shugeiz resolves its printed condition into the correct mandatory destination |Shugeiz uses the same reveal at entry and on each attack without charging mana for the revealed creatures|printed inclusive cost cap determines the destination at its exact boundary |nested Viclabox entry effects use successive physical top cards and release each reveal reservation|Viclabox deploys only qualifying Jokers and otherwise adds the public card to hand |[^\\n]* does not execute its else branch when an eligible creature is prohibited from entering|[^\\n]* releases an eligible but prohibited revealed creature without a false success|Anmo can decline before revealing and only recovers a Mootopia without counting as a draw |Anmo offers a safe decline before risking the final library card |Bakuadolgan recovers any Dragon card and puts only a non-Dragon at the bottom |[^\\n]* loses normally when its mandatory branch takes the last library card|[^\\n]* can avoid losing by declining deployment of the last card|[^\\n]* does not reveal when evolved GG stops the printed trigger|[^\\n]* respects Genmu ignoring low-cost source abilities|[^\\n]* respects a library reveal lock without moving or leaking the next card|revealed deployment retains the exact pending top UID and original attack through JSON continuation|[^\\n]* uses the printed mana number and multicolor orientation when charged|Aka changes from the listed tribe and draws even after destroying the attack target |Aka offers a draw when the declared creature target is sealed \\(QA 48903\\)|Aka has no destruction on normal entry, and only watches its controller’s attacks|Banky shuffles, publicly reveals the new top and takes a noncreature to hand|Banky grants actual speed and returns the same entrant at the opponent’s start after JSON restoration|Banky’s delayed return follows an entrant through evolution|Banky does not return a creature that left and entered again|Banky’s speed and delayed return are suppressed by Genmu that it puts into play \\(QA 44188\\)|Banky does not grant speed or schedule return for a replaced deployment|Banky used as a Shield Trigger waits until the opponent’s following turn|Violet entry offers only hidden positions and discards the selected UID|Violet double breaks before its attack-end destruction|Violet can block and survives the battle only until its attack-end destruction|Violet can be summoned from a broken shield and resolve its discard|true escape replaces a bounce using two separate shield groups; no S Trigger, but G Strike remains|Owl can decline, cannot use a single shield, and cannot leave with zero shields|true escape cancels Revolution Change without consuming chosen shields|Owl can block and Nateha slays its stronger attacker after losing the battle|Decision discounts exactly two for four distinct face-up high-cost mana cards, including a Twinpact spell face|Decision resolves the selected modes in printed order, including owner mana and reveal of a Twinpact creature|Decision does not cast a revealed spell or reveal a top card under Q\\.Q\\.QX\\.|Nateha requires two shields and may decline after selecting only one|Nateha moves both shields together and uses an Abyss within cost 8 before normal draw|Elegance offers one mana card per opposing actual draw|Elegance lets Unknown creatures repeatedly summon from mana and pay with themselves \\(QA36581\\)|Elegance loses its mana permission when its ability is ignored or its source leaves|Veil can choose its first draw only, even in a multi-draw effect |Veil can replace the first draw on the opposing turn, then the next turn resets the count|Veil makes the opponent choose one discard for each actual draw after the first|Veil’s replacement can win when the second card is the last card \\(QA44088\\)|Painty can enter with or without NEO evolution and weakens all other creatures on both sides|Painty gives one independently optional blind discard per shield broken|Painty cannot use Break Bonus after leaving to a Shield Trigger \\(QA31809\\)|Alice pauses the draw for Vivid Draw and can return that same revealed card \\(QA 40504\\)|Vivid Draw can be declined and the discount requires both water and fire|Kung Fu discards the whole hand at the opposing turn end and draws two before the normal draw|Entering the attack step prevents a new Vivid Draw declaration and the turn end expires the previous reveal|Vivid Draw combines with an optional ordinary summon reduction \\(QA 34197\\)|QA43060: both shuffle sources replace the whole Luna mill without exposing or losing cards|QA40832: neither shuffle source allows Molnarlk to destroy an opponent creature|native mana and shield placements stay in the library and do not generate arrivals|replacement priority and choice survive saving, and chosen grave placement does not chain|QA39943 keeps Deddam’s first hand card and shuffles the other two|QA43789 Fox keeps a chosen hand creature, or shuffles all four if mana is chosen|QA39981 stops Jolly’s old look after the first mana placement is replaced|a shuffling replacement cannot chain onto Amodegoras’s draw replacement|QA41296 Fire Now starts with mana and ends its old three-card look when shuffled|QA49081 Redmad cannot use the unknown shuffled card’s cost to destroy|Hogan can deploy a shuffle source itself before its continuous ability starts|a source already in battle replaces a Hogan creature entry and preserves every card|QQ forbids shuffling, so a replaced blind mill preserves library order and identities|an ignored or sealed source does not replace milling, and Genmu suppresses its cheap ability|normal draws still leave the library, and later hand discards cannot be mistaken for deck moves|each replacement-owning player gets priority on their turn, without a second replacement|QA40785 a hidden Stone Tablet card grants no creature power, and VV seals stay in the library|QA42507 Vision resolves a deck spell before returning it, and a played seed never enters|Maetel replaces each draw separately, discards ANY hand card, and resumes in JSON |Maetel enters mana tapped and never replaces the opponent draw|Maetel replacement can be declined when multiple sources are present without recursive draw|Maetel applies no second replacement to the discard of its replacement \\(QA40218\\)|Decopin destruction offers its spell free once; ordinary cast targets ONLY an enemy blocker |Decopin spell face pays exactly two mana and rejects non-blockers|Decopin redirects only an attack against an ally, then uses Last Burst after losing the battle|A bounce does not activate Decopin Last Burst|The controller chooses the replacement source when Maetel and Babylonia coexist |Maetel replacement still permits Shako last-card loss replacement \\(QA44088\\) |phase1739 full original2 spells art limits exact names and strict native specs|Heavens chooses one own current Blocker pays2 and gives4000 W breaker plus actual shield attack |Both spells leave tapped creature unable to attack and do not untap it |Both spells preserve summoning sickness and do not confer speed attacker |QA35120 Miracle Portal allows noAttack blocker player attack only and cannot attack tapped creature |Heavens full attack restriction override permits an old noAttack Blocker to attack creatures |QA36799 Heavens selected blocker attacks past tapped Shangrila |Both spells apply only selected creature expire at end and do not affect later entry |Genmu spell ignore prevents all permission buffs and unblockability |Portal chosen target is unblockable even if an opposing untapped Blocker exists |Heavens target filter sees granted Blocker and excludes opponent or nonBlocker |phase1739 target choice JSON encrypted restore hides other player actions and preserves80 card format |QA36777 Shangrila paid ultra infinite Omega any1\\+ Guardian combination |Shangrila selection rejects wrong race face-down mana and locked grave, permits same-zone multiples and cancel |Shangrila tapped locks all enemy player and creature attacks, untapped ignored or sealed source does not |Shangrila Meteor may remove exactly1 base then shuffle chosen entire opponent stack and retain source T breaker |Shangrila Meteor can decline or execute with no enemy, and no base gives no Meteor decision |Shangrila native Eternal Omega returns whole evolution to owner hand from real removal |Heavens and Portal externally applied permission survives target ability ignoring and follows evolution UID layers |QA36779 Shangrila prevents even a forced attacker from declaring any attack |Heavens permission disappears after actual return and fresh reentry instead of leaking to same physical UID |Real Woods and Diamond Cutter retain existing attack freedom against tapped Shangrila |Shangrila may use its selected mana Guardian to pay the11 mana before attaching it |Heavens removes color-only and Blocker-only creature attack limits but retains target protections |Shangrila base count stays with summoner while Yomino chooses battlefield bases only |Shangrila optional multi-zone evolution continuation restores through encrypted room with same native choices |QA49601/49602 Rising NEX accepts two physical cards across creatures, Shinkalize, noncreature sources or linked Gods |QA49602 one physical creature, attachments, foreign or sealed units cannot supply the missing evolution card |Rising NEX evolves on the actual combined three-card Volzeos and preserves every King Cell |Rising NEX publicly selects any number of Dragon or Fire Bird creatures and ramps all unchosen cards |Rising NEX external protection includes itself, survives recipient ignore, and permits actual destruction |Ignoring or sealing Rising NEX removes its global grants and non-destruction protection |Dias mandatory entry minus kills a small opposing creature and its own end mills exactly two |Dias attack declaration requires sixteen own grave cards and cannot borrow enemy grave cards |QA49606 Dias returns exact four, lets their owner order, and completes its Q-break attack after dropping below sixteen |Dias may decline the optional grave selection before commitment without a partial move or forced bottom choice |Dias opponent chooses one physical own battlefield card or hand, including an evolution source and original owner deck |Perfect Eighty native Shield Force stays through destruction and bounce, untaps at own end and expires with the exact shield |Perfect Eighty may decline Shield Force and does not survive zero power even when its force shield remains |Perfect Eighty attack draws one before optionally deploying a Light blocker from the resulting hand and W-breaks |Perfect Eighty globally blocks creature and noncreature elements from every non-hand origin, while allowing hand and battle transformation |Perfect Eighty hand-only gate requires its live unignored source |Perfect Eighty simultaneous deck entry does not prevent its companion, and its restriction applies immediately after the group |An established Perfect Eighty blocks actual grave deployment and allows actual hand deployment without affecting spells |Dias still attempts its follow-up after choosing four locked grave cards, without pretending that they moved |Dias stale selected grave incarnation cannot be moved by a restored choice |Perfect Eighty leaves seals as non-elements and does not prevent paying a spell or moving existing battlefield cards |Actual encrypted duel service preserves all new evolution, grave owner-order and Shield Force decisions |Rising NEX and Dias retain their printed triple and quadruple breaker counts in actual attacks |Rising NEX power stacks from other copies and buffs ignored allies, while destruction remains allowed |QA49602 Rising NEX evolves on an actual awakened two-card Psychic Link, keeping both printed cells |Perfect Eighty new simultaneous-entry restriction uses the same group snapshot for grave and deck batches )",
+            "tests/standard405-effects.test.mjs",
+            "tests/standard514-effects.test.mjs",
+            "tests/standard774-effects.test.mjs",
+            "tests/standard1213-effects.test.mjs",
+            "tests/standard1273-effects.test.mjs",
+            "tests/standard1335-effects.test.mjs",
+            "tests/standard1365-effects.test.mjs",
+            "tests/standard1611-effects.test.mjs",
+            "tests/standard1739-effects.test.mjs",
+            "tests/standard1821-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.08,
+          "log": "tmp/duema-target-10000/related-1826.log",
+          "passed": 449,
+          "logSha256": "b9886b4017286885493f7db90ef747f4cdeb230207062d5deb2c5db279d3addf"
+        },
+        "check-1826": {
+          "name": "check-1826",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.494,
+          "log": "tmp/duema-target-10000/check-1826.log",
+          "passed": 0,
+          "logSha256": "90be6fbb9cd462ad2dec19d0789dbdd9a628d6f4bb4f5d05d89d51dfede6ee91"
+        },
+        "audit-1826": {
+          "name": "audit-1826",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.438,
+          "log": "tmp/duema-target-10000/audit-1826.log",
+          "passed": 0,
+          "logSha256": "6ffabc26bdd3c502765da1082e625ac85efdabf6d7f4d953331a58fb5192c634"
+        },
+        "invariants-1826": {
+          "name": "invariants-1826",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1826"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.728,
+          "log": "tmp/duema-target-10000/invariants-1826.log",
+          "passed": 0,
+          "logSha256": "47bc09806de460a51d89e0e646e81c53a33c54754b96263ed48e0790a084bb8d"
+        },
+        "related-online-1826": {
+          "name": "related-online-1826",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.863,
+          "log": "tmp/duema-target-10000/related-online-1826.log",
+          "passed": 5,
+          "logSha256": "d4bbbe4568f8fc9fecb0318f4994921730cefd95ef72d77fd20fddd46eaa1023"
+        }
+      },
+      "totalTestsPassed": 549,
+      "manifest": "tools/support-phase-1826.json",
+      "supported": 9694,
+      "pending": 2155,
+      "engineVersion": "0.602.350",
+      "held": [],
+      "nextCandidates": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1826-a",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1826-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.419,
+          "log": "tmp/duema-target-10000/focused-1826-a.log",
+          "reason": "Corrected new card specification/fixture before final verification: TapLock flag, sequential shield allocation, public look representation, UID-shaped target values, JSON omission of undefined and second real entry after Galaxyshield."
+        },
+        {
+          "name": "focused-1826-b",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1826-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.716,
+          "log": "tmp/duema-target-10000/focused-1826-b.log",
+          "reason": "Corrected new card specification/fixture before final verification: TapLock flag, sequential shield allocation, public look representation, UID-shaped target values, JSON omission of undefined and second real entry after Galaxyshield."
+        },
+        {
+          "name": "focused-1826-c",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1826-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.377,
+          "log": "tmp/duema-target-10000/focused-1826-c.log",
+          "reason": "Corrected new card specification/fixture before final verification: TapLock flag, sequential shield allocation, public look representation, UID-shaped target values, JSON omission of undefined and second real entry after Galaxyshield."
+        },
+        {
+          "name": "invariants-1826",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1826"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 5.632,
+          "log": "tmp/duema-target-10000/invariants-1826-previous-1795804895673205000.log",
+          "originalLog": "tmp/duema-target-10000/invariants-1826.log",
+          "reason": "Corrected new card specification/fixture before final verification: TapLock flag, sequential shield allocation, public look representation, UID-shaped target values, JSON omission of undefined and second real entry after Galaxyshield."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1825,
-    "nextPhase": 1826,
+    "lastVerifiedPhase": 1826,
+    "nextPhase": 1827,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -573953,11 +574176,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1825,
-      "baseline": "e92290b26a33dfdb26fe102f2f128c2904cdefa4",
-      "supportedNames": 9692,
-      "artifact": "tools/target10000-registration-checkpoint-1825.json",
-      "checkedAt": "2026-11-27T18:24:44.938Z"
+      "phase": 1826,
+      "baseline": "e7a182a87230ed91c0c01e154e20b9a9903a6abf",
+      "supportedNames": 9694,
+      "artifact": "tools/target10000-registration-checkpoint-1826.json",
+      "checkedAt": "2026-11-27T18:42:02.774Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -577015,8 +577238,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9692,
-      "remaining": 308,
+      "currentNames": 9694,
+      "remaining": 306,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -577024,8 +577247,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1825,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1825.json",
+      "lastPhase": 1826,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1826.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -578392,8 +578615,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9692,
-      "remaining": 308,
+      "currentNames": 9694,
+      "remaining": 306,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -578401,8 +578624,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1825,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1825.json",
+      "lastPhase": 1826,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1826.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -630584,10 +630807,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1825,
+    "phase": 1826,
     "threshold": 10000,
-    "supportedNames": 9692,
-    "pendingNames": 2157,
+    "supportedNames": 9694,
+    "pendingNames": 2155,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -630596,7 +630819,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1825.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1826.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

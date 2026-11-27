@@ -1,0 +1,169 @@
+{
+  "phase": 1826,
+  "checkedAt": "2026-11-27T18:30:44.935Z",
+  "baseline": "e7a182a87230ed91c0c01e154e20b9a9903a6abf",
+  "baseCount": 9692,
+  "target": 10000,
+  "description": "Complete Crystal Reincarnation owner-specific shuffle and mandatory revealed element entry/non-element bottom; no-target QA45061. Terminator mills the top except the last five and optionally returns one legal own grave card instead of its last draw through the existing serialized draw-choice transaction. Empty or locked grave never permits a no-op replacement (QA_old36952). MissQ held pending full named Imishu CIP-reuse dependency.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45061/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36952/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-011",
+      "name": "水晶転生",
+      "canonicalId": "dm23ex3-011",
+      "printId": "dm23ex3-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-011",
+      "faces": [
+        {
+          "name": "水晶転生",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nエレメントを１つ選ぶ。その持ち主はそれを山札に加えてシャッフルし、その後、自身の山札の上から１枚目を表向きにする。それがエレメントなら出し、そうでなければ山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "element": true,
+            "filter": {
+              "g1826Element": true
+            },
+            "g1826Transmute": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-011.jpg",
+      "imageSha256": "a3daf2e165ffafee8cc3494a449e063bbb3f600450ba5ae70f0cc72241f3e1da",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex3-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23ex3-011"
+        ],
+        "allSearchIds": [
+          "dm23ex3-011"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T18:30:44.935Z",
+        "sha256": "a3601c567789555202ea07a0ced46e114ac1e639127f62a9acbf70c5524d5b69",
+        "facesMatched": true,
+        "imageSha256": "a3daf2e165ffafee8cc3494a449e063bbb3f600450ba5ae70f0cc72241f3e1da"
+      }
+    },
+    {
+      "id": "dmx15-s05",
+      "name": "世界の果て ターミネーター",
+      "canonicalId": "dmx15-s05",
+      "printId": "dmx15-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s05",
+      "faces": [
+        {
+          "name": "世界の果て ターミネーター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を下から５枚を残してすべて墓地に置く。\nW・ブレイカー\n自分の山札の最後の１枚を引く時、かわりにカードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アウトレイジMAX",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillKeep1826",
+            "keep": 5
+          }
+        ],
+        "g1826LastDrawReturn": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-s05.jpg",
+      "imageSha256": "c59b844e906605112e08e1527dfcebb92ca7804b547672ea8507b27b7882ce92",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx15-s05-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx15-s05"
+        ],
+        "allSearchIds": [
+          "dmx15-s05"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T18:30:44.935Z",
+        "sha256": "3c4f1719540cc8eefde6bf997800ef42f075b31985eb22300044e8e9023ff70f",
+        "facesMatched": true,
+        "imageSha256": "c59b844e906605112e08e1527dfcebb92ca7804b547672ea8507b27b7882ce92"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45061/",
+      "sha256": "b7e014f40cf87afcbcfb907d923ebca1d4d63dea877e581e4ac8c3f5bfafb2d5",
+      "checkedAt": "2026-11-27T18:30:44.935Z",
+      "reproduced": true,
+      "tests": "tests/standard1826-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
+      "sha256": "2970d65c2e7c5a08f1d7e3b53c35f280cb0434fdf8e2e7b558a06481454ad5a1",
+      "checkedAt": "2026-11-27T18:30:44.935Z",
+      "reproduced": true,
+      "tests": "tests/standard1826-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36952/",
+      "sha256": "bd225e9bffc2c2ea3f4283e1b7fc5cca10169abcb7251b19e81f300e799e9966",
+      "checkedAt": "2026-11-27T18:30:44.935Z",
+      "reproduced": true,
+      "tests": "tests/standard1826-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T18:30:44.935Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-011": 4,
+      "dmx15-s05": 4
+    }
+  }
+}
