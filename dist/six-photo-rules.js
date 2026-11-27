@@ -4820,8 +4820,8 @@ export function createSixPhotoRules(api){
   const host=sourceHost474(s,t),origin=t.origin??'hand';
   const rows=api.canMoveZone(s,t.p,origin)?own[origin].filter(y=>matches(s,t.p,y,t.filter)):[];
   if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&rows.length)
-   choice(s,t,'このクリーチャーの下に表向きで置く'+(origin==='mana'?'マナ':'手札')+'を1枚選ぶ（任意）',[
-    ...rows.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),skip()
+   choice(s,t,'このクリーチャーの下に表向きで置く'+({mana:'マナ',grave:'墓地',hand:'手札'}[origin]||origin)+'を1枚選ぶ（任意）',[
+    ...rows.map(y=>opt(y.faceDown?'裏向きのカード':card(y).name,y.uid,y.faceDown?15:15-cost(card(y)),y.faceDown?undefined:y.cardId)),skip()
    ]);
   break;
  }
@@ -4839,6 +4839,14 @@ export function createSixPhotoRules(api){
    ]);
   break;
  }
+ case'g34_ShieldPlusCost1804':{
+  const paid=api.physicalCards(s).find(x=>x.uid===t.paidUid);
+  if(!paid)break;
+  const costs=[...new Set(faces(card(paid)).map(c=>cost(c)).filter(n=>n>=0))];
+  if(costs.length>1)choice(s,t,'シールド・プラスで参照するコストを選ぶ',costs.map(n=>opt(String(n===Infinity?'∞':n),n===Infinity?'∞':n,n===Infinity?10:n)));
+  else if(costs[0]>0)put(s,{...t,op:'g71_Plus',n:Math.min(costs[0],own.deck.length),g1804ExactPlus:true});
+  break;
+ }
  case'g34_BattleManaReturn1802':api.returnBattleAndMana1802(s,t.p);break;
  case'g34_MeteorSources1796':{
   const host=sourceHost474(s,t),picked=t.picked||[],n=t.n??1;
@@ -4854,7 +4862,7 @@ export function createSixPhotoRules(api){
   const plans=t.plans||[],uid=t.picked[plans.length];
   if(uid===undefined){
    if(api.moveMeteorSources1796(s,t.p,t.host,plans,t.p)){
-    start(s,t,t.defs||[]);
+    start(s,t,t.g1804ShieldPlus?[{op:'ShieldPlusCost1804',paidUid:t.picked[0]}]:t.defs||[]);
     // A constant forbidden-zone loss must precede the queued victory (QA41756).
     api.powerCleanup(s);
    }
@@ -8102,6 +8110,7 @@ export function createSixPhotoRules(api){
    (host.x.under??=[]).push(y);
   }
  }break;
+ case'g34_ShieldPlusCost1804':{const n=v==='∞'?own.deck.length:Number(v);if(n>0)put(s,{...t,op:'g71_Plus',n:Math.min(n,own.deck.length),g1804ExactPlus:true});break;}
  case'g34_HandUnder1131':if(v){
   const host=sourceHost474(s,t),origin=t.origin??'hand';
   if(!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,origin))break;
@@ -10605,6 +10614,11 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed)for(const limit of s.extLimits||[])if(limit.kind==='g1804EntryDestroy'&&limit.player===p){
+   queue(s,limit.who,{cardId:limit.source},[{op:'ExactMove',owner:p,to:'grave',
+    g403Refs:api.allLayers(y).map(x=>({uid:x.uid,incarnation:x.incarnation||0})),followEvolution:true}]);
+  }
+
   if(c.g1698SummonEntry&&creature&&!y.sealed&&options.execution===true&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))queue(s,p,y,effective(y,s).g1698SummonEntry);
   if(creature&&!y.sealed&&cost(effective(y,s))>s.players[p].mana.length){
    for(const limit of s.extLimits||[])if(limit.kind==='g1597OverManaBottom'&&limit.player===p&&!api.spellIgnored(s,{type:'spell',cost:limit.spellCost,spellSource:limit.spellSource})){

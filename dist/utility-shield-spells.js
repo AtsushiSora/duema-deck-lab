@@ -9,12 +9,14 @@ export function createUtilityShieldSpells(api){
  case'g71_Plus':{
   if(!api.canAddShield(s,t.p)||!own.deck.length||!own.shields.length)break;
   const max=Math.min(t.n??1,own.deck.length);
-  const options=own.shields.flatMap((x,i)=>Array.from({length:max},(_,j)=>{
-   const amount=j+1,group=api.shieldGroup(x),stack=api.shieldCards(x).length;
+  if(max<=0)break;
+  const amounts=t.g1804ExactPlus?[max]:Array.from({length:max},(_,j)=>j+1);
+  const options=own.shields.flatMap((x,i)=>amounts.map(amount=>{
+   const group=api.shieldGroup(x),stack=api.shieldCards(x).length;
    return opt('シールド '+(i+1)+'（カード'+stack+'枚）'+(t.n>1?'に'+amount+'枚重ねる':''),
     t.n>1?{group,amount}:group,t.optional?(own.deck.length<=amount?-1000:amount*10-stack):-stack);
   }));
-  choice(s,t,'山札の上から'+(t.n>1?t.n+'枚まで':'1枚')+'裏向きに重ねるシールドを選ぶ',
+  choice(s,t,'山札の上から'+(t.n>1?t.n+'枚'+(t.g1804ExactPlus?'':'まで'):'1枚')+'裏向きに重ねるシールドを選ぶ',
    [...options,...(t.optional?[opt('使わない',null,0)]:[])]);
   break;
  }

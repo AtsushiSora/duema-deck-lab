@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9632,
-  "pendingNames": 2211,
-  "phase": 1803,
+  "supportedNames": 9635,
+  "pendingNames": 2208,
+  "phase": 1804,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -159,11 +159,11 @@
     "クリーチャー": 1291,
     "呪文": 248,
     "GRクリーチャー": 17,
-    "G-NEOクリーチャー": 25,
+    "G-NEOクリーチャー": 24,
     "タマシード": 26,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 179,
+    "進化クリーチャー": 178,
     "スター進化クリーチャー": 47,
     "NEOクリーチャー": 41,
     "オレガ・オーラ": 26,
@@ -215,13 +215,13 @@
     "進化サイキック・クリーチャー(超無限進化)": 1,
     "進化クリーチャー(マナ進化V)": 2,
     "DMフィールド": 2,
-    "進化クリーチャー(超無限進化)": 2,
+    "進化クリーチャー(超無限進化)": 1,
     "進化クリーチャー（進化GV）": 1,
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1625,
-    "複数面・特殊カードタイプまたは情報不足": 489,
+    "未対応の能力文": 1623,
+    "複数面・特殊カードタイプまたは情報不足": 488,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -568258,11 +568258,205 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1804,
+      "checkedAt": "2026-11-27T13:53:36.225Z",
+      "baseline": "dfdd3d9ecf18270c48e7d411a3b5b67debde365f",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9632,
+      "currentNames": 9635,
+      "remainingNames": 365,
+      "added": [
+        {
+          "id": "dm23-001",
+          "name": "無敵巨兵スパルタンJ"
+        },
+        {
+          "id": "dm34-006",
+          "name": "無限の聖霊王アルカイザム"
+        },
+        {
+          "id": "dm25rp2-S11",
+          "name": "魔誕導師ブラックルシファー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1804,
+        "baseline": "dfdd3d9ecf18270c48e7d411a3b5b67debde365f",
+        "originalDefinitionsUnchanged": 9632,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9635,
+        "uniqueIds": 9635,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9632,
+        "existingImageReferenceRowsUnchanged": 12007,
+        "officialPrintsReviewed": 8,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1804": {
+          "name": "official-1804",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1804.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.813,
+          "log": "tmp/duema-target-10000/official-1804.log",
+          "passed": 0,
+          "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+        },
+        "focused-1804-final": {
+          "name": "focused-1804-final-cost-boundary",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1804-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.188,
+          "log": "tmp/duema-target-10000/focused-1804-final-cost-boundary.log",
+          "passed": 45,
+          "logSha256": "58a545234f93f0bcc1e8ae1711d6eb6835db31ea356542121b9502f8355c6504"
+        },
+        "related-1804": {
+          "name": "related-1804",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:Shield Plus|independent Shield Plus|Trans Dragoon|an already queued Shield Plus|copied entry abilities include Shield Plus|deck locks stop|GG and Genmu|QA35683|QA35684|Only an actual Shield Plus|Venus|QA35420|Lambda|Go Daigo|Universe|Tatebue|QA36790|QA41756)",
+            "tests/standard414-effects.test.mjs",
+            "tests/standard1659-effects.test.mjs",
+            "tests/standard1741-effects.test.mjs",
+            "tests/standard1800-effects.test.mjs",
+            "tests/standard1796-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.073,
+          "log": "tmp/duema-target-10000/related-1804.log",
+          "passed": 90,
+          "logSha256": "68447fa3b146954175c44b63d6d814ede00cfbfdf521ac88ce62cfe87efea5db"
+        },
+        "check-1804": {
+          "name": "check-1804",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.68,
+          "log": "tmp/duema-target-10000/check-1804.log",
+          "passed": 0,
+          "logSha256": "e17fb4bc6928d1591ba6fbb86214fba9f728fa5e01eefd34ebc77f9f1ed26b9b"
+        },
+        "audit-1804": {
+          "name": "audit-1804",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.17,
+          "log": "tmp/duema-target-10000/audit-1804.log",
+          "passed": 0,
+          "logSha256": "c21b926070ecc2d062474f24dcbaf023c3cb9bf8ea86efc7a1f79c77b972fd45"
+        },
+        "invariants-1804": {
+          "name": "invariants-1804",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1804"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.869,
+          "log": "tmp/duema-target-10000/invariants-1804.log",
+          "passed": 0,
+          "logSha256": "e8d5e531f4f8e513d8d289e2e39d50bcc4042e420c55bff2f5fed86058fd9b73"
+        },
+        "related-online-1804": {
+          "name": "related-online-1804",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.581,
+          "log": "tmp/duema-target-10000/related-online-1804.log",
+          "passed": 5,
+          "logSha256": "ae791cf8d83b1250474a143a328a162ded0e57f1d079ab2e09dd8177400d461f"
+        }
+      },
+      "totalTestsPassed": 140,
+      "manifest": "tools/support-phase-1804.json",
+      "supported": 9635,
+      "pending": 2208,
+      "engineVersion": "0.602.328",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1804",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1804-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.609,
+          "log": "tmp/duema-target-10000/focused-1804.log",
+          "reason": "Initial six Arcaizum failures came from using start with an already native-prefixed g71 operation, which incorrectly produced g34_g71_Plus. Changed only that continuation to the established native put route. One invalid shield-prohibition fixture ID was replaced with registered dmrp22-037. The opposing-turn Dogiragon fixture initially stayed in attack phase; set main before its actual paid summon. Final45 focused tests all pass, including costInfinity serialization and both Twinpact face costs."
+        },
+        {
+          "name": "focused-1804-rulings",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1804-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.178,
+          "log": "tmp/duema-target-10000/focused-1804-rulings.log",
+          "reason": "Initial six Arcaizum failures came from using start with an already native-prefixed g71 operation, which incorrectly produced g34_g71_Plus. Changed only that continuation to the established native put route. One invalid shield-prohibition fixture ID was replaced with registered dmrp22-037. The opposing-turn Dogiragon fixture initially stayed in attack phase; set main before its actual paid summon. Final45 focused tests all pass, including costInfinity serialization and both Twinpact face costs."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1803,
-    "nextPhase": 1804,
+    "lastVerifiedPhase": 1804,
+    "nextPhase": 1805,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -569175,11 +569369,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1803,
-      "baseline": "4d5bed73c8ed8ebd1371936cdc222ce794c476d8",
-      "supportedNames": 9632,
-      "artifact": "tools/target10000-registration-checkpoint-1803.json",
-      "checkedAt": "2026-11-27T13:40:38.954Z"
+      "phase": 1804,
+      "baseline": "dfdd3d9ecf18270c48e7d411a3b5b67debde365f",
+      "supportedNames": 9635,
+      "artifact": "tools/target10000-registration-checkpoint-1804.json",
+      "checkedAt": "2026-11-27T13:53:36.225Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -572237,8 +572431,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9632,
-      "remaining": 368,
+      "currentNames": 9635,
+      "remaining": 365,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572246,8 +572440,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1803,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1803.json",
+      "lastPhase": 1804,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1804.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -573475,8 +573669,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9632,
-      "remaining": 368,
+      "currentNames": 9635,
+      "remaining": 365,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -573484,8 +573678,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1803,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1803.json",
+      "lastPhase": 1804,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1804.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -573614,25 +573808,25 @@
       }
     ],
     "nextTarget10000Preparation": {
-      "research": "tmp/duema-target-10000/research-dm23-001.json",
+      "research": "tmp/duema-target-10000/research-dm02-044.json",
       "candidates": [
         {
-          "id": "dm23-001",
-          "name": "無敵巨兵スパルタンJ",
-          "implementation": "Reuse native Meteor1741 leave replacement and after-block untap; verify battle/zero-power/decline/physical stack.",
-          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
+          "id": "dm02-044",
+          "name": "ギガスタンド",
+          "implementation": "Prefer native discard-one-and-return replacement; inspect QA_old35021 and validate mandatory destination, empty hand, nested physical stacks and competing replacements.",
+          "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dm34-006",
-          "name": "無限の聖霊王アルカイザム",
-          "implementation": "Super-infinite Blocker evolution; exact source payment must carry that paid card cost into Shield Plus beneath one existing shield; read QA_old35900 carefully.",
-          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
+          "id": "dm07-009",
+          "name": "キャバリア・シャーク",
+          "implementation": "Optional up to2 distinct hand cards become shields, then return same number of complete shield groups face-down/no triggers; preserve privacy, grouping, simultaneity and failed placement semantics.",
+          "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         },
         {
-          "id": "dm25rp2-S11",
-          "name": "魔誕導師ブラックルシファー",
-          "implementation": "GNEO; optional one each from mana and grave on own entry/start; Meteor3 timed opposing entry destroy until own next start, including QA46827 and linked follow-up rulings.",
-          "status": "official-full-search-downloaded; all-images-not-yet-reviewed; not-registered"
+          "id": "dmrp13-013",
+          "name": "「古の守護者」",
+          "implementation": "Optional defensive shield chooser; inspect native1659 mechanism and QA40539 against optional declaration, ability breaks and multiple-break grouping.",
+          "status": "official-full-search-downloaded; images-not-yet-reviewed; not-registered"
         }
       ],
       "timingHeld": [
@@ -625538,10 +625732,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1803,
+    "phase": 1804,
     "threshold": 10000,
-    "supportedNames": 9632,
-    "pendingNames": 2211,
+    "supportedNames": 9635,
+    "pendingNames": 2208,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -625550,7 +625744,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1803.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1804.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
