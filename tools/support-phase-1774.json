@@ -1,0 +1,236 @@
+{
+  "phase": 1774,
+  "checkedAt": "2026-11-27T09:04:37.323Z",
+  "baseline": "13d87c15679b417c47beaf7334d8b2187ea110ed",
+  "baseCount": 9544,
+  "target": 10000,
+  "description": "Complete native Vivid Draw and Galaxyshield cards; all abilities reuse existing task, cost, freeze, current hand-size and face-up shield routines.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39097/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-027",
+      "name": "「刹那の美学は爆発だ!!」",
+      "canonicalId": "dmrp16-027",
+      "printId": "dmrp16-027",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-027",
+      "faces": [
+        {
+          "name": "「刹那の美学は爆発だ!!」",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [wf02]支払って唱えてもよい）\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない\n相手のパワー5000以下のクリーチャーを１体破壊する。",
+          "race": "美孔麗王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g1335VividDraw": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self"
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-027.jpg",
+      "imageSha256": "50df3a87110c14e8dece429cad8cb1c0e62ba82fc8b7f06e7c852dafc18b950a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp16-027-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp16-027"
+        ],
+        "allSearchIds": [
+          "dmrp16-027"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:04:37.323Z",
+        "sha256": "0281cbe5a956e10aa42059a736d735599865d42e99e0203bb807d1b47cf8eae0",
+        "facesMatched": true,
+        "imageSha256": "50df3a87110c14e8dece429cad8cb1c0e62ba82fc8b7f06e7c852dafc18b950a"
+      }
+    },
+    {
+      "id": "dmrp16-026",
+      "name": "禅役者 ゲネプロリーハ",
+      "canonicalId": "dmrp16-026",
+      "printId": "dmrp16-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-026",
+      "faces": [
+        {
+          "name": "禅役者 ゲネプロリーハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ビビッドロー [wf03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[wf03]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分の手札の枚数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1335VividDraw": 3,
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "HandCost262",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-026.jpg",
+      "imageSha256": "888e7810cdadc8d7faf018458beb4eb179c57e719e4fa3fb407eafb3e72b3689",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp16-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp16-026"
+        ],
+        "allSearchIds": [
+          "dmrp16-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:04:37.323Z",
+        "sha256": "3d6bd3a0bdd758039efb5b0ff78c5fbff693824fd8c089603538f4e5455b88ef",
+        "facesMatched": true,
+        "imageSha256": "888e7810cdadc8d7faf018458beb4eb179c57e719e4fa3fb407eafb3e72b3689"
+      }
+    },
+    {
+      "id": "dmrp14-s06",
+      "name": "「綺羅星の豪傑」",
+      "canonicalId": "dmrp14-s06",
+      "printId": "dmrp14-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s06",
+      "faces": [
+        {
+          "name": "「綺羅星の豪傑」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ギャラクシールド[lw04]（このカードを使うコストの代わりに、[lw04]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を１枚、表向きにし、新しいシールドとしてシールドゾーンに置く。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1412GalaxyShield": {
+          "cost": 4,
+          "civilizations": [
+            "光",
+            "水"
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "g657FaceUp": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-s06.jpg",
+      "imageSha256": "296b95cd48f49d6e9160fafe84d9bfada3064f25110a01a7c0c32bdd294314e1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp14-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-s06"
+        ],
+        "allSearchIds": [
+          "dmrp14-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:04:37.323Z",
+        "sha256": "cbc13812110f678a7293019b7a5a04cc876ad0c7de355a54585e48bc639be11b",
+        "facesMatched": true,
+        "imageSha256": "296b95cd48f49d6e9160fafe84d9bfada3064f25110a01a7c0c32bdd294314e1"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39097/",
+      "sha256": "83ff833b0623b857f6abccd18fbff63df40bd45197b8ff92e6f1b1ff1d11c941",
+      "checkedAt": "2026-11-27T09:04:37.323Z",
+      "reproduced": true,
+      "tests": "tests/standard1774-effects.test.mjs",
+      "reproduction": "QA39097: use supported Water invasion 奇天烈 コイコイ as an explicit analogue of the printed Paras King example. Gene has five cards in hand including declared invasion; choosing Gene first can destroy cost five, choosing invasion first leaves four and excludes cost five. Both real declaration orders and saved state tested.",
+      "result": "QA39097: use supported Water invasion 奇天烈 コイコイ as an explicit analogue of the printed Paras King example. Gene has five cards in hand including declared invasion; choosing Gene first can destroy cost five, choosing invasion first leaves four and excludes cost five. Both real declaration orders and saved state tested."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T09:04:37.323Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp16-027": 4,
+      "dmrp16-026": 4,
+      "dmrp14-s06": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": [
+      "New Galaxyshield fixture used nextTurn helper that automatically finished the very entry choice being asserted; changed the second turn transition to stop at the actual mandatory shield selection."
+    ]
+  }
+}

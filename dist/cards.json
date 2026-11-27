@@ -305377,20 +305377,130 @@
       "effect": "discard",
       "supportBatch": "phase-1773",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-027",
+      "name": "「刹那の美学は爆発だ!!」",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "美孔麗王国",
+      "text": "ビビッドロー [wf02]（自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を [wf02]支払って唱えてもよい）\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない\n相手のパワー5000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-027",
+      "limit": 4,
+      "trigger": true,
+      "g1335VividDraw": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self"
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 5000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1774",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-026",
+      "name": "禅役者 ゲネプロリーハ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "ビビッドロー [wf03]（自分のターン中、攻撃の前にこのクリーチャーをドローした時、表向きにしてもよい。そうしたら、このターンこのクリーチャーを[wf03]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分の手札の枚数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-026",
+      "limit": 4,
+      "g1335VividDraw": 3,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "HandCost262",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1774",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-s06",
+      "name": "「綺羅星の豪傑」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 12500,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド[lw04]（このカードを使うコストの代わりに、[lw04]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札を１枚、表向きにし、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s06",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 4,
+        "civilizations": [
+          "光",
+          "水"
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "g657FaceUp": true
+        }
+      ],
+      "supportBatch": "phase-1774",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1773,
-    "checkedAt": "2026-11-27T08:58:01.161Z",
-    "baseCount": 9541,
+    "phase": 1774,
+    "checkedAt": "2026-11-27T09:04:37.323Z",
+    "baseCount": 9544,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9544,
+    "totalCount": 9547,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/39097/"
     ],
     "next": [
-      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
     ],
     "history": [
       {
@@ -334452,6 +334562,20 @@
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1773,
+        "checkedAt": "2026-11-27T08:58:01.161Z",
+        "baseCount": 9541,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9544,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
         ]
       }
     ]
