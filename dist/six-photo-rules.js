@@ -37,6 +37,19 @@ export function createSixPhotoRules(api){
   })));
  }
  const exactRaces=c=>String(c.race||'').split('/').filter(Boolean);
+ // Assign a different complete printed tribe to each card; substrings are not tribes (QA45077).
+ function distinctRaces1830(rows){
+  const assigned=new Map();
+  function assign(i,seen){
+   for(const race of exactRaces(card(rows[i]))){
+    if(seen.has(race))continue;
+    seen.add(race);
+    if(!assigned.has(race)||assign(assigned.get(race),seen)){assigned.set(race,i);return true;}
+   }
+   return false;
+  }
+  return rows.every((_,i)=>assign(i,new Set()));
+ }
  const sharesRace=(a,b)=>exactRaces(a).some(name=>exactRaces(b).includes(name));
  const goatRaceReading=new WeakSet(),civilAuraReading=new WeakSet();
  // Soul marks are printed characteristics and remain when abilities are ignored.
@@ -5711,6 +5724,17 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_OpponentDestination1506':{const rows=targetOptions(s,1-t.p,creatures(s,1-t.p).filter(x=>!x.sealed));if(rows.length)choice(s,t,'マナゾーンまたは手札に戻される自分のクリーチャーを選ぶ',rows.map(o=>{const y=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0}};}),1-t.p);break;}
+ case'g34_PlayersMana1830':{
+  // Native per-player selection preserves APNAP order and one simultaneous movement batch.
+  start(s,t,[{op:'EachPlayer459',origin:'battle',to:'mana',g1519EachN:2}]);
+  break;
+ }
+ case'g34_FullDuel1830':
+  start(s,t,[{op:'ShieldTop',n:Math.max(0,5-own.shields.length),g779Simultaneous:true},{op:'ProtectShields1830'}].filter(d=>d.op!=='ShieldTop'||d.n));
+  break;
+ case'g34_ProtectShields1830':
+  (s.extLimits??=[]).push({kind:'g1830NoShieldBreak',player:t.p,expires:'start',who:t.p});
+  break;
  case'g34_OpponentSelect':{
   const origin=t.origin||'battle',battle=origin==='battle';
   if(battle&&t.g741MinPower)t={...t,g530Ids:lowestPower741(s,creatures(s,1-t.p).filter(x=>matches(s,1-t.p,x,t.filter))).map(x=>x.uid)};
@@ -6389,6 +6413,7 @@ export function createSixPhotoRules(api){
    (!underHost||underHost.x.sealed||!api.isCreature(s,underHost.x)||!api.canMoveZone(s,t.p,'deck'));
   const selected=blocked?[]:t.chosen||[];
   let rows=blocked?[]:xs.filter(y=>!selected.includes(y.uid)&&matches(s,t.p,y,stage.filter));
+  if(stage.g1830DistinctRaces)rows=rows.filter(y=>distinctRaces1830([...xs.filter(x=>selected.includes(x.uid)),y]));
   if(stage.g1658DistinctNames&&selected.length){
    const names=new Set(xs.filter(y=>selected.includes(y.uid)).map(y=>exactName(creatureFaceName(card(y)))));
    rows=rows.filter(y=>!names.has(exactName(creatureFaceName(card(y)))));
@@ -10362,7 +10387,7 @@ export function createSixPhotoRules(api){
  // Resolved continuous effects are independent of the recipient's ignored abilities (QA34228).
  attackEffect409:(s,x,kind)=>(s.extLimits||[]).some(l=>l.kind==='g409AttackEffect'&&l.effect===kind&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),
  destroySafe409:(s,x)=>!x.sealed&&!!effective(x,s).g1691OniOwnDestroySafe&&s.players[s.active].battle.includes(x)&&api.oniTime1303(s,s.active)||bouncerProtects1294(s,x)||blockProtected1201(s,x)||!!effective(x,s).g465DestroySafe||api.isCreature(s,x)&&!!externalProtection565(s,x).g465DestroySafe||hooks.attackEffect409(s,x,'destroySafe'),
- extraBreak557:(s,p,x,c)=>s.players[p].battle.reduce((n,y)=>{
+ extraBreak557:(s,p,x,c)=>[...s.players[p].battle,...s.players[1-p].battle.filter(y=>card(y).g557BreakAura?.both)].reduce((n,y)=>{
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;
   if(r.tapped&&!y.tapped||r.shieldsMax!==undefined&&!ownCondition(s,p,{g265ShieldsMax:r.shieldsMax}))return n;

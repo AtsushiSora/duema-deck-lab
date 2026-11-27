@@ -311856,18 +311856,151 @@
       "g1829Library": true,
       "supportBatch": "phase-1829",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-057",
+      "name": "偽りの名 13 / 種族選別",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 24000,
+      "race": "アンノウン",
+      "text": "ワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\n【呪文面】\n自分の山札の上から３枚を表向きにし、その中から異なる種族を持つクリーチャーを好きな数選ぶ。それらを手札に加え、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-026",
+      "limit": 4,
+      "worldBreaker": true,
+      "breaker": "∞",
+      "spellFace": {
+        "name": "種族選別",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "g1826PublicReveal": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g1830DistinctRaces": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1830",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd08-a-001",
+      "name": "暴命天 バラギアラ / ガイアの目覚め",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "グランセクト・ハザード",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\nすべてのクリーチャーは、シールドをさらに１つブレイクする。\n【呪文面】\nS・トリガー S・トリガー\n各プレイヤーは自身のクリーチャーを２体選び、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-026",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g557BreakAura": {
+        "both": true,
+        "amount": 1
+      },
+      "spellFace": {
+        "name": "ガイアの目覚め",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 8,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayersMana1830"
+          }
+        ]
+      },
+      "supportBatch": "phase-1830",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b004",
+      "name": "白騎士の聖霊王アルカディアス / 完全決闘",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12500,
+      "race": "エンジェル・コマンド",
+      "text": "進化：エンジェル・コマンド１体の上に置く。\nT・ブレイカー\n誰も光以外の呪文を唱えることができない。\n【呪文面】\n自分のシールドが４つ以下なら、合計５つになるよう、山札の上からカードをシールド化する。\n次の自分のターンのはじめまで、自分のシールドはブレイクされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b004",
+      "limit": 4,
+      "evolution": {
+        "race": "エンジェル・コマンド"
+      },
+      "breaker": 3,
+      "g34Role": "alca",
+      "spellFace": {
+        "name": "完全決闘",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 10,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FullDuel1830"
+          }
+        ]
+      },
+      "supportBatch": "phase-1830",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1829,
-    "checkedAt": "2026-11-27T18:58:24.266Z",
-    "baseCount": 9699,
-    "newEffectCards": 1,
+    "phase": 1830,
+    "checkedAt": "2026-11-27T19:16:41.770Z",
+    "baseCount": 9700,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9700,
+    "totalCount": 9703,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40866/"
+      "https://dm.takaratomy.co.jp/rule/qa/45077/",
+      "https://dm.takaratomy.co.jp/rule/qa/31814/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -341798,6 +341931,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39328/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1829,
+        "checkedAt": "2026-11-27T18:58:24.266Z",
+        "baseCount": 9699,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9700,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40866/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
