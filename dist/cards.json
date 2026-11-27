@@ -306376,17 +306376,117 @@
       ],
       "supportBatch": "phase-1782",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd11-c01",
+      "name": "無限杖 フェニクジャーラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンにある自分のジョーカーズ１枚につき、自分の呪文を唱えるコストを１少なくする。ただし、コストは０以下にならない。\n自分の手札から呪文を唱えた時、その呪文をもう一度、コストを支払わずに墓地から唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-c01",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "g467SpellReduction": {
+        "g1783BattleCards": {
+          "race": "ジョーカーズ"
+        },
+        "amount": 1
+      },
+      "g1245HandSpellRecast": true,
+      "supportBatch": "phase-1783",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-012",
+      "name": "音奏 ハープララ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 9500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはタップしてバトルゾーンに出る。\nバトルゾーンにある自分の他のクリーチャーが２体以下なら、このクリーチャーはアンタップしない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-012",
+      "limit": 4,
+      "breaker": 2,
+      "g295EnterTapped": true,
+      "g1561UntapRequires": {
+        "g370BattleCount": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "min": 3
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1783",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-006",
+      "name": "ガチャパルト初号機",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトル中、バトルゾーンにある自分のGRクリーチャー１体につき、このクリーチャーのパワーを+3000する。\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-006",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g860BattleCountPower": {
+        "zone": "battle",
+        "filter": {
+          "g1428Gr": true
+        },
+        "amount": 3000
+      },
+      "g189BattleWin": [
+        {
+          "op": "AuraGr1353"
+        }
+      ],
+      "supportBatch": "phase-1783",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1782,
-    "checkedAt": "2026-11-27T10:06:07.946Z",
-    "baseCount": 9566,
+    "phase": 1783,
+    "checkedAt": "2026-11-27T10:14:11.094Z",
+    "baseCount": 9569,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9569,
+    "totalCount": 9572,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/32916/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335581,6 +335681,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/46059/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1782,
+        "checkedAt": "2026-11-27T10:06:07.946Z",
+        "baseCount": 9566,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9569,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

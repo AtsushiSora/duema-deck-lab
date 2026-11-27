@@ -1,0 +1,552 @@
+{
+  "phase": 1783,
+  "checkedAt": "2026-11-27T10:14:11.094Z",
+  "baseline": "8216aa44519289836ec37c6e6c8187bf2bc2bb3c",
+  "baseCount": 9569,
+  "target": 10000,
+  "description": "Complete native GR entry, battle-win summoning, tapped entry, conditional continuous no-untap and battle-only GR power. Extend mandatory spell discount with an explicit current battlefield-card count, including noncreature Jokers and excluding buried cards. Reuse native exact physical spell recast.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/32916/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd11-c01",
+      "name": "無限杖 フェニクジャーラ",
+      "canonicalId": "dmbd11-c01",
+      "printId": "dmbd11-c01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd11-c01",
+      "faces": [
+        {
+          "name": "無限杖 フェニクジャーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。\nバトルゾーンにある自分のジョーカーズ１枚につき、自分の呪文を唱えるコストを１少なくする。ただし、コストは０以下にならない。\n自分の手札から呪文を唱えた時、その呪文をもう一度、コストを支払わずに墓地から唱えてもよい。",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ],
+        "g467SpellReduction": {
+          "g1783BattleCards": {
+            "race": "ジョーカーズ"
+          },
+          "amount": 1
+        },
+        "g1245HandSpellRecast": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd11-c01.jpg",
+      "imageSha256": "55d48654e49360ee9ad6374e2d832eb9d5663dc4c20edd1356683b2b727ea9fe",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd11-c01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd11-c01"
+        ],
+        "allSearchIds": [
+          "dmbd11-c01"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "bc0aeb295cc6766f4fa2fbdde6e240b38fe2feb5ebbda46f41b4aa8ece9319e1",
+        "facesMatched": true,
+        "imageSha256": "55d48654e49360ee9ad6374e2d832eb9d5663dc4c20edd1356683b2b727ea9fe"
+      }
+    },
+    {
+      "id": "dmrp09-012",
+      "name": "音奏 ハープララ",
+      "canonicalId": "dmrp09-012",
+      "printId": "dmrp09-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-012",
+      "faces": [
+        {
+          "name": "音奏 ハープララ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはタップしてバトルゾーンに出る。\nバトルゾーンにある自分の他のクリーチャーが２体以下なら、このクリーチャーはアンタップしない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g295EnterTapped": true,
+        "g1561UntapRequires": {
+          "g370BattleCount": {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-012.jpg",
+      "imageSha256": "5ae542e71002456dd83988ae2077f37636f9c982b7cb02adcdf3cd255bdfcee5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp09-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-012",
+          "dmex05-027",
+          "dmsd10-011"
+        ],
+        "allSearchIds": [
+          "dmrp12-002",
+          "dmex05-022",
+          "dmrp09-002",
+          "dmrp11-002",
+          "dmex08-001",
+          "dmrp12-036",
+          "dmrp11-036",
+          "dmex05-065",
+          "dmsd10-018",
+          "dmrp09-067",
+          "dmrp11-034",
+          "dmrp12-035",
+          "dmsd10-014",
+          "dmrp10-037",
+          "dmex05-043",
+          "dmrp09-034",
+          "dmrp11-033",
+          "dmex05-042",
+          "dmrp09-033",
+          "dmrp11-067",
+          "dmrp12-067",
+          "dmrp11-014",
+          "dmsd10-006",
+          "dmrp10-036",
+          "dmex05-027",
+          "dmsd10-011",
+          "dmrp09-012",
+          "dm26ex4-CHO029",
+          "dmex05-021",
+          "dmrp09-001",
+          "dmrp12-016",
+          "dmrp10-015",
+          "promoy18-063",
+          "promoy18-066",
+          "dm23ex2-Cho027",
+          "dmex05-044",
+          "dmex19-041",
+          "dmrp09-035",
+          "dmex05-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "3b99fddc4aae55f033b757e00d8fc81d2a1db4f278108bb25d8a94d939f7e62b",
+        "facesMatched": true,
+        "imageSha256": "5ae542e71002456dd83988ae2077f37636f9c982b7cb02adcdf3cd255bdfcee5"
+      }
+    },
+    {
+      "id": "dmsd08-006",
+      "name": "ガチャパルト初号機",
+      "canonicalId": "dmsd08-006",
+      "printId": "dmsd08-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-006",
+      "faces": [
+        {
+          "name": "ガチャパルト初号機",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトル中、バトルゾーンにある自分のGRクリーチャー１体につき、このクリーチャーのパワーを+3000する。\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g860BattleCountPower": {
+          "zone": "battle",
+          "filter": {
+            "g1428Gr": true
+          },
+          "amount": 3000
+        },
+        "g189BattleWin": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd08-006.jpg",
+      "imageSha256": "6230801fe2adc85868071253b18016ba14431bf272a93d2336716660e3e7555f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd08-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd08-006",
+          "promoy18-007"
+        ],
+        "allSearchIds": [
+          "promoy18-007",
+          "dmsd08-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "ef73c7031c2ac7a0896a2185d979ef4a27a7f1f5d9055bb4cb9f22bc5775b81d",
+        "facesMatched": true,
+        "imageSha256": "6230801fe2adc85868071253b18016ba14431bf272a93d2336716660e3e7555f"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex05-027",
+      "name": "音奏 ハープララ",
+      "canonicalId": "dmrp09-012",
+      "printId": "dmex05-027",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-027",
+      "faces": [
+        {
+          "name": "音奏 ハープララ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはタップしてバトルゾーンに出る。\nバトルゾーンにある自分の他のクリーチャーが２体以下なら、このクリーチャーはアンタップしない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g295EnterTapped": true,
+        "g1561UntapRequires": {
+          "g370BattleCount": {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-027.jpg",
+      "imageSha256": "a62b356c93faac8bf2577e87a2f3914a65c470944b6d5b830f794cdd6fe1334e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex05-027-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-012",
+          "dmex05-027",
+          "dmsd10-011"
+        ],
+        "allSearchIds": [
+          "dmrp12-002",
+          "dmex05-022",
+          "dmrp09-002",
+          "dmrp11-002",
+          "dmex08-001",
+          "dmrp12-036",
+          "dmrp11-036",
+          "dmex05-065",
+          "dmsd10-018",
+          "dmrp09-067",
+          "dmrp11-034",
+          "dmrp12-035",
+          "dmsd10-014",
+          "dmrp10-037",
+          "dmex05-043",
+          "dmrp09-034",
+          "dmrp11-033",
+          "dmex05-042",
+          "dmrp09-033",
+          "dmrp11-067",
+          "dmrp12-067",
+          "dmrp11-014",
+          "dmsd10-006",
+          "dmrp10-036",
+          "dmex05-027",
+          "dmsd10-011",
+          "dmrp09-012",
+          "dm26ex4-CHO029",
+          "dmex05-021",
+          "dmrp09-001",
+          "dmrp12-016",
+          "dmrp10-015",
+          "promoy18-063",
+          "promoy18-066",
+          "dm23ex2-Cho027",
+          "dmex05-044",
+          "dmex19-041",
+          "dmrp09-035",
+          "dmex05-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "58fa1031c21653c7fa05e0a1a9fdaaa9bcd07a606d412619ff206d843312f403",
+        "facesMatched": true,
+        "imageSha256": "a62b356c93faac8bf2577e87a2f3914a65c470944b6d5b830f794cdd6fe1334e"
+      }
+    },
+    {
+      "id": "dmsd10-011",
+      "name": "音奏 ハープララ",
+      "canonicalId": "dmrp09-012",
+      "printId": "dmsd10-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd10-011",
+      "faces": [
+        {
+          "name": "音奏 ハープララ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはタップしてバトルゾーンに出る。\nバトルゾーンにある自分の他のクリーチャーが２体以下なら、このクリーチャーはアンタップしない。\nこのクリーチャーがバトルゾーンに出た時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g295EnterTapped": true,
+        "g1561UntapRequires": {
+          "g370BattleCount": {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd10-011.jpg",
+      "imageSha256": "ce08b52a805f5dea04b6301ce9601c6226e38d5e0d90190920a95728cc1454f2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd10-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-012",
+          "dmex05-027",
+          "dmsd10-011"
+        ],
+        "allSearchIds": [
+          "dmrp12-002",
+          "dmex05-022",
+          "dmrp09-002",
+          "dmrp11-002",
+          "dmex08-001",
+          "dmrp12-036",
+          "dmrp11-036",
+          "dmex05-065",
+          "dmsd10-018",
+          "dmrp09-067",
+          "dmrp11-034",
+          "dmrp12-035",
+          "dmsd10-014",
+          "dmrp10-037",
+          "dmex05-043",
+          "dmrp09-034",
+          "dmrp11-033",
+          "dmex05-042",
+          "dmrp09-033",
+          "dmrp11-067",
+          "dmrp12-067",
+          "dmrp11-014",
+          "dmsd10-006",
+          "dmrp10-036",
+          "dmex05-027",
+          "dmsd10-011",
+          "dmrp09-012",
+          "dm26ex4-CHO029",
+          "dmex05-021",
+          "dmrp09-001",
+          "dmrp12-016",
+          "dmrp10-015",
+          "promoy18-063",
+          "promoy18-066",
+          "dm23ex2-Cho027",
+          "dmex05-044",
+          "dmex19-041",
+          "dmrp09-035",
+          "dmex05-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "7814dd502f762e97a24992dd599042e83fb3b84bb23b6f9d3874072d975c055d",
+        "facesMatched": true,
+        "imageSha256": "ce08b52a805f5dea04b6301ce9601c6226e38d5e0d90190920a95728cc1454f2"
+      }
+    },
+    {
+      "id": "promoy18-007",
+      "name": "ガチャパルト初号機",
+      "canonicalId": "dmsd08-006",
+      "printId": "promoy18-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-007",
+      "faces": [
+        {
+          "name": "ガチャパルト初号機",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトル中、バトルゾーンにある自分のGRクリーチャー１体につき、このクリーチャーのパワーを+3000する。\nこのクリーチャーがバトルに勝った時、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g860BattleCountPower": {
+          "zone": "battle",
+          "filter": {
+            "g1428Gr": true
+          },
+          "amount": 3000
+        },
+        "g189BattleWin": [
+          {
+            "op": "AuraGr1353"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-007.jpg",
+      "imageSha256": "21e2a35182b2138f2f8e74b526d6fd02389ed8a9517dc02550fa7c412b379b98",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy18-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "manaImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-007.jpg",
+        "sha256": "21e2a35182b2138f2f8e74b526d6fd02389ed8a9517dc02550fa7c412b379b98",
+        "htmlManaValue": 0,
+        "printedManaValue": 1,
+        "reviewedAt": "2026-11-27T10:14:11.094Z",
+        "reason": "Full official promotional image visibly prints mana 1, matching the original card image. The old promotional HTML omits its mana value; keep raw HTML metadata and verify the exact official image hash."
+      },
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd08-006",
+          "promoy18-007"
+        ],
+        "allSearchIds": [
+          "promoy18-007",
+          "dmsd08-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "manaVerification": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-007.jpg",
+        "sha256": "21e2a35182b2138f2f8e74b526d6fd02389ed8a9517dc02550fa7c412b379b98",
+        "htmlManaValue": 0,
+        "printedManaValue": 1,
+        "reviewedAt": "2026-11-27T10:14:11.094Z",
+        "reason": "Full official promotional image visibly prints mana 1, matching the original card image. The old promotional HTML omits its mana value; keep raw HTML metadata and verify the exact official image hash.",
+        "checkedAt": "2026-11-27T10:14:11.094Z"
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T10:14:11.094Z",
+        "sha256": "3556a7e0e419137458f8f2753808d3990b65d666f785c3513397aacfe0a9068c",
+        "facesMatched": true,
+        "imageSha256": "21e2a35182b2138f2f8e74b526d6fd02389ed8a9517dc02550fa7c412b379b98"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32916/",
+      "sha256": "b149688930bb0a00c71618bee5f039403dd419ca561d87fb95ebe259a6fb5a46",
+      "checkedAt": "2026-11-27T10:14:11.094Z",
+      "reproduced": true,
+      "tests": "tests/standard1783-effects.test.mjs",
+      "reproduction": "Actual Phoenix and Wasshoi Mantaro with Yattareman under it reduce a real six-cost Demon Hand payment to four, not three; the buried Joker does not count. Exact recast is then declined.",
+      "result": "Actual Phoenix and Wasshoi Mantaro with Yattareman under it reduce a real six-cost Demon Hand payment to four, not three; the buried Joker does not count. Exact recast is then declined."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T10:14:11.094Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd11-c01": 4,
+      "dmrp09-012": 4,
+      "dmsd08-006": 4,
+      "dmex05-027": 4,
+      "dmsd10-011": 4,
+      "promoy18-007": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Preparation stopped before a manifest because promoy18-007 HTML omits mana (0) while the full official image visibly prints 1. The verifier now validates its existing manaImageEvidence with the fresh official image SHA256, without altering raw faces. A dependent verifier attempt had no manifest; its log path was reused by the successful verified run. First dedicated run passed 17/18 and exposed g860 power counting not honoring g1428Gr; added that explicit GR filter, then assert exact real battle values (7000 with none, 10000 with one) on both attack/defense and a true loss. All 18 focused cases pass."
+  }
+}

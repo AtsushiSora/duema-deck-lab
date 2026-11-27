@@ -1059,6 +1059,7 @@ export function createSixPhotoRules(api){
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
    if(f.g1085Psychic&&!api.zoneCard(s,p,y,t.zone).psychic)return false;
+   if(f.g1428Gr!==undefined&&!!api.zoneCard(s,p,y,t.zone).gr!==f.g1428Gr)return false;
    if(t.g1011CountColor&&!(t.zone==='battle'?[api.zoneCard(s,p,y,t.zone)]:faces(api.zoneCard(s,p,y,t.zone))).some(face=>colors(face).includes(t.g1011CountColor)))return false;
    if(g876BattleName&&!battleNames676(s,y).includes(exactName(g876BattleName)))return false;
    if(g1116NameIncludes){
@@ -9936,6 +9937,7 @@ export function createSixPhotoRules(api){
   if(c.type!=='spell')return 0;
   return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
    const reduction=effective(x,s).g467SpellReduction;
+   if(reduction?.g1783BattleCards)return n+s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&matches(s,p,y,reduction.g1783BattleCards)).length*reduction.amount;
    return n+(typeof reduction==='number'?reduction:reduction&&colors(c).includes(reduction.color)?reduction.amount:0);
   },spellReduction485(s,p,c));
  },
