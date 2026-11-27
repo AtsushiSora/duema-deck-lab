@@ -18096,9 +18096,9 @@
       {
         "name": "種デスティニー",
         "typeText": "呪文",
-        "civilizationText": "自然",
+        "civilizationText": "火",
         "civilizations": [
-          "自然"
+          "火"
         ],
         "cost": 1,
         "costText": "1",
@@ -18750,6 +18750,290 @@
           }
         ]
       }
+    }
+  },
+  "dmex17-124": {
+    "phase": 1836,
+    "faces": [
+      {
+        "name": "熱血姫様プリン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）",
+        "race": "ハンター/エイリアン",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "狩人秘伝ハンター・ファイア",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "アタック・チャンス：ハンター（自分のハンターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分のハンター・クリーチャー１体と、相手のクリーチャーを１体選び、その２体をバトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "smashBurst": true,
+      "spellFace": {
+        "name": "狩人秘伝ハンター・ファイア",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "race": "",
+        "g417Chance": {
+          "race": "ハンター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false,
+            "g419FightFilter": {
+              "race": "ハンター"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmrp08-017": {
+    "phase": 1836,
+    "faces": [
+      {
+        "name": "満開軍艦 グラービエ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このターン、自分が呪文を２枚以上唱えていなければ、このクリーチャーは攻撃できない。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ムートピア",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "過激カキアゲイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "カードを４枚引く。その後、自分の手札を２枚捨てる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g1086SpellsMin": 2
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "smashBurst": true,
+      "breaker": 2,
+      "spellFace": {
+        "name": "過激カキアゲイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 4
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      }
+    },
+    "rawOfficialDetail": {
+      "status": "partial",
+      "faces": [
+        {
+          "name": "満開軍艦 グラービエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このターン、自分が呪文を２枚以上唱えていなければ、このクリーチャーは攻撃できない。\nスマッシュ・バースト（このクリーチャーが攻撃する時、このカードの呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "過激カキアゲイン",
+          "typeText": "呪文",
+          "civilizationText": "",
+          "civilizations": [],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを４枚引く。その後、自分の手札を２枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": [
+            "civilization"
+          ]
+        }
+      ]
+    },
+    "faceImageEvidence": {
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-017a.jpg",
+      "sha256": "d6da3020ad41bd16fb81f1766c229e6cbefccdad3d48887d4c49e91a3d4013c5",
+      "reviewedAt": "2026-11-27T20:39:10.795Z",
+      "reason": "Complete official image visually reviewed: spell civilization is 水. Only its HTML civilization field is blank; all original metadata and ability text retained.",
+      "faces": [
+        {
+          "index": 1,
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ]
+        }
+      ]
+    }
+  },
+  "dmex04-036": {
+    "phase": 1836,
+    "faces": [
+      {
+        "name": "龍聖霊ウルフェウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にエンジェル・コマンドまたはドラゴンがあれば、「S・トリガー」付きの呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+        "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "ヘブンの衝撃",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\n相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドゾーンに新しいシールドとして置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "champion",
+      "g89Effect": "Ulfeus",
+      "spellFace": {
+        "name": "ヘブンの衝撃",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "toOwnerShields": true,
+            "filter": {
+              "nonEvolution": true
+            }
+          }
+        ]
+      }
+    },
+    "rawOfficialDetail": {
+      "status": "partial",
+      "faces": [
+        {
+          "name": "龍聖霊ウルフェウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にエンジェル・コマンドまたはドラゴンがあれば、「S・トリガー」付きの呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+          "race": "アポロニア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "ヘブンの衝撃",
+          "typeText": "呪文",
+          "civilizationText": "",
+          "civilizations": [],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドゾーンに新しいシールドとして置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": [
+            "civilization"
+          ]
+        }
+      ]
+    },
+    "faceImageEvidence": {
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-036a.jpg",
+      "sha256": "21117ed25f6a0e0545bade3289423909e7e17537a9df7dbfa3ab288b1f2727a7",
+      "reviewedAt": "2026-11-27T20:39:10.795Z",
+      "reason": "Complete official image visually reviewed: spell civilization is 光. Only its HTML civilization field is blank; all original metadata and ability text retained.",
+      "faces": [
+        {
+          "index": 1,
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ]
+        }
+      ]
     }
   }
 }

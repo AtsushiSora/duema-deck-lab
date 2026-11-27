@@ -1,0 +1,256 @@
+{
+  "phase": 1836,
+  "checkedAt": "2026-11-27T20:48:46.956Z",
+  "baseline": "d652ff7bb20cb102283c50c40508f2e284d3c129",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9718,
+  "currentNames": 9721,
+  "remainingNames": 279,
+  "added": [
+    {
+      "id": "dmex17-124",
+      "name": "熱血姫様プリン / 狩人秘伝ハンター・ファイア"
+    },
+    {
+      "id": "dmrp08-017",
+      "name": "満開軍艦 グラービエ/過激カキアゲイン"
+    },
+    {
+      "id": "dmex04-036",
+      "name": "龍聖霊ウルフェウス/ヘブンの衝撃"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1836,
+    "baseline": "d652ff7bb20cb102283c50c40508f2e284d3c129",
+    "originalDefinitionsUnchanged": 9718,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9721,
+    "uniqueIds": 9721,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11853,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9718,
+    "existingImageReferenceRowsUnchanged": 12179,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1836": {
+      "name": "official-1836",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1836.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.184,
+      "log": "tmp/duema-target-10000/official-1836.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1836-final": {
+      "name": "focused-1836-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1836-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 3.111,
+      "log": "tmp/duema-target-10000/focused-1836-final.log",
+      "passed": 78,
+      "logSha256": "b499653e1a55331297bee5bbf677bd52e7ad4343adaa5e7a874b18778099ae9e"
+    },
+    "related-1836": {
+      "name": "related-1836",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:strict compiler and batch discovery recognize complete cards, not unknown tails|dependency discovery admits a complete mutual pair and rejects an unimplemented external dependency transitively|[^\\n]* free attack-time spell, full effect and JSON continuation |[^\\n]* optional decline and wrong attack condition |[^\\n]* ordinary main cast does not require its Attack Chance condition |Chap searches and publicly identifies Wing, then that same physical spell may untap the attacker |Chap can decline its search and still shuffles and releases the actual deck|Wing counts previously tapped enemies, and may untap a different own Chap but no enemy copy|Wing mandatory draws can lose before its untap; a lone Chap still untaps when no enemy creatures exist|name-based chance reads the creature face, not a twinpact spell name|Gunlance may boost an opponent but its AI prefers a friendly fighter; later battle and draw still happen|Hunter Fire offers only friendly Hunters and cannot substitute another creature|Dragon Bone excludes evolution and other races and uses normal grave entry restrictions|Final Revolution accepts a multicolor cost-six creature, not cost-seven, mono, seed or mono-creature twinpacts|Final Revolution follows evolution-base choice and the same physical mana card enters with its ability|Yorokobi can choose zero, one or two distinct targets and holds already tapped enemies through the next untap|Dominion Spike Guard Strike stops a later attacker without casting or tapping it|free chance obeys spell prohibitions and does not read enemy hidden identities during AI evaluation|Royzer draws two, blocks and cannot be chosen by an enemy spell|Royzer recasts the Coral face of the same physical twinpact, never its Brain face \\(QA40924\\)|Royzer sees S-Trigger hand casts, but skips a spell that returns to hand \\(QA31709\\)|Kaitei normally draws and privately orders two hand cards, including on a first shield break|Kaitei Plus triggers independently and offers either spell face from one physical card \\(QA43786\\)|Kaitei Plus lets the player resolve its draw first and directly deploy a creature face \\(QA43787\\)|Kaitei may decline a reveal, and casting the last card loses before its ability \\(QA43078\\)|Homa draws before offering only light spells up to cost five and plays for no extra mana|Petrova offers existing race names except Mecha Del Sol and requires one selection|Petrova continuously boosts the declared race on both sides and applies to later arrivals|two Petrova sources stack, while ignoring one source removes only its contribution|Petrova bonus ceases when its source leaves and replay requires a new declaration|Petrova cannot be selected by an enemy spell but can be chosen by its owner|Petrova may still be attacked in battle and ignored Petrova can be selected|Petrova declaration survives JSON, and an ignored or sealed recipient gets only the appropriate external bonus|Mariel prevents both players attacking with power at least 3000, including herself after a boost|Mariel checks pre-attack power and does not count a power-attacker bonus before declaration|Adel prevents both players attacking with strictly lower current power, but permits equal power|Adel checks power before attack even if power-attacker would exceed her power|attack locks vanish when Mariel or Adel is ignored, sealed or absent|Adel Shield Trigger does not cancel the already declared attack and stops subsequent small attackers|Petrova boosts change Mariel and Adel lock thresholds immediately|Amore blocks an attack, dies in battle and prevents later attacks until turn end|Amore death prevents both sides and also creatures arriving afterward; GG does not suppress death abilities|Amore does not trigger on bounce and an ignored death does not create an attack restriction|Amore death uses pre-event abilities when Genmu and Amore are destroyed together|Ulfeus condition counts grave Angels and Dragons, including Twinpacts, but not unrelated creatures or spells|Ulfeus condition still works with Apul since no grave card needs to move|Ulfeus casts the selected intrinsic Shield Trigger spell for free, including a Twinpact spell face|Ulfeus optional cast resumes through JSON and observes spell-casting restrictions|Julius can recover one grave spell, including a Twinpact physical card, without summoning or casting it|Julius may instead remove an enemy Cross Gear, with no creature destruction trigger|Julius may skip and cannot recover through Apul or select sealed Gear|Julius target choices survive JSON and GG suppresses his attack trigger|GG suppresses entry abilities but does not suppress Mariel and Adel continuous locks)",
+        "tests/standard419-effects.test.mjs",
+        "tests/standard1251-effects.test.mjs",
+        "tests/utility102-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 6.984,
+      "log": "tmp/duema-target-10000/related-1836.log",
+      "passed": 93,
+      "logSha256": "4411b06cb4cb7777ac7ce6e56ab63774216813f10cb64b9334ca3283237e3a4f"
+    },
+    "check-1836": {
+      "name": "check-1836",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.221,
+      "log": "tmp/duema-target-10000/check-1836.log",
+      "passed": 0,
+      "logSha256": "872e460079248a64f2284aacb1c8807af3e439b114de4b627b9ef21acd435328"
+    },
+    "audit-1836": {
+      "name": "audit-1836",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.682,
+      "log": "tmp/duema-target-10000/audit-1836.log",
+      "passed": 0,
+      "logSha256": "c2026857380060b8cc93d46d1f601a0aef3af4db6ff1900339a15bcf21b2d9e6"
+    },
+    "invariants-1836": {
+      "name": "invariants-1836",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/invariants.mjs",
+        "1836"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.763,
+      "log": "tmp/duema-target-10000/invariants-1836.log",
+      "passed": 0,
+      "logSha256": "79958f5a4e29c72bcd0f12920e9ab088a2703e490287fcb37e6005c72432d10a"
+    },
+    "related-online-1836": {
+      "name": "related-online-1836",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.866,
+      "log": "tmp/duema-target-10000/related-online-1836.log",
+      "passed": 5,
+      "logSha256": "a6ac6969741860fa6f2428a1ee688e39f0c87b5fc49597645dd3dc12e74e43e9"
+    },
+    "correction-official-1836": {
+      "name": "correction-official-1836",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1834.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.342,
+      "log": "tmp/duema-target-10000/correction-official-1836.log",
+      "passed": 0,
+      "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+    },
+    "correction-pin-1836": {
+      "name": "correction-pin-1836",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^phase1834 full official",
+        "tests/standard1834-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.671,
+      "log": "tmp/duema-target-10000/correction-pin-1836.log",
+      "passed": 1,
+      "logSha256": "52dc936ee1654c9658148d9309b21c6dec9ab7f3a749cedd97043c44a4eb3cbf"
+    },
+    "related-1836-image": {
+      "name": "related-1836-image",
+      "command": [
+        "node",
+        "--test",
+        "tests/official-face-image-evidence.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.148,
+      "log": "tmp/duema-target-10000/related-1836-image.log",
+      "passed": 19,
+      "logSha256": "89331f6996c208a8b6149a977f563d7d990ba89e8a437fe01de883f69117de62"
+    },
+    "related-1836-pin": {
+      "name": "related-1836-pin",
+      "command": [
+        "node",
+        "--test",
+        "tests/target10000-official-faces.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.149,
+      "log": "tmp/duema-target-10000/related-1836-pin.log",
+      "passed": 16,
+      "logSha256": "63a53e4e977d5fcce95132286be3096089a0ac9e2b81559ba1e18515d9e7cb93"
+    }
+  },
+  "totalTestsPassed": 212,
+  "manifest": "tools/support-phase-1836.json",
+  "supported": 9721,
+  "pending": 2128,
+  "engineVersion": "0.602.360",
+  "held": [],
+  "nextCandidates": [
+    {
+      "id": "dmrp05-s09",
+      "name": "ハイパー・ギガタック/ギガタック・ハイパー・トラップ",
+      "reason": "Next complete twinpact research: native mana summon and own creature recovery plus all physical battle cards to mana; battle-win discard/draw plus spell-to-own-creature deployment; civilization-specific cost increase/reduction plus opposing-creature shield removal. All print images, full exact reprints, limits and linked rulings must be verified before adding."
+    },
+    {
+      "id": "promoy17-105",
+      "name": "侵略開始!! にゃんこ軍団/にゃんこ砲発射！",
+      "reason": "Next complete twinpact research: native mana summon and own creature recovery plus all physical battle cards to mana; battle-win discard/draw plus spell-to-own-creature deployment; civilization-specific cost increase/reduction plus opposing-creature shield removal. All print images, full exact reprints, limits and linked rulings must be verified before adding."
+    },
+    {
+      "id": "dmrp05-s02",
+      "name": "龍装の悟り 天命/ヘブン・デ・エンドレーサ",
+      "reason": "Next complete twinpact research: native mana summon and own creature recovery plus all physical battle cards to mana; battle-win discard/draw plus spell-to-own-creature deployment; civilization-specific cost increase/reduction plus opposing-creature shield removal. All print images, full exact reprints, limits and linked rulings must be verified before adding."
+    }
+  ],
+  "verificationScope": "Three complete twinpacts, three official full print images and complete exact-name searches1/1/5 verified; current regulations all limit4. Purin Fire5/5000 creature S-trigger and Smash Burst, mandatory own Hunter vs legal opposing creature fight, optional Hunter Attack Chance from hand at zero mana, wrong race and participant absence, own attacking body battle loss stopping attack. Grabiere Water4/7000,W2, own two-spell count with actual same-physical-card Gokuga Roizer recast, turn reset/opponent exclusion, sickness, ignored state; native Smash Burst Draw4 then Discard2, paid spell and encrypted selected hand discards, draw loss. Ulfeus Light7/6000,W2, own grave Angel Command OR Dragon including twinpact creature but no spell/unrelated card, no movement so Apuru allowed, entered self no longer in grave, intrinsic hand spell S-trigger only/optional decline/free selected twinpact face with actual opposing spell ban. Heaven Impact Light7 and true spell S-trigger, only opposing nonEvolution creature becomes one new facedown shield. Both seats, physical conservation, correct mono-civilization mana orientation, read-only hidden-information AI, encrypted online service. Raw legacy partial rows unchanged; only exact blank spell-civilization fields can be supplemented from official image evidence and must match implemented spell face. Prior phase1834 alias metadata corrected from Nature to Fire using fresh official and regression gates; original runtime unchanged. Focused78, related93, online5, strict image19 and pin16 plus correction1 pass; npm check, audit and original-data invariants pass. Full suite and all old pending preserved.",
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "incompleteVerification": [],
+  "resolvedAttempts": [
+    {
+      "name": "focused-1836",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1836-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 3.079,
+      "log": "tmp/duema-target-10000/focused-1836.log",
+      "reason": "Initial new test fixtures used the wrong native Gokuga recast operation spelling and treated Dark Reverse as a non-S-trigger spell. Corrected to g34_RecastHandSpell1245 and nonTrigger Energy Light. No effect-engine fix was needed. Failed raw run retained."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

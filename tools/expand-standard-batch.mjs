@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {scanStandardCandidates} from './scan-standard-candidates.mjs';
 import {standardCardSpec} from './standard-card-spec.mjs';
 import {championDefinition} from './champion-definition.mjs';
+import {target10000OfficialFaces} from './target10000-card-spec.mjs';
 const read=f=>JSON.parse(fs.readFileSync(f)),write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n');
 const phase=Number(process.argv.find(a=>a.startsWith('--phase='))?.slice(8));
 assert.ok(Number.isSafeInteger(phase)&&phase>=396,'Specify --phase=396 or a later phase');
@@ -22,7 +23,7 @@ if(process.argv.includes('--prepare')){
  const seen=new Set();
  for(const row of m.cards){
   assert.ok(!seen.has(row.id));seen.add(row.id);
-  const detail=details.cards.find(c=>c.id===row.id);assert.deepEqual(row.faces,detail.faces);
+  const detail=details.cards.find(c=>c.id===row.id);assert.deepEqual(row.faces,target10000OfficialFaces(detail,phase));
   assert.deepEqual(row.spec,standardCardSpec(detail,{phase}));
   assert.ok(row.verification?.facesMatched);assert.match(row.verification.sha256,/^[a-f0-9]{64}$/);
   if(row.currentPrint?.useRulesText){

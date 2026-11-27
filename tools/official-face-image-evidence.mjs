@@ -33,6 +33,10 @@ export async function verifiedOfficialFaces(html,row,fetchImage=async source=>{c
   if(hasCivil){assert.equal(face.civilizationText,'');assert.deepEqual(face.civilizations,[]);assert.ok(face.missingFields.includes('civilization'));
    assert.ok(entry.civilizations.length>=1&&entry.civilizations.length<=5&&entry.civilizations.every(c=>['光','水','闇','火','自然'].includes(c)));assert.equal(new Set(entry.civilizations).size,entry.civilizations.length);assert.equal(entry.civilizationText,entry.civilizations.join('/'));
    face.civilizationText=entry.civilizationText;face.civilizations=[...entry.civilizations];face.missingFields=face.missingFields.filter(x=>x!=='civilization');
+   if(entry.index===1&&row.spec?.spellFace){
+    const spell=row.spec.spellFace;
+    assert.deepEqual(spell.civilizations??String(spell.civ||'').split('/'),entry.civilizations,'画像で補完する文明と呪文の実装が一致しません');
+   }
   }
  }
 
