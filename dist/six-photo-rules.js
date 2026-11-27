@@ -4817,10 +4817,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_HandUnder1131':{
-  const host=sourceHost474(s,t);
-  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&own.hand.length)
-   choice(s,t,'このクリーチャーの下に表向きで置く手札を1枚選ぶ（任意）',[
-    ...own.hand.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),skip()
+  const host=sourceHost474(s,t),origin=t.origin??'hand';
+  const rows=api.canMoveZone(s,t.p,origin)?own[origin].filter(y=>matches(s,t.p,y,t.filter)):[];
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&rows.length)
+   choice(s,t,'このクリーチャーの下に表向きで置く'+(origin==='mana'?'マナ':'手札')+'を1枚選ぶ（任意）',[
+    ...rows.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),skip()
    ]);
   break;
  }
@@ -8089,9 +8090,11 @@ export function createSixPhotoRules(api){
   }
  }break;
  case'g34_HandUnder1131':if(v){
-  const host=sourceHost474(s,t);
-  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
-  const y=remove(own.hand,v);
+  const host=sourceHost474(s,t),origin=t.origin??'hand';
+  if(!host||host.x.sealed||!api.isCreature(s,host.x)||!api.canMoveZone(s,t.p,origin))break;
+  const candidate=own[origin].find(y=>y.uid===v);
+  if(!candidate||!matches(s,t.p,candidate,t.filter))break;
+  const y=remove(own[origin],v);
   if(y){
    clear(y,'under');
    (host.x.under??=[]).push(y);

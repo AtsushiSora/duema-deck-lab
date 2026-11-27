@@ -8511,5 +8511,181 @@
         }
       ]
     }
+  },
+  "dmr03-001": {
+    "phase": 1800,
+    "faces": [
+      {
+        "name": "超電磁コスモ・セブ Λ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分の火または自然のクリーチャー１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、カードを３枚引く。\nW・ブレイカー\n自分のターンのはじめに、進化ではないクリーチャーを１体、自分の手札からこのクリーチャーの下に置いてもよい。",
+        "race": "サイバー・コマンド/エイリアン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "HandUnder1131",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ]
+    }
+  },
+  "dmx24-006": {
+    "phase": 1800,
+    "faces": [
+      {
+        "name": "超電磁コスモ・セブ Λ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化：自分の火または自然のクリーチャー１体の上に置く。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、墓地に置いてもよい。そうしたら、カードを３枚引く。\n自分のターンのはじめに、進化ではないクリーチャーを１体、自分の手札からこのクリーチャーの下に置いてもよい。",
+        "race": "サイバー・コマンド/エイリアン",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "HandUnder1131",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ]
+    }
+  },
+  "dm34-018": {
+    "phase": 1800,
+    "faces": [
+      {
+        "name": "大作家ゴー・ダイゴ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化 - 自分のドリームメイトまたはオリジン１体の上に置く。\n自分のターンの終わりに、クリーチャーを１体、自分のマナゾーンからこのクリーチャーの下に置いてもよい。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+12000され、「T・ブレイカー」を得る。",
+        "race": "ドリームメイト/オリジン",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "race": "ドリームメイト"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g174End": [
+        {
+          "op": "HandUnder1131",
+          "origin": "mana",
+          "filter": {
+            "creature": true,
+            "faceUp": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 3,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "power": 12000,
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "grant": {
+                "breaker": 3
+              },
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

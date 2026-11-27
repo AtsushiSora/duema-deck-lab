@@ -1,0 +1,181 @@
+{
+  "phase": 1800,
+  "checkedAt": "2026-11-27T13:06:33.867Z",
+  "baseline": "84a675a515d82ab696a5cf7b06b44cdafc20503f",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9621,
+  "currentNames": 9623,
+  "remainingNames": 377,
+  "added": [
+    {
+      "id": "dmr03-001",
+      "name": "超電磁コスモ・セブ Λ"
+    },
+    {
+      "id": "dm34-018",
+      "name": "大作家ゴー・ダイゴ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1800,
+    "baseline": "84a675a515d82ab696a5cf7b06b44cdafc20503f",
+    "originalDefinitionsUnchanged": 9621,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9623,
+    "uniqueIds": 9623,
+    "added": 2,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11847,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9621,
+    "existingImageReferenceRowsUnchanged": 11984,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1800": {
+      "name": "official-1800",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1800.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.62,
+      "log": "tmp/duema-target-10000/official-1800.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1800-final": {
+      "name": "focused-1800-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1800-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.76,
+      "log": "tmp/duema-target-10000/focused-1800-final.log",
+      "passed": 33,
+      "logSha256": "0985d708dfbe8c7c58be17577cdc3ce474b7e1b8f2fb10ff586b55a9d982dc98"
+    },
+    "related-1800": {
+      "name": "related-1800",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1131-effects.test.mjs",
+        "tests/standard1132-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.791,
+      "log": "tmp/duema-target-10000/related-1800.log",
+      "passed": 50,
+      "logSha256": "272d755b04f4599d723bd9b0bba7bb8e9583103d7621569ce25e70a2a55a26b9"
+    },
+    "check-1800": {
+      "name": "check-1800",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 21.171,
+      "log": "tmp/duema-target-10000/check-1800.log",
+      "passed": 0,
+      "logSha256": "3c21b2a17c2642c09ee49eadb141cb740e4d38edfb33c4060dae5f71eea7fdc5"
+    },
+    "audit-1800": {
+      "name": "audit-1800",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.107,
+      "log": "tmp/duema-target-10000/audit-1800.log",
+      "passed": 0,
+      "logSha256": "8f54c6d3f73b9ceb81521ccecd10b249e6d755464483fd248cdfddfae503f062"
+    },
+    "invariants-1800": {
+      "name": "invariants-1800",
+      "command": [
+        "node",
+        "tools/verify-target10000-invariants.mjs",
+        "1800"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.733,
+      "log": "tmp/duema-target-10000/invariants-1800.log",
+      "passed": 0,
+      "logSha256": "52dc88c27f2e81def0229aa523b4174adab1996cb20a7279ecc1c1c856f51cf0"
+    },
+    "related-online-1800": {
+      "name": "related-online-1800",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.696,
+      "log": "tmp/duema-target-10000/related-online-1800.log",
+      "passed": 5,
+      "logSha256": "63508b0cce6459d65bd46b140940f2809471896b641bda073140abb8cacf9b0b"
+    }
+  },
+  "totalTestsPassed": 88,
+  "manifest": "tools/support-phase-1800.json",
+  "supported": 9623,
+  "pending": 2220,
+  "engineVersion": "0.602.324",
+  "held": [
+    {
+      "id": "dmx14-029",
+      "name": "ダークナイト クリストファー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-029",
+      "reason": "Optional Outrage creature under-stacking from a private top-three inspection followed by all remaining cards to hand is not represented by native Look destinations. QA36812 requires allowing all three to hand; defer rather than a partial deployment/recovery approximation.",
+      "research": "tmp/duema-target-10000/research-dmr03-001.json",
+      "implemented": false
+    }
+  ],
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "focused-1800",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1800-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.837,
+      "log": "tmp/duema-target-10000/focused-1800.log",
+      "reason": "Initial two sealed-source tests incorrectly expected printed creature power. A physically sealed card is ignored and native power is zero, so corrected these test expectations; the exact elected-payment and no-effect assertions remain. All 33 focused tests pass. Existing Arak Kaibades phase943 ID was excluded before any card registration or spec pinning."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

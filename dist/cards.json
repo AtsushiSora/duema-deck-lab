@@ -308660,15 +308660,131 @@
       ],
       "supportBatch": "phase-1799",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-001",
+      "name": "超電磁コスモ・セブ Λ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "サイバー・コマンド/エイリアン",
+      "text": "進化-自分の火または自然のクリーチャー１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、カードを３枚引く。\nW・ブレイカー\n自分のターンのはじめに、進化ではないクリーチャーを１体、自分の手札からこのクリーチャーの下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-001",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            }
+          ]
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "HandUnder1131",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1800",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-018",
+      "name": "大作家ゴー・ダイゴ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドリームメイト/オリジン",
+      "text": "進化 - 自分のドリームメイトまたはオリジン１体の上に置く。\n自分のターンの終わりに、クリーチャーを１体、自分のマナゾーンからこのクリーチャーの下に置いてもよい。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+12000され、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-018",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ドリームメイト"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g174End": [
+        {
+          "op": "HandUnder1131",
+          "origin": "mana",
+          "filter": {
+            "creature": true,
+            "faceUp": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 3,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "power": 12000,
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "grant": {
+                "breaker": 3
+              },
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1800",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1799,
-    "checkedAt": "2026-11-27T12:56:55.504Z",
-    "baseCount": 9618,
-    "newEffectCards": 3,
+    "phase": 1800,
+    "checkedAt": "2026-11-27T13:02:49.678Z",
+    "baseCount": 9621,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9621,
+    "totalCount": 9623,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -338127,6 +338243,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/46961/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35903/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35904/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1799,
+        "checkedAt": "2026-11-27T12:56:55.504Z",
+        "baseCount": 9618,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9621,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -1,0 +1,309 @@
+{
+  "phase": 1800,
+  "checkedAt": "2026-11-27T13:02:49.678Z",
+  "baseline": "84a675a515d82ab696a5cf7b06b44cdafc20503f",
+  "baseCount": 9621,
+  "target": 10000,
+  "description": "Two complete meteor evolutions share the native optional under-stacking operation, extended with an explicit zone and filter. Lambda stacks a non-evolution hand creature only at own start and pays one source for mandatory draw three. Go Daigo optionally stacks a face-up mana creature at own end and pays exactly three sources for temporary ally +12000/triple breaker. Existing Arak Kaibades is preserved and not counted again; Christopher held until full private-look/under-stack completion is available.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr03-001",
+      "name": "超電磁コスモ・セブ Λ",
+      "canonicalId": "dmr03-001",
+      "printId": "dmr03-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-001",
+      "faces": [
+        {
+          "name": "超電磁コスモ・セブ Λ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火または自然のクリーチャー１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、カードを３枚引く。\nW・ブレイカー\n自分のターンのはじめに、進化ではないクリーチャーを１体、自分の手札からこのクリーチャーの下に置いてもよい。",
+          "race": "サイバー・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "HandUnder1131",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-001.jpg",
+      "imageSha256": "384b8d5abf83d204fd0a4563dd792b4b9c9832f5bb0a142b703f4860ebcd7acd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr03-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr03-001",
+          "dmx24-006"
+        ],
+        "allSearchIds": [
+          "dmrp11-010",
+          "dmrp20-022",
+          "dm23bd7-046",
+          "dmr03-001",
+          "dmx24-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:02:49.678Z",
+        "sha256": "1075f78ba8f745ba9c19632dfca0b2989585edcb901013778ad958202c4ea557",
+        "facesMatched": true,
+        "imageSha256": "384b8d5abf83d204fd0a4563dd792b4b9c9832f5bb0a142b703f4860ebcd7acd"
+      }
+    },
+    {
+      "id": "dm34-018",
+      "name": "大作家ゴー・ダイゴ",
+      "canonicalId": "dm34-018",
+      "printId": "dm34-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-018",
+      "faces": [
+        {
+          "name": "大作家ゴー・ダイゴ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化 - 自分のドリームメイトまたはオリジン１体の上に置く。\n自分のターンの終わりに、クリーチャーを１体、自分のマナゾーンからこのクリーチャーの下に置いてもよい。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+12000され、「T・ブレイカー」を得る。",
+          "race": "ドリームメイト/オリジン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ドリームメイト"
+            },
+            {
+              "race": "オリジン"
+            }
+          ]
+        },
+        "g174End": [
+          {
+            "op": "HandUnder1131",
+            "origin": "mana",
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "power": 12000,
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "grant": {
+                  "breaker": 3
+                },
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-018.jpg",
+      "imageSha256": "b4ca01de420b52f01e1f737b7b09a54dbf1dd08cdc7d1707ed83c0ddf3f62399",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-018"
+        ],
+        "allSearchIds": [
+          "dm34-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:02:49.678Z",
+        "sha256": "f610cac960e636d44bdc120cd7d26cddccfd4282fa0484b10482f1696ec10972",
+        "facesMatched": true,
+        "imageSha256": "b4ca01de420b52f01e1f737b7b09a54dbf1dd08cdc7d1707ed83c0ddf3f62399"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx24-006",
+      "name": "超電磁コスモ・セブ Λ",
+      "canonicalId": "dmr03-001",
+      "printId": "dmx24-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-006",
+      "faces": [
+        {
+          "name": "超電磁コスモ・セブ Λ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分の火または自然のクリーチャー１体の上に置く。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、墓地に置いてもよい。そうしたら、カードを３枚引く。\n自分のターンのはじめに、進化ではないクリーチャーを１体、自分の手札からこのクリーチャーの下に置いてもよい。",
+          "race": "サイバー・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "HandUnder1131",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-006.jpg",
+      "imageSha256": "11c80ab78be2a5882ebd2d5612ed53e61092c9842660dc32af1bb7f102478c6d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx24-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr03-001",
+          "dmx24-006"
+        ],
+        "allSearchIds": [
+          "dmrp11-010",
+          "dmrp20-022",
+          "dm23bd7-046",
+          "dmr03-001",
+          "dmx24-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:02:49.678Z",
+        "sha256": "f18450845706d59cec75646c11a31b6e4c7ed1e9f38bd190731a4684cfd48260",
+        "facesMatched": true,
+        "imageSha256": "11c80ab78be2a5882ebd2d5612ed53e61092c9842660dc32af1bb7f102478c6d"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dmx14-029",
+      "name": "ダークナイト クリストファー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-029",
+      "reason": "Optional Outrage creature under-stacking from a private top-three inspection followed by all remaining cards to hand is not represented by native Look destinations. QA36812 requires allowing all three to hand; defer rather than a partial deployment/recovery approximation.",
+      "research": "tmp/duema-target-10000/research-dmr03-001.json",
+      "implemented": false
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "existingCandidateExcluded": [
+    {
+      "id": "dm19-002",
+      "name": "霊騎アラク・カイ・バデス",
+      "reason": "Already registered under its original ID in phase943. Preserve the existing definition; never count the candidate a second time."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T13:02:49.678Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr03-001": 4,
+      "dm34-018": 4,
+      "dmx24-006": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial two sealed-source tests incorrectly expected printed creature power. A physically sealed card is ignored and native power is zero, so corrected these test expectations; the exact elected-payment and no-effect assertions remain. All 33 focused tests pass. Existing Arak Kaibades phase943 ID was excluded before any card registration or spec pinning.",
+    "scope": "Two new complete names instead of counting an existing registered name or partially implementing Christopher. Shared HandUnder1131 adds explicit origin/filter handling and revalidates both on resolution; existing no-filter hand attachment remains supported."
+  }
+}
