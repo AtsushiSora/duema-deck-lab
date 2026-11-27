@@ -1,0 +1,472 @@
+{
+  "phase": 1806,
+  "checkedAt": "2026-11-27T14:19:40.235Z",
+  "baseline": "cbf0c9f78e29df085c8a41a42c699457680b738c",
+  "baseCount": 9638,
+  "target": 10000,
+  "description": "Complete exact-cost Abyss evolution and element counts; Star evolution with separate evolution summon/seed use discounts; Snow Fairy evolution with optional fixed Nature1 alternative cost and two independent entry choices. Reuse existing alternative payment, native evolution, zone movement and cost machinery.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/41069/",
+    "https://dm.takaratomy.co.jp/rule/qa/41070/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-053",
+      "name": "オ:マルグンサ",
+      "canonicalId": "dm23ex2-053",
+      "printId": "dm23ex2-053",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-053",
+      "faces": [
+        {
+          "name": "オ:マルグンサ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\n進化：コスト３のアビス１体の上に置く。\n自分のアビスが３つ以上あれば、このクリーチャーに「T・ブレイカー」を与える。（「T・ブレイカー」を持つクリーチャーは、シールドを３つブレイクする）\nこのクリーチャーが出た時、自分のアビスが４つ以上あれば、相手のクリーチャーを１体選び、マナゾーンに置く。",
+          "race": "ヴェールアビス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "evolution": {
+          "all": [
+            {
+              "race": "アビス"
+            },
+            {
+              "g1806CurrentCost": 3
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "アビス"
+              },
+              "min": 3
+            }
+          },
+          "grants": {
+            "breaker": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "race": "アビス"
+                },
+                "min": 4
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-053.jpg",
+      "imageSha256": "4edc50995ba04217d232fbd0c6965edcc389e0a566778759b6afeb12a6898bcd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex2-053-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23ex2-053"
+        ],
+        "allSearchIds": [
+          "dm23ex2-053"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T14:19:40.235Z",
+        "sha256": "39b236828c320e8bb7e6c88087ffec883b5101c1d568f195a585bb17e264be93",
+        "facesMatched": true,
+        "imageSha256": "4edc50995ba04217d232fbd0c6965edcc389e0a566778759b6afeb12a6898bcd"
+      }
+    },
+    {
+      "id": "dmsd20-011",
+      "name": "クリスタ ＜ヴォイジャ.Star＞",
+      "canonicalId": "dmsd20-011",
+      "printId": "dmsd20-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-011",
+      "faces": [
+        {
+          "name": "クリスタ ＜ヴォイジャ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。ただし、コストは０以下にはならない。",
+          "race": "メタリカ/レインボー・ファントム/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "blocker": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true
+            },
+            "amount": 1
+          }
+        ],
+        "g468UseReduction": {
+          "g1282Tamaseed": true,
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd20-011.jpg",
+      "imageSha256": "aed8506924cca67b5b4d9c781853443a68c2198bb8b0ee4366d6a50ec4d9bd7d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd20-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd20-011",
+          "dmrp21-045"
+        ],
+        "allSearchIds": [
+          "dmrp21-045",
+          "dmsd20-011",
+          "dm26rp3-057",
+          "dm32-003",
+          "dmrp01-036",
+          "dmex07-020",
+          "dmc27-s02",
+          "dm06-s04",
+          "promoy9-093",
+          "promoy13-003",
+          "dmx19-s13",
+          "dm14-s03",
+          "dm26ex5-SEC002CHO",
+          "dm26ex5-SEC001",
+          "dm26ex5-S003",
+          "dm02-s02",
+          "dm18-s03",
+          "dmc42-004",
+          "dmc55-044",
+          "dm09-020",
+          "dmc61-016",
+          "dmc34-009",
+          "dmx18-033",
+          "dm10-017",
+          "promoy15-042",
+          "promoy15-045",
+          "dm26ex5-DP010",
+          "dmc61-019",
+          "dmex02-081",
+          "dmx14-052",
+          "dmex01-004",
+          "dmd24-019",
+          "dm01-022",
+          "promoy4-033",
+          "promoy1-009",
+          "dmc42-021",
+          "dmx03-003",
+          "dm18-023",
+          "dm02-024",
+          "dmrp12-038",
+          "promoy22-086",
+          "promoy22-087",
+          "dm23ex3-029",
+          "dm24bd6-043",
+          "dm24sp2-007",
+          "dm23ex3-T19",
+          "dm26ex5-DP037",
+          "dmx14-082",
+          "dmx13-036",
+          "promoy17-094"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T14:19:40.235Z",
+        "sha256": "6b4f9b438a042a64f9767bb7633985f3ab729990c11f0d5d9d976bb9c85748e7",
+        "facesMatched": true,
+        "imageSha256": "aed8506924cca67b5b4d9c781853443a68c2198bb8b0ee4366d6a50ec4d9bd7d"
+      }
+    },
+    {
+      "id": "dm24ex1-020",
+      "name": "ダイヤモンド・カミタイオ",
+      "canonicalId": "dm24ex1-020",
+      "printId": "dm24ex1-020",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-020",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カミタイオ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のスノーフェアリーが３つ以上あれば、このクリーチャーの召喚コストを[nn01]にしてもよい。\n進化：スノーフェアリー・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置いてもよい。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スノーフェアリー"
+        },
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 1,
+          "paymentColors": [
+            "自然"
+          ],
+          "condition": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "スノーフェアリー"
+              },
+              "min": 3
+            }
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-020.jpg",
+      "imageSha256": "5a2d670b6e49b09c9ddf78b0fbe9dec7e142f9ecfe8c9f50d1864f92a7295e2f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex1-020-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24ex1-020"
+        ],
+        "allSearchIds": [
+          "dm24ex1-020"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T14:19:40.235Z",
+        "sha256": "fd9da55e7bb8b9db5bffe30c8905dc27060af67b6152637b59feb607ffcd1170",
+        "facesMatched": true,
+        "imageSha256": "5a2d670b6e49b09c9ddf78b0fbe9dec7e142f9ecfe8c9f50d1864f92a7295e2f"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp21-045",
+      "name": "クリスタ ＜ヴォイジャ.Star＞",
+      "canonicalId": "dmsd20-011",
+      "printId": "dmrp21-045",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-045",
+      "faces": [
+        {
+          "name": "クリスタ ＜ヴォイジャ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。ただし、コストは０以下にはならない。",
+          "race": "メタリカ/レインボー・ファントム/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "blocker": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true
+            },
+            "amount": 1
+          }
+        ],
+        "g468UseReduction": {
+          "g1282Tamaseed": true,
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-045.jpg",
+      "imageSha256": "339920062dc9db7fd0f5f30a8637192fb2928e359c2e69b8da178e879db5c1f9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-045-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd20-011",
+          "dmrp21-045"
+        ],
+        "allSearchIds": [
+          "dmrp21-045",
+          "dmsd20-011",
+          "dm26rp3-057",
+          "dm32-003",
+          "dmrp01-036",
+          "dmex07-020",
+          "dmc27-s02",
+          "dm06-s04",
+          "promoy9-093",
+          "promoy13-003",
+          "dmx19-s13",
+          "dm14-s03",
+          "dm26ex5-SEC002CHO",
+          "dm26ex5-SEC001",
+          "dm26ex5-S003",
+          "dm02-s02",
+          "dm18-s03",
+          "dmc42-004",
+          "dmc55-044",
+          "dm09-020",
+          "dmc61-016",
+          "dmc34-009",
+          "dmx18-033",
+          "dm10-017",
+          "promoy15-042",
+          "promoy15-045",
+          "dm26ex5-DP010",
+          "dmc61-019",
+          "dmex02-081",
+          "dmx14-052",
+          "dmex01-004",
+          "dmd24-019",
+          "dm01-022",
+          "promoy4-033",
+          "promoy1-009",
+          "dmc42-021",
+          "dmx03-003",
+          "dm18-023",
+          "dm02-024",
+          "dmrp12-038",
+          "promoy22-086",
+          "promoy22-087",
+          "dm23ex3-029",
+          "dm24bd6-043",
+          "dm24sp2-007",
+          "dm23ex3-T19",
+          "dm26ex5-DP037",
+          "dmx14-082",
+          "dmx13-036",
+          "promoy17-094"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T14:19:40.235Z",
+        "sha256": "ec9bfe3efba76ec454d6ac9afe792466a741def6c87ee16dc0d8d1219f42fe30",
+        "facesMatched": true,
+        "imageSha256": "339920062dc9db7fd0f5f30a8637192fb2928e359c2e69b8da178e879db5c1f9"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41069/",
+      "sha256": "c6e6caa47e09ba674c9dab8b33e170d1006d61b303539b95405bb09800933c24",
+      "checkedAt": "2026-11-27T14:19:40.235Z",
+      "reproduced": true,
+      "tests": "tests/standard1806-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41070/",
+      "sha256": "13d21665620573ff3a82bcf20434f579d7f4d145f770610dd264173f0c003ac9",
+      "body": "よくある質問 Q自分の《クリスタ ＜ヴォイジャ.Star＞》がバトルゾーンにいる状況で、「NEO進化」して召喚するNEOクリーチャーのコストも１少なくなりますか？ 参照：《電磁艦 シンペラー・マルコ》 Aはい、その場合でもコストは１少なくなります。 （総合ルール 802.2.） 一覧へ戻る 関連する質問 《クリスタ 》を召喚する時、自身の「自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。」の効果によって、２コストで召喚できますか？ 2022.4.8 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクシ",
+      "checkedAt": "2026-11-27T14:20:26.754Z",
+      "reproduced": true,
+      "tests": "tests/standard1806-effects.test.mjs",
+      "reproduction": "Actual NEO summon with and without its chosen base uses Crysta evolution discount only when evolving.",
+      "result": "Actual NEO summon with and without its chosen base uses Crysta evolution discount only when evolving."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T14:19:40.235Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-053": 4,
+      "dmsd20-011": 4,
+      "dm24ex1-020": 4,
+      "dmrp21-045": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "New fixtures were corrected to snapshot newly added physical cards, use native numeric ramp choices and Shinkalize evolution bases, and use actual Dolberos taxation and Onikamas untargetability. Initial ability specification was corrected to put the elected ramp card into mana tapped. Final full card tests and relevant native regressions all pass.",
+    "completeCoverage": [
+      "Exact cost3 Abyss evolution; ordinary paid hand/mana use, both seats; 3/4 own element boundaries and source ignored; actual triple breaking and targeted mana removal.",
+      "Crysta true Light/Rexstars/Shinkalize evolution, block and Star departure, separate seed/evolution reductions and minimum1; actual QA41069 own summon and QA41070 Marco NEO base and nonbase payments.",
+      "Kamitaio optional Nature1 with real evolution bases including Shinkalize; independent 0/1 ramp and recovery; tapped mana, manual colors, no-reduction and actual2-tax, source/counterpart and buried-card exclusions.",
+      "Encrypted room round trips retain actions and physical IDs; original definitions, details/catalogue rows and previous pending statuses remain intact."
+    ]
+  }
+}

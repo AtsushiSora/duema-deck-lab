@@ -10692,5 +10692,219 @@
     "spec": {
       "g1805DirectOnly": true
     }
+  },
+  "dm23ex2-053": {
+    "phase": 1806,
+    "faces": [
+      {
+        "name": "オ:マルグンサ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\n進化：コスト３のアビス１体の上に置く。\n自分のアビスが３つ以上あれば、このクリーチャーに「T・ブレイカー」を与える。（「T・ブレイカー」を持つクリーチャーは、シールドを３つブレイクする）\nこのクリーチャーが出た時、自分のアビスが４つ以上あれば、相手のクリーチャーを１体選び、マナゾーンに置く。",
+        "race": "ヴェールアビス",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "manaSummon": true,
+      "evolution": {
+        "all": [
+          {
+            "race": "アビス"
+          },
+          {
+            "g1806CurrentCost": 3
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "breaker": 3
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "アビス"
+              },
+              "min": 4
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "toOwnerMana": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd20-011": {
+    "phase": 1806,
+    "faces": [
+      {
+        "name": "クリスタ ＜ヴォイジャ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。ただし、コストは０以下にはならない。",
+        "race": "メタリカ/レインボー・ファントム/レクスターズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true
+          },
+          "amount": 1
+        }
+      ],
+      "g468UseReduction": {
+        "g1282Tamaseed": true,
+        "amount": 1
+      }
+    }
+  },
+  "dmrp21-045": {
+    "phase": 1806,
+    "faces": [
+      {
+        "name": "クリスタ ＜ヴォイジャ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。ただし、コストは０以下にはならない。",
+        "race": "メタリカ/レインボー・ファントム/レクスターズ",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true
+          },
+          "amount": 1
+        }
+      ],
+      "g468UseReduction": {
+        "g1282Tamaseed": true,
+        "amount": 1
+      }
+    }
+  },
+  "dm24ex1-020": {
+    "phase": 1806,
+    "faces": [
+      {
+        "name": "ダイヤモンド・カミタイオ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分のスノーフェアリーが３つ以上あれば、このクリーチャーの召喚コストを[nn01]にしてもよい。\n進化：スノーフェアリー・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置いてもよい。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+        "race": "ジャイアント・スノーフェアリー",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "スノーフェアリー"
+      },
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 1,
+        "paymentColors": [
+          "自然"
+        ],
+        "condition": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "スノーフェアリー"
+            },
+            "min": 3
+          }
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "optional": true,
+          "tapped": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ]
+    }
   }
 }

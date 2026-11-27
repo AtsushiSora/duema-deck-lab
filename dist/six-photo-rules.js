@@ -11696,9 +11696,9 @@ export function createSixPhotoRules(api){
      }
     continue;
    }
-   for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution?api.evolutionBases(s,p,c):[])])for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
+   for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution||c.evolution?api.evolutionBases(s,p,c):[])].filter(base=>!c.evolution||base))for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
     const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,...(r.spell?{g40PayNormally:true}:{}),g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
-    if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition||r.handOnly?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+(c.type==='spell'?'唱える':'召喚')+(base?'・'+card(base).name+'の上にNEO進化':c.neoEvolution?'・進化させず':'')});
+    if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition||r.handOnly?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+(c.type==='spell'?'唱える':'召喚')+(base?'・'+card(base).name+'の上に'+(c.neoEvolution?'NEO':'')+'進化':c.neoEvolution?'・進化させず':'')});
    }
   }
 

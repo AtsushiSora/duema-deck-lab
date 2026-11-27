@@ -309494,19 +309494,178 @@
       "g1805DirectOnly": true,
       "supportBatch": "phase-1805",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-053",
+      "name": "オ:マルグンサ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ヴェールアビス",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。\n進化：コスト３のアビス１体の上に置く。\n自分のアビスが３つ以上あれば、このクリーチャーに「T・ブレイカー」を与える。（「T・ブレイカー」を持つクリーチャーは、シールドを３つブレイクする）\nこのクリーチャーが出た時、自分のアビスが４つ以上あれば、相手のクリーチャーを１体選び、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-053",
+      "limit": 4,
+      "manaSummon": true,
+      "evolution": {
+        "all": [
+          {
+            "race": "アビス"
+          },
+          {
+            "g1806CurrentCost": 3
+          }
+        ]
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "アビス"
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "breaker": 3
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "アビス"
+              },
+              "min": 4
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "toOwnerMana": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1806",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd20-011",
+      "name": "クリスタ ＜ヴォイジャ.Star＞",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "メタリカ/レインボー・ファントム/レクスターズ",
+      "text": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の進化クリーチャーの召喚コストと、自分のタマシードを使うコストをそれぞれ１少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd20-011",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true
+          },
+          "amount": 1
+        }
+      ],
+      "g468UseReduction": {
+        "g1282Tamaseed": true,
+        "amount": 1
+      },
+      "supportBatch": "phase-1806",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-020",
+      "name": "ダイヤモンド・カミタイオ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "自分のスノーフェアリーが３つ以上あれば、このクリーチャーの召喚コストを[nn01]にしてもよい。\n進化：スノーフェアリー・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置いてもよい。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-020",
+      "limit": 4,
+      "evolution": {
+        "race": "スノーフェアリー"
+      },
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 1,
+        "paymentColors": [
+          "自然"
+        ],
+        "condition": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "スノーフェアリー"
+            },
+            "min": 3
+          }
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "optional": true,
+          "tapped": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1806",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1805,
-    "checkedAt": "2026-11-27T14:02:47.251Z",
-    "baseCount": 9635,
+    "phase": 1806,
+    "checkedAt": "2026-11-27T14:19:40.235Z",
+    "baseCount": 9638,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9638,
+    "totalCount": 9641,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/49216/",
-      "https://dm.takaratomy.co.jp/rule/qa/33219/"
+      "https://dm.takaratomy.co.jp/rule/qa/41069/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -339060,6 +339219,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/46830/",
           "https://dm.takaratomy.co.jp/rule/qa/46831/",
           "https://dm.takaratomy.co.jp/rule/qa/46873/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1805,
+        "checkedAt": "2026-11-27T14:02:47.251Z",
+        "baseCount": 9635,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9638,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/49216/",
+          "https://dm.takaratomy.co.jp/rule/qa/33219/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
