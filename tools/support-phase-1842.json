@@ -1,0 +1,865 @@
+{
+  "phase": 1842,
+  "checkedAt": "2026-11-27T22:01:35.265Z",
+  "baseline": "0edd59b4d508bc21fba9296f655643d33b05739c",
+  "baseCount": 9735,
+  "target": 10000,
+  "description": "Complete God of Dream Light9 NEO evolution and full grave/hand upto9 army, genuine Grenade ST opposing mandatory nine-tap then own upto9 untap; MegaBoost full Fire speed aura/private top1 deploy and keep-one delayed DISTINCT attackers draw; Dondo APNAP simultaneous self-choice mana movement and Neon mana-deploy mandatory fight with independent exact-creature delayed mana return.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmex04-006",
+      "name": "God of Dream / Grenade of D-moll",
+      "canonicalId": "dmex04-006",
+      "printId": "dm26rp2-TR002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-TR002",
+      "faces": [
+        {
+          "name": "God of Dream",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "NEO進化：光のコスト９のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、光のコスト９のクリーチャーを９体まで、自分の手札または墓地から出す。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "15500",
+          "missingFields": []
+        },
+        {
+          "name": "Grenade of D-moll",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー\n相手は自身のアンタップしているクリーチャーを９体選び、タップする。その後、自分のクリーチャーを９体までアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "all": [
+            {
+              "civilization": "光"
+            },
+            {
+              "g1806CurrentCost": 9
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfSource541",
+            "g1071Evolution": true,
+            "defs": [
+              {
+                "op": "Select",
+                "zones": [
+                  "hand",
+                  "grave"
+                ],
+                "n": 9,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "color": "光",
+                  "exactCost": 9
+                }
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "Grenade of D-moll",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 9,
+              "g193Tap": true,
+              "filter": {
+                "creature": true,
+                "untapped": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "battle",
+              "n": 9,
+              "optional": true,
+              "g510Untap": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-TR002a.jpg",
+      "imageSha256": "066d05fe4401e3b29344e67475d6c8924dfb2ffebd0e4c98ac5ba0d16f356555",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26rp2-TR002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex04-006",
+          "dm26rp2-TR002"
+        ],
+        "allSearchIds": [
+          "dmex17-024",
+          "dm26rp2-TR002",
+          "dmex04-006",
+          "dmex18-032",
+          "dmex08-049"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "c23bfebfe89ef0c1b9d6eca03db6a82dc3a936d821bfcb5633fdb781b1096820",
+        "facesMatched": true,
+        "imageSha256": "066d05fe4401e3b29344e67475d6c8924dfb2ffebd0e4c98ac5ba0d16f356555"
+      }
+    },
+    {
+      "id": "dmrp07-007",
+      "name": "メガブースト・チュリス/「ぶっ飛び特攻ッス！」",
+      "canonicalId": "dmrp07-007",
+      "printId": "dmrp07-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-007",
+      "faces": [
+        {
+          "name": "メガブースト・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分の火のクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それがコスト５以下のビートジョッキーなら、バトルゾーンに出してもよい。",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "「ぶっ飛び特攻ッス！」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の手札を１枚選び、残りを捨てる。このターンの終わりに、このターン中に攻撃したクリーチャー１体につき１枚、カードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "rest": "top",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "race": "ビートジョッキー",
+              "max": 5
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "「ぶっ飛び特攻ッス！」",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "KeepOne604",
+              "owner": "self",
+              "zone": "hand"
+            },
+            {
+              "op": "Schedule537",
+              "when": "turnEnd",
+              "spell": true,
+              "defs": [
+                {
+                  "op": "CountDraw",
+                  "g1842AttackingCreatures": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-007a.jpg",
+      "imageSha256": "5bb8beb2676213e1d9367bad7afa67cdc0272d017f36095d21ebd0dff627685e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp07-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-007"
+        ],
+        "allSearchIds": [
+          "dmrp07-007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "3f3670b35bd6cc8a4202f1bbeb0a7ecbc72e5c9e4fa9877ee38cfd4f9b5d932a",
+        "facesMatched": true,
+        "imageSha256": "5bb8beb2676213e1d9367bad7afa67cdc0272d017f36095d21ebd0dff627685e"
+      }
+    },
+    {
+      "id": "dmbd08-a-004",
+      "name": "ドンド・ラフーイ / ネオン・ジオング",
+      "canonicalId": "dmbd08-a-004",
+      "printId": "dmbd08-a-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-004",
+      "faces": [
+        {
+          "name": "ドンド・ラフーイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身のクリーチャーを１体ずつ選び、マナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ネオン・ジオング",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自然の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出し、その後、相手のクリーチャーを１体選ぶ。その２体をバトルさせる。このターンの終わりに、こうしてバトルゾーンに出した自分のクリーチャーをマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "mana"
+          }
+        ],
+        "spellFace": {
+          "name": "ネオン・ジオング",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "noEvolve": true,
+              "g1173FightAfterDeploy": true,
+              "g1842MandatoryFight": true,
+              "g785ReturnGroup": "mana",
+              "filter": {
+                "creature": true,
+                "color": "自然",
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-a-004a.jpg",
+      "imageSha256": "c4f6bd22c87ab45da7d200c39f378f47a77531219632fa07d543e0a3f33553e1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd08-a-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd08-a-004",
+          "dm23bd6-047"
+        ],
+        "allSearchIds": [
+          "dm23bd6-047",
+          "dmbd08-a-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "457fabf5e556ad599f75c1ff62eb00937add3e3d1162bb793c7362605fb079f5",
+        "facesMatched": true,
+        "imageSha256": "c4f6bd22c87ab45da7d200c39f378f47a77531219632fa07d543e0a3f33553e1"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26rp2-TR002",
+      "name": "God of Dream / Grenade of D-moll",
+      "canonicalId": "dmex04-006",
+      "printId": "dm26rp2-TR002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-TR002",
+      "faces": [
+        {
+          "name": "God of Dream",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "NEO進化：光のコスト９のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーが出た時、それが進化クリーチャーなら、光のコスト９のクリーチャーを９体まで、自分の手札または墓地から出す。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "15500",
+          "missingFields": []
+        },
+        {
+          "name": "Grenade of D-moll",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー\n相手は自身のアンタップしているクリーチャーを９体選び、タップする。その後、自分のクリーチャーを９体までアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "all": [
+            {
+              "civilization": "光"
+            },
+            {
+              "g1806CurrentCost": 9
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfSource541",
+            "g1071Evolution": true,
+            "defs": [
+              {
+                "op": "Select",
+                "zones": [
+                  "hand",
+                  "grave"
+                ],
+                "n": 9,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "color": "光",
+                  "exactCost": 9
+                }
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "Grenade of D-moll",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 9,
+              "g193Tap": true,
+              "filter": {
+                "creature": true,
+                "untapped": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "battle",
+              "n": 9,
+              "optional": true,
+              "g510Untap": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-TR002a.jpg",
+      "imageSha256": "066d05fe4401e3b29344e67475d6c8924dfb2ffebd0e4c98ac5ba0d16f356555",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26rp2-TR002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex04-006",
+          "dm26rp2-TR002"
+        ],
+        "allSearchIds": [
+          "dmex17-024",
+          "dm26rp2-TR002",
+          "dmex04-006",
+          "dmex18-032",
+          "dmex08-049"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "c23bfebfe89ef0c1b9d6eca03db6a82dc3a936d821bfcb5633fdb781b1096820",
+        "facesMatched": true,
+        "imageSha256": "066d05fe4401e3b29344e67475d6c8924dfb2ffebd0e4c98ac5ba0d16f356555"
+      }
+    },
+    {
+      "id": "dm23bd6-047",
+      "name": "ドンド・ラフーイ / ネオン・ジオング",
+      "canonicalId": "dmbd08-a-004",
+      "printId": "dm23bd6-047",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-047",
+      "faces": [
+        {
+          "name": "ドンド・ラフーイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身のクリーチャーを１体ずつ選び、マナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ネオン・ジオング",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自然の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出し、その後、相手のクリーチャーを１体選ぶ。その２体をバトルさせる。このターンの終わりに、こうしてバトルゾーンに出した自分のクリーチャーをマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "mana"
+          }
+        ],
+        "spellFace": {
+          "name": "ネオン・ジオング",
+          "type": "spell",
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "noEvolve": true,
+              "g1173FightAfterDeploy": true,
+              "g1842MandatoryFight": true,
+              "g785ReturnGroup": "mana",
+              "filter": {
+                "creature": true,
+                "color": "自然",
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-047a.jpg",
+      "imageSha256": "82cc729e7ce59d7ad2d169b5ed5022711bcc99e372dbd991ea8408f91de327fc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd6-047-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd08-a-004",
+          "dm23bd6-047"
+        ],
+        "allSearchIds": [
+          "dm23bd6-047",
+          "dmbd08-a-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "7665945fb8aaf02bbee51c795b29c5025ece5d036c13d8b91f795d9cfb6ff6dc",
+        "facesMatched": true,
+        "imageSha256": "82cc729e7ce59d7ad2d169b5ed5022711bcc99e372dbd991ea8408f91de327fc"
+      }
+    }
+  ],
+  "existingCards": [
+    {
+      "id": "dmex04-006",
+      "name": "God of Dream / Grenade of D-moll",
+      "canonicalId": "dmex04-006",
+      "printId": "dmex04-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-006",
+      "faces": [
+        {
+          "name": "God of Dream",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "NEO進化：自分の光のコスト９のクリーチャー１体の上に置いてもよい。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、それがNEO進化クリーチャーなら、光のコスト９のクリーチャーを９体まで、自分の手札または墓地からバトルゾーンに出す。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "15500",
+          "missingFields": []
+        },
+        {
+          "name": "Grenade of D-moll",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー\n相手は自身のアンタップしているクリーチャーを９体選び、タップする。その後、自分のクリーチャーを９体までアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "all": [
+            {
+              "civilization": "光"
+            },
+            {
+              "g1806CurrentCost": 9
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfSource541",
+            "g1071Evolution": true,
+            "defs": [
+              {
+                "op": "Select",
+                "zones": [
+                  "hand",
+                  "grave"
+                ],
+                "n": 9,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "color": "光",
+                  "exactCost": 9
+                }
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "Grenade of D-moll",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 9,
+              "g193Tap": true,
+              "filter": {
+                "creature": true,
+                "untapped": true
+              }
+            },
+            {
+              "op": "Select",
+              "origin": "battle",
+              "n": 9,
+              "optional": true,
+              "g510Untap": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-006a.jpg",
+      "imageSha256": "5749b79c4069df61cd2d0d4c02152b6f8674440d32cc1da13ba6efe89137f1f4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex04-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-006a.jpg",
+        "sha256": "5749b79c4069df61cd2d0d4c02152b6f8674440d32cc1da13ba6efe89137f1f4",
+        "reviewedAt": "2026-11-27T22:01:35.265Z",
+        "reason": "Complete official image visually reviewed: spell civilization is 光. Only its HTML civilization field is blank; all original metadata and ability text retained.",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ]
+          }
+        ]
+      },
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex04-006",
+          "dm26rp2-TR002"
+        ],
+        "allSearchIds": [
+          "dmex17-024",
+          "dm26rp2-TR002",
+          "dmex04-006",
+          "dmex18-032",
+          "dmex08-049"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:01:35.265Z",
+        "sha256": "3357c20bf2fec7f1de07990c571315816b15feffe8bb9bc1225a397bf2275b59",
+        "facesMatched": true
+      }
+    }
+  ],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [
+    {
+      "id": "dmex04-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-006",
+      "reason": "Old original wording equivalent to current complete reprint; original and current rules and images all verified."
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:01:35.265Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex04-006": 4,
+      "dmrp07-007": 4,
+      "dmbd08-a-004": 4,
+      "dm26rp2-TR002": 4,
+      "dm23bd6-047": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1842-fixed",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1842-edge-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.487,
+      "log": "tmp/duema-target-10000/extra-1842-fixed.log",
+      "passed": 10,
+      "logSha256": "bf251d7189530b41956bcd7f389d3f640c466f0561c234aededb3d7cfba4c2d0"
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmex04-006",
+      "searchSha256": "d68fd0c093ea9293791cc3bb43213e136ac8d75b9c64f387ccb38a3033ed3a91",
+      "totalResults": 5,
+      "allSearchIds": [
+        "dmex17-024",
+        "dm26rp2-TR002",
+        "dmex04-006",
+        "dmex18-032",
+        "dmex08-049"
+      ],
+      "excluded": [
+        {
+          "id": "dmex17-024",
+          "name": "Duplicates of G.O.D."
+        },
+        {
+          "id": "dmex18-032",
+          "name": "Library of Alexandria"
+        },
+        {
+          "id": "dmex08-049",
+          "name": "十極 ジョバンチュ / Genesis of Drillball"
+        }
+      ],
+      "exactPrints": [
+        "dmex04-006",
+        "dm26rp2-TR002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 5 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "dmrp07-007",
+      "searchSha256": "9e1d62a1b340d31f439c28394cffc3b139b30004406b0545abba5b0e94d5af6e",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp07-007"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp07-007"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "dmbd08-a-004",
+      "searchSha256": "7ee51978fc45aaa2bb7aa64cc01aa44d53a677cb8080bbcae128d25fcf2c96ac",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm23bd6-047",
+        "dmbd08-a-004"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmbd08-a-004",
+        "dm23bd6-047"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 2 results enumerated on one page; every exact full print image reviewed."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Complete three twinpacts God of Dream/Grenade, Megaboost/Buttobi and Dondo/Neon, full5 exact print images, all official search results5/1/2, exact prints2/1/2, all limits4. God Light9/15500 NEO requires BOTH Light and exact currentcost9, T3; only evolved entry deploys optional upto9 actual Light9 creatures from hand/grave, choose all before batch, Apuru/wrongcolor/wrongcost/Twin spell-side9 excluded. Actual pending entry source departure LKI for both evolved/non-evolved with encrypted restore; old original HTML spell-civilization blank corrected ONLY via visually reviewed original Light image evidence, raw details unchanged. Grenade Light9 genuine ST, opponent mandatory exactly9 untapped own creatures as possible, then caster optional upto9 untap; both controller roles/save. Mega Fire6/6000W2 own Fire speed aura only, departure/ignore/seals; private top1 optional cost<=5 BeatJockey creature deployment, rejected top unchanged, opposing no private leakage. Buttobi Fire2 keep exactly1 hand after spell moves, independent end delayed draw of distinct actual creatures that attacked THIS TURN including before casting and departed creature; actual Shiden repeat counts1, Sphiek attack cast counts, actual Balance untap then grave Deadzone S-class invasion counts the same creature once plus Sphiek (2), physical visit refs and chronological identity. Dondo Nature5/5000 APNAP both players mandatory own-creature choices before simultaneous mana movement, source itself valid, empty opposing side and untargetable Onikamas handled. Neon Nature8 mandatory own Nature non-evolution mana deploy, real Nature NEO must not evolve even with valid base; mandatory battle if selectable enemy, no enemy/untargetable still deploys and schedules; independent exact-incarnation delayed mana return, dead/bounced/reentered exclude, actual Nature evolution returns entire stack, actual opposing Onikamas bounce stays hand. Focused102 plus edge10, affected related and online regressions, npm check/audit9738/old-ID-data invariants passed. No card-linked QA exists on any of the5 exact official pages; native standard NEO/entry condition at resolution, APNAP choices, native effect battle and delayed referent rules verified by focused and related tests, without claiming a nonexistent card-specific FAQ. All older pending/holds retained. No full npm test/old longgroups/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Initial strict NEO validator rejected valid compound Light AND current-cost9 matcher; added only exact verified compound shape, retaining prior rejection rules, then regenerated online compatibility. Two initial untargetable-target fixtures used Onikamas and correctly bounced free deployed creature, replaced with Untouchable psychic for that isolated case and added distinct real Onikamas regression. Extra pending-entry fixtures omitted initialization of optional pendingEffects array; initialized without changing engine and all10 passed. All initial failure logs retained; no final failed cases remain.",
+    "nextCandidates": [
+      {
+        "id": "dmrp07-056",
+        "name": "キューデン・トラップ",
+        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+      },
+      {
+        "id": "dmsp01-018",
+        "name": "ギーク・チュリス",
+        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+      },
+      {
+        "id": "promoy17-044",
+        "name": "ギラメシア †",
+        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+      }
+    ]
+  }
+}

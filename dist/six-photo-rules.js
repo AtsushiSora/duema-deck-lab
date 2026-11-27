@@ -826,6 +826,12 @@ export function createSixPhotoRules(api){
     g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを'+n+'体選ぶ'}];
  }
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
+  if(t.g1842AttackingCreatures){
+   if(s.g481Attackers?.turn!==s.turn)return 0;
+   const seen=new Set();let n=0;
+   for(const event of s.g481Attackers.events){if(!event.refs.some(ref=>seen.has(ref)))n++;for(const ref of event.refs)seen.add(ref);}
+   return n;
+  }
   if(t.g1606FaceUpShieldCards)return s.players[owner].shields.flatMap(api.shieldCards).filter(x=>x.faceUp).length;
   if(t.g1606ManaCivilizations)return manaCivilizationCount(s,p);
   if(t.g1143FaceUpShields)
@@ -2024,15 +2030,15 @@ export function createSixPhotoRules(api){
    delays.push({
     p:t.p,source:t.source,turn:s.turn,
     ...(nextOpponentStart?{when:'nextOwnStart',who:1-t.p}:{when:'turnEnd'}),
-    defs:[{op:'ReturnGroup785',refs:[],...(nextOpponentStart||t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]
+    defs:[{op:'ReturnGroup785',refs:[],...(nextOpponentStart||t.g785ReturnGroup==='grave'?{to:'grave'}:t.g785ReturnGroup==='mana'?{to:'mana'}:{})}]
    });
   }
   if(t.g1173FightAfterDeploy){
    const [row]=rows;
    if(!row)return;
    const x=s.players[row.p][row.origin].find(y=>y.uid===row.uid);
-   if(x)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:x.uid},
-    {...t,op:'g34_FightEnemy240',optional:true,fighter:{uid:x.uid,incarnation:(x.incarnation||0)+1}});
+   if(x)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:x.uid,...(returnGroup===undefined?{}:{g785Group:returnGroup})},
+    {...t,op:'g34_FightEnemy240',optional:!t.g1842MandatoryFight,fighter:{uid:x.uid,incarnation:(x.incarnation||0)+1}});
    return;
   }
   if(t.g1316AmbitionRevive){
@@ -12254,7 +12260,7 @@ externalProtection565,
   const defs=c.g437Super?[...(c.g34Tasks||[]),...(entry?.super?c.g437Super:[])]:entry?.plus&&c.g34Plus?
    (c.g451PlusAfter?[...(c.g34Tasks||[]),...c.g34Plus]:[...c.g34Plus,...(c.g34Tasks||[])]):c.g34Tasks;
   const body=entry?.g1118KnightBodyOnly?defs?.filter(d=>d.op!=='KnightMagic1118'&&d.op!=='KingKnightMagic1115'):defs;
-  start(s,{p,source:c.id,uid,incarnation,g692LastPower:entry?.g692LastPower,g1184LastRaces:entry?.g1184LastRaces},body?.map(def=>def.op==='BouncePerSourceCard1060'?
+  start(s,{p,source:c.id,uid,incarnation,g692LastPower:entry?.g692LastPower,g1184LastRaces:entry?.g1184LastRaces,g1059LastEvolution:entry?.g1059LastEvolution},body?.map(def=>def.op==='BouncePerSourceCard1060'?
    {...def,lastKnownCount:entry?.lastKnownCount}:def));
   return true;
  },
