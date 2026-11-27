@@ -1,0 +1,354 @@
+{
+  "phase": 1848,
+  "checkedAt": "2026-11-27T22:52:04.459Z",
+  "baseline": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+  "baseCount": 9752,
+  "target": 10000,
+  "description": "Complete Dakurai optional attack ramp3/mana-loss1/mandatory leave enemy mana, Druid public top4 distribution plus independent actual-own-hand-entry destruction, Shivan optional entry mill4/optional all cheap grave deployment, all full native Fushigibirth.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/33412/",
+    "https://dm.takaratomy.co.jp/rule/qa/33411/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp13-s05",
+      "name": "ダクライ龍樹",
+      "canonicalId": "dmrp13-s05",
+      "printId": "dmrp13-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s05",
+      "faces": [
+        {
+          "name": "ダクライ龍樹",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。\nこのクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nフシギバース [nn11]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [nn11] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01]より少なくならない）",
+          "race": "ジャイアント・ドラゴン/不死樹王国",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "fushigibirth": 11,
+        "fushiMin": 1,
+        "g402FushiColors": [
+          "自然"
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-s05.jpg",
+      "imageSha256": "c65ff18e64502806420e763ba402a119b8964c053bc671953bbbd159a3ddfa33",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp13-s05-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp13-s05"
+        ],
+        "allSearchIds": [
+          "dmrp13-s05"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:52:04.459Z",
+        "sha256": "04374abb7e23f9b3795bcf9cd348cb99dcc4d0b4dffdd4e62a40e3609ff9a0cc",
+        "facesMatched": true,
+        "imageSha256": "c65ff18e64502806420e763ba402a119b8964c053bc671953bbbd159a3ddfa33"
+      }
+    },
+    {
+      "id": "dmrp13-010",
+      "name": "ライマー・ドルイド",
+      "canonicalId": "dmrp13-010",
+      "printId": "dmrp13-010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-010",
+      "faces": [
+        {
+          "name": "ライマー・ドルイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を表向きにする。そのうちの１枚をマナゾーンにタップして置き、残りを墓地に置く。\nこのクリーチャーが自分の手札からバトルゾーンに出た時、破壊する。\nフシギバース [dn07]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn07] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+          "race": "グランセクト/不死樹王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "fushigibirth": 7,
+        "fushiMin": 2,
+        "g402FushiColors": [
+          "闇",
+          "自然"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "grave",
+            "stages": [
+              {
+                "n": 1,
+                "to": "mana",
+                "tapped": true
+              }
+            ]
+          }
+        ],
+        "g1848OwnHandEntry": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-010.jpg",
+      "imageSha256": "009249571e43a2dc81cc33b4e79016c8ab79ba8ac97efc98cfb5db58b2c56109",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp13-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp13-010"
+        ],
+        "allSearchIds": [
+          "dmrp13-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:52:04.459Z",
+        "sha256": "fd086a67bcfc4d98ae2bcbf55586a8ebaed6994aaf14e666fef7823703a581aa",
+        "facesMatched": true,
+        "imageSha256": "009249571e43a2dc81cc33b4e79016c8ab79ba8ac97efc98cfb5db58b2c56109"
+      }
+    },
+    {
+      "id": "dmrp14-s03",
+      "name": "不死の墓守 シヴァンリンネ",
+      "canonicalId": "dmrp14-s03",
+      "printId": "dmrp14-s03",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s03",
+      "faces": [
+        {
+          "name": "不死の墓守 シヴァンリンネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を墓地に置いてもよい。\nこのクリーチャーがバトルゾーンを離れた時、コスト４以下のクリーチャーをすべて、自分の墓地からバトルゾーンに出してもよい。\nフシギバース [dd12]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd12]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくならない）",
+          "race": "デーモン・コマンド/不死樹王国",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "fushigibirth": 12,
+        "fushiMin": 1,
+        "g402FushiColors": [
+          "闇"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 4
+              }
+            ]
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Offer",
+            "title": "墓地のコスト4以下のクリーチャーをすべて出す？",
+            "defs": [
+              {
+                "op": "GraveArmy",
+                "n": "all",
+                "g1675All": true,
+                "filter": {
+                  "creature": true,
+                  "max": 4
+                },
+                "title": "墓地からコスト4以下のクリーチャーをすべて出す（任意の途中終了は不可）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-s03.jpg",
+      "imageSha256": "ab475b6cd45a3c496be68b8e815d436621e704ccd2228a391b0ad581e99a4d76",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp14-s03-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp14-s03"
+        ],
+        "allSearchIds": [
+          "dmrp14-s03"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:52:04.459Z",
+        "sha256": "180be198100afbc09c7e51d7892780e180cf4b4f8e60b88621f27c9c9e1998d6",
+        "facesMatched": true,
+        "imageSha256": "ab475b6cd45a3c496be68b8e815d436621e704ccd2228a391b0ad581e99a4d76"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33412/",
+      "sha256": "345c3891f6622149421a16cf3ecaba1a442e46e3083f35bd68dac24af095e794",
+      "checkedAt": "2026-11-27T22:52:04.459Z",
+      "reproduced": true,
+      "tests": "tests/standard1848-effects.test.mjs",
+      "reproduction": "Literal QA33412: actual Alca evolution Fushigibirth base with two real undercards moves all3 physical cards to tapped mana in both seats for Dakurai and Shivan; cost uses top creature and correct printed colors/minimum.",
+      "result": "Literal QA33412: actual Alca evolution Fushigibirth base with two real undercards moves all3 physical cards to tapped mana in both seats for Dakurai and Shivan; cost uses top creature and correct printed colors/minimum."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33411/",
+      "sha256": "a1eed9faa4b60a044ce51df637f6ae946bd9b2f803de6a9633563a4ca39abdbb",
+      "checkedAt": "2026-11-27T22:52:04.459Z",
+      "reproduced": true,
+      "tests": "tests/standard1848-effects.test.mjs",
+      "reproduction": "Literal QA33411: actual 一番隊 ルグンドド dmrp01-092 reduces actual Gransect Druid Fushigibirth7-minusNature2 from5 to4; actual grave summon/payment and public top4 distribution resolve, creature survives and W2 attacks; both seats.",
+      "result": "Literal QA33411: actual 一番隊 ルグンドド dmrp01-092 reduces actual Gransect Druid Fushigibirth7-minusNature2 from5 to4; actual grave summon/payment and public top4 distribution resolve, creature survives and W2 attacks; both seats."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmrp14-055",
+      "name": "ライマー・サーベラ",
+      "reason": "All official text/basic/image/full search/QA33628 reviewed, no implementation/count. QA33628 requires opponent hand1 plus creature1 moving to mana simultaneously: real Medaros at4 Light mana MUST leave even if chosen Light hand card becomes5. Sequential Select hand then battle would wrongly activate stay; needs native pre-move snapshot and simultaneous committed group before registration."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:52:04.459Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp13-s05": 4,
+      "dmrp13-010": 4,
+      "dmrp14-s03": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp13-s05",
+      "searchSha256": "2c8ea446bbf32eb8a49c57c67ecce054d6d6efd4edda49a8bbfe27d6a3230289",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp13-s05"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp13-s05"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every result enumerated on one page; all exact full print images reviewed."
+    },
+    {
+      "id": "dmrp13-010",
+      "searchSha256": "da06f1aba374970271cca5d36133adb77f9af1619b0a924e8afac5b4fb5e00ed",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp13-010"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp13-010"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every result enumerated on one page; all exact full print images reviewed."
+    },
+    {
+      "id": "dmrp14-s03",
+      "searchSha256": "68e8ec50fbf1968aaf434d159522362eebe8e5bfd291ca9416119771cb48e275",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp14-s03"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp14-s03"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every result enumerated on one page; all exact full print images reviewed."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Complete3 new unique names, each1 exact official print/search/full image, limits4. Dakurai Nature8/13000 MachFighter/T3, optional ALL3 attack ramp then mandatory any-mana grave only on accept; mandatory leave enemy mana on bounce/destruction with stored trigger. Druid DarkNature4/7000W2, public exactlytop4 to both online seats, mandatory any1 tapped mana/all rest grave; separate own HAND entry destruction trigger captured at actual entry (normal summon OR actual unpaid Novarcha spell deployment), may destroy first and top4 still resolves. Grave Fushigibirth does not trigger self-destruction. Actual Genmu suppresses BOTH Druid hand-destruction and publiclook. Shivan Dark8/11000W2 optional ALL4 mill, leave optional ALL own grave creature<=4, choose zero or all rather than partial; no spell/seed/5+/enemy, new base then actual cheap evolution permitted, exact identity/batch held through encrypted JSON. Full native Fushigibirth: correct civilization/minimum, entire actual evolution stack to tapped mana, literal QA33412 and actual Lugundodo QA33411 reduction. Focused45 includes6 two-account encrypted service, related213 plusonline5/check/nameKey9755/invariants passed. New runtime hook only applies exact Druid flag and actual hand entry, checks ignore/selfMuted/selfStopped/seals. Existing card definitions/raw details/IDs/saves and all old pending/fullSuite interrupted preserved, no fullnpmtest/longgroup/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Test-only correction: native MachFighter enables creature attacks on entry but not player attack; confirm actual untapped creature attack available then make source old before testing T3 player attack. All required tests now pass; no partial new card or unverified change.",
+    "nextCandidates": [
+      {
+        "id": "dmex18-067",
+        "name": "ケングレンオー 〜出発〜",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+      },
+      {
+        "id": "dmex18-045",
+        "name": "ワンケングレンオー ～弧月躍動～",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+      },
+      {
+        "id": "dmex18-042",
+        "name": "ケンゴウグレンオー ～蒼天飛翔～",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+      }
+    ]
+  }
+}

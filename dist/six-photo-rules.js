@@ -10821,6 +10821,10 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  // This is a separate entry trigger; retain the actual origin and captured body.
+  if(!options.ignoreEntry&&!options.selfMuted&&options.origin==='hand'&&(y.cardOwner??p)===p&&
+     !y.sealed&&!y.faceDown&&api.isCreature(s,y)&&!api.ignored(s,y)&&!api.selfStopped(s,p)&&c.g1848OwnHandEntry)
+   queue(s,p,y,c.g1848OwnHandEntry);
   if(!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&colors(effective(y,s,true)).includes('火')){const old=s.players[p].g1823FireEntries;s.players[p].g1823FireEntries={turn:s.turn,n:(old?.turn===s.turn?old.n:0)+1};}
   if(!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&api.isEvolution(y)&&s.g1635EvolutionEntries?.[p]?.turn!==s.turn)
    (s.g1635EvolutionEntries??=[null,null])[p]={turn:s.turn,uid:y.uid,incarnation:y.incarnation||0};

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9752,
-  "pendingNames": 2097,
-  "phase": 1847,
+  "supportedNames": 9755,
+  "pendingNames": 2094,
+  "phase": 1848,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1231,
+    "クリーチャー": 1228,
     "呪文": 238,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1570,
+    "未対応の能力文": 1567,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -578268,33 +578268,228 @@
           "reason": "Corrected test-only assumptions: real Takion gear reduces Samurai summon cost6 to5, substituted passive Benkei for unrelated Violence gear watcher, corrected unsupported cost11 test ID and real AngelCommand evolution base, checked native reveal log text. Online service correctly pauses at manual mana payment before LookPick; advanced actual payment window before asserting public reveal. No product runtime defect or unverified new card remains."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65"
+    },
+    {
+      "phase": 1848,
+      "checkedAt": "2026-11-27T22:56:03.955Z",
+      "baseline": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9752,
+      "currentNames": 9755,
+      "remainingNames": 245,
+      "added": [
+        {
+          "id": "dmrp13-s05",
+          "name": "ダクライ龍樹"
+        },
+        {
+          "id": "dmrp13-010",
+          "name": "ライマー・ドルイド"
+        },
+        {
+          "id": "dmrp14-s03",
+          "name": "不死の墓守 シヴァンリンネ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1848,
+        "baseline": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+        "originalDefinitionsUnchanged": 9752,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9755,
+        "uniqueIds": 9755,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9752,
+        "existingImageReferenceRowsUnchanged": 12219,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1848": {
+          "name": "official-1848",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1848.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.436,
+          "log": "tmp/duema-target-10000/official-1848.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1848-final": {
+          "name": "focused-1848-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1848-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.229,
+          "log": "tmp/duema-target-10000/focused-1848-final.log",
+          "passed": 45,
+          "logSha256": "118fa59132a2c2580984f55fdbd8067db015f90a3c33aa9ca3335e874607fdf1"
+        },
+        "related-1848": {
+          "name": "related-1848",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1848.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.172,
+          "log": "tmp/duema-target-10000/related-1848.log",
+          "passed": 213,
+          "logSha256": "147a981c4fa9f44873e241f7280074de41cf66483d1be86f35803a84e0b10869"
+        },
+        "check-1848": {
+          "name": "check-1848",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 23.107,
+          "log": "tmp/duema-target-10000/check-1848.log",
+          "passed": 0,
+          "logSha256": "23bebdb143dc680e5e861cfa582fe6444d26ee2ae415eb793d6139a0cc0c30c7"
+        },
+        "audit-1848": {
+          "name": "audit-1848",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.476,
+          "log": "tmp/duema-target-10000/audit-1848.log",
+          "passed": 0,
+          "logSha256": "3fec3e32cae89070fbe77ddb6466d159ec51364302fe4e4d90a10264339b7a06"
+        },
+        "invariants-1848": {
+          "name": "invariants-1848",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1848"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.153,
+          "log": "tmp/duema-target-10000/invariants-1848.log",
+          "passed": 0,
+          "logSha256": "5e87c415ff5b1a0bd1bba7b5d6fc428c5eff3628c226b6dbd0f6b5cf27d3b84c"
+        },
+        "related-online-1848": {
+          "name": "related-online-1848",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.809,
+          "log": "tmp/duema-target-10000/related-online-1848.log",
+          "passed": 5,
+          "logSha256": "3c04e674d4832614aea5cfdac2e4e37f207f3936698363426ec945d6a5dcb6ea"
+        }
+      },
+      "totalTestsPassed": 263,
+      "manifest": "tools/support-phase-1848.json",
+      "supported": 9755,
+      "pending": 2094,
+      "engineVersion": "0.602.372",
+      "held": [
+        {
+          "id": "dmrp14-055",
+          "name": "ライマー・サーベラ",
+          "reason": "All official text/basic/image/full search/QA33628 reviewed, no implementation/count. QA33628 requires opponent hand1 plus creature1 moving to mana simultaneously: real Medaros at4 Light mana MUST leave even if chosen Light hand card becomes5. Sequential Select hand then battle would wrongly activate stay; needs native pre-move snapshot and simultaneous committed group before registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        },
+        {
+          "id": "dmex18-045",
+          "name": "ワンケングレンオー ～弧月躍動～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        },
+        {
+          "id": "dmex18-042",
+          "name": "ケンゴウグレンオー ～蒼天飛翔～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
+        }
+      ],
+      "verificationScope": "Complete3 new unique names, each1 exact official print/search/full image, limits4. Dakurai Nature8/13000 MachFighter/T3, optional ALL3 attack ramp then mandatory any-mana grave only on accept; mandatory leave enemy mana on bounce/destruction with stored trigger. Druid DarkNature4/7000W2, public exactlytop4 to both online seats, mandatory any1 tapped mana/all rest grave; separate own HAND entry destruction trigger captured at actual entry (normal summon OR actual unpaid Novarcha spell deployment), may destroy first and top4 still resolves. Grave Fushigibirth does not trigger self-destruction. Actual Genmu suppresses BOTH Druid hand-destruction and publiclook. Shivan Dark8/11000W2 optional ALL4 mill, leave optional ALL own grave creature<=4, choose zero or all rather than partial; no spell/seed/5+/enemy, new base then actual cheap evolution permitted, exact identity/batch held through encrypted JSON. Full native Fushigibirth: correct civilization/minimum, entire actual evolution stack to tapped mana, literal QA33412 and actual Lugundodo QA33411 reduction. Focused45 includes6 two-account encrypted service, related213 plusonline5/check/nameKey9755/invariants passed. New runtime hook only applies exact Druid flag and actual hand entry, checks ignore/selfMuted/selfStopped/seals. Existing card definitions/raw details/IDs/saves and all old pending/fullSuite interrupted preserved, no fullnpmtest/longgroup/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1848",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1848-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.403,
+          "log": "tmp/duema-target-10000/focused-1848.log",
+          "reason": "Test-only correction: native MachFighter enables creature attacks on entry but not player attack; confirm actual untapped creature attack available then make source old before testing T3 player attack. All required tests now pass; no partial new card or unverified change."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1847,
-    "nextPhase": 1848,
+    "lastVerifiedPhase": 1848,
+    "nextPhase": 1849,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp13-s05",
-        "name": "ダクライ龍樹",
-        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+        "id": "dmex18-067",
+        "name": "ケングレンオー 〜出発〜",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
       },
       {
-        "id": "dmrp14-055",
-        "name": "ライマー・サーベラ",
-        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+        "id": "dmex18-045",
+        "name": "ワンケングレンオー ～弧月躍動～",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
       },
       {
-        "id": "dmrp13-010",
-        "name": "ライマー・ドルイド",
-        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
-      },
-      {
-        "id": "dmrp14-s03",
-        "name": "不死の墓守 シヴァンリンネ",
-        "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+        "id": "dmex18-042",
+        "name": "ケンゴウグレンオー ～蒼天飛翔～",
+        "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
       }
     ],
     "steps": [
@@ -579013,6 +579208,11 @@
         "id": "dmrp16-054",
         "name": "回転者 シャッセロアー",
         "reason": "Full official research/images/QA39101 complete, not registered. Needs actual VividRo-used method tracking through completed creature entry and spell casting; QA39101 literal Zabumpuru/Shonichirakubi must enter untapped before post-entry haste grant. No partial normal Vivid watcher."
+      },
+      {
+        "id": "dmrp14-055",
+        "name": "ライマー・サーベラ",
+        "reason": "All official text/basic/image/full search/QA33628 reviewed, no implementation/count. QA33628 requires opponent hand1 plus creature1 moving to mana simultaneously: real Medaros at4 Light mana MUST leave even if chosen Light hand card becomes5. Sequential Select hand then battle would wrongly activate stay; needs native pre-move snapshot and simultaneous committed group before registration."
       }
     ],
     "lastExplicitUserAddition": {
@@ -579198,11 +579398,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1847,
-      "baseline": "d4ccc987a9b65971db3adfcd89791d4445ab4173",
-      "supportedNames": 9752,
-      "artifact": "tools/target10000-registration-checkpoint-1847.json",
-      "checkedAt": "2026-11-27T22:50:36.678Z"
+      "phase": 1848,
+      "baseline": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
+      "supportedNames": 9755,
+      "artifact": "tools/target10000-registration-checkpoint-1848.json",
+      "checkedAt": "2026-11-27T22:56:03.955Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -582260,8 +582460,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9752,
-      "remaining": 248,
+      "currentNames": 9755,
+      "remaining": 245,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -582269,31 +582469,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1847,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1847.json",
+      "lastPhase": 1848,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1848.json",
       "nextCandidates": [
         {
-          "id": "dmrp13-s05",
-          "name": "ダクライ龍樹",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp14-055",
-          "name": "ライマー・サーベラ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-045",
+          "name": "ワンケングレンオー ～弧月躍動～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp13-010",
-          "name": "ライマー・ドルイド",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
-        },
-        {
-          "id": "dmrp14-s03",
-          "name": "不死の墓守 シヴァンリンネ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-042",
+          "name": "ケンゴウグレンオー ～蒼天飛翔～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         }
       ],
-      "resumeProcedure": "Continue manual grouped batches toward10000 from9752; phase1848 four native Fushigibirth candidates full research downloaded, review full images+FAQs then complete implementation/gates. Preserve fullSuite interrupted/older pending, new Pupan/Shasseroa full-semantic holds. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation.",
+      "resumeProcedure": "Phase1848 verified9755, remaining245. Continue manual grouped full implementation/gates/local commit; next Kenguren3 full research. Preserve all past holds and pending/fullSuite interrupted, new Sabera simultaneous QA33628 hold. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -582527,7 +582722,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "d4ccc987a9b65971db3adfcd89791d4445ab4173",
+      "lastVerifiedCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -582538,7 +582733,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "d4ccc987a9b65971db3adfcd89791d4445ab4173"
+      "lastVerifiedCodeCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65"
     },
     "resolvedRegistrationValidations": [
       {
@@ -583654,8 +583849,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9752,
-      "remaining": 248,
+      "currentNames": 9755,
+      "remaining": 245,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583663,31 +583858,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1847,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1847.json",
+      "lastPhase": 1848,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1848.json",
       "nextCandidates": [
         {
-          "id": "dmrp13-s05",
-          "name": "ダクライ龍樹",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp14-055",
-          "name": "ライマー・サーベラ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-045",
+          "name": "ワンケングレンオー ～弧月躍動～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp13-010",
-          "name": "ライマー・ドルイド",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
-        },
-        {
-          "id": "dmrp14-s03",
-          "name": "不死の墓守 シヴァンリンネ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-042",
+          "name": "ケンゴウグレンオー ～蒼天飛翔～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         }
       ],
-      "resumeProcedure": "Continue manual grouped batches toward10000 from9752; phase1848 four native Fushigibirth candidates full research downloaded, review full images+FAQs then complete implementation/gates. Preserve fullSuite interrupted/older pending, new Pupan/Shasseroa full-semantic holds. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation.",
+      "resumeProcedure": "Phase1848 verified9755, remaining245. Continue manual grouped full implementation/gates/local commit; next Kenguren3 full research. Preserve all past holds and pending/fullSuite interrupted, new Sabera simultaneous QA33628 hold. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -583921,7 +584111,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "d4ccc987a9b65971db3adfcd89791d4445ab4173",
+      "lastVerifiedCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -583932,7 +584122,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "d4ccc987a9b65971db3adfcd89791d4445ab4173"
+      "lastVerifiedCodeCommit": "bbcc4907dce53f310d053f38aa25e308f2df2c65"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -590121,6 +590311,170 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1847.json"
+      },
+      {
+        "phase": 1848,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmrp13-s05.json",
+        "cards": [
+          {
+            "id": "dmrp13-s05",
+            "name": "ダクライ龍樹",
+            "searchSha256": "2c8ea446bbf32eb8a49c57c67ecce054d6d6efd4edda49a8bbfe27d6a3230289",
+            "searchIds": [
+              "dmrp13-s05"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp13-s05",
+                "name": "ダクライ龍樹",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s05",
+                "faces": [
+                  {
+                    "name": "ダクライ龍樹",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "マッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。\nこのクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nフシギバース [nn11]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [nn11] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01]より少なくならない）",
+                    "race": "ジャイアント・ドラゴン/不死樹王国",
+                    "powerText": "13000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp13-s05",
+                "printedManaValue": 1,
+                "htmlSha256": "04374abb7e23f9b3795bcf9cd348cb99dcc4d0b4dffdd4e62a40e3609ff9a0cc",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-s05.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp13-s05-0.jpg",
+                    "sha256": "c65ff18e64502806420e763ba402a119b8964c053bc671953bbbd159a3ddfa33"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/33412/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/33412/",
+                "sha256": "345c3891f6622149421a16cf3ecaba1a442e46e3083f35bd68dac24af095e794",
+                "body": "よくある質問 Q「フシギバース」で《卍 デ・スザーク 卍》や進化クリーチャーをマナゾーンに置く時、その下に重ねてあった魔道具や進化元のカードもタップ状態でマナゾーンに置かれますか？ Aはい、クリーチャーの下に重ねてあったカードは全てタップ状態でマナゾーンに置かれます。 一覧へ戻る 関連する質問 《切札接続 マンジー・ザ・ジョリー》の下にあるジョーカーズのカードは《ジョジョジョ・マキシマム》の「G・ゼロ」の効果で数えられますか？ また、《切札接続 マンジー・ザ・ジョリー》の下にある魔導具のカードを《「無月」の頂 ＄スザーク＄》の「無月の門・絶」の効果で選べますか？ 類似例：《王道の弾丸 ジョリー・ザ・ジョニー》 類似例：《ガル・ラガンザーク》の「夢幻無月の門」、《卍 デ・スザーク 卍》の「無月の門」 2026.10.16 相手の《「業流」の頂 ゾロ・ア・スタート》がバトルゾーンにいる状況で、自分は《「無月」の頂 ＄スザーク＄》を「無月の門・絶」で召喚しました。この際、処理はどうなりますか？ 類似能力：《ガル・ラガンザーク》の「夢幻無月の門」、《卍 デ・スザーク 卍》の「無月の門」 2026.6.12 自分の《異端流し オニカマス》がバトルゾーンにいる状況です。 相手のターン中、相手が呪文の効果で《堕魔 ヴォガイガ》をコストを支払わずにバトルゾーンに出した時、相手は《卍 デ・スザーク 卍》の「無月の門」の宣言をして、出した《堕魔 ヴォガイガ》を下に置きながらコストを支払わずに召喚しました。 《異端流し オニカマス》の「相手のターン中に、相手が召喚以外の方法でクリーチャーを出した時」の能力で、召喚以外の方法で出た《堕魔 ヴォガイガ》を下に置きながら出した《卍 デ・スザーク 卍》を手札に戻せますか？ 2024.10.18 相手の《卍 デ・スザーク 卍》と、自分のアンタップ状態の《機械神類 ヨミ》がバトルゾーンにいる状況です。 自分《聖霊左機 コットン》をアンタップ状態の《機械神類 ヨミ》とリンクして出す場合、リンク状態の《聖霊左機 コットン》《機械神類 ヨミ》はそれともアンタップしたままですか？それともタップしますか？ 類似例：《アルカディアス・モモキング》 2023.7.21 「無月の門」や「夢幻無月の門」のテキストには「召喚してもよい」とありますが、一度これらの能力の使用宣言をした後、他の効果処理の結果などを見て、召喚をやめることはできますか？ 類似例：《卍 デ・スザーク 卍》《ガル・ラガンザーク》 2023.4.10 《CRYMAX ジャオウガ》の「鬼S-MAX進化」にある置換効果で、どのようなカードを破壊できますか？ 2022.6.24 《かぼちゃうちゃうちゃう》がバトルゾーンにいる状況で、《卍 デ・スザーク 卍》を「無月の門」で手札から召喚できますか？ 類似例：《若き大長老 アプル》《封鎖の誓い 玄渦》《死神術士デスマーチ》の「墓地進化」 2021.12.17 《天聖王儀 アルカディア・グローリー》の２つ目の効果で、相手のカードが下に４枚ある《卍 デ・スザーク 卍》を選んだ場合、どうなりますか？ 2021.9.24 自分の《斬龍電融 オロチリュウセイ》がバトルゾーンにいて、山札の一番上のカードが《卍 デ・スザーク 卍》である状況です。自分が魔道具をバトルゾーンに出した時、この山札の上の《卍 デ・スザーク 卍》の「無月の門」を使えますか？ 類似例：《卍月 ガ・リュザーク 卍 / 卍・獄・殺》 2021.4.16 相手の《「祝」の頂 ウェディング》の「出た時」の能力で、自分は「無月の門」状態の《卍 デ・スザーク 卍》を選びました。クリーチャーとしては1体ですが、カードとしては5枚なので、バトルゾーンや手札から残りの3枚をシールドに置かなくてもいいですか？ 2020.11.13 「フシギバース」はどういう能力ですか？ 2020.3.27 「フシギバース」でオレガ・オーラが付いたクリーチャーをタップしてマナゾーンに置く時、付いていたオレガ・オー"
+              }
+            ]
+          },
+          {
+            "id": "dmrp13-010",
+            "name": "ライマー・ドルイド",
+            "searchSha256": "da06f1aba374970271cca5d36133adb77f9af1619b0a924e8afac5b4fb5e00ed",
+            "searchIds": [
+              "dmrp13-010"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp13-010",
+                "name": "ライマー・ドルイド",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-010",
+                "faces": [
+                  {
+                    "name": "ライマー・ドルイド",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇/自然",
+                    "civilizations": [
+                      "闇",
+                      "自然"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を表向きにする。そのうちの１枚をマナゾーンにタップして置き、残りを墓地に置く。\nこのクリーチャーが自分の手札からバトルゾーンに出た時、破壊する。\nフシギバース [dn07]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn07] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+                    "race": "グランセクト/不死樹王国",
+                    "powerText": "7000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp13-010",
+                "printedManaValue": 1,
+                "htmlSha256": "fd086a67bcfc4d98ae2bcbf55586a8ebaed6994aaf14e666fef7823703a581aa",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-010.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp13-010-0.jpg",
+                    "sha256": "009249571e43a2dc81cc33b4e79016c8ab79ba8ac97efc98cfb5db58b2c56109"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/33411/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/33411/",
+                "sha256": "a1eed9faa4b60a044ce51df637f6ae946bd9b2f803de6a9633563a4ca39abdbb",
+                "body": "よくある質問 Qグランセクトを持つクリーチャーの「フシギバース」で支払うコストを、《一番隊 ルグンドド》の能力で1少なくすることはできますか？ Aはい。フシギバースは召喚する能力なので、ルグンドドの能力で１少なくできます。 一覧へ戻る 関連する質問 「フシギバース」は、マナゾーンに置いたクリーチャーの分支払うコストが減る効果ですが、文明はどうなりますか？ 例えば、《大樹王 ギガンディダノス》の「フシギバース」で自然単色のクリーチャーをマナゾーンに置いた場合、闇文明のマナの支払いだけで良くなりますか？ 2020.3.27 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わ"
+              }
+            ]
+          },
+          {
+            "id": "dmrp14-s03",
+            "name": "不死の墓守 シヴァンリンネ",
+            "searchSha256": "68e8ec50fbf1968aaf434d159522362eebe8e5bfd291ca9416119771cb48e275",
+            "searchIds": [
+              "dmrp14-s03"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmrp14-s03",
+                "name": "不死の墓守 シヴァンリンネ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s03",
+                "faces": [
+                  {
+                    "name": "不死の墓守 シヴァンリンネ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を墓地に置いてもよい。\nこのクリーチャーがバトルゾーンを離れた時、コスト４以下のクリーチャーをすべて、自分の墓地からバトルゾーンに出してもよい。\nフシギバース [dd12]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd12]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくならない）",
+                    "race": "デーモン・コマンド/不死樹王国",
+                    "powerText": "11000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp14-s03",
+                "printedManaValue": 1,
+                "htmlSha256": "180be198100afbc09c7e51d7892780e180cf4b4f8e60b88621f27c9c9e1998d6",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-s03.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp14-s03-0.jpg",
+                    "sha256": "ab475b6cd45a3c496be68b8e815d436621e704ccd2228a391b0ad581e99a4d76"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1848.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -590145,31 +590499,25 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1848,
-      "status": "official-research-downloaded-full-images-and-rulings-pending-review",
-      "research": "tmp/duema-target-10000/research-dmrp13-s05.json",
+      "phase": 1849,
+      "status": "official-research-in-progress",
+      "research": "tmp/duema-target-10000/research-dmex18-067.json",
       "implementationStarted": false,
-      "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dmrp13-s05",
-          "name": "ダクライ龍樹",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp14-055",
-          "name": "ライマー・サーベラ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-045",
+          "name": "ワンケングレンオー ～弧月躍動～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         },
         {
-          "id": "dmrp13-010",
-          "name": "ライマー・ドルイド",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
-        },
-        {
-          "id": "dmrp14-s03",
-          "name": "不死の墓守 シヴァンリンネ",
-          "reason": "Next grouped full official Fushigibirth research; implement all attack/entry/leave abilities and linked literal FAQ before counting."
+          "id": "dmex18-042",
+          "name": "ケンゴウグレンオー ～蒼天飛翔～",
+          "reason": "Next full official research of Kenguren line; reuse native physical-source tap search/evolution and complete Neo/invasion/top5 rest/totalpower removal semantics, all FAQs before registration."
         }
       ]
     }
@@ -642045,10 +642393,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1847,
+    "phase": 1848,
     "threshold": 10000,
-    "supportedNames": 9752,
-    "pendingNames": 2097,
+    "supportedNames": 9755,
+    "pendingNames": 2094,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -642057,7 +642405,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1847.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1848.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

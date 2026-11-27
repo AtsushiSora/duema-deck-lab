@@ -314357,18 +314357,170 @@
       ],
       "supportBatch": "phase-1847",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s05",
+      "name": "ダクライ龍樹",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "ジャイアント・ドラゴン/不死樹王国",
+      "text": "マッハファイター\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。\nこのクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nフシギバース [nn11]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [nn11] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s05",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "fushigibirth": 11,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true
+        }
+      ],
+      "supportBatch": "phase-1848",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-010",
+      "name": "ライマー・ドルイド",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "グランセクト/不死樹王国",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を表向きにする。そのうちの１枚をマナゾーンにタップして置き、残りを墓地に置く。\nこのクリーチャーが自分の手札からバトルゾーンに出た時、破壊する。\nフシギバース [dn07]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn07] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-010",
+      "limit": 4,
+      "breaker": 2,
+      "fushigibirth": 7,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "grave",
+          "stages": [
+            {
+              "n": 1,
+              "to": "mana",
+              "tapped": true
+            }
+          ]
+        }
+      ],
+      "g1848OwnHandEntry": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "supportBatch": "phase-1848",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-s03",
+      "name": "不死の墓守 シヴァンリンネ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "デーモン・コマンド/不死樹王国",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を墓地に置いてもよい。\nこのクリーチャーがバトルゾーンを離れた時、コスト４以下のクリーチャーをすべて、自分の墓地からバトルゾーンに出してもよい。\nフシギバース [dd12]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd12]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s03",
+      "limit": 4,
+      "breaker": 2,
+      "fushigibirth": 12,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 4
+            }
+          ]
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Offer",
+          "title": "墓地のコスト4以下のクリーチャーをすべて出す？",
+          "defs": [
+            {
+              "op": "GraveArmy",
+              "n": "all",
+              "g1675All": true,
+              "filter": {
+                "creature": true,
+                "max": 4
+              },
+              "title": "墓地からコスト4以下のクリーチャーをすべて出す（任意の途中終了は不可）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1848",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1847,
-    "checkedAt": "2026-11-27T22:46:31.674Z",
-    "baseCount": 9749,
+    "phase": 1848,
+    "checkedAt": "2026-11-27T22:52:04.459Z",
+    "baseCount": 9752,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9752,
+    "totalCount": 9755,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35670/"
+      "https://dm.takaratomy.co.jp/rule/qa/33412/",
+      "https://dm.takaratomy.co.jp/rule/qa/33411/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344573,6 +344725,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31660/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1847,
+        "checkedAt": "2026-11-27T22:46:31.674Z",
+        "baseCount": 9749,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9752,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35670/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
