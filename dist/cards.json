@@ -304350,19 +304350,112 @@
       "g1067OpponentAttackPowerMax": 5000,
       "supportBatch": "phase-1764",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-028",
+      "name": "浄域の精霊ウルソフィア",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エンジェル・コマンド",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、 カードを１枚引く。その後、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-028",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-1765",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-032",
+      "name": "アクア・フラッガー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "リキッド・ピープル",
+      "text": "自分のリキッド・ピープル・クリーチャーの召喚コストを１少なくする。ただしコストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-032",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "リキッド・ピープル"
+          },
+          "amount": 1
+        }
+      ],
+      "supportBatch": "phase-1765",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-035",
+      "name": "ディザスター・チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を見る。その後、それらを好きな順序で山札の上または下に置く。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g940SplitTop": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "deckTop",
+              "optional": true,
+              "title": "山札の上に残すカードを上から順に選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1765",
+      "supportKind": "effect",
+      "normalCharger": true
     }
   ],
   "supportExpansion": {
-    "phase": 1764,
-    "checkedAt": "2026-11-27T07:42:56.071Z",
-    "baseCount": 9513,
+    "phase": 1765,
+    "checkedAt": "2026-11-27T07:56:06.615Z",
+    "baseCount": 9516,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9516,
+    "totalCount": 9519,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36690/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36691/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -333294,6 +333387,22 @@
         "totalCount": 9513,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1764,
+        "checkedAt": "2026-11-27T07:42:56.071Z",
+        "baseCount": 9513,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9516,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36690/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36691/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

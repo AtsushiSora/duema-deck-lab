@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
-  "catalogueNames": 11824,
-  "supportedNames": 9516,
+  "catalogueNames": 11827,
+  "supportedNames": 9519,
   "pendingNames": 2308,
-  "phase": 1764,
+  "phase": 1765,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -560910,11 +560910,170 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1765,
+      "checkedAt": "2026-11-27T08:02:46.011Z",
+      "baseline": "db0b9aa2357b446049f2cd0e965d56dfce030ce4",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9516,
+      "currentNames": 9519,
+      "remainingNames": 481,
+      "added": [
+        {
+          "id": "dm26ex5-028",
+          "name": "浄域の精霊ウルソフィア"
+        },
+        {
+          "id": "dm26ex5-032",
+          "name": "アクア・フラッガー"
+        },
+        {
+          "id": "dm26ex5-035",
+          "name": "ディザスター・チャージャー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1765,
+        "baseline": "db0b9aa2357b446049f2cd0e965d56dfce030ce4",
+        "originalDefinitionsUnchanged": 9516,
+        "uniqueNames": 9519,
+        "uniqueIds": 9519,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": false,
+        "oldDetailsRowsUnchanged": 11828,
+        "newCatalogueNames": 3,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9516,
+        "existingImageReferenceRowsUnchanged": 11822,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1765": {
+          "name": "official-1765",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1765.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.463,
+          "log": "tmp/duema-target-10000/official-1765.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1765-final": {
+          "name": "focused-1765-fixed",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1765-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.898,
+          "log": "tmp/duema-target-10000/focused-1765-fixed.log",
+          "passed": 21,
+          "logSha256": "cede3803dbf11db6a67fd47b0e9802fed2f78e636b287bd018c8678617867876"
+        },
+        "related-1765": {
+          "name": "related-1765",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard940-effects.test.mjs",
+            "tests/standard290-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 28,
+          "log": "tmp/duema-target-10000/related-1765.log",
+          "passed": 59,
+          "logSha256": "08e0ee7319c7e9d9db95895680ae4d1b98e609cf38586b58291add4606a5efe5"
+        },
+        "check-1765": {
+          "name": "check-1765",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.174,
+          "log": "tmp/duema-target-10000/check-1765.log",
+          "passed": 0,
+          "logSha256": "9f647ee1fd27005064dc861b9cb29d4c0caccd5783cc7241247704deee9bba0e"
+        },
+        "audit-1765": {
+          "name": "audit-1765",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.014,
+          "log": "tmp/duema-target-10000/audit-1765.log",
+          "passed": 0,
+          "logSha256": "b37a4de6d97d9c4bc48787d51cbe5f26141319a48cd79e9f45e45346e9cdb3ea"
+        },
+        "invariants-1765": {
+          "name": "invariants-1765",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1765"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.753,
+          "log": "tmp/duema-target-10000/invariants-1765.log",
+          "passed": 0,
+          "logSha256": "3fa6b016a153ea3cca02d55489c1ba6fca38e5df7f69bf64513255e166a0a19e"
+        }
+      },
+      "totalTestsPassed": 80,
+      "manifest": "tools/support-phase-1765.json",
+      "supported": 9519,
+      "pending": 2308,
+      "engineVersion": "0.602.289",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1765",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1765-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.961,
+          "log": "tmp/duema-target-10000/focused-1765.log",
+          "reason": "Focused first run found a new-card spec used the legacy judge-charger flag. Replaced it with the existing normalCharger implementation; no shared engine logic changed."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1764,
-    "nextPhase": 1765,
+    "lastVerifiedPhase": 1765,
+    "nextPhase": 1766,
     "workInProgress": null,
     "nextCandidates": [],
     "steps": [
@@ -561808,11 +561967,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1764,
-      "baseline": "7269ae6440117f75aa73498deb14b9517e36f173",
-      "supportedNames": 9516,
-      "artifact": "tools/target10000-registration-checkpoint-1764.json",
-      "checkedAt": "2026-11-27T07:47:49.395Z"
+      "phase": 1765,
+      "baseline": "db0b9aa2357b446049f2cd0e965d56dfce030ce4",
+      "supportedNames": 9519,
+      "artifact": "tools/target10000-registration-checkpoint-1765.json",
+      "checkedAt": "2026-11-27T08:02:46.011Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -564870,8 +565029,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9516,
-      "remaining": 484,
+      "currentNames": 9519,
+      "remaining": 481,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -564879,8 +565038,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1764,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1764.json"
+      "lastPhase": 1765,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1765.json"
     },
     "resolvedRegistrationValidations": [
       {
@@ -566018,8 +566177,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9516,
-      "remaining": 484,
+      "currentNames": 9519,
+      "remaining": 481,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -566027,8 +566186,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1764,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1764.json"
+      "lastPhase": 1765,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1765.json"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -617916,9 +618075,9 @@
     }
   },
   "registrationStop": {
-    "phase": 1764,
+    "phase": 1765,
     "threshold": 10000,
-    "supportedNames": 9516,
+    "supportedNames": 9519,
     "pendingNames": 2308,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
@@ -617928,7 +618087,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1764.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1765.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
