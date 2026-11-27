@@ -423,7 +423,7 @@ export function createSamuraiRules(api){
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
    const gear=card(g),host=identity(s,p,x,card(x)),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host,x);
-   const hostFree=!x.sealed&&!g.sealed&&!g.faceDown&&(host.g946FreeCross&&active(s,x)||attached(s,p,x).some(y=>card(y).g1713CrossFree&&!y.faceDown&&!y.sealed&&live(s,p,y)===x&&active(s,y)));
+   const hostFree=!x.sealed&&!g.sealed&&!g.faceDown&&(effective(x,s).g946FreeCross&&active(s,x)||attached(s,p,x).some(y=>card(y).g1713CrossFree&&!y.faceDown&&!y.sealed&&live(s,p,y)===x&&active(s,y)));
    if(gear.g1720CrossAlternativeCost&&!g.sealed&&!g.faceDown&&active(s,g)&&api.canPay(s,p,crossPayment(g,0,true)))
     out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,g1720AlternativeCross:true,
      cost:api.summonCost(s,p,crossPayment(g,0,true)),free:false,score:12,

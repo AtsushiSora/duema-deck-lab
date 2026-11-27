@@ -313965,18 +313965,143 @@
       ],
       "supportBatch": "phase-1844",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex16-042",
+      "name": "ハートフ・ルピア",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "サイバー・ウイルス/ファイアー・バード",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の山札の上から３枚を見る。その中からクロスギアを１つ出し、コストを支払わずにこのクリーチャーにクロスしてもよい。残りを好きな順番で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-042",
+      "limit": 4,
+      "speedAttacker": true,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "g1640CrossToSource": true,
+          "title": "確認した3枚からこのクリーチャーにクロスするクロスギアを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-1845",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-030",
+      "name": "バイオレンス・迅雷・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分がクロスギアをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-030",
+      "limit": 4,
+      "samuraiGenerate": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1845",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-051",
+      "name": "ミロクの弟子 ニョライ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スターノイド",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nバトルゾーンに自分のクロスギアが３枚以上あれば、このクリーチャーのパワーを+5000する。\n自分のクロスギアが出た時、カードを１枚引く。\n自分のクロスギアを、コストを支払わずに自分のクリーチャーにクロスしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-051",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g260Self": {
+        "filter": {
+          "g1484ZoneCount": {
+            "zone": "battle",
+            "min": 3,
+            "filter": {
+              "g201Gear": true
+            }
+          }
+        },
+        "grants": {
+          "power": 5000
+        }
+      },
+      "g250EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g946FreeCross": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1845",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1844,
-    "checkedAt": "2026-11-27T22:22:34.893Z",
-    "baseCount": 9741,
-    "newEffectCards": 2,
+    "phase": 1845,
+    "checkedAt": "2026-11-27T22:27:56.514Z",
+    "baseCount": 9743,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9743,
+    "totalCount": 9746,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45801/"
+      "https://dm.takaratomy.co.jp/rule/qa/40402/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344136,6 +344261,21 @@
         "totalCount": 9741,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1844,
+        "checkedAt": "2026-11-27T22:22:34.893Z",
+        "baseCount": 9741,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9743,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45801/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

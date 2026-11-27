@@ -2061,6 +2061,7 @@ export function createSixPhotoRules(api){
    const row=rows[0],gear=row&&s.players[row.p][row.origin].find(y=>y.uid===row.uid);
    if(gear)put(s,{...t,...row,owner:row.p,p:t.p,op:'g34_Put',target:row.uid},
     {...t,op:'g34_CrossDeployed1640',gear:row.uid,gearInc:(gear.incarnation||0)+1});
+   else if(t.after)start(s,t,t.after);
    return;
   }
   if(t.g1106OnDeploy){
@@ -3338,6 +3339,7 @@ export function createSixPhotoRules(api){
  case'g34_CrossDeployed1640':{
   const host=sourceHost474(s,t),gear=own.battle.find(y=>y.uid===t.gear&&(y.incarnation||0)===t.gearInc&&card(y).type==='gear'&&!y.sealed&&!y.faceDown);
   if(gear&&host&&host.p===t.p&&!host.x.sealed&&api.isCreature(s,host.x))api.crossGearGroup(s,t.p,host.x,[gear.uid]);
+  if(t.after)start(s,t,t.after);
   break;
  }
  case'g34_GraveReturn754':{

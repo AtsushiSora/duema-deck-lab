@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9743,
-  "pendingNames": 2106,
-  "phase": 1844,
-  "added": 2,
+  "supportedNames": 9746,
+  "pendingNames": 2103,
+  "phase": 1845,
+  "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1238,
+    "クリーチャー": 1235,
     "呪文": 239,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1579,
+    "未対応の能力文": 1576,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -577643,28 +577643,236 @@
           "reason": "Initial35/29 passed; two budget fixtures expected a decision after selecting11000 when no remaining legal target, but native Select correctly auto-finishes; guard optional decision. Four death tests accidentally used dm01-063 Giant (mana-loss entry) rather than actual DemonHand dm01-027; fixed test ID. No new runtime logic required, all final35 and6 edge pass. Initial raw logs retained."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7"
+    },
+    {
+      "phase": 1845,
+      "checkedAt": "2026-11-27T22:31:47.902Z",
+      "baseline": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9743,
+      "currentNames": 9746,
+      "remainingNames": 254,
+      "added": [
+        {
+          "id": "dmex16-042",
+          "name": "ハートフ・ルピア"
+        },
+        {
+          "id": "dm31-030",
+          "name": "バイオレンス・迅雷・ドラゴン"
+        },
+        {
+          "id": "dmex17-051",
+          "name": "ミロクの弟子 ニョライ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1845,
+        "baseline": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7",
+        "originalDefinitionsUnchanged": 9743,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9746,
+        "uniqueIds": 9746,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9743,
+        "existingImageReferenceRowsUnchanged": 12209,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1845": {
+          "name": "official-1845",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1845.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.215,
+          "log": "tmp/duema-target-10000/official-1845.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1845-final": {
+          "name": "focused-1845-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1845-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.045,
+          "log": "tmp/duema-target-10000/focused-1845-final.log",
+          "passed": 44,
+          "logSha256": "c91ae08e45321055c47869f85c2a5451bcfd72b2fb4e8f2eeb53e4b8452daa4e"
+        },
+        "related-1845": {
+          "name": "related-1845",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1845.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.295,
+          "log": "tmp/duema-target-10000/related-1845.log",
+          "passed": 249,
+          "logSha256": "f11f160c69df0557543774b71d1be3a9d84bc2f5e72d3aa2366fff8fbc024eb7"
+        },
+        "check-1845": {
+          "name": "check-1845",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.226,
+          "log": "tmp/duema-target-10000/check-1845.log",
+          "passed": 0,
+          "logSha256": "65188d70dd2770f9294cd5ce44af4f18f0089669003497581f37b296ea1b2329"
+        },
+        "audit-1845": {
+          "name": "audit-1845",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.922,
+          "log": "tmp/duema-target-10000/audit-1845.log",
+          "passed": 0,
+          "logSha256": "77120ca7b39a91d9704eb8092d5084dfb58912b3baa77039b1b1bcb5138204c9"
+        },
+        "invariants-1845": {
+          "name": "invariants-1845",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1845"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.853,
+          "log": "tmp/duema-target-10000/invariants-1845.log",
+          "passed": 0,
+          "logSha256": "955445cc6ee7ca6b9fd234b5b891ab92da1a94e3ae229e39af8f26d744d2e15f"
+        },
+        "related-online-1845": {
+          "name": "related-online-1845",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.606,
+          "log": "tmp/duema-target-10000/related-online-1845.log",
+          "passed": 5,
+          "logSha256": "d130322ab74d63ee7e64bcc79488876d8fe6ae714536a0257242c4da634d8f90"
+        },
+        "extra-1845": {
+          "name": "extra-1845",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1845-edge-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.18,
+          "log": "tmp/duema-target-10000/extra-1845.log",
+          "passed": 8,
+          "logSha256": "532950081d3e96c239635c16aa3963611f29fda59a9a7cc6465b0e5ca39fac1d"
+        }
+      },
+      "totalTestsPassed": 306,
+      "manifest": "tools/support-phase-1845.json",
+      "supported": 9746,
+      "pending": 2103,
+      "engineVersion": "0.602.369",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm24ex2-028",
+          "name": "悪魔神バロム・コバルト",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
+        },
+        {
+          "id": "dmrp04s-044",
+          "name": "闇より来たりし魔導具",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
+        },
+        {
+          "id": "dmex06-043",
+          "name": "一面 エニク＝アーク",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
+        }
+      ],
+      "verificationScope": "Complete Heartful Rupia Water/Fire5/5000/Speed/unblockable: private top3 optional exact crossgear deployment free self-cross, selected and declined/no-match paths ALWAYS order remaining cards at library bottom; only top3 eligible, deeper real gear not accessible, no hidden IDs leak to opposing account until deployed, native cross references exact incarnation, mono/multi mana correct. Violence Jinrai Fire6/6000/W2 Samurai Generate optional only HAND gear, generation does not auto-cross; every own gear ENTRY (paid or native Samurai generated) produces mandatory target destruction of opposing current-power<=4000 creature, never own/wrongpower, crossing/re-cross or opponent gear not entry. Nyorai Water2/1000 PoweredBreaker; own live3+ crossgear including crossed increases power5000 and breaks2 at6000, other cardtypes/opposing gears excluded; own gear entry mandatory1draw, crossing/opponent gear not entry; continuous grants free cross to ALL own creatures including source, source ignored/sealed/departure removes grant, literal QA40402 own main only with zero mana tested both seats. Paid mana/cross effects/source identity/encrypted two-account native service and hidden AI purity covered. Full searches1/2/2 enumerated, exact prints1/2/1, all4 full images reviewed, originalIDs and reprint aliases stable, all limits4. Related CrossDeployed1640 continuation now preserves after-rest on selection and decline, existing Ortegia default has no after and its regressions passed; native Samurai action host free-cross now reads effective rather than raw definition to honor continuously granted ability while preserving source suppression. Focused44 plus edge8, affected regressions and online5; npmcheck/audit9746/old-ID-data invariants passed. Preserve all prior pending/fullSuite interrupted/holds. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1845",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1845-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.117,
+          "log": "tmp/duema-target-10000/focused-1845.log",
+          "reason": "Pre-test inspection found Samurai action free-cross read raw host definition, so Nyorai continuous grant needed effective host lookup; source suppression retained and existing free-cross regressions run. First44/40 passed; four Heartful decline/no-match cases exposed inherited CrossDeployed1640 optional branch dropping LookRest continuation. Preserve after continuation after cross and when no gear selected, regenerate online compatibility. All final44 and8edge pass; raw initial failure retained."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1844,
-    "nextPhase": 1845,
+    "lastVerifiedPhase": 1845,
+    "nextPhase": 1846,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex16-042",
-        "name": "ハートフ・ルピア",
-        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        "id": "dm24ex2-028",
+        "name": "悪魔神バロム・コバルト",
+        "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
       },
       {
-        "id": "dm31-030",
-        "name": "バイオレンス・迅雷・ドラゴン",
-        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        "id": "dmrp04s-044",
+        "name": "闇より来たりし魔導具",
+        "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
       },
       {
-        "id": "dmex17-051",
-        "name": "ミロクの弟子 ニョライ",
-        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        "id": "dmex06-043",
+        "name": "一面 エニク＝アーク",
+        "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
       }
     ],
     "steps": [
@@ -578558,11 +578766,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1844,
-      "baseline": "265be8cefc80f8834cff29f822e96756e5393d14",
-      "supportedNames": 9743,
-      "artifact": "tools/target10000-registration-checkpoint-1844.json",
-      "checkedAt": "2026-11-27T22:26:32.698Z"
+      "phase": 1845,
+      "baseline": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7",
+      "supportedNames": 9746,
+      "artifact": "tools/target10000-registration-checkpoint-1845.json",
+      "checkedAt": "2026-11-27T22:31:47.902Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -581620,8 +581828,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9743,
-      "remaining": 257,
+      "currentNames": 9746,
+      "remaining": 254,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -581629,26 +581837,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1844,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1844.json",
+      "lastPhase": 1845,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1845.json",
       "nextCandidates": [
         {
-          "id": "dmex16-042",
-          "name": "ハートフ・ルピア",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dm24ex2-028",
+          "name": "悪魔神バロム・コバルト",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         },
         {
-          "id": "dm31-030",
-          "name": "バイオレンス・迅雷・ドラゴン",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dmrp04s-044",
+          "name": "闇より来たりし魔導具",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         },
         {
-          "id": "dmex17-051",
-          "name": "ミロクの弟子 ニョライ",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dmex06-043",
+          "name": "一面 エニク＝アーク",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         }
       ],
-      "resumeProcedure": "Phase1844 verified9743 names, remaining257; next1845 crossgear trio official grouped research. Preserve all prior pending/holds/fullSuite interrupted, Genmu observed issue and new Pauaa QA47460/Raikou full implementation hold. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1845 verified9746 names, remaining254; next1846 research Cobalt/Yamiyori/EnicArk, preserve all prior pending, fullSuite interrupted, holds/Pauaa QA47460+Raikou and Genmu observed issue. Check start state then implement complete verified batch, no fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -581882,7 +582090,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "265be8cefc80f8834cff29f822e96756e5393d14",
+      "lastVerifiedCommit": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -581893,7 +582101,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "265be8cefc80f8834cff29f822e96756e5393d14"
+      "lastVerifiedCodeCommit": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7"
     },
     "resolvedRegistrationValidations": [
       {
@@ -583009,8 +583217,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9743,
-      "remaining": 257,
+      "currentNames": 9746,
+      "remaining": 254,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583018,26 +583226,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1844,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1844.json",
+      "lastPhase": 1845,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1845.json",
       "nextCandidates": [
         {
-          "id": "dmex16-042",
-          "name": "ハートフ・ルピア",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dm24ex2-028",
+          "name": "悪魔神バロム・コバルト",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         },
         {
-          "id": "dm31-030",
-          "name": "バイオレンス・迅雷・ドラゴン",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dmrp04s-044",
+          "name": "闇より来たりし魔導具",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         },
         {
-          "id": "dmex17-051",
-          "name": "ミロクの弟子 ニョライ",
-          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+          "id": "dmex06-043",
+          "name": "一面 エニク＝アーク",
+          "reason": "Next grouped official research: Cobalt full GStrike extra minus6000/evolution/nonDark sweep; Yamiyori Magu2 blind discard then optional own sacrifice causing enemy destruction; EnicArk full Fire-orNature revolution change and all-mana-colors own speed aura. Verify all images/prints/QA/limits before native full implementation."
         }
       ],
-      "resumeProcedure": "Phase1844 verified9743 names, remaining257; next1845 crossgear trio official grouped research. Preserve all prior pending/holds/fullSuite interrupted, Genmu observed issue and new Pauaa QA47460/Raikou full implementation hold. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1845 verified9746 names, remaining254; next1846 research Cobalt/Yamiyori/EnicArk, preserve all prior pending, fullSuite interrupted, holds/Pauaa QA47460+Raikou and Genmu observed issue. Check start state then implement complete verified batch, no fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -583271,7 +583479,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "265be8cefc80f8834cff29f822e96756e5393d14",
+      "lastVerifiedCommit": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -583282,7 +583490,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "265be8cefc80f8834cff29f822e96756e5393d14"
+      "lastVerifiedCodeCommit": "eed6ddb3d69a08747b35c5bfb6cbc10e06fe4af7"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -588959,6 +589167,203 @@
           "dmex02-072"
         ],
         "completedManifest": "tools/support-phase-1844.json"
+      },
+      {
+        "phase": 1845,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmex16-042.json",
+        "cards": [
+          {
+            "id": "dmex16-042",
+            "name": "ハートフ・ルピア",
+            "searchSha256": "308519cd3485844aa669ef2aaa4ff13f6ee48e0807baba0a376a8eed23824443",
+            "searchIds": [
+              "dmex16-042"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmex16-042",
+                "name": "ハートフ・ルピア",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-042",
+                "faces": [
+                  {
+                    "name": "ハートフ・ルピア",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水/火",
+                    "civilizations": [
+                      "水",
+                      "火"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の山札の上から３枚を見る。その中からクロスギアを１つ出し、コストを支払わずにこのクリーチャーにクロスしてもよい。残りを好きな順番で山札の下に置く。",
+                    "race": "サイバー・ウイルス/ファイアー・バード",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex16-042",
+                "printedManaValue": 1,
+                "htmlSha256": "bc0b09f4438738bc1b42f3887267b2c270acb0649496cb14b93f27ff21007b59",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-042.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex16-042-0.jpg",
+                    "sha256": "44fe872f6be5be33807df1563b4406cdbb6d69a0d9814a2b8d2294e5a7e6bc5d"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm31-030",
+            "name": "バイオレンス・迅雷・ドラゴン",
+            "searchSha256": "409b197f7a7fc0f1c92bfb11a265be5fdc43f04f4a14b1228b182372f3522d19",
+            "searchIds": [
+              "dm31-030",
+              "dm31-030HC"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm31-030",
+                "name": "バイオレンス・迅雷・ドラゴン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-030",
+                "faces": [
+                  {
+                    "name": "バイオレンス・迅雷・ドラゴン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分がクロスギアをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+                    "race": "アーマード・ドラゴン/サムライ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm31-030",
+                "printedManaValue": 1,
+                "htmlSha256": "04f450e5c1e2fcf2e8e095850ef9973aec185538b52e80495385417ae5eeb412",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-030.jpg",
+                    "file": "tmp/duema-target-10000/research/dm31-030-0.jpg",
+                    "sha256": "420110ded3c18f16bcd9c590e6d9cfdf3ccb32fae50af154db644855793353fb"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm31-030HC",
+                "name": "バイオレンス・迅雷・ドラゴン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-030HC",
+                "faces": [
+                  {
+                    "name": "バイオレンス・迅雷・ドラゴン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "侍流ジェネレート（このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分がクロスギアをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+                    "race": "アーマード・ドラゴン/サムライ",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm31-030",
+                "printedManaValue": 1,
+                "htmlSha256": "449a7a81bf035d324011fcc3db08b8fc51bfbb570e017eed5b882ed6b92a6037",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-030HC.jpg",
+                    "file": "tmp/duema-target-10000/research/dm31-030HC-0.jpg",
+                    "sha256": "f4776f0dab67c9d116516e862944ee1e4490e8ae6e4971e6042673e5d02015c5"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmex17-051",
+            "name": "ミロクの弟子 ニョライ",
+            "searchSha256": "82d20568594d3ecb770bdbb4a34a1e46d4f0ade7f3578d7acd75f3d03db8050c",
+            "searchIds": [
+              "dmex17-051",
+              "dm31-039"
+            ],
+            "excluded": [
+              {
+                "id": "dm31-039",
+                "name": "天装 ニチリーン・ニョライ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmex17-051",
+                "name": "ミロクの弟子 ニョライ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-051",
+                "faces": [
+                  {
+                    "name": "ミロクの弟子 ニョライ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nバトルゾーンに自分のクロスギアが３枚以上あれば、このクリーチャーのパワーを+5000する。\n自分のクロスギアが出た時、カードを１枚引く。\n自分のクロスギアを、コストを支払わずに自分のクリーチャーにクロスしてもよい。",
+                    "race": "スターノイド",
+                    "powerText": "1000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex17-051",
+                "printedManaValue": 1,
+                "htmlSha256": "7175a5ec578b6eac8f0cffe9e0cb9188769fe62b8cc720d732659443f9f763ad",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-051.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex17-051-0.jpg",
+                    "sha256": "7752f2e3e007777bac7dbed01791355c69e062689f6dedbb49868f0b2d3ddb83"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40402/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40402/",
+                "sha256": "5ddb9db984e58b7cd604531d3bd6eaec2e891c62d6706351f328d368e599ad0a",
+                "body": "よくある質問 Q《ミロクの弟子 ニョライ》の「自分のクロスギアを、コストを支払わずに自分のクリーチャーにクロスしてもよい。 」という能力は、攻撃ステップ中や相手のターン中でも使えますか？ Aいいえ、使えません。この能力は、自分のメインステップ中にのみ使えます。 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラトミー &copy; TOMY"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1845.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -640855,10 +641260,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1844,
+    "phase": 1845,
     "threshold": 10000,
-    "supportedNames": 9743,
-    "pendingNames": 2106,
+    "supportedNames": 9746,
+    "pendingNames": 2103,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -640867,7 +641272,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1844.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1845.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

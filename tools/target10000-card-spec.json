@@ -20660,5 +20660,177 @@
         }
       ]
     }
+  },
+  "dmex16-042": {
+    "phase": 1845,
+    "faces": [
+      {
+        "name": "ハートフ・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/火",
+        "civilizations": [
+          "水",
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の山札の上から３枚を見る。その中からクロスギアを１つ出し、コストを支払わずにこのクリーチャーにクロスしてもよい。残りを好きな順番で山札の下に置く。",
+        "race": "サイバー・ウイルス/ファイアー・バード",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "g1640CrossToSource": true,
+          "title": "確認した3枚からこのクリーチャーにクロスするクロスギアを選ぶ（任意）"
+        }
+      ]
+    }
+  },
+  "dm31-030": {
+    "phase": 1845,
+    "faces": [
+      {
+        "name": "バイオレンス・迅雷・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分がクロスギアをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+        "race": "アーマード・ドラゴン/サムライ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "samuraiGenerate": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dm31-030HC": {
+    "phase": 1845,
+    "faces": [
+      {
+        "name": "バイオレンス・迅雷・ドラゴン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "侍流ジェネレート（このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分がクロスギアをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+        "race": "アーマード・ドラゴン/サムライ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "samuraiGenerate": true,
+      "breaker": 2,
+      "g250EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dmex17-051": {
+    "phase": 1845,
+    "faces": [
+      {
+        "name": "ミロクの弟子 ニョライ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nバトルゾーンに自分のクロスギアが３枚以上あれば、このクリーチャーのパワーを+5000する。\n自分のクロスギアが出た時、カードを１枚引く。\n自分のクロスギアを、コストを支払わずに自分のクリーチャーにクロスしてもよい。",
+        "race": "スターノイド",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "poweredBreaker": true,
+      "g260Self": {
+        "filter": {
+          "g1484ZoneCount": {
+            "zone": "battle",
+            "min": 3,
+            "filter": {
+              "g201Gear": true
+            }
+          }
+        },
+        "grants": {
+          "power": 5000
+        }
+      },
+      "g250EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g946FreeCross": true
+          }
+        }
+      ]
+    }
   }
 }
