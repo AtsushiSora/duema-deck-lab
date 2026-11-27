@@ -1,0 +1,333 @@
+{
+  "phase": 1799,
+  "checkedAt": "2026-11-27T12:56:55.504Z",
+  "baseline": "a96119a538939b506462d3cd04db3a0a77d3867b",
+  "baseCount": 9618,
+  "target": 10000,
+  "description": "Three complete native Meteor evolutions. Mephistar grants current allies blocker until next own start and schedules end untap of current allies. Galaxy reserves exactly three underlying physical cards before optional full-library NEX deployment. Luxus uses either race combinations for evolution V and private Dragon/Phoenix creature search with selected-card reveal and mandatory shuffle. No new shared engine behavior.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm34-021",
+      "name": "英知メフィスター",
+      "canonicalId": "dm34-021",
+      "printId": "dm34-021",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-021",
+      "faces": [
+        {
+          "name": "英知メフィスター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化 - 自分のライトブリンガーまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の次のターンのはじめまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得、このターンの終わりにバトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+          "race": "ライトブリンガー/オリジン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ライトブリンガー"
+            },
+            {
+              "race": "オリジン"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "blocker": true
+                },
+                "g521UntilStart": true
+              },
+              {
+                "op": "Schedule537",
+                "when": "turnEnd",
+                "defs": [
+                  {
+                    "op": "GroupUntap",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-021.jpg",
+      "imageSha256": "ee27707970cb143dd5092c61144c41841018874ecfcdb1d08a76c4ee8e0cb2a3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-021-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-021"
+        ],
+        "allSearchIds": [
+          "dm34-021"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:56:55.504Z",
+        "sha256": "778a7c3b24ad7927ebcf7f52ca8def15ee69f65928d725fdd945c11bd8fd8414",
+        "facesMatched": true,
+        "imageSha256": "ee27707970cb143dd5092c61144c41841018874ecfcdb1d08a76c4ee8e0cb2a3"
+      }
+    },
+    {
+      "id": "dmc62-003",
+      "name": "ギャラクシー・ルピア",
+      "canonicalId": "dmc62-003",
+      "printId": "dmc62-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-003",
+      "faces": [
+        {
+          "name": "ギャラクシー・ルピア",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-名前に《ルピア》とある自分のクリーチャー３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札を見る。その中から、名前に《NEX》とあるクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス/ファイアー・バード",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "nameIncludes": "ルピア"
+            },
+            {
+              "nameIncludes": "ルピア"
+            },
+            {
+              "nameIncludes": "ルピア"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 3,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "g201Search": true,
+                "n": "all",
+                "limit": 1,
+                "g841DeckPeek": true,
+                "rest": "shuffle",
+                "filter": {
+                  "creature": true,
+                  "name": "NEX"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-003.jpg",
+      "imageSha256": "a8b6ee8135d363a52252d664783f5aba21aed30fce34b26131b08fea3958e99a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc62-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc62-003"
+        ],
+        "allSearchIds": [
+          "dmc62-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:56:55.504Z",
+        "sha256": "cdf4c89b2cd94d7241a0fe0313ea6071eba7439874e84db950013795fd606ec4",
+        "facesMatched": true,
+        "imageSha256": "a8b6ee8135d363a52252d664783f5aba21aed30fce34b26131b08fea3958e99a"
+      }
+    },
+    {
+      "id": "sp-022",
+      "name": "光彗星アステロイド・ルクサス",
+      "canonicalId": "sp-022",
+      "printId": "sp-022",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-022",
+      "faces": [
+        {
+          "name": "光彗星アステロイド・ルクサス",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化V-自分のドラゴン、ファイアー・バード、ティラノ・ドレイクのいずれか２体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札を見る。その中からドラゴンまたはフェニックスを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー",
+          "race": "フェニックス",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "ドラゴン"
+                },
+                {
+                  "race": "ファイアー・バード"
+                },
+                {
+                  "race": "ティラノ・ドレイク"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "ドラゴン"
+                },
+                {
+                  "race": "ファイアー・バード"
+                },
+                {
+                  "race": "ティラノ・ドレイク"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "n": "all",
+                "g841DeckPeek": true,
+                "rest": "shuffle",
+                "stages": [
+                  {
+                    "n": 1,
+                    "optional": true,
+                    "to": "hand",
+                    "reveal": true,
+                    "filter": {
+                      "creature": true,
+                      "raceAny": [
+                        "ドラゴン",
+                        "フェニックス"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-022.jpg",
+      "imageSha256": "bc89a3a19d89573a8731ca76093f19fdad283e1b8a380026aa8c01da9ecf6f36",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/sp-022-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "sp-022"
+        ],
+        "allSearchIds": [
+          "sp-022"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T12:56:55.504Z",
+        "sha256": "1e332ef6447d01a75971e18e2e546cd5c4c9787caa7ac6d8c98adf9f4c4ce689",
+        "facesMatched": true,
+        "imageSha256": "bc89a3a19d89573a8731ca76093f19fdad283e1b8a380026aa8c01da9ecf6f36"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T12:56:55.504Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm34-021": 4,
+      "dmc62-003": 4,
+      "sp-022": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Initial six shuffle assertions observed s.rng, but importing the actual room service installs cryptographic randomSource, intentionally leaving deterministic state RNG unchanged. The focused card fixture now explicitly restores deterministic engine RNG so shuffle assertions are reproducible. No production behavior changed. All 29 final focused tests pass.",
+    "regressionScope": "Existing-handler-only definitions; run exact positive title prefixes for blocker expiry, delayed end untap/current allies, skipped/extra turns, private Look deployment, library look/deploy prohibitions, reserved cards, source departure, optional last-card search and mandatory shuffle. Do not rerun the unchanged 483.989-second phase1798 broad group.",
+    "selectedRegressionTitles": [
+      "Shimp shields the top card on paid entry, then its real Sasage two destruction grants blocker",
+      "next-own-start scheduling follows a real extra turn before the opponent turn",
+      "next-own-start recovery waits through a skipped own turn and fires on the next actual own start",
+      "San Diego untaps the controller current creatures, including those added later, after its source has left",
+      "two separate next-own-start delays each recover one shield and are consumed once",
+      "Shin selects zero, one or both top-two Cyber Lords before moving any card ",
+      "Shin excludes wrong types, evolution, races and otherwise valid cards beyond the inspected two ",
+      "Shin respects looking restrictions and deck deployment bans ",
+      "Shin never selects cards reserved by another pending library effect and releases its own reservations",
+      "Shin can put a NEO Cyber Lord and choose whether it evolves ",
+      "Shin CPU stops optional deployment before taking its final library card ",
+      "Shin deployment AI is read-only and depends only on the inspected cards and public state",
+      "Shin continues the saved inspected selection after its source leaves and ability suppression enters",
+      "a declined search after winning still shuffles, but a lost judge never searches or shuffles",
+      "a winning last-card Dragon search is optional, CPU declines it and human acceptance loses without a draw"
+    ]
+  }
+}

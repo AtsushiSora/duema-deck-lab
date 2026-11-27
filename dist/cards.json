@@ -308459,20 +308459,218 @@
       ],
       "supportBatch": "phase-1798",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm34-021",
+      "name": "英知メフィスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5500,
+      "race": "ライトブリンガー/オリジン",
+      "text": "進化 - 自分のライトブリンガーまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の次のターンのはじめまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得、このターンの終わりにバトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-021",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ライトブリンガー"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "grant": {
+                "blocker": true
+              },
+              "g521UntilStart": true
+            },
+            {
+              "op": "Schedule537",
+              "when": "turnEnd",
+              "defs": [
+                {
+                  "op": "GroupUntap",
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1799",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc62-003",
+      "name": "ギャラクシー・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "フェニックス/ファイアー・バード",
+      "text": "進化GV-名前に《ルピア》とある自分のクリーチャー３体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを３枚選び墓地に置いてもよい。そうした場合、自分の山札を見る。その中から、名前に《NEX》とあるクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-003",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "nameIncludes": "ルピア"
+          },
+          {
+            "nameIncludes": "ルピア"
+          },
+          {
+            "nameIncludes": "ルピア"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 3,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "n": "all",
+              "limit": 1,
+              "g841DeckPeek": true,
+              "rest": "shuffle",
+              "filter": {
+                "creature": true,
+                "name": "NEX"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1799",
+      "supportKind": "effect"
+    },
+    {
+      "id": "sp-022",
+      "name": "光彗星アステロイド・ルクサス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "フェニックス",
+      "text": "進化V-自分のドラゴン、ファイアー・バード、ティラノ・ドレイクのいずれか２体を重ねた上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札を見る。その中からドラゴンまたはフェニックスを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-022",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "ドラゴン"
+              },
+              {
+                "race": "ファイアー・バード"
+              },
+              {
+                "race": "ティラノ・ドレイク"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "ドラゴン"
+              },
+              {
+                "race": "ファイアー・バード"
+              },
+              {
+                "race": "ティラノ・ドレイク"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "n": "all",
+              "g841DeckPeek": true,
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "optional": true,
+                  "to": "hand",
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "raceAny": [
+                      "ドラゴン",
+                      "フェニックス"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1799",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1798,
-    "checkedAt": "2026-11-27T12:45:56.459Z",
-    "baseCount": 9615,
+    "phase": 1799,
+    "checkedAt": "2026-11-27T12:56:55.504Z",
+    "baseCount": 9618,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9618,
+    "totalCount": 9621,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46961/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35903/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35904/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337912,6 +338110,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35424/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35418/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1798,
+        "checkedAt": "2026-11-27T12:45:56.459Z",
+        "baseCount": 9615,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9618,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46961/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35903/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35904/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
