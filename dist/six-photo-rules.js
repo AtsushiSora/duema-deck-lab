@@ -452,6 +452,7 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.g1813LinkedGod&&(!x.godLinks?.length||!race(d,'ゴッド')))return false;
   if(f.g1705CreatureNameIncludes&&!faces(c).some(face=>face.type==='creature'&&[face.name,...(face.g1705RubyNameParts||[])].some(name=>name.includes(f.g1705CreatureNameIncludes))))return false;
   if(f.g1705ExactBattleName&&!battleNames676(s,x).includes(exactName(f.g1705ExactBattleName)))return false;
   if(f.g1490Exile&&!c.g1490Exile)return false;
@@ -1106,7 +1107,7 @@ export function createSixPhotoRules(api){
      try{ready=ownCondition(s,p,condition,source.uid);}finally{civilAuraReading.delete(s);}
      if(!ready)continue;
     }else if(condition&&!ownCondition(s,p,condition,source.uid))continue;
-    for(const [key,value]of Object.entries(aura.grants)){if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='extraBreak')out.extraBreak=(out.extraBreak||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
+    for(const [key,rawValue]of Object.entries(aura.grants)){const value=key==='attackBonus'&&aura.g1813GraveFireAttackBonus?rawValue+countPower(s,source,sourceCard,false,{zone:'grave',amount:aura.g1813GraveFireAttackBonus,filter:{color:'火'}}):rawValue;if(racesOnly&&key!=='raceAdd')continue;if(out===c)out={...c};if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'||value==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else if(key==='extraBreak')out.extraBreak=(out.extraBreak||0)+value;else if(key==='raceAdd')out.race=[...new Set([...String(out.race||'').split('/').filter(Boolean),...value])].join('/');else out[key]=value;}
    }
   }
   if(!racesOnly&&!goatRaceReading.has(s)){

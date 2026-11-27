@@ -310106,19 +310106,175 @@
       ],
       "supportBatch": "phase-1812",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-044",
+      "name": "ゲンムエンペラー ＜ヘヴィ.Star＞",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 13,
+      "power": 39000,
+      "race": "∞ドラゴン/ゴッド/レクスターズ",
+      "text": "G・ゼロ：バトルゾーンにリンクしているゴッドがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスター進化：レクスターズ、闇のクリーチャー、または火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-044",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "worldBreaker": true,
+      "breaker": "∞",
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "sumBoth": true,
+              "filter": {
+                "creature": true,
+                "g1813LinkedGod": true
+              },
+              "min": 1
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1813",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-001",
+      "name": "超竜キング・ボルシャック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 13000,
+      "race": "アーマード・ドラゴン",
+      "text": "G・ゼロ-バトルゾーンに自分の、名前に《ボルシャック》とあるドラゴンがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\n進化―自分の火のドラゴン１体の上に置く。\nT・ブレイカー\n自分のクリーチャーすべてに、自分の墓地にある火のカード１枚につき「パワーアタッカー+1000」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-001",
+      "limit": 4,
+      "evolution": {
+        "all": [
+          {
+            "civilization": "火"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン",
+                "name": "ボルシャック"
+              },
+              "min": 1
+            }
+          }
+        ]
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g1813GraveFireAttackBonus": 1000,
+          "grants": {
+            "attackBonus": 0
+          }
+        }
+      ],
+      "supportBatch": "phase-1813",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd17-002",
+      "name": "零次龍程式 トライグラマ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 12000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "G・ゼロ - バトルゾーンに自分の、カードに能力が書かれていないクリーチャーが３体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n進化GV-自分のリキッド・ピープル３体を重ねた上に置く。\nT・ブレイカー\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd17-002",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "リキッド・ピープル"
+          },
+          {
+            "race": "リキッド・ピープル"
+          },
+          {
+            "race": "リキッド・ピープル"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g396Zero": {
+        "all": [
+          {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g990PrintedNoAbilities": true
+              },
+              "min": 3
+            }
+          }
+        ]
+      },
+      "g390DestroyToHand": {
+        "self": true,
+        "onlySelf": true,
+        "toOwner": true
+      },
+      "supportBatch": "phase-1813",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1812,
-    "checkedAt": "2026-11-27T15:31:16.992Z",
-    "baseCount": 9654,
+    "phase": 1813,
+    "checkedAt": "2026-11-27T15:42:48.205Z",
+    "baseCount": 9657,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9657,
+    "totalCount": 9660,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33722/",
-      "https://dm.takaratomy.co.jp/rule/qa/32418/"
+      "https://dm.takaratomy.co.jp/rule/qa/40409/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -339778,6 +339934,22 @@
         "totalCount": 9654,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1812,
+        "checkedAt": "2026-11-27T15:31:16.992Z",
+        "baseCount": 9654,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9657,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33722/",
+          "https://dm.takaratomy.co.jp/rule/qa/32418/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
