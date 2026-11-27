@@ -5987,6 +5987,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Clock842':put(s,{...t,op:'g61_Clock',g842FixedOrder:true});break;
+ case'g34_AttachSelf1851':
+  put(s,task('g47_Attach',t.p,t.source,{targetRef:{uid:t.uid,incarnation:t.incarnation||0}}));
+  break;
  case'g34_CountPowerMinus1123':{
   const power=-(t.base+t.per*countDraw(s,t.p,t));
   start(s,t,[{op:'Target',power,g242PowerMinus:true,title:'パワーを下げる相手のクリーチャーを選ぶ'}]);

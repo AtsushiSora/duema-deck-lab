@@ -314721,18 +314721,139 @@
       ],
       "supportBatch": "phase-1850",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-031",
+      "name": "ガリア・ゾールの天宝",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 5,
+      "power": 0,
+      "race": "ガーディアン/サバイバー/フュージョナー",
+      "text": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の山札の上から２枚をシールド化する。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-031",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 3000,
+        "poweredBreaker": true
+      },
+      "supportBatch": "phase-1851",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-028",
+      "name": "キリューの虹勲章",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 5,
+      "power": 0,
+      "race": "ロスト・クルセイダー/フュージョナー",
+      "text": "シンカライズ\nこのタマシードが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分のマナゾーンにあるカード１枚につき-2000する。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー\nこのクリーチャーのパワーを+6000する。\nこのクリーチャーの各ブレイクの前に、自分の山札の上から１枚をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-028",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPowerMinus1123",
+          "zone": "mana",
+          "base": 0,
+          "per": 2000
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 6000,
+        "poweredBreaker": true,
+        "g1136BeforeBreak": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1851",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-047",
+      "name": "シェル・ファクトリーの地版",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "コロニー・ビートル/サバイバー/フュージョナー",
+      "text": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-047",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "optional": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "faceUp": true,
+            "max": 5
+          }
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 3000,
+        "poweredBreaker": true
+      },
+      "supportBatch": "phase-1851",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1850,
-    "checkedAt": "2026-11-27T23:04:02.230Z",
-    "baseCount": 9757,
+    "phase": 1851,
+    "checkedAt": "2026-11-27T23:13:01.645Z",
+    "baseCount": 9760,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9760,
+    "totalCount": 9763,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33402/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344983,6 +345104,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40969/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1850,
+        "checkedAt": "2026-11-27T23:04:02.230Z",
+        "baseCount": 9757,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9760,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33402/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

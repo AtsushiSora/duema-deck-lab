@@ -21505,5 +21505,139 @@
         }
       ]
     }
+  },
+  "dm25rp4-031": {
+    "phase": 1851,
+    "faces": [
+      {
+        "name": "ガリア・ゾールの天宝",
+        "typeText": "タマシード",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の山札の上から２枚をシールド化する。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを+3000する。",
+        "race": "ガーディアン/サバイバー/フュージョナー",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "seed",
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 3000,
+        "poweredBreaker": true
+      }
+    }
+  },
+  "dm25rp4-028": {
+    "phase": 1851,
+    "faces": [
+      {
+        "name": "キリューの虹勲章",
+        "typeText": "タマシード",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "シンカライズ\nこのタマシードが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分のマナゾーンにあるカード１枚につき-2000する。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー\nこのクリーチャーのパワーを+6000する。\nこのクリーチャーの各ブレイクの前に、自分の山札の上から１枚をマナゾーンに置いてもよい。",
+        "race": "ロスト・クルセイダー/フュージョナー",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "seed",
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPowerMinus1123",
+          "zone": "mana",
+          "base": 0,
+          "per": 2000
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 6000,
+        "poweredBreaker": true,
+        "g1136BeforeBreak": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm25rp4-047": {
+    "phase": 1851,
+    "faces": [
+      {
+        "name": "シェル・ファクトリーの地版",
+        "typeText": "タマシード",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを+3000する。",
+        "race": "コロニー・ビートル/サバイバー/フュージョナー",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "type": "seed",
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "optional": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "faceUp": true,
+            "max": 5
+          }
+        },
+        {
+          "op": "AttachSelf1851"
+        }
+      ],
+      "g404Soul": {
+        "power": 3000,
+        "poweredBreaker": true
+      }
+    }
   }
 }
