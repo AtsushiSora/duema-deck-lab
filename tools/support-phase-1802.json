@@ -1,0 +1,451 @@
+{
+  "phase": 1802,
+  "checkedAt": "2026-11-27T13:20:03.127Z",
+  "baseline": "fd0839f9b364a7a3347a1ea8334faead073638b5",
+  "baseCount": 9626,
+  "target": 10000,
+  "description": "Three complete meteor evolutions share native destruction-to-evolution-source replacement. Extend native underNeo1661 destination matching with a live filtered host ability; retain full physical cards and attached Auras. Peter uses one serializable native movement batch for opponent creatures and a pre-prohibition snapshot of all mana; Byaha uses exact four-source payment then opponent-choice destruction/discard; Jiek uses exact ten-source victory. Official Aura/GR QA32471 reproduced.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/32471/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316683/"
+  ],
+  "cards": [
+    {
+      "id": "dm22-s02",
+      "name": "超神星ペテルギウス・ファイナルキャノン",
+      "canonicalId": "dm22-s02",
+      "printId": "dm22-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-s02",
+      "faces": [
+        {
+          "name": "超神星ペテルギウス・ファイナルキャノン",
+          "typeText": "進化クリーチャー(進化GV)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-自分のグレートメカオー、グランドデビル、ポセイディア・ドラゴンのいずれか３体を重ねた上に置く。\n自分の他のクリーチャーが破壊される時、墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメガメテオバーン６：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを６枚、墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自分自身のクリーチャーすべてとマナゾーンにあるカードすべてを手札に戻す。\nT・ブレイカー",
+          "race": "フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1802DeathUnder": {
+          "filter": {
+            "creature": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 6,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "BattleManaReturn1802"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-s02.jpg",
+      "imageSha256": "2e47748fcdb089a423e1b1d2578d53b553f95f6f8ac326d8ad707da95d861d73",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm22-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm22-s02",
+          "dmx12b-032"
+        ],
+        "allSearchIds": [
+          "dm22-s02",
+          "dmx12b-032"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:20:03.127Z",
+        "sha256": "ec89a85c3cc83bd91fbe212feb4983d0cae4cbc7a531df5369b625190d7a908e",
+        "facesMatched": true,
+        "imageSha256": "2e47748fcdb089a423e1b1d2578d53b553f95f6f8ac326d8ad707da95d861d73"
+      }
+    },
+    {
+      "id": "dm34-003",
+      "name": "死神の魔龍虫ビャハ",
+      "canonicalId": "dm34-003",
+      "printId": "dm34-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-003",
+      "faces": [
+        {
+          "name": "死神の魔龍虫ビャハ",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化V - 自分の闇のクリーチャー２体の上に置く。\n自分の他のクリーチャーが破壊される時、そのクリーチャーを墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを４枚選び墓地に置いてもよい。そうした場合、相手は自身のクリーチャーを４体選んで破壊し、その後、自身の手札を４枚選んで捨てる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "パラサイトワーム/ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g1802DeathUnder": {
+          "filter": {
+            "creature": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 4,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 4,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "op": "Discard",
+                "n": 4
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-003.jpg",
+      "imageSha256": "7fe56a8c9d513c134f6441f0cd13eef596fb9535650e5cffb31d31e2bb2aec02",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-003"
+        ],
+        "allSearchIds": [
+          "dm34-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:20:03.127Z",
+        "sha256": "8d102d517501df5a17a7341509c860b08821f6b96770db46d6f7e9c1238b3f1d",
+        "facesMatched": true,
+        "imageSha256": "7fe56a8c9d513c134f6441f0cd13eef596fb9535650e5cffb31d31e2bb2aec02"
+      }
+    },
+    {
+      "id": "dmr13-s01",
+      "name": "聖霊龍王 ジーク・キャヴァリエ",
+      "canonicalId": "dmr13-s01",
+      "printId": "dmr13-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-s01",
+      "faces": [
+        {
+          "name": "聖霊龍王 ジーク・キャヴァリエ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\n進化ー自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nW・ブレイカー\n自分の他の、「ブロッカー」を持つ光のクリーチャーが破壊される時、墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚選び墓地に置いてもよい。そうした場合、自分はゲームに勝つ。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "blocker": true
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g1802DeathUnder": {
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "blocker": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 10,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "メテオバーン10で勝利"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-s01.jpg",
+      "imageSha256": "6f52c8515bbc1807386f4d7cc63f3c2ba17d0d58a5fc4adae0492371af3f0fca",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr13-s01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr13-s01"
+        ],
+        "allSearchIds": [
+          "dmx17-001",
+          "dmd16-001",
+          "dmr13-s01",
+          "dmr14-006",
+          "dmx20-001",
+          "dmd23-002",
+          "dmx26-v01",
+          "dmx16-008",
+          "dmr20-026",
+          "dmd23-001",
+          "dm24ex4-ChoSec004",
+          "dm24ex4-Sec004",
+          "dm24ex4-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:20:03.127Z",
+        "sha256": "ba2a7ac20fe63bb1076a7868344967290c0a30cb67f5a0ff45e5178d77754664",
+        "facesMatched": true,
+        "imageSha256": "6f52c8515bbc1807386f4d7cc63f3c2ba17d0d58a5fc4adae0492371af3f0fca"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx12b-032",
+      "name": "超神星ペテルギウス・ファイナルキャノン",
+      "canonicalId": "dm22-s02",
+      "printId": "dmx12b-032",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-032",
+      "faces": [
+        {
+          "name": "超神星ペテルギウス・ファイナルキャノン",
+          "typeText": "進化クリーチャー（進化GV）",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化GV-自分のグレートメカオー、グランドデビル、ポセイディア・ドラゴンのいずれか３体を重ねた上に置く。\n自分の他のクリーチャーが破壊される時、墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメガメテオバーン６：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを６枚、墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自身のクリーチャーすべてと自身のマナゾーンにあるカードすべてを手札に戻す。\nT・ブレイカー",
+          "race": "フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グレートメカオー"
+                },
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ポセイディア・ドラゴン"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 3,
+        "g1802DeathUnder": {
+          "filter": {
+            "creature": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 6,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "BattleManaReturn1802"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-032.jpg",
+      "imageSha256": "322e871b7b5e06d4d02e84159d20a430d3bf287ec6d23226288a4c3154ac6572",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx12b-032-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm22-s02",
+          "dmx12b-032"
+        ],
+        "allSearchIds": [
+          "dm22-s02",
+          "dmx12b-032"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:20:03.127Z",
+        "sha256": "28e34607f5c7d68aabedc599b874938b08c241376f0edb973c4979678503cb2a",
+        "facesMatched": true,
+        "imageSha256": "322e871b7b5e06d4d02e84159d20a430d3bf287ec6d23226288a4c3154ac6572"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32471/",
+      "sha256": "a790686eed76bcabbfa2ef89392bf8dd544458b3ffe27e17d17e46f8d23ad18d",
+      "checkedAt": "2026-11-27T13:20:03.127Z",
+      "reproduced": true,
+      "tests": "tests/standard1802-effects.test.mjs",
+      "reproduction": "Actual Peter, actual advanced-format GR creature and two actual attached Auras are used. Destruction replacement puts all three physical cards below Peter, with no Aura attachment to Peter and no GR-home move. Separate test later pays the exact GR source and confirms native return to its super-GR, preserving physical UIDs.",
+      "result": "Actual Peter, actual advanced-format GR creature and two actual attached Auras are used. Destruction replacement puts all three physical cards below Peter, with no Aura attachment to Peter and no GR-home move. Separate test later pays the exact GR source and confirms native return to its super-GR, preserving physical UIDs."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+      "sha256": "5634d93546d5aa5996e0ff685b0479128a4541a2b45c4b302237087c301cf313",
+      "rule": "310.8b",
+      "body": "310.8b オーラが付いているクリーチャーが、バトルゾーンにある別のカードの下に置かれる場合、付いていたオーラもそのカードの下に置かれます。この時、オーラとクリーチャーは、その持ち主が好きな順番でカードの下に置きます。 一部記載を修正しました。これによるルール変更はありません。 701.5. 実行する 701.5a カードを実行するとは、コストを支払ってカードが効果を成せる状態にすることです。クリーチャーの召喚、呪文を唱える、クロスギアをジェネレート、タマシードの実行などが該当します。",
+      "reproduced": true,
+      "tests": "tests/standard1802-effects.test.mjs",
+      "reproduction": "Owner chooses GR/Aura root order before a single native replacement commit; tested both seats, reversed orders, foreign physical owner, encrypted restore, opponent projection and pure AI.",
+      "result": "Owner chooses GR/Aura root order before a single native replacement commit; tested both seats, reversed orders, foreign physical owner, encrypted restore, opponent projection and pure AI."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T13:20:03.127Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22-s02": 4,
+      "dm34-003": 4,
+      "dmr13-s01": 4,
+      "dmx12b-032": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Four initial failures were fixtures: Light vanilla dm01-075 is not a blocker, so Jiek evolution/decline fixtures now use the actual Light blocker dm01-076. The Aura/GR fixture now has the actual hasAuras1352 initialization flag and advance format, as set by native Aura play. All 57 final focused assertions pass, including GR later returning home when paid as a physical Meteor source. New ordering test exposed an accidental edit duplicated into heuristic scoring and an incorrect projectRoom test argument. Removed the scoring mutation, added AI purity assertion, and corrected user object/game.actions access before final checks.",
+    "sharedChanges": "The existing underNeo1661 replacement also offers active host-defined own-other destruction destinations, with current victim filter. Its existing physical-card commit carries attached Auras under the destination, clears attachment flags and never treats it as an actual departure. Peter uses one existing movement batch with a serializable initial mana snapshot and mana-return commit after creature LKI capture, before zone-trigger flush. Rule310.8b ordering is reserved before movement and stored as native replacement-plan UIDs; the physical creature owner selects root ordering, preserving the native schema and AI purity.",
+    "raceWording": "Official Peter HTML says グランドデビル; use the existing canonical Grand Devil race グランド・デビル for its native GV bases, without inventing a second race or changing existing race data."
+  }
+}

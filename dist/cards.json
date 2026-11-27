@@ -308901,21 +308901,203 @@
       },
       "supportBatch": "phase-1801",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-s02",
+      "name": "超神星ペテルギウス・ファイナルキャノン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 15000,
+      "race": "フェニックス",
+      "text": "進化GV-自分のグレートメカオー、グランドデビル、ポセイディア・ドラゴンのいずれか３体を重ねた上に置く。\n自分の他のクリーチャーが破壊される時、墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメガメテオバーン６：このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを６枚、墓地に置いてもよい。そうした場合、相手はバトルゾーンにある自分自身のクリーチャーすべてとマナゾーンにあるカードすべてを手札に戻す。\nT・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-s02",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グレートメカオー"
+              },
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ポセイディア・ドラゴン"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 3,
+      "g1802DeathUnder": {
+        "filter": {
+          "creature": true
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 6,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "BattleManaReturn1802"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1802",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-003",
+      "name": "死神の魔龍虫ビャハ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "パラサイトワーム/ドラゴン・ゾンビ",
+      "text": "進化V - 自分の闇のクリーチャー２体の上に置く。\n自分の他のクリーチャーが破壊される時、そのクリーチャーを墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを４枚選び墓地に置いてもよい。そうした場合、相手は自身のクリーチャーを４体選んで破壊し、その後、自身の手札を４枚選んで捨てる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-003",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1802DeathUnder": {
+        "filter": {
+          "creature": true
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 4,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 4,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "Discard",
+              "n": 4
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1802",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-s01",
+      "name": "聖霊龍王 ジーク・キャヴァリエ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\n進化ー自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nW・ブレイカー\n自分の他の、「ブロッカー」を持つ光のクリーチャーが破壊される時、墓地に置くかわりにこのクリーチャーの下に置いてもよい。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを10枚選び墓地に置いてもよい。そうした場合、自分はゲームに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-s01",
+      "limit": 4,
+      "evolution": {
+        "blocker": true
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1802DeathUnder": {
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "blocker": true
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 10,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "メテオバーン10で勝利"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1802",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1801,
-    "checkedAt": "2026-11-27T13:09:19.147Z",
-    "baseCount": 9623,
+    "phase": 1802,
+    "checkedAt": "2026-11-27T13:20:03.127Z",
+    "baseCount": 9626,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9626,
+    "totalCount": 9629,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36812/",
-      "https://dm.takaratomy.co.jp/rule/qa/39646/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35909/"
+      "https://dm.takaratomy.co.jp/rule/qa/32471/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -338400,6 +338582,24 @@
         "totalCount": 9623,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1801,
+        "checkedAt": "2026-11-27T13:09:19.147Z",
+        "baseCount": 9623,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9626,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36812/",
+          "https://dm.takaratomy.co.jp/rule/qa/39646/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35909/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

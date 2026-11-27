@@ -4839,6 +4839,7 @@ export function createSixPhotoRules(api){
    ]);
   break;
  }
+ case'g34_BattleManaReturn1802':api.returnBattleAndMana1802(s,t.p);break;
  case'g34_MeteorSources1796':{
   const host=sourceHost474(s,t),picked=t.picked||[],n=t.n??1;
   const under=host&&!host.x.sealed&&api.isCreature(s,host.x)?(host.x.under||[]).flatMap(api.allLayers):[];
