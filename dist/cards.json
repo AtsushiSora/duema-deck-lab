@@ -315129,18 +315129,266 @@
       },
       "supportBatch": "phase-1854",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-026",
+      "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\nスター進化：デモニオ、闇、または火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊してもよい。\n【呪文面】\n次の中から１回選ぶ。\n▶自分の山札の上から３枚を墓地に置く。\n▶相手のコスト３以下のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-026",
+      "limit": 4,
+      "graveSummon": true,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "デモニオ"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Custom",
+          "name": "graveCostDestroy",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "「自由で欲望のままに生きるのだ！」",
+        "type": "spell",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 2,
+        "race": "デモニオ・ワード",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から3枚を墓地へ",
+                "defs": [
+                  {
+                    "op": "Mill",
+                    "n": 3
+                  }
+                ]
+              },
+              {
+                "label": "相手のコスト3以下のエレメントを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "max": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1855",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-004",
+      "name": "ティアンゴ・ハーミィ/ティアビタンG",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "トリックス/ワンダフォース",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分が呪文を唱えた時、このターン、このクリーチャーのパワーを+2000する。\n【呪文面】\nこのターン、自分のクリーチャー１体は「スピードアタッカー」を得、次の自分のターンのはじめまで攻撃されない。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-004",
+      "limit": 4,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 2000
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ティアビタンG",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "g1855UntilStartGrant": {
+              "cannotBeAttacked": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-1855",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-002",
+      "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マジック・コマンド・ドラゴン",
+      "text": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。\n【呪文面】\n次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-002",
+      "limit": 4,
+      "justDiver": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "CastBattleTwin1175"
+        }
+      ],
+      "spellFace": {
+        "name": "♪五本まで 集めて林 森ジャングル",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "race": "マジック・ソング",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "repeat": 5,
+            "modes": [
+              {
+                "label": "エレメントを持ち主の手札へ戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "anyOwner": true,
+                    "to": "hand",
+                    "toOwnerHand": true
+                  }
+                ]
+              },
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1855",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-051",
+      "name": "鬼核アトム・ジャオウガ",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "デモニオ/鬼レクスターズ/超化獣",
+      "text": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\n【ハイパーモード】\n{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\nW・ブレイカー\n自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-051",
+      "limit": 4,
+      "gStrike": true,
+      "speedAttacker": true,
+      "zRush": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "g535Count": 1,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1
+        }
+      ],
+      "hyper": {
+        "power": 8000,
+        "breaker": 2,
+        "g1200ShieldStrikeRace": "デモニオ"
+      },
+      "supportBatch": "phase-1855",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1854,
-    "checkedAt": "2026-11-27T23:36:44.243Z",
-    "baseCount": 9768,
-    "newEffectCards": 2,
+    "phase": 1855,
+    "checkedAt": "2026-11-27T23:45:03.618Z",
+    "baseCount": 9770,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9770,
+    "totalCount": 9774,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41165/"
+      "https://dm.takaratomy.co.jp/rule/qa/49080/",
+      "https://dm.takaratomy.co.jp/rule/qa/43070/",
+      "https://dm.takaratomy.co.jp/rule/qa/49079/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -345448,6 +345696,21 @@
         "totalCount": 9768,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1854,
+        "checkedAt": "2026-11-27T23:36:44.243Z",
+        "baseCount": 9768,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9770,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41165/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

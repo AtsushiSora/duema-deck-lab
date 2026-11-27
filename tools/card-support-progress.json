@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9770,
-  "pendingNames": 2079,
-  "phase": 1854,
-  "added": 2,
+  "supportedNames": 9774,
+  "pendingNames": 2075,
+  "phase": 1855,
+  "added": 4,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,13 +156,13 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1222,
+    "クリーチャー": 1219,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 165,
-    "スター進化クリーチャー": 45,
+    "スター進化クリーチャー": 44,
     "NEOクリーチャー": 37,
     "オレガ・オーラ": 11,
     "デュエルメイト・クリーチャー": 4,
@@ -220,7 +220,7 @@
   },
   "reasons": {
     "未対応の能力文": 1555,
-    "複数面・特殊カードタイプまたは情報不足": 434,
+    "複数面・特殊カードタイプまたは情報不足": 430,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -579752,31 +579752,274 @@
           "seconds": 20.188,
           "log": "tmp/duema-target-10000/check-1854-previous-1795822907437362000.log",
           "originalLog": "tmp/duema-target-10000/check-1854.log",
-          "reason": "Test fixture corrections: real seals need physical seal rows, otherwise refresh correctly removes synthetic sealed flag; source and entrant need same owner to choose independent trigger order (cross-player effects use legal active-player ordering); native mana execution payment pool legitimately includes its own physical card and original pool retained; after next turn begins, advance charge-phase assumption to main for mana-use legality assertion. Full-scope review caught and fixed new-spec initial pure-seed filter to g295Tamaseed so hybrid Tamaseed/Creature is also legal. Reran final48, check after changedspec; no new unresolved registered ability."
+          "reason": "After final new-spec Tamaseed/Creature scope adjustment, online rulesHash was stale. Regenerated online compatibility from final actual cards and reran check/online successfully."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "d8e39dfe6784f84a9e38fef470d8f6a749656a78"
+    },
+    {
+      "phase": 1855,
+      "checkedAt": "2026-11-27T23:52:27.135Z",
+      "baseline": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9770,
+      "currentNames": 9774,
+      "remainingNames": 226,
+      "added": [
+        {
+          "id": "dm26ex2-026",
+          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」"
+        },
+        {
+          "id": "dmsd11-004",
+          "name": "ティアンゴ・ハーミィ/ティアビタンG"
+        },
+        {
+          "id": "dm23rp1-002",
+          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル"
+        },
+        {
+          "id": "dm26ex2-051",
+          "name": "鬼核アトム・ジャオウガ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1855,
+        "baseline": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
+        "originalDefinitionsUnchanged": 9770,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9774,
+        "uniqueIds": 9774,
+        "added": 4,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9770,
+        "existingImageReferenceRowsUnchanged": 12241,
+        "officialPrintsReviewed": 5,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1855": {
+          "name": "official-1855",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1855.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.526,
+          "log": "tmp/duema-target-10000/official-1855.log",
+          "passed": 0,
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "focused-1855-final": {
+          "name": "focused-1855-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1855-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.196,
+          "log": "tmp/duema-target-10000/focused-1855-final.log",
+          "passed": 57,
+          "logSha256": "aea509c55b75c7063ce2554139aa2d03646187e334bc1717fafeb1dd0292750a"
+        },
+        "related-1855": {
+          "name": "related-1855",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1855.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.931,
+          "log": "tmp/duema-target-10000/related-1855.log",
+          "passed": 87,
+          "logSha256": "7ce8ce07aa04862694a1397f1be06ae58a763b1901a0db0681c8ec397ff1e4f1"
+        },
+        "check-1855": {
+          "name": "check-1855",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.949,
+          "log": "tmp/duema-target-10000/check-1855.log",
+          "passed": 0,
+          "logSha256": "24c9c86cb0391b7c607cca98fecc7468ccdf57313e8c7729aafb3a845480ca64"
+        },
+        "audit-1855": {
+          "name": "audit-1855",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.703,
+          "log": "tmp/duema-target-10000/audit-1855.log",
+          "passed": 0,
+          "logSha256": "bb024e23188df47ff2e6825f41a9b57578646f079452c7bdf77de10e84e1d34e"
+        },
+        "invariants-1855": {
+          "name": "invariants-1855",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1855"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.849,
+          "log": "tmp/duema-target-10000/invariants-1855.log",
+          "passed": 0,
+          "logSha256": "0a0dc6e26241c94db8f396d8ded70ae9c3549561260f82e28a2152e85c7b9695"
+        },
+        "related-online-1855": {
+          "name": "related-online-1855",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.83,
+          "log": "tmp/duema-target-10000/related-online-1855.log",
+          "passed": 5,
+          "logSha256": "e1a7a1a9e41730a997db3fa9f55fdb4bfdd75f24601d7dab5ef6e54eec96ad22"
+        }
+      },
+      "totalTestsPassed": 149,
+      "manifest": "tools/support-phase-1855.json",
+      "supported": 9774,
+      "pending": 2075,
+      "engineVersion": "0.602.379",
+      "held": [
+        {
+          "id": "dm26ex2-SPR005",
+          "name": "CRY-S-MAX ジャオウガ",
+          "reason": "Research downloaded all3 exact prints and QA49608. Need full CRY-S-MAX leave/loss replacement (three own face-up destroyed OR1 shieldgrave), S-MAX uniqueness/SBA priority and actual GreatestJaouga/deep-reversal QA49608, plus printed MachFighter/Slayer/W2/OniEnd untap. No images reviewed or implementation yet; not counted. Exact Atom49079 example pending separately, validated timing with real supported CRYMAX recorded as mechanism only."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm22ex1-048",
+          "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+        },
+        {
+          "id": "dm24rp1-S03",
+          "name": "楽識の夜 フミビロム",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+        },
+        {
+          "id": "dm25bd1-014",
+          "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+        }
+      ],
+      "verificationScope": "All4 canonical complete abilities and DJealousy1 alias, exact5 full official images including Atom hyper form, currentlimits/basic/mana1/races/costs and all print searches checked. Jaougrila actual paid4 hand/grave Star evolution(any Demonio/Dark/Fire base), top-only leave/native old base preserved, attack currentgrave-count optional bounded destruction with default mandatory legacy Tatami unchanged; spell DarkFire2 full two modes mandatorymill3 OR enemy element<=3. Tiango Water4/1000 blocker/PoweredBreaker, each OWN spell cumulative2000 untilend not enemy spell/own creature; Fire1 spell same own chosen creature haste untilend plus independent attack-only protection untilnextownstart, no choice immunity, exact expiry/untap distinction. DJealousy full JD/W2 and optional actual self/other own twin spell cast in place onattack, physical body remains; five sequential repeatable modes current own/enemy ELEMENT bounce ownerhand ORdraw. Atom DarkFireNature3/4000 haste/GS/ZRush, optional wholeownshieldhand noST followed independent mandatoryANYgravecardmana evenifdeclined, 8000/W2 whenreleased, native expiry. Fixed shared race-granted GStrike count per matching physical face per official49080, preserves Nelza allface grant and single-face/native declarations, ignore/seal/buried/base exclusions. Focused57 includes8 actual encrypted two-account payment/entry/evolution service cases. Related1175/1200/1308/1336/313/521 and online5, npmcheck/audit9774/invariants pass. QA49079 timing mechanism verified with actual supported CRYMAX; exact CRY-S-MAX example explicitly pending, not claimed literal. Older pending/baseline blocker/fullSuite unchanged. No fullnpmtest/knownlonggroups/push/publication/Netlify/automation.",
+      "registeredCardVerificationPending": [
+        {
+          "id": "dm26ex2-051",
+          "name": "鬼核アトム・ジャオウガ",
+          "scope": "literal official QA49079 example with actual CRY-S-MAX Jaouga",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+          "reason": "All Atom printed abilities and actual same-race/non-GStrike shield timing mechanism pass; exact named shield CRY-S-MAX is not registered. Its all3 prints/QA49608 have been researched but images/full implementation pending, so no fake partial reproduction or claim of exact literal pass.",
+          "mechanismVerified": true,
+          "fullPrintedAbilitiesVerified": true,
+          "requiredCard": "dm26ex2-SPR005"
+        }
+      ],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1855",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1855-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.471,
+          "log": "tmp/duema-target-10000/focused-1855.log",
+          "reason": "Fixed new spec helper to serialize multi-civilization twin spell as Dark/Fire strings before tests (not nested arrays). Fixture corrections: tapped the unrelated large blocker so attack-break test isolates W2; opponent basic Fire nonblocker prevents unintended combat removal; printed ordinary bounce exposes effect-target actions rather than extended choices; GStrike declarations for all instances happen first, then targets (native gsDeclare decline=false, not null); after next own start the protected creature naturally untaps, so retapped it before testing that expiry restores opponent attack eligibility. No remaining failure in final57."
+        },
+        {
+          "name": "focused-1855-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1855-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.138,
+          "log": "tmp/duema-target-10000/focused-1855-final-previous-1795823418600138000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1855-final.log",
+          "reason": "Fixed new spec helper to serialize multi-civilization twin spell as Dark/Fire strings before tests (not nested arrays). Fixture corrections: tapped the unrelated large blocker so attack-break test isolates W2; opponent basic Fire nonblocker prevents unintended combat removal; printed ordinary bounce exposes effect-target actions rather than extended choices; GStrike declarations for all instances happen first, then targets (native gsDeclare decline=false, not null); after next own start the protected creature naturally untaps, so retapped it before testing that expiry restores opponent attack eligibility. No remaining failure in final57."
+        },
+        {
+          "name": "focused-1855-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1855-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.944,
+          "log": "tmp/duema-target-10000/focused-1855-final-previous-1795823459045863000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1855-final.log",
+          "reason": "Fixed new spec helper to serialize multi-civilization twin spell as Dark/Fire strings before tests (not nested arrays). Fixture corrections: tapped the unrelated large blocker so attack-break test isolates W2; opponent basic Fire nonblocker prevents unintended combat removal; printed ordinary bounce exposes effect-target actions rather than extended choices; GStrike declarations for all instances happen first, then targets (native gsDeclare decline=false, not null); after next own start the protected creature naturally untaps, so retapped it before testing that expiry restores opponent attack eligibility. No remaining failure in final57."
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1854,
-    "nextPhase": 1855,
+    "lastVerifiedPhase": 1855,
+    "nextPhase": 1856,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm26ex2-026",
-        "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
-        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        "id": "dm22ex1-048",
+        "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
       },
       {
-        "id": "dmsd11-004",
-        "name": "ティアンゴ・ハーミィ/ティアビタンG",
-        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        "id": "dm24rp1-S03",
+        "name": "楽識の夜 フミビロム",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
       },
       {
-        "id": "dm23rp1-002",
-        "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
-        "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+        "id": "dm25bd1-014",
+        "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
       }
     ],
     "steps": [
@@ -580690,11 +580933,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1854,
-      "baseline": "642188bae37ce772729a04721d7b9100cfff09fd",
-      "supportedNames": 9770,
-      "artifact": "tools/target10000-registration-checkpoint-1854.json",
-      "checkedAt": "2026-11-27T23:42:23.510Z"
+      "phase": 1855,
+      "baseline": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
+      "supportedNames": 9774,
+      "artifact": "tools/target10000-registration-checkpoint-1855.json",
+      "checkedAt": "2026-11-27T23:52:27.135Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -583752,8 +583995,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9770,
-      "remaining": 230,
+      "currentNames": 9774,
+      "remaining": 226,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583761,26 +584004,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1854,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1854.json",
+      "lastPhase": 1855,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1855.json",
       "nextCandidates": [
         {
-          "id": "dm26ex2-026",
-          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm22ex1-048",
+          "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dmsd11-004",
-          "name": "ティアンゴ・ハーミィ/ティアビタンG",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm24rp1-S03",
+          "name": "楽識の夜 フミビロム",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dm23rp1-002",
-          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm25bd1-014",
+          "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         }
       ],
-      "resumeProcedure": "Phase1854 verified9770 names, remaining230. Next1855 review twinpact3 full research/images/QA; preserve older pending and baseline blocker issue. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
+      "resumeProcedure": "Phase1855 verified9774 full-ability types, remaining226. Preserve Atom49079 exact example pending (mechanism verified, CRY-S-MAX unregistered) and all older pending/baseline blocker/fullSuite/holds. Next1856 research3 cards images/QA to review. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584014,7 +584257,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "lastVerifiedCommit": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584025,7 +584268,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "lastVerifiedCodeCommit": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -584046,6 +584289,11 @@
           "id": "dm01-024",
           "name": "ギガベロス",
           "reason": "Both exact original/promo full images/basic/text/limits/search inspected, no linked QA; full ability requires mandatory TWO OTHER battlefield-to-grave placements, otherwise self-to-grave. Existing SacrificeAlly413 is destruction/attempt payoff and cannot be reused blindly for non-destruction placement or incomplete two-card branch. Need confirm precise partial-count/placement-replacement behavior and extend exact atomic move continuation with genuine tests; no partial W-breaker/entry registration."
+        },
+        {
+          "id": "dm26ex2-SPR005",
+          "name": "CRY-S-MAX ジャオウガ",
+          "reason": "Research downloaded all3 exact prints and QA49608. Need full CRY-S-MAX leave/loss replacement (three own face-up destroyed OR1 shieldgrave), S-MAX uniqueness/SBA priority and actual GreatestJaouga/deep-reversal QA49608, plus printed MachFighter/Slayer/W2/OniEnd untap. No images reviewed or implementation yet; not counted. Exact Atom49079 example pending separately, validated timing with real supported CRYMAX recorded as mechanism only."
         }
       ],
       "baselineRegressionPending": [
@@ -584056,6 +584304,18 @@
           "baseline": "b1527377c816f8fd73a54acc6505f4692cce7567",
           "evidence": "tmp/duema-target-10000/baseline-1853.log",
           "registeredNewCardVerificationPending": false
+        }
+      ],
+      "registeredCardVerificationPending": [
+        {
+          "id": "dm26ex2-051",
+          "name": "鬼核アトム・ジャオウガ",
+          "scope": "literal official QA49079 example with actual CRY-S-MAX Jaouga",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+          "reason": "All Atom printed abilities and actual same-race/non-GStrike shield timing mechanism pass; exact named shield CRY-S-MAX is not registered. Its all3 prints/QA49608 have been researched but images/full implementation pending, so no fake partial reproduction or claim of exact literal pass.",
+          "mechanismVerified": true,
+          "fullPrintedAbilitiesVerified": true,
+          "requiredCard": "dm26ex2-SPR005"
         }
       ]
     },
@@ -585173,8 +585433,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9770,
-      "remaining": 230,
+      "currentNames": 9774,
+      "remaining": 226,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -585182,26 +585442,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1854,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1854.json",
+      "lastPhase": 1855,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1855.json",
       "nextCandidates": [
         {
-          "id": "dm26ex2-026",
-          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm22ex1-048",
+          "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dmsd11-004",
-          "name": "ティアンゴ・ハーミィ/ティアビタンG",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm24rp1-S03",
+          "name": "楽識の夜 フミビロム",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dm23rp1-002",
-          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm25bd1-014",
+          "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         }
       ],
-      "resumeProcedure": "Phase1854 verified9770 names, remaining230. Next1855 review twinpact3 full research/images/QA; preserve older pending and baseline blocker issue. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
+      "resumeProcedure": "Phase1855 verified9774 full-ability types, remaining226. Preserve Atom49079 exact example pending (mechanism verified, CRY-S-MAX unregistered) and all older pending/baseline blocker/fullSuite/holds. Next1856 research3 cards images/QA to review. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -585435,7 +585695,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "lastVerifiedCommit": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -585446,7 +585706,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "642188bae37ce772729a04721d7b9100cfff09fd",
+      "lastVerifiedCodeCommit": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -585467,6 +585727,11 @@
           "id": "dm01-024",
           "name": "ギガベロス",
           "reason": "Both exact original/promo full images/basic/text/limits/search inspected, no linked QA; full ability requires mandatory TWO OTHER battlefield-to-grave placements, otherwise self-to-grave. Existing SacrificeAlly413 is destruction/attempt payoff and cannot be reused blindly for non-destruction placement or incomplete two-card branch. Need confirm precise partial-count/placement-replacement behavior and extend exact atomic move continuation with genuine tests; no partial W-breaker/entry registration."
+        },
+        {
+          "id": "dm26ex2-SPR005",
+          "name": "CRY-S-MAX ジャオウガ",
+          "reason": "Research downloaded all3 exact prints and QA49608. Need full CRY-S-MAX leave/loss replacement (three own face-up destroyed OR1 shieldgrave), S-MAX uniqueness/SBA priority and actual GreatestJaouga/deep-reversal QA49608, plus printed MachFighter/Slayer/W2/OniEnd untap. No images reviewed or implementation yet; not counted. Exact Atom49079 example pending separately, validated timing with real supported CRYMAX recorded as mechanism only."
         }
       ],
       "baselineRegressionPending": [
@@ -585477,6 +585742,18 @@
           "baseline": "b1527377c816f8fd73a54acc6505f4692cce7567",
           "evidence": "tmp/duema-target-10000/baseline-1853.log",
           "registeredNewCardVerificationPending": false
+        }
+      ],
+      "registeredCardVerificationPending": [
+        {
+          "id": "dm26ex2-051",
+          "name": "鬼核アトム・ジャオウガ",
+          "scope": "literal official QA49079 example with actual CRY-S-MAX Jaouga",
+          "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+          "reason": "All Atom printed abilities and actual same-race/non-GStrike shield timing mechanism pass; exact named shield CRY-S-MAX is not registered. Its all3 prints/QA49608 have been researched but images/full implementation pending, so no fake partial reproduction or claim of exact literal pass.",
+          "mechanismVerified": true,
+          "fullPrintedAbilitiesVerified": true,
+          "requiredCard": "dm26ex2-SPR005"
         }
       ]
     },
@@ -593246,6 +593523,334 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1854.json"
+      },
+      {
+        "phase": 1855,
+        "status": "implemented-full-abilities-and-verified-with-one-exact-literal-QA-example-pending",
+        "research": "tmp/duema-target-10000/research-dm26ex2-026.json",
+        "cards": [
+          {
+            "id": "dm26ex2-026",
+            "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+            "searchSha256": "5a09192ed58210a03a993955b2f527752ec9c77828f475b158013529f353fc17",
+            "searchIds": [
+              "dm26ex2-026"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm26ex2-026",
+                "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-026",
+                "faces": [
+                  {
+                    "name": "「鬼情」の極 ジャオウグリラ",
+                    "typeText": "スター進化クリーチャー",
+                    "civilizationText": "闇/火",
+                    "civilizations": [
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nスター進化：デモニオ、闇、または火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊してもよい。",
+                    "race": "デモニオ/鬼レクスターズ",
+                    "powerText": "7000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "「自由で欲望のままに生きるのだ！」",
+                    "typeText": "呪文",
+                    "civilizationText": "闇/火",
+                    "civilizations": [
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "次の中から１回選ぶ。\n▶自分の山札の上から３枚を墓地に置く。\n▶相手のコスト３以下のエレメントを１つ選び、破壊する。",
+                    "race": "デモニオ・ワード",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm26ex2-026",
+                "printedManaValue": 1,
+                "htmlSha256": "fbacfe8534cf6452df2c9d4551f82bc7352eae0f329475171593f15c6a1a94ab",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-026a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26ex2-026-0.jpg",
+                    "sha256": "48ad4649f1a7b6e6c9c55c395c6f3fac023b60030ad4f5bf0367b97a1fac48d7"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/49080/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/49080/",
+                "sha256": "25bed91ebfa05852f9003bf6a961805dd4e2f3fd98092e5ae20ff1a83c549afd",
+                "body": "よくある質問 Qハイパーモードを解放している自分の《鬼核アトム・ジャオウガ》がバトルゾーンにいる状況です。 自分のシールドゾーンから手札に加えるカードが《「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」》でした。 このカードは両側の種族に「デモニオ」を持つのですが、両方が「G・ストライク」を持ちますか？ Aはい、クリーチャー側、呪文側の両方が「G・ストライク」を持ちます。 そのため、ハイパーモードを解放した《鬼核アトム・ジャオウガ》がいれば、このカード１枚で「G・ストライク」を２回使えます。 一覧へ戻る 関連する質問 自分のハイパーモードを解放していない《鬼核アトム・ジャオウガ》がバトルゾーンにいる状況です。 この状況で自分のシールドが１つブレイクされ、それが種族にデモニオを持つ《CRY-S-MAX ジャオウガ》でした。 《鬼核アトム・ジャオウガ》は「Zラッシュ」によって「自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える」を持つので、《CRY-S-MAX ジャオウガ》が得た「G・ストライク」を使えますか？ 2026.7.17 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 "
+              }
+            ]
+          },
+          {
+            "id": "dmsd11-004",
+            "name": "ティアンゴ・ハーミィ/ティアビタンG",
+            "searchSha256": "ad5e6d32e9c3fa1f858400237539a92ef390eb455dbe67002595195c5e46272d",
+            "searchIds": [
+              "dmsd11-004"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmsd11-004",
+                "name": "ティアンゴ・ハーミィ/ティアビタンG",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-004",
+                "faces": [
+                  {
+                    "name": "ティアンゴ・ハーミィ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分が呪文を唱えた時、このターン、このクリーチャーのパワーを+2000する。",
+                    "race": "トリックス/ワンダフォース",
+                    "powerText": "1000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "ティアビタンG",
+                    "typeText": "呪文",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 1,
+                    "costText": "1",
+                    "abilityText": "このターン、自分のクリーチャー１体は「スピードアタッカー」を得、次の自分のターンのはじめまで攻撃されない。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd11-004",
+                "printedManaValue": 1,
+                "htmlSha256": "f6882f52c68feea9611855a731edc6cc1301dc0edf7b874b4b19f0e26f75f9f3",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd11-004a.jpg",
+                    "file": "tmp/duema-target-10000/research/dmsd11-004-0.jpg",
+                    "sha256": "6e297fbcd1043dc76247ed0791fcefe56852f9a05a73a0674e2319bff6a4f4a5"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm23rp1-002",
+            "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+            "searchSha256": "fd21fc5a7c283e10bd6157a65505c718f416045fb4fa9d5907aef91851c0e8ea",
+            "searchIds": [
+              "dm23rp1-002",
+              "dm23bd6-018"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm23rp1-002",
+                "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-002",
+                "faces": [
+                  {
+                    "name": "D-Jealousy-灰撫",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+                    "race": "マジック・コマンド・ドラゴン",
+                    "powerText": "9000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "♪五本まで 集めて林 森ジャングル",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+                    "race": "マジック・ソング",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm23rp1-002",
+                "printedManaValue": 1,
+                "htmlSha256": "6dd7fff9700815240c5e61e155ecde83834ef458edaa1c36d4b6936cf0b07065",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-002a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm23rp1-002-0.jpg",
+                    "sha256": "95384038a8dd124d93730dbffdc8ae8d7e3bb1d1a77d4e6c6049087d107a33f9"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/43070/"
+                ]
+              },
+              {
+                "id": "dm23bd6-018",
+                "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-018",
+                "faces": [
+                  {
+                    "name": "D-Jealousy-灰撫",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のツインパクト・クリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+                    "race": "マジック・コマンド・ドラゴン",
+                    "powerText": "9000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "♪五本まで 集めて林 森ジャングル",
+                    "typeText": "呪文",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+                    "race": "マジック・ソング",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm23rp1-002",
+                "printedManaValue": 1,
+                "htmlSha256": "878948c77147138adebec510b538addb533565efcb7efbccb87c0f567ef5bb3d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-018a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm23bd6-018-0.jpg",
+                    "sha256": "ad7f8eeab0190617a8b568135bbfc828991110aa8450bae5f1fc709c67c320f9"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/43070/",
+                "sha256": "8f7224ebc0a1c1859a5472c777c7019bfe48c658c9e8d1e997282be0bdcd7fe3",
+                "body": "よくある質問 Q《D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル》の呪文側を唱えて「エレメントを１つ選び、持ち主の手札に戻す」を５回選びました。効果で相手の同じクリーチャーを何度も選べますか？ Aはい、同じクリーチャーを選んで、複数回手札に戻せます。 この能力は、選んだ効果を１回ずつ解決します。そのため、１回選んだ相手のエレメントが置換効果などでバトルゾーンに残った場合は、再度選んで手札に戻せます。 （総合ルール 601.1h） 一覧へ戻る カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使い方 製品、部品の購入 修理のご案内 その他連絡先 サステナビリティ お客様アンケート イベント・キャンペーン このサイトについて 個人情報保護方針 ブラウザ・OSの推奨環境 お問い合わせ ソーシャルメディアポリシー サイトマップ 株式会社タカラ"
+              }
+            ]
+          },
+          {
+            "id": "dm26ex2-051",
+            "name": "鬼核アトム・ジャオウガ",
+            "searchSha256": "ad5f715297b08bb801fdaea163284cfa34b016053c9cf0d52bb561376c260287",
+            "searchIds": [
+              "dm26ex2-051"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm26ex2-051",
+                "name": "鬼核アトム・ジャオウガ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-051",
+                "faces": [
+                  {
+                    "name": "鬼核アトム・ジャオウガ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇/火/自然",
+                    "civilizations": [
+                      "闇",
+                      "火",
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）",
+                    "race": "デモニオ/鬼レクスターズ/超化獣",
+                    "powerText": "4000",
+                    "missingFields": []
+                  },
+                  {
+                    "name": "鬼核アトム・ジャオウガ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇/火/自然",
+                    "civilizations": [
+                      "闇",
+                      "火",
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\nW・ブレイカー\n自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える。",
+                    "race": "デモニオ/鬼レクスターズ/超化獣",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm26ex2-051",
+                "printedManaValue": 1,
+                "htmlSha256": "e901e057035e18341d6da8a36e3e7c221f4e8c5733951c62f60c77d72f651a20",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-051a.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26ex2-051-0.jpg",
+                    "sha256": "c0741aa157ad539b961055222f7b445ebce5c0cb161196367a9f3608fa79bf47"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/49079/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+                "sha256": "5920177808ad7d3120c8dd910cca944adad0052064bfc5560f0cd57828819645",
+                "body": "よくある質問 Q自分のハイパーモードを解放していない《鬼核アトム・ジャオウガ》がバトルゾーンにいる状況です。 この状況で自分のシールドが１つブレイクされ、それが種族にデモニオを持つ《CRY-S-MAX ジャオウガ》でした。 《鬼核アトム・ジャオウガ》は「Zラッシュ」によって「自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える」を持つので、《CRY-S-MAX ジャオウガ》が得た「G・ストライク」を使えますか？ Aいいえ、「G・ストライク」は使えません。 「G・ストライク」の使用宣言を行うのは、実際にシールドを手札に加える前です。 この時点ではシールドはシールドゾーンを離れておらず、「Zラッシュ」が発動していません。よって、《CRY-S-MAX ジャオウガ》は「G・ストライク」を得ていません。 （総合ルール 113.6.） 一覧へ戻る 関連する質問 自分の《CRY-S-MAX ジャオウガ》と、下に《CRY-S-MAX ジャオウガ》が置かれた《鬼黒皇グレイテスト・ジャオウガ》がいる状況です。 相手は《深淵の逆転撃》を唱え、自分の《鬼黒皇グレイテスト・ジャオウガ》を選びました。パワーが０以下になった《鬼黒皇グレイテスト・ジャオウガ》は「スター進化」によって一番上のカードのみが墓地に置かれ、再構築で下にあった《CRY-S-MAX ジャオウガ》がバトルゾーンに残りました。 これによりバトルゾーンに自分の《CRY-S-MAX ジャオウガ》が２体いる状況になったのですが、この際、「S-MAX進化」によって片方の《CRY-S-MAX ジャオウガ》を手札に戻すのと、再構築で残ったパワーが０以下になっている《CRY-S-MAX ジャオウガ》が破壊されるのはどちらが先ですか？ 2026.11.6 自分の《CRY-S-MAX ジャオウガ》と、下にカードが６枚置かれた《禁断英雄 モモキングダムX》がバトルゾーンにいる状況です。 《CRY-S-MAX ジャオウガ》が離れる時、「CRY-S-MAX進化」でかわりに《禁断英雄 モモキングダムX》の下に置かれたカード３枚を墓地に置きました。 これにより《禁断英雄 モモキングダムX》に含まれるカードが７枚から４枚になったのですが、この際「このクリーチャーに含まれるカードが６枚になった時」の能力はトリガーしますか？ 2026.8.7 相手のシールドが２つの状況で、自分の《CRY-S-MAX ジャオウガ》が相手を攻撃しました。 シールドを２つブレイクした攻撃の終わりに、この《CRY-S-MAX ジャオウガ》は「鬼エンド」でアンタップしますか？ 2026.8.7 ハイパーモードを解放している自分の《鬼核アトム・ジャオウガ》がバトルゾーンにいる状況です。 自分のシールドゾーンから手札に加えるカードが《「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」》でした。 このカードは両側の種族に「デモニオ」を持つのですが、両方が「G・ストライク」を持ちますか？ 2026.7.17 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1855.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -593270,26 +593875,26 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1855,
-      "status": "official-full-search-downloaded-images-and-QA-pending-review",
-      "research": "tmp/duema-target-10000/research-dm26ex2-026.json",
+      "phase": 1856,
+      "status": "official-research-downloading-images-and-QA-pending-review",
+      "research": "tmp/duema-target-10000/research-dm22ex1-048.json",
       "implementationStarted": false,
       "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dm26ex2-026",
-          "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm22ex1-048",
+          "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dmsd11-004",
-          "name": "ティアンゴ・ハーミィ/ティアビタンG",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm24rp1-S03",
+          "name": "楽識の夜 フミビロム",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         },
         {
-          "id": "dm23rp1-002",
-          "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
-          "reason": "Next grouped complete twinpact research downloaded, both faces/basic/images and linked QA require review; grave Star evolution dynamic grave-cost destruction/modal spell, powered blocker spell-use bonus and haste/attack protection, free chosen own battle spell face and five sequential bounce/draw modes."
+          "id": "dm25bd1-014",
+          "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+          "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
         }
       ]
     }
@@ -645165,10 +645770,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1854,
+    "phase": 1855,
     "threshold": 10000,
-    "supportedNames": 9770,
-    "pendingNames": 2079,
+    "supportedNames": 9774,
+    "pendingNames": 2075,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -645177,7 +645782,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1854.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1855.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

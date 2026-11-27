@@ -22124,5 +22124,405 @@
         ]
       }
     }
+  },
+  "dm26ex2-026": {
+    "phase": 1855,
+    "faces": [
+      {
+        "name": "「鬼情」の極 ジャオウグリラ",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nスター進化：デモニオ、闇、または火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊してもよい。",
+        "race": "デモニオ/鬼レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      },
+      {
+        "name": "「自由で欲望のままに生きるのだ！」",
+        "typeText": "呪文",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "次の中から１回選ぶ。\n▶自分の山札の上から３枚を墓地に置く。\n▶相手のコスト３以下のエレメントを１つ選び、破壊する。",
+        "race": "デモニオ・ワード",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "graveSummon": true,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "デモニオ"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Custom",
+          "name": "graveCostDestroy",
+          "optional": true
+        }
+      ],
+      "spellFace": {
+        "name": "「自由で欲望のままに生きるのだ！」",
+        "type": "spell",
+        "civ": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 2,
+        "race": "デモニオ・ワード",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上から3枚を墓地へ",
+                "defs": [
+                  {
+                    "op": "Mill",
+                    "n": 3
+                  }
+                ]
+              },
+              {
+                "label": "相手のコスト3以下のエレメントを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "max": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmsd11-004": {
+    "phase": 1855,
+    "faces": [
+      {
+        "name": "ティアンゴ・ハーミィ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分が呪文を唱えた時、このターン、このクリーチャーのパワーを+2000する。",
+        "race": "トリックス/ワンダフォース",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "ティアビタンG",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "このターン、自分のクリーチャー１体は「スピードアタッカー」を得、次の自分のターンのはじめまで攻撃されない。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "poweredBreaker": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 2000
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "ティアビタンG",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "g1855UntilStartGrant": {
+              "cannotBeAttacked": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dm23rp1-002": {
+    "phase": 1855,
+    "faces": [
+      {
+        "name": "D-Jealousy-灰撫",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+        "race": "マジック・コマンド・ドラゴン",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "♪五本まで 集めて林 森ジャングル",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+        "race": "マジック・ソング",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "justDiver": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "CastBattleTwin1175"
+        }
+      ],
+      "spellFace": {
+        "name": "♪五本まで 集めて林 森ジャングル",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "race": "マジック・ソング",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "repeat": 5,
+            "modes": [
+              {
+                "label": "エレメントを持ち主の手札へ戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "anyOwner": true,
+                    "to": "hand",
+                    "toOwnerHand": true
+                  }
+                ]
+              },
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd6-018": {
+    "phase": 1855,
+    "faces": [
+      {
+        "name": "D-Jealousy-灰撫",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のツインパクト・クリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+        "race": "マジック・コマンド・ドラゴン",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "♪五本まで 集めて林 森ジャングル",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+        "race": "マジック・ソング",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "justDiver": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "CastBattleTwin1175"
+        }
+      ],
+      "spellFace": {
+        "name": "♪五本まで 集めて林 森ジャングル",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "race": "マジック・ソング",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "repeat": 5,
+            "modes": [
+              {
+                "label": "エレメントを持ち主の手札へ戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "anyOwner": true,
+                    "to": "hand",
+                    "toOwnerHand": true
+                  }
+                ]
+              },
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm26ex2-051": {
+    "phase": 1855,
+    "faces": [
+      {
+        "name": "鬼核アトム・ジャオウガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）",
+        "race": "デモニオ/鬼レクスターズ/超化獣",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "鬼核アトム・ジャオウガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火/自然",
+        "civilizations": [
+          "闇",
+          "火",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\nW・ブレイカー\n自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える。",
+        "race": "デモニオ/鬼レクスターズ/超化獣",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "speedAttacker": true,
+      "zRush": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "g535Count": 1,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1
+        }
+      ],
+      "hyper": {
+        "power": 8000,
+        "breaker": 2,
+        "g1200ShieldStrikeRace": "デモニオ"
+      }
+    }
   }
 }

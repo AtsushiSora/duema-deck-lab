@@ -1,0 +1,686 @@
+{
+  "phase": 1855,
+  "checkedAt": "2026-11-27T23:45:03.618Z",
+  "baseline": "d8e39dfe6784f84a9e38fef470d8f6a749656a78",
+  "baseCount": 9770,
+  "target": 10000,
+  "description": "Complete three twinpacts and actual Atom Jaouga required to reproduce official49080/49079 per-face granted G-strikes. Native grave Star evolution/dynamic grave destruction, split-duration haste/protection, sequential five modes and free selected own battle spell, full ZRush/optional shield hand then mandatory grave mana.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49080/",
+    "https://dm.takaratomy.co.jp/rule/qa/43070/",
+    "https://dm.takaratomy.co.jp/rule/qa/49079/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex2-026",
+      "name": "「鬼情」の極 ジャオウグリラ / 「自由で欲望のままに生きるのだ！」",
+      "canonicalId": "dm26ex2-026",
+      "printId": "dm26ex2-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-026",
+      "faces": [
+        {
+          "name": "「鬼情」の極 ジャオウグリラ",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nスター進化：デモニオ、闇、または火の、クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊してもよい。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "「自由で欲望のままに生きるのだ！」",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "次の中から１回選ぶ。\n▶自分の山札の上から３枚を墓地に置く。\n▶相手のコスト３以下のエレメントを１つ選び、破壊する。",
+          "race": "デモニオ・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveSummon": true,
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "デモニオ"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Custom",
+            "name": "graveCostDestroy",
+            "optional": true
+          }
+        ],
+        "spellFace": {
+          "name": "「自由で欲望のままに生きるのだ！」",
+          "type": "spell",
+          "civ": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "race": "デモニオ・ワード",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "山札の上から3枚を墓地へ",
+                  "defs": [
+                    {
+                      "op": "Mill",
+                      "n": 3
+                    }
+                  ]
+                },
+                {
+                  "label": "相手のコスト3以下のエレメントを破壊",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "element": true,
+                      "to": "grave",
+                      "filter": {
+                        "max": 3
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-026a.jpg",
+      "imageSha256": "48ad4649f1a7b6e6c9c55c395c6f3fac023b60030ad4f5bf0367b97a1fac48d7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex2-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex2-026"
+        ],
+        "allSearchIds": [
+          "dm26ex2-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "sha256": "fbacfe8534cf6452df2c9d4551f82bc7352eae0f329475171593f15c6a1a94ab",
+        "facesMatched": true,
+        "imageSha256": "48ad4649f1a7b6e6c9c55c395c6f3fac023b60030ad4f5bf0367b97a1fac48d7"
+      }
+    },
+    {
+      "id": "dmsd11-004",
+      "name": "ティアンゴ・ハーミィ/ティアビタンG",
+      "canonicalId": "dmsd11-004",
+      "printId": "dmsd11-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-004",
+      "faces": [
+        {
+          "name": "ティアンゴ・ハーミィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分が呪文を唱えた時、このターン、このクリーチャーのパワーを+2000する。",
+          "race": "トリックス/ワンダフォース",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "ティアビタンG",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分のクリーチャー１体は「スピードアタッカー」を得、次の自分のターンのはじめまで攻撃されない。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000
+            }
+          ]
+        },
+        "spellFace": {
+          "name": "ティアビタンG",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "spell": true,
+              "grant": {
+                "speedAttacker": true
+              },
+              "g1855UntilStartGrant": {
+                "cannotBeAttacked": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd11-004a.jpg",
+      "imageSha256": "6e297fbcd1043dc76247ed0791fcefe56852f9a05a73a0674e2319bff6a4f4a5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd11-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd11-004"
+        ],
+        "allSearchIds": [
+          "dmsd11-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "sha256": "f6882f52c68feea9611855a731edc6cc1301dc0edf7b874b4b19f0e26f75f9f3",
+        "facesMatched": true,
+        "imageSha256": "6e297fbcd1043dc76247ed0791fcefe56852f9a05a73a0674e2319bff6a4f4a5"
+      }
+    },
+    {
+      "id": "dm23rp1-002",
+      "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+      "canonicalId": "dm23rp1-002",
+      "printId": "dm23rp1-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-002",
+      "faces": [
+        {
+          "name": "D-Jealousy-灰撫",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        },
+        {
+          "name": "♪五本まで 集めて林 森ジャングル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "CastBattleTwin1175"
+          }
+        ],
+        "spellFace": {
+          "name": "♪五本まで 集めて林 森ジャングル",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "race": "マジック・ソング",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "repeat": 5,
+              "modes": [
+                {
+                  "label": "エレメントを持ち主の手札へ戻す",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "element": true,
+                      "anyOwner": true,
+                      "to": "hand",
+                      "toOwnerHand": true
+                    }
+                  ]
+                },
+                {
+                  "label": "カードを1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-002a.jpg",
+      "imageSha256": "95384038a8dd124d93730dbffdc8ae8d7e3bb1d1a77d4e6c6049087d107a33f9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp1-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23rp1-002",
+          "dm23bd6-018"
+        ],
+        "allSearchIds": [
+          "dm23rp1-002",
+          "dm23bd6-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "sha256": "6dd7fff9700815240c5e61e155ecde83834ef458edaa1c36d4b6936cf0b07065",
+        "facesMatched": true,
+        "imageSha256": "95384038a8dd124d93730dbffdc8ae8d7e3bb1d1a77d4e6c6049087d107a33f9"
+      }
+    },
+    {
+      "id": "dm26ex2-051",
+      "name": "鬼核アトム・ジャオウガ",
+      "canonicalId": "dm26ex2-051",
+      "printId": "dm26ex2-051",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-051",
+      "faces": [
+        {
+          "name": "鬼核アトム・ジャオウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）",
+          "race": "デモニオ/鬼レクスターズ/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "鬼核アトム・ジャオウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nスピードアタッカー\nこのクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない。その後、カードを１枚、自分の墓地からマナゾーンに置く。\nZラッシュ（シールドが離れたら、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する）\nW・ブレイカー\n自分のシールドゾーンにあるデモニオ・カードすべてに「G・ストライク」を与える。",
+          "race": "デモニオ/鬼レクスターズ/超化獣",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "speedAttacker": true,
+        "zRush": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g535Count": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1
+          }
+        ],
+        "hyper": {
+          "power": 8000,
+          "breaker": 2,
+          "g1200ShieldStrikeRace": "デモニオ"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-051a.jpg",
+      "imageSha256": "c0741aa157ad539b961055222f7b445ebce5c0cb161196367a9f3608fa79bf47",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex2-051-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex2-051"
+        ],
+        "allSearchIds": [
+          "dm26ex2-051"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "sha256": "e901e057035e18341d6da8a36e3e7c221f4e8c5733951c62f60c77d72f651a20",
+        "facesMatched": true,
+        "imageSha256": "c0741aa157ad539b961055222f7b445ebce5c0cb161196367a9f3608fa79bf47"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23bd6-018",
+      "name": "D-Jealousy-灰撫 / ♪五本まで 集めて林 森ジャングル",
+      "canonicalId": "dm23rp1-002",
+      "printId": "dm23bd6-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-018",
+      "faces": [
+        {
+          "name": "D-Jealousy-灰撫",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分のツインパクト・クリーチャー１体の呪文側を、バトルゾーンに置いたままコストを支払わずに唱えてもよい。",
+          "race": "マジック・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        },
+        {
+          "name": "♪五本まで 集めて林 森ジャングル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "次の中から５回選ぶ。（同じものを選んでもよい）\n▶エレメントを１つ選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "CastBattleTwin1175"
+          }
+        ],
+        "spellFace": {
+          "name": "♪五本まで 集めて林 森ジャングル",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "race": "マジック・ソング",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "repeat": 5,
+              "modes": [
+                {
+                  "label": "エレメントを持ち主の手札へ戻す",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "element": true,
+                      "anyOwner": true,
+                      "to": "hand",
+                      "toOwnerHand": true
+                    }
+                  ]
+                },
+                {
+                  "label": "カードを1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-018a.jpg",
+      "imageSha256": "ad7f8eeab0190617a8b568135bbfc828991110aa8450bae5f1fc709c67c320f9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd6-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23rp1-002",
+          "dm23bd6-018"
+        ],
+        "allSearchIds": [
+          "dm23rp1-002",
+          "dm23bd6-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "sha256": "878948c77147138adebec510b538addb533565efcb7efbccb87c0f567ef5bb3d",
+        "facesMatched": true,
+        "imageSha256": "ad7f8eeab0190617a8b568135bbfc828991110aa8450bae5f1fc709c67c320f9"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49080/",
+      "sha256": "25bed91ebfa05852f9003bf6a961805dd4e2f3fd98092e5ae20ff1a83c549afd",
+      "checkedAt": "2026-11-27T23:45:03.618Z",
+      "reproduced": true,
+      "tests": "tests/standard1855-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats: actual already-released Atom and actual physical Jaougrila twinpact shield, BOTH Demonio creature/spell faces each receive GStrike. Exactly2 declarations happen BEFORE shield movement, then2 distinct native targets locked, physical single shield card conserved.",
+      "result": "Both seats: actual already-released Atom and actual physical Jaougrila twinpact shield, BOTH Demonio creature/spell faces each receive GStrike. Exactly2 declarations happen BEFORE shield movement, then2 distinct native targets locked, physical single shield card conserved."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43070/",
+      "sha256": "8f7224ebc0a1c1859a5472c777c7019bfe48c658c9e8d1e997282be0bdcd7fe3",
+      "checkedAt": "2026-11-27T23:45:03.618Z",
+      "reproduced": true,
+      "tests": "tests/standard1855-effects.test.mjs",
+      "kind": "literal-effect-with-real-replacement",
+      "reproduction": "Both seats: actual DJealousy spell resolves five sequential bounce choices; exact same opposing actual PerfectGalaxy stays through its real protected ShieldForce replacement after each choice and may be selected all5 times, with saved continuation. Five draw/mixed modes and self/other in-place free spell casting also tested.",
+      "result": "Both seats: actual DJealousy spell resolves five sequential bounce choices; exact same opposing actual PerfectGalaxy stays through its real protected ShieldForce replacement after each choice and may be selected all5 times, with saved continuation. Five draw/mixed modes and self/other in-place free spell casting also tested."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+      "sha256": "5920177808ad7d3120c8dd910cca944adad0052064bfc5560f0cd57828819645",
+      "checkedAt": "2026-11-27T23:45:03.618Z",
+      "reproduced": true,
+      "tests": "tests/standard1855-effects.test.mjs",
+      "kind": "timing-mechanism-equivalent-not-literal-example",
+      "reproduction": "Both seats: actual unreleased Atom with supported non-GStrike Demonio CRYMAX shield. First shield declares before move and receives no GStrike; only after physical movement ZRush releases, next Demonio shield receives GStrike; next own start expires. This verifies the stated113.6 timing, NOT exact literal CRY-S-MAX example. Literal example remains explicitly pending until its full card and relatedQA49608 dependencies are implemented.",
+      "result": "Both seats: actual unreleased Atom with supported non-GStrike Demonio CRYMAX shield. First shield declares before move and receives no GStrike; only after physical movement ZRush releases, next Demonio shield receives GStrike; next own start expires. This verifies the stated113.6 timing, NOT exact literal CRY-S-MAX example. Literal example remains explicitly pending until its full card and relatedQA49608 dependencies are implemented."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm26ex2-SPR005",
+      "name": "CRY-S-MAX ジャオウガ",
+      "reason": "Research downloaded all3 exact prints and QA49608. Need full CRY-S-MAX leave/loss replacement (three own face-up destroyed OR1 shieldgrave), S-MAX uniqueness/SBA priority and actual GreatestJaouga/deep-reversal QA49608, plus printed MachFighter/Slayer/W2/OniEnd untap. No images reviewed or implementation yet; not counted. Exact Atom49079 example pending separately, validated timing with real supported CRYMAX recorded as mechanism only."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T23:45:03.618Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex2-026": 4,
+      "dmsd11-004": 4,
+      "dm23rp1-002": 4,
+      "dm26ex2-051": 4,
+      "dm23bd6-018": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm26ex2-026",
+      "searchSha256": "5a09192ed58210a03a993955b2f527752ec9c77828f475b158013529f353fc17",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm26ex2-026"
+      ],
+      "exactPrints": [
+        "dm26ex2-026"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results and exact1/1/2/1 print images fully enumerated/reviewed; hyper form printed on same complete Atom card image."
+    },
+    {
+      "id": "dmsd11-004",
+      "searchSha256": "ad5e6d32e9c3fa1f858400237539a92ef390eb455dbe67002595195c5e46272d",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmsd11-004"
+      ],
+      "exactPrints": [
+        "dmsd11-004"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results and exact1/1/2/1 print images fully enumerated/reviewed; hyper form printed on same complete Atom card image."
+    },
+    {
+      "id": "dm23rp1-002",
+      "searchSha256": "fd21fc5a7c283e10bd6157a65505c718f416045fb4fa9d5907aef91851c0e8ea",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm23rp1-002",
+        "dm23bd6-018"
+      ],
+      "exactPrints": [
+        "dm23rp1-002",
+        "dm23bd6-018"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results and exact1/1/2/1 print images fully enumerated/reviewed; hyper form printed on same complete Atom card image."
+    },
+    {
+      "id": "dm26ex2-051",
+      "searchSha256": "ad5f715297b08bb801fdaea163284cfa34b016053c9cf0d52bb561376c260287",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm26ex2-051"
+      ],
+      "exactPrints": [
+        "dm26ex2-051"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results and exact1/1/2/1 print images fully enumerated/reviewed; hyper form printed on same complete Atom card image."
+    }
+  ],
+  "registeredCardVerificationPending": [
+    {
+      "id": "dm26ex2-051",
+      "name": "鬼核アトム・ジャオウガ",
+      "scope": "literal official QA49079 example with actual CRY-S-MAX Jaouga",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49079/",
+      "reason": "All Atom printed abilities and actual same-race/non-GStrike shield timing mechanism pass; exact named shield CRY-S-MAX is not registered. Its all3 prints/QA49608 have been researched but images/full implementation pending, so no fake partial reproduction or claim of exact literal pass.",
+      "mechanismVerified": true,
+      "fullPrintedAbilitiesVerified": true,
+      "requiredCard": "dm26ex2-SPR005"
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "All4 canonical complete abilities and DJealousy1 alias, exact5 full official images including Atom hyper form, currentlimits/basic/mana1/races/costs and all print searches checked. Jaougrila actual paid4 hand/grave Star evolution(any Demonio/Dark/Fire base), top-only leave/native old base preserved, attack currentgrave-count optional bounded destruction with default mandatory legacy Tatami unchanged; spell DarkFire2 full two modes mandatorymill3 OR enemy element<=3. Tiango Water4/1000 blocker/PoweredBreaker, each OWN spell cumulative2000 untilend not enemy spell/own creature; Fire1 spell same own chosen creature haste untilend plus independent attack-only protection untilnextownstart, no choice immunity, exact expiry/untap distinction. DJealousy full JD/W2 and optional actual self/other own twin spell cast in place onattack, physical body remains; five sequential repeatable modes current own/enemy ELEMENT bounce ownerhand ORdraw. Atom DarkFireNature3/4000 haste/GS/ZRush, optional wholeownshieldhand noST followed independent mandatoryANYgravecardmana evenifdeclined, 8000/W2 whenreleased, native expiry. Fixed shared race-granted GStrike count per matching physical face per official49080, preserves Nelza allface grant and single-face/native declarations, ignore/seal/buried/base exclusions. Focused57 includes8 actual encrypted two-account payment/entry/evolution service cases. Related1175/1200/1308/1336/313/521 and online5, npmcheck/audit9774/invariants pass. QA49079 timing mechanism verified with actual supported CRYMAX; exact CRY-S-MAX example explicitly pending, not claimed literal. Older pending/baseline blocker/fullSuite unchanged. No fullnpmtest/knownlonggroups/push/publication/Netlify/automation.",
+    "resolvedAttempts": "Fixed new spec helper to serialize multi-civilization twin spell as Dark/Fire strings before tests (not nested arrays). Fixture corrections: tapped the unrelated large blocker so attack-break test isolates W2; opponent basic Fire nonblocker prevents unintended combat removal; printed ordinary bounce exposes effect-target actions rather than extended choices; GStrike declarations for all instances happen first, then targets (native gsDeclare decline=false, not null); after next own start the protected creature naturally untaps, so retapped it before testing that expiry restores opponent attack eligibility. No remaining failure in final57.",
+    "nextCandidates": [
+      {
+        "id": "dm22ex1-048",
+        "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+      },
+      {
+        "id": "dm24rp1-S03",
+        "name": "楽識の夜 フミビロム",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+      },
+      {
+        "id": "dm25bd1-014",
+        "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+        "reason": "Next grouped official full twin/hyper research requested, all print images and rulings still require review; no implementation."
+      }
+    ]
+  }
+}
