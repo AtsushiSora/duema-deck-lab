@@ -7,6 +7,7 @@ export function replacementSacrifices(rows){
   if(plan?.kind==='g49'&&plan.mode==='queen')sacrifices.add(plan.target);
   if(plan?.kind==='lGate955')sacrifices.add(uid);
   if(plan?.kind==='oni')for(const uid of plan.cards)sacrifices.add(uid);
+  if(plan?.kind==='auraStay1807')for(const ref of plan.cards)sacrifices.add(ref.uid);
  }
  return sacrifices;
 }

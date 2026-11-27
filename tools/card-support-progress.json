@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9641,
-  "pendingNames": 2202,
-  "phase": 1806,
+  "supportedNames": 9644,
+  "pendingNames": 2199,
+  "phase": 1807,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -158,7 +158,7 @@
   "pendingByType": {
     "クリーチャー": 1289,
     "呪文": 247,
-    "GRクリーチャー": 17,
+    "GRクリーチャー": 16,
     "G-NEOクリーチャー": 24,
     "タマシード": 26,
     "デュエルメイト呪文": 8,
@@ -166,7 +166,7 @@
     "進化クリーチャー": 176,
     "スター進化クリーチャー": 46,
     "NEOクリーチャー": 41,
-    "オレガ・オーラ": 26,
+    "オレガ・オーラ": 24,
     "デュエルメイト・クリーチャー": 4,
     "ルール・プラス": 1,
     "Mono Artifact": 1,
@@ -221,7 +221,7 @@
   },
   "reasons": {
     "未対応の能力文": 1617,
-    "複数面・特殊カードタイプまたは情報不足": 488,
+    "複数面・特殊カードタイプまたは情報不足": 485,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -568842,11 +568842,257 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1807,
+      "checkedAt": "2026-11-27T14:46:45.191Z",
+      "baseline": "3aba5e6ec73c6e1c408e60e31d883edb4d0e38cc",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9641,
+      "currentNames": 9644,
+      "remainingNames": 356,
+      "added": [
+        {
+          "id": "dmex08-145",
+          "name": "幽武者 ソウル・ブリンガー"
+        },
+        {
+          "id": "dmrp09-046",
+          "name": "幽影エダマ・フーマ"
+        },
+        {
+          "id": "dmrp10-006",
+          "name": "ザーク卍ウィンガー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1807,
+        "baseline": "3aba5e6ec73c6e1c408e60e31d883edb4d0e38cc",
+        "originalDefinitionsUnchanged": 9641,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9644,
+        "uniqueIds": 9644,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9641,
+        "existingImageReferenceRowsUnchanged": 12026,
+        "officialPrintsReviewed": 5,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1807": {
+          "name": "official-1807",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1807.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.357,
+          "log": "tmp/duema-target-10000/official-1807.log",
+          "passed": 0,
+          "logSha256": "c930724be87df5d9adacefcc5a0d49165547cdbd9a59d4c6abd244de6efe7ab7"
+        },
+        "focused-1807-final": {
+          "name": "focused-1807-group-order-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.127,
+          "log": "tmp/duema-target-10000/focused-1807-group-order-final.log",
+          "passed": 72,
+          "logSha256": "c91f8f26eebd8669eef961fbc6f87bb3bc6f690de75aa29e8e3e6e213bc078c8"
+        },
+        "related-1807": {
+          "name": "related-1807",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* ordinary summon costs printed mana and conserves saved physical identity |[^\\n]* removes an actual enemy element |[^\\n]* cost boundary is inclusive, mandatory and based on printed current element cost|[^\\n]* excludes sealed and protected targets and respects forced-target choice|[^\\n]* S-trigger is free and removes the attacker before a later attack|[^\\n]* entry removal suppressed by |Ballista may attack players immediately while the other new removal creatures cannot|Bonmee ramp mode adds the exact top card and does not remove a legal enemy|Bonmee empty removal mode finishes, and a last-card ramp loses rather than becoming a Shako draw win|Bonmee enters mana tapped and supplies both colors only after it untaps|[^\\n]* owns its mandatory battle-win ability, including a self win |[^\\n]* also watches another matching creature winning while defending|[^\\n]* ignores wrong tribe/color, enemy wins, ties and nonbattle destruction|[^\\n]* battle watcher suppressed by |GG does not stop |Jinan opponent chooses the exact discarded card and empty hand has no blank prompt|Hazel breaks a shield stack together and cannot win by ability against zero shields|Hazel ability break allows a saved S-trigger to destroy its source before battle continuation|a winning Jinan triggers before it is subsequently destroyed by Slayer|Miliapod self-destructs only when another owned creature actually enters |Miliapod another copy destroys only the old copy, while seed and gear entries do nothing|Miliapod other-entry destruction respects |Miliapod simultaneous entry effects serialize and cannot destroy a later source incarnation|AI mode and removal evaluation is read-only and independent of opposing hidden cards|Cocco destroys a cheap noncreature element when it enters evolved and when it becomes an evolution base|Tree puts an enemy element into its owner’s mana and draws even if there is no target|Eine gets a budget-seven destruction choice from a qualifying shield break and can draw for each element removed|Eine watches opposing returns as well as destruction and never draws for a friendly return|Eine enters on a single-shield trigger without the bonus removal|Eine does not watch opposing creatures destroyed simultaneously with it|canonical and reprint resolve to one fully verified aura|attaching to an existing or new GR grants power and an optional draw: |attaching a second aura triggers both, and destroying their host moves both to the grave|310\\.2a: a GR creature destroyed before attachment leaves the aura in its original hand slot|310\\.7: the aura stays attached after its GR creature evolves|310\\.8b: Sixfall lets the owner order the GR creature and its aura under another creature|QA40665: XXDDZ keeps its linked shield and still prohibits opposing spells|Schwarzring continues after attempting to put its protected shield into the grave|QA39077: Ragnarok counts only the shield cards that actually moved|QA40456: the owner chooses between Shield Go and keeping the shield: |rule 310\\.8 moves an attached aura with a GR creature chosen by Rakujo no Kei|Jokers Heart counts the GR and its aura before the GR returns to the extra deck|Soul Shift uses the selected matching top cards and quotes affordable choices \\(QA40885\\)|multi-base Soul Shift has a floor of one and can cancel without spending mana|Kengeki can use only a named Gouken evolution base and pays eight|Gouken privately looks at seven, evolves while attacking, and shuffles|Gouken can decline the evolution and still shuffles|opposing spell removal wins, while Dokindam Area seals first \\(QA40956\\)|zero power from opposing Eternal Nothing does not grant a win \\(QA40960\\)|Kerodi Frog keeps battlefield provenance after it leaves \\(QA40959\\)|Kubrick triggered in the graveyard does not grant a win \\(QA40957\\)|Slayer grants the win after its source loses the battle \\(old QA35986\\)|an opposing creature entry effect still wins after resuming the target prompt|Nyamibaun grants its GR host power; its optional bounce does not grant Kengeki a win \\(QA38763\\)|Nyamibaun can use an S-Trigger, summon its GR host, and decline the bounce|Kengeki put into the grave from a seal was never a battlefield creature \\(QA33286\\)|Tizoris does not duplicate the departure victory \\(QA41280\\)|losing a normal battle does not grant Kengeki a win \\(old QA35985\\)|a defeat replacement resumes the original departure without retrying the victory|[^\\n]* intercepts non-summon entry before any entry ability, for the correct owner |[^\\n]* permits paid and free summons including GR summons|HDM GS paid summon retains speed/world breaking and only a non-summon entry shuffles its physical card|Magnum G-strike works from shields before the Aura enters battle|Jablood uses actual dark creature/tamaseed count and its entry mills exactly zero or two |Inactive Jablood still watches own Abyss attacks and protects an Abyss tamaseed from bounce |Jablood snapshot replacement works for every ordinary departure |Jablood rejects non-Abyss recipients, fewer than four cards and a locked grave, ignored or sealed source |Actual Noches and both Jabloods reserve disjoint 4-card payments in active-player order \\(QA42962\\) |Jablood and Fork return separate randomized groups of four \\(QA42961\\)|Hand discards selected as another replacement cannot fund Jablood in the same batch \\(QA42959\\) |Ulborance optional real discard draws actual discarded count plus one |Ulborance empty hand draws one and may trigger from its own first summon \\(QA40222/40225\\) |First entry must actually be a summon; a prior effect entry prevents Ulborance this turn \\(QA40221\\) |Inactive Jashin enters as tamaseed, not a creature summon entry \\(QA41989\\) |Actual Ulborance casts actual Big Bang before Joe, and Joe wins after opposing seals \\(QA40220\\) |Big Bang seals all opposing creatures without choosing targets and deploys a mandatory qualifying grave creature |Actual Zero-Ryuu birth reduces four dark creatures to zero; Jablood survives as a tamaseed \\(QA44113\\) |Sealed Ulborance cannot trigger from the command that removes its seal \\(QA40223\\) |Ulborance draws one when discarded Carol stays in hand instead |Actual 7777777 and Jablood keep the revealed three and randomized four as freely ordered separate groups \\(QA43447\\) |Ulborance uses the summoned creature cost for optional hand spells, never creature sides or expensive spells |Big Bang preserves inactive seeds, seals its snapshot of active creatures, and respects deployment prohibitions |Forbidden Star allows removing Ulborance seal instead of a corner, without retroactive entry triggers \\(QA40224\\) |New replacement decisions survive encrypted room saves and hide an opposing private hand|Generation and ordinary crossing each pay printed cost |Soul optionally sacrifices only another own creature and leaves host and gear |Soul external2000 and replacement survive ignored host but stop for ignored sealed or uncrossed gear |Soul excludes indestructible and unable-to-leave sacrifices and replacement never chains their Omega |QA35728 actual Shield Saver cannot replace its replacement destruction using Soul |Soul and Saga never replace non-destruction moves to mana hand or deck |Saga freely crosses actual evolution and linked God but neither ordinary nor unevolved NEO |Saga mandatory source-to-mana replacement followed by optional creature-only mana recovery |Saga replacement survives ignored host and stops for ignored or sealed gear |QA35993 actual God Saver is destroyed without chaining its crossed Saga mana replacement |Saga and Soul offer competing replacements without consuming either until selected |Raging grants PA3000 and attacks only untapped Gods with external battle12000 including defending |QA35700 first God attack untaps host without cancelling battle and later God attack does not untap |First God attack counts before gear attached and player or nonGod attacks do not consume it |Ignored host loses granted PA and untapped God permission but retains battle bonus and first attack trigger |Raging battle bonus stacks per physical gear and is included before Stallion multiplication |Ignored sealed and recrossed Raging source stops external battle bonus and first untap |Soul replacement and Saga mana recovery roundtrip encrypted owner-only choices and physical identities |God first-attack history follows actual paid evolution and does not grant a second untap |First God attack respects an existing untap prohibition and turn history expires next turn |Same physical Raging host leaving and reentering has a new incarnation and new first God attack |Saga free cross works for actually evolved NEO and obeys inactive gear and host incarnation |Soul destruction reservation cannot sacrifice the same physical body for two simultaneous hosts |super-infinite evolution may use multiple complete creatures and preserves cost, physical stack and immediate evolution attack |super-infinite evolution cannot be used with no creature base |Fatal Spiral uses Origin or Dragon bases, counts all three buried physical cards, and allows declining its full bounce |QA35965: Fatal Spiral can choose itself and returns every physical evolution source with it|Fatal Spiral current stack count and last-known count both exclude the top evolution card|Universe cannot offer ten-source payment with only |Universe reserves ten distinct sources before any move, wins before blocking and conserves all physical cards |Universe cancellation after |Universe non-attack victory is stopped by an opponent Valhalla after all ten source cards have moved|Universe opponent Strato replacement is chosen before all ten sources move, and does not cancel the completed payment |QA41756: actual exploded Dolmaggedon buried as ten evolution sources causes its constant loss before Universe victory|Tatebue shields one exact hidden physical source, double breaks, and untaps only at this turn end |QA36790: Tatebue gets no end untap without its source payment |Tatebue is a real blocker after its delayed end untap|Fatal Spiral also evolves from an Origin that is not a Dragon and never selects an untargetable enemy|Universe pays exactly ten nested physical source cards in a chosen reverse order, retaining the established nested save format|Universe mixed Strato decisions move one multicolor source to tapped owner mana and nine to grave as one completed payment|Tatebue cannot elect a shield placement prohibited by the actual Fuujin continuous ability|The shield placement elected with an existing source may be replaced by Pippi; the completed optional attempt still schedules Tatebue untap|actual normal evolution uses all exact race/color/blocker bases, pays printed mana and preserves physical cards |optional destruction replacement uses the other allied live host and retains the whole physical evolution stack |destruction-under replacement can be declined |Jiek under-source ability requires an active own host and a Light blocker victim |non-destruction movement never offers destruction-under replacement |two simultaneous victims may move to one Peter, and a host destroyed in the same event carries them to grave without counting them as destroyed|multiple destruction-under sources offer distinct destinations and do not trigger death draw or battlefield-departure draw|QA32471: Peter takes the actual GR and both attached Auras beneath itself, without equipping the Auras to Peter or returning GR home|Peter six-source payment returns every opposing creature stack and every mana, including face-down/zero mana and owner hand routing |Peter preserves the initial opposing-mana prohibition and still returns creature cards|Peter mana return remains independent when there are no creatures or a creature has a leave replacement|Byaha four-source effect lets the opponent choose exactly four own creatures then discard four own hand cards |Byaha independent instructions still discard when no creature can be destroyed, and handle fewer than four targets|Jiek pays ten underlying cards for native non-attack victory before blocking or shield breaks |Jiek native victory prohibition applies after its completed payment|exact optional payment never grants partial Meteor effects |An advanced-format GR absorbed by Peter later returns to its own super-GR when that exact physical source is paid|A destruction paid as another replacement cannot be replaced again by a Peter source ability|Jiek is an actual blocker and survives a normal smaller attacker without using Meteor|310\\.8b Peter replacement lets its owner order the complete GR and two Auras before simultaneous movement |310\\.8b the physical creature owner chooses the Aura order even when another player controls it|Jura paid10 immediately attacks as13000 speed triple breaker and opposing seat chooses three face-up battle/mana cards |Jura puts all available eligible cards into grave when fewer than three remain |Jura selects exact physical evolution sources and top together, reconstructing only the unselected base|Jura puts rather than destroys, does not trigger death draw and excludes face-down sources or ignored sealed creatures|Jura physical linked-God selection preserves all unselected parts without choosing another God |QA49216 actual Aoharu Hi Cheese spell uses Jura attack ability even without attacking or tapping Jura|Shirahano caster chooses each optional pair independently and all pair choices precede mutation |Shirahano cannot form an invalid pair and preserves opponent target protections |Shirahano moves the complete nested creature and never causes a destruction or zone-departure draw|Shirahano owner orders attached Auras and GR after both player pairs are reserved, with hidden opponent actions and pure AI|QA33219 Judge prevents either player deck-out, including drawing the last card |Judge prohibits actual Universe ten-source alternate victory while exact payment still occurs |Judge also prohibits actual Shakogail last-card replacement win and normal deck defeat |Judge still permits an actual zero-shield direct attack victory by either player |Judge inactive or departed source no longer prevents actual deck-out |Judge removal allows an already empty library state to defeat its owner before queued later actions|Jura selected awakened psychic cell identities are respected and return exactly those selected cells to extra |Jura ignored attack ability leaves all opposing cards unchanged|Shirahano actual S-trigger resolves both optional pair choices using the defending spell controller|Jura reserves two selected cells from actual three-part V Awakening Link and leaves only the unselected front creature|Marugunsa pays three and evolves only from an own cost3 Abyss from |Marugunsa cannot evolve onto a wrong current cost or unrelated race |Marugunsa triple breaker counts own Abyss elements, not buried or opposing cards |Marugunsa entry checks four remaining Abyss elements including itself, and sends one enemy to owner mana |Marugunsa ignored ability does not grant triple breaker and opposing Apul prevents mana summons|Crysta evolves onto a Light creature, Rexstars creature or valid Shinkalize element |QA41069 Crysta does not reduce its own three mana before it enters|Crysta stacks separate evolution and seed discounts at minimum one and leaves ordinary creature/spell costs alone |QA41070 actual Shinperer Marco NEO summon receives evolution discount only when a base is chosen |Crysta reductions stop for ignored/sealed sources, the opponent or cost-reduction prohibition |Crysta Star departure leaves the underlying Light creature and stops reducing later summons|Kamitaio optional Nature1 payment counts Snow Fairy elements before entry and still requires its actual evolution base |Kamitaio never substitutes invalid evolution bases or counts inappropriate Fairy cards |Kamitaio paid ordinary five entry independently elects tapped ramp and optional mana recovery |Kamitaio fixed alternative cost interacts correctly with |Kamitaio manual alternative payment requires Nature and rejects other colors before mutation|Kamitaio entry obeys an actual opposing Apul movement lock, and never returns a card from locked mana|Crysta actually uses one mana to deploy a seed while retaining its own printed cost |Crysta actually blocks an enemy attack and survives the battle at power5000|Kamitaio can legally evolve onto its Snow Fairy Shinkalize seed with Nature1 |Marugunsa actually breaks three shields with two other Abyss elements and one shield after losing them|Marugunsa entry does not target an untargetable opposing creature|Kamitaio alternative payment cannot be paid with only non-Nature mana)",
+            "tests/standard317-effects.test.mjs",
+            "tests/standard617-effects.test.mjs",
+            "tests/standard1352-effects.test.mjs",
+            "tests/standard1362-effects.test.mjs",
+            "tests/standard1452-effects.test.mjs",
+            "tests/standard1689-effects.test.mjs",
+            "tests/standard1723-effects.test.mjs",
+            "tests/standard1796-effects.test.mjs",
+            "tests/standard1802-effects.test.mjs",
+            "tests/standard1805-effects.test.mjs",
+            "tests/standard1806-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.833,
+          "log": "tmp/duema-target-10000/related-1807.log",
+          "passed": 456,
+          "logSha256": "9201cd63ff13ce8ea2de38b4fdb4f1e8c5c15e7749c944b1a6be3d614d596381"
+        },
+        "check-1807": {
+          "name": "check-1807",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.247,
+          "log": "tmp/duema-target-10000/check-1807.log",
+          "passed": 0,
+          "logSha256": "db3d476fad92d6c1126000dd14fcf788fb8fd3ce855eb42914994d93db839c76"
+        },
+        "audit-1807": {
+          "name": "audit-1807",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.834,
+          "log": "tmp/duema-target-10000/audit-1807.log",
+          "passed": 0,
+          "logSha256": "10509008b51f0017ac0cf758f1c42db1c3ad3db5c50ae12eb3cf39d8d6ba184c"
+        },
+        "invariants-1807": {
+          "name": "invariants-1807",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1807"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.737,
+          "log": "tmp/duema-target-10000/invariants-1807.log",
+          "passed": 0,
+          "logSha256": "30b298ac03ea161a8a1046c0b5d8cb1a1531602ec496a9dc50f65a9c4805478f"
+        },
+        "related-online-1807": {
+          "name": "related-online-1807",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.593,
+          "log": "tmp/duema-target-10000/related-online-1807.log",
+          "passed": 5,
+          "logSha256": "39e1dfa85056b30d871e25b33abf874b5536b51fe66b2940329be276f9b2c3b9"
+        }
+      },
+      "totalTestsPassed": 533,
+      "manifest": "tools/support-phase-1807.json",
+      "supported": 9644,
+      "pending": 2199,
+      "engineVersion": "0.602.331",
+      "held": [],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1807-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.267,
+          "log": "tmp/duema-target-10000/focused-1807-initial.log",
+          "reason": "New Aura definitions were corrected to explicit type aura, zero body power and printed auraPower; GR manaValue0 is verified separately. Fixtures now use actual seals, actual Oni-Time indestructibility, native combat block windows and real Kuzutrain watcher. Generic element filtering omitted Aura and compound evolution dropped GR attachments; both common paths were corrected and tested against official QA42981/45226 and QA_old38023. Complete ordered Aura payments now choose group order before all movement, so later All Delete/Ryudmila shuffles are never undone by deferred bottom ordering. One guarded edit did not apply and its test run failed; the explicit final patch and subsequent full72-case run resolved it."
+        },
+        {
+          "name": "focused-1807-corrected",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.88,
+          "log": "tmp/duema-target-10000/focused-1807-corrected.log",
+          "reason": "New Aura definitions were corrected to explicit type aura, zero body power and printed auraPower; GR manaValue0 is verified separately. Fixtures now use actual seals, actual Oni-Time indestructibility, native combat block windows and real Kuzutrain watcher. Generic element filtering omitted Aura and compound evolution dropped GR attachments; both common paths were corrected and tested against official QA42981/45226 and QA_old38023. Complete ordered Aura payments now choose group order before all movement, so later All Delete/Ryudmila shuffles are never undone by deferred bottom ordering. One guarded edit did not apply and its test run failed; the explicit final patch and subsequent full72-case run resolved it."
+        },
+        {
+          "name": "focused-1807-shared",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.42,
+          "log": "tmp/duema-target-10000/focused-1807-shared.log",
+          "reason": "New Aura definitions were corrected to explicit type aura, zero body power and printed auraPower; GR manaValue0 is verified separately. Fixtures now use actual seals, actual Oni-Time indestructibility, native combat block windows and real Kuzutrain watcher. Generic element filtering omitted Aura and compound evolution dropped GR attachments; both common paths were corrected and tested against official QA42981/45226 and QA_old38023. Complete ordered Aura payments now choose group order before all movement, so later All Delete/Ryudmila shuffles are never undone by deferred bottom ordering. One guarded edit did not apply and its test run failed; the explicit final patch and subsequent full72-case run resolved it."
+        },
+        {
+          "name": "focused-1807-expanded",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.915,
+          "log": "tmp/duema-target-10000/focused-1807-expanded.log",
+          "reason": "New Aura definitions were corrected to explicit type aura, zero body power and printed auraPower; GR manaValue0 is verified separately. Fixtures now use actual seals, actual Oni-Time indestructibility, native combat block windows and real Kuzutrain watcher. Generic element filtering omitted Aura and compound evolution dropped GR attachments; both common paths were corrected and tested against official QA42981/45226 and QA_old38023. Complete ordered Aura payments now choose group order before all movement, so later All Delete/Ryudmila shuffles are never undone by deferred bottom ordering. One guarded edit did not apply and its test run failed; the explicit final patch and subsequent full72-case run resolved it."
+        },
+        {
+          "name": "focused-1807-shuffle-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.089,
+          "log": "tmp/duema-target-10000/focused-1807-shuffle-final.log",
+          "reason": "New Aura definitions were corrected to explicit type aura, zero body power and printed auraPower; GR manaValue0 is verified separately. Fixtures now use actual seals, actual Oni-Time indestructibility, native combat block windows and real Kuzutrain watcher. Generic element filtering omitted Aura and compound evolution dropped GR attachments; both common paths were corrected and tested against official QA42981/45226 and QA_old38023. Complete ordered Aura payments now choose group order before all movement, so later All Delete/Ryudmila shuffles are never undone by deferred bottom ordering. One guarded edit did not apply and its test run failed; the explicit final patch and subsequent full72-case run resolved it."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "logIndexIntegrity": {
+        "artifact": "tools/target10000-log-index-repair-1807.json",
+        "sha256": "5917819cb3dc4996e4eb5f77802ac69e0dd7eee84b3d56b2301ed2b5a433e49b",
+        "allIndividualResultsPreserved": true,
+        "recordsRecovered": 3,
+        "reason": "Parallel long JSONL record writes interleaved one index line; records recovered only from actual observed terminal results and unchanged individual logs. Ignored run wrapper now locks all index operations and uses atomic rewrite."
+      }
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1806,
-    "nextPhase": 1807,
+    "lastVerifiedPhase": 1807,
+    "nextPhase": 1808,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -569759,11 +570005,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1806,
-      "baseline": "cbf0c9f78e29df085c8a41a42c699457680b738c",
-      "supportedNames": 9641,
-      "artifact": "tools/target10000-registration-checkpoint-1806.json",
-      "checkedAt": "2026-11-27T14:25:54.035Z"
+      "phase": 1807,
+      "baseline": "3aba5e6ec73c6e1c408e60e31d883edb4d0e38cc",
+      "supportedNames": 9644,
+      "artifact": "tools/target10000-registration-checkpoint-1807.json",
+      "checkedAt": "2026-11-27T14:46:45.191Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -572821,8 +573067,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9641,
-      "remaining": 359,
+      "currentNames": 9644,
+      "remaining": 356,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -572830,8 +573076,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1806,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1806.json",
+      "lastPhase": 1807,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1807.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -574087,8 +574333,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9641,
-      "remaining": 359,
+      "currentNames": 9644,
+      "remaining": 356,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -574096,8 +574342,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1806,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1806.json",
+      "lastPhase": 1807,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1807.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -574254,28 +574500,44 @@
       }
     ],
     "nextTarget10000Preparation": {
-      "research": "tmp/duema-target-10000/research-dmex08-145.json",
+      "research": "tmp/duema-target-10000/research-dmrp09-022.json",
       "candidates": [
         {
-          "id": "dmex08-145",
-          "name": "幽武者 ソウル・ブリンガー",
-          "status": "official-full-search-and-image-reviewed; not-registered",
-          "implementation": "Attached GR host destruction may substitute another own creature destruction; reuse native sacrifice replacement and aura-aware grants."
+          "id": "dmrp09-022",
+          "name": "幽具ランジャ",
+          "status": "official-full-search-and-all-images-reviewed; not-registered",
+          "prints": [
+            "dmrp09-022",
+            "dmbd12-g12",
+            "dmex05-031",
+            "dmsd12-008"
+          ],
+          "rulings": [],
+          "errata": "https://dm.takaratomy.co.jp/rule/rulechange/31435/"
         },
         {
-          "id": "dmrp09-046",
-          "name": "幽影エダマ・フーマ",
-          "status": "official-full-search-and-all3-images-reviewed; not-registered",
-          "implementation": "Attached host departure may substitute moving this exact attached aura to grave. Preserve attachment, other auras and host state."
+          "id": "dmrp11-005",
+          "name": "水中怪物 テンタコル",
+          "status": "official-full-search-and-all-images-reviewed; not-registered",
+          "prints": [
+            "dmrp11-005"
+          ],
+          "rulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/41289/"
+          ]
         },
         {
-          "id": "dmrp10-006",
-          "name": "ザーク卍ウィンガー",
-          "status": "official-full-search-and-image-reviewed; QA32007-saved; not-registered",
-          "implementation": "GR host departure may replace by exactly two attached auras to library bottom; controller chooses their order. No partial single-aura payment."
+          "id": "dmrp10-012",
+          "name": "ΚΔΖ ガッパゼオ",
+          "status": "official-full-search-and-all-images-reviewed; not-registered",
+          "prints": [
+            "dmrp10-012"
+          ],
+          "rulings": []
         }
       ],
-      "restart": "Phase1806 verified at9641 names; inspect HEAD/tree/index, AGENTS, progress/previous tests and process list before new work. Next phase1807 grouped official research/images at research-dmex08-145.json. Use native aura and GR bookkeeping, departure replacement and ordered bottom payment; verify both seats, ignored/sealed/source removal, shared sweeps and encrypted restores before counting. Preserve earlier holds/pending. No full npm test, repeated long groups, automation restart, push/publication/Netlify."
+      "nativeReuseHint": "All three require explicit type:aura,power:0,auraPower from full image. Ranja original/reprint raw faces omit そのターン in several images; authoritative rulechange31435 corrects it. Preserve full raw faces and explicitly record/pin errata; negative power lasts this turn only and counts attached Auras at proper resolution. Tentacol has powered breaker and own/other attachment watch for same host: temporary +4000 per live copy, no new attachment triggers from evolution. QA41289 needs actual Fire/Dark GR bases and actual existing Zero Phoenix, both Tentacols retained without +4000 retrigger. Current phase1807 already fixes compound evolution Aura retargeting. Gappazeo gives powered breaker and attached-host battle-win repeated GR equal live Aura count. Aura ability remains on attachment rather than a host-ignored grant. Reuse native GR summon, attachment, serializable look/selection and battle-win hooks where possible.",
+      "restart": "At9644 phase1807 verified. Inspect latest HEAD/tree/index, AGENTS, progress/tests, running processes and actualnameKey count. Research1808 complete and all6 images reviewed; no new card specs or counts yet. Run wrapper JSONL uses flock for archive/rewrite/append. Preserve all old holds/pending/deferrals. No full npm test/repeated long groups, automation restart, push/publication/Netlify."
     },
     "resolvedTarget10000Holds": [
       {
@@ -574288,66 +574550,29 @@
       }
     ],
     "lastCompletedTarget10000Preparation": {
-      "research": "tmp/duema-target-10000/research-dm23ex2-053.json",
+      "research": "tmp/duema-target-10000/research-dmex08-145.json",
       "candidates": [
         {
-          "id": "dm23ex2-053",
-          "name": "オ:マルグンサ",
-          "implementation": "Mana summon and exact current-cost3 Abyss evolution base; own Abyss element counts3/4 grant triple breaker and entry mana removal.",
-          "status": "fully-verified-and-registered-phase1806"
+          "id": "dmex08-145",
+          "name": "幽武者 ソウル・ブリンガー",
+          "status": "fully-verified-and-registered-phase1807",
+          "implementation": "Attached GR host destruction may substitute another own creature destruction; reuse native sacrifice replacement and aura-aware grants."
         },
         {
-          "id": "dmsd20-011",
-          "name": "クリスタ ＜ヴォイジャ.Star＞",
-          "implementation": "Native star evolution/blocker; separate creature evolution and seed-use reductions1, floor1, ignoring and multiple copies.",
-          "status": "fully-verified-and-registered-phase1806"
+          "id": "dmrp09-046",
+          "name": "幽影エダマ・フーマ",
+          "status": "fully-verified-and-registered-phase1807",
+          "implementation": "Attached host departure may substitute moving this exact attached aura to grave. Preserve attachment, other auras and host state."
         },
         {
-          "id": "dm24ex1-020",
-          "name": "ダイヤモンド・カミタイオ",
-          "implementation": "Optional fixed Nature1 summon when3 own Snow Fairy elements exist; Snow Fairy creature evolution, double breaker, independently optional tapped ramp1 then mana return1.",
-          "status": "fully-verified-and-registered-phase1806"
+          "id": "dmrp10-006",
+          "name": "ザーク卍ウィンガー",
+          "status": "fully-verified-and-registered-phase1807",
+          "implementation": "GR host departure may replace by exactly two attached auras to library bottom; controller chooses their order. No partial single-aura payment."
         }
       ],
-      "timingHeld": [
-        {
-          "ids": [
-            "dm19-029",
-            "dm23-s05"
-          ],
-          "reason": "Old wording 攻撃できる時 requires official timing/errata verification before implementation."
-        }
-      ],
-      "duplicateCandidateExcluded": [
-        {
-          "id": "dm19-002",
-          "reason": "Already fully registered under phase943 original ID; not counted twice."
-        },
-        {
-          "id": "dmex18-067",
-          "reason": "Compiler scan candidate uses wave-dash spelling; actual original dm32-101 ケングレンオー ～出発～ already registered. Same-name reprint is not a new type; verify any needed official alias separately."
-        }
-      ],
-      "heldThisPreparation": [
-        {
-          "id": "dm02-044",
-          "name": "ギガスタンド",
-          "reason": "Official QA_old35021 permits paying another simultaneously hand-returned Aqua Soldier from an initially empty hand. Native returnDiscard1156 returns the source first and then discards, which would also allow paying with Gigastand itself. Full distinct payment eligibility/reservation and competing same-batch replacements need dedicated handling. No partial definition or count."
-        },
-        {
-          "id": "dm07-009",
-          "name": "キャバリア・シャーク",
-          "reason": "Both official full images reviewed. Original DM07 says up to2/optional; DM18 prints exactly2. Need authoritative current wording reconciliation plus one selected hand batch then same-number complete shield-group return without triggers. Reusing a one-card exchange twice would allow an incorrect intermediate reuse. No partial definition or count."
-        },
-        {
-          "id": "dmrp13-013",
-          "name": "「古の守護者」",
-          "reason": "Official QA40539 requires defending controller shield selection even against Sapphire burn. Text replaces any opposing selection of its shields, not only attack breaks. Native g1659ShieldChoose is limited to creature breaks and has active-player/burn exclusions, so setting that flag would be partial. Need general optional shield-selection interception across effects. No partial definition or count."
-        }
-      ],
-      "restart": "Inspect latest local commit, AGENTS, worktree/index, progress and previous test logs, running jobs and actual nameKey count. Phase1805 verified at9638. Next phase1806 grouped research in tmp/duema-target-10000/research-dm23ex2-053.json; confirm fetch finished and inspect all images. Prefer native conditions/reducers and exact evolution/alternative cost helpers, with strict full-wording pins. Preserve earlier pending/holds/deferrals. No full npm test, repeated long groups, automation restart, push/publication/Netlify.",
-      "nativeReuseHint": "matchesEvolution currently has no numeric-cost predicate; do not assume {race,cost:3} checks cost. Add an explicit current-cost condition if needed. Native g349SummonAuras supports filter.evolution; g468UseReduction already supports g1282Tamaseed and amount. Fixed Nature1 optional summon must use a genuine alternative cost, not a four-mana reduction that would interact incorrectly with tax/no-reduction effects. Verify seed/evolution count boundaries and all three complete official images/rulings before registration.",
-      "completedPhase": 1806
+      "restart": "Phase1806 verified at9641 names; inspect HEAD/tree/index, AGENTS, progress/previous tests and process list before new work. Next phase1807 grouped official research/images at research-dmex08-145.json. Use native aura and GR bookkeeping, departure replacement and ordered bottom payment; verify both seats, ignored/sealed/source removal, shared sweeps and encrypted restores before counting. Preserve earlier holds/pending. No full npm test, repeated long groups, automation restart, push/publication/Netlify.",
+      "completedPhase": 1807
     }
   },
   "registeredCardVerification": {
@@ -626221,10 +626446,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1806,
+    "phase": 1807,
     "threshold": 10000,
-    "supportedNames": 9641,
-    "pendingNames": 2202,
+    "supportedNames": 9644,
+    "pendingNames": 2199,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -626233,7 +626458,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1806.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1807.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
