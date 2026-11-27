@@ -304068,20 +304068,190 @@
       ],
       "supportBatch": "phase-1762",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-066",
+      "name": "フェルナンド・ソシュール / プライマル・スクリーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マフィ・ギャング",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。その後、闇のコスト３以下のクリーチャーを１体、自分の墓地から出してもよい。\n【呪文面】\nS・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-TR4",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "color": "闇"
+          },
+          "optional": true,
+          "title": "墓地から出すクリーチャーを1体選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "color": "闇"
+          },
+          "optional": true,
+          "title": "墓地から出すクリーチャーを1体選ぶ"
+        }
+      ],
+      "spellFace": {
+        "name": "プライマル・スクリーム",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-1763",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex04-072",
+      "name": "水面護り ハコフ / 蓄積された魔力の縛り",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n【呪文面】\nS・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-072",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "spellFace": {
+        "name": "蓄積された魔力の縛り",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1763",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-049",
+      "name": "「不屈の輪」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド [lw02]（このカードを使うコストの代わりに、 [lw02]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nこのクリーチャーが破壊された時、表向きのまま、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-049",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 2,
+        "civilizations": [
+          "光",
+          "水"
+        ]
+      },
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "supportBatch": "phase-1763",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1762,
-    "checkedAt": "2026-11-27T07:25:07.421Z",
-    "baseCount": 9506,
-    "newEffectCards": 4,
+    "phase": 1763,
+    "checkedAt": "2026-11-27T07:34:48.149Z",
+    "baseCount": 9510,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9510,
+    "totalCount": 9513,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43921/",
-      "https://dm.takaratomy.co.jp/rule/qa/33585/",
-      "https://dm.takaratomy.co.jp/rule/qa/49228/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -332985,6 +333155,23 @@
         ],
         "next": [
           "Normal registration remains paused; next explicit user request only."
+        ]
+      },
+      {
+        "phase": 1762,
+        "checkedAt": "2026-11-27T07:25:07.421Z",
+        "baseCount": 9506,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9510,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43921/",
+          "https://dm.takaratomy.co.jp/rule/qa/33585/",
+          "https://dm.takaratomy.co.jp/rule/qa/49228/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
         ]
       }
     ]
