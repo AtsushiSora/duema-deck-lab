@@ -310741,22 +310741,128 @@
       "supportBatch": "phase-1817",
       "supportKind": "effect",
       "ninjaColors": []
+    },
+    {
+      "id": "dm26rp1-037",
+      "name": "死神の影遁デスプルーフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ゴースト/オリジン/シノビ",
+      "text": "ウラ・ニンジャ・ストライク２（闇）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが２枚以上で闇文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、このターン、自分のクリーチャー１体に「スレイヤー」を与える。このターン、そのクリーチャーが破壊された時、自分はカードを２枚引く。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-037",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 2,
+      "ninjaColors": [
+        "闇"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "slayer": true
+          },
+          "g1818DeathDraw": 2
+        }
+      ],
+      "supportBatch": "phase-1818",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd02-010",
+      "name": "怒流牙 サイゾウミスト",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジャイアント/シノビ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd02-010",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 7,
+      "ninjaColors": [],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        },
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Schedule537",
+          "when": "nextOwnStart",
+          "defs": [
+            {
+              "op": "ShieldToMana980",
+              "ownOnly": true,
+              "required": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1818",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-045",
+      "name": "走る混沌 マキビシマントラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "メカ・デル・ステラ/シノビ",
+      "text": "ウラ・ニンジャ・ストライク３（闇）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが３枚以上で闇文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\n相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、相手は自身のアンタップしているクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-045",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 3,
+      "ninjaColors": [
+        "闇"
+      ],
+      "g1818Makibishi": true,
+      "supportBatch": "phase-1818",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1817,
-    "checkedAt": "2026-11-27T16:20:22.859Z",
-    "baseCount": 9669,
+    "phase": 1818,
+    "checkedAt": "2026-11-27T16:37:15.567Z",
+    "baseCount": 9672,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9672,
+    "totalCount": 9675,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39662/",
-      "https://dm.takaratomy.co.jp/rule/qa/39662/"
+      "https://dm.takaratomy.co.jp/rule/qa/43331/",
+      "https://dm.takaratomy.co.jp/rule/qa/43332/",
+      "https://dm.takaratomy.co.jp/rule/qa/46953/",
+      "https://dm.takaratomy.co.jp/rule/qa/31585/"
     ],
     "next": [
-      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
     ],
     "history": [
       {
@@ -340493,6 +340599,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
           "https://dm.takaratomy.co.jp/rule/qa/33074/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1817,
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "baseCount": 9669,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9672,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39662/",
+          "https://dm.takaratomy.co.jp/rule/qa/39662/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

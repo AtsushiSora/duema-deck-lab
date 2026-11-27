@@ -1,0 +1,1247 @@
+{
+  "phase": 1818,
+  "checkedAt": "2026-11-27T16:37:15.567Z",
+  "baseline": "0e688cf4c307f4dfa0d289884851b72cbccdc6fa",
+  "baseCount": 9672,
+  "target": 10000,
+  "description": "Complete ordinary/Under Ninja Strike creatures, exact-unit delayed destruction draw, mandatory next-own-start shield to mana and once-per-opposing-creature-break retaliation. Native serializable limits and delayed tasks preserve existing saves and IDs. Four-player-only clarifications are reviewed for scope; supported two-player analogues are tested separately.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43331/",
+    "https://dm.takaratomy.co.jp/rule/qa/43332/",
+    "https://dm.takaratomy.co.jp/rule/qa/46953/",
+    "https://dm.takaratomy.co.jp/rule/qa/31585/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-037",
+      "name": "死神の影遁デスプルーフ",
+      "canonicalId": "dm26rp1-037",
+      "printId": "dm26rp1-037",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-037",
+      "faces": [
+        {
+          "name": "死神の影遁デスプルーフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウラ・ニンジャ・ストライク２（闇）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが２枚以上で闇文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、このターン、自分のクリーチャー１体に「スレイヤー」を与える。このターン、そのクリーチャーが破壊された時、自分はカードを２枚引く。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ゴースト/オリジン/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 2,
+        "ninjaColors": [
+          "闇"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "slayer": true
+            },
+            "g1818DeathDraw": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-037.jpg",
+      "imageSha256": "d2dd29d531b5147e1c5c599fbd4b31d713e67c27fd1d490324afbb971ca2efdd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26rp1-037-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26rp1-037",
+          "promoy25-031"
+        ],
+        "allSearchIds": [
+          "promoy25-031",
+          "dm26rp1-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "53c44132b20e5c9b1e689013db3a5c508c5411ec7fd31719faf62a35c389be23",
+        "facesMatched": true,
+        "imageSha256": "d2dd29d531b5147e1c5c599fbd4b31d713e67c27fd1d490324afbb971ca2efdd"
+      }
+    },
+    {
+      "id": "dmbd02-010",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dmbd02-010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd02-010",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd02-010.jpg",
+      "imageSha256": "1232ca07486da78b4e65b97c50d3506bf6576f147ed25fc9ab094f1f404669e6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd02-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "886edff7428bc5217c51e11432607749dfd10c95d292493df86b402806e95d39",
+        "facesMatched": true,
+        "imageSha256": "1232ca07486da78b4e65b97c50d3506bf6576f147ed25fc9ab094f1f404669e6"
+      }
+    },
+    {
+      "id": "dm25ex1-045",
+      "name": "走る混沌 マキビシマントラ",
+      "canonicalId": "dm25ex1-045",
+      "printId": "dm25ex1-045",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-045",
+      "faces": [
+        {
+          "name": "走る混沌 マキビシマントラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウラ・ニンジャ・ストライク３（闇）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが３枚以上で闇文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\n相手のクリーチャーが自分のシールドを１つ以上ブレイクした時、相手は自身のアンタップしているクリーチャーを１体選んで破壊する。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 3,
+        "ninjaColors": [
+          "闇"
+        ],
+        "g1818Makibishi": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-045.jpg",
+      "imageSha256": "b0e68d8183d06ac928c7747a1fae4ef65405a8451eaa76aad88ecf3fd24d683e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex1-045-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25ex1-045"
+        ],
+        "allSearchIds": [
+          "dm25ex1-045"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "ea8efd18e7ea84f45c2519200dd4cca462e512dfc52ff28fb7af6bb26a6238c3",
+        "facesMatched": true,
+        "imageSha256": "b0e68d8183d06ac928c7747a1fae4ef65405a8451eaa76aad88ecf3fd24d683e"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy25-031",
+      "name": "死神の影遁デスプルーフ",
+      "canonicalId": "dm26rp1-037",
+      "printId": "promoy25-031",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-031",
+      "faces": [
+        {
+          "name": "死神の影遁デスプルーフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウラ・ニンジャ・ストライク２（闇）（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンのカードが２枚以上で闇文明があり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、このターン、自分のクリーチャー１体に「スレイヤー」を与える。このターン、そのクリーチャーが破壊された時、自分はカードを２枚引く。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ゴースト/オリジン/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 2,
+        "ninjaColors": [
+          "闇"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "slayer": true
+            },
+            "g1818DeathDraw": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-031.jpg",
+      "imageSha256": "2d231cbd7d2da317a4c6898f80ed2fa61ef7093ae31ce6318621c16e99377d60",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy25-031-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26rp1-037",
+          "promoy25-031"
+        ],
+        "allSearchIds": [
+          "promoy25-031",
+          "dm26rp1-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "1a463595be0e0975079f35e876f7dc4543c9acec541c293a9b88620090d7cd78",
+        "facesMatched": true,
+        "imageSha256": "2d231cbd7d2da317a4c6898f80ed2fa61ef7093ae31ce6318621c16e99377d60"
+      }
+    },
+    {
+      "id": "promoy20-017",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "promoy20-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-017",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーが出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目をシールド化する。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy20-017.jpg",
+      "imageSha256": "3bc5e1471b7a185275443284f0e042dac430d39fb4f11a13825843682ba268d2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy20-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "5fb41c8228f53bf7d8d19df5bac27572dfe29b035c121ebd1dd86473d4a2fc7e",
+        "facesMatched": true,
+        "imageSha256": "3bc5e1471b7a185275443284f0e042dac430d39fb4f11a13825843682ba268d2"
+      }
+    },
+    {
+      "id": "dm24rp4-SP4",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dm24rp4-SP4",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-SP4",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目をシールド化する。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-SP4.jpg",
+      "imageSha256": "f1f83b2085518d38d78cb46c0acb56c873c54438fbd1d3a141340c4df2cc056f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24rp4-SP4-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "d637eb1a815c4cbb1f1478dc118a06704a8fbed20dabacd3c2f55e5cd9cccb61",
+        "facesMatched": true,
+        "imageSha256": "f1f83b2085518d38d78cb46c0acb56c873c54438fbd1d3a141340c4df2cc056f"
+      }
+    },
+    {
+      "id": "dm23ex1-029",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dm23ex1-029",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-029",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目をシールド化する。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-029.jpg",
+      "imageSha256": "48fcc1f994007ad4da80700774d95ccf386ec49d49801f322666c133a0281bed",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex1-029-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "55b94d39e00535293646d354d086cf6dd4cb95f18ae9ae9b5be073743f97a0e8",
+        "facesMatched": true,
+        "imageSha256": "48fcc1f994007ad4da80700774d95ccf386ec49d49801f322666c133a0281bed"
+      }
+    },
+    {
+      "id": "dm24bd5-018",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dm24bd5-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-018",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nW・ブレイカー\nこのクリーチャーが出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目をシールド化する。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-018.jpg",
+      "imageSha256": "254673f1527ea5f3908c8662ec80227d61bf9a6203350b40192dbe847218f1e8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24bd5-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "c356c20b73bcaae00943c38705b3b81de350bfa9bd17a8a434790251451f062a",
+        "facesMatched": true,
+        "imageSha256": "254673f1527ea5f3908c8662ec80227d61bf9a6203350b40192dbe847218f1e8"
+      }
+    },
+    {
+      "id": "dmex12-019",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dmex12-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-019",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-019.jpg",
+      "imageSha256": "e3928ecabf8a3a8eb8673879544a5ce168470b1bbcc64014960c183832ff3462",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex12-019-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "ae53cce4565d34c67a62ed6c4ed9b7d090a67bc25c067501a86f622580b16bbd",
+        "facesMatched": true,
+        "imageSha256": "e3928ecabf8a3a8eb8673879544a5ce168470b1bbcc64014960c183832ff3462"
+      }
+    },
+    {
+      "id": "dmbd18-se01",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dmbd18-se01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-se01",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーが出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目をシールド化する。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd18-se01.jpg",
+      "imageSha256": "d7031da64d9681dc8a83272bc1b1caef9cdf77ab14087e1d0a1878985a370d7a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd18-se01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "8185c8b730f278eb1405b4accda3f1ca275922cb4149cee32add426bdb0f7cfe",
+        "facesMatched": true,
+        "imageSha256": "d7031da64d9681dc8a83272bc1b1caef9cdf77ab14087e1d0a1878985a370d7a"
+      }
+    },
+    {
+      "id": "dmrp09-g07",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dmrp09-g07",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-g07",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-g07.jpg",
+      "imageSha256": "4b07a2dc00bfa200dcaecce028c48529cb9cbea08c4cd12845410e7caf49a742",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp09-g07-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "a00dba1dcf44a1c99ac4463a3db60252f9dd21f0c399a359956d2d7d75e50624",
+        "facesMatched": true,
+        "imageSha256": "4b07a2dc00bfa200dcaecce028c48529cb9cbea08c4cd12845410e7caf49a742"
+      }
+    },
+    {
+      "id": "dmbd09-014",
+      "name": "怒流牙 サイゾウミスト",
+      "canonicalId": "dmbd02-010",
+      "printId": "dmbd09-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-014",
+      "faces": [
+        {
+          "name": "怒流牙 サイゾウミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。次の自分のターンのはじめに、自分のシールドを１つ、マナゾーンに置く。",
+          "race": "ジャイアント/シノビ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "ninjaColors": [],
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldToMana980",
+                "ownOnly": true,
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd09-014.jpg",
+      "imageSha256": "3d592521de6e7285c7ed5ee6253ef1af6e808fe74c34e26820560cc15eb3347d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd09-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-010",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:37:15.567Z",
+        "sha256": "a8a6f6c45ddb0b3f2502c0ee337b9fbc69303a14b3abcc05dab2caf668666101",
+        "facesMatched": true,
+        "imageSha256": "3d592521de6e7285c7ed5ee6253ef1af6e808fe74c34e26820560cc15eb3347d"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43331/",
+      "sha256": "aff7a641af0d28d728ada93d9e161efe01cf9b3c72707d9a1f5726691f44a85e",
+      "checkedAt": "2026-11-27T16:37:15.567Z",
+      "reproduced": false,
+      "tests": "tests/standard1818-effects.test.mjs",
+      "appliesToSupportedFormat": false,
+      "scope": "Official four-player DuelParty clarification; this application supports two-player duels.",
+      "reproduction": "Reviewed official four-player scope; not represented as a literal four-player reproduction. The application supports two-player duels; separate tests verify actual Brakkio entry suppression on both turns. Four-player-specific active-opponent selection is outside this format.",
+      "result": "Reviewed official four-player scope; not represented as a literal four-player reproduction. The application supports two-player duels; separate tests verify actual Brakkio entry suppression on both turns. Four-player-specific active-opponent selection is outside this format."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43332/",
+      "sha256": "e9d18fbb42b1272cc37f264ebf9d6e4eca810b4ea17680c339b5ec8b0fef6e4f",
+      "checkedAt": "2026-11-27T16:37:15.567Z",
+      "reproduced": false,
+      "tests": "tests/standard1818-effects.test.mjs",
+      "appliesToSupportedFormat": false,
+      "scope": "Official four-player DuelParty clarification; this application supports two-player duels.",
+      "reproduction": "Reviewed official four-player scope; not represented as a literal four-player reproduction. The application supports two-player duels; separate tests verify actual Brakkio entry suppression on both turns. Four-player-specific active-opponent selection is outside this format.",
+      "result": "Reviewed official four-player scope; not represented as a literal four-player reproduction. The application supports two-player duels; separate tests verify actual Brakkio entry suppression on both turns. Four-player-specific active-opponent selection is outside this format."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/46953/",
+      "sha256": "4bee142c680c1a7c7d685ab573df59d3cc660ca63bee07e1c3bde5d8490f7259",
+      "checkedAt": "2026-11-27T16:37:15.567Z",
+      "reproduced": true,
+      "tests": "tests/standard1818-effects.test.mjs",
+      "reproduction": "Both seats: declare two Makibishi and one ordinary Hanzo before resolution, resolve one Makibishi Ninja Strike; only that physical creature enters and the two others remain in hand.",
+      "result": "Both seats: declare two Makibishi and one ordinary Hanzo before resolution, resolve one Makibishi Ninja Strike; only that physical creature enters and the two others remain in hand."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31585/",
+      "sha256": "1cea7def83316aa2cf6c0a9b6260262b0eaaa90b42e0d8a24d3fb57d5b5c0816",
+      "body": "よくある質問 Q《怒流牙 サイゾウミスト》の能力を使った後、次の自分のターンのはじめに自分のシールドがひとつもありませんでした。どうなりますか？ A何も起こりません。 一覧へ戻る 関連する質問 ターン順：自分→相手A→相手B→相手C 自分の「シビルカウント５」が発動している《十番龍 オービーメイカー Par100》がバトルゾーンにいる状況です。 相手Aのターン中に、相手Bが《怒流牙 サイゾウミスト》を「ニンジャ・ストライク７」で召喚しました。 その「出た時」の能力はトリガーしますか？ 2023.6.23 ターン順：自分→相手A→相手B→相手C 自分の《ブラキオ龍樹》がバトルゾーンにいる状況です。 相手Aのターン中に、相手Bが《怒流牙 サイゾウミスト》を「ニンジャ・ストライク７」で召喚しました。 その「出た時」の能力はトリガーしますか？ 2023.6.23 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!び",
+      "checkedAt": "2026-11-27T16:37:15.567Z",
+      "reproduced": true,
+      "tests": "tests/standard1818-effects.test.mjs",
+      "reproduction": "Both seats: resolve Saizo, remove every shield, advance through two actual turn ends; nextOwnStart finishes without mana movement, a choice, or a loss.",
+      "result": "Both seats: resolve Saizo, remove every shield, advance through two actual turn ends; nextOwnStart finishes without mana movement, a choice, or a loss."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:37:15.567Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-037": 4,
+      "dmbd02-010": 4,
+      "dm25ex1-045": 4,
+      "promoy25-031": 4,
+      "promoy20-017": 4,
+      "dm24rp4-SP4": 4,
+      "dm23ex1-029": 4,
+      "dm24bd5-018": 4,
+      "dmex12-019": 4,
+      "dmbd18-se01": 4,
+      "dmrp09-g07": 4,
+      "dmbd09-014": 4
+    }
+  },
+  "validationNotes": {
+    "implementation": "Native Ninja Strike, temporary Slayer, exact-incarnation delayed destruction draw, full grave shuffle, shield addition, nextOwnStart queue, own full-shield-group to mana and opponent-owned creature selection. No original IDs, card definitions or save schema were changed.",
+    "images": "All 12 full official printing images personally viewed; original wording and current wording checked across 2 Deathproof, 9 Saizo and 1 Makibishi prints.",
+    "rulingScope": "QA31585 and QA46953 reproduced literally. QA43331/43332 are expressly four-player DuelParty examples, outside the supported two-player duel format; marked not applicable and not literally reproduced. Actual two-player Brakkio suppression on both turns is covered separately. No four-player implementation or compatibility change is claimed.",
+    "resolvedAttempts": "Initial official fetch was blocked by sandbox DNS, then succeeded with approved network access. Before focused testing the Saizo shield task was corrected to ShieldTop and grave scope to self. Early focused attempts exposed fixture errors (an unregistered Beastfolk ID, waiting before shield choices, and the native OpponentSelect conversion to g34_Select); corrected fixtures, added genuine simultaneous declarations and eight combat/control/creature-effect cases; final 77 cases pass.",
+    "nextCandidates": [
+      "dm26rp1-020 呪遁の化身",
+      "dm25sp2-008 蒼斬しのぶ",
+      "dm23bd4-005 裏斬隠裏蒼頭 バルガリスク"
+    ],
+    "resume": "Complete check, recount, strict old-ID/save/pending invariants, then explicit local commit. Continue the next researched Shinobi candidates; do not push, publish, update Netlify or resume automation."
+  }
+}

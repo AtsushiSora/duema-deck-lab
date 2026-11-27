@@ -5238,7 +5238,7 @@ export function createSixPhotoRules(api){
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},
    score:owner===t.p?(own.shields.length>=3&&own.mana.length<7?7:-10):(opp.shields.length===1?14:3)
   })));
-  if(options.length)choice(s,t,'マナに置くシールドを1つ選ぶ（任意）',[...options,skip()]);
+  if(options.length)choice(s,t,'マナに置くシールドを1つ選ぶ'+(t.required?'':'（任意）'),t.required?options:[...options,skip()]);
   break;
  }
  case'g34_ShuffleOwnShields1301':{
@@ -9286,6 +9286,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Target':
+  if(t.g1818DeathDraw){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(y)(s.extLimits??=[]).push({kind:'g1818DeathDraw',player:t.p,source:t.source,
+    ref:{uid:y.uid,incarnation:y.incarnation||0},n:t.g1818DeathDraw,turn:s.turn,expires:'end',who:s.active});
+  }
   if(t.g1817Orochi){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y){const owner=y.cardOwner??v.p;
@@ -11150,6 +11155,9 @@ export function createSixPhotoRules(api){
  shieldRetaliate1236(s,defender,context,count){
   if(!count||context?.player!==1-defender||
    !(context.g756Breaker?.length||context.g913DepartedBreaker))return;
+  // One simultaneous break is one event, even when it breaks several shields.
+  for(const x of creatures(s,defender))if(!x.sealed&&effective(x,s).g1818Makibishi)
+   queue(s,defender,x,[{op:'OpponentSelect',n:1,to:'grave',filter:{creature:true,untapped:true}}]);
   for(const l of s.extLimits||[])if(l.kind==='g1236ShieldRetaliate'&&l.who===defender&&
    !api.spellIgnored(s,{type:'spell',spellSource:l.spellSource,cost:l.spellCost}))
    api.enqueue(s,defender,{source:l.spellSource,effect:'extended',
@@ -11354,6 +11362,10 @@ export function createSixPhotoRules(api){
   const g1256HandEvolutionWatch=s.players.map(own=>own.hand.filter(x=>card(x).g1256HandEvolutionDeath&&
    !api.handAbilityIgnored(s,x)).map(x=>({uid:x.uid,serial:x.zoneSerial||0})));
   const snapshot={
+  g1818DeathDraw:(s.extLimits||[]).filter(l=>l.kind==='g1818DeathDraw'&&l.turn===s.turn).flatMap(l=>{
+   const host=sourceHost474(s,l.ref);
+   return host&&!host.x.sealed&&api.isCreature(s,host.x)?[{...l,target:{p:host.p,uid:host.x.uid,incarnation:host.x.incarnation||0}}]:[];
+  }),
   g1460AuraDeaths:s.players.flatMap((own,p)=>own.battle.flatMap(a=>{
    const defs=card(a).g1460HostDeath,host=a.auraTo1352;
    return defs&&host&&!a.sealed&&!api.ignored(s,a)?[{p,uid:a.uid,incarnation:a.incarnation||0,cardId:a.cardId,host:{...host},defs,
@@ -11402,6 +11414,9 @@ export function createSixPhotoRules(api){
   const graveDefs=card(x).g838AnyGrave;
   if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs.map(d=>d.op==='SelfGraveMana1431'?{...d,serial:(x.zoneSerial||0)+1}:d));
   if(to==='grave'&&destroy){
+   // This is a delayed effect, independent of either creature's current abilities.
+   for(const l of snapshot?.g1818DeathDraw||[])if(l.target.p===p&&l.target.uid===x.uid&&l.target.incarnation===(x.incarnation||0))
+    queueBattle(s,l.player,{cardId:l.source},[{op:'Draw',n:l.n}]);
    for(const aura of snapshot?.g1460AuraDeaths||[])if(aura.p===p&&aura.host.uid===x.uid&&aura.host.incarnation===(x.incarnation||0))
     queueBattle(s,p,aura,aura.defs.map(d=>['AuraGraveReturn1460','AuraDeathDrawDiscard1810'].includes(d.op)?{...d,auras:aura.auras}:d));
    if(s.g1225Destroyed?.turn!==s.turn)s.g1225Destroyed={turn:s.turn,cards:[[],[]]};

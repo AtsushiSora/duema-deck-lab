@@ -1,0 +1,221 @@
+{
+  "phase": 1818,
+  "checkedAt": "2026-11-27T16:44:28.341Z",
+  "baseline": "0e688cf4c307f4dfa0d289884851b72cbccdc6fa",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9672,
+  "currentNames": 9675,
+  "remainingNames": 325,
+  "added": [
+    {
+      "id": "dm26rp1-037",
+      "name": "死神の影遁デスプルーフ"
+    },
+    {
+      "id": "dmbd02-010",
+      "name": "怒流牙 サイゾウミスト"
+    },
+    {
+      "id": "dm25ex1-045",
+      "name": "走る混沌 マキビシマントラ"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1818,
+    "baseline": "0e688cf4c307f4dfa0d289884851b72cbccdc6fa",
+    "originalDefinitionsUnchanged": 9672,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9675,
+    "uniqueIds": 9675,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11847,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9672,
+    "existingImageReferenceRowsUnchanged": 12088,
+    "officialPrintsReviewed": 12,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1818": {
+      "name": "official-1818",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1818.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.928,
+      "log": "tmp/duema-target-10000/official-1818.log",
+      "passed": 0,
+      "logSha256": "adb40fb623d1df26c4bdb52e16a8f278d104d698278db779002d9347e45249b4"
+    },
+    "focused-1818-final": {
+      "name": "focused-1818-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1818-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 4.495,
+      "log": "tmp/duema-target-10000/focused-1818-final.log",
+      "passed": 77,
+      "logSha256": "8689ccf37c27417a71d2442cff1e9dd4112859c4b478cd63dd072c99bc33cad4"
+    },
+    "related-1818": {
+      "name": "related-1818",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(?:summoning and destruction use separate triggers and preserve physical cards: |bounce and mana removal fire leave abilities but never destruction-only abilities|new triggers reject unsupported conditions and keep earlier manifests unchanged|Bug Marukun can decline its entry battle or die in it and draw exactly once before leaving the battle continuation|Adam draws before the opponent chooses its own discard, and that sequence resumes after saving|pre-event suppression stays effective when Genmu leaves in the same simultaneous destruction, in either zone order|ignored abilities do not trigger, but GG entry suppression does not suppress death or leave abilities|evolution bases neither trigger when the top dies nor when an individual base returns to hand|a destruction-to-mana replacement fires leave abilities only, not death abilities|Sasage sacrifices trigger each donors death ability before finishing the discounted summon|discard from these death effects keeps the defending hand-owner replacement choice|shield-trigger blockers keep their death ability for a later block|optional death draw seeks Shako victory, while optional last-card ramp is declined even beside Shako|mandatory death draw cannot be declined and the last draw uses the normal Shako replacement|milling these cards from a library does not create death or battlefield leave triggers|simultaneously destroyed bodies offer independent ordered abilities with the original player and source|Tech optional mill and subsequent optional draw remain independent decisions after leaving|strict compiler rejects unknown and duplicate watches and preserves previous manifests|[^\\n]* summons for exact printed cost |[^\\n]* watches only controller tribe death, controller |[^\\n]* does not watch opponent tribe or own unrelated creature|[^\\n]* other wording excludes its own destruction|Dadan optional self-death draw can be used or declined|[^\\n]* optional draw supports decline and JSON restore|[^\\n]* watches every matching victim even when source is destroyed simultaneously|[^\\n]* watch is suppressed by |GG does not stop |[^\\n]* does not trigger on a non-destruction move to |[^\\n]* does not trigger if a destruction is prevented|last known abilities remain suppressed when Genmu is destroyed in the same sweep|Vessel mandatory final draw loses normally and wins with Shako|[^\\n]* AI declines fatal optional last draw, accepts Shako victory|a resolved sacrifice queues a draw that still resolves after source leaves|battle destruction triggers watching Vessel exactly once|sealed matching card and evolution base are not separately destroyed creatures|both players draw only for their own simultaneous matching destruction|AI is read-only and independent of hidden opposing card identities|[^\\n]* summoned Yobinion skips spells/equal costs, enters the first smaller card and saves UIDs |[^\\n]* can decline Yobinion without looking or shuffling|[^\\n]* deployment without a summon has no Yobinion trigger|[^\\n]* Ninja Strike threshold counts cards without requiring a civilization |[^\\n]* free summon returns that physical card to library bottom at turn end|[^\\n]* ordinary paid summon is allowed and does not acquire the Ninja return effect|Jamagen spell Yobinion uses its own cost, then the opponent sacrifices three creatures |Jamagen can decline its Yobinion and still performs the three sacrifices|no smaller creature returns every revealed card to bottom without falsely losing the deck|revealed evolution creatures require and use a real evolution base|an evolution hit with no legal base stays in the revealed cards and is returned to bottom|[^\\n]* S-trigger summons also get Yobinion|Genmu suppresses cheaper Yobinion creatures but does not suppress the six-cost spell|only one Ninja Strike is usable during a single attack|Ninja Strike is also available on own turn when an opposing creature blocks|Ninja summon can be declined after declaring and preserves the card in hand|Gold Viride entry taps two enemies and skips their next untap independently of its Yobinion|Horn Stron keeps Slayer and forces a random discard independently of its Yobinion|Yobinion Sniper freezes two targets until its controllers next turn|Volcanon HyperEnergy still uses printed cost for the following Yobinion|Gatsunder wins a battle against a larger printed power through its battle-only bonus|[^\\n]* Ninja Strike applies its printed own-creature power boost|Hayabusaryu can immediately block after entering through Ninja Strike|Vegas Launcher destroys a power-3000-or-less enemy on entering through Ninja Strike|Fokusit destroys an opposing blocker when summoned through Ninja Strike|Yurikama reveals a chosen creature from its top-four search after the free summon|[^\\n]* summons for its printed cost and preserves its real physical card |[^\\n]* adds one new shield and waits until the next own start, then permits choosing an old shield |[^\\n]* delayed recovery keeps its original controller after |[^\\n]* existing S Trigger cannot activate from delayed recovery|[^\\n]* summons free from a broken shield and recovers a shield at the upcoming own start |[^\\n]* recovery is scheduled even when shield addition is forbidden|[^\\n]* delayed recovery still finishes with no available shields|next-own-start scheduling follows a real extra turn before the opponent turn|next-own-start recovery waits through a skipped own turn and fires on the next actual own start|H takes one shield now and shields any current hand card at this turn end, even after leaving |H still creates its end effect with no shields and no hand card to shield|H end effect respects actual ability muting and shield prohibition |San Diego creates a mandatory end-turn group untap only after a won or tied attack judge |San Diego untaps the controller current creatures, including those added later, after its source has left|[^\\n]* entry is suppressed by GG without reserving any future effect|Grey returns all |Grey moves every physical card in stacked shields and sends a face-up castle to grave|Grey leaves held cards behind while returning all eligible cards and adding five shields|Grey respects actual shield addition prohibition or deck redirection |[^\\n]* has the printed attacking or blocking behavior after entry|Grey retains W Breaker when mature|[^\\n]* charges as one verified mana with its printed orientation|[^\\n]* exhaustion avoidance is read-only and independent of hidden cards|[^\\n]* delayed recovery permits G-Strike despite forbidding S Trigger|two separate next-own-start delays each recover one shield and are consumed once|Grey still allows S Back while blocking S Trigger from all recovered shields|[^\\n]* normal play pays printed mana without triggering Shinka or GS reveal |[^\\n]* reveal trigger occurs once, after GS, only if actually shown |[^\\n]* pending reveal ability survives JSON and the source leaving hand|Campbello GS reveal ability works outside the battlefield under ability suppression |[^\\n]* nonbreak shield-to-hand GS reveals exactly once|Savvaak Shinka taps at most two different opponents simultaneously |Savvaak may decline Shinka or select just one opponent |Campbello normal entry destroys only a blocker unless battlefield ability is ignored |Campbello optionally discards the whole hand then draws exactly three, including an empty hand |Terasuzaku end mill recovers only the milled evolution card, otherwise draws one |Terasuzaku may decline its end mill and never mills on the other player end|Terasuzaku cannot evade library-out by recovering the last milled card |Terasuzaku AI avoids unsafe end mills using only library count |Terasuzaku Shinka revives one optional creature of cost at most three |Terasuzaku can decline revival, and revived creatures keep their printed entry abilities|Steel and Taizai power reduction uses the true zero boundary |Steel and Taizai may shuffle either player entire grave with no physical cards lost |[^\\n]* ignoring a battlefield source prevents its Shinka|[^\\n]* charges as one verified mana|Terasuzaku mill still moves an evolution card to grave when recovery is locked, without drawing instead|Terasuzaku cannot revive a card from a locked grave|Steel and Taizai grave shuffle respects Apul grave-lock policy|a waiting Terasuzaku end ability survives the source leaving or becoming ignored |Terasuzaku AI choice is immutable and unaffected by hidden enemy identities or its unknown library order |[^\\n]* reveal target options exclude Just Diver protection and never mutate state during AI ranking|Savvaak is a real blocker and Steel and Taizai have real Slayer in combat|Steel and Taizai Shinka mode and follow-up choices persist through JSON |Full Defender snapshots all friendly creatures, persists through the opposing turn and expires at the next own start|Full Defender casts from the shield without payment and can block a later attack that turn|Full Defender is suppressed while a later Genmu Emperor remains in play|Juju weakens the actual attacker without choosing it, and zero power prevents a battle|Juju changes the battle result, leaves a larger attacker weakened for the turn, and the loss expires|Juju destroys itself when tapped at the end of either turn: |Juju can attack players and its attack tap can cause self destruction|Juju is summoned without mana from a shield, then blocks a second attacker|Miracle Searcher draws two once for a simultaneous W-break, after the shield trigger enters|Each casting of Miracle Searcher gives an independent choice for each subsequent break|Miracle Searcher recognizes a creature breaking its own shield through an effect|Miracle Searcher recognizes a second break by a creature that left after its first break|Miracle Searcher ignores a spell break and a shield saved by a replacement|Miracle Searcher does not trigger for an opposing creature or after the turn ends|Miracle Searcher cannot trigger while its resolved spell effect is ignored|Romanov Guard requires a choice and creates a new facedown shield for either player|Romanov Guard distinguishes an unevolved NEO from an evolution, seed, or sealed card|Vicious requires an allied Darkness base, may attack immediately, and discards one chosen card before blocking|Vicious continues attacking with an empty opposing hand and loses the trigger under Genmu|Partia shuffles only the selected player’s chosen cards, up to three, after all picks|Partia with zero cards selected does not shuffle, and a movement lock leaves the grave alone|Dagra optionally sends either player’s whole shield group to its own mana without shield triggers|Dagra can decline and still breaks two shields with its normal attack|Dagra may remove the last opposing shield before the direct attack resolves|Jashin previously revived by Evil Invasion and Blood itself may both attack the player \\(QA45142\\)|a grave evolution base reconstructed in the same turn can attack the player \\(QA45141 with Gowalski\\)|Blood Hyper watches only the first allied Abyss attack, after non-Abyss attacks, and revives at most one|Blood ignores later Abyss attacks even if the first happened before the watcher entered|Sumire quotes low-cost visible mana including one eligible twinpact face; ramp is two or none|Sumire when tapped may put up to three visible low-cost creatures, including tapped mana|Moon and Sun responds to a simultaneous creature break once per copy and expires at the next own start|Moon and Sun can be used as a trigger, reacting only to a later break|Moon and Sun does not respond to a spell breaking a shield|the first Abyss attack is counted anew each turn|a Creative that entered before MediCrea can be attacked and chosen \\(QA40245\\)|Creative tests the entering card cost against the opponent mana count |Creative supplies a one-mana Sasage reduction for a Dispector|Creative follows an entrant underneath Bolshack Dogiragon and the owner orders the stack|Creative sees Miradante arrive when the named-ability suppressor leaves \\(QA40250\\)|Kira restricts off-hand entry for both players, including Fushigiverse \\(|Kira permits Death March to take a graveyard evolution base \\(QA39672\\)|Kira permits putting a cast spell under New World \\(QA39670\\)|Kira blocks VV-8 seals on either side while the two cards can still be taken \\(QA39669\\)|Kira also prevents seals placed by Eichi no Tettai|Kira can reveal G Strike and prevent a second attacker for the turn|Brakkio prevents granted Just Diver and native entry abilities while leaving static grants \\(QA40533\\)|Brakkio leaves EX Life and triggers belonging to other creatures intact \\(QA40534/40536\\)|Brakkio leaves same-side watchers active when another creature enters|the manual board identifies Brakkio as the source of entry suppression|Brakkio suppresses both of Miradante’s entry abilities after Revolution Change|Brakkio has World Breaker and its ability can be ignored|Brakkio distinguishes entry from a battlefield-only Dead Damd stack \\(|Feiwon pays four for a Light or Rexstar base and does not trigger from its own entry |Feiwon taps exactly one legal enemy after another own cost-four-or-less creature enters |Feiwon watches effect deployment as well as summons but not enemy, expensive or inactive tamaseed entries |Feiwon two sources create two independent mandatory taps and ignored sources trigger neither |Feiwon native Star replacement leaves its real underlying base on ordinary departure |Bolsled pays seven with printed seven thousand and W break, and may decline the Dragon discard |Bolsled discards only an actual Dragon creature and destroys one enemy at or below its power |Bolsled uses current enemy power and does not destroy a boosted target above the discarded power |Bolsled mandatory destruction may remove the creature it was attacking and cancel that battle |Bolsled cannot choose an untargetable or sealed creature and discards even if no eligible target remains |Bolsled without a Dragon or with ignored source has no discard or destruction choice |Swan pays five and puts each players exact top two into separate new shields without revealing them |Swan five-shield threshold counts shields rather than cards and follows current count in both directions |Swan actual double break produces two mandatory taps even when the Swan is untapped |Swan does not retaliate from opponent shield breaks or a shield moved to hand without being broken |Exact QA41453 spell Shield Trigger resolves before the Swan break tap |Exact QA41453 creature Shield Trigger enters first then its entry and Swan tap effects may be ordered freely |Ignored or sealed Swan retains neither threshold abilities nor a new break trigger |Swan single-shield break choice survives encrypted online persistence and preserves all physical IDs |Exact QA41453 may resolve the real Surfer entry before the queued Swan tap |Swan distinguishes a real own spell break from nonbreak shield destruction |Bolsled an actual infinite-power Dragon discard compares infinity and remains JSON serializable |Swan entry on an opponent turn adds both players shields and actual Waldo suppresses its whole entry ability |Aura actual paid execution attaches to an existing or newly summoned GR, grants printed power and preserves encrypted state |Zark is actually GR-summoned from the top, uses zero mana value and returns to GR on leaving |Soul Bringer saves its attached creature by destroying exactly another own creature, independently of ignored host abilities |Soul Bringer does not save a host with no payable other creature or inactive attachment |Soul Bringer does not replace non-destruction departure to |Edama optionally pays only its own exact attached Aura to grave and preserves host and other attachments on |Edama ability resides on its own active attachment |Edama itself can leave without protecting itself or paying a different attachment|QA32007 Zark pays exactly two chosen attached Auras in elected bottom order and retains the third |Zark cannot pay a partial Aura cost with only |Zark choosing one Aura then cancelling leaves the complete field and library unchanged before declining departure|Zark requires its own active ability but may pay ignored attachments |Actual Artificial Reality Charger simultaneous element bounce preserves Edama host, pays Edama once and returns every other Aura |Actual simultaneous element bounce lets Zark pay two attached Auras without their scheduled hand moves |Soul Bringer simultaneous destruction reservations never reuse the same sacrificed creature for two hosts|Two Zarks in the same element sweep pay distinct complete ordered Aura pairs and their controller orders the resulting bottom groups |Edama and Zark offer alternative complete replacements; choosing one Edama never consumes a second Aura|Edama paid movement into grave is a placement and does not falsely count as destruction|QA42981 actual Zark Ho Pitch can destroy one attached Aura element while leaving its GR host alive |Soul Bringer sacrifices actual Apple Churis and resolves that real destruction draw while its own host and Aura stay|Edama can be spent once but state-based zero-power loss after the power bonus disappears still removes its host |Two Edama copies may independently pay for two separate leave events and never both pay for the same event|Actual combat loss can be replaced by the Aura without untapping the defending GR |Aura protection follows actual evolution of its GR host and is still available on the fully evolved creature|The actual opponent element-leave watcher counts only paid Auras and never the saved host |Compound evolution combines Auras from two distinct GR bases onto the one resulting creature without losing either physical attachment|Multiple complete Aura payments are ordered before actual |Ordinary Ninja Strike uses only its printed mana-count threshold, with no required mana civilization |A normal paid Shinobi summon does not set Ninja Strike or incur a later deck return |Hanzo chooses exactly one enemy and applies current-turn minus6000 at the zero-power boundary |Hanzo optional shield-to-grave replacement needs actual Dark mana and never treats it as a shield break |Hanzo self replacement permits declining and stops on inactive condition |Orochi mandatory other-creature selection bottoms to the real owner and deploys the first revealed non-evolution creature |Orochi keeps an entry-prohibited revealed creature on top while the remaining public prefix is ordered on bottom |Orochi obeys the target owners actual QQQX restriction without moving a different library |Trent native replacement pays its exact body to deck bottom without destroying it for any allied leave destination |Trent permission rejects wrong scope or an unavailable source |QA39662 the actual Anaris draw after attack declaration cannot newly declare a just-drawn Ninja |Orochi genuine non-summon deployment still triggers an actual opposing Onikamas return after the chosen creature enters|Orochi publicly exposes exactly the revealed prefix to both seats and lets the library owner choose its bottom order |Trent can pay only one of two simultaneously leaving allies and never moves its reserved physical body twice |Trent may protect a different physical Trent while preserving the paid sources complete evolution bundle |Actual encrypted duel service resolves paid Shinobi, public owner decisions and replacement destinations for both seats |Orochi with no other eligible creature finishes without targeting itself |Orochi targeting a GR with no eligible creature left in its owners deck returns every revealed card without a false deck loss )",
+        "tests/standard172-effects.test.mjs",
+        "tests/standard303-effects.test.mjs",
+        "tests/standard398-effects.test.mjs",
+        "tests/standard537-effects.test.mjs",
+        "tests/standard545-effects.test.mjs",
+        "tests/standard913-effects.test.mjs",
+        "tests/standard980-effects.test.mjs",
+        "tests/standard1236-effects.test.mjs",
+        "tests/standard1275-effects.test.mjs",
+        "tests/standard1703-effects.test.mjs",
+        "tests/standard1807-effects.test.mjs",
+        "tests/standard1817-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 19.35,
+      "log": "tmp/duema-target-10000/related-1818.log",
+      "passed": 624,
+      "logSha256": "a4cb7cf6a20f4623237e81f3c03478ea0452d165fe7594a58fd977dd618878a6"
+    },
+    "check-1818": {
+      "name": "check-1818",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 20.534,
+      "log": "tmp/duema-target-10000/check-1818.log",
+      "passed": 0,
+      "logSha256": "998b6ab88661c34b6bbb7891649b7348cf1bb2890b17dc2bcf2afba748b6c699"
+    },
+    "audit-1818": {
+      "name": "audit-1818",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 9.671,
+      "log": "tmp/duema-target-10000/audit-1818.log",
+      "passed": 0,
+      "logSha256": "d3ac3f60660b1db97f0f63d2a8655904d6751bbb9ff3a599f2f6b69755a5ae08"
+    },
+    "invariants-1818": {
+      "name": "invariants-1818",
+      "command": [
+        "node",
+        "tools/verify-target10000-invariants.mjs",
+        "1818"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.715,
+      "log": "tmp/duema-target-10000/invariants-1818.log",
+      "passed": 0,
+      "logSha256": "d3d814c59855f71d57fb2be37f5b1732dd2a7525ab339e65c126c37bad5c67bf"
+    },
+    "related-online-1818": {
+      "name": "related-online-1818",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.388,
+      "log": "tmp/duema-target-10000/related-online-1818.log",
+      "passed": 5,
+      "logSha256": "b11289d161a98918fcff92ff237fbdd7cbb0d75f24bcd3a8f648eee167e866a3"
+    }
+  },
+  "totalTestsPassed": 706,
+  "manifest": "tools/support-phase-1818.json",
+  "supported": 9675,
+  "pending": 2168,
+  "engineVersion": "0.602.342",
+  "held": [],
+  "nextCandidates": [
+    "dm26rp1-020 呪遁の化身",
+    "dm25sp2-008 蒼斬しのぶ",
+    "dm23bd4-005 裏斬隠裏蒼頭 バルガリスク"
+  ],
+  "verificationScope": "QA31585 and QA46953 reproduced literally. QA43331/43332 are expressly four-player DuelParty examples, outside the supported two-player duel format; marked not applicable and not literally reproduced. Actual two-player Brakkio suppression on both turns is covered separately. No four-player implementation or compatibility change is claimed.",
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "official-1818",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1818.json"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 0.144,
+      "log": "tmp/duema-target-10000/official-1818-previous-1795797461648458000.log",
+      "originalLog": "tmp/duema-target-10000/official-1818.log",
+      "reason": "Initial official fetch was blocked by sandbox DNS, then succeeded with approved network access. Before focused testing the Saizo shield task was corrected to ShieldTop and grave scope to self. Early focused attempts exposed fixture errors (an unregistered Beastfolk ID, waiting before shield choices, and the native OpponentSelect conversion to g34_Select); corrected fixtures, added genuine simultaneous declarations and eight combat/control/creature-effect cases; final 77 cases pass."
+    },
+    {
+      "name": "focused-1818-a",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1818-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 3.84,
+      "log": "tmp/duema-target-10000/focused-1818-a.log",
+      "reason": "Initial official fetch was blocked by sandbox DNS, then succeeded with approved network access. Before focused testing the Saizo shield task was corrected to ShieldTop and grave scope to self. Early focused attempts exposed fixture errors (an unregistered Beastfolk ID, waiting before shield choices, and the native OpponentSelect conversion to g34_Select); corrected fixtures, added genuine simultaneous declarations and eight combat/control/creature-effect cases; final 77 cases pass."
+    },
+    {
+      "name": "focused-1818-b",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1818-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 4.219,
+      "log": "tmp/duema-target-10000/focused-1818-b.log",
+      "reason": "Initial official fetch was blocked by sandbox DNS, then succeeded with approved network access. Before focused testing the Saizo shield task was corrected to ShieldTop and grave scope to self. Early focused attempts exposed fixture errors (an unregistered Beastfolk ID, waiting before shield choices, and the native OpponentSelect conversion to g34_Select); corrected fixtures, added genuine simultaneous declarations and eight combat/control/creature-effect cases; final 77 cases pass."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}
