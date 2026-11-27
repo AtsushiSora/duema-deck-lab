@@ -134,7 +134,7 @@
       "checkedAt": "2026-11-27T18:30:44.935Z",
       "reproduced": true,
       "tests": "tests/standard1826-effects.test.mjs",
-      "result": "Card-specific tests reproduce the stated condition and outcome."
+      "result": "QA45061対象なしでシャッフル・公開なし。QA_old36951山札1/4/5/6/9/30枚で厳密に下5枚維持。QA_old36952墓地が空なら最終カードを引いて敗北。墓地移動禁止、各ドローの任意回収、シャコガイル、バビロニア、両席・相手ターン、暗号化通信のマナ支払いと選択を実測。水晶転生の公開はQQQXの非公開確認禁止と区別しシャッフル禁止と順序を維持。実際のオーラ・GR・進化・登場制限・所有権・Sトリガーを確認。"
     },
     {
       "source": "https://dm.takaratomy.co.jp/rule/qa_old/36951/",
@@ -142,7 +142,7 @@
       "checkedAt": "2026-11-27T18:30:44.935Z",
       "reproduced": true,
       "tests": "tests/standard1826-effects.test.mjs",
-      "result": "Card-specific tests reproduce the stated condition and outcome."
+      "result": "QA45061対象なしでシャッフル・公開なし。QA_old36951山札1/4/5/6/9/30枚で厳密に下5枚維持。QA_old36952墓地が空なら最終カードを引いて敗北。墓地移動禁止、各ドローの任意回収、シャコガイル、バビロニア、両席・相手ターン、暗号化通信のマナ支払いと選択を実測。水晶転生の公開はQQQXの非公開確認禁止と区別しシャッフル禁止と順序を維持。実際のオーラ・GR・進化・登場制限・所有権・Sトリガーを確認。"
     },
     {
       "source": "https://dm.takaratomy.co.jp/rule/qa_old/36952/",
@@ -150,10 +150,18 @@
       "checkedAt": "2026-11-27T18:30:44.935Z",
       "reproduced": true,
       "tests": "tests/standard1826-effects.test.mjs",
-      "result": "Card-specific tests reproduce the stated condition and outcome."
+      "result": "QA45061対象なしでシャッフル・公開なし。QA_old36951山札1/4/5/6/9/30枚で厳密に下5枚維持。QA_old36952墓地が空なら最終カードを引いて敗北。墓地移動禁止、各ドローの任意回収、シャコガイル、バビロニア、両席・相手ターン、暗号化通信のマナ支払いと選択を実測。水晶転生の公開はQQQXの非公開確認禁止と区別しシャッフル禁止と順序を維持。実際のオーラ・GR・進化・登場制限・所有権・Sトリガーを確認。"
     }
   ],
-  "held": [],
+  "held": [
+    {
+      "id": "dmr17-011",
+      "name": "幻影 ミスキュー",
+      "reason": "公式5再録・全画像・全文・QA45594を照合済み。実名依存先イミッシュ・イツァヤナ（dm24ex2-011）の能力選択・離脱後の能力使用が未対応のため保留。別カードで近似せず、完全対応まで加算しない。",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45594/",
+      "research": "tmp/duema-target-10000/research-dm23ex3-011.json"
+    }
+  ],
   "originalPrintingEvidence": [],
   "regulationVerification": {
     "source": "https://dm.takaratomy.co.jp/rule/regulation/",
@@ -165,5 +173,23 @@
       "dm23ex3-011": 4,
       "dmx15-s05": 4
     }
+  },
+  "validationNotes": {
+    "rulingScope": "QA45061対象なしでシャッフル・公開なし。QA_old36951山札1/4/5/6/9/30枚で厳密に下5枚維持。QA_old36952墓地が空なら最終カードを引いて敗北。墓地移動禁止、各ドローの任意回収、シャコガイル、バビロニア、両席・相手ターン、暗号化通信のマナ支払いと選択を実測。水晶転生の公開はQQQXの非公開確認禁止と区別しシャッフル禁止と順序を維持。実際のオーラ・GR・進化・登場制限・所有権・Sトリガーを確認。",
+    "resolvedAttempts": "公開ログのcardIdは呪文ID、戻した本人の再登場も適法であるためfixture修正。QQQXで公開まで止める不具合を明示的公開フラグで修正。進化fixtureを実際の進化カードへ変更。通信fixtureのundefined対象比較による同一マナ反復を修正。invariantsはauditの件数更新に依存するため、初回の並列実行による旧件数読取りをaudit後の順次実行で再検証。全失敗ログ保持。",
+    "nextCandidates": [
+      {
+        "id": "dmd32-008",
+        "name": "アルカディア・スパーク"
+      },
+      {
+        "id": "dmr11-031",
+        "name": "キャロルの空中ライブ"
+      },
+      {
+        "id": "dm17-009",
+        "name": "アクア・マイスター"
+      }
+    ]
   }
 }
