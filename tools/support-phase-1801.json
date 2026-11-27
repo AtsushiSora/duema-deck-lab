@@ -1,0 +1,281 @@
+{
+  "phase": 1801,
+  "checkedAt": "2026-11-27T13:09:19.147Z",
+  "baseline": "ccd1ddb9ec52165eba684f76c9aaef077146b4ad",
+  "baseCount": 9623,
+  "target": 10000,
+  "description": "Complete Christopher private top-three optional under-stack with all remaining cards to hand, native single-deck evolution and strict-current-power sweep for Free Paper, and two-Water-creature hand evolution V with optional player-attack cancellation for Phalanx. Extend native Look with an explicit under-source destination and native hand evolution with explicit base count; preserve all other modes. Reproduce official QA36812, QA39646 and QA35908/35909.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36812/",
+    "https://dm.takaratomy.co.jp/rule/qa/39646/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35909/"
+  ],
+  "cards": [
+    {
+      "id": "dmx14-029",
+      "name": "ダークナイト クリストファー",
+      "canonicalId": "dmx14-029",
+      "printId": "dmx14-029",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-029",
+      "faces": [
+        {
+          "name": "ダークナイト クリストファー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のアウトレイジ１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚を見る。その中からアウトレイジを１体選び、このクリーチャーの下に置いてもよい。残りを自分の手札に加える。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アウトレイジ"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 3,
+                "g841DeckPeek": true,
+                "rest": "hand",
+                "stages": [
+                  {
+                    "n": 1,
+                    "optional": true,
+                    "to": "under",
+                    "g1801Under": true,
+                    "filter": {
+                      "creature": true,
+                      "race": "アウトレイジ"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-029.jpg",
+      "imageSha256": "3a6029a98457ebd274cedbe34e2a131af3748c88e1fc313e1f425bcdc9389d20",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx14-029-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx14-029"
+        ],
+        "allSearchIds": [
+          "dmx14-029"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:09:19.147Z",
+        "sha256": "3de7b83c0fab1c574d867ee6c53f8e41185377e423bb081589af68367df55752",
+        "facesMatched": true,
+        "imageSha256": "3a6029a98457ebd274cedbe34e2a131af3748c88e1fc313e1f425bcdc9389d20"
+      }
+    },
+    {
+      "id": "dmex03-016",
+      "name": "自由の目紙",
+      "canonicalId": "dmex03-016",
+      "printId": "dmex03-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-016",
+      "faces": [
+        {
+          "name": "自由の目紙",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "デッキ進化：自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーなら、このクリーチャーをその上に重ねつつバトルゾーンに出す。クリーチャー以外なら、このクリーチャーを自分の手札に戻す。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下に重ねたカードを１枚、墓地に置いてもよい。そうしたら、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g45MDeck": true,
+        "g831SingleDeckEvolution": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "TargetBelowSource692",
+                "g745Sweep": "opponent"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-016.jpg",
+      "imageSha256": "feae6069bd68d3f86f2f111ff8eefc7e2f92bad120fd14de1f80a878f2cd27cf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex03-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-016"
+        ],
+        "allSearchIds": [
+          "dmex03-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:09:19.147Z",
+        "sha256": "4bda943e5ce9d80231e8a2e7f7bdc3f6e9b3f6b32d4d9306c0563bbaed21b65e",
+        "facesMatched": true,
+        "imageSha256": "feae6069bd68d3f86f2f111ff8eefc7e2f92bad120fd14de1f80a878f2cd27cf"
+      }
+    },
+    {
+      "id": "dm34-002",
+      "name": "超電星クリスタル・ファランクス",
+      "canonicalId": "dm34-002",
+      "printId": "dm34-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-002",
+      "faces": [
+        {
+          "name": "超電星クリスタル・ファランクス",
+          "typeText": "進化クリーチャー(手札進化V)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "手札進化V - 水のクリーチャーを２体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン - 相手のクリーチャーが自分を攻撃した時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、その攻撃は中止される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リキッド・ピープル/フェニックス",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g48HandEvolution": true,
+        "g827HandWaterEvolution": true,
+        "g1801HandEvolutionCount": 2,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "MeteorSources1796",
+              "n": 1,
+              "to": "grave",
+              "defs": [
+                {
+                  "op": "Custom",
+                  "name": "stopAttack"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-002.jpg",
+      "imageSha256": "8b24ac4ef77fd6d665fcb927a250ca40490c6d8868d8cc5988316fc3dc92b103",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-002"
+        ],
+        "allSearchIds": [
+          "dm34-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T13:09:19.147Z",
+        "sha256": "ad012772775ecce9b740783c8f5d452e47c510204cbc99d5f3fbaa9be90f5661",
+        "facesMatched": true,
+        "imageSha256": "8b24ac4ef77fd6d665fcb927a250ca40490c6d8868d8cc5988316fc3dc92b103"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36812/",
+      "sha256": "879a401f868376280380c6e1a1db46dd5856d29493d7984d1c53bec350ab0c47",
+      "checkedAt": "2026-11-27T13:09:19.147Z",
+      "reproduced": true,
+      "tests": "tests/standard1801-effects.test.mjs",
+      "reproduction": "Both account seats tested: from a private three-card inspection either optionally stack one Outrage and take two, or decline and take all three; encrypted restore preserves the decision.",
+      "result": "Both account seats tested: from a private three-card inspection either optionally stack one Outrage and take two, or decline and take all three; encrypted restore preserves the decision."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39646/",
+      "sha256": "dac09b28bf6016916445067d3f09abdbe19297cf682d6260796540f75c72abaf",
+      "checkedAt": "2026-11-27T13:09:19.147Z",
+      "reproduced": true,
+      "tests": "tests/standard1801-effects.test.mjs",
+      "reproduction": "Actual Momoking NEX evolves on a Fire creature; its actual entry effect reveals Free Paper from the library. Free Paper then uses the next library card as its own deck evolution source if creature, or returns itself to hand if spell.",
+      "result": "Actual Momoking NEX evolves on a Fire creature; its actual entry effect reveals Free Paper from the library. Free Paper then uses the next library card as its own deck evolution source if creature, or returns itself to hand if spell."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
+      "sha256": "a0725184fcbf33965bbf72081506db10ceaf719a22509eaf05bf2aa14f1686eb",
+      "checkedAt": "2026-11-27T13:09:19.147Z",
+      "reproduced": true,
+      "tests": "tests/standard1801-effects.test.mjs",
+      "reproduction": "Actual enemy player attack first offers Phalanx Meteor before blockers; after optional payment the attack is null, no block/break occurs, and attacker remains tapped. Separate creature-target and owner attacks do not trigger.",
+      "result": "Actual enemy player attack first offers Phalanx Meteor before blockers; after optional payment the attack is null, no block/break occurs, and attacker remains tapped. Separate creature-target and owner attacks do not trigger."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35909/",
+      "sha256": "006623a12773d75ad8a57ab85343912aa83ee9268edfadf24148bb2822edf0a3",
+      "checkedAt": "2026-11-27T13:09:19.147Z",
+      "reproduced": true,
+      "tests": "tests/standard1801-effects.test.mjs",
+      "reproduction": "Actual enemy player attack first offers Phalanx Meteor before blockers; after optional payment the attack is null, no block/break occurs, and attacker remains tapped. Separate creature-target and owner attacks do not trigger.",
+      "result": "Actual enemy player attack first offers Phalanx Meteor before blockers; after optional payment the attack is null, no block/break occurs, and attacker remains tapped. Separate creature-target and owner attacks do not trigger."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T13:09:19.147Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx14-029": 4,
+      "dmex03-016": 4,
+      "dm34-002": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "Four initial Free Paper reveal assertions expected the revealed card ID in log.cardId. Native public reveal logs intentionally reference the effect source and include each revealed card name in text. Corrected the assertion to verify the actual revealed name; all 35 card-specific tests then pass.",
+    "sharedChanges": "Look adds only an explicit g1801Under stage with live source/incarnation and zone revalidation, native deck replacement handling, reservation release and ordinary remaining-card handling. Hand evolution reads an explicit base-count override; existing Water single-base and three-base GV defaults are unchanged."
+  }
+}

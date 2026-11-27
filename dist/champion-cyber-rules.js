@@ -6,8 +6,8 @@ export function createChampionCyberRules(api){
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g48_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g48_'+op,...more});
  const canMove=(s,p,z)=>!api.canMoveZone||api.canMoveZone(s,p,z);
- const handBaseCount=c=>c.g827HandWaterEvolution?1:3;
- const handBaseLabel=c=>c.g827HandWaterEvolution?'手札進化':'手札進化GV';
+ const handBaseCount=c=>c.g1801HandEvolutionCount??(c.g827HandWaterEvolution?1:3);
+ const handBaseLabel=c=>c.g1801HandEvolutionCount===2?'手札進化V':c.g827HandWaterEvolution?'手札進化':'手札進化GV';
  const handBaseMatches=(x,c)=>card(x).type==='creature'&&(!c.g827HandWaterEvolution||colors(card(x)).includes('水'));
  const handBases=(s,p,uid,c)=>s.players[p].hand.filter(x=>x.uid!==uid&&handBaseMatches(x,c));
  const sourceSoul=(s,x,kind)=>api.ignored(s,x)?[]:api.layers(x).slice(1).filter(y=>card(y).g48Soul===kind);

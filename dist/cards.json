@@ -308776,17 +308776,146 @@
       ],
       "supportBatch": "phase-1800",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-029",
+      "name": "ダークナイト クリストファー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アウトレイジ",
+      "text": "進化-自分のアウトレイジ１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚を見る。その中からアウトレイジを１体選び、このクリーチャーの下に置いてもよい。残りを自分の手札に加える。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-029",
+      "limit": 4,
+      "evolution": {
+        "race": "アウトレイジ"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "g841DeckPeek": true,
+              "rest": "hand",
+              "stages": [
+                {
+                  "n": 1,
+                  "optional": true,
+                  "to": "under",
+                  "g1801Under": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "アウトレイジ"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1801",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-016",
+      "name": "自由の目紙",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ジョーカーズ/スペシャルズ",
+      "text": "デッキ進化：自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーなら、このクリーチャーをその上に重ねつつバトルゾーンに出す。クリーチャー以外なら、このクリーチャーを自分の手札に戻す。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下に重ねたカードを１枚、墓地に置いてもよい。そうしたら、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-016",
+      "limit": 4,
+      "g45MDeck": true,
+      "g831SingleDeckEvolution": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "TargetBelowSource692",
+              "g745Sweep": "opponent"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1801",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-002",
+      "name": "超電星クリスタル・ファランクス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "リキッド・ピープル/フェニックス",
+      "text": "手札進化V - 水のクリーチャーを２体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン - 相手のクリーチャーが自分を攻撃した時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、その攻撃は中止される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-002",
+      "limit": 4,
+      "g48HandEvolution": true,
+      "g827HandWaterEvolution": true,
+      "g1801HandEvolutionCount": 2,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Custom",
+                "name": "stopAttack"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1801",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1800,
-    "checkedAt": "2026-11-27T13:02:49.678Z",
-    "baseCount": 9621,
-    "newEffectCards": 2,
+    "phase": 1801,
+    "checkedAt": "2026-11-27T13:09:19.147Z",
+    "baseCount": 9623,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9623,
+    "totalCount": 9626,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36812/",
+      "https://dm.takaratomy.co.jp/rule/qa/39646/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35908/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35909/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -338255,6 +338384,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9621,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1800,
+        "checkedAt": "2026-11-27T13:02:49.678Z",
+        "baseCount": 9621,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9623,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

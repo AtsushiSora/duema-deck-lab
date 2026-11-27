@@ -8687,5 +8687,139 @@
         }
       ]
     }
+  },
+  "dmx14-029": {
+    "phase": 1801,
+    "faces": [
+      {
+        "name": "ダークナイト クリストファー",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分のアウトレイジ１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から３枚を見る。その中からアウトレイジを１体選び、このクリーチャーの下に置いてもよい。残りを自分の手札に加える。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "アウトレイジ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "アウトレイジ"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "g841DeckPeek": true,
+              "rest": "hand",
+              "stages": [
+                {
+                  "n": 1,
+                  "optional": true,
+                  "to": "under",
+                  "g1801Under": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "アウトレイジ"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex03-016": {
+    "phase": 1801,
+    "faces": [
+      {
+        "name": "自由の目紙",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "デッキ進化：自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーなら、このクリーチャーをその上に重ねつつバトルゾーンに出す。クリーチャー以外なら、このクリーチャーを自分の手札に戻す。\nW・ブレイカー\nメテオバーン：このクリーチャーが攻撃する時、このクリーチャーの下に重ねたカードを１枚、墓地に置いてもよい。そうしたら、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+        "race": "ジョーカーズ/スペシャルズ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g45MDeck": true,
+      "g831SingleDeckEvolution": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MeteorSources1796",
+          "n": 1,
+          "to": "grave",
+          "defs": [
+            {
+              "op": "TargetBelowSource692",
+              "g745Sweep": "opponent"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm34-002": {
+    "phase": 1801,
+    "faces": [
+      {
+        "name": "超電星クリスタル・ファランクス",
+        "typeText": "進化クリーチャー(手札進化V)",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "手札進化V - 水のクリーチャーを２体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nメテオバーン - 相手のクリーチャーが自分を攻撃した時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、その攻撃は中止される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "リキッド・ピープル/フェニックス",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g48HandEvolution": true,
+      "g827HandWaterEvolution": true,
+      "g1801HandEvolutionCount": 2,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "MeteorSources1796",
+            "n": 1,
+            "to": "grave",
+            "defs": [
+              {
+                "op": "Custom",
+                "name": "stopAttack"
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

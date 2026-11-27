@@ -1,0 +1,179 @@
+{
+  "phase": 1801,
+  "checkedAt": "2026-11-27T13:14:30.569Z",
+  "baseline": "ccd1ddb9ec52165eba684f76c9aaef077146b4ad",
+  "status": "verified-local",
+  "kind": "manual-grouped-registration-toward-10000",
+  "target": 10000,
+  "before": 9623,
+  "currentNames": 9626,
+  "remainingNames": 374,
+  "added": [
+    {
+      "id": "dmx14-029",
+      "name": "ダークナイト クリストファー"
+    },
+    {
+      "id": "dmex03-016",
+      "name": "自由の目紙"
+    },
+    {
+      "id": "dm34-002",
+      "name": "超電星クリスタル・ファランクス"
+    }
+  ],
+  "duplicateNames": 0,
+  "invariants": {
+    "phase": 1801,
+    "baseline": "ccd1ddb9ec52165eba684f76c9aaef077146b4ad",
+    "originalDefinitionsUnchanged": 9623,
+    "existingDefinitionsCorrected": 0,
+    "uniqueNames": 9626,
+    "uniqueIds": 9626,
+    "added": 3,
+    "duplicateNames": 0,
+    "detailsUnchanged": true,
+    "oldDetailsRowsUnchanged": 11847,
+    "newCatalogueNames": 0,
+    "oldSavedIdsAndFormatsPreserved": true,
+    "existingImageUrlsUnchanged": 9623,
+    "existingImageReferenceRowsUnchanged": 11987,
+    "officialPrintsReviewed": 3,
+    "olderPendingPreserved": true
+  },
+  "results": {
+    "official-1801": {
+      "name": "official-1801",
+      "command": [
+        "node",
+        "tools/verify-support-manifest.mjs",
+        "tools/support-phase-1801.json"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.332,
+      "log": "tmp/duema-target-10000/official-1801.log",
+      "passed": 0,
+      "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+    },
+    "focused-1801-final": {
+      "name": "focused-1801-final",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1801-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.43,
+      "log": "tmp/duema-target-10000/focused-1801-final.log",
+      "passed": 35,
+      "logSha256": "c08c1e2cdc9cf43d4aa7493068a0eee6695d419c3c8c135ccfa3ae012ca5131e"
+    },
+    "related-1801": {
+      "name": "related-1801",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard827-effects.test.mjs",
+        "tests/standard831-effects.test.mjs",
+        "tests/standard1365-effects.test.mjs",
+        "tests/champion-cyber-effects.test.mjs",
+        "tests/standard1798-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 5.306,
+      "log": "tmp/duema-target-10000/related-1801.log",
+      "passed": 105,
+      "logSha256": "e86a70c432211f1dbe8e3ec87ed9fba011ab246552acad4c480bb1a75fff331b"
+    },
+    "check-1801": {
+      "name": "check-1801",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 22.562,
+      "log": "tmp/duema-target-10000/check-1801.log",
+      "passed": 0,
+      "logSha256": "7a5de35473bc326e1754d07ec0e4a3464fb635650e176584cf6929cfba0374b1"
+    },
+    "audit-1801": {
+      "name": "audit-1801",
+      "command": [
+        "node",
+        "tools/audit-card-support.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 10.014,
+      "log": "tmp/duema-target-10000/audit-1801.log",
+      "passed": 0,
+      "logSha256": "ac7a4951e88bc1240479870bd36b21dd6eab2837ac8a7e8168059b920ef1dafc"
+    },
+    "invariants-1801": {
+      "name": "invariants-1801",
+      "command": [
+        "node",
+        "tools/verify-target10000-invariants.mjs",
+        "1801"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.736,
+      "log": "tmp/duema-target-10000/invariants-1801.log",
+      "passed": 0,
+      "logSha256": "96a7eda4228bde7172ec98278fdec966d8257a5ab1b43f390380191553cae5d5"
+    },
+    "related-online-1801": {
+      "name": "related-online-1801",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+        "tests/online-server.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.581,
+      "log": "tmp/duema-target-10000/related-online-1801.log",
+      "passed": 5,
+      "logSha256": "a5d4eb48eb9071cad5015a09d9e3b4c58718eb984de58d833414fa77ad28b792"
+    }
+  },
+  "totalTestsPassed": 145,
+  "manifest": "tools/support-phase-1801.json",
+  "supported": 9626,
+  "pending": 2217,
+  "engineVersion": "0.602.325",
+  "held": [],
+  "registeredCardVerificationPending": [],
+  "olderPendingPreserved": true,
+  "fullSuiteStatus": "中断・合否未確認",
+  "publication": {
+    "pushed": false,
+    "pages": false,
+    "netlifyUpdated": false
+  },
+  "resolvedAttempts": [
+    {
+      "name": "focused-1801",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1801-effects.test.mjs"
+      ],
+      "code": 1,
+      "timedout": false,
+      "seconds": 1.485,
+      "log": "tmp/duema-target-10000/focused-1801.log",
+      "reason": "Four initial Free Paper reveal assertions expected the revealed card ID in log.cardId. Native public reveal logs intentionally reference the effect source and include each revealed card name in text. Corrected the assertion to verify the actual revealed name; all 35 card-specific tests then pass."
+    }
+  ],
+  "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+}

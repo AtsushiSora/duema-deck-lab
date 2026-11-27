@@ -6312,7 +6312,9 @@ export function createSixPhotoRules(api){
    if(s.winner===null)put(s,{...t,op:t.g255Distribute&&!t.g791OrderRest?'g34_Distribute255':'g34_Order',ids:xs.map(x=>x.uid),ordered:[],after:t.after});
    break;
   }
-  const blocked=stage.g657FaceUp&&stage.to==='shields'&&!api.canAddShield(s,t.p);
+  const underHost=stage.g1801Under?sourceHost474(s,t):null;
+  const blocked=stage.g657FaceUp&&stage.to==='shields'&&!api.canAddShield(s,t.p)||stage.g1801Under&&
+   (!underHost||underHost.x.sealed||!api.isCreature(s,underHost.x)||!api.canMoveZone(s,t.p,'deck'));
   const selected=blocked?[]:t.chosen||[];
   let rows=blocked?[]:xs.filter(y=>!selected.includes(y.uid)&&matches(s,t.p,y,stage.filter));
   if(stage.g1658DistinctNames&&selected.length){
@@ -6358,7 +6360,16 @@ export function createSixPhotoRules(api){
     // The power is read while the card is revealed in the library, before its move.
     const powerMatches=follow&&y&&api.revealedPower(y,s)>=follow.min;
     if((stage.reveal||t.g443PublicIds?.includes(uid))&&y)api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
-    const transferred=zoneMove(s,t.p,'deck',uid,stage.to,{...t,tapped:stage.tapped||stage.tapMulticolor&&api.manaColors(card(y)).length>1,g657FaceUp:stage.g657FaceUp??t.g657FaceUp});
+    let transferred;
+    if(stage.g1801Under){
+     const destination=api.deckDestination1365(s,t.p,'under');
+     const selectedCard=remove(own.deck,uid);
+     release(s,t.p,uid);
+     if(selectedCard){
+      if(destination!=='under')api.addAfterDeckReplacement1365(s,t.p,destination,selectedCard);
+      else{clear(selectedCard,'under');(underHost.x.under??=[]).push(selectedCard);transferred=true;}
+     }
+    }else transferred=zoneMove(s,t.p,'deck',uid,stage.to,{...t,tapped:stage.tapped||stage.tapMulticolor&&api.manaColors(card(y)).length>1,g657FaceUp:stage.g657FaceUp??t.g657FaceUp});
     if(powerMatches&&transferred&&own[stage.to].some(x=>x.uid===uid))after=[...(after||[]),...follow.defs];
    }
    put(s,{...t,ids:t.ids.filter(uid=>!moved.includes(uid)),stage:t.stage+1,chosen:[],...(after!==t.after?{after}:{}),moved:(t.moved||0)+moved.length});break;
