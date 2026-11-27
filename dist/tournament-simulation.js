@@ -1,4 +1,4 @@
-import {runGame,runSummary} from './engine.js?v=0.722.31';
+import {runGame,runSummary} from './engine.js?v=0.722.32';
 export function simulateTournamentMatch(decks,{seed,first},simulate=runGame){
  let unresolved=0;
  for(let attempt=0;attempt<3;attempt++){
