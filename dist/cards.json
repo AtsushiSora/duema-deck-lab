@@ -312171,19 +312171,166 @@
       },
       "supportBatch": "phase-1831",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-043",
+      "name": "「武」の頂 マキシマム・ザ・マックス / 極頂秘伝ゼニス・シンフォニー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "アンノウン/ゼニス",
+      "text": "パワーアタッカー+12000\nワールド・ブレイカー\nエターナル・Ω（このクリーチャーが離れる時、かわりに手札に戻す）\n【呪文面】\nアタック・チャンス：アンノウン\nアンノウン/ゼニスを１体、自分の手札からコストを支払わずに召喚してもよい。そのターンの終わりに、そのクリーチャーをバトルゾーンから自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-043",
+      "limit": 4,
+      "attackBonus": 12000,
+      "breaker": "∞",
+      "worldBreaker": true,
+      "g34Omega": true,
+      "spellFace": {
+        "name": "極頂秘伝ゼニス・シンフォニー",
+        "type": "spell",
+        "civ": "ゼロ",
+        "civilizations": [],
+        "cost": 9,
+        "race": "",
+        "g417Chance": {
+          "race": "アンノウン"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "creatureOnly": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "アンノウン",
+                  "ゼニス"
+                ]
+              }
+            },
+            "optional": true,
+            "g1832ReturnHand": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1832",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd17-001",
+      "name": "戦武の無限皇 ジャッキー / 「俺たちの夢は終わらねぇ！」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手の呪文を唱えるコストは無限のマナを必要とする。\n【呪文面】\nS・トリガー S・トリガー\nコスト８以下のアウトレイジを１体、自分の手札から出してもよい。その後、相手のクリーチャーを１体選んでもよい。そうしたら、この２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd17-001",
+      "limit": 4,
+      "breaker": 2,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": "∞"
+      },
+      "spellFace": {
+        "name": "「俺たちの夢は終わらねぇ！」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "アウトレイジ",
+              "max": 8
+            },
+            "g1173FightAfterDeploy": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1832",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-061",
+      "name": "完璧妖精ビスカX / 「燃え燃えズッキュン！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーが出た時、カードを１枚、自分のマナゾーンから墓地に置く。それがスノーフェアリーなら、自分の墓地から手札に戻す。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト２以下のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ViscaMana1832"
+        }
+      ],
+      "spellFace": {
+        "name": "「燃え燃えズッキュン！」",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 1,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "filter": {
+              "max": 2
+            },
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-1832",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1831,
-    "checkedAt": "2026-11-27T19:30:11.098Z",
-    "baseCount": 9703,
+    "phase": 1832,
+    "checkedAt": "2026-11-27T19:42:59.067Z",
+    "baseCount": 9706,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9706,
+    "totalCount": 9709,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31778/",
-      "https://dm.takaratomy.co.jp/rule/qa/31757/"
+      "https://dm.takaratomy.co.jp/rule/qa/43957/",
+      "https://dm.takaratomy.co.jp/rule/qa/43488/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -342145,6 +342292,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45077/",
           "https://dm.takaratomy.co.jp/rule/qa/31814/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1831,
+        "checkedAt": "2026-11-27T19:30:11.098Z",
+        "baseCount": 9703,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9706,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31778/",
+          "https://dm.takaratomy.co.jp/rule/qa/31757/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

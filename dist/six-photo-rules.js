@@ -4372,7 +4372,7 @@ export function createSixPhotoRules(api){
   const moves=new Map();
   for(const ref of t.refs){
    const host=sourceHost474(s,ref);
-   if(host&&!host.x.sealed)moves.set(host.x.uid,{player:host.p,uid:host.x.uid,to:t.to||'hand',destroy:t.to==='grave',controller:t.p});
+   if(host&&!host.x.sealed)moves.set(host.x.uid,{player:host.p,uid:host.x.uid,to:t.to||'hand',destroy:t.to==='grave',controller:t.p,...(t.toOwnerHand?{toOwnerHand:true}:{})});
   }
   if(moves.size)move(s,[...moves.values()]);
   break;
@@ -5727,6 +5727,15 @@ export function createSixPhotoRules(api){
  case'g34_PlayersMana1830':{
   // Native per-player selection preserves APNAP order and one simultaneous movement batch.
   start(s,t,[{op:'EachPlayer459',origin:'battle',to:'mana',g1519EachN:2}]);
+  break;
+ }
+ case'g34_ViscaMana1832':
+  // Rule405.5 lets the choosing owner inspect their own facedown mana; other seats get no choices.
+  if(api.canMoveZone(s,t.p,'mana')&&own.mana.length)choice(s,t,'墓地に置く自分のマナを1枚選ぶ',own.mana.map(x=>opt((x.faceDown?'裏向きのマナ：':'')+card(x.cardId).name,x.uid,(faces(card(x.cardId)).some(c=>race(c,'スノーフェアリー'))?10:0)-cost(card(x.cardId)),x.cardId)));
+  break;
+ case'g34_RegisterReturn1832':{
+  const ref={uid:t.target,incarnation:t.targetIncarnation};
+  if(sourceHost474(s,ref))(s.g537Delays??=[]).push({p:t.p,source:t.source,turn:s.turn,when:'turnEnd',defs:[{op:'ReturnGroup785',refs:[ref],toOwnerHand:true}]});
   break;
  }
  case'g34_FullDuel1830':
@@ -9730,7 +9739,17 @@ export function createSixPhotoRules(api){
   if(v){const y=own.grave.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y&&t.refs?.some(r=>r.uid===v.uid&&r.serial===v.serial)&&matches(s,t.p,y,t.filter)&&api.canMoveZone(s,t.p,'grave'))zoneMove(s,t.p,'grave',y.uid,'hand',t);}
   else if(!t.g1785PureRecovery)start(s,t,[{op:'SpellFinish416',to:'hand'}]);
   break;
- case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1675ExtraSummon&&(!y||(y.zoneSerial||0)!==v.serial1675||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(t.g1675ExtraSummon&&v.g1104Back?psychicBack1104(y):y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1675ExtraSummon&&(c.type!=='creature'||cost(c)>t.max||!matches(s,t.p,v.g1104Back?psychicBack1104(y):y,t.filter)||!api.canCast(s,t.p,c,v.origin)||!api.canEnter(s,t.p,c,{origin:v.origin,execution:true})))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(t.g1726WaveRefs){release(s,t.p,v.uid);api.enqueue(s,t.p,{source:t.source,effect:'extended',g1726Continue:true,g1726Prior:t.g1726Prior,task:{...t,g1616Refs:t.g1616Refs.filter(r=>r.uid!==v.uid)}});}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face,...(t.g1675ExtraSummon?{g1104Back:!!v.g1104Back}:{})});else cast(s,t.p,v.uid,true,null,v.face,t.g1675ExtraSummon&&v.g1104Back?{g1321PsychicBack:true}:null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g1675ExtraSummon&&(!y||(y.zoneSerial||0)!==v.serial1675||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1616Refs&&(!y||!t.g1616Refs.some(r=>r.uid===y.uid&&r.serial===(y.zoneSerial||0))))break;if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;if(t.g1650VividOnly&&(!y||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)){release(s,t.p,t.g1578Exact.uid);break;}const c=faces(card(t.g1675ExtraSummon&&v.g1104Back?psychicBack1104(y):y))[v.face];if(!c||!api.canExecuteUnpaid(s,t.p,c))break;if(t.g1675ExtraSummon&&(c.type!=='creature'||cost(c)>t.max||!matches(s,t.p,v.g1104Back?psychicBack1104(y):y,t.filter)||!api.canCast(s,t.p,c,v.origin)||!api.canEnter(s,t.p,c,{origin:v.origin,execution:true})))break;if(t.g1672ManaCivilizations&&(c.type==='creature'||cost(c)>t.max||!manaCivilizations1672(s,t.p,c)||!api.canCast(s,t.p,c,v.origin)))break;if(t.g1650VividOnly){if(c.g1335VividDraw===undefined||y.uid!==t.g1578Exact.uid||(y.zoneSerial||0)!==t.g1578Exact.serial)break;release(s,t.p,y.uid);}if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(t.g1726WaveRefs){release(s,t.p,v.uid);api.enqueue(s,t.p,{source:t.source,effect:'extended',g1726Continue:true,g1726Prior:t.g1726Prior,task:{...t,g1616Refs:t.g1616Refs.filter(r=>r.uid!==v.uid)}});}if(t.g1832ReturnHand)put(s,{...t,op:'g34_RegisterReturn1832',target:y.uid,targetIncarnation:(y.incarnation||0)+1});if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face,...(t.g1675ExtraSummon?{g1104Back:!!v.g1104Back}:{})});else cast(s,t.p,v.uid,true,null,v.face,t.g1675ExtraSummon&&v.g1104Back?{g1321PsychicBack:true}:null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_ViscaMana1832':{
+  const x=own.mana.find(x=>x.uid===v);
+  if(!x)break;
+  const serial=(x.zoneSerial||0)+1;
+  if(zoneMove(s,t.p,'mana',x.uid,'grave',t)){
+   const arrived=own.grave.find(y=>y.uid===x.uid&&(y.zoneSerial||0)===serial);
+   if(arrived&&faces(card(arrived)).some(c=>race(c,'スノーフェアリー')))zoneMove(s,t.p,'grave',x.uid,'hand',t);
+  }
+  break;
+ }
  case'g34_FirstDiscardUse1268':
   if(v&&firstDiscardOptions1268(s,t).some(o=>o.value.uid===v.uid&&o.value.face===v.face)){
    if(v.type==='spell')cast(s,t.p,v.uid,true,null,v.face,null,'grave','カードの能力');
@@ -11974,7 +11993,7 @@ export function createSixPhotoRules(api){
    if(!permits.length||!api.canCast(s,p,c,'grave')||!api.canEnter(s,p,c,{origin:'grave',execution:true})||c.evolution&&!api.evolutionBases(s,p,c).length||!api.canPay(s,p,payment))continue;
    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'grave',manaPermit:permit,cost:api.summonCost(s,p,payment),label:c.name+'を墓地から召喚する'});
   }
-for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
+for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{...c,cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
  alternative(s,p,a){
   if(a.role==='discardSummon1791'){put(s,task('g34_DiscardSummon1791',p,a.cardId,{uid:a.uid,serial:s.players[p][a.origin].find(x=>x.uid===a.uid)?.zoneSerial||0,origin:a.origin,permit:a.manaPermit,selected:[]}));return;}
   if(a.role==='summonTap1293'){
