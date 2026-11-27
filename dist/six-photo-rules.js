@@ -8853,8 +8853,10 @@ export function createSixPhotoRules(api){
   // Rule 101.3a checks the attempt, including when a destruction is replaced.
   const chosen=targets[0],victim=t.g1263Babel&&exactRaces(effective(chosen,s)).includes('ディスタス')?
    {uid:chosen.uid,serial:(chosen.zoneSerial||0)+1}:null;
+  const chosenCost=cost(effective(chosen,s));
+  const defs=t.g1839CostPlusOne?t.defs.map(d=>({...d,filter:{...d.filter,exactCost:chosenCost===Infinity?'∞':chosenCost+1}})):t.defs;
   move(s,targets.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p})));
-  start(s,t,victim?[...t.defs,{op:'BabelRevive1263',victim}]:t.defs);
+  start(s,t,victim?[...defs,{op:'BabelRevive1263',victim}]:defs);
   break;
  }
  case'g34_GraveBase1126':if(v){

@@ -24,7 +24,7 @@ export function createRequested393SuperguardRules(api){
      out.push({row,kind:'returnOwn',mandatory:true,...ref(p,x),cardId:x.cardId});
     if(x.sealed||t.rows.some(r=>r.p===p&&r.uid===x.uid))continue;
     const c=effective(x,s),kinds=[...(c.superGuardman&&!x.tapped?['super']:[]),...(giant&&c.galacticBattle?['galactic']:[]),...(fire&&c.g588FireBattleReplace?['fire']:[])];
-    if(opposing&&c.g1195BattleProxy&&!x.faceDown)kinds.push('proxy');
+    if(opposing&&c.g1195BattleProxy&&!x.faceDown&&(!c.g1839ProxyRace||String(originalCard.race||'').includes(c.g1839ProxyRace)))kinds.push('proxy');
     if(c.g1071BattleProxy)kinds.push('kenji');
     if(originalCard.g762BattleProxyRace&&String(c.race||'').includes(originalCard.g762BattleProxyRace))kinds.push('raceProxy');
     for(const kind of kinds)out.push({row,kind,...ref(p,x),cardId:x.cardId});

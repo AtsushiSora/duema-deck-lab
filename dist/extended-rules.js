@@ -1,6 +1,6 @@
 import {createGZeroRules} from './gzero-rules.js?v=0.722.3';
 import {createRequested394Rules} from './requested394-rules.js?v=0.722.3';
-import {createRequested393SuperguardRules} from './requested393-superguard.js?v=0.722.3';
+import {createRequested393SuperguardRules} from './requested393-superguard.js?v=0.722.4';
 import {createRequested393ChangeRules} from './requested393-change-rules.js?v=0.722.6';
 import {createRequested393DispectorRules} from './requested393-dispector-rules.js?v=0.722.19';
 import {createRequested393JokerRules} from './requested393-joker-rules.js?v=0.722.6';
@@ -64,7 +64,7 @@ import {createOriginalChampionRules} from './champion-original-rules.js?v=0.722.
 import {createChampionRules} from './champion-rules.js?v=0.722.3';
 import {createEnvironmentRules} from './environment-rules.js?v=0.722.19';
 import {createRecommendedRules} from './recommended-rules.js?v=0.722.19';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.33';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.34';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.722.23';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.722.19';
