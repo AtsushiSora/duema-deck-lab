@@ -219,7 +219,7 @@ export function createExtendedRules(api){
   summonTapDonors1293:(s,p)=>six.summonTapDonors1293(s,p),projectSummonTap1293:(s,p,uid)=>six.projectSummonTap1293(s,p,uid),gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const six=createSixPhotoRules({...api,stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
+ const six=createSixPhotoRules({...api,discardAlternative1791:(s,p,ids,source)=>beginDiscardBatch(s,{p,source,causedBy:p,controller:p,selfDiscard:true,replacement:true,n:ids.length},ids),stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
   discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null,afterDiscard321=null,afterDiscardCount=null)=>
    beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{}),
     ...(afterDiscard321?{afterDiscard321}:{}),...(afterDiscardCount?{afterDiscardCount}:{})},ids)});
@@ -325,6 +325,7 @@ export function createExtendedRules(api){
    options:[opt('墓地のかわりに出す',true,c.g591Discard==='drawTwo'&&own.deck.length<=2?-1000:30,x.cardId)]};
  }
  function discardMode(s,t,x){
+  if(t.replacement)return null;
   return discardManaSource(s,t.p)?'optional':cardDiscardMode(s,t,x);
  }
  function cardDiscardMode(s,t,x){
@@ -416,7 +417,7 @@ export function createExtendedRules(api){
     if(t.all){
      const all=[...own.hand],watchers=discardWatchers848(s,t.p),group={g1284Watchers:graveDiscardWatch1284(s,t.p)};
      for(const x of all){
-      remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);
+      remove(own.hand,x.uid);clear(x);if(t.replacement)api.addAlternativeDiscardGrave1791(s,t.p,x);else api.addZone(s,own,'grave',x);
       afterDiscard(s,{...t,n:1,g848Grouped:true},x,true,group);
      }
      notifyDiscard848(s,t.p,watchers,all.length);
@@ -865,7 +866,7 @@ if(!f.g1746Finish&&f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.t
  }
  function discardCard(s,t,x,graveWatchers=t.batchId?s.extDiscardBatches?.[t.batchId]?.g1284Watchers??[]:graveDiscardWatch1284(s,t.p)){
   const own=s.players[t.p];
-  remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);
+  remove(own.hand,x.uid);clear(x);if(t.replacement)api.addAlternativeDiscardGrave1791(s,t.p,x);else api.addZone(s,own,'grave',x);
   const discarded=own.grave.includes(x);
   if(discarded)log(s,t.p,'discard',`${card(x).name}を手札から捨てる`,{cardId:x.cardId});
   afterDiscard(s,t,x,discarded,undefined,graveWatchers);

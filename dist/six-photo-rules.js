@@ -3884,6 +3884,22 @@ export function createSixPhotoRules(api){
    .map(x=>({player,uid:x.uid,to:'extra',destroy:false,toOwnerExtra:true}))));
   break;
  }
+ case'g34_DiscardSummon1791':{
+  const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),plan=x&&discardSummon1791(s,t.p,x,t.origin,t.selected);
+  if(!plan||!plan.permits.includes(t.permit??null))break;
+  if(t.selected.length===plan.rule.colors.length){
+   put(s,{...t,op:'g34_FinishDiscardSummon1791'});
+   api.discardAlternative1791(s,t.p,t.selected,t.source);break;
+  }
+  choice(s,t,'召喚の代わりに捨てる'+plan.rule.colors[t.selected.length]+'の手札を選ぶ（'+t.selected.length+'/2）',[
+   ...plan.rows.map(y=>opt(card(y).name,y.uid,15-cost(card(y)),y.cardId)),opt('召喚を取りやめる',null,-100)]);break;
+ }
+ case'g34_FinishDiscardSummon1791':{
+  const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),c=x&&api.zoneCard(s,t.p,x,t.origin);
+  if(c&&api.canCast(s,t.p,c,t.origin)&&api.canEnter(s,t.p,c,{origin:t.origin,execution:true})&&api.canExecuteUnpaid(s,t.p,c)&&api.costAltPermits568(s,t.p,x,c,t.origin).includes(t.permit??null))
+   cast(s,t.p,t.uid,true,null,0,null,t.origin,'手札を捨てる代替コスト',false,t.permit??null);
+  break;
+ }
  case'g34_HandCost262':{const n=own.hand.length;start(s,t,t.defs.map(d=>({...d,filter:{...d.filter,...(t.below?{belowCost:n}:{max:n})},...(d.g262Other?{excludeUid:t.uid}:{})})));break;}
  case'g34_Freeze262':for(const y of creatures(s,1-t.p))if(!y.sealed&&matches(s,1-t.p,y,t.filter))freeze(s,t,1-t.p,y);break;
  case'g34_Refill261':if(own.hand.length<=t.max)api.draw(s,t.p,Math.max(0,t.n-own.hand.length));break;
@@ -8507,6 +8523,7 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_DiscardSummon1791':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v,t)]);break;
  case'g34_DiscardDraw':if(v&&own.hand.some(y=>y.uid===v&&(!t.filter||matches(s,t.p,y,t.filter)))){put(s,task('draw',t.p,t.source,{n:t.n}));api.discardSelected(s,t.p,[v],t.source,t.p);}break;
  case'g34_HandArmy716':
@@ -11527,6 +11544,10 @@ export function createSixPhotoRules(api){
  summonTapDonors1293,projectSummonTap1293,
  mainActions(s,p){const own=s.players[p],out=graveActions1226(s,p);
   for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
+   const plan=discardSummon1791(s,p,x,origin);if(!plan)continue;
+   for(const permit of plan.permits)out.push({kind:'play',alternative:'sixPhoto',role:'discardSummon1791',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,label:plan.c.name+'を手札2枚を捨てて召喚する'});
+  }
+  for(const origin of ['hand','mana','grave'])for(const x of own[origin]){
    if(x.faceDown||!card(x).g1293SummonTap)continue;
    const c=api.zoneCard(s,p,x,origin);
    if(api.handAbilityIgnored(s,x)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
@@ -11619,6 +11640,7 @@ export function createSixPhotoRules(api){
   }
 for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
  alternative(s,p,a){
+  if(a.role==='discardSummon1791'){put(s,task('g34_DiscardSummon1791',p,a.cardId,{uid:a.uid,serial:s.players[p][a.origin].find(x=>x.uid===a.uid)?.zoneSerial||0,origin:a.origin,permit:a.manaPermit,selected:[]}));return;}
   if(a.role==='summonTap1293'){
    cast(s,p,a.uid,false,null,0,{g39Reduction:card(a.cardId).g1293SummonTap,g976TapPayment:[a.tapUid]},
     a.origin,'召喚時のコスト軽減',false,a.manaPermit);
@@ -11650,6 +11672,21 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    return;
   }put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
+ // A replacement cost cannot itself be replaced (QA45791). Reserve distinct hand
+ // cards before moving either, and keep only selections that can complete both slots.
+ function discardSummon1791(s,p,x,origin,selected=[]){
+  const c=api.zoneCard(s,p,x,origin),rule=c.g1791DiscardSummon,own=s.players[p];
+  if(!rule||x.faceDown||api.handAbilityIgnored(s,x)||own.mana.length<(rule.minMana||0)||
+     !api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||
+     !api.canEnter(s,p,c,{origin,execution:true})||!api.canExecuteUnpaid(s,p,c))return null;
+  const permits=[...new Set(api.costAltPermits568(s,p,x,c,origin))];if(!permits.length)return null;
+  const hand=own.hand.filter(y=>y.uid!==x.uid),matches=(y,color)=>colors(api.zoneCard(s,p,y,'hand')).includes(color);
+  if(selected.length>rule.colors.length||new Set(selected).size!==selected.length||selected.some((uid,i)=>!hand.some(y=>y.uid===uid&&matches(y,rule.colors[i]))))return null;
+  const complete=(i,used)=>i===rule.colors.length||hand.some(y=>!used.includes(y.uid)&&matches(y,rule.colors[i])&&complete(i+1,[...used,y.uid]));
+  if(!complete(selected.length,selected))return null;
+  const rows=selected.length===rule.colors.length?[]:hand.filter(y=>!selected.includes(y.uid)&&matches(y,rule.colors[selected.length])&&complete(selected.length+1,[...selected,y.uid]));
+  return {c,rule,permits,rows};
+ }
  function tapCastCost976(c){
   const rule=c.g976TapCast;
   if(!rule)return null;
