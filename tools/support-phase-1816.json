@@ -1,0 +1,402 @@
+{
+  "phase": 1816,
+  "checkedAt": "2026-11-27T16:08:46.126Z",
+  "baseline": "8e305a1be3c7b533c4b35005e2bf67786f48526c",
+  "baseCount": 9666,
+  "target": 10000,
+  "description": "Three complete cards reuse native G-zero, NEO, infinite attack/break choice, battle-win untap, blind discard, Sin and milling. Add exact captured-card creature check after blind discard and exact grave-visit Aura permissions recorded after milling through the current turn (QA33074). Preserve all physical IDs and original/reprint deck IDs.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36997/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36995/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
+    "https://dm.takaratomy.co.jp/rule/qa/33074/"
+  ],
+  "cards": [
+    {
+      "id": "dmr11-014",
+      "name": "アルティメット無法伝説",
+      "canonicalId": "dmr11-014",
+      "printId": "dmr11-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-014",
+      "faces": [
+        {
+          "name": "アルティメット無法伝説",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のアウトレイジが９体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は、「∞ パワーアタッカー」「∞ ブレイカー」「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップする」を得る。（「∞ パワーアタッカー」「∞ ブレイカー」を得たクリーチャーは攻撃中無限のパワーを得、相手のシールドを好きな数ブレイクできる）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アウトレイジ",
+              "creature": true,
+              "g258Civil": 9
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g1470InfiniteAttacker": true,
+              "breaker": "∞",
+              "g189BattleWin": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ],
+              "g1816InfinityBreaker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-014.jpg",
+      "imageSha256": "888148c3368457c490ff9d6ffa2f5f97f603dc4fdaf1c19c4d1baf07a2a16ad9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr11-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr11-014",
+          "dmex08-216"
+        ],
+        "allSearchIds": [
+          "dmr11-014",
+          "dmex08-216"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:08:46.126Z",
+        "sha256": "a91f6de0ed7262e54f7814879f586cb77f9d3100c3e1c04fe920932b0e50e014",
+        "facesMatched": true,
+        "imageSha256": "888148c3368457c490ff9d6ffa2f5f97f603dc4fdaf1c19c4d1baf07a2a16ad9"
+      }
+    },
+    {
+      "id": "dmex15-b030",
+      "name": "レアカードハンター ウサギ団 / ラビットハンド",
+      "canonicalId": "dmex15-b030",
+      "printId": "dmex15-b030",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b030",
+      "faces": [
+        {
+          "name": "レアカードハンター ウサギ団",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ：自分のマナゾーンにすべての文明が揃っていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nNEO進化：多色クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー",
+          "race": "ドリームメイト/ヒューマノイド/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "ラビットハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。それがクリーチャーなら、自分はカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "multicolor": true
+            }
+          ]
+        },
+        "breaker": 2,
+        "g396Zero": {
+          "all": [
+            {
+              "g568ManaColors": [
+                "光",
+                "水",
+                "闇",
+                "火",
+                "自然"
+              ]
+            }
+          ]
+        },
+        "spellFace": {
+          "type": "spell",
+          "name": "ラビットハンド",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BlindDiscard773",
+              "n": 1,
+              "g1816DrawIfCreature": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b030a.jpg",
+      "imageSha256": "29cc03873ea436d49b71962dccba5b121075aac0dcb41ceb85a9a96e027a9441",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex15-b030-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex15-b030"
+        ],
+        "allSearchIds": [
+          "dmex15-b030"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:08:46.126Z",
+        "sha256": "ebb5363dd82de91b93d49697d49efaedaf1caa914a9e4005a3161133b577bfcd",
+        "facesMatched": true,
+        "imageSha256": "29cc03873ea436d49b71962dccba5b121075aac0dcb41ceb85a9a96e027a9441"
+      }
+    },
+    {
+      "id": "dmrp12-024",
+      "name": "大罪十二宮",
+      "canonicalId": "dmrp12-024",
+      "printId": "dmrp12-024",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-024",
+      "faces": [
+        {
+          "name": "大罪十二宮",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "無月の大罪１（この呪文を唱えるコストを１少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\n自分の山札の上から２枚を墓地に置く。\nこのターン、オーラを自分の墓地から使ってもよい。（コストは支払う）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g1432Sin": 1,
+        "g1500SinSpell": true,
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "spell": true
+          },
+          {
+            "op": "AuraGraveUse1816",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-024.jpg",
+      "imageSha256": "22fe1a1da58be5a7d1c60f8f1e490fd0f5f62e240f6f23e769a2668d4365b378",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp12-024-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp12-024"
+        ],
+        "allSearchIds": [
+          "dmrp12-024"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:08:46.126Z",
+        "sha256": "021b87ceefdc240bfaa1674ab41f892c0ec707d1a23ceee53d77620a74af0a5c",
+        "facesMatched": true,
+        "imageSha256": "22fe1a1da58be5a7d1c60f8f1e490fd0f5f62e240f6f23e769a2668d4365b378"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-216",
+      "name": "アルティメット無法伝説",
+      "canonicalId": "dmr11-014",
+      "printId": "dmex08-216",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-216",
+      "faces": [
+        {
+          "name": "アルティメット無法伝説",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "G・ゼロ：バトルゾーンに自分のアウトレイジが９体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は、「∞ パワーアタッカー」「∞ ブレイカー」「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップする」を得る。（「∞ パワーアタッカー」「∞ ブレイカー」を持つクリーチャーは攻撃中無限のパワーを得、相手のシールドを好きな数ブレイクできる）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アウトレイジ",
+              "creature": true,
+              "g258Civil": 9
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g1470InfiniteAttacker": true,
+              "breaker": "∞",
+              "g189BattleWin": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ],
+              "g1816InfinityBreaker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-216.jpg",
+      "imageSha256": "f43f0e04e530d569f4fd6312f08535578aa6134cb6816bd9b87be5f1fc7f7842",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex08-216-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr11-014",
+          "dmex08-216"
+        ],
+        "allSearchIds": [
+          "dmr11-014",
+          "dmex08-216"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:08:46.126Z",
+        "sha256": "9790674cf7579b06be055e87a1aace060f90740a55dafa93b72bde3fd4972236",
+        "facesMatched": true,
+        "imageSha256": "f43f0e04e530d569f4fd6312f08535578aa6134cb6816bd9b87be5f1fc7f7842"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36997/",
+      "sha256": "8923612ddbde6d039cad64eb13bdffed1286e70ab30234f64524542a47e50ff2",
+      "checkedAt": "2026-11-27T16:08:46.126Z",
+      "reproduced": true,
+      "tests": "tests/standard1816-effects.test.mjs",
+      "reproduction": "Actual infinity attack chooses 0, 2 or all5 shields at both seats, including a World-Breaker recipient that retains independent world/infinity choices; encrypted restoration preserves decisions.",
+      "result": "Actual infinity attack chooses 0, 2 or all5 shields at both seats, including a World-Breaker recipient that retains independent world/infinity choices; encrypted restoration preserves decisions."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36995/",
+      "sha256": "c91e780411a94eae5711b3832b1ec671a924fdd1ce192ef094fa4b74430e7f11",
+      "checkedAt": "2026-11-27T16:08:46.126Z",
+      "reproduced": true,
+      "tests": "tests/standard1816-effects.test.mjs",
+      "reproduction": "Actual granted infinite attack power remains Infinity after finite minus, leaves defensive power finite, and ties with actual V-top-myth KatsuMugen infinite battle power, destroying both creatures.",
+      "result": "Actual granted infinite attack power remains Infinity after finite minus, leaves defensive power finite, and ties with actual V-top-myth KatsuMugen infinite battle power, destroying both creatures."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
+      "sha256": "37c346e1b2ef2a24d0fe51601d20bdb724a9153fcbb7dd2c6669b5cda80137ca",
+      "checkedAt": "2026-11-27T16:08:46.126Z",
+      "reproduced": true,
+      "tests": "tests/standard1816-effects.test.mjs",
+      "reproduction": "Actual always-winning Kumo survives and destroys the granted-infinite attacker at both seats.",
+      "result": "Actual always-winning Kumo survives and destroys the granted-infinite attacker at both seats."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
+      "sha256": "d51cea5766f26d713a7450af01766add3ae031ac4254483692f3d767da3d9deb",
+      "checkedAt": "2026-11-27T16:08:46.126Z",
+      "reproduced": true,
+      "tests": "tests/standard1816-effects.test.mjs",
+      "reproduction": "Actual infinity attack chooses 0, 2 or all5 shields at both seats, including a World-Breaker recipient that retains independent world/infinity choices; encrypted restoration preserves decisions.",
+      "result": "Actual infinity attack chooses 0, 2 or all5 shields at both seats, including a World-Breaker recipient that retains independent world/infinity choices; encrypted restoration preserves decisions."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/33074/",
+      "sha256": "e8ca8cfcf1061a275823cb5ef034b3e7a85187ff7fc5bd4fa9ec2672271c00e2",
+      "checkedAt": "2026-11-27T16:08:46.126Z",
+      "reproduced": true,
+      "tests": "tests/standard1816-effects.test.mjs",
+      "reproduction": "QA33074 actual Zodiac mills two Auras, permits those and preexisting grave Auras, excludes a later arriving Aura and a reused same-UID later grave visit; permission expires at actual turn end and paid use/cancel/resume and encrypted service execute at printed cost.",
+      "result": "QA33074 actual Zodiac mills two Auras, permits those and preexisting grave Auras, excludes a later arriving Aura and a reused same-UID later grave visit; permission expires at actual turn end and paid use/cancel/resume and encrypted service execute at printed cost."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:08:46.126Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr11-014": 4,
+      "dmex15-b030": 4,
+      "dmrp12-024": 4,
+      "dmex08-216": 4
+    }
+  },
+  "validationNotes": {
+    "coverage": "58 focused tests reproduce all five official rulings and full abilities: nine live own Outrages versus sealed/buried/enemy, paid13/G-zero, infinite attack-only power with finite modifiers and mandatory repeat-attack untap, arbitrary 0/2/5 infinity breaks and independent World/infinity choices, real always-win Kumo and infinite Katsu ties, current-turn expiry; Rabbit paid/free NEO both forms on a genuinely multicolor own base, double breaks, blind creature/spell/seed/twinpact selection and Carol replacement; Sin/mill and grave-visit exact Aura snapshot, later arrivals/revisits excluded, real paid Aura placement, manual mana cancellation/encrypted restoration, ordinary/reduced end-turn sacrifice, Apul/Ningyo and actual Genmu suppression. Six actual encrypted duel-service tests cover all three cards at both seats. 309 selected related and five online tests pass.",
+    "resolvedAttempts": "Initial native NEO validator intentionally rejected unlisted multicolor condition; used existing any-array representation and extended its strict one-key whitelist to multicolor:true, reusing existing matchesEvolution multicolor logic. No card ID, saved record or earlier card definition changed.",
+    "reprints": "Full original and DMEX08 reprint images of Ultimate reviewed, plus sole Rabbit twinpact and Zodiac images; all exact-name official search results retained.",
+    "nextCandidates": "Official evidence is prepared for Mestapo and Amate Radial. Their full additional restriction/ruling behavior still requires implementation before registering; they are not counted."
+  }
+}

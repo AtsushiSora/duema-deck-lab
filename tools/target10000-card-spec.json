@@ -12612,5 +12612,218 @@
       "breaker": 2,
       "g1815PrinceSummon": true
     }
+  },
+  "dmr11-014": {
+    "phase": 1816,
+    "faces": [
+      {
+        "name": "アルティメット無法伝説",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "G・ゼロ - バトルゾーンに自分のアウトレイジが９体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は、「∞ パワーアタッカー」「∞ ブレイカー」「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップする」を得る。（「∞ パワーアタッカー」「∞ ブレイカー」を得たクリーチャーは攻撃中無限のパワーを得、相手のシールドを好きな数ブレイクできる）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アウトレイジ",
+            "creature": true,
+            "g258Civil": 9
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "g1470InfiniteAttacker": true,
+            "breaker": "∞",
+            "g189BattleWin": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ],
+            "g1816InfinityBreaker": true
+          },
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmex08-216": {
+    "phase": 1816,
+    "faces": [
+      {
+        "name": "アルティメット無法伝説",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "G・ゼロ：バトルゾーンに自分のアウトレイジが９体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は、「∞ パワーアタッカー」「∞ ブレイカー」「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップする」を得る。（「∞ パワーアタッカー」「∞ ブレイカー」を持つクリーチャーは攻撃中無限のパワーを得、相手のシールドを好きな数ブレイクできる）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アウトレイジ",
+            "creature": true,
+            "g258Civil": 9
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "g1470InfiniteAttacker": true,
+            "breaker": "∞",
+            "g189BattleWin": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ],
+            "g1816InfinityBreaker": true
+          },
+          "spell": true
+        }
+      ]
+    }
+  },
+  "dmex15-b030": {
+    "phase": 1816,
+    "faces": [
+      {
+        "name": "レアカードハンター ウサギ団",
+        "typeText": "NEOクリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "G・ゼロ：自分のマナゾーンにすべての文明が揃っていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nNEO進化：多色クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー",
+        "race": "ドリームメイト/ヒューマノイド/ハンター",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "ラビットハンド",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。それがクリーチャーなら、自分はカードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "multicolor": true
+          }
+        ]
+      },
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g568ManaColors": [
+              "光",
+              "水",
+              "闇",
+              "火",
+              "自然"
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "ラビットハンド",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1,
+            "g1816DrawIfCreature": true,
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp12-024": {
+    "phase": 1816,
+    "faces": [
+      {
+        "name": "大罪十二宮",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "無月の大罪１（この呪文を唱えるコストを１少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\n自分の山札の上から２枚を墓地に置く。\nこのターン、オーラを自分の墓地から使ってもよい。（コストは支払う）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g1432Sin": 1,
+      "g1500SinSpell": true,
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "spell": true
+        },
+        {
+          "op": "AuraGraveUse1816",
+          "spell": true
+        }
+      ]
+    }
   }
 }

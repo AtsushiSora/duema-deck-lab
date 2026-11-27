@@ -310498,19 +310498,160 @@
       "g1815PrinceSummon": true,
       "supportBatch": "phase-1815",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-014",
+      "name": "アルティメット無法伝説",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 13,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のアウトレイジが９体以上あれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は、「∞ パワーアタッカー」「∞ ブレイカー」「このクリーチャーがバトルに勝った時、このクリーチャーをアンタップする」を得る。（「∞ パワーアタッカー」「∞ ブレイカー」を得たクリーチャーは攻撃中無限のパワーを得、相手のシールドを好きな数ブレイクできる）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-014",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アウトレイジ",
+            "creature": true,
+            "g258Civil": 9
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "g1470InfiniteAttacker": true,
+            "breaker": "∞",
+            "g189BattleWin": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ],
+            "g1816InfinityBreaker": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1816",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b030",
+      "name": "レアカードハンター ウサギ団 / ラビットハンド",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ドリームメイト/ヒューマノイド/ハンター",
+      "text": "G・ゼロ：自分のマナゾーンにすべての文明が揃っていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nNEO進化：多色クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\n【呪文面】\n相手の手札を１枚見ないで選び、捨てさせる。それがクリーチャーなら、自分はカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b030",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "multicolor": true
+          }
+        ]
+      },
+      "breaker": 2,
+      "g396Zero": {
+        "all": [
+          {
+            "g568ManaColors": [
+              "光",
+              "水",
+              "闇",
+              "火",
+              "自然"
+            ]
+          }
+        ]
+      },
+      "spellFace": {
+        "type": "spell",
+        "name": "ラビットハンド",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 1,
+            "g1816DrawIfCreature": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1816",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-024",
+      "name": "大罪十二宮",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "無月の大罪１（この呪文を唱えるコストを１少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\n自分の山札の上から２枚を墓地に置く。\nこのターン、オーラを自分の墓地から使ってもよい。（コストは支払う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g1432Sin": 1,
+      "g1500SinSpell": true,
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "spell": true
+        },
+        {
+          "op": "AuraGraveUse1816",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1816",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1815,
-    "checkedAt": "2026-11-27T16:01:21.864Z",
-    "baseCount": 9664,
-    "newEffectCards": 2,
+    "phase": 1816,
+    "checkedAt": "2026-11-27T16:08:46.126Z",
+    "baseCount": 9666,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9666,
+    "totalCount": 9669,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39323/",
-      "https://dm.takaratomy.co.jp/rule/qa/39323/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36997/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36995/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
+      "https://dm.takaratomy.co.jp/rule/qa/33074/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -340215,6 +340356,22 @@
         "totalCount": 9664,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1815,
+        "checkedAt": "2026-11-27T16:01:21.864Z",
+        "baseCount": 9664,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9666,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39323/",
+          "https://dm.takaratomy.co.jp/rule/qa/39323/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

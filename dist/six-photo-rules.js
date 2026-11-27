@@ -45,7 +45,10 @@ export function createSixPhotoRules(api){
  function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return s.players[p].battle.filter(y=>api.isCreature(s,y)||card(y).type==='seed'&&card(y).g450ZoneSummon?.emptyHand).flatMap(y=>{const r=!y.sealed&&!y.faceDown&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&(!r.emptyHand||s.players[p].hand.length===0)&&(!r.entryTurn||(y.originalEntryTurn??y.entered)===s.turn)&&(r.unlimited||s.g450ZoneUses?.[p]?.[k]!==s.turn)&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
  // Count visible Joker cards in both zones; a twinpact is one mana card.
  function jokerCount539(s,p){return s.players[p].battle.filter(y=>!y.sealed&&!y.faceDown&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length;}
- const gravePermits294=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&c.g1436ZoneUse==='grave'&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'grave')?['g1436:grave']:[]):s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
+ const graveAuraUse1816=(s,p,x)=>(s.extLimits||[]).some(l=>l.kind==='g1816AuraGraveUse'&&l.player===p&&
+  l.refs.some(r=>r.uid===x.uid&&r.serial===(x.zoneSerial||0))&&
+  !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
+ const gravePermits294=(s,p,x,c=card(x))=>c.type==='aura'?(s.active===p&&!x.faceDown&&(c.g1436ZoneUse==='grave'||graveAuraUse1816(s,p,x))&&!api.handAbilityIgnored(s,x)&&api.canMoveZone(s,p,'grave')?['g1436:grave']:[]):s.active!==p||c.type!=='creature'||!api.canMoveZone(s,p,'grave')?[]:[
   ...(!x.faceDown&&c.g978SelfGraveSummon&&(c.g978SelfGraveSummon===true||ownCondition(s,p,c.g978SelfGraveSummon))?['g978:self']:[]),
   ...creatures(s,p).filter(y=>{const rule=effective(y,s).g294GraveAura;return !y.sealed&&rule&&(rule.race?race(c,rule.race):colors(c).includes('闇')&&(api.isEvolution(x)||!!c.g48HandEvolution));}).slice(0,1).map(y=>'g294:'+y.uid+'@'+(y.incarnation||0)),
   ...zonePermits450(s,p,x,c,'grave')
@@ -6079,6 +6082,12 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_AuraGraveUse1816':
+  (s.extLimits??=[]).push({kind:'g1816AuraGraveUse',player:t.p,expires:'end',who:s.active,
+   refs:own.grave.filter(x=>card(x).type==='aura').map(x=>({uid:x.uid,serial:x.zoneSerial||0})),
+   spellCost:cost(faces(card(t.source)).at(-1)),spellSource:t.source});
+  break;
+ case'g34_RabbitDraw1816':if(t.creature)api.draw(s,t.p,1);break;
  case'g34_PrinceDestroy1815':{
   const host=sourceHost474(s,t.g1815Subject);
   if(!host||host.p!==t.p||host.x.sealed||!api.isCreature(s,host.x))break;
@@ -8560,7 +8569,9 @@ export function createSixPhotoRules(api){
   }else{
    const ids=selected.map(i=>t.slots?.[i]??hand[i]?.uid).filter(uid=>hand.some(x=>x.uid===uid));
    if(ids.length){
-    const after=t.g1249DeclaredCost===undefined?null:task('g34_CheckBlindDiscardCost1249',t.p,t.source,{
+    const after=t.g1816DrawIfCreature?task('g34_RabbitDraw1816',t.p,t.source,{
+     creature:card(hand.find(x=>x.uid===ids[0])).type==='creature'
+    }):t.g1249DeclaredCost===undefined?null:task('g34_CheckBlindDiscardCost1249',t.p,t.source,{
      cardId:hand.find(x=>x.uid===ids[0]).cardId,number:t.g1249DeclaredCost
     });
     api.discardSelected(s,1-t.p,ids,t.source,t.controller??t.p,null,after);
@@ -10043,7 +10054,7 @@ export function createSixPhotoRules(api){
   const shields=s.players[1-p].shields.length;
   choice(s,task('g34_GrantedBreaker633',p,x.cardId,{uid:x.uid}),'この攻撃で使うブレイカーを選ぶ',
    counts.map(n=>opt(n==='world'?(c.g1135DragonWorld?'ドラゴン・ワールド・ブレイカー':'ワールド・ブレイカー'):n==='g'?'G・ブレイカー（攻撃の後、自分も全ブレイク）':
-    n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
+    n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker&&!c.g1816InfinityBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
     n,n==='g'?shields-1:Math.min(n==='∞'||n==='world'?Infinity:n,shields))));
   return true;
  },
