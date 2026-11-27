@@ -313873,17 +313873,110 @@
       ],
       "supportBatch": "phase-1843",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy11-045",
+      "name": "希望の覇王 鬼丸「刀」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "進化-自分のハンター１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、パワーの合計が13000以下になるよう、相手のクリーチャーを好きな数選び、破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーが破壊された時、このカードを墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-045",
+      "limit": 4,
+      "evolution": {
+        "race": "ハンター"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 13000,
+          "title": "合計パワー13000以下になるよう好きな数選ぶ"
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "SelfGraveHand476"
+        }
+      ],
+      "supportBatch": "phase-1844",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd3-015",
+      "name": "鬼退治の心絵",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から３枚を見る。その中からジョーカーズまたはレクスターズを１枚表向きにし、手札またはマナゾーンに置く。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd3-015",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "reveal": true,
+              "g467Destinations": [
+                "hand",
+                "mana"
+              ],
+              "filter": {
+                "any": [
+                  {
+                    "anyFaceRace": "ジョーカーズ"
+                  },
+                  {
+                    "anyFaceRace": "レクスターズ"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1844",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1843,
-    "checkedAt": "2026-11-27T22:16:15.249Z",
-    "baseCount": 9738,
-    "newEffectCards": 3,
+    "phase": 1844,
+    "checkedAt": "2026-11-27T22:22:34.893Z",
+    "baseCount": 9741,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9741,
+    "totalCount": 9743,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/45801/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344027,6 +344120,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9738,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1843,
+        "checkedAt": "2026-11-27T22:16:15.249Z",
+        "baseCount": 9738,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9741,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

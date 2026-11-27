@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9741,
-  "pendingNames": 2108,
-  "phase": 1843,
-  "added": 3,
+  "supportedNames": 9743,
+  "pendingNames": 2106,
+  "phase": 1844,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -161,7 +161,7 @@
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 168,
+    "進化クリーチャー": 167,
     "スター進化クリーチャー": 45,
     "NEOクリーチャー": 38,
     "オレガ・オーラ": 11,
@@ -178,7 +178,7 @@
     "進化クロスギア": 1,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
-    "タマシード": 25,
+    "タマシード": 24,
     "城": 21,
     "ドラグハート・フォートレス": 23,
     "禁断クリーチャー": 2,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1581,
+    "未対応の能力文": 1579,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -577417,28 +577417,254 @@
           "reason": "First52/48 passed; two Girameshia plus tests caught existing ShieldPlus414 default hidden addition, corrected explicit faceUp flag and shared utility default preserving other callers, regenerated online compatibility; two fixture buried cards used nonexistent plus instead of native shieldStack, corrected fixture. Extra12/10 passed; two privacy assertions used nonexistent projected shields list, corrected to actual faceUpShields/shieldCount/shieldGroups fields. All final tests green, failed raw logs retained."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "265be8cefc80f8834cff29f822e96756e5393d14"
+    },
+    {
+      "phase": 1844,
+      "checkedAt": "2026-11-27T22:26:32.698Z",
+      "baseline": "265be8cefc80f8834cff29f822e96756e5393d14",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9741,
+      "currentNames": 9743,
+      "remainingNames": 257,
+      "added": [
+        {
+          "id": "promoy11-045",
+          "name": "希望の覇王 鬼丸「刀」"
+        },
+        {
+          "id": "dm24bd3-015",
+          "name": "鬼退治の心絵"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1844,
+        "baseline": "265be8cefc80f8834cff29f822e96756e5393d14",
+        "originalDefinitionsUnchanged": 9741,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9743,
+        "uniqueIds": 9743,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9741,
+        "existingImageReferenceRowsUnchanged": 12205,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1844": {
+          "name": "official-1844",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1844.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.217,
+          "log": "tmp/duema-target-10000/official-1844.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1844-final": {
+          "name": "focused-1844-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1844-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.974,
+          "log": "tmp/duema-target-10000/focused-1844-final.log",
+          "passed": 35,
+          "logSha256": "6411952c1d74a7e33a924b74d7e08b7a4fe9d974158e400d75738f09dd2e8843"
+        },
+        "related-1844": {
+          "name": "related-1844",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1844.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.044,
+          "log": "tmp/duema-target-10000/related-1844.log",
+          "passed": 126,
+          "logSha256": "54904f3dec8630207f8e992be61419c419dc2e6445c0da7e45b0f184300f8563"
+        },
+        "check-1844": {
+          "name": "check-1844",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.774,
+          "log": "tmp/duema-target-10000/check-1844.log",
+          "passed": 0,
+          "logSha256": "136629b7d5fb261e00130f08061b35a9457c8d5168efc72c3c5f194e10d4735f"
+        },
+        "audit-1844": {
+          "name": "audit-1844",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.586,
+          "log": "tmp/duema-target-10000/audit-1844.log",
+          "passed": 0,
+          "logSha256": "cc9110889292599f8d9a91d82cdc7a52316670cb12968965a739362f4d06ba63"
+        },
+        "invariants-1844": {
+          "name": "invariants-1844",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1844"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.908,
+          "log": "tmp/duema-target-10000/invariants-1844.log",
+          "passed": 0,
+          "logSha256": "e81d874b027bc1cfe64d87335d944d297df6e304e225eb793aa16bbf25a0edd1"
+        },
+        "related-online-1844": {
+          "name": "related-online-1844",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.609,
+          "log": "tmp/duema-target-10000/related-online-1844.log",
+          "passed": 5,
+          "logSha256": "a95c65660a49cc7db27b6ca7e5972031f93665610f4cf2ae5d434540a1748ee3"
+        },
+        "extra-1844": {
+          "name": "extra-1844",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1844-edge-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.144,
+          "log": "tmp/duema-target-10000/extra-1844.log",
+          "passed": 6,
+          "logSha256": "ac7845a8e09eff0e302dbd9631343cd17ad810104b60aa47f17f44d789731392"
+        }
+      },
+      "totalTestsPassed": 172,
+      "manifest": "tools/support-phase-1844.json",
+      "supported": 9743,
+      "pending": 2106,
+      "engineVersion": "0.602.368",
+      "held": [
+        {
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-072",
+          "status": "unimplemented-not-counted",
+          "reason": "Official linked QA47460 requires full literal Raikou Knight break-replacement provenance: discarding Pauaa for ordinary attack break is NOT opponent creature-effect discard, whereas effect-caused break can qualify through replacement. Original/mid reprints abbreviate opponent modifier but current Cho015 explicitly says opponent creature. Raikou dmrp13-s06 is itself unimplemented and needs full Galaxyshield4/summon from faceup shield/entry enemy shield-down/both battle and faceup-shield single-card break replacement. Need that complete official-verified implementation and actual attack/effect-break literal reproduction before counting Pauaa; no partial entry-only or opponentTurn-only hook. All41 official search results enumerated,3 exact prints and all3 full images reviewed, linked QA47460 cached. No manifest/pins/runtime registered.",
+          "searchSha256": "7639820b41a49982828c02f268cc70241a24cba83fca17131f085ad0628416b8",
+          "exactPrintIds": [
+            "dmex02-072",
+            "promoy22-026",
+            "dm23ex2-Cho015"
+          ],
+          "allImagesReviewed": true,
+          "rules": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/47460/",
+              "sha256": "0a726742c375e547565bdb5893132964b1479c341cba51837a1682087b66273b"
+            }
+          ],
+          "checkedAt": "2026-11-27T22:22:34.893Z"
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmex16-042",
+          "name": "ハートフ・ルピア",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        },
+        {
+          "id": "dm31-030",
+          "name": "バイオレンス・迅雷・ドラゴン",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        },
+        {
+          "id": "dmex17-051",
+          "name": "ミロクの弟子 ニョライ",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
+        }
+      ],
+      "verificationScope": "Two complete new types using existing operations only; Onimaru Hunter evolution Fire8/13000/T3, exact original and second promo both full images, current-power budget13000 optional0/all target enemy creatures chosen before simultaneous destruction, actual boosted11000 leaves insufficient budget for4000, untargetable excluded, proper Hunter and no wrongbase, immediate evo attack3break; death returns only exact self original print from actual grave, underlying Hunter remains grave, actual DemonHand destruction versus SpiralGate bounce, Apuru locked grave and ignored-source death trigger suppressed. Onitaiji Nature3 seed/shinkalize (no attacks), private top3 mandatory any-type Joker OR Rex reveal1 to hand or mana, all remaining cards bottom in chosen order, true no-match orders all3 without revealing hidden identities, short lookup handled by native Look, mono/multi mana orientation, all physical IDs/save intact. Literal linked QA45801 reproduced with actual MomokingNEX attack deploy of nonFire noncreature Onitaiji in both seats. Focused35 plus edge6 encrypted two-account service and source ignore, related and online regressions passed; npmcheck/audit9743/oldID-data invariants passed. All2/2 exact official searches complete,4 full print images reviewed, all limits4. Pauaa3 prints fully researched but unimplemented/not counted with literal break-provenance reason; preserve prior pending/holds/fullSuite interrupted. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1844",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1844-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.034,
+          "log": "tmp/duema-target-10000/focused-1844.log",
+          "reason": "Initial35/29 passed; two budget fixtures expected a decision after selecting11000 when no remaining legal target, but native Select correctly auto-finishes; guard optional decision. Four death tests accidentally used dm01-063 Giant (mana-loss entry) rather than actual DemonHand dm01-027; fixed test ID. No new runtime logic required, all final35 and6 edge pass. Initial raw logs retained."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1843,
-    "nextPhase": 1844,
+    "lastVerifiedPhase": 1844,
+    "nextPhase": 1845,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmex02-072",
-        "name": "貝獣 パウアー",
-        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        "id": "dmex16-042",
+        "name": "ハートフ・ルピア",
+        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
       },
       {
-        "id": "promoy11-045",
-        "name": "希望の覇王 鬼丸「刀」",
-        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        "id": "dm31-030",
+        "name": "バイオレンス・迅雷・ドラゴン",
+        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
       },
       {
-        "id": "dm24bd3-015",
-        "name": "鬼退治の心絵",
-        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        "id": "dmex17-051",
+        "name": "ミロクの弟子 ニョライ",
+        "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
       }
     ],
     "steps": [
@@ -578332,11 +578558,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1843,
-      "baseline": "ec0f0854e37a1ae821193afe673c180a64593368",
-      "supportedNames": 9741,
-      "artifact": "tools/target10000-registration-checkpoint-1843.json",
-      "checkedAt": "2026-11-27T22:20:43.332Z"
+      "phase": 1844,
+      "baseline": "265be8cefc80f8834cff29f822e96756e5393d14",
+      "supportedNames": 9743,
+      "artifact": "tools/target10000-registration-checkpoint-1844.json",
+      "checkedAt": "2026-11-27T22:26:32.698Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -581394,8 +581620,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9741,
-      "remaining": 259,
+      "currentNames": 9743,
+      "remaining": 257,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -581403,26 +581629,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1843,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1843.json",
+      "lastPhase": 1844,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1844.json",
       "nextCandidates": [
         {
-          "id": "dmex02-072",
-          "name": "貝獣 パウアー",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dmex16-042",
+          "name": "ハートフ・ルピア",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         },
         {
-          "id": "promoy11-045",
-          "name": "希望の覇王 鬼丸「刀」",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dm31-030",
+          "name": "バイオレンス・迅雷・ドラゴン",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         },
         {
-          "id": "dm24bd3-015",
-          "name": "鬼退治の心絵",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dmex17-051",
+          "name": "ミロクの弟子 ニョライ",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         }
       ],
-      "resumeProcedure": "Phase1843 verified9741 names, remaining259; proceed grouped official full research/implementation for next3. Preserve all prior pending/holds/fullSuite interrupted status and Genmu observed issue. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1844 verified9743 names, remaining257; next1845 crossgear trio official grouped research. Preserve all prior pending/holds/fullSuite interrupted, Genmu observed issue and new Pauaa QA47460/Raikou full implementation hold. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -581633,9 +581859,30 @@
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-054.jpg",
           "imageSha256": "791762216ac711c9156df03620efc8518297c8e00d76025bb0c453be4ed5098c",
           "checkedAt": "2026-11-27T21:48:17.362Z"
+        },
+        {
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-072",
+          "status": "unimplemented-not-counted",
+          "reason": "Official linked QA47460 requires full literal Raikou Knight break-replacement provenance: discarding Pauaa for ordinary attack break is NOT opponent creature-effect discard, whereas effect-caused break can qualify through replacement. Original/mid reprints abbreviate opponent modifier but current Cho015 explicitly says opponent creature. Raikou dmrp13-s06 is itself unimplemented and needs full Galaxyshield4/summon from faceup shield/entry enemy shield-down/both battle and faceup-shield single-card break replacement. Need that complete official-verified implementation and actual attack/effect-break literal reproduction before counting Pauaa; no partial entry-only or opponentTurn-only hook. All41 official search results enumerated,3 exact prints and all3 full images reviewed, linked QA47460 cached. No manifest/pins/runtime registered.",
+          "searchSha256": "7639820b41a49982828c02f268cc70241a24cba83fca17131f085ad0628416b8",
+          "exactPrintIds": [
+            "dmex02-072",
+            "promoy22-026",
+            "dm23ex2-Cho015"
+          ],
+          "allImagesReviewed": true,
+          "rules": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/47460/",
+              "sha256": "0a726742c375e547565bdb5893132964b1479c341cba51837a1682087b66273b"
+            }
+          ],
+          "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ec0f0854e37a1ae821193afe673c180a64593368",
+      "lastVerifiedCommit": "265be8cefc80f8834cff29f822e96756e5393d14",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -581646,7 +581893,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ec0f0854e37a1ae821193afe673c180a64593368"
+      "lastVerifiedCodeCommit": "265be8cefc80f8834cff29f822e96756e5393d14"
     },
     "resolvedRegistrationValidations": [
       {
@@ -582762,8 +583009,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9741,
-      "remaining": 259,
+      "currentNames": 9743,
+      "remaining": 257,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -582771,26 +583018,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1843,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1843.json",
+      "lastPhase": 1844,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1844.json",
       "nextCandidates": [
         {
-          "id": "dmex02-072",
-          "name": "貝獣 パウアー",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dmex16-042",
+          "name": "ハートフ・ルピア",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         },
         {
-          "id": "promoy11-045",
-          "name": "希望の覇王 鬼丸「刀」",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dm31-030",
+          "name": "バイオレンス・迅雷・ドラゴン",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         },
         {
-          "id": "dm24bd3-015",
-          "name": "鬼退治の心絵",
-          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+          "id": "dmex17-051",
+          "name": "ミロクの弟子 ニョライ",
+          "reason": "Grouped official research for crossgear optional top3 deployment and attachment, Samurai hand generation plus own gear-entry destroy4000 trigger, and powered breaker/3gear power/a gear-entry draw/free own cross. Implement all abilities and exact print/QA interactions, no partial."
         }
       ],
-      "resumeProcedure": "Phase1843 verified9741 names, remaining259; proceed grouped official full research/implementation for next3. Preserve all prior pending/holds/fullSuite interrupted status and Genmu observed issue. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1844 verified9743 names, remaining257; next1845 crossgear trio official grouped research. Preserve all prior pending/holds/fullSuite interrupted, Genmu observed issue and new Pauaa QA47460/Raikou full implementation hold. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -583001,9 +583248,30 @@
           "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-054.jpg",
           "imageSha256": "791762216ac711c9156df03620efc8518297c8e00d76025bb0c453be4ed5098c",
           "checkedAt": "2026-11-27T21:48:17.362Z"
+        },
+        {
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-072",
+          "status": "unimplemented-not-counted",
+          "reason": "Official linked QA47460 requires full literal Raikou Knight break-replacement provenance: discarding Pauaa for ordinary attack break is NOT opponent creature-effect discard, whereas effect-caused break can qualify through replacement. Original/mid reprints abbreviate opponent modifier but current Cho015 explicitly says opponent creature. Raikou dmrp13-s06 is itself unimplemented and needs full Galaxyshield4/summon from faceup shield/entry enemy shield-down/both battle and faceup-shield single-card break replacement. Need that complete official-verified implementation and actual attack/effect-break literal reproduction before counting Pauaa; no partial entry-only or opponentTurn-only hook. All41 official search results enumerated,3 exact prints and all3 full images reviewed, linked QA47460 cached. No manifest/pins/runtime registered.",
+          "searchSha256": "7639820b41a49982828c02f268cc70241a24cba83fca17131f085ad0628416b8",
+          "exactPrintIds": [
+            "dmex02-072",
+            "promoy22-026",
+            "dm23ex2-Cho015"
+          ],
+          "allImagesReviewed": true,
+          "rules": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/47460/",
+              "sha256": "0a726742c375e547565bdb5893132964b1479c341cba51837a1682087b66273b"
+            }
+          ],
+          "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ec0f0854e37a1ae821193afe673c180a64593368",
+      "lastVerifiedCommit": "265be8cefc80f8834cff29f822e96756e5393d14",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -583014,7 +583282,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ec0f0854e37a1ae821193afe673c180a64593368"
+      "lastVerifiedCodeCommit": "265be8cefc80f8834cff29f822e96756e5393d14"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -588186,6 +588454,511 @@
           "dmrp07-007",
           "dmbd08-a-004"
         ]
+      },
+      {
+        "phase": 1844,
+        "status": "two-complete-one-explicit-full-ruling-reproduction-hold",
+        "research": "tmp/duema-target-10000/research-dmex02-072.json",
+        "cards": [
+          {
+            "id": "dmex02-072",
+            "name": "貝獣 パウアー",
+            "searchSha256": "7639820b41a49982828c02f268cc70241a24cba83fca17131f085ad0628416b8",
+            "searchIds": [
+              "dmrp02-038",
+              "dmrp06-067",
+              "promoy17-074",
+              "dmrp02-069",
+              "dmrp03-070",
+              "dmsp01-013",
+              "dmrp06-037",
+              "dmrp05-017",
+              "dmrp12-076",
+              "dmrp06-039",
+              "dmrp03-065",
+              "dmrp05-040",
+              "dmrp05-066",
+              "dmrp01-040",
+              "dmrp04s-069",
+              "dmrp07-067",
+              "dmrp02-036",
+              "dmex02-083",
+              "dmrp07-069",
+              "promoy22-026",
+              "dm23ex2-Cho015",
+              "dmex02-072",
+              "dmrp05-067",
+              "dmrp09-015",
+              "dmrp08-069",
+              "dmrp03-035",
+              "dmrp01-071",
+              "dmex04-075",
+              "dmrp04m-047",
+              "dmrp01-037",
+              "dmrp01-069",
+              "dmrp05-038",
+              "promoy18-004",
+              "dmrp02-066",
+              "dmrp04m-045",
+              "dmrp08-035",
+              "dmrp04s-068",
+              "dmrp04s-035",
+              "dmrp04m-027",
+              "dmrp06-038",
+              "dmrp04s-070"
+            ],
+            "excluded": [
+              {
+                "id": "dmrp02-038",
+                "name": "貝獣 アーヤコーヤ"
+              },
+              {
+                "id": "dmrp06-067",
+                "name": "貝獣 アッカイ"
+              },
+              {
+                "id": "promoy17-074",
+                "name": "貝獣 アホヤ"
+              },
+              {
+                "id": "dmrp02-069",
+                "name": "貝獣 アホヤ"
+              },
+              {
+                "id": "dmrp03-070",
+                "name": "貝獣 アリサ"
+              },
+              {
+                "id": "dmsp01-013",
+                "name": "貝獣 アンモ"
+              },
+              {
+                "id": "dmrp06-037",
+                "name": "貝獣 イカリヤ"
+              },
+              {
+                "id": "dmrp05-017",
+                "name": "貝獣 ウーニ"
+              },
+              {
+                "id": "dmrp12-076",
+                "name": "貝獣 オイッス"
+              },
+              {
+                "id": "dmrp06-039",
+                "name": "貝獣 カイバシラ/コバシーラ・ポコポーコ"
+              },
+              {
+                "id": "dmrp03-065",
+                "name": "貝獣 カキール"
+              },
+              {
+                "id": "dmrp05-040",
+                "name": "貝獣 ギューホ"
+              },
+              {
+                "id": "dmrp05-066",
+                "name": "貝獣 ゴマキ/突撃ゴッチン・ヘッド"
+              },
+              {
+                "id": "dmrp01-040",
+                "name": "貝獣 ジミーシ"
+              },
+              {
+                "id": "dmrp04s-069",
+                "name": "貝獣 タッカラ"
+              },
+              {
+                "id": "dmrp07-067",
+                "name": "貝獣 チャック"
+              },
+              {
+                "id": "dmrp02-036",
+                "name": "貝獣 チャバンラ"
+              },
+              {
+                "id": "dmex02-083",
+                "name": "貝獣 チャバンラ"
+              },
+              {
+                "id": "dmrp07-069",
+                "name": "貝獣 ナマコッコ"
+              },
+              {
+                "id": "dmrp05-067",
+                "name": "貝獣 バタフー"
+              },
+              {
+                "id": "dmrp09-015",
+                "name": "貝獣 パリフ/トゥインクル・フラッシュ"
+              },
+              {
+                "id": "dmrp08-069",
+                "name": "貝獣 ビアワン"
+              },
+              {
+                "id": "dmrp03-035",
+                "name": "貝獣 ヒヨク"
+              },
+              {
+                "id": "dmrp01-071",
+                "name": "貝獣 ヒラーガ"
+              },
+              {
+                "id": "dmex04-075",
+                "name": "貝獣 ヒラーガ"
+              },
+              {
+                "id": "dmrp04m-047",
+                "name": "貝獣 ヒラーガ"
+              },
+              {
+                "id": "dmrp01-037",
+                "name": "貝獣 フジッツ"
+              },
+              {
+                "id": "dmrp01-069",
+                "name": "貝獣 ホーラン"
+              },
+              {
+                "id": "dmrp05-038",
+                "name": "貝獣 ホシカラ"
+              },
+              {
+                "id": "promoy18-004",
+                "name": "貝獣 ホタッテ"
+              },
+              {
+                "id": "dmrp02-066",
+                "name": "貝獣 ホタッテ"
+              },
+              {
+                "id": "dmrp04m-045",
+                "name": "貝獣 ホタッテ"
+              },
+              {
+                "id": "dmrp08-035",
+                "name": "貝獣 マーデク/クラムダンク"
+              },
+              {
+                "id": "dmrp04s-068",
+                "name": "貝獣 マキーガ"
+              },
+              {
+                "id": "dmrp04s-035",
+                "name": "貝獣 マジュガイ"
+              },
+              {
+                "id": "dmrp04m-027",
+                "name": "貝獣 マジュガイ"
+              },
+              {
+                "id": "dmrp06-038",
+                "name": "貝獣 ラリア"
+              },
+              {
+                "id": "dmrp04s-070",
+                "name": "貝獣 リガイト"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmex02-072",
+                "name": "貝獣 パウアー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-072",
+                "faces": [
+                  {
+                    "name": "貝獣 パウアー",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、カードを４枚引いてもよい。",
+                    "race": "ムートピア",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex02-072",
+                "printedManaValue": 1,
+                "htmlSha256": "ccd5f15b60747db42000d5da20e6358e4fed40f2493489f1194c4bc9e14e90a4",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-072.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex02-072-0.jpg",
+                    "sha256": "044734571fdb7d175c7e393a43edd4e6dd761d81eedd8da78b8f7d6a8271670f"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/47460/"
+                ]
+              },
+              {
+                "id": "promoy22-026",
+                "name": "貝獣 パウアー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-026",
+                "faces": [
+                  {
+                    "name": "貝獣 パウアー",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、カードを４枚引いてもよい。",
+                    "race": "ムートピア",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex02-072",
+                "printedManaValue": 1,
+                "htmlSha256": "b394337a2e4df01376d52645952ad473bf7391139329fa6e20e7ef7cca413827",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-026.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy22-026-0.jpg",
+                    "sha256": "458c65721890d0697a2a691c8e79e347a5788f85d8c966d7048087119ba4fe37"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/47460/"
+                ]
+              },
+              {
+                "id": "dm23ex2-Cho015",
+                "name": "貝獣 パウアー",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-Cho015",
+                "faces": [
+                  {
+                    "name": "貝獣 パウアー",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、あるいは、相手の呪文の効果または相手のクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、カードを４枚引いてもよい。",
+                    "race": "ムートピア",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmex02-072",
+                "printedManaValue": 1,
+                "htmlSha256": "b8b42734e81e3c7143b074fcbe9dc340921433497ab8f1cac5c627f9c5bf3b61",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-Cho015.jpg",
+                    "file": "tmp/duema-target-10000/research/dm23ex2-Cho015-0.jpg",
+                    "sha256": "15f25e5cc25265eb3eef8b90b0c6bf2d1b68decee1a23150c0878d92ce5fbb79"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/47460/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47460/",
+                "sha256": "0a726742c375e547565bdb5893132964b1479c341cba51837a1682087b66273b",
+                "body": "よくある質問 Q自分の《「雷光の聖騎士」》がある状況です。 相手のクリーチャーが自分を攻撃し、それによって自分のシールドがブレイクされる際、《「雷光の聖騎士」》の「シールドブレイクのかわりに」の置換効果を適用して手札から《貝獣 パウアー》を捨てました。 この《貝獣 パウアー》の「自分の手札から捨てられた時」の能力で、自分はカードを４枚引けますか？ Aいいえ、引けません。 クリーチャーの攻撃によるブレイクは、効果や能力によるブレイクとして扱われません。そのため、それを置換して《貝獣 パウアー》を捨てたとしても効果や能力によって捨てられたことにはなりません。 （総合ルール 701.14a） 一覧へ戻る 関連する質問 自分のシールドが10ある状況です。 《超天使 ゴルドラン・ゴルギーニ》が攻撃する時、その「自分のクリーチャーが攻撃する時」の能力で山札の上から１枚目をシールド化した後、11ある自分のすべてのシールドを表向きにしました。 その中に《光霊姫アレフティナ》があったのですが、最初に《光霊姫アレフティナ》を出したら自分はゲームに勝てますか？ 2024.10.18 自分の《「雷光の聖騎士」》がある状況です。 相手の《首領竜 ゴルファンタジスタ》が自分を攻撃した時、自分は「ブロッカー」でブロックしました。 《首領竜 ゴルファンタジスタ》の「ブロックされた時」の能力で自分のシールドが３つブレイクされる際、《「雷光の聖騎士」》の「シールドブレイクのかわりに」の置換効果を適用して手札から《貝獣 パウアー》を捨てました。 この《貝獣 パウアー》の「自分の手札から捨てられた時」の能力で、自分はカードを４枚引けますか？ 2023.5.19 相手の《暴走龍 5000GT》がバトルゾーンにいて、自分のシールドゾーンに《「雷光の聖騎士」》と《「敬虔なる警官」》がある状況です。自分のターンのはじめに《「雷光の聖騎士」》を先にバトルゾーンに出し、「出た時」の能力で相手の《暴走龍 5000GT》をシールド化してから《「敬虔なる警官」》を召喚できますか？ 2022.7.28 相手のターン中、自分の《鬼星の絆 フウジン天＆ライジン天》がバトルゾーンにいる状況で、相手が《白騎士の聖霊王 HEAVEN》を出しました。 《白騎士の聖霊王 HEAVEN》の「出た時」の能力で、自分と相手の光以外のクリーチャーはシールドゾーンに置かれますか？ 2022.6.24 自分の《「雷光の聖騎士」》と《龍装艦 チェンジザ / 六奇怪の四 ～土を割る逆瀧～》がバトルゾーンにいる状況です。相手のクリーチャーが自分のシールドを２つブレイクする際、《「雷光の聖騎士」》の置換効果を１回適用して、手札からコスト５の呪文を１枚捨てました。《龍装艦 チェンジザ / 六奇怪の四 ～土を割る逆瀧～》の「各ターン、コスト５以下の呪文を自分の手札からはじめて捨てた時」の能力でその捨てた呪文を唱えるのと、シールドが１つブレイクされるのは、どちらが先ですか？ 2022.4.22 自分の《「雷光の聖騎士」》がバトルゾーンにいる状況で、相手の《MAX・ザ・ジョニー》が自分のシールドを２つブレイクする際、《「雷光の聖騎士」》の置換効果を適用して手札を２枚捨てた場合、相手は山札の上から２枚をシールド化できますか？ 類似例：《煌龍 サッヴァーク》の「ドラゴン・W・ブレイカー」 2022.4.22 自分のマナゾーンにカードが５枚あり、相手の《奇石 ミクセル / ジャミング・チャフ》がバトルゾーンにいる状況です。自分のシールドゾーンにある《「雷光の聖騎士」》と《「絶対の楯騎士」》の「自分のターンのはじめに」の能力で、まず《「雷光の聖騎士」》を召喚し、その「出た時」の能力で相手の≪奇石 ミクセル≫をシールド化してから《「絶対の楯騎士」》を召喚できますか？ 2022.4.22 相手の《∞龍 ゲンムエンペラー》の「∞ブレイカー」で自分のシールドを５つブレイクする際、《「雷光の聖騎士」》の置換効果を適用してシールドをすべて残す場合、自分の手札"
+              }
+            ]
+          },
+          {
+            "id": "promoy11-045",
+            "name": "希望の覇王 鬼丸「刀」",
+            "searchSha256": "5368d01e04f9afbd6e5124a98a670bf4d9f2af38d7b5b054711e1ebf87cd00b7",
+            "searchIds": [
+              "promoy11-045",
+              "promoy11-081"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "promoy11-045",
+                "name": "希望の覇王 鬼丸「刀」",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-045",
+                "faces": [
+                  {
+                    "name": "希望の覇王 鬼丸「刀」",
+                    "typeText": "進化クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "進化-自分のハンター１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、パワーの合計が13000以下になるよう、相手のクリーチャーを好きな数選び、破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーが破壊された時、このカードを墓地から手札に戻す。",
+                    "race": "ヒューマノイド/ハンター/エイリアン",
+                    "powerText": "13000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "promoy11-045",
+                "printedManaValue": 1,
+                "htmlSha256": "e37537becb0d944b6342e4c6646dd6f9ef75998d694e4dc77e0399a7eb918619",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-045.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy11-045-0.jpg",
+                    "sha256": "4d735dba92f419cfebac9d84a6e5a223f993fa9c20d19ae96084fcef91c9b052"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "promoy11-081",
+                "name": "希望の覇王 鬼丸「刀」",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-081",
+                "faces": [
+                  {
+                    "name": "希望の覇王 鬼丸「刀」",
+                    "typeText": "進化クリーチャー",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 8,
+                    "costText": "8",
+                    "abilityText": "進化-自分のハンター１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、パワーの合計が13000以下になるよう、相手のクリーチャーを好きな数選び、破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーが破壊された時、このカードを墓地から手札に戻す。",
+                    "race": "ヒューマノイド/ハンター/エイリアン",
+                    "powerText": "13000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "promoy11-045",
+                "printedManaValue": 1,
+                "htmlSha256": "ed860e631a9d917bdec79725a53bb2111aae88ce919e663f6fe5e03468e58dd4",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-081.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy11-081-0.jpg",
+                    "sha256": "6649ab50dd230d1e8d35a4582be91860f695fd8e9655d9e8c425285b8d0d1b65"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm24bd3-015",
+            "name": "鬼退治の心絵",
+            "searchSha256": "5edc30948c3d90f309fbf4058581104dca5ae3401b047368ed5f2153bac24802",
+            "searchIds": [
+              "dm24bd3-015",
+              "dm25ex2-102"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm24bd3-015",
+                "name": "鬼退治の心絵",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd3-015",
+                "faces": [
+                  {
+                    "name": "鬼退治の心絵",
+                    "typeText": "タマシード",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から３枚を見る。その中からジョーカーズまたはレクスターズを１枚表向きにし、手札またはマナゾーンに置く。残りを好きな順序で山札の下に置く。",
+                    "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm24bd3-015",
+                "printedManaValue": 1,
+                "htmlSha256": "b09c1c88f4953928fb08ccb8be65ead5047dc43712f9576b360cc88482c74ee8",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd3-015.jpg",
+                    "file": "tmp/duema-target-10000/research/dm24bd3-015-0.jpg",
+                    "sha256": "07da5b272963881324ec296cdc05c38398e56b21b411b66bda549e07758c2a22"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/45801/"
+                ]
+              },
+              {
+                "id": "dm25ex2-102",
+                "name": "鬼退治の心絵",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-102",
+                "faces": [
+                  {
+                    "name": "鬼退治の心絵",
+                    "typeText": "タマシード",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の山札の上から３枚を見る。その中からジョーカーズ・カードまたはレクスターズ・カードを１枚表向きにし、手札またはマナゾーンに置く。残りを好きな順序で山札の下に置く。",
+                    "race": "ジョーカーズ/ヒーロー・ドラゴン/レクスターズ",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm24bd3-015",
+                "printedManaValue": 1,
+                "htmlSha256": "12402f560cbb7d07077fa3b366c690994132a14f4a9cd1ba2788aea69094f62d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-102.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex2-102-0.jpg",
+                    "sha256": "39fde28ef5ea1c57830a133a8189c21d3e3b1c17440df957ecf12105df310059"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/45801/",
+                "sha256": "de735f25b6b7e8c75a55c62705a338a895f4d29150cada0815509e5bd542d5ca",
+                "body": "よくある質問 Q《ボルシャック・モモキングNEX》の「出た時または攻撃する時」の能力で、火でもクリーチャーでもないレクスターズを出せますか？ 参照：《鬼退治の心絵》 Aはい、出せます。 山札の一番上がタマシードだったとしても、それが種族にレクスターズを持つエレメントであれば、文明やカードタイプに関係なく、バトルゾーンに出ます。 一覧へ戻る 関連する質問 自分の墓地に火のカードが３枚ある状況で、自分は《ボルシャック・モモキングNEX》で攻撃しました。 「攻撃する時」の能力で山札の上を表向きにしたところ、それが《アルカディアス・モモキング》だったので、攻撃中の《ボルシャック・モモキングNEX》の上に進化しました。 進化前の《ボルシャック・モモキングNEX》は「攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+2000する」という能力を持っていたのですが、この能力で、上に進化して攻撃を引き継いだ《アルカディアス・モモキング》のパワーは6000上がりますか？ 2025.5.19 「シンカライズ」を持つタマシードの上に《SSS級天災 デッドダムド》を進化して出した際、「このクリーチャーを別のクリーチャーの上に重ねた時」の能力はトリガーしますか？ 参照：《鬼退治の心絵》 2024.11.22 「ハイパー化」でハイパーモードが解放されている《蒼き王道 ドギラゴン超》が《ボルシャック・モモキングNEX》に進化しました。 同じターン中に《ボルシャック・モモキングNEX》が離れ、再構築で《蒼き王道 ドギラゴン超》がバトルゾーンに残ったのですが、残った《蒼き王道 ドギラゴン超》はハイパーモードが解放されていますか？ 2024.4.12 《ボルシャック・モモキングNEX》の「出た時または攻撃する時」の能力で山札の上から《ジャスミンの地版》が表向きになりました。レクスターズのタマシードですが、バトルゾーンに出せますか？ 2022.4.22 自分の《アクア鳥人 ロココ》がバトルゾーンにいる状況です。《未来王龍 モモキングJO》が《ボルシャック・モモキングNEX》に進化したターン中に相手を攻撃し、「シンカパワー」によって攻撃の終わりに《ボルシャック・モモキングNEX》を墓地に置く際、《アクア鳥人 ロココ》の置換効果によって《ボルシャック・モモキングNEX》のみを手札に戻せますか？ 2021.12.17 バトルゾーンに自分の《「戦慄」の頂 べートーベン》と《ボルシャック・モモキングNEX》がいます。 《ボルシャック・モモキングNEX》が破壊される時、《「戦慄」の頂 べートーベン》の能力によって与えられた「エターナル・Ω」と、「スター進化」の置換効果はどちらが優先されますか？ 2021.9.22 相手の《神羅スカル・ムーン》の「破壊される時」の置換効果によって自分の《ボルシャック・モモキングNEX》が破壊される場合、「スター進化」の効果で進化元のクリーチャーをバトルゾーンに残せますか？ 2021.9.22 《グレープ・ダール》で攻撃する時、「Jチェンジ6」でマナゾーンの《ボルシャック・モモキングNEX》と入れ替わることはできますか？ 2021.4.16 自分の《ボルシャック・モモキングNEX》の「出た時または攻撃する時」の能力で表向きにした山札の一番上のカードが、《超神羅ロマノフカイザー・NEX》でした。適正な進化元がいない場合、どうなりますか？ 2021.4.16 自分の《ボルシャック・モモキングNEX》の「出た時または攻撃する時」の能力で表向きにした山札の一番上のカードが《自由の目紙》でした。「デッキ進化」クリーチャーですが、この場合、どうなりますか？ 2021.4.16 自分の《ボルシャック・モモキングNEX》の「出た時または攻撃する時」の能力で表向きにした山札の一番上のカードが《聖魔連結王 ドルファディロム》でした。この場合、どうなりますか？ 2021.4.16 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター "
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "implementedIds": [
+          "promoy11-045",
+          "dm24bd3-015"
+        ],
+        "heldIds": [
+          "dmex02-072"
+        ],
+        "completedManifest": "tools/support-phase-1844.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -640082,10 +640855,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1843,
+    "phase": 1844,
     "threshold": 10000,
-    "supportedNames": 9741,
-    "pendingNames": 2108,
+    "supportedNames": 9743,
+    "pendingNames": 2106,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -640094,7 +640867,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1843.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1844.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
