@@ -15051,5 +15051,151 @@
       ],
       "g1822TappedCombatLock": true
     }
+  },
+  "dmrp08-008": {
+    "phase": 1823,
+    "faces": [
+      {
+        "name": "“T-風” 戦車 ガンデルン",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべて捨てる。\nG・G・G：自分の手札が１枚以下なら、自分の山札の上から１枚目を見てもよい。自分のターン中、攻撃する前ならいつでも、そのカードがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。（コストは支払う）",
+        "race": "ビートジョッキー",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardAll244"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "max": 1
+          }
+        },
+        "grants": {
+          "g1332Vision": true,
+          "g1823GGGVision": true
+        }
+      }
+    }
+  },
+  "dmrp11-m03": {
+    "phase": 1823,
+    "faces": [
+      {
+        "name": "“魔神轟怒”ブランド",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の火のクリーチャーを３体以上バトルゾーンに出したターン、このクリーチャーに「スピードアタッカー」「パワーアタッカー+6000」「W・ブレイカー」を与える。\n超天フィーバー：各ターン、このクリーチャーがはじめて攻撃する時、このターン中に自分の火のクリーチャーを５体以上バトルゾーンに出していれば、自分のクリーチャーをすべてアンタップする。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "filter": {
+          "g1823FireEntries": 3
+        },
+        "grants": {
+          "speedAttacker": true,
+          "attackBonus": 6000,
+          "breaker": 2
+        }
+      },
+      "g540FirstAttack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1823FireEntries": 5
+          },
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "g540FirstAttackCondition": {
+        "g1823FireEntries": 5
+      }
+    }
+  },
+  "dmex19-m34": {
+    "phase": 1823,
+    "faces": [
+      {
+        "name": "“魔神轟怒”ブランド",
+        "typeText": "GRクリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "自分の火のクリーチャーを３体以上出したターン、このクリーチャーに「スピードアタッカー」「パワーアタッカー+6000」「W・ブレイカー」を与える。\n超天フィーバー：各ターン、このクリーチャーがはじめて攻撃する時、このターン中に自分の火のクリーチャーを５体以上出していれば、自分のクリーチャーをすべてアンタップする。",
+        "race": "ビートジョッキー/ワンダフォース",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gr": true,
+      "manaValue": 0,
+      "g260Self": {
+        "filter": {
+          "g1823FireEntries": 3
+        },
+        "grants": {
+          "speedAttacker": true,
+          "attackBonus": 6000,
+          "breaker": 2
+        }
+      },
+      "g540FirstAttack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1823FireEntries": 5
+          },
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "g540FirstAttackCondition": {
+        "g1823FireEntries": 5
+      }
+    }
   }
 }

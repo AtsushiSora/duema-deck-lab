@@ -1,0 +1,329 @@
+{
+  "phase": 1823,
+  "checkedAt": "2026-11-27T17:54:46.647Z",
+  "baseline": "99b83fd0b417af7cc9f8bd4d91a7639627c48b43",
+  "baseCount": 9686,
+  "target": 10000,
+  "description": "Two complete Beat Jockeys. Full own hand discard and conditional private top viewing on either turn with normal paid creature/spell use only before attacking on own turn; true Fire creature-entry history independent of source presence, conditional printed GR combat stats and each physical creature first-attack team untap. Hold Forbidden rather than count incomplete seal-source restrictions or an unverified named Red Zone X ruling.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/32342/",
+    "https://dm.takaratomy.co.jp/rule/qa/32341/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-008",
+      "name": "“T-風” 戦車 ガンデルン",
+      "canonicalId": "dmrp08-008",
+      "printId": "dmrp08-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-008",
+      "faces": [
+        {
+          "name": "“T-風” 戦車 ガンデルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべて捨てる。\nG・G・G：自分の手札が１枚以下なら、自分の山札の上から１枚目を見てもよい。自分のターン中、攻撃する前ならいつでも、そのカードがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。（コストは支払う）",
+          "race": "ビートジョッキー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardAll244"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "max": 1
+            }
+          },
+          "grants": {
+            "g1332Vision": true,
+            "g1823GGGVision": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-008.jpg",
+      "imageSha256": "deb9d0d14b7661951bf988fb39329c77c90e263b0018afe45ccda8bc5784cf3a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp08-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp08-008"
+        ],
+        "allSearchIds": [
+          "dmsp01-005",
+          "dm22ex1-031",
+          "dmrp08-008",
+          "dmrp03-s07",
+          "dmrp04s-047",
+          "dmrp02-008",
+          "dm25ex3-006",
+          "dm25rp2-014",
+          "dmrp05-084",
+          "dmrp01-s07",
+          "dmrp20-077",
+          "dmrp08-045",
+          "dmrp05-023",
+          "dmex12-038",
+          "promoy16-011",
+          "dmex02-058",
+          "dmrp06-047",
+          "dmrp01-048",
+          "dmrp02-048",
+          "dmex07-041",
+          "dmex11-037",
+          "dmsd15-012",
+          "dmex02-052",
+          "dmsd03-005",
+          "dmrp04s-022",
+          "dmrp06-023",
+          "dmrp07-083",
+          "dm06-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:54:46.647Z",
+        "sha256": "234912cc1351fa863f368129159a97560890450a31e3ce7e5bdc057d1f728355",
+        "facesMatched": true,
+        "imageSha256": "deb9d0d14b7661951bf988fb39329c77c90e263b0018afe45ccda8bc5784cf3a"
+      }
+    },
+    {
+      "id": "dmrp11-m03",
+      "name": "“魔神轟怒”ブランド",
+      "canonicalId": "dmrp11-m03",
+      "printId": "dmrp11-m03",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-m03",
+      "faces": [
+        {
+          "name": "“魔神轟怒”ブランド",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の火のクリーチャーを３体以上バトルゾーンに出したターン、このクリーチャーに「スピードアタッカー」「パワーアタッカー+6000」「W・ブレイカー」を与える。\n超天フィーバー：各ターン、このクリーチャーがはじめて攻撃する時、このターン中に自分の火のクリーチャーを５体以上バトルゾーンに出していれば、自分のクリーチャーをすべてアンタップする。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "g260Self": {
+          "filter": {
+            "g1823FireEntries": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "attackBonus": 6000,
+            "breaker": 2
+          }
+        },
+        "g540FirstAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1823FireEntries": 5
+            },
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ],
+        "g540FirstAttackCondition": {
+          "g1823FireEntries": 5
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-m03.jpg",
+      "imageSha256": "e659ee5cd4dbb8242bcee282b02ccad2629350b938a96daee5b4c626149a0a81",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp11-m03-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp11-m03",
+          "dmex19-m34"
+        ],
+        "allSearchIds": [
+          "dmex19-m34",
+          "dmrp11-m03"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:54:46.647Z",
+        "sha256": "27a438d695e8d4d59c34bafb5644491cf2b9174fb986970cfa2aee1214d86903",
+        "facesMatched": true,
+        "imageSha256": "e659ee5cd4dbb8242bcee282b02ccad2629350b938a96daee5b4c626149a0a81"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex19-m34",
+      "name": "“魔神轟怒”ブランド",
+      "canonicalId": "dmrp11-m03",
+      "printId": "dmex19-m34",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-m34",
+      "faces": [
+        {
+          "name": "“魔神轟怒”ブランド",
+          "typeText": "GRクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の火のクリーチャーを３体以上出したターン、このクリーチャーに「スピードアタッカー」「パワーアタッカー+6000」「W・ブレイカー」を与える。\n超天フィーバー：各ターン、このクリーチャーがはじめて攻撃する時、このターン中に自分の火のクリーチャーを５体以上出していれば、自分のクリーチャーをすべてアンタップする。",
+          "race": "ビートジョッキー/ワンダフォース",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gr": true,
+        "manaValue": 0,
+        "g260Self": {
+          "filter": {
+            "g1823FireEntries": 3
+          },
+          "grants": {
+            "speedAttacker": true,
+            "attackBonus": 6000,
+            "breaker": 2
+          }
+        },
+        "g540FirstAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1823FireEntries": 5
+            },
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ],
+        "g540FirstAttackCondition": {
+          "g1823FireEntries": 5
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-m34.jpg",
+      "imageSha256": "8d3a13ed019dcebe012cf0b91a7fa82cf59e1d7a13dbb484f87759e15b78d88f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex19-m34-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp11-m03",
+          "dmex19-m34"
+        ],
+        "allSearchIds": [
+          "dmex19-m34",
+          "dmrp11-m03"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:54:46.647Z",
+        "sha256": "f1911350ec53bedf7de3de8d06cfca1740106164ffea0a541ef191f750b7fb1c",
+        "facesMatched": true,
+        "imageSha256": "8d3a13ed019dcebe012cf0b91a7fa82cf59e1d7a13dbb484f87759e15b78d88f"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32342/",
+      "sha256": "b26b5e5ce9c466f994930cb780330d831fda930358af0d44955a5bee73b48942",
+      "checkedAt": "2026-11-27T17:54:46.647Z",
+      "reproduced": true,
+      "tests": "tests/standard1823-effects.test.mjs",
+      "reproduction": "Actual two Brands have independent first-attack team untaps (QA32342); four earlier Fire entries, then Brand fifth, remain counted after the earlier four leave (QA32341).",
+      "result": "Actual two Brands have independent first-attack team untaps (QA32342); four earlier Fire entries, then Brand fifth, remain counted after the earlier four leave (QA32341)."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32341/",
+      "sha256": "224715549da3f7e307550d6c67df899af5157d90ca9f598e91a7b5eb388d6118",
+      "checkedAt": "2026-11-27T17:54:46.647Z",
+      "reproduced": true,
+      "tests": "tests/standard1823-effects.test.mjs",
+      "reproduction": "Actual two Brands have independent first-attack team untaps (QA32342); four earlier Fire entries, then Brand fifth, remain counted after the earlier four leave (QA32341).",
+      "result": "Actual two Brands have independent first-attack team untaps (QA32342); four earlier Fire entries, then Brand fifth, remain counted after the earlier four leave (QA32341)."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr18-007",
+      "name": "禁断",
+      "research": "tmp/duema-target-10000/research-dmrp08-008.json",
+      "reason": "All 115 official search hits across three pages compared; exactly original dmr18-007 and fictional-alphabet promo promoy14-027 match. Both full official images reviewed. Hold rather than implement only Command rule unsealing: printed creature-specific prohibition also covers arbitrary creature effects moving seals, while spell and noncreature Command removals must remain available. Official QA39752 additionally requires literal reproduction involving registered dmex15-b024 and currently unsupported 禁断の轟速 レッドゾーンX (S-rank invasion/zone-entry interactions). No partial spec or count."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T17:54:46.647Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-008": 4,
+      "dmrp11-m03": 4,
+      "dmex19-m34": 4
+    }
+  },
+  "validationNotes": {
+    "rulingScope": "Both official Brand QAs32341/32342 reproduced with the actual card, actual GR entries, historical Fire entries retained after departures and two independent first-attack histories. Gandelun includes mandatory full-hand discard with Carol replacement, actual entry silence, 0/1 versus 2 hand threshold, private top view on either turn, creature/spell-only normal paid main-phase use, existing hand-only/deck-look locks, original Vision union permissions and no unintended attack-chance casting. Shared engine changes covered by related old conditional abilities/entry histories/GR/first-attack/colour ordering regressions and online tests. GR-specific conservation tested in actual advance format; encrypted service includes interactive mana payment and persisted public entry history.",
+    "resolvedAttempts": "Initial focused fixture corrected absent GR array and original-format fixture to actual advance; unsupported test-only GroupMove replaced with native ExactMove; sealed creature has power zero; real Genmu blocker explicitly declined when isolating ignored attack triggers; multicolor fixture corrected from a mono-Light card to actual Fire/Nature vanilla; service uses raw server action ID and completes the real interactive mana-payment decision before asserting entry. These failures and logs retained; no earlier pending record is cleared. Initial npm run check detected stale online compatibility after the final spec re-expansion; regenerated the existing compatibility artifact and reran the check.",
+    "nextCandidates": [
+      {
+        "id": "dmx22b-026",
+        "name": "モーコリ娘選抜総選挙！",
+        "reason": "Research both duelist faces and conditional Water draw/Nature ramp on own creature attacks; verify every reprint and optional decisions."
+      },
+      {
+        "id": "dm09-006",
+        "name": "天光の精霊ミハイル",
+        "reason": "Research complete non-self creature grave-replacement protection with actual shared removal and source-leaves timing; no partial protection."
+      },
+      {
+        "id": "dmex18-049",
+        "name": "大雪原だョ！全員集合！",
+        "reason": "Research complete field mana-number override for all own multicolored mana plus entry five-civilization ramp; validate actual payment consistency."
+      }
+    ]
+  }
+}

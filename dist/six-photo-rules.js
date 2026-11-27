@@ -700,6 +700,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g1823FireEntries!==undefined)return s.players[p].g1823FireEntries?.turn===s.turn&&s.players[p].g1823FireEntries.n>=f.g1823FireEntries;
   if(f.g1733DestroyedRace)return s.g393DDestroyed?.turn===s.turn&&!!s.g393DDestroyed.racesByPlayer?.[p]?.some(r=>r.includes(f.g1733DestroyedRace));
   if(f.g1731OpponentAttacking)return !!s.attack&&s.players[1-p].battle.some(x=>x.uid===s.attack.attacker&&!x.sealed&&api.isCreature(s,x));
   if(f.g1629OwnTurn)return s.active===p;
@@ -10660,6 +10661,7 @@ export function createSixPhotoRules(api){
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
+  if(!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&colors(effective(y,s,true)).includes('火')){const old=s.players[p].g1823FireEntries;s.players[p].g1823FireEntries={turn:s.turn,n:(old?.turn===s.turn?old.n:0)+1};}
   if(!y.sealed&&!y.faceDown&&api.isCreature(s,y)&&api.isEvolution(y)&&s.g1635EvolutionEntries?.[p]?.turn!==s.turn)
    (s.g1635EvolutionEntries??=[null,null])[p]={turn:s.turn,uid:y.uid,incarnation:y.incarnation||0};
   if(!options.ignoreEntry&&!y.sealed&&!y.faceDown&&['creature','seed','gear','field','duelist'].includes(eventType))hooks.rokka1372(s,p,options.paidMana);
@@ -11024,7 +11026,7 @@ export function createSixPhotoRules(api){
    queue(s,p,x,[{op:'IfOwn',filter:{g265ShieldsMax:0},defs:[{op:'Untap',g191First:true}]}]);
  }
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
- if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if((c.g320Jave||c.g1318Smash)&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);
+ if(first&&c.g540FirstAttack&&(!c.g540FirstAttackCondition||ownCondition(s,p,c.g540FirstAttackCondition,x.uid))&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if((c.g320Jave||c.g1318Smash)&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);
  if(!api.selfStopped(s,p))for(const defs of c.g1547ExtraAttacks||[])queue(s,p,x,defs);
  if(c.g34Attack&&!api.selfStopped(s,p)){
   // Attack trigger conditions are checked before any attack effects resolve (QA 42519).

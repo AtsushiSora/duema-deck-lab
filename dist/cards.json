@@ -311334,18 +311334,105 @@
       "g1822TappedCombatLock": true,
       "supportBatch": "phase-1822",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-008",
+      "name": "“T-風” 戦車 ガンデルン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ビートジョッキー",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札をすべて捨てる。\nG・G・G：自分の手札が１枚以下なら、自分の山札の上から１枚目を見てもよい。自分のターン中、攻撃する前ならいつでも、そのカードがクリーチャーなら召喚してもよい。それが呪文なら唱えてもよい。（コストは支払う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-008",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardAll244"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "hand",
+            "max": 1
+          }
+        },
+        "grants": {
+          "g1332Vision": true,
+          "g1823GGGVision": true
+        }
+      },
+      "supportBatch": "phase-1823",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-m03",
+      "name": "“魔神轟怒”ブランド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 0,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ビートジョッキー/ワンダフォース",
+      "text": "自分の火のクリーチャーを３体以上バトルゾーンに出したターン、このクリーチャーに「スピードアタッカー」「パワーアタッカー+6000」「W・ブレイカー」を与える。\n超天フィーバー：各ターン、このクリーチャーがはじめて攻撃する時、このターン中に自分の火のクリーチャーを５体以上バトルゾーンに出していれば、自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-m03",
+      "limit": 4,
+      "gr": true,
+      "g260Self": {
+        "filter": {
+          "g1823FireEntries": 3
+        },
+        "grants": {
+          "speedAttacker": true,
+          "attackBonus": 6000,
+          "breaker": 2
+        }
+      },
+      "g540FirstAttack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1823FireEntries": 5
+          },
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "g540FirstAttackCondition": {
+        "g1823FireEntries": 5
+      },
+      "supportBatch": "phase-1823",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1822,
-    "checkedAt": "2026-11-27T17:38:37.295Z",
-    "baseCount": 9683,
-    "newEffectCards": 3,
+    "phase": 1823,
+    "checkedAt": "2026-11-27T17:54:46.647Z",
+    "baseCount": 9686,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9686,
+    "totalCount": 9688,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40288/"
+      "https://dm.takaratomy.co.jp/rule/qa/32342/",
+      "https://dm.takaratomy.co.jp/rule/qa/32341/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -341169,6 +341256,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/49601/",
           "https://dm.takaratomy.co.jp/rule/qa/49606/",
           "https://dm.takaratomy.co.jp/rule/qa/49602/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1822,
+        "checkedAt": "2026-11-27T17:38:37.295Z",
+        "baseCount": 9683,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9686,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40288/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
