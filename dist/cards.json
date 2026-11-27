@@ -306144,17 +306144,122 @@
       ],
       "supportBatch": "phase-1780",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-036",
+      "name": "ピッピ・修・ピヨッコ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-036",
+      "limit": 4,
+      "g1781OwnTurnShieldGrave": true,
+      "supportBatch": "phase-1781",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-046",
+      "name": "バイクロ・チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビートジョッキー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-046",
+      "limit": 4,
+      "speedAttacker": true,
+      "g1781OwnTurnShieldGrave": true,
+      "supportBatch": "phase-1781",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-003",
+      "name": "偽りの名 パピロニア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8500,
+      "race": "アポロニア・ドラゴン/アンノウン",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンのはじめに、自分のマナゾーンのカードを１枚、裏向きにしてもよい。\nバトル中、自分のクリーチャーは破壊されない。\n水晶武装４：このクリーチャーがタップした時、自分のマナゾーンに裏向きのカードが４枚以上あれば、自分のシールドを２つまでブレイクし、その後、自分の手札を２枚までシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-003",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g34BattleSafe": true
+          }
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "owner": "self",
+              "n": 2,
+              "optional": true,
+              "g1781UpTo": true
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1781",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1780,
-    "checkedAt": "2026-11-27T09:45:27.096Z",
-    "baseCount": 9561,
-    "newEffectCards": 2,
+    "phase": 1781,
+    "checkedAt": "2026-11-27T09:53:46.273Z",
+    "baseCount": 9563,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9563,
+    "totalCount": 9566,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/46059/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335320,6 +335425,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31613/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1780,
+        "checkedAt": "2026-11-27T09:45:27.096Z",
+        "baseCount": 9561,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9563,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

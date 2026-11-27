@@ -4157,5 +4157,208 @@
         }
       ]
     }
+  },
+  "dm23rp4-036": {
+    "phase": 1781,
+    "faces": [
+      {
+        "name": "ピッピ・修・ピヨッコ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+        "race": "アーマード・ファイアー・バード",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1781OwnTurnShieldGrave": true
+    }
+  },
+  "dm23rp4x-036": {
+    "phase": 1781,
+    "faces": [
+      {
+        "name": "ピッピ・修・ピヨッコ",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+        "race": "アーマード・ファイアー・バード",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1781OwnTurnShieldGrave": true
+    }
+  },
+  "dmrp08-046": {
+    "phase": 1781,
+    "faces": [
+      {
+        "name": "バイクロ・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n相手のターン中に、相手が自身のシールドゾーンにカードを置く時、かわりに墓地に置く。",
+        "race": "ビートジョッキー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "g1781OwnTurnShieldGrave": true
+    }
+  },
+  "dm23ex3-003": {
+    "phase": 1781,
+    "faces": [
+      {
+        "name": "偽りの名 パピロニア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンのはじめに、自分のマナゾーンのカードを１枚、裏向きにしてもよい。\nバトル中、自分のクリーチャーは破壊されない。\n水晶武装４：このクリーチャーがタップした時、自分のマナゾーンに裏向きのカードが４枚以上あれば、自分のシールドを２つまでブレイクし、その後、自分の手札を２枚までシールド化する。",
+        "race": "アポロニア・ドラゴン/アンノウン",
+        "powerText": "8500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g34BattleSafe": true
+          }
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "owner": "self",
+              "n": 2,
+              "optional": true,
+              "g1781UpTo": true
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm24bd6-019": {
+    "phase": 1781,
+    "faces": [
+      {
+        "name": "偽りの名 パピロニア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または自分のターンのはじめに、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\nバトル中、自分のクリーチャーは破壊されない。\n水晶武装４：このクリーチャーがタップした時、自分のマナゾーンに裏向きのカードが４枚以上あれば、このクリーチャーは自分のシールドを２つまでブレイクし、その後、自分の手札を２枚までシールド化する。",
+        "race": "アポロニア・ドラゴン/アンノウン",
+        "powerText": "8500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "g34BattleSafe": true
+          }
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g286FaceDownMana": 4
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "owner": "self",
+              "n": 2,
+              "optional": true,
+              "g1781UpTo": true
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }
