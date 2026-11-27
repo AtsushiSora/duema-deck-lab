@@ -1,0 +1,409 @@
+{
+  "phase": 1780,
+  "checkedAt": "2026-11-27T09:45:27.096Z",
+  "baseline": "649b5c7771f93d3971cacff13fc75ec2211b9c64",
+  "baseCount": 9561,
+  "target": 10000,
+  "description": "Complete Skarabeo and Diamond Blizzard PS: native optional mana turning and summon reduction, conditional leave protection except battle loss, and full simultaneous Snow Fairy mana return followed by an exactly matching tapped ramp. Two cards verified rather than counting incomplete crystal candidates.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-007",
+      "name": "偽りの名 スカラベオ",
+      "canonicalId": "dm23ex3-007",
+      "printId": "dm23ex3-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-007",
+      "faces": [
+        {
+          "name": "偽りの名 スカラベオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、または自分のターンのはじめに、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n自分のアンノウン・クリーチャーとゼニス・クリーチャーの召喚コストを３少なくする。ただし、コストは０以下にはならない。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、 自分のクリーチャーはバトルに負けた時以外、離れない。",
+          "race": "アーマード・ドラゴン/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "ManaDown426"
+          }
+        ],
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "raceAny": [
+                "アンノウン",
+                "ゼニス"
+              ]
+            },
+            "amount": 3
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g286FaceDownMana": 4
+            },
+            "grants": {
+              "g1780ExceptBattleLoss": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-007.jpg",
+      "imageSha256": "41c4caf796068381e2cc376a3ec2ab0db5096988b88be4aa6036e027c03b951e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex3-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23ex3-007"
+        ],
+        "allSearchIds": [
+          "dmr04-011",
+          "dmx18-048",
+          "dmsp01-026",
+          "dm23bd6-026",
+          "dm22ex1-053",
+          "dmex04-057",
+          "dmex16-082",
+          "dmr06-010",
+          "dmex08-074",
+          "dm22ex1-059",
+          "dmx06-008",
+          "dmx12b-084",
+          "dm23ex3-039",
+          "dm24bd6-049",
+          "dmx07-002",
+          "dm23ex3-036",
+          "dmr06-015",
+          "dmx19-s50",
+          "dmr04-s01",
+          "dmx25-s07",
+          "dm23ex3-007",
+          "dm23ex3-006",
+          "dmx22a-009",
+          "dmr04-004",
+          "dm22ex1-042",
+          "dm25ex4-017",
+          "dmr03-s05",
+          "dmex08-268",
+          "promoy24-069",
+          "dm24bd6-007",
+          "dm23ex3-043",
+          "dm23ex3-031",
+          "dm24bd6-046",
+          "promoy17-026",
+          "dm22ex2-039",
+          "dmx16-023",
+          "dmx10-006",
+          "dm24bd6-020",
+          "dmx17-003",
+          "dmr05-007",
+          "promoy11-015",
+          "dm23ex3-003",
+          "dm24bd6-019",
+          "promoy13-010",
+          "promoy11-078",
+          "dm23bd4-048",
+          "dmx09-004",
+          "dmd07-020",
+          "dmx16-044",
+          "dmx20-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:45:27.096Z",
+        "sha256": "bbfbe9c46cc28ce7a49a4d0bee387c69259d892cab2800001354828f8170297d",
+        "facesMatched": true,
+        "imageSha256": "41c4caf796068381e2cc376a3ec2ab0db5096988b88be4aa6036e027c03b951e"
+      }
+    },
+    {
+      "id": "dm26ex5-S006",
+      "name": "ダイヤモンド・ブリザードP’S",
+      "canonicalId": "dm26ex5-S006",
+      "printId": "dm26ex5-S006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S006",
+      "faces": [
+        {
+          "name": "ダイヤモンド・ブリザードP’S",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：スノーフェアリー・クリーチャー１体の上に置く。\nこのクリーチャーが出た時、自分のマナゾーンにあるスノーフェアリー・カードをすべて手札に戻す。その後、こうして戻したのと同じ枚数のカードを、自分の山札の上からタップしてマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スノーフェアリー"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FairyManaReturn1780"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S006.jpg",
+      "imageSha256": "5ba7c918d7d10e1f6615db49d8c120552e82856638de69acd6bd05f35933f578",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S006",
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003",
+          "dm26ex5-S006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:45:27.096Z",
+        "sha256": "da3622229725f6e37b44fa371ecf47a0c73e995469bc2e7d03d7c4da5e80f886",
+        "facesMatched": true,
+        "imageSha256": "5ba7c918d7d10e1f6615db49d8c120552e82856638de69acd6bd05f35933f578"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex5-SEC004CHO",
+      "name": "ダイヤモンド・ブリザードP’S",
+      "canonicalId": "dm26ex5-S006",
+      "printId": "dm26ex5-SEC004CHO",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC004CHO",
+      "faces": [
+        {
+          "name": "ダイヤモンド・ブリザードP’S",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：スノーフェアリー・クリーチャー１体の上に置く。\nこのクリーチャーが出た時、自分のマナゾーンにあるスノーフェアリー・カードをすべて手札に戻す。その後、こうして戻したのと同じ枚数のカードを、自分の山札の上からタップしてマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スノーフェアリー"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FairyManaReturn1780"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC004CHO.jpg",
+      "imageSha256": "8aa414b69d16fc04f840b4a8b3f06a0529353ebf198a56eb45ed55877191ef21",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC004CHO-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S006",
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003",
+          "dm26ex5-S006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:45:27.096Z",
+        "sha256": "745800e3132bc579ab60f67ea24335a94eec655d8560c901e4154d5564de7c1a",
+        "facesMatched": true,
+        "imageSha256": "8aa414b69d16fc04f840b4a8b3f06a0529353ebf198a56eb45ed55877191ef21"
+      }
+    },
+    {
+      "id": "dm26ex5-SEC003",
+      "name": "ダイヤモンド・ブリザードP’S",
+      "canonicalId": "dm26ex5-S006",
+      "printId": "dm26ex5-SEC003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC003",
+      "faces": [
+        {
+          "name": "ダイヤモンド・ブリザードP’S",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：スノーフェアリー・クリーチャー１体の上に置く。\nこのクリーチャーが出た時、自分のマナゾーンにあるスノーフェアリー・カードをすべて手札に戻す。その後、こうして戻したのと同じ枚数のカードを、自分の山札の上からタップしてマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スノーフェアリー"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FairyManaReturn1780"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC003.jpg",
+      "imageSha256": "260073a37600cdb8339ae6ff8c46edd3b3333eaaa1177820f969630da3d0d1a3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S006",
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC004CHO",
+          "dm26ex5-SEC003",
+          "dm26ex5-S006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T09:45:27.096Z",
+        "sha256": "ff98f0d2f4a610fe61628631e7407f1bbaf5398a5f6f29ae381e416c4b2ffdca",
+        "facesMatched": true,
+        "imageSha256": "260073a37600cdb8339ae6ff8c46edd3b3333eaaa1177820f969630da3d0d1a3"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dm23ex3-005",
+      "name": "偽りの名 リベルラ",
+      "reason": "Full first opposing used-card effect identity and crystal all-color spell payment require more shared tracking; no partial definition or count.",
+      "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json"
+    },
+    {
+      "id": "dm23ex3-008",
+      "name": "偽りの名 ワスプメリサ",
+      "reason": "Official QAs44657/44658/44659 stop the entire starts-with-entry clause, including Xanadu attack, both Wasp own starts, and Dolfadirom EX-life departure; native entry-only silence cannot cover this. No partial definition or count.",
+      "officialRulings": [
+        "https://dm.takaratomy.co.jp/rule/qa/45055/",
+        "https://dm.takaratomy.co.jp/rule/qa/44657/",
+        "https://dm.takaratomy.co.jp/rule/qa/44658/",
+        "https://dm.takaratomy.co.jp/rule/qa/44659/",
+        "https://dm.takaratomy.co.jp/rule/qa/44600/"
+      ],
+      "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json",
+      "rulingEvidence": [
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/45055/",
+          "sha256": "8d185212c0e7d2b85b586ba1c9f43000065f2be5893dd56797629cb69b62f93f",
+          "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《ボルシャック・ヴォルジャアク》の「各ターンに一度、クリーチャーが出た時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ Aトリガーします。《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが（バトルゾーンに）出た時」でテキストが始まる能力だけです。 "
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44657/",
+          "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、攻撃する時にも能力がトリガーしません。 ",
+          "sha256": "671732b4f3db0f8efbc0fbda8ec1afa4b1dab439ece7e01d8cf2cbe46877a0c7"
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44658/",
+          "body": "よくある質問 Q自分と相手のマナゾーンに裏向きのカードが４枚ずつあり、自分と相手の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 自分のターンのはじめや、相手のターンのはじめに《偽りの名 ワスプメリサ》の能力はトリガーしますか？ Aいいえ、《偽りの名 ワスプメリサ》の「水晶武装４」により、お互いの《偽りの名 ワスプメリサ》の「自分のターンのはじめに」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、ターンのはじめにも能力がトリガーしません。 ",
+          "sha256": "d4a5e3e5357445f4b5ae64c4d473281bac7a7299a1987ee500aeac2d3cf0ef43"
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44659/",
+          "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《聖魔連結王 ドルファディロム》の「EXライフ」シールドが墓地に置かれたのですが、《聖魔連結王 ドルファディロム》の「このクリーチャーの「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《聖魔連結王 ドルファディロム》の「「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、「EXライフ」シールドが離れた時も能力はトリガーしません。 ",
+          "sha256": "c047f73d25ea24f70e458a4356704b234b51aac112bdf972dfdeb3bf855caf42"
+        },
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/44600/",
+          "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが２枚ある状況で、自分は《偽りの名 ワスプメリサ》を出し、その「出た時」の能力で自分のマナゾーンにある《天災 デドダム》を裏向きにしました。 《天災 デドダム》を含めて自分のマナゾーンの裏向きのカードが３枚ある状況ですが、そのうちどれが《天災 デドダム》であるかは、常に相手に教える必要がありますか？ Aいいえ、裏向きのカード３枚のうちどれが《天災 デドダム》であるかは、相手に伝える必要がありません。 マナゾーンにある裏向きのカードの順番は好きに並び替えることができます。そのため、一度《天災 デドダム》を裏向きにした後、複数ある裏向きカードのうちどれが《天災 デドダム》であるかを相手に伝える必要はありません。 ただし、《偽りの名 ワスプメリサ》の「出た時」の能力で《天災 デドダム》を裏向きにしたことは相手に伝える必要があるので注意してください。 ",
+          "sha256": "f426e8d2fb5e8e33653119d841de8191ef2f948853fa4fa02569776b74942669"
+        }
+      ]
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "catalogueAdditions": [
+    {
+      "id": "dm26ex5-S006",
+      "name": "ダイヤモンド・ブリザードP’S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S006",
+      "faces": [
+        {
+          "name": "ダイヤモンド・ブリザードP’S",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：スノーフェアリー・クリーチャー１体の上に置く。\nこのクリーチャーが出た時、自分のマナゾーンにあるスノーフェアリー・カードをすべて手札に戻す。その後、こうして戻したのと同じ枚数のカードを、自分の山札の上からタップしてマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ]
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T09:45:27.096Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-007": 4,
+      "dm26ex5-S006": 4,
+      "dm26ex5-SEC004CHO": 4,
+      "dm26ex5-SEC003": 4
+    }
+  },
+  "validationNotes": {
+    "resolvedAttempts": "First behavior run passed 15/17; nextTurn fixture auto-resolved the start choice before assertion. The final test stops immediately at that real start choice instead. No behavior/specification failure was hidden. Added a real Slayer battle to distinguish battle loss from post-battle destruction."
+  }
+}

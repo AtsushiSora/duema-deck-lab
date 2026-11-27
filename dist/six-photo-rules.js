@@ -4679,6 +4679,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ReturnBases939':returnBases939(s,t);break;
+ case'g34_FairyManaReturn1780':{
+  const own=s.players[t.p],rows=own.mana.filter(x=>!x.faceDown&&matches(s,t.p,x,{anyFaceRace:'スノーフェアリー'})).map(x=>({p:t.p,origin:'mana',uid:x.uid}));
+  const moved=moveZoneSelection583(s,{...t,origin:'mana',to:'hand'},rows);
+  const n=moved.filter(x=>own.hand.includes(x)).length;
+  if(n)start(s,t,[{op:'Ramp',n,tapped:true,g809Together:true}]);
+  break;
+ }
  case'g34_OwnCards1779':put(s,{...t,op:'g34_Select',p:1-t.p,owner:1-t.p,controller:t.controller??t.p,
   g1779PhysicalOwnCards:true,n:t.n,selected:[],rows:[],to:'grave',filter:{},
   title:'手札または場から墓地に置く自分のカードを'+t.n+'枚選ぶ'});break;
@@ -9998,6 +10005,7 @@ export function createSixPhotoRules(api){
  namedCombatLocked1643:(s,p,x)=>!!card(x).psychic&&creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1734PsychicCombatLock)||namedLock1643(s,p,battleNames676(s,x)),
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
+  if(c.g1780ExceptBattleLoss&&!context.battleLoss)return false;
   if(context.to==='hand'&&!x.sealed&&api.isCreature(s,x)&&s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1651BounceStopRace&&race(c,effective(y,s).g1651BounceStopRace)))return false;
   if(!x.sealed&&api.isCreature(s,x)&&nextOpponentStay1643(s,p))return false;
   if(c.g1304ShieldForceActive&&!context.skip577Stay&&!context.replacement)return false;

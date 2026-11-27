@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-27",
-  "catalogueNames": 11840,
-  "supportedNames": 9561,
-  "pendingNames": 2279,
-  "phase": 1779,
-  "added": 3,
+  "catalogueNames": 11841,
+  "supportedNames": 9563,
+  "pendingNames": 2278,
+  "phase": 1780,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1331,
+    "クリーチャー": 1330,
     "呪文": 252,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1680,
+    "未対応の能力文": 1679,
     "複数面・特殊カードタイプまたは情報不足": 500,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -563636,30 +563636,249 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1780,
+      "checkedAt": "2026-11-27T09:49:02.749Z",
+      "baseline": "649b5c7771f93d3971cacff13fc75ec2211b9c64",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9561,
+      "currentNames": 9563,
+      "remainingNames": 437,
+      "added": [
+        {
+          "id": "dm23ex3-007",
+          "name": "偽りの名 スカラベオ"
+        },
+        {
+          "id": "dm26ex5-S006",
+          "name": "ダイヤモンド・ブリザードP’S"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1780,
+        "baseline": "649b5c7771f93d3971cacff13fc75ec2211b9c64",
+        "originalDefinitionsUnchanged": 9561,
+        "uniqueNames": 9563,
+        "uniqueIds": 9563,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": false,
+        "oldDetailsRowsUnchanged": 11844,
+        "newCatalogueNames": 1,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9561,
+        "existingImageReferenceRowsUnchanged": 11887,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1780": {
+          "name": "official-1780",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1780.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.34,
+          "log": "tmp/duema-target-10000/official-1780.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1780-final": {
+          "name": "focused-1780-expanded",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1780-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.601,
+          "log": "tmp/duema-target-10000/focused-1780-expanded.log",
+          "passed": 18,
+          "logSha256": "116cab8e848d080bf76dcdfb54276a5916b44ece680ced0d190643a9f3d92caa"
+        },
+        "related-1780": {
+          "name": "related-1780",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?!two legal|legal forty|legal supported)",
+            "tests/standard1036-effects.test.mjs",
+            "tests/standard1225-effects.test.mjs",
+            "tests/champion-2025-effects.test.mjs",
+            "tests/standard577-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.262,
+          "log": "tmp/duema-target-10000/related-1780.log",
+          "passed": 88,
+          "logSha256": "fec8799c38a4ecb6472ab1655308ac2277bcc0052645d003903842b2795cd13e"
+        },
+        "check-1780": {
+          "name": "check-1780",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.581,
+          "log": "tmp/duema-target-10000/check-1780.log",
+          "passed": 0,
+          "logSha256": "d2e2e0cdb66c3ef67317049294f6df756fa0fb5207d8a6757dc7679d54ad8803"
+        },
+        "audit-1780": {
+          "name": "audit-1780",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.654,
+          "log": "tmp/duema-target-10000/audit-1780.log",
+          "passed": 0,
+          "logSha256": "4fba6dcdca61525bbdfc9907ccf990fd599591c2e642f5dff86de37bad6b95dc"
+        },
+        "invariants-1780": {
+          "name": "invariants-1780",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1780"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.065,
+          "log": "tmp/duema-target-10000/invariants-1780.log",
+          "passed": 0,
+          "logSha256": "5be72508af1a778f08dda13db8fd5e16396ae3a4602d3d434aaf99820f61e342"
+        },
+        "related-online-1780": {
+          "name": "related-online-1780",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.771,
+          "log": "tmp/duema-target-10000/related-online-1780.log",
+          "passed": 5,
+          "logSha256": "728afee23ed3e4764418c6e1f871c4d18e018bda404bbaf676f660abd4656597"
+        }
+      },
+      "totalTestsPassed": 111,
+      "manifest": "tools/support-phase-1780.json",
+      "supported": 9563,
+      "pending": 2278,
+      "engineVersion": "0.602.304",
+      "held": [
+        {
+          "id": "dm23ex3-005",
+          "name": "偽りの名 リベルラ",
+          "reason": "Full first opposing used-card effect identity and crystal all-color spell payment require more shared tracking; no partial definition or count.",
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json"
+        },
+        {
+          "id": "dm23ex3-008",
+          "name": "偽りの名 ワスプメリサ",
+          "reason": "Official QAs44657/44658/44659 stop the entire starts-with-entry clause, including Xanadu attack, both Wasp own starts, and Dolfadirom EX-life departure; native entry-only silence cannot cover this. No partial definition or count.",
+          "officialRulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/45055/",
+            "https://dm.takaratomy.co.jp/rule/qa/44657/",
+            "https://dm.takaratomy.co.jp/rule/qa/44658/",
+            "https://dm.takaratomy.co.jp/rule/qa/44659/",
+            "https://dm.takaratomy.co.jp/rule/qa/44600/"
+          ],
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json",
+          "rulingEvidence": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/45055/",
+              "sha256": "8d185212c0e7d2b85b586ba1c9f43000065f2be5893dd56797629cb69b62f93f",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《ボルシャック・ヴォルジャアク》の「各ターンに一度、クリーチャーが出た時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ Aトリガーします。《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが（バトルゾーンに）出た時」でテキストが始まる能力だけです。 "
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44657/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、攻撃する時にも能力がトリガーしません。 ",
+              "sha256": "671732b4f3db0f8efbc0fbda8ec1afa4b1dab439ece7e01d8cf2cbe46877a0c7"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44658/",
+              "body": "よくある質問 Q自分と相手のマナゾーンに裏向きのカードが４枚ずつあり、自分と相手の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 自分のターンのはじめや、相手のターンのはじめに《偽りの名 ワスプメリサ》の能力はトリガーしますか？ Aいいえ、《偽りの名 ワスプメリサ》の「水晶武装４」により、お互いの《偽りの名 ワスプメリサ》の「自分のターンのはじめに」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、ターンのはじめにも能力がトリガーしません。 ",
+              "sha256": "d4a5e3e5357445f4b5ae64c4d473281bac7a7299a1987ee500aeac2d3cf0ef43"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44659/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《聖魔連結王 ドルファディロム》の「EXライフ」シールドが墓地に置かれたのですが、《聖魔連結王 ドルファディロム》の「このクリーチャーの「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《聖魔連結王 ドルファディロム》の「「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、「EXライフ」シールドが離れた時も能力はトリガーしません。 ",
+              "sha256": "c047f73d25ea24f70e458a4356704b234b51aac112bdf972dfdeb3bf855caf42"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44600/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが２枚ある状況で、自分は《偽りの名 ワスプメリサ》を出し、その「出た時」の能力で自分のマナゾーンにある《天災 デドダム》を裏向きにしました。 《天災 デドダム》を含めて自分のマナゾーンの裏向きのカードが３枚ある状況ですが、そのうちどれが《天災 デドダム》であるかは、常に相手に教える必要がありますか？ Aいいえ、裏向きのカード３枚のうちどれが《天災 デドダム》であるかは、相手に伝える必要がありません。 マナゾーンにある裏向きのカードの順番は好きに並び替えることができます。そのため、一度《天災 デドダム》を裏向きにした後、複数ある裏向きカードのうちどれが《天災 デドダム》であるかを相手に伝える必要はありません。 ただし、《偽りの名 ワスプメリサ》の「出た時」の能力で《天災 デドダム》を裏向きにしたことは相手に伝える必要があるので注意してください。 ",
+              "sha256": "f426e8d2fb5e8e33653119d841de8191ef2f948853fa4fa02569776b74942669"
+            }
+          ]
+        }
+      ],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1780",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1780-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.506,
+          "log": "tmp/duema-target-10000/focused-1780.log",
+          "reason": "First behavior run passed 15/17; nextTurn fixture auto-resolved the start choice before assertion. The final test stops immediately at that real start choice instead. No behavior/specification failure was hidden. Added a real Slayer battle to distinguish battle loss from post-battle destruction."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1779,
-    "nextPhase": 1780,
+    "lastVerifiedPhase": 1780,
+    "nextPhase": 1781,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp03-023",
-        "name": "ジバボン３兄弟",
-        "status": "candidate-unverified",
-        "reason": "Super S-trigger, combined own Jokers count, whole-opponent sweep and scheduled next-own-end loss must all be pinned and tested."
+        "id": "dm23ex3-003",
+        "name": "偽りの名 パピロニア",
+        "reason": "Full official 2-print research saved. Native battle-safe aura and tapping watch; up-to-two self break needs optional count 0/1/2 rather than existing zero-or-two."
       },
       {
-        "id": "dmrp06-036",
-        "name": "スパーク×スパーク",
-        "status": "candidate-unverified",
-        "reason": "Check card-level non-evolution shield move and Super S-trigger recast from grave with correct occurrence timing."
+        "id": "dm23rp4-036",
+        "name": "ピッピ・修・ピヨッコ",
+        "reason": "Official research saved; implement full shield-arrival-to-grave replacement, not prohibition."
       },
       {
-        "id": "dmex19-031",
-        "name": "魔王の傲慢",
-        "status": "candidate-unverified",
-        "reason": "Check existing opponent self-selection across hand/battle with seven-card forced sacrifice and Super S-trigger branch."
+        "id": "dmrp08-046",
+        "name": "バイクロ・チュリス",
+        "reason": "Same full own-turn shield replacement shared with Pippi plus native haste."
       }
     ],
     "steps": [
@@ -564553,11 +564772,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1779,
-      "baseline": "3d9ba8925643fe0729ebeb5f02e8c8c06692c50f",
-      "supportedNames": 9561,
-      "artifact": "tools/target10000-registration-checkpoint-1779.json",
-      "checkedAt": "2026-11-27T09:39:18.854Z"
+      "phase": 1780,
+      "baseline": "649b5c7771f93d3971cacff13fc75ec2211b9c64",
+      "supportedNames": 9563,
+      "artifact": "tools/target10000-registration-checkpoint-1780.json",
+      "checkedAt": "2026-11-27T09:49:02.749Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -567615,8 +567834,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9561,
-      "remaining": 439,
+      "currentNames": 9563,
+      "remaining": 437,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -567624,8 +567843,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1779,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1779.json",
+      "lastPhase": 1780,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1780.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -567653,6 +567872,52 @@
           "name": "「祝え！この物語の終幕を！」",
           "reason": "Official four print images and full text verified; QA40940 depends on unsupported dmex18-014 paid hand/grave execution after attack with Vivid alternative cost. Held without adding a partial card or incrementing name count.",
           "manifest": "tools/support-phase-1776.json"
+        },
+        {
+          "id": "dm23ex3-005",
+          "name": "偽りの名 リベルラ",
+          "reason": "Full first opposing used-card effect identity and crystal all-color spell payment require more shared tracking; no partial definition or count.",
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json"
+        },
+        {
+          "id": "dm23ex3-008",
+          "name": "偽りの名 ワスプメリサ",
+          "reason": "Official QAs44657/44658/44659 stop the entire starts-with-entry clause, including Xanadu attack, both Wasp own starts, and Dolfadirom EX-life departure; native entry-only silence cannot cover this. No partial definition or count.",
+          "officialRulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/45055/",
+            "https://dm.takaratomy.co.jp/rule/qa/44657/",
+            "https://dm.takaratomy.co.jp/rule/qa/44658/",
+            "https://dm.takaratomy.co.jp/rule/qa/44659/",
+            "https://dm.takaratomy.co.jp/rule/qa/44600/"
+          ],
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json",
+          "rulingEvidence": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/45055/",
+              "sha256": "8d185212c0e7d2b85b586ba1c9f43000065f2be5893dd56797629cb69b62f93f",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《ボルシャック・ヴォルジャアク》の「各ターンに一度、クリーチャーが出た時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ Aトリガーします。《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが（バトルゾーンに）出た時」でテキストが始まる能力だけです。 "
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44657/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、攻撃する時にも能力がトリガーしません。 ",
+              "sha256": "671732b4f3db0f8efbc0fbda8ec1afa4b1dab439ece7e01d8cf2cbe46877a0c7"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44658/",
+              "body": "よくある質問 Q自分と相手のマナゾーンに裏向きのカードが４枚ずつあり、自分と相手の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 自分のターンのはじめや、相手のターンのはじめに《偽りの名 ワスプメリサ》の能力はトリガーしますか？ Aいいえ、《偽りの名 ワスプメリサ》の「水晶武装４」により、お互いの《偽りの名 ワスプメリサ》の「自分のターンのはじめに」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、ターンのはじめにも能力がトリガーしません。 ",
+              "sha256": "d4a5e3e5357445f4b5ae64c4d473281bac7a7299a1987ee500aeac2d3cf0ef43"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44659/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《聖魔連結王 ドルファディロム》の「EXライフ」シールドが墓地に置かれたのですが、《聖魔連結王 ドルファディロム》の「このクリーチャーの「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《聖魔連結王 ドルファディロム》の「「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、「EXライフ」シールドが離れた時も能力はトリガーしません。 ",
+              "sha256": "c047f73d25ea24f70e458a4356704b234b51aac112bdf972dfdeb3bf855caf42"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44600/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが２枚ある状況で、自分は《偽りの名 ワスプメリサ》を出し、その「出た時」の能力で自分のマナゾーンにある《天災 デドダム》を裏向きにしました。 《天災 デドダム》を含めて自分のマナゾーンの裏向きのカードが３枚ある状況ですが、そのうちどれが《天災 デドダム》であるかは、常に相手に教える必要がありますか？ Aいいえ、裏向きのカード３枚のうちどれが《天災 デドダム》であるかは、相手に伝える必要がありません。 マナゾーンにある裏向きのカードの順番は好きに並び替えることができます。そのため、一度《天災 デドダム》を裏向きにした後、複数ある裏向きカードのうちどれが《天災 デドダム》であるかを相手に伝える必要はありません。 ただし、《偽りの名 ワスプメリサ》の「出た時」の能力で《天災 デドダム》を裏向きにしたことは相手に伝える必要があるので注意してください。 ",
+              "sha256": "f426e8d2fb5e8e33653119d841de8191ef2f948853fa4fa02569776b74942669"
+            }
+          ]
         }
       ]
     },
@@ -568792,8 +569057,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9561,
-      "remaining": 439,
+      "currentNames": 9563,
+      "remaining": 437,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -568801,8 +569066,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1779,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1779.json",
+      "lastPhase": 1780,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1780.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -568830,6 +569095,52 @@
           "name": "「祝え！この物語の終幕を！」",
           "reason": "Official four print images and full text verified; QA40940 depends on unsupported dmex18-014 paid hand/grave execution after attack with Vivid alternative cost. Held without adding a partial card or incrementing name count.",
           "manifest": "tools/support-phase-1776.json"
+        },
+        {
+          "id": "dm23ex3-005",
+          "name": "偽りの名 リベルラ",
+          "reason": "Full first opposing used-card effect identity and crystal all-color spell payment require more shared tracking; no partial definition or count.",
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json"
+        },
+        {
+          "id": "dm23ex3-008",
+          "name": "偽りの名 ワスプメリサ",
+          "reason": "Official QAs44657/44658/44659 stop the entire starts-with-entry clause, including Xanadu attack, both Wasp own starts, and Dolfadirom EX-life departure; native entry-only silence cannot cover this. No partial definition or count.",
+          "officialRulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/45055/",
+            "https://dm.takaratomy.co.jp/rule/qa/44657/",
+            "https://dm.takaratomy.co.jp/rule/qa/44658/",
+            "https://dm.takaratomy.co.jp/rule/qa/44659/",
+            "https://dm.takaratomy.co.jp/rule/qa/44600/"
+          ],
+          "officialEvidence": "tmp/duema-target-10000/research-dm23ex3-007.json",
+          "rulingEvidence": [
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/45055/",
+              "sha256": "8d185212c0e7d2b85b586ba1c9f43000065f2be5893dd56797629cb69b62f93f",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《ボルシャック・ヴォルジャアク》の「各ターンに一度、クリーチャーが出た時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ Aトリガーします。《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが（バトルゾーンに）出た時」でテキストが始まる能力だけです。 "
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44657/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《電磁魔天イエス・ザナドゥ》の「攻撃する時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、攻撃する時にも能力がトリガーしません。 ",
+              "sha256": "671732b4f3db0f8efbc0fbda8ec1afa4b1dab439ece7e01d8cf2cbe46877a0c7"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44658/",
+              "body": "よくある質問 Q自分と相手のマナゾーンに裏向きのカードが４枚ずつあり、自分と相手の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 自分のターンのはじめや、相手のターンのはじめに《偽りの名 ワスプメリサ》の能力はトリガーしますか？ Aいいえ、《偽りの名 ワスプメリサ》の「水晶武装４」により、お互いの《偽りの名 ワスプメリサ》の「自分のターンのはじめに」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、ターンのはじめにも能力がトリガーしません。 ",
+              "sha256": "d4a5e3e5357445f4b5ae64c4d473281bac7a7299a1987ee500aeac2d3cf0ef43"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44659/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが４枚あり、自分の《偽りの名 ワスプメリサ》がバトルゾーンにいる状況です。 この状況で相手の《聖魔連結王 ドルファディロム》の「EXライフ」シールドが墓地に置かれたのですが、《聖魔連結王 ドルファディロム》の「このクリーチャーの「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしますか？ それとも、《偽りの名 ワスプメリサ》の「水晶武装４」によってトリガーしなくなりますか？ A《偽りの名 ワスプメリサ》の「水晶武装４」により、《聖魔連結王 ドルファディロム》の「「EXライフ」シールドが自分のシールドゾーンを離れた時」の能力はトリガーしません。 《偽りの名 ワスプメリサ》の「水晶武装４」でかわりにトリガーしなくなるのは、「このクリーチャーが出た時」でテキストが始まる能力すべてです。そのクリーチャーが出たことによってその能力がトリガーしたかどうかは関係ありません。そのため、「EXライフ」シールドが離れた時も能力はトリガーしません。 ",
+              "sha256": "c047f73d25ea24f70e458a4356704b234b51aac112bdf972dfdeb3bf855caf42"
+            },
+            {
+              "source": "https://dm.takaratomy.co.jp/rule/qa/44600/",
+              "body": "よくある質問 Q自分のマナゾーンに裏向きのカードが２枚ある状況で、自分は《偽りの名 ワスプメリサ》を出し、その「出た時」の能力で自分のマナゾーンにある《天災 デドダム》を裏向きにしました。 《天災 デドダム》を含めて自分のマナゾーンの裏向きのカードが３枚ある状況ですが、そのうちどれが《天災 デドダム》であるかは、常に相手に教える必要がありますか？ Aいいえ、裏向きのカード３枚のうちどれが《天災 デドダム》であるかは、相手に伝える必要がありません。 マナゾーンにある裏向きのカードの順番は好きに並び替えることができます。そのため、一度《天災 デドダム》を裏向きにした後、複数ある裏向きカードのうちどれが《天災 デドダム》であるかを相手に伝える必要はありません。 ただし、《偽りの名 ワスプメリサ》の「出た時」の能力で《天災 デドダム》を裏向きにしたことは相手に伝える必要があるので注意してください。 ",
+              "sha256": "f426e8d2fb5e8e33653119d841de8191ef2f948853fa4fa02569776b74942669"
+            }
+          ]
         }
       ]
     },
@@ -568847,7 +569158,8 @@
       "resumeInstruction": "再開して",
       "resumedOn": "2026-11-23"
     },
-    "restartInstructions10000": "Start from latest local commit; check AGENTS, staged/unstaged diffs, progress, previous test results and existing processes; recount actual dist/cards.json names using dist/catalogue.js nameKey. Continue toward 10000 in fully verified 3–5-name batches using grouped official research and native tasks. Use tmp/duema-target-10000 scripts and tools/expand-standard-batch.mjs after successful official verification; apply.mjs then write-online-compatibility.mjs. Run own tests, relevant regressions and check; run audit before invariants sequentially. Preserve older pending/deferrals and full-suite interrupted status. No push/publication/Netlify or timed automation restart."
+    "restartInstructions10000": "Start from latest local commit; check AGENTS, staged/unstaged diffs, progress, previous test results and existing processes; recount actual dist/cards.json names using dist/catalogue.js nameKey. Continue toward 10000 in fully verified 3–5-name batches using grouped official research and native tasks. Use tmp/duema-target-10000 scripts and tools/expand-standard-batch.mjs after successful official verification; apply.mjs then write-online-compatibility.mjs. Run own tests, relevant regressions and check; run audit before invariants sequentially. Preserve older pending/deferrals and full-suite interrupted status. No push/publication/Netlify or timed automation restart.",
+    "restartInstructions": "Resume grouped manual 10,000 target from the latest verified local commit; first inspect work/tree/index/processes/progress/AGENTS and nameKey actual count. Research reusable complete candidates in groups, validate and commit each small batch. Keep automation PAUSED. No push, publication, Netlify or full npm test. Do not count held incomplete crystal cards."
   },
   "registeredCardVerification": {
     "checkedAt": "2026-11-20",
@@ -620720,10 +621032,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1779,
+    "phase": 1780,
     "threshold": 10000,
-    "supportedNames": 9561,
-    "pendingNames": 2279,
+    "supportedNames": 9563,
+    "pendingNames": 2278,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -620732,7 +621044,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1779.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1780.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

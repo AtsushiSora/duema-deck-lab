@@ -306063,18 +306063,98 @@
       ],
       "supportBatch": "phase-1779",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-007",
+      "name": "偽りの名 スカラベオ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/アンノウン",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、または自分のターンのはじめに、自分のマナゾーンにあるカードを１枚、裏向きにしてもよい。\n自分のアンノウン・クリーチャーとゼニス・クリーチャーの召喚コストを３少なくする。ただし、コストは０以下にはならない。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、 自分のクリーチャーはバトルに負けた時以外、離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-007",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g174Start": [
+        {
+          "op": "ManaDown426"
+        }
+      ],
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "raceAny": [
+              "アンノウン",
+              "ゼニス"
+            ]
+          },
+          "amount": 3
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g286FaceDownMana": 4
+          },
+          "grants": {
+            "g1780ExceptBattleLoss": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1780",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S006",
+      "name": "ダイヤモンド・ブリザードP’S",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "スノーフェアリー",
+      "text": "進化：スノーフェアリー・クリーチャー１体の上に置く。\nこのクリーチャーが出た時、自分のマナゾーンにあるスノーフェアリー・カードをすべて手札に戻す。その後、こうして戻したのと同じ枚数のカードを、自分の山札の上からタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S006",
+      "limit": 4,
+      "evolution": {
+        "race": "スノーフェアリー"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FairyManaReturn1780"
+        }
+      ],
+      "supportBatch": "phase-1780",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1779,
-    "checkedAt": "2026-11-27T09:31:55.589Z",
-    "baseCount": 9558,
-    "newEffectCards": 3,
+    "phase": 1780,
+    "checkedAt": "2026-11-27T09:45:27.096Z",
+    "baseCount": 9561,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9561,
+    "totalCount": 9563,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31613/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -335225,6 +335305,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37862/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1779,
+        "checkedAt": "2026-11-27T09:31:55.589Z",
+        "baseCount": 9558,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9561,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31613/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
