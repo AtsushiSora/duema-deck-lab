@@ -21971,5 +21971,73 @@
         "amount": 1
       }
     }
+  },
+  "dm18-055": {
+    "phase": 1853,
+    "faces": [
+      {
+        "name": "紅玉草(ルビー・グラス)",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、このクリーチャーをアンタップしてもよい。",
+        "race": "スターライト・ツリー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "endUntap": true
+    }
+  },
+  "dm18-086": {
+    "phase": 1853,
+    "faces": [
+      {
+        "name": "怪力の化身(マイティ・トーテム)",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《怪力の化身》を１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+        "race": "ミステリー・トーテム",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "g841DeckPeek": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "exactId": "dm18-086"
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

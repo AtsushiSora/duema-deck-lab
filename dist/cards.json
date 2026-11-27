@@ -315012,15 +315012,77 @@
       },
       "supportBatch": "phase-1852",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm18-055",
+      "name": "紅玉草(ルビー・グラス)",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スターライト・ツリー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-055",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "endUntap": true,
+      "supportBatch": "phase-1853",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm18-086",
+      "name": "怪力の化身(マイティ・トーテム)",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《怪力の化身》を１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-086",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "g841DeckPeek": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "exactId": "dm18-086"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1853",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1852,
-    "checkedAt": "2026-11-27T23:21:14.755Z",
-    "baseCount": 9763,
-    "newEffectCards": 3,
+    "phase": 1853,
+    "checkedAt": "2026-11-27T23:30:46.889Z",
+    "baseCount": 9766,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9766,
+    "totalCount": 9768,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -345300,6 +345362,20 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 9763,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1852,
+        "checkedAt": "2026-11-27T23:21:14.755Z",
+        "baseCount": 9763,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9766,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

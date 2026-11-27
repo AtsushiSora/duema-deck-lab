@@ -1,0 +1,265 @@
+{
+  "phase": 1853,
+  "checkedAt": "2026-11-27T23:30:46.889Z",
+  "baseline": "b1527377c816f8fd73a54acc6505f4692cce7567",
+  "baseCount": 9766,
+  "target": 10000,
+  "description": "Complete Ruby Grass optional own-end untap/Blocker/player-attack prohibition and Mighty Totem optional exact-name whole-deck reveal/shuffle search. Other researched movement locks/replacements held for full legacy path verification, no partial counting.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm18-055",
+      "name": "紅玉草(ルビー・グラス)",
+      "canonicalId": "dm18-055",
+      "printId": "dm18-055",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-055",
+      "faces": [
+        {
+          "name": "紅玉草(ルビー・グラス)",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、このクリーチャーをアンタップしてもよい。",
+          "race": "スターライト・ツリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "endUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-055.jpg",
+      "imageSha256": "1a1451d35854e6d416ffe22c591ff60e14c3386ebb73437300928b9952cd11b3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm18-055-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm18-055"
+        ],
+        "allSearchIds": [
+          "dm18-055"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:30:46.889Z",
+        "sha256": "ca12a07dc48ab09ed602bac1bb8cfca5792ffe92b68525772f73c6becd4acc13",
+        "facesMatched": true,
+        "imageSha256": "1a1451d35854e6d416ffe22c591ff60e14c3386ebb73437300928b9952cd11b3"
+      }
+    },
+    {
+      "id": "dm18-086",
+      "name": "怪力の化身(マイティ・トーテム)",
+      "canonicalId": "dm18-086",
+      "printId": "dm18-086",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-086",
+      "faces": [
+        {
+          "name": "怪力の化身(マイティ・トーテム)",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《怪力の化身》を１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ミステリー・トーテム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "g841DeckPeek": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "exactId": "dm18-086"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-086.jpg",
+      "imageSha256": "992828c6e35672260cd9c5c3dcb3a15f119aadf9db591bbfdb4df54c3b55f2d2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm18-086-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm18-086"
+        ],
+        "allSearchIds": [
+          "dm18-086"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:30:46.889Z",
+        "sha256": "59c57430ed29226a3b7e6a4d09d31392706951113909af9ae60de88c4436061f",
+        "facesMatched": true,
+        "imageSha256": "992828c6e35672260cd9c5c3dcb3a15f119aadf9db591bbfdb4df54c3b55f2d2"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dm31-007",
+      "name": "陰陽の伝道士セイメイ",
+      "reason": "Full official image/basic/text/one exact print/no linked QA checked. Opponent spell-only grave->hand prohibition must cover all native and legacy direct move paths, distinguish physical twinpact vs executed face and not block creature recovery/casting/other destinations. No partial untargetable-only registration; needs shared movement preflight architecture review and affected regressions."
+    },
+    {
+      "id": "dm23-023",
+      "name": "光波の守護者テルス・ルース",
+      "reason": "All3 exact prints/images and official QA_old35505 checked. Latestprint mandatory mana->grave stay replaces old optional-return wording; cause is opponent EFFECT CONTROLLER, independent of selecting player per literal QA. Must cover legacy mana destruction, generic six.zoneMove and simultaneous physical-card sweep using same pre-move board, without affecting own sacrifice/deployment/other destinations. Full coverage not yet implemented; do not count."
+    },
+    {
+      "id": "dm02-044",
+      "name": "ギガスタンド",
+      "reason": "Official2 prints/full text and QA downloaded as alternate candidate. Discard happens BEFORE return and cannot discard returning self, unlike existing g1608GraveReturnDiscard (return THEN mandatory discard including self). Need resource-reserved pre-discard replacement and exact QA reproduction; no partial registration. Images not visually reviewed yet."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T23:30:46.889Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm18-055": 4,
+      "dm18-086": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm31-007",
+      "searchSha256": "582aa0f452bc0d5aca67efdac43402a025021e6699752c7ff9c0965dd69c82ab",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm31-007"
+      ],
+      "exactPrints": [
+        "dm31-007"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated in full first page, all exact full images visually reviewed."
+    },
+    {
+      "id": "dm18-055",
+      "searchSha256": "647d658d914f3307daafed452001c2af228a3e9d89735ae3a20dd0b400007e9e",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm18-055"
+      ],
+      "exactPrints": [
+        "dm18-055"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated in full first page, all exact full images visually reviewed."
+    },
+    {
+      "id": "dm18-086",
+      "searchSha256": "ae044286cea74f35b375c7a70e41ccc0a0cd0c9dd53619708669023e394190b5",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm18-086"
+      ],
+      "exactPrints": [
+        "dm18-086"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated in full first page, all exact full images visually reviewed."
+    },
+    {
+      "id": "dm23-023",
+      "searchSha256": "aa768c694fb01dccca1dc4978985f8a8618d0e3c8e658ec14dc77713e528ce28",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dmx11-068",
+        "dm23-023",
+        "dmx01-017"
+      ],
+      "exactPrints": [
+        "dm23-023",
+        "dmx11-068",
+        "dmx01-017"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated in full first page, all exact full images visually reviewed."
+    }
+  ],
+  "incompleteVerification": [
+    {
+      "kind": "pre-existing-regression",
+      "target": "tests/standard166-effects.test.mjs:50 blocker removal uses current granted abilities, excludes ignored blockers and does not affect other creatures",
+      "reason": "Synthetic g35Ignored blocker remains an eligible choice under native Silly Taicho. Same exact dm01-084 fixture returns3 choices against baseline b1527377 and new data; engine source identical except ENGINE_VERSION. New Ruby/Mighty use old complete native rules and dedicated ignored-source cases pass. Existing issue held for actual official ability-ignore interaction reproduction before changing shared behavior.",
+      "baseline": "b1527377c816f8fd73a54acc6505f4692cce7567",
+      "evidence": "tmp/duema-target-10000/baseline-1853.log",
+      "registeredNewCardVerificationPending": false
+    }
+  ],
+  "additionalValidation": [
+    {
+      "name": "baseline-1853",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/baseline-1853.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.713,
+      "log": "tmp/duema-target-10000/baseline-1853.log",
+      "passed": 0,
+      "logSha256": "18b91e629ce738faa82bb957f2264f5c4b0d48dabc82575ec2fae91158285a63"
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Ruby full printed Light3/3000 Blocker/player-attack prohibition/native optional own-end untap, accept/decline and saved continuation into genuine opposing block window, creature attack legal, enemy-end no own untap, ignored/sealed/buried no ability. Mighty Nature4/2000 mandatory full deck look/shuffle, optional exact-name canonical physical creature reveal1 hand (same-type nonmatching IDs excluded), decline/no match/empty deck/actual Genmu complete suppression. Focused25 includes4 actual encrypted service entry/payment tests. Native-only additions; engine version updated without runtime logic changes. Related passing subset plus explicit baseline reproduction of pre-existing ignored-blocker issue recorded separately; do not claim whole group/global pass. npmcheck/audit9768/invariants green. Old pending/fullSuite untouched, no push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Corrected public reveal assertion to real native reveal log (type=reveal/cardId=dm18-086), not nonexistent hand-move text. First expand refused before still-running official verification completed, did not mutate; succeeded after verified manifest. Related original group had one inherited failure; exact actual dm01-084 fixture was positively reproduced against baseline and new data, runtime confirmed unchanged, one failed case preserved as unresolved existing issue, passing related tests rerun with that case explicitly excluded.",
+    "nextCandidates": [
+      {
+        "id": "dmbd03-008",
+        "name": "キャタピラ親方",
+        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+      },
+      {
+        "id": "dm01-024",
+        "name": "ギガベロス",
+        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+      },
+      {
+        "id": "dmrp21-023",
+        "name": "マスクド・ギガタック",
+        "reason": "Next grouped full official research downloaded, images and linked QA to review before implementation; JOE plus both-side exact unpaid entrant destruction, mandatory2 other own cards-to-grave else self, once Nature seed mana execution with paid cost and delayed ramp."
+      }
+    ]
+  }
+}
