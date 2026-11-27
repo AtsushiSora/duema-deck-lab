@@ -1778,6 +1778,14 @@ export function createSixPhotoRules(api){
   }
   if(t.g1735ExactBudget&&spent550(t)!==t.g550CostBudget)return;
   if(t.exactOptional&&(t.rows?.length||0)!==t.n)return;
+  if(t.g1795DiscardTurn){
+   const ids=(t.rows||[]).map(r=>r.uid);
+   if(ids.length!==10||new Set(ids).size!==10||!ids.every(uid=>s.players[t.p].hand.some(x=>x.uid===uid))||api.handProtected(s,{p:t.p,source:t.source,causedBy:t.p}))return;
+   // QA39663: attempting the complete optional discard satisfies "if you do", even if replaced.
+   api.discardSelected(s,t.p,ids,t.source,t.p,null,null,
+    task('g34_ExtraTurn1795',t.p,t.source,{attempted:ids.length,g1528AllowZero:true}));
+   return;
+  }
   if(t.g1225ManaExchange){
    moveZoneSelection583(s,t,t.rows);
    start(s,t,[{op:'Ramp',n:2,g809Together:true}]);
@@ -2908,6 +2916,9 @@ export function createSixPhotoRules(api){
    move(s,[{player,uid:attacker.uid,to:'mana',controller:player}]);
   break;
  }
+ case'g34_ExtraTurn1795':
+  if(t.attempted===10&&api.canAddTurn(s,t.p)){(s.extraTurns??=[]).push({player:t.p,source:t.source});api.log(s,t.p,'extraTurn','このターンの後、もう一度自分のターンを行う',{cardId:t.source});}
+  break;
  case'g34_OpponentExtra1746':{const opponent=1-t.p;if(api.canAddTurn(s,opponent)){(s.extraTurns??=[]).push({player:opponent,source:t.source});api.log(s,opponent,'extraTurn','正体不明の効果で相手が追加ターンを得る',{cardId:t.source});}break;}
  case'g34_DogiradisFinal1744':{
   if(s.finalUsed?.[t.p])break;
@@ -11713,16 +11724,16 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  function tapCastCost976(c){
   const rule=c.g976TapCast;
   if(!rule)return null;
-  const {color,type,count=2}=typeof rule==='string'?{color:rule,type:'creature'}:rule;
-  const label=color+(type==='seed'?'のタマシードを'+count+'枚':'のクリーチャーを'+count+'体');
-  return {color,type,count,label};
+  const {color,type,count=2,filter}=typeof rule==='string'?{color:rule,type:'creature'}:rule;
+  const label=(color||filter?.race||'自分')+(type==='seed'?'のタマシードを'+count+'枚':'のクリーチャーを'+count+'体');
+  return {color,type,count,label,...(filter?{filter}:{})};
  }
- function tapCastElements976(s,p,{color,type}){
+ function tapCastElements976(s,p,{color,type,filter}){
   const eligible=type==='seed'?s.players[p].battle.filter(x=>{
    const raw=api.zoneCard(s,p,x,'battle');
    return raw.type==='seed'||raw.seedCreature||raw.natureAce4;
   }):creatures(s,p);
-  return eligible.filter(x=>!x.sealed&&!x.faceDown&&!x.tapped&&colors(effective(x,s,true)).includes(color));
+  return eligible.filter(x=>!x.sealed&&!x.faceDown&&!x.tapped&&(!color||colors(effective(x,s,true)).includes(color))&&(!filter||matches(s,p,x,filter)));
  }
  function destroySummon1148(s,p,x,origin){
   const c=api.zoneCard(s,p,x,origin),rule=c.g1148DestroySummon,own=s.players[p];

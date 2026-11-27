@@ -307832,19 +307832,114 @@
       ],
       "supportBatch": "phase-1794",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-003",
+      "name": "浪費する者 シキゴイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ムートピア",
+      "text": "W・ブレイカー\n自分の水のクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。\n自分のターンの終わりに、自分の手札を10枚捨ててもよい。そうしたら、このターンの後で自分のターンをもう一度行う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-003",
+      "limit": 4,
+      "breaker": 2,
+      "g390DestroyToHand": {
+        "toOwner": true,
+        "filter": {
+          "creature": true,
+          "color": "水"
+        }
+      },
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 10
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 10,
+              "optional": true,
+              "exactOptional": true,
+              "g1795DiscardTurn": true,
+              "title": "追加ターンのため捨てる手札10枚を選ぶ（途中でやめると捨てない）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1795",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-022",
+      "name": "夢のジョー星",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "コストを支払うかわりに、自分のジョーカーズを４体タップして、この呪文を唱えてもよい。\n自分の山札の上から４枚を見る。その中から１枚ずつ、自分の手札、山札の一番下、マナゾーンに置き、もう１枚を山札の一番上に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g976TapCast": {
+        "type": "creature",
+        "count": 4,
+        "filter": {
+          "race": "ジョーカーズ"
+        }
+      },
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g841DeckPeek": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "deck"
+            },
+            {
+              "n": 1,
+              "to": "mana"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1795",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1794,
-    "checkedAt": "2026-11-27T12:01:40.096Z",
-    "baseCount": 9604,
-    "newEffectCards": 3,
+    "phase": 1795,
+    "checkedAt": "2026-11-27T12:13:59.279Z",
+    "baseCount": 9607,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9607,
+    "totalCount": 9609,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36292/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36293/"
+      "https://dm.takaratomy.co.jp/rule/qa/39663/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337220,6 +337315,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36398/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1794,
+        "checkedAt": "2026-11-27T12:01:40.096Z",
+        "baseCount": 9604,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9607,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36292/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36293/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
