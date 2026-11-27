@@ -303838,22 +303838,253 @@
       ],
       "supportBatch": "phase-1761",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-012",
+      "name": "「純愛の紅」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド [ll03]（このカードを使うコストの代わりに、 [ll03]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、相手のクリーチャーを１体選びタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-012",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 3,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "supportBatch": "phase-1762",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-002",
+      "name": "「蒼刀の輝将」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド [ww03]（このカードを使うコストの代わりに、[ww03]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-002",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 3,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1762",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-002",
+      "name": "「驚愕の鉄人」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド [ww04]\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nW・ブレイカー\nこのクリーチャーが表向きで自分のシールドゾーンに置かれた時、自分の山札の上から４枚を表向きにする。その中から光のカードと水のカードを１枚ずつ選び、手札に加える。残りを好きな順序で山札の一番下に置く。\nこのクリーチャーがバトルゾーンに出た時、他のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-002",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 4,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "breaker": 2,
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "color": "光"
+              },
+              "reveal": true
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "color": "水"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g179Other": true,
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "supportBatch": "phase-1762",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s01",
+      "name": "「絶対の楯騎士」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11500,
+      "race": "メタリカ/チーム銀河",
+      "text": "ギャラクシールド [ll06]（このカードを使うコストの代わりに、 [ll06]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、あるいはバトルゾーンに出た時または攻撃する時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚を表向きにして、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s01",
+      "limit": 4,
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1762",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1761,
-    "checkedAt": "2026-11-27T06:42:22.260Z",
-    "baseCount": 9505,
-    "newEffectCards": 1,
+    "phase": 1762,
+    "checkedAt": "2026-11-27T07:25:07.421Z",
+    "baseCount": 9506,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9506,
+    "totalCount": 9510,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/qa/33599/",
-      "https://dm.takaratomy.co.jp/rule/qa/33600/",
-      "https://dm.takaratomy.co.jp/rule/qa/33605/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/43921/",
+      "https://dm.takaratomy.co.jp/rule/qa/33585/",
+      "https://dm.takaratomy.co.jp/rule/qa/49228/"
     ],
     "next": [
-      "Normal registration remains paused; next explicit user request only."
+      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
     ],
     "history": [
       {
@@ -332735,6 +332966,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/qa/49660/",
           "https://dm.takaratomy.co.jp/rule/qa/49661/"
+        ],
+        "next": [
+          "Normal registration remains paused; next explicit user request only."
+        ]
+      },
+      {
+        "phase": 1761,
+        "checkedAt": "2026-11-27T06:42:22.260Z",
+        "baseCount": 9505,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 9506,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/qa/33599/",
+          "https://dm.takaratomy.co.jp/rule/qa/33600/",
+          "https://dm.takaratomy.co.jp/rule/qa/33605/"
         ],
         "next": [
           "Normal registration remains paused; next explicit user request only."

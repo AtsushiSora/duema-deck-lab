@@ -1,0 +1,514 @@
+{
+  "dmrp13-012": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「純愛の紅」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ギャラクシールド [ll03]（このカードを使うコストの代わりに、 [ll03]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、相手のクリーチャーを１体選びタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "6500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 3,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true
+        }
+      ]
+    }
+  },
+  "dmrp13-002": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「蒼刀の輝将」",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ギャラクシールド [ww03]（このカードを使うコストの代わりに、[ww03]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、またはバトルゾーンに出た時、カードを１枚引く。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 3,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmrp14-002": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「驚愕の鉄人」",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ギャラクシールド [ww04]\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nW・ブレイカー\nこのクリーチャーが表向きで自分のシールドゾーンに置かれた時、自分の山札の上から４枚を表向きにする。その中から光のカードと水のカードを１枚ずつ選び、手札に加える。残りを好きな順序で山札の一番下に置く。\nこのクリーチャーがバトルゾーンに出た時、他のクリーチャーを１体選び、持ち主の手札に戻す。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 4,
+        "civilizations": [
+          "水"
+        ]
+      },
+      "breaker": 2,
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 4,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "color": "光"
+              },
+              "reveal": true
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "color": "水"
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g179Other": true,
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ]
+    }
+  },
+  "dmrp13-s01": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「絶対の楯騎士」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ギャラクシールド [ll06]（このカードを使うコストの代わりに、 [ll06]を支払ってもよい。そうしたら、このカードを表向きにし、新しいシールドとしてシールドゾーンに置く）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、あるいはバトルゾーンに出た時または攻撃する時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚を表向きにして、新しいシールドとしてシールドゾーンに置く。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm23rp3-SP1": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「絶対の楯騎士」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ギャラクシールド [ll06]（このカードを使うコストの代わりに、 [ll06]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、あるいは出た時または攻撃する時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚を表向きにシールド化する。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp20-a15": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「絶対の楯騎士」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ギャラクシールド [ll06]（このカードを使うコストの代わりに、 [ll06]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、あるいは出た時または攻撃する時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚を表向きにシールド化する。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp20-b15": {
+    "phase": 1762,
+    "faces": [
+      {
+        "name": "「絶対の楯騎士」",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ギャラクシールド [ll06]（このカードを使うコストの代わりに、 [ll06]を支払ってもよい。そうしたら、このカードを表向きにシールド化する）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが表向きでシールドゾーンに置かれた時、あるいは出た時または攻撃する時、自分の山札の上から２枚を見る。そのうちの１枚を手札に加え、もう１枚を表向きにシールド化する。",
+        "race": "メタリカ/チーム銀河",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1412GalaxyShield": {
+        "cost": 6,
+        "civilizations": [
+          "光"
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            },
+            {
+              "n": 1,
+              "to": "shields",
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
