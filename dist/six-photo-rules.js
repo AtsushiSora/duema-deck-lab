@@ -7279,6 +7279,23 @@ export function createSixPhotoRules(api){
   const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
   start(s,t,[{op:'Target',power:-3000*n,g242PowerMinus:true}]);break;
  }
+ case'g34_AuraBreakEnd1812':{
+  if(!t.n)break;
+  if(t.mode==='jude')start(s,t,[{op:'LookDeploy530',n:t.n,public:true,g1660PublicReveal:true,g749Required:true,
+   filter:{aura:true,max:6},rest:'bottom',title:'公開したコスト6以下のオーラをすべて出す'}]);
+  else start(s,t,[{op:'Discard',n:t.n},{op:'Mill',n:t.n,opponent:true}]);
+  break;
+ }
+ case'g34_PokopySearch1812':{
+  if(!t.firstAttach)break;
+  const filter={aura:true,g201ExactName:card(t.source).g1812FirstAttachName};
+  start(s,t,[{op:'Choose',g184Modes:true,modes:[
+   {label:'手札から出す（山札は見ない）',defs:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter}]},
+   {label:'山札から探す',defs:[{op:'SearchZones1633',zones:['deck'],n:1,filter}]},
+   {label:'手札と山札から探す',defs:[{op:'SearchZones1633',zones:['hand','deck'],n:1,filter,g1114HandAndDeck:true}]}
+  ]}]);
+  break;
+ }
  case'g34_AuraDestroyCount1810':{
   const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
   if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',n,to:'grave',filter:{creature:true},g173Targets:true,g193Select:true}]);
@@ -11055,6 +11072,7 @@ export function createSixPhotoRules(api){
   const attack=s.attackLifecycle;
   if(attack?.player===context.player&&refs.includes(key(attack))){
    attack.g1075BrokeShield=true;
+   attack.g1812BrokenShields=(attack.g1812BrokenShields||0)+count;
    const x=s.players[attack.player].battle.find(x=>key(x)===key(attack));
    if(x&&card(x).g1271BreakBonus){
     const counts=(attack.g1271BreakCounts??={});
