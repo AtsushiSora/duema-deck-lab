@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11843,
-  "supportedNames": 9669,
-  "pendingNames": 2174,
-  "phase": 1816,
+  "supportedNames": 9672,
+  "pendingNames": 2171,
+  "phase": 1817,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1287,
+    "クリーチャー": 1284,
     "呪文": 245,
     "GRクリーチャー": 16,
     "G-NEOクリーチャー": 24,
@@ -220,7 +220,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1610,
+    "未対応の能力文": 1607,
     "複数面・特殊カードタイプまたは情報不足": 471,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -570898,11 +570898,241 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1817,
+      "checkedAt": "2026-11-27T16:31:23.712Z",
+      "baseline": "45169df232819452c25fd0fea857ec55f7a0a52b",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9669,
+      "currentNames": 9672,
+      "remainingNames": 328,
+      "added": [
+        {
+          "id": "dm29-003",
+          "name": "威牙の幻ハンゾウ"
+        },
+        {
+          "id": "dm29-002",
+          "name": "斬隠オロチ"
+        },
+        {
+          "id": "dmex03-026",
+          "name": "身代わり人形トレント"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1817,
+        "baseline": "45169df232819452c25fd0fea857ec55f7a0a52b",
+        "originalDefinitionsUnchanged": 9669,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9672,
+        "uniqueIds": 9672,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11847,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9669,
+        "existingImageReferenceRowsUnchanged": 12071,
+        "officialPrintsReviewed": 17,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1817": {
+          "name": "official-1817",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1817.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.807,
+          "log": "tmp/duema-target-10000/official-1817.log",
+          "passed": 0,
+          "logSha256": "57248249187829fccc3dbc453599363a08aa73e7c300042d002c7555830d3b06"
+        },
+        "focused-1817-final": {
+          "name": "focused-1817-complete-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1817-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.151,
+          "log": "tmp/duema-target-10000/focused-1817-complete-final.log",
+          "passed": 71,
+          "logSha256": "f3baf9879e9378a7de3faab62bcfb264fa7da505e5f11e35b171cfbc18f9c806"
+        },
+        "related-1817": {
+          "name": "related-1817",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(?:[^\\n]* summoned Yobinion skips spells/equal costs, enters the first smaller card and saves UIDs |[^\\n]* can decline Yobinion without looking or shuffling|[^\\n]* deployment without a summon has no Yobinion trigger|[^\\n]* Ninja Strike threshold counts cards without requiring a civilization |[^\\n]* free summon returns that physical card to library bottom at turn end|[^\\n]* ordinary paid summon is allowed and does not acquire the Ninja return effect|Jamagen spell Yobinion uses its own cost, then the opponent sacrifices three creatures |Jamagen can decline its Yobinion and still performs the three sacrifices|no smaller creature returns every revealed card to bottom without falsely losing the deck|revealed evolution creatures require and use a real evolution base|an evolution hit with no legal base stays in the revealed cards and is returned to bottom|[^\\n]* S-trigger summons also get Yobinion|Genmu suppresses cheaper Yobinion creatures but does not suppress the six-cost spell|only one Ninja Strike is usable during a single attack|Ninja Strike is also available on own turn when an opposing creature blocks|Ninja summon can be declined after declaring and preserves the card in hand|Gold Viride entry taps two enemies and skips their next untap independently of its Yobinion|Horn Stron keeps Slayer and forces a random discard independently of its Yobinion|Yobinion Sniper freezes two targets until its controllers next turn|Volcanon HyperEnergy still uses printed cost for the following Yobinion|Gatsunder wins a battle against a larger printed power through its battle-only bonus|[^\\n]* Ninja Strike applies its printed own-creature power boost|Hayabusaryu can immediately block after entering through Ninja Strike|Vegas Launcher destroys a power-3000-or-less enemy on entering through Ninja Strike|Fokusit destroys an opposing blocker when summoned through Ninja Strike|Yurikama reveals a chosen creature from its top-four search after the free summon|[^\\n]* paid use and JSON continuation |[^\\n]* charges one mana and keeps its printed tapped rule|[^\\n]* replaces matching allied destruction and preserves the entire protected stack |[^\\n]* may decline its optional replacement|[^\\n]* cannot replace a non-destruction move to |[^\\n]* does not protect a mismatching vanilla creature or the opponents card|[^\\n]* inactive Saver cannot replace destruction |[^\\n]* replacement choice survives JSON without copying physical cards|[^\\n]* protects an ally even when that recipients abilities are ignored|Dodonbubu uses current power at its exact 12000 boundary |[^\\n]* distinguishes NEO creature and NEO evolution |[^\\n]* supports its second printed tribe|[^\\n]* race-based Saver also protects a noncreature Dragon tamaseed|[^\\n]* Genmu ignores low-cost creature abilities but retains tamaseed abilities|[^\\n]* AI inspection remains read only and independent of enemy hidden identities|[^\\n]* cannot pay with a Saver that cannot be destroyed |matching Saver can replace its own destruction without starting another replacement chain|a Saver used as the replacement is destroyed with every layer instead of applying Omega again|a single Saver is reserved once when multiple matching creatures are destroyed simultaneously|a Saver that is part of the same destruction batch can protect one other matching creature|source being ignored after a pending destruction removes its replacement from the legal choices|an already replaced destruction does not allow any Saver to replace the replacement|Saver may replace a zero-power destruction once but the creature is destroyed again on the next state check|Dodonbubu includes power attacker while protecting a creature destroyed during its attack|NEX discounts its summon by two per allied Dragon creature with a floor of one|NEX gives speed to itself and allied Dragons and breaks all opposing shields|NEX reveals the top on an allied Dragon attack and allows it to stay or enter|Hyper Voljaak causes the attacking NEX to trigger twice \\(QA45140\\)|Updrill taps creatures that are already in play and skips their next starting untap once|Updrill grants the Stella power and breaker aura while it remains in play|Updrill True Escape consumes two shields without their trigger and can replace bounce|n41kun4 declares after the opposing attack and resolves only with an allied Mecha|n41kun4 cannot attack and can save another Mecha or itself from leaving|n41kun4 can be declared alongside Ninja Strike and grants no Ninja usage \\(506\\.3d\\)|destroying the attack target ends the attack before n41kun4 can be declared \\(QA39094\\)|Adras acquires its actual CIP only as the third wave striker and draws separately for both controllers |Adras counts current wave strikers at resolution, after a previously triggered effect removes one|Ramiel optional own creature destruction draw exists only on the opponent turn |Ramiel looks back at its own destruction while wave was active, but not when sealed, ignored or below the threshold|Rasselz shares Ultra Saver so either physical Survivor may sacrifice to prevent the other leaving |Rasselz may decline protection, cannot protect an ordinary creature and loses sharing while ignored|Future Hand selects only the chosen type: opposing creature or opposing real Duelist |Future Hand really casts as a free shield trigger and cannot destroy the Duelist through creature mode|Paid entry, printed mana, original IDs and JSON remain intact |Chai XX protection follows the actual chooser and only its active source |Chai protection does not restrict attacks or blocks against the protected XX |Chai only sacrifices for its own Dragon destruction |QA36049 Chai death grants only current own Dragons untapped attacks for this turn |Yodel obligatorily deploys only a cost-six-or-less Light Hunter Psychic from its own extra zone |Yodel Saver protects own Psychic creatures and keeps their physical extra identity |QA35620 Peng needs two distinct own bases with the actual Light and Water conditions |Peng grants optional Phoenix Saver to other own active Blockers only |Peng preserves Nyattaramon’s original Unknown Saver alongside the granted Phoenix Saver |Temporary Blocker abilities gain Peng Saver immediately and lose it when that ability ends |Two Pengs grant each other Saver and only one physical Blocker is consumed per protection |New static abilities and decisions keep AI inspection pure and hidden identities irrelevant |Peng rejects two Light or two Water bases, accepts two distinct multicolored bases and breaks two shields |Peng’s granted Saver remains usable during a simultaneous departure of its source |Online extra-deployment and granted-Saver decisions remain private to their acting account |A real continuous Blocker aura supplies Peng Saver independently of battle insertion order |Fuuta QA35699 protects own Shinobi including itself from any ordinary bottom-deck move |Fuuta offers only bottom deck and own Shinobi, declines safely, and cannot pay empty mana |Fuuta QA32473 analogue preserves itself for native bottom selection without requiring Ninja Strike |Fuuta QA35698 actual Ninja Strike return stays replaced through later turn ends |Arctic may tap its untapped source to protect another own Gransect from each destination |Arctic cannot protect itself, non-Gransects, enemy Gransects or use a tapped/ignored/sealed source |Arctic two sources protect each other, one source cannot pay twice in a simultaneous departure |Arctic pays its tap even when its source leaves in the same simultaneous move |Arctic remains an ordinary Guardman and cannot attack players or redirect a player attack |Michael draws optionally for each destroyed own Mado and ignores other races, opponents and non-destruction moves |Michael QA31687 actual Desuzaku with four Mado below draws four and preserves every card |Michael observes Mado below a non-evolution GNEO that stays while its cards move to grave |Michael below-card draws require a creature host and actual grave arrival, never mana or hand |Michael leaving simultaneously cannot observe other destroyed creatures or their cards below |Michael can decline each draw separately and has no trigger for ordinary Mado spell resolution |Michael Tee Zolis doubles Mado destruction but not under-card grave arrival |Fuuta spends a distinct physical mana card for each simultaneously protected Shinobi |Arctic does not keep a zero-power Gransect alive after paying its tap once |phase1677 manual mana uses exactly the selected physical cards before native execution |phase1677 pending replacement or optional draw AI plans are pure and independent of unknown enemy cards |phase1677 pending replacement or optional draw survives encrypted room projection |Fuuta and Jinnai offer independent alternatives and one replacement never chains into the other |Michael does not draw when Mado spells below actual New World field move to grave |Arctic source still protects an ability-ignored Gransect and the protection may be declined |Michael nested Mado layers each count once when a real creature stack is destroyed |Fuuta actual Apul mana prohibition prevents paying the replacement without moving any mana |Generation and ordinary crossing each pay printed cost |Soul optionally sacrifices only another own creature and leaves host and gear |Soul external2000 and replacement survive ignored host but stop for ignored sealed or uncrossed gear |Soul excludes indestructible and unable-to-leave sacrifices and replacement never chains their Omega |QA35728 actual Shield Saver cannot replace its replacement destruction using Soul |Soul and Saga never replace non-destruction moves to mana hand or deck |Saga freely crosses actual evolution and linked God but neither ordinary nor unevolved NEO |Saga mandatory source-to-mana replacement followed by optional creature-only mana recovery |Saga replacement survives ignored host and stops for ignored or sealed gear |QA35993 actual God Saver is destroyed without chaining its crossed Saga mana replacement |Saga and Soul offer competing replacements without consuming either until selected |Raging grants PA3000 and attacks only untapped Gods with external battle12000 including defending |QA35700 first God attack untaps host without cancelling battle and later God attack does not untap |First God attack counts before gear attached and player or nonGod attacks do not consume it |Ignored host loses granted PA and untapped God permission but retains battle bonus and first attack trigger |Raging battle bonus stacks per physical gear and is included before Stallion multiplication |Ignored sealed and recrossed Raging source stops external battle bonus and first untap |Soul replacement and Saga mana recovery roundtrip encrypted owner-only choices and physical identities |God first-attack history follows actual paid evolution and does not grant a second untap |First God attack respects an existing untap prohibition and turn history expires next turn |Same physical Raging host leaving and reentering has a new incarnation and new first God attack |Saga free cross works for actually evolved NEO and obeys inactive gear and host incarnation |Soul destruction reservation cannot sacrifice the same physical body for two simultaneous hosts |Aura actual paid execution attaches to an existing or newly summoned GR, grants printed power and preserves encrypted state |Zark is actually GR-summoned from the top, uses zero mana value and returns to GR on leaving |Soul Bringer saves its attached creature by destroying exactly another own creature, independently of ignored host abilities |Soul Bringer does not save a host with no payable other creature or inactive attachment |Soul Bringer does not replace non-destruction departure to |Edama optionally pays only its own exact attached Aura to grave and preserves host and other attachments on |Edama ability resides on its own active attachment |Edama itself can leave without protecting itself or paying a different attachment|QA32007 Zark pays exactly two chosen attached Auras in elected bottom order and retains the third |Zark cannot pay a partial Aura cost with only |Zark choosing one Aura then cancelling leaves the complete field and library unchanged before declining departure|Zark requires its own active ability but may pay ignored attachments |Actual Artificial Reality Charger simultaneous element bounce preserves Edama host, pays Edama once and returns every other Aura |Actual simultaneous element bounce lets Zark pay two attached Auras without their scheduled hand moves |Soul Bringer simultaneous destruction reservations never reuse the same sacrificed creature for two hosts|Two Zarks in the same element sweep pay distinct complete ordered Aura pairs and their controller orders the resulting bottom groups |Edama and Zark offer alternative complete replacements; choosing one Edama never consumes a second Aura|Edama paid movement into grave is a placement and does not falsely count as destruction|QA42981 actual Zark Ho Pitch can destroy one attached Aura element while leaving its GR host alive |Soul Bringer sacrifices actual Apple Churis and resolves that real destruction draw while its own host and Aura stay|Edama can be spent once but state-based zero-power loss after the power bonus disappears still removes its host |Two Edama copies may independently pay for two separate leave events and never both pay for the same event|Actual combat loss can be replaced by the Aura without untapping the defending GR |Aura protection follows actual evolution of its GR host and is still available on the fully evolved creature|The actual opponent element-leave watcher counts only paid Auras and never the saved host |Compound evolution combines Auras from two distinct GR bases onto the one resulting creature without losing either physical attachment|Multiple complete Aura payments are ordered before actual )",
+            "tests/standard398-effects.test.mjs",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1232-effects.test.mjs",
+            "tests/standard1555-effects.test.mjs",
+            "tests/standard1664-effects.test.mjs",
+            "tests/standard1677-effects.test.mjs",
+            "tests/standard1723-effects.test.mjs",
+            "tests/standard1807-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.552,
+          "log": "tmp/duema-target-10000/related-1817.log",
+          "passed": 726,
+          "logSha256": "2a024fc3b4563c9ae604eef0c16de61da0549353c985f3c7b93795dcbbddc360"
+        },
+        "check-1817": {
+          "name": "check-1817",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.186,
+          "log": "tmp/duema-target-10000/check-1817.log",
+          "passed": 0,
+          "logSha256": "4d99a70b4a59b2407d175d82b4148c67bd3f07b5ca771808c850f875e794f60d"
+        },
+        "audit-1817": {
+          "name": "audit-1817",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.686,
+          "log": "tmp/duema-target-10000/audit-1817.log",
+          "passed": 0,
+          "logSha256": "f2084fc8158afa27b9c10a18c132eaee543e94c36c7e8c8465ed1503ef373cf9"
+        },
+        "invariants-1817": {
+          "name": "invariants-1817",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1817"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.772,
+          "log": "tmp/duema-target-10000/invariants-1817.log",
+          "passed": 0,
+          "logSha256": "c77cc636482c67ca3ecd22f5fa518f06ad18f08acd528f3a56381c62ba3a979e"
+        },
+        "related-online-1817": {
+          "name": "related-online-1817",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.598,
+          "log": "tmp/duema-target-10000/related-online-1817.log",
+          "passed": 5,
+          "logSha256": "e73a7e4ed3e8a08c945a1132418ac1b754088d5258413cb64fcca24e195dc10b"
+        }
+      },
+      "totalTestsPassed": 802,
+      "manifest": "tools/support-phase-1817.json",
+      "supported": 9672,
+      "pending": 2171,
+      "engineVersion": "0.602.341",
+      "held": [
+        {
+          "id": "dmex18-067",
+          "name": "ケングレンオー 〜出発〜",
+          "existingId": "dm32-101",
+          "reason": "The current scan produces this print only because its wave-dash spelling differs from the already supported ケングレンオー ～出発～. Do not count it as a new type. Exact official print/name-alias verification is not part of this Shinobi batch and remains unperformed; preserve the old ID and lookup unchanged."
+        }
+      ],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1817-initial",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1817-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.086,
+          "log": "tmp/duema-target-10000/focused-1817-initial.log",
+          "reason": "Initial test helper had a duplicate local variable declaration. Corrected newly added Orochi spec to use the native g179Other source-exclusion field rather than the unrelated generic other flag. Fixture corrections use Shauna actual printed9500, leave a sealed ignored creature in battle, put Senno on the relevant opposing side of the active library owner, and separate Onikamas free-entry bounce from the ordinary reveal test while testing its actual bounce in a dedicated case. Captured source-base UID before its physical under array is cleared on payment. Added the public inspection snapshot directly to queued Put/LookRest steps, since ordinary start context intentionally does not propagate arbitrary fields."
+        },
+        {
+          "name": "focused-1817-revised",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1817-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.374,
+          "log": "tmp/duema-target-10000/focused-1817-revised.log",
+          "reason": "Initial test helper had a duplicate local variable declaration. Corrected newly added Orochi spec to use the native g179Other source-exclusion field rather than the unrelated generic other flag. Fixture corrections use Shauna actual printed9500, leave a sealed ignored creature in battle, put Senno on the relevant opposing side of the active library owner, and separate Onikamas free-entry bounce from the ordinary reveal test while testing its actual bounce in a dedicated case. Captured source-base UID before its physical under array is cleared on payment. Added the public inspection snapshot directly to queued Put/LookRest steps, since ordinary start context intentionally does not propagate arbitrary fields."
+        },
+        {
+          "name": "focused-1817-corrected",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1817-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.495,
+          "log": "tmp/duema-target-10000/focused-1817-corrected.log",
+          "reason": "Initial test helper had a duplicate local variable declaration. Corrected newly added Orochi spec to use the native g179Other source-exclusion field rather than the unrelated generic other flag. Fixture corrections use Shauna actual printed9500, leave a sealed ignored creature in battle, put Senno on the relevant opposing side of the active library owner, and separate Onikamas free-entry bounce from the ordinary reveal test while testing its actual bounce in a dedicated case. Captured source-base UID before its physical under array is cleared on payment. Added the public inspection snapshot directly to queued Put/LookRest steps, since ordinary start context intentionally does not propagate arbitrary fields."
+        },
+        {
+          "name": "focused-1817-boundaries",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1817-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 7.29,
+          "log": "tmp/duema-target-10000/focused-1817-boundaries.log",
+          "reason": "Initial test helper had a duplicate local variable declaration. Corrected newly added Orochi spec to use the native g179Other source-exclusion field rather than the unrelated generic other flag. Fixture corrections use Shauna actual printed9500, leave a sealed ignored creature in battle, put Senno on the relevant opposing side of the active library owner, and separate Onikamas free-entry bounce from the ordinary reveal test while testing its actual bounce in a dedicated case. Captured source-base UID before its physical under array is cleared on payment. Added the public inspection snapshot directly to queued Put/LookRest steps, since ordinary start context intentionally does not propagate arbitrary fields."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1816,
-    "nextPhase": 1817,
+    "lastVerifiedPhase": 1817,
+    "nextPhase": 1818,
     "workInProgress": null,
     "nextCandidates": [
       {
@@ -571815,11 +572045,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1816,
-      "baseline": "8e305a1be3c7b533c4b35005e2bf67786f48526c",
-      "supportedNames": 9669,
-      "artifact": "tools/target10000-registration-checkpoint-1816.json",
-      "checkedAt": "2026-11-27T16:15:09.348Z"
+      "phase": 1817,
+      "baseline": "45169df232819452c25fd0fea857ec55f7a0a52b",
+      "supportedNames": 9672,
+      "artifact": "tools/target10000-registration-checkpoint-1817.json",
+      "checkedAt": "2026-11-27T16:31:23.712Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -574877,8 +575107,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9669,
-      "remaining": 331,
+      "currentNames": 9672,
+      "remaining": 328,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -574886,8 +575116,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1816,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1816.json",
+      "lastPhase": 1817,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1817.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -576169,8 +576399,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9669,
-      "remaining": 331,
+      "currentNames": 9672,
+      "remaining": 328,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -576178,8 +576408,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1816,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1816.json",
+      "lastPhase": 1817,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1817.json",
       "nextCandidates": [
         {
           "id": "dmex17-044",
@@ -628308,10 +628538,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1816,
+    "phase": 1817,
     "threshold": 10000,
-    "supportedNames": 9669,
-    "pendingNames": 2174,
+    "supportedNames": 9672,
+    "pendingNames": 2171,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -628320,7 +628550,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1816.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1817.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

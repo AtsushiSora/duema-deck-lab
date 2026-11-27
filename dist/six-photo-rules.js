@@ -6082,6 +6082,15 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_OrochiReveal1817':{
+  const ids=look(s,{...t,n:own.deck.length,public:true,g1603UntilFilter:{creature:true,nonEvolution:true}}),last=ids.at(-1),
+   found=last&&own.deck.find(x=>x.uid===last&&card(x).type==='creature'&&!card(x).evolution);
+  const g1660PublicPeek=own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'公開した山札'}));
+  if(found)release(s,t.p,found.uid);
+  start(s,t,[...(found?[{op:'Put',origin:'deck',target:found.uid,execution:false,g1660PublicPeek}]:[]),
+   {op:'LookRest530',ids:ids.filter(uid=>uid!==found?.uid),rest:'bottom',g1660PublicPeek}]);
+  break;
+ }
  case'g34_AuraGraveUse1816':
   (s.extLimits??=[]).push({kind:'g1816AuraGraveUse',player:t.p,expires:'end',who:s.active,
    refs:own.grave.filter(x=>card(x).type==='aura').map(x=>({uid:x.uid,serial:x.zoneSerial||0})),
@@ -9277,6 +9286,14 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Target':
+  if(t.g1817Orochi){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y){const owner=y.cardOwner??v.p;
+    move(s,[{player:v.p,uid:y.uid,to:'deck',toOwnerDeck:true,destroy:false,controller:t.p}]);
+    start(s,{...t,p:owner},[{op:'OrochiReveal1817'}]);
+   }
+   break;
+  }
   if(used792(s,t,t))break;
   if(t.g1784OwnerDeckChoice){
    const target=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);

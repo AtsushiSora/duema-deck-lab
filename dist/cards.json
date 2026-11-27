@@ -310636,22 +310636,124 @@
       ],
       "supportBatch": "phase-1816",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-003",
+      "name": "威牙の幻ハンゾウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "デーモン・コマンド/シノビ",
+      "text": "ニンジャ・ストライク ７(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１枚墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-003",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 7,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -6000,
+          "g242PowerMinus": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g267Mana": {
+            "color": "闇",
+            "n": 1
+          }
+        },
+        "grants": {
+          "g112ShieldGrave": true
+        }
+      },
+      "supportBatch": "phase-1817",
+      "supportKind": "effect",
+      "ninjaColors": []
+    },
+    {
+      "id": "dm29-002",
+      "name": "斬隠オロチ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "サイバーロード/シノビ",
+      "text": "ニンジャ・ストライク ７\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある他のクリーチャーを１体選び、持ち主の山札の一番下に置く。その持ち主は、自分自身の山札の上から進化ではないクリーチャーが出るまでカードを表向きにし、出たクリーチャーをバトルゾーンに出して、残りのカードを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-002",
+      "limit": 1,
+      "ninjaStrike": true,
+      "ninjaMin": 7,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "filter": {
+            "creature": true
+          },
+          "g1817Orochi": true,
+          "g179Other": true
+        }
+      ],
+      "supportBatch": "phase-1817",
+      "supportKind": "effect",
+      "ninjaColors": []
+    },
+    {
+      "id": "dmex03-026",
+      "name": "身代わり人形トレント",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "グランセクト/シノビ/スペシャルズ",
+      "text": "ニンジャ・ストライク４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\n自分の他のクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーを自分の山札の一番下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-026",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "g571Saver": {
+        "filter": {
+          "creature": true
+        },
+        "ultra": true,
+        "other": true,
+        "to": "deck"
+      },
+      "supportBatch": "phase-1817",
+      "supportKind": "effect",
+      "ninjaColors": []
     }
   ],
   "supportExpansion": {
-    "phase": 1816,
-    "checkedAt": "2026-11-27T16:08:46.126Z",
-    "baseCount": 9666,
+    "phase": 1817,
+    "checkedAt": "2026-11-27T16:20:22.859Z",
+    "baseCount": 9669,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9669,
+    "totalCount": 9672,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36997/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36995/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
-      "https://dm.takaratomy.co.jp/rule/qa/33074/"
+      "https://dm.takaratomy.co.jp/rule/qa/39662/",
+      "https://dm.takaratomy.co.jp/rule/qa/39662/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -340372,6 +340474,25 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39323/",
           "https://dm.takaratomy.co.jp/rule/qa/39323/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1816,
+        "checkedAt": "2026-11-27T16:08:46.126Z",
+        "baseCount": 9666,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9669,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36997/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36995/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36996/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36998/",
+          "https://dm.takaratomy.co.jp/rule/qa/33074/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

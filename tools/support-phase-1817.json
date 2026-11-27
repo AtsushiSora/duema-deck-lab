@@ -1,0 +1,1464 @@
+{
+  "phase": 1817,
+  "checkedAt": "2026-11-27T16:20:22.859Z",
+  "baseline": "45169df232819452c25fd0fea857ec55f7a0a52b",
+  "baseCount": 9669,
+  "target": 10000,
+  "description": "Three complete Shinobi reuse native Ninja Strike thresholds, declaration snapshots and end-turn return. Hanzo uses native chosen minus and conditional grave-shield destruction replacement. Orochi uses chosen owner bottom movement, native public reveal until a non-evolution creature and mandatory exact deployment with chosen bottom order. Trent extends native reserved Ultra Saver destination to exact-source deck bottom without destruction and preserves complete physical bundles.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39662/",
+    "https://dm.takaratomy.co.jp/rule/qa/39662/"
+  ],
+  "cards": [
+    {
+      "id": "dm29-003",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dm29-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-003",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１枚墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-003.jpg",
+      "imageSha256": "07e935d9b0ad20a44e2696ebab5fa063246a0f65c020ee11f118d5ef7febabee",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm29-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "43110ab8f6b6f305537fcc41fc43e92e3a20834dd2296dc0808cef6a653f8833",
+        "facesMatched": true,
+        "imageSha256": "07e935d9b0ad20a44e2696ebab5fa063246a0f65c020ee11f118d5ef7febabee"
+      }
+    },
+    {
+      "id": "dm29-002",
+      "name": "斬隠オロチ",
+      "canonicalId": "dm29-002",
+      "printId": "dm29-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-002",
+      "faces": [
+        {
+          "name": "斬隠オロチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ７\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある他のクリーチャーを１体選び、持ち主の山札の一番下に置く。その持ち主は、自分自身の山札の上から進化ではないクリーチャーが出るまでカードを表向きにし、出たクリーチャーをバトルゾーンに出して、残りのカードを好きな順序で山札の一番下に戻す。",
+          "race": "サイバーロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "g1817Orochi": true,
+            "g179Other": true
+          }
+        ],
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-002.jpg",
+      "imageSha256": "aa8460a6bc5e5a7dea0d3fd807e0eef2a5a0db1f929a6bc0647d5bdaa385cef4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm29-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-002",
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allSearchIds": [
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dm29-002",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "d1ae334a48b9854e2677dce2cdb4c9bdeb954c6a2ae438bbb8f0901792d68d0e",
+        "facesMatched": true,
+        "imageSha256": "aa8460a6bc5e5a7dea0d3fd807e0eef2a5a0db1f929a6bc0647d5bdaa385cef4"
+      }
+    },
+    {
+      "id": "dmex03-026",
+      "name": "身代わり人形トレント",
+      "canonicalId": "dmex03-026",
+      "printId": "dmex03-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-026",
+      "faces": [
+        {
+          "name": "身代わり人形トレント",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\n自分の他のクリーチャーがバトルゾーンを離れる時、かわりにこのクリーチャーを自分の山札の一番下に置いてもよい。",
+          "race": "グランセクト/シノビ/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 4,
+        "g571Saver": {
+          "filter": {
+            "creature": true
+          },
+          "ultra": true,
+          "other": true,
+          "to": "deck"
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-026.jpg",
+      "imageSha256": "101dedfa4f2d4fb5d92d7463a3242ce9ce028d5ec308439d51209af3671b8ddc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex03-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-026"
+        ],
+        "allSearchIds": [
+          "dmex03-026"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "a0bdb3d59db235b71f9cce01b16d7837955c4c21cc0a2feee6eb389484acb19e",
+        "facesMatched": true,
+        "imageSha256": "101dedfa4f2d4fb5d92d7463a3242ce9ce028d5ec308439d51209af3671b8ddc"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy12-051",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "promoy12-051",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-051",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１枚墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-051.jpg",
+      "imageSha256": "01100b6003dc2b0fc77a9a1f346cd8dfa9ee864181f47771acb67008941534fc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy12-051-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "64c2d05049bf78cb26171ce98d2d39115102e63491824af54b0ad50838d44570",
+        "facesMatched": true,
+        "imageSha256": "01100b6003dc2b0fc77a9a1f346cd8dfa9ee864181f47771acb67008941534fc"
+      }
+    },
+    {
+      "id": "dmx14-SEC3",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmx14-SEC3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-SEC3",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１枚墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-SEC3.jpg",
+      "imageSha256": "2c542b9523c343b62990945a32328446bad28f84f89c308e099e7870bc76269d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx14-SEC3-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "3db3705bde5775db337a1f40408489d025e9017036f2fdfe73ca0070e9a49992",
+        "facesMatched": true,
+        "imageSha256": "2c542b9523c343b62990945a32328446bad28f84f89c308e099e7870bc76269d"
+      }
+    },
+    {
+      "id": "dmrp12-g06",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmrp12-g06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-g06",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-－6000する。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１つ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-g06.jpg",
+      "imageSha256": "91136ed3dd7c079eb181217418310158adbe6fd512f86bfa2840e078f6ae2f63",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp12-g06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "ff7c4b3cfbae3e15646691c18ccb8e0b2865e13d59cef7e163188c28c393178a",
+        "facesMatched": true,
+        "imageSha256": "91136ed3dd7c079eb181217418310158adbe6fd512f86bfa2840e078f6ae2f63"
+      }
+    },
+    {
+      "id": "dmd24-007",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmd24-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd24-007",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-6000する。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドをひとつ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd24-007.jpg",
+      "imageSha256": "e909bdf3d209c830735030350f1b688085b35c5805dc979d704d557336214cd2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd24-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "168b2bf72ffa218a376ad295da6e72ab2020ee61ba34b4af199034a3507a6c9a",
+        "facesMatched": true,
+        "imageSha256": "e909bdf3d209c830735030350f1b688085b35c5805dc979d704d557336214cd2"
+      }
+    },
+    {
+      "id": "dmx08-003",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmx08-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-003",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク７(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１枚墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-003.jpg",
+      "imageSha256": "1499f1229b21bec9426bfe8b9aaee62ee6804c4ddba0702f1c54534130a67682",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx08-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "f0dc92aa377f1d565b78e7ed1a1c0847d17bcdb5cf8c26da61d9c93f0eaf0d05",
+        "facesMatched": true,
+        "imageSha256": "1499f1229b21bec9426bfe8b9aaee62ee6804c4ddba0702f1c54534130a67682"
+      }
+    },
+    {
+      "id": "dmbd21-021",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmbd21-021",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-021",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の下に置く）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-－6000する。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードがあれば、かわりに自分のシールドを１つ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-021.jpg",
+      "imageSha256": "41a2c09f5076a7389710cd7251884cadd7e88b7c6f482a43d33e6160b186548e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd21-021-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "905f11a989ba7de480b572940d91a2f5fe8bc197a2598b9f618169fa4aefef1d",
+        "facesMatched": true,
+        "imageSha256": "41a2c09f5076a7389710cd7251884cadd7e88b7c6f482a43d33e6160b186548e"
+      }
+    },
+    {
+      "id": "dmc63-012",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmc63-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-012",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。(パワー０以下のクリーチャーは破壊される)\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードがあれば、このクリーチャーのかわりに自分のシールドを１枚墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-012.jpg",
+      "imageSha256": "d5d07078e88911043b9fca6b3d0d3f3c4f216bb084dbb4ff472b4f113cd2fe67",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc63-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "4259b897365af19a1eb7920c4a7cc7345ae08e73199b1496356050d07e9714ab",
+        "facesMatched": true,
+        "imageSha256": "d5d07078e88911043b9fca6b3d0d3f3c4f216bb084dbb4ff472b4f113cd2fe67"
+      }
+    },
+    {
+      "id": "dmd33-008",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmd33-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd33-008",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-?6000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１つ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd33-008.jpg",
+      "imageSha256": "b7805b3f053ed96dd5b5bda58e28ef71e587d5ef6585c81ed8efca9dd4c09b56",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd33-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "426b99c595e4810f6db40790787b2dfc97f6be36231bd729bb96498a42fbfa73",
+        "facesMatched": true,
+        "imageSha256": "b7805b3f053ed96dd5b5bda58e28ef71e587d5ef6585c81ed8efca9dd4c09b56"
+      }
+    },
+    {
+      "id": "dmbd02-006",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dmbd02-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd02-006",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを-_6000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが破壊される時、自分のマナゾーンに闇のカードが１枚でもあれば、かわりに自分のシールドを１つ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd02-006.jpg",
+      "imageSha256": "dbffd601e87df57d1666db142b3dad75945e326c8dc9d81a772d3462099be36f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd02-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "9d0753fcd2cf67e361cc42253d8b1a163c5882a18e998bf41d942b2d4f30fdf1",
+        "facesMatched": true,
+        "imageSha256": "dbffd601e87df57d1666db142b3dad75945e326c8dc9d81a772d3462099be36f"
+      }
+    },
+    {
+      "id": "dm24bd4-005",
+      "name": "威牙の幻ハンゾウ",
+      "canonicalId": "dm29-003",
+      "printId": "dm24bd4-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-005",
+      "faces": [
+        {
+          "name": "威牙の幻ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－6000する。\nこのクリーチャーが破壊される時、自分のマナゾーンに闇文明があれば、かわりに自分のシールドを１つ墓地に置いてもよい。",
+          "race": "デーモン・コマンド/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "color": "闇",
+              "n": 1
+            }
+          },
+          "grants": {
+            "g112ShieldGrave": true
+          }
+        },
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd4-005.jpg",
+      "imageSha256": "5ebed76df8580f8718bcfb3b6302cf7d2abdefa5cd11ec31bf42443b5a65e2f8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24bd4-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-003",
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allSearchIds": [
+          "promoy12-051",
+          "dmx14-SEC3",
+          "dmrp12-g06",
+          "dm29-003",
+          "dmd24-007",
+          "dmx08-003",
+          "dmbd21-021",
+          "dmc63-012",
+          "dmd33-008",
+          "dmbd02-006",
+          "dm24bd4-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "bb7983dc1bd6651cec91529edef6f2ed395cb1385509a23949068811f692a01b",
+        "facesMatched": true,
+        "imageSha256": "5ebed76df8580f8718bcfb3b6302cf7d2abdefa5cd11ec31bf42443b5a65e2f8"
+      }
+    },
+    {
+      "id": "dmx14-SEC2",
+      "name": "斬隠オロチ",
+      "canonicalId": "dm29-002",
+      "printId": "dmx14-SEC2",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-SEC2",
+      "faces": [
+        {
+          "name": "斬隠オロチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ７\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある他のクリーチャーを１体選び、持ち主の山札の一番下に置く。その持ち主は、自身の山札の上から進化ではないクリーチャーが出るまでカードをすべてのプレイヤーに見せ、出たクリーチャーをバトルゾーンに出して、残りのカードを好きな順序で山札の一番下に戻す。",
+          "race": "サイバーロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "g1817Orochi": true,
+            "g179Other": true
+          }
+        ],
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-SEC2.jpg",
+      "imageSha256": "b552af3e8d827b35af800a1c4c2dae4d12912d45bd3bba5ddee12fdc183178f5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx14-SEC2-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-002",
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allSearchIds": [
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dm29-002",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "0004eb51c24e0aa1ff1ddc8ceb3fa3b4efbec0a45ec8b0d8e088377399b9321a",
+        "facesMatched": true,
+        "imageSha256": "b552af3e8d827b35af800a1c4c2dae4d12912d45bd3bba5ddee12fdc183178f5"
+      }
+    },
+    {
+      "id": "dmbd18-se07",
+      "name": "斬隠オロチ",
+      "canonicalId": "dm29-002",
+      "printId": "dmbd18-se07",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-se07",
+      "faces": [
+        {
+          "name": "斬隠オロチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の山札の下に置く。そのプレイヤーは、自身の山札の上から進化ではないクリーチャーが出るまでカードを表向きにし、出たクリーチャーを出して、残りのカードを好きな順序で山札の下に戻す。",
+          "race": "サイバーロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "g1817Orochi": true,
+            "g179Other": true
+          }
+        ],
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd18-se07.jpg",
+      "imageSha256": "9b8d1c32b81f9b585cd6388c7ccdc6a86c2fc241394b7c6d041e024631fd80da",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd18-se07-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-002",
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allSearchIds": [
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dm29-002",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "3b007aefda33daf7a7301117479d565b5b1335e6acbe6419892cdfebc51af9e1",
+        "facesMatched": true,
+        "imageSha256": "9b8d1c32b81f9b585cd6388c7ccdc6a86c2fc241394b7c6d041e024631fd80da"
+      }
+    },
+    {
+      "id": "dmbd02-005",
+      "name": "斬隠オロチ",
+      "canonicalId": "dm29-002",
+      "printId": "dmbd02-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd02-005",
+      "faces": [
+        {
+          "name": "斬隠オロチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ７\nこのクリーチャーがバトルゾーンに出た時、他のクリーチャーを１体選び、持ち主の山札の一番下に置く。そのプレイヤーは、自身の山札の上から進化ではないクリーチャーが出るまでカードを表向きにし、出たクリーチャーをバトルゾーンに出して、残りのカードを好きな順序で山札の一番下に戻す。",
+          "race": "サイバーロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "g1817Orochi": true,
+            "g179Other": true
+          }
+        ],
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd02-005.jpg",
+      "imageSha256": "400f314ebd3d532a98bc0847a515837f1d792f76a411d2574f5639c363020ab7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd02-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-002",
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allSearchIds": [
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dm29-002",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "010d1316180f00d69a7a656e8b80002b603514a710eb060d9ba145000ed58c50",
+        "facesMatched": true,
+        "imageSha256": "400f314ebd3d532a98bc0847a515837f1d792f76a411d2574f5639c363020ab7"
+      }
+    },
+    {
+      "id": "dmx12b-048",
+      "name": "斬隠オロチ",
+      "canonicalId": "dm29-002",
+      "printId": "dmx12b-048",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-048",
+      "faces": [
+        {
+          "name": "斬隠オロチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ニンジャ・ストライク ７\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある他のクリーチャーを１体選び、持ち主の山札の一番下に置く。その持ち主は、自身の山札の上から進化ではないクリーチャーが出るまでカードをすべてのプレイヤーに見せ、出たクリーチャーをバトルゾーンに出して、残りのカードを好きな順序で山札の一番下に戻す。",
+          "race": "サイバーロード/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true
+            },
+            "g1817Orochi": true,
+            "g179Other": true
+          }
+        ],
+        "ninjaColors": []
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-048.jpg",
+      "imageSha256": "4c81fb4ca23f9f138ae22cb747c8c2a86bc1762988f79f62efacea4b79f8c6e4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx12b-048-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-002",
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allSearchIds": [
+          "dmx14-SEC2",
+          "dmbd18-se07",
+          "dm29-002",
+          "dmbd02-005",
+          "dmx12b-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T16:20:22.859Z",
+        "sha256": "98b30a166b223eb189bbac46e834abd0e80dc7b6d36c78f87de6661c4fc6433f",
+        "facesMatched": true,
+        "imageSha256": "4c81fb4ca23f9f138ae22cb747c8c2a86bc1762988f79f62efacea4b79f8c6e4"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39662/",
+      "sha256": "3ec2f920d88ac3505b6b7d33af7f7265655de606d091cd95e7c212dd6b8b2e5c",
+      "checkedAt": "2026-11-27T16:20:22.859Z",
+      "reproduced": true,
+      "tests": "tests/standard1817-effects.test.mjs",
+      "reproduction": "QA39662: actual Anaris-2 opponent-attack optional draw places Hanzo or Orochi into hand after the attack declaration. Neither newly drawn Ninja can be declared or resolved for that already-started attack. Both cards at both seats, native Ninja threshold/declaration/return paths and encrypted service checked.",
+      "result": "QA39662: actual Anaris-2 opponent-attack optional draw places Hanzo or Orochi into hand after the attack declaration. Neither newly drawn Ninja can be declared or resolved for that already-started attack. Both cards at both seats, native Ninja threshold/declaration/return paths and encrypted service checked."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39662/",
+      "sha256": "3ec2f920d88ac3505b6b7d33af7f7265655de606d091cd95e7c212dd6b8b2e5c",
+      "checkedAt": "2026-11-27T16:20:22.859Z",
+      "reproduced": true,
+      "tests": "tests/standard1817-effects.test.mjs",
+      "reproduction": "QA39662: actual Anaris-2 opponent-attack optional draw places Hanzo or Orochi into hand after the attack declaration. Neither newly drawn Ninja can be declared or resolved for that already-started attack. Both cards at both seats, native Ninja threshold/declaration/return paths and encrypted service checked.",
+      "result": "QA39662: actual Anaris-2 opponent-attack optional draw places Hanzo or Orochi into hand after the attack declaration. Neither newly drawn Ninja can be declared or resolved for that already-started attack. Both cards at both seats, native Ninja threshold/declaration/return paths and encrypted service checked."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmex18-067",
+      "name": "ケングレンオー 〜出発〜",
+      "existingId": "dm32-101",
+      "reason": "The current scan produces this print only because its wave-dash spelling differs from the already supported ケングレンオー ～出発～. Do not count it as a new type. Exact official print/name-alias verification is not part of this Shinobi batch and remains unperformed; preserve the old ID and lookup unchanged."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T16:20:22.859Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm29-003": 4,
+      "dm29-002": 1,
+      "dmex03-026": 4,
+      "promoy12-051": 4,
+      "dmx14-SEC3": 4,
+      "dmrp12-g06": 4,
+      "dmd24-007": 4,
+      "dmx08-003": 4,
+      "dmbd21-021": 4,
+      "dmc63-012": 4,
+      "dmd33-008": 4,
+      "dmbd02-006": 4,
+      "dm24bd4-005": 4,
+      "dmx14-SEC2": 1,
+      "dmbd18-se07": 1,
+      "dmbd02-005": 1,
+      "dmx12b-048": 1
+    }
+  },
+  "validationNotes": {
+    "coverage": "71 focused tests cover three paid and actual ordinary Ninja Strike summons at both seats with printed thresholds and no civilization requirement; same physical end-turn return and encrypted restoration; Hanzo chosen minus6000 boundaries/expiry, own Dark-mana condition, optional shield-to-grave and no S-trigger; Orochi mandatory exclusion of itself and enemy untargetable creatures, both library owners, public exact reveal prefix visible to both seats with owner bottom-order choices, first non-evolution creature, protected entry/QQQX, real Onikamas response, GR return and no-eligible/no-target cases; Trent exact body-to-bottom replacement for every leave destination, independent self/scope/ignore/seal/cannot-leave exclusions, two simultaneous targets cannot reuse one physical source and complete bundled-source payment; six actual encrypted duel-service move paths. 726 related and five online tests pass.",
+    "resolvedAttempts": "Initial test helper had a duplicate local variable declaration. Corrected newly added Orochi spec to use the native g179Other source-exclusion field rather than the unrelated generic other flag. Fixture corrections use Shauna actual printed9500, leave a sealed ignored creature in battle, put Senno on the relevant opposing side of the active library owner, and separate Onikamas free-entry bounce from the ordinary reveal test while testing its actual bounce in a dedicated case. Captured source-base UID before its physical under array is cleared on payment. Added the public inspection snapshot directly to queued Put/LookRest steps, since ordinary start context intentionally does not propagate arbitrary fields.",
+    "reprints": "All 17 complete official print images reviewed: eleven Hanzo, five Orochi, one Trent. No same-name print is counted as a new type. Old card IDs and raw details are preserved."
+  }
+}
