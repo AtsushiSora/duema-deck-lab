@@ -1,0 +1,347 @@
+{
+  "phase": 1843,
+  "checkedAt": "2026-11-27T22:16:15.249Z",
+  "baseline": "ec0f0854e37a1ae821193afe673c180a64593368",
+  "baseCount": 9738,
+  "target": 10000,
+  "description": "Full Kyuden modal mandatory untapped enemy mana or dynamic BOTH-player power5000 player-attack ban until next own start; Geek NEO Fire and optional ordered grave BeatJockey return with actual-three draw; Girameshia mandatory attack shieldplus and optional physical faceup shield-down then exact-source untap.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-056",
+      "name": "キューデン・トラップ",
+      "canonicalId": "dmrp07-056",
+      "printId": "dmrp07-056",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-056",
+      "faces": [
+        {
+          "name": "キューデン・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶︎相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶︎次の自分のターンのはじめまで、パワー5000以下のクリーチャーはプレイヤーを攻撃できない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "アンタップしている相手のクリーチャーをマナに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "filter": {
+                      "untapped": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "次の自分のターンまでパワー5000以下のプレイヤー攻撃を止める",
+                "defs": [
+                  {
+                    "op": "PlayerStop567",
+                    "owner": "self",
+                    "g567PlayerStop": "start",
+                    "g1843MaxPower": 5000
+                  },
+                  {
+                    "op": "PlayerStop567",
+                    "owner": "opponent",
+                    "g567PlayerStop": "start",
+                    "g1843MaxPower": 5000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-056.jpg",
+      "imageSha256": "41b8157a70c13aa75ad0de697b3d76809301df5d864675e08d0e9ad8ae2167cf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp07-056-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-056"
+        ],
+        "allSearchIds": [
+          "dmrp07-056"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:16:15.249Z",
+        "sha256": "b9e5e2764331e4abfaac7f84e4ce31be951cd4f33fd96cc045e876825cfefaae",
+        "facesMatched": true,
+        "imageSha256": "41b8157a70c13aa75ad0de697b3d76809301df5d864675e08d0e9ad8ae2167cf"
+      }
+    },
+    {
+      "id": "dmsp01-018",
+      "name": "ギーク・チュリス",
+      "canonicalId": "dmsp01-018",
+      "printId": "dmsp01-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-018",
+      "faces": [
+        {
+          "name": "ギーク・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、ビートジョッキーを好きな数、自分の墓地から山札の上に好きな順序で置いてもよい。こうして３体以上置いたら、カードを１枚引く。",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deckTop",
+            "n": "all",
+            "optional": true,
+            "g183Return": true,
+            "g1843DrawAfterReturn": true,
+            "filter": {
+              "creature": true,
+              "race": "ビートジョッキー"
+            },
+            "title": "山札の上から置く順にビートジョッキーを選ぶ（3体以上で1枚引く）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-018.jpg",
+      "imageSha256": "cc022b4a6455de5cf3cf1a75564f3f427594b108e11ce0af02aaac77215d56e0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsp01-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsp01-018"
+        ],
+        "allSearchIds": [
+          "dmsp01-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:16:15.249Z",
+        "sha256": "050f1a62aadc92775128ed3ca46dc1d48f7a5acb15134599b40c5eb7d7f43d85",
+        "facesMatched": true,
+        "imageSha256": "cc022b4a6455de5cf3cf1a75564f3f427594b108e11ce0af02aaac77215d56e0"
+      }
+    },
+    {
+      "id": "promoy17-044",
+      "name": "ギラメシア †",
+      "canonicalId": "promoy17-044",
+      "printId": "promoy17-044",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-044",
+      "faces": [
+        {
+          "name": "ギラメシア †",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにして、自分のシールド１つの上に置く。（そのシールドの束は１つと数える）\n自分のターンの終わりに、自分のシールドゾーンにある表向きのカードを１枚、裏向きにしてもよい。そうしたら、このクリーチャーをアンタップする。",
+          "race": "マスター・ドラゴン/メタリカ",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldPlus414",
+            "g1843Mandatory": true,
+            "faceUp": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "GirameshiaDown1843"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-044.jpg",
+      "imageSha256": "a7a5f113a05e70f87c867390006997f6fc1640b95db3882e059713f19ada0167",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy17-044-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy17-044"
+        ],
+        "allSearchIds": [
+          "dmrp19-032",
+          "dmbd07-b-001",
+          "promoy17-044",
+          "dmrp07-m02",
+          "dmex19-m18"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:16:15.249Z",
+        "sha256": "da331e5f4b6c808f9d4eed77c922047d2bd6bc35e9aa813b3989b2c3a46ae501",
+        "facesMatched": true,
+        "imageSha256": "a7a5f113a05e70f87c867390006997f6fc1640b95db3882e059713f19ada0167"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:16:15.249Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-056": 4,
+      "dmsp01-018": 4,
+      "promoy17-044": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1843-fixed",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1843-edge-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.163,
+      "log": "tmp/duema-target-10000/extra-1843-fixed.log",
+      "passed": 12,
+      "logSha256": "badc5e41e16f7208043ac33f712a932cfdc1f5007e4fd34f737c020b5c44cc8d"
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp07-056",
+      "searchSha256": "2db03beea42abe850090ed994296627dbdf7251246e12a2da892b17fd5ae9bed",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp07-056"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp07-056"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "dmsp01-018",
+      "searchSha256": "89eba79c75f6a19b7a9add96824c78a91da2f496336f74d93e3c7495b7140687",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmsp01-018"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmsp01-018"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "promoy17-044",
+      "searchSha256": "20e1687e1e0bdaf42d39e3ebff6de734d57807b7576226f13160c9bf69371244",
+      "totalResults": 5,
+      "allSearchIds": [
+        "dmrp19-032",
+        "dmbd07-b-001",
+        "promoy17-044",
+        "dmrp07-m02",
+        "dmex19-m18"
+      ],
+      "excluded": [
+        {
+          "id": "dmrp19-032",
+          "name": "†正義†と「正義」"
+        },
+        {
+          "id": "dmbd07-b-001",
+          "name": "オヴ・シディア†"
+        },
+        {
+          "id": "dmrp07-m02",
+          "name": "煌世主 サッヴァーク†"
+        },
+        {
+          "id": "dmex19-m18",
+          "name": "煌世主 サッヴァーク†"
+        }
+      ],
+      "exactPrints": [
+        "promoy17-044"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 5 results enumerated on one page; every exact full print image reviewed."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three full new names, Kyuden Trap Nature5 genuine ST, Geek Churis Fire2/2000 NEO, Girameshia Light7/7500 blocker/W2. Official searches1/1/5 ALL results enumerated, exact1/1/1 prints and all3 full images inspected, no cardlinked QA, all limits4. Girameshia original official cached/live HTML both use dagger U+2020; search web title displays U+2021 but body and original image match same promoID, no new name/alias or metadata format introduced. Kyuden complete modal mandatory untapped enemy creature to mana (not own/tapped/untargetable) or BOTH players continuous current power<=5000 player-only attack ban until next own START, applies future entrants, current power changes, creature attacks retained, actual EnergyCharger power7000 restores player attack, actual Redzone ignore opponent restriction but not caster own. Genuine ST at zero mana, both seats. Geek Fire-only NEO validation/paid2/normal sickness/evolved immediate attack; optional arbitrary ordered TOP-FIRST own grave creature BeatJockey returns0/1/2/3/4, wrongrace/enemy excluded, actual moved>=3 mandatory exactly1 draw from newly ordered top, no selection or return under actual Apuru, physical card identity preserved/encrypted restore. Girameshia mandatory faceup deck-top plus onto chosen existing group, shield group count unchanged, no shield no loss of top, actual opposing Pippi replacement sends plus to grave, own-end optional ONE physical faceup shield-card facedown then untap exact source; buried shield-stack cards supported without flipping group, decline/no faceup/opponent-end/sourceignore/seals; no zone move on facedown. Full new focused52 and edge12 (real Pippi/Redzone and encrypted two-account service6), affected related and online regressions passed, npmcheck/audit9741/oldID-data invariants passed. Shared hidden shield-plus behavior default remains faceDown, added explicit faceUp support and readable label only for new verified caller; related old shield-plus regressions passed. No full npm test/old longgroups/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "First52/48 passed; two Girameshia plus tests caught existing ShieldPlus414 default hidden addition, corrected explicit faceUp flag and shared utility default preserving other callers, regenerated online compatibility; two fixture buried cards used nonexistent plus instead of native shieldStack, corrected fixture. Extra12/10 passed; two privacy assertions used nonexistent projected shields list, corrected to actual faceUpShields/shieldCount/shieldGroups fields. All final tests green, failed raw logs retained.",
+    "nextCandidates": [
+      {
+        "id": "dmex02-072",
+        "name": "貝獣 パウアー",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+      },
+      {
+        "id": "promoy11-045",
+        "name": "希望の覇王 鬼丸「刀」",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+      },
+      {
+        "id": "dm24bd3-015",
+        "name": "鬼退治の心絵",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+      }
+    ]
+  }
+}

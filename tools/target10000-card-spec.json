@@ -20323,5 +20323,144 @@
         ]
       }
     }
+  },
+  "dmrp07-056": {
+    "phase": 1843,
+    "faces": [
+      {
+        "name": "キューデン・トラップ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶︎相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▶︎次の自分のターンのはじめまで、パワー5000以下のクリーチャーはプレイヤーを攻撃できない。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "アンタップしている相手のクリーチャーをマナに置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "mana",
+                  "filter": {
+                    "untapped": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "次の自分のターンまでパワー5000以下のプレイヤー攻撃を止める",
+              "defs": [
+                {
+                  "op": "PlayerStop567",
+                  "owner": "self",
+                  "g567PlayerStop": "start",
+                  "g1843MaxPower": 5000
+                },
+                {
+                  "op": "PlayerStop567",
+                  "owner": "opponent",
+                  "g567PlayerStop": "start",
+                  "g1843MaxPower": 5000
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsp01-018": {
+    "phase": 1843,
+    "faces": [
+      {
+        "name": "ギーク・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、ビートジョッキーを好きな数、自分の墓地から山札の上に好きな順序で置いてもよい。こうして３体以上置いたら、カードを１枚引く。",
+        "race": "ビートジョッキー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deckTop",
+          "n": "all",
+          "optional": true,
+          "g183Return": true,
+          "g1843DrawAfterReturn": true,
+          "filter": {
+            "creature": true,
+            "race": "ビートジョッキー"
+          },
+          "title": "山札の上から置く順にビートジョッキーを選ぶ（3体以上で1枚引く）"
+        }
+      ]
+    }
+  },
+  "promoy17-044": {
+    "phase": 1843,
+    "faces": [
+      {
+        "name": "ギラメシア †",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにして、自分のシールド１つの上に置く。（そのシールドの束は１つと数える）\n自分のターンの終わりに、自分のシールドゾーンにある表向きのカードを１枚、裏向きにしてもよい。そうしたら、このクリーチャーをアンタップする。",
+        "race": "マスター・ドラゴン/メタリカ",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "ShieldPlus414",
+          "g1843Mandatory": true,
+          "faceUp": true
+        }
+      ],
+      "g174End": [
+        {
+          "op": "GirameshiaDown1843"
+        }
+      ]
+    }
   }
 }

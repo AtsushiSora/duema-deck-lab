@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9738,
-  "pendingNames": 2111,
-  "phase": 1842,
+  "supportedNames": 9741,
+  "pendingNames": 2108,
+  "phase": 1843,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,8 +156,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1240,
-    "呪文": 240,
+    "クリーチャー": 1238,
+    "呪文": 239,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
@@ -219,17 +219,17 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1583,
+    "未対応の能力文": 1581,
     "複数面・特殊カードタイプまたは情報不足": 435,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
     "複雑な進化条件": 10,
     "未対応のスリリング・スリー効果": 2,
-    "未対応の選択能力": 6,
     "コスト・文明の個別処理が必要": 2,
     "未対応のスペース・チャージ条件": 4,
     "未対応のシンカパワー": 1,
+    "未対応の選択能力": 5,
     "未対応のスーパー・S・トリガー能力": 1,
     "未対応のレインボーナス効果": 1,
     "未対応の進化V能力": 7,
@@ -340,20 +340,6 @@
         "name": "楯神の賢者レオルド"
       }
     ],
-    "未対応の選択能力": [
-      {
-        "id": "dmrp07-056",
-        "name": "キューデン・トラップ"
-      },
-      {
-        "id": "dmr23-022",
-        "name": "ダママ団の聖護Go！"
-      },
-      {
-        "id": "dmr23-024",
-        "name": "テック団の波壊Go！"
-      }
-    ],
     "コスト・文明の個別処理が必要": [
       {
         "id": "dmart26-002",
@@ -382,6 +368,20 @@
       {
         "id": "dmrp22-019",
         "name": "ダイナボルト ＜カツドン.Star＞"
+      }
+    ],
+    "未対応の選択能力": [
+      {
+        "id": "dmr23-022",
+        "name": "ダママ団の聖護Go！"
+      },
+      {
+        "id": "dmr23-024",
+        "name": "テック団の波壊Go！"
+      },
+      {
+        "id": "dm25rp4-009",
+        "name": "聖霊王の聖典"
       }
     ],
     "未対応のスーパー・S・トリガー能力": [
@@ -577196,28 +577196,249 @@
           "reason": "Initial strict NEO validator rejected valid compound Light AND current-cost9 matcher; added only exact verified compound shape, retaining prior rejection rules, then regenerated online compatibility. Two initial untargetable-target fixtures used Onikamas and correctly bounced free deployed creature, replaced with Untouchable psychic for that isolated case and added distinct real Onikamas regression. Extra pending-entry fixtures omitted initialization of optional pendingEffects array; initialized without changing engine and all10 passed. All initial failure logs retained; no final failed cases remain."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "ec0f0854e37a1ae821193afe673c180a64593368"
+    },
+    {
+      "phase": 1843,
+      "checkedAt": "2026-11-27T22:20:43.332Z",
+      "baseline": "ec0f0854e37a1ae821193afe673c180a64593368",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9738,
+      "currentNames": 9741,
+      "remainingNames": 259,
+      "added": [
+        {
+          "id": "dmrp07-056",
+          "name": "キューデン・トラップ"
+        },
+        {
+          "id": "dmsp01-018",
+          "name": "ギーク・チュリス"
+        },
+        {
+          "id": "promoy17-044",
+          "name": "ギラメシア †"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1843,
+        "baseline": "ec0f0854e37a1ae821193afe673c180a64593368",
+        "originalDefinitionsUnchanged": 9738,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9741,
+        "uniqueIds": 9741,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9738,
+        "existingImageReferenceRowsUnchanged": 12202,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1843": {
+          "name": "official-1843",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1843.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.347,
+          "log": "tmp/duema-target-10000/official-1843.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1843-final": {
+          "name": "focused-1843-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1843-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.352,
+          "log": "tmp/duema-target-10000/focused-1843-final.log",
+          "passed": 52,
+          "logSha256": "b7d38e5780ea80f43b3da9bd1e31f95d54eb801577dbed3c51d4d91a57918899"
+        },
+        "related-1843": {
+          "name": "related-1843",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1843.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 5.778,
+          "log": "tmp/duema-target-10000/related-1843.log",
+          "passed": 222,
+          "logSha256": "7629a05682d9fb86e821be3d9f761a2ebb65612e1a44f56eb5416e7d28e22289"
+        },
+        "check-1843": {
+          "name": "check-1843",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.557,
+          "log": "tmp/duema-target-10000/check-1843.log",
+          "passed": 0,
+          "logSha256": "57483a4fe4ae21929e3aa6cf0069f7db45c201f7dfe1f0b5a5fb30bd55495111"
+        },
+        "audit-1843": {
+          "name": "audit-1843",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.065,
+          "log": "tmp/duema-target-10000/audit-1843.log",
+          "passed": 0,
+          "logSha256": "1a1b3798511e9800c7be9c05f84951308a62aa799ee023d1eed76fa6116ee432"
+        },
+        "invariants-1843": {
+          "name": "invariants-1843",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1843"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.77,
+          "log": "tmp/duema-target-10000/invariants-1843.log",
+          "passed": 0,
+          "logSha256": "a172daa3a73d833cdbe342c21ab01b3d7996459f3c4db623965c238f3bfdc399"
+        },
+        "related-online-1843": {
+          "name": "related-online-1843",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.592,
+          "log": "tmp/duema-target-10000/related-online-1843.log",
+          "passed": 5,
+          "logSha256": "c9b55dae515f86f4b0f1eccce4c6ba6e753061036cbe8e0e46b02644ed7b37b8"
+        },
+        "extra-1843-fixed": {
+          "name": "extra-1843-fixed",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1843-edge-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.163,
+          "log": "tmp/duema-target-10000/extra-1843-fixed.log",
+          "passed": 12,
+          "logSha256": "badc5e41e16f7208043ac33f712a932cfdc1f5007e4fd34f737c020b5c44cc8d"
+        }
+      },
+      "totalTestsPassed": 291,
+      "manifest": "tools/support-phase-1843.json",
+      "supported": 9741,
+      "pending": 2108,
+      "engineVersion": "0.602.367",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        },
+        {
+          "id": "promoy11-045",
+          "name": "希望の覇王 鬼丸「刀」",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        },
+        {
+          "id": "dm24bd3-015",
+          "name": "鬼退治の心絵",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
+        }
+      ],
+      "verificationScope": "Three full new names, Kyuden Trap Nature5 genuine ST, Geek Churis Fire2/2000 NEO, Girameshia Light7/7500 blocker/W2. Official searches1/1/5 ALL results enumerated, exact1/1/1 prints and all3 full images inspected, no cardlinked QA, all limits4. Girameshia original official cached/live HTML both use dagger U+2020; search web title displays U+2021 but body and original image match same promoID, no new name/alias or metadata format introduced. Kyuden complete modal mandatory untapped enemy creature to mana (not own/tapped/untargetable) or BOTH players continuous current power<=5000 player-only attack ban until next own START, applies future entrants, current power changes, creature attacks retained, actual EnergyCharger power7000 restores player attack, actual Redzone ignore opponent restriction but not caster own. Genuine ST at zero mana, both seats. Geek Fire-only NEO validation/paid2/normal sickness/evolved immediate attack; optional arbitrary ordered TOP-FIRST own grave creature BeatJockey returns0/1/2/3/4, wrongrace/enemy excluded, actual moved>=3 mandatory exactly1 draw from newly ordered top, no selection or return under actual Apuru, physical card identity preserved/encrypted restore. Girameshia mandatory faceup deck-top plus onto chosen existing group, shield group count unchanged, no shield no loss of top, actual opposing Pippi replacement sends plus to grave, own-end optional ONE physical faceup shield-card facedown then untap exact source; buried shield-stack cards supported without flipping group, decline/no faceup/opponent-end/sourceignore/seals; no zone move on facedown. Full new focused52 and edge12 (real Pippi/Redzone and encrypted two-account service6), affected related and online regressions passed, npmcheck/audit9741/oldID-data invariants passed. Shared hidden shield-plus behavior default remains faceDown, added explicit faceUp support and readable label only for new verified caller; related old shield-plus regressions passed. No full npm test/old longgroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1843",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1843-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.401,
+          "log": "tmp/duema-target-10000/focused-1843.log",
+          "reason": "First52/48 passed; two Girameshia plus tests caught existing ShieldPlus414 default hidden addition, corrected explicit faceUp flag and shared utility default preserving other callers, regenerated online compatibility; two fixture buried cards used nonexistent plus instead of native shieldStack, corrected fixture. Extra12/10 passed; two privacy assertions used nonexistent projected shields list, corrected to actual faceUpShields/shieldCount/shieldGroups fields. All final tests green, failed raw logs retained."
+        },
+        {
+          "name": "extra-1843",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1843-edge-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.069,
+          "log": "tmp/duema-target-10000/extra-1843.log",
+          "reason": "First52/48 passed; two Girameshia plus tests caught existing ShieldPlus414 default hidden addition, corrected explicit faceUp flag and shared utility default preserving other callers, regenerated online compatibility; two fixture buried cards used nonexistent plus instead of native shieldStack, corrected fixture. Extra12/10 passed; two privacy assertions used nonexistent projected shields list, corrected to actual faceUpShields/shieldCount/shieldGroups fields. All final tests green, failed raw logs retained."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1842,
-    "nextPhase": 1843,
+    "lastVerifiedPhase": 1843,
+    "nextPhase": 1844,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp07-056",
-        "name": "キューデン・トラップ",
-        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+        "id": "dmex02-072",
+        "name": "貝獣 パウアー",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
       },
       {
-        "id": "dmsp01-018",
-        "name": "ギーク・チュリス",
-        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+        "id": "promoy11-045",
+        "name": "希望の覇王 鬼丸「刀」",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
       },
       {
-        "id": "promoy17-044",
-        "name": "ギラメシア †",
-        "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+        "id": "dm24bd3-015",
+        "name": "鬼退治の心絵",
+        "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
       }
     ],
     "steps": [
@@ -578111,11 +578332,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1842,
-      "baseline": "0edd59b4d508bc21fba9296f655643d33b05739c",
-      "supportedNames": 9738,
-      "artifact": "tools/target10000-registration-checkpoint-1842.json",
-      "checkedAt": "2026-11-27T22:13:29.709Z"
+      "phase": 1843,
+      "baseline": "ec0f0854e37a1ae821193afe673c180a64593368",
+      "supportedNames": 9741,
+      "artifact": "tools/target10000-registration-checkpoint-1843.json",
+      "checkedAt": "2026-11-27T22:20:43.332Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -581173,8 +581394,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9738,
-      "remaining": 262,
+      "currentNames": 9741,
+      "remaining": 259,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -581182,26 +581403,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1842,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1842.json",
+      "lastPhase": 1843,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1843.json",
       "nextCandidates": [
         {
-          "id": "dmrp07-056",
-          "name": "キューデン・トラップ",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         },
         {
-          "id": "dmsp01-018",
-          "name": "ギーク・チュリス",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "promoy11-045",
+          "name": "希望の覇王 鬼丸「刀」",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         },
         {
-          "id": "promoy17-044",
-          "name": "ギラメシア †",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "dm24bd3-015",
+          "name": "鬼退治の心絵",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         }
       ],
-      "resumeProcedure": "Phase1842 verified9738 names, remaining262; continue grouped official research and implementation for next3. Preserve all prior pending, fullSuite interrupted status, held full suppression/cards and existing Genmu observed issue. No push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1843 verified9741 names, remaining259; proceed grouped official full research/implementation for next3. Preserve all prior pending/holds/fullSuite interrupted status and Genmu observed issue. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -581414,7 +581635,7 @@
           "checkedAt": "2026-11-27T21:48:17.362Z"
         }
       ],
-      "lastVerifiedCommit": "0edd59b4d508bc21fba9296f655643d33b05739c",
+      "lastVerifiedCommit": "ec0f0854e37a1ae821193afe673c180a64593368",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -581425,7 +581646,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "21769dee0ea2dedef0bdebd352ee3ea11e96042a"
+      "lastVerifiedCodeCommit": "ec0f0854e37a1ae821193afe673c180a64593368"
     },
     "resolvedRegistrationValidations": [
       {
@@ -582541,8 +582762,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9738,
-      "remaining": 262,
+      "currentNames": 9741,
+      "remaining": 259,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -582550,26 +582771,26 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1842,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1842.json",
+      "lastPhase": 1843,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1843.json",
       "nextCandidates": [
         {
-          "id": "dmrp07-056",
-          "name": "キューデン・トラップ",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "dmex02-072",
+          "name": "貝獣 パウアー",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         },
         {
-          "id": "dmsp01-018",
-          "name": "ギーク・チュリス",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "promoy11-045",
+          "name": "希望の覇王 鬼丸「刀」",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         },
         {
-          "id": "promoy17-044",
-          "name": "ギラメシア †",
-          "reason": "Grouped next official research for full modal tap-target mana or power player-attack prohibition, NEO optional grave-top order with actual moved-three draw, and shieldplus/optional turn-end facedown untap. Verify whole abilities, all exact reprints/images, limits, related rules before implementing."
+          "id": "dm24bd3-015",
+          "name": "鬼退治の心絵",
+          "reason": "Next grouped full official research: optional4 draw entry/opponent-effect discard, Hunter evolution sum-power destruction/death self-return, and seed look3 Joker-orRex hand-or-mana with ordered remainder. Verify complete image/text/reprints/limits/QA then use native operations where complete."
         }
       ],
-      "resumeProcedure": "Phase1842 verified9738 names, remaining262; continue grouped official research and implementation for next3. Preserve all prior pending, fullSuite interrupted status, held full suppression/cards and existing Genmu observed issue. No push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1843 verified9741 names, remaining259; proceed grouped official full research/implementation for next3. Preserve all prior pending/holds/fullSuite interrupted status and Genmu observed issue. No fullnpmtest/repeatoldlonggroups/push/publication/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -582782,7 +583003,7 @@
           "checkedAt": "2026-11-27T21:48:17.362Z"
         }
       ],
-      "lastVerifiedCommit": "0edd59b4d508bc21fba9296f655643d33b05739c",
+      "lastVerifiedCommit": "ec0f0854e37a1ae821193afe673c180a64593368",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -582793,7 +583014,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "21769dee0ea2dedef0bdebd352ee3ea11e96042a"
+      "lastVerifiedCodeCommit": "ec0f0854e37a1ae821193afe673c180a64593368"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -639861,10 +640082,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1842,
+    "phase": 1843,
     "threshold": 10000,
-    "supportedNames": 9738,
-    "pendingNames": 2111,
+    "supportedNames": 9741,
+    "pendingNames": 2108,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -639873,7 +640094,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1842.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1843.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

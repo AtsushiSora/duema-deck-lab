@@ -1,4 +1,4 @@
-// Hidden shield additions preserve one shield group and reveal no new card identity.
+// Shield additions preserve one group; only face-up additions reveal the new card.
 export function createUtilityShieldSpells(api){
  const{card,effective,power,creatures,put,task,choice,opt,targetOptions}=api;
  const living=(s,p)=>creatures(s,p).filter(x=>!x.sealed);
@@ -16,7 +16,7 @@ export function createUtilityShieldSpells(api){
    return opt('シールド '+(i+1)+'（カード'+stack+'枚）'+(t.n>1?'に'+amount+'枚重ねる':''),
     t.n>1?{group,amount}:group,t.optional?(own.deck.length<=amount?-1000:amount*10-stack):-stack);
   }));
-  choice(s,t,'山札の上から'+(t.n>1?t.n+'枚'+(t.g1804ExactPlus?'':'まで'):'1枚')+'裏向きに重ねるシールドを選ぶ',
+  choice(s,t,'山札の上から'+(t.n>1?t.n+'枚'+(t.g1804ExactPlus?'':'まで'):'1枚')+(t.faceUp?'表向き':'裏向き')+'に重ねるシールドを選ぶ',
    [...options,...(t.optional?[opt('使わない',null,0)]:[])]);
   break;
  }
@@ -46,9 +46,9 @@ export function createUtilityShieldSpells(api){
   }else if(cards.length){
    for(const x of cards){
     api.clear(x,'shields');
-    api.addShieldCard(s,t.p,group,x,{faceUp:false});
+    api.addShieldCard(s,t.p,group,x,{faceUp:!!t.faceUp});
    }
-   api.log(s,t.p,'shieldPlus',card(t.source).name+'：山札の上'+cards.length+'枚を裏向きでシールドに重ねる',{cardId:t.source});
+   api.log(s,t.p,'shieldPlus',card(t.source).name+'：山札の上'+cards.length+'枚を'+(t.faceUp?'表向き':'裏向き')+'でシールドに重ねる',{cardId:t.source});
   }
   api.deckCheck(s,t.p);
   if(api.shieldCards(api.findShield(own,group)).length>beforePlus1659&&s.winner===null)put(s,task('g34_AlPlus1659',t.p,t.source,{group}));

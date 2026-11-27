@@ -1793,6 +1793,14 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1843DrawAfterReturn){
+   let moved=0;
+   for(const row of [...(t.rows||[])].reverse())
+    if(zoneMove(s,t.p,'grave',row.uid,'deckTop',{...t,g183Return:true}))moved++;
+   if(moved>=3)start(s,t,[{op:'Draw',n:1}]);
+   return;
+  }
+
   if(t.g1779PhysicalOwnCards){
    const owner=t.owner??t.p,rows=t.rows||[],hand=rows.filter(r=>r.origin==='hand').map(r=>r.uid);
    if(hand.length)api.discardSelected(s,owner,hand,t.source,t.controller??t.p);
@@ -2649,7 +2657,7 @@ export function createSixPhotoRules(api){
  case'g34_PlayerGuard750':
   if(s.active===t.p)(s.extLimits??=[]).push({kind:'g750CannotAttackPlayer',player:t.p,turn:s.turn+1,expires:'end',who:1-t.p});
   break;
- case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
+ case'g34_PlayerStop567':(s.extLimits??=[]).push({kind:'g567PlayerStop',player:t.owner==='self'?t.p:1-t.p,controller:t.p,...(t.g1843MaxPower===undefined?{}:{g1843MaxPower:t.g1843MaxPower}),expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
  case'g34_Entry468':{
   if(t.mode==='mandatoryFight'||t.mode==='optionalFight'){
    put(s,{...t,op:'g34_FightEnemy240',fighter:t.subject,g998EntryFight:true,...(t.mode==='optionalFight'?{optional:true}:{})});
@@ -4458,7 +4466,7 @@ export function createSixPhotoRules(api){
    move(s,[{player:host.p,uid:host.x.uid,to:'grave',destroy:true,controller:t.p,g1312Bushido:true}]);
   break;
  }
- case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
+ case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:!t.g1843Mandatory});break;
  case'g34_MedusaCross929':{
   if(!remainingGears929(s,t).length)break;
   const hosts=creatures(s,t.p).filter(x=>!x.sealed&&x.uid!==t.uid);
@@ -5382,6 +5390,12 @@ export function createSixPhotoRules(api){
   if(t.parity===0||t.parity===1){applyParityCombat1565(s,t,t.parity);break;}
   choice(s,t,'攻撃もブロックもできなくなるコストを選ぶ',[opt('奇数',1,10),opt('偶数',0,10)]);
   break;
+ case'g34_GirameshiaDown1843':{
+  const rows=own.shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&!y.g37ShieldHeld);
+  if(rows.length)choice(s,t,'裏向きにしてこのクリーチャーをアンタップするシールドカードを選ぶ（任意）',[
+   ...rows.map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);
+  break;
+ }
  case'g34_FlipShields949':{
   const options=peekRows585(s,{...t,who:t.who??'both'});
   const rows=t.cardOnly?options.filter(r=>!r.x.g37ShieldHeld):options,selected=t.selected||[];
@@ -8473,6 +8487,11 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ParityCombatLock1315':{
   applyParityCombat1565(s,t,v);
+  break;
+ }
+ case'g34_GirameshiaDown1843':{
+  const y=own.shields.flatMap(api.shieldCards).find(y=>y.uid===v&&y.faceUp&&!y.g37ShieldHeld);
+  if(y){y.faceUp=false;api.log(s,t.p,'shieldDown',card(t.source).name+'でシールドカードを裏向きにした',{cardId:t.source});start(s,t,[{op:'Untap',g191First:true}]);}
   break;
  }
  case'g34_FlipShields949':
@@ -12199,7 +12218,7 @@ attackPower593(s,p,x,playerOnly){
   return !!host&&!host.sealed&&api.isCreature(s,host)&&attackerPower<api.power(host,false,s);
  });
 },
-playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>(!l.g1660Color||colors(effective(x,s)).includes(l.g1660Color))&&(l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)));}finally{playerStopReading567.delete(s);}},
+playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>(l.g1843MaxPower===undefined||currentPower506(s,x)<=l.g1843MaxPower)&&(!l.g1660Color||colors(effective(x,s)).includes(l.g1660Color))&&(l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)));}finally{playerStopReading567.delete(s);}},
 externalProtection565,
  manaValue1282(s,p){
   return s.players[p].battle.some(x=>{
