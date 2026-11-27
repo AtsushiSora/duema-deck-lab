@@ -1,0 +1,661 @@
+{
+  "phase": 1821,
+  "checkedAt": "2026-11-27T17:21:16.082Z",
+  "baseline": "2f16da85962a2ba9702f418776402f66c0ae1d83",
+  "baseCount": 9680,
+  "target": 10000,
+  "description": "Complete physical-card super-infinite evolution, public optional Dragon/Fire Bird entry and mana remainder, external ally power/haste/powered breaker and non-destruction stay; exact optional four-card grave return ordered by its owner with opponent physical battle/hand bottom choice; native shield force and all-element owner-hand entry restriction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49601/",
+    "https://dm.takaratomy.co.jp/rule/qa/49606/",
+    "https://dm.takaratomy.co.jp/rule/qa/49602/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex5-S010",
+      "name": "無限龍王ボルシャック・ライジングNEX",
+      "canonicalId": "dm26ex5-S010",
+      "printId": "dm26ex5-S010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S010",
+      "faces": [
+        {
+          "name": "無限龍王ボルシャック・ライジングNEX",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：進化元のカードが２枚以上になるように、クリーチャー１体以上の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーとファイアー・バード・クリーチャーを好きな数出し、残りをマナゾーンに置く。\n自分の他のクリーチャーすべてのパワーを+5000し、「スピードアタッカー」と「パワード・ブレイカー」を与える。\n自分のクリーチャーは、破壊以外の方法で離れない。",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン/フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true,
+          "minCards": 2
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "ドラゴン",
+                "ファイアー・バード"
+              ]
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "g205Aura": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 5000
+        },
+        "g1324NonDestructionStay": true,
+        "g1150OtherNonDestructionStay": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S010.jpg",
+      "imageSha256": "fdbe99d19563a566ea17edc8b285de99aad7acf1fea93dc14f3dcf7e2e08c006",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S010",
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005",
+          "dm26ex5-S010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "sha256": "bc1a806d46a387f77d356ebcaa9dedc833f86091fc84f9b673339c4f10dbbcc1",
+        "facesMatched": true,
+        "imageSha256": "fdbe99d19563a566ea17edc8b285de99aad7acf1fea93dc14f3dcf7e2e08c006"
+      }
+    },
+    {
+      "id": "dm26ex5-006",
+      "name": "大獄の封殺ディアス Z",
+      "canonicalId": "dm26ex5-006",
+      "printId": "dm26ex5-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-006",
+      "faces": [
+        {
+          "name": "大獄の封殺ディアス Z",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "Q・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを−5000する。\n自分の墓地にカードが16枚以上なければ、このクリーチャーは攻撃できない。\nこのクリーチャーが攻撃する時、プレイヤー１人の墓地からカードを４枚選んでもよい。その持ち主は、それを好きな順序で山札の下に置く。そうしたら、相手は、バトルゾーンまたは手札にある自身のカードを１枚選び、山札の下に置く。\n自分のターンの終わりに、自分の山札の上から２枚を墓地に置く。",
+          "race": "デーモン・コマンド/ドラゴン・ゾンビ",
+          "powerText": "18000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -5000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g225AttackRequires": {
+          "kind": "graveCards",
+          "min": 16
+        },
+        "g34Attack": [
+          {
+            "op": "DiasGrave1821"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-006.jpg",
+      "imageSha256": "74081336f7e0d7dd7cf6e9891116420628061f8f4a6acd3fd75a83c02b5dfc8f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-006"
+        ],
+        "allSearchIds": [
+          "dm26ex2-045",
+          "dm23ex3-046",
+          "dm23ex3-TR14",
+          "dmr07-s01",
+          "dmex08-058",
+          "dmbd11-e04",
+          "dmrp11-062",
+          "dm25rp2-073",
+          "dm24ex3-rp3TR1",
+          "dm24rp3-TR01",
+          "dm23rp1-S3",
+          "dm23rp1-5B",
+          "dm23rp1-3A",
+          "dm22rp1-S3",
+          "dmart13-003",
+          "dm22rp1-3A",
+          "dm22rp1-5B",
+          "dmex07-m04",
+          "dm25ex3-TF03",
+          "dm25rp3-T01",
+          "dmex03-014",
+          "dmd35-004",
+          "dmr22-l02",
+          "dmr22-L2SEC1",
+          "dmr22-L2SEC2",
+          "dmr22-L2SEC3",
+          "dmrp11-g04",
+          "dmbd21-018",
+          "dmrp21-016",
+          "promoy15-036",
+          "dmr22-035",
+          "dmd35-011",
+          "dm25rp3-040",
+          "promoy25-046",
+          "dm26rp2-SEC022",
+          "dm26rp2-063",
+          "dm25rp4-022",
+          "dmrp13-081",
+          "dmx07-010",
+          "dmex08-007",
+          "dmrp08-031",
+          "dmrp08-047",
+          "dmrp08-032",
+          "dmsd07-004",
+          "promoy16-050",
+          "dmrp01-023",
+          "dm24ex2-Cho013",
+          "dm24rp4-SP2",
+          "dm23rp3-S02",
+          "dm23rp3-04B"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "sha256": "355bf1bd6213991369605469989f033b225603f88cce8afb0e2bdfcf8116aabb",
+        "facesMatched": true,
+        "imageSha256": "74081336f7e0d7dd7cf6e9891116420628061f8f4a6acd3fd75a83c02b5dfc8f"
+      }
+    },
+    {
+      "id": "dm26ex5-S001",
+      "name": "八重の精霊パーフェクト・エイティー",
+      "canonicalId": "dm26ex5-S001",
+      "printId": "dm26ex5-S001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S001",
+      "faces": [
+        {
+          "name": "八重の精霊パーフェクト・エイティー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nシールド・フォース（このクリーチャーを出す時、自分のシールドを１つ選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーに次の {SF} 能力を与える）\n{SF} このクリーチャーが離れる時、そのパワーが０より大きければ、かわりにとどまる。\n{SF} 自分のターンの終わりに、このクリーチャーをアンタップする。\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、光の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。\nエレメントは、持ち主の手札以外から出ない。",
+          "race": "エンジェル・コマンド",
+          "powerText": "10800",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g1486ShieldForce": {
+          "g577Stay": {},
+          "g166EndUntap": true
+        },
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "blocker": true
+            }
+          }
+        ],
+        "g1821ElementHandOnly": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S001.jpg",
+      "imageSha256": "c335afc2d04e9a0e721258e904408084468ded522286b52802cbe18e02c72279",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-S001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S001"
+        ],
+        "allSearchIds": [
+          "dm26ex5-S001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "sha256": "a62e7813fd8bb0a0356734aa5bbf5ffa63c7a74136c69da647c0cacc095f5cd8",
+        "facesMatched": true,
+        "imageSha256": "c335afc2d04e9a0e721258e904408084468ded522286b52802cbe18e02c72279"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex5-SEC006CHO",
+      "name": "無限龍王ボルシャック・ライジングNEX",
+      "canonicalId": "dm26ex5-S010",
+      "printId": "dm26ex5-SEC006CHO",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC006CHO",
+      "faces": [
+        {
+          "name": "無限龍王ボルシャック・ライジングNEX",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：進化元のカードが２枚以上になるように、クリーチャー１体以上の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーとファイアー・バード・クリーチャーを好きな数出し、残りをマナゾーンに置く。\n自分の他のクリーチャーすべてのパワーを+5000し、「スピードアタッカー」と「パワード・ブレイカー」を与える。\n自分のクリーチャーは、破壊以外の方法で離れない。",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン/フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true,
+          "minCards": 2
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "ドラゴン",
+                "ファイアー・バード"
+              ]
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "g205Aura": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 5000
+        },
+        "g1324NonDestructionStay": true,
+        "g1150OtherNonDestructionStay": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC006CHO.jpg",
+      "imageSha256": "013ab53871afb9feafa56ecb9472f880d54c956478686954965bd83eefe16298",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC006CHO-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S010",
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005",
+          "dm26ex5-S010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "sha256": "2ce43eaa2071ab0f1b3c101e8bd5797db4b9d254f4b899c962de33b5bd4bead5",
+        "facesMatched": true,
+        "imageSha256": "013ab53871afb9feafa56ecb9472f880d54c956478686954965bd83eefe16298"
+      }
+    },
+    {
+      "id": "dm26ex5-SEC005",
+      "name": "無限龍王ボルシャック・ライジングNEX",
+      "canonicalId": "dm26ex5-S010",
+      "printId": "dm26ex5-SEC005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-SEC005",
+      "faces": [
+        {
+          "name": "無限龍王ボルシャック・ライジングNEX",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：進化元のカードが２枚以上になるように、クリーチャー１体以上の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーとファイアー・バード・クリーチャーを好きな数出し、残りをマナゾーンに置く。\n自分の他のクリーチャーすべてのパワーを+5000し、「スピードアタッカー」と「パワード・ブレイカー」を与える。\n自分のクリーチャーは、破壊以外の方法で離れない。",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン/フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true,
+          "minCards": 2
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "mana",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "ドラゴン",
+                "ファイアー・バード"
+              ]
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "g205Aura": {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "power": 5000
+        },
+        "g1324NonDestructionStay": true,
+        "g1150OtherNonDestructionStay": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-SEC005.jpg",
+      "imageSha256": "4844e8bf512a6ae0a41c1c988e08b3334c1a761683e4f8ed0eefccf7f7e60f97",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-SEC005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26ex5-S010",
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005"
+        ],
+        "allSearchIds": [
+          "dm26ex5-SEC006CHO",
+          "dm26ex5-SEC005",
+          "dm26ex5-S010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T17:21:16.082Z",
+        "sha256": "e2aa6986c8fe404135b3b90cee2ca9bf6738e29faf64681c0f4115a725598f77",
+        "facesMatched": true,
+        "imageSha256": "4844e8bf512a6ae0a41c1c988e08b3334c1a761683e4f8ed0eefccf7f7e60f97"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49601/",
+      "sha256": "55869a51824ff5a560fc66e0dbec0046841efbf22e8efab1015046c43f2e3d4c",
+      "checkedAt": "2026-11-27T17:21:16.082Z",
+      "reproduced": true,
+      "tests": "tests/standard1821-effects.test.mjs",
+      "reproduction": "Both seats: count actual physical evolution sources including noncreatures, Shinkalize, two-card linked Gods, actual combined Volzeos and actual awakened two-card Psychic Link; exclude separately attached Aura/Gear and one-card creatures. Tests use registered native link representatives where a named FAQ example is unregistered.",
+      "result": "Both seats: count actual physical evolution sources including noncreatures, Shinkalize, two-card linked Gods, actual combined Volzeos and actual awakened two-card Psychic Link; exclude separately attached Aura/Gear and one-card creatures. Tests use registered native link representatives where a named FAQ example is unregistered."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49606/",
+      "sha256": "5c53c0d451a136e6e2cb2c3d09614c45115c47904d5ecd31dbfe2fbfbfde0d6f",
+      "checkedAt": "2026-11-27T17:21:16.082Z",
+      "reproduced": true,
+      "tests": "tests/standard1821-effects.test.mjs",
+      "reproduction": "Both seats: exactly sixteen own grave cards allow declaration; choose four, owner orders reverse selection, opponent bottoms its chosen physical card, twelve own grave cards remain and the ongoing Q-break attack completes.",
+      "result": "Both seats: exactly sixteen own grave cards allow declaration; choose four, owner orders reverse selection, opponent bottoms its chosen physical card, twelve own grave cards remain and the ongoing Q-break attack completes."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49602/",
+      "sha256": "b31e5790629579627c01c4b6283467d9f20b2d05bfade3e8fb24960b89985596",
+      "checkedAt": "2026-11-27T17:21:48.248Z",
+      "reproduced": true,
+      "tests": "tests/standard1821-effects.test.mjs",
+      "reproduction": "Both seats: count actual physical evolution sources including noncreatures, Shinkalize, two-card linked Gods, actual combined Volzeos and actual awakened two-card Psychic Link; exclude separately attached Aura/Gear and one-card creatures. Tests use registered native link representatives where a named FAQ example is unregistered.",
+      "result": "Both seats: count actual physical evolution sources including noncreatures, Shinkalize, two-card linked Gods, actual combined Volzeos and actual awakened two-card Psychic Link; exclude separately attached Aura/Gear and one-card creatures. Tests use registered native link representatives where a named FAQ example is unregistered."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "catalogueAdditions": [
+    {
+      "id": "dm26ex5-S010",
+      "name": "無限龍王ボルシャック・ライジングNEX",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S010",
+      "faces": [
+        {
+          "name": "無限龍王ボルシャック・ライジングNEX",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "超無限進化：進化元のカードが２枚以上になるように、クリーチャー１体以上の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーとファイアー・バード・クリーチャーを好きな数出し、残りをマナゾーンに置く。\n自分の他のクリーチャーすべてのパワーを+5000し、「スピードアタッカー」と「パワード・ブレイカー」を与える。\n自分のクリーチャーは、破壊以外の方法で離れない。",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン/フェニックス",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "dm26ex5-006",
+      "name": "大獄の封殺ディアス Z",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-006",
+      "faces": [
+        {
+          "name": "大獄の封殺ディアス Z",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "Q・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを−5000する。\n自分の墓地にカードが16枚以上なければ、このクリーチャーは攻撃できない。\nこのクリーチャーが攻撃する時、プレイヤー１人の墓地からカードを４枚選んでもよい。その持ち主は、それを好きな順序で山札の下に置く。そうしたら、相手は、バトルゾーンまたは手札にある自身のカードを１枚選び、山札の下に置く。\n自分のターンの終わりに、自分の山札の上から２枚を墓地に置く。",
+          "race": "デーモン・コマンド/ドラゴン・ゾンビ",
+          "powerText": "18000",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "dm26ex5-S001",
+      "name": "八重の精霊パーフェクト・エイティー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S001",
+      "faces": [
+        {
+          "name": "八重の精霊パーフェクト・エイティー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nシールド・フォース（このクリーチャーを出す時、自分のシールドを１つ選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーに次の {SF} 能力を与える）\n{SF} このクリーチャーが離れる時、そのパワーが０より大きければ、かわりにとどまる。\n{SF} 自分のターンの終わりに、このクリーチャーをアンタップする。\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、光の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。\nエレメントは、持ち主の手札以外から出ない。",
+          "race": "エンジェル・コマンド",
+          "powerText": "10800",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "checkedAt": "2026-11-27"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T17:21:16.082Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex5-S010": 4,
+      "dm26ex5-006": 4,
+      "dm26ex5-S001": 4,
+      "dm26ex5-SEC006CHO": 4,
+      "dm26ex5-SEC005": 4
+    }
+  },
+  "validationNotes": {
+    "rulingScope": "QA49601/49602: native super-infinite evolution accepts two creatures or Shinkalize, a single evolution with a noncreature source, a two-card HDM God, actual combined Volzeos King Cells and actual awakened Don Mashumaro Psychic Link. HDM and Don are registered native representatives of the two-card link rules; unregistered named examples Endless/Delete and Volg Isolate were not falsely registered or claimed as literal tests. One creature alone and attached Aura/Gear do not provide the second evolution card. QA49606: attack is declared with exactly sixteen own grave cards, returns four to twelve and still completes its actual Q-break attack; owner orders all four before the opponent chooses one physical field/hand card. Native Shield Force, hand-only entry for both players and noncreature elements, simultaneous group source timing, original owner destinations, stale incarnations and encrypted service decisions are covered. All 100 focused, 492 filtered related and five online cases pass. Legacy whole-game/worker/random legal-play loops and the full npm test were excluded, with their prior unverified status preserved.",
+    "resolvedAttempts": "Initial official fetch failed only under the network sandbox; the authorized official read-only retry passed. Initial focused fixtures called a non-exported allLayers helper, incorrectly used a Shinkalize seed as a negative example, used a newly summoned non-haste attacker, omitted a real GR Aura host and incremented undefined zoneSerial; corrected those fixtures from actual registered definitions. Replaced an incorrect power-overwrite spec with existing additive g205Aura and replaced granted recipient protection with existing direct self/other non-destruction effects so ignored recipients remain protected by the source. Added native simultaneous entry source snapshots and original-owner deck options, then completed 100/100 focused cases. The expanded related selector inadvertently included No25 138/460-game loops, then its separate 40-seed random-play loop; stopped only those newly started process groups at under ten minutes, retained both raw interrupted logs, excluded all game/worker/random-play groups and completed the final bounded card-effects regression 492/492. These stopped broad groups have no overall pass claim; the older full-suite and pending arrays remain unchanged.",
+    "nextCandidates": [
+      {
+        "id": "sp-029",
+        "name": "魔皇グレンベルク",
+        "research": "tmp/duema-target-10000/research-sp-029.json",
+        "reason": "Grouped official full-text and all-print research is available. Verify exact optional Meteor Burn source payment and attack watch timing before implementing the entire card."
+      },
+      {
+        "id": "dm19-017",
+        "name": "魔皇バルパス",
+        "research": "tmp/duema-target-10000/research-sp-029.json",
+        "reason": "Grouped official full-text and all-print research is available. Verify exact optional Meteor Burn source payment and attack watch timing before implementing the entire card."
+      },
+      {
+        "id": "dm19-041",
+        "name": "聖帝ファルマハート",
+        "research": "tmp/duema-target-10000/research-sp-029.json",
+        "reason": "Grouped official full-text and all-print research is available. Verify exact optional Meteor Burn source payment and attack watch timing before implementing the entire card."
+      }
+    ]
+  }
+}

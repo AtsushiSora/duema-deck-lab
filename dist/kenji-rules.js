@@ -1,3 +1,4 @@
+import {beginElementEntryBatch,endElementEntryBatch} from './element-entry-batch.js';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Simultaneous replacement choices may not reserve the same destruction cost.
 export function replacementSacrifices(rows){
@@ -39,7 +40,7 @@ export function createKenjiRules(api){
  case'g25_Order':{const ids=t.uids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length<=1){for(const uid of ids)own.deck.push(remove(own.deck,uid));own.g25Protected=(own.g25Protected||[]).filter(uid=>!t.protected.includes(uid));break;}choice(s,{...t,uids:ids},'残りを山札の下に置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g25_Pegasus':choice(s,t,'ギュンター：山札の上から何枚マナに置く？',Array.from({length:Math.min(3,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));break;
  case'g25_PegPick':{const bases=[...own.battle,...own.grave].map(x=>x.uid),selected=t.selected||[];choice(s,{...t,selected},'マナから出すクリーチャーをすべて選ぶ（'+selected.length+'体）',[...own.mana.filter(x=>!selected.includes(x.uid)&&canPut(s,t.p,x,'mana')&&(!own.entryLimitThisTurn||!selected.length)&&assignable(s,t.p,[...selected,x.uid],bases)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),opt('選択を確定する',null,0)]);break;}
- case'g25_PegUse':{if(!t.selected.length){delete s.g25DeployBatch;break;}const bases=t.bases.filter(uid=>[...own.battle,...own.grave].some(x=>x.uid===uid)),list=own.mana.filter(x=>t.selected.includes(x.uid)&&canPut(s,t.p,x,'mana'));if(!list.length){delete s.g25DeployBatch;break;}choice(s,{...t,bases},'同時に出すクリーチャーの進化元・処理順を選ぶ',list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
+ case'g25_PegUse':{if(!t.selected.length){endElementEntryBatch(s,'g25DeployBatch');break;}const bases=t.bases.filter(uid=>[...own.battle,...own.grave].some(x=>x.uid===uid)),list=own.mana.filter(x=>t.selected.includes(x.uid)&&canPut(s,t.p,x,'mana'));if(!list.length){endElementEntryBatch(s,'g25DeployBatch');break;}choice(s,{...t,bases},'同時に出すクリーチャーの進化元・処理順を選ぶ',list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
  case'g25_PegEnter':{const x=own.mana.find(x=>x.uid===t.target);if(!x)break;const remaining=t.selected.filter(uid=>uid!==t.target),bases=api.evolutionBases(s,t.p,card(x)).filter(b=>t.bases.includes(b.uid)&&assignable(s,t.p,remaining,t.bases.filter(uid=>uid!==b.uid)));if(card(x).evolution)choice(s,t,'同時展開する進化元を選ぶ',bases.map(x=>opt(card(x).name,x.uid,5,x.cardId)));else pegEnter(s,t,null);break;}
  case'g25_Put':{const x=own[t.origin].find(x=>x.uid===t.target);if(!x||!canPut(s,t.p,x,t.origin))break;const c=card(x);if(c.evolution)choice(s,t,'進化元を選ぶ',api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId)));else deploy(s,t,null);break;}
  case'g25_ReturnMana':choice(s,t,'ズンドコ：マナから1枚手札に戻す',own.mana.map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,cost(card(x)),x.cardId)));break;
@@ -54,7 +55,7 @@ export function createKenjiRules(api){
  case'g25_Heart':if(v){const x=remove(own.deck,v);clear(x,'hand');own.hand.push(x);}put(s,task('g25_Order',t.p,t.source,{uids:t.uids.filter(uid=>uid!==v),protected:t.uids}));if(v)api.deckCheck(s,t.p);break;
  case'g25_Order':own.deck.push(remove(own.deck,v));put(s,{...t,uids:t.uids.filter(uid=>uid!==v)});break;
  case'g25_Pegasus':put(s,task('g25_PegPick',t.p,t.source));ramp(s,t.p,v);break;
- case'g25_PegPick':if(v)put(s,{...t,selected:[...t.selected,v]});else if(t.selected.length){s.g25DeployBatch=true;put(s,task('g25_PegUse',t.p,t.source,{selected:t.selected,bases:[...own.battle,...own.grave].map(x=>x.uid)}));}break;
+ case'g25_PegPick':if(v)put(s,{...t,selected:[...t.selected,v]});else if(t.selected.length){beginElementEntryBatch(s,'g25DeployBatch');put(s,task('g25_PegUse',t.p,t.source,{selected:t.selected,bases:[...own.battle,...own.grave].map(x=>x.uid)}));}break;
  case'g25_PegUse':put(s,{...t,op:'g25_PegEnter',target:v});break;
  case'g25_PegEnter':pegEnter(s,t,v);break;
  case'g25_Put':deploy(s,t,v);break;

@@ -311063,24 +311063,180 @@
       ],
       "supportBatch": "phase-1820",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S010",
+      "name": "無限龍王ボルシャック・ライジングNEX",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 15000,
+      "race": "ルナティック・エンペラー/アーマード・ドラゴン/フェニックス",
+      "text": "超無限進化：進化元のカードが２枚以上になるように、クリーチャー１体以上の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーとファイアー・バード・クリーチャーを好きな数出し、残りをマナゾーンに置く。\n自分の他のクリーチャーすべてのパワーを+5000し、「スピードアタッカー」と「パワード・ブレイカー」を与える。\n自分のクリーチャーは、破壊以外の方法で離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S010",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "creature": true
+          }
+        ],
+        "variable": true,
+        "minCards": 2
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "mana",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ドラゴン",
+              "ファイアー・バード"
+            ]
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true,
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "g205Aura": {
+        "other": true,
+        "filter": {
+          "creature": true
+        },
+        "power": 5000
+      },
+      "g1324NonDestructionStay": true,
+      "g1150OtherNonDestructionStay": true,
+      "supportBatch": "phase-1821",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-006",
+      "name": "大獄の封殺ディアス Z",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 18000,
+      "race": "デーモン・コマンド/ドラゴン・ゾンビ",
+      "text": "Q・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを−5000する。\n自分の墓地にカードが16枚以上なければ、このクリーチャーは攻撃できない。\nこのクリーチャーが攻撃する時、プレイヤー１人の墓地からカードを４枚選んでもよい。その持ち主は、それを好きな順序で山札の下に置く。そうしたら、相手は、バトルゾーンまたは手札にある自身のカードを１枚選び、山札の下に置く。\n自分のターンの終わりに、自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-006",
+      "limit": 4,
+      "breaker": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -5000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g225AttackRequires": {
+        "kind": "graveCards",
+        "min": 16
+      },
+      "g34Attack": [
+        {
+          "op": "DiasGrave1821"
+        }
+      ],
+      "g174End": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-1821",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex5-S001",
+      "name": "八重の精霊パーフェクト・エイティー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 10800,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\nシールド・フォース（このクリーチャーを出す時、自分のシールドを１つ選んでもよい。そのシールドがシールドゾーンにある間、このクリーチャーに次の {SF} 能力を与える）\n{SF} このクリーチャーが離れる時、そのパワーが０より大きければ、かわりにとどまる。\n{SF} 自分のターンの終わりに、このクリーチャーをアンタップする。\nこのクリーチャーが攻撃する時、カードを１枚引く。その後、光の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。\nエレメントは、持ち主の手札以外から出ない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1486ShieldForce": {
+        "g577Stay": {},
+        "g166EndUntap": true
+      },
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "blocker": true
+          }
+        }
+      ],
+      "g1821ElementHandOnly": true,
+      "supportBatch": "phase-1821",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1820,
-    "checkedAt": "2026-11-27T16:58:20.745Z",
-    "baseCount": 9677,
+    "phase": 1821,
+    "checkedAt": "2026-11-27T17:21:16.082Z",
+    "baseCount": 9680,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9680,
+    "totalCount": 9683,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/49656/",
-      "https://dm.takaratomy.co.jp/rule/qa/49659/",
-      "https://dm.takaratomy.co.jp/rule/qa/49657/",
-      "https://dm.takaratomy.co.jp/rule/qa/49658/"
+      "https://dm.takaratomy.co.jp/rule/qa/49601/",
+      "https://dm.takaratomy.co.jp/rule/qa/49606/",
+      "https://dm.takaratomy.co.jp/rule/qa/49602/"
     ],
     "next": [
-      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
     ],
     "history": [
       {
@@ -340869,6 +341025,24 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1820,
+        "checkedAt": "2026-11-27T16:58:20.745Z",
+        "baseCount": 9677,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9680,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/49656/",
+          "https://dm.takaratomy.co.jp/rule/qa/49659/",
+          "https://dm.takaratomy.co.jp/rule/qa/49657/",
+          "https://dm.takaratomy.co.jp/rule/qa/49658/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
         ]
       }
     ]
