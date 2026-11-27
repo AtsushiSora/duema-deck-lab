@@ -15276,5 +15276,131 @@
       },
       "type": "field"
     }
+  },
+  "dm32-s09": {
+    "phase": 1825,
+    "faces": [
+      {
+        "name": "神羅トルネード・ムーン",
+        "typeText": "進化クリーチャー(究極進化)",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nQ・ブレイカー(このクリーチャーはシールドを４枚ブレイクする)\n自分のジャイアントがブロックされた時、そのジャイアントは相手のシールドを２枚ブレイクする。",
+        "race": "ルナティック・エンペラー/ジャイアント",
+        "powerText": "22000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 4,
+      "g1825BlockedRace": "ジャイアント",
+      "g1825BlockedBreak": 2
+    }
+  },
+  "dm31-s03": {
+    "phase": 1825,
+    "faces": [
+      {
+        "name": "薩摩の超人",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "自分のジャイアントはすべて、可能であればブロックされる。\n自分のターン中、自分のジャイアントがバトルに勝った時、相手のシールドを１枚ブレイクする。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "ジャイアント/サムライ",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g1825MustBlockRace": "ジャイアント",
+      "g252WinWatch": {
+        "ownTurn": true,
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        },
+        "defs": [
+          {
+            "op": "Break497",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      }
+    }
+  },
+  "dmex08-291": {
+    "phase": 1825,
+    "faces": [
+      {
+        "name": "薩摩の超人",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\n自分のジャイアントはすべて、可能ならブロックされる。\n自分のターン中、自分のジャイアントがバトルに勝った時、相手のシールドを１つブレイクする。",
+        "race": "ジャイアント/サムライ",
+        "powerText": "13000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "g1825MustBlockRace": "ジャイアント",
+      "g252WinWatch": {
+        "ownTurn": true,
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        },
+        "defs": [
+          {
+            "op": "Break497",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      }
+    }
+  },
+  "dm33-012": {
+    "phase": 1825,
+    "faces": [
+      {
+        "name": "死神獣ヤミノイッカク",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手の呪文によって、名前に《死神》とある自分のクリーチャーがバトルゾーンを離れる時、そのクリーチャーはバトルゾーンを離れるかわりにとどまる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ダーク・モンスター",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1825SpellNameStay": "死神"
+    }
   }
 }

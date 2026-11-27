@@ -1007,7 +1007,7 @@ export function createSixPhotoRules(api){
   if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：'+(owner===t.p?'自分':'相手')+'のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
   if(t.afterAttempt)start(s,t,t.afterAttempt);
  }
- function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.attacking||w.g1642AttackBattleWin)&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0,...(watch.g1669WinnerBreak?{source:winner.cardId}:{})}}:{})})}]:[];});}
+ function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.ownTurn||s.active===p)&&(!watch.attacking||w.g1642AttackBattleWin)&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0,...(watch.g1669WinnerBreak?{source:winner.cardId}:{})}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
  const useColorsMatch=(watch,c)=>(!watch.color||colors(c).includes(watch.color))&&
@@ -10019,6 +10019,12 @@ export function createSixPhotoRules(api){
    send(s,owner,source,'Break497',{uid:a.uid,incarnation:a.incarnation||0,n:1,
     g747CreatureBreak:true,g830BlockBreaker:a.cardId});
   }
+  if(a&&!a.sealed&&api.isCreature(s,a))for(const source of creatures(s,owner)){
+   const c=effective(source,s),requiredRace=c.g1825BlockedRace;
+   if(!source.sealed&&!source.faceDown&&requiredRace&&race(effective(a,s,true),requiredRace))
+    send(s,owner,source,'Break497',{uid:a.uid,incarnation:a.incarnation||0,n:c.g1825BlockedBreak,
+     g747CreatureBreak:true,g830BlockBreaker:a.cardId});
+  }
   const attacker=a&&!a.sealed&&effective(a,s);
   const blocked=attacker?.g559Blocked;
   if(attacker?.g756TurboRush==='blockedBreak'&&s.attack.target==='player'&&s.players[p].shields.length&&turboReady756(s,owner,a))
@@ -10268,6 +10274,7 @@ export function createSixPhotoRules(api){
  allowedEntry(s,p,c,options){if(['creature','seed','gear','field','aura','weapon','duelist'].includes(c.type)&&options.origin!=='hand'&&options.origin!=='battle'&&[0,1].some(q=>s.players[q].battle.some(x=>!x.sealed&&!x.faceDown&&elementEntrySourceEstablished(s,x)&&effective(x,s).g1821ElementHandOnly)))return false;if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},
  battleNames1664:battleNames676,
  namedEntryLocked1643:(s,p,c)=>namedLock1643(s,p,[exactName(creatureFaceName(c))]),
+ giantForcedBlock1825(s,p,a){return !!a&&!a.sealed&&creatures(s,p).some(x=>!x.sealed&&!x.faceDown&&card(x).g1825MustBlockRace&&!api.ignored(s,x)&&race(effective(a,s,true),card(x).g1825MustBlockRace));},
  namedCombatLocked1643:(s,p,x)=>creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&y.tapped&&card(y).g1822TappedCombatLock&&!api.ignored(s,y))||!!card(x).psychic&&creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1734PsychicCombatLock)||namedLock1643(s,p,battleNames676(s,x)),
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
