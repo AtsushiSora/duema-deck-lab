@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
   "catalogueNames": 11849,
-  "supportedNames": 9763,
-  "pendingNames": 2086,
-  "phase": 1851,
+  "supportedNames": 9766,
+  "pendingNames": 2083,
+  "phase": 1852,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1227,
+    "クリーチャー": 1226,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -178,7 +178,7 @@
     "進化クロスギア": 1,
     "進化クリーチャー(手札進化)": 2,
     "ドラグハート・タマシード": 1,
-    "タマシード": 21,
+    "タマシード": 20,
     "城": 21,
     "ドラグハート・フォートレス": 23,
     "禁断クリーチャー": 2,
@@ -189,7 +189,7 @@
     "進化クリーチャー(進化V)": 7,
     "キング・セル": 2,
     "NEO GRクリーチャー": 1,
-    "エグザイル・クリーチャー": 19,
+    "エグザイル・クリーチャー": 18,
     "進化クリーチャー(墓地進化V)": 1,
     "進化クリーチャー(デッキ進化)": 5,
     "G城": 10,
@@ -219,8 +219,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1559,
-    "複数面・特殊カードタイプまたは情報不足": 435,
+    "未対応の能力文": 1557,
+    "複数面・特殊カードタイプまたは情報不足": 434,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -579081,28 +579081,246 @@
           "reason": "Corrected test-only assumptions: Ida is mana evolution and cannot use a battlefield seed; replaced with actual ordinary Nature evolution Shinbo for genuine Shinkalize reproduction. Real Drache is itself NEO and AI may attach the seed under it; explicitly declined both native attachment windows in the mana-count-only test. Pre-each-break Offer occurs after actual noBlock and shield selection; advanced those legal actions before assertions. Final42 all green; no new runtime defect or pending verification."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10"
+    },
+    {
+      "phase": 1852,
+      "checkedAt": "2026-11-27T23:28:31.940Z",
+      "baseline": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9763,
+      "currentNames": 9766,
+      "remainingNames": 234,
+      "added": [
+        {
+          "id": "dmrp07-026",
+          "name": "The ガッツリ漢"
+        },
+        {
+          "id": "promoy12-085",
+          "name": "漢のキズナ カツブードン"
+        },
+        {
+          "id": "dm25ex1-075",
+          "name": "サザンの天宝"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1852,
+        "baseline": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10",
+        "originalDefinitionsUnchanged": 9763,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9766,
+        "uniqueIds": 9766,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9763,
+        "existingImageReferenceRowsUnchanged": 12230,
+        "officialPrintsReviewed": 6,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1852": {
+          "name": "official-1852",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1852.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.303,
+          "log": "tmp/duema-target-10000/official-1852.log",
+          "passed": 0,
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "focused-1852-final": {
+          "name": "focused-1852-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1852-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.1,
+          "log": "tmp/duema-target-10000/focused-1852-final.log",
+          "passed": 60,
+          "logSha256": "fb38cc436e0a49749da057cf6d457c2b4d58c82155d581eb6c216f18184f24dc"
+        },
+        "related-1852": {
+          "name": "related-1852",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1852.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.53,
+          "log": "tmp/duema-target-10000/related-1852.log",
+          "passed": 130,
+          "logSha256": "f88d209e0f7e78ec5526a4bdfa822e727cdb6467e30dcc8a9ab4e24d90a0b1b5"
+        },
+        "check-1852": {
+          "name": "check-1852",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.592,
+          "log": "tmp/duema-target-10000/check-1852.log",
+          "passed": 0,
+          "logSha256": "cc73f1ef05f52b938fef1888f348cd666821a11eff4a9585b39fee55d1417f84"
+        },
+        "audit-1852": {
+          "name": "audit-1852",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.347,
+          "log": "tmp/duema-target-10000/audit-1852.log",
+          "passed": 0,
+          "logSha256": "cfa15e8efeb46d1191251d48e6cea39033184375d7fdfe719db1f86676de5203"
+        },
+        "invariants-1852": {
+          "name": "invariants-1852",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1852"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.835,
+          "log": "tmp/duema-target-10000/invariants-1852.log",
+          "passed": 0,
+          "logSha256": "ec455ae8cf55a7d2d231237c7615045ccbb66783ee3cd66574f34b711fea8290"
+        },
+        "related-online-1852": {
+          "name": "related-online-1852",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.582,
+          "log": "tmp/duema-target-10000/related-online-1852.log",
+          "passed": 5,
+          "logSha256": "adbe7e46335bf4139dcb04330b98a6f2e5339d3b57c4b3ed846e268b50bd41c1"
+        }
+      },
+      "totalTestsPassed": 195,
+      "manifest": "tools/support-phase-1852.json",
+      "supported": 9766,
+      "pending": 2083,
+      "engineVersion": "0.602.376",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm18-055",
+          "name": "紅玉草(ルビー・グラス)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm18-086",
+          "name": "怪力の化身(マイティ・トーテム)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm23-023",
+          "name": "光波の守護者テルス・ルース",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        }
+      ],
+      "verificationScope": "All3 complete canonical definitions and3 Sazan reprint aliases (all6 exact full images) checked against official text/basic/image/limits; Gattsuri search45 enumerated,44 distinct other names excluded. No linked QA. Gattsuri actual own named Sympathy count/floor1/payment, other-only continuous4000/additive extraBreak, self and other own named attack optional own-mana named deploy vs decline, no nonnamed/enemy watches, stacked auras and ignore. Katsubudon full optional OTHER sacrifice->optional whole-deck EXILE-only reveal/shuffle, no self/enemy target/no other body/no sacrifice no search, real movement-prevention replacement still enables payoff; same-name own Exile entry blocked, different Exile and enemy copy allowed, ignore restores. Sazan seed Shinkalize and mandatory draw only OTHER own Angel ELEMENT including real command seeds; optional once COMMAND CARD execution discount works for both actual creature and seed, decline/cancel does not consume, exact physical providers selected independently/stacked, per-turn refresh, no command/noncommand confusion, sealed/buried/ignored/opponent/prohibition excluded. Native464 source list extended only opt-in command seed; all prior464 regressions passed. Focused60 includes6 actual encrypted two-account payment/entry service tests and JSON replay. Related and online5/check/audit/nameKey9766/invariants passed. No fullnpmtest/knownlonggroups/push/publication/Netlify/automation restart.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1852",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1852-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.04,
+          "log": "tmp/duema-target-10000/focused-1852.log",
+          "reason": "Fixture corrections only: native whole-deck selection is g34_LookPick, not preparatory g34_Look. The Tsukekan is NEO: optional free-deploy evolution is an extended g34_Put choice (not ordinary paid evolution); explicitly declined the legal base option so test preserves original attacker and independently verifies full two breaks. AI legal evolution onto original attacker changes attacker/break number as expected and is not a runtime defect."
+        },
+        {
+          "name": "focused-1852-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1852-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 5.515,
+          "log": "tmp/duema-target-10000/focused-1852-final-previous-1795822045710825000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1852-final.log",
+          "reason": "Fixture corrections only: native whole-deck selection is g34_LookPick, not preparatory g34_Look. The Tsukekan is NEO: optional free-deploy evolution is an extended g34_Put choice (not ordinary paid evolution); explicitly declined the legal base option so test preserves original attacker and independently verifies full two breaks. AI legal evolution onto original attacker changes attacker/break number as expected and is not a runtime defect."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1851,
-    "nextPhase": 1852,
+    "lastVerifiedPhase": 1852,
+    "nextPhase": 1853,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp07-026",
-        "name": "The ガッツリ漢",
-        "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+        "id": "dm31-007",
+        "name": "陰陽の伝道士セイメイ",
+        "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
       },
       {
-        "id": "promoy12-085",
-        "name": "漢のキズナ カツブードン",
-        "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+        "id": "dm18-055",
+        "name": "紅玉草(ルビー・グラス)",
+        "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
       },
       {
-        "id": "dm25ex1-075",
-        "name": "サザンの天宝",
-        "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+        "id": "dm18-086",
+        "name": "怪力の化身(マイティ・トーテム)",
+        "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+      },
+      {
+        "id": "dm23-023",
+        "name": "光波の守護者テルス・ルース",
+        "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
       }
     ],
     "steps": [
@@ -580016,11 +580234,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1851,
-      "baseline": "ef6e3214ff04775facc689b1fa31ef20361f13ed",
-      "supportedNames": 9763,
-      "artifact": "tools/target10000-registration-checkpoint-1851.json",
-      "checkedAt": "2026-11-27T23:18:23.398Z"
+      "phase": 1852,
+      "baseline": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10",
+      "supportedNames": 9766,
+      "artifact": "tools/target10000-registration-checkpoint-1852.json",
+      "checkedAt": "2026-11-27T23:28:31.940Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -583078,8 +583296,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9763,
-      "remaining": 237,
+      "currentNames": 9766,
+      "remaining": 234,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -583087,26 +583305,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1851,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1851.json",
+      "lastPhase": 1852,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1852.json",
       "nextCandidates": [
         {
-          "id": "dmrp07-026",
-          "name": "The ガッツリ漢",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "promoy12-085",
-          "name": "漢のキズナ カツブードン",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-055",
+          "name": "紅玉草(ルビー・グラス)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "dm25ex1-075",
-          "name": "サザンの天宝",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-086",
+          "name": "怪力の化身(マイティ・トーテム)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm23-023",
+          "name": "光波の守護者テルス・ルース",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         }
       ],
-      "resumeProcedure": "Phase1851 verified9763 names, remaining237. Next1852 three complete researched candidates, images and QA still need review, no implementation. Preserve all old pending/fullSuite interrupted/holds. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1852 verified9766 names, remaining234. Next1853 review grouped research/images/QA, preserve all older pending/fullSuite interrupted/holds. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -583340,7 +583563,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ef6e3214ff04775facc689b1fa31ef20361f13ed",
+      "lastVerifiedCommit": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -583351,7 +583574,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ef6e3214ff04775facc689b1fa31ef20361f13ed"
+      "lastVerifiedCodeCommit": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10"
     },
     "resolvedRegistrationValidations": [
       {
@@ -584467,8 +584690,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9763,
-      "remaining": 237,
+      "currentNames": 9766,
+      "remaining": 234,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584476,26 +584699,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1851,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1851.json",
+      "lastPhase": 1852,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1852.json",
       "nextCandidates": [
         {
-          "id": "dmrp07-026",
-          "name": "The ガッツリ漢",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "promoy12-085",
-          "name": "漢のキズナ カツブードン",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-055",
+          "name": "紅玉草(ルビー・グラス)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "dm25ex1-075",
-          "name": "サザンの天宝",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-086",
+          "name": "怪力の化身(マイティ・トーテム)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm23-023",
+          "name": "光波の守護者テルス・ルース",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         }
       ],
-      "resumeProcedure": "Phase1851 verified9763 names, remaining237. Next1852 three complete researched candidates, images and QA still need review, no implementation. Preserve all old pending/fullSuite interrupted/holds. No fullnpmtest/oldlonggroups/push/publication/Netlify/automation restart.",
+      "resumeProcedure": "Phase1852 verified9766 names, remaining234. Next1853 review grouped research/images/QA, preserve all older pending/fullSuite interrupted/holds. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation restart.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584729,7 +584957,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ef6e3214ff04775facc689b1fa31ef20361f13ed",
+      "lastVerifiedCommit": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584740,7 +584968,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ef6e3214ff04775facc689b1fa31ef20361f13ed"
+      "lastVerifiedCodeCommit": "62f1fbfecd037c960089bab3408b8f8ec9ab0b10"
     },
     "previousUserRegistrationGoal9500": {
       "target": 9500,
@@ -591538,6 +591766,480 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1851.json"
+      },
+      {
+        "phase": 1852,
+        "status": "implemented-and-verified",
+        "research": "tmp/duema-target-10000/research-dmrp07-026.json",
+        "cards": [
+          {
+            "id": "dmrp07-026",
+            "name": "The ガッツリ漢",
+            "searchSha256": "ccbf3cc8eb7edad46b7bac274af2c628aadc6555d0159b931fa9fcf2fbd154c0",
+            "searchIds": [
+              "dm24ex2-081",
+              "dmrp07-026",
+              "dmex05-060",
+              "dmsd08-016",
+              "promoy18-sp6d06",
+              "dmrp09-060",
+              "dmex08-255",
+              "dmex19-m21",
+              "dmrp12-m01",
+              "promoy18-csp1",
+              "dmex19-m22",
+              "dmex05-m01",
+              "dmrp09-m01",
+              "dmbd11-a02",
+              "promoy18-sp6d01",
+              "dmrp06-057",
+              "dmrp03-082",
+              "dmex08-130",
+              "dmrp02-057",
+              "dmex08-189",
+              "promoy16-062",
+              "dmrp10-090",
+              "dmex08-197",
+              "dmrp18-093",
+              "dmex08-102",
+              "promoy19-083",
+              "dmrp14-083",
+              "dmrp01-058",
+              "promoy17-sp4d09",
+              "dmex08-230",
+              "dmex08-057",
+              "dmrp04m-023",
+              "dmrp05-057",
+              "promoy17-sp4d07",
+              "dmex08-238",
+              "dm25ex4-T16",
+              "dmex17-099",
+              "dmbd13-014",
+              "dm26rp3-034",
+              "dm22rp1-TR7",
+              "dmex15-b009",
+              "dm24ex4-ChoSec009",
+              "dm24ex4-Sec009",
+              "dm24ex4-022",
+              "dmr22-054"
+            ],
+            "excluded": [
+              {
+                "id": "dm24ex2-081",
+                "name": "The Yeahラー漢"
+              },
+              {
+                "id": "dmex05-060",
+                "name": "The カップラー漢"
+              },
+              {
+                "id": "dmsd08-016",
+                "name": "The カップラー漢"
+              },
+              {
+                "id": "promoy18-sp6d06",
+                "name": "The カップラー漢"
+              },
+              {
+                "id": "dmrp09-060",
+                "name": "The カップラー漢"
+              },
+              {
+                "id": "dmex08-255",
+                "name": "The カレーラー漢"
+              },
+              {
+                "id": "dmex19-m21",
+                "name": "The ジョギラゴン・アバレガン"
+              },
+              {
+                "id": "dmrp12-m01",
+                "name": "The ジョギラゴン・アバレガン"
+              },
+              {
+                "id": "promoy18-csp1",
+                "name": "The ジョラゴン・ガンマスター"
+              },
+              {
+                "id": "dmex19-m22",
+                "name": "The ジョラゴン・ガンマスター"
+              },
+              {
+                "id": "dmex05-m01",
+                "name": "The ジョラゴン・ガンマスター"
+              },
+              {
+                "id": "dmrp09-m01",
+                "name": "The ジョラゴン・ガンマスター"
+              },
+              {
+                "id": "dmbd11-a02",
+                "name": "The ジョラゴンGS"
+              },
+              {
+                "id": "promoy18-sp6d01",
+                "name": "The ジョラゴンGS"
+              },
+              {
+                "id": "dmrp06-057",
+                "name": "The ソー漢"
+              },
+              {
+                "id": "dmrp03-082",
+                "name": "The タンタン漢"
+              },
+              {
+                "id": "dmex08-130",
+                "name": "The タンタン漢"
+              },
+              {
+                "id": "dmrp02-057",
+                "name": "The チャー漢"
+              },
+              {
+                "id": "dmex08-189",
+                "name": "The チャー漢"
+              },
+              {
+                "id": "promoy16-062",
+                "name": "The チュルチュルズ"
+              },
+              {
+                "id": "dmrp10-090",
+                "name": "The つけ漢"
+              },
+              {
+                "id": "dmex08-197",
+                "name": "The ネギミソ漢"
+              },
+              {
+                "id": "dmrp18-093",
+                "name": "The パーコー漢"
+              },
+              {
+                "id": "dmex08-102",
+                "name": "The フクロ漢"
+              },
+              {
+                "id": "promoy19-083",
+                "name": "The ブレー漢ズ"
+              },
+              {
+                "id": "dmrp14-083",
+                "name": "The ブレー漢ズ"
+              },
+              {
+                "id": "dmrp01-058",
+                "name": "The ラー漢"
+              },
+              {
+                "id": "promoy17-sp4d09",
+                "name": "The ラー漢"
+              },
+              {
+                "id": "dmex08-230",
+                "name": "The ラー漢"
+              },
+              {
+                "id": "dmex08-057",
+                "name": "The レー漢"
+              },
+              {
+                "id": "dmrp04m-023",
+                "name": "The ワンタン漢・チャージャー"
+              },
+              {
+                "id": "dmrp05-057",
+                "name": "The 塩ラー漢"
+              },
+              {
+                "id": "promoy17-sp4d07",
+                "name": "The 塩ラー漢"
+              },
+              {
+                "id": "dmex08-238",
+                "name": "The 塩ラー漢"
+              },
+              {
+                "id": "dm25ex4-T16",
+                "name": "The 大親分 鬼流院 刃 / 「アンノウンがナンボのモンじゃ！」"
+              },
+              {
+                "id": "dmex17-099",
+                "name": "The 大親分 鬼流院 刃 / 「アンノウンがナンボのモンじゃ！」"
+              },
+              {
+                "id": "dmbd13-014",
+                "name": "The 大親分 鬼流院 刃 / 「アンノウンがナンボのモンじゃ！」"
+              },
+              {
+                "id": "dm26rp3-034",
+                "name": "The 淡口ラー漢 極"
+              },
+              {
+                "id": "dm22rp1-TR7",
+                "name": "The邪悪 寄成ギョウ"
+              },
+              {
+                "id": "dmex15-b009",
+                "name": "The邪悪 寄成ギョウ"
+              },
+              {
+                "id": "dm24ex4-ChoSec009",
+                "name": "地雷冥土The World Is Mine"
+              },
+              {
+                "id": "dm24ex4-Sec009",
+                "name": "地雷冥土The World Is Mine"
+              },
+              {
+                "id": "dm24ex4-022",
+                "name": "地雷冥土The World Is Mine"
+              },
+              {
+                "id": "dmr22-054",
+                "name": "黒速 The ZERO"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmrp07-026",
+                "name": "The ガッツリ漢",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-026",
+                "faces": [
+                  {
+                    "name": "The ガッツリ漢",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "シンパシー：《漢》と名前にあるクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の《漢》と名前にあるクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他の、《漢》と名前にあるクリーチャーはすべて、パワーを+4000され、シールドをさらに１つブレイクする。\n自分の《漢》と名前にあるクリーチャーが攻撃する時、《漢》と名前にあるクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+                    "race": "ジョーカーズ",
+                    "powerText": "9000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp07-026",
+                "printedManaValue": 1,
+                "htmlSha256": "0b431238d310ded49f652f14c6e1858e97b1abc6bc61b079a020c935e2b6bd4b",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-026.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp07-026-0.jpg",
+                    "sha256": "796409565566953f27a63f107094e953f846bf60d34d31f18d4e9a339569d62d"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "promoy12-085",
+            "name": "漢のキズナ カツブードン",
+            "searchSha256": "98683fca39747045231d02942277f2da01a9c39d81fe949eae13cfc2ea2c6123",
+            "searchIds": [
+              "promoy12-085"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "promoy12-085",
+                "name": "漢のキズナ カツブードン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-085",
+                "faces": [
+                  {
+                    "name": "漢のキズナ カツブードン",
+                    "typeText": "エグザイル・クリーチャー",
+                    "civilizationText": "闇/火",
+                    "civilizations": [
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中からエグザイル・クリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。このようにして山札を見た場合、シャッフルする。\nW・ブレイカー\n自分の他の、名前に《漢のキズナ カツブードン》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+                    "race": "アウトレイジMAX",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "promoy12-085",
+                "printedManaValue": 1,
+                "htmlSha256": "acff1a5734980184c1df3c2801f75a6979e4d6821d8a32bf9d1ccc33ef656803",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-085.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy12-085-0.jpg",
+                    "sha256": "41a57280a5824c52dcfd3ce6de156531f1ef718459508ca9dc04b7c0fa9028c2"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm25ex1-075",
+            "name": "サザンの天宝",
+            "searchSha256": "9e228c2ecba816a92e181e5768e65f5fec16247ac9f48894946ad6b315c2c899",
+            "searchIds": [
+              "dm25ex1-075",
+              "dm26rp1-STD002",
+              "dm26rp1-STDChoSEC002",
+              "dm26rp1-STDSEC002"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm25ex1-075",
+                "name": "サザンの天宝",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-075",
+                "faces": [
+                  {
+                    "name": "サザンの天宝",
+                    "typeText": "タマシード",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の他のエンジェルがあれば、カードを１枚引く。\n各ターンに一度、自分のコマンド・カードを実行するコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+                    "race": "エンジェル・コマンド・ドラゴン",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25ex1-075",
+                "printedManaValue": 1,
+                "htmlSha256": "50420db40fb202984a7b9cb8d6db1ef20d9f11127a1f097c60cb286a156f57d3",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-075.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex1-075-0.jpg",
+                    "sha256": "2e6653952bfdea91ad952046b20f7748cbd975cdc0693190c302a9056651957b"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm26rp1-STD002",
+                "name": "サザンの天宝",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-STD002",
+                "faces": [
+                  {
+                    "name": "サザンの天宝",
+                    "typeText": "タマシード",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "シンカライズ\nこのタマシードが出た時、自分の他のエンジェルがあれば、カードを１枚引く。\n各ターンに１度、自分のコマンド・カードを実行するコストを１少なくしてもよい。ただしコストは０以下にならない。",
+                    "race": "エンジェル・コマンド・ドラゴン",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25ex1-075",
+                "printedManaValue": 1,
+                "htmlSha256": "6927422acbb042a8965475780925ab96bc8b7c00ce4d7b97cb16db42a15eb335",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-STD002.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26rp1-STD002-0.jpg",
+                    "sha256": "b0425d3af1dc01d6e48eafc62ade1b92a009f47db5fc3eb16d5a94d81dc38d31"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm26rp1-STDChoSEC002",
+                "name": "サザンの天宝",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-STDChoSEC002",
+                "faces": [
+                  {
+                    "name": "サザンの天宝",
+                    "typeText": "タマシード",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "シンカライズ\nこのタマシードが出た時、自分の他のエンジェルがあれば、カードを１枚引く。\n各ターンに１度、自分のコマンド・カードを実行するコストを１少なくしてもよい。ただしコストは０以下にならない。",
+                    "race": "エンジェル・コマンド・ドラゴン",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25ex1-075",
+                "printedManaValue": 1,
+                "htmlSha256": "10321eda8c875e3a7f39e3e02801e403fee9a41f495caac30fe8dd07d94e2e9f",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-STDChoSEC002.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26rp1-STDChoSEC002-0.jpg",
+                    "sha256": "b7e3e48e997abb6525fb3f0b84ab7717bc36c59d674497a0055d7c101ae28a75"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm26rp1-STDSEC002",
+                "name": "サザンの天宝",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-STDSEC002",
+                "faces": [
+                  {
+                    "name": "サザンの天宝",
+                    "typeText": "タマシード",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "シンカライズ\nこのタマシードが出た時、自分の他のエンジェルがあれば、カードを１枚引く。\n各ターンに１度、自分のコマンド・カードを実行するコストを１少なくしてもよい。ただしコストは０以下にならない。",
+                    "race": "エンジェル・コマンド・ドラゴン",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25ex1-075",
+                "printedManaValue": 1,
+                "htmlSha256": "030ff8cb9137e8a7e6446018ef2d2a3879456909203e453f20eb7f2689436d3b",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-STDSEC002.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26rp1-STDSEC002-0.jpg",
+                    "sha256": "8044cba210f6548c141234519b0e378c2613118406a00fece67cc9aea0659ff1"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1852.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -591562,26 +592264,31 @@
       }
     ],
     "nextCandidateResearch": {
-      "phase": 1852,
-      "status": "official-research-downloaded-full-images-and-rulings-pending-review",
-      "research": "tmp/duema-target-10000/research-dmrp07-026.json",
+      "phase": 1853,
+      "status": "official-full-search-downloaded-images-and-QA-pending-review",
+      "research": "tmp/duema-target-10000/research-dm31-007.json",
       "implementationStarted": false,
       "allImagesReviewed": false,
       "cards": [
         {
-          "id": "dmrp07-026",
-          "name": "The ガッツリ漢",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm31-007",
+          "name": "陰陽の伝道士セイメイ",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "promoy12-085",
-          "name": "漢のキズナ カツブードン",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-055",
+          "name": "紅玉草(ルビー・グラス)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         },
         {
-          "id": "dm25ex1-075",
-          "name": "サザンの天宝",
-          "reason": "Next grouped full research: name-fragment Sympathy/other-own aura/attack mana deploy; full Exile optional sacrifice search and entry restriction; seed own-other Angel entry condition and optional once-per-turn Command-card execution discount. Complete all abilities and rulings before counting."
+          "id": "dm18-086",
+          "name": "怪力の化身(マイティ・トーテム)",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
+        },
+        {
+          "id": "dm23-023",
+          "name": "光波の守護者テルス・ルース",
+          "reason": "Next grouped official research, all images and linked QA to review before implementation; existing native end-untap/search and protection/return replacement to evaluate."
         }
       ]
     }
@@ -643457,10 +644164,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1851,
+    "phase": 1852,
     "threshold": 10000,
-    "supportedNames": 9763,
-    "pendingNames": 2086,
+    "supportedNames": 9766,
+    "pendingNames": 2083,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -643469,7 +644176,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1851.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1852.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

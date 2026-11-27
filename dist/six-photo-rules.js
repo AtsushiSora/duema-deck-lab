@@ -303,7 +303,7 @@ export function createSixPhotoRules(api){
  const onceTurnField464=(x,r)=>r.execution&&x.g1085Awakened?'g464BackUsedTurn':'g464UsedTurn';
  function onceProviders464(s,p,c){
   if(c.crossing||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return[];
-  return creatures(s,p).filter(x=>{
+  return s.players[p].battle.filter(x=>api.isCreature(s,x)||card(x).type==='seed'&&card(x).g464OnceSummon?.seed).filter(x=>{
    const r=!x.sealed&&effective(x,s).g464OnceSummon;
    return r&&(r.execution||c.type==='creature')&&x[onceTurnField464(x,r)]!==s.turn&&
     (!r.race||race(c,r.race))&&(!r.colors||r.colors.some(q=>colors(c).includes(q)))&&

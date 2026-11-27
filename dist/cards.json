@@ -314843,15 +314843,184 @@
       },
       "supportBatch": "phase-1851",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-026",
+      "name": "The ガッツリ漢",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジョーカーズ",
+      "text": "シンパシー：《漢》と名前にあるクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の《漢》と名前にあるクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他の、《漢》と名前にあるクリーチャーはすべて、パワーを+4000され、シールドをさらに１つブレイクする。\n自分の《漢》と名前にあるクリーチャーが攻撃する時、《漢》と名前にあるクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-026",
+      "limit": 4,
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "漢"
+        }
+      },
+      "g205Aura": {
+        "other": true,
+        "filter": {
+          "creature": true,
+          "g220NameAny": [
+            "漢"
+          ]
+        },
+        "power": 4000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "漢"
+          },
+          "grants": {
+            "extraBreak": 1
+          }
+        }
+      ],
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "g819CreatureNameIncludes": "漢"
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "g819CreatureNameIncludes": "漢"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1852",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy12-085",
+      "name": "漢のキズナ カツブードン",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中からエグザイル・クリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。このようにして山札を見た場合、シャッフルする。\nW・ブレイカー\n自分の他の、名前に《漢のキズナ カツブードン》とあるエグザイル・クリーチャーをバトルゾーンに出すことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-085",
+      "limit": 4,
+      "g1490Exile": true,
+      "g1490ExileLimit": "漢のキズナ カツブードン",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "other": true,
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "g841DeckPeek": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "g1490Exile": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1852",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-075",
+      "name": "サザンの天宝",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の他のエンジェルがあれば、カードを１枚引く。\n各ターンに一度、自分のコマンド・カードを実行するコストを１少なくしてもよい。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-075",
+      "limit": 4,
+      "shinkalize": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "other": true,
+              "filter": {
+                "race": "エンジェル"
+              },
+              "min": 1
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g464OnceSummon": {
+        "execution": true,
+        "seed": true,
+        "race": "コマンド",
+        "amount": 1
+      },
+      "supportBatch": "phase-1852",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1851,
-    "checkedAt": "2026-11-27T23:13:01.645Z",
-    "baseCount": 9760,
+    "phase": 1852,
+    "checkedAt": "2026-11-27T23:21:14.755Z",
+    "baseCount": 9763,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9763,
+    "totalCount": 9766,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -345119,6 +345288,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/33402/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1851,
+        "checkedAt": "2026-11-27T23:13:01.645Z",
+        "baseCount": 9760,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9763,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
