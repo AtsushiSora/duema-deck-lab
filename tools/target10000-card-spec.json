@@ -19035,5 +19035,192 @@
         }
       ]
     }
+  },
+  "promoy17-105": {
+    "phase": 1837,
+    "faces": [
+      {
+        "name": "侵略開始!! にゃんこ軍団",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーがバトルに勝った時、自分の手札をすべて捨て、カードを５枚引く。",
+        "race": "にゃんこ",
+        "powerText": "25000",
+        "missingFields": []
+      },
+      {
+        "name": "にゃんこ砲発射！",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 15,
+        "costText": "15",
+        "abilityText": "相手のパワー25000以下のクリーチャーを１体、破壊する。\nこのカードをバトルゾーンに出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": "∞",
+      "g189BattleWin": [
+        {
+          "op": "DiscardAll244",
+          "draw": 0
+        },
+        {
+          "op": "Draw",
+          "n": 5
+        }
+      ],
+      "spellFace": {
+        "name": "にゃんこ砲発射！",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 15,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 25000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "SpellCreature1837"
+          }
+        ]
+      }
+    },
+    "rawOfficialDetail": {
+      "status": "partial",
+      "faces": [
+        {
+          "name": "侵略開始!! にゃんこ軍団",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーがバトルに勝った時、自分の手札をすべて捨て、カードを５枚引く。",
+          "race": "にゃんこ",
+          "powerText": "25000",
+          "missingFields": []
+        },
+        {
+          "name": "にゃんこ砲発射！",
+          "typeText": "呪文",
+          "civilizationText": "",
+          "civilizations": [],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "相手のパワー25000以下のクリーチャーを１体、破壊する。\nこのカードをバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": [
+            "civilization"
+          ]
+        }
+      ]
+    },
+    "faceImageEvidence": {
+      "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-105a.jpg",
+      "sha256": "08a6e5bd1dff720c9aa20f97c16505f0e6f5e56670750b0050ba6411bdda6f15",
+      "reviewedAt": "2026-11-27T20:52:48.762Z",
+      "reason": "Complete official image visually reviewed: spell civilization is 火. Only its HTML civilization field is blank; all original metadata and ability text retained.",
+      "faces": [
+        {
+          "index": 1,
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp05-s02": {
+    "phase": 1837,
+    "faces": [
+      {
+        "name": "龍装の悟り 天命",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n相手の光以外のクリーチャーと呪文は、召喚または唱えるコストが１多くなる。\n自分の光のクリーチャーと呪文は、召喚または唱えるコストが１少なくなる。ただし、コストは０以下にならない。",
+        "race": "ドラゴンギルド/メタリカ",
+        "powerText": "7500",
+        "missingFields": []
+      },
+      {
+        "name": "ヘブン・デ・エンドレーサ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "相手のクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g290SummonAura": {
+        "color": "光",
+        "amount": 1
+      },
+      "g467SpellReduction": {
+        "color": "光",
+        "amount": 1
+      },
+      "g619Tax": {
+        "kind": "creatureOrSpell",
+        "exceptColor": "光",
+        "amount": 1
+      },
+      "spellFace": {
+        "name": "ヘブン・デ・エンドレーサ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "toOwnerShields": true
+          }
+        ]
+      }
+    }
   }
 }

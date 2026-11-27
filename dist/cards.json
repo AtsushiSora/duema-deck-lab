@@ -312904,18 +312904,123 @@
       },
       "supportBatch": "phase-1836",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy17-105",
+      "name": "侵略開始!! にゃんこ軍団/にゃんこ砲発射！",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 13,
+      "power": 25000,
+      "race": "にゃんこ",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーがバトルに勝った時、自分の手札をすべて捨て、カードを５枚引く。\n【呪文面】\n相手のパワー25000以下のクリーチャーを１体、破壊する。\nこのカードをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-105",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": "∞",
+      "g189BattleWin": [
+        {
+          "op": "DiscardAll244",
+          "draw": 0
+        },
+        {
+          "op": "Draw",
+          "n": 5
+        }
+      ],
+      "spellFace": {
+        "name": "にゃんこ砲発射！",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 15,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 25000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "SpellCreature1837"
+          }
+        ]
+      },
+      "supportBatch": "phase-1837",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-s02",
+      "name": "龍装の悟り 天命/ヘブン・デ・エンドレーサ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "ドラゴンギルド/メタリカ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n相手の光以外のクリーチャーと呪文は、召喚または唱えるコストが１多くなる。\n自分の光のクリーチャーと呪文は、召喚または唱えるコストが１少なくなる。ただし、コストは０以下にならない。\n【呪文面】\n相手のクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g290SummonAura": {
+        "color": "光",
+        "amount": 1
+      },
+      "g467SpellReduction": {
+        "color": "光",
+        "amount": 1
+      },
+      "g619Tax": {
+        "kind": "creatureOrSpell",
+        "exceptColor": "光",
+        "amount": 1
+      },
+      "spellFace": {
+        "name": "ヘブン・デ・エンドレーサ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "toOwnerShields": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1837",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1836,
-    "checkedAt": "2026-11-27T20:39:10.795Z",
-    "baseCount": 9718,
-    "newEffectCards": 3,
+    "phase": 1837,
+    "checkedAt": "2026-11-27T20:52:48.762Z",
+    "baseCount": 9721,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9721,
+    "totalCount": 9723,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31887/"
+      "https://dm.takaratomy.co.jp/rule/qa/31707/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -342953,6 +343058,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31719/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1836,
+        "checkedAt": "2026-11-27T20:39:10.795Z",
+        "baseCount": 9718,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9721,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31887/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

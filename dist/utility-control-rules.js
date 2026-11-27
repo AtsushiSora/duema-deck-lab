@@ -50,6 +50,7 @@ export function createUtilityControlRules(api){
     const source=api.effective(x,s),both=source.g505ExecutionTax,tax=source.g222SpellTax,execution=source.g619Tax;
     const shared=both&&['creature','spell'].includes(c.type)&&colors.includes(both.color)?both.amount:0;
     const applies=execution&&owner!==p&&(
+     execution.kind==='creatureOrSpell'&&['creature','spell'].includes(c.type)&&!colors.includes(execution.exceptColor)||
      execution.kind==='multicolor'&&colors.length>1||
      execution.kind==='nonMulticolor'&&colors.length<=1||
      execution.kind==='spellOrSeed'&&(c.type==='spell'||c.type==='seed'&&!c.seedCreature)||

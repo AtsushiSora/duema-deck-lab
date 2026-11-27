@@ -1,0 +1,518 @@
+{
+  "phase": 1837,
+  "checkedAt": "2026-11-27T20:52:48.762Z",
+  "baseline": "343cf7dea4c56ab9a7f1f374646aa6802e747cc1",
+  "baseCount": 9721,
+  "target": 10000,
+  "description": "Complete Nyanko twinpact using native physical spell-to-creature entry, battle-win discard-all then draw5, and World Breaker; Tenmei Light summon/spell discount and opposing nonLight creature/spell surcharge, blocker/W2 and creature shield removal including true layered-creature ruling.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31707/"
+  ],
+  "cards": [
+    {
+      "id": "promoy17-105",
+      "name": "侵略開始!! にゃんこ軍団/にゃんこ砲発射！",
+      "canonicalId": "promoy17-105",
+      "printId": "promoy17-105",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-105",
+      "faces": [
+        {
+          "name": "侵略開始!! にゃんこ軍団",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーがバトルに勝った時、自分の手札をすべて捨て、カードを５枚引く。",
+          "race": "にゃんこ",
+          "powerText": "25000",
+          "missingFields": []
+        },
+        {
+          "name": "にゃんこ砲発射！",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 15,
+          "costText": "15",
+          "abilityText": "相手のパワー25000以下のクリーチャーを１体、破壊する。\nこのカードをバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": "∞",
+        "g189BattleWin": [
+          {
+            "op": "DiscardAll244",
+            "draw": 0
+          },
+          {
+            "op": "Draw",
+            "n": 5
+          }
+        ],
+        "spellFace": {
+          "name": "にゃんこ砲発射！",
+          "type": "spell",
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 15,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 25000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "SpellCreature1837"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-105a.jpg",
+      "imageSha256": "08a6e5bd1dff720c9aa20f97c16505f0e6f5e56670750b0050ba6411bdda6f15",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy17-105-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "faceImageEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-105a.jpg",
+        "sha256": "08a6e5bd1dff720c9aa20f97c16505f0e6f5e56670750b0050ba6411bdda6f15",
+        "reviewedAt": "2026-11-27T20:52:48.762Z",
+        "reason": "Complete official image visually reviewed: spell civilization is 火. Only its HTML civilization field is blank; all original metadata and ability text retained.",
+        "faces": [
+          {
+            "index": 1,
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ]
+          }
+        ]
+      },
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy17-105"
+        ],
+        "allSearchIds": [
+          "promoy17-105"
+        ],
+        "allImagesReviewed": true
+      },
+      "rawOfficialDetail": {
+        "status": "partial",
+        "faces": [
+          {
+            "name": "侵略開始!! にゃんこ軍団",
+            "typeText": "クリーチャー",
+            "civilizationText": "火",
+            "civilizations": [
+              "火"
+            ],
+            "cost": 13,
+            "costText": "13",
+            "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nこのクリーチャーがバトルに勝った時、自分の手札をすべて捨て、カードを５枚引く。",
+            "race": "にゃんこ",
+            "powerText": "25000",
+            "missingFields": []
+          },
+          {
+            "name": "にゃんこ砲発射！",
+            "typeText": "呪文",
+            "civilizationText": "",
+            "civilizations": [],
+            "cost": 15,
+            "costText": "15",
+            "abilityText": "相手のパワー25000以下のクリーチャーを１体、破壊する。\nこのカードをバトルゾーンに出す。",
+            "race": "",
+            "powerText": "",
+            "missingFields": [
+              "civilization"
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:52:48.762Z",
+        "sha256": "4b54ab00f04fcbc117773a3dfe81ba2211ccd01a5a914559b032f2373f0414d6",
+        "facesMatched": true,
+        "imageSha256": "08a6e5bd1dff720c9aa20f97c16505f0e6f5e56670750b0050ba6411bdda6f15"
+      }
+    },
+    {
+      "id": "dmrp05-s02",
+      "name": "龍装の悟り 天命/ヘブン・デ・エンドレーサ",
+      "canonicalId": "dmrp05-s02",
+      "printId": "dmrp05-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s02",
+      "faces": [
+        {
+          "name": "龍装の悟り 天命",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n相手の光以外のクリーチャーと呪文は、召喚または唱えるコストが１多くなる。\n自分の光のクリーチャーと呪文は、召喚または唱えるコストが１少なくなる。ただし、コストは０以下にならない。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "7500",
+          "missingFields": []
+        },
+        {
+          "name": "ヘブン・デ・エンドレーサ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g290SummonAura": {
+          "color": "光",
+          "amount": 1
+        },
+        "g467SpellReduction": {
+          "color": "光",
+          "amount": 1
+        },
+        "g619Tax": {
+          "kind": "creatureOrSpell",
+          "exceptColor": "光",
+          "amount": 1
+        },
+        "spellFace": {
+          "name": "ヘブン・デ・エンドレーサ",
+          "type": "spell",
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "toOwnerShields": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s02a.jpg",
+      "imageSha256": "20205b3188173808011f2b11129b62ec60af47faa9e8ffa58d18a8884aac1065",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp05-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp05-s02"
+        ],
+        "allSearchIds": [
+          "dmr13-v01",
+          "dm26ex3-SEC001",
+          "dm26ex3-SEC001CHO",
+          "dm26ex3-006",
+          "dmx11-037",
+          "dmd08-004",
+          "dmr14-037",
+          "dm24ex3-rp2TR09",
+          "dm24rp2-TR09",
+          "dmex19-s6",
+          "dmrp12-s01",
+          "dmrp18-a11",
+          "dmrp18-b11",
+          "dm25sp1-003",
+          "dm22bd3-004",
+          "dmx26-v02",
+          "dmr15-v01",
+          "dm22rp2-TR3",
+          "dm22rp2x-TR3",
+          "dm25ex4-SP1",
+          "dmex06-dk2",
+          "dmex01-063",
+          "dmx26-v03",
+          "dmr16s-v01",
+          "dmr16s-v01SEC",
+          "dmrp05-s02"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T20:52:48.762Z",
+        "sha256": "db54c90f3ca4da52f170d27e8958f39e5d65c0ca5e4f68c9fa5006a09327585a",
+        "facesMatched": true,
+        "imageSha256": "20205b3188173808011f2b11129b62ec60af47faa9e8ffa58d18a8884aac1065"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31707/",
+      "sha256": "0d041796d20886e9e95502e426a95822294267af6d86d89fc4efb1d01877b89a",
+      "checkedAt": "2026-11-27T20:52:48.762Z",
+      "reproduced": true,
+      "tests": "tests/standard1837-effects.test.mjs",
+      "reproduction": "QA31707 exact physical-layer result reproduced using registered De Suzaku (dmrp04m-m02), which is actually summoned through the same normal Moon Gate using two own battle Magu and two own grave Magu. Heaven de Endresa moves that five-card creature into five distinct face-down shields, not one stacked shield; tested both seats and encrypted JSON. Ordinary evolution with two undercards also creates three shields. This verifies the common Moon Gate layering rule; no claim to implement unregistered Mumyo Yashara Mukade.",
+      "result": "QA31707 exact physical-layer result reproduced using registered De Suzaku (dmrp04m-m02), which is actually summoned through the same normal Moon Gate using two own battle Magu and two own grave Magu. Heaven de Endresa moves that five-card creature into five distinct face-down shields, not one stacked shield; tested both seats and encrypted JSON. Ordinary evolution with two undercards also creates three shields. This verifies the common Moon Gate layering rule; no claim to implement unregistered Mumyo Yashara Mukade."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmrp05-s09",
+      "name": "ハイパー・ギガタック/ギガタック・ハイパー・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s09",
+      "status": "unimplemented-not-counted",
+      "reason": "Full physical battle-card-to-mana sweep must cover buried cards, seals, linked roots, replacement and same-batch triggers. QA41320 says Inferno Seiju that leaves with another own creature does not draw twice. Existing creature-only Sweep cannot be presumed to cover all physical cards and seals. Defer whole card; do not add only its mana-summon/front recovery abilities.",
+      "research": "tmp/duema-target-10000/research-dmrp05-s09.json",
+      "officialImage": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s09a.jpg",
+      "imageSha256": "4415fc602de1fc4817228601e87cc7d8079030b7e0e48f84e088c394c7e70894",
+      "imageReviewed": true,
+      "searchSha256": "b1a762426e438f8b5c8362c472aa8c0540d8b23d24f057813ac3b2d5b04c604d",
+      "exactPrintIds": [
+        "dmrp05-s09"
+      ],
+      "rulings": [
+        {
+          "source": "https://dm.takaratomy.co.jp/rule/qa/41320/",
+          "sha256": "c2d4d25647ddf52c3319f5d133bc280e248ed261392f97641bf07ac82694d201"
+        }
+      ],
+      "checkedAt": "2026-11-27T20:59:08.556Z"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T20:52:48.762Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy17-105": 4,
+      "dmrp05-s02": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1837-paid-and-defender",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(Tenmei opposing|Nyanko wins as|Nyanko ignored)",
+        "tests/standard1837-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.824,
+      "log": "tmp/duema-target-10000/extra-1837-paid-and-defender.log",
+      "passed": 10,
+      "logSha256": "2c3435c4ae463a11576c6b59d0974a64e680a228399cbde1427c21ba7594282e"
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "promoy17-105",
+      "searchSha256": "fccd20588a41ddbe58d2b747a07467881bc64720dbf33988042f9a96c76e4216",
+      "allSearchIds": [
+        "promoy17-105"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "promoy17-105"
+      ],
+      "allImagesReviewed": true,
+      "totalResults": 1,
+      "pagination": "All 1 results enumerated on first page; one exact complete-name print for this card. No pagination truncation."
+    },
+    {
+      "id": "dmrp05-s02",
+      "searchSha256": "9cce26e354ccbc2bf8b3a6c58dcf5f6918556706d8e02351c70fb2bd5ea09371",
+      "allSearchIds": [
+        "dmr13-v01",
+        "dm26ex3-SEC001",
+        "dm26ex3-SEC001CHO",
+        "dm26ex3-006",
+        "dmx11-037",
+        "dmd08-004",
+        "dmr14-037",
+        "dm24ex3-rp2TR09",
+        "dm24rp2-TR09",
+        "dmex19-s6",
+        "dmrp12-s01",
+        "dmrp18-a11",
+        "dmrp18-b11",
+        "dm25sp1-003",
+        "dm22bd3-004",
+        "dmx26-v02",
+        "dmr15-v01",
+        "dm22rp2-TR3",
+        "dm22rp2x-TR3",
+        "dm25ex4-SP1",
+        "dmex06-dk2",
+        "dmex01-063",
+        "dmx26-v03",
+        "dmr16s-v01",
+        "dmr16s-v01SEC",
+        "dmrp05-s02"
+      ],
+      "excluded": [
+        {
+          "id": "dmr13-v01",
+          "name": "不滅槍 パーフェクト"
+        },
+        {
+          "id": "dm26ex3-SEC001",
+          "name": "天命＜天下のお嬢様ですのよ＞"
+        },
+        {
+          "id": "dm26ex3-SEC001CHO",
+          "name": "天命＜天下のお嬢様ですのよ＞"
+        },
+        {
+          "id": "dm26ex3-006",
+          "name": "天命＜天下のお嬢様ですのよ＞"
+        },
+        {
+          "id": "dmx11-037",
+          "name": "天命の精霊ワガハイ・キャット"
+        },
+        {
+          "id": "dmd08-004",
+          "name": "天命の精霊ワガハイ・キャット"
+        },
+        {
+          "id": "dmr14-037",
+          "name": "天命の聖痕"
+        },
+        {
+          "id": "dm24ex3-rp2TR09",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dm24rp2-TR09",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dmex19-s6",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dmrp12-s01",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dmrp18-a11",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dmrp18-b11",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dm25sp1-003",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dm22bd3-004",
+          "name": "天命龍装 ホーリーエンド / ナウ・オア・ネバー"
+        },
+        {
+          "id": "dmx26-v02",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dmr15-v01",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dm22rp2-TR3",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dm22rp2x-TR3",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dm25ex4-SP1",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dmex06-dk2",
+          "name": "天獄の正義 ヘブンズ・ヘブン"
+        },
+        {
+          "id": "dmex01-063",
+          "name": "新・天命王 ネオエンド"
+        },
+        {
+          "id": "dmx26-v03",
+          "name": "真聖教会 エンドレス・ヘブン"
+        },
+        {
+          "id": "dmr16s-v01",
+          "name": "真聖教会 エンドレス・ヘブン"
+        },
+        {
+          "id": "dmr16s-v01SEC",
+          "name": "真聖教会 エンドレス・ヘブン"
+        }
+      ],
+      "exactPrints": [
+        "dmrp05-s02"
+      ],
+      "allImagesReviewed": true,
+      "totalResults": 26,
+      "pagination": "All 26 results enumerated on first page; one exact complete-name print for this card. No pagination truncation."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Two complete twinpacts and two full official print images visually verified; all exact reprint search results1 and26 enumerated, matching complete-name print1 each; limits4. Nyanko Fire13/25000, true Speed Attacker and World Breaker, actual win as attacker or defending target mandatorily discards all own hand then draws5, empty hand/4 cards/Slayer/LKI/tie/loss/ignored/deck loss. Fire15 spell selects opposing current power<=25000 at24999/25000/25001, and the same physical spell becomes its owner creature, including no target and actual Benzo-granted free S-trigger on opposing turn. Existing spell-to-creature native completion reused, no accidental Benzo shield-trigger aura grant; real Garlagan nonsummon replacement respected. Tenmei Light7/7500 blocker/W2; mandatory own Light creature/spell discount with floor1, multiple sources, Light multicolor counts as Light, own nonLight unaffected; opposing nonLight/colorless creature and spell tax only, by executed face, other aura/castle types excluded, actual paid casts and zero-mana free spell triggers. Source ignored/sealed/absent removes cost effects. Light4 spell shields opposing creature including ordinary evolution and real normal Moon Gate five-card stack, one new facedown shield per physical card; own target/untargetability exclusions. Physical conservation/mana orientation/hidden-information read-only AI and encrypted two-seat duel-service moves. Focused63 plus distinct10, related175, online5 passed, npm check/audit/original-ID/details/pending invariants passed. Two additions instead of nominal3–5 because full all-physical-card Giga sweep is held rather than partly implemented. All old pending and interrupted full-suite status preserved.",
+    "resolvedAttempts": "Initial Nyanko specification incorrectly used Discard n=\"all\", which native single-discard does not interpret as a full hand; fixed the NEW card spec to existing DiscardAll244 before Draw5 and revalidated four-card hands. Other initial failures were fixtures assuming vanilla N costs3 instead of printed2, assuming Mixel spell half Water instead of actual Light, and overlooking an existing aura intrinsic cost adjustment; assertions corrected to executed face and baseline. Raw failed log retained.",
+    "nextCandidates": [
+      {
+        "id": "dmrp12-s04",
+        "name": "堕悪の覇王 シャークウガ/闇の魔改造",
+        "reason": "Official search2/all exact print1 and full text cached, image NOT yet visually reviewed. Needs simultaneous up-to-two physical OTHER battle-card selection including seals and buried cards; do not use sequential single-target bounce. Back is complete opponent-only -2000 for current turn, including later entrants."
+      },
+      {
+        "id": "promoy17-047",
+        "name": "S.Q.QX/5.S.U.",
+        "reason": "Research both full faces/all exact reprints/images: opposing library-to-grave lock and optional Nature creature cost<=5 from private top5, all remainder ordered bottom. Avoid registering partial lock."
+      },
+      {
+        "id": "dmrp10-030",
+        "name": "虹色妖精ポミリン/レイニー・アトラス",
+        "reason": "Research complete all-own-mana-multicolor summon discount, triggered multicolor tapped-mana untap and mandatory multicolor top3 recovery with ordered bottom; all prints/images/rulings first."
+      }
+    ]
+  }
+}

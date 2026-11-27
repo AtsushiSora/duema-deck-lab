@@ -4236,6 +4236,11 @@ export function createSixPhotoRules(api){
  case'g34_Chance417':{const c=chanceCard417(s,t);if(c)choice(s,t,(c.g417Chance.label||'アタック・チャンス')+'：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),t.source),skip()]);break;}
  case'g34_SelfSpellMana1647':api.moveSpellMana1647(s,t.p,t.uid);break;
  case'g34_HandManaStop1647':(s.extLimits??=[]).push({kind:'g1647HandManaStop',player:1-t.p,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(card(t.source))});break;
+ case'g34_SpellCreature1837':{
+  const frame=s.extSpells?.find(f=>f.inst.uid===t.uid&&f.caster===t.p);
+  if(frame)frame.g1339Creature=true;
+  break;
+ }
  case'g34_SpellFinish416':{const frame=(s.extSpells||[]).find(f=>f.inst.uid===t.uid&&f.caster===t.p&&(!f.virtual||f.shieldCast));if(frame){frame.to=t.to;frame.g416SelfFinish=true;if(frame.shieldCast)frame.inst.finishTo=t.to;}break;}
  case'g34_NemeBreak1698':{
   choice(s,t,'ネメス・テーベ：はじめてのブレイクを置換するシールドを1つ選ぶ',[...t.uids.filter(uid=>api.findShield(own,uid)).map(uid=>opt('このシールドを残して1つ追加する',uid,20)),skip()]);
