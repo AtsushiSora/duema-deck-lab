@@ -7279,6 +7279,17 @@ export function createSixPhotoRules(api){
   const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
   start(s,t,[{op:'Target',power:-3000*n,g242PowerMinus:true}]);break;
  }
+ case'g34_AuraDestroyCount1810':{
+  const host=auraHost1808(s,t),n=host?api.attachedAuras1352(s,t.p,host).length:t.g1808AuraCount??0;
+  if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',n,to:'grave',filter:{creature:true},g173Targets:true,g193Select:true}]);
+  break;
+ }
+ case'g34_AuraDeathDrawDiscard1810':{
+  const n=t.auras?.length||0;
+  // QA38570: draw all cards first, then the opponent discards the full amount.
+  if(n)start(s,t,[{op:'Draw',n},{op:'Discard',n}]);
+  break;
+ }
  case'g34_AuraSelfGrave1809':{
   // Move only the exact source Aura, even if it became an underlying card while waiting.
   const host=sourceHost474(s,t),a=host&&api.allLayers(host.x).find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0));
@@ -11322,7 +11333,7 @@ export function createSixPhotoRules(api){
   if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queueBattle(s,p,x,graveDefs.map(d=>d.op==='SelfGraveMana1431'?{...d,serial:(x.zoneSerial||0)+1}:d));
   if(to==='grave'&&destroy){
    for(const aura of snapshot?.g1460AuraDeaths||[])if(aura.p===p&&aura.host.uid===x.uid&&aura.host.incarnation===(x.incarnation||0))
-    queueBattle(s,p,aura,aura.defs.map(d=>d.op==='AuraGraveReturn1460'?{...d,auras:aura.auras}:d));
+    queueBattle(s,p,aura,aura.defs.map(d=>['AuraGraveReturn1460','AuraDeathDrawDiscard1810'].includes(d.op)?{...d,auras:aura.auras}:d));
    if(s.g1225Destroyed?.turn!==s.turn)s.g1225Destroyed={turn:s.turn,cards:[[],[]]};
    s.g1225Destroyed.cards[p].push({uid:x.uid,serial:(x.zoneSerial||0)+1});
   }

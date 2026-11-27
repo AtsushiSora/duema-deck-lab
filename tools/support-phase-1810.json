@@ -1,0 +1,251 @@
+{
+  "phase": 1810,
+  "checkedAt": "2026-11-27T15:12:28.276Z",
+  "baseline": "0a6b600924308a9a4a90622d3f9030d6912c35da",
+  "baseCount": 9650,
+  "target": 10000,
+  "description": "Two complete Auras share full host-destruction snapshots and native movement/payment. Do not force conditional-use-cost cards into a partial third slot. Jeri draws the full attachment count before opponent discards per official QA38570; Kirujack selects a simultaneous count of opposing creatures per QA32447 then deploys one cost-six-or-less grave Aura on host destruction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38570/",
+    "https://dm.takaratomy.co.jp/rule/qa/32447/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp11-006",
+      "name": "罪修羅ジェリ奪カギュラ",
+      "canonicalId": "dmrp11-006",
+      "printId": "dmrp11-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-006",
+      "faces": [
+        {
+          "name": "罪修羅ジェリ奪カギュラ",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "無月の大罪３（このオーラを使うコストを３少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、それに付いていたオーラ１枚につき、自分はカードを１枚引き、相手は自身の手札を１枚選んで捨てる。",
+          "race": "マフィ・ギャング/デリートロン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 4000,
+        "g1432Sin": 3,
+        "g1352Powered": true,
+        "g1460HostDeath": [
+          {
+            "op": "AuraDeathDrawDiscard1810"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-006.jpg",
+      "imageSha256": "490477c380efadaf853ac7dc55243ce1e92f099fb6696acdb65232a7cd8684e3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp11-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp11-006"
+        ],
+        "allSearchIds": [
+          "dmrp11-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T15:12:28.276Z",
+        "sha256": "4af871b22f5a53355b503498fe34aed66d1a5f8f7cb4ce0b3bc3d0f0e374663b",
+        "facesMatched": true,
+        "imageSha256": "490477c380efadaf853ac7dc55243ce1e92f099fb6696acdb65232a7cd8684e3"
+      }
+    },
+    {
+      "id": "dmrp09-s07",
+      "name": "卍魔刃 キ・ルジャック",
+      "canonicalId": "dmrp09-s07",
+      "printId": "dmrp09-s07",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s07",
+      "faces": [
+        {
+          "name": "卍魔刃 キ・ルジャック",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、そのクリーチャーに付いているオーラ１枚につき、相手のクリーチャーを１体破壊する。\nこれを付けたクリーチャーが破壊された時、コスト６以下のオーラを１枚、自分の墓地からバトルゾーンに出す。",
+          "race": "ドルスザク/マフィ・ギャング/デリートロン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 8000,
+        "g1352Powered": true,
+        "g1421AuraAttach": [
+          {
+            "op": "AuraDestroyCount1810"
+          }
+        ],
+        "g1460HostDeath": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "aura": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-s07.jpg",
+      "imageSha256": "acd044b67185aa08f77f5a3fc60a41d8790b3dd41ee31a9e7aa05aac9da9a1b9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp09-s07-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-s07",
+          "dmex05-s06"
+        ],
+        "allSearchIds": [
+          "dmrp09-s07",
+          "dmex05-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T15:12:28.276Z",
+        "sha256": "3635d54177af23687deb130d83d8fee2318d334758d7a762ac6abaf38d54cb34",
+        "facesMatched": true,
+        "imageSha256": "acd044b67185aa08f77f5a3fc60a41d8790b3dd41ee31a9e7aa05aac9da9a1b9"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex05-s06",
+      "name": "卍魔刃 キ・ルジャック",
+      "canonicalId": "dmrp09-s07",
+      "printId": "dmex05-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex05-s06",
+      "faces": [
+        {
+          "name": "卍魔刃 キ・ルジャック",
+          "typeText": "オレガ・オーラ",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、そのクリーチャーに付いているオーラ１枚につき、相手のクリーチャーを１体破壊する。\nこれを付けたクリーチャーが破壊された時、コスト６以下のオーラを１枚、自分の墓地からバトルゾーンに出す。",
+          "race": "ドルスザク/マフィ・ギャング/デリートロン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "aura",
+        "power": 0,
+        "auraPower": 8000,
+        "g1352Powered": true,
+        "g1421AuraAttach": [
+          {
+            "op": "AuraDestroyCount1810"
+          }
+        ],
+        "g1460HostDeath": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "aura": true,
+              "max": 6
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex05-s06.jpg",
+      "imageSha256": "b44b4a7c0a41c2dd47dba240623a79fe7dff5f72d63b0a00437d29ad7aaea1a5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex05-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp09-s07",
+          "dmex05-s06"
+        ],
+        "allSearchIds": [
+          "dmrp09-s07",
+          "dmex05-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T15:12:28.276Z",
+        "sha256": "f762157635595942ab2777358fb6f809aa75f27ca58387a84dcae8e71b786215",
+        "facesMatched": true,
+        "imageSha256": "b44b4a7c0a41c2dd47dba240623a79fe7dff5f72d63b0a00437d29ad7aaea1a5"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/38570/",
+      "sha256": "aeb1a680aa122507a3939f4d1b8b5a5993820ec9ae0f2fa1ffdf72fb61fd180f",
+      "checkedAt": "2026-11-27T15:12:28.276Z",
+      "reproduced": true,
+      "tests": "tests/standard1810-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32447/",
+      "sha256": "41c59ee5994c03ad732db41d8e1251d1c6434a4dd17a541f30a274ba8d1a6ccc",
+      "checkedAt": "2026-11-27T15:12:28.276Z",
+      "reproduced": true,
+      "tests": "tests/standard1810-effects.test.mjs",
+      "result": "Card-specific tests reproduce the stated condition and outcome."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T15:12:28.276Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp11-006": 4,
+      "dmrp09-s07": 4,
+      "dmex05-s06": 4
+    }
+  },
+  "validationNotes": {
+    "coverage": [
+      "Full paid/new-GR attachment and native Sin3 alternative payment and manual cancellation/encrypted completion/debt/end sacrifice for Jeri.",
+      "QA38570 reproduced both seats at1/2/3 Aura count: full draw occurs before first opponent-choice discard; draw exhaustion stops discard. Counts ignored attachments but excludes other hosts/earlier departures.",
+      "QA32447 reproduced both seats: first Pas Octan mandatory, next target free, both still in battle until complete multi-target selection.",
+      "Kirujack host destruction deploys cost<=6 grave Aura via native new/existing GR path and resolves actual Viewpre public attachment effect; no legal overcost/empty/ignored/non-destruction prompts.",
+      "Actual Christmas GR may sacrifice new host before Kirujack attachment ability; last-known count persists."
+    ],
+    "resolvedAttempts": "Initial focused run found two fixture assumptions: sealed host requires its sealed state as well as the physical seal before refreshing; bouncing the GR returns its attached Jeri to hand, which is movement rather than a destruction draw. Corrected fixture assertions; original failure log retained."
+  }
+}

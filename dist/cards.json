@@ -309907,17 +309907,82 @@
       ],
       "supportBatch": "phase-1809",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-006",
+      "name": "罪修羅ジェリ奪カギュラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 9,
+      "power": 0,
+      "race": "マフィ・ギャング/デリートロン",
+      "text": "無月の大罪３（このオーラを使うコストを３少なくしてもよい。そうしたら、このターンの終わりに、自分のクリーチャーを１体破壊する）\nこれを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれを付けたクリーチャーが破壊された時、それに付いていたオーラ１枚につき、自分はカードを１枚引き、相手は自身の手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-006",
+      "limit": 4,
+      "auraPower": 4000,
+      "g1432Sin": 3,
+      "g1352Powered": true,
+      "g1460HostDeath": [
+        {
+          "op": "AuraDeathDrawDiscard1810"
+        }
+      ],
+      "supportBatch": "phase-1810",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s07",
+      "name": "卍魔刃 キ・ルジャック",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "aura",
+      "cost": 7,
+      "power": 0,
+      "race": "ドルスザク/マフィ・ギャング/デリートロン",
+      "text": "これを付けたクリーチャーに「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこれをクリーチャーに付けた時、そのクリーチャーに付いているオーラ１枚につき、相手のクリーチャーを１体破壊する。\nこれを付けたクリーチャーが破壊された時、コスト６以下のオーラを１枚、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s07",
+      "limit": 4,
+      "auraPower": 8000,
+      "g1352Powered": true,
+      "g1421AuraAttach": [
+        {
+          "op": "AuraDestroyCount1810"
+        }
+      ],
+      "g1460HostDeath": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "aura": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1810",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1809,
-    "checkedAt": "2026-11-27T15:05:07.045Z",
-    "baseCount": 9647,
-    "newEffectCards": 3,
+    "phase": 1810,
+    "checkedAt": "2026-11-27T15:12:28.276Z",
+    "baseCount": 9650,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9650,
+    "totalCount": 9652,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/38570/",
+      "https://dm.takaratomy.co.jp/rule/qa/32447/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -339533,6 +339598,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/41289/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31435/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1809,
+        "checkedAt": "2026-11-27T15:05:07.045Z",
+        "baseCount": 9647,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9650,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
