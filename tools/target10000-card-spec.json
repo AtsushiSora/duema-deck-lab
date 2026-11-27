@@ -19222,5 +19222,126 @@
         ]
       }
     }
+  },
+  "dmrp10-030": {
+    "phase": 1838,
+    "faces": [
+      {
+        "name": "虹色妖精ポミリン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のマナゾーンにあるカードがすべて多色なら、このクリーチャーを召喚するコストを１少なくする。\n多色カードがタップしてマナゾーンに置かれた時、それをアンタップする。",
+        "race": "スノーフェアリー",
+        "powerText": "2000",
+        "missingFields": []
+      },
+      {
+        "name": "レイニー・アトラス",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "自分の山札の上から３枚を見る。その中から多色カードを１枚、相手に見せてから自分の手札に加える。残りを好きな順序で山札の一番下に置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "fixed": 1,
+        "g1838AllMultiMana": true
+      },
+      "g1838MultiTappedMana": true,
+      "spellFace": {
+        "name": "レイニー・アトラス",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g1838MulticolorCard": true
+                },
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dmrp05-s06": {
+    "phase": 1838,
+    "faces": [
+      {
+        "name": "無明夜叉羅ムカデ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "無月の門：自分の魔導具をバトルゾーンに出した時、自分の魔導具をバトルゾーンと墓地から２つずつ選び、このクリーチャーを自分の手札または墓地からそれら４枚の上にコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを ?9000 する。\n自分のクリーチャーが攻撃する時、このクリーチャーの下にあるカードが４枚以上なら、相手は自身の手札を１枚選んで捨てる。",
+        "race": "マフィ・ギャング",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "mugenGate": 4,
+      "mugenKind": "normal",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -9000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "g1838CaptureLayers": true,
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 5
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

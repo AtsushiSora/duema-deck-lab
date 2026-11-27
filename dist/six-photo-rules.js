@@ -237,6 +237,7 @@ export function createSixPhotoRules(api){
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
   if(!t)return 0;
+  if(t.g1838AllMultiMana&&!s.players[p].mana.every(x=>!x.faceDown&&api.manaColors(api.zoneCard(s,p,x,'mana'),s,p).length>1))return 0;
   if(t.fixed!==undefined)return t.fixed;
   const owner=t.owner==='opponent'?1-p:p;
   if(t.g753AllMana)return s.players[owner].mana.length*t.amount;
@@ -470,6 +471,7 @@ export function createSixPhotoRules(api){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
   if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;
+  if(f.g1838MulticolorCard&&new Set(faces(c).flatMap(colors)).size<2)return false;
   if(f.g1826Element&&!['creature','seed','field','gear','aura','weapon','duelist'].includes(d.type))return false;
   if(f.g1813LinkedGod&&(!x.godLinks?.length||!race(d,'ゴッド')))return false;
   if(f.g1705CreatureNameIncludes&&!faces(c).some(face=>face.type==='creature'&&[face.name,...(face.g1705RubyNameParts||[])].some(name=>name.includes(f.g1705CreatureNameIncludes))))return false;
@@ -918,7 +920,7 @@ export function createSixPhotoRules(api){
     if(watch.g814ShieldBroken&&!s.players[owner].brokenThisTurn)continue;
     if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.g1222FirstDragon||firstDragon)&&(!watch.g1236FirstAbyss||firstAbyss)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){
      if(watch.defs.some(d=>d.g1197Attacker)&&s.attack)s.attack.g1197Watched=true;
-     if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798'||d.op==='AttackGraveDeploy1652')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+     if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798'||d.op==='AttackGraveDeploy1652')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else if(watch.g1838CaptureLayers)send(s,owner,x,'Sequence',{defs:watch.defs,lastKnownCount:api.allLayers(x).length});else queue(s,owner,x,watch.defs);}
    }
   }
  }
@@ -10532,6 +10534,14 @@ export function createSixPhotoRules(api){
   const firstOwnPlacement=s.active===p&&s.g837ManaAddedTurn?.[p]!==s.turn;
   if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;
   const firstMulti=s.g1160FirstMultiManaTurn?.[p]!==s.turn;
+  // Pomirin sees either player's multicolor card only if it arrived tapped.
+  const tappedMulti1838=cards.filter(x=>x.tapped&&!x.faceDown&&api.manaColors(api.zoneCard(s,p,x,'mana'),s,p).length>1);
+  if(tappedMulti1838.length)for(const owner of[s.active,1-s.active])for(const source of creatures(s,owner)){
+   if(source.sealed||!effective(source,s).g1838MultiTappedMana)continue;
+   for(const x of tappedMulti1838)api.enqueue(s,owner,{uid:source.uid,incarnation:source.incarnation||0,source:source.cardId,effect:'extended',
+    task:task('g159R_ManaUntap',p,source.cardId,{target:x.uid,serial:x.zoneSerial||0})});
+  }
+
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
    const {g1632ManaEntryGrave:manaEntryGrave,g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace,

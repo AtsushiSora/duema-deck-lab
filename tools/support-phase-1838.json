@@ -1,0 +1,363 @@
+{
+  "phase": 1838,
+  "checkedAt": "2026-11-27T21:05:17.719Z",
+  "baseline": "f96f2771e4b962e274e398d3cc27026aabd2ea68",
+  "baseCount": 9723,
+  "target": 10000,
+  "description": "Full Pomirin all-own-mana multicolor creature-only discount and BOTH players tapped multicolor mana arrival untap, mandatory multicolor physical-card top3 recovery; full Mukade normal Moon Gate, entry minus9000 and own-attack conditional source-under4 discard, plus literal layered-shield QA reproduction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31708/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31707/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp10-030",
+      "name": "虹色妖精ポミリン/レイニー・アトラス",
+      "canonicalId": "dmrp10-030",
+      "printId": "dmrp10-030",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-030",
+      "faces": [
+        {
+          "name": "虹色妖精ポミリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のマナゾーンにあるカードがすべて多色なら、このクリーチャーを召喚するコストを１少なくする。\n多色カードがタップしてマナゾーンに置かれた時、それをアンタップする。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "レイニー・アトラス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から３枚を見る。その中から多色カードを１枚、相手に見せてから自分の手札に加える。残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "fixed": 1,
+          "g1838AllMultiMana": true
+        },
+        "g1838MultiTappedMana": true,
+        "spellFace": {
+          "name": "レイニー・アトラス",
+          "type": "spell",
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "n": 3,
+              "rest": "bottom",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "g1838MulticolorCard": true
+                  },
+                  "reveal": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-030a.jpg",
+      "imageSha256": "276e25f579101f038ab28c0d425ae8070789f991267e6c00c1468a699f8afede",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp10-030-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp10-030"
+        ],
+        "allSearchIds": [
+          "dmrp10-030"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T21:05:17.719Z",
+        "sha256": "8adbda635fbbac999a12860760ec23458e7540561dcf6098879a25eaedf7e6a2",
+        "facesMatched": true,
+        "imageSha256": "276e25f579101f038ab28c0d425ae8070789f991267e6c00c1468a699f8afede"
+      }
+    },
+    {
+      "id": "dmrp05-s06",
+      "name": "無明夜叉羅ムカデ",
+      "canonicalId": "dmrp05-s06",
+      "printId": "dmrp05-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s06",
+      "faces": [
+        {
+          "name": "無明夜叉羅ムカデ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "無月の門：自分の魔導具をバトルゾーンに出した時、自分の魔導具をバトルゾーンと墓地から２つずつ選び、このクリーチャーを自分の手札または墓地からそれら４枚の上にコストを支払わずに召喚してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを ?9000 する。\n自分のクリーチャーが攻撃する時、このクリーチャーの下にあるカードが４枚以上なら、相手は自身の手札を１枚選んで捨てる。",
+          "race": "マフィ・ギャング",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenGate": 4,
+        "mugenKind": "normal",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -9000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "g1838CaptureLayers": true,
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 5
+              },
+              "defs": [
+                {
+                  "op": "Discard",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s06.jpg",
+      "imageSha256": "cb4947efc6a26a30f9739094298ccf2b4816477f766e285ca45f3333ec553baf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp05-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp05-s06"
+        ],
+        "allSearchIds": [
+          "dmrp05-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T21:05:17.719Z",
+        "sha256": "b82e14ccda54505fcd5cf927f9df2671ecd9a692c3a339fca596060b6b9760c3",
+        "facesMatched": true,
+        "imageSha256": "cb4947efc6a26a30f9739094298ccf2b4816477f766e285ca45f3333ec553baf"
+      },
+      "imageTextEvidence": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s06.jpg",
+        "sha256": "cb4947efc6a26a30f9739094298ccf2b4816477f766e285ca45f3333ec553baf",
+        "reviewedAt": "2026-11-27T21:05:17.719Z",
+        "reason": "Full official print clearly says power minus9000; official HTML/raw parser renders the minus as ?9000. Preserve the exact raw stored HTML-derived text and original ID; runtime uses the image-confirmed -9000. All other full abilities, Dark7/8000/W Breaker, Maffia Gang race and mana1 checked against this same full image."
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31708/",
+      "sha256": "815d3d2c3ab3b0e7537ee2851d1a0b8a678f637cf8b9ef093a893e8e5da9c12b",
+      "checkedAt": "2026-11-27T21:05:17.719Z",
+      "reproduced": true,
+      "tests": "tests/standard1838-effects.test.mjs",
+      "reproduction": "QA31708 both seats: actually pay Dark7 for Mukade, then test0/3/4/5 undercards independently of Moon Gate provenance. Any own creature attack triggers opponent-selected discard only when at least4 undercards at RESOLUTION. Source own attack, normal sickness/W2, opponent attacks, ignored/sealed source, two-source condition decrease, leave/new-visit last-known layer count, encrypted saves covered. Under-stack setup is an explicit synthetic existing-state fixture, not a claim to implement another unregistered method of attaching cards.",
+      "result": "QA31708 both seats: actually pay Dark7 for Mukade, then test0/3/4/5 undercards independently of Moon Gate provenance. Any own creature attack triggers opponent-selected discard only when at least4 undercards at RESOLUTION. Source own attack, normal sickness/W2, opponent attacks, ignored/sealed source, two-source condition decrease, leave/new-visit last-known layer count, encrypted saves covered. Under-stack setup is an explicit synthetic existing-state fixture, not a claim to implement another unregistered method of attaching cards."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31707/",
+      "sha256": "0d041796d20886e9e95502e426a95822294267af6d86d89fc4efb1d01877b89a",
+      "file": "tmp/duema-target-10000/research/qa-31707.html",
+      "checkedAt": "2026-11-27T21:10:08.452Z",
+      "reproduced": true,
+      "tests": "tests/standard1838-effects.test.mjs",
+      "reproduction": "QA31707 now reproduced with the literal Mukade, actually summoned from hand via normal Moon Gate using2 own battle and2 own grave Magu. Actual Heaven de Endresa sends all5 physical cards to5 independent faceDown shields, both seats/encrypted resume/card conservation. Prior phase1837 registered De Suzaku analogue remains truthful historical evidence and is supplemented by this literal case.",
+      "result": "QA31707 now reproduced with the literal Mukade, actually summoned from hand via normal Moon Gate using2 own battle and2 own grave Magu. Actual Heaven de Endresa sends all5 physical cards to5 independent faceDown shields, both seats/encrypted resume/card conservation. Prior phase1837 registered De Suzaku analogue remains truthful historical evidence and is supplemented by this literal case."
+    }
+  ],
+  "held": [
+    {
+      "id": "promoy17-047",
+      "name": "S.Q.QX/5.S.U.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-047",
+      "status": "unimplemented-not-counted",
+      "reason": "Opponent library-to-grave prohibition must cover all direct mills, private revealed/remainder moves, draw/replacement paths and prevention versus replacement. Existing deckLocked prohibits broader inspection and cannot substitute for this full ability. Do not register only the spell or selected mill call sites.",
+      "searchSha256": "0a4250fba2520dd25a6edca97b94a77d5383341021e0517a75cb6c153d6114a2",
+      "exactPrintIds": [
+        "promoy17-047"
+      ],
+      "allImagesReviewed": true,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-047a.jpg",
+      "imageSha256": "45308950e2811d554285b096be407c3c370828b7c9fd6448264f6c77f1b1a1e1",
+      "checkedAt": "2026-11-27T21:05:17.719Z"
+    },
+    {
+      "id": "dmrp12-s04",
+      "name": "堕悪の覇王 シャークウガ/闇の魔改造",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s04",
+      "status": "unimplemented-not-counted",
+      "reason": "Up-to2 OTHER physical battle cards must be selected before either moves, including both players seals, buried cards and linked roots, simultaneous replacement and unsealing. Existing single physical-card bounce or creature-only multi-select is insufficient; do not implement sequential choices or only the spell.",
+      "searchSha256": "7a639568ab6d953264a17c8cbba53aa7d31972fcaaf02ae615437cbbb8715c89",
+      "exactPrintIds": [
+        "dmrp12-s04"
+      ],
+      "allImagesReviewed": true,
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-s04a.jpg",
+      "imageSha256": "268ffc2cef753d63b102e91d8d4e6f5b8226af0d63ac01754724e2ad02841b21",
+      "checkedAt": "2026-11-27T21:05:17.719Z"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T21:05:17.719Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-030": 4,
+      "dmrp05-s06": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1838-native-condition-corrected",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "^(Rule603.4 actual|Pomirin uses effective|Pomirin already captured)",
+        "tests/standard1838-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 0.772,
+      "log": "tmp/duema-target-10000/extra-1838-native-condition-corrected.log",
+      "passed": 6,
+      "logSha256": "80a04fe39dc07333a68ef0c528f595015f108a5cea980f4a03f87c3f19c188ad"
+    },
+    {
+      "name": "rule-evidence-1838",
+      "command": [
+        "node",
+        "--input-type=module",
+        "-e",
+        "import fs from \"node:fs\"; import {createHash} from \"node:crypto\"; const rows=[]; for(const [id,url]of [[\"rule-20261106\",\"https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf\"],[\"qa-31707\",\"https://dm.takaratomy.co.jp/rule/qa/31707/\"]]){const r=await fetch(url,{signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error(r.status);const b=Buffer.from(await r.arrayBuffer()),file=\"tmp/duema-target-10000/research/\"+id+(id.startsWith(\"rule\")?\".pdf\":\".html\");fs.writeFileSync(file,b);rows.push({source:url,sha256:createHash(\"sha256\").update(b).digest(\"hex\"),file,checkedAt:new Date().toISOString()});}fs.writeFileSync(\"tmp/duema-target-10000/rule-evidence-1838.json\",JSON.stringify(rows,null,2)+\"\\n\"); console.log(rows.map(x=>({source:x.source,sha256:x.sha256})));"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 1.01,
+      "log": "tmp/duema-target-10000/rule-evidence-1838.log",
+      "passed": 0,
+      "logSha256": "e8d0604f9bf4b5677da957476fb0c47092b765d6325fda4d26c2393c8139d701"
+    }
+  ],
+  "ruleEvidence": [
+    {
+      "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+      "file": "tmp/duema-target-10000/research/rule-20261106.pdf",
+      "checkedAt": "2026-11-27T21:10:07.848Z",
+      "scope": "Comprehensive rule603.4: triggered conditions are checked at resolution, not required at trigger. Actual Purenegga invasion grows3 undercards to4 between Mukade attack trigger and its resolution and opponent discard succeeds. Rule603.5b: actual Courtney applies effective mana civilizations at entry, including forced-tapped printed mono cards seen by Pomirin."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31707/",
+      "sha256": "0d041796d20886e9e95502e426a95822294267af6d86d89fc4efb1d01877b89a",
+      "file": "tmp/duema-target-10000/research/qa-31707.html",
+      "checkedAt": "2026-11-27T21:10:08.452Z",
+      "scope": "Literal Mukade5-card-to5-shields ruling."
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp10-030",
+      "searchSha256": "274db7a094661763a72eee6e6584f0db255686edde665bcb6e8e424d97b1cb59",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp10-030"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp10-030"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All results1 enumerated and all exact prints1 visually reviewed; no pagination truncation."
+    },
+    {
+      "id": "dmrp05-s06",
+      "searchSha256": "e4f53c97fcb654a3af3ccea74693605b9e301f9fba2dd203a152af617f471b19",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp05-s06"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp05-s06"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All results1 enumerated and all exact prints1 visually reviewed; no pagination truncation."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Two complete additions and both full official images/exact searches1 print each/regulationslimit4. Pomirin Nature2/2000 creature-only reduction1 iff ALL effective own mana multicolored, empty/no payment/wrong required civilization/faceDown/actual Courtney/physical differently colored twinpacts; no spell reduction. Mandatory untap of BOTH players actual tapped multicolor arrivals, charge and forced-tapped actual Fantasista Life ramp, effective colors at entry, no mono forced-tapped untap, no payment-tap retrigger, ignored/sealed source, multiple pending triggers, target visit serial and already-captured source departure. Rainy Atlas Water1 private top3 mandatory one qualifying multicolor PHYSICAL card, including differently colored twinpact, reveal selected card, ordered remainder bottom, no-match/short deck and card conservation. Mukade Dark7/8000/W2/normal sickness, actual current -9000 target threshold8999/9000/9001 and turn expiry; real normal Moon Gate from hand or grave with2battle+2grave Magu and no extra payment, optional decline/no nonMagu trigger. Own attacker or another own-creature attack, no enemy attack or silenced source, opponent chooses discard. Source under0/3/4/5 without gate provenance, condition checked at RESOLUTION per603.4, not gated at trigger. Actual Purenegga invasion grows3 to4 undercards before resolving and succeeds; decreasing to3 fails, pending departed source/new visit uses last-known count. Literal QA31707 Mukade five independent shields now reproduced instead of relying only on prior native De Suzaku analogue. Both seats/encrypted JSON duel service/hidden-information read-only AI. Focused97 plus distinct6, related99 and online5 all passed. npm check/audit/old-data-ID/details/pending invariants passed; no full suite/old long-group reruns. All prior pending preserved.",
+    "resolvedAttempts": "Initial fixtures used Light/Water Guard Shell mana to pay Nature without a Nature source, used native discard action kind instead of extended decision, counted hand after shield break without its added card, and treated nested invasion layers as a flat under array. Fixed fixtures to real printed colors, native choice API, correct shield-break hand result and recursive layers. During review found NEW implementation prematurely required4 undercards at trigger; official current comprehensive rule603.4 proves resolution-only condition. Removed the premature gate, retained normal watch plus resolution IfOwn and layer snapshot, verified actual Purenegga invasion before resolution and all decrease/LKI cases. All failed raw runs preserved.",
+    "nextCandidates": [
+      {
+        "id": "dmr04-004",
+        "name": "偽りの名 スネーク",
+        "reason": "Next grouped full official research: share original/twinpact Snake body rules, exact plus-one grave deployment spell; untapped-own-creature battle cancellation and temporary attack/block restrictions; one opposing attack per turn and color-based spell-choice protection. Verify ALL original/reprint images, basic data, full abilities, limitations and related QA before any implementation; avoid partial registration."
+      },
+      {
+        "id": "dm22ex1-042",
+        "name": "偽りの名 スネーク / アンノウン・プログラム",
+        "reason": "Next grouped full official research: share original/twinpact Snake body rules, exact plus-one grave deployment spell; untapped-own-creature battle cancellation and temporary attack/block restrictions; one opposing attack per turn and color-based spell-choice protection. Verify ALL original/reprint images, basic data, full abilities, limitations and related QA before any implementation; avoid partial registration."
+      },
+      {
+        "id": "dm24bd5-009",
+        "name": "海遊妖精アルメリア / 「海中でなんだか歌が聞こえるね!!」",
+        "reason": "Next grouped full official research: share original/twinpact Snake body rules, exact plus-one grave deployment spell; untapped-own-creature battle cancellation and temporary attack/block restrictions; one opposing attack per turn and color-based spell-choice protection. Verify ALL original/reprint images, basic data, full abilities, limitations and related QA before any implementation; avoid partial registration."
+      },
+      {
+        "id": "dm23bd7-004",
+        "name": "衒影の精霊 リアリテル / 「この記憶もロック完了だね」",
+        "reason": "Next grouped full official research: share original/twinpact Snake body rules, exact plus-one grave deployment spell; untapped-own-creature battle cancellation and temporary attack/block restrictions; one opposing attack per turn and color-based spell-choice protection. Verify ALL original/reprint images, basic data, full abilities, limitations and related QA before any implementation; avoid partial registration."
+      }
+    ]
+  }
+}
