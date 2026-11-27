@@ -311988,19 +311988,202 @@
       },
       "supportBatch": "phase-1830",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd07-002",
+      "name": "ソプラノ裁徒 / メロディアス・メロディ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ/サバキスト",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-002",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "spellFace": {
+        "name": "メロディアス・メロディ",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g193Tap": true,
+            "g173Targets": true,
+            "g193Select": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1831",
+      "supportKind": "effect",
+      "g40LastBurst": true
+    },
+    {
+      "id": "dmrp06-007",
+      "name": "龍装車 マグマジゴク/地獄スクラッパー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ドラゴンギルド/ビートジョッキー",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時あるいは自分が名前に《スクラッパー》とある呪文を唱えた時、このクリーチャーは相手のシールドを１つブレイクする。その後、自分のシールドを１つブレイクする。\n【呪文面】\nS・トリガー S・トリガー\n相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-007",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        },
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 1,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "g204SpellWatch": {
+        "who": "self",
+        "g1252NameIncludes": "スクラッパー",
+        "defs": [
+          {
+            "op": "Break497",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          },
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": 1,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      },
+      "spellFace": {
+        "name": "地獄スクラッパー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "filter": {
+              "creature": true
+            },
+            "g506PowerBudget": 5000,
+            "to": "grave",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1831",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-069",
+      "name": "罪無 バスダク極 / ダックス奮闘",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体破壊する。\n【呪文面】\n自分のクリーチャーを１体選ぶ、次の自分のターンのはじめまで、そのクリーチャーは攻撃されず、相手に選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-069",
+      "limit": 4,
+      "mugenCrime": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "ダックス奮闘",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "cannotBeAttacked": true,
+              "untargetable": true
+            },
+            "g521UntilStart": true,
+            "g565External": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1831",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1830,
-    "checkedAt": "2026-11-27T19:16:41.770Z",
-    "baseCount": 9700,
+    "phase": 1831,
+    "checkedAt": "2026-11-27T19:30:11.098Z",
+    "baseCount": 9703,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9703,
+    "totalCount": 9706,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45077/",
-      "https://dm.takaratomy.co.jp/rule/qa/31814/"
+      "https://dm.takaratomy.co.jp/rule/qa/31778/",
+      "https://dm.takaratomy.co.jp/rule/qa/31757/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -341946,6 +342129,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40866/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1830,
+        "checkedAt": "2026-11-27T19:16:41.770Z",
+        "baseCount": 9700,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9703,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45077/",
+          "https://dm.takaratomy.co.jp/rule/qa/31814/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
