@@ -4514,6 +4514,18 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
+ case'g34_YabaRap1840':{
+  const rows=targetOptions(s,t.p,creatures(s,1-t.p));
+  if(rows.length)choice(s,t,'相手が破壊するか選ぶクリーチャーを1体選ぶ',rows);
+  break;
+ }
+ case'g34_YabaChoice1840':{
+  const y=own.battle.find(x=>x.uid===t.target.uid&&(x.incarnation||0)===t.target.incarnation&&!x.sealed&&api.isCreature(s,x));
+  if(y)choice(s,t,'選ばれたクリーチャーを破壊する？',[
+   opt('破壊する',true,hooks.destroySafe409(s,y)?30:-Math.min(30,6+cost(effective(y,s))*2),y.cardId),
+   opt('破壊しない',false,0,y.cardId)]);
+  break;
+ }
  case'g34_SacrificeAlly413':{
   const source=t.g1200GraveStart?own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial):null;
   if(t.g1200GraveStart&&!source)break;
@@ -4522,7 +4534,7 @@ export function createSixPhotoRules(api){
    .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&
     (!t.filter||matches(s,t.p,y,t.filter))&&!selected.some(z=>z.uid===y.uid));
   const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),remaining=(t.n??1)-selected.length;
-  if(legal.size<remaining)break;
+  if(legal.size<remaining){if(t.g1840NoVictimSelf)start(s,t,[{op:'SelfDestroy'}]);break;}
   const payoff=source&&t.n>1
    ?(api.canMoveZone(s,t.p,'grave')&&canPut(s,t.p,source,'grave')?(10+cost(card(source))*3)/t.n:-1000)
    :sacrificeValue413(s,t,t.defs||[]);
@@ -8841,6 +8853,19 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_DrillBow1656':{const p=1-t.p,gear=s.players[p].battle.find(y=>y.uid===v&&!y.sealed&&!y.faceDown&&card(y).type==='gear');if(!gear)break;const host=gear.crossedTo&&s.players[p].battle.find(y=>y.uid===gear.crossedTo.uid&&(y.incarnation||0)===gear.crossedTo.incarnation&&!y.sealed&&api.isCreature(s,y));if(host)put(s,{...t,op:'g34_DrillAfter1656',host:{p,uid:host.uid,incarnation:host.incarnation||0}});move(s,[{player:p,uid:gear.uid,to:'grave',destroy:false,controller:t.p,toOwnerGrave:true}]);break;}
+ case'g34_YabaRap1840':{
+  const y=s.players[1-t.p].battle.find(x=>x.uid===v&&!x.sealed&&api.isCreature(s,x));
+  if(y)put(s,{...t,op:'g34_YabaChoice1840',caster:t.p,p:1-t.p,target:{uid:y.uid,incarnation:y.incarnation||0}});
+  break;
+ }
+ case'g34_YabaChoice1840':{
+  const y=own.battle.find(x=>x.uid===t.target.uid&&(x.incarnation||0)===t.target.incarnation&&!x.sealed&&api.isCreature(s,x));
+  if(!y)break;
+  // 101.3a: agreeing to the destruction attempt is sufficient, even if replaced.
+  if(v===true)move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
+  else if(v===false)start(s,{...t,p:t.caster},[{op:'Select',zones:['hand','grave'],n:1,deploy:true,optional:true,filter:{creature:true}}]);
+  break;
+ }
  case'g34_SacrificeAlly413':{
   if(!v||t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
   const selected=[...(t.selected??[]),v],targets=selected.map(ref=>own.battle.find(y=>

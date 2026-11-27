@@ -19640,5 +19640,96 @@
         "g334Other": true
       }
     }
+  },
+  "dmrp01-001": {
+    "phase": 1840,
+    "faces": [
+      {
+        "name": "三冠王者 ドツキング",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "W・ブレイカー\n自分の他のジョーカーズが相手のクリーチャーとバトルする時、かわりにこのクリーチャーにバトルさせてもよい。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。",
+        "race": "ジョーカーズ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1195BattleProxy": true,
+      "g1839ProxyRace": "ジョーカーズ",
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmr05-058": {
+    "phase": 1840,
+    "faces": [
+      {
+        "name": "ヤバスギル・ラップ",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "バトルゾーンにある相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを破壊してもよい。相手が破壊しなかった場合、自分はクリーチャーを１体、自分の手札または墓地からバトルゾーンに出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "YabaRap1840"
+        }
+      ]
+    }
+  },
+  "dmr03-011": {
+    "phase": 1840,
+    "faces": [
+      {
+        "name": "友斬のマジ・スマーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のサイキック・クリーチャーを１体破壊する。破壊できない場合、このクリーチャーを破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+        "race": "デーモン・コマンド/ハンター",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "mandatory": true,
+          "filter": {
+            "g1085Psychic": true
+          },
+          "g1840NoVictimSelf": true,
+          "defs": []
+        }
+      ]
+    }
   }
 }
