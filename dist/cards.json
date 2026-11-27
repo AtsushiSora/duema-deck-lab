@@ -314090,18 +314090,156 @@
       ],
       "supportBatch": "phase-1845",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-028",
+      "name": "悪魔神バロム・コバルト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "デーモン・コマンド",
+      "text": "{GS} G・ストライク\nこのクリーチャーの「G・ストライク」を使った時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを-6000する。\n進化：デーモン・コマンド・クリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、闇ではないクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-028",
+      "limit": 4,
+      "gStrike": true,
+      "g545GS": [
+        {
+          "op": "Target",
+          "power": -6000,
+          "g242PowerMinus": true
+        }
+      ],
+      "evolution": {
+        "race": "デーモン・コマンド"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notColor": "闇"
+          }
+        }
+      ],
+      "supportBatch": "phase-1846",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-044",
+      "name": "闇より来たりし魔導具",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンに自分の魔導具が２つあれば、相手の手札を見ないで１枚選び、捨てさせる。\n自分のクリーチャーを１体破壊してもよい。そうしたら、相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-044",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1484ZoneCount": {
+              "zone": "battle",
+              "min": 2,
+              "filter": {
+                "race": "魔導具"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        },
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1846",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex06-043",
+      "name": "一面 エニク＝アーク",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジュラシック・コマンド・ドラゴン/革命軍/イメン団",
+      "text": "革命チェンジ：火または自然のクリーチャー（自分の火または自然のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\n自分のマナゾーンにすべての文明があれば、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-043",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "火",
+          "自然"
+        ],
+        "min": 0,
+        "any": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g568ManaColors": [
+              "光",
+              "水",
+              "闇",
+              "火",
+              "自然"
+            ]
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1846",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1845,
-    "checkedAt": "2026-11-27T22:27:56.514Z",
-    "baseCount": 9743,
+    "phase": 1846,
+    "checkedAt": "2026-11-27T22:33:51.995Z",
+    "baseCount": 9746,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9746,
+    "totalCount": 9749,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40402/"
+      "https://dm.takaratomy.co.jp/rule/qa/31660/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -344276,6 +344414,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45801/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1845,
+        "checkedAt": "2026-11-27T22:27:56.514Z",
+        "baseCount": 9743,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9746,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40402/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

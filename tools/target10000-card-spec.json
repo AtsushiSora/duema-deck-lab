@@ -20832,5 +20832,152 @@
         }
       ]
     }
+  },
+  "dm24ex2-028": {
+    "phase": 1846,
+    "faces": [
+      {
+        "name": "悪魔神バロム・コバルト",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "{GS} G・ストライク\nこのクリーチャーの「G・ストライク」を使った時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを-6000する。\n進化：デーモン・コマンド・クリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、闇ではないクリーチャーをすべて破壊する。",
+        "race": "デーモン・コマンド",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g545GS": [
+        {
+          "op": "Target",
+          "power": -6000,
+          "g242PowerMinus": true
+        }
+      ],
+      "evolution": {
+        "race": "デーモン・コマンド"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "notColor": "闇"
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04s-044": {
+    "phase": 1846,
+    "faces": [
+      {
+        "name": "闇より来たりし魔導具",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンに自分の魔導具が２つあれば、相手の手札を見ないで１枚選び、捨てさせる。\n自分のクリーチャーを１体破壊してもよい。そうしたら、相手のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1484ZoneCount": {
+              "zone": "battle",
+              "min": 2,
+              "filter": {
+                "race": "魔導具"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        },
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex06-043": {
+    "phase": 1846,
+    "faces": [
+      {
+        "name": "一面 エニク＝アーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "革命チェンジ：火または自然のクリーチャー（自分の火または自然のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\n自分のマナゾーンにすべての文明があれば、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+        "race": "ジュラシック・コマンド・ドラゴン/革命軍/イメン団",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "rev": {
+        "colors": [
+          "火",
+          "自然"
+        ],
+        "min": 0,
+        "any": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g568ManaColors": [
+              "光",
+              "水",
+              "闇",
+              "火",
+              "自然"
+            ]
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
   }
 }

@@ -1,0 +1,366 @@
+{
+  "phase": 1846,
+  "checkedAt": "2026-11-27T22:33:51.995Z",
+  "baseline": "4e86107126a236a7c77024eb6d6f17c4772f103a",
+  "baseCount": 9746,
+  "target": 10000,
+  "description": "Complete Cobalt native GStrike extra independent target-minus6000 and Demon evolution/nonDark both-side sweep, Yamiyori MagicTool2 blind discard then optional own destruction attempt/enemy destroy, EnicArk Fire-orNature change and all-five-mana-civilizations live own speed aura.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31660/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-076"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex2-028",
+      "name": "悪魔神バロム・コバルト",
+      "canonicalId": "dm24ex2-028",
+      "printId": "dm24ex2-028",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-028",
+      "faces": [
+        {
+          "name": "悪魔神バロム・コバルト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "{GS} G・ストライク\nこのクリーチャーの「G・ストライク」を使った時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを-6000する。\n進化：デーモン・コマンド・クリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、闇ではないクリーチャーをすべて破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g545GS": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true
+          }
+        ],
+        "evolution": {
+          "race": "デーモン・コマンド"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "notColor": "闇"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-028.jpg",
+      "imageSha256": "c9742a2d496a621bf9b4961855b2532eb63940d56b4672f8b6420e9af9c62b18",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex2-028-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24ex2-028"
+        ],
+        "allSearchIds": [
+          "dm24ex2-028"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:33:51.995Z",
+        "sha256": "38ce388fe1299009829992186c2d3f9988aa861653176bdeb8b4198095fbf94b",
+        "facesMatched": true,
+        "imageSha256": "c9742a2d496a621bf9b4961855b2532eb63940d56b4672f8b6420e9af9c62b18"
+      }
+    },
+    {
+      "id": "dmrp04s-044",
+      "name": "闇より来たりし魔導具",
+      "canonicalId": "dmrp04s-044",
+      "printId": "dmrp04s-044",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-044",
+      "faces": [
+        {
+          "name": "闇より来たりし魔導具",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンに自分の魔導具が２つあれば、相手の手札を見ないで１枚選び、捨てさせる。\n自分のクリーチャーを１体破壊してもよい。そうしたら、相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1484ZoneCount": {
+                "zone": "battle",
+                "min": 2,
+                "filter": {
+                  "race": "魔導具"
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          },
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-044.jpg",
+      "imageSha256": "ad32c9789d1bb60dafeae7223e223caf52ca0a5f7ad567d8f2145cab6f3d6ced",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp04s-044-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp04s-044"
+        ],
+        "allSearchIds": [
+          "dmrp04s-044"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:33:51.995Z",
+        "sha256": "aa316193693fb768f4b779e0a0b398d35e8dacbd3942938dd7d486118f3a7fc0",
+        "facesMatched": true,
+        "imageSha256": "ad32c9789d1bb60dafeae7223e223caf52ca0a5f7ad567d8f2145cab6f3d6ced"
+      }
+    },
+    {
+      "id": "dmex06-043",
+      "name": "一面 エニク＝アーク",
+      "canonicalId": "dmex06-043",
+      "printId": "dmex06-043",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-043",
+      "faces": [
+        {
+          "name": "一面 エニク＝アーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：火または自然のクリーチャー（自分の火または自然のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\n自分のマナゾーンにすべての文明があれば、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ジュラシック・コマンド・ドラゴン/革命軍/イメン団",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "colors": [
+            "火",
+            "自然"
+          ],
+          "min": 0,
+          "any": true
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g568ManaColors": [
+                "光",
+                "水",
+                "闇",
+                "火",
+                "自然"
+              ]
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-043.jpg",
+      "imageSha256": "439c7e41177bcdc78dbccee6cc70edb690d2f3888760ad64660a3b576c440d96",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex06-043-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex06-043"
+        ],
+        "allSearchIds": [
+          "dmex06-043"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T22:33:51.995Z",
+        "sha256": "6c6492c7e0937c1e866692481d2954f6a15fa7baa47390e74e4683b0fa93cf23",
+        "facesMatched": true,
+        "imageSha256": "439c7e41177bcdc78dbccee6cc70edb690d2f3888760ad64660a3b576c440d96"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31660/",
+      "sha256": "d5a88113b4f7d88104084b975e76598e45fc3a6c7c23e730989cabbc4b3bd16f",
+      "checkedAt": "2026-11-27T22:33:51.995Z",
+      "reproduced": false,
+      "tests": "tests/standard1846-effects.test.mjs",
+      "appliesToSupportedFormat": false,
+      "kind": "historical-preview-answer-not-a-game-action-ruling",
+      "reproduction": "QA31660 answers that MagicTool was not yet known when previewed. It supplies no actionable timing/operation. Current official dm rp07-076 explicitly has race マフィ・ギャング/魔導具 (fresh official SHA evidence attached), so full modern species condition is independently verified with own0/1/2/3 live MagicTools, enemy/buried/hand/grave exclusion, actual blind discard and sacrifice. Preserve the historical FAQ without claiming its teaser answer was mechanically reproduced.",
+      "result": "QA31660 answers that MagicTool was not yet known when previewed. It supplies no actionable timing/operation. Current official dm rp07-076 explicitly has race マフィ・ギャング/魔導具 (fresh official SHA evidence attached), so full modern species condition is independently verified with own0/1/2/3 live MagicTools, enemy/buried/hand/grave exclusion, actual blind discard and sacrifice. Preserve the historical FAQ without claiming its teaser answer was mechanically reproduced."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T22:33:51.995Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex2-028": 4,
+      "dmrp04s-044": 4,
+      "dmex06-043": 4
+    }
+  },
+  "additionalValidation": [
+    {
+      "name": "extra-1846",
+      "command": [
+        "node",
+        "--test",
+        "tests/standard1846-edge-effects.test.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.253,
+      "log": "tmp/duema-target-10000/extra-1846.log",
+      "passed": 14,
+      "logSha256": "e6790389286408fa62bb7d2e0b9cfd482bfcd26cec973abdcb79d58153cf3264"
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm24ex2-028",
+      "searchSha256": "ea90cbdfcaa537c1f51e3459f76f8d7af7e92ce77535b604c7174da8313fcb3f",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm24ex2-028"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dm24ex2-028"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "dmrp04s-044",
+      "searchSha256": "e3a165b3ba0139f9d3df67962af29e73339497695c201787851acedc3bf3fe57",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp04s-044"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmrp04s-044"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    },
+    {
+      "id": "dmex06-043",
+      "searchSha256": "d3702743545f9c89ed82c3747ee4b4a7ffdce75811f81af131198ef86b4118d7",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmex06-043"
+      ],
+      "excluded": [],
+      "exactPrints": [
+        "dmex06-043"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All 1 results enumerated on one page; every exact full print image reviewed."
+    }
+  ],
+  "currentMagicToolRaceEvidence": {
+    "checkedAt": "2026-11-27T22:38:24.058Z",
+    "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-076",
+    "sha256": "78ccd2e006a0f80e4e88eaa0a95af572e6d255141d6ae1f607ffbd2821823a99",
+    "faces": [
+      {
+        "name": "堕魔 グリゲドル",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "マフィ・ギャング/魔導具",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "reason": "QA31660 is a historical unrevealed-set teaser, not a game-action ruling. Actual currently official creature species explicitly includes 魔導具; count real own battlefield elements of this species, not spell name or buried/hand/grave cards."
+  },
+  "validationNotes": {
+    "rulingScope": "Complete3 new unique types, all1-result official name searches and all3 full images reviewed, no aliases/duplicates, all limits4. Cobalt Dark8/12000/DemonCommand evolution/T3; nonDark sweep BOTH players including untargetable creatures, retain dark multicolor and noncreature seeds; actual genuine GStrike at zero mana preserves hand card, declaration optional, ordinary GS target may be different or skipped, mandatory separate enemy target -6000 until end, actual power7000 becomes1000 and2000 dies, no free evolution summon. Yamiyori Dark4 genuineST; own at least2 current live battlefield MagicTool elements yields blind discard1 before independent optional own-creature destruction attempt and mandatory enemy destruction, no payoff on decline; actual Patfall protects own chosen creature but destruction attempt still satisfies101.3a. Own0/1/2/3, enemy and buried/hand/grave exclusion, ST zero mana full both abilities, hidden card kept private. Official linked QA31660 is historical set-preview teaser with no mechanical instruction, recorded separately with fresh current official Grigedoru species proof and explicit not-reproduced disposition. EnicArk Fire/Nature5/4000 (multi tapped mana), full revolution Fire OR Nature NONDRAGON cost2 tested, Water-only excluded, declaration/resolution with encrypted stable physical IDs and attack carried by new creature; own live five mana civilizations gives SpeedAttacker to all own fresh creatures including Water/source, missing Dark prevents, faceDown hidden Dark not revealed/counted, real multicolor supplies missing Dark, opposing creatures do not gain. Native existing GS/counterspell/sacrifice/rev/color aura operations reused without new runtime logic. Focused44 plus edge14 (including6 two-account encrypted service), affected related and online5 passed; npmcheck/audit9749/old-ID-data invariants passed. All old pending/holds/fullSuite interrupted preserved, no fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Initial focused44 passed, then separate actual NONDRAGON revolution reproduction exposed missing native rev.any flag: default revolution matcher requires Dragon. Added any=true to exact verified EnicArk spec/pin/manifest/runtime entry, preserving color OR and min0 and regenerated online compatibility; actual Fire2/Nature2 swap plus Water exclusion now pass in both seats. No shared runtime changed. Final focused44+edge14 all green; no failed required verification remains.",
+    "nextCandidates": [
+      {
+        "id": "dm28-047",
+        "name": "歌舞機ロイド・ゴエモン",
+        "reason": "Next grouped full official research for Goemon own-other-Samurai optional draw plus independent Samurai generation, Pupan shield1/noST and Fire3 alternative summon/W2, Shasseroa full creature/spell VividRo execution triggers. Implement all printed abilities and rules, preserve actual choice/timing/physical refs."
+      },
+      {
+        "id": "dm24rp1-067",
+        "name": "解盗プーパン",
+        "reason": "Next grouped full official research for Goemon own-other-Samurai optional draw plus independent Samurai generation, Pupan shield1/noST and Fire3 alternative summon/W2, Shasseroa full creature/spell VividRo execution triggers. Implement all printed abilities and rules, preserve actual choice/timing/physical refs."
+      },
+      {
+        "id": "dmrp16-054",
+        "name": "回転者 シャッセロアー",
+        "reason": "Next grouped full official research for Goemon own-other-Samurai optional draw plus independent Samurai generation, Pupan shield1/noST and Fire3 alternative summon/W2, Shasseroa full creature/spell VividRo execution triggers. Implement all printed abilities and rules, preserve actual choice/timing/physical refs."
+      }
+    ]
+  }
+}
