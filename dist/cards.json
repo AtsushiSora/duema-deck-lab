@@ -307706,18 +307706,145 @@
       ],
       "supportBatch": "phase-1793",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26bd1-019",
+      "name": "東龍の炎 ボルメテウス・ブルー / ボルメテウス・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "ミリオン・フレイム",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nウルトラ・セイバー：名前に《ボルメテウス》とあるクリーチャー（自分の、名前に《ボルメテウス》とあるクリーチャーが離れる時、かわりにこのクリーチャーを破壊してもよい）\n【呪文面】\nカードを２枚引く。\nこのカードを出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-019",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g571Saver": {
+        "ultra": true,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ボルメテウス"
+        }
+      },
+      "spellFace": {
+        "name": "ボルメテウス・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1794",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26bd1-022",
+      "name": "南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ミリオン・フレイム",
+      "text": "相手のターンに相手のクリーチャーが召喚以外の方法で出る時、相手はかわりにそのクリーチャーを墓地に置く。\n【呪文面】\nS・トリガー S・トリガー\nコストの合計が６以下になるように相手のエレメントを好きな数選び、破壊する。\nこのカードを出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-SP007",
+      "limit": 4,
+      "noNonsummonEntry": true,
+      "spellFace": {
+        "name": "ボルメテウス・スクラッパー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "element": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 6,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1794",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-021",
+      "name": "パーロックのミラクルフィーバー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "カードの名前をひとつ選んで言う。その後、自分の山札の上から、選んだ名前のカードが出るまで１枚ずつすべてのプレイヤーに見せる。見せたカードをすべて自分の手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Nocturne732",
+          "g1794Miracle": true
+        }
+      ],
+      "supportBatch": "phase-1794",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1793,
-    "checkedAt": "2026-11-27T11:45:49.807Z",
-    "baseCount": 9601,
+    "phase": 1794,
+    "checkedAt": "2026-11-27T12:01:40.096Z",
+    "baseCount": 9604,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9604,
+    "totalCount": 9607,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36398/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36292/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36293/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -337078,6 +337205,21 @@
         "totalCount": 9601,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1793,
+        "checkedAt": "2026-11-27T11:45:49.807Z",
+        "baseCount": 9601,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9604,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36398/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

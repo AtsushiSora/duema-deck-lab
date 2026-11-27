@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-27",
-  "catalogueNames": 11841,
-  "supportedNames": 9604,
-  "pendingNames": 2237,
-  "phase": 1793,
+  "catalogueNames": 11843,
+  "supportedNames": 9607,
+  "pendingNames": 2236,
+  "phase": 1794,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -157,7 +157,7 @@
   ],
   "pendingByType": {
     "クリーチャー": 1292,
-    "呪文": 250,
+    "呪文": 249,
     "GRクリーチャー": 17,
     "G-NEOクリーチャー": 25,
     "タマシード": 26,
@@ -221,7 +221,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1639,
+    "未対応の能力文": 1638,
     "複数面・特殊カードタイプまたは情報不足": 499,
     "未対応のG・ゼロ条件": 10,
     "未対応の召喚時能力": 12,
@@ -566307,30 +566307,331 @@
         }
       ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
+    },
+    {
+      "phase": 1794,
+      "checkedAt": "2026-11-27T12:08:28.641Z",
+      "baseline": "89b30c4644731933ef15ec60a3e8c446ad99fd97",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9604,
+      "currentNames": 9607,
+      "remainingNames": 393,
+      "added": [
+        {
+          "id": "dm26bd1-019",
+          "name": "東龍の炎 ボルメテウス・ブルー / ボルメテウス・ブレイン"
+        },
+        {
+          "id": "dm26bd1-022",
+          "name": "南雀の炎 ボルメテウス・レッド / ボルメテウス・スクラッパー"
+        },
+        {
+          "id": "dmr01-021",
+          "name": "パーロックのミラクルフィーバー"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1794,
+        "baseline": "89b30c4644731933ef15ec60a3e8c446ad99fd97",
+        "originalDefinitionsUnchanged": 9604,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9607,
+        "uniqueIds": 9607,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": false,
+        "oldDetailsRowsUnchanged": 11845,
+        "newCatalogueNames": 2,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9604,
+        "existingImageReferenceRowsUnchanged": 11951,
+        "officialPrintsReviewed": 7,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1794": {
+          "name": "official-1794",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1794.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.011,
+          "log": "tmp/duema-target-10000/official-1794.log",
+          "passed": 0,
+          "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+        },
+        "focused-1794-final": {
+          "name": "focused-1794-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1794-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.581,
+          "log": "tmp/duema-target-10000/focused-1794-final.log",
+          "passed": 45,
+          "logSha256": "dde01c509ddde79f7c8cb15fcc477586886933576a93114eea4e69aeff21c677"
+        },
+        "related-1794": {
+          "name": "related-1794",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^phase1760 pins complete ordinary and special prints, one canonical name, both full faces and current restrictions$",
+            "tests/standard1760-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.608,
+          "log": "tmp/duema-target-10000/related-1794.log",
+          "passed": 1,
+          "logSha256": "e50dd879329cc658e64291994be7d345636b6401804120d66c3064d08fd10322"
+        },
+        "check-1794": {
+          "name": "check-1794",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.213,
+          "log": "tmp/duema-target-10000/check-1794.log",
+          "passed": 0,
+          "logSha256": "38a21b9a22d88bd8b76f290dae4e3a2ee17837311324a82e3b2319c4dd1e4e3e"
+        },
+        "audit-1794": {
+          "name": "audit-1794",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.807,
+          "log": "tmp/duema-target-10000/audit-1794.log",
+          "passed": 0,
+          "logSha256": "161d4af19f8452be0b229ddc80af3620eefbc729a36992ee51c8dc4d1a68b970"
+        },
+        "invariants-1794": {
+          "name": "invariants-1794",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1794"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.755,
+          "log": "tmp/duema-target-10000/invariants-1794.log",
+          "passed": 0,
+          "logSha256": "eddfe49ba87ce1b0a90767d076f025a9933b0e8c64e4f2703c0712b6d14e477b"
+        },
+        "related-online-1794": {
+          "name": "related-online-1794",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.219,
+          "log": "tmp/duema-target-10000/related-online-1794.log",
+          "passed": 5,
+          "logSha256": "7e5c5d7e8a8790c2987d7f1f2fd0c1ade0ea31134d127713dc694665bdbabb84"
+        }
+      },
+      "totalTestsPassed": 51,
+      "manifest": "tools/support-phase-1794.json",
+      "supported": 9607,
+      "pending": 2236,
+      "engineVersion": "0.602.318",
+      "held": [
+        {
+          "id": "dm26bd1-014",
+          "name": "西虎の炎 ボルメテウス・イエロー / ボルメテウス・スパーク",
+          "reason": "Complete official research saved in research-dm26bd1-SP005.json. Needs optional per-physical-source, once-per-turn all-card execution reduction (not mandatory unlimited reduction). No partial registration. Images not yet visually reviewed."
+        },
+        {
+          "id": "dmr05-058",
+          "name": "ヤバスギル・ラップ",
+          "reason": "Official research saved. Needs opponent optional destruction with actual successful destruction outcome, then optional caster hand/grave deployment. Targetless cast must do nothing (QA43591). No partial definition."
+        },
+        {
+          "id": "dmr07-016",
+          "name": "おやすみヒッポポさん",
+          "reason": "Official research saved. Needs revealed-card Gachinko/Power-Gachinko win destination replacement before bottoming, with no replacement chaining. Current comparison runs after destination movement. No partial definition."
+        }
+      ],
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "resolvedAttempts": [
+        {
+          "name": "focused-1794",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1794-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.412,
+          "log": "tmp/duema-target-10000/focused-1794.log",
+          "reason": "Initial test fixtures assumed a name-matching ultra-saver could not protect itself; the official reminder includes all own matching creatures, and the test now covers self-sacrifice and replacement exclusion. ExactMove does not forward an arbitrary replacement flag; use actual ultra-saver payment. Onikamasu correctly offered its later nonsummon bounce; the targeting-exclusion test explicitly declines that subsequent ability. QA36293 name examples use the actually registered Romanov I and Romanov I GS rather than an unregistered B-Romanov. Public projections omit the library property rather than supplying an empty array. No assertion failure was hidden or counted as passing. Related regression initial 449/450 passed. The sole old phase1760 metadata assertion failed identically because verification.imageSha256 was absent in the unchanged committed manifest; both official bytes matched prior top-level hashes. Copied those verified hashes into the expected verification fields and reran only the failed assertion (1/1 passed). All 450 related assertions are covered by aggregation, with original failed result retained. Initial invariant audit correctly caught a new detail-evidence source mismatch: Red primary manifest selected its text-identical SP print, while appended canonical details correctly cite original 022. catalogueAdditions now describes the actual 022 detail row; both complete prints remain separately verified and IDs/data are unchanged."
+        },
+        {
+          "name": "focused-1794-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1794-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.409,
+          "log": "tmp/duema-target-10000/focused-1794-final-previous-1795781114667645000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1794-final.log",
+          "reason": "Initial test fixtures assumed a name-matching ultra-saver could not protect itself; the official reminder includes all own matching creatures, and the test now covers self-sacrifice and replacement exclusion. ExactMove does not forward an arbitrary replacement flag; use actual ultra-saver payment. Onikamasu correctly offered its later nonsummon bounce; the targeting-exclusion test explicitly declines that subsequent ability. QA36293 name examples use the actually registered Romanov I and Romanov I GS rather than an unregistered B-Romanov. Public projections omit the library property rather than supplying an empty array. No assertion failure was hidden or counted as passing. Related regression initial 449/450 passed. The sole old phase1760 metadata assertion failed identically because verification.imageSha256 was absent in the unchanged committed manifest; both official bytes matched prior top-level hashes. Copied those verified hashes into the expected verification fields and reran only the failed assertion (1/1 passed). All 450 related assertions are covered by aggregation, with original failed result retained. Initial invariant audit correctly caught a new detail-evidence source mismatch: Red primary manifest selected its text-identical SP print, while appended canonical details correctly cite original 022. catalogueAdditions now describes the actual 022 detail row; both complete prints remain separately verified and IDs/data are unchanged."
+        },
+        {
+          "name": "related-1794",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard732-effects.test.mjs",
+            "tests/standard513-effects.test.mjs",
+            "tests/standard553-effects.test.mjs",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1529-effects.test.mjs",
+            "tests/standard1760-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 32.643,
+          "log": "tmp/duema-target-10000/related-1794-previous-1795781236995703000.log",
+          "originalLog": "tmp/duema-target-10000/related-1794.log",
+          "reason": "Initial test fixtures assumed a name-matching ultra-saver could not protect itself; the official reminder includes all own matching creatures, and the test now covers self-sacrifice and replacement exclusion. ExactMove does not forward an arbitrary replacement flag; use actual ultra-saver payment. Onikamasu correctly offered its later nonsummon bounce; the targeting-exclusion test explicitly declines that subsequent ability. QA36293 name examples use the actually registered Romanov I and Romanov I GS rather than an unregistered B-Romanov. Public projections omit the library property rather than supplying an empty array. No assertion failure was hidden or counted as passing. Related regression initial 449/450 passed. The sole old phase1760 metadata assertion failed identically because verification.imageSha256 was absent in the unchanged committed manifest; both official bytes matched prior top-level hashes. Copied those verified hashes into the expected verification fields and reran only the failed assertion (1/1 passed). All 450 related assertions are covered by aggregation, with original failed result retained. Initial invariant audit correctly caught a new detail-evidence source mismatch: Red primary manifest selected its text-identical SP print, while appended canonical details correctly cite original 022. catalogueAdditions now describes the actual 022 detail row; both complete prints remain separately verified and IDs/data are unchanged."
+        },
+        {
+          "name": "invariants-1794",
+          "command": [
+            "node",
+            "tools/verify-target10000-invariants.mjs",
+            "1794"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 0.373,
+          "log": "tmp/duema-target-10000/invariants-1794-previous-1795781280738513000.log",
+          "originalLog": "tmp/duema-target-10000/invariants-1794.log",
+          "reason": "Initial test fixtures assumed a name-matching ultra-saver could not protect itself; the official reminder includes all own matching creatures, and the test now covers self-sacrifice and replacement exclusion. ExactMove does not forward an arbitrary replacement flag; use actual ultra-saver payment. Onikamasu correctly offered its later nonsummon bounce; the targeting-exclusion test explicitly declines that subsequent ability. QA36293 name examples use the actually registered Romanov I and Romanov I GS rather than an unregistered B-Romanov. Public projections omit the library property rather than supplying an empty array. No assertion failure was hidden or counted as passing. Related regression initial 449/450 passed. The sole old phase1760 metadata assertion failed identically because verification.imageSha256 was absent in the unchanged committed manifest; both official bytes matched prior top-level hashes. Copied those verified hashes into the expected verification fields and reran only the failed assertion (1/1 passed). All 450 related assertions are covered by aggregation, with original failed result retained. Initial invariant audit correctly caught a new detail-evidence source mismatch: Red primary manifest selected its text-identical SP print, while appended canonical details correctly cite original 022. catalogueAdditions now describes the actual 022 detail row; both complete prints remain separately verified and IDs/data are unchanged."
+        }
+      ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "regressionCoverage": {
+        "status": "all-450-assertions-verified",
+        "method": "Retain 449 previously passing related assertions; repair only missing verification.imageSha256 metadata on the two original Black print records, verifying current official bytes against their prior pinned SHA-256; independently rerun the sole failing assertion with an exact positive test name. No unchanged successful group was repeated.",
+        "initialRun": {
+          "name": "related-1794",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard732-effects.test.mjs",
+            "tests/standard513-effects.test.mjs",
+            "tests/standard553-effects.test.mjs",
+            "tests/standard571-effects.test.mjs",
+            "tests/standard1529-effects.test.mjs",
+            "tests/standard1760-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 32.643,
+          "log": "tmp/duema-target-10000/related-1794-previous-1795781236995703000.log",
+          "originalLog": "tmp/duema-target-10000/related-1794.log",
+          "passed": 449,
+          "failed": 1,
+          "logSha256": "772988578fcb52fd17f7e5b8021edbf6efecaf47429a09f5a3c7a183aa52ac5f"
+        },
+        "isolatedResolution": {
+          "name": "related-1794",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^phase1760 pins complete ordinary and special prints, one canonical name, both full faces and current restrictions$",
+            "tests/standard1760-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.608,
+          "log": "tmp/duema-target-10000/related-1794.log",
+          "passed": 1,
+          "failed": 0,
+          "logSha256": "e50dd879329cc658e64291994be7d345636b6401804120d66c3064d08fd10322"
+        },
+        "effectiveDistinctAssertionsPassed": 450,
+        "remainingFailures": 0,
+        "metadataEvidence": {
+          "checkedAt": "2026-11-27T12:07:16.926Z",
+          "checks": [
+            {
+              "id": "dm26bd1-021",
+              "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-021a.jpg",
+              "sha256": "4e3e9595a13042f025cbd044f4353f95595bf56ec0eff7b342efb53eedba922f",
+              "previouslyPinnedHashMatched": true
+            },
+            {
+              "id": "dm26bd1-SP006",
+              "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-SP006a.jpg",
+              "sha256": "5dc88d4a62ef6a36863986391ded03cda164461f287c5358052f8630b3dbc4fb",
+              "previouslyPinnedHashMatched": true
+            }
+          ]
+        }
+      },
+      "retainedEarlierPassingRelatedAssertions": 449,
+      "totalDistinctAssertionsVerified": 500
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1793,
-    "nextPhase": 1794,
+    "lastVerifiedPhase": 1794,
+    "nextPhase": 1795,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmr01-021",
-        "name": "パーロックのミラクルフィーバー",
-        "research": "tmp/duema-target-10000/research-dmr01-021.json",
-        "reason": "Full official research saved; inspect all images and verify name declaration, reveal-until-match and mandatory whole revealed group to hand without falsely ordering leftovers."
+        "id": "dmrp04s-003",
+        "name": "浪費する者 シキゴイ",
+        "reason": "Next official research: mandatory Water destroy-to-hand replacement and optional exact ten-card discard at own end before extra turn. Reuse native continuous destroy redirect and discard accounting; no partial implementation."
       },
       {
-        "id": "dmr05-058",
-        "name": "ヤバスギル・ラップ",
-        "research": "tmp/duema-target-10000/research-dmr01-021.json",
-        "reason": "Full official research saved; verify opponent optional destruction with actual destruction outcome and subsequent hand/grave creature deployment."
+        "id": "dm31-007",
+        "name": "陰陽の伝道士セイメイ",
+        "reason": "Next official research: untargetability and opponent grave-to-hand prohibition specifically for spell cards. Check all zone movement and twin face types."
       },
       {
-        "id": "dmr07-016",
-        "name": "おやすみヒッポポさん",
-        "research": "tmp/duema-target-10000/research-dmr01-021.json",
-        "reason": "Full official research saved; verify reveal-card-specific Gachinko Judge win replacement and native double breaker."
+        "id": "dmrp09-046",
+        "name": "幽影エダマ・フーマ",
+        "research": "tmp/duema-target-10000/research-dmrp09-046.json",
+        "reason": "All exact print research saved, images not yet visually reviewed. Needs physical attached-Aura sacrifice replacement that remains the Aura ability when its host is ignored; no partial definition."
       }
     ],
     "steps": [
@@ -567224,11 +567525,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1793,
-      "baseline": "8edeba87b8ef3fbaf7b1ff2939b9d0dc79113751",
-      "supportedNames": 9604,
-      "artifact": "tools/target10000-registration-checkpoint-1793.json",
-      "checkedAt": "2026-11-27T11:52:34.481Z"
+      "phase": 1794,
+      "baseline": "89b30c4644731933ef15ec60a3e8c446ad99fd97",
+      "supportedNames": 9607,
+      "artifact": "tools/target10000-registration-checkpoint-1794.json",
+      "checkedAt": "2026-11-27T12:08:28.641Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -570286,8 +570587,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9604,
-      "remaining": 396,
+      "currentNames": 9607,
+      "remaining": 393,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -570295,8 +570596,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1793,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1793.json",
+      "lastPhase": 1794,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1794.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -571524,8 +571825,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9604,
-      "remaining": 396,
+      "currentNames": 9607,
+      "remaining": 393,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -571533,8 +571834,8 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1793,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1793.json",
+      "lastPhase": 1794,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1794.json",
       "nextCandidates": [
         {
           "id": "dm25rp4-058",
@@ -571641,7 +571942,7 @@
       "resumedOn": "2026-11-23"
     },
     "restartInstructions10000": "Start from latest local commit; check AGENTS, staged/unstaged diffs, progress, previous test results and existing processes; recount actual dist/cards.json names using dist/catalogue.js nameKey. Continue toward 10000 in fully verified 3–5-name batches using grouped official research and native tasks. Use tmp/duema-target-10000 scripts and tools/expand-standard-batch.mjs after successful official verification; apply.mjs then write-online-compatibility.mjs. Run own tests, relevant regressions and check; run audit before invariants sequentially. Preserve older pending/deferrals and full-suite interrupted status. No push/publication/Netlify or timed automation restart.",
-    "restartInstructions": "Recount dist/cards.json names with catalogue.nameKey at start/end; check HEAD/status/index/AGENTS/progress/running jobs. Continue verified small batches toward 10,000. Use grouped official research and native complete effects. No full npm test, no broad abyss-effects retry, no push/Pages/Netlify; older pending retained. New invariant audit is tracked at tools/verify-target10000-invariants.mjs; allow only explicitly documented, exactly checked old-definition fixes. Public top3 reveals require both public:true and g1660PublicReveal:true; new cards and four older originals are verified on both account projections.",
+    "restartInstructions": "Start at latest verified commit, clean tree/index and running-process check; recount actual nameKey names (9607 after1794). Continue grouped research and complete 3–5-card verified local batches to10000. No automation resume/push/Pages/Netlify/full npm test. Keep old pending and held records. Phase1794 related450 assertions verified as original449 passed plus isolated fixed old metadata assertion1 passed; original failed log, official image-hash repair evidence and aggregate coverage retained in manifest/checkpoint. Read tests/standard1794-effects.test.mjs and checkpoint1794. Use tmp/duema-target-10000 helpers; no partial registrations.",
     "additionalInterruptedVerification": [
       {
         "phase": 1785,
@@ -623524,10 +623825,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1793,
+    "phase": 1794,
     "threshold": 10000,
-    "supportedNames": 9604,
-    "pendingNames": 2237,
+    "supportedNames": 9607,
+    "pendingNames": 2236,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -623536,7 +623837,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1793.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1794.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

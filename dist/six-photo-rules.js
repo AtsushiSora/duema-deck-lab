@@ -1166,6 +1166,7 @@ export function createSixPhotoRules(api){
   const available=own.deck.filter(x=>!held.has(x.uid));
   let rows=fromBottom?available.slice(Math.max(0,available.length-n)):available.slice(0,n);
   if(t.g1603UntilFilter){const stop=rows.findIndex(x=>matches(s,owner,x,t.g1603UntilFilter));if(stop>=0)rows=rows.slice(0,stop+1);}
+  if(t.g1794UntilName){const stop=rows.findIndex(x=>faces(card(x)).some(face=>[creatureFaceName(face),...(face.additionalNames||[])].some(name=>exactName(name)===t.g1794UntilName)));if(stop>=0)rows=rows.slice(0,stop+1);}
   if(t.g1013ThroughNonMulti){
    const stop=rows.findIndex(x=>new Set(faces(card(x)).flatMap(colors)).size<2);
    if(stop>=0)rows=rows.slice(0,stop+1);
@@ -8445,7 +8446,8 @@ export function createSixPhotoRules(api){
  }
  case'g34_Nocturne732':
   api.log(s,t.p,'declare',v+'を宣言',{cardId:t.source});
-  start(s,t,[{op:'InspectHand',discard:true,g223Inspect:true,g732Name:exactName(v)}]);
+  if(t.g1794Miracle)start(s,t,[{op:'Look',g201Search:true,public:true,g1660PublicReveal:true,g1794UntilName:exactName(v),rest:'keep',stages:[{n:'all',to:'hand',allMatches:true}]}]);
+  else start(s,t,[{op:'InspectHand',discard:true,g223Inspect:true,g732Name:exactName(v)}]);
   break;
  case'g34_DesignatedDiscard822':{
   if(!own.hand.some(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial))break;

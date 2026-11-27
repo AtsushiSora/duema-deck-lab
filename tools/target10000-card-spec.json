@@ -6618,5 +6618,359 @@
         }
       ]
     }
+  },
+  "dm26bd1-019": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "東龍の炎 ボルメテウス・ブルー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nウルトラ・セイバー：名前に《ボルメテウス》とあるクリーチャー（自分の、名前に《ボルメテウス》とあるクリーチャーが離れる時、かわりにこのクリーチャーを破壊してもよい）",
+        "race": "ミリオン・フレイム",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルメテウス・ブレイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを２枚引く。\nこのカードを出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g571Saver": {
+        "ultra": true,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ボルメテウス"
+        }
+      },
+      "spellFace": {
+        "name": "ボルメテウス・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm26bd1-SP005": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "東龍の炎 ボルメテウス・ブルー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 1,
+        "costText": "1",
+        "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは攻撃できない。\nウルトラ・セイバー：名前に《ボルメテウス》とあるクリーチャー",
+        "race": "ミリオン・フレイム",
+        "powerText": "1000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルメテウス・ブレイン",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "カードを２枚引く。\nこのカードを出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g571Saver": {
+        "ultra": true,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ボルメテウス"
+        }
+      },
+      "spellFace": {
+        "name": "ボルメテウス・ブレイン",
+        "type": "spell",
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm26bd1-022": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "南雀の炎 ボルメテウス・レッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のターンに相手のクリーチャーが召喚以外の方法で出る時、相手はかわりにそのクリーチャーを墓地に置く。",
+        "race": "ミリオン・フレイム",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルメテウス・スクラッパー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\nコストの合計が６以下になるように相手のエレメントを好きな数選び、破壊する。\nこのカードを出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "noNonsummonEntry": true,
+      "spellFace": {
+        "name": "ボルメテウス・スクラッパー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "element": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 6,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dm26bd1-SP007": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "南雀の炎 ボルメテウス・レッド",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手のターンに相手のクリーチャーが召喚以外の方法で出る時、相手はかわりにそのクリーチャーを墓地に置く。",
+        "race": "ミリオン・フレイム",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "ボルメテウス・スクラッパー",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\nコストの合計が６以下になるように相手のエレメントを好きな数選び、破壊する。\nこのカードを出す。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "noNonsummonEntry": true,
+      "spellFace": {
+        "name": "ボルメテウス・スクラッパー",
+        "type": "spell",
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 7,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "element": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 6,
+            "spell": true
+          },
+          {
+            "op": "SelfSpellPut1529",
+            "spell": true
+          }
+        ]
+      }
+    }
+  },
+  "dmr01-021": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "パーロックのミラクルフィーバー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "カードの名前をひとつ選んで言う。その後、自分の山札の上から、選んだ名前のカードが出るまで１枚ずつすべてのプレイヤーに見せる。見せたカードをすべて自分の手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Nocturne732",
+          "g1794Miracle": true
+        }
+      ]
+    }
+  },
+  "dm23rp1-TF1": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "パーロックのミラクルフィーバー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "カードの名前を１つ選んで言う。その後、自分の山札の上から、選んだ名前のカードが出るまで１枚ずつ表向きにする。表向きにしたカードをすべて手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Nocturne732",
+          "g1794Miracle": true
+        }
+      ]
+    }
+  },
+  "dm23rp1-T1": {
+    "phase": 1794,
+    "faces": [
+      {
+        "name": "パーロックのミラクルフィーバー",
+        "typeText": "呪文",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "カードの名前を１つ選んで言う。その後、自分の山札の上から、選んだ名前のカードが出るまで１枚ずつ表向きにする。表向きにしたカードをすべて手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Nocturne732",
+          "g1794Miracle": true
+        }
+      ]
+    }
   }
 }
