@@ -321460,19 +321460,134 @@
       ],
       "supportBatch": "phase-1898",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-061",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマード・ドラゴン/サムライ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\nバトルゾーンに自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の、バトルゾーンにある自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "UntapMana",
+          "filter": {
+            "faceUp": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "g557Condition": {
+            "g1899Yagyu": true
+          },
+          "grants": {
+            "attackBonus": 4000,
+            "extraBreak": 1
+          }
+        }
+      ],
+      "supportBatch": "phase-1899",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-037",
+      "name": "シバカゲ斎",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ファンキー・ナイトメア",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nマナ武装５：自分のターンのはじめに、このクリーチャーが自分の墓地にあり、自分のマナゾーンに闇のカードが５枚以上あれば、自分の山札の上から５枚を墓地に置いてもよい。そうした場合、このクリーチャーをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-037",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g1899GraveStart": {
+        "condition": {
+          "g267Mana": {
+            "n": 5,
+            "filter": {
+              "faceUp": true,
+              "color": "闇"
+            }
+          }
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 5
+              },
+              {
+                "op": "SelfGraveRevive644"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1899",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-058",
+      "name": "スカラベヤ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体マナゾーンにタップして置く。その後、そのクリーチャー以下のコストを持つ相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-058",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g1899ManaThenEnemy": true
+        }
+      ],
+      "supportBatch": "phase-1899",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1898,
-    "checkedAt": "2026-11-28T05:24:06.910Z",
-    "baseCount": 9922,
-    "newEffectCards": 4,
+    "phase": 1899,
+    "checkedAt": "2026-11-28T05:32:15.681Z",
+    "baseCount": 9926,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9926,
+    "totalCount": 9929,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39640/",
-      "https://dm.takaratomy.co.jp/rule/qa/49077/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36051/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -352446,6 +352561,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39641/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1898,
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "baseCount": 9922,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9926,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39640/",
+          "https://dm.takaratomy.co.jp/rule/qa/49077/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

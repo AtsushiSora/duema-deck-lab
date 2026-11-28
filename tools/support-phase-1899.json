@@ -1,0 +1,919 @@
+{
+  "phase": 1899,
+  "checkedAt": "2026-11-28T05:32:15.681Z",
+  "baseline": "453445263fc7b462f351fb02a535b0f3741e2ca7",
+  "baseCount": 9926,
+  "target": 10000,
+  "description": "Three whole cards/ten prints: Yagyu fullDragonmana untap and ownMusha/NEX conditional otherDragonPA4000+extraBreak1; Shibakage blocker/noAttack ownGraveStartDark5 optionalMill5 thenmandatoryrevive tiedphysicalgrave serial; ScarabeyaST mandatoryoneOWNcreaturetoTAPPEDmana thenmandatoryenemycreature <=chosenoriginalcost toownerMana.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36051/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-061",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dm36-061",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-061",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\nバトルゾーンに自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の、バトルゾーンにある自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１枚ブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-061.jpg",
+      "imageSha256": "1d022e3347edfc6286841be1a2a241284265a1bb1f54bbe001c468f028081ee0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm36-061-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "ebe05a79337136fee195349e8ae54b19b15d9368231531a59c0094c9ad08eb36",
+        "facesMatched": true,
+        "imageSha256": "1d022e3347edfc6286841be1a2a241284265a1bb1f54bbe001c468f028081ee0"
+      }
+    },
+    {
+      "id": "dmx18-037",
+      "name": "シバカゲ斎",
+      "canonicalId": "dmx18-037",
+      "printId": "dmx18-037",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-037",
+      "faces": [
+        {
+          "name": "シバカゲ斎",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nマナ武装５：自分のターンのはじめに、このクリーチャーが自分の墓地にあり、自分のマナゾーンに闇のカードが５枚以上あれば、自分の山札の上から５枚を墓地に置いてもよい。そうした場合、このクリーチャーをバトルゾーンに出す。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1899GraveStart": {
+          "condition": {
+            "g267Mana": {
+              "n": 5,
+              "filter": {
+                "faceUp": true,
+                "color": "闇"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 5
+                },
+                {
+                  "op": "SelfGraveRevive644"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-037.jpg",
+      "imageSha256": "2d91b98007fa10ac863378095fe6f2889a529bec79e4dd0dfc9b5b7fd6b7ddf8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx18-037-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx18-037",
+          "dmex07-026",
+          "dmex10-016"
+        ],
+        "allSearchIds": [
+          "dmex07-026",
+          "dmex10-016",
+          "dmx18-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "6c710b02f67bf46572076d9505355aa71d6d1efe7b3b6c6b85b2284a648b21e5",
+        "facesMatched": true,
+        "imageSha256": "2d91b98007fa10ac863378095fe6f2889a529bec79e4dd0dfc9b5b7fd6b7ddf8"
+      }
+    },
+    {
+      "id": "dmrp12-058",
+      "name": "スカラベヤ",
+      "canonicalId": "dmrp12-058",
+      "printId": "dmrp12-058",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-058",
+      "faces": [
+        {
+          "name": "スカラベヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体マナゾーンにタップして置く。その後、そのクリーチャー以下のコストを持つ相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g1899ManaThenEnemy": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-058.jpg",
+      "imageSha256": "9baf97a65b4a0380441cd7d75a49a4404b616ca79978c4a8361e4661e5de5932",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp12-058-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp12-058"
+        ],
+        "allSearchIds": [
+          "dmrp12-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "dca5589f4788707386f30ab67bb0f205453aac077f6d2c1644088d1dc23faed9",
+        "facesMatched": true,
+        "imageSha256": "9baf97a65b4a0380441cd7d75a49a4404b616ca79978c4a8361e4661e5de5932"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp1-TF7",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dm23rp1-TF7",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-TF7",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\n自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１つブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-TF7.jpg",
+      "imageSha256": "3a237e0cb3b23860ab9ee272a01ea1af202164475836053f1e6773b714ddbfa9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp1-TF7-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "6f9dfe76a148ae225fb79568a47efa74ee8cb7a4dc2dcc8753dee82621962d18",
+        "facesMatched": true,
+        "imageSha256": "3a237e0cb3b23860ab9ee272a01ea1af202164475836053f1e6773b714ddbfa9"
+      }
+    },
+    {
+      "id": "dm23rp1-T7",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dm23rp1-T7",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-T7",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\n自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１つブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-T7.jpg",
+      "imageSha256": "95a9f3f00d88c057d8a3f57bbd2e92014e8784fbe1f2164c1db192ebe561882b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23rp1-T7-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "fc1f29c3dab86a6fbb2d444a88876a98afbe01d131fa1ab12fe1029641024deb",
+        "facesMatched": true,
+        "imageSha256": "95a9f3f00d88c057d8a3f57bbd2e92014e8784fbe1f2164c1db192ebe561882b"
+      }
+    },
+    {
+      "id": "dmc67-009",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dmc67-009",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-009",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\nバトルゾーンに自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の、バトルゾーンにある自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１枚ブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-009.jpg",
+      "imageSha256": "f405091ad4a6bdb6722c5ab2d86e25ea58384335c6ba5c7a24eca1f684ab2284",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc67-009-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "ff86e4c54fd4ef9119a1273b16a8a200f0e4ce4114420664e2bc8af4c5ff2fc7",
+        "facesMatched": true,
+        "imageSha256": "f405091ad4a6bdb6722c5ab2d86e25ea58384335c6ba5c7a24eca1f684ab2284"
+      }
+    },
+    {
+      "id": "dmex12-065",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dmex12-065",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-065",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\nバトルゾーンに自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１つブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-065.jpg",
+      "imageSha256": "80cf61e78bfe9c8aaf285fc14dce7cc09fc3f97f31faaa7311d13ec0f6fa73cd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex12-065-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "267aa70b0b678df2313c947073dc7f179866f4da202e98f20da6f7dc42d543a8",
+        "facesMatched": true,
+        "imageSha256": "80cf61e78bfe9c8aaf285fc14dce7cc09fc3f97f31faaa7311d13ec0f6fa73cd"
+      }
+    },
+    {
+      "id": "dmx22b-058",
+      "name": "シンカゲリュウ・柳生・ドラゴン",
+      "canonicalId": "dm36-061",
+      "printId": "dmx22b-058",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-058",
+      "faces": [
+        {
+          "name": "シンカゲリュウ・柳生・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるドラゴンをすべてアンタップする。\nバトルゾーンに自分の《ボルメテウス・武者・ドラゴン》または名前に《NEX》とあるドラゴンがあれば、このクリーチャー以外の自分のドラゴンはすべて「パワーアタッカー+4000」を得、シールドをさらに１枚ブレイクする。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "g557Condition": {
+              "g1899Yagyu": true
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-058.jpg",
+      "imageSha256": "4569181bfacabe4d3355fc447eb82d97b35f879038612caafded5f5baf2c87f2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx22b-058-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-061",
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allSearchIds": [
+          "dm23rp1-TF7",
+          "dm23rp1-T7",
+          "dmc67-009",
+          "dm36-061",
+          "dmex12-065",
+          "dmx22b-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "af3697ef4ad7aecdbfd58f623a73a020d42887dec6a64512fd97550e503a4c23",
+        "facesMatched": true,
+        "imageSha256": "4569181bfacabe4d3355fc447eb82d97b35f879038612caafded5f5baf2c87f2"
+      }
+    },
+    {
+      "id": "dmex07-026",
+      "name": "シバカゲ斎",
+      "canonicalId": "dmx18-037",
+      "printId": "dmex07-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-026",
+      "faces": [
+        {
+          "name": "シバカゲ斎",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nマナ武装５：自分のターンのはじめに、このクリーチャーが自分の墓地にあり、自分のマナゾーンに闇のカードが５枚以上あれば、自分の山札の上から５枚を墓地に置いてもよい。そうしたら、このクリーチャーをバトルゾーンに出す。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1899GraveStart": {
+          "condition": {
+            "g267Mana": {
+              "n": 5,
+              "filter": {
+                "faceUp": true,
+                "color": "闇"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 5
+                },
+                {
+                  "op": "SelfGraveRevive644"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-026.jpg",
+      "imageSha256": "d78e166a53bb911c9f4f887cd24e8ed2d429b7ac37302f1e69001fd6e361e98d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex07-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx18-037",
+          "dmex07-026",
+          "dmex10-016"
+        ],
+        "allSearchIds": [
+          "dmex07-026",
+          "dmex10-016",
+          "dmx18-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "8187d9856ab92711e51ad7e481fb7b77861a61d83e65ba08a60e12b979e9b8d3",
+        "facesMatched": true,
+        "imageSha256": "d78e166a53bb911c9f4f887cd24e8ed2d429b7ac37302f1e69001fd6e361e98d"
+      }
+    },
+    {
+      "id": "dmex10-016",
+      "name": "シバカゲ斎",
+      "canonicalId": "dmx18-037",
+      "printId": "dmex10-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-016",
+      "faces": [
+        {
+          "name": "シバカゲ斎",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nマナ武装５：自分のターンのはじめに、このクリーチャーが自分の墓地にあり、自分のマナゾーンに闇のカードが５枚以上あれば、自分の山札の上から５枚を墓地に置いてもよい。そうしたら、このクリーチャーをバトルゾーンに出す。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g1899GraveStart": {
+          "condition": {
+            "g267Mana": {
+              "n": 5,
+              "filter": {
+                "faceUp": true,
+                "color": "闇"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 5
+                },
+                {
+                  "op": "SelfGraveRevive644"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-016.jpg",
+      "imageSha256": "11b43ba6bb1ccb3579775d2d3608eecd6c4ff0cf762f1cca14a81cb38ff3372a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex10-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx18-037",
+          "dmex07-026",
+          "dmex10-016"
+        ],
+        "allSearchIds": [
+          "dmex07-026",
+          "dmex10-016",
+          "dmx18-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:32:15.681Z",
+        "sha256": "9ca6f22b5f8cf64e11fd6cf4c8331da38130b97fd2ffd9a161ea40f475516f67",
+        "facesMatched": true,
+        "imageSha256": "11b43ba6bb1ccb3579775d2d3608eecd6c4ff0cf762f1cca14a81cb38ff3372a"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36051/",
+      "sha256": "7d6fcc39020caa91e904fc92a7e94fddd360bebe3bc36a6435a4e658f643b29f",
+      "checkedAt": "2026-11-28T05:32:15.681Z",
+      "reproduced": true,
+      "tests": "tests/standard1899-effects.test.mjs",
+      "reproduction": "ActualBolmeteusMushaDragon dm24-s04 oractualBolshackMomokingNEX dmrp17-km1 enablesYagyu. The actualMusha/NEX themselves gainPA4000andextraBreak1, otherCrimsonDragonalso gains; Yagyu source excluded. Two-seat restore/nonDragon/enemyOnly/noSource negatives andtwosourcesstack.",
+      "result": "ActualBolmeteusMushaDragon dm24-s04 oractualBolshackMomokingNEX dmrp17-km1 enablesYagyu. The actualMusha/NEX themselves gainPA4000andextraBreak1, otherCrimsonDragonalso gains; Yagyu source excluded. Two-seat restore/nonDragon/enemyOnly/noSource negatives andtwosourcesstack."
+    }
+  ],
+  "held": [
+    {
+      "id": "promoy17-001",
+      "name": "ジョニー＆ジョラゴン 〜Jの意志〜",
+      "reason": "Full2prints/images reviewed. Officialprimarypromoy17-001 listsジョーカーズ butofficialreprintdmex02-010 listsマスター・ドラゴン/ジョーカーズ (different current race data, not blankHTML). OfficialsearchconfirmedbothinNov28; no explicitofficialerratumresolution located. Holdfullcardratherthanpickraceorcountpartialbefore-breakgrant."
+    },
+    {
+      "id": "promoy16-084",
+      "name": "サッヴァーク ～正義ノ裁キ～",
+      "reason": "Full2prints researched/imagesnotreviewed. MustprivatelylookTOP2, createONEnewshieldwithchosenFACE_DOWNroot+otherFACE_UPstack anddynamicfaceUp-shielddestroyprotection; deferuntilentirecomposite-shieldnativeflowverified."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T05:32:15.681Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-061": 4,
+      "dmx18-037": 4,
+      "dmrp12-058": 4,
+      "dm23rp1-TF7": 4,
+      "dm23rp1-T7": 4,
+      "dmc67-009": 4,
+      "dmex12-065": 4,
+      "dmx22b-058": 4,
+      "dmex07-026": 4,
+      "dmex10-016": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm36-061",
+      "searchSha256": "9c009bfe8a395a7c773f8df6b8b7f2489678be7b0e8088c554746c5ac05e81fd",
+      "totalResults": 6,
+      "allSearchIds": [
+        "dm23rp1-TF7",
+        "dm23rp1-T7",
+        "dmc67-009",
+        "dm36-061",
+        "dmex12-065",
+        "dmx22b-058"
+      ],
+      "exactPrints": [
+        "dm36-061",
+        "dm23rp1-TF7",
+        "dm23rp1-T7",
+        "dmc67-009",
+        "dmex12-065",
+        "dmx22b-058"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmx18-037",
+      "searchSha256": "d21ee7331d6edb47f141e8c67db324a15d1364ae1c7f4e9dc01d24096ce2c5be",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dmex07-026",
+        "dmex10-016",
+        "dmx18-037"
+      ],
+      "exactPrints": [
+        "dmx18-037",
+        "dmex07-026",
+        "dmex10-016"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp12-058",
+      "searchSha256": "dbc0f3ee06b263a254ab85ba6afabaf702863e2e23561169c29089efb60175aa",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp12-058"
+      ],
+      "exactPrints": [
+        "dmrp12-058"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three whole cards/ten exact print images/all official abilities/stats/mana/current limits. Yagyu ALLdragonManauntap inclactualBolshackTwin dmbd16-009, Genmu5ignored; actualMusha andMomoNEX themselves plusotherDragons PA4000/extra1 whileownsourceexcluded/nonDragon/enemy-onlynegative; twoYagyustack/AIreadOnly. Shibakage already-own-grave turnstartDarkmana5 optionalMill5 THENmandatoryphysicalserialrevive, Dark4/faceDownDarknegative, realApul preventsrevive butnotMill, noAttack/blocker paid5, actualGenmu graveabilityallowedthenbattleblockerignored. Scarabeya ST/paid6 mandatoryOWNoneinclSELFtoTAPPEDmana thenenemy<=chosenoriginalcost tomana; actualStarMagan preservesbaseanduses4cost, actualST/emptyenemy/Genmu6positive. Six actualencryptedservices, bothseats UIDrestore. OriginalIDs/details/saveformats/olderpending unchanged.",
+    "resolvedAttempts": "Initial Yagyu condition usedgenericany wrapper and effective-cardcount underitsowncontinuousaura, causingrecursiveidentityreads. Replacedwithdedicatedidentity-only condition guard: suppress ONLYitsownPA/breakgrant whileevaluatingnames/races (they cannotchangeidentities), preserveothercharacteristicchanges; two-sourcestackingandAIreadonly verified. GuessedGashagon TwinwasNOTDragon (actualMaffiGang/Madogu); replacedfixturewithactualBolshackSuperheroTwin. KingOrion actualcost7 not6; selectedactualCrimsonDragoncost6 forScarabeyaboundary. EncryptedAI legitimatelyselectedScarabeyaitself forMANA, fixturepermitslegalterminalzone. All failures resolved beforefinalgates.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36051/",
+        "reproduced": true,
+        "tests": "tests/standard1899-effects.test.mjs",
+        "reproduction": "ActualBolmeteusMushaDragon dm24-s04 oractualBolshackMomokingNEX dmrp17-km1 enablesYagyu. The actualMusha/NEX themselves gainPA4000andextraBreak1, otherCrimsonDragonalso gains; Yagyu source excluded. Two-seat restore/nonDragon/enemyOnly/noSource negatives andtwosourcesstack."
+      }
+    ],
+    "held": [
+      {
+        "id": "promoy17-001",
+        "name": "ジョニー＆ジョラゴン 〜Jの意志〜",
+        "reason": "Full2prints/images reviewed. Officialprimarypromoy17-001 listsジョーカーズ butofficialreprintdmex02-010 listsマスター・ドラゴン/ジョーカーズ (different current race data, not blankHTML). OfficialsearchconfirmedbothinNov28; no explicitofficialerratumresolution located. Holdfullcardratherthanpickraceorcountpartialbefore-breakgrant."
+      },
+      {
+        "id": "promoy16-084",
+        "name": "サッヴァーク ～正義ノ裁キ～",
+        "reason": "Full2prints researched/imagesnotreviewed. MustprivatelylookTOP2, createONEnewshieldwithchosenFACE_DOWNroot+otherFACE_UPstack anddynamicfaceUp-shielddestroyprotection; deferuntilentirecomposite-shieldnativeflowverified."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dm24rp3-076",
+          "dmrp16-054",
+          "dmrp16-023",
+          "dmr17-011",
+          "dmr05-s04"
+        ],
+        "reason": "Groupedresearch prepared: mana1summonMach permission, Vividwatchentrytiming, ownshieldtomana+faceUpManaShield, Myscuepolymorph andAegisshuffleunitcount."
+      }
+    ]
+  }
+}
