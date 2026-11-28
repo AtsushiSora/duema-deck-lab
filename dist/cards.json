@@ -322769,18 +322769,166 @@
       "g955LGate": "ドリームメイト",
       "supportBatch": "phase-1906",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc46-001",
+      "name": "光神龍ダイヤモンド・グロリアス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "アポロニア・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。(召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる)\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc46-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "other": true,
+          "grant": {
+            "g1331Diamond": true
+          },
+          "g1106ExternalUntilEnd": true
+        }
+      ],
+      "supportBatch": "phase-1907",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-008",
+      "name": "光器パティ・スミス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メカ・デル・ソル/エイリアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手の呪文または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\n相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-008",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g591Discard": "opponentEffect",
+      "untargetable": true,
+      "supportBatch": "phase-1907",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd19-005",
+      "name": "剣薔電融 バザガロズソール",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ディスペクター/アーマード・ドラゴン/ビーストフォーク",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、ディスタスを２体まで、自分の墓地からマナゾーンに置く。\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd19-005",
+      "limit": 4,
+      "exLife": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ディスタス",
+            "faceUp": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1907",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex02-043",
+      "name": "光サス奇跡ノ裁徒",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 10500,
+      "race": "メタリカ/サバキスト",
+      "text": "このクリーチャーを召喚するコストは、自分の墓地にある、名前に《スパーク》とある呪文１枚につき、１少なくなる。ただし、コストは０以下にならない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、呪文を３枚まで、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-043",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {
+          "g228Face": {
+            "type": "spell",
+            "nameAny": [
+              "スパーク"
+            ]
+          }
+        },
+        "amount": 1
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 3,
+          "optional": true,
+          "filter": {
+            "spell": true,
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1907",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1906,
-    "checkedAt": "2026-11-28T06:30:38.428Z",
-    "baseCount": 9950,
-    "newEffectCards": 3,
+    "phase": 1907,
+    "checkedAt": "2026-11-28T06:35:26.841Z",
+    "baseCount": 9953,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9953,
+    "totalCount": 9957,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36580/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -353875,6 +354023,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36714/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1906,
+        "checkedAt": "2026-11-28T06:30:38.428Z",
+        "baseCount": 9950,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9953,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36580/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
