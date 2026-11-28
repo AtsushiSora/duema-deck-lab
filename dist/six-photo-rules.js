@@ -3511,6 +3511,11 @@ export function createSixPhotoRules(api){
   else start(s,t,[{op:'SelfDestroy'}]);
   break;
  }
+ case'g34_AegisShuffle1900':{
+  const rows=[s.active,1-s.active].flatMap(p=>creatures(s,p).filter(y=>!y.sealed&&!race(effective(y,s,true),'アンノウン')).map(y=>({player:p,uid:y.uid,to:'deck',toOwnerDeck:true,g731Shuffling:true,destroy:false,controller:t.p})));
+  if(rows.length)move(s,rows,{kind:'g1900Aegis',player:t.p,source:t.source});
+  break;
+ }
  case'g34_ManaSummon1288':{
   // The permission applies only to the creatures in mana when the spell resolves (QA 43048).
   const refs=own.mana.filter(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='creature'))
@@ -3519,7 +3524,7 @@ export function createSixPhotoRules(api){
    const limits=s.extLimits??=[];
    const permit='g1288:'+t.p+':'+limits.filter(l=>l.kind==='g1288ManaSummon'&&l.player===t.p).length;
    limits.push({kind:'g1288ManaSummon',player:t.p,turn:s.turn,expires:'end',who:s.active,permit,refs,
-    source:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
+    source:t.source,spellCost:cost(faces(card(t.source)).at(-1)),...(t.g1900Mach?{g1900Mach:true}:{})});
   }
   break;
  }
@@ -9198,7 +9203,7 @@ export function createSixPhotoRules(api){
  case'g34_ShieldToMana980':
   if(v&&!used792(s,t,t)){
    if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
-   api.moveShield(s,v.owner,v.uid,'mana');
+   api.moveShield(s,v.owner,v.uid,'mana',t.tapped?{tapped:true}:{});
   }
   break;
  case'g34_ShieldMana557':{
@@ -11166,6 +11171,7 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&options.g1900ManaPermit){const r=s.extLimits?.find(r=>r.kind==='g1288ManaSummon'&&r.permit===options.g1900ManaPermit);if(r?.g1900Mach)applyGrant(s,{p,source:r.source,grant:{machFighter:true},spell:true},y);}
   if(creature&&!y.sealed&&options.execution===true)for(const watcher of creatures(s,p)){
    if(watcher.uid!==y.uid&&!watcher.sealed&&!watcher.faceDown&&
       effective(watcher,s).g1815PrinceSummon)
