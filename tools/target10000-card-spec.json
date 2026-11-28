@@ -31984,5 +31984,324 @@
         }
       ]
     }
+  },
+  "dmex01-008": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "ドラグシュート・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から５枚を表向きにし、その中からドラゴンを１体、バトルゾーンに出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "public": true,
+          "g1660PublicReveal": true,
+          "limit": 1,
+          "g749Required": true,
+          "rest": "shuffle",
+          "grant": {
+            "speedAttacker": true
+          },
+          "delayed": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ]
+    }
+  },
+  "dm25ex3-TD08": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "ドラグシュート・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分の山札の上から５枚を表向きにし、その中からドラゴン・クリーチャーを１体出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "public": true,
+          "g1660PublicReveal": true,
+          "limit": 1,
+          "g749Required": true,
+          "rest": "shuffle",
+          "grant": {
+            "speedAttacker": true
+          },
+          "delayed": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ]
+    }
+  },
+  "dmex16-046": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "ドラグシュート・チャージャー",
+        "typeText": "呪文",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分の山札の上から５枚を表向きにし、その中からドラゴンを１体出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "public": true,
+          "g1660PublicReveal": true,
+          "limit": 1,
+          "g749Required": true,
+          "rest": "shuffle",
+          "grant": {
+            "speedAttacker": true
+          },
+          "delayed": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ]
+    }
+  },
+  "dm22ex2-075": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "フェアリーの闇の子祭",
+        "typeText": "呪文",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。自分のクリーチャーまたはタマシードの中に闇と自然があれば、かわりに両方選んでもよい。\n▶自分の山札の上から１枚目を墓地に置き、その後、自分の墓地からカードを１枚手札に戻す。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "墓地に1枚置き、墓地から1枚手札へ",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "to": "hand"
+                }
+              ]
+            },
+            {
+              "label": "山札の上から1枚マナへ",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "両方（墓地から回収→マナ）",
+              "condition": {
+                "all": [
+                  {
+                    "any": [
+                      {
+                        "creature": true,
+                        "color": "闇"
+                      },
+                      {
+                        "seed": true,
+                        "color": "闇"
+                      }
+                    ]
+                  },
+                  {
+                    "any": [
+                      {
+                        "creature": true,
+                        "color": "自然"
+                      },
+                      {
+                        "seed": true,
+                        "color": "自然"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "to": "hand"
+                },
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex14-058": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "フェイバリット・ムーブ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目をマナゾーンに置く。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、この呪文の効果でマナゾーンに置いたカードより、コストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "暴拳王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopCost1892",
+          "kind": "favorite"
+        }
+      ]
+    }
+  },
+  "dmd34-005": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "フェアリー・トラップ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにし、その後、次のうちいずれかひとつを選ぶ。▼表向きにしたカードを自分のマナゾーンに置く。▼表向きにしたカードよりコストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopCost1892",
+          "kind": "trap"
+        }
+      ]
+    }
+  },
+  "dmex02-003": {
+    "phase": 1892,
+    "faces": [
+      {
+        "name": "フェアリー・トラップ",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにし、その後、次のうちいずれか１つを選ぶ。\n▼表向きにしたカードを自分のマナゾーンに置く。\n▼表向きにしたカードよりコストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopCost1892",
+          "kind": "trap"
+        }
+      ]
+    }
   }
 }

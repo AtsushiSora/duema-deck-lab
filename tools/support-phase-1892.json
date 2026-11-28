@@ -1,0 +1,648 @@
+{
+  "phase": 1892,
+  "checkedAt": "2026-11-28T04:37:47.102Z",
+  "baseline": "c095fe01e18083efd4f0970009212abcd633b640",
+  "baseCount": 9901,
+  "target": 10000,
+  "description": "Fourwholecards/sevenprints: DragShootCharger publiclyreveal5 mandatoryoneDragonincllegalEVO/allrestshuffle/haste/enddestroy/Charger; Festival STchooseoneoroptionalbothprintedorder ifownDarkandNaturecreature/seed; Favorite STtopmana thenrainbowconditionalstrictBELOWchosenprintedTwinfacecost; FairyTrapSTrevealactualtop thenchoosemanaORstrictbelowcostenemyMana keepingrevealedtop.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39405/"
+  ],
+  "cards": [
+    {
+      "id": "dmex01-008",
+      "name": "ドラグシュート・チャージャー",
+      "canonicalId": "dmex01-008",
+      "printId": "dmex01-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-008",
+      "faces": [
+        {
+          "name": "ドラグシュート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から５枚を表向きにし、その中からドラゴンを１体、バトルゾーンに出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 5,
+            "public": true,
+            "g1660PublicReveal": true,
+            "limit": 1,
+            "g749Required": true,
+            "rest": "shuffle",
+            "grant": {
+              "speedAttacker": true
+            },
+            "delayed": "grave",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-008.jpg",
+      "imageSha256": "84bbcb82a967c7088cd9bbff9a52db714fa4198bb4e0f10dfaeb1f8d7cef4a7e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex01-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-008",
+          "dm25ex3-TD08",
+          "dmex16-046"
+        ],
+        "allSearchIds": [
+          "dm25ex3-TD08",
+          "dmex01-008",
+          "dmex16-046"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "32206159c50c06db5365fb1682b69337d57fe10abb8409085398f5945402fe57",
+        "facesMatched": true,
+        "imageSha256": "84bbcb82a967c7088cd9bbff9a52db714fa4198bb4e0f10dfaeb1f8d7cef4a7e"
+      }
+    },
+    {
+      "id": "dm22ex2-075",
+      "name": "フェアリーの闇の子祭",
+      "canonicalId": "dm22ex2-075",
+      "printId": "dm22ex2-075",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-075",
+      "faces": [
+        {
+          "name": "フェアリーの闇の子祭",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。自分のクリーチャーまたはタマシードの中に闇と自然があれば、かわりに両方選んでもよい。\n▶自分の山札の上から１枚目を墓地に置き、その後、自分の墓地からカードを１枚手札に戻す。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "墓地に1枚置き、墓地から1枚手札へ",
+                "defs": [
+                  {
+                    "op": "Mill",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "山札の上から1枚マナへ",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "両方（墓地から回収→マナ）",
+                "condition": {
+                  "all": [
+                    {
+                      "any": [
+                        {
+                          "creature": true,
+                          "color": "闇"
+                        },
+                        {
+                          "seed": true,
+                          "color": "闇"
+                        }
+                      ]
+                    },
+                    {
+                      "any": [
+                        {
+                          "creature": true,
+                          "color": "自然"
+                        },
+                        {
+                          "seed": true,
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "defs": [
+                  {
+                    "op": "Mill",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "to": "hand"
+                  },
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-075.jpg",
+      "imageSha256": "58fff8ffbc64dc00dbe70b66471afc26448509696630c1e2fe8c460af0adc9d4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm22ex2-075-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm22ex2-075"
+        ],
+        "allSearchIds": [
+          "dm22ex2-075"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "1110c7aab4299df339d7703baff31755c952d55f7ce8979aba3d9ccad7c56138",
+        "facesMatched": true,
+        "imageSha256": "58fff8ffbc64dc00dbe70b66471afc26448509696630c1e2fe8c460af0adc9d4"
+      }
+    },
+    {
+      "id": "dmex14-058",
+      "name": "フェイバリット・ムーブ",
+      "canonicalId": "dmex14-058",
+      "printId": "dmex14-058",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-058",
+      "faces": [
+        {
+          "name": "フェイバリット・ムーブ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目をマナゾーンに置く。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、この呪文の効果でマナゾーンに置いたカードより、コストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "暴拳王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TopCost1892",
+            "kind": "favorite"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-058.jpg",
+      "imageSha256": "d228b642827a34d5c103af5390a85e2708e61b6ab9d1f09cf4c976497185b88e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex14-058-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex14-058"
+        ],
+        "allSearchIds": [
+          "dmex14-058"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "1519308143e6d240a961128a67e9f8d73c8f3b7a46a3b15cd0c24c4aff24f81c",
+        "facesMatched": true,
+        "imageSha256": "d228b642827a34d5c103af5390a85e2708e61b6ab9d1f09cf4c976497185b88e"
+      }
+    },
+    {
+      "id": "dmd34-005",
+      "name": "フェアリー・トラップ",
+      "canonicalId": "dmd34-005",
+      "printId": "dmd34-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd34-005",
+      "faces": [
+        {
+          "name": "フェアリー・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにし、その後、次のうちいずれかひとつを選ぶ。▼表向きにしたカードを自分のマナゾーンに置く。▼表向きにしたカードよりコストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TopCost1892",
+            "kind": "trap"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd34-005.jpg",
+      "imageSha256": "b5887314780e359b8661fac035defaf9fc49e1821540060adbbf8651e8fa0497",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd34-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd34-005",
+          "dmex02-003"
+        ],
+        "allSearchIds": [
+          "dmex02-003",
+          "dmd34-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "ce0556d3aa0f7f597c986b47b77caae25e9f4a3c9c8481cebadde0b0ca9715e3",
+        "facesMatched": true,
+        "imageSha256": "b5887314780e359b8661fac035defaf9fc49e1821540060adbbf8651e8fa0497"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-TD08",
+      "name": "ドラグシュート・チャージャー",
+      "canonicalId": "dmex01-008",
+      "printId": "dm25ex3-TD08",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TD08",
+      "faces": [
+        {
+          "name": "ドラグシュート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分の山札の上から５枚を表向きにし、その中からドラゴン・クリーチャーを１体出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 5,
+            "public": true,
+            "g1660PublicReveal": true,
+            "limit": 1,
+            "g749Required": true,
+            "rest": "shuffle",
+            "grant": {
+              "speedAttacker": true
+            },
+            "delayed": "grave",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TD08.jpg",
+      "imageSha256": "6b878024a8f322989a6d29007262cfb5e39c263edbcc58bacfd9f93ffe4c89a0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex3-TD08-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-008",
+          "dm25ex3-TD08",
+          "dmex16-046"
+        ],
+        "allSearchIds": [
+          "dm25ex3-TD08",
+          "dmex01-008",
+          "dmex16-046"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "9cc64bc651837c75d39e47f9d08ff631a3899b103c241e4d27adefb59590db42",
+        "facesMatched": true,
+        "imageSha256": "6b878024a8f322989a6d29007262cfb5e39c263edbcc58bacfd9f93ffe4c89a0"
+      }
+    },
+    {
+      "id": "dmex16-046",
+      "name": "ドラグシュート・チャージャー",
+      "canonicalId": "dmex01-008",
+      "printId": "dmex16-046",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-046",
+      "faces": [
+        {
+          "name": "ドラグシュート・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分の山札の上から５枚を表向きにし、その中からドラゴンを１体出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 5,
+            "public": true,
+            "g1660PublicReveal": true,
+            "limit": 1,
+            "g749Required": true,
+            "rest": "shuffle",
+            "grant": {
+              "speedAttacker": true
+            },
+            "delayed": "grave",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-046.jpg",
+      "imageSha256": "becb146f4a53e3c5133eb75d325b9d7d01a1041346412534a37616f8462dab74",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex16-046-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex01-008",
+          "dm25ex3-TD08",
+          "dmex16-046"
+        ],
+        "allSearchIds": [
+          "dm25ex3-TD08",
+          "dmex01-008",
+          "dmex16-046"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "af08b465ef8a6475f5c643d4f4e58343896b4c8a584079f4a519d2305cb54605",
+        "facesMatched": true,
+        "imageSha256": "becb146f4a53e3c5133eb75d325b9d7d01a1041346412534a37616f8462dab74"
+      }
+    },
+    {
+      "id": "dmex02-003",
+      "name": "フェアリー・トラップ",
+      "canonicalId": "dmd34-005",
+      "printId": "dmex02-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-003",
+      "faces": [
+        {
+          "name": "フェアリー・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにし、その後、次のうちいずれか１つを選ぶ。\n▼表向きにしたカードを自分のマナゾーンに置く。\n▼表向きにしたカードよりコストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TopCost1892",
+            "kind": "trap"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-003.jpg",
+      "imageSha256": "32604c572e040be72896d46d6fc22e68066fe090043c40e97766dc731a4487ee",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex02-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd34-005",
+          "dmex02-003"
+        ],
+        "allSearchIds": [
+          "dmex02-003",
+          "dmd34-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "sha256": "4382d5cf8fed455749fba13869dbb3c85e7b6f915c608f03b8f9d7fb918dc27c",
+        "facesMatched": true,
+        "imageSha256": "32604c572e040be72896d46d6fc22e68066fe090043c40e97766dc731a4487ee"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39405/",
+      "sha256": "0fdb2ba43a742e9fa2af6691e243a31c3897158ca1142cb9f0f43e963a9dc989",
+      "checkedAt": "2026-11-28T04:37:47.102Z",
+      "reproduced": true,
+      "tests": "tests/standard1892-effects.test.mjs",
+      "reproduction": "Official39405 answer stateschooseEITHERprintedTwinfacecostper808.3. Its examplecardnameisblankincurrentHTML; no specificexampleidentityisclaimed. GenericrulingfullyreproducedwithactualregisteredKariyadone/HermitCircle(dmrp11-s04,14/3): cardmovesmana, both14and3choicesavailable, cost3excludesactualHulcus3while14includesDeathLiger7; bothseats/encryptedrestore. ActualQArelatedlinksnameKariyadonebuttreatedonlyasindependentconcretefixture, notinferredmissingofficialsubject.",
+      "scope": "generic two-face cost selection outcome; missing official example name explicitly retained",
+      "result": "Official39405 answer stateschooseEITHERprintedTwinfacecostper808.3. Its examplecardnameisblankincurrentHTML; no specificexampleidentityisclaimed. GenericrulingfullyreproducedwithactualregisteredKariyadone/HermitCircle(dmrp11-s04,14/3): cardmovesmana, both14and3choicesavailable, cost3excludesactualHulcus3while14includesDeathLiger7; bothseats/encryptedrestore. ActualQArelatedlinksnameKariyadonebuttreatedonlyasindependentconcretefixture, notinferredmissingofficialsubject."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm26-039",
+      "name": "ハッピーとラッキーの一撃",
+      "reason": "Fulltwoofficialimagesandsearchreviewed; nativePeek585swapcurrentlyexchangesSHIELDandDECK ratherthanoptionalshieldHANDthenblindnewshield / declineDraw1. DoNOTsubstitutewrongSWAPorpartialpeek. Needsoptionalphysicalshieldhand/noST/conditionalfollowup inclcomposites."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T04:37:47.102Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex01-008": 4,
+      "dm22ex2-075": 4,
+      "dmex14-058": 4,
+      "dmd34-005": 4,
+      "dm25ex3-TD08": 4,
+      "dmex16-046": 4,
+      "dmex02-003": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmex01-008",
+      "searchSha256": "37a2d5b7960ccf28fcb35147d373db4a2f5f148f0591221165fd46d02777b989",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dm25ex3-TD08",
+        "dmex01-008",
+        "dmex16-046"
+      ],
+      "exactPrints": [
+        "dmex01-008",
+        "dm25ex3-TD08",
+        "dmex16-046"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm22ex2-075",
+      "searchSha256": "a6f36bd907ae48c45c3843164eb02187d1822de9049cc13dd3a9e5d5b7d7fd63",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm22ex2-075"
+      ],
+      "exactPrints": [
+        "dm22ex2-075"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmex14-058",
+      "searchSha256": "c4cb50480428936d6e3bbd94c758e7992c2a085322fa2ce81e1a3fd0a97cb08d",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmex14-058"
+      ],
+      "exactPrints": [
+        "dmex14-058"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd34-005",
+      "searchSha256": "c73a9a82ef130de0772e06be466e38dabee4153b7a07bd4e63da7e0e3a194d11",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmex02-003",
+        "dmd34-005"
+      ],
+      "exactPrints": [
+        "dmd34-005",
+        "dmex02-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/sevenofficialimages/allreprints/currentlimits. DragShoot publiclyrevealsTOP5 mandatoryONElegalDragoninclactualordinaryEVOandSTARwithbases, shuffleALLrest, HasteactualW2attack, delayedENDdestroy exactUID/ordinaryEVObasesgrave/Starbasepreserved/nochasingbouncedcard, noDragonandoutsidetop5negative, actualChargerphysicalsourcemulticolortappedmana. Festival independentONE modes oroptionalBOTHprintedorder onlyownDark/NaturecreatureORseed (sameactualfivecolorbodyalsoqualifies, enemydoesnot), millthenmandatoryrecoverNEWmill thenrampNEXTtop, actualST/Genmu. Favorite realtopmana first, ownmulticreatureconditional only, Twin14/3choiceeachside strictBELOW rejectsEQUAL3 butallows2 and7onlywith14; monochromecost2only1, enemyMulti/ownnoncreaturedoNOTqualify, ST/Genmu. FairyTrap BOTHplayersviewactualrevealedtop, choosemanaORenemyMana preservingEXACTtop, Twinchoice14/3, strictbelow/zeroeligible, actualST/Genmu. Eightmana/eightencryptedservices/UID/related/online5. ExistingIDs/details/definitions/formats/olderpendingpreserved.",
+    "resolvedAttempts": "Initial12focusedfailures werefixtureassumptions, noproductfailures: sharedsetuphas50mananot10, ApulisNatureonlynotDarkNature, AquaVehiclecost2not3andRyuzolcost2not1. ReplacedwithactualfivecolorRhodonite/Hulcus3/LaUraGiga1 andrelativemana+1; final61focusedpassed. Commonruntimeunchangedsincepassingrelated/check; no repeatedwhole-suiteorlonggroups.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39405/",
+        "reproduced": true,
+        "tests": "tests/standard1892-effects.test.mjs",
+        "reproduction": "Official39405 answer stateschooseEITHERprintedTwinfacecostper808.3. Its examplecardnameisblankincurrentHTML; no specificexampleidentityisclaimed. GenericrulingfullyreproducedwithactualregisteredKariyadone/HermitCircle(dmrp11-s04,14/3): cardmovesmana, both14and3choicesavailable, cost3excludesactualHulcus3while14includesDeathLiger7; bothseats/encryptedrestore. ActualQArelatedlinksnameKariyadonebuttreatedonlyasindependentconcretefixture, notinferredmissingofficialsubject.",
+        "scope": "generic two-face cost selection outcome; missing official example name explicitly retained"
+      }
+    ],
+    "held": [
+      {
+        "id": "dm26-039",
+        "name": "ハッピーとラッキーの一撃",
+        "reason": "Fulltwoofficialimagesandsearchreviewed; nativePeek585swapcurrentlyexchangesSHIELDandDECK ratherthanoptionalshieldHANDthenblindnewshield / declineDraw1. DoNOTsubstitutewrongSWAPorpartialpeek. Needsoptionalphysicalshieldhand/noST/conditionalfollowup inclcomposites."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dm03-016",
+          "dmc43-005",
+          "dm32-015",
+          "dmsd21-002",
+          "dm26-039"
+        ],
+        "reason": "Fullgroupedofficialresearchinprogress; prioritizeoptionalmanasacrificegrant/raceconditionalremoval/privateSTspellselection/StarMillSeedCount andHappyLuckynativephysicalshieldhandextension."
+      }
+    ]
+  }
+}

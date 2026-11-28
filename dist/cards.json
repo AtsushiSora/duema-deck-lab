@@ -320360,18 +320360,210 @@
       ],
       "supportBatch": "phase-1891",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-008",
+      "name": "ドラグシュート・チャージャー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から５枚を表向きにし、その中からドラゴンを１体、バトルゾーンに出す。その後、自分の山札をシャッフルする。そのドラゴンに「スピードアタッカー」を与え、このターンの終わりに破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-008",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "public": true,
+          "g1660PublicReveal": true,
+          "limit": 1,
+          "g749Required": true,
+          "rest": "shuffle",
+          "grant": {
+            "speedAttacker": true
+          },
+          "delayed": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1892",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-075",
+      "name": "フェアリーの闇の子祭",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。自分のクリーチャーまたはタマシードの中に闇と自然があれば、かわりに両方選んでもよい。\n▶自分の山札の上から１枚目を墓地に置き、その後、自分の墓地からカードを１枚手札に戻す。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-075",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "墓地に1枚置き、墓地から1枚手札へ",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "to": "hand"
+                }
+              ]
+            },
+            {
+              "label": "山札の上から1枚マナへ",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "両方（墓地から回収→マナ）",
+              "condition": {
+                "all": [
+                  {
+                    "any": [
+                      {
+                        "creature": true,
+                        "color": "闇"
+                      },
+                      {
+                        "seed": true,
+                        "color": "闇"
+                      }
+                    ]
+                  },
+                  {
+                    "any": [
+                      {
+                        "creature": true,
+                        "color": "自然"
+                      },
+                      {
+                        "seed": true,
+                        "color": "自然"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                },
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "n": 1,
+                  "to": "hand"
+                },
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1892",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-058",
+      "name": "フェイバリット・ムーブ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "暴拳王国",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目をマナゾーンに置く。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、この呪文の効果でマナゾーンに置いたカードより、コストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-058",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopCost1892",
+          "kind": "favorite"
+        }
+      ],
+      "supportBatch": "phase-1892",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd34-005",
+      "name": "フェアリー・トラップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにし、その後、次のうちいずれかひとつを選ぶ。▼表向きにしたカードを自分のマナゾーンに置く。▼表向きにしたカードよりコストが小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd34-005",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TopCost1892",
+          "kind": "trap"
+        }
+      ],
+      "supportBatch": "phase-1892",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1891,
-    "checkedAt": "2026-11-28T04:30:45.718Z",
-    "baseCount": 9896,
-    "newEffectCards": 5,
+    "phase": 1892,
+    "checkedAt": "2026-11-28T04:37:47.102Z",
+    "baseCount": 9901,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9901,
+    "totalCount": 9905,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35837/"
+      "https://dm.takaratomy.co.jp/rule/qa/39405/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351239,6 +351431,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36160/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1891,
+        "checkedAt": "2026-11-28T04:30:45.718Z",
+        "baseCount": 9896,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9901,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35837/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

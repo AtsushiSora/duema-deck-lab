@@ -2941,6 +2941,29 @@ export function createSixPhotoRules(api){
  case'g34_EntryTap432':{const y=own.g34Holding?.find(y=>y.uid===t.target);if(y){const defend=card(y).g431AttackMe&&!api.ignored(s,y);choice(s,t,card(y).name+'をタップして出す？',[opt('タップして出す',true,defend?10:0,y.cardId),opt('アンタップして出す',false,defend?0:1,y.cardId)]);}break;}
  case'g34_Yobi398':put(s,task('g19Yobi',t.p,t.source,{max:cost(card(t.source))}));break;
  // Remember the first ramped card's characteristics before replacement or zone clearing.
+ // These spells compare printed faces after observing one exact top card.
+ case'g34_TopCost1892':{
+  if(t.kind==='favorite'){
+   const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}
+   const costs=[...new Set(faces(api.zoneCard(s,t.p,y,'deck')).map(cost))].map(n=>n===Infinity?'∞':n);
+   const to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');
+   clear(y,to);api.addZone(s,t.p,to,y);api.deckCheck(s,t.p);
+   if(s.winner===null&&to==='mana'&&own.mana.some(x=>x.uid===y.uid)&&creatures(s,t.p).some(x=>!x.sealed&&colors(effective(x,s)).length>1))
+    put(s,{...t,op:'g34_TopCostFace1892',costs});
+  }else{
+   const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(x=>x.uid===ids[0]);
+   if(!y){api.deckCheck(s,t.p);break;}
+   const costs=[...new Set(faces(api.zoneCard(s,t.p,y,'deck')).map(cost))].map(n=>n===Infinity?'∞':n);
+   choice(s,{...t,op:'g34_TopCostMode1892',ids,costs,g1660PublicPeek:[{id:y.cardId,label:'公開した山札の上'}]},'公開したカードをマナに置くか、相手をマナに置くか選ぶ',[
+    opt('公開したカードをマナに置く',0,10),opt('公開したカードよりコストが小さい相手をマナに置く',1,12)]);
+  }
+  break;
+ }
+ case'g34_TopCostFace1892':{
+  if(t.costs.length===1){start(s,t,[{op:'Target',to:'mana',spell:true,filter:{belowCost:t.costs[0]}},...(t.ids?[{op:'RevealRelease514',ids:t.ids}]:[])]);break;}
+  choice(s,t,'参照するツインパクトのコストを選ぶ',t.costs.map(n=>opt('コスト'+n,n,Number(n)||99)));
+  break;
+ }
  case'g34_RampCheck411':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const c=api.zoneCard(s,t.p,y),creature=faces(c).some(f=>f.type==='creature'),hit=t.kind==='match'&&(t.filter.g583PrintedMinPower!==undefined?faces(c).some(f=>f.type==='creature'&&(f.power==='∞'||Number(f.power)>=t.filter.g583PrintedMinPower)):matches(s,t.p,y,t.filter)),costs=[...new Set(faces(c).map(cost))].map(n=>n===Infinity?'∞':n),to=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');clear(y,to);if(to==='mana'&&t.tapped)y.tapped=true;api.addZone(s,t.p,to,y);if(api.deckWasShuffled1365(s,y)){api.deckCheck(s,t.p);break;}if(t.kind==='selfUnlessCreature'&&!creature)start(s,t,[{op:'SelfMana297'}]);else if(hit)start(s,t,[{op:'Ramp',n:1,...(t.tapped?{tapped:true}:{})}]);else if(t.kind==='costSweep')put(s,{...t,op:'g34_RampCost411',costs});api.deckCheck(s,t.p);break;}
  case'g34_RampCost411':{if(t.costs.length===1){start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(t.costs[0]==='∞'?{}:{max:t.costs[0]})}}]);break;}choice(s,t,'マナに置いたツインパクトのどちらのコストを参照する？',t.costs.map(n=>{const cap=n==='∞'?Infinity:n,score=[t.p,1-t.p].reduce((sum,p)=>sum+creatures(s,p).filter(y=>!y.sealed&&cost(effective(y,s))<=cap).reduce((v,y)=>v+(p===t.p?-1:1)*(5+cost(effective(y,s))*2),0),0);return opt('コスト'+n,n,score);}));break;}
  case'g34_OnlyAttacker677':{
@@ -8974,6 +8997,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_BirdCompare935':destroyBelowCost935(s,t,v);break;
  case'g34_LionessSweep928':sweepGears928(s,t,v);break;
+ case'g34_TopCostMode1892':
+  if(v===0){const y=own.deck.find(x=>x.uid===t.ids[0]);if(y)zoneMove(s,t.p,'deck',y.uid,'mana',t);for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);}
+  else put(s,{...t,op:'g34_TopCostFace1892'});
+  break;
+ case'g34_TopCostFace1892':start(s,t,[{op:'Target',to:'mana',spell:true,filter:{belowCost:v}},...(t.ids?[{op:'RevealRelease514',ids:t.ids}]:[])]);break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;
  case'g34_AttackOtherMana409':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y&&y!==attackHost408(s,t)){move(s,[{player:t.p,uid:y.uid,to:'mana'}]);start(s,t,[{op:'OpponentSelect',n:1,to:'mana'}]);}}break;
  case'g34_MarshalTouch558':{
