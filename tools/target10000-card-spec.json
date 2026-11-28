@@ -32303,5 +32303,205 @@
         }
       ]
     }
+  },
+  "dm03-016": {
+    "phase": 1893,
+    "faces": [
+      {
+        "name": "フレムトロプス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃するとき、自分のマナゾーンからカードを１枚選び、自分の墓地に置いてよい。そうしたなら、このターン、このクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+3000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+        "race": "ロック・ビースト",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "grave",
+          "n": 1,
+          "optional": true,
+          "g583OnMove": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g337PowerAttacker": true,
+              "breaker": 2,
+              "g536Source": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmc43-005": {
+    "phase": 1893,
+    "faces": [
+      {
+        "name": "ヘヴンとバイオレンスの衝撃",
+        "typeText": "呪文",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nバトルゾーンに自分のエンジェル・コマンドが１体でもあれば、バトルゾーンにある相手のクリーチャーを１体選び、裏向きにして持ち主のシールドに置いてもよい。\nバトルゾーンに自分のドラゴンが１体でもあれば、相手のパワー6000以下のクリーチャーを１体破壊してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "エンジェル・コマンド"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "optional": true,
+              "toOwnerShields": true
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "optional": true,
+              "filter": {
+                "maxPower": 6000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmsd21-002": {
+    "phase": 1893,
+    "faces": [
+      {
+        "name": "マガン金剛 ＜Nワル.鬼＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。こうして墓地に置いたタマシード１枚につき、相手の手札を１枚見ないで選び、捨てさせる。",
+        "race": "デモニオ/鬼レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "g1893SeedDiscard": true,
+          "g1042Together": true
+        }
+      ]
+    }
+  },
+  "dm26-039": {
+    "phase": 1893,
+    "faces": [
+      {
+        "name": "ハッピーとラッキーの一撃",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のシールドを１枚見る。そのカードを自分の手札に加えてもよい。そうした場合、自分の山札の上から１枚目を裏向きにしてシールドに加える。(ただし、こうして手札に加えられたシールドの「S・トリガー」能力は使えない)そのカードを手札に加えなかった場合、カードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "g1893HappyLucky": true
+        }
+      ]
+    }
+  },
+  "dmex08-064": {
+    "phase": 1893,
+    "faces": [
+      {
+        "name": "ハッピーとラッキーの一撃",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "自分のシールドを１つ見る。そのカードを自分の手札に加えてもよい。ただし、その「S・トリガー」は使えない。そうしたら、自分の山札の上から１枚目を裏向きにし、新しいシールドとしてシールドゾーンに加える。そのシールドを手札に加えなかった場合、カードを１枚引く。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "g1893HappyLucky": true
+        }
+      ]
+    }
   }
 }

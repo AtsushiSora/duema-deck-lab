@@ -320552,18 +320552,175 @@
       ],
       "supportBatch": "phase-1892",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm03-016",
+      "name": "フレムトロプス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ロック・ビースト",
+      "text": "このクリーチャーが攻撃するとき、自分のマナゾーンからカードを１枚選び、自分の墓地に置いてよい。そうしたなら、このターン、このクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+3000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-016",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "grave",
+          "n": 1,
+          "optional": true,
+          "g583OnMove": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g337PowerAttacker": true,
+              "breaker": 2,
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1893",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc43-005",
+      "name": "ヘヴンとバイオレンスの衝撃",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nバトルゾーンに自分のエンジェル・コマンドが１体でもあれば、バトルゾーンにある相手のクリーチャーを１体選び、裏向きにして持ち主のシールドに置いてもよい。\nバトルゾーンに自分のドラゴンが１体でもあれば、相手のパワー6000以下のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-005",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "エンジェル・コマンド"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "optional": true,
+              "toOwnerShields": true
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "optional": true,
+              "filter": {
+                "maxPower": 6000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1893",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd21-002",
+      "name": "マガン金剛 ＜Nワル.鬼＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。こうして墓地に置いたタマシード１枚につき、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd21-002",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "g1893SeedDiscard": true,
+          "g1042Together": true
+        }
+      ],
+      "supportBatch": "phase-1893",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26-039",
+      "name": "ハッピーとラッキーの一撃",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のシールドを１枚見る。そのカードを自分の手札に加えてもよい。そうした場合、自分の山札の上から１枚目を裏向きにしてシールドに加える。(ただし、こうして手札に加えられたシールドの「S・トリガー」能力は使えない)そのカードを手札に加えなかった場合、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Peek585",
+          "who": "self",
+          "g1893HappyLucky": true
+        }
+      ],
+      "supportBatch": "phase-1893",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1892,
-    "checkedAt": "2026-11-28T04:37:47.102Z",
-    "baseCount": 9901,
+    "phase": 1893,
+    "checkedAt": "2026-11-28T04:43:05.579Z",
+    "baseCount": 9905,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9905,
+    "totalCount": 9909,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39405/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351446,6 +351603,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35837/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1892,
+        "checkedAt": "2026-11-28T04:37:47.102Z",
+        "baseCount": 9901,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9905,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39405/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

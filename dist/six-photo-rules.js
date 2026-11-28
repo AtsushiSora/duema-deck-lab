@@ -1508,10 +1508,15 @@ export function createSixPhotoRules(api){
   const seen=rows.flatMap(r=>r.seen.map(x=>({id:x.cardId,label:r.label})));
   if(t.hand)seen.push(...s.players[1-t.p].hand.map(x=>({id:x.cardId,label:'相手の手札'})));
   if(!seen.length)return;
-  const uid=t.swap||t.g1262GroupSwap||t.g1682MiniRobo?rows[0]?.x.uid:null;
+  const uid=t.swap||t.g1262GroupSwap||t.g1682MiniRobo||t.g1893HappyLucky?rows[0]?.x.uid:null;
   const swap=uid&&(t.g1262GroupSwap?api.canSwapShieldGroup1262(s,t.p,uid):api.canSwapShield585(s,t.p,uid));
   const zone=t.opponentDeckTop?(t.hand?'相手の山札の上と手札':'相手の山札の上'):t.hand?'手札とシールド':'シールド';
   api.log(s,t.p,'look',card(t.source).name+'で'+zone+'を確認（内容は非公開）',{cardId:t.source});
+  if(t.g1893HappyLucky){
+   choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,shieldUid:uid},'確認したシールドを手札に加えますか？（S・トリガーは使えません）',[
+    opt('手札に加え、新しいシールドを置く',true,8),opt('加えずにカードを1枚引く',null,6)]);
+   return;
+  }
   if(t.g1682MiniRobo){
    choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,shieldUid:uid,shieldOwner:rows[0].p},
     '確認したシールドを持ち主の山札の一番下に置かせますか？',
@@ -5563,6 +5568,7 @@ export function createSixPhotoRules(api){
   const rows=peekRows585(s,t);
   if(t.all){showPeek585(s,t,rows);break;}
   if(!rows.length){
+   if(t.g1893HappyLucky){start(s,t,[{op:'Draw',n:1}]);break;}
    if(t.g1262GroupSwap&&api.canSwapShieldGroup1262(s,t.p,null))
     choice(s,{...t,op:'g34_PeekRead585',shieldUid:null},'山札の上から新しいシールドを追加しますか？',[opt('追加する',true,8),skip()]);
    break;
@@ -6928,7 +6934,7 @@ export function createSixPhotoRules(api){
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
   else{
    const moved=api.mill(s,p,n,{together:t.g1042Together});
-   if(t.g1880AbyssDiscard&&s.winner===null){const count=(moved||[]).filter(y=>s.players[p].grave.includes(y)&&matches(s,p,y,{race:'アビス'})).length;if(count)start(s,t,[{op:'Discard',n:count}]);}
+   if((t.g1880AbyssDiscard||t.g1893SeedDiscard)&&s.winner===null){const count=(moved||[]).filter(y=>s.players[p].grave.includes(y)&&matches(s,p,y,t.g1893SeedDiscard?{seed:true}:{race:'アビス'})).length;if(count)start(s,t,[{op:'Discard',n:count,...(t.g1893SeedDiscard?{random:true}:{})}]);}
    if(t.afterAllMoved&&s.winner===null&&moved?.length===n&&
       moved.every(y=>s.players[p].grave.includes(y)&&matches(s,p,y,t.movedFilter)))
     start(s,t,t.afterAllMoved);
@@ -8658,6 +8664,7 @@ export function createSixPhotoRules(api){
   else if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}
   break;
  case'g34_PeekRead585':
+  if(t.g1893HappyLucky){const moved=v?api.moveShield(s,t.p,t.shieldUid,'hand',{noST:true}):[];start(s,t,moved.length?[{op:'ShieldTop',n:1}]:[{op:'Draw',n:1}]);break;}
   if(t.g1682MiniRobo){if(v)put(s,{...t,op:'g34_MiniOrder1682',ordered:[]});break;}
   if(t.g1166RevealShield){
    if(v){

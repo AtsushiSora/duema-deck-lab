@@ -1,0 +1,443 @@
+{
+  "phase": 1893,
+  "checkedAt": "2026-11-28T04:43:05.579Z",
+  "baseline": "1d4bf3f47630ac2a3a6249b16eb2b08a3d692b02",
+  "baseCount": 9905,
+  "target": 10000,
+  "description": "Fourwholecards/fiveprints: Frem attackoptionalONEownmana->grave THENsourcepowerATTACKER3000/W2 currentturn; HeavenST independentAngeloptionalshieldthenDragonoptional6000destroy; MaganDarkRexStarW2 mill2actualTamaseedcountblinddiscard; HappyLuckyprivateownshieldGROUPpeek optionalhandnoSTthenblindtopnewshield ordeclineDraw1.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm03-016",
+      "name": "フレムトロプス",
+      "canonicalId": "dm03-016",
+      "printId": "dm03-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-016",
+      "faces": [
+        {
+          "name": "フレムトロプス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃するとき、自分のマナゾーンからカードを１枚選び、自分の墓地に置いてよい。そうしたなら、このターン、このクリーチャーは「パワーアタッカー+3000」と「W(ダブル)・ブレイカー」を得る。(攻撃中、そのクリーチャーのパワーは+3000され、シールドを攻撃したとき、シールドを２枚ブレイクする)",
+          "race": "ロック・ビースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "optional": true,
+            "g583OnMove": [
+              {
+                "op": "SelfBoost313",
+                "power": 3000,
+                "g337PowerAttacker": true,
+                "breaker": 2,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-016.jpg",
+      "imageSha256": "9d283751d5e6754c627e066fcbfe4417cfb1aebced33a348ac9471d8e8e8874a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm03-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm03-016"
+        ],
+        "allSearchIds": [
+          "dm03-016"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "sha256": "e6cfe6b919d886bfff91dc42c90aeef6fedd547e6568d9656466100fe3b47cfc",
+        "facesMatched": true,
+        "imageSha256": "9d283751d5e6754c627e066fcbfe4417cfb1aebced33a348ac9471d8e8e8874a"
+      }
+    },
+    {
+      "id": "dmc43-005",
+      "name": "ヘヴンとバイオレンスの衝撃",
+      "canonicalId": "dmc43-005",
+      "printId": "dmc43-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-005",
+      "faces": [
+        {
+          "name": "ヘヴンとバイオレンスの衝撃",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nバトルゾーンに自分のエンジェル・コマンドが１体でもあれば、バトルゾーンにある相手のクリーチャーを１体選び、裏向きにして持ち主のシールドに置いてもよい。\nバトルゾーンに自分のドラゴンが１体でもあれば、相手のパワー6000以下のクリーチャーを１体破壊してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "race": "エンジェル・コマンド"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "optional": true,
+                "toOwnerShields": true
+              }
+            ]
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "optional": true,
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-005.jpg",
+      "imageSha256": "5de777e2ffea50984532534b804907e79f31f8a1e7ea2f0e7c07425bad123e97",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc43-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc43-005"
+        ],
+        "allSearchIds": [
+          "dmc43-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "sha256": "b1ed4579d5ecdd784c0a9fb6a62ffe486992b884bdfdd617196d7751b95a77c3",
+        "facesMatched": true,
+        "imageSha256": "5de777e2ffea50984532534b804907e79f31f8a1e7ea2f0e7c07425bad123e97"
+      }
+    },
+    {
+      "id": "dmsd21-002",
+      "name": "マガン金剛 ＜Nワル.鬼＞",
+      "canonicalId": "dmsd21-002",
+      "printId": "dmsd21-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd21-002",
+      "faces": [
+        {
+          "name": "マガン金剛 ＜Nワル.鬼＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。こうして墓地に置いたタマシード１枚につき、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2,
+            "g1893SeedDiscard": true,
+            "g1042Together": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd21-002.jpg",
+      "imageSha256": "7e905688466c63f468db0e3820052bad97b97723339ffd6cab575b965efd79c4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd21-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd21-002"
+        ],
+        "allSearchIds": [
+          "dmsd21-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "sha256": "5f3d52c5ee1ba6513543c330a82d92730c337589f7e6294654945bb4f4c69f89",
+        "facesMatched": true,
+        "imageSha256": "7e905688466c63f468db0e3820052bad97b97723339ffd6cab575b965efd79c4"
+      }
+    },
+    {
+      "id": "dm26-039",
+      "name": "ハッピーとラッキーの一撃",
+      "canonicalId": "dm26-039",
+      "printId": "dm26-039",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-039",
+      "faces": [
+        {
+          "name": "ハッピーとラッキーの一撃",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のシールドを１枚見る。そのカードを自分の手札に加えてもよい。そうした場合、自分の山札の上から１枚目を裏向きにしてシールドに加える。(ただし、こうして手札に加えられたシールドの「S・トリガー」能力は使えない)そのカードを手札に加えなかった場合、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Peek585",
+            "who": "self",
+            "g1893HappyLucky": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-039.jpg",
+      "imageSha256": "ef5b49a60c21fa99c54a600674cc8c89cf601b44b0da248bf819e755775f7b1f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26-039-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26-039",
+          "dmex08-064"
+        ],
+        "allSearchIds": [
+          "dm26-039",
+          "dmex08-064"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "sha256": "05d2d6902ec1d70d465acc49d3cbb76e29305df2fd07f59d24beeb241639d7cd",
+        "facesMatched": true,
+        "imageSha256": "ef5b49a60c21fa99c54a600674cc8c89cf601b44b0da248bf819e755775f7b1f"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-064",
+      "name": "ハッピーとラッキーの一撃",
+      "canonicalId": "dm26-039",
+      "printId": "dmex08-064",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-064",
+      "faces": [
+        {
+          "name": "ハッピーとラッキーの一撃",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のシールドを１つ見る。そのカードを自分の手札に加えてもよい。ただし、その「S・トリガー」は使えない。そうしたら、自分の山札の上から１枚目を裏向きにし、新しいシールドとしてシールドゾーンに加える。そのシールドを手札に加えなかった場合、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Peek585",
+            "who": "self",
+            "g1893HappyLucky": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-064.jpg",
+      "imageSha256": "523a4946c83568a0a1a9be547bb2c965da2ae4f712a1df869d192847c0a99d93",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex08-064-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26-039",
+          "dmex08-064"
+        ],
+        "allSearchIds": [
+          "dm26-039",
+          "dmex08-064"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "sha256": "1f104dc1537f53e2aaef3d03a65e5a6c700a390ac4217d23d42947dbb7d32010",
+        "facesMatched": true,
+        "imageSha256": "523a4946c83568a0a1a9be547bb2c965da2ae4f712a1df869d192847c0a99d93"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dm32-015",
+      "name": "ポジトロン・サイン",
+      "reason": "Full3printresearch/QA47359available; imagesUNreviewed. Literalrulingactualopponent試算の妖精 notregisteredyet; requireusualfullofficialimplementationofSisanbeforeclaimingdeckspellfinish-staysonTop reproduction. DonotcountpartialST/privateLook4spellcast."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T04:43:05.579Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm03-016": 4,
+      "dmc43-005": 4,
+      "dmsd21-002": 4,
+      "dm26-039": 4,
+      "dmex08-064": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm03-016",
+      "searchSha256": "b0faecc82e4faa20ab9fc2605c952f439494b60ffc950a9ce9c7305148a1ad37",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm03-016"
+      ],
+      "exactPrints": [
+        "dm03-016"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmc43-005",
+      "searchSha256": "e94da409402083c87c9b97d3d2e5102e6fb095a01793a480149698a042aa3ada",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmc43-005"
+      ],
+      "exactPrints": [
+        "dmc43-005"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmsd21-002",
+      "searchSha256": "e6710c0132245f0202186bc766321dcc60825986f48c3393da523a385c0629b0",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmsd21-002"
+      ],
+      "exactPrints": [
+        "dmsd21-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm26-039",
+      "searchSha256": "620ea9a569ae31057d8acbe10ae10a406420d7ac5b32c76b9b6edd8aa79d42be",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm26-039",
+        "dmex08-064"
+      ],
+      "exactPrints": [
+        "dm26-039",
+        "dmex08-064"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/fiveofficialimages/allreprints/currentlimits. Frem attackoptionalONEownmana includingtapped->grave actualsuccessgrantscurrentturnPA3000 andW2: attack6000/nonattack3000, declined/empty/ignorednegative, realbattlewins5000/endexpiry. Heaven independentAngeloptionalshieldTHENDragonoptionalcurrent<=6000destroy, zero/Angel/Dragon/both, singleactualAngelDragon/ignoredallyracecounts, enemydoesnot, trueST, 6001excluded. Magan nativeDarkorRexStar/W2 millTWOtogether thenblindrandomdiscardonlyactualmovedTamaseed0/1/2 includingnotenoughenemyhand; illegalFirebaseexcluded/actualLightRexallowed, GenmuignoresCIP/nativestarretainsbase. HappyLucky privateONLYownerpeek ownshieldGROUPinclcompositetwoSTcards; optionalALLgrouphandnoST thenblindnewshieldone, declinedoriginalgroupunchangedDraw1, emptyorheldunmovableDraw1, Genmunoinspection/nodraw; sameIDs/physicalUID/eightmana/eightencryptedservices. Related235+online5/currentcheck/nameKey/invariants passed; olderpendingpreserved.",
+    "resolvedAttempts": "Initial10focusedfailures resolved: Magan mustsetnativeg1042Together forsimultaneous2-cardmill soAPIreturnsactualmovedcardsanddiscardcanbeproperlycounted; addedtospec/pins/manifestandverified0/1/2. TwoignoredFremfixtureshadactualGenmuBLOCKERblockattack; explicitlydeclinedblocktomeasureignoredattackability. Productcommonhookoptinunchangedafterpassingrelated; latestcheckrerunafternewcardspecupdate. PreparationPythontextmarkerfirstattemptfailedbeforeanyruntimewrite; correctedmarkerappliedoncebeforeexpand.",
+    "rulings": [],
+    "held": [
+      {
+        "id": "dm32-015",
+        "name": "ポジトロン・サイン",
+        "reason": "Full3printresearch/QA47359available; imagesUNreviewed. Literalrulingactualopponent試算の妖精 notregisteredyet; requireusualfullofficialimplementationofSisanbeforeclaimingdeckspellfinish-staysonTop reproduction. DonotcountpartialST/privateLook4spellcast."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmr07-010",
+          "promoy15-077",
+          "dm24bd3-014",
+          "dmrp21-058",
+          "dmex14-066"
+        ],
+        "reason": "Groupedfullresearchcomplete; review9prints/linked36714,45796,39961; prioritizefullnativeRevChange/freeSpell, StarSacrifice, ManaEntryreveal/haste/enduntap, othercardsifmultiBreakerchoiceoractualMoltDREAMnotavailable."
+      }
+    ]
+  }
+}
