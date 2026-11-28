@@ -64,10 +64,10 @@ import {createOriginalChampionRules} from './champion-original-rules.js?v=0.722.
 import {createChampionRules} from './champion-rules.js?v=0.722.3';
 import {createEnvironmentRules} from './environment-rules.js?v=0.722.19';
 import {createRecommendedRules} from './recommended-rules.js?v=0.722.19';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.59';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.60';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.722.24';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
-import {createPhoenixRules} from './phoenix-rules.js?v=0.722.22';
+import {createPhoenixRules} from './phoenix-rules.js?v=0.722.23';
 import {createBolshackRules} from './bolshack-rules.js?v=0.722.3';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js?v=0.89';

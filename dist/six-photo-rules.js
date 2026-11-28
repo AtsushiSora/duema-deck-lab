@@ -10129,13 +10129,15 @@ export function createSixPhotoRules(api){
  function queueEntryWatch251(s,p,x,y,options){
   const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;
   if(x.sealed||!watch||watchUsed792(s,x,watch)||
-   watch.g895SummonedHand&&!(options.execution===true&&options.origin==='hand'))return;
+   watch.g895SummonedHand&&!(options.execution===true&&options.origin==='hand')||watch.g1874Origin&&options.origin!==watch.g1874Origin)return;
   if(watch.g1198EntryScope){
    // GG suppresses creature-entry triggers; Kinari only suppresses the entrant's abilities.
    if(api.isCreature(s,y)&&(api.selfStopped(s,p)||self&&options.selfMuted))return;
   }else if(self&&(options.selfMuted||api.selfStopped(s,p)))return;
   if(!((self&&watch.selfAlways)||matches(s,p,y,watch.filter)))return;
-  const defs=watch.g1255TrackEntrant
+  const defs=watch.g1874EntrantCost
+   ?watch.defs.map(def=>({...def,filter:{...def.filter,belowCost:cost(effective(y,s))===Infinity?'∞':cost(effective(y,s))}}))
+   :watch.g1255TrackEntrant
    ?watch.defs.map(def=>({...def,g1255HasteEntrant:{uid:y.uid,incarnation:y.incarnation||0}}))
    :watch.defs;
   queue(s,p,x,defs);

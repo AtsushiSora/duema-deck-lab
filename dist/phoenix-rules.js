@@ -377,7 +377,7 @@ export function createPhoenixRules(api){
    base.godLinks=[x];
    api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});
   }
-  if(card(x).g1859GodGrid&&!api.selfStopped(s,p)&&!api.ignored(s,base))for(const part of godParts(base)){const defs=card(part).g1859LinkTasks;if(defs)api.enqueue(s,p,{uid:base.uid,source:part.cardId,effect:'extended',task:task('g34_Sequence',p,part.cardId,{uid:base.uid,incarnation:base.incarnation||0,defs})});}
+  if((card(x).g1859GodGrid||godParts(base).some(part=>card(part).g1874GodLink))&&!api.selfStopped(s,p)&&!api.ignored(s,base))for(const part of godParts(base)){const defs=card(part).g1859LinkTasks||card(part).g1874GodLink;if(defs)api.enqueue(s,p,{uid:base.uid,source:part.cardId,effect:'extended',task:task('g34_Sequence',p,part.cardId,{uid:base.uid,incarnation:base.incarnation||0,defs})});}
   return base;
  },
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
