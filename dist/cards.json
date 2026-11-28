@@ -316922,17 +316922,194 @@
       "g1866NonCreatureReduction": true,
       "supportBatch": "phase-1866",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm35-018",
+      "name": "大勇者「銀河の誘発」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ビーストフォーク/オリジン",
+      "text": "進化-自分のビーストフォークまたはオリジン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から究極進化クリーチャーまたは究極進化MAXクリーチャーを好きな組み合わせで２体まで選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-018",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ビーストフォーク"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 2,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "g1867Ultimate": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1867",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-006",
+      "name": "超獣軍隊 フォックスリー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "ゲリラ・コマンド/侵略者",
+      "text": "進化―自分の自然のクリーチャー１体の上に置く。\n侵略―自然のコマンド（自分の自然のコマンドが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー\nこのクリーチャーの攻撃の後、このクリーチャーの一番上のカードをバトルゾーンから自分の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-006",
+      "limit": 4,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "invasion": {
+        "colors": [
+          "自然"
+        ],
+        "origins": [
+          "hand"
+        ],
+        "categories": [
+          "コマンド"
+        ]
+      },
+      "breaker": 2,
+      "g474AttackEnd": [
+        {
+          "op": "Offer",
+          "title": "一番上のカードを手札に戻す？",
+          "defs": [
+            {
+              "op": "SelfTopHand1867"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1867",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc34-s04",
+      "name": "聖帝カシオペア・ストーリー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーク・セラフィム",
+      "text": "進化-自分のアーク・セラフィム１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を表向きにする。その中から、各文明１体までクリーチャーを選び、手札に加えてもよい。残りを好きな順序で山札の一番下に戻す。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-s04",
+      "limit": 4,
+      "evolution": {
+        "race": "アーク・セラフィム"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "public": true,
+          "g1660PublicReveal": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "光"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "水"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "闇"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "火"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "自然"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1867",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1866,
-    "checkedAt": "2026-11-28T01:24:35.307Z",
-    "baseCount": 9803,
+    "phase": 1867,
+    "checkedAt": "2026-11-28T01:35:26.348Z",
+    "baseCount": 9806,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9806,
+    "totalCount": 9809,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35994/",
+      "https://dm.takaratomy.co.jp/rule/qa/32457/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -347424,6 +347601,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35026/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37784/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1866,
+        "checkedAt": "2026-11-28T01:24:35.307Z",
+        "baseCount": 9803,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9806,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

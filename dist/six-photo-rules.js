@@ -468,6 +468,7 @@ export function createSixPhotoRules(api){
  const physicalVictory1686=x=>[x,...(x.godLinks||[])].some(y=>hasVictoryRarity1686(card({...y,godLinks:null,g1357Copies:null,g393JCopies:null}).name));
  const cJoe1704=x=>card(x).joeDiscount!==undefined;
  function matches(s,p,x,f={}){
+  if(f.g1867Ultimate&&!card(x).ultimateEvolution&&!card(x).ultimateEvolutionMax)return false;
   if(f.g1704Joe&&!cJoe1704(x))return false;
   if(f.g1686Victory&&!physicalVictory1686(x))return false;
   if(f.g939ShieldForce&&(api.ignored(s,x)||!effective(x,s).g1304ShieldForce&&!effective(x,s).g1486ShieldForce&&!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
@@ -3370,6 +3371,13 @@ export function createSixPhotoRules(api){
  case'g34_SelfExtra1121':{
   const host=sourceHost474(s,t);
   if(host)move(s,[{player:host.p,uid:host.x.uid,to:'extra',destroy:false,toOwnerExtra:true,controller:t.p}]);
+  break;
+ }
+ case'g34_SelfTopHand1867':{
+  const host=sourceHost474(s,t);if(!host||host.x.sealed)break;
+  const rows=s.players[host.p].battle,auras=api.attachedAuras1352(s,host.p,host.x);
+  const top=auras.reduce((best,x)=>!best||(x.g1867AttachOrder??rows.indexOf(x))>(best.g1867AttachOrder??rows.indexOf(best))?x:best,null)||host.x;
+  move(s,[{player:host.p,uid:top.uid,to:'hand',toOwnerHand:true,cardOnly:true,controller:t.controller??t.p}]);
   break;
  }
  case'g34_SelfHand299':{
