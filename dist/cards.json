@@ -316132,17 +316132,195 @@
       ],
       "supportBatch": "phase-1861",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-022",
+      "name": "ソウルスカーレット アカネ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジャイアント・スノーフェアリー/フュージョナー",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主のマナゾーンに置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンに一度、クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-022",
+      "limit": 4,
+      "trigger": true,
+      "g35Role": "akane",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "mana",
+          "toOwnerMana": true
+        }
+      ],
+      "supportBatch": "phase-1862",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-OR1",
+      "name": "至高の魂 アビスベル＝ジャシン帝",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アビスロイヤル",
+      "text": "G-NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、NEO進化クリーチャーとして扱い、離れる時、かわりに下のカードすべてが離れる）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、カードを２枚引き、自分の手札を２枚捨てる。その後、コスト４以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。\n各ターン、はじめて自分の、進化クリーチャーまたはアビス・クリーチャーをタップした時、それをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-OR1",
+      "limit": 4,
+      "gNeo": true,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g1862FirstEvoAbyssUntap": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "アビス",
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1862",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-041",
+      "name": "コッコ・超魂・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード/フュージョナー",
+      "text": "このクリーチャーから進化するクリーチャーのコストを２少なくする。ただし、コストは０以下にはならない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n各ターン、このクリーチャーがはじめてバトルに勝った時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-041",
+      "limit": 4,
+      "g1239EvolutionBaseDiscount": 2,
+      "g189BattleWin": [
+        {
+          "op": "ShinkaHost544",
+          "mode": "fight",
+          "g752FirstOnly": true
+        }
+      ],
+      "g404Soul": {
+        "g189BattleWin": [
+          {
+            "op": "ShinkaHost544",
+            "mode": "fight",
+            "g752FirstOnly": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1862",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex2-S04",
+      "name": "漆黒の深淵 ジャシン帝",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8000,
+      "race": "アビスロイヤル/ACE",
+      "text": "W・ブレイカー\nこのタマシードが出た時、自分の山札の上から１枚目を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャー１体またはタマシードを１枚、破壊する。\n自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上なければ、バトルゾーンにあるこのタマシードはクリーチャーとして扱わない。\nこのクリーチャーが攻撃する時、コスト６以下の進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-S04",
+      "limit": 4,
+      "seedCreature": true,
+      "aceCivilization": "闇",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Custom",
+          "name": "graveCostDestroy",
+          "element": true,
+          "filter": {
+            "creatureOrSeed": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 6,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1862",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1861,
-    "checkedAt": "2026-11-28T00:38:22.290Z",
-    "baseCount": 9787,
-    "newEffectCards": 2,
+    "phase": 1862,
+    "checkedAt": "2026-11-28T00:46:35.275Z",
+    "baseCount": 9789,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9789,
+    "totalCount": 9793,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/46528/",
+      "https://dm.takaratomy.co.jp/rule/qa/47057/",
+      "https://dm.takaratomy.co.jp/rule/qa/48924/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -346558,6 +346736,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35786/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1861,
+        "checkedAt": "2026-11-28T00:38:22.290Z",
+        "baseCount": 9787,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9789,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

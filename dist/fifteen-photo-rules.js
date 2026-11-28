@@ -411,11 +411,12 @@ export function createFifteenPhotoRules(api){
  selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)){const r=effective(x,s).g35Role;if(r==='gaiging')on(s,1-p,x,'extraTurn');if(r==='mobius'&&x.hyperActive)on(s,1-p,x,'mobiusChosen');}},
  beforeBreak(s,defender,uids){const ctx=s.breakContext,x=ctx&&s.players[ctx.player].battle.find(x=>x.uid===ctx.sourceUid);if(!ctx||ctx.g35Prepared||!x||!hasRole(effective(x,s),'hyperJohnny')||x.entered!==s.turn||defender===ctx.player)return false;ctx.g35Prepared=true;put(s,task('g35_Custom',ctx.player,x.cardId,{name:'masterBreak',uid:x.uid,incarnation:x.incarnation||0,defender,uids:[...uids],context:structuredClone(ctx)}));return true;},
  };
- function zonePermits396(s,p,x,origin){const own=s.players[p],permits=[];if(origin==='mana'){for(const w of active(s,p,'ben'))if(!usedPermit(s,w,'ben'))permits.push({w,role:'ben',free:race(card(x),'ディスタス')});for(const w of own.battle)if(soul(s,w,'moon')&&demon(card(x)))permits.push({w,role:'moon'});}else for(const w of own.battle)for(const permit of graveSoulPermits(s,w))permits.push({w,role:'tebulk',permit});return permits;}
+ function zonePermits396(s,p,x,origin){const own=s.players[p],permits=[];if(origin==='mana'){for(const w of s.active===p?own.battle:[])for(const permit of graveSoulPermits(s,w,'akane'))permits.push({w,role:'akane',permit});for(const w of active(s,p,'ben'))if(!usedPermit(s,w,'ben'))permits.push({w,role:'ben',free:race(card(x),'ディスタス')});for(const w of own.battle)if(soul(s,w,'moon')&&demon(card(x)))permits.push({w,role:'moon'});}else for(const w of own.battle)for(const permit of graveSoulPermits(s,w))permits.push({w,role:'tebulk',permit});return permits;}
  // Each inherited soul is a separate ability. Bind usage to both host and physical layer.
- function graveSoulPermits(s,x){
+ function graveSoulPermits(s,x,role='tebulk'){
+  if(role==='akane'&&(x.sealed||x.faceDown||!api.isCreature(s,x)))return[];
   if(api.ignored(s,x))return[];
-  const base='g35:tebulk:'+key(x),layers=api.allLayers(x).filter(y=>card(y).g35Role==='tebulk'),legacy=card(x).g35Role!=='tebulk'&&s.g35Permits?.[base]===s.turn;
+  const base='g35:'+role+':'+key(x),layers=api.allLayers(x).filter(y=>card(y).g35Role===role),legacy=role==='tebulk'&&card(x).g35Role!=='tebulk'&&s.g35Permits?.[base]===s.turn;
   // Pre-fix saves recorded only one shared use: retain it for the first inherited ability.
   return layers.flatMap((y,i)=>{const permit=y.uid===x.uid?base:base+':soul:'+key(y);return s.g35Permits?.[permit]===s.turn||legacy&&i===0?[]:[permit];});
  }

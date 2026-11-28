@@ -2,7 +2,7 @@ import {beginElementEntryBatch,endElementEntryBatch,elementEntrySourceEstablishe
 import {hasKingMasterRarity1697} from './king-master-cards.js';
 import {hasVictoryRarity1686} from './victory-cards.js';
 import {overdrivePayment1439} from './overdrive1439-rules.js?v=0.722.3';
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.19';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.20';
 import {createChampionRaid} from './champion-raid-helpers.js';
 import {policyLook,policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
@@ -10075,7 +10075,7 @@ export function createSixPhotoRules(api){
  case'mekraidPick':{const rows=t.ids.flatMap(uid=>{const y=own.deck.find(x=>x.uid===uid);return y?faces(card(y)).flatMap((c,face)=>ninja(c)&&cost(c)<=5&&api.canCast(s,t.p,c,'deck')&&(c.type!=='creature'||canPut(s,t.p,y,'deck',true))?[opt(c.name,{uid,face},20+cost(c),y.cardId)]:[]):[];});choice(s,t,'シノビ・メクレイド5：実行するカードを1枚まで選ぶ',[...rows,skip()]);break;}
  case'karenReveal':{const chosen=t.selected||[],rows=api.handIsPublic(s,t.p)?[]:own.hand.filter(y=>ninja(card(y))&&!chosen.includes(y.uid));if(!rows.length){karenDone(s,t);break;}choice(s,t,'公開する手札のシノビを選ぶ（好きな枚数）',[...rows.map(y=>opt(card(y).name,y.uid,5,y.cardId)),opt('公開して確定',null,0)]);break;}
  case'forceEnemyAttacks':(s.extLimits??=[]).push({kind:'g34ForceAttack',player:1-t.p,expires:'start',who:t.p});break;
- case'graveCostDestroy':start(s,t,[E('Target',{to:'grave',filter:{max:own.grave.length},...(t.optional?{optional:true}:{})})]);break;
+ case'graveCostDestroy':start(s,t,[E('Target',{to:'grave',...(t.element?{element:true}:{}),filter:{...t.filter,max:own.grave.length},...(t.optional?{optional:true}:{})})]);break;
  case'reiaiModes':start(s,t,[E('Choose',{repeat:2,modes:[{label:'山札3枚から手札1枚、残りをタップしてマナへ',score:own.deck.length>3?14:-100,defs:[E('Look',{n:3,stages:[{to:'hand',n:1}],rest:'mana',restTapped:true})]},{label:'手札から進化ではないコスト9以下を出す',score:Math.max(-20,...own.hand.filter(y=>card(y).type==='creature'&&!card(y).evolution&&!card(y).sMax&&cost(card(y))<=9&&canPut(s,t.p,y,'hand')).map(y=>12+cost(card(y))*2)),defs:[select('hand',null,1,{creature:true,nonEvolution:true,max:9},{deploy:true,delayed:'grave'})]},{label:'エレメントを2つまで破壊',score:opp.battle.length?12+Math.max(...opp.battle.map(y=>Math.min(20,cost(card(y)))*3)):-20,defs:[C('destroyTwo',{anyOwner:true,element:true,optional:true})]}]})]);break;
  case'muteEnemy':(s.extLimits??=[]).push({kind:'g34Mute',player:1-t.p,expires:'start',who:t.p});break;
  case'reisaiLook':if((t.times||0)<3&&own.deck.length)choice(s,t,'山札の上3枚を分ける（'+((t.times||0)+1)+'/3回）',[opt('能力を使う',true,own.deck.length>3?15:-100),skip()]);break;
@@ -11289,10 +11289,12 @@ export function createSixPhotoRules(api){
   const defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);
   return [...(defs?.length?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',
    task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),
+   ...(c?.g404Inherited||[]).flatMap(r=>{const defs=r.grants.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);return defs?.length?[{player:p,uid:x.uid,source:r.source,effect:'extended',task:task('g34_Sequence',p,r.source,{uid:x.uid,incarnation:x.incarnation||0,creatureOrigin:p,g1772CarrierCost:cost(c),defs})}]:[];}),
    ...winWatches252(s,p,w),...rondoWins946(s,x,w),...boomerangWins1645(s,x)];
  },
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){
+  if(!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&s.players[p].battle.includes(x)&&(api.isEvolution(x)||race(effective(x,s),'アビス'))){const history=s.g1862EvoAbyssTapTurns??=[null,null],first=history[p]!==s.turn;history[p]=s.turn;if(first)for(const source of s.players[p].battle)if(!source.sealed&&!source.faceDown&&effective(source,s).g1862FirstEvoAbyssUntap)send(s,p,source,'Untap',{g904Refs:api.allLayers(x).map(key)});}
   if(!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&s.players[p].battle.includes(x)){
    for(const limit of s.extLimits||[])if(limit.kind==='g1597TapDraw'&&limit.player===p&&!api.spellIgnored(s,{type:'spell',cost:limit.spellCost,spellSource:limit.spellSource}))
     queue(s,p,{cardId:limit.spellSource},[{op:'Draw',n:1,optional:true}]);
