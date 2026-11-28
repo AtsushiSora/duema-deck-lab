@@ -10175,7 +10175,7 @@ export function createSixPhotoRules(api){
   const power=y=>t.g740Power?currentPower506(s,y):api.power(y,false,s);
   const n=Math[t.extreme](...rows.map(power));
   // Compare all eligible creatures first, then check whether the chooser can select the tied extrema.
-  const options=rows.filter(y=>power(y)===n&&(!t.g740Power||api.targetable(s,ps,ps,y)))
+  const options=rows.filter(y=>power(y)===n&&api.targetable(s,ps,ps,y))
    .map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId));
   const title='自分の'+(t.untapped?'アンタップしている':'')+'パワーが'+(t.extreme==='min'?'最小':'最大')+'のクリーチャーを選ぶ';
   choice(s,{...t,p:ps,controller:t.p,chooser:ps},title,options);

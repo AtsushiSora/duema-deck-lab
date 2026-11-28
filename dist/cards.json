@@ -317478,18 +317478,171 @@
       ],
       "supportBatch": "phase-1871",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-003",
+      "name": "革命龍程式 プラズマ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "クリスタル・コマンド・ドラゴン/革命軍",
+      "text": "進化-自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを４枚引いてもよい。\n革命２―相手のクリーチャーが攻撃する時、自分のシールドが２つ以下なら、「S・トリガー」を持つカードを１枚手札からコストを支払わずに使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-003",
+      "limit": 4,
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "カードを4枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 4
+            }
+          ]
+        }
+      ],
+      "g253AttackWatches": [
+        {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g1484ZoneCount": {
+                  "zone": "shields",
+                  "max": 2
+                }
+              },
+              "defs": [
+                {
+                  "op": "Execute",
+                  "origin": "hand",
+                  "trigger": true,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1872",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26-005",
+      "name": "鎧亜の深淵パラドックス",
+      "civ": "水/闇/自然",
+      "civilizations": [
+        "水",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ロスト・クルセイダー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の手札を２枚捨ててもよい。そうしない場合、このクリーチャーを手札に戻す。\nこのクリーチャーが破壊された時、カードを４枚引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "自分の手札を2枚捨てる",
+              "condition": {
+                "g1484ZoneCount": {
+                  "zone": "hand",
+                  "min": 2
+                }
+              },
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "このクリーチャーを手札に戻す",
+              "defs": [
+                {
+                  "op": "SelfHand299",
+                  "toOwnerHand": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Draw",
+          "n": 4
+        }
+      ],
+      "supportBatch": "phase-1872",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-s07",
+      "name": "海姫龍 ライベルモット・ビターズ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "スプラッシュ・クイーン・ドラゴン",
+      "text": "S・トリガー S・トリガー\n進化：スプラッシュ・クイーン・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を３枚までシールド化する。その後、同じ数の自分のシールドをブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-s07",
+      "limit": 4,
+      "trigger": true,
+      "evolution": {
+        "race": "スプラッシュ・クイーン"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "MarshalExchange1648",
+          "max": 3
+        }
+      ],
+      "g32EvoTrigger": true,
+      "supportBatch": "phase-1872",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1871,
-    "checkedAt": "2026-11-28T02:04:17.718Z",
-    "baseCount": 9817,
+    "phase": 1872,
+    "checkedAt": "2026-11-28T02:10:50.472Z",
+    "baseCount": 9820,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9820,
+    "totalCount": 9823,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35196/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+      "https://dm.takaratomy.co.jp/rule/qa/45223/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -348054,6 +348207,21 @@
         "totalCount": 9817,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1871,
+        "checkedAt": "2026-11-28T02:04:17.718Z",
+        "baseCount": 9817,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9820,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35196/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

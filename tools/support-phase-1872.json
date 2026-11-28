@@ -1,0 +1,1044 @@
+{
+  "phase": 1872,
+  "checkedAt": "2026-11-28T02:10:50.472Z",
+  "baseline": "6bbf575a699cbf9dc9b637ba568928186e7efce3",
+  "baseCount": 9820,
+  "target": 10000,
+  "description": "Full Plasma WaterevoW2 optionalexact4draw/Revolution2 opponentanyattack freeprintedSTface; Paradox multicolor4/W2 optionalEXACT2discard elsemandatoryselfbounce anddeathmandatory4 literal35598; Raivelmot trueST evolution W2 attackhandupto3shield thensamecount returnwithprintedST allowed literal45223 realPrincessCoolerSSS. Current2024 Raivelmot print explicitly replaces former hand-return wording by BREAK; keep originalID and originalrawdetails, execute latestofficialtext sameasexistingMarshalQueen1648.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+    "https://dm.takaratomy.co.jp/rule/qa/45223/",
+    "https://dm.takaratomy.co.jp/rule/qa/49548/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-003",
+      "name": "革命龍程式 プラズマ",
+      "canonicalId": "dmr19-003",
+      "printId": "dmr19-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-003",
+      "faces": [
+        {
+          "name": "革命龍程式 プラズマ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを４枚引いてもよい。\n革命２―相手のクリーチャーが攻撃する時、自分のシールドが２つ以下なら、「S・トリガー」を持つカードを１枚手札からコストを支払わずに使ってもよい。",
+          "race": "クリスタル・コマンド・ドラゴン/革命軍",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "水"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを4枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 4
+              }
+            ]
+          }
+        ],
+        "g253AttackWatches": [
+          {
+            "who": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1484ZoneCount": {
+                    "zone": "shields",
+                    "max": 2
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Execute",
+                    "origin": "hand",
+                    "trigger": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-003.jpg",
+      "imageSha256": "ce3dff82f86f661dbbf7b2b9e63849fec29756a09ea9644616ce896d8ace8a96",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr19-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr19-003"
+        ],
+        "allSearchIds": [
+          "dm02-002",
+          "dm18-005",
+          "dm25ex4-030",
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "e0ab9f66b053f0b56e27ec50f664f147d17e051dd87af05190af84ca1dd24ec8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-005",
+      "name": "鎧亜の深淵パラドックス",
+      "canonicalId": "dm26-005",
+      "printId": "dm26-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-005",
+      "faces": [
+        {
+          "name": "鎧亜の深淵パラドックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の手札を２枚捨ててもよい。そうしない場合、このクリーチャーを手札に戻す。\nこのクリーチャーが破壊された時、カードを４枚引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ロスト・クルセイダー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "自分の手札を2枚捨てる",
+                "condition": {
+                  "g1484ZoneCount": {
+                    "zone": "hand",
+                    "min": 2
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "このクリーチャーを手札に戻す",
+                "defs": [
+                  {
+                    "op": "SelfHand299",
+                    "toOwnerHand": true
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 4
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-005.jpg",
+      "imageSha256": "3ac6972bb48f7fda82842fdc6ba3ecb47972b2b51533f39e25dd56f3e409260d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm26-005"
+        ],
+        "allSearchIds": [
+          "dm26-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "e09c3738fcb2a1af586822e77733e81cd63327d7c19662fbabd00574476f3f54",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-s07",
+      "name": "海姫龍 ライベルモット・ビターズ",
+      "canonicalId": "dmex12-s07",
+      "printId": "dmex12-s07",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-s07",
+      "faces": [
+        {
+          "name": "海姫龍 ライベルモット・ビターズ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n進化：自分のスプラッシュ・クイーン１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を３枚まで裏向きにして、それぞれ新しいシールドとしてシールドゾーンに加え、その後、同じ数の自分のシールドを手札に戻す。（その「S・トリガー」を使ってもよい）",
+          "race": "スプラッシュ・クイーン・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "evolution": {
+          "race": "スプラッシュ・クイーン"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MarshalExchange1648",
+            "max": 3
+          }
+        ],
+        "g32EvoTrigger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-s07.jpg",
+      "imageSha256": "abb015db249b74d60dcd2f6ec5dc01d4bc0126e9be44d4c2f75734ce5d287cbc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex12-s07-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex12-s07",
+          "dm24ex1-002"
+        ],
+        "allSearchIds": [
+          "dmex12-s07",
+          "dm24ex1-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "9f0053027f36ca2c7f0a1af4198d1632c69034e0becbc7689c07737850ce0e99",
+        "facesMatched": true
+      },
+      "currentPrint": {
+        "id": "dm24ex1-002",
+        "name": "海姫龍 ライベルモット・ビターズ",
+        "canonicalId": "dmex12-s07",
+        "printId": "dm24ex1-002",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-002",
+        "faces": [
+          {
+            "name": "海姫龍 ライベルモット・ビターズ",
+            "typeText": "進化クリーチャー",
+            "civilizationText": "水",
+            "civilizations": [
+              "水"
+            ],
+            "cost": 5,
+            "costText": "5",
+            "abilityText": "S・トリガー S・トリガー\n進化：スプラッシュ・クイーン・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を３枚までシールド化する。その後、同じ数の自分のシールドをブレイクする。",
+            "race": "スプラッシュ・クイーン・ドラゴン",
+            "powerText": "7000",
+            "missingFields": []
+          }
+        ],
+        "spec": {
+          "trigger": true,
+          "evolution": {
+            "race": "スプラッシュ・クイーン"
+          },
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "MarshalExchange1648",
+              "max": 3
+            }
+          ],
+          "g32EvoTrigger": true
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-002.jpg",
+        "imageSha256": "016de1adc8daf47647b4bc87bbd0ac44bda6b7e502bd16a0f13040ac4d57ad36",
+        "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex1-002-0.jpg",
+        "imageReviewed": true,
+        "allAbilitiesAndBasicInformationMatched": true,
+        "reprintVerification": {
+          "allExactPrints": [
+            "dmex12-s07",
+            "dm24ex1-002"
+          ],
+          "allSearchIds": [
+            "dmex12-s07",
+            "dm24ex1-002"
+          ],
+          "allImagesReviewed": true
+        },
+        "verification": {
+          "checkedAt": "2026-11-28T02:10:50.472Z",
+          "sha256": "7ff8d70c266de8d9edaa71f9bde0f9a05e66a6cd98c470dc0ee9863c7273c8d7",
+          "facesMatched": true
+        },
+        "useRulesText": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex1-002",
+      "name": "海姫龍 ライベルモット・ビターズ",
+      "canonicalId": "dmex12-s07",
+      "printId": "dm24ex1-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-002",
+      "faces": [
+        {
+          "name": "海姫龍 ライベルモット・ビターズ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n進化：スプラッシュ・クイーン・クリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札を３枚までシールド化する。その後、同じ数の自分のシールドをブレイクする。",
+          "race": "スプラッシュ・クイーン・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "evolution": {
+          "race": "スプラッシュ・クイーン"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MarshalExchange1648",
+            "max": 3
+          }
+        ],
+        "g32EvoTrigger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-002.jpg",
+      "imageSha256": "016de1adc8daf47647b4bc87bbd0ac44bda6b7e502bd16a0f13040ac4d57ad36",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex1-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex12-s07",
+          "dm24ex1-002"
+        ],
+        "allSearchIds": [
+          "dmex12-s07",
+          "dm24ex1-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "7ff8d70c266de8d9edaa71f9bde0f9a05e66a6cd98c470dc0ee9863c7273c8d7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "existingCards": [
+    {
+      "id": "dmrp17-027",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-027",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "c226e6752a3e658eeee8bfbba3daaeea090476891e08aa603f64cfb012f5a45a",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-027.jpg",
+          "file": "tmp/duema-target-10000/research/dmrp17-027-0.jpg",
+          "sha256": "7d25c8cd692c12ead9d8a8b9def2f768a6b6836a63f526ff58267f30998a1893"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-027.jpg",
+      "imageSha256": "7d25c8cd692c12ead9d8a8b9def2f768a6b6836a63f526ff58267f30998a1893",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp17-027-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "c226e6752a3e658eeee8bfbba3daaeea090476891e08aa603f64cfb012f5a45a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy22-074",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-074",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "9aa9676a12469a3215ac604889790da49683fb5a60606f114caba5302dfb6048",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-074.jpg",
+          "file": "tmp/duema-target-10000/research/promoy22-074-0.jpg",
+          "sha256": "7aeccad5c512c14375fffb78f14e260550d89bbc96d47316bd0e2dcedbb878a0"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-074.jpg",
+      "imageSha256": "7aeccad5c512c14375fffb78f14e260550d89bbc96d47316bd0e2dcedbb878a0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy22-074-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "9aa9676a12469a3215ac604889790da49683fb5a60606f114caba5302dfb6048",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy21-026",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-026",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "3041f8a591c6cb979a12c3de1439fffa874cbff6e346a45f2db0a7d20494da22",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-026.jpg",
+          "file": "tmp/duema-target-10000/research/promoy21-026-0.jpg",
+          "sha256": "dccff7e2302fdd17d689b31a0db295a245aaf026ce3ac8b2d8a0bdbc1200e8d0"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-026.jpg",
+      "imageSha256": "dccff7e2302fdd17d689b31a0db295a245aaf026ce3ac8b2d8a0bdbc1200e8d0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy21-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "3041f8a591c6cb979a12c3de1439fffa874cbff6e346a45f2db0a7d20494da22",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26bd1-025",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26bd1-025",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "f66d28672429acb94d436008ff3937a1d6bd2005d7e7d19c635c778895029d79",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-025.jpg",
+          "file": "tmp/duema-target-10000/research/dm26bd1-025-0.jpg",
+          "sha256": "d5af3481c60784c22771e35447af9454b2f0970889b9b3da43564d34807b27ac"
+        }
+      ],
+      "qa": [],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26bd1-025.jpg",
+      "imageSha256": "d5af3481c60784c22771e35447af9454b2f0970889b9b3da43564d34807b27ac",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26bd1-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "f66d28672429acb94d436008ff3937a1d6bd2005d7e7d19c635c778895029d79",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-a09",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-a09",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "1ff4e163f341e13b719be324c1eff01b5a6e8f64a7e183cf256aaf9678611ed9",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-a09.jpg",
+          "file": "tmp/duema-target-10000/research/dmrp17-a09-0.jpg",
+          "sha256": "d9790da696f43911727727931426151bd55799a52feb73d48c0bfed74df31258"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-a09.jpg",
+      "imageSha256": "d9790da696f43911727727931426151bd55799a52feb73d48c0bfed74df31258",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp17-a09-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "1ff4e163f341e13b719be324c1eff01b5a6e8f64a7e183cf256aaf9678611ed9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-b09",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-b09",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "2605ec033ca9101cdc0c24edf75b0cedfc611b6dcc777698d0839b9152017b16",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-b09.jpg",
+          "file": "tmp/duema-target-10000/research/dmrp17-b09-0.jpg",
+          "sha256": "b9d7f1e1385262028b733b4495ca6114849fa731060926123d5edc8ad7e4b77e"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-b09.jpg",
+      "imageSha256": "b9d7f1e1385262028b733b4495ca6114849fa731060926123d5edc8ad7e4b77e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp17-b09-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "2605ec033ca9101cdc0c24edf75b0cedfc611b6dcc777698d0839b9152017b16",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd4-010",
+      "name": "S・S・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-010",
+      "faces": [
+        {
+          "name": "S・S・S",
+          "typeText": "呪文",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。\n相手は自身のパワーが一番大きいクリーチャーを１体選び、手札に戻す。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmrp17-027",
+      "printedManaValue": 1,
+      "htmlSha256": "ecfef69f19a103cb5e750eb5020e4fd6a0804e756e9221da703522de200c7322",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd4-010.jpg",
+          "file": "tmp/duema-target-10000/research/dm24bd4-010-0.jpg",
+          "sha256": "3fdd8e5131cffcb701e2565554344e9da7f318c26eb19a6d3ef7030c42caefe3"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/49548/"
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd4-010.jpg",
+      "imageSha256": "3fdd8e5131cffcb701e2565554344e9da7f318c26eb19a6d3ef7030c42caefe3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24bd4-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-027",
+          "promoy22-074",
+          "promoy21-026",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allSearchIds": [
+          "promoy22-074",
+          "promoy21-026",
+          "dmrp17-027",
+          "dm26bd1-025",
+          "dmrp17-a09",
+          "dmrp17-b09",
+          "dm24bd4-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "sha256": "ecfef69f19a103cb5e750eb5020e4fd6a0804e756e9221da703522de200c7322",
+        "facesMatched": true
+      }
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+      "sha256": "625754087d2df94cf26136336facf69a9651de01ddd59186016fae31921aa1eb",
+      "checkedAt": "2026-11-28T02:10:50.472Z",
+      "reproduced": true,
+      "tests": "tests/standard1872-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "RealParadox paid4 with0/1hand forcedselfhand, actualhand1 isnotdiscardableaspartialpayment; with2/3hand selectEXACT2orvoluntarilybounce, allbothseatsafterencryptedrestore. tests/standard1872-effects.test.mjs",
+      "result": "RealParadox paid4 with0/1hand forcedselfhand, actualhand1 isnotdiscardableaspartialpayment; with2/3hand selectEXACT2orvoluntarilybounce, allbothseatsafterencryptedrestore. tests/standard1872-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45223/",
+      "sha256": "c1c0f4452fc2d33d3321d97f2e1fbbd46358042ef271a5273231a992d061ce52",
+      "checkedAt": "2026-11-28T02:10:50.472Z",
+      "reproduced": true,
+      "tests": "tests/standard1872-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "ActualPrincess paid5entry, actualCooler paid2entryprotection, actualSplashQueenbase evolvesintoRaivelmotpaid5 withPrincessprotection. ExactlyPrincess6000/Cooler1500/Rai7000 remain; actualenemySSS skipsprotectedminimumandmaximum withoutfallback andtapsallthree. Bothseatsandrestore. tests/standard1872-effects.test.mjs",
+      "result": "ActualPrincess paid5entry, actualCooler paid2entryprotection, actualSplashQueenbase evolvesintoRaivelmotpaid5 withPrincessprotection. ExactlyPrincess6000/Cooler1500/Rai7000 remain; actualenemySSS skipsprotectedminimumandmaximum withoutfallback andtapsallthree. Bothseatsandrestore. tests/standard1872-effects.test.mjs"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49548/",
+      "sha256": "a17cd57d01e6114ffd3fe9001f32c75500ccc03d9bf804e220138fd0d7c026be",
+      "checkedAt": "2026-11-28T02:10:50.472Z",
+      "reproduced": true,
+      "tests": "tests/standard1872-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "ActualexistingMomoMugen monoabilityignore andmulticolorParadoxW2 enemyattack breaksSSSplusDragonSign together. BothtrueSTsdeclare throughignore, SSS destroysParadox andbouncesMomo, DragonSign laterresolvesactualLightDragonMaron. Bothseatsandrestore. tests/standard1872-effects.test.mjs",
+      "result": "ActualexistingMomoMugen monoabilityignore andmulticolorParadoxW2 enemyattack breaksSSSplusDragonSign together. BothtrueSTsdeclare throughignore, SSS destroysParadox andbouncesMomo, DragonSign laterresolvesactualLightDragonMaron. Bothseatsandrestore. tests/standard1872-effects.test.mjs"
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T02:10:50.472Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-003": 4,
+      "dm26-005": 4,
+      "dmex12-s07": 4,
+      "dm24ex1-002": 4,
+      "dmrp17-027": 4,
+      "promoy22-074": 4,
+      "promoy21-026": 4,
+      "dm26bd1-025": 4,
+      "dmrp17-a09": 4,
+      "dmrp17-b09": 4,
+      "dm24bd4-010": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr19-003",
+      "searchSha256": "da9c83357b960826842af95721f2a8870198b24e95ec0dbcf322fa9843f6eca1",
+      "totalResults": 7,
+      "allSearchIds": [
+        "dm02-002",
+        "dm18-005",
+        "dm25ex4-030",
+        "dm25ex2-Cho015",
+        "dmr17-003",
+        "dmex07-003",
+        "dmr19-003"
+      ],
+      "exactPrints": [
+        "dmr19-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm26-005",
+      "searchSha256": "d2a3e5ee7110fef659e33443d04bb441f2a8ffcf2fc3b6f7c07da59733fca009",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm26-005"
+      ],
+      "exactPrints": [
+        "dm26-005"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmex12-s07",
+      "searchSha256": "21421d468cc50ab66ac5a7670ddbb2b348761aa0f765cd16427853aadb650adb",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmex12-s07",
+        "dm24ex1-002"
+      ],
+      "exactPrints": [
+        "dmex12-s07",
+        "dm24ex1-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Threefullnewtypes withfourexactofficialprintimages, completecurrent/originaltext/stats/mana1/currentlimits/allsearch. Plasma Water7/11000W2 nativeevo, optionalEXACT4draworzero viaOffer, Revolution2 anyopponentcreatureattack includingcreaturetarget atshield0/2vs3, nativeoptionalownhandprintedSTfaceexecution creature/twinspell freebutnotS-Triggeruse. Paradox WaterDarkNature4/6000W2, chooseEXACT2discard onlywith>=2hand elsemandatoryselfbounce, canvoluntarilybouncewith2hand, deathmandatory4drawnotbounce, realmulticolormanaTAPPED. Literal35598 hand1 cannotdiscardit andParadoxreturns. Raivelmot Water5/7000 nativeg32EvoTrigger/SplashQueenevo/W2; fullofficial2024reprint dm24ex1-002 explicitlyusesBREAK andiscurrentPrint.useRulesText, preserveoriginal2020ID/rawdetail/image/specalias, executecurrenttext exactlyviaexistingMarshalExchange1648, optional0/1/3 handplacements thenmandatorysamecountselfBREAK actualSTClockturnskip andprintedSTevolution. Literal45223 fullrealPrincess6000/Cooler1500/Rai7000 withactualentrychoiceprotection andenemySSS: all3tap noactualmin/max canbechosen soNONEremoved. ThisuncoveredexistinglegacySSS ignoringchooserprotection unlessg740flag; fixedcommonopponentExtreme check forALLconfigs aftercomparingfullpool; old740/741alreadychecked, sixactualusersregressed414shorttests. ExistingSSS sevenexactofficialprintimages/stats/allsearchrechecked andliteral49548 actualMomoMugen+multicolorParadoxW2 attack declaresSSS/DragonSign together, SSS removesattacker+Momo thenactualMaronlightDragon enters fromSign, bothseats. Sixencryptedservice andsixmanacharges. Focused51/related414/online5 plusnpmcheck/audit9823/invariants passed. Alloldpending/fullSuite untouched, no push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Visualcomparison caughtcurrent2024Raivelmot reprint erratafromhandreturn toBREAK (samecurrentQueen1648semantics), so abandonedunneededprintedSThand-returnextension BEFOREtests/commit andrestoredsharedutilityexactly; manifestcurrentPrint andcanonicaltext nowuseverifiedlatestwhileoldrawdetailsunchanged. Firststartup rejectedmissingnativeg32EvoTrigger; addedexistingpermitandallstrictpins,officialreverified. Literal45223 initiallyfailed productlogic SSS ownchooser selectedprotectedextrema; commonfixchecksapi.targetable forlegacySSS/ThreeArtifacts too, comparesfullpoolfirst ratherthanfallingbacktomiddle. Literalnowpasses andallrelatedoldcardsregressed. No failuresexcludedorleft.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+        "kind": "literal-card-interaction",
+        "reproduction": "RealParadox paid4 with0/1hand forcedselfhand, actualhand1 isnotdiscardableaspartialpayment; with2/3hand selectEXACT2orvoluntarilybounce, allbothseatsafterencryptedrestore. tests/standard1872-effects.test.mjs"
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/45223/",
+        "kind": "literal-card-interaction",
+        "reproduction": "ActualPrincess paid5entry, actualCooler paid2entryprotection, actualSplashQueenbase evolvesintoRaivelmotpaid5 withPrincessprotection. ExactlyPrincess6000/Cooler1500/Rai7000 remain; actualenemySSS skipsprotectedminimumandmaximum withoutfallback andtapsallthree. Bothseatsandrestore. tests/standard1872-effects.test.mjs"
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/49548/",
+        "kind": "literal-card-interaction",
+        "reproduction": "ActualexistingMomoMugen monoabilityignore andmulticolorParadoxW2 enemyattack breaksSSSplusDragonSign together. BothtrueSTsdeclare throughignore, SSS destroysParadox andbouncesMomo, DragonSign laterresolvesactualLightDragonMaron. Bothseatsandrestore. tests/standard1872-effects.test.mjs"
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "id": "dmr11-005",
+        "reason": "Nextofficialgroup: two independentwatchers LightDragon-orPurin attacks shieldtop, ownFireDragon attackenemyshieldbreak."
+      },
+      {
+        "id": "dmx22a-s06",
+        "reason": "Nextofficialgroup: mandatoryenemycreaturedestroy thenoptionalownmana/gravecreature matchedcost."
+      },
+      {
+        "id": "dmex14-002",
+        "reason": "Nextofficialgroup: spelltax1/attackShieldTop1/Rainbonusselfdestructionstay."
+      },
+      {
+        "id": "dmr17-022",
+        "reason": "Alternativefullyresearched butimagesunreviewed: requiresactualhandRev0spelldeclaration, notexistingcreatureRev0; noimplementationstarted."
+      }
+    ]
+  },
+  "additionalExistingCardResearch": {
+    "research": "tmp/duema-target-10000/research-dmrp17-027.json",
+    "id": "dmrp17-027",
+    "allPrints": [
+      "dmrp17-027",
+      "promoy22-074",
+      "promoy21-026",
+      "dm26bd1-025",
+      "dmrp17-a09",
+      "dmrp17-b09",
+      "dm24bd4-010"
+    ],
+    "allSearchIds": [
+      "promoy22-074",
+      "promoy21-026",
+      "dmrp17-027",
+      "dm26bd1-025",
+      "dmrp17-a09",
+      "dmrp17-b09",
+      "dm24bd4-010"
+    ],
+    "allImagesReviewed": true,
+    "qa": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/49548/",
+        "sha256": "a17cd57d01e6114ffd3fe9001f32c75500ccc03d9bf804e220138fd0d7c026be",
+        "reproduced": true,
+        "tests": "tests/standard1872-effects.test.mjs"
+      }
+    ]
+  },
+  "runtimeCorrection": {
+    "id": "dmrp17-027",
+    "sharedHandler": "Custom/opponentExtreme",
+    "reason": "Official45223 legacySSS mustcheckownchooserprotection afterfindingallmin/max; nofallbacktootherpower andalltapstillresolves.",
+    "registeredIdsAndDefinitionsUnchanged": true,
+    "relatedConfigurations": [
+      "dmrp17-027",
+      "dm25rp4-011",
+      "dmsp01-007",
+      "dm22rp1-005",
+      "dm24rp3-022",
+      "dm23rp2-021"
+    ]
+  }
+}
