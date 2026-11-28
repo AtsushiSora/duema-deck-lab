@@ -28358,5 +28358,295 @@
       "breaker": 2,
       "g191FirstTapUntap": true
     }
+  },
+  "dmr10-007": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "光姫左神ブラッディ・バレンタイン",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）\nこのクリーチャーがリンクしている間、シールドをさらに１枚ブレイクし、自分のターンの終わりにアンタップする。",
+        "race": "ゴッド・ノヴァ/メカ・デル・ソル",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "left",
+      "blocker": true,
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr10-007M": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "光姫左神ブラッディ・バレンタイン",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）\nこのクリーチャーがリンクしている間、シールドをさらに１枚ブレイクし、自分のターンの終わりにアンタップする。",
+        "race": "ゴッド・ノヴァ/メカ・デル・ソル",
+        "powerText": "7000+",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "left",
+      "blocker": true,
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmd14-005": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "真滅右神ラウドパーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、リンクしていなければ、攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。その後、ゴッド・ノヴァ OMGを１体、自分の墓地から手札に戻してもよい。\n右G・リンク",
+        "race": "ゴッド・ノヴァ OMG/ドラゴン・ゾンビ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "right",
+      "blocker": true,
+      "g1878UnlinkedNoAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "optional": true,
+          "filter": {
+            "g1878Omg": true
+          }
+        }
+      ]
+    }
+  },
+  "dm23ex1-056": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "真滅右神ラウドパーク",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、リンクしていなければ、攻撃できない。\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。その後、ゴッド・ノヴァOMGを１枚、自分の墓地から手札に戻してもよい。\n右G・リンク（このクリーチャーが出る時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。離れる時は、その中の１枚を選ぶ）",
+        "race": "ゴッド・ノヴァ OMG/ドラゴン・ゾンビ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "right",
+      "blocker": true,
+      "g1878UnlinkedNoAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "optional": true,
+          "filter": {
+            "g1878Omg": true
+          }
+        }
+      ]
+    }
+  },
+  "dmd12-001": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "双魔左神ディーヴォ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーが攻撃する時、このクリーチャーがリンクしている場合、バトルゾーンにある相手のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。このクリーチャーがリンクしていない場合、相手のクリーチャーを１体破壊する。\nW・ブレイカー\n左G・リンク\nこのクリーチャーがリンクしていれば、シールドをさらに１枚ブレイクする。",
+        "race": "ゴッド・ノヴァ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "left",
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "g1878GodAttack": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "deck",
+              "toOwnerDeck": true,
+              "moveByTargetController": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmd12-002": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "双天右神クラフト・ヴェルク",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーが攻撃する時、このクリーチャーがリンクしている場合、カードを１枚引き、その後、自分の手札を１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加える。このクリーチャーがリンクしていない場合、自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nW・ブレイカー\n右G・リンク",
+        "race": "ゴッド・ノヴァ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "right",
+      "breaker": 2,
+      "g1878GodAttack": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 1
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx22b-165": {
+    "phase": 1878,
+    "faces": [
+      {
+        "name": "左神人類 ヨミ",
+        "typeText": "クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "T・ブレイカー\n光臨―自分のターンの終わりに、このクリーチャーがタップされていれば、自分の山札を見る。その中からコスト７以下のゴッド・ノヴァを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。\n左G・リンク（このクリーチャーがバトルゾーンに出る時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+        "race": "ゴッド・ノヴァ/オラクル",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g31God": "left",
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1064Tapped": true,
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "g841DeckPeek": true,
+              "limit": 1,
+              "rest": "shuffle",
+              "filter": {
+                "creature": true,
+                "race": "ゴッド・ノヴァ",
+                "max": 7
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }

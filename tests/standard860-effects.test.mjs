@@ -81,15 +81,14 @@ test('Anvil triggers for another copy, but not for itself alone (QA 36041)',()=>
  }
 });
 
-test('Anvil sees an allied E Soul destroyed in the same batch as itself (QA 34917)',()=>{
+test('Current603.5d Anvil leavingcannotwatchOTHERESoul death; archived34917 superseded',()=>{
  const s=field();
  const body=add(s,0,'battle',BODY),anvil=add(s,1,'battle',ANVIL),worm=add(s,1,'battle',WORM);
  (s.extTasks??=[]).push({op:'g34_Sweep',p:0,source:DEMON,filter:{creature:true},to:'grave'});
  act(s,'toAttack');
  assert.deepEqual(s.players[1].grave.map(x=>x.uid),[anvil.uid,worm.uid]);
- assert.equal(s.decision.player,0);
- pick(s,body);
- assert.ok(s.players[0].grave.includes(body));
+ assert.equal(s.decision,null);
+ assert.ok(s.players[0].battle.includes(body));
 });
 
 test('Anvil ignores non-E creatures, opponents and moves that are not destruction',()=>{

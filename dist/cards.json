@@ -318262,17 +318262,210 @@
       "g191FirstTapUntap": true,
       "supportBatch": "phase-1877",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-007",
+      "name": "光姫左神ブラッディ・バレンタイン",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ/メカ・デル・ソル",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）\nこのクリーチャーがリンクしている間、シールドをさらに１枚ブレイクし、自分のターンの終わりにアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-007",
+      "limit": 4,
+      "g31God": "left",
+      "blocker": true,
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd14-005",
+      "name": "真滅右神ラウドパーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゴッド・ノヴァ OMG/ドラゴン・ゾンビ",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは、リンクしていなければ、攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。その後、ゴッド・ノヴァ OMGを１体、自分の墓地から手札に戻してもよい。\n右G・リンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-005",
+      "limit": 4,
+      "g31God": "right",
+      "blocker": true,
+      "g1878UnlinkedNoAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "optional": true,
+          "filter": {
+            "g1878Omg": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd12-001",
+      "name": "双魔左神ディーヴォ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ",
+      "text": "このクリーチャーが攻撃する時、このクリーチャーがリンクしている場合、バトルゾーンにある相手のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。このクリーチャーがリンクしていない場合、相手のクリーチャーを１体破壊する。\nW・ブレイカー\n左G・リンク\nこのクリーチャーがリンクしていれば、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-001",
+      "limit": 4,
+      "g31God": "left",
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "g1878GodAttack": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "deck",
+              "toOwnerDeck": true,
+              "moveByTargetController": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd12-002",
+      "name": "双天右神クラフト・ヴェルク",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ",
+      "text": "このクリーチャーが攻撃する時、このクリーチャーがリンクしている場合、カードを１枚引き、その後、自分の手札を１枚、新しいシールドとして自分のシールドゾーンに裏向きにして加える。このクリーチャーがリンクしていない場合、自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nW・ブレイカー\n右G・リンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-002",
+      "limit": 4,
+      "g31God": "right",
+      "breaker": 2,
+      "g1878GodAttack": [
+        {
+          "op": "IfSource541",
+          "g1878Linked": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "to": "shields",
+              "n": 1
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-165",
+      "name": "左神人類 ヨミ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ゴッド・ノヴァ/オラクル",
+      "text": "T・ブレイカー\n光臨―自分のターンの終わりに、このクリーチャーがタップされていれば、自分の山札を見る。その中からコスト７以下のゴッド・ノヴァを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。\n左G・リンク（このクリーチャーがバトルゾーンに出る時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-165",
+      "limit": 4,
+      "g31God": "left",
+      "breaker": 3,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "g1064Tapped": true,
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "g841DeckPeek": true,
+              "limit": 1,
+              "rest": "shuffle",
+              "filter": {
+                "creature": true,
+                "race": "ゴッド・ノヴァ",
+                "max": 7
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1878",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1877,
-    "checkedAt": "2026-11-28T02:47:09.889Z",
-    "baseCount": 9836,
+    "phase": 1878,
+    "checkedAt": "2026-11-28T02:58:16.649Z",
+    "baseCount": 9841,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9841,
+    "totalCount": 9846,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36913/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36894/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36418/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -348925,6 +349118,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 9836,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1877,
+        "checkedAt": "2026-11-28T02:47:09.889Z",
+        "baseCount": 9836,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9841,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

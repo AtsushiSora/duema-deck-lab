@@ -188,7 +188,7 @@ test('Alast makes the turn player put their chosen shield in the graveyard',()=>
  assert.equal(s.decision,null);
 });
 
-test('Alast sees another Grand Devil in simultaneous destruction, including another copy',()=>{
+test('603.5d Alast leavingcannotwatchOTHERGrandDevil simultaneousdeath',()=>{
  for(const id of [DEVIL,ALAST]){
   const s=field();
   add(s,1,'battle',ALAST);
@@ -196,7 +196,7 @@ test('Alast sees another Grand Devil in simultaneous destruction, including anot
   task(s,'g34_Sweep',0,{to:'grave',filter:{creature:true}});
   assert.equal(s.players[1].battle.length,0);
   drain(s);
-  assert.equal(s.players[0].shields.length,id===ALAST?3:4);
+  assert.equal(s.players[0].shields.length,5);
  }
 });
 
