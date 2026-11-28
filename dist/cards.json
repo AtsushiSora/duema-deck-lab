@@ -323074,17 +323074,198 @@
       },
       "supportBatch": "phase-1908",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-005",
+      "name": "剛撃竜騎ヴィレム海舟",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "アーマード・ドラゴン/ジャイアント/サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドラゴン１体、ジャイアント１体、サムライ１体を選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g200Search": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ジャイアント"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "サムライ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1909",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-051",
+      "name": "剛勇 ドングリ-１",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ワイルド・ベジーズ/ディスタス",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-051",
+      "limit": 4,
+      "trigger": true,
+      "sasage": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 2000,
+          "g419Boost": true,
+          "g567PlayerStop": "end"
+        }
+      ],
+      "supportBatch": "phase-1909",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-050",
+      "name": "三代目ファン九郎",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、これを自分の山札の一番下に置いてもよい。そうしたら、相手のパワー1000以下のクリーチャーを１体破壊し、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-050",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfManaFollow1468",
+          "g1841Bottom": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 1000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1909",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-013",
+      "name": "死神の凶獣ベル・ヘル・デ・ジャクソン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーが攻撃する時、自分のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中から進化であるデーモン・コマンドを１体選び、相手に見せてから、手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-013",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "Look",
+              "n": "all",
+              "g201Search": true,
+              "g200Search": true,
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true,
+                    "race": "デーモン・コマンド"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1909",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1908,
-    "checkedAt": "2026-11-28T06:43:46.493Z",
-    "baseCount": 9957,
+    "phase": 1909,
+    "checkedAt": "2026-11-28T06:48:21.845Z",
+    "baseCount": 9961,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9961,
+    "totalCount": 9965,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36147/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -354206,6 +354387,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 9957,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1908,
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "baseCount": 9957,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9961,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

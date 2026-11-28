@@ -37481,5 +37481,197 @@
         }
       }
     }
+  },
+  "dm37-005": {
+    "phase": 1909,
+    "faces": [
+      {
+        "name": "剛撃竜騎ヴィレム海舟",
+        "typeText": "クリーチャー",
+        "civilizationText": "火/自然",
+        "civilizations": [
+          "火",
+          "自然"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドラゴン１体、ジャイアント１体、サムライ１体を選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "アーマード・ドラゴン/ジャイアント/サムライ",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g200Search": true,
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ジャイアント"
+              }
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "サムライ"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp17-051": {
+    "phase": 1909,
+    "faces": [
+      {
+        "name": "剛勇 ドングリ-１",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+        "race": "ワイルド・ベジーズ/ディスタス",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "sasage": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 2000,
+          "g419Boost": true,
+          "g567PlayerStop": "end"
+        }
+      ]
+    }
+  },
+  "dmrp03-050": {
+    "phase": 1909,
+    "faces": [
+      {
+        "name": "三代目ファン九郎",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、これを自分の山札の一番下に置いてもよい。そうしたら、相手のパワー1000以下のクリーチャーを１体破壊し、カードを１枚引く。",
+        "race": "ジョーカーズ",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfManaFollow1468",
+          "g1841Bottom": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 1000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm34-013": {
+    "phase": 1909,
+    "faces": [
+      {
+        "name": "死神の凶獣ベル・ヘル・デ・ジャクソン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "このクリーチャーが攻撃する時、自分のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中から進化であるデーモン・コマンドを１体選び、相手に見せてから、手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "デーモン・コマンド",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "SacrificeAlly413",
+          "defs": [
+            {
+              "op": "Look",
+              "n": "all",
+              "g201Search": true,
+              "g200Search": true,
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true,
+                    "race": "デーモン・コマンド"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

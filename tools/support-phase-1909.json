@@ -1,0 +1,448 @@
+{
+  "phase": 1909,
+  "checkedAt": "2026-11-28T06:48:21.845Z",
+  "baseline": "aed822095d543d72249c0fd93f22afeb35bad016",
+  "baseCount": 9961,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36147/"
+  ],
+  "cards": [
+    {
+      "id": "dm37-005",
+      "name": "剛撃竜騎ヴィレム海舟",
+      "canonicalId": "dm37-005",
+      "printId": "dm37-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-005",
+      "faces": [
+        {
+          "name": "剛撃竜騎ヴィレム海舟",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドラゴン１体、ジャイアント１体、サムライ１体を選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/ジャイアント/サムライ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "g255Distribute": true,
+            "g791OrderRest": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン"
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ジャイアント"
+                }
+              },
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サムライ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-005.jpg",
+      "imageSha256": "abb11c6d7191779924b13cec5f8043b7a8a65dcec9703991deda6591e919e952",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm37-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm37-005"
+        ],
+        "allSearchIds": [
+          "dm37-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:48:21.845Z",
+        "sha256": "9abff777ea5502c282314005a7da51423c47105eb5ee510951468951756c5754",
+        "facesMatched": true,
+        "imageSha256": "abb11c6d7191779924b13cec5f8043b7a8a65dcec9703991deda6591e919e952"
+      }
+    },
+    {
+      "id": "dmrp17-051",
+      "name": "剛勇 ドングリ-１",
+      "canonicalId": "dmrp17-051",
+      "printId": "dmrp17-051",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-051",
+      "faces": [
+        {
+          "name": "剛勇 ドングリ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ワイルド・ベジーズ/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "sasage": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 2000,
+            "g419Boost": true,
+            "g567PlayerStop": "end"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-051.jpg",
+      "imageSha256": "32410235c5c8c55cf231cb0d7b51935d3d02b57b3d3206c506b0590757d53a5e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp17-051-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp17-051"
+        ],
+        "allSearchIds": [
+          "dmrp17-051",
+          "dm13-034",
+          "dmr19-083",
+          "dmx11-063",
+          "dm27-052",
+          "dmr07-018",
+          "dm24ex3-041",
+          "dm24rp4-024",
+          "dm25-003",
+          "dmr03-033",
+          "dm26-026",
+          "dm26-055",
+          "dm26-052",
+          "dm12-020",
+          "dmc34-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:48:21.845Z",
+        "sha256": "2e74c814235b055a2d5f034cfb3970055c57d2cb78e772bb550e2c61200a2bad",
+        "facesMatched": true,
+        "imageSha256": "32410235c5c8c55cf231cb0d7b51935d3d02b57b3d3206c506b0590757d53a5e"
+      }
+    },
+    {
+      "id": "dmrp03-050",
+      "name": "三代目ファン九郎",
+      "canonicalId": "dmrp03-050",
+      "printId": "dmrp03-050",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-050",
+      "faces": [
+        {
+          "name": "三代目ファン九郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、これを自分の山札の一番下に置いてもよい。そうしたら、相手のパワー1000以下のクリーチャーを１体破壊し、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfManaFollow1468",
+            "g1841Bottom": true,
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 1000,
+                  "g199Power": true
+                }
+              },
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-050.jpg",
+      "imageSha256": "575c8ffd52781465f88733b0c2759ebedad7d8fc30247ed12e0b872271b10cde",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-050-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-050"
+        ],
+        "allSearchIds": [
+          "dmrp03-050"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:48:21.845Z",
+        "sha256": "bddbea8d50cc767d68afdd9c6777583b8678ce1b7dd850e359ab5352418f69a0",
+        "facesMatched": true,
+        "imageSha256": "575c8ffd52781465f88733b0c2759ebedad7d8fc30247ed12e0b872271b10cde"
+      }
+    },
+    {
+      "id": "dm34-013",
+      "name": "死神の凶獣ベル・ヘル・デ・ジャクソン",
+      "canonicalId": "dm34-013",
+      "printId": "dm34-013",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-013",
+      "faces": [
+        {
+          "name": "死神の凶獣ベル・ヘル・デ・ジャクソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、自分のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中から進化であるデーモン・コマンドを１体選び、相手に見せてから、手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Look",
+                "n": "all",
+                "g201Search": true,
+                "g200Search": true,
+                "rest": "shuffle",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "optional": true,
+                    "reveal": true,
+                    "filter": {
+                      "creature": true,
+                      "evolution": true,
+                      "race": "デーモン・コマンド"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-013.jpg",
+      "imageSha256": "feefc192feb73b74a1c983eeb87ad685163f931631d6d70a57df06d3e18e0947",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm34-013-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm34-013"
+        ],
+        "allSearchIds": [
+          "dm34-013"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:48:21.845Z",
+        "sha256": "dd2fa4ff6a548e2ff6fb24409f326aab2e188cc59be8f3356e1fdbb19d6ff05a",
+        "facesMatched": true,
+        "imageSha256": "feefc192feb73b74a1c983eeb87ad685163f931631d6d70a57df06d3e18e0947"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36147/",
+      "sha256": "fdb8eb28ef74a459f5544c5a65e23013af35869f2ee4a7dedd7af1a0db2d02d2",
+      "checkedAt": "2026-11-28T06:48:21.845Z",
+      "reproduced": true,
+      "tests": "tests/standard1909-effects.test.mjs",
+      "reproduction": "Literal Vilem ability: ownDeck has zeroDragon but actualGiant ForestHornet dm01-066 and Samurai Ryunosuke dm36-098. Both can be chosen/revealed/HAND with no Dragon; both seats, zero/one/three variants and onephysicaltriple-race not duplicated.",
+      "result": "Literal Vilem ability: ownDeck has zeroDragon but actualGiant ForestHornet dm01-066 and Samurai Ryunosuke dm36-098. Both can be chosen/revealed/HAND with no Dragon; both seats, zero/one/three variants and onephysicaltriple-race not duplicated."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm25sp2-015",
+      "name": "伍代ドーラ",
+      "reason": "Fullthreeprints/ability/QA researchdone, imagesNOTreviewed. Nativeg212 floor handlerexplicitlysupportsminimum2, minimum3notimplemented. NeedfullManaDragonCARDfacecount/floor3/paymentinteractions andGS/Haste/Slayer/T3/attackfight. No partial registration."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:48:21.845Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-005": 4,
+      "dmrp17-051": 4,
+      "dmrp03-050": 4,
+      "dm34-013": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm37-005",
+      "searchSha256": "14cd73329ac88aefaf5382b049d2de858425f3f78af94c77224230ae0f9e1636",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm37-005"
+      ],
+      "exactPrints": [
+        "dm37-005"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp17-051",
+      "searchSha256": "07fe524c1babf028b7b1926d4c47e4648b8adbca8fb7a85296b342a09862ff65",
+      "totalResults": 15,
+      "allSearchIds": [
+        "dmrp17-051",
+        "dm13-034",
+        "dmr19-083",
+        "dmx11-063",
+        "dm27-052",
+        "dmr07-018",
+        "dm24ex3-041",
+        "dm24rp4-024",
+        "dm25-003",
+        "dmr03-033",
+        "dm26-026",
+        "dm26-055",
+        "dm26-052",
+        "dm12-020",
+        "dmc34-018"
+      ],
+      "exactPrints": [
+        "dmrp17-051"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp03-050",
+      "searchSha256": "4233b121f79e7693f5b9052b2cb7ac2b910f8d7fe5c145e67ceabe5f247b8f94",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp03-050"
+      ],
+      "exactPrints": [
+        "dmrp03-050"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm34-013",
+      "searchSha256": "1b4f41258378ebadde5a2f39b43672288097ab23d4450721d2c59135fd33ea3a",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm34-013"
+      ],
+      "exactPrints": [
+        "dm34-013"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards / fourprints, all official basicstats/images/mana/limits. Vilem paid9W2 privatewholeDeck independentDragon/Giant/Samurai 0..3search simultaneouslyrevealedHAND thenSHUFFLE, onephysicalcardneverchosenmultiple; literalQA36147 zeroDragon stillGiant+Samurai. Donguri paid4/ST anycreature+2000/noPlayerAttackthisturn includingSELF/enemy, creatureattackstilllegal andENDexpires; actualoptionalSasage1destroyONLYDispector withGenmu4negative. Fankuro paid3/ST optionalSELFbottom thenenemy<=1000destroy andDraw1 eveniftargetabsent; decline nofollowup. Jackson paid6W2 optionalowncreatureincludingSELFdestroy then optionalEVO-Demon privateDecksearch/revealshuffle. Bothseats, saved/encryptedservices, UIDconservation, manaorientation.",
+    "resolvedAttempts": "Corrected new Vilem spec to g255Distribute+g791OrderRest native combined mode, needed to shuffleafter simultaneoushand publication; allchoicesandRNG verified. Corrected new fixture noDragon case to selectbothremainingraces, returned active to actualturnownerbeforeexpiry, used actualBallom dm04-s03 evolutionDemon ratherthan misidentified otherIDs. Final focused passed.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36147/",
+        "reproduced": true,
+        "tests": "tests/standard1909-effects.test.mjs",
+        "reproduction": "Literal Vilem ability: ownDeck has zeroDragon but actualGiant ForestHornet dm01-066 and Samurai Ryunosuke dm36-098. Both can be chosen/revealed/HAND with no Dragon; both seats, zero/one/three variants and onephysicaltriple-race not duplicated."
+      }
+    ],
+    "held": [
+      {
+        "id": "dm25sp2-015",
+        "name": "伍代ドーラ",
+        "reason": "Fullthreeprints/ability/QA researchdone, imagesNOTreviewed. Nativeg212 floor handlerexplicitlysupportsminimum2, minimum3notimplemented. NeedfullManaDragonCARDfacecount/floor3/paymentinteractions andGS/Haste/Slayer/T3/attackfight. No partial registration."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmsd19-004",
+          "dmx13-032",
+          "dmx19-s45",
+          "dm37-012"
+        ],
+        "reason": "Official research prepared for battlewin Mana deploy, colorlessattackthreshold, Mana-civilizationcount andNoChoice."
+      }
+    ]
+  }
+}
