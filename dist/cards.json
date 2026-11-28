@@ -321010,21 +321010,124 @@
       ],
       "supportBatch": "phase-1895",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy6-023",
+      "name": "無双竜機ヴァルガザーク",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/アース・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nＷ・ブレイカー\nこのクリーチャーが攻撃する時、ドラゴンを１体、自分の手札から捨ててもよい。そうした場合、そのターン、このクリーチャーは「Ｔ・ブレイカー」を得、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-023",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 0,
+              "g536Source": true,
+              "breaker": 3,
+              "g633DoubleBreaker": true
+            },
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1896",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx10-003",
+      "name": "慈愛の守護者キュップルン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ガーディアン/ハンター",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、そのターン、相手がバトルゾーンにあるクリーチャーを選ぶ時、自分のクリーチャーは選ばれない。(ただし、選ばれないクリーチャーを攻撃またはブロックしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-003",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "Lock",
+          "g1740UntilEnd": true,
+          "limit": {
+            "kind": "g1896ArmyProtection"
+          },
+          "g746Self": true
+        }
+      ],
+      "supportBatch": "phase-1896",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-024",
+      "name": "ギガベロス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "キマイラ",
+      "text": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャー２体を自分の墓地に置く。 そうしなければ、このクリーチャーを自分の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-024",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "n": 2,
+          "mandatory": true,
+          "other": true,
+          "g1840NoVictimSelf": true,
+          "defs": []
+        }
+      ],
+      "supportBatch": "phase-1896",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1895,
-    "checkedAt": "2026-11-28T05:00:41.689Z",
-    "baseCount": 9912,
-    "newEffectCards": 4,
+    "phase": 1896,
+    "checkedAt": "2026-11-28T05:11:17.866Z",
+    "baseCount": 9916,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9916,
+    "totalCount": 9919,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41167/",
-      "https://dm.takaratomy.co.jp/rule/qa/41168/",
-      "https://dm.takaratomy.co.jp/rule/qa/41433/",
-      "https://dm.takaratomy.co.jp/rule/qa/41432/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351951,6 +352054,24 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39961/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1895,
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "baseCount": 9912,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9916,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41167/",
+          "https://dm.takaratomy.co.jp/rule/qa/41168/",
+          "https://dm.takaratomy.co.jp/rule/qa/41433/",
+          "https://dm.takaratomy.co.jp/rule/qa/41432/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

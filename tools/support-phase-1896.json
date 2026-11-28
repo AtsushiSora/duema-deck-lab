@@ -1,0 +1,578 @@
+{
+  "phase": 1896,
+  "checkedAt": "2026-11-28T05:11:17.866Z",
+  "baseline": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
+  "baseCount": 9916,
+  "target": 10000,
+  "description": "Three whole cards/six official prints: Valgazark W2, optional hand Dragon discard grants additional T3 and optional top2mana; Kyuprun blocker/noPlayerAttack death creature-choice protection through turn end; Gigaveros W2 mandatory exactly two other own creature destruction attempts or self-destruction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "promoy6-023",
+      "name": "無双竜機ヴァルガザーク",
+      "canonicalId": "promoy6-023",
+      "printId": "promoy6-023",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-023",
+      "faces": [
+        {
+          "name": "無双竜機ヴァルガザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nＷ・ブレイカー\nこのクリーチャーが攻撃する時、ドラゴンを１体、自分の手札から捨ててもよい。そうした場合、そのターン、このクリーチャーは「Ｔ・ブレイカー」を得、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 0,
+                "g536Source": true,
+                "breaker": 3,
+                "g633DoubleBreaker": true
+              },
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-023.jpg",
+      "imageSha256": "74e634650a7eda274317db6530a7a28c650fe96780056a2922ad2db1403dfeb1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy6-023-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allSearchIds": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "24ef89cd8097743fda24aa8029d4edf186c9fc852db5f265eb5b29119f3da7cd",
+        "facesMatched": true,
+        "imageSha256": "74e634650a7eda274317db6530a7a28c650fe96780056a2922ad2db1403dfeb1"
+      }
+    },
+    {
+      "id": "dmx10-003",
+      "name": "慈愛の守護者キュップルン",
+      "canonicalId": "dmx10-003",
+      "printId": "dmx10-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-003",
+      "faces": [
+        {
+          "name": "慈愛の守護者キュップルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、そのターン、相手がバトルゾーンにあるクリーチャーを選ぶ時、自分のクリーチャーは選ばれない。(ただし、選ばれないクリーチャーを攻撃またはブロックしてもよい)",
+          "race": "ガーディアン/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Lock",
+            "g1740UntilEnd": true,
+            "limit": {
+              "kind": "g1896ArmyProtection"
+            },
+            "g746Self": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-003.jpg",
+      "imageSha256": "51052c3fb849780c8477de56b0740d94f339c95439106635e692e00e06f857e5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx10-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx10-003"
+        ],
+        "allSearchIds": [
+          "dmx10-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "46ab74605d303c20e337f6dcb34595e22dd28702f9b65b7eabad551dfc151a3c",
+        "facesMatched": true,
+        "imageSha256": "51052c3fb849780c8477de56b0740d94f339c95439106635e692e00e06f857e5"
+      }
+    },
+    {
+      "id": "dm01-024",
+      "name": "ギガベロス",
+      "canonicalId": "dm01-024",
+      "printId": "dm01-024",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-024",
+      "faces": [
+        {
+          "name": "ギガベロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャー２体を自分の墓地に置く。 そうしなければ、このクリーチャーを自分の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+          "race": "キマイラ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "n": 2,
+            "mandatory": true,
+            "other": true,
+            "g1840NoVictimSelf": true,
+            "defs": []
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-024.jpg",
+      "imageSha256": "27bae229ebad52c6b516b7e13af4712091b76127ea849053febb5f9fb8289a54",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm01-024-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm01-024",
+          "promoy1-WINNER1"
+        ],
+        "allSearchIds": [
+          "promoy1-WINNER1",
+          "dm01-024"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "6142fb37e2dc69f7bcf8a7d73200826648e1247431b91c26773f1bb8a45ff723",
+        "facesMatched": true,
+        "imageSha256": "27bae229ebad52c6b516b7e13af4712091b76127ea849053febb5f9fb8289a54"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy6-025",
+      "name": "無双竜機ヴァルガザーク",
+      "canonicalId": "promoy6-023",
+      "printId": "promoy6-025",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-025",
+      "faces": [
+        {
+          "name": "無双竜機ヴァルガザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、ドラゴンを１体、自分の手札から捨ててもよい。そうした場合、そのターン、このクリーチャーは「T・ブレイカー」を得、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 0,
+                "g536Source": true,
+                "breaker": 3,
+                "g633DoubleBreaker": true
+              },
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-025.jpg",
+      "imageSha256": "1bfcdfb3654438f85852528902c81a2cf1881e49dbda40864c7b9c236b23f93c",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy6-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allSearchIds": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "e099ee3ed0f8b77c0dbc75d640126f616e6724218133820166423ba4b9b4bf44",
+        "facesMatched": true,
+        "imageSha256": "1bfcdfb3654438f85852528902c81a2cf1881e49dbda40864c7b9c236b23f93c"
+      }
+    },
+    {
+      "id": "promoy15-039",
+      "name": "無双竜機ヴァルガザーク",
+      "canonicalId": "promoy6-023",
+      "printId": "promoy15-039",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-039",
+      "faces": [
+        {
+          "name": "無双竜機ヴァルガザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nＷ・ブレイカー\nこのクリーチャーが攻撃する時、ドラゴンを１体、自分の手札から捨ててもよい。そうした場合、そのターン、このクリーチャーは「Ｔ・ブレイカー」を得、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 0,
+                "g536Source": true,
+                "breaker": 3,
+                "g633DoubleBreaker": true
+              },
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "race": "アーマード・ドラゴン/アース・ドラゴン"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-039.jpg",
+      "imageSha256": "4dc8329aa5d37ba9cc189fa4ab53a39ea76862ffb661a1e1325c11948257ff19",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy15-039-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allSearchIds": [
+          "promoy6-023",
+          "promoy6-025",
+          "promoy15-039"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "4867f8db993ec08293853ae4ae1a6ec0befe618d6adccca29ee8725c886f8b27",
+        "facesMatched": true,
+        "imageSha256": "4dc8329aa5d37ba9cc189fa4ab53a39ea76862ffb661a1e1325c11948257ff19"
+      },
+      "imageMetadataEvidence": {
+        "field": "race",
+        "value": "アーマード・ドラゴン/アース・ドラゴン",
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-039.jpg",
+        "sha256": "4dc8329aa5d37ba9cc189fa4ab53a39ea76862ffb661a1e1325c11948257ff19",
+        "reason": "Official HTML race empty; full official print image visually shows Armored Dragon/Earth Dragon. No change to saved official HTML metadata."
+      }
+    },
+    {
+      "id": "promoy1-WINNER1",
+      "name": "ギガベロス",
+      "canonicalId": "dm01-024",
+      "printId": "promoy1-WINNER1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy1-WINNER1",
+      "faces": [
+        {
+          "name": "ギガベロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャー2体を自分の墓地に置く。そうしなければ、このクリーチャーを自分の墓地に置く。\nW・ブレイカー（シールドを攻撃したとき、このクリーチャーはシールドを2枚ブレイクする。）",
+          "race": "キマイラ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "n": 2,
+            "mandatory": true,
+            "other": true,
+            "g1840NoVictimSelf": true,
+            "defs": []
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy1-WINNER1.jpg",
+      "imageSha256": "491832baa3d22c9b2208405b7f54c36bac6277fde9a9181fa9f6d771c7b7eb50",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy1-WINNER1-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm01-024",
+          "promoy1-WINNER1"
+        ],
+        "allSearchIds": [
+          "promoy1-WINNER1",
+          "dm01-024"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "sha256": "397cd5b889e04657f4e07842486f128ed01d0b9551a450976d883d6aa7ab76b7",
+        "facesMatched": true,
+        "imageSha256": "491832baa3d22c9b2208405b7f54c36bac6277fde9a9181fa9f6d771c7b7eb50"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dm19-103",
+      "name": "白銀のシュシュ",
+      "reason": "Whole two prints researched but images not reviewed; full Dynamo timing/power+ability transfer needs native implementation and literal35419 actualAmshion. No partial card."
+    },
+    {
+      "id": "dm36-013",
+      "name": "光源の使徒ラーサ",
+      "reason": "Whole one print/QA_old36005 researched, image not reviewed. Requires snapshot allHolyFieldgrants through NEXTownEND and dynamic H-Soul enduntap; do not partialcount."
+    },
+    {
+      "id": "dm19-020",
+      "name": "封魔ダンリモス",
+      "reason": "Whole single print researched/image not reviewed. Full GrandDevil beforebreak name declaration/private exactshield comparison replacement needs complete implementation."
+    },
+    {
+      "id": "dm20-055",
+      "name": "ドリームフェスタ・エナジー",
+      "reason": "Whole one print/QA33708 researched/image not reviewed. LauncherE tapDreammate cost must be tracked independently from actual KaeruBJack reduction (not registered); hold full card."
+    },
+    {
+      "id": "dm12-009",
+      "name": "メロッペ",
+      "reason": "Full1print researched/image not reviewed. QA_old35244 requires both attack AND actual LuckyDarts effect shield chooser override, not existing attack-only g1659."
+    },
+    {
+      "id": "dm07-s05",
+      "name": "金剛の超人",
+      "reason": "Full2prints researched/image not reviewed. Must implement discard as attack legality COST beforeattack (not attack trigger), includes nohand/protecteddiscard cases. No partial T3/unblock."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T05:11:17.866Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy6-023": 4,
+      "dmx10-003": 4,
+      "dm01-024": 4,
+      "promoy6-025": 4,
+      "promoy15-039": 4,
+      "promoy1-WINNER1": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "promoy6-023",
+      "searchSha256": "7d47638753419726794a2e4a7c434ffaee38182b90001f21cf6ca59a9b66e319",
+      "totalResults": 3,
+      "allSearchIds": [
+        "promoy6-023",
+        "promoy6-025",
+        "promoy15-039"
+      ],
+      "exactPrints": [
+        "promoy6-023",
+        "promoy6-025",
+        "promoy15-039"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmx10-003",
+      "searchSha256": "dfe9df786c1aa6d12c92c958482db404617a0861a3d9c8b1959dff09b89cdf16",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmx10-003"
+      ],
+      "exactPrints": [
+        "dmx10-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm01-024",
+      "searchSha256": "d6b477d32e32389fab497086eb7044978d55af72c32995b728b83fa2b2e26583",
+      "totalResults": 2,
+      "allSearchIds": [
+        "promoy1-WINNER1",
+        "dm01-024"
+      ],
+      "exactPrints": [
+        "dm01-024",
+        "promoy1-WINNER1"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three complete cards/six print images. All full official abilities/mana/current restrictions/reprint IDs verified. Valgazark current W2 and newlygranted T3 BOTH select2/3, optional handDragonCREATURE discard, optional two-ramp independentofT3, noDragon/no payment negative, same-turn expiry, paid6 and Genmu doesNOTignore6. Kyuprun blocker/noPlayerAttack, destructiononly global current-turn choice protection own creatures including later entries/ignored recipients; owner choice and combat unaffected, no protectionafterexpiry and ignoredsource. Gigaveros mandatory exactly2 OTHER OWNcreatures, no self/enemy/seed/skip, <2 meansSELFdestroy withoutpartial sacrifice, realHeisan destructionattempt counts, Genmu disablescost5entry. All IDs/definitions/details/saveformats unchanged.",
+    "resolvedAttempts": "Candidate Kenguren dmex18-067 was discovered already aliased to SUPPORTED original dm32-101 phase1750 despite differing wave characters/nameKey; removed entirely from additions/pins/manifest and preserved original catalogue alias/image reference/definition. No duplicate counted. Changed candidate to unimplemented Valgazark. Official promoy15-039 HTML race empty while reviewed actual image explicitly shows Armored Dragon/Earth Dragon; alias spec.race and hashed image evidence preserve HTML data. Fixture legacy effect targets use effect actions rather than extended choices; no extLimits collection allowed when no effect. An expansion attempted before revised official gate finished aborted without data writes, subsequent run after gate used current correct manifest. All failed attempts resolved.",
+    "rulings": [],
+    "held": [
+      {
+        "id": "dm19-103",
+        "name": "白銀のシュシュ",
+        "reason": "Whole two prints researched but images not reviewed; full Dynamo timing/power+ability transfer needs native implementation and literal35419 actualAmshion. No partial card."
+      },
+      {
+        "id": "dm36-013",
+        "name": "光源の使徒ラーサ",
+        "reason": "Whole one print/QA_old36005 researched, image not reviewed. Requires snapshot allHolyFieldgrants through NEXTownEND and dynamic H-Soul enduntap; do not partialcount."
+      },
+      {
+        "id": "dm19-020",
+        "name": "封魔ダンリモス",
+        "reason": "Whole single print researched/image not reviewed. Full GrandDevil beforebreak name declaration/private exactshield comparison replacement needs complete implementation."
+      },
+      {
+        "id": "dm20-055",
+        "name": "ドリームフェスタ・エナジー",
+        "reason": "Whole one print/QA33708 researched/image not reviewed. LauncherE tapDreammate cost must be tracked independently from actual KaeruBJack reduction (not registered); hold full card."
+      },
+      {
+        "id": "dm12-009",
+        "name": "メロッペ",
+        "reason": "Full1print researched/image not reviewed. QA_old35244 requires both attack AND actual LuckyDarts effect shield chooser override, not existing attack-only g1659."
+      },
+      {
+        "id": "dm07-s05",
+        "name": "金剛の超人",
+        "reason": "Full2prints researched/image not reviewed. Must implement discard as attack legality COST beforeattack (not attack trigger), includes nohand/protecteddiscard cases. No partial T3/unblock."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmrp17-015",
+          "dmrp17-023",
+          "dmbd03-002",
+          "dmrp22-015",
+          "dmrp18-s06"
+        ],
+        "reason": "Research prepared full official print/QA; choose native number lock, deck-on-host evolution, JOE battlewin/discard, seed entry evolution, Star reveal/CIP copy."
+      }
+    ]
+  }
+}
