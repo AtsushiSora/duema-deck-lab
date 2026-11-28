@@ -4018,8 +4018,8 @@ export function createSixPhotoRules(api){
    if(y.sealed)continue;
    for(const name of new Set(exactRaces(effective(y,s))))scores.set(name,(scores.get(name)||0)+1);
   }
-  const names=[...new Set([...RECOVERY_RACES,...scores.keys()])];
-  choice(s,t,'種族を1つ選ぶ',names.map(name=>opt(name,name,scores.get(name)||0)).sort((a,b)=>b.score-a.score));
+  const names=[...new Set([...RECOVERY_RACES,...scores.keys(),...(t.g1875Fols?api.allCards().flatMap(c=>faces(c).flatMap(f=>String(f.race||'').split('/').filter(Boolean))):[])])];
+  choice(s,t,'種族を1つ選ぶ',names.map(name=>opt(name,name,scores.get(name)||0)).sort((a,b)=>b.score-a.score),t.g1875Fols?1-t.p:t.p);
   break;
  }
  case'g34_Lengston724':{
@@ -9185,6 +9185,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ChooseRace724':{
+  if(t.g1875Fols){const host=sourceHost474(s,t);if(host)host.x.g1875ChosenRace=v;break;}
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
@@ -10596,7 +10597,7 @@ export function createSixPhotoRules(api){
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,attackOnly:false,amount:1}):0),
  countBattleCivilizations,
  manaCivilizationCount,
- extraBreak412:(s,p,x)=>(p>=0&&card(x).g1866SpellExtraBreak&&!api.ignored(s,x)?s.players[p].spellsThisTurn||0:0)+(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
+ extraBreak412:(s,p,x)=>(p>=0&&x.godLinks?.length&&!api.ignored(s,x)?[x,...x.godLinks].reduce((n,part)=>n+(card(part.cardId).g1875LinkedExtra||0),0):0)+(p>=0&&card(x).g1866SpellExtraBreak&&!api.ignored(s,x)?s.players[p].spellsThisTurn||0:0)+(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  winBattle(s,x){
   const c=effective(x,s);
   return !!c.g34AlwaysWin||!!c.g587AttackWins&&attacking587(s,x)||!!c.g587UntappedWins&&!x.tapped||
@@ -10607,6 +10608,12 @@ export function createSixPhotoRules(api){
   (l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
   api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  battlePower209,
+ battleRacePower1875(s,x,y){
+  if(!s||!y)return 0;
+  const p=s.players.findIndex(own=>own.battle.includes(x));if(p<0)return 0;
+  return creatures(s,p).filter(source=>!source.sealed&&card(source).g1875BattleRace&&!api.ignored(s,source)&&
+   source.g1875ChosenRace&&!race(effective(y,s),source.g1875ChosenRace)).length*6000;
+ },
  battleSafe:battleSafe466,
  battleAuraPower466(s,x,c){
   const counted=s&&c.g860BattleCountPower?countPower(s,x,c,false,c.g860BattleCountPower):0;

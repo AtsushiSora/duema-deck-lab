@@ -317840,17 +317840,158 @@
       },
       "supportBatch": "phase-1874",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-021",
+      "name": "守護聖天フォルス・リュード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ガーディアン",
+      "text": "進化-自分のガーディアン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手は種族をひとつ選ぶ。選ばれた種族以外のクリーチャーとバトルする時、自分のクリーチャーのパワーは+6000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-021",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "g1875BattleRace": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g1875Fols": true
+        }
+      ],
+      "supportBatch": "phase-1875",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-042",
+      "name": "夢幻左神スクエア・プッシャー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ゴッド・ノヴァ",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがゴッドとリンクした時、自分の山札の上から２枚を墓地に置いてもよい。\nW・ブレイカー\n左G・リンク\nこのクリーチャーがリンクしている間、このクリーチャーはシールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-042",
+      "limit": 4,
+      "g31God": "left",
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g1874GodLink": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1875",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-043",
+      "name": "霊騎右神ニルヴァーナ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ゴッド・ノヴァ/アーク・セラフィム",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがゴッドとリンクした時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\nW・ブレイカー\n右G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-043",
+      "limit": 4,
+      "g31God": "right",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "g1874GodLink": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1875",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-012",
+      "name": "封魔左神リバティーンズ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ/グランド・デビル",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがゴッドとリンクした時、バトルゾーンにある相手のクリーチャー１体を選ぶ。そのターン、そのクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー\n左G・リンク\nこのクリーチャーがリンクしている間、このクリーチャーはシールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-012",
+      "limit": 4,
+      "g31God": "left",
+      "breaker": 2,
+      "g1875LinkedExtra": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -2000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g1874GodLink": [
+        {
+          "op": "Target",
+          "power": -2000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1875",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1874,
-    "checkedAt": "2026-11-28T02:28:19.263Z",
-    "baseCount": 9826,
-    "newEffectCards": 2,
+    "phase": 1875,
+    "checkedAt": "2026-11-28T02:35:05.634Z",
+    "baseCount": 9828,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9828,
+    "totalCount": 9832,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35506/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -348462,6 +348603,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36986/",
           "https://dm.takaratomy.co.jp/rule/qa/39441/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1874,
+        "checkedAt": "2026-11-28T02:28:19.263Z",
+        "baseCount": 9826,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9828,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
