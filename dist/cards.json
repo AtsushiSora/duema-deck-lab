@@ -324113,17 +324113,218 @@
       },
       "supportBatch": "phase-1914",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-017",
+      "name": "超電磁パトリオット・エース",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "サイバー・コマンド",
+      "text": "ブロッカー\n進化ー自分の光または闇のクリーチャー１体の上に置く。\n相手がバトルゾーンにあるクリーチャーを選ぶ時、自分の光または闇のクリーチャーを選ぶことはできない。(ただし、そのクリーチャーを攻撃またはブロックしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-017",
+      "limit": 4,
+      "blocker": true,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g608Protect": {
+        "creature": true,
+        "any": [
+          {
+            "color": "光"
+          },
+          {
+            "color": "闇"
+          }
+        ]
+      },
+      "supportBatch": "phase-1915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-050",
+      "name": "提督の精霊龍 ボンソワール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\n相手の呪文またはバトルゾーンにある相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、「ブロッカー」を持つクリーチャーをすべて自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-050",
+      "limit": 4,
+      "blocker": true,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "creature": true,
+                "blocker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-029",
+      "name": "超竜ヴァルト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アーマード・ドラゴン",
+      "text": "デッキ進化-自分の山札の上から１枚目を表向きにする。そのカードがクリーチャーであれば、このクリーチャーをその上に重ねつつバトルゾーンに出す。そのカードがクリーチャー以外であれば、このクリーチャーを自分の手札に戻す。\nバトルゾーンに自分の他のアーマード・ドラゴンがある時、このクリーチャーのパワーは+3000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-029",
+      "limit": 4,
+      "g45MDeck": true,
+      "g831SingleDeckEvolution": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "アーマード・ドラゴン"
+            },
+            "min": 1
+          }
+        },
+        "grants": {
+          "power": 3000
+        }
+      },
+      "supportBatch": "phase-1915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy14-045",
+      "name": "超轟速 レッド・エンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "進化―自分の火のクリーチャー１体の上に置く。\n侵略―火のコマンド（自分の火のコマンドが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが破壊された時、その下に重ねてあったカードのうち１枚を、墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-045",
+      "limit": 4,
+      "evolution": {
+        "civilization": "火"
+      },
+      "invasion": {
+        "colors": [
+          "火"
+        ],
+        "categories": [
+          "コマンド"
+        ],
+        "origins": [
+          "hand"
+        ]
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g960FormerBases": true,
+          "filter": {}
+        }
+      ],
+      "supportBatch": "phase-1915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-s02",
+      "name": "天雷の龍聖ロレンツォIV世",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アポロニア・ドラゴン/ナイト",
+      "text": "相手がバトルゾーンにあるクリーチャーを選ぶ時、自分の他のナイトを選ぶことはできない。(ただし、そのクリーチャーを攻撃またはブロックしてもよい)\nバトルゾーンにある自分の他のナイトはすべて、「ブロッカー」を得る。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g608Protect": {
+        "creature": true,
+        "race": "ナイト",
+        "g334Other": true
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ナイト"
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1915",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1914,
-    "checkedAt": "2026-11-28T07:10:21.450Z",
-    "baseCount": 9981,
-    "newEffectCards": 4,
+    "phase": 1915,
+    "checkedAt": "2026-11-28T07:17:13.820Z",
+    "baseCount": 9985,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9985,
+    "totalCount": 9990,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/44583/",
+      "https://dm.takaratomy.co.jp/rule/qa/39646/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35638/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -355333,6 +355534,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 9981,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1914,
+        "checkedAt": "2026-11-28T07:10:21.450Z",
+        "baseCount": 9981,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9985,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
