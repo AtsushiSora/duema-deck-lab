@@ -67,7 +67,7 @@ import {createRecommendedRules} from './recommended-rules.js?v=0.722.19';
 import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.47';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.722.24';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
-import {createPhoenixRules} from './phoenix-rules.js?v=0.722.20';
+import {createPhoenixRules} from './phoenix-rules.js?v=0.722.21';
 import {createBolshackRules} from './bolshack-rules.js?v=0.722.3';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js?v=0.89';
@@ -1099,7 +1099,7 @@ if(!f.g1746Finish&&f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.t
    notifyDiscard848(s,p,watchers,actual);
   },
   shieldPhoto,phoenix,bolshack,redzone,manaTap:(s,p)=>utilityExpansion.manaTap(s,p)||redzone.manaTap(s,p),extraAdded:(s,p,x)=>redzone.extraAdded(s,p,x),command:(s,p,x)=>redzone.command(s,p,x),pandora:(s,p,a)=>redzone.pandora(s,p,a),gsAllowed,
-  mado,spellPermission:(s,p,c)=>mado.spellPermission(s,p,c),beforeSpell:(s,p,c,x)=>mado.beforeSpell(s,p,c,x),beforeEnd(s){six.lacrimaActive1224(s);mado.beforeEnd(s);six.revengeEnd795(s);},beforeUntap(s,p,preventMana){const limit=junior.takeUntapLimit(s,p);return !preventMana&&mado.beforeUntap(s,p,limit);},graveAdded(s,p,all,snapshot){photo160.graveAdded(s,p,all,snapshot);photo159.graveAdded(s,p,all,snapshot);saga.graveAdded(s,p,all);cyber.graveAdded(s,p,all);mado.graveAdded(s,p,all,snapshot);six.graveAdded(s,p,all);},block(s,p,x){samurai.block(s,p,x);utilityBlock.block(s,p,x);mado.block(s,p,x);six.block(s,p,x);six.fifteen.block(s,p,x);},
+  mado,spellPermission:(s,p,c)=>mado.spellPermission(s,p,c),beforeSpell:(s,p,c,x)=>mado.beforeSpell(s,p,c,x),beforeEnd(s){six.lacrimaActive1224(s);mado.beforeEnd(s);six.revengeEnd795(s);},beforeUntap(s,p,preventMana){const limit=junior.takeUntapLimit(s,p);return !preventMana&&mado.beforeUntap(s,p,limit);},graveAdded(s,p,all,snapshot){photo160.graveAdded(s,p,all,snapshot);photo159.graveAdded(s,p,all,snapshot);saga.graveAdded(s,p,all);cyber.graveAdded(s,p,all);mado.graveAdded(s,p,all,snapshot);six.graveAdded(s,p,all);},block(s,p,x){samurai.block(s,p,x);utilityBlock.block(s,p,x);mado.block(s,p,x);six.block(s,p,x);phoenix.quadUntap1860(s,p,x);six.fifteen.block(s,p,x);},
   requested394,evolutionBase(s,p,x,existingHost){
    // QA47363–47364: only an evolution or NEO creature can gain an evolution base this way.
    if(existingHost&&!api.isEvolution(existingHost)&&!card(existingHost).neoEvolution)return;

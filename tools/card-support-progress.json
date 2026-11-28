@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9784,
-  "pendingNames": 2065,
-  "phase": 1859,
+  "supportedNames": 9787,
+  "pendingNames": 2062,
+  "phase": 1860,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1210,
+    "クリーチャー": 1207,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1548,
+    "未対応の能力文": 1545,
     "複数面・特殊カードタイプまたは情報不足": 427,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -580843,29 +580843,238 @@
           "reason": "Direct official40114 smoke found existing Torch incorrectly used whole-element cost7 and couldnotselectMura3; fixeddefinition/native physical max ratherthan weakening cost7 destruction checks. Added strict build pin atoriginalphase340 and provenance; same registered ID and physicaldata retained. Related suite exposed stalephase1665 assertion saying Gaiarl unregistered although current AND baseline already registered it inphase1685; updated test to positively assert existing phase1685 registration and preserve historicaldeferredrecord. No product behavior changed for stale assertion. Initial related354pass/1staleassert fail; expanded actual Torch historical tests then exposed old helper accepting only UID objects, updated to accept the native physical-card UID-string choices as well; final affectedregressions green. Literalcardtests passed on first focused run and again after physical-God targetlabel improvement. Old unregistered-God hold resolved byfull2God registrations, notsyntheticcostfixture."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd"
+    },
+    {
+      "phase": 1860,
+      "checkedAt": "2026-11-28T00:37:03.973Z",
+      "baseline": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9784,
+      "currentNames": 9787,
+      "remainingNames": 213,
+      "added": [
+        {
+          "id": "dm32-006",
+          "name": "神帝アージュ"
+        },
+        {
+          "id": "dm32-020",
+          "name": "神帝アナ"
+        },
+        {
+          "id": "dmc55-005",
+          "name": "神帝ヴィシュ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1860,
+        "baseline": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+        "originalDefinitionsUnchanged": 9784,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9787,
+        "uniqueIds": 9787,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9784,
+        "existingImageReferenceRowsUnchanged": 12265,
+        "officialPrintsReviewed": 6,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1860": {
+          "name": "official-1860",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1860.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.326,
+          "log": "tmp/duema-target-10000/official-1860.log",
+          "passed": 0,
+          "logSha256": "afdf4fbbaf257ed7e774102825f34bdc579af0f375d2da775328ac7bfe32f132"
+        },
+        "focused-1860-final": {
+          "name": "focused-1860-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1860-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 53.773,
+          "log": "tmp/duema-target-10000/focused-1860-final.log",
+          "passed": 81,
+          "logSha256": "7c46bf48ba80f574104373f3b991a99d30b08d0fd9c43a54960f13d9c6f58c42"
+        },
+        "related-1860": {
+          "name": "related-1860",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1860.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.411,
+          "log": "tmp/duema-target-10000/related-1860.log",
+          "passed": 116,
+          "logSha256": "367c1bb8dfca34cc13530b3b363fcaaab85d80d813903c6dc549ea18b21117c8"
+        },
+        "check-1860": {
+          "name": "check-1860",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.329,
+          "log": "tmp/duema-target-10000/check-1860.log",
+          "passed": 0,
+          "logSha256": "c151b1bd891d80e522a37e83da9b4057dd96c05ccffba272534f212b98b392ad"
+        },
+        "audit-1860": {
+          "name": "audit-1860",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.14,
+          "log": "tmp/duema-target-10000/audit-1860.log",
+          "passed": 0,
+          "logSha256": "5bc1495ceb0a77c10c814d8a7b992c9432f5a39cec68acbe6140e67afc9678d2"
+        },
+        "invariants-1860": {
+          "name": "invariants-1860",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1860"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.804,
+          "log": "tmp/duema-target-10000/invariants-1860.log",
+          "passed": 0,
+          "logSha256": "0bc014659a23e6bf249f4a46dfbc785b07fa138229ed9c4dfaba892d3cd86d57"
+        },
+        "related-online-1860": {
+          "name": "related-online-1860",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.696,
+          "log": "tmp/duema-target-10000/related-online-1860.log",
+          "passed": 5,
+          "logSha256": "0742eac9a43293d7f1f8dfc9e63140730a46c5db6cfd4a7200db921a88b34236"
+        }
+      },
+      "totalTestsPassed": 202,
+      "manifest": "tools/support-phase-1860.json",
+      "supported": 9787,
+      "pending": 2062,
+      "engineVersion": "0.602.384",
+      "held": [
+        {
+          "id": "dmc55-003",
+          "name": "神帝スヴァ",
+          "reason": "Official2prints downloaded/wholetext parsed, image visual review stillpending. Printed loss-on-own-named-card-departure must track exact physical Godpart incl being underneath/multi-card linked departure and current source ability suppression. Cannot equate whole linkedunit leaving with every component leaving. Hold full implementation until precise physical departure watch/loss priority and fullimagesverified; no partial registration."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm25rp3-051",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm25rp3-013",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm26ex2-SPR003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm25rp4-003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm25rp1-022",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        }
+      ],
+      "verificationScope": "Three complete new God definitions and three exactaliases/6fullimages/mana1/limits verified. Aju W2+full4-part optional everyattack/block untap, Ana optional own-link event casteroffered/opponentchoosesitsownbodytoownerhand, Vishu optionalownhanddiscard then genuineblindenemydiscard. Full24order assembly bothseats (48cases) including diagonal-first2groups bridged inONEchoice, saved flatGodparts and uniquephysicalUIDs, genuinepaid3body costs; onlyonegridposition each, Mani/Vishu exclusive/opponentnotfill. Literalold35786 actualfourGodrepeat3attacks or3blocks with actualShuren grantedBlocker, accept/decline and1/2/3part/ignored exclusions. Realfullunitcost19power20000W2; connected3 remainsonecreature while removing bridge of3 splitsdiagonal2 units preservingcombathistory/UIDs, no invented Godcard. Actual encrypted two-account Ana joins diagonalAju+Mani viaonechoice, projection/flat-save/physical conservation. Fullfocused81 passed; finalsource-attribution10followup passed after correctingrawAju abilityprovider (total91 executions,81unique cases). Related1859/1079/1081/1334/715/1201 116passed, online5/check/audit9787/invariants passed. Source-specific guard triggers fromrawAju; block trigger not incorrectlysuppressedbyentry/attack-only silence. Fullsuite/oldpending unchanged; no push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1860",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1860-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 47.247,
+          "log": "tmp/duema-target-10000/focused-1860.log",
+          "reason": "Initial focused77pass4fixturefail: Vishu link alongsideAna schedules independent effects and first requires nativeeffectOrder, fixture erroneouslyassumedimmediateVishudiscard. Choose actualVishusourceeffect first thenresolveboth; correctedfull81pass. Added explicitblockdecline/ignoredunit cases. Review fixed abilitysource attribution by reading rawGodpart ratherthan rootcombinedcard carryingAju boolean, so sourcealwaysactualAju (10affectedattack/blockfollowups passed); prior81complete fullabilities stillcovered. No repeatedknownlonggroup/fullsuite. Existing God save format/IDs unchanged."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1859,
-    "nextPhase": 1860,
+    "lastVerifiedPhase": 1860,
+    "nextPhase": 1861,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm32-006",
-        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        "id": "dm25rp3-051",
+        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
       },
       {
-        "id": "dm32-020",
-        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        "id": "dm25rp3-013",
+        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
       },
       {
-        "id": "dmc55-005",
-        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        "id": "dm26ex2-SPR003",
+        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
       },
       {
-        "id": "dmc55-003",
-        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        "id": "dm25rp4-003",
+        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+      },
+      {
+        "id": "dm25rp1-022",
+        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
       }
     ],
     "steps": [
@@ -581779,11 +581988,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1859,
-      "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
-      "supportedNames": 9784,
-      "artifact": "tools/target10000-registration-checkpoint-1859.json",
-      "checkedAt": "2026-11-28T00:30:04.599Z"
+      "phase": 1860,
+      "baseline": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "supportedNames": 9787,
+      "artifact": "tools/target10000-registration-checkpoint-1860.json",
+      "checkedAt": "2026-11-28T00:37:03.973Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -584841,8 +585050,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9784,
-      "remaining": 216,
+      "currentNames": 9787,
+      "remaining": 213,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584850,27 +585059,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1859,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1859.json",
+      "lastPhase": 1860,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1860.json",
       "nextCandidates": [
         {
-          "id": "dm32-006",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp3-051",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dm32-020",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp3-013",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dmc55-005",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm26ex2-SPR003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dmc55-003",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp4-003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm25rp1-022",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         }
       ],
-      "resumeProcedure": "Continue9784 remaining216; next4Gods fullresearch downloadedimagespending. Maruhavan1857hold resolvedliteral40114 fullrealGod support; existingTorch physicalcardbug fixed. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9787 remaining213; nextSuperSoulX5officialresearch downloadedimagespending. Sva heldnoimplementationphysical-departure-losspriority. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -585104,7 +585317,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "lastVerifiedCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -585115,7 +585328,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "lastVerifiedCodeCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -586289,8 +586502,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9784,
-      "remaining": 216,
+      "currentNames": 9787,
+      "remaining": 213,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -586298,27 +586511,31 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1859,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1859.json",
+      "lastPhase": 1860,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1860.json",
       "nextCandidates": [
         {
-          "id": "dm32-006",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp3-051",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dm32-020",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp3-013",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dmc55-005",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm26ex2-SPR003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         },
         {
-          "id": "dmc55-003",
-          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+          "id": "dm25rp4-003",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        },
+        {
+          "id": "dm25rp1-022",
+          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
         }
       ],
-      "resumeProcedure": "Continue9784 remaining216; next4Gods fullresearch downloadedimagespending. Maruhavan1857hold resolvedliteral40114 fullrealGod support; existingTorch physicalcardbug fixed. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9787 remaining213; nextSuperSoulX5officialresearch downloadedimagespending. Sva heldnoimplementationphysical-departure-losspriority. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -586552,7 +586769,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "lastVerifiedCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -586563,7 +586780,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "lastVerifiedCodeCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -596574,6 +596791,352 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1859.json"
+      },
+      {
+        "phase": 1860,
+        "research": "tmp/duema-target-10000/research-dm32-006.json",
+        "status": "3implemented-verified-1heldphysical-departure-loss",
+        "cards": [
+          {
+            "id": "dm32-006",
+            "name": "神帝アージュ",
+            "searchSha256": "60b7ee989e1dcd5b13e68a8402071055db88cd7b2006219155cc6d09a3f5c0ef",
+            "searchIds": [
+              "dmc63-011",
+              "dm32-006"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-006",
+                "name": "神帝アージュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-006",
+                "faces": [
+                  {
+                    "name": "神帝アージュ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nG・リンク《神帝アナ》または《神帝スヴァ》の左横、《神帝ムーラ》の上側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーが他のゴッド３体とリンクしていて、このクリーチャーが攻撃またはブロックする時、このクリーチャーをアンタップしてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-006",
+                "printedManaValue": 1,
+                "htmlSha256": "728f4c17a51fb702e983987d809cf85a4ba9e647e8b072bf54a93cf8db11b2ad",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-006.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-006-0.jpg",
+                    "sha256": "c917f4cd848d8abca616f3640716d243ddc0459b3b0f652412831fe46f3a8c8f"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa_old/35786/"
+                ]
+              },
+              {
+                "id": "dmc63-011",
+                "name": "神帝アージュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-011",
+                "faces": [
+                  {
+                    "name": "神帝アージュ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nG・リンク《神帝アナ》または《神帝スヴァ》の左横、《神帝ムーラ》の上側。\nこのクリーチャーが他のゴッド３体とリンクしていて、このクリーチャーが攻撃またはブロックする時、このクリーチャーをアンタップしてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-006",
+                "printedManaValue": 1,
+                "htmlSha256": "91d4c91b1330333a7c01b9a9f605c8971294327eedbd58d82fac04d5c1ffffb5",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-011.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-011-0.jpg",
+                    "sha256": "5f2f62a763cb5a4aabf7ef286f5d32a20c803066a8ee4ac7c6cb81dbd061fe7d"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa_old/35786/",
+                "sha256": "e801fa29bed6519ef0e16a748a70eeb0b24722b86af695b74663cf94112a04a7",
+                "body": "よくある質問 Q《神帝アージュ》の「このクリーチャーが他のゴッド3体とリンクしていて、このクリーチャーが攻撃またはブロックする時、このクリーチャーをアンタップしてもよい」という能力は、4神帝である時、1ターン中に何度も攻撃やブロックができるということですか？ Aはい、そうです。 4神帝の一部がバトルゾーンを離れたり、タップされたりした場合をのぞいて、ターン中に繰り返し攻撃やブロックすることができます。アンタップされていれば、クリーチャーは攻撃できます。そのクリーチャーがそのターンすでに一度攻撃したかどうかは関係ありません。ブロックの場合も同様に、アンタップ状態であることが条件で、そのターンすでに一度ブロックしたかどうかは関係ありません。 一覧へ戻る 関連する質問 «4神帝»で攻撃しました。《神帝アージュ》の能力でアンタップされましたが、攻撃は継続していますか？ «4神帝»でブロックしました。《神帝アージュ》の能力でアンタップされましたが、ブロックは継続していますか？ カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資"
+              }
+            ]
+          },
+          {
+            "id": "dm32-020",
+            "name": "神帝アナ",
+            "searchSha256": "bdbb43eaea82a561e6ca1c4ffea3e66bc8531752c1e3f53ffc649cad3b3b9db8",
+            "searchIds": [
+              "dmc63-014",
+              "dm32-020"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-020",
+                "name": "神帝アナ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-020",
+                "faces": [
+                  {
+                    "name": "神帝アナ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "G・リンク《神帝アージュ》の右横、《神帝マニ》または《神帝ヴィシュ》の上側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、相手にバトルゾーンにある自分自身のクリーチャーを１体選ばせ、持ち主の手札に戻してもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-020",
+                "printedManaValue": 1,
+                "htmlSha256": "d570320e1859ee22490a08d61e6f8ecbd2e5d1a7e119bc635f08964d2cbc3a3a",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-020.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-020-0.jpg",
+                    "sha256": "1ee2aaee0ce0dc52d858c2c744b703773860c3a57a37a103d65c779636d881d9"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dmc63-014",
+                "name": "神帝アナ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-014",
+                "faces": [
+                  {
+                    "name": "神帝アナ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "G・リンク《神帝アージュ》の右横、《神帝マニ》または《神帝ヴィシュ》の上側。\nこのクリーチャーがゴッドとリンクした時、相手にバトルゾーンにある自身のクリーチャーを１体選ばせ、持ち主の手札に戻してもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-020",
+                "printedManaValue": 1,
+                "htmlSha256": "58dbe17095eb356be93f3f3fd8eed37e779e2a5ce8ce5a6e1d1bd04a0c4bde08",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-014.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-014-0.jpg",
+                    "sha256": "f6ee75cba1d25e47b1e222ff84d66f836f4c1a0958941cfe8cdaca07bb673e17"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmc55-005",
+            "name": "神帝ヴィシュ",
+            "searchSha256": "532350fe27343bccc679fe85f4dc55fc401b61caad404548afe23da30b75314c",
+            "searchIds": [
+              "dmc55-005",
+              "dmc63-003"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmc55-005",
+                "name": "神帝ヴィシュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-005",
+                "faces": [
+                  {
+                    "name": "神帝ヴィシュ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔 パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、相手の手札を１枚見ないで選び、捨てさせる。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmc55-005",
+                "printedManaValue": 1,
+                "htmlSha256": "e1e827b7033e69b4deda6315c74f4c66d4a9e17cbbe00c479262b3044939b0e6",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-005.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc55-005-0.jpg",
+                    "sha256": "68a8d68c8cb815f25115f26338b99615025428e7d067c5c29a8af50579d17295"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dmc63-003",
+                "name": "神帝ヴィシュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-003",
+                "faces": [
+                  {
+                    "name": "神帝ヴィシュ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側。\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、相手の手札を１枚見ないで選び、捨てさせる。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmc55-005",
+                "printedManaValue": 1,
+                "htmlSha256": "4b6d707baea295be1108cf0f42d293026a124b1715f62f2161c8a2a18a8767ac",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-003.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-003-0.jpg",
+                    "sha256": "550a17e6d8bacda51bea695e64de9d66d8f9325ba1b729d359a031b82aa4193d"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmc55-003",
+            "name": "神帝スヴァ",
+            "searchSha256": "c47766b68a0f254e9156d754326cb35bb8601a7037cf73b94bfccb84c03a66f1",
+            "searchIds": [
+              "dmc55-003",
+              "dmc63-002"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmc55-003",
+                "name": "神帝スヴァ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-003",
+                "faces": [
+                  {
+                    "name": "神帝スヴァ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "G・リンク《神帝アージュ》の右横、《神帝マニ》または《神帝ヴィシュ》の上側。\nこのクリーチャーのパワーは、自分の墓地にあるゴッド１体につき+2000される。\nこのクリーチャーが《神帝アージュ》とリンクしていて攻撃する時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。そのターン、そのクリーチャーのパワーは-8000 される。(パワー０以下のクリーチャーは破壊される)\n自分の、名前に《神帝スヴァ》と書かれているカードがバトルゾーンを離れた時、自分はゲームに負ける。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmc55-003",
+                "printedManaValue": 1,
+                "htmlSha256": "4851e23ed9aea7665783ffe2fe75ee8a33d44dd06aac85c1ac74cd1bebfa7d9d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-003.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc55-003-0.jpg",
+                    "sha256": "456e6c1c087c1d6371c8e9184a0562043d86836b88211cdcb4a5505906ef194b"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dmc63-002",
+                "name": "神帝スヴァ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-002",
+                "faces": [
+                  {
+                    "name": "神帝スヴァ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "G・リンク《神帝アージュ》の右横、《神帝マニ》または《神帝ヴィシュ》の上側。\nこのクリーチャーのパワーは、自分の墓地にあるゴッド１体につき+2000される。\nこのクリーチャーが《神帝アージュ》とリンクしていて攻撃する時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。そのターン、そのクリーチャーのパワーは-8000される。(パワー０以下のクリーチャーは破壊される)\n自分の、名前に《神帝スヴァ》と書かれているカードがバトルゾーンを離れた時、自分はゲームに負ける。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmc55-003",
+                "printedManaValue": 1,
+                "htmlSha256": "69b5f586a93219844b2a6ae78ec81e62fb46214dae0c28a58324d9b018c40c00",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-002.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-002-0.jpg",
+                    "sha256": "b76730e1245868f6f59b00369b9b335c377cb07b66a8e021a7af5febdf10f847"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          }
+        ],
+        "allImagesReviewed": false,
+        "reviewedIds": [
+          "dm32-006",
+          "dm32-020",
+          "dmc55-005"
+        ],
+        "completedManifest": "tools/support-phase-1860.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -648493,10 +649056,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1859,
+    "phase": 1860,
     "threshold": 10000,
-    "supportedNames": 9784,
-    "pendingNames": 2065,
+    "supportedNames": 9787,
+    "pendingNames": 2062,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -648505,7 +649068,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1859.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1860.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

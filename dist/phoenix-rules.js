@@ -295,6 +295,11 @@ export function createPhoenixRules(api){
     (!partner.g1079GodPartner||partner.g1079GodPartner===c.id);
   });
  }
+ function quadUntap1860(s,p,x){
+  if(godParts(x).length!==4||!effective(x,s).g1860QuadUntap||api.ignored(s,x))return;
+  const source=(godParts(x).find(y=>card(y.cardId).g1860QuadUntap)||x).cardId;
+  api.enqueue(s,p,{uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs:[{op:'Offer',title:'4神帝をアンタップする？',defs:[{op:'Untap',g191First:true}]}]})});
+ }
  function gridOptions1859(s,p,c){
   const rule=c.g1859GodGrid,pool=creatures(s,p).filter(x=>!x.sealed&&!api.ignored(s,x)&&godParts(x).every(y=>card(y).g1859GodGrid)&&godParts(x).some(y=>rule.links.some(l=>l.name===card(y).name)));
   const valid=rows=>{const slots=[rule.position,...rows.flatMap(x=>godParts(x).map(y=>card(y).g1859GodGrid.position))].map(x=>x.join(','));return new Set(slots).size===slots.length;},out=[];
@@ -338,7 +343,7 @@ export function createPhoenixRules(api){
   }
   return base;
  }
- return{run,chosen,complex,bases,beginCast,beginPut,attach,godCombat,
+ return{run,chosen,complex,bases,beginCast,beginPut,attach,godCombat,quadUntap1860,
   beginSasage(s,p,payment){put(s,task('g31_Bases',p,payment.targetCard,{uid:payment.target,mode:'sasage',payment,selected:[]}));},
   hasChosenBases(s,p,c,ids,options){return Array.isArray(ids)&&completions(s,p,c,ids,options);},
   exLifeLeft(s,p){
@@ -346,6 +351,7 @@ export function createPhoenixRules(api){
     !s.g20LeavingUids?.includes(x.uid)&&effective(x,s).g1336ArkingLife)on(s,p,x,'ArkingLife');
   },
  splitDeath(s,p,out,remaining){
+  if(card(out).g1859GodGrid&&remaining.length===2&&remaining.every(y=>card(y).g1859GodGrid)){const[a,b]=remaining.map(y=>card(y).g1859GodGrid.position);if(Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])===1)return false;if(s.attack&&[out,...remaining].some(y=>s.attack.attacker===y.uid))s.attack=null;return true;}
   if(card(out).id!==deathId||remaining.length!==2)return false;
   const metal=remaining.find(x=>card(x).id===metalId);
   if(metal&&remaining.some(x=>card(x).id===heavyId))on(s,p,metal,'RelinkHdm',{partners:remaining.map(x=>x.uid)});
@@ -375,7 +381,7 @@ export function createPhoenixRules(api){
   return base;
  },
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
- attack(s,p,x){if(api.selfStopped(s,p))return;godCombat(s,p,x,'linkedAttack');const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
+ attack(s,p,x){if(api.selfStopped(s,p))return;godCombat(s,p,x,'linkedAttack');quadUntap1860(s,p,x);const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
  snapshot(s,rows){return rows.map(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return{p:r.player,uid:r.uid,c:x&&effective(x,s)};});},
  leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.find(r=>r.p===p&&r.uid===x.uid)?.c||effective(x,s);if(c.g31King)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',1-p,x.cardId,{n:1,all:true,causedBy:p})});if(c.g31Zero)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_ZeroLeave',p,x.cardId)});if(c.g31Fel&&to==='grave'&&destroy&&!s.g31ExtraTurn)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g5ExtraTurn',p,x.cardId)});},
  start(s,p){return s.players[p].grave.filter(x=>card(x).g31Xeno||card(x).g31ZeroRise).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task(card(x).g31ZeroRise?'g31_ZeroRise':'g31_XenoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},
