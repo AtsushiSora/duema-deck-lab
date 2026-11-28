@@ -323769,19 +323769,194 @@
       ],
       "supportBatch": "phase-1912",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-083",
+      "name": "聖霊竜騎ボルシャリオ",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "エンジェル・コマンド/アーマード・ドラゴン",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分の山札を見る。その中から光または火の呪文を１枚選んで相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-083",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g200Search": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "g228Face": {
+                      "type": "spell",
+                      "color": "光"
+                    }
+                  },
+                  {
+                    "g228Face": {
+                      "type": "spell",
+                      "color": "火"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1913",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-032",
+      "name": "青守銀 グーテン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分のシールドが１つもなければ、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-032",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1913",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd07-003",
+      "name": "隻眼の鬼カイザー ザーク嵐",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からハンターをすべて自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-003",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "race": "ハンター"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1913",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-021",
+      "name": "迅雷の精霊ホワイト・ヘヴン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド/サムライ",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のエンジェル・コマンドが他に１体でもあれば、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-021",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "other": true,
+              "filter": {
+                "race": "エンジェル・コマンド"
+              },
+              "min": 1
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "toOwnerShields": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1913",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1912,
-    "checkedAt": "2026-11-28T07:02:03.984Z",
-    "baseCount": 9973,
+    "phase": 1913,
+    "checkedAt": "2026-11-28T07:05:45.484Z",
+    "baseCount": 9977,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9977,
+    "totalCount": 9981,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37208/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -354963,6 +355138,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/45561/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1912,
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "baseCount": 9973,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9977,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37208/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

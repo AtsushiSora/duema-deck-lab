@@ -1,0 +1,682 @@
+{
+  "phase": 1913,
+  "checkedAt": "2026-11-28T07:05:45.484Z",
+  "baseline": "3a0b11720e7d1674c6be9c5ef76d04ff2c50cd6c",
+  "baseCount": 9977,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-083",
+      "name": "聖霊竜騎ボルシャリオ",
+      "canonicalId": "dm23ex2-083",
+      "printId": "dm23ex2-083",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-083",
+      "faces": [
+        {
+          "name": "聖霊竜騎ボルシャリオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分の山札を見る。その中から光または火の呪文を１枚選んで相手に見せ、手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド/アーマード・ドラゴン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "any": [
+                    {
+                      "g228Face": {
+                        "type": "spell",
+                        "color": "光"
+                      }
+                    },
+                    {
+                      "g228Face": {
+                        "type": "spell",
+                        "color": "火"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-083.jpg",
+      "imageSha256": "ce73a2c60c54b0675d8bcddf5230fe61133250cfae57fd109dad5f9688a02280",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex2-083-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23ex2-083"
+        ],
+        "allSearchIds": [
+          "dm23ex2-083"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "a6f9925a02f5023e993d3e2ae2e1dc5b22b220d550d6f191edfd238832b8689d",
+        "facesMatched": true,
+        "imageSha256": "ce73a2c60c54b0675d8bcddf5230fe61133250cfae57fd109dad5f9688a02280"
+      }
+    },
+    {
+      "id": "dmrp03-032",
+      "name": "青守銀 グーテン",
+      "canonicalId": "dmrp03-032",
+      "printId": "dmrp03-032",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-032",
+      "faces": [
+        {
+          "name": "青守銀 グーテン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分のシールドが１つもなければ、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 0
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-032.jpg",
+      "imageSha256": "6a836076b419074262b4c49374e626c18a75fdf27988fd44e531a1e0a5a04aaf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-032-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-032"
+        ],
+        "allSearchIds": [
+          "dmrp04m-025",
+          "dmrp07-031",
+          "dmrp03-032",
+          "dmrp04s-032",
+          "dmrp10-014",
+          "dmrp07-011",
+          "dmsp01-010",
+          "dmbd07-b-003",
+          "dmrp05-059",
+          "dmrp06-062",
+          "dmrp11-035",
+          "promoy20-010",
+          "dmrp17-062",
+          "dmrp19-013",
+          "dmrp02-033",
+          "dmrp08-062",
+          "dmrp01-061",
+          "promoy16-094",
+          "dmsd10-009",
+          "dmbd04-004",
+          "dmsd02-003",
+          "dmrp05-032"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "5af5db84ec31cdaa3ee74260cf1de767829f689a53585b21dd118061775ec3d4",
+        "facesMatched": true,
+        "imageSha256": "6a836076b419074262b4c49374e626c18a75fdf27988fd44e531a1e0a5a04aaf"
+      }
+    },
+    {
+      "id": "dmd07-003",
+      "name": "隻眼の鬼カイザー ザーク嵐",
+      "canonicalId": "dmd07-003",
+      "printId": "dmd07-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-003",
+      "faces": [
+        {
+          "name": "隻眼の鬼カイザー ザーク嵐",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からハンターをすべて自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "race": "ハンター"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd07-003.jpg",
+      "imageSha256": "a036267ef285f8427f50bf0a778706b568dae2bf656a8a8544cb3120d1a9af80",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd07-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd07-003",
+          "promoy11-014"
+        ],
+        "allSearchIds": [
+          "promoy11-014",
+          "dmd07-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "6a1bc78247469471c944ca3cdced1e5a9491b7b878461f9564ed72e693c13035",
+        "facesMatched": true,
+        "imageSha256": "a036267ef285f8427f50bf0a778706b568dae2bf656a8a8544cb3120d1a9af80"
+      }
+    },
+    {
+      "id": "dm31-021",
+      "name": "迅雷の精霊ホワイト・ヘヴン",
+      "canonicalId": "dm31-021",
+      "printId": "dm31-021",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-021",
+      "faces": [
+        {
+          "name": "迅雷の精霊ホワイト・ヘヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のエンジェル・コマンドが他に１体でもあれば、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "other": true,
+                "filter": {
+                  "race": "エンジェル・コマンド"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "toOwnerShields": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-021.jpg",
+      "imageSha256": "721396b2b04e8e29a0b81838b55fd2f2c1c40ed9676032773e35e8e73cf8f334",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm31-021-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allSearchIds": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "d3c8fb949478bbc087a94216bb670500851c9ee7d31d732d482e07c5256841e3",
+        "facesMatched": true,
+        "imageSha256": "721396b2b04e8e29a0b81838b55fd2f2c1c40ed9676032773e35e8e73cf8f334"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy11-014",
+      "name": "隻眼の鬼カイザー ザーク嵐",
+      "canonicalId": "dmd07-003",
+      "printId": "promoy11-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-014",
+      "faces": [
+        {
+          "name": "隻眼の鬼カイザー ザーク嵐",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からハンターをすべて自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "race": "ハンター"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-014.jpg",
+      "imageSha256": "23b4c122a5780ffe0814f23738dff5280525da50912b86a9e187111cfea08005",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy11-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd07-003",
+          "promoy11-014"
+        ],
+        "allSearchIds": [
+          "promoy11-014",
+          "dmd07-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "1c84bbad6d5fd3423ca46aea20e440cd8dd8459283ff1bfc161cd8bd90db7d53",
+        "facesMatched": true,
+        "imageSha256": "23b4c122a5780ffe0814f23738dff5280525da50912b86a9e187111cfea08005"
+      }
+    },
+    {
+      "id": "dm31-021HC",
+      "name": "迅雷の精霊ホワイト・ヘヴン",
+      "canonicalId": "dm31-021",
+      "printId": "dm31-021HC",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-021HC",
+      "faces": [
+        {
+          "name": "迅雷の精霊ホワイト・ヘヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のエンジェル・コマンドが他に１体でもあれば、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "other": true,
+                "filter": {
+                  "race": "エンジェル・コマンド"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "toOwnerShields": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-021HC.jpg",
+      "imageSha256": "7bda5adc7839ae04e5bc6abecffdfae1d7e08e914538bdadb6f25d54f1f9c6b9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm31-021HC-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allSearchIds": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "0ca69902256b7a07d74fbbb7da9882bc80e7a892683bbb0e3b5f24b4a8d4ef69",
+        "facesMatched": true,
+        "imageSha256": "7bda5adc7839ae04e5bc6abecffdfae1d7e08e914538bdadb6f25d54f1f9c6b9"
+      }
+    },
+    {
+      "id": "dmc68-009",
+      "name": "迅雷の精霊ホワイト・ヘヴン",
+      "canonicalId": "dm31-021",
+      "printId": "dmc68-009",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-009",
+      "faces": [
+        {
+          "name": "迅雷の精霊ホワイト・ヘヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のエンジェル・コマンドが他に１体でもあれば、バトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "other": true,
+                "filter": {
+                  "race": "エンジェル・コマンド"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "toOwnerShields": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-009.jpg",
+      "imageSha256": "4319b35df31888f3cd9775d20ca9bbda2cf3473da422b28d71869f84ec1ca5d8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc68-009-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allSearchIds": [
+          "dm31-021",
+          "dm31-021HC",
+          "dmc68-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "sha256": "5890d945c07b017e53e71a95c4b4a802278f3a1f0a4267afca466ddc7a7ea6fd",
+        "facesMatched": true,
+        "imageSha256": "4319b35df31888f3cd9775d20ca9bbda2cf3473da422b28d71869f84ec1ca5d8"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dmsd19-003",
+      "name": "仙祖電融 テラスネスク",
+      "reason": "Fulloneprint/QA40239researched, imageNOTreviewed. Literal40239needsunregistered機勇スタバ-２ inpresenceofMikhail; relatedTwinfaceQAneedsunregistered天地命動バラギアラ/輪廻暴炎. Neednormallyofficialverify/implementrequiredcardsfirst; doNOTsubstitutefakemetadataorpartiallyregisterTerasunesuku."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T07:05:45.484Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-083": 4,
+      "dmrp03-032": 4,
+      "dmd07-003": 4,
+      "dm31-021": 4,
+      "promoy11-014": 4,
+      "dm31-021HC": 4,
+      "dmc68-009": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm23ex2-083",
+      "searchSha256": "c4088e58a643aa2fab40c09885d4c4658a243b69bb7e48069a9162a7a384dc07",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm23ex2-083"
+      ],
+      "exactPrints": [
+        "dm23ex2-083"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp03-032",
+      "searchSha256": "dfab8011f4068f11b3766f48106069f30bd070a49ccc0b604e4c9bcbd96e9394",
+      "totalResults": 22,
+      "allSearchIds": [
+        "dmrp04m-025",
+        "dmrp07-031",
+        "dmrp03-032",
+        "dmrp04s-032",
+        "dmrp10-014",
+        "dmrp07-011",
+        "dmsp01-010",
+        "dmbd07-b-003",
+        "dmrp05-059",
+        "dmrp06-062",
+        "dmrp11-035",
+        "promoy20-010",
+        "dmrp17-062",
+        "dmrp19-013",
+        "dmrp02-033",
+        "dmrp08-062",
+        "dmrp01-061",
+        "promoy16-094",
+        "dmsd10-009",
+        "dmbd04-004",
+        "dmsd02-003",
+        "dmrp05-032"
+      ],
+      "exactPrints": [
+        "dmrp03-032"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd07-003",
+      "searchSha256": "5551b3a334b7edf8f94fb5a6d4b52e35e9ca0ce2a289c2d1e1513bbb81ef1d7d",
+      "totalResults": 2,
+      "allSearchIds": [
+        "promoy11-014",
+        "dmd07-003"
+      ],
+      "exactPrints": [
+        "dmd07-003",
+        "promoy11-014"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm31-021",
+      "searchSha256": "670e14c27b2cfae980225ab0a47d41263e2bdc764aae82e8abc6862b289a2151",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dm31-021",
+        "dm31-021HC",
+        "dmc68-009"
+      ],
+      "exactPrints": [
+        "dm31-021",
+        "dm31-021HC",
+        "dmc68-009"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/sevenexactprints fullallabilities/stats/images/currentlimits. Bolshario paid4blocker/noPlayerAttack, privatewholeDeck optionalLightORFireSPELL-ownface (SolarRay, CrimsonHammer, Everlies/HolySpark eligible; actualJET/WaterTyphoon excluded despiteFirecreatureface), revealthenSHUFFLE. Guten paid5/ST blocker/noPlayerAttack, actuallastshieldST thenblockdie addsONEfaceDownshieldonlyifownshieldsZERO, actualgrave notdestroyreplacement, positive/1shield/Genmu5 negatives. Zaku paid7W2 publicTOP3mandatoryALLHuntersHAND/orderrestBOTTOM; actualenemyspell/creaturediscardMADNESSoptionalreplacement entry, enemyseed/self negative. WhiteHeaven paid6W2 onlyOTHEROWNAngel sourcealone/enemy/sealednegative, optionalenemyNON-EVOtoownernewfaceDownshield. Bothseats/save/eightencryptedservices/UIDconservation/mana1orientation. No linkedQA.",
+    "resolvedAttempts": "Corrected newBolsariosearch filter to OR oftwoexact spell-facecolors before expansion (colorsAny unsupported in g228Face). Focusedtestinitialfixture hadwrongIDs: dm01-028 isDarkBlackSlayer, dmbd16-009 isFIREspellSuperheroTime (notWaterTyphoon). Replacedwithactualdm01-101CrimsonHammer anddmrp10-053FireJET/WaterLorentzTyphoon; verifiedfullprintedfixturedata; no runtimechange. Finalfocused/regressionsallpassed.",
+    "rulings": [],
+    "held": [
+      {
+        "id": "dmsd19-003",
+        "name": "仙祖電融 テラスネスク",
+        "reason": "Fulloneprint/QA40239researched, imageNOTreviewed. Literal40239needsunregistered機勇スタバ-２ inpresenceofMikhail; relatedTwinfaceQAneedsunregistered天地命動バラギアラ/輪廻暴炎. Neednormallyofficialverify/implementrequiredcardsfirst; doNOTsubstitutefakemetadataorpartiallyregisterTerasunesuku."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmr01-s08",
+          "dmrp04m-046",
+          "dmex01-037",
+          "dmc67-003"
+        ],
+        "reason": "All fourprintimages reviewed; nativeManaShield/EVO, optionalgravenamedcountdiscount, GodEVO/attackENDuntap andLupiaentrywatch."
+      }
+    ]
+  }
+}
