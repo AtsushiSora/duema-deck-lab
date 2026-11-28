@@ -811,6 +811,7 @@ export function createSixPhotoRules(api){
   if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
   if(f.g1050OpponentDestroyed!==undefined)return s.g393DDestroyed?.turn===s.turn&&
    (s.g393DDestroyed.byPlayer?.[1-p]||0)>=f.g1050OpponentDestroyed;
+  if(f.g1902MoreCreaturesThanShields)return creatures(s,p).filter(y=>!y.sealed&&!y.faceDown).length>s.players[p].shields.length;
   if(f.g1114OpponentTurn)return s.active!==p;
   if(f.g687CreatureCountAtLeastShields){
    const shields=s.players[p].shields;

@@ -1,0 +1,994 @@
+{
+  "phase": 1902,
+  "checkedAt": "2026-11-28T06:06:05.673Z",
+  "baseline": "ef54eb546f159263d1f7a3ccc3e768cf5b15a86b",
+  "baseCount": 9936,
+  "target": 10000,
+  "description": "Three wholecards/elevenprints: Chopin ownDragonconditionalST Guardman/noplayerattack optionalfight; DoraW2 CIPorattack strictownCREATURES>shieldGROUPS mandatoryshieldELSE GRsummon; DiamondAvenblocker/noPlayerATTACK currentOTHERcreatures diamondpermission allplayerattacklocks/currentturnsnapshot.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmx11-011",
+      "name": "王龍ショパン",
+      "canonicalId": "dmx11-011",
+      "printId": "dmx11-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-011",
+      "faces": [
+        {
+          "name": "王龍ショパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンに自分のドラゴンがある時、このクリーチャーは「S・トリガー」を得る。\nガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、このクリーチャーとバトルさせてもよい。",
+          "race": "キング・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g876ShieldTriggerCondition": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "min": 1
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-011.jpg",
+      "imageSha256": "13e3a3c2d3f809c724e69771c8832ed2392197577014d91ff71b1b8bd5feb1e4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx11-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-011",
+          "dmx17-025",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allSearchIds": [
+          "dmx17-025",
+          "dmx11-011",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "5cdb42d0774850d3c7463a9907a048fe0d951255b509e4a48128b45db42e0ba5",
+        "facesMatched": true,
+        "imageSha256": "13e3a3c2d3f809c724e69771c8832ed2392197577014d91ff71b1b8bd5feb1e4"
+      }
+    },
+    {
+      "id": "dmrp11-014",
+      "name": "音奏 ドーラ",
+      "canonicalId": "dmrp11-014",
+      "printId": "dmrp11-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-014",
+      "faces": [
+        {
+          "name": "音奏 ドーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、バトルゾーンにある自分のクリーチャーの数が自分のシールドの数より多ければ、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。そうでなければ、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+          "race": "メタリカ/ワンダフォース",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1902MoreCreaturesThanShields": true
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "AuraGr1353"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1902MoreCreaturesThanShields": true
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "AuraGr1353"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-014.jpg",
+      "imageSha256": "5e029641b1ae5cb7574731fb698ce6e360028e3d5499597f4b769aaef443a705",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp11-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp11-014"
+        ],
+        "allSearchIds": [
+          "dm37-014",
+          "dmrp12-002",
+          "dmex05-022",
+          "dmrp09-002",
+          "dm25sp2-TD5",
+          "dm25sp2-015",
+          "dm26ex3-091",
+          "dm26ex3-SEC007",
+          "dm26ex3-SEC007CHO",
+          "dm26ex3-017",
+          "dmrp11-002",
+          "dmex08-001",
+          "dmrp12-036",
+          "dmrp11-036",
+          "dmex05-065",
+          "dmsd10-018",
+          "dmrp09-067",
+          "dmrp11-034",
+          "dmrp12-035",
+          "dmsd10-014",
+          "dmrp10-037",
+          "dmex05-043",
+          "dmrp09-034",
+          "dmrp11-033",
+          "dmex05-042",
+          "dmrp09-033",
+          "dmrp11-067",
+          "dmrp12-067",
+          "dmrp11-014",
+          "dmsd10-006",
+          "dmrp10-036",
+          "dmex05-027",
+          "dmsd10-011",
+          "dmrp09-012",
+          "dm26ex4-CHO029",
+          "dmex05-021",
+          "dmrp09-001",
+          "dmrp12-016",
+          "dmrp10-015",
+          "promoy18-063",
+          "promoy18-066",
+          "dm23ex2-Cho027",
+          "dmex05-044",
+          "dmex19-041",
+          "dmrp09-035",
+          "dmex05-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "4404d0b42a5d406d986108a56f97652a1375351f8e7ab76f96471f205f9744f5",
+        "facesMatched": true,
+        "imageSha256": "5e029641b1ae5cb7574731fb698ce6e360028e3d5499597f4b769aaef443a705"
+      }
+    },
+    {
+      "id": "dmc52-001",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "dmc52-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc52-001",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。(召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない)",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc52-001.jpg",
+      "imageSha256": "b9ca428c3839c25cf60cec39d3cdaffc9a913ea93b4ddb17aa6dc35e0bf465c4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc52-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "d311ad87b80f57d973c8cfe6f614b0194232ff51988d23cdf3c18fe08cd2f593",
+        "facesMatched": true,
+        "imageSha256": "b9ca428c3839c25cf60cec39d3cdaffc9a913ea93b4ddb17aa6dc35e0bf465c4"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx17-025",
+      "name": "王龍ショパン",
+      "canonicalId": "dmx11-011",
+      "printId": "dmx17-025",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-025",
+      "faces": [
+        {
+          "name": "王龍ショパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンに自分のドラゴンがある時、このクリーチャーは「S・トリガー」を得る。\nガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、このクリーチャーとバトルさせてもよい。",
+          "race": "キング・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g876ShieldTriggerCondition": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "min": 1
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-025.jpg",
+      "imageSha256": "63c86eb35e519b24f7a84563dbc0e8fd8ce50fec92af6b4bcabd9dcfcc130c4f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx17-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-011",
+          "dmx17-025",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allSearchIds": [
+          "dmx17-025",
+          "dmx11-011",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "cb9e50a3380d1d1582647b994e81d63ffb1d381ea2ef5274b205b056121b61eb",
+        "facesMatched": true,
+        "imageSha256": "63c86eb35e519b24f7a84563dbc0e8fd8ce50fec92af6b4bcabd9dcfcc130c4f"
+      }
+    },
+    {
+      "id": "dmx14-022",
+      "name": "王龍ショパン",
+      "canonicalId": "dmx11-011",
+      "printId": "dmx14-022",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-022",
+      "faces": [
+        {
+          "name": "王龍ショパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンに自分のドラゴンがある時、このクリーチャーは「S・トリガー」を得る。\nガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、このクリーチャーとバトルさせてもよい。",
+          "race": "キング・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g876ShieldTriggerCondition": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "min": 1
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-022.jpg",
+      "imageSha256": "8cfbfe311fad00561c3b1c004a2ae60b7ba036dafcbfb882c856f804f1ab8809",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx14-022-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-011",
+          "dmx17-025",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allSearchIds": [
+          "dmx17-025",
+          "dmx11-011",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "dd6033f628f06e382b4d90cc3e7a2e3c7d9911333171f62c156afe04ac3c09d5",
+        "facesMatched": true,
+        "imageSha256": "8cfbfe311fad00561c3b1c004a2ae60b7ba036dafcbfb882c856f804f1ab8809"
+      }
+    },
+    {
+      "id": "dmd07-011",
+      "name": "王龍ショパン",
+      "canonicalId": "dmx11-011",
+      "printId": "dmd07-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-011",
+      "faces": [
+        {
+          "name": "王龍ショパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンに自分のドラゴンがある時、このクリーチャーは「S・トリガー」を得る。\nガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、このクリーチャーとバトルさせてもよい。",
+          "race": "キング・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g876ShieldTriggerCondition": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "min": 1
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd07-011.jpg",
+      "imageSha256": "8d383be196279845905c2495b5b06635263895361a4c47356be04ef4a9c5a073",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd07-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-011",
+          "dmx17-025",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allSearchIds": [
+          "dmx17-025",
+          "dmx11-011",
+          "dmx14-022",
+          "dmd07-011"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "1f1339218bf5fbaa24bfb0e4f6b911873e37857927d11ff406831211c2f2d854",
+        "facesMatched": true,
+        "imageSha256": "8d383be196279845905c2495b5b06635263895361a4c47356be04ef4a9c5a073"
+      }
+    },
+    {
+      "id": "promoy13-002",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "promoy13-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-002",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。（召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない）",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-002.jpg",
+      "imageSha256": "167f70030ce50f0cf767b3a015528d12b47ef499291297b7cc18ec3aa84a4193",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy13-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "62b10c862e455ab879ed02c08181b6a9528eca3f8ce12889ba917530e79eba5f",
+        "facesMatched": true,
+        "imageSha256": "167f70030ce50f0cf767b3a015528d12b47ef499291297b7cc18ec3aa84a4193"
+      }
+    },
+    {
+      "id": "dm24ex2-Cho021",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "dm24ex2-Cho021",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-Cho021",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃できない効果を無視する。（召喚酔いや、「このクリーチャーは攻撃できない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない）",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-Cho021.jpg",
+      "imageSha256": "b8dcf4a095ce5b912b8d17d2b7065943c391253ee586a94f3256021451283061",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex2-Cho021-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "3f96113b0f1bbdcda16d41b43b3b214f9798664bebe795ded75d70a87871cd32",
+        "facesMatched": true,
+        "imageSha256": "b8dcf4a095ce5b912b8d17d2b7065943c391253ee586a94f3256021451283061"
+      }
+    },
+    {
+      "id": "dmx10-014",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "dmx10-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-014",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。(召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない)",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-014.jpg",
+      "imageSha256": "7ef91d19e92b25215cd59b2de9669b1f2735990649066ae7675683d19d3d8896",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx10-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "415a08c5ff2dec572b6e2e005eccc062ed7c5d7853939387f912b65751f29fdb",
+        "facesMatched": true,
+        "imageSha256": "7ef91d19e92b25215cd59b2de9669b1f2735990649066ae7675683d19d3d8896"
+      }
+    },
+    {
+      "id": "dmc68-004",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "dmc68-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-004",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。(召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない)",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-004.jpg",
+      "imageSha256": "7a9953bd6d8823f50fb3a0ea36647728ff2232720cbb295e4cdb4dcbd949af1f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc68-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "77bddd02feae79dc06645612e7d43da90055418bff2c40bbda1172a5e163a81f",
+        "facesMatched": true,
+        "imageSha256": "7a9953bd6d8823f50fb3a0ea36647728ff2232720cbb295e4cdb4dcbd949af1f"
+      }
+    },
+    {
+      "id": "dmd32-010",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "canonicalId": "dmc52-001",
+      "printId": "dmd32-010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd32-010",
+      "faces": [
+        {
+          "name": "覚醒の精霊ダイヤモンド・エイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。（召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない）",
+          "race": "エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "grant": {
+              "g1331Diamond": true
+            },
+            "g1106ExternalUntilEnd": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd32-010.jpg",
+      "imageSha256": "35f3b2c26497f6b50e12af862c821d8be2eb234ac7c28c73cbe5690d2eabfa08",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd32-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc52-001",
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010"
+        ],
+        "allSearchIds": [
+          "promoy13-002",
+          "dm24ex2-Cho021",
+          "dmx10-014",
+          "dmc68-004",
+          "dmd32-010",
+          "dmc52-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "sha256": "57b1f6b3d3d671ec633b40633fd3b06da105852db879578a461720489da67b5e",
+        "facesMatched": true,
+        "imageSha256": "35f3b2c26497f6b50e12af862c821d8be2eb234ac7c28c73cbe5690d2eabfa08"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dmex02-072",
+      "name": "貝獣 パウアー",
+      "reason": "Fullthreeprints/officialQA47460 researched, imagesnotreviewed. LiteralQArequirescurrentlyunregistered「雷光の聖騎士」 andactualnormalattackshieldbreakreplacementdiscardnotcountedenemyspell/creatureeffect. Holduntilcompanionwholeability andliteralreplacementtest canbeimplemented, noquantitypartial."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:06:05.673Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx11-011": 4,
+      "dmrp11-014": 4,
+      "dmc52-001": 4,
+      "dmx17-025": 4,
+      "dmx14-022": 4,
+      "dmd07-011": 4,
+      "promoy13-002": 4,
+      "dm24ex2-Cho021": 4,
+      "dmx10-014": 4,
+      "dmc68-004": 4,
+      "dmd32-010": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmx11-011",
+      "searchSha256": "e95f2638438dc13802e78977190f7061002f901dda73c351d5d7dc51dbc7f8be",
+      "totalResults": 4,
+      "allSearchIds": [
+        "dmx17-025",
+        "dmx11-011",
+        "dmx14-022",
+        "dmd07-011"
+      ],
+      "exactPrints": [
+        "dmx11-011",
+        "dmx17-025",
+        "dmx14-022",
+        "dmd07-011"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp11-014",
+      "searchSha256": "fddb158f355fe6a08f2ea894cd1af2a78ae5319f65dcf60bf1df7539552ee384",
+      "totalResults": 46,
+      "allSearchIds": [
+        "dm37-014",
+        "dmrp12-002",
+        "dmex05-022",
+        "dmrp09-002",
+        "dm25sp2-TD5",
+        "dm25sp2-015",
+        "dm26ex3-091",
+        "dm26ex3-SEC007",
+        "dm26ex3-SEC007CHO",
+        "dm26ex3-017",
+        "dmrp11-002",
+        "dmex08-001",
+        "dmrp12-036",
+        "dmrp11-036",
+        "dmex05-065",
+        "dmsd10-018",
+        "dmrp09-067",
+        "dmrp11-034",
+        "dmrp12-035",
+        "dmsd10-014",
+        "dmrp10-037",
+        "dmex05-043",
+        "dmrp09-034",
+        "dmrp11-033",
+        "dmex05-042",
+        "dmrp09-033",
+        "dmrp11-067",
+        "dmrp12-067",
+        "dmrp11-014",
+        "dmsd10-006",
+        "dmrp10-036",
+        "dmex05-027",
+        "dmsd10-011",
+        "dmrp09-012",
+        "dm26ex4-CHO029",
+        "dmex05-021",
+        "dmrp09-001",
+        "dmrp12-016",
+        "dmrp10-015",
+        "promoy18-063",
+        "promoy18-066",
+        "dm23ex2-Cho027",
+        "dmex05-044",
+        "dmex19-041",
+        "dmrp09-035",
+        "dmex05-004"
+      ],
+      "exactPrints": [
+        "dmrp11-014"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmc52-001",
+      "searchSha256": "997dcaec8b1db7fef04b9095006f3a29950b46d79282de240977f4449ed264ce",
+      "totalResults": 6,
+      "allSearchIds": [
+        "promoy13-002",
+        "dm24ex2-Cho021",
+        "dmx10-014",
+        "dmc68-004",
+        "dmd32-010",
+        "dmc52-001"
+      ],
+      "exactPrints": [
+        "dmc52-001",
+        "promoy13-002",
+        "dm24ex2-Cho021",
+        "dmx10-014",
+        "dmc68-004",
+        "dmd32-010"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Threewholecards/elevenexactprints allimagesreviewed, wholeabilities/stat/mana/currentlimits. ChopinonlyownunsealedDragonconditionalST (ignoredDragonracecounts), wrongenemy/noDragon/realphysicalSealnegative; actualST/paid8 optionalfight/Guardmanprotectothercreature/noPlayerAttack. Dora strictownCREATUREcount>shieldGROUPcount onCIPorattack, equalityGR, seeds/realSealexcluded, composite6physicalcards ONEshield; actualAdvanceGRsummoned(notput), W2/cost6Genmuworks. Avenblocker/noPlayerAttack paid7, snapshotsOTHERcurrentowncreatures diamondPLAYERpermission overridesfreshsickness/noAttack/noPlayerAttack, doesNOTpermitcreatureattack norfuture/source/enemy; sourceleavingdoesnotendgrant, expiryEND, actualGenmu recipientworks externalcost7. Bothseats save/restore/sixactualencryptedservices UIDconservation. PriorIDs/details/saveformats/pendingpreserved.",
+    "resolvedAttempts": "Initialnewfixture omittedGRarraywhenfieldcreatedstandardstate thenconvertedAdvance, andusedsealed:true withoutphysicalseal (enginecorrectlyrepairsimpossibleunsealedstate). InitializedGRcontainersandaddedactualphysicalsealUIDs; allfinalfocusedtests pass. Dora nativeGRoperation corrected duringpreparation toAuraGr1353 beforefirstimplementationtests.",
+    "rulings": [],
+    "held": [
+      {
+        "id": "dmex02-072",
+        "name": "貝獣 パウアー",
+        "reason": "Fullthreeprints/officialQA47460 researched, imagesnotreviewed. LiteralQArequirescurrentlyunregistered「雷光の聖騎士」 andactualnormalattackshieldbreakreplacementdiscardnotcountedenemyspell/creatureeffect. Holduntilcompanionwholeability andliteralreplacementtest canbeimplemented, noquantitypartial."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmsd15-001",
+          "dmrp22-060",
+          "dmrp19-025",
+          "dmr17-003"
+        ],
+        "reason": "Groupedofficialresearch underway; JaOni originalnameORsearch61results exceeds50, retrywithdistinct鬼ヶ鬼keyword andpreserveallresultsproof. Others: seeddependentendselfdestroy+discount, ExlifeenemyentryRamp, WaterEVOrevolutionlock."
+      }
+    ]
+  }
+}

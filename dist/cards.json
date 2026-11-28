@@ -321858,18 +321858,144 @@
       ],
       "supportBatch": "phase-1901",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-011",
+      "name": "王龍ショパン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "キング・コマンド・ドラゴン",
+      "text": "バトルゾーンに自分のドラゴンがある時、このクリーチャーは「S・トリガー」を得る。\nガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、このクリーチャーとバトルさせてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-011",
+      "limit": 4,
+      "guardman": true,
+      "noPlayerAttack": true,
+      "g876ShieldTriggerCondition": {
+        "g370BattleCount": {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "min": 1
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "supportBatch": "phase-1902",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-014",
+      "name": "音奏 ドーラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "メタリカ/ワンダフォース",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、バトルゾーンにある自分のクリーチャーの数が自分のシールドの数より多ければ、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。そうでなければ、GR召喚する。（GR召喚：自分の超GRの上から１枚目を、コストを支払ったものとして召喚する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-014",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1902MoreCreaturesThanShields": true
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1902MoreCreaturesThanShields": true
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "AuraGr1353"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1902",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc52-001",
+      "name": "覚醒の精霊ダイヤモンド・エイヴン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分の他のクリーチャーが相手プレイヤーを攻撃することができない効果はすべて無効になる。(召喚酔いや、「このクリーチャーは攻撃することができない」または「このクリーチャーは相手プレイヤーを攻撃できない」などの効果が無効になる。ただし、この効果でクリーチャーを攻撃することはできない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc52-001",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "other": true,
+          "grant": {
+            "g1331Diamond": true
+          },
+          "g1106ExternalUntilEnd": true
+        }
+      ],
+      "supportBatch": "phase-1902",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1901,
-    "checkedAt": "2026-11-28T06:00:28.364Z",
-    "baseCount": 9932,
-    "newEffectCards": 4,
+    "phase": 1902,
+    "checkedAt": "2026-11-28T06:06:05.673Z",
+    "baseCount": 9936,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9936,
+    "totalCount": 9939,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39515/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -352890,6 +353016,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39096/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36577/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1901,
+        "checkedAt": "2026-11-28T06:00:28.364Z",
+        "baseCount": 9932,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9936,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39515/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
