@@ -641,7 +641,8 @@ export function createSixPhotoRules(api){
  }
  function fightScore240(s,a,b){const ap=api.battlePower(s,a,b,a.uid===s.attack?.attacker),bp=api.battlePower(s,b,a,b.uid===s.attack?.attacker),lose=(!hooks.battleSafe(s,a,b,bp)&&bp>=ap)||api.slayerCount(s,b,a)>0&&!hooks.destroySafe409(s,a),win=(!hooks.battleSafe(s,b,a,ap)&&ap>=bp)||api.slayerCount(s,a,b)>0&&!hooks.destroySafe409(s,b);return(win?10+4*cost(card(b)):0)-(lose?10+4*cost(card(a)):0);}
  function fightPairRows586(s,t,owners){
-  const cards=owners.flatMap(p=>creatures(s,p).filter(x=>!x.sealed&&x.uid!==t.first?.uid).map(x=>({p,x})));
+  let cards=owners.flatMap(p=>creatures(s,p).filter(x=>!x.sealed&&x.uid!==t.first?.uid).map(x=>({p,x})));
+  if(t.g1891Highest){const highest=Math.max(...cards.map(({x})=>api.power(x,false,s)));cards=cards.filter(({x})=>api.power(x,false,s)===highest);}
   return targetOptions(s,t.p,cards.map(r=>r.x)).map(o=>{
    const {p,x}=cards.find(r=>r.x.uid===o.value);
    return {...o,value:{player:p,uid:x.uid,incarnation:x.incarnation||0,origin:'battle'}};
@@ -1037,7 +1038,7 @@ export function createSixPhotoRules(api){
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.ownTurn||s.active===p)&&(!watch.attacking||w.g1642AttackBattleWin)&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0,...(watch.g1669WinnerBreak?{source:winner.cardId}:{})}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
- const useColorsMatch=(watch,c)=>(!watch.color||colors(c).includes(watch.color))&&
+ const useColorsMatch=(watch,c)=>(watch.g1891MinCost===undefined||cost(c)>=watch.g1891MinCost)&&(!watch.color||colors(c).includes(watch.color))&&
   (!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&
   (!watch.colorsAll||watch.colorsAll.every(color=>colors(c).includes(color)))&&(!watch.multicolor||colors(c).length>1);
  const spellWatches=(s,caster,c,origin='hand')=>[s.active,1-s.active].flatMap(owner=>
@@ -3732,7 +3733,7 @@ export function createSixPhotoRules(api){
   const chooseTitle=t.g822OpponentDiscardChoice?'相手の手札からカードを1枚指定する':'捨てさせる相手の手札を1枚選ぶ';
   const options=t.chooseOne&&ids.length?eligible.map(y=>opt(card(y).name+(t.g822OpponentDiscardChoice?'を指定する':'を捨てさせる'),y.uid,10+cost(card(y))*3,y.cardId)):
    [opt(t.discard&&!t.chooseOne?'確認して、条件に合う'+ids.length+'枚をすべて捨てさせる':'確認を終える',t.chooseOne?null:true,10)];
-  choice(s,{...t,seen,discardIds:ids,discardSeen:hand.map(y=>ids.includes(y.uid))},t.chooseOne&&ids.length?chooseTitle:'相手の手札を確認',options);
+  choice(s,{...t,seen,...(t.g1891FullInspect?{g585Peek:hand.map(y=>({id:y.cardId,label:ids.includes(y.uid)?'選択可能':'選択不可'}))}:{}),discardIds:ids,discardSeen:hand.map(y=>ids.includes(y.uid))},t.chooseOne&&ids.length?chooseTitle:'相手の手札を確認',options);
   break;
  }
  case'g34_DesignatedDiscard822':{
@@ -5063,7 +5064,7 @@ export function createSixPhotoRules(api){
  case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
  case'g34_Fight240':{
   const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);
-  if(!enemies.length&&!t.g1233ReleaseHyper)break;
+  if(!enemies.length&&!t.g1233ReleaseHyper&&!t.g1891Grant)break;
   if(t.self){
    if(x&&api.isCreature(s,x)&&!x.sealed)
     put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0},fighterOwner:t.creatureOrigin??t.p});
@@ -8531,11 +8532,12 @@ export function createSixPhotoRules(api){
  case'g34_FightPairSecond586':if(v)finishFightPair586(s,t,v);break;
  case'g34_FightBuff241':if(v){const a=fightUnit240(s,t.p,v);if(a){(a.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.spell?t.source:undefined,spellCost:fightSpellCost241(t)});put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.enemyOptional});}}break;
  case'g34_Fight240':if(v){
+  if(t.g1891Grant){const ally=fightUnit240(s,t.p,v);if(ally)applyGrant(s,{...t,grant:t.g1891Grant},ally);}
   if(t.g1233ReleaseHyper){
    const ally=fightUnit240(s,t.p,v);
    if(ally&&exactRaces(effective(ally,s)).includes('超化獣'))releaseHyper781(s,t.p,ally);
   }
-  put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.g1233ReleaseHyper||t.optional});
+  put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.g1233ReleaseHyper||t.g1891EnemyOptional||t.optional});
  }break;
  case'g34_TapToUntap748':{
   const source=v&&tapSource748(s,t);
@@ -10789,7 +10791,7 @@ export function createSixPhotoRules(api){
   useBlockers524(s,p);
   for(const controller of[p,1-p])for(const source of s.players[controller].battle){
    const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;
-   if(!watch||controller!==(watch.who==='opponent'?1-p:p)||!useColorsMatch(watch,c))continue;
+   if(!watch||controller!==(watch.who==='opponent'?1-p:p)||watch.g1891OwnTurn&&s.active!==controller||!useColorsMatch(watch,c))continue;
    // The summon is observed before entry and before incrementing the shared turn counter.
    if(watch.g895FirstSummon&&s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0)continue;
    if(watch.g1268FirstEight&&(cost(c)<8||s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].costEightOrMore))continue;
@@ -11216,6 +11218,10 @@ export function createSixPhotoRules(api){
    const refs=[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}));
    for(const watcher of creatures(s,1-p))if(!watcher.sealed&&effective(watcher,s).g598UnpaidBottom)
     queue(s,1-p,watcher,[{op:'ExactMove',to:'deck',owner:p,g403Refs:refs}]);
+  }
+  if(creature&&!y.sealed&&s.active===p&&!options.paidMana)for(const watcher of creatures(s,1-p)){
+   if(watcher.sealed||!effective(watcher,s).g1891NoManaOptionalBottom)continue;
+   queue(s,1-p,watcher,[{op:'Offer',title:'マナをタップせずに出たクリーチャーを山札の下へ置く？',defs:[{op:'ExactMove',to:'deck',owner:p,g403Refs:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0})),followEvolution:true}]}]);
   }
   // Watch actual mana taps, for either player, including this source's own free entry.
   if(creature&&!y.sealed&&!options.paidMana)for(const owner of [s.active,1-s.active])

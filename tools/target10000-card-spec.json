@@ -31801,5 +31801,188 @@
         }
       ]
     }
+  },
+  "dmrp13-091": {
+    "phase": 1891,
+    "faces": [
+      {
+        "name": "デモニオの鬼瓢箪",
+        "typeText": "呪文",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーに「スレイヤー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+        "race": "鬼札王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "g1891Grant": {
+            "slayer": true
+          },
+          "g1891EnemyOptional": true
+        }
+      ]
+    }
+  },
+  "dm14-088": {
+    "phase": 1891,
+    "faces": [
+      {
+        "name": "テレスコープ・ホルン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーをバトルゾーンに出した時、相手の手札を見て、その中から自然または光のクリーチャーを１体選び、捨てさせる。\nこのクリーチャーは攻撃することができない。",
+        "race": "ガーゴイル",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "discard": true,
+          "chooseOne": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "g223Inspect": true,
+          "g1891FullInspect": true
+        }
+      ]
+    }
+  },
+  "promoy20-075": {
+    "phase": 1891,
+    "faces": [
+      {
+        "name": "ツッコミ英雄 マトモくん",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\n相手のターン中、相手が自身のマナゾーンのカードをタップせずにクリーチャーを出した時、\n「マナコストはちゃんと払えよ！」とツッコんでもよい。そうしたら、相手はそれを山札の下に置く。",
+        "race": "ヒューマノイド/レクスターズ",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g1891NoManaOptionalBottom": true
+    }
+  },
+  "dmrp05-039": {
+    "phase": 1891,
+    "faces": [
+      {
+        "name": "ソエルボ・クロウラー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーを１体選び、持ち主の手札に戻す。その後、カードを１枚引く。",
+        "race": "アースイーター",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noAttack": true,
+      "g808SummonWatch": {
+        "g1891OwnTurn": true,
+        "g1891MinCost": 8,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g204SpellWatch": {
+        "who": "self",
+        "ownTurn": true,
+        "g1891MinCost": 8,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm32-064": {
+    "phase": 1891,
+    "faces": [
+      {
+        "name": "チェーン・デスマッチ",
+        "typeText": "呪文",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある一番パワーの大きいクリーチャーを１体選ぶ。その後、バトルゾーンに残っているクリーチャーの中から一番パワーの大きいクリーチャーを１体選ぶ。同じパワーのクリーチャーが２体以上ある場合、そのうちのどちらかを選ぶ。そのクリーチャー同士をバトルさせる。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightPair586",
+          "who": "both",
+          "g1891Highest": true
+        }
+      ]
+    }
   }
 }

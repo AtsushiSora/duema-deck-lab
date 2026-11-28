@@ -320192,18 +320192,186 @@
       ],
       "supportBatch": "phase-1890",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-091",
+      "name": "デモニオの鬼瓢箪",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "鬼札王国",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーに「スレイヤー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-091",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "g1891Grant": {
+            "slayer": true
+          },
+          "g1891EnemyOptional": true
+        }
+      ],
+      "supportBatch": "phase-1891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-088",
+      "name": "テレスコープ・ホルン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ガーゴイル",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーをバトルゾーンに出した時、相手の手札を見て、その中から自然または光のクリーチャーを１体選び、捨てさせる。\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-088",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "discard": true,
+          "chooseOne": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "g223Inspect": true,
+          "g1891FullInspect": true
+        }
+      ],
+      "supportBatch": "phase-1891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy20-075",
+      "name": "ツッコミ英雄 マトモくん",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ヒューマノイド/レクスターズ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\n相手のターン中、相手が自身のマナゾーンのカードをタップせずにクリーチャーを出した時、\n「マナコストはちゃんと払えよ！」とツッコんでもよい。そうしたら、相手はそれを山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-075",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1891NoManaOptionalBottom": true,
+      "supportBatch": "phase-1891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-039",
+      "name": "ソエルボ・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アースイーター",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターン中に、コスト８以上のクリーチャーを召喚した時またはコスト８以上の呪文を唱えた時、相手のクリーチャーを１体選び、持ち主の手札に戻す。その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-039",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g808SummonWatch": {
+        "g1891OwnTurn": true,
+        "g1891MinCost": 8,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g204SpellWatch": {
+        "who": "self",
+        "ownTurn": true,
+        "g1891MinCost": 8,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-064",
+      "name": "チェーン・デスマッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある一番パワーの大きいクリーチャーを１体選ぶ。その後、バトルゾーンに残っているクリーチャーの中から一番パワーの大きいクリーチャーを１体選ぶ。同じパワーのクリーチャーが２体以上ある場合、そのうちのどちらかを選ぶ。そのクリーチャー同士をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightPair586",
+          "who": "both",
+          "g1891Highest": true
+        }
+      ],
+      "supportBatch": "phase-1891",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1890,
-    "checkedAt": "2026-11-28T04:26:39.223Z",
-    "baseCount": 9893,
-    "newEffectCards": 3,
+    "phase": 1891,
+    "checkedAt": "2026-11-28T04:30:45.718Z",
+    "baseCount": 9896,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9896,
+    "totalCount": 9901,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36160/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35837/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351056,6 +351224,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/31774/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1890,
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "baseCount": 9893,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9896,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36160/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
