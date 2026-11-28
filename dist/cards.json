@@ -320710,17 +320710,136 @@
       ],
       "supportBatch": "phase-1893",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy15-077",
+      "name": "ミラクル1 ドレミ24",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エンジェル・ドラゴン/革命軍/ドレミ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ ： 光または水のクリーチャー（自分の光または水のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、光または水のコスト３以下の呪文を１枚、コストを支払らわずに自分の手札から唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-077",
+      "limit": 1,
+      "rev": {
+        "any": true,
+        "colors": [
+          "光",
+          "水"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 3,
+          "spellColorsAny": [
+            "光",
+            "水"
+          ],
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1894",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-058",
+      "name": "モロハ夜叉 ＜オルゼキ.鬼＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "デーモン・コマンド/鬼レクスターズ",
+      "text": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のクリーチャー１体またはタマシードを１枚破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-058",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "SacrificeAlly413",
+          "g1894CreatureOrSeed": true,
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1894",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-066",
+      "name": "ボンバーの伝説",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "チームボンバー",
+      "text": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\nこのターン、自分のクリーチャーすべてに「スピードアタッカー」を与え、ターンの終わりにアンタップする。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-066",
+      "limit": 4,
+      "g449ManaReveal": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "speedAttacker": true
+          },
+          "g1894EndUntap": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-1894",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1893,
-    "checkedAt": "2026-11-28T04:43:05.579Z",
-    "baseCount": 9905,
-    "newEffectCards": 4,
+    "phase": 1894,
+    "checkedAt": "2026-11-28T04:49:06.629Z",
+    "baseCount": 9909,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9909,
+    "totalCount": 9912,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/39961/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351618,6 +351737,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39405/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1893,
+        "checkedAt": "2026-11-28T04:43:05.579Z",
+        "baseCount": 9905,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9909,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -4173,12 +4173,22 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_GroupGrant364':
-  for(const {p,y}of groupPowerRows(s,t)){
+ case'g34_GroupGrant364':{
+  const rows=groupPowerRows(s,t);
+  for(const {p,y}of rows){
    if(t.g736ForceAttack)force546(s,{...t,when:'end'},p,y);
    applyGrant(s,t,y);
   }
+  if(t.g1894EndUntap&&rows.length)(s.g537Delays??=[]).push({p:t.p,source:t.source,turn:s.turn,when:'turnEnd',
+   ...(t.spell?{spellCost:cost(faces(card(t.source)).find(c=>c.type==='spell')||card(t.source))}:{}),
+   defs:[{op:'UntapRefs1894',groups:rows.map(({p,y})=>({p,refs:api.allLayers(y).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))}))}]});
   break;
+ }
+ case'g34_UntapRefs1894':{
+  const done=new Set();
+  for(const g of t.groups){const y=s.players[g.p].battle.find(y=>!y.sealed&&api.isCreature(s,y)&&api.allLayers(y).some(x=>g.refs.some(r=>r.uid===x.uid&&r.incarnation===(x.incarnation||0))));if(y&&!done.has(y.uid)){done.add(y.uid);api.untap(s,g.p,y);}}
+  break;
+ }
  case'g34_CreatureAttackTarget1021':{
   const player=1-t.p;
   (s.extLimits??=[]).push({kind:'g1021CreatureAttackTarget',player,
@@ -4625,7 +4635,7 @@ export function createSixPhotoRules(api){
   const source=t.g1200GraveStart?own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial):null;
   if(t.g1200GraveStart&&!source)break;
   const selected=t.selected??[];
-  const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p))
+  const rows=(t.g1894CreatureOrSeed?own.battle.filter(y=>matches(s,t.p,y,{creatureOrSeed:true})):t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p))
    .filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&
     (!t.filter||matches(s,t.p,y,t.filter))&&!selected.some(z=>z.uid===y.uid));
   const legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),remaining=(t.n??1)-selected.length;
@@ -9038,7 +9048,7 @@ export function createSixPhotoRules(api){
   if(!v||t.g1200GraveStart&&!own.grave.some(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial))break;
   const selected=[...(t.selected??[]),v],targets=selected.map(ref=>own.battle.find(y=>
    y.uid===ref.uid&&(y.incarnation||0)===ref.incarnation&&!y.sealed&&
-   (t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&
+   (t.g1894CreatureOrSeed?matches(s,t.p,y,{creatureOrSeed:true}):t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&
    (!t.filter||matches(s,t.p,y,t.filter))&&
    (!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));
   if(targets.some(y=>!y)||new Set(targets).size!==targets.length)break;
