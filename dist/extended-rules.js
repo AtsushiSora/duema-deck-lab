@@ -64,7 +64,7 @@ import {createOriginalChampionRules} from './champion-original-rules.js?v=0.722.
 import {createChampionRules} from './champion-rules.js?v=0.722.3';
 import {createEnvironmentRules} from './environment-rules.js?v=0.722.19';
 import {createRecommendedRules} from './recommended-rules.js?v=0.722.19';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.49';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.50';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.722.24';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.722.22';
@@ -909,6 +909,10 @@ if(!f.g1746Finish&&f.spell?.g420CycloneReturn&&!api.spellIgnored(s,f.spell)){f.t
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
+   const discardTasks=card(x).g1864EnemyDiscardTasks;
+   if(discardTasks&&!api.handAbilityIgnored(s,x)&&!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&
+    ['spell','creature','seed','gear','field','aura','duelist'].includes(card(t.source)?.type))
+    enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',t.p,x.cardId,{uid:x.uid,defs:discardTasks})});
    discardCarol1700(s,t.p,x);
    if(card(x).g1686DiscardGaia&&t.p!==s.active&&!api.handAbilityIgnored(s,x))enqueue(s,t.p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Select',t.p,x.cardId,{origin:'extra',n:1,deploy:true,optional:true,filter:{creature:true,g1085Psychic:true,exactId:'dmr01-v02'},title:'元のガイアール・カイザーを1体まで出す'})});
    if(card(x).g1207DiscardCast&&enemyDiscardEffect(s,t))

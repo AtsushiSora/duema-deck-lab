@@ -316398,22 +316398,250 @@
               },
               "reveal": true
             }
-          ]
+          ],
+          "public": true,
+          "g1660PublicReveal": true
         }
       ],
       "supportBatch": "phase-1863",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-S10",
+      "name": "邪騎 スベルニル / 「我が愛馬よ!!」",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アビスロイヤル",
+      "text": "自分のマナゾーンにあるカードの枚数が相手以下なら、このクリーチャーの召喚コストを２少なくする。\nアビスラッシュ\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚まで墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。\n【呪文面】\nS・トリガー S・トリガー\nエレメントを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-S10",
+      "limit": 4,
+      "g212CountDiscount": {
+        "fixed": 2,
+        "g1864ManaNotAhead": true
+      },
+      "abyssRush": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "0枚墓地に置く",
+              "defs": []
+            },
+            {
+              "label": "1枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "2枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "3枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 3
+                }
+              ]
+            },
+            {
+              "label": "4枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 4
+                }
+              ]
+            },
+            {
+              "label": "5枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「我が愛馬よ!!」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "race": "アビスへの誘い",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1864",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-011",
+      "name": "青守銀 スクザミ/ナムアミ・ルーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メタリカ",
+      "text": "このクリーチャーが攻撃する時、自分のシールドの数以下のコストを持つ相手のクリーチャーをすべてタップする。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n自分の山札の上から１枚目を、裏向きのまま新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-011",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TapAll",
+          "g218Tap": true,
+          "g1864ShieldMax": true
+        }
+      ],
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "ナムアミ・ルーン",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-1864",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22bd1-013",
+      "name": "爆龍覇 グレンリベット / 「爆流秘術、暴龍の大地！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+      "text": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、または、相手のカードの効果によってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴンを１体出し、残りを好きな順序で山札の下に置く。\n【呪文面】\n自分の山札の上から１枚目をタップしてマナゾーンに置く。それがドラゴンなら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd1-013",
+      "limit": 4,
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1864",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1863,
-    "checkedAt": "2026-11-28T01:00:54.919Z",
-    "baseCount": 9793,
+    "phase": 1864,
+    "checkedAt": "2026-11-28T01:08:05.778Z",
+    "baseCount": 9796,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9796,
+    "totalCount": 9799,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/47677/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -346860,6 +347088,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/46528/",
           "https://dm.takaratomy.co.jp/rule/qa/47057/",
           "https://dm.takaratomy.co.jp/rule/qa/48924/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1863,
+        "checkedAt": "2026-11-28T01:00:54.919Z",
+        "baseCount": 9793,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9796,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

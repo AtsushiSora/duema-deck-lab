@@ -237,6 +237,7 @@ export function createSixPhotoRules(api){
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
   if(!t)return 0;
+  if(t.g1864ManaNotAhead&&s.players[p].mana.length>s.players[1-p].mana.length)return 0;
   if(t.g1838AllMultiMana&&!s.players[p].mana.every(x=>!x.faceDown&&api.manaColors(api.zoneCard(s,p,x,'mana'),s,p).length>1))return 0;
   if(t.fixed!==undefined)return t.fixed;
   const owner=t.owner==='opponent'?1-p:p;
@@ -6542,7 +6543,7 @@ export function createSixPhotoRules(api){
   choice(s,t,stage.title||(stage.g467Destinations?'移動するカードを1枚選ぶ':null)||('山札から'+(stage.n==='all'?'条件に合うカード':stage.n+'枚')+'を'+({hand:'手札',mana:'マナ',grave:'墓地',shields:'シールド'}[stage.to]||stage.to)+'へ'),[...rows.map(y=>opt(t.g467Blind?'山札の上から'+(t.ids.indexOf(y.uid)+1)+'枚目（裏向き）':card(y).name,y.uid,t.g467Blind?0:stage.g1660OpponentChooses?-10-cost(card(y)):t.g323Scry?scryScore323(s,t,y):t.g255Search&&stage.optional&&selected.length+1>=own.deck.length?-1000:t.g200Search&&stage.to==='hand'&&selected.length+1>=own.deck.length?-1000:t.g185Search&&stage.to==='hand'&&own.deck.length===1?-1000:stage.to==='grave'||t.g200Search&&stage.to==='deck'?-cost(card(y)):10+cost(card(y)),t.g467Blind?undefined:y.cardId)),...(stage.optional?[skip()]:[])],stage.g1660OpponentChooses?1-t.p:t.p);break;}
  case'g34_Order':{const ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(t.rest==='randomBottom1520'){const rest=ids.map(uid=>{release(s,t.p,uid);return remove(own.deck,uid);}).filter(Boolean);for(const y of rest)delete y.g11Sideways;if(rest.length)own.deck.push(...api.shuffled(rest,Math.floor(api.random(s)*4294967296)));if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='shuffle'){for(const uid of ids)release(s,t.p,uid);api.shuffleLibrary(s,t.p);if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='top'){if(t.g259OrderTop&&ids.length>1){choice(s,{...t,ids},'山札の上から置く順序を選ぶ',ids.map(uid=>opt(card(own.deck.find(x=>x.uid===uid)).name,uid,0,own.deck.find(x=>x.uid===uid).cardId)));break;}const xs=(t.g259OrderTop?[...(t.ordered||[]),...ids]:ids).map(uid=>remove(own.deck,uid)).filter(Boolean);for(const uid of t.g259OrderTop?[...(t.ordered||[]),...ids]:ids)release(s,t.p,uid);own.deck.unshift(...xs);if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(t.rest==='grave'||t.rest==='mana'||t.rest==='hand'){for(const uid of ids)zoneMove(s,t.p,'deck',uid,t.rest,{...t,tapped:!!t.restTapped});if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);break;}if(ids.length>1)choice(s,{...t,ids},'残りを山札の下に置く順序を選ぶ',ids.map(uid=>{const y=own.deck.find(x=>x.uid===uid);return opt(card(y).name,uid,0,y.cardId);}));else{for(const uid of [...(t.ordered||[]),...ids]){const y=remove(own.deck,uid);release(s,t.p,uid);if(y)own.deck.push(y);}if(t.after)start(s,t,t.after);api.deckCheck(s,t.p);}break;}
  // Movement uses the normal ramp replacements; the second card never repeats the test.
- case'g34_RampMatch516':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const dest=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');clear(y,dest);if(dest==='mana')y.tapped=true;api.addZone(s,t.p,dest,y);const matched=!api.deckWasShuffled1365(s,y)&&matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner===null)start(s,t,[...(matched?[{op:'Ramp',n:1,tapped:true}]:t.elseDraw?[{op:'Draw',n:1}]:[]),...(t.after||[])]);break;}
+ case'g34_RampMatch516':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const dest=api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');clear(y,dest);if(dest==='mana')y.tapped=true;api.addZone(s,t.p,dest,y);const matched=!api.deckWasShuffled1365(s,y)&&matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner===null)start(s,t,[...(matched?(t.g1864ReturnSpellOnHit?[{op:'SpellFinish416',uid:t.uid,to:'hand'}]:[{op:'Ramp',n:1,tapped:true}]):t.elseDraw?[{op:'Draw',n:1}]:[]),...(t.after||[])]);break;}
  case'g34_CreatureCountRamp765':{
   const count=countDraw(s,t.p,{...t,zone:'battle'});
   if(!count)break;
@@ -7151,7 +7152,8 @@ export function createSixPhotoRules(api){
  }
  case'g34_TapAll':{
   for(const p of t.both?[0,1]:[1-t.p]){
-   const matchesTap=y=>!t.g218Tap||matches(s,p,y,t.filter);
+   const filter=t.g1864ShieldMax?{creature:true,max:own.shields.length}:t.filter;
+   const matchesTap=y=>!t.g218Tap||matches(s,p,y,filter);
    const rows=creatures(s,p);
    if(t.g1108Snapshot){
     // Fix eligibility before tapping can change the power of other creatures.

@@ -25075,7 +25075,9 @@
               },
               "reveal": true
             }
-          ]
+          ],
+          "public": true,
+          "g1660PublicReveal": true
         }
       ]
     }
@@ -25117,9 +25119,639 @@
               },
               "reveal": true
             }
-          ]
+          ],
+          "public": true,
+          "g1660PublicReveal": true
         }
       ]
+    }
+  },
+  "dm23ex3-S10": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "邪騎 スベルニル",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "自分のマナゾーンにあるカードの枚数が相手以下なら、このクリーチャーの召喚コストを２少なくする。\nアビスラッシュ\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から５枚まで墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。",
+        "race": "アビスロイヤル",
+        "powerText": "9000",
+        "missingFields": []
+      },
+      {
+        "name": "「我が愛馬よ!!」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\nエレメントを１つ選び、持ち主のマナゾーンに置く。",
+        "race": "アビスへの誘い",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "fixed": 2,
+        "g1864ManaNotAhead": true
+      },
+      "abyssRush": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "0枚墓地に置く",
+              "defs": []
+            },
+            {
+              "label": "1枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "2枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "3枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 3
+                }
+              ]
+            },
+            {
+              "label": "4枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 4
+                }
+              ]
+            },
+            {
+              "label": "5枚墓地に置く",
+              "defs": [
+                {
+                  "op": "Mill",
+                  "n": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「我が愛馬よ!!」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 4,
+        "race": "アビスへの誘い",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "to": "mana",
+            "toOwnerMana": true
+          }
+        ]
+      }
+    }
+  },
+  "dmrp07-011": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "青守銀 スクザミ",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーが攻撃する時、自分のシールドの数以下のコストを持つ相手のクリーチャーをすべてタップする。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+        "race": "メタリカ",
+        "powerText": "4000",
+        "missingFields": []
+      },
+      {
+        "name": "ナムアミ・ルーン",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "自分の山札の上から１枚目を、裏向きのまま新しいシールドとして自分のシールドゾーンに加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g34Attack": [
+        {
+          "op": "TapAll",
+          "g218Tap": true,
+          "g1864ShieldMax": true
+        }
+      ],
+      "g40LastBurst": true,
+      "spellFace": {
+        "name": "ナムアミ・ルーン",
+        "type": "spell",
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 4,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      }
+    }
+  },
+  "dm22bd1-013": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "爆龍覇 グレンリベット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、または、相手のカードの効果によってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴンを１体出し、残りを好きな順序で山札の下に置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をタップしてマナゾーンに置く。それがドラゴンなら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      }
+    }
+  },
+  "dm23bd4-039": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "爆龍覇 グレンリベット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、または、相手のカードの効果によってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーを１体出し、残りを好きな順序で山札の下に置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をタップしてマナゾーンに置く。それがドラゴンなら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      }
+    }
+  },
+  "dm25bd3-018": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "爆龍覇 グレンリベット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、または、相手のカードによってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーを１体出し、残りを好きな順序で山札の下に置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚をタップしてマナゾーンに置く。それがドラゴン・カードなら、この呪文を、唱えた後で墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      }
+    }
+  },
+  "dm24sp1-015": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "爆龍覇 グレンリベット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが召喚によって出た時、または、相手のカードの効果によってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴン・クリーチャーを１体出し、残りを好きな順序で山札の下に置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をタップしてマナゾーンに置く。それがドラゴンなら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      }
+    }
+  },
+  "dm22bd1-BE5": {
+    "phase": 1864,
+    "faces": [
+      {
+        "name": "爆龍覇 グレンリベット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "T・ブレイカー\nこのクリーチャーが召喚によって出た時、または、相手のカードの効果によってこのクリーチャーを自分の手札から捨てた時、自分の山札の上から３枚を表向きにする。その中からドラゴンを１体出し、残りを好きな順序で山札の下に置く。",
+        "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+        "powerText": "12000",
+        "missingFields": []
+      },
+      {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "typeText": "呪文",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分の山札の上から１枚目をタップしてマナゾーンに置く。それがドラゴンなら、この呪文を、唱えた後、墓地に置くかわりに手札に加える。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "g749Required": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "public": true
+        }
+      ],
+      "spellFace": {
+        "name": "「爆流秘術、暴龍の大地！」",
+        "type": "spell",
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "g1864ReturnSpellOnHit": true
+          }
+        ]
+      }
     }
   }
 }
