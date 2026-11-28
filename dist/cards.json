@@ -317980,18 +317980,145 @@
       ],
       "supportBatch": "phase-1875",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd14-004",
+      "name": "封魔右神グラストンベリー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ゴッド・ノヴァ OMG/グランド・デビル",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\n右G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-004",
+      "limit": 4,
+      "g31God": "right",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -2000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd14-007",
+      "name": "魔天聖邪ビッグディアウト",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ OMG/デーモン・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。その後、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\nW・ブレイカー\n右G・リンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-007",
+      "limit": 4,
+      "g31God": "right",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        },
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-023",
+      "name": "光器左神ラブパレード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ゴッド・ノヴァ OMG/メカ・デル・ソル",
+      "text": "このクリーチャーをバトルゾーンに出した時、光の呪文を１枚、自分の墓地から手札に戻してもよい。\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-023",
+      "limit": 4,
+      "g31God": "left",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell",
+              "color": "光"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-001",
+      "name": "悪魔右神ダフトパンク",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ゴッド・ノヴァ/デーモン・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト６以下の無色クリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー\n右G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-001",
+      "limit": 4,
+      "g31God": "right",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "noColor": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1876",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1875,
-    "checkedAt": "2026-11-28T02:35:05.634Z",
-    "baseCount": 9828,
+    "phase": 1876,
+    "checkedAt": "2026-11-28T02:39:58.075Z",
+    "baseCount": 9832,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9832,
+    "totalCount": 9836,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35506/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -348617,6 +348744,21 @@
         "totalCount": 9828,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1875,
+        "checkedAt": "2026-11-28T02:35:05.634Z",
+        "baseCount": 9828,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9832,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35506/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

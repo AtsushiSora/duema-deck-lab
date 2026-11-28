@@ -11756,6 +11756,15 @@ export function createSixPhotoRules(api){
     victim.g1192Power=power===Infinity?'∞':power===-Infinity?'-∞':power;
    }
   }
+  // A linked unit retains each physical God's independent death-watching ability.
+  snapshot.g1876LinkedDeathWatches=s.players.flatMap((own,p)=>own.battle.flatMap(host=>{
+   if(host.sealed||api.ignored(s,host))return [];
+   const unit=snapshot.death303.find(row=>row.p===p&&row.uid===host.uid);
+   return (host.godLinks||[]).flatMap(part=>{
+    const watch=card(part.cardId).g303DeathWatch;
+    return watch?[{...unit,cardId:part.cardId,watch}]:[];
+   });
+  }));
   return snapshot;
  },
  leaving(s,p,x,snapshot,to,destroy){
@@ -11832,7 +11841,7 @@ export function createSixPhotoRules(api){
     else hooks.flushElementLeaves617(s,watchers);
    }
   }
-  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=deathVictim1674(death,p,x);const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of death.filter(y=>y.watch&&
+  const victim320=snapshot?.leave320?.find(y=>y.p===p&&key(y)===key(x));if(victim320?.creature&&String(victim320.race).includes('アビス'))for(const watcher of snapshot.leave320.filter(y=>y.p===p&&y.watch)){if(!used(s,'g320JaveUsed',watcher)){mark(s,'g320JaveUsed',watcher);queueBattle(s,p,watcher,[{op:'Discard',n:1}]);}}const prior=snapshot?.selfLeaves?snapshot.selfLeaves.find(y=>y.p===p&&key(y)===key(x)):effective(x,s);if(prior?.g172Leave&&(!prior.g601OpponentLeave||s.active!==p))queueBattle(s,p,x,prior.g172Leave);if(to==='grave'&&destroy){const death=snapshot?.death303,victim=deathVictim1674(death,p,x);const firstCreatureDeath=victim?.creature&&s.g612CreatureDeathTurn!==s.turn;if(firstCreatureDeath)s.g612CreatureDeathTurn=s.turn;if(victim)for(const watcher of [...death,...(snapshot.g1876LinkedDeathWatches||[])].filter(y=>y.watch&&
    (victim.creature||victim.element&&y.watch.g1311Element)&&(!y.watch.firstCreatureDeath||firstCreatureDeath)&&(!y.watch.g1733FirstForPlayer||s.g393DDestroyed?.turn===s.turn&&s.g393DDestroyed.byPlayer?.[p]===1)&&
    (y.watch.both||y.p===(y.watch.opponent?1-p:p)))){const self=key(watcher)===key(victim);
    // Rule 603.5d: a source that leaves in this batch can see only itself.
