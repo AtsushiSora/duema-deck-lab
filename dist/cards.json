@@ -316307,20 +316307,113 @@
       ],
       "supportBatch": "phase-1862",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-058",
+      "name": "ハトメラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバーロード/フュージョナー",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーから進化する水のクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-058",
+      "limit": 4,
+      "justDiver": true,
+      "g1863EvolutionBaseReduction": {
+        "color": "水",
+        "amount": 2
+      },
+      "g404Soul": {
+        "g1863EvolutionBaseReduction": {
+          "color": "水",
+          "amount": 2
+        }
+      },
+      "supportBatch": "phase-1863",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-089",
+      "name": "ビッグバン・ラピア",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ファイアー・バード/フュージョナー",
+      "text": "このクリーチャーを、自分の墓地またはマナゾーンから召喚してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが、好きな文明の好きな種族であるかのように、このクリーチャーからフェニックス・クリーチャーを進化させてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-089",
+      "limit": 4,
+      "g978SelfGraveSummon": true,
+      "g297SelfManaSummon": {
+        "g272ManaCount": 0
+      },
+      "g1863PhoenixBase": true,
+      "g404Soul": {
+        "g1863PhoenixBase": true
+      },
+      "supportBatch": "phase-1863",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-031",
+      "name": "ネオマッハ・ダイヤエンジン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、自分の山札の上から３枚を表向きにする。その中から「ブロッカー」を持つクリーチャーをすべて手札に加え、残りを好きな順序で山札の下に置く。\n自分のクリーチャーが持つ、攻撃できない能力を無効にする。（ただし、そのクリーチャーの召喚酔いは無効にならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-031",
+      "limit": 4,
+      "g1863AttackFreedomAura": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 3,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1863",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1862,
-    "checkedAt": "2026-11-28T00:46:35.275Z",
-    "baseCount": 9789,
-    "newEffectCards": 4,
+    "phase": 1863,
+    "checkedAt": "2026-11-28T01:00:54.919Z",
+    "baseCount": 9793,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9793,
+    "totalCount": 9796,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46528/",
-      "https://dm.takaratomy.co.jp/rule/qa/47057/",
-      "https://dm.takaratomy.co.jp/rule/qa/48924/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -346750,6 +346843,23 @@
         "totalCount": 9789,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1862,
+        "checkedAt": "2026-11-28T00:46:35.275Z",
+        "baseCount": 9789,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9793,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46528/",
+          "https://dm.takaratomy.co.jp/rule/qa/47057/",
+          "https://dm.takaratomy.co.jp/rule/qa/48924/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

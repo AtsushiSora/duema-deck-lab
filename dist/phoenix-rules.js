@@ -30,14 +30,14 @@ export function createPhoenixRules(api){
     (!d.zones||!x.sealed&&!x.faceDown)&&(api.isCreature(s,x)||d.allowShinkalize&&!x.sealed&&!x.faceDown&&effective(x,s).shinkalize)):
     (zone==='grave'&&!d.zones||!x.faceDown)&&card(x).type==='creature').map(x=>({x,zone})));
  }
- const matches=(s,x,condition)=>condition.creature||api.matchesEvolution(x,condition,s);
+ const matches=(s,x,condition,c)=>condition.creature||api.matchesEvolution(x,condition,s,c);
  const baseZoneLabel={battle:'場',grave:'墓地',mana:'マナ'};
  function completions(s,p,c,selected=[],options={}){const d=definition(c);if(d.zone==='deck')return s.players[p].deck.length>0;const pool=candidates(s,p,c,options).filter(r=>r.x.uid!==options.exclude).sort((a,b)=>Number(selected.includes(b.x.uid))-Number(selected.includes(a.x.uid)));if(d.zones&&!d.g1739VariableZones){
   const rows=pool.filter(({x})=>selected.includes(x.uid));
   return rows.length===selected.length&&new Set(rows.map(({zone})=>zone)).size===rows.length&&
    d.zones.every(zone=>pool.some(row=>row.zone===zone));
  }
- if(d.minCards)return validCardCountBases(s,p,c,selected,options);if(d.variable)return selected.length>0&&new Set(selected).size===selected.length&&selected.every(uid=>pool.some(r=>r.x.uid===uid&&matches(s,r.x,d.conditions[0])));if(selected.length>d.conditions.length||new Set(selected).size!==selected.length||selected.some(uid=>!pool.some(r=>r.x.uid===uid)))return false;function visit(i,used){if(i===d.conditions.length)return selected.every(uid=>used.includes(uid));return pool.some(r=>!used.includes(r.x.uid)&&matches(s,r.x,d.conditions[i])&&visit(i+1,[...used,r.x.uid]));}return visit(0,[]);}
+ if(d.minCards)return validCardCountBases(s,p,c,selected,options);if(d.variable)return selected.length>0&&new Set(selected).size===selected.length&&selected.every(uid=>pool.some(r=>r.x.uid===uid&&matches(s,r.x,d.conditions[0],c)));if(selected.length>d.conditions.length||new Set(selected).size!==selected.length||selected.some(uid=>!pool.some(r=>r.x.uid===uid)))return false;function visit(i,used){if(i===d.conditions.length)return selected.every(uid=>used.includes(uid));return pool.some(r=>!used.includes(r.x.uid)&&matches(s,r.x,d.conditions[i],c)&&visit(i+1,[...used,r.x.uid]));}return visit(0,[]);}
  function bases(s,p,c,options={}){const min=definition(c).minCards;if(min){const rows=cardCountPool(s,p,c,options);return baseCardCount(rows)>=min?rows.map(r=>r.x):[];}if(!definition(c).variable&&!completions(s,p,c,[],options))return[];if(definition(c).zone==='deck')return s.players[p].deck.slice(0,3);return candidates(s,p,c,options).filter(r=>completions(s,p,c,[r.x.uid],options)).map(r=>r.x);}
  function beginCast(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]);put(s,task('g31_Bases',p,x.cardId,{uid:x.uid,mode:'cast',args,selected:[]}));}
  function beginPut(s,p,x,base,options){const c=card(x);if((c.g31Evolution?.minCards||c.g31Evolution?.zones)&&!bases(s,p,c,{...options,exclude:x.uid}).length){

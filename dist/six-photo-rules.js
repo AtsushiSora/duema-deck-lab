@@ -163,10 +163,10 @@ export function createSixPhotoRules(api){
   // grave/deck evolution cannot add different creatures to that base.
   if(multi){
    if(multi.zone!=='battle'&&!multi.zones?.includes('battle')||multi.conditions?.length!==1||multi.minCards&&api.allLayers(host).length<multi.minCards)return false;
-   return api.matchesEvolution(host,multi.conditions[0],s);
+   return api.matchesEvolution(host,multi.conditions[0],s,c);
   }
   const condition=c.evolution||c.neoEvolution;
-  return !!condition&&api.matchesEvolution(host,condition,s);
+  return !!condition&&api.matchesEvolution(host,condition,s,c);
  }
  function queenCandidate1701(x){const all=faces(card(x));return all.every(c=>c.type!=='creature')&&all.some(c=>cost(c)<=6);}
  function entryFight624(s,t){

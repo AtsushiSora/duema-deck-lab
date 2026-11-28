@@ -14,7 +14,7 @@ export function createGolgyRules(api){
  }
  const order=(s,t,ids)=>put(s,{...t,op:'g27_Order',ids});
  function take(s,t,uid,to){const own=s.players[t.p],x=api.remove(own.deck,uid);release(s,t.p,[uid]);if(!x)return;const target=to==='mana'&&(api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p))?'grave':to;api.clear(x,target);api.addZone(s,t.p,target,x);}
- const baseEligible=(s,x,c)=>!!(card(x).type==='creature'||card(x).shinkalize)&&!!(c.evolution||c.neoEvolution)&&api.matchesEvolution(x,c.evolution||c.neoEvolution,s);
+ const baseEligible=(s,x,c)=>!!(card(x).type==='creature'||card(x).shinkalize)&&!!(c.evolution||c.neoEvolution)&&api.matchesEvolution(x,c.evolution||c.neoEvolution,s,c);
  function executeOptions(s,t,x){
   if(!x)return[];return api.faces(card(x)).flatMap((c,face)=>{
    if(cost(c)>s.players[t.p].hand.length||!api.canCast(s,t.p,c,'deck')||c.type!=='spell'&&!api.canEnter(s,t.p,c,{origin:'deck',execution:true}))return[];
