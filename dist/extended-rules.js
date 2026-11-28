@@ -73,7 +73,7 @@ import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js?v=0.89';
 import {createGolgyRules} from './golgy-rules.js?v=0.722.3';
 import {createVirideRules} from './viride-rules.js';
-import {createHachiRules} from './hachi-rules.js?v=0.722.19';
+import {createHachiRules} from './hachi-rules.js?v=0.722.20';
 import {createAbyssRules} from './abyss-rules.js?v=0.722.3';
 import {createRedzoneRules} from './redzone-rules.js?v=0.722.20';
 import {createMadoRules} from './mado-rules.js?v=0.104.0';

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9779,
-  "pendingNames": 2070,
-  "phase": 1857,
+  "supportedNames": 9781,
+  "pendingNames": 2068,
+  "phase": 1858,
   "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1215,
+    "クリーチャー": 1213,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1553,
+    "未対応の能力文": 1551,
     "複数面・特殊カードタイプまたは情報不足": 427,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -580432,33 +580432,228 @@
           "reason": "Initial official verification sandbox DNS ENOTFOUND; same official read succeeded with network escalation. New fixture failures corrected: sole Trooper seal auto-moves before draw, so do not issue nonexistent seal choice; opponent discard uses native extended discardSelect selecting own physical cards, not legacy discard action. Early spec review fixed native Discard owner default instead of unsupported literal opponent string, and external protection field scan so ignored recipient retains aura; final full71 focused tests green."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd"
+    },
+    {
+      "phase": 1858,
+      "checkedAt": "2026-11-28T00:21:41.447Z",
+      "baseline": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9779,
+      "currentNames": 9781,
+      "remainingNames": 219,
+      "added": [
+        {
+          "id": "dmsd07-003",
+          "name": "ハンマノ裁徒"
+        },
+        {
+          "id": "dm25rp4-035",
+          "name": "ブリザド＝ザルド"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1858,
+        "baseline": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+        "originalDefinitionsUnchanged": 9779,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9781,
+        "uniqueIds": 9781,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9779,
+        "existingImageReferenceRowsUnchanged": 12256,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1858": {
+          "name": "official-1858",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1858.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.412,
+          "log": "tmp/duema-target-10000/official-1858.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1858-final": {
+          "name": "focused-1858-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1858-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.311,
+          "log": "tmp/duema-target-10000/focused-1858-final.log",
+          "passed": 43,
+          "logSha256": "636f1908b18a552b8027aea2a2c1fbe00b2691d47a70be2c55e6de90abc441da"
+        },
+        "related-1858": {
+          "name": "related-1858",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1858.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 3.169,
+          "log": "tmp/duema-target-10000/related-1858.log",
+          "passed": 114,
+          "logSha256": "7308697c2b2aa8b1741d02e668d3bb86b953a0d7525cd6d2562feed77bbe5427"
+        },
+        "check-1858": {
+          "name": "check-1858",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.824,
+          "log": "tmp/duema-target-10000/check-1858.log",
+          "passed": 0,
+          "logSha256": "d9d557510dbacbfde2aaeb3e442054c741d365b45eabcbe8d15fe77a85bae00a"
+        },
+        "audit-1858": {
+          "name": "audit-1858",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.116,
+          "log": "tmp/duema-target-10000/audit-1858.log",
+          "passed": 0,
+          "logSha256": "1bf05537d1f0c8d6470dd869600881e6cf346c3f12013e69b26af2d3bcd7337d"
+        },
+        "invariants-1858": {
+          "name": "invariants-1858",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1858"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.828,
+          "log": "tmp/duema-target-10000/invariants-1858.log",
+          "passed": 0,
+          "logSha256": "004515ba73a3235a603d9419263e7546cfb93aa9fe03288e6150b2256630418c"
+        },
+        "related-online-1858": {
+          "name": "related-online-1858",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.655,
+          "log": "tmp/duema-target-10000/related-online-1858.log",
+          "passed": 5,
+          "logSha256": "80173c73b4a19b6629b0f6c9e53e8f6dbeed18bd6235daf9beb32fe39a821590"
+        }
+      },
+      "totalTestsPassed": 162,
+      "manifest": "tools/support-phase-1858.json",
+      "supported": 9781,
+      "pending": 2068,
+      "engineVersion": "0.602.382",
+      "held": [
+        {
+          "id": "promoy15-078",
+          "name": "終断デルタ ドルハカバ",
+          "reason": "Official exact1 print/image checked, BUT existing dmr23-043 終断Δ ドルハカバ has identical stats/abilities/native g978SelfGraveSummon field condition. Reading-vs-Greek-Delta official naming variant is not a new type. Do not add canonical duplicate; full cross-variant print reconciliation pending, preserve oldID/rawname."
+        },
+        {
+          "id": "dm14-014",
+          "name": "巡霊者メスタポ",
+          "reason": "Official2prints+QA33394 researched; full images not yet visually reviewed. Existing deckLocked includes prohibition on shuffle as well as looking, while Mesta prohibits only LOOKING for BOTH players; cannot reuse global deckLocked partially. Need separate full look-vs-shuffle paths and literal Magibomber QA before implementation."
+        },
+        {
+          "id": "dm39-007",
+          "name": "ピュアガゼルスター",
+          "reason": "Official1print+oldQA36212 researched, full image not yet reviewed. Ability grants all cards in next shield-to-hand EVENT including future shields, composite shields and simultaneous shields, not static current-shield snapshot. Full consumption/noST/oldQA related cases needed; no partial implementation."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dmrp03-s01",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        },
+        {
+          "id": "dm32-050",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        },
+        {
+          "id": "dm32-092",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        }
+      ],
+      "verificationScope": "Two complete supported types, three full official print images/mana1/limits and one alias verified; no linked QA on new two card pages. Hammer native blocker/W2 and player-attack ban unless actual own shieldcard added this turn, both seats, tapped enemycreature allowed, actual Crest shieldPLUS activates, actual topdecknewshield activates, persists after shielddeparture, nextturnresets, summoning sickness retained, opposing shieldaddition and redirected deckshield->grave excluded. Blizzard max3 OPTIONAL distinct physical hand discards reserved as one simultaneous batch, source cannotdiscarditself, reduced2each and min1, each0/1/2/3 chosen payment, fewerhandcard completion, cancel at any partialselection no sideeffects, reduced-only affordable declaration allows no unaffordable confirm, NightCarol with both WaterFire mana stayshand yet6discount applies, noCostReduction keepsallhand andfull7, mandatory ownstartdraw percopy/normaldraw/opponent/ignore rules. Actual encrypted service manual1mana preview rolls back uncommitted discard selection, confirm atomically commits3discards+payment+entry, bothseat legalprojection/JSON/UID conservation. Focused43, relatedfixed1240/1700 and shield1031/1032, online5/check/audit9781/invariants passed. Fullsuite/oldpending unchanged; no push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1858",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1858-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.247,
+          "log": "tmp/duema-target-10000/focused-1858.log",
+          "reason": "Corrected test fixtures, no hidden failures: real NightCarol replacement requires actual Water AND Fire mana, initial onlyWater correctly did not return cards; use realboth colors. shieldCards imported from shield-state ratherthan nonexistentengineexport. Manualmana uses transaction preview: discards remain rolledback untilconfirmation; assert reserved source selections and preview cost1, then committed grave3/payment1/physical conservation. All43 finalgreen. Variable optional max extends only opted-in g1858DiscardMax, old fixed one/two selections and Carol regression green."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1857,
-    "nextPhase": 1858,
+    "lastVerifiedPhase": 1858,
+    "nextPhase": 1859,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "promoy15-078",
-        "reason": "Next grouped full official print/QA research, images pending review."
+        "id": "dmrp03-s01",
+        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
       },
       {
-        "id": "dmsd07-003",
-        "reason": "Next grouped full official print/QA research, images pending review."
+        "id": "dm32-050",
+        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
       },
       {
-        "id": "dm25rp4-035",
-        "reason": "Next grouped full official print/QA research, images pending review."
-      },
-      {
-        "id": "dm39-007",
-        "reason": "Next grouped full official print/QA research, images pending review."
-      },
-      {
-        "id": "dm14-014",
-        "reason": "Next grouped full official print/QA research, images pending review."
+        "id": "dm32-092",
+        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
       }
     ],
     "steps": [
@@ -581372,11 +581567,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1857,
-      "baseline": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
-      "supportedNames": 9779,
-      "artifact": "tools/target10000-registration-checkpoint-1857.json",
-      "checkedAt": "2026-11-28T00:16:06.818Z"
+      "phase": 1858,
+      "baseline": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "supportedNames": 9781,
+      "artifact": "tools/target10000-registration-checkpoint-1858.json",
+      "checkedAt": "2026-11-28T00:21:41.447Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -584434,8 +584629,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9779,
-      "remaining": 221,
+      "currentNames": 9781,
+      "remaining": 219,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584443,31 +584638,23 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1857,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1857.json",
+      "lastPhase": 1858,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1858.json",
       "nextCandidates": [
         {
-          "id": "promoy15-078",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dmrp03-s01",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         },
         {
-          "id": "dmsd07-003",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dm32-050",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         },
         {
-          "id": "dm25rp4-035",
-          "reason": "Next grouped full official print/QA research, images pending review."
-        },
-        {
-          "id": "dm39-007",
-          "reason": "Next grouped full official print/QA research, images pending review."
-        },
-        {
-          "id": "dm14-014",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dm32-092",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         }
       ],
-      "resumeProcedure": "Continue 9779, remaining221. Two new complete cards1857; Maruhavan linked-God QA held unimplemented. Preserve olderholds/registeredliteralQA pending/fullsuite. No push/publication/Netlify/automation.",
+      "resumeProcedure": "Continue9781 remaining219; nextGodMura/Mani+Maruhavan literalQA40114 full support. Preserve named-variantDolk no duplicate, Mesta/PureGazelle held no partials, olderpending/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584701,7 +584888,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
+      "lastVerifiedCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584712,7 +584899,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
+      "lastVerifiedCodeCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -585886,8 +586073,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9779,
-      "remaining": 221,
+      "currentNames": 9781,
+      "remaining": 219,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -585895,31 +586082,23 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1857,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1857.json",
+      "lastPhase": 1858,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1858.json",
       "nextCandidates": [
         {
-          "id": "promoy15-078",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dmrp03-s01",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         },
         {
-          "id": "dmsd07-003",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dm32-050",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         },
         {
-          "id": "dm25rp4-035",
-          "reason": "Next grouped full official print/QA research, images pending review."
-        },
-        {
-          "id": "dm39-007",
-          "reason": "Next grouped full official print/QA research, images pending review."
-        },
-        {
-          "id": "dm14-014",
-          "reason": "Next grouped full official print/QA research, images pending review."
+          "id": "dm32-092",
+          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
         }
       ],
-      "resumeProcedure": "Continue 9779, remaining221. Two new complete cards1857; Maruhavan linked-God QA held unimplemented. Preserve olderholds/registeredliteralQA pending/fullsuite. No push/publication/Netlify/automation.",
+      "resumeProcedure": "Continue9781 remaining219; nextGodMura/Mani+Maruhavan literalQA40114 full support. Preserve named-variantDolk no duplicate, Mesta/PureGazelle held no partials, olderpending/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -586153,7 +586332,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
+      "lastVerifiedCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -586164,7 +586343,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
+      "lastVerifiedCodeCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -595062,6 +595241,353 @@
         ],
         "allImagesReviewed": true,
         "completedManifest": "tools/support-phase-1857.json"
+      },
+      {
+        "phase": 1858,
+        "research": "tmp/duema-target-10000/research-promoy15-078.json",
+        "status": "2implemented-verified-3held-research-only",
+        "cards": [
+          {
+            "id": "promoy15-078",
+            "name": "終断デルタ ドルハカバ",
+            "searchSha256": "00763d605f6c7aca0210f08a771ff5f7713423bdce8fafae4cc35688cd5c163f",
+            "searchIds": [
+              "dmex06-088",
+              "dmr23-043",
+              "dmbd21-025",
+              "promoy15-078"
+            ],
+            "excluded": [
+              {
+                "id": "dmex06-088",
+                "name": "終断Δ ドルハカバ"
+              },
+              {
+                "id": "dmr23-043",
+                "name": "終断Δ ドルハカバ"
+              },
+              {
+                "id": "dmbd21-025",
+                "name": "終断Δ ドルハカバ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "promoy15-078",
+                "name": "終断デルタ ドルハカバ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-078",
+                "faces": [
+                  {
+                    "name": "終断デルタ ドルハカバ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇/火",
+                    "civilizations": [
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nバトルゾーンに自分のフィールドがあれば、このクリーチャーを自分の墓地から召喚してもよい。",
+                    "race": "ソニックコマンド/イニシャルズX",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "promoy15-078",
+                "printedManaValue": 1,
+                "htmlSha256": "c1e5eb0b7a498cf6b13dbabe90191483736842bb77cbebb094cc450cc9496c78",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-078.jpg",
+                    "file": "tmp/duema-target-10000/research/promoy15-078-0.jpg",
+                    "sha256": "44f7125afa7afb2d7e8085208d4819e870f30cccec11f65739abde935f7bccd4"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dmsd07-003",
+            "name": "ハンマノ裁徒",
+            "searchSha256": "8716474c16ad26200fa81d1f6a51457189bb3bd5f5eb95c155130f4120247210",
+            "searchIds": [
+              "dmsd07-003"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmsd07-003",
+                "name": "ハンマノ裁徒",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd07-003",
+                "faces": [
+                  {
+                    "name": "ハンマノ裁徒",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのターン中にカードが自分のシールドゾーンに置かれていなければ、このクリーチャーは相手プレイヤーを攻撃できない。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+                    "race": "メタリカ/サバキスト",
+                    "powerText": "6000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmsd07-003",
+                "printedManaValue": 1,
+                "htmlSha256": "716b871b81f0ffd27a9f804ffa54173492f7c2dd4b351de33a4b347eff5a9e7c",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd07-003.jpg",
+                    "file": "tmp/duema-target-10000/research/dmsd07-003-0.jpg",
+                    "sha256": "05d0064c40b6be69fffee5f2edc0c806cc4ffc64ba10f91ecf5001d0be7c5b0e"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm25rp4-035",
+            "name": "ブリザド＝ザルド",
+            "searchSha256": "70620542fa2fb6abf32d4a26c5c8f8dbb6f1add217fc78b1b17884e19328842e",
+            "searchIds": [
+              "dm25rp4-Sec19",
+              "dm25rp4-035"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm25rp4-035",
+                "name": "ブリザド＝ザルド",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-035",
+                "faces": [
+                  {
+                    "name": "ブリザド＝ザルド",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "このクリーチャーを召喚する時、自分の手札を３枚まで捨てる。こうして捨てたカード１枚につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nブロッカー ブロッカー\n自分のターンのはじめに、カードを１枚引く。",
+                    "race": "アズールアビス",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp4-035",
+                "printedManaValue": 1,
+                "htmlSha256": "e613d42c5b02509328676e4b965821491b24bac357b1c6fa0d1e2606c4b433e9",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-035.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp4-035-0.jpg",
+                    "sha256": "d687764bf03d7a70cd517c31cab97f3f5ac5065fd97e2369d5db40d6bac2b6f1"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm25rp4-Sec19",
+                "name": "ブリザド＝ザルド",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-Sec19",
+                "faces": [
+                  {
+                    "name": "ブリザド＝ザルド",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "このクリーチャーを召喚する時、自分の手札を３枚まで捨てる。こうして捨てたカード１枚につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nブロッカー ブロッカー\n自分のターンのはじめに、カードを１枚引く。",
+                    "race": "アズールアビス",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp4-035",
+                "printedManaValue": 1,
+                "htmlSha256": "bc488cbf8dbee87abaf2e10b4a8e60c38e4d4a5017eecb2377677f33722fe2d5",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-Sec19.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp4-Sec19-0.jpg",
+                    "sha256": "db2162665391c48feeb5628fe15fceb363d7dbd76691ce516489401a9207ecc8"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm39-007",
+            "name": "ピュアガゼルスター",
+            "searchSha256": "e266d857852e1dbc72299ed2f174917cfffb57e5470b7fd425e166c576874764",
+            "searchIds": [
+              "dm39-007"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm39-007",
+                "name": "ピュアガゼルスター",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-007",
+                "faces": [
+                  {
+                    "name": "ピュアガゼルスター",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、そのターン、次に自分の手札に加えるシールドのカードはすべて「S・トリガー」を得る。",
+                    "race": "シャイン・モンスター",
+                    "powerText": "3500",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm39-007",
+                "printedManaValue": 1,
+                "htmlSha256": "bf202bff3dd84747785f7d18ea54e0c4341a6e2f5b2bebe0a2fd3be47d31aab5",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-007.jpg",
+                    "file": "tmp/duema-target-10000/research/dm39-007-0.jpg",
+                    "sha256": "9afed7378a99cec3dea81a063b4379a3f2850eba764ce858baf3b0ef1f6a81d0"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa_old/36212/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa_old/36212/",
+                "sha256": "e9ea38f1ea31362e7498318795defb3ff191c56da0454fd88143e41d740d97ca",
+                "body": "よくある質問 Q《ピュアガゼルスター》を召喚しました。そのターン、後で、呪文の効果によって、カードを１枚新しいシールドとしてシールドゾーンに加えることになりました。その後で、そのシールドを手札に加えました。それが《ピュアガゼルスター》召喚後はじめて手札に加えたシールドです。どうなりますか？ A《ピュアガゼルスター》の能力が発動した時にそのシールドがシールドゾーンになくても、「次に自分の手札に加えたシールド」であることにかわりはないので、「S・トリガー」を得ます。 一覧へ戻る 関連する質問 《ピュアガゼルスター》を召喚しました。次にどうすればいいですか？ 《ピュアガゼルスター》を召喚しました。そのターン、次に自分の手札に加えたシールドは、シールドプラスによって、カードが何枚か重なっていました。どうすればいいですか？ 《ピュアガゼルスター》を召喚しましたが、そのターン、自分の手札に加えたシールドはありませんでした。どうなりますか？ 《ピュアガゼルスター》を召喚し、その後、自分の手札にシールドを加えました。そのカードの「S・トリガー」を使いたくない場合、あるいはそのカードにはじめから「S・トリガー」が付いていた場合、《ピュアガゼルスター》の能力をとっておいて、次に手札に加えるシールドに使ってもいいですか？ 《ピュアガゼルスター》を召喚し、その後、別のカードの効果によって、シールドをいくつか同時に自分の手札に加えることになりました。そのシールドはすべて、《ピュアガゼルスター》の能力の対象となりますか？ 《ピュアガゼルスター》を召喚しました。そのターン、後で、呪文の効果によって、シールドを１枚手札に加えました。ところが、その呪文の効果には、「その「S・トリガー」は使えない。」とあります。どうなりますか？ カードの効果によって、シールドをふたつ同時に自分の手札に加えることになりました。１枚は《ピュアガゼルスター》で、その「S・トリガー」を使いました。もうひとつのシールドに、「S・トリガー」は与えられますか？ カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクション"
+              }
+            ]
+          },
+          {
+            "id": "dm14-014",
+            "name": "巡霊者メスタポ",
+            "searchSha256": "003483e6b655b9d0df4f8475450b9d816e37bd613eaa5edc45211bea47cd0543",
+            "searchIds": [
+              "dm14-014",
+              "dmx12b-066"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm14-014",
+                "name": "巡霊者メスタポ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-014",
+                "faces": [
+                  {
+                    "name": "巡霊者メスタポ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "誰も山札を見ることはできない。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+                    "race": "コスモ・ウォーカー",
+                    "powerText": "1000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm14-014",
+                "printedManaValue": 1,
+                "htmlSha256": "1a9e7cb5a081d2150f961a04802b0511666e16ce576b5432fc520e16e577e1e5",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-014.jpg",
+                    "file": "tmp/duema-target-10000/research/dm14-014-0.jpg",
+                    "sha256": "fbfcc5ab3ca757f9175c3ea8544c5b075356668fbd0f47237d38a845e5045eb3"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/33394/"
+                ]
+              },
+              {
+                "id": "dmx12b-066",
+                "name": "巡霊者メスタポ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-066",
+                "faces": [
+                  {
+                    "name": "巡霊者メスタポ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "誰も山札を見ることはできない。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+                    "race": "コスモ・ウォーカー",
+                    "powerText": "1000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm14-014",
+                "printedManaValue": 1,
+                "htmlSha256": "380e7f74e59eb5b553d42da4121520ab8fe99ed0872eca13148cf7ae61bae6d0",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-066.jpg",
+                    "file": "tmp/duema-target-10000/research/dmx12b-066-0.jpg",
+                    "sha256": "e726bfb2323faf372e8da96cec503a328b8afd8f652b27033f6ee0241bfa8fc9"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/33394/",
+                "sha256": "5f29b8589e2813110b15e5327e3096abb299063bc41cb3aa58a70071805fadbe",
+                "body": "よくある質問 Q《巡霊者メスタポ》がバトルゾーンにいて、山札を見れなくなっています。この状態で「マジボンバー」を使うことはできますか？ Aはい、使えます。ただし、山札の一番上を見ることはできないので、手札からしかクリーチャーを出せません。 一覧へ戻る 関連する質問 「マジボンバー」はどういう能力ですか？ 2020.3.27 《巡霊者メスタポ》がバトルゾーンにいて、山札を見れなくなっています。更に、このターン、《悪臭怪人ゴキーン》の能力により、自分の墓地から山札の上にコスト3のクリーチャーが置かれています。 山札の上にコスト3のクリーチャーが置かれていることは全てのプレイヤーが知っていますが、この状態で「マジボンバー3」を使った場合、山札の上のクリーチャーもバトルゾーンに出せますか？ 2020.3.27 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 おせわ おえかき メイキングトイ シール トレーディングカード（TCG） アプリゲーム コミュニケーション コレクション 英語 ごっこ遊び ミニカー パーティー スマホトイ パソコントイ 共遊玩具：盲導犬マーク 共遊玩具：うさぎマーク エコトイ 対象年齢からさがす 対象年齢からさがすトップ ベビー・プリスクール 3歳以上 4歳以上 5歳以上 6歳以上 10歳以上 小学生 中学生 15歳以上 18歳以上 50音順からさがす 50音順からさがすトップ あ行 か行 さ行 た行 な行 は行 ま行 や行 ら行 わ行 会社情報 会社情報トップ 会社概要 採用情報 サステナビリティ 社会貢献活動 エコトイ 共遊玩具 法人のお客様 公式ショッピングサイト・店舗のご紹介 投資家情報 投資家情報トップ トップメッセージ 中期経営計画 個人投資家の皆様へ タカラトミーの紹介 財務・業績情報 IRライブラリー お客様相談室 お客様相談室トップ よくあるご質問 / お問い合わせ お客様へのお知らせ 電池の正しい使"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": false,
+        "reviewedIds": [
+          "promoy15-078",
+          "dmsd07-003",
+          "dm25rp4-035"
+        ],
+        "completedManifest": "tools/support-phase-1858.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -646981,10 +647507,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1857,
+    "phase": 1858,
     "threshold": 10000,
-    "supportedNames": 9779,
-    "pendingNames": 2070,
+    "supportedNames": 9781,
+    "pendingNames": 2068,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -646993,7 +647519,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1857.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1858.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

@@ -6,10 +6,11 @@ export function createHachiRules(api){
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
  function chooseDiscard1240(s,t){
   const selected=t.selected||[],count=t.count||1;
+  const selectedPayable=t.variable&&api.canPay(s,t.p,{...card(t.source),summonOrigin:t.origin,executionUid:t.uid,g1240DiscardPaid:selected.length*t.amount});
   const cards=s.players[t.p].hand.filter(y=>y.uid!==t.uid&&!selected.includes(y.uid));
-  choice(s,t,card(t.source).name+'：手札を'+count+'枚捨てて召喚コストを軽減する？'+(selected.length?'（'+selected.length+'枚選択済み）':''),[
+  choice(s,t,card(t.source).name+'：手札を'+count+(t.variable?'枚まで':'枚')+'捨てて召喚コストを軽減する？'+(selected.length?'（'+selected.length+'枚選択済み）':''),[
    ...cards.map(y=>opt(card(y).name,y.uid,15-cost(card(y))*.1,y.cardId)),
-   ...(t.full?[opt('捨てずに召喚する',null,14)]:[]),opt('召喚を取りやめる',false,-100)
+   ...(t.variable?selectedPayable?[opt(selected.length+'枚で召喚する',null,14)]:[]:t.full?[opt('捨てずに召喚する',null,14)]:[]),opt('召喚を取りやめる',false,-100)
   ]);
  }
  function run(s,t){if(!t.op.startsWith('g11_'))return false;const own=s.players[t.p];switch(t.op){
@@ -42,12 +43,13 @@ export function createHachiRules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g11_'))return false;const own=s.players[t.p];switch(t.op){
  case'g11_ChooseDiscard1240':{
   if(v===false)break;
-  const selected=v?[...(t.selected||[]),v]:[],count=t.count||1;
+  const selected=v?[...(t.selected||[]),v]:t.variable?t.selected||[]:[],count=t.count||1;
   // Reserve distinct physical cards, then discard the complete selection together.
   // A Carol replacement may return a selected card, but cannot select it twice.
-  if(v&&selected.length<count){chooseDiscard1240(s,{...t,selected});break;}
-  put(s,{...t,op:'g11_ResumeDiscard1240',paid:v?t.amount:0});
-  if(v)api.discardSelected(s,task('discard',t.p,t.source,{n:count,causedBy:t.p}),selected);
+  if(v&&selected.length<count&&(!t.variable||own.hand.some(y=>y.uid!==t.uid&&!selected.includes(y.uid)))){chooseDiscard1240(s,{...t,selected});break;}
+  const paid=t.variable?selected.length*t.amount:v?t.amount:0;
+  put(s,{...t,op:'g11_ResumeDiscard1240',paid});
+  if(selected.length)api.discardSelected(s,task('discard',t.p,t.source,{n:t.variable?selected.length:count,causedBy:t.p}),selected);
   break;
  }
  case'g11_Search':put(s,...(v?[task('putCreature',t.p,t.source,{origin:'deck',uid:v,deckCheck:true})]:[]),task('g11_Shuffle',t.p,t.source));break;
@@ -64,7 +66,7 @@ export function createHachiRules(api){
  function discounted(s,p,c){return {...c,cost:creatures(s,1-p).some(x=>effective(x,s).noCostReduction)?cost(c):Math.max(1,cost(c)-2),printedCost:c.cost};}
  return{run,chosen,
  offerDiscard1240(s,p,x,c,origin,cards,full,args){
-  chooseDiscard1240(s,task('g11_ChooseDiscard1240',p,c.id,{origin,uid:x.uid,serial:x.zoneSerial||0,args,amount:c.g1240DiscardReduction,count:c.g1700DiscardCount||1,selected:[],full}));
+  chooseDiscard1240(s,task('g11_ChooseDiscard1240',p,c.id,{origin,uid:x.uid,serial:x.zoneSerial||0,args,amount:c.g1240DiscardReduction,count:c.g1858DiscardMax||c.g1700DiscardCount||1,...(c.g1858DiscardMax?{variable:true}:{}),selected:[],full}));
  },
  effect(s,p,c,uid,entry){const op={hachiRedZ:'RedZ',hachiStorm:'Storm',hachiFight:'Fight',hachiForbidden:'Forbidden',hachiShibire:'Shibire',hachiPower:'Power',hachiSSD:'SSD'}[c.effect];if(!op)return false;put(s,task('g11_'+op,p,c.id,{uid,incarnation:entry?.incarnation||0,lastKnownPower:entry?.lastKnownPower??0}));return true;},
  attackEnd(s,a,x){if(x&&effective(x,s).hachiJudge)on(s,a.player,x,'g11_Judge');},
