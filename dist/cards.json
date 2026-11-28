@@ -319330,17 +319330,184 @@
       ],
       "supportBatch": "phase-1884",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm27-006",
+      "name": "黙示聖霊ラグナシア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 0,
+      "race": "エンジェル・コマンド/ライトブリンガー",
+      "text": "このクリーチャーのパワーは、自分のマナゾーンにある文明ひとつにつき+4000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。\nこのクリーチャーは、パワーが15000以上の時、「T・ブレイカー」を得る。\nこのクリーチャーは、パワーが20000以上の時、「Q・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-006",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "civilizations": true,
+        "amount": 4000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        },
+        {
+          "power": 15000,
+          "breaker": 3
+        },
+        {
+          "power": 20000,
+          "breaker": 4
+        }
+      ],
+      "supportBatch": "phase-1885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-036",
+      "name": "蔵禄の守護者カメンビー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルに負けた時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。その後、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-036",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1885BattleLoss": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        },
+        {
+          "op": "DrawUpTo",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-110",
+      "name": "素晴らしい犬 ワンワンワン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1111,
+      "race": "アウトレイジ犬",
+      "text": "{Dog Souls}\n《素晴らしい犬 ワンワンワン》は、４枚より多くデッキに入れることができる。\nバトルゾーンにある自分の他のアウトレイジ犬１匹につき、このクリーチャーのパワーを+1111する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-110",
+      "limit": 40,
+      "g314Unlimited": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "race": "アウトレイジ犬"
+        },
+        "amount": 1111
+      },
+      "supportBatch": "phase-1885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy24-085",
+      "name": "ボルシャック・太陽・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ファイアー・バード/アーマード・ドラゴン",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n各ターンに１度、名前に《ボルシャック》とある自分のクリーチャーの召喚コストを３少なくしてもよい。ただし、コストは１以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-085",
+      "limit": 4,
+      "gStrike": true,
+      "g464OnceSummon": {
+        "amount": 3,
+        "nameIncludes": "ボルシャック",
+        "minimum": 2
+      },
+      "supportBatch": "phase-1885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-078",
+      "name": "零魔幻争",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。バトルゾーンに自分のパワー6000以上のクリーチャーがあれば、このターン、選んだクリーチャーのパワーを－2000のかわりに －6000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-078",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "minPower": 6000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -6000,
+              "g242PowerMinus": true,
+              "spell": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true,
+              "spell": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1885",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1884,
-    "checkedAt": "2026-11-28T03:52:39.095Z",
-    "baseCount": 9867,
+    "phase": 1885,
+    "checkedAt": "2026-11-28T03:56:56.712Z",
+    "baseCount": 9872,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9872,
+    "totalCount": 9877,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36645/",
+      "https://dm.takaratomy.co.jp/rule/qa/40238/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -350106,6 +350273,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39646/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1884,
+        "checkedAt": "2026-11-28T03:52:39.095Z",
+        "baseCount": 9867,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9872,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

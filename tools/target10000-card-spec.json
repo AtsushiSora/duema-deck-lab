@@ -30206,5 +30206,296 @@
         }
       ]
     }
+  },
+  "dm27-006": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "黙示聖霊ラグナシア",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーのパワーは、自分のマナゾーンにある文明ひとつにつき+4000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。\nこのクリーチャーは、パワーが15000以上の時、「T・ブレイカー」を得る。\nこのクリーチャーは、パワーが20000以上の時、「Q・ブレイカー」を得る。",
+        "race": "エンジェル・コマンド/ライトブリンガー",
+        "powerText": "0",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g207CountPower": {
+        "zone": "mana",
+        "civilizations": true,
+        "amount": 4000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        },
+        {
+          "power": 15000,
+          "breaker": 3
+        },
+        {
+          "power": 20000,
+          "breaker": 4
+        }
+      ]
+    }
+  },
+  "dmr06-036": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "蔵禄の守護者カメンビー",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルに負けた時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。その後、カードを１枚引いてもよい。",
+        "race": "ガーディアン",
+        "powerText": "1500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g1885BattleLoss": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        },
+        {
+          "op": "DrawUpTo",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "dmx22b-110": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "素晴らしい犬 ワンワンワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "{Dog Souls}\n《素晴らしい犬 ワンワンワン》は、４枚より多くデッキに入れることができる。\nバトルゾーンにある自分の他のアウトレイジ犬１匹につき、このクリーチャーのパワーを+1111する。",
+        "race": "アウトレイジ犬",
+        "powerText": "1111",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314Unlimited": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "race": "アウトレイジ犬"
+        },
+        "amount": 1111
+      }
+    }
+  },
+  "dmx22b-111": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "素晴らしい犬 ワンワンワン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "{Dog Souls}\n《素晴らしい犬 ワンワンワン》は、４枚より多くデッキに入れることができる。\nバトルゾーンにある自分の他のアウトレイジ犬１匹につき、このクリーチャーのパワーを+1111する。",
+        "race": "アウトレイジ犬",
+        "powerText": "1111",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g314Unlimited": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "race": "アウトレイジ犬"
+        },
+        "amount": 1111
+      }
+    }
+  },
+  "promoy24-085": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "ボルシャック・太陽・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n各ターンに１度、名前に《ボルシャック》とある自分のクリーチャーの召喚コストを３少なくしてもよい。ただし、コストは１以下にはならない。",
+        "race": "ファイアー・バード/アーマード・ドラゴン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g464OnceSummon": {
+        "amount": 3,
+        "nameIncludes": "ボルシャック",
+        "minimum": 2
+      }
+    }
+  },
+  "dm25bd1-SP6": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "ボルシャック・太陽・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク\n各ターンに一度、名前に《ボルシャック》とある自分のクリーチャーの召喚コストを３少なくしてもよい。ただし、コストは１以下にはならない。",
+        "race": "ファイアー・バード/アーマード・ドラゴン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g464OnceSummon": {
+        "amount": 3,
+        "nameIncludes": "ボルシャック",
+        "minimum": 2
+      }
+    }
+  },
+  "dm26ex2-MC020": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "ボルシャック・太陽・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク\n各ターンに１度、名前に《ボルシャック》とある自分のクリーチャーの召喚コストを３少なくしてもよい。ただしコストは１以下にならない。",
+        "race": "ファイアー・バード/アーマード・ドラゴン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g464OnceSummon": {
+        "amount": 3,
+        "nameIncludes": "ボルシャック",
+        "minimum": 2
+      }
+    }
+  },
+  "dm25bd1-013": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "ボルシャック・太陽・ルピア",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "{GS} G・ストライク\n各ターンに一度、名前に《ボルシャック》とある自分のクリーチャーの召喚コストを３少なくしてもよい。ただし、コストは１以下にはならない。",
+        "race": "ファイアー・バード/アーマード・ドラゴン",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "g464OnceSummon": {
+        "amount": 3,
+        "nameIncludes": "ボルシャック",
+        "minimum": 2
+      }
+    }
+  },
+  "dmrp19-078": {
+    "phase": 1885,
+    "faces": [
+      {
+        "name": "零魔幻争",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。バトルゾーンに自分のパワー6000以上のクリーチャーがあれば、このターン、選んだクリーチャーのパワーを－2000のかわりに －6000する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "minPower": 6000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -6000,
+              "g242PowerMinus": true,
+              "spell": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true,
+              "spell": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

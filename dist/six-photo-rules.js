@@ -319,7 +319,7 @@ export function createSixPhotoRules(api){
   for(const x of selectedOnce464(s,p,c)){
    const rule=effective(x,s).g464OnceSummon;
    if(rule.execution)execution+=rule.amount;
-   else summon+=rule.amount;
+   else if(rule.minimum!==2)summon+=rule.amount;
   }
   return {summon,execution};
  }
@@ -10492,7 +10492,7 @@ export function createSixPhotoRules(api){
   return true;
  },
  beginPayment500(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g500Handled||!floorOptions500(s,p,c)[0]||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayFloor500',p,c.id,{c:payment,args}));return true;},
- floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const minimum=c.g211Sympathy?.minimum;if(minimum>=3)base=Math.min(base,Math.max(minimum,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
+ floorCost500(s,p,c,base){if(c.type!=='creature'||c.crossing)return base;const minimum=c.g211Sympathy?.minimum;if(minimum>=3)base=Math.min(base,Math.max(minimum,base-sympathyAmount500(s,p,c)));const amounts=floorOptions500(s,p,c),aura=c.g500Amount===undefined?amounts[0]:amounts.includes(c.g500Amount)?c.g500Amount:0,n=selectedOnce464(s,p,c).reduce((n,x)=>{const r=effective(x,s).g464OnceSummon;return n+(r.minimum===2?r.amount:0);},0)+aura+(c.g212CountDiscount?.minimum===2?countDiscountMax499(s,p,c):0)+(c.g211Sympathy?.minimum===2?sympathyAmount500(s,p,c):0);return n?Math.min(base,Math.max(2,base-n)):base;},
  beginPayment499(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g499Handled||c.type!=='creature'&&!c.g1537OptionalSpellDiscount||!c.g212CountDiscount?.optional||!countDiscountMax499(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PayCount499',p,c.id,{c:payment,args}));return true;},
  beginOverdrive1439(s,p,c,args){if(args[1]||args[4]?.g1439Handled||!c.g1439ODrive)return false;put(s,task('g34_ODrive1439',p,c.id,{c,args}));return true;},
  beginPayment485(s,p,c,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g485Handled||!spellReductionMax485(s,p,c)||creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return false;const payment={...c,...(args[4]===null?{}:typeof args[4]==='object'?args[4]:{cost:args[4]}),printedCost:c.cost};put(s,task('g34_PaySpell485',p,c.id,{c:payment,args}));return true;},
