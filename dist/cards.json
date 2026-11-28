@@ -319648,15 +319648,186 @@
       "g50Canbero": true,
       "supportBatch": "phase-1886",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-051",
+      "name": "熱血大帝 カツカイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アウトレイジMAX",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。そうしたら、その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーが破壊された時、コスト８以下のアウトレイジを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-051",
+      "limit": 4,
+      "trigger": true,
+      "effect": "fightOptional",
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "アウトレイジ",
+            "max": 8
+          }
+        }
+      ],
+      "supportBatch": "phase-1887",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-027",
+      "name": "瞬撃の大地 ザンヴァッカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 5000,
+      "race": "ガイア・コマンド",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、タップしてもよい。\n相手のクリーチャーは、もし攻撃するのであれば、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-027",
+      "limit": 4,
+      "trigger": true,
+      "guardman": true,
+      "g431AttackMe": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "このクリーチャーをタップする？",
+          "defs": [
+            {
+              "op": "SelfTap314",
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1887",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-029",
+      "name": "発明オジソン",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーはタップしてバトルゾーンに出る。\nこのクリーチャーがタップしている間、自分はゲームに負けず、相手は勝てない。\nこのクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-029",
+      "limit": 4,
+      "trigger": true,
+      "g295EnterTapped": true,
+      "g1468TappedNoLose": true,
+      "destroyToMana": true,
+      "supportBatch": "phase-1887",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd14-002",
+      "name": "霊騎左神ロラパルーザ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゴッド・ノヴァ OMG/アーク・セラフィム",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-002",
+      "limit": 4,
+      "g31God": "left",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1887",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-048",
+      "name": "聖火のバスター・トラップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンに自分の光または火のクリーチャーがあれば、バトルゾーンにある相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。なければ、バトルゾーンにある相手のタップされているクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-048",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "filter": {
+                "tapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1887",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1886,
-    "checkedAt": "2026-11-28T04:01:49.322Z",
-    "baseCount": 9877,
-    "newEffectCards": 4,
+    "phase": 1887,
+    "checkedAt": "2026-11-28T04:05:29.106Z",
+    "baseCount": 9881,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9881,
+    "totalCount": 9886,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -350454,6 +350625,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36645/",
           "https://dm.takaratomy.co.jp/rule/qa/40238/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1886,
+        "checkedAt": "2026-11-28T04:01:49.322Z",
+        "baseCount": 9877,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9881,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
