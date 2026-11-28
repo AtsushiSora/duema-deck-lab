@@ -321117,17 +321117,138 @@
       ],
       "supportBatch": "phase-1896",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-015",
+      "name": "オニカマス ＜シャッフ.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "ムートピア/マジック・コマンド/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、数字を１つ選ぶ。次の自分のターンのはじめまで、選んだ数字と同じコストを持つ相手のクリーチャーは、攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-015",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "g9Number",
+          "family": "creatureLock1252"
+        }
+      ],
+      "supportBatch": "phase-1897",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-023",
+      "name": "アイボー・チュリス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ビートジョッキー/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中から、このクリーチャーから進化できるコスト６以下のクリーチャーを１体、このクリーチャーの上に置いてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-023",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "g1897OnSourceMax": 6,
+          "filter": {
+            "creature": true,
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-1897",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd03-002",
+      "name": "ヴァーニング・ヒーター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 12000,
+      "race": "ジョーカーズ",
+      "text": "Ｊ・Ｏ・Ｅ ２\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、アンタップする。その後、相手のシールドを１つブレイクする。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられた時、相手のクリーチャーをパワーの合計が6000以下になるように好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-002",
+      "limit": 4,
+      "joeDiscount": 2,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Untap",
+          "g191First": true
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 6000
+        }
+      ],
+      "supportBatch": "phase-1897",
+      "supportKind": "effect",
+      "g1897DiscardCreatureSpell": true
     }
   ],
   "supportExpansion": {
-    "phase": 1896,
-    "checkedAt": "2026-11-28T05:11:17.866Z",
-    "baseCount": 9916,
+    "phase": 1897,
+    "checkedAt": "2026-11-28T05:16:41.886Z",
+    "baseCount": 9919,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9919,
+    "totalCount": 9922,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/39641/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -352072,6 +352193,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/41168/",
           "https://dm.takaratomy.co.jp/rule/qa/41433/",
           "https://dm.takaratomy.co.jp/rule/qa/41432/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1896,
+        "checkedAt": "2026-11-28T05:11:17.866Z",
+        "baseCount": 9916,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9919,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -33581,5 +33581,172 @@
         }
       ]
     }
+  },
+  "dmrp17-015": {
+    "phase": 1897,
+    "faces": [
+      {
+        "name": "オニカマス ＜シャッフ.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、数字を１つ選ぶ。次の自分のターンのはじめまで、選んだ数字と同じコストを持つ相手のクリーチャーは、攻撃もブロックもできない。",
+        "race": "ムートピア/マジック・コマンド/レクスターズ",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "g9Number",
+          "family": "creatureLock1252"
+        }
+      ]
+    }
+  },
+  "dmrp17-023": {
+    "phase": 1897,
+    "faces": [
+      {
+        "name": "アイボー・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中から、このクリーチャーから進化できるコスト６以下のクリーチャーを１体、このクリーチャーの上に置いてもよい。残りを好きな順序で山札の下に置く。",
+        "race": "ビートジョッキー/レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "g1897OnSourceMax": 6,
+          "filter": {
+            "creature": true,
+            "max": 6
+          }
+        }
+      ]
+    }
+  },
+  "dmrp17-coro02": {
+    "phase": 1897,
+    "faces": [
+      {
+        "name": "アイボー・チュリス",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中から、このクリーチャーから進化できるコスト６以下のクリーチャーを１体、このクリーチャーの上に置いてもよい。残りを好きな順序で山札の下に置く。",
+        "race": "ビートジョッキー/レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "g1897OnSourceMax": 6,
+          "filter": {
+            "creature": true,
+            "max": 6
+          }
+        }
+      ]
+    }
+  },
+  "dmbd03-002": {
+    "phase": 1897,
+    "faces": [
+      {
+        "name": "ヴァーニング・ヒーター",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "Ｊ・Ｏ・Ｅ ２\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、アンタップする。その後、相手のシールドを１つブレイクする。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられた時、相手のクリーチャーをパワーの合計が6000以下になるように好きな数選び、破壊する。",
+        "race": "ジョーカーズ",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "joeDiscount": 2,
+      "speedAttacker": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Untap",
+          "g191First": true
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ],
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 6000
+        }
+      ],
+      "g1897DiscardCreatureSpell": true
+    }
   }
 }

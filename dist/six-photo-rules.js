@@ -154,10 +154,10 @@ export function createSixPhotoRules(api){
  function namedLock1643(s,p,names){return (s.extLimits||[]).some(l=>l.kind==='g1643NamedCreatureLock'&&l.player===p&&l.names.some(n=>names.includes(n))&&!api.spellIgnored(s,{type:'spell',spellSource:l.spellSource,cost:l.spellCost}));}
  function nextOpponentStay1643(s,p){return (s.extLimits||[]).some(l=>l.kind==='g1643NextOpponentStay'&&l.player===p&&s.active===l.who&&s.players[l.who].turns>l.afterTurns&&!api.spellIgnored(s,{type:'spell',spellSource:l.spellSource,cost:l.spellCost}));}
  function sourceHost474(s,t){if(!t)return null;for(const p of[0,1]){const x=s.players[p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(x)return{p,x};}return null;}
- function manaEvolution1701(s,p,host,y,max){
-  if(!host||!s.players[p].battle.includes(host)||host.sealed||host.faceDown||!api.isCreature(s,host)||y.faceDown||!api.canMoveZone(s,p,'mana'))return false;
-  const c=api.zoneCard(s,p,y,'mana');
-  if(c.type!=='creature'||cost(c)>max||c.manaEvolution||c.graveEvolution||c.ultraEvolution||!api.canEnter(s,p,c,{origin:'mana',execution:false}))return false;
+ function manaEvolution1701(s,p,host,y,max,origin='mana'){
+  if(!host||!s.players[p].battle.includes(host)||host.sealed||host.faceDown||!api.isCreature(s,host)||y.faceDown||!api.canMoveZone(s,p,origin))return false;
+  const c=api.zoneCard(s,p,y,origin);
+  if(c.type!=='creature'||cost(c)>max||c.manaEvolution||c.graveEvolution||c.ultraEvolution||!api.canEnter(s,p,c,{origin,execution:false}))return false;
   const multi=c.g31Evolution;
   // The effect specifies this one creature as the entire base. GV/V and
   // grave/deck evolution cannot add different creatures to that base.
@@ -5938,7 +5938,7 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
- case'g34_Put':{const y=putSource1294(s,t);if(!y||t.g1651Held&&!api.canMoveZone(s,t.p,'grave')||!matchesDeathDeployment960(t,y))break;const selected=t.g1104Back?psychicBack1104(y):y,c=faces(card(selected))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,selected,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve){
+ case'g34_Put':{const y=putSource1294(s,t);if(!y||t.g1651Held&&!api.canMoveZone(s,t.p,'grave')||!matchesDeathDeployment960(t,y))break;const selected=t.g1104Back?psychicBack1104(y):y,c=faces(card(selected))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,selected,t.origin,!!t.execution))break;if(t.g1897OnSourceMax!==undefined){const host=sourceHost474(s,t.g1897Host)?.x;if(manaEvolution1701(s,t.p,host,y,t.g1897OnSourceMax,t.origin))doPut(s,t,host.uid);break;}if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve){
   let bases=api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid&&(!t.g799YobiBases||t.g799YobiBases.includes(b.uid)));
   if(t.g799YobiBases){
    const other=t.rows.find(r=>r.uid!==y.uid&&own.deck.some(x=>x.uid===r.uid&&card(x).evolution));
@@ -6359,6 +6359,11 @@ export function createSixPhotoRules(api){
   if(t.g798DifferentCost!==undefined){
    const costs=new Set(creatures(s,t.p).filter(x=>!x.sealed).map(x=>cost(api.zoneCard(s,t.p,x,'battle'))));
    eligible=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{creature:true,max:t.g798DifferentCost})&&!costs.has(cost(api.zoneCard(s,t.p,x,'deck')))).map(x=>x.uid);
+  }
+  if(t.g1897OnSourceMax!==undefined){
+   const host=sourceHost474(s,t)?.x;
+   eligible=own.deck.filter(y=>ids.includes(y.uid)&&manaEvolution1701(s,t.p,host,y,t.g1897OnSourceMax,'deck')).map(y=>y.uid);
+   t={...t,g1897Host:host?{uid:host.uid,incarnation:host.incarnation||0}:null};
   }
   const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top',...(t.restTapped?{restTapped:true}:{})};
   const inspection=t.g1660PublicReveal?{g1660PublicPeek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'公開した山札'}))}:t.g841DeckPeek?deckPeek841(own,ids):{};

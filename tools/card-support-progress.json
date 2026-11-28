@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9919,
-  "pendingNames": 1930,
-  "phase": 1896,
+  "supportedNames": 9922,
+  "pendingNames": 1927,
+  "phase": 1897,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,13 +156,13 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1125,
+    "クリーチャー": 1123,
     "呪文": 214,
     "G-NEOクリーチャー": 23,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 155,
-    "スター進化クリーチャー": 36,
+    "スター進化クリーチャー": 35,
     "NEOクリーチャー": 33,
     "オレガ・オーラ": 11,
     "デュエルメイト・クリーチャー": 4,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1425,
+    "未対応の能力文": 1422,
     "複数面・特殊カードタイプまたは情報不足": 421,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -588665,23 +588665,234 @@
           "reason": "Candidate Kenguren dmex18-067 was discovered already aliased to SUPPORTED original dm32-101 phase1750 despite differing wave characters/nameKey; removed entirely from additions/pins/manifest and preserved original catalogue alias/image reference/definition. No duplicate counted. Changed candidate to unimplemented Valgazark. Official promoy15-039 HTML race empty while reviewed actual image explicitly shows Armored Dragon/Earth Dragon; alias spec.race and hashed image evidence preserve HTML data. Fixture legacy effect targets use effect actions rather than extended choices; no extLimits collection allowed when no effect. An expansion attempted before revised official gate finished aborted without data writes, subsequent run after gate used current correct manifest. All failed attempts resolved."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245"
+    },
+    {
+      "phase": 1897,
+      "checkedAt": "2026-11-28T05:21:23.959Z",
+      "baseline": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9919,
+      "currentNames": 9922,
+      "remainingNames": 78,
+      "added": [
+        {
+          "id": "dmrp17-015",
+          "name": "オニカマス ＜シャッフ.Star＞"
+        },
+        {
+          "id": "dmrp17-023",
+          "name": "アイボー・チュリス"
+        },
+        {
+          "id": "dmbd03-002",
+          "name": "ヴァーニング・ヒーター"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1897,
+        "baseline": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+        "originalDefinitionsUnchanged": 9919,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9922,
+        "uniqueIds": 9922,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9919,
+        "existingImageReferenceRowsUnchanged": 12489,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1897": {
+          "name": "official-1897",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1897.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.552,
+          "log": "tmp/duema-target-10000/official-1897.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1897-final": {
+          "name": "focused-1897-final4",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1897-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.349,
+          "log": "tmp/duema-target-10000/focused-1897-final4.log",
+          "passed": 39,
+          "logSha256": "aa337d4845113c6cd986b1eb303c967f083418cd98a35a67ec21ca232286c3a9"
+        },
+        "related-1897": {
+          "name": "related-1897-final",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1897.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 7.147,
+          "log": "tmp/duema-target-10000/related-1897-final.log",
+          "passed": 234,
+          "logSha256": "6e44bc9012aba694349ce5c19f8bf1704350ce10952de2f48d01e6ef0ca38e10"
+        },
+        "check-1897": {
+          "name": "check-1897-final",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.324,
+          "log": "tmp/duema-target-10000/check-1897-final.log",
+          "passed": 0,
+          "logSha256": "3c3634ade3db86fdb5a8d136168a93739e09f48b266db6dc070cdf04ff63dfa1"
+        },
+        "audit-1897": {
+          "name": "audit-1897",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.586,
+          "log": "tmp/duema-target-10000/audit-1897.log",
+          "passed": 0,
+          "logSha256": "e23a2a6d610509d139a6fa3ac303c18a52b2dc33cbc1ed0f5ca70e9cf8f2d880"
+        },
+        "invariants-1897": {
+          "name": "invariants-1897",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1897"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.934,
+          "log": "tmp/duema-target-10000/invariants-1897.log",
+          "passed": 0,
+          "logSha256": "d62365ef5e7a174491ef9241966f9101be4cbb2c642546bc3aa45f58381318c5"
+        },
+        "related-online-1897-final": {
+          "name": "related-online-1897-final",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.721,
+          "log": "tmp/duema-target-10000/related-online-1897-final.log",
+          "passed": 5,
+          "logSha256": "e0c8507a1772d91e9b5e6250cb28f33766b8f3285a090f67f06ca6a830fb3a23"
+        }
+      },
+      "totalTestsPassed": 278,
+      "manifest": "tools/support-phase-1897.json",
+      "supported": 9922,
+      "pending": 1927,
+      "engineVersion": "0.602.421",
+      "held": [
+        {
+          "id": "dmrp22-015",
+          "name": "ウシミツ童子 ＜マルバス.鬼＞",
+          "reason": "Whole2prints/QA41979 available/images not reviewed. Seed-entry graveEVO must satisfy BOTH originalactualseed and currentactualSenmetsuSolpheniStar bases afterearlierevolution. Dedicateddualhostguardneeded; do notcountpartialmill/Star."
+        },
+        {
+          "id": "dmrp18-s06",
+          "name": "アアルカイト ＜ペガサ.Star＞",
+          "reason": "Whole1print/QA39847 available/image not reviewed. Fullattackcopy mustincludeactualKingManifestBuzzrenda/DeadDamnedonTop/FinalRevolution/summoned-onlyVAN, not only ordinaryCIP. Holduntilallnativecopycontextverified."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "ids": [
+            "dmex03-040",
+            "dmsp01-019",
+            "dmr20-s06",
+            "dmr19-s09"
+          ],
+          "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
+        }
+      ],
+      "verificationScope": "Three whole cards/four exact official print images, full abilities/stats/mana/current limits/all print IDs. Onikamas StarWater/RexW2 attackNumber4 existingcreature lock through nextownSTART, literal39641 realcost4->actualGachanskycost5evolutioncanattack, Genmu/noFirebase. Aibo GSactualshieldbreak declaration/reveal/target, publictop4 forcedevolutionontoTHISsource nototherFirebase, max6/noinvalidbase/9cost/nonEVO/decline/noMatch/orderedbottom/ignored source; actualNEOKibasen forced evolve no unevolved bypass. Varning paid10/JOE8 SpeedT3, battlewinuntapTHENnativecreaturebreak1, JOE actualbottomthenDraw1atEND; realenemyspell/creature handdiscard currentpower sum6000optional0/ownactualTyphoonDiscard/realJennySEEDnegative. Both seats, encryptedservices andphysicalUIDstorage unchanged.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1897",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1897-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.632,
+          "log": "tmp/duema-target-10000/focused-1897.log",
+          "reason": "Initial guessed GhostTouch ID was actualGigantos; corrected to actualdm01-094 before final tests. JOE uses play alternative=joe ratherthan inventedfield/kind. Foundnativeg1864EnemyDiscardTasks deliberatelyincludesALLenemyELEMENTabilities; Varning printedonlycreature/spell, so added optin g1897DiscardCreatureSpell reusingnativeenemyDiscardEffect predicate. ActualJennyTamaseed doesNOTtrigger, actualMaskedHorror creature DOES. Generalized existing manaEvolution1701 origin parameter(defaultmana unchanged), LookDeploy530optin max/source reference and direct forcedbase reusesexact single-base legality including GV rejection/NEOmandatoryevolution. New implementation and related/online/check all rerun after flagchange."
+        },
+        {
+          "name": "focused-1897-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1897-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.812,
+          "log": "tmp/duema-target-10000/focused-1897-final.log",
+          "reason": "Initial guessed GhostTouch ID was actualGigantos; corrected to actualdm01-094 before final tests. JOE uses play alternative=joe ratherthan inventedfield/kind. Foundnativeg1864EnemyDiscardTasks deliberatelyincludesALLenemyELEMENTabilities; Varning printedonlycreature/spell, so added optin g1897DiscardCreatureSpell reusingnativeenemyDiscardEffect predicate. ActualJennyTamaseed doesNOTtrigger, actualMaskedHorror creature DOES. Generalized existing manaEvolution1701 origin parameter(defaultmana unchanged), LookDeploy530optin max/source reference and direct forcedbase reusesexact single-base legality including GV rejection/NEOmandatoryevolution. New implementation and related/online/check all rerun after flagchange."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1896,
-    "nextPhase": 1897,
+    "lastVerifiedPhase": 1897,
+    "nextPhase": 1898,
     "workInProgress": null,
     "nextCandidates": [
       {
         "ids": [
-          "dmrp17-015",
-          "dmrp17-023",
-          "dmbd03-002",
-          "dmrp22-015",
-          "dmrp18-s06"
+          "dmex03-040",
+          "dmsp01-019",
+          "dmr20-s06",
+          "dmr19-s09"
         ],
-        "reason": "Research prepared full official print/QA; choose native number lock, deck-on-host evolution, JOE battlewin/discard, seed entry evolution, Star reveal/CIP copy."
+        "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
       }
     ],
     "steps": [
@@ -589595,11 +589806,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1896,
-      "baseline": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
-      "supportedNames": 9919,
-      "artifact": "tools/target10000-registration-checkpoint-1896.json",
-      "checkedAt": "2026-11-28T05:14:33.721Z"
+      "phase": 1897,
+      "baseline": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "supportedNames": 9922,
+      "artifact": "tools/target10000-registration-checkpoint-1897.json",
+      "checkedAt": "2026-11-28T05:21:23.959Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -592657,8 +592868,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9919,
-      "remaining": 81,
+      "currentNames": 9922,
+      "remaining": 78,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -592666,18 +592877,17 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1896,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1896.json",
+      "lastPhase": 1897,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1897.json",
       "nextCandidates": [
         {
           "ids": [
-            "dmrp17-015",
-            "dmrp17-023",
-            "dmbd03-002",
-            "dmrp22-015",
-            "dmrp18-s06"
+            "dmex03-040",
+            "dmsp01-019",
+            "dmr20-s06",
+            "dmr19-s09"
           ],
-          "reason": "Research prepared full official print/QA; choose native number lock, deck-on-host evolution, JOE battlewin/discard, seed entry evolution, Star reveal/CIP copy."
+          "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -592914,7 +593124,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
+      "lastVerifiedCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -592925,7 +593135,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
+      "lastVerifiedCodeCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -594099,8 +594309,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9919,
-      "remaining": 81,
+      "currentNames": 9922,
+      "remaining": 78,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -594108,18 +594318,17 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1896,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1896.json",
+      "lastPhase": 1897,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1897.json",
       "nextCandidates": [
         {
           "ids": [
-            "dmrp17-015",
-            "dmrp17-023",
-            "dmbd03-002",
-            "dmrp22-015",
-            "dmrp18-s06"
+            "dmex03-040",
+            "dmsp01-019",
+            "dmr20-s06",
+            "dmr19-s09"
           ],
-          "reason": "Research prepared full official print/QA; choose native number lock, deck-on-host evolution, JOE battlewin/discard, seed entry evolution, Star reveal/CIP copy."
+          "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -594356,7 +594565,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
+      "lastVerifiedCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -594367,7 +594576,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "792843bddeb6e2353b9f08ce0eb74012ccc1422d",
+      "lastVerifiedCodeCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -608693,6 +608902,78 @@
           }
         ],
         "completedManifest": "tools/support-phase-1896.json"
+      },
+      {
+        "phase": 1897,
+        "research": "tmp/duema-target-10000/research-dmrp17-015.json",
+        "status": "full-official-verified-local",
+        "allImagesReviewed": true,
+        "reviewedIds": [
+          "dmrp17-015",
+          "dmrp17-023",
+          "dmbd03-002"
+        ],
+        "officialPrintSearchEvidence": [
+          {
+            "id": "dmrp17-015",
+            "searchSha256": "7195d9fc93b90dab1ff897443f636ec7585a71c5938f6cb1c55342bd902552de",
+            "totalResults": 18,
+            "allSearchIds": [
+              "dmrp17-015",
+              "promoy24-038",
+              "promoy17-039",
+              "dm25ex2-Cho040",
+              "dmrp21-TF13",
+              "dmrp22-TF13",
+              "dmrp21-T13",
+              "dmrp22-T13",
+              "dmex06-077",
+              "dmrp01-041",
+              "dm26ex2-055",
+              "dmartkiwami02-004",
+              "dmex09-015",
+              "dmbd15-016",
+              "dmbd19-011",
+              "dm26sd1-f009",
+              "dm26sd1-w011",
+              "dmex08-295"
+            ],
+            "exactPrints": [
+              "dmrp17-015"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmrp17-023",
+            "searchSha256": "aae55b255fd8178606d8c00d824f36ae9278c7be0b4efe5702fea480dfdd2da2",
+            "totalResults": 2,
+            "allSearchIds": [
+              "dmrp17-coro02",
+              "dmrp17-023"
+            ],
+            "exactPrints": [
+              "dmrp17-023",
+              "dmrp17-coro02"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmbd03-002",
+            "searchSha256": "266b55f5955dc5e321a12e0bb8eeedf626fa03b10422c8ff10eea8bad751e1a5",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dmbd03-002"
+            ],
+            "exactPrints": [
+              "dmbd03-002"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          }
+        ],
+        "completedManifest": "tools/support-phase-1897.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -660612,10 +660893,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1896,
+    "phase": 1897,
     "threshold": 10000,
-    "supportedNames": 9919,
-    "pendingNames": 1930,
+    "supportedNames": 9922,
+    "pendingNames": 1927,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -660624,7 +660905,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1896.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1897.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
