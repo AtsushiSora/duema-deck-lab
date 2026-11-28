@@ -319495,19 +319495,170 @@
       ],
       "supportBatch": "phase-1885",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-048",
+      "name": "電流戦攻セブ・アルゴル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "アースイーター/サイバーロード/エイリアン",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、コスト５以下の、光、水、闇いずれかのサイキック・クリーチャーを１体、自分の超次元ゾーンからバトルゾーンに出す。 (ゲーム開始時、サイキック・クリーチャーは山札には含めず、自身の超次元ゾーンに置き、バトルゾーン以外のゾーンに行った場合、そこに戻す)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-048",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "extra",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "g1085Psychic": true,
+            "max": 5,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1886",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-027",
+      "name": "ムシムタマ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分の墓地からマナゾーンに置く。xB相手のアンタップしているクリーチャーを３体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-027",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 3,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-1886",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-040",
+      "name": "士機電融 サウンドファーザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ディスペクター/フレイム・コマンド/グレートメカオー",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から１枚目を見る。それがディスタスなら、出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-040",
+      "limit": 4,
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "top",
+          "filter": {
+            "creature": true,
+            "race": "ディスタス"
+          }
+        }
+      ],
+      "supportBatch": "phase-1886",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-080",
+      "name": "ダチッコ ＜マック.Star＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー/フレイム・モンスター/レクスターズ",
+      "text": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nパワーアタッカー+6000 （攻撃中、このクリーチャーのパワーを+6000 する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのカードが離れた時、その下にあったクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-080",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "attackBonus": 6000,
+      "breaker": 2,
+      "g50Canbero": true,
+      "supportBatch": "phase-1886",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1885,
-    "checkedAt": "2026-11-28T03:56:56.712Z",
-    "baseCount": 9872,
-    "newEffectCards": 5,
+    "phase": 1886,
+    "checkedAt": "2026-11-28T04:01:49.322Z",
+    "baseCount": 9877,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9877,
+    "totalCount": 9881,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36645/",
-      "https://dm.takaratomy.co.jp/rule/qa/40238/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -350287,6 +350438,22 @@
         "totalCount": 9872,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1885,
+        "checkedAt": "2026-11-28T03:56:56.712Z",
+        "baseCount": 9872,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9877,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36645/",
+          "https://dm.takaratomy.co.jp/rule/qa/40238/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
