@@ -22524,5 +22524,673 @@
         "g1200ShieldStrikeRace": "デモニオ"
       }
     }
+  },
+  "dm22ex1-048": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、好きな数のアウトレイジと無色呪文を自分の墓地から手札に戻す。\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《神》とあるエグザイル・クリーチャーは出せない。",
+        "race": "アウトレイジMAX/オラクル",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "俺神豚 ブリタニア /「カツキング、俺とお前の勝負だ！」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1490Exile": true,
+      "g1490ExileLimit": "神",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "anyFaceRace": "アウトレイジ"
+              },
+              {
+                "g228Face": {
+                  "type": "spell"
+                },
+                "g200Colorless": true
+              }
+            ]
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g819CreatureNameIncludes": "神"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「カツキング、俺とお前の勝負だ！」",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Custom",
+            "name": "graveCostDestroy"
+          }
+        ]
+      }
+    }
+  },
+  "dm24rp1-S03": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "hyperTap": true,
+      "g205Aura": {
+        "other": true,
+        "turn": "own",
+        "filter": {
+          "creature": true
+        },
+        "power": 0,
+        "g1856HandPower": 1000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "g557Condition": {
+            "g1629OwnTurn": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 4,
+            "defs": [
+              {
+                "op": "Offer",
+                "g292Refill": true,
+                "defs": [
+                  {
+                    "op": "Refill261",
+                    "max": 4,
+                    "n": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24ex3-rp1Sec04": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "hyperTap": true,
+      "g205Aura": {
+        "other": true,
+        "turn": "own",
+        "filter": {
+          "creature": true
+        },
+        "power": 0,
+        "g1856HandPower": 1000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "g557Condition": {
+            "g1629OwnTurn": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 4,
+            "defs": [
+              {
+                "op": "Offer",
+                "g292Refill": true,
+                "defs": [
+                  {
+                    "op": "Refill261",
+                    "max": 4,
+                    "n": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24rp1-Sec04": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "hyperTap": true,
+      "g205Aura": {
+        "other": true,
+        "turn": "own",
+        "filter": {
+          "creature": true
+        },
+        "power": 0,
+        "g1856HandPower": 1000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "g557Condition": {
+            "g1629OwnTurn": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 4,
+            "defs": [
+              {
+                "op": "Offer",
+                "g292Refill": true,
+                "defs": [
+                  {
+                    "op": "Refill261",
+                    "max": 4,
+                    "n": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm24ex3-rp1S03": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "3000",
+        "missingFields": []
+      },
+      {
+        "name": "楽識の夜 フミビロム",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+        "race": "デーモン・コマンド/超化獣",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "hyperTap": true,
+      "g205Aura": {
+        "other": true,
+        "turn": "own",
+        "filter": {
+          "creature": true
+        },
+        "power": 0,
+        "g1856HandPower": 1000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "g557Condition": {
+            "g1629OwnTurn": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 4,
+            "defs": [
+              {
+                "op": "Offer",
+                "g292Refill": true,
+                "defs": [
+                  {
+                    "op": "Refill261",
+                    "max": 4,
+                    "n": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "dm25bd1-014": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "ボルシャック・セブンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nスピードアタッカー\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。",
+        "race": "アーマード・ドラゴン/エンジェル・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "インビンシブル・サンバースト",
+        "typeText": "呪文",
+        "civilizationText": "光/火/自然",
+        "civilizations": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "名前に《ボルシャック》とあるクリーチャーを１体、自分のマナゾーンから出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。そのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "g193Select": true,
+          "g173Targets": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "インビンシブル・サンバースト",
+        "type": "spell",
+        "civ": "光/火/自然",
+        "civilizations": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "cost": 13,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BolshackMana1856"
+          }
+        ]
+      }
+    }
+  },
+  "dm25bd1-SP7": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "ボルシャック・セブンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nスピードアタッカー\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。",
+        "race": "アーマード・ドラゴン/エンジェル・コマンド",
+        "powerText": "5000",
+        "missingFields": []
+      },
+      {
+        "name": "インビンシブル・サンバースト",
+        "typeText": "呪文",
+        "civilizationText": "光/火/自然",
+        "civilizations": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "cost": 13,
+        "costText": "13",
+        "abilityText": "名前に《ボルシャック》とあるクリーチャーを１体、自分のマナゾーンから出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。そのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "blocker": true,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "g193Select": true,
+          "g173Targets": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "インビンシブル・サンバースト",
+        "type": "spell",
+        "civ": "光/火/自然",
+        "civilizations": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "cost": 13,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BolshackMana1856"
+          }
+        ]
+      }
+    }
+  },
+  "dm26rp2-T004": {
+    "phase": 1856,
+    "faces": [
+      {
+        "name": "俺神豚 ブリタニア",
+        "typeText": "エグザイル・クリーチャー",
+        "civilizationText": "ゼロ",
+        "civilizations": [
+          "無色"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "このクリーチャーが出た時、アウトレイジ・カードと無色呪文を好きな数、自分の墓地から手札に戻す。\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分は他の、名前に《神》とあるエグザイル・クリーチャーを出せない。\nW・ブレイカー",
+        "race": "アウトレイジMAX/オラクル",
+        "powerText": "6000",
+        "missingFields": []
+      },
+      {
+        "name": "「カツキング、俺とお前の勝負だ！」",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊する。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g1490Exile": true,
+      "g1490ExileLimit": "神",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "anyFaceRace": "アウトレイジ"
+              },
+              {
+                "g228Face": {
+                  "type": "spell"
+                },
+                "g200Colorless": true
+              }
+            ]
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g819CreatureNameIncludes": "神"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「カツキング、俺とお前の勝負だ！」",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Custom",
+            "name": "graveCostDestroy"
+          }
+        ]
+      }
+    }
   }
 }

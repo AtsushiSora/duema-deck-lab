@@ -1,0 +1,1074 @@
+{
+  "phase": 1856,
+  "checkedAt": "2026-11-27T23:55:41.530Z",
+  "baseline": "15d6c78ede8dddd791aded8248a6d34cd3ac800d",
+  "baseCount": 9774,
+  "target": 10000,
+  "description": "Complete Britannia selectable Outrage/colorless-spell recovery/UltraDoronGo/name-God Exile lock and mill/mandatory grave-count spell; Fumibirom own-turn other-creature hand-scaled power/PB and optional hyper refill; Sevens genuine ST/Blocker/haste/mandatory two taps and Sunburst mana Bolshack attempt/blocker/strict lower-power sweep incl official47052.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45512/",
+    "https://dm.takaratomy.co.jp/rule/qa/47052/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-048",
+      "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+      "canonicalId": "dm22ex1-048",
+      "printId": "dm22ex1-048",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-048",
+      "faces": [
+        {
+          "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、好きな数のアウトレイジと無色呪文を自分の墓地から手札に戻す。\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《神》とあるエグザイル・クリーチャーは出せない。",
+          "race": "アウトレイジMAX/オラクル",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "俺神豚 ブリタニア /「カツキング、俺とお前の勝負だ！」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1490Exile": true,
+        "g1490ExileLimit": "神",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "アウトレイジ"
+                },
+                {
+                  "g228Face": {
+                    "type": "spell"
+                  },
+                  "g200Colorless": true
+                }
+              ]
+            }
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g819CreatureNameIncludes": "神"
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "「カツキング、俺とお前の勝負だ！」",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 4
+            },
+            {
+              "op": "Custom",
+              "name": "graveCostDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-048a.jpg",
+      "imageSha256": "cad7ea64cf779dabe953a5c7e54abd72d846e64ad029c9cc423d7658882c66fd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm22ex1-048-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm22ex1-048",
+          "dm26rp2-T004"
+        ],
+        "allSearchIds": [
+          "dm26rp2-T004",
+          "dm22ex1-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "b985cc1ec077c80dc20cca70ba3409ef05b862800e9f8242d0590f4e9bc59727",
+        "facesMatched": true,
+        "imageSha256": "cad7ea64cf779dabe953a5c7e54abd72d846e64ad029c9cc423d7658882c66fd"
+      }
+    },
+    {
+      "id": "dm24rp1-S03",
+      "name": "楽識の夜 フミビロム",
+      "canonicalId": "dm24rp1-S03",
+      "printId": "dm24rp1-S03",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S03",
+      "faces": [
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "hyperTap": true,
+        "g205Aura": {
+          "other": true,
+          "turn": "own",
+          "filter": {
+            "creature": true
+          },
+          "power": 0,
+          "g1856HandPower": 1000
+        },
+        "g208Auras": [
+          {
+            "other": true,
+            "g557Condition": {
+              "g1629OwnTurn": true
+            },
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "hyper": {
+          "power": 9000,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "IfHand246",
+              "max": 4,
+              "defs": [
+                {
+                  "op": "Offer",
+                  "g292Refill": true,
+                  "defs": [
+                    {
+                      "op": "Refill261",
+                      "max": 4,
+                      "n": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-S03a.jpg",
+      "imageSha256": "c95025f76023630f5b6359262cc3d153a7b3e4d76181e2d4ca00765f42e5004f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24rp1-S03-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24rp1-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03"
+        ],
+        "allSearchIds": [
+          "dm24ex3-rp3Sec04",
+          "dm24rp3-Sec004",
+          "dm24ex3-rp3S03",
+          "dm24rp3-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03",
+          "dm24rp1-S03",
+          "dm24ex3-rp2Sec09",
+          "dm24rp2-Sec09",
+          "dm24ex3-rp2008",
+          "dm24rp2-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "8584935c8dcd25a310b26a498a978b273fb16a5df6e503abf1173c16b32aea6e",
+        "facesMatched": true,
+        "imageSha256": "c95025f76023630f5b6359262cc3d153a7b3e4d76181e2d4ca00765f42e5004f"
+      }
+    },
+    {
+      "id": "dm25bd1-014",
+      "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+      "canonicalId": "dm25bd1-014",
+      "printId": "dm25bd1-014",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd1-014",
+      "faces": [
+        {
+          "name": "ボルシャック・セブンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nスピードアタッカー\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。",
+          "race": "アーマード・ドラゴン/エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "インビンシブル・サンバースト",
+          "typeText": "呪文",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "名前に《ボルシャック》とあるクリーチャーを１体、自分のマナゾーンから出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。そのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "g193Select": true,
+            "g173Targets": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "インビンシブル・サンバースト",
+          "type": "spell",
+          "civ": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 13,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BolshackMana1856"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd1-014a.jpg",
+      "imageSha256": "50ed870d770c70812bfa34ce9d61b111a595d8dbefcd5bc9ec150ac0ad8b050a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25bd1-014-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25bd1-014",
+          "dm25bd1-SP7"
+        ],
+        "allSearchIds": [
+          "dm25bd1-SP7",
+          "dm25bd1-014"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "2f1c96c81d6217cc61c89d15a5619994090231562097fb6a779d8d7abe2ab2fc",
+        "facesMatched": true,
+        "imageSha256": "50ed870d770c70812bfa34ce9d61b111a595d8dbefcd5bc9ec150ac0ad8b050a"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp1Sec04",
+      "name": "楽識の夜 フミビロム",
+      "canonicalId": "dm24rp1-S03",
+      "printId": "dm24ex3-rp1Sec04",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1Sec04",
+      "faces": [
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "hyperTap": true,
+        "g205Aura": {
+          "other": true,
+          "turn": "own",
+          "filter": {
+            "creature": true
+          },
+          "power": 0,
+          "g1856HandPower": 1000
+        },
+        "g208Auras": [
+          {
+            "other": true,
+            "g557Condition": {
+              "g1629OwnTurn": true
+            },
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "hyper": {
+          "power": 9000,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "IfHand246",
+              "max": 4,
+              "defs": [
+                {
+                  "op": "Offer",
+                  "g292Refill": true,
+                  "defs": [
+                    {
+                      "op": "Refill261",
+                      "max": 4,
+                      "n": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1Sec04a.jpg",
+      "imageSha256": "b1327acb2c825a5fb9ac6777a772217146dcbb6311d1aa55196830afda9d0b3e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex3-rp1Sec04-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24rp1-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03"
+        ],
+        "allSearchIds": [
+          "dm24ex3-rp3Sec04",
+          "dm24rp3-Sec004",
+          "dm24ex3-rp3S03",
+          "dm24rp3-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03",
+          "dm24rp1-S03",
+          "dm24ex3-rp2Sec09",
+          "dm24rp2-Sec09",
+          "dm24ex3-rp2008",
+          "dm24rp2-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "469ace27825531a2d0b987ff25a450eff740337c2b2d6390e162e0bf5604502a",
+        "facesMatched": true,
+        "imageSha256": "b1327acb2c825a5fb9ac6777a772217146dcbb6311d1aa55196830afda9d0b3e"
+      }
+    },
+    {
+      "id": "dm24rp1-Sec04",
+      "name": "楽識の夜 フミビロム",
+      "canonicalId": "dm24rp1-S03",
+      "printId": "dm24rp1-Sec04",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-Sec04",
+      "faces": [
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "hyperTap": true,
+        "g205Aura": {
+          "other": true,
+          "turn": "own",
+          "filter": {
+            "creature": true
+          },
+          "power": 0,
+          "g1856HandPower": 1000
+        },
+        "g208Auras": [
+          {
+            "other": true,
+            "g557Condition": {
+              "g1629OwnTurn": true
+            },
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "hyper": {
+          "power": 9000,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "IfHand246",
+              "max": 4,
+              "defs": [
+                {
+                  "op": "Offer",
+                  "g292Refill": true,
+                  "defs": [
+                    {
+                      "op": "Refill261",
+                      "max": 4,
+                      "n": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-Sec04a.jpg",
+      "imageSha256": "325a804cd0ff2aa4941a536030a40e49e55528d282c371acf56e9953ee748afa",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24rp1-Sec04-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24rp1-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03"
+        ],
+        "allSearchIds": [
+          "dm24ex3-rp3Sec04",
+          "dm24rp3-Sec004",
+          "dm24ex3-rp3S03",
+          "dm24rp3-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03",
+          "dm24rp1-S03",
+          "dm24ex3-rp2Sec09",
+          "dm24rp2-Sec09",
+          "dm24ex3-rp2008",
+          "dm24rp2-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "1542597e333185f0bd0f581316b2dd9fe165c51f88dfe4f7f5701376c701e8b5",
+        "facesMatched": true,
+        "imageSha256": "325a804cd0ff2aa4941a536030a40e49e55528d282c371acf56e9953ee748afa"
+      }
+    },
+    {
+      "id": "dm24ex3-rp1S03",
+      "name": "楽識の夜 フミビロム",
+      "canonicalId": "dm24rp1-S03",
+      "printId": "dm24ex3-rp1S03",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp1S03",
+      "faces": [
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "楽識の夜 フミビロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "hyperTap": true,
+        "g205Aura": {
+          "other": true,
+          "turn": "own",
+          "filter": {
+            "creature": true
+          },
+          "power": 0,
+          "g1856HandPower": 1000
+        },
+        "g208Auras": [
+          {
+            "other": true,
+            "g557Condition": {
+              "g1629OwnTurn": true
+            },
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "hyper": {
+          "power": 9000,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "IfHand246",
+              "max": 4,
+              "defs": [
+                {
+                  "op": "Offer",
+                  "g292Refill": true,
+                  "defs": [
+                    {
+                      "op": "Refill261",
+                      "max": 4,
+                      "n": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp1S03a.jpg",
+      "imageSha256": "7909e3d125372a7d27ad445cd9747a10c56e9f3a7bc635d3a02c69f39dbfdb4b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex3-rp1S03-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24rp1-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03"
+        ],
+        "allSearchIds": [
+          "dm24ex3-rp3Sec04",
+          "dm24rp3-Sec004",
+          "dm24ex3-rp3S03",
+          "dm24rp3-S03",
+          "dm24ex3-rp1Sec04",
+          "dm24rp1-Sec04",
+          "dm24ex3-rp1S03",
+          "dm24rp1-S03",
+          "dm24ex3-rp2Sec09",
+          "dm24rp2-Sec09",
+          "dm24ex3-rp2008",
+          "dm24rp2-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "1e0d4f3ae33c5119a12b2b54a4325eaf00fa66e2b554dd6a08ab52137fb3d3a6",
+        "facesMatched": true,
+        "imageSha256": "7909e3d125372a7d27ad445cd9747a10c56e9f3a7bc635d3a02c69f39dbfdb4b"
+      }
+    },
+    {
+      "id": "dm25bd1-SP7",
+      "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+      "canonicalId": "dm25bd1-014",
+      "printId": "dm25bd1-SP7",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd1-SP7",
+      "faces": [
+        {
+          "name": "ボルシャック・セブンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nスピードアタッカー\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。",
+          "race": "アーマード・ドラゴン/エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "インビンシブル・サンバースト",
+          "typeText": "呪文",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "名前に《ボルシャック》とあるクリーチャーを１体、自分のマナゾーンから出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。そのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "g193Select": true,
+            "g173Targets": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "インビンシブル・サンバースト",
+          "type": "spell",
+          "civ": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 13,
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "BolshackMana1856"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd1-SP7a.jpg",
+      "imageSha256": "1c0f2d61fd0326fc3a11ffb934f6e45d3d65a86a3794b3f59e5dcaab7eb9a521",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25bd1-SP7-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25bd1-014",
+          "dm25bd1-SP7"
+        ],
+        "allSearchIds": [
+          "dm25bd1-SP7",
+          "dm25bd1-014"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "a37e9530acf480b63f17ca8e282fb8c848b30b28b6141d31741571d93a7e59e1",
+        "facesMatched": true,
+        "imageSha256": "1c0f2d61fd0326fc3a11ffb934f6e45d3d65a86a3794b3f59e5dcaab7eb9a521"
+      }
+    },
+    {
+      "id": "dm26rp2-T004",
+      "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+      "canonicalId": "dm22ex1-048",
+      "printId": "dm26rp2-T004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-T004",
+      "faces": [
+        {
+          "name": "俺神豚 ブリタニア",
+          "typeText": "エグザイル・クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが出た時、アウトレイジ・カードと無色呪文を好きな数、自分の墓地から手札に戻す。\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分は他の、名前に《神》とあるエグザイル・クリーチャーを出せない。\nW・ブレイカー",
+          "race": "アウトレイジMAX/オラクル",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "「カツキング、俺とお前の勝負だ！」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g1490Exile": true,
+        "g1490ExileLimit": "神",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "アウトレイジ"
+                },
+                {
+                  "g228Face": {
+                    "type": "spell"
+                  },
+                  "g200Colorless": true
+                }
+              ]
+            }
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "g1490Exile": true,
+              "g819CreatureNameIncludes": "神"
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "「カツキング、俺とお前の勝負だ！」",
+          "type": "spell",
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Mill",
+              "n": 4
+            },
+            {
+              "op": "Custom",
+              "name": "graveCostDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-T004a.jpg",
+      "imageSha256": "01a9e02d1bd3ad1c27c7f9dcf30337afabc1e4f2a533cfc0cfe8ac136da452cc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26rp2-T004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm22ex1-048",
+          "dm26rp2-T004"
+        ],
+        "allSearchIds": [
+          "dm26rp2-T004",
+          "dm22ex1-048"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "sha256": "06ff68583f29cbddb3afe3dddbdd3b355e37b4f3653c57ed0a26ae0fc42178fb",
+        "facesMatched": true,
+        "imageSha256": "01a9e02d1bd3ad1c27c7f9dcf30337afabc1e4f2a533cfc0cfe8ac136da452cc"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45512/",
+      "sha256": "f8618aae42f40978e6dbd38e809461e9368b6e4406f3efcdf724031a9ec963d5",
+      "checkedAt": "2026-11-27T23:55:41.530Z",
+      "reproduced": true,
+      "tests": "tests/standard1856-effects.test.mjs",
+      "kind": "published-subject-missing-general-physical-color-verification",
+      "reproduction": "Official45512 HTML Q/A both render target as empty《》and link /card/detail/?id=, so cannot identify or claim exact named literal example. General stated rule reproduced using actual Britannia physical colorless-creature/Dark-spell twinpact: outside battle actual CrystalDesign excludes it as colored, actual colorless card is selectable; full mana charge is Dark1 untapped. Exact missing-subject ruling clarification remains explicitly pending.",
+      "result": "Official45512 HTML Q/A both render target as empty《》and link /card/detail/?id=, so cannot identify or claim exact named literal example. General stated rule reproduced using actual Britannia physical colorless-creature/Dark-spell twinpact: outside battle actual CrystalDesign excludes it as colored, actual colorless card is selectable; full mana charge is Dark1 untapped. Exact missing-subject ruling clarification remains explicitly pending."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/47052/",
+      "sha256": "ec043bea375d2c4f0ff83d5d3826a164eb91cd82fcddbe32aecb3d6e40d21a34",
+      "checkedAt": "2026-11-27T23:55:41.530Z",
+      "reproduced": true,
+      "tests": "tests/standard1856-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats actual Sunburst spell, actual BolshackDreamDragon11000 in own mana, actual Toko and Apul separately. Chosen source stays in mana but whole enemy strictly-lower CURRENT power sweep still happens, including protection source itself, equal11000 remains, own creature excluded. Without blocker actual source enters/grantedBlocker untilnextownstart, actual Fumi+3000 aura raises entered source to14000 and destroys enemy13000; blocked mana source does NOT receive battlefield aura and enemy13000 survives.",
+      "result": "Both seats actual Sunburst spell, actual BolshackDreamDragon11000 in own mana, actual Toko and Apul separately. Chosen source stays in mana but whole enemy strictly-lower CURRENT power sweep still happens, including protection source itself, equal11000 remains, own creature excluded. Without blocker actual source enters/grantedBlocker untilnextownstart, actual Fumi+3000 aura raises entered source to14000 and destroys enemy13000; blocked mana source does NOT receive battlefield aura and enemy13000 survives."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-27T23:55:41.530Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-048": 4,
+      "dm24rp1-S03": 4,
+      "dm25bd1-014": 4,
+      "dm24ex3-rp1Sec04": 4,
+      "dm24rp1-Sec04": 4,
+      "dm24ex3-rp1S03": 4,
+      "dm25bd1-SP7": 4,
+      "dm26rp2-T004": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm22ex1-048",
+      "searchSha256": "8bbbda732d2b507a9d82df72b949ecbcdb1dafc8395bef1c28719011b86cd65a",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm26rp2-T004",
+        "dm22ex1-048"
+      ],
+      "exactPrints": [
+        "dm22ex1-048",
+        "dm26rp2-T004"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Full search results and exact2/4/2 print images all enumerated/reviewed; Fumi hyper on full images, five aliases without duplicate count."
+    },
+    {
+      "id": "dm24rp1-S03",
+      "searchSha256": "4468dd54c8e557d312950ae21b604a2c685c1fc5061d0c6150dd2ccd44efd5b9",
+      "totalResults": 12,
+      "allSearchIds": [
+        "dm24ex3-rp3Sec04",
+        "dm24rp3-Sec004",
+        "dm24ex3-rp3S03",
+        "dm24rp3-S03",
+        "dm24ex3-rp1Sec04",
+        "dm24rp1-Sec04",
+        "dm24ex3-rp1S03",
+        "dm24rp1-S03",
+        "dm24ex3-rp2Sec09",
+        "dm24rp2-Sec09",
+        "dm24ex3-rp2008",
+        "dm24rp2-008"
+      ],
+      "exactPrints": [
+        "dm24rp1-S03",
+        "dm24ex3-rp1Sec04",
+        "dm24rp1-Sec04",
+        "dm24ex3-rp1S03"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Full search results and exact2/4/2 print images all enumerated/reviewed; Fumi hyper on full images, five aliases without duplicate count."
+    },
+    {
+      "id": "dm25bd1-014",
+      "searchSha256": "3c52e77b136e4957ac69c724abc9b24624d65bb41fd4cbfd1cdf4cf7185683b4",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm25bd1-SP7",
+        "dm25bd1-014"
+      ],
+      "exactPrints": [
+        "dm25bd1-014",
+        "dm25bd1-SP7"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Full search results and exact2/4/2 print images all enumerated/reviewed; Fumi hyper on full images, five aliases without duplicate count."
+    }
+  ],
+  "registeredCardVerificationPending": [
+    {
+      "id": "dm22ex1-048",
+      "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+      "scope": "identify actual target in linked official QA45512",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45512/",
+      "reason": "Official Q and A omit target name, actual href card/detail/?id= is empty. Full card abilities/physical mana color and actual CrystalDesign outside-battle exclusion tested; cannot claim exact literal named interaction until official missing subject is clarified.",
+      "mechanismVerified": true,
+      "fullPrintedAbilitiesVerified": true
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "All3 complete canonical definitions/5 reprint aliases, exact8 official full images and all search results/basic/mana1/limits verified. Britannia Outrage OR actual colorlessSPELL anycount optional recovery (real colorless creature/spell twin also eligible as spell); no coloredspell/nonOutrage purecreature; UltraDoronGo on bounce/destroy optional namedGodExile only, whole own-nameGod Exile entry lock/allzones/opponent/ignore; spell real ST, mill4 then mandatory currentgrave-count removal. Outside-battle physical Dark color not colorless and actual CrystalDesign exclusion shown; linked45512 missing subject explicitly pending. Fumi own-turn OTHER creature 1000peractualhandcard/PB, immediatehand count changes, additivecopies/ignore/opponent exclusions, actual hyper tapsotherownunit, 9000/W2 and optional exact5 refill only hand<5, hand>=5 condition no prompt, actual ally PoweredBreaker break count1/2 across6000 boundary. Sunburst ST/blocker/haste body mandatorydistinct2 enemy taps or allavailable0/1, no decline/own target. Full13cost LightFireNature spell mandatorynamedBolshackmanaattempt, nativePut/evolution-selection retained, blockeruntilnextownstart ifactualentry, strictlowerCURRENTpower enemySweep regardlessactualoriginmove per literal47052, sourcephysical identities/JSON conserved. Noeligible card means no invented sweep. OwnhandFumi aura only affects enteredbattleunit not blockedmanaunit. Focused65 includes6 actual encrypted two-account body-entry/payments and allphysicalmana charge orientations/colors. Related205/208/1490/1495/261/292/1799 plusonline5, check/audit9777/invariants passed. No fullnpmtest/knownlonggroups/push/Pages/Netlify/automation restart; preserve olderpending/baselineblocker/Atom49079 exactcase.",
+    "resolvedAttempts": "Official search broad-word pitfall caught before commit: initial Britannia face-name query returned1354 results and first50 only. Replaced with the unique term ブリタニア, all2 results enumerated, discovered exact2026 twin reprint dm26rp2-T004, full image/text/basic/limits reviewed and alias/pin/reference added without counting new type. Reprint clarifies Outrage CARD, so exact recovery uses anyFaceRace (not just current creature face), with prior printed text preserved. Rechecked final65/check and physical aliases. Fixture fixes: initial so-called colorless non-Outrage creature GanbaG actually has a colorless spell face and correctly qualifies, replaced with true purecreature DanganO; all legal recovery targets selected causes native automatic completion so do not request nonexistent skip. Initial equalpower fixture DeathMonarch was actually8000, replaced with real11000 GaulezalDragon for strict-boundary test. Full-scope review added explicit hand<5 guard before Fumi optional refill so false condition has no pointless0-card prompt. Code handles infinite selected power as serializable ∞ string. Early manual smoke used wrong unsupported Toko ID then corrected to actual dmrp17-025 before real tests; no product error from wrong fixture. Final65 green.",
+    "nextCandidates": [
+      {
+        "id": "dm25ex4-018",
+        "name": "禁断の邪眼 ドキンダムR",
+        "reason": "Next grouped official research requested; all print images and QA still need review, no implementation. Sympathy/seal-count small-spell selective choice immunity, once-own-Command-entry modal draw/discard, low-cost death untap and filtered own destruction saver."
+      },
+      {
+        "id": "dm25ex4-017",
+        "name": "偽りの名 スネーク・ザ・ガン",
+        "reason": "Next grouped official research requested; all print images and QA still need review, no implementation. Sympathy/seal-count small-spell selective choice immunity, once-own-Command-entry modal draw/discard, low-cost death untap and filtered own destruction saver."
+      },
+      {
+        "id": "dmrp03-s01",
+        "name": "赤攻銀 マルハヴァン",
+        "reason": "Next grouped official research requested; all print images and QA still need review, no implementation. Sympathy/seal-count small-spell selective choice immunity, once-own-Command-entry modal draw/discard, low-cost death untap and filtered own destruction saver."
+      }
+    ]
+  }
+}

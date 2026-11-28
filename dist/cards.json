@@ -315375,20 +315375,216 @@
       },
       "supportBatch": "phase-1855",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-048",
+      "name": "俺神豚 ブリタニア / 「カツキング、俺とお前の勝負だ！」",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジMAX/オラクル",
+      "text": "W・ブレイカー\nこのクリーチャーが出た時、好きな数のアウトレイジと無色呪文を自分の墓地から手札に戻す。\nウルトラ・ドロン・ゴー：このクリーチャーが離れた時、名前に《神》とあるエグザイル・クリーチャーを１体、自分の手札から出してもよい。\n自分の他の、名前に《神》とあるエグザイル・クリーチャーは出せない。\n【呪文面】\nS・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、自分の墓地にあるカードの枚数以下のコストを持つ相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-048",
+      "limit": 4,
+      "breaker": 2,
+      "g1490Exile": true,
+      "g1490ExileLimit": "神",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "any": [
+              {
+                "anyFaceRace": "アウトレイジ"
+              },
+              {
+                "g228Face": {
+                  "type": "spell"
+                },
+                "g200Colorless": true
+              }
+            ]
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g1490Exile": true,
+            "g819CreatureNameIncludes": "神"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "「カツキング、俺とお前の勝負だ！」",
+        "type": "spell",
+        "civ": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 4,
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Custom",
+            "name": "graveCostDestroy"
+          }
+        ]
+      },
+      "supportBatch": "phase-1856",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-S03",
+      "name": "楽識の夜 フミビロム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デーモン・コマンド/超化獣",
+      "text": "自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\n【ハイパーモード】\n自分のターン中、自分の他のクリーチャーすべてに「パワード・ブレイカー」を与え、自分の手札１枚につき、それらのパワーを+1000する。\nハイパー化：自分の他のクリーチャーを１体タップする。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の手札が５枚より少なければ、５枚になるまでカードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-S03",
+      "limit": 4,
+      "hyperTap": true,
+      "g205Aura": {
+        "other": true,
+        "turn": "own",
+        "filter": {
+          "creature": true
+        },
+        "power": 0,
+        "g1856HandPower": 1000
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "g557Condition": {
+            "g1629OwnTurn": true
+          },
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 4,
+            "defs": [
+              {
+                "op": "Offer",
+                "g292Refill": true,
+                "defs": [
+                  {
+                    "op": "Refill261",
+                    "max": 4,
+                    "n": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1856",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25bd1-014",
+      "name": "ボルシャック・セブンス / インビンシブル・サンバースト",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "アーマード・ドラゴン/エンジェル・コマンド",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nスピードアタッカー\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。\n【呪文面】\n名前に《ボルシャック》とあるクリーチャーを１体、自分のマナゾーンから出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。そのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd1-014",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "g193Select": true,
+          "g173Targets": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "インビンシブル・サンバースト",
+        "type": "spell",
+        "civ": "光/火/自然",
+        "civilizations": [
+          "光",
+          "火",
+          "自然"
+        ],
+        "cost": 13,
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BolshackMana1856"
+          }
+        ]
+      },
+      "supportBatch": "phase-1856",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1855,
-    "checkedAt": "2026-11-27T23:45:03.618Z",
-    "baseCount": 9770,
-    "newEffectCards": 4,
+    "phase": 1856,
+    "checkedAt": "2026-11-27T23:55:41.530Z",
+    "baseCount": 9774,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9774,
+    "totalCount": 9777,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/49080/",
-      "https://dm.takaratomy.co.jp/rule/qa/43070/",
-      "https://dm.takaratomy.co.jp/rule/qa/49079/"
+      "https://dm.takaratomy.co.jp/rule/qa/45512/",
+      "https://dm.takaratomy.co.jp/rule/qa/47052/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -345711,6 +345907,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/41165/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1855,
+        "checkedAt": "2026-11-27T23:45:03.618Z",
+        "baseCount": 9770,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9774,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/49080/",
+          "https://dm.takaratomy.co.jp/rule/qa/43070/",
+          "https://dm.takaratomy.co.jp/rule/qa/49079/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

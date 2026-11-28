@@ -1069,7 +1069,7 @@ export function createSixPhotoRules(api){
      !aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||
      aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||
      !fits(aura.filter))continue;
-    bonus+=aura.power;
+    bonus+=aura.power+(aura.g1856HandPower||0)*(typeof s.players[sourceOwner].hand==='number'?s.players[sourceOwner].hand:s.players[sourceOwner].hand.length);
    }
   }
   return bonus;
@@ -3802,6 +3802,20 @@ export function createSixPhotoRules(api){
   const host=sourceHost474(s,t)?.x;
   const n=host&&!host.sealed?api.allLayers(host).length:t.lastKnownCount??1;
   start(s,t,[{op:'Draw',n},{op:'SelfDestroy'}]);
+  break;
+ }
+ case'g34_BolshackMana1856':{
+  const rows=own.mana.filter(y=>!y.faceDown&&matches(s,t.p,y,{creature:true,g819CreatureNameIncludes:'ボルシャック'})&&
+   api.canEnter(s,t.p,card(y),{origin:'mana',execution:false,ignoreMovement:true})&&
+   (!card(y).evolution||api.evolutionBases(s,t.p,card(y)).some(b=>b.uid!==y.uid)));
+  if(rows.length)choice(s,t,'マナから出すボルシャック・クリーチャーを1体選ぶ',rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0,incarnation:y.incarnation||0},20+cost(card(y)),y.cardId)));
+  break;
+ }
+ case'g34_BolshackAfter1856':{
+  const y=own.battle.find(y=>y.uid===t.target&&(y.incarnation||0)===t.targetIncarnation);
+  if(y)applyGrant(s,{...t,spell:true,grant:{blocker:true},g521UntilStart:true},y);
+  const value=y?api.power(y,false,s):t.lastKnownPower,power=value===Infinity?'∞':value;
+  start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,belowPower:power,g199Power:true}}]);
   break;
  }
  case'g34_CastBattleTwin1175':{
@@ -7912,6 +7926,14 @@ export function createSixPhotoRules(api){
  case'g34_JesterShields1125':
   put(s,{...t,picked:v?[...t.picked,v]:t.picked,done:!v});
   break;
+ case'g34_BolshackMana1856':{
+  const y=v&&own.mana.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial&&!y.faceDown);
+  if(y&&matches(s,t.p,y,{creature:true,g819CreatureNameIncludes:'ボルシャック'})){
+   const follow={op:'BolshackAfter1856',target:y.uid,targetIncarnation:(y.incarnation||0)+1,lastKnownPower:api.power(y,false,s)===Infinity?'∞':api.power(y,false,s)};
+   start(s,t,[{op:'Put',origin:'mana',target:y.uid},follow]);
+  }
+  break;
+ }
  case'g34_CastBattleTwin1175':{
   const unit=v&&live(s,{...t,...v});
   if(unit&&!unit.sealed&&api.isCreature(s,unit))
