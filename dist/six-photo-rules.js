@@ -6272,6 +6272,25 @@ export function createSixPhotoRules(api){
   else{zoneMove(s,t.p,'deck',uid,'grave',t);api.deckCheck(s,t.p);}
   break;
  }
+ case'g34_RockerLook1870':{
+  const ids=look(s,{...t,n:3,public:true});
+  put(s,{...t,op:'g34_RockerCosts1870',ids,index:0,total:0,
+   g1660PublicPeek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'公開した山札'}))});
+  break;
+ }
+ case'g34_RockerCosts1870':{
+  if(t.index<t.ids.length){
+   const x=own.deck.find(x=>x.uid===t.ids[t.index]),costs=x?[...new Set(faces(card(x)).map(cost))]:[0];
+   if(costs.length>1)choice(s,t,card(x).name+'の参照するコストを選ぶ',costs.map(n=>opt('コスト '+n,n,-n,x.cardId)));
+   else put(s,{...t,index:t.index+1,total:t.total+costs[0]});
+   break;
+  }
+  put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:t.total<=6?t.ids:[],deploy:true,
+   n:'all',optional:false,tapped:true,filter:{creature:true},
+   title:'公開したクリーチャーをすべてタップして出す',
+   after:[{op:'LookRest530',ids:t.ids,rest:'bottom',g1660PublicPeek:t.g1660PublicPeek}]});
+  break;
+ }
  case'g34_LookDeploy530':{
   const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);
   let eligible=ids;
@@ -9042,6 +9061,7 @@ export function createSixPhotoRules(api){
    {...t,op:'g34_GetFutureFinish1649',costs:discardCosts655(s,t.p,y,false)});
   break;
  }
+ case'g34_RockerCosts1870':put(s,{...t,index:t.index+1,total:t.total+v});break;
  case'g34_MarshalExchange1648':
   if(v){const y=own.hand.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial);if(y)put(s,{...t,selected:[...(t.selected||[]),v]});}
   else put(s,{...t,done:true});
@@ -9164,7 +9184,7 @@ export function createSixPhotoRules(api){
   if(v){
    if(t.g766SpellUse)mark(s,'g766SpellUse',t);
    if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
-   const x=t.g1111DistinctNames&&own.extra.find(y=>y.uid===v.uid);
+   const x=t.g1111DistinctNames&&own[v.origin||'extra']?.find(y=>y.uid===v.uid);
    const row=x?{...v,g1111Name:exactName(card(v.g1104Back?psychicBack1104(x):x).name)}:v;
    put(s,{...t,selected:[...(t.selected||[]),v.uid],rows:[...(t.rows||[]),row]});
   }else finishSelect(s,t);
