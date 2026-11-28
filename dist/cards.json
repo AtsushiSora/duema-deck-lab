@@ -322609,18 +322609,178 @@
       },
       "supportBatch": "phase-1905",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-s06",
+      "name": "偽りの名 ヤバスギル・スキル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ドラゴン・ゾンビ/アンノウン",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、ドラゴン・ゾンビまたはコスト７以上のクリーチャーを１体、自分の墓地から手札に戻してもよい。そうした場合、相手のコスト６以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s06",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "min": 7
+              }
+            ]
+          },
+          "g583OnMove": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "max": 6
+              }
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "race": "ドラゴン・ゾンビ"
+              },
+              {
+                "min": 7
+              }
+            ]
+          },
+          "g583OnMove": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "max": 6
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1906",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy24-spd1202",
+      "name": "究極の蛇神 ヴリドガルド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "デーモン・コマンド/アビスロイヤル",
+      "text": "D・D・D [dd02]（自分のクリーチャーが攻撃する時、このカードを [dd02]支払って自分の手札から実行してもよい）\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーの攻撃の終わりに、これが進化クリーチャーでなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-spd1202",
+      "limit": 4,
+      "ddd": {
+        "cost": 2,
+        "civilizations": [
+          "闇"
+        ]
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "IfNeo563",
+              "g1059Negate": true,
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1906",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-035",
+      "name": "曲芸メイド・リン・ララバイ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、各プレイヤーは自分自身の山札の上から１枚目を、それぞれのマナゾーンに置く。\nL・ゲート：ドリームメイト(このクリーチャーが破壊される時、墓地に置くかわりに、ドリームメイトを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "EachRamp1532",
+          "n": 1
+        }
+      ],
+      "g955LGate": "ドリームメイト",
+      "supportBatch": "phase-1906",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1905,
-    "checkedAt": "2026-11-28T06:23:59.070Z",
-    "baseCount": 9946,
-    "newEffectCards": 4,
+    "phase": 1906,
+    "checkedAt": "2026-11-28T06:30:38.428Z",
+    "baseCount": 9950,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9950,
+    "totalCount": 9953,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36714/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36580/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -353700,6 +353860,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37244/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1905,
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "baseCount": 9946,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9950,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36714/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

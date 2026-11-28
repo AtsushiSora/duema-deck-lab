@@ -1,0 +1,369 @@
+{
+  "phase": 1906,
+  "checkedAt": "2026-11-28T06:30:38.428Z",
+  "baseline": "423d4d7ea58322bcfb980d232310f87331d00dbb",
+  "baseCount": 9950,
+  "target": 10000,
+  "description": "Threewholecards/threeprints: YabasugiruW2 CIPorattack optionalgraveDragonZombieANYcost orANYcreature>=7hand thenmandatoryenemycreature<=6destroy; VridgardDDD2Dark/NEOWaterDarkFire/W2, afterOWNattackdestroyIFcurrentlynonEVO; LalaBy mandatorybothTOP1mana andDreamMateLGatereplacement.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36580/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-s06",
+      "name": "偽りの名 ヤバスギル・スキル",
+      "canonicalId": "dmr05-s06",
+      "printId": "dmr05-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s06",
+      "faces": [
+        {
+          "name": "偽りの名 ヤバスギル・スキル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、ドラゴン・ゾンビまたはコスト７以上のクリーチャーを１体、自分の墓地から手札に戻してもよい。そうした場合、相手のコスト６以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "race": "ドラゴン・ゾンビ"
+                },
+                {
+                  "min": 7
+                }
+              ]
+            },
+            "g583OnMove": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "race": "ドラゴン・ゾンビ"
+                },
+                {
+                  "min": 7
+                }
+              ]
+            },
+            "g583OnMove": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-s06.jpg",
+      "imageSha256": "a52e5422934fa159f926012dbabf09fd5fd1f9c394a5e3af2d9c8ccde5ef8f77",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr05-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr05-s06"
+        ],
+        "allSearchIds": [
+          "dmr05-058",
+          "dmr05-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:30:38.428Z",
+        "sha256": "cf3f297b52fafc023cf2317f9546a066ee22ffc01e43db47beb56325000263d9",
+        "facesMatched": true,
+        "imageSha256": "a52e5422934fa159f926012dbabf09fd5fd1f9c394a5e3af2d9c8ccde5ef8f77"
+      }
+    },
+    {
+      "id": "promoy24-spd1202",
+      "name": "究極の蛇神 ヴリドガルド",
+      "canonicalId": "promoy24-spd1202",
+      "printId": "promoy24-spd1202",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-spd1202",
+      "faces": [
+        {
+          "name": "究極の蛇神 ヴリドガルド",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "D・D・D [dd02]（自分のクリーチャーが攻撃する時、このカードを [dd02]支払って自分の手札から実行してもよい）\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーの攻撃の終わりに、これが進化クリーチャーでなければ、このクリーチャーを破壊する。",
+          "race": "デーモン・コマンド/アビスロイヤル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ddd": {
+          "cost": 2,
+          "civilizations": [
+            "闇"
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "IfNeo563",
+                "g1059Negate": true,
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-spd1202.jpg",
+      "imageSha256": "21b087ded7179754d980dcd0f410427bba93c4226175e0f9c1c4ebdec9cc9c73",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy24-spd1202-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy24-spd1202"
+        ],
+        "allSearchIds": [
+          "dm25rp4-ChoSec06",
+          "dm25rp2-Sec01",
+          "dm25ex3-OR4",
+          "dm25rp2-OR1",
+          "promoy24-spd1202"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:30:38.428Z",
+        "sha256": "60eadc4af15ff0f6c162705f4b7e0f7c28ff80e6b074ad4517b31a15047c355a",
+        "facesMatched": true,
+        "imageSha256": "21b087ded7179754d980dcd0f410427bba93c4226175e0f9c1c4ebdec9cc9c73"
+      }
+    },
+    {
+      "id": "dm23-035",
+      "name": "曲芸メイド・リン・ララバイ",
+      "canonicalId": "dm23-035",
+      "printId": "dm23-035",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-035",
+      "faces": [
+        {
+          "name": "曲芸メイド・リン・ララバイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーは自分自身の山札の上から１枚目を、それぞれのマナゾーンに置く。\nL・ゲート：ドリームメイト(このクリーチャーが破壊される時、墓地に置くかわりに、ドリームメイトを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachRamp1532",
+            "n": 1
+          }
+        ],
+        "g955LGate": "ドリームメイト"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-035.jpg",
+      "imageSha256": "20cb3196a57cdcacbf851851d573f7b1e5629befd4dfdd3e9122ac93b4a7943b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23-035-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23-035"
+        ],
+        "allSearchIds": [
+          "dm23-035"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:30:38.428Z",
+        "sha256": "3f00be38ee5e3a5440fdd0644390b20b78aca65bb3616859d07efcba947f76dd",
+        "facesMatched": true,
+        "imageSha256": "20cb3196a57cdcacbf851851d573f7b1e5629befd4dfdd3e9122ac93b4a7943b"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36580/",
+      "sha256": "ffb189d8115bbfc344a5dcf01c17f7e2fd95058703a0f2f090452a4bf66e1a59",
+      "checkedAt": "2026-11-28T06:30:38.428Z",
+      "reproduced": true,
+      "tests": "tests/standard1906-effects.test.mjs",
+      "reproduction": "ActualTsukuyomi dm36-087 DragonZombiecost5 iseligible despitebelow7; actualMiracleStar dmr17-s01 cost7 nonZombieEVOalsoeligible, whileNature2andnonZombieCrimsonDragon6excluded. GraveLOCK/declinepreventscontinuation, selectedtargetenemy6only. Bothseats.",
+      "result": "ActualTsukuyomi dm36-087 DragonZombiecost5 iseligible despitebelow7; actualMiracleStar dmr17-s01 cost7 nonZombieEVOalsoeligible, whileNature2andnonZombieCrimsonDragon6excluded. GraveLOCK/declinepreventscontinuation, selectedtargetenemy6only. Bothseats."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr03-s04",
+      "name": "極楽！オンセン・ガロウズ",
+      "reason": "Wholeoneprint/QA36438researched, imagenotreviewed. Mustimplementfulltrue shieldTOP replacementwithblindownerordering/non-ST/fortifiedcastlehandling andverifyrelatedownerlook/castle/dualMana-count rulings. ExistingreverseBurn isBOTTOMplusDraw forBolmeteusReverse andCANNOTreuseasTOP. DoNOTpartiallyregisteronlyconditionalManaST/PA."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:30:38.428Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-s06": 4,
+      "promoy24-spd1202": 4,
+      "dm23-035": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr05-s06",
+      "searchSha256": "24274bf72d5c9a902c6aa78d591e22a2bae719bf01b3837efb86aec2726f4b32",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmr05-058",
+        "dmr05-s06"
+      ],
+      "exactPrints": [
+        "dmr05-s06"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "promoy24-spd1202",
+      "searchSha256": "36963670a07ca919bd98279ba4455a79ea56c46db408dd9d4564a73f5c0618a7",
+      "totalResults": 5,
+      "allSearchIds": [
+        "dm25rp4-ChoSec06",
+        "dm25rp2-Sec01",
+        "dm25ex3-OR4",
+        "dm25rp2-OR1",
+        "promoy24-spd1202"
+      ],
+      "exactPrints": [
+        "promoy24-spd1202"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm23-035",
+      "searchSha256": "ccf93c68385bd4ed8021d09398d26dd97ff9c7d73a87abda9288dcd386e9e4b1",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm23-035"
+      ],
+      "exactPrints": [
+        "dm23-035"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Threewholecards/threeexactprints allabilities/stats/images/mana/currentlimits. Yabasugiru paid8CIP/attack independentlyoptionalgraveDragonZombieANYcost (actualTsukuyomi5) ORANYcreature>=7 (actualMiracleStarEVOLUTION7) toHAND THENmandatoryenemycost<=6destroy; decline/empty/actualApulnegative; attackW2cost8unaffectedGenmu. Vridgardnormalpaid3 NEOONLYWaterDarkFire orunevolved; evolutionarybodyattackimmediatelysurvivesOWNattackEND, unevolvedsickthenrealnextownturnW2attackselfdestroys; actualDDD2DarkmayNEOorplain andneverdestroysatOTHERattackerEND; Genmu3ignoresW2andselfdestroy. LalaBymandatorybothTOP1Mana multiTAPPED/monoUNTAPPED, paid4; realDemonHandDreammateLGateoptionalgraveDreammate->HAND sourceBOTTOM, decline/noTarget/Apul/bounce negatives. Bothseats/save/restore/sixencryptedservices/UIDconservation. PriorIDs/details/saveformats/pendingpreserved.",
+    "resolvedAttempts": "OfficialYabasugiru defaultnameORsearchreturned67resultsabove50page. Distinctヤバスギルqueryfullyenumeratedoneexactprintandcachedallsearch/hash. Focusedwholecard45testspassedfirstattempt; existingprocesses untouched.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36580/",
+        "reproduced": true,
+        "tests": "tests/standard1906-effects.test.mjs",
+        "reproduction": "ActualTsukuyomi dm36-087 DragonZombiecost5 iseligible despitebelow7; actualMiracleStar dmr17-s01 cost7 nonZombieEVOalsoeligible, whileNature2andnonZombieCrimsonDragon6excluded. GraveLOCK/declinepreventscontinuation, selectedtargetenemy6only. Bothseats."
+      }
+    ],
+    "held": [
+      {
+        "id": "dmr03-s04",
+        "name": "極楽！オンセン・ガロウズ",
+        "reason": "Wholeoneprint/QA36438researched, imagenotreviewed. Mustimplementfulltrue shieldTOP replacementwithblindownerordering/non-ST/fortifiedcastlehandling andverifyrelatedownerlook/castle/dualMana-count rulings. ExistingreverseBurn isBOTTOMplusDraw forBolmeteusReverse andCANNOTreuseasTOP. DoNOTpartiallyregisteronlyconditionalManaST/PA."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmc46-001",
+          "dmr07-008",
+          "dmsd19-005",
+          "dmex02-043"
+        ],
+        "reason": "Groupedresearchunderway: DiamondGloriousCURRENTotherarmypermission, PattiMadness/untargetable, BazagaExlifeDistasgraveMana, Sparkgravecountdiscountandspellrecover."
+      }
+    ]
+  }
+}
