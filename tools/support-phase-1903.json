@@ -1,0 +1,1043 @@
+{
+  "phase": 1903,
+  "checkedAt": "2026-11-28T06:11:37.623Z",
+  "baseline": "b79f9c8773f6f9f8cd7ab7521a161461f97cf957",
+  "baseCount": 9939,
+  "target": 10000,
+  "description": "Fourwholecards/tenprints: JaOniOniTime6cost-5/HasteW2 optionalDarkFire7nonEVOgrave onattack; Ukonblocker/Demonio-1 andnoseedattack/blockENDselfdestroy; FatalExlifeW2bounceupto2 andenemyentryoptionalRamp1; CylinderWaterEVO/W2 optionalDrawperownWater andindependentRevolution2CURRENTenemyfreezeuntardownstart, literal37250.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37250/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd15-001",
+      "name": "鬼ヶ鬼 ジャオウガ",
+      "canonicalId": "dmsd15-001",
+      "printId": "dmsd15-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-001",
+      "faces": [
+        {
+          "name": "鬼ヶ鬼 ジャオウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを５少なくする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "amount": 5
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd15-001.jpg",
+      "imageSha256": "ecf1f2b156d3fa440927ab52c54089c4188b89d4ad675ec6bb1240a761c385d7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsd15-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd15-001",
+          "dmex15-a015"
+        ],
+        "allSearchIds": [
+          "dmex15-a015",
+          "dmsd15-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "2b9852b5b6e386fed495262d698cf4e9932365d792006cdd7428f34bad489a6c",
+        "facesMatched": true,
+        "imageSha256": "ecf1f2b156d3fa440927ab52c54089c4188b89d4ad675ec6bb1240a761c385d7"
+      }
+    },
+    {
+      "id": "dmrp22-060",
+      "name": "鬼星の絆 ウコン丸＆サコン丸",
+      "canonicalId": "dmrp22-060",
+      "printId": "dmrp22-060",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-060",
+      "faces": [
+        {
+          "name": "鬼星の絆 ウコン丸＆サコン丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g349SummonAuras": [
+          {
+            "race": "デモニオ",
+            "amount": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-060.jpg",
+      "imageSha256": "11b374280cd6954a0513af78b40af9085e5677c949b9737f0184beb60f4397f0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-060-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp22-060",
+          "promoy21-018",
+          "dm25ex2-094"
+        ],
+        "allSearchIds": [
+          "promoy21-018",
+          "dmrp22-060",
+          "dm25ex2-094",
+          "dmrp22-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "e5a436108b2103563729a3199e1b4dc28d3911303d281cacf344aac4d76154c8",
+        "facesMatched": true,
+        "imageSha256": "11b374280cd6954a0513af78b40af9085e5677c949b9737f0184beb60f4397f0"
+      }
+    },
+    {
+      "id": "dmrp19-025",
+      "name": "飢限電融 ファタル・エレガンス",
+      "canonicalId": "dmrp19-025",
+      "printId": "dmrp19-025",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-025",
+      "faces": [
+        {
+          "name": "飢限電融 ファタル・エレガンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ディスペクター/ポセイディア・ドラゴン/ジャイアント",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true
+          }
+        ],
+        "g1903OpponentEntry": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-025.jpg",
+      "imageSha256": "697a9a011c0281ead2666e1478412f7e2d748c07101da730c74c5664cec2119b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp19-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp19-025",
+          "dm23bd6-038"
+        ],
+        "allSearchIds": [
+          "dmrp19-025",
+          "dm23bd6-038"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "01f4c29d2eea8bc86bc22c6f315a98d5211e15c8e6832deab25be40a9b440c90",
+        "facesMatched": true,
+        "imageSha256": "697a9a011c0281ead2666e1478412f7e2d748c07101da730c74c5664cec2119b"
+      }
+    },
+    {
+      "id": "dmr17-003",
+      "name": "革命龍程式 シリンダ",
+      "canonicalId": "dmr17-003",
+      "printId": "dmr17-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-003",
+      "faces": [
+        {
+          "name": "革命龍程式 シリンダ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+          "race": "クリスタル・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "水"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "optional": "each"
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "Freeze262",
+                    "filter": {
+                      "creature": true
+                    },
+                    "g190Freeze": "self",
+                    "g1058FollowUnit": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-003.jpg",
+      "imageSha256": "fbd523990db1e16f38d46b5e9c0fe69ebb3deaf6c9cd8fa3a480909d8f78463d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr17-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr17-003",
+          "dm25ex2-Cho015",
+          "dmex07-003"
+        ],
+        "allSearchIds": [
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "b7b80857a4b79ba1aef624713c56cde2ec077960b46e46473eb32e8637725645",
+        "facesMatched": true,
+        "imageSha256": "fbd523990db1e16f38d46b5e9c0fe69ebb3deaf6c9cd8fa3a480909d8f78463d"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex15-a015",
+      "name": "鬼ヶ鬼 ジャオウガ",
+      "canonicalId": "dmsd15-001",
+      "printId": "dmex15-a015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a015",
+      "faces": [
+        {
+          "name": "鬼ヶ鬼 ジャオウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを５少なくする。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g261Discount": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "amount": 5
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a015.jpg",
+      "imageSha256": "aa332d3acc2081b16a8470cf0e939182083746136a4d6aae25f2f93b29c41216",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex15-a015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsd15-001",
+          "dmex15-a015"
+        ],
+        "allSearchIds": [
+          "dmex15-a015",
+          "dmsd15-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "2de0c75e4a337d1911f8f5612f24ea8c4f3b573aee8361e912427bf9ff37889b",
+        "facesMatched": true,
+        "imageSha256": "aa332d3acc2081b16a8470cf0e939182083746136a4d6aae25f2f93b29c41216"
+      }
+    },
+    {
+      "id": "promoy21-018",
+      "name": "鬼星の絆 ウコン丸＆サコン丸",
+      "canonicalId": "dmrp22-060",
+      "printId": "promoy21-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-018",
+      "faces": [
+        {
+          "name": "鬼星の絆 ウコン丸＆サコン丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g349SummonAuras": [
+          {
+            "race": "デモニオ",
+            "amount": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-018.jpg",
+      "imageSha256": "f3bcb15efc1a3205b9b2c4da4fe802c869954d5d163421d2213e0d65a13802d2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy21-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp22-060",
+          "promoy21-018",
+          "dm25ex2-094"
+        ],
+        "allSearchIds": [
+          "promoy21-018",
+          "dmrp22-060",
+          "dm25ex2-094",
+          "dmrp22-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "93f66ac76b6938cc8303cf34d3a84fc42f0fef67147a89d53f9bc2814b44cf5a",
+        "facesMatched": true,
+        "imageSha256": "f3bcb15efc1a3205b9b2c4da4fe802c869954d5d163421d2213e0d65a13802d2"
+      }
+    },
+    {
+      "id": "dm25ex2-094",
+      "name": "鬼星の絆 ウコン丸＆サコン丸",
+      "canonicalId": "dmrp22-060",
+      "printId": "dm25ex2-094",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-094",
+      "faces": [
+        {
+          "name": "鬼星の絆 ウコン丸＆サコン丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオ・クリーチャーの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g349SummonAuras": [
+          {
+            "race": "デモニオ",
+            "amount": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "g295Tamaseed": true
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "SelfDestroy"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-094.jpg",
+      "imageSha256": "8fa50ea16988e9b14d9e7fa30db8078a15c2eae83bde66f88885e411de008ed0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex2-094-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp22-060",
+          "promoy21-018",
+          "dm25ex2-094"
+        ],
+        "allSearchIds": [
+          "promoy21-018",
+          "dmrp22-060",
+          "dm25ex2-094",
+          "dmrp22-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "c5bf8ee02d9948066ff80a27dde6682a53a3ff4b8bd30c2c0ebed10d5859de30",
+        "facesMatched": true,
+        "imageSha256": "8fa50ea16988e9b14d9e7fa30db8078a15c2eae83bde66f88885e411de008ed0"
+      }
+    },
+    {
+      "id": "dm23bd6-038",
+      "name": "飢限電融 ファタル・エレガンス",
+      "canonicalId": "dmrp19-025",
+      "printId": "dm23bd6-038",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd6-038",
+      "faces": [
+        {
+          "name": "飢限電融 ファタル・エレガンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ディスペクター/ポセイディア・ドラゴン/ジャイアント",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "to": "hand",
+            "toOwnerHand": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true
+          }
+        ],
+        "g1903OpponentEntry": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd6-038.jpg",
+      "imageSha256": "bdd07af194c8487c638161245c3eb4e8810910ea9df338e9b6145bc30bb0ab66",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd6-038-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp19-025",
+          "dm23bd6-038"
+        ],
+        "allSearchIds": [
+          "dmrp19-025",
+          "dm23bd6-038"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "5103b6047cdd0facfe4fd97f20630ca3f1d4b6efb624f5d2f1d7271db189e2dc",
+        "facesMatched": true,
+        "imageSha256": "bdd07af194c8487c638161245c3eb4e8810910ea9df338e9b6145bc30bb0ab66"
+      }
+    },
+    {
+      "id": "dm25ex2-Cho015",
+      "name": "革命龍程式 シリンダ",
+      "canonicalId": "dmr17-003",
+      "printId": "dm25ex2-Cho015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-Cho015",
+      "faces": [
+        {
+          "name": "革命龍程式 シリンダ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２：このクリーチャーが出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+          "race": "クリスタル・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "水"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "optional": "each"
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "Freeze262",
+                    "filter": {
+                      "creature": true
+                    },
+                    "g190Freeze": "self",
+                    "g1058FollowUnit": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-Cho015.jpg",
+      "imageSha256": "86c60d25894fc8c59850c526a25d24b5aa04a38b5957ac85574afd35d730cc67",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex2-Cho015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr17-003",
+          "dm25ex2-Cho015",
+          "dmex07-003"
+        ],
+        "allSearchIds": [
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "5c7b5f85a1e6637010a036e1d1d3586ed8203477c92f11003dc13bf6e72f8412",
+        "facesMatched": true,
+        "imageSha256": "86c60d25894fc8c59850c526a25d24b5aa04a38b5957ac85574afd35d730cc67"
+      }
+    },
+    {
+      "id": "dmex07-003",
+      "name": "革命龍程式 シリンダ",
+      "canonicalId": "dmr17-003",
+      "printId": "dmex07-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-003",
+      "faces": [
+        {
+          "name": "革命龍程式 シリンダ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２：このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+          "race": "クリスタル・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "水"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "optional": "each"
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "Freeze262",
+                    "filter": {
+                      "creature": true
+                    },
+                    "g190Freeze": "self",
+                    "g1058FollowUnit": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-003.jpg",
+      "imageSha256": "c591e0cf394c3bf0d4cc348bd30044f662395fe1d3a5a45d5325fa3b90b4fe6d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex07-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr17-003",
+          "dm25ex2-Cho015",
+          "dmex07-003"
+        ],
+        "allSearchIds": [
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:11:37.623Z",
+        "sha256": "eeb490ab2f6e1dfea2e9bd71cd52fc9e8fe69d4febd48080fb568af01607a1a6",
+        "facesMatched": true,
+        "imageSha256": "c591e0cf394c3bf0d4cc348bd30044f662395fe1d3a5a45d5325fa3b90b4fe6d"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37250/",
+      "sha256": "b1566584e617079066e2d06d1d6c4fc66d1c2a83083fb549cc91b525a43f7b1d",
+      "checkedAt": "2026-11-28T06:11:37.623Z",
+      "reproduced": true,
+      "tests": "tests/standard1903-effects.test.mjs",
+      "reproduction": "ActualCylinderREV2freezesexistingNaturebody dm01-108. Nextopponentturn actualBarkwhip dm02-033 evolvesoneitherfrozenOLDbaseornewlySUMMONEDbody: OLDbaseEVOcannotattack, NEWbaseEVOcanattack. ActualfreshHaste dmsd14-004canattack. Locks expireNEXTCylinderownerSTART. Bothseatsencryptedrestore.",
+      "result": "ActualCylinderREV2freezesexistingNaturebody dm01-108. Nextopponentturn actualBarkwhip dm02-033 evolvesoneitherfrozenOLDbaseornewlySUMMONEDbody: OLDbaseEVOcannotattack, NEWbaseEVOcanattack. ActualfreshHaste dmsd14-004canattack. Locks expireNEXTCylinderownerSTART. Bothseatsencryptedrestore."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:11:37.623Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd15-001": 4,
+      "dmrp22-060": 4,
+      "dmrp19-025": 4,
+      "dmr17-003": 4,
+      "dmex15-a015": 4,
+      "promoy21-018": 4,
+      "dm25ex2-094": 4,
+      "dm23bd6-038": 4,
+      "dm25ex2-Cho015": 4,
+      "dmex07-003": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmsd15-001",
+      "searchSha256": "9ee2b94b6a75b7cdff624a73c57ba62775b43146dd6d97525d061f567db46915",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmex15-a015",
+        "dmsd15-001"
+      ],
+      "exactPrints": [
+        "dmsd15-001",
+        "dmex15-a015"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp22-060",
+      "searchSha256": "06592349b4cbd76fc418aef4b3bb92d50fecaddf705f9223baf2a18ab6cb799a",
+      "totalResults": 4,
+      "allSearchIds": [
+        "promoy21-018",
+        "dmrp22-060",
+        "dm25ex2-094",
+        "dmrp22-037"
+      ],
+      "exactPrints": [
+        "dmrp22-060",
+        "promoy21-018",
+        "dm25ex2-094"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp19-025",
+      "searchSha256": "6890557484168babcc1b4ad7cbc3682cf2f4b45ca0257d5a656e32d22303b834",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmrp19-025",
+        "dm23bd6-038"
+      ],
+      "exactPrints": [
+        "dmrp19-025",
+        "dm23bd6-038"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr17-003",
+      "searchSha256": "fcd258a1fa25a0fa346e9b49823cbe6ce59058404805f9bba468ff37ec773d21",
+      "totalResults": 4,
+      "allSearchIds": [
+        "dm25ex2-Cho015",
+        "dmr17-003",
+        "dmex07-003",
+        "dmr19-003"
+      ],
+      "exactPrints": [
+        "dmr17-003",
+        "dm25ex2-Cho015",
+        "dmex07-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/tenexactprints allabilities/stats/images/currentlimits. JaOniOniTime6GROUPS inclcomposite boundary paid5vs10/HasteW2/optionalDarkFire<=7nonEVOgrave. Ukon actualattackORblock capturesnoseedcondition thenattackENDselfdestroy, seednegatives/laterseeddoesnotcancelqueueddestruction, Demonio1discountstacksfloor1 andGenmu3suppression. FatalEXlife mandatorynewshield/preservebodyviaactualDemonHandreplacement/paid7W2/bounce0-2enemycreatures/optionalRamp1enemyCREATUREentryANYturn, own/seednegative andactualGenmu doesnotignorecost7watcher. CylinderWaterEVO/W2 optionaldrawperownWatercreature inclSELF notunderBASE/seed; independentREV2freeze CURRENTenemyonly throughnextownSTART, ordinaryevolutionofaffectedbasestillstopped, evolutiononFUTUREbaseandFUTUREspeedlegal, Genmu5ignored. Eightencryptedservices andbothseatsrestore/UIDconservation. PriorIDs/details/formats/pendingpreserved.",
+    "resolvedAttempts": "JaOni defaultofficialnamesearch OR-split61resultswaslargerthan50page; specific鬼ヶ鬼 query returnedall2exactprints, allresults/hashsaved. Initialfixtureassumed extLimits exists inREV3negative; usesemptydefault. AdditionalGenmutestinitiallytriedordinaryInfinitycostGenmusummon (illegal); correctedestablishedactualGenmubattlefield thennormalenemycreatureentry. Allfocusedfinalandrelatedresultsrecorded.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/37250/",
+        "reproduced": true,
+        "tests": "tests/standard1903-effects.test.mjs",
+        "reproduction": "ActualCylinderREV2freezesexistingNaturebody dm01-108. Nextopponentturn actualBarkwhip dm02-033 evolvesoneitherfrozenOLDbaseornewlySUMMONEDbody: OLDbaseEVOcannotattack, NEWbaseEVOcanattack. ActualfreshHaste dmsd14-004canattack. Locks expireNEXTCylinderownerSTART. Bothseatsencryptedrestore."
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmr17-s01",
+          "dmr19-009",
+          "dmd27-008",
+          "dmr18-s05"
+        ],
+        "reason": "Groupedresearchunderway: MiracleStarindependentCIPs, GyogyouenemyentryeligiblemanaDeploy/revolutiondiscount, AssaultFireRevEVOsearch+discount, Drakkenindependentattackpubliclook."
+      }
+    ]
+  }
+}

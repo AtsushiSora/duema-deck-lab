@@ -35345,5 +35345,629 @@
         }
       ]
     }
+  },
+  "dmsd15-001": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "鬼ヶ鬼 ジャオウガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを５少なくする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "amount": 5
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmex15-a015": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "鬼ヶ鬼 ジャオウガ",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを５少なくする。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "speedAttacker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "amount": 5
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmrp22-060": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "鬼星の絆 ウコン丸＆サコン丸",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+        "race": "デモニオ/鬼レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "race": "デモニオ",
+          "amount": 1
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy21-018": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "鬼星の絆 ウコン丸＆サコン丸",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+        "race": "デモニオ/鬼レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "race": "デモニオ",
+          "amount": 1
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex2-094": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "鬼星の絆 ウコン丸＆サコン丸",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオ・クリーチャーの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+        "race": "デモニオ/鬼レクスターズ",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "race": "デモニオ",
+          "amount": 1
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp19-025": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "飢限電融 ファタル・エレガンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+        "race": "ディスペクター/ポセイディア・ドラゴン/ジャイアント",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true
+        }
+      ],
+      "g1903OpponentEntry": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm23bd6-038": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "飢限電融 ファタル・エレガンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+        "race": "ディスペクター/ポセイディア・ドラゴン/ジャイアント",
+        "powerText": "9000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true
+        }
+      ],
+      "g1903OpponentEntry": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmr17-003": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "革命龍程式 シリンダ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化-自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+        "race": "クリスタル・コマンド・ドラゴン/革命軍",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "optional": "each"
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Freeze262",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g190Freeze": "self",
+                  "g1058FollowUnit": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex2-Cho015": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "革命龍程式 シリンダ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化：水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２：このクリーチャーが出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+        "race": "クリスタル・コマンド・ドラゴン/革命軍",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "optional": "each"
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Freeze262",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g190Freeze": "self",
+                  "g1058FollowUnit": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex07-003": {
+    "phase": 1903,
+    "faces": [
+      {
+        "name": "革命龍程式 シリンダ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化：自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２：このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+        "race": "クリスタル・コマンド・ドラゴン/革命軍",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "optional": "each"
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Freeze262",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g190Freeze": "self",
+                  "g1058FollowUnit": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

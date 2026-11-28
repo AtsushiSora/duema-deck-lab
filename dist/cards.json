@@ -321985,17 +321985,250 @@
       ],
       "supportBatch": "phase-1902",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd15-001",
+      "name": "鬼ヶ鬼 ジャオウガ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 11000,
+      "race": "デモニオ/鬼札王国",
+      "text": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーの召喚コストを５少なくする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、闇または火の、コスト７以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-001",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "amount": 5
+      },
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1903",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-060",
+      "name": "鬼星の絆 ウコン丸＆サコン丸",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時またはブロックした時、自分のタマシードがなければ、その攻撃の終わりにこのクリーチャーを破壊する。\n自分のデモニオの召喚コストを１少なくする。だだし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-060",
+      "limit": 4,
+      "blocker": true,
+      "g349SummonAuras": [
+        {
+          "race": "デモニオ",
+          "amount": 1
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "g295Tamaseed": true
+              },
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1903",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-025",
+      "name": "飢限電融 ファタル・エレガンス",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ディスペクター/ポセイディア・ドラゴン/ジャイアント",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-025",
+      "limit": 4,
+      "exLife": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "to": "hand",
+          "toOwnerHand": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true
+        }
+      ],
+      "g1903OpponentEntry": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1903",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-003",
+      "name": "革命龍程式 シリンダ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン/革命軍",
+      "text": "進化-自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の水のクリーチャー１体につき、カードを１枚引いてもよい。\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、次の自分のターンのはじめまで、相手のクリーチャーはすべて、攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-003",
+      "limit": 4,
+      "evolution": {
+        "civilization": "水"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "optional": "each"
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2：相手のクリーチャーは攻撃もブロックもできない",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "Freeze262",
+                  "filter": {
+                    "creature": true
+                  },
+                  "g190Freeze": "self",
+                  "g1058FollowUnit": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1903",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1902,
-    "checkedAt": "2026-11-28T06:06:05.673Z",
-    "baseCount": 9936,
-    "newEffectCards": 3,
+    "phase": 1903,
+    "checkedAt": "2026-11-28T06:11:37.623Z",
+    "baseCount": 9939,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9939,
+    "totalCount": 9943,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37250/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -353031,6 +353264,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39515/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1902,
+        "checkedAt": "2026-11-28T06:06:05.673Z",
+        "baseCount": 9936,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9939,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

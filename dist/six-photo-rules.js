@@ -11279,6 +11279,7 @@ export function createSixPhotoRules(api){
   if(creature&&!y.sealed)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed)continue;
    const c=effective(watcher,s);
+   if(c.g1903OpponentEntry&&!api.selfStopped(s,1-p))queue(s,1-p,watcher,c.g1903OpponentEntry);
    if(c.g1697OffHandEntryShield&&options.origin!==undefined&&options.origin!=='hand'&&cost(effective(y,s))<=4)queue(s,1-p,watcher,[{op:'Offer',title:'相手の手札以外からの登場：シールドを1つ追加する？',defs:[{op:'ShieldTop',n:1}]}]);
    if(c.g593EntryStop)send(s,1-p,watcher,'EntryStop593',{subject:{uid:y.uid,incarnation:y.incarnation||0}});
    if(c.g743OpponentEntryTap&&!api.ignored(s,watcher)){
