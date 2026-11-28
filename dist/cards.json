@@ -99896,12 +99896,9 @@
       "effect": "sixPhoto",
       "g34Tasks": [
         {
-          "op": "Target",
+          "op": "BattleCardMove579",
           "to": "grave",
-          "element": true,
-          "filter": {
-            "max": 4
-          }
+          "max": 4
         }
       ],
       "supportBatch": "phase-340",
@@ -315717,17 +315714,179 @@
       ],
       "supportBatch": "phase-1858",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-s01",
+      "name": "赤攻銀 マルハヴァン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "メタリカ",
+      "text": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "max": 3
+        }
+      },
+      "g303DeathWatch": {
+        "g1859MaxCost": 3,
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "g1859SaverAura": true,
+      "supportBatch": "phase-1859",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-050",
+      "name": "神帝マニ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ゴッド/オリジン",
+      "text": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-050",
+      "limit": 4,
+      "g31God": "grid",
+      "g1859GodGrid": {
+        "position": [
+          1,
+          0
+        ],
+        "links": [
+          {
+            "name": "神帝ムーラ",
+            "position": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "神帝アナ",
+            "position": [
+              1,
+              -1
+            ]
+          },
+          {
+            "name": "神帝スヴァ",
+            "position": [
+              1,
+              -1
+            ]
+          }
+        ]
+      },
+      "g1859LinkTasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1859",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-092",
+      "name": "神帝ムーラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ゴッド/オリジン",
+      "text": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-092",
+      "limit": 4,
+      "g31God": "grid",
+      "g1859GodGrid": {
+        "position": [
+          0,
+          0
+        ],
+        "links": [
+          {
+            "name": "神帝マニ",
+            "position": [
+              1,
+              0
+            ]
+          },
+          {
+            "name": "神帝ヴィシュ",
+            "position": [
+              1,
+              0
+            ]
+          },
+          {
+            "name": "神帝アージュ",
+            "position": [
+              0,
+              -1
+            ]
+          }
+        ]
+      },
+      "g1859LinkTasks": [
+        {
+          "op": "DiscardFor248",
+          "g770DiscardAttempt": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "race": "ゴッド"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1859",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1858,
-    "checkedAt": "2026-11-28T00:17:59.050Z",
-    "baseCount": 9779,
-    "newEffectCards": 2,
+    "phase": 1859,
+    "checkedAt": "2026-11-28T00:23:10.077Z",
+    "baseCount": 9781,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9781,
+    "totalCount": 9784,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/40114/",
+      "https://dm.takaratomy.co.jp/rule/qa/40114/",
+      "https://dm.takaratomy.co.jp/rule/qa/40114/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -346100,6 +346259,20 @@
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1858,
+        "checkedAt": "2026-11-28T00:17:59.050Z",
+        "baseCount": 9779,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 9781,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
         ]
       }
     ]

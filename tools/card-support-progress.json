@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9781,
-  "pendingNames": 2068,
-  "phase": 1858,
-  "added": 2,
+  "supportedNames": 9784,
+  "pendingNames": 2065,
+  "phase": 1859,
+  "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1213,
+    "クリーチャー": 1210,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1551,
+    "未対応の能力文": 1548,
     "複数面・特殊カードタイプまたは情報不足": 427,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -580635,25 +580635,237 @@
           "reason": "Corrected test fixtures, no hidden failures: real NightCarol replacement requires actual Water AND Fire mana, initial onlyWater correctly did not return cards; use realboth colors. shieldCards imported from shield-state ratherthan nonexistentengineexport. Manualmana uses transaction preview: discards remain rolledback untilconfirmation; assert reserved source selections and preview cost1, then committed grave3/payment1/physical conservation. All43 finalgreen. Variable optional max extends only opted-in g1858DiscardMax, old fixed one/two selections and Carol regression green."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394"
+    },
+    {
+      "phase": 1859,
+      "checkedAt": "2026-11-28T00:30:04.599Z",
+      "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9781,
+      "currentNames": 9784,
+      "remainingNames": 216,
+      "added": [
+        {
+          "id": "dmrp03-s01",
+          "name": "赤攻銀 マルハヴァン"
+        },
+        {
+          "id": "dm32-050",
+          "name": "神帝マニ"
+        },
+        {
+          "id": "dm32-092",
+          "name": "神帝ムーラ"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1859,
+        "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+        "originalDefinitionsUnchanged": 9780,
+        "existingDefinitionsCorrected": 1,
+        "uniqueNames": 9784,
+        "uniqueIds": 9784,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9781,
+        "existingImageReferenceRowsUnchanged": 12259,
+        "officialPrintsReviewed": 7,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1859": {
+          "name": "official-1859",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1859.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.87,
+          "log": "tmp/duema-target-10000/official-1859.log",
+          "passed": 0,
+          "logSha256": "dee30b240bfdb6cf62bc73d37a94eb6ff294090cad529caf2fad39d6cb257e27"
+        },
+        "focused-1859-final": {
+          "name": "focused-1859-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1859-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 15.027,
+          "log": "tmp/duema-target-10000/focused-1859-final.log",
+          "passed": 60,
+          "logSha256": "968764500c027b1b92aadbfe96bc8260d5ce167f0f5a4ad81d56952ded9578b3"
+        },
+        "related-1859": {
+          "name": "related-1859",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1859.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 12.146,
+          "log": "tmp/duema-target-10000/related-1859.log",
+          "passed": 358,
+          "logSha256": "f0ddcc807f4098f20754f12e4407e08dc7877fcbd1b313dfe4f99380970d990b"
+        },
+        "check-1859": {
+          "name": "check-1859",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 24.375,
+          "log": "tmp/duema-target-10000/check-1859.log",
+          "passed": 0,
+          "logSha256": "a9bf2f50795fff5d1fe7cafc8af1e01f6f5090be316935d5f743895400e44234"
+        },
+        "audit-1859": {
+          "name": "audit-1859",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.515,
+          "log": "tmp/duema-target-10000/audit-1859.log",
+          "passed": 0,
+          "logSha256": "065dbe2a4c8e814a3dc0059db94f72acf70143e67e38412dc06f084adbf41359"
+        },
+        "invariants-1859": {
+          "name": "invariants-1859",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1859"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.761,
+          "log": "tmp/duema-target-10000/invariants-1859.log",
+          "passed": 0,
+          "logSha256": "6c4d02531bae317eae848c583a96a70089750af2be20e6b460295b1e821ca967"
+        },
+        "related-online-1859": {
+          "name": "related-online-1859",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.597,
+          "log": "tmp/duema-target-10000/related-online-1859.log",
+          "passed": 5,
+          "logSha256": "e50a0378f16d540cba1303b3b368c3a67fc5c63b794cbd7170f02126a616208e"
+        }
+      },
+      "totalTestsPassed": 423,
+      "manifest": "tools/support-phase-1859.json",
+      "supported": 9784,
+      "pending": 2065,
+      "engineVersion": "0.602.383",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dm32-006",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        },
+        {
+          "id": "dm32-020",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        },
+        {
+          "id": "dmc55-005",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        },
+        {
+          "id": "dmc55-003",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        }
+      ],
+      "verificationScope": "Three complete new definitions and three exact aliases/full6images/limits/mana1 plus existingTorch official fullimage/oneprint/QA40114 rechecked. Maruhavan own creatures<=3 Sympathy min1, Blocker/W2/7000, mandatory own small-creature destruction LKI untap excludesenemy/cost4/bounce; source-centric optional destroy replacement protects anyown creature>=4 by destroyingown creature<=3, ignored small recipient remainsusable, ignored provider disables, noncreatureexcluded, no replacing nondestroy bounce, decline works. Mura/Mani full named-position GLink declarations preserve flat godLinks save structure, self/other optional per-link triggers from every part: Mani optional draw1, Mura optional singlehanddiscard then mandatory any graveGod recovery; botharrivalorders, skip/noeligible/opponent/ignored/sealed/wrong/occupiedsameposition cases. Combined cost7/power7000 physicalsameIDs. Literal40114 fully reproduced bothseats/arrivalorders and ignoredAquaGuard, preservingbothparts aftersacrifice/Maruhavan untaps. Torch existingID/rawability/image/mana unchanged but fixed whole-element Target to native physical BattleCardMove579 max4; linked root max uses its physical printed definition while destruction replacement seescombined7. Evolutionbase/seal targeting verified. Historicalphase340 strict exact-face pin updated with correction provenance/previousspec, grammar stillrejectsextraunknownclause; unsupportedbefore340 preserved. Related340 targetedactualTorch paid/noenemy plus579/571/1079/1081/1334/1664/1665/725/923/1148 fullaffectedshorttests, online5/check/audit9784/invariants:9780prior definitionsunchanged/1exactofficialcorrection/3newtypes, alloldIDs/details/images/protectedpending unchanged. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "related-1859",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1859.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 13.994,
+          "log": "tmp/duema-target-10000/related-1859-previous-1795825699074705000.log",
+          "originalLog": "tmp/duema-target-10000/related-1859.log",
+          "reason": "Direct official40114 smoke found existing Torch incorrectly used whole-element cost7 and couldnotselectMura3; fixeddefinition/native physical max ratherthan weakening cost7 destruction checks. Added strict build pin atoriginalphase340 and provenance; same registered ID and physicaldata retained. Related suite exposed stalephase1665 assertion saying Gaiarl unregistered although current AND baseline already registered it inphase1685; updated test to positively assert existing phase1685 registration and preserve historicaldeferredrecord. No product behavior changed for stale assertion. Initial related354pass/1staleassert fail; expanded actual Torch historical tests then exposed old helper accepting only UID objects, updated to accept the native physical-card UID-string choices as well; final affectedregressions green. Literalcardtests passed on first focused run and again after physical-God targetlabel improvement. Old unregistered-God hold resolved byfull2God registrations, notsyntheticcostfixture."
+        },
+        {
+          "name": "related-1859",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1859.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 13.298,
+          "log": "tmp/duema-target-10000/related-1859-previous-1795825764307992000.log",
+          "originalLog": "tmp/duema-target-10000/related-1859.log",
+          "reason": "Direct official40114 smoke found existing Torch incorrectly used whole-element cost7 and couldnotselectMura3; fixeddefinition/native physical max ratherthan weakening cost7 destruction checks. Added strict build pin atoriginalphase340 and provenance; same registered ID and physicaldata retained. Related suite exposed stalephase1665 assertion saying Gaiarl unregistered although current AND baseline already registered it inphase1685; updated test to positively assert existing phase1685 registration and preserve historicaldeferredrecord. No product behavior changed for stale assertion. Initial related354pass/1staleassert fail; expanded actual Torch historical tests then exposed old helper accepting only UID objects, updated to accept the native physical-card UID-string choices as well; final affectedregressions green. Literalcardtests passed on first focused run and again after physical-God targetlabel improvement. Old unregistered-God hold resolved byfull2God registrations, notsyntheticcostfixture."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1858,
-    "nextPhase": 1859,
+    "lastVerifiedPhase": 1859,
+    "nextPhase": 1860,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dmrp03-s01",
-        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        "id": "dm32-006",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
       },
       {
-        "id": "dm32-050",
-        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        "id": "dm32-020",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
       },
       {
-        "id": "dm32-092",
-        "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+        "id": "dmc55-005",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+      },
+      {
+        "id": "dmc55-003",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
       }
     ],
     "steps": [
@@ -581567,11 +581779,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1858,
-      "baseline": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
-      "supportedNames": 9781,
-      "artifact": "tools/target10000-registration-checkpoint-1858.json",
-      "checkedAt": "2026-11-28T00:21:41.447Z"
+      "phase": 1859,
+      "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "supportedNames": 9784,
+      "artifact": "tools/target10000-registration-checkpoint-1859.json",
+      "checkedAt": "2026-11-28T00:30:04.599Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -584629,8 +584841,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9781,
-      "remaining": 219,
+      "currentNames": 9784,
+      "remaining": 216,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -584638,23 +584850,27 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1858,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1858.json",
+      "lastPhase": 1859,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1859.json",
       "nextCandidates": [
         {
-          "id": "dmrp03-s01",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dm32-006",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         },
         {
-          "id": "dm32-050",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dm32-020",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         },
         {
-          "id": "dm32-092",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dmc55-005",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        },
+        {
+          "id": "dmc55-003",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         }
       ],
-      "resumeProcedure": "Continue9781 remaining219; nextGodMura/Mani+Maruhavan literalQA40114 full support. Preserve named-variantDolk no duplicate, Mesta/PureGazelle held no partials, olderpending/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9784 remaining216; next4Gods fullresearch downloadedimagespending. Maruhavan1857hold resolvedliteral40114 fullrealGod support; existingTorch physicalcardbug fixed. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -584888,7 +585104,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "lastVerifiedCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -584899,7 +585115,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "lastVerifiedCodeCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -586073,8 +586289,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9781,
-      "remaining": 219,
+      "currentNames": 9784,
+      "remaining": 216,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -586082,23 +586298,27 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1858,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1858.json",
+      "lastPhase": 1859,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1859.json",
       "nextCandidates": [
         {
-          "id": "dmrp03-s01",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dm32-006",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         },
         {
-          "id": "dm32-050",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dm32-020",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         },
         {
-          "id": "dm32-092",
-          "reason": "Grouped full official research ready: linkedGod QA40114 dependencies and Maruhavan. Review 6 images, native gridlink and full link triggers, full saver/death-cost watches, literal TorchPunish Mura7/AquaGuard test before count."
+          "id": "dmc55-005",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+        },
+        {
+          "id": "dmc55-003",
+          "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
         }
       ],
-      "resumeProcedure": "Continue9781 remaining219; nextGodMura/Mani+Maruhavan literalQA40114 full support. Preserve named-variantDolk no duplicate, Mesta/PureGazelle held no partials, olderpending/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9784 remaining216; next4Gods fullresearch downloadedimagespending. Maruhavan1857hold resolvedliteral40114 fullrealGod support; existingTorch physicalcardbug fixed. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -586332,7 +586552,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "lastVerifiedCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -586343,7 +586563,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "d26bd6f05ba0d6d630f20aa09dddddabfd0cdbfd",
+      "lastVerifiedCodeCommit": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -595588,6 +595808,772 @@
           "dm25rp4-035"
         ],
         "completedManifest": "tools/support-phase-1858.json"
+      },
+      {
+        "phase": 1859,
+        "research": "tmp/duema-target-10000/research-maruhavan1859.json",
+        "status": "3implemented-verified-literal40114-plus-existingphysicalTorchfix",
+        "cards": [
+          {
+            "id": "dmrp03-s01",
+            "name": "赤攻銀 マルハヴァン",
+            "searchSha256": "7c26625a6df9e3866cec78047ce476c46981c392bd3451467e3a81b3a191ba23",
+            "searchIds": [
+              "dmrp01-s03",
+              "dmrp07-059",
+              "dmrp13-060",
+              "promoy18-005",
+              "dmsd02-007",
+              "dmrp10-002",
+              "dmrp05-061",
+              "dmex04-062",
+              "dmrp06-034",
+              "dmrp03-s01",
+              "dmex11-s02",
+              "dmrp08-060"
+            ],
+            "excluded": [
+              {
+                "id": "dmrp01-s03",
+                "name": "赤攻銀 アサラーム"
+              },
+              {
+                "id": "dmrp07-059",
+                "name": "赤攻銀 イザヤック"
+              },
+              {
+                "id": "dmrp13-060",
+                "name": "赤攻銀 ヴォタル"
+              },
+              {
+                "id": "promoy18-005",
+                "name": "赤攻銀 カ・ダブラ"
+              },
+              {
+                "id": "dmsd02-007",
+                "name": "赤攻銀 カ・ダブラ"
+              },
+              {
+                "id": "dmrp10-002",
+                "name": "赤攻銀 サハラン/レッド・マジック"
+              },
+              {
+                "id": "dmrp05-061",
+                "name": "赤攻銀 シュクラン"
+              },
+              {
+                "id": "dmex04-062",
+                "name": "赤攻銀 ハムラービ/ハムラティス・ジャッジ"
+              },
+              {
+                "id": "dmrp06-034",
+                "name": "赤攻銀 マブルーク"
+              },
+              {
+                "id": "dmrp08-060",
+                "name": "赤攻銀 マレーシュ/フェイスラッシュ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmrp03-s01",
+                "name": "赤攻銀 マルハヴァン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s01",
+                "faces": [
+                  {
+                    "name": "赤攻銀 マルハヴァン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+                    "race": "メタリカ",
+                    "powerText": "7000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp03-s01",
+                "printedManaValue": 1,
+                "htmlSha256": "6af65469546fa8df0e70012e196e77eb2f19725aaad26e231c917ad9f9f54469",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-s01.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp03-s01-0.jpg",
+                    "sha256": "d88530520a7b21894335bf54efe138a59b39aea8e1130d7c051e4b5d32de786f"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmex11-s02",
+                "name": "赤攻銀 マルハヴァン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-s02",
+                "faces": [
+                  {
+                    "name": "赤攻銀 マルハヴァン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+                    "race": "メタリカ",
+                    "powerText": "7000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp03-s01",
+                "printedManaValue": 1,
+                "htmlSha256": "6ec5882e82cf758a2d0272450d60e57fbfdb4d27915b8acfe76354cb4b0661dc",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-s02.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex11-s02-0.jpg",
+                    "sha256": "fc6c30da187fbde3183010a1ec00eb57b633012ed523f55e8a6da7a1638acfb7"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dm32-050",
+            "name": "神帝マニ",
+            "searchSha256": "d6bc3d05e204611dc9229b6b039f067db205728e636168cf94473422781238c7",
+            "searchIds": [
+              "dmc63-016",
+              "dm32-050"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-050",
+                "name": "神帝マニ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-050",
+                "faces": [
+                  {
+                    "name": "神帝マニ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "4000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-050",
+                "printedManaValue": 1,
+                "htmlSha256": "86bff4c3b59e2d2c081a036773908f29c99c6bc8f97813a60a3e1c720f1395c4",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-050.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-050-0.jpg",
+                    "sha256": "3b8db1c2ef66cd07226fe19e6f9da2c7afa51bc2e5b9e801b57f3b42fe07c1cb"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmc63-016",
+                "name": "神帝マニ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-016",
+                "faces": [
+                  {
+                    "name": "神帝マニ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側。\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "4000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-050",
+                "printedManaValue": 1,
+                "htmlSha256": "e422aa8b35de2058629865ebdc0c1cc27b838d7470e8b32d5890efe7cf7dfd22",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-016.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-016-0.jpg",
+                    "sha256": "4c22e8e816310280ba5389809deff6fec3bb9755b2451a01a776e9291c13c201"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dm32-092",
+            "name": "神帝ムーラ",
+            "searchSha256": "0d963852566de069e932670dfe2a88938b1b480f579874f9d85cabd3e138d2fe",
+            "searchIds": [
+              "dmc63-019",
+              "dm32-092"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-092",
+                "name": "神帝ムーラ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-092",
+                "faces": [
+                  {
+                    "name": "神帝ムーラ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-092",
+                "printedManaValue": 1,
+                "htmlSha256": "530d633df2f31031d2db30c925632937a0a46eb5c8ecb2c44adde489d6186e2d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-092.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-092-0.jpg",
+                    "sha256": "a81a1a65f4ac34fa7ea1f4c43bfdaee24de7a9e10b53088a11d4079461f333d6"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmc63-019",
+                "name": "神帝ムーラ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-019",
+                "faces": [
+                  {
+                    "name": "神帝ムーラ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-092",
+                "printedManaValue": 1,
+                "htmlSha256": "b060cdbd0e932d6d8ae98c87ed78a661a4b6e01aa02d7eb60c58e2bca1997650",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-019.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-019-0.jpg",
+                    "sha256": "b654f9a4a5bb1d0b70230cae4fa7d27df880e356709812f181527947e29113b5"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dmr22-037",
+            "name": "トーチング・パニッシュ",
+            "searchSha256": "dbd69fd3e5aeae446c037973bdcfd79929331345e6520da0201850c0f852ee4b",
+            "searchIds": [
+              "dmr22-037"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmr22-037",
+                "name": "トーチング・パニッシュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-037",
+                "faces": [
+                  {
+                    "name": "トーチング・パニッシュ",
+                    "typeText": "呪文",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmr22-037",
+                "printedManaValue": 1,
+                "htmlSha256": "5cc9550ed27c21d20f99ec777770c7e0dd8bf4c262f6a4f8da197296604ee1e7",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-037.jpg",
+                    "file": "tmp/duema-target-10000/research/dmr22-037-0.jpg",
+                    "sha256": "e4a2df5e46f75a5f7c9c45ceddfca7eb526e925f27119c098ecb00bc7b258764"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1859.json"
+      },
+      {
+        "phase": 1859,
+        "research": "tmp/duema-target-10000/research-maruhavan1859.json",
+        "status": "3implemented-verified-literal40114-plus-existingphysicalTorchfix",
+        "cards": [
+          {
+            "id": "dmrp03-s01",
+            "name": "赤攻銀 マルハヴァン",
+            "searchSha256": "7c26625a6df9e3866cec78047ce476c46981c392bd3451467e3a81b3a191ba23",
+            "searchIds": [
+              "dmrp01-s03",
+              "dmrp07-059",
+              "dmrp13-060",
+              "promoy18-005",
+              "dmsd02-007",
+              "dmrp10-002",
+              "dmrp05-061",
+              "dmex04-062",
+              "dmrp06-034",
+              "dmrp03-s01",
+              "dmex11-s02",
+              "dmrp08-060"
+            ],
+            "excluded": [
+              {
+                "id": "dmrp01-s03",
+                "name": "赤攻銀 アサラーム"
+              },
+              {
+                "id": "dmrp07-059",
+                "name": "赤攻銀 イザヤック"
+              },
+              {
+                "id": "dmrp13-060",
+                "name": "赤攻銀 ヴォタル"
+              },
+              {
+                "id": "promoy18-005",
+                "name": "赤攻銀 カ・ダブラ"
+              },
+              {
+                "id": "dmsd02-007",
+                "name": "赤攻銀 カ・ダブラ"
+              },
+              {
+                "id": "dmrp10-002",
+                "name": "赤攻銀 サハラン/レッド・マジック"
+              },
+              {
+                "id": "dmrp05-061",
+                "name": "赤攻銀 シュクラン"
+              },
+              {
+                "id": "dmex04-062",
+                "name": "赤攻銀 ハムラービ/ハムラティス・ジャッジ"
+              },
+              {
+                "id": "dmrp06-034",
+                "name": "赤攻銀 マブルーク"
+              },
+              {
+                "id": "dmrp08-060",
+                "name": "赤攻銀 マレーシュ/フェイスラッシュ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dmrp03-s01",
+                "name": "赤攻銀 マルハヴァン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s01",
+                "faces": [
+                  {
+                    "name": "赤攻銀 マルハヴァン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+                    "race": "メタリカ",
+                    "powerText": "7000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp03-s01",
+                "printedManaValue": 1,
+                "htmlSha256": "6af65469546fa8df0e70012e196e77eb2f19725aaad26e231c917ad9f9f54469",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-s01.jpg",
+                    "file": "tmp/duema-target-10000/research/dmrp03-s01-0.jpg",
+                    "sha256": "d88530520a7b21894335bf54efe138a59b39aea8e1130d7c051e4b5d32de786f"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmex11-s02",
+                "name": "赤攻銀 マルハヴァン",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-s02",
+                "faces": [
+                  {
+                    "name": "赤攻銀 マルハヴァン",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 6,
+                    "costText": "6",
+                    "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+                    "race": "メタリカ",
+                    "powerText": "7000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmrp03-s01",
+                "printedManaValue": 1,
+                "htmlSha256": "6ec5882e82cf758a2d0272450d60e57fbfdb4d27915b8acfe76354cb4b0661dc",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-s02.jpg",
+                    "file": "tmp/duema-target-10000/research/dmex11-s02-0.jpg",
+                    "sha256": "fc6c30da187fbde3183010a1ec00eb57b633012ed523f55e8a6da7a1638acfb7"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dm32-050",
+            "name": "神帝マニ",
+            "searchSha256": "d6bc3d05e204611dc9229b6b039f067db205728e636168cf94473422781238c7",
+            "searchIds": [
+              "dmc63-016",
+              "dm32-050"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-050",
+                "name": "神帝マニ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-050",
+                "faces": [
+                  {
+                    "name": "神帝マニ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "4000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-050",
+                "printedManaValue": 1,
+                "htmlSha256": "86bff4c3b59e2d2c081a036773908f29c99c6bc8f97813a60a3e1c720f1395c4",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-050.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-050-0.jpg",
+                    "sha256": "3b8db1c2ef66cd07226fe19e6f9da2c7afa51bc2e5b9e801b57f3b42fe07c1cb"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmc63-016",
+                "name": "神帝マニ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-016",
+                "faces": [
+                  {
+                    "name": "神帝マニ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水",
+                    "civilizations": [
+                      "水"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側。\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "4000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-050",
+                "printedManaValue": 1,
+                "htmlSha256": "e422aa8b35de2058629865ebdc0c1cc27b838d7470e8b32d5890efe7cf7dfd22",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-016.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-016-0.jpg",
+                    "sha256": "4c22e8e816310280ba5389809deff6fec3bb9755b2451a01a776e9291c13c201"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dm32-092",
+            "name": "神帝ムーラ",
+            "searchSha256": "0d963852566de069e932670dfe2a88938b1b480f579874f9d85cabd3e138d2fe",
+            "searchIds": [
+              "dmc63-019",
+              "dm32-092"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm32-092",
+                "name": "神帝ムーラ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-092",
+                "faces": [
+                  {
+                    "name": "神帝ムーラ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-092",
+                "printedManaValue": 1,
+                "htmlSha256": "530d633df2f31031d2db30c925632937a0a46eb5c8ecb2c44adde489d6186e2d",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-092.jpg",
+                    "file": "tmp/duema-target-10000/research/dm32-092-0.jpg",
+                    "sha256": "a81a1a65f4ac34fa7ea1f4c43bfdaee24de7a9e10b53088a11d4079461f333d6"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              },
+              {
+                "id": "dmc63-019",
+                "name": "神帝ムーラ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-019",
+                "faces": [
+                  {
+                    "name": "神帝ムーラ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+                    "race": "ゴッド/オリジン",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm32-092",
+                "printedManaValue": 1,
+                "htmlSha256": "b060cdbd0e932d6d8ae98c87ed78a661a4b6e01aa02d7eb60c58e2bca1997650",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-019.jpg",
+                    "file": "tmp/duema-target-10000/research/dmc63-019-0.jpg",
+                    "sha256": "b654f9a4a5bb1d0b70230cae4fa7d27df880e356709812f181527947e29113b5"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          },
+          {
+            "id": "dmr22-037",
+            "name": "トーチング・パニッシュ",
+            "searchSha256": "dbd69fd3e5aeae446c037973bdcfd79929331345e6520da0201850c0f852ee4b",
+            "searchIds": [
+              "dmr22-037"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dmr22-037",
+                "name": "トーチング・パニッシュ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-037",
+                "faces": [
+                  {
+                    "name": "トーチング・パニッシュ",
+                    "typeText": "呪文",
+                    "civilizationText": "火",
+                    "civilizations": [
+                      "火"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。",
+                    "race": "",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dmr22-037",
+                "printedManaValue": 1,
+                "htmlSha256": "5cc9550ed27c21d20f99ec777770c7e0dd8bf4c262f6a4f8da197296604ee1e7",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-037.jpg",
+                    "file": "tmp/duema-target-10000/research/dmr22-037-0.jpg",
+                    "sha256": "e4a2df5e46f75a5f7c9c45ceddfca7eb526e925f27119c098ecb00bc7b258764"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/40114/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+                "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+                "body": "よくある質問 Q自分のリンクしている《神帝ムーラ》《神帝マニ》と、《赤攻銀 マルハヴァン》、《アクア・ガード》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時」の置換効果を適用し、《アクア・ガード》を破壊できますか？ Aはい、破壊できます。リンクしているゴッドは、それぞれの特性をすべて持っています。破壊される《神帝ムーラ》はコスト７のクリーチャーですので、《赤攻銀 マルハヴァン》の置換効果を適用して《アクア・ガード》をかわりに破壊できます。 （総合ルール 803.1b） 一覧へ戻る 関連する質問 自分のリンクしている《神帝ムーラ》《神帝マニ》と《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝マニ》を選び、破壊する際、《赤攻銀 マルハヴァン》の「自分のコスト４以上のクリーチャーが破壊される時、かわりに」の置換効果を適用し、リンクしている《神帝ムーラ》を破壊できますか？ 2021.9.7 自分のリンクしている《神帝ムーラ》《神帝マニ》と、タップ状態の《赤攻銀 マルハヴァン》がいる状況で、相手は《トーチング・パニッシュ》を唱えました。相手が効果で《神帝ムーラ》を選び、《神帝ムーラ》が破壊された時、《赤攻銀 マルハヴァン》の「自分のコスト３以下のクリーチャーが破壊された時」の能力はトリガーしますか？ 2021.9.7 相手のリンクしている《神帝ムーラ》《神帝マニ》がバトルゾーンにいる状況で、自分は《ボルシャック・スーパーヒーロー / 超英雄タイム》の呪文側を唱えました。「G・リンク」で《神帝ムーラ》《神帝マニ》のコストは合計され、７になっていますが、《神帝ムーラ》を選んで墓地に置けますか？ 2021.8.6 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール アニア リカちゃん トランスフォーマー デュエル・マスターズ ディズニー ポケットモンスター ZOIDS ベイブレード パウ・パトロール ひみつのアイプリ プリンセッション・オーケストラ ぷにるんず 新幹線変形ロボ シンカリオン ダイアクロン T-SPARK 黒ひげ危機一発 人生ゲーム ゴー!ゴー!びーくるずー タカラトミーベビー きかんしゃトーマス 名探偵コナン ギャビーのドールハウス ボトルマン バトル昆虫カブトボーグ マジカルプレイタイム オムニボット wixoss すみっコぐらし ジュラシック・ワールド 鬼滅の刃 人機一体ブットバスター マジカパーティ 「好き」をさがす ジャンルからさがす ジャンルからさがすトップ くるま でんしゃ 人形 知育玩具・教育玩具 ロボット カードゲーム ゲーム ぬいぐるみ フィギュア・アクションフィギュア おしゃれ プログラミング ブロック 対戦 エデュテイメント なりきりアイテム おままごと 変形・合体 お"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": true,
+        "completedManifest": "tools/support-phase-1859.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -647507,10 +648493,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1858,
+    "phase": 1859,
     "threshold": 10000,
-    "supportedNames": 9781,
-    "pendingNames": 2068,
+    "supportedNames": 9784,
+    "pendingNames": 2065,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -647519,7 +648505,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1858.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1859.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

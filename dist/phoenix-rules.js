@@ -295,7 +295,14 @@ export function createPhoenixRules(api){
     (!partner.g1079GodPartner||partner.g1079GodPartner===c.id);
   });
  }
+ function gridOptions1859(s,p,c){
+  const rule=c.g1859GodGrid,pool=creatures(s,p).filter(x=>!x.sealed&&!api.ignored(s,x)&&godParts(x).every(y=>card(y).g1859GodGrid)&&godParts(x).some(y=>rule.links.some(l=>l.name===card(y).name)));
+  const valid=rows=>{const slots=[rule.position,...rows.flatMap(x=>godParts(x).map(y=>card(y).g1859GodGrid.position))].map(x=>x.join(','));return new Set(slots).size===slots.length;},out=[];
+  function visit(i,chosen){if(i===pool.length){if(chosen.length&&valid(chosen))out.push(opt(chosen.map(x=>card(x).name).join('と')+'とリンク',chosen.length===1?chosen[0].uid:chosen.map(x=>x.uid),40+chosen.length,chosen[0].cardId));return;}visit(i+1,chosen);if(valid([...chosen,pool[i]]))visit(i+1,[...chosen,pool[i]]);}
+  visit(0,[]);return out;
+ }
  function linkOptions(s,p,c){
+  if(c.g1859GodGrid)return gridOptions1859(s,p,c);
   const offer=x=>opt(card(x).name+'とリンク',x.uid,40,x.cardId);
   const pool=creatures(s,p).filter(x=>!api.ignored(s,x)&&!x.sealed);
   const single=x=>!x.godLinks?.length;
@@ -352,7 +359,7 @@ export function createPhoenixRules(api){
   const own=s.players[p],ids=[options.g31Partner].flat();
   const [base,...others]=ids.map(uid=>own.battle.find(y=>y.uid===uid));
   if(!base||others.some(y=>!y))return x;
-  const originalLink=card(x).g1334God||hasGod(base,deathId)||card(base).g1334God;
+  const originalLink=card(x).g1334God||hasGod(base,deathId)||card(base).g1334God||card(x).g1859GodGrid;
   if(base.godLinks?.length&&!originalLink)return x;
   if(originalLink){
    const names=[base,...others,x].map(y=>card(y).name);
@@ -364,6 +371,7 @@ export function createPhoenixRules(api){
    base.godLinks=[x];
    api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});
   }
+  if(card(x).g1859GodGrid&&!api.selfStopped(s,p)&&!api.ignored(s,base))for(const part of godParts(base)){const defs=card(part).g1859LinkTasks;if(defs)api.enqueue(s,p,{uid:base.uid,source:part.cardId,effect:'extended',task:task('g34_Sequence',p,part.cardId,{uid:base.uid,incarnation:base.incarnation||0,defs})});}
   return base;
  },
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},

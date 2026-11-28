@@ -1,7 +1,7 @@
 import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
 import{e,data,details,snapshot,setup,give,inst,act,GEN,GG,PRESETS}from'./target-fixture.mjs';import{standardCardSpec}from'../tools/standard-card-spec.mjs';import{scanStandardCandidates}from'../tools/scan-standard-candidates.mjs';import{createCatalogue}from'../dist/catalogue.js';import{CARD_IMAGES}from'../dist/card-images.js';import{STANDARD340_DECK}from'../tools/fixtures/standard340.mjs';
 const ARI='promoy16-064',COIL='dmex08-161',MARX='dmrp09-084',CHICK='dmrp08-075',GOD='dmd10-007',TATA='dmrp21-068',TORCH='dmr22-037',N='dm01-108',W='dm10-076',L='dm01-075',F='dm01-097',ZERO='dmsd01-012',SEED='dm25ex1-054',GEAR='dm15-008',FIELD='dmrp08-005',m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-340.json',import.meta.url))),all=m.cards.map(c=>c.id),creatureSources=[MARX,CHICK,TATA];
-const put=(s,p,id)=>{const x=inst(id);s.players[p].battle.push(x);return x;},physical=s=>e.physicalCards(s).map(x=>x.uid).sort(),values=s=>(s.decision?.choices||[]).filter(c=>c.value?.uid).map(c=>c.value.uid),recipient=id=>id===MARX?ZERO:id===CHICK?W:N;
+const put=(s,p,id)=>{const x=inst(id);s.players[p].battle.push(x);return x;},physical=s=>e.physicalCards(s).map(x=>x.uid).sort(),values=s=>(s.decision?.choices||[]).map(c=>c.value?.uid??c.value).filter(v=>typeof v==='string'),recipient=id=>id===MARX?ZERO:id===CHICK?W:N;
 function finish(s){for(let n=0;s.decision&&s.winner===null;n++){assert.ok(n<500);e.step(s,e.chooseAI(s));}}
 function pick(s,v){act(s,'extended',a=>(s.decision.choices[a.choice].value?.uid??s.decision.choices[a.choice].value)===v);}
 function play(s,id){const x=inst(id);s.players[s.active].hand.push(x);act(s,'play',a=>a.uid===x.uid&&!a.alternative);return x;}

@@ -1,0 +1,778 @@
+{
+  "phase": 1859,
+  "checkedAt": "2026-11-28T00:23:10.077Z",
+  "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+  "baseCount": 9781,
+  "target": 10000,
+  "description": "Complete Maruhavan lowcost Sympathy/death untap/optional own small-creature destruction replacement and two actual named-grid GLink Gods with independent optional per-link draw/discard-God recovery. Literal QA40114 Mura+Mani/AquaGuard/TorchPunish full reproduction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40114/",
+    "https://dm.takaratomy.co.jp/rule/qa/40114/",
+    "https://dm.takaratomy.co.jp/rule/qa/40114/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-s01",
+      "name": "赤攻銀 マルハヴァン",
+      "canonicalId": "dmrp03-s01",
+      "printId": "dmrp03-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s01",
+      "faces": [
+        {
+          "name": "赤攻銀 マルハヴァン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+          "race": "メタリカ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        },
+        "g303DeathWatch": {
+          "g1859MaxCost": 3,
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        },
+        "g1859SaverAura": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-s01.jpg",
+      "imageSha256": "d88530520a7b21894335bf54efe138a59b39aea8e1130d7c051e4b5d32de786f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-s01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-s01",
+          "dmex11-s02"
+        ],
+        "allSearchIds": [
+          "dmrp01-s03",
+          "dmrp07-059",
+          "dmrp13-060",
+          "promoy18-005",
+          "dmsd02-007",
+          "dmrp10-002",
+          "dmrp05-061",
+          "dmex04-062",
+          "dmrp06-034",
+          "dmrp03-s01",
+          "dmex11-s02",
+          "dmrp08-060"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "6af65469546fa8df0e70012e196e77eb2f19725aaad26e231c917ad9f9f54469",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-050",
+      "name": "神帝マニ",
+      "canonicalId": "dm32-050",
+      "printId": "dm32-050",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-050",
+      "faces": [
+        {
+          "name": "神帝マニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+          "race": "ゴッド/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g31God": "grid",
+        "g1859GodGrid": {
+          "position": [
+            1,
+            0
+          ],
+          "links": [
+            {
+              "name": "神帝ムーラ",
+              "position": [
+                0,
+                0
+              ]
+            },
+            {
+              "name": "神帝アナ",
+              "position": [
+                1,
+                -1
+              ]
+            },
+            {
+              "name": "神帝スヴァ",
+              "position": [
+                1,
+                -1
+              ]
+            }
+          ]
+        },
+        "g1859LinkTasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-050.jpg",
+      "imageSha256": "3b8db1c2ef66cd07226fe19e6f9da2c7afa51bc2e5b9e801b57f3b42fe07c1cb",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm32-050-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-050",
+          "dmc63-016"
+        ],
+        "allSearchIds": [
+          "dmc63-016",
+          "dm32-050"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "86bff4c3b59e2d2c081a036773908f29c99c6bc8f97813a60a3e1c720f1395c4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-092",
+      "name": "神帝ムーラ",
+      "canonicalId": "dm32-092",
+      "printId": "dm32-092",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-092",
+      "faces": [
+        {
+          "name": "神帝ムーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+          "race": "ゴッド/オリジン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g31God": "grid",
+        "g1859GodGrid": {
+          "position": [
+            0,
+            0
+          ],
+          "links": [
+            {
+              "name": "神帝マニ",
+              "position": [
+                1,
+                0
+              ]
+            },
+            {
+              "name": "神帝ヴィシュ",
+              "position": [
+                1,
+                0
+              ]
+            },
+            {
+              "name": "神帝アージュ",
+              "position": [
+                0,
+                -1
+              ]
+            }
+          ]
+        },
+        "g1859LinkTasks": [
+          {
+            "op": "DiscardFor248",
+            "g770DiscardAttempt": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ゴッド"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-092.jpg",
+      "imageSha256": "a81a1a65f4ac34fa7ea1f4c43bfdaee24de7a9e10b53088a11d4079461f333d6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm32-092-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-092",
+          "dmc63-019"
+        ],
+        "allSearchIds": [
+          "dmc63-019",
+          "dm32-092"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "530d633df2f31031d2db30c925632937a0a46eb5c8ecb2c44adde489d6186e2d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex11-s02",
+      "name": "赤攻銀 マルハヴァン",
+      "canonicalId": "dmrp03-s01",
+      "printId": "dmex11-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-s02",
+      "faces": [
+        {
+          "name": "赤攻銀 マルハヴァン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "シンパシー：コスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nブロッカーブロッカー\nW・ブレイカー\n自分のコスト３以下のクリーチャーが破壊された時、このクリーチャーをアンタップする。\n自分のコスト４以上のクリーチャーが破壊される時、かわりに自分のコスト３以下のクリーチャーを１体破壊してもよい。",
+          "race": "メタリカ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        },
+        "g303DeathWatch": {
+          "g1859MaxCost": 3,
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        },
+        "g1859SaverAura": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex11-s02.jpg",
+      "imageSha256": "fc6c30da187fbde3183010a1ec00eb57b633012ed523f55e8a6da7a1638acfb7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex11-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-s01",
+          "dmex11-s02"
+        ],
+        "allSearchIds": [
+          "dmrp01-s03",
+          "dmrp07-059",
+          "dmrp13-060",
+          "promoy18-005",
+          "dmsd02-007",
+          "dmrp10-002",
+          "dmrp05-061",
+          "dmex04-062",
+          "dmrp06-034",
+          "dmrp03-s01",
+          "dmex11-s02",
+          "dmrp08-060"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "6ec5882e82cf758a2d0272450d60e57fbfdb4d27915b8acfe76354cb4b0661dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc63-016",
+      "name": "神帝マニ",
+      "canonicalId": "dm32-050",
+      "printId": "dmc63-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-016",
+      "faces": [
+        {
+          "name": "神帝マニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・リンク《神帝ムーラ》の右横、《神帝アナ》または《神帝スヴァ》の下側。\nこのクリーチャーがゴッドとリンクした時、カードを１枚引いてもよい。",
+          "race": "ゴッド/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g31God": "grid",
+        "g1859GodGrid": {
+          "position": [
+            1,
+            0
+          ],
+          "links": [
+            {
+              "name": "神帝ムーラ",
+              "position": [
+                0,
+                0
+              ]
+            },
+            {
+              "name": "神帝アナ",
+              "position": [
+                1,
+                -1
+              ]
+            },
+            {
+              "name": "神帝スヴァ",
+              "position": [
+                1,
+                -1
+              ]
+            }
+          ]
+        },
+        "g1859LinkTasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-016.jpg",
+      "imageSha256": "4c22e8e816310280ba5389809deff6fec3bb9755b2451a01a776e9291c13c201",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc63-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-050",
+          "dmc63-016"
+        ],
+        "allSearchIds": [
+          "dmc63-016",
+          "dm32-050"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "e422aa8b35de2058629865ebdc0c1cc27b838d7470e8b32d5890efe7cf7dfd22",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc63-019",
+      "name": "神帝ムーラ",
+      "canonicalId": "dm32-092",
+      "printId": "dmc63-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-019",
+      "faces": [
+        {
+          "name": "神帝ムーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・リンク《神帝マニ》または《神帝ヴィシュ》の左横、《神帝アージュ》の下側(バトルゾーンに自分の指定ゴッドがあれば、このカードをリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕を持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、どちらか１枚を選ぶ)\nこのクリーチャーがゴッドとリンクした時、自分の手札を１枚捨ててもよい。そうした場合、ゴッドを１体、自分の墓地から手札に戻す。",
+          "race": "ゴッド/オリジン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g31God": "grid",
+        "g1859GodGrid": {
+          "position": [
+            0,
+            0
+          ],
+          "links": [
+            {
+              "name": "神帝マニ",
+              "position": [
+                1,
+                0
+              ]
+            },
+            {
+              "name": "神帝ヴィシュ",
+              "position": [
+                1,
+                0
+              ]
+            },
+            {
+              "name": "神帝アージュ",
+              "position": [
+                0,
+                -1
+              ]
+            }
+          ]
+        },
+        "g1859LinkTasks": [
+          {
+            "op": "DiscardFor248",
+            "g770DiscardAttempt": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ゴッド"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-019.jpg",
+      "imageSha256": "b654f9a4a5bb1d0b70230cae4fa7d27df880e356709812f181527947e29113b5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc63-019-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-092",
+          "dmc63-019"
+        ],
+        "allSearchIds": [
+          "dmc63-019",
+          "dm32-092"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "b060cdbd0e932d6d8ae98c87ed78a661a4b6e01aa02d7eb60c58e2bca1997650",
+        "facesMatched": true
+      }
+    }
+  ],
+  "existingCards": [
+    {
+      "id": "dmr22-037",
+      "name": "トーチング・パニッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-037",
+      "faces": [
+        {
+          "name": "トーチング・パニッシュ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "status": "complete",
+      "parserVersion": 2,
+      "canonicalId": "dmr22-037",
+      "printedManaValue": 1,
+      "htmlSha256": "5cc9550ed27c21d20f99ec777770c7e0dd8bf4c262f6a4f8da197296604ee1e7",
+      "images": [
+        {
+          "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-037.jpg",
+          "file": "tmp/duema-target-10000/research/dmr22-037-0.jpg",
+          "sha256": "e4a2df5e46f75a5f7c9c45ceddfca7eb526e925f27119c098ecb00bc7b258764"
+        }
+      ],
+      "qa": [
+        "https://dm.takaratomy.co.jp/rule/qa/40114/"
+      ],
+      "printId": "dmr22-037",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 4
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-037.jpg",
+      "imageSha256": "e4a2df5e46f75a5f7c9c45ceddfca7eb526e925f27119c098ecb00bc7b258764",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr22-037-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr22-037"
+        ],
+        "allSearchIds": [
+          "dmr22-037"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:23:10.077Z",
+        "sha256": "5cc9550ed27c21d20f99ec777770c7e0dd8bf4c262f6a4f8da197296604ee1e7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+      "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+      "checkedAt": "2026-11-28T00:23:10.077Z",
+      "reproduced": true,
+      "tests": "tests/standard1859-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation.",
+      "result": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+      "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+      "checkedAt": "2026-11-28T00:23:10.077Z",
+      "reproduced": true,
+      "tests": "tests/standard1859-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation.",
+      "result": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40114/",
+      "sha256": "8dcd54da2aab1a230d98952a7e059aaede6e8e10bfb7667a0c20ae2f80d7870d",
+      "checkedAt": "2026-11-28T00:23:10.077Z",
+      "reproduced": true,
+      "tests": "tests/standard1859-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation.",
+      "result": "Both seats and both God arrival orders with actual new Mura3+Mani4 genuine optional GLink: combined creature cost7/power7000. Actual corrected TorchPunish may choose either physical small God card even inside7-cost unit, then actual AquaGuard1 can be destroyed instead via actual Maruhavan, preserving both God cards and untapping Maruhavan after lowcost death. Ignored AquaGuard still pays source-centric Maruhavan replacement; optional decline and disabled provider also tested. Actual no-battle-card-definition fabrication. Real encrypted service God link and independent two source link triggers, physical conservation."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T00:23:10.077Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-s01": 4,
+      "dm32-050": 4,
+      "dm32-092": 4,
+      "dmex11-s02": 4,
+      "dmc63-016": 4,
+      "dmc63-019": 4,
+      "dmr22-037": 4
+    }
+  },
+  "existingDefinitionCorrections": [
+    {
+      "id": "dmr22-037",
+      "kind": "physical-card-selection",
+      "reason": "QA40114 explicitly allows selecting physical3-cost Mura inside7-cost linked creature. Whole-element Target rejected it and evolution source/seal cards. Native BattleCardMove579 selects physical costs and preserves composite7 for destroy replacement.",
+      "officialEvidenceManifest": "tools/support-phase-1859.json",
+      "previousSpec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "updatedSpec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 4
+          }
+        ]
+      }
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp03-s01",
+      "searchSha256": "7c26625a6df9e3866cec78047ce476c46981c392bd3451467e3a81b3a191ba23",
+      "totalResults": 12,
+      "allSearchIds": [
+        "dmrp01-s03",
+        "dmrp07-059",
+        "dmrp13-060",
+        "promoy18-005",
+        "dmsd02-007",
+        "dmrp10-002",
+        "dmrp05-061",
+        "dmex04-062",
+        "dmrp06-034",
+        "dmrp03-s01",
+        "dmex11-s02",
+        "dmrp08-060"
+      ],
+      "exactPrints": [
+        "dmrp03-s01",
+        "dmex11-s02"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every search result enumerated and exact2/2/2/1 print images reviewed; three aliases, no duplicate count."
+    },
+    {
+      "id": "dm32-050",
+      "searchSha256": "d6bc3d05e204611dc9229b6b039f067db205728e636168cf94473422781238c7",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmc63-016",
+        "dm32-050"
+      ],
+      "exactPrints": [
+        "dm32-050",
+        "dmc63-016"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every search result enumerated and exact2/2/2/1 print images reviewed; three aliases, no duplicate count."
+    },
+    {
+      "id": "dm32-092",
+      "searchSha256": "0d963852566de069e932670dfe2a88938b1b480f579874f9d85cabd3e138d2fe",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmc63-019",
+        "dm32-092"
+      ],
+      "exactPrints": [
+        "dm32-092",
+        "dmc63-019"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every search result enumerated and exact2/2/2/1 print images reviewed; three aliases, no duplicate count."
+    },
+    {
+      "id": "dmr22-037",
+      "searchSha256": "dbd69fd3e5aeae446c037973bdcfd79929331345e6520da0201850c0f852ee4b",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr22-037"
+      ],
+      "exactPrints": [
+        "dmr22-037"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Every search result enumerated and exact2/2/2/1 print images reviewed; three aliases, no duplicate count."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three complete new definitions and three exact aliases/full6images/limits/mana1 plus existingTorch official fullimage/oneprint/QA40114 rechecked. Maruhavan own creatures<=3 Sympathy min1, Blocker/W2/7000, mandatory own small-creature destruction LKI untap excludesenemy/cost4/bounce; source-centric optional destroy replacement protects anyown creature>=4 by destroyingown creature<=3, ignored small recipient remainsusable, ignored provider disables, noncreatureexcluded, no replacing nondestroy bounce, decline works. Mura/Mani full named-position GLink declarations preserve flat godLinks save structure, self/other optional per-link triggers from every part: Mani optional draw1, Mura optional singlehanddiscard then mandatory any graveGod recovery; botharrivalorders, skip/noeligible/opponent/ignored/sealed/wrong/occupiedsameposition cases. Combined cost7/power7000 physicalsameIDs. Literal40114 fully reproduced bothseats/arrivalorders and ignoredAquaGuard, preservingbothparts aftersacrifice/Maruhavan untaps. Torch existingID/rawability/image/mana unchanged but fixed whole-element Target to native physical BattleCardMove579 max4; linked root max uses its physical printed definition while destruction replacement seescombined7. Evolutionbase/seal targeting verified. Historicalphase340 strict exact-face pin updated with correction provenance/previousspec, grammar stillrejectsextraunknownclause; unsupportedbefore340 preserved. Related340 targetedactualTorch paid/noenemy plus579/571/1079/1081/1334/1664/1665/725/923/1148 fullaffectedshorttests, online5/check/audit9784/invariants:9780prior definitionsunchanged/1exactofficialcorrection/3newtypes, alloldIDs/details/images/protectedpending unchanged. No fullnpmtest/oldlonggroups/push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Direct official40114 smoke found existing Torch incorrectly used whole-element cost7 and couldnotselectMura3; fixeddefinition/native physical max ratherthan weakening cost7 destruction checks. Added strict build pin atoriginalphase340 and provenance; same registered ID and physicaldata retained. Related suite exposed stalephase1665 assertion saying Gaiarl unregistered although current AND baseline already registered it inphase1685; updated test to positively assert existing phase1685 registration and preserve historicaldeferredrecord. No product behavior changed for stale assertion. Initial related354pass/1staleassert fail; expanded actual Torch historical tests then exposed old helper accepting only UID objects, updated to accept the native physical-card UID-string choices as well; final affectedregressions green. Literalcardtests passed on first focused run and again after physical-God targetlabel improvement. Old unregistered-God hold resolved byfull2God registrations, notsyntheticcostfixture.",
+    "nextCandidates": [
+      {
+        "id": "dm32-006",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+      },
+      {
+        "id": "dm32-020",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+      },
+      {
+        "id": "dmc55-005",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+      },
+      {
+        "id": "dmc55-003",
+        "reason": "Next group same native named-grid God link. Official all2 exactprints each/QA35786 downloaded; 8 fullimages still need visual review, completeabilities and four-way linking/untap/replacement/loss tests before registration."
+      }
+    ],
+    "baselineStaleAssertionEvidence": {
+      "baseline": "3b664b4a0531a4a920f09e828bfa130cb7d2f394",
+      "id": "dmr01-v02",
+      "supportBatch": "phase-1685",
+      "oldTest": "tests/standard1665-effects.test.mjs:67 expected unregistered, now positively checks phase1685"
+    }
+  },
+  "resolvedHeld": [
+    {
+      "phase": 1857,
+      "id": "dmrp03-s01",
+      "reason": "Full2realGod prerequisites added and literal40114 actualcardinteraction fullyverified."
+    }
+  ]
+}

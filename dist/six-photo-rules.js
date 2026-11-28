@@ -552,10 +552,10 @@ export function createSixPhotoRules(api){
      if(linked&&!below&&!api.targetable(s,t.p,p,top))continue;
      if(t.nonCreature&&!cell&&!x.faceDown&&(below?faces(card(x)).some(c=>c.type==='creature'):api.isCreature(s,top)))continue;
      if(definition){
-      const costs=x.faceDown||cell?[0]:below?faces(card(x)).map(cost):[cost(linked?card(x):definition)];
+      const costs=x.faceDown||cell?[0]:below?faces(card(x)).map(cost):[cost(linked?card(x.cardId):definition)];
       if(!costs.some(n=>n>=(t.min??0)&&n<=(t.max??Infinity)))continue;
      }
-     const name=x.faceDown?'裏向きのカード '+index:cell?card(x.cardId).name+(physical.g1367Duelmate?'（デュエルメイト・セル）':'（サイキック・セル）'):card(x).name;
+     const name=x.faceDown?'裏向きのカード '+index:cell?card(x.cardId).name+(physical.g1367Duelmate?'（デュエルメイト・セル）':'（サイキック・セル）'):card(linked&&!below?x.cardId:x).name;
      const label=sealIndex>=0?'封印 '+(sealIndex+1):below?card(top).name+'の下：'+name:name;
      rows.set(x.uid,{x,label:zones.length>1?side+'場：'+label:label,p,origin:'battle'});
     }
@@ -11742,7 +11742,7 @@ export function createSixPhotoRules(api){
    const {race:requiredRace,raceAny}=watcher.watch;
    const victimRace=String(victim.race||'');
    const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
-   if((!watcher.watch.g1518NonGR||self||!card(victim.cardId).gr)&&(!watcher.watch.g1469Blocker||victim.g1469Blocker)&&(!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
+   if((watcher.watch.g1859MaxCost===undefined||victim.g1145Cost<=watcher.watch.g1859MaxCost)&&(!watcher.watch.g1518NonGR||self||!card(victim.cardId).gr)&&(!watcher.watch.g1469Blocker||victim.g1469Blocker)&&(!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p)){
     if(watcher.watch.defs.some(d=>d.g1654VictimCostPlusOne)&&!Number.isFinite(victim.g1145Cost))continue;
    const defs=watcher.watch.defs.map(d=>{
      if(d.g960DeathNames)return {...d,g960DeathNames:victim.deathNames960??[]};
