@@ -3566,6 +3566,23 @@ export function createSixPhotoRules(api){
   }));
   break;
  }
+ // The opponent chooses an unseen physical hand card; reveal only after that choice.
+ case'g34_BlindOwnHandCost1917':{
+  if(!own.hand.length)break;
+  const slots=api.shuffled(own.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296));
+  choice(s,{...t,slots},'公開する相手の手札を見ないで1枚選ぶ',
+   slots.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)),1-t.p);
+  break;
+ }
+ case'g34_RevealedHandCost1917':{
+  const y=own.hand.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(!y)break;
+  const costs=[...new Set(faces(card(y)).map(c=>c.type==='cell'?0:cost(c)))];
+  if(costs.length===1)start(s,t,[{op:'Target',to:'grave',filter:{belowCost:costs[0]===Infinity?'∞':costs[0]}}]);
+  else choice(s,t,'公開したカードのどちらのコストを参照する？',
+   costs.map(n=>opt('コスト'+(n===Infinity?'∞':n),n===Infinity?'∞':n,n===Infinity?100:n,y.cardId)));
+  break;
+ }
  case'g34_BlindHandBottom1154':{
   if(!own.hand.length||!api.canMoveZone(s,t.p,'hand'))break;
   const slots=t.slots??api.shuffled(own.hand.map(x=>x.uid),Math.floor(api.random(s)*4294967296));
@@ -8918,6 +8935,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_OwnSealGrave1156':put(s,{...t,selected:[...(t.selected??[]),v]});break;
+ case'g34_BlindOwnHandCost1917':{
+  const y=own.hand.find(x=>x.uid===t.slots[v]);
+  if(y){api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(y).name,{cardId:y.cardId,source:t.source});
+   put(s,{...t,op:'g34_RevealedHandCost1917',target:y.uid,serial:y.zoneSerial||0});}
+  break;
+ }
+ case'g34_RevealedHandCost1917':start(s,t,[{op:'Target',to:'grave',filter:{belowCost:v}}]);break;
  case'g34_BlindHandBottom1154':
   put(s,{...t,selected:[...t.selected,t.slots[v]]});
   break;

@@ -324535,18 +324535,234 @@
       ],
       "supportBatch": "phase-1916",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd18-003",
+      "name": "熱血龍 バトクロス・バトル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとそのクリーチャーをバトルさせる。\nW・ブレイカー\n相手のターン中にこのクリーチャーをバトルゾーンに出した時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-003",
+      "limit": 4,
+      "trigger": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "相手ターンに出た：ターン終了時に山札の下へ",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g1114OpponentTurn": true
+              },
+              "defs": [
+                {
+                  "op": "Schedule537",
+                  "when": "turnEnd",
+                  "defs": [
+                    {
+                      "op": "SelfBottom734"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-020",
+      "name": "熱血龍 バトクロス・ハンマー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分のターンの終わりに、自分のマナゾーンにカードが７枚以上なければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-020",
+      "limit": 4,
+      "trigger": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx19-s33",
+      "name": "熱血龍 マスター・セブン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nマナ武装 ７：自分のマナゾーンに火のカードが７枚以上あれば、このクリーチャーは「スピードアタッカー」「パワーアタッカー+777」「T・ブレイカー」「ガードマン」を得、バトル中パワーが+70000され、攻撃されず、攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s33",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g267Mana": {
+            "n": 7,
+            "filter": {
+              "color": "火",
+              "faceUp": true
+            }
+          }
+        },
+        "grants": {
+          "speedAttacker": true,
+          "attackBonus": 777,
+          "breaker": 3,
+          "guardman": true,
+          "g38BattleBonus": 70000,
+          "cannotBeAttacked": true,
+          "g34Attack": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-1917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy20-001",
+      "name": "伝説の好敵手",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 20,
+      "power": 21000,
+      "race": "エンジェル・コマンド/ジャスティス・ウイング/メタリカ",
+      "text": "ダブル・シンパシー：エンジェル・コマンド、ジャスティス・ウイング、およびメタリカ（このクリーチャーの召喚コストは、バトルゾーンにある自分のエンジェル・コマンド、ジャスティス・ウイング、またはメタリカ１体につき２少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nQ・ブレイカー（このクリーチャーはシールドを４つブレイクする）\nこのクリーチャーがタップした時、すべてのクリーチャーをタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 4,
+      "g211Sympathy": {
+        "amount": 2,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "エンジェル・コマンド",
+            "ジャスティス・ウイング",
+            "メタリカ"
+          ]
+        }
+      },
+      "g188Tapped": [
+        {
+          "op": "TapAll",
+          "both": true
+        }
+      ],
+      "supportBatch": "phase-1917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-063",
+      "name": "鬼奥義イッキウチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンに自分のヒューマノイドがある時、この呪文は「S・トリガー」を得る。\n自分の手札から相手に１枚見ないで選ばせ、それを見せる。そのカードよりコストが小さい相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-063",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g876ShieldTriggerCondition": {
+        "g370BattleCount": {
+          "g557Elements": true,
+          "filter": {
+            "race": "ヒューマノイド"
+          },
+          "min": 1
+        }
+      },
+      "g34Tasks": [
+        {
+          "op": "BlindOwnHandCost1917"
+        }
+      ],
+      "supportBatch": "phase-1917",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1916,
-    "checkedAt": "2026-11-28T07:28:45.104Z",
-    "baseCount": 9990,
+    "phase": 1917,
+    "checkedAt": "2026-11-28T07:34:48.118Z",
+    "baseCount": 9995,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9995,
+    "totalCount": 10000,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36584/"
+      "https://dm.takaratomy.co.jp/rule/qa/39777/",
+      "https://dm.takaratomy.co.jp/rule/qa/43062/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37204/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -355789,6 +356005,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/44583/",
           "https://dm.takaratomy.co.jp/rule/qa/39646/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35638/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1916,
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "baseCount": 9990,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9995,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36584/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

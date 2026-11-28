@@ -1,0 +1,1615 @@
+{
+  "phase": 1917,
+  "checkedAt": "2026-11-28T07:34:48.118Z",
+  "baseline": "de8303eace7082bf516a85e7452d087c3faeb3b0",
+  "baseCount": 9995,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39777/",
+    "https://dm.takaratomy.co.jp/rule/qa/43062/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37204/"
+  ],
+  "cards": [
+    {
+      "id": "dmd18-003",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmd18-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-003",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとそのクリーチャーをバトルさせる。\nW・ブレイカー\n相手のターン中にこのクリーチャーをバトルゾーンに出した時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-003.jpg",
+      "imageSha256": "8d2c0f1466823ea1befecc43cc43a90d275a1ec0bb8c819ef4f059ed07a85b80",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd18-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "193716b723527513210e8609a6f5be42b4fb5890d0040563281dead2b1258df0",
+        "facesMatched": true,
+        "imageSha256": "8d2c0f1466823ea1befecc43cc43a90d275a1ec0bb8c819ef4f059ed07a85b80"
+      }
+    },
+    {
+      "id": "dmrp21-020",
+      "name": "熱血龍 バトクロス・ハンマー",
+      "canonicalId": "dmrp21-020",
+      "printId": "dmrp21-020",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-020",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・ハンマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分のターンの終わりに、自分のマナゾーンにカードが７枚以上なければ、このクリーチャーを破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g272ManaCount": 7
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-020.jpg",
+      "imageSha256": "cbbbce1c7c460a2a8d6fb27dd113f604af82c5c17a3c56db638f70dbf30fcae4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-020-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allSearchIds": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "76d45a87d1ab4587f3e863c8322cff98e4840a0559745e8030dc423a26b32b4b",
+        "facesMatched": true,
+        "imageSha256": "cbbbce1c7c460a2a8d6fb27dd113f604af82c5c17a3c56db638f70dbf30fcae4"
+      }
+    },
+    {
+      "id": "dmx19-s33",
+      "name": "熱血龍 マスター・セブン",
+      "canonicalId": "dmx19-s33",
+      "printId": "dmx19-s33",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s33",
+      "faces": [
+        {
+          "name": "熱血龍 マスター・セブン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nマナ武装 ７：自分のマナゾーンに火のカードが７枚以上あれば、このクリーチャーは「スピードアタッカー」「パワーアタッカー+777」「T・ブレイカー」「ガードマン」を得、バトル中パワーが+70000され、攻撃されず、攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "n": 7,
+              "filter": {
+                "color": "火",
+                "faceUp": true
+              }
+            }
+          },
+          "grants": {
+            "speedAttacker": true,
+            "attackBonus": 777,
+            "breaker": 3,
+            "guardman": true,
+            "g38BattleBonus": 70000,
+            "cannotBeAttacked": true,
+            "g34Attack": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s33.jpg",
+      "imageSha256": "939f9403138ecd983e687e70d615358695dc0dc2e6b8b6651c1bfc80ee8b84ca",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx19-s33-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx19-s33"
+        ],
+        "allSearchIds": [
+          "dmx19-s33"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "0d63739910f238944308b5a468b90bc4e43b8280d456aef0519e4244f24b7dbe",
+        "facesMatched": true,
+        "imageSha256": "939f9403138ecd983e687e70d615358695dc0dc2e6b8b6651c1bfc80ee8b84ca"
+      }
+    },
+    {
+      "id": "promoy20-001",
+      "name": "伝説の好敵手",
+      "canonicalId": "promoy20-001",
+      "printId": "promoy20-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-001",
+      "faces": [
+        {
+          "name": "伝説の好敵手",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 20,
+          "costText": "20",
+          "abilityText": "ダブル・シンパシー：エンジェル・コマンド、ジャスティス・ウイング、およびメタリカ（このクリーチャーの召喚コストは、バトルゾーンにある自分のエンジェル・コマンド、ジャスティス・ウイング、またはメタリカ１体につき２少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nQ・ブレイカー（このクリーチャーはシールドを４つブレイクする）\nこのクリーチャーがタップした時、すべてのクリーチャーをタップする。",
+          "race": "エンジェル・コマンド/ジャスティス・ウイング/メタリカ",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 4,
+        "g211Sympathy": {
+          "amount": 2,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "ジャスティス・ウイング",
+              "メタリカ"
+            ]
+          }
+        },
+        "g188Tapped": [
+          {
+            "op": "TapAll",
+            "both": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy20-001.jpg",
+      "imageSha256": "cad9f7a99dcab7ee3483b9dd250ff9b039c689ec80c7c9499e9e318722b2b734",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy20-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy20-001"
+        ],
+        "allSearchIds": [
+          "promoy20-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "68b917e89d746d929a74b2bb6f20c2ed55b14f61a0917f968f44240999261e40",
+        "facesMatched": true,
+        "imageSha256": "cad9f7a99dcab7ee3483b9dd250ff9b039c689ec80c7c9499e9e318722b2b734"
+      }
+    },
+    {
+      "id": "dmr05-063",
+      "name": "鬼奥義イッキウチ",
+      "canonicalId": "dmr05-063",
+      "printId": "dmr05-063",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-063",
+      "faces": [
+        {
+          "name": "鬼奥義イッキウチ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに自分のヒューマノイドがある時、この呪文は「S・トリガー」を得る。\n自分の手札から相手に１枚見ないで選ばせ、それを見せる。そのカードよりコストが小さい相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g876ShieldTriggerCondition": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "ヒューマノイド"
+            },
+            "min": 1
+          }
+        },
+        "g34Tasks": [
+          {
+            "op": "BlindOwnHandCost1917"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-063.jpg",
+      "imageSha256": "938a65aef6c5972109b57de470cb5db3444024e174133354554278b1d6233ac8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr05-063-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr05-063"
+        ],
+        "allSearchIds": [
+          "dmr05-063"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "58fa10b2957e8b6b6fb2d7233b2e0b2fd6dad78a7afaeb711df68d4a932108f3",
+        "facesMatched": true,
+        "imageSha256": "938a65aef6c5972109b57de470cb5db3444024e174133354554278b1d6233ac8"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy13-026",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "promoy13-026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-026",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとそのクリーチャーをバトルさせる。\nW・ブレイカー\n相手のターン中にこのクリーチャーをバトルゾーンに出した時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-026.jpg",
+      "imageSha256": "4b96d3afb8f3dfe0be6de861eaa058a214f25afac5ee3fd8c4459846b760e3a5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy13-026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "34fc52af9e223cc38a34501f10306089ec68453ba3a220b167ee20bfaf224a98",
+        "facesMatched": true,
+        "imageSha256": "4b96d3afb8f3dfe0be6de861eaa058a214f25afac5ee3fd8c4459846b760e3a5"
+      }
+    },
+    {
+      "id": "dm23bd4-047",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dm23bd4-047",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-047",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーが出た時、そのターンの終わりにこのクリーチャーを自分の山札の下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-047.jpg",
+      "imageSha256": "4c4dd39933e436304368d29adbc6af490301e1ae1bff8c0896884f72369cab02",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd4-047-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "33cfe0aa778ecc065b4c2f41065cbe08c5cfcca5051354d43943606a6147cb75",
+        "facesMatched": true,
+        "imageSha256": "4c4dd39933e436304368d29adbc6af490301e1ae1bff8c0896884f72369cab02"
+      }
+    },
+    {
+      "id": "dm26ex5-024",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dm26ex5-024",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-024",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターンにこのクリーチャーが出た時、そのターンの終わりにこのクリーチャーを山札の下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-024.jpg",
+      "imageSha256": "1a68d3e4e6449bd3e3138dffc853d6dba9e5678f62134dd01d5eec82863da57f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex5-024-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "0110e61473af32a55b0c855b4195653482434f1b1e1af9681e2252d3571e3eba",
+        "facesMatched": true,
+        "imageSha256": "1a68d3e4e6449bd3e3138dffc853d6dba9e5678f62134dd01d5eec82863da57f"
+      }
+    },
+    {
+      "id": "dmrp05-g02",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmrp05-g02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-g02",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーをバトルゾーンに出していれば、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-g02.jpg",
+      "imageSha256": "0f16d95029486482354c682207249e6b33c718f6b7be9fabb189065eb743ef80",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp05-g02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "f598907bd4b4186a980f8451830b857f837900316302ac0419a9b0b1a4fd8bd0",
+        "facesMatched": true,
+        "imageSha256": "0f16d95029486482354c682207249e6b33c718f6b7be9fabb189065eb743ef80"
+      }
+    },
+    {
+      "id": "dmex06-045",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmex06-045",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-045",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーをバトルゾーンに出した時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-045.jpg",
+      "imageSha256": "bf80a3e937243ecf72b178e1a60737d36fac941af889bfd7caeac45eba0d4bb7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex06-045-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "aa107726f74b79eb03ce53fdce36d656ea89de0c3fcf2b7be8413656aef17889",
+        "facesMatched": true,
+        "imageSha256": "bf80a3e937243ecf72b178e1a60737d36fac941af889bfd7caeac45eba0d4bb7"
+      }
+    },
+    {
+      "id": "dmx23-008",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmx23-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-008",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーをバトルゾーンに出した時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-008.jpg",
+      "imageSha256": "f6685c816282898bed3ab538a55ad88605a2befa3a89f2e3b83d449c2f7fbaa6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx23-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "22ae8bc98b2c85ea255cfc2f89a50f1789c7406a1fbb665116230ac3262876e5",
+        "facesMatched": true,
+        "imageSha256": "f6685c816282898bed3ab538a55ad88605a2befa3a89f2e3b83d449c2f7fbaa6"
+      }
+    },
+    {
+      "id": "dmx26-027",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmx26-027",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-027",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーがバトルゾーンに出た時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-027.jpg",
+      "imageSha256": "ec4e4b4ccfaa0bae8c46792b57be83135eb2a774fd2e552edecc2bec7123c93e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx26-027-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "f247a6553c5ca0d8ad4c27a05be5f2a315c8b498a62d14f89937d996946ab0d7",
+        "facesMatched": true,
+        "imageSha256": "ec4e4b4ccfaa0bae8c46792b57be83135eb2a774fd2e552edecc2bec7123c93e"
+      }
+    },
+    {
+      "id": "dmd27-001",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmd27-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-001",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーをバトルゾーンに出していたら、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-001.jpg",
+      "imageSha256": "08496905b35b8af6d64ee5d6c5b21c78107eb3c4630c32e2fb4e1093f31ec4fc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd27-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "25a4243f381a07315db49e518e32561fcb4a2575b0a7d0c44a2fc5f299d0565d",
+        "facesMatched": true,
+        "imageSha256": "08496905b35b8af6d64ee5d6c5b21c78107eb3c4630c32e2fb4e1093f31ec4fc"
+      }
+    },
+    {
+      "id": "dmbd05-009",
+      "name": "熱血龍 バトクロス・バトル",
+      "canonicalId": "dmd18-003",
+      "printId": "dmbd05-009",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd05-009",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・バトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーがバトルゾーンに出た時、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手ターンに出た：ターン終了時に山札の下へ",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g1114OpponentTurn": true
+                },
+                "defs": [
+                  {
+                    "op": "Schedule537",
+                    "when": "turnEnd",
+                    "defs": [
+                      {
+                        "op": "SelfBottom734"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd05-009.jpg",
+      "imageSha256": "b0876a674903b7543b3016a9fe8dbaa3c91d0bd2e092cdd23b452e43c0cdf5df",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd05-009-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd18-003",
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allSearchIds": [
+          "promoy13-026",
+          "dm23bd4-047",
+          "dm26ex5-024",
+          "dmrp05-g02",
+          "dmex06-045",
+          "dmx23-008",
+          "dmx26-027",
+          "dmd18-003",
+          "dmd27-001",
+          "dmbd05-009"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "6341dadf7c8cdd1703a6ba771495dbe10f248f51e7034f22315c3ba67b163027",
+        "facesMatched": true,
+        "imageSha256": "b0876a674903b7543b3016a9fe8dbaa3c91d0bd2e092cdd23b452e43c0cdf5df"
+      }
+    },
+    {
+      "id": "dm23bd4-028",
+      "name": "熱血龍 バトクロス・ハンマー",
+      "canonicalId": "dmrp21-020",
+      "printId": "dm23bd4-028",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-028",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・ハンマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分のターンの終わりに、自分のマナゾーンにカードが７枚以上なければ、このクリーチャーを破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g272ManaCount": 7
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-028.jpg",
+      "imageSha256": "158912697f72c35e50e7e47f19283ebb26ebe50eeace71be32616a0b2893a1f7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23bd4-028-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allSearchIds": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "1dbbe5f840be0c5827286ab94dd99eeeb235060937c6d14a48f8a066c19c08cf",
+        "facesMatched": true,
+        "imageSha256": "158912697f72c35e50e7e47f19283ebb26ebe50eeace71be32616a0b2893a1f7"
+      }
+    },
+    {
+      "id": "dmrp21-14A",
+      "name": "熱血龍 バトクロス・ハンマー",
+      "canonicalId": "dmrp21-020",
+      "printId": "dmrp21-14A",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-14A",
+      "faces": [
+        {
+          "name": "熱血龍 バトクロス・ハンマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分のターンの終わりに、自分のマナゾーンにカードが７枚以上なければ、このクリーチャーを破壊する。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g272ManaCount": 7
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-14A.jpg",
+      "imageSha256": "682b98554646f38bd3e1f8ccf9d94b1a094c599dfdc868e82edb10fb3776c3cf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-14A-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allSearchIds": [
+          "dmrp21-020",
+          "dm23bd4-028",
+          "dmrp21-14A"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "sha256": "71aa615b94b821926d138a1c749dd793fae018946ad3c55560a060f07ede8e7e",
+        "facesMatched": true,
+        "imageSha256": "682b98554646f38bd3e1f8ccf9d94b1a094c599dfdc868e82edb10fb3776c3cf"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39777/",
+      "sha256": "5ae6f9cfcae920317fc7f222e089f454a2b9b786fea268ea7ee7de1427837cf4",
+      "checkedAt": "2026-11-28T07:34:48.118Z",
+      "reproduced": true,
+      "tests": "tests/standard1917-effects.test.mjs",
+      "reproduction": "LiteralactualGyou dmex15-b009 legallyPAIDentered establishesnativeentryreplacement, opponentlegallypaidactualBattle dmd18-003. GyoucontrollerchoosesactualoriginalownerCoccoGS dmsd17-006 fororiginalownerBattletofight, Coccodies/BattleandGyoustay. Bothseats/save.",
+      "result": "LiteralactualGyou dmex15-b009 legallyPAIDentered establishesnativeentryreplacement, opponentlegallypaidactualBattle dmd18-003. GyoucontrollerchoosesactualoriginalownerCoccoGS dmsd17-006 fororiginalownerBattletofight, Coccodies/BattleandGyoustay. Bothseats/save."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43062/",
+      "sha256": "b018b4033da5cbdf5a7beb7cd2018674da06daaabd62f7938b6e98110563dae9",
+      "checkedAt": "2026-11-28T07:34:48.118Z",
+      "reproduced": true,
+      "tests": "tests/standard1917-effects.test.mjs",
+      "reproduction": "LiteralactualBonKigo dm23rp1-013 seespaidHammereffectentry, HammerCIPkillsit7000vs4000, queuedentryattacklockstillresolvesandpaidHasteHammercannotattackthatturn. Bothseats/save.",
+      "result": "LiteralactualBonKigo dm23rp1-013 seespaidHammereffectentry, HammerCIPkillsit7000vs4000, queuedentryattacklockstillresolvesandpaidHasteHammercannotattackthatturn. Bothseats/save."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37204/",
+      "sha256": "74c75c436eee7f9f8e091c469fbaffc109fd37a9ea6aad945cd2c4efb5b592d7",
+      "checkedAt": "2026-11-28T07:34:48.118Z",
+      "reproduced": true,
+      "tests": "tests/standard1917-effects.test.mjs",
+      "reproduction": "LiteralallManaArmament7Firegrantsmandatory: allprintedkeywordflagsandactualpowers/actualT3break/mandatoryblockerkill(noNULLchoice), 6negative, battle70000wactual9000victim; cannotdeclineorselectsubset. Bothseats/save.",
+      "result": "LiteralallManaArmament7Firegrantsmandatory: allprintedkeywordflagsandactualpowers/actualT3break/mandatoryblockerkill(noNULLchoice), 6negative, battle70000wactual9000victim; cannotdeclineorselectsubset. Bothseats/save."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr17-l01",
+      "name": "燃える革命 ドギラゴン",
+      "reason": "Officialall7prints/QA45448researched, imagesNOTreviewed. FullREV2/REV0knownnative; literal45448requiresunregistereddm24rp3-009情熱の逆転撃 withNature5Manaentry/forcedattack/deferredNature4payment beforeexactloss-expirytiming; no partialregistration or fakeexactQA claim."
+    },
+    {
+      "id": "dm23ex2-092",
+      "name": "一なる伝印 イワシモンズ",
+      "reason": "Officialoneprint/QA43925researched, imageNOTreviewed. NeedtrueDynamo chainBEFOREbattle anddeferredtaptriggerresolution acrossIwashi->Chouetsu->Rinpao; noexistingcompleteDynamo runtime/registeredpartners, notcounted."
+    },
+    {
+      "id": "dmrp15-019",
+      "name": "鬼槍の一撃",
+      "reason": "Officialoneprint/QA34212researched, imageNOTreviewed. NeedglobalTHISturnignoreLEAVE-STAYreplacement inclliteralRiriangEscape preventcostpayment, notjustdestructionbypass; existingSweep4000cannotpartiallyrepresentwholeeffect. Notregistered."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T07:34:48.118Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd18-003": 4,
+      "dmrp21-020": 4,
+      "dmx19-s33": 4,
+      "promoy20-001": 4,
+      "dmr05-063": 4,
+      "promoy13-026": 4,
+      "dm23bd4-047": 4,
+      "dm26ex5-024": 4,
+      "dmrp05-g02": 4,
+      "dmex06-045": 4,
+      "dmx23-008": 4,
+      "dmx26-027": 4,
+      "dmd27-001": 4,
+      "dmbd05-009": 4,
+      "dm23bd4-028": 4,
+      "dmrp21-14A": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmd18-003",
+      "searchSha256": "b7143431def5e2cdd9c511e97d44728844a243e49a9359e8e30936ed5931e269",
+      "totalResults": 10,
+      "allSearchIds": [
+        "promoy13-026",
+        "dm23bd4-047",
+        "dm26ex5-024",
+        "dmrp05-g02",
+        "dmex06-045",
+        "dmx23-008",
+        "dmx26-027",
+        "dmd18-003",
+        "dmd27-001",
+        "dmbd05-009"
+      ],
+      "exactPrints": [
+        "dmd18-003",
+        "promoy13-026",
+        "dm23bd4-047",
+        "dm26ex5-024",
+        "dmrp05-g02",
+        "dmex06-045",
+        "dmx23-008",
+        "dmx26-027",
+        "dmd27-001",
+        "dmbd05-009"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp21-020",
+      "searchSha256": "8af8b9439206be3878cbf160b7e3187ac5a80e11f7e4364790dca15b033f12ca",
+      "totalResults": 3,
+      "allSearchIds": [
+        "dmrp21-020",
+        "dm23bd4-028",
+        "dmrp21-14A"
+      ],
+      "exactPrints": [
+        "dmrp21-020",
+        "dm23bd4-028",
+        "dmrp21-14A"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmx19-s33",
+      "searchSha256": "896a1ab9fa6d5ca130045fd8b4bc99cc1a1576a1f30dfc28909eb7ba272849fa",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmx19-s33"
+      ],
+      "exactPrints": [
+        "dmx19-s33"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "promoy20-001",
+      "searchSha256": "52494f966e9f2dd7137c1afd5dcc62bc3e1cd0e10caa9256801364c96be50b58",
+      "totalResults": 1,
+      "allSearchIds": [
+        "promoy20-001"
+      ],
+      "exactPrints": [
+        "promoy20-001"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr05-063",
+      "searchSha256": "2f52207a99c2b5f471503fd6800cd6d3ee3f7281a962959a619a099ed6e68d1a",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr05-063"
+      ],
+      "exactPrints": [
+        "dmr05-063"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Finalfivewholecards/sixteenexactofficialprints fullyreviewed fullabilities/stats/images/limits/allprintsearch, 9995->10000nameKeydistinct. Battleactualpaid8W2/CIPoptionalSELFfight, literal39777actualGyou(dmex15-b009)entryestablished borrowsactualBattlefight vsactualCoccoGS; fighterremainsoriginalowner notGyou. ActualenemyturnST unpaid entryschedulesEXACTphysicalsourcebottomTHATturnEND, normalownentrynegative andbounced/replayedSAMEUIDnewincarnationnotcaptured. Hammerpaid7HasteW2/ST/optionalCIPfight, OWNEND6ManaDIES/7STAYS inclopponentENDnegative; literal43062actualBonKigo killedbyCIP yetentryattackstopPERSISTS. Sevenliteral37204wholeManaArmament7FIREgrantsALLmandatory Haste/PA777/T3/Guardman/battle+70000/cannotBeAttacked/mandatoryenemyblockerdestroy, printed7000 outsidebattle/7777attacking/77777attackingbattle, actual9000battlewin;6FireorhiddenFire/enemyMananegative; nativecannotBeAttackedkeepsGuardmanunusable (notforceattackredirect; general101.2interpretation, notnewliteralQA). Rivalpaid20minus2perOWNeligibleUNITonce evenallTHREEraces, floorONE, enemy/underbasesexcluded,blockerQ4; attack/blockTAPtriggersALLBOTHcreaturesTap withoutinfinitealready-tappedloops. IkkiwholeconditionalSTOWNBattleHumanoid only, exactenemyBLINDphysicalhandindexchoice noUID/name/cardIdleak, showONLYchosenAFTERchoice thenstrictlyLOWERenemycreaturedestroy. RevealedHANDnotdiscarded, emptyhandnone; TwinOWNERchoosesprintedface2or3 (cost2neverdestroyscost2), InfinityHANDcostcanonlydestroyfinitecost; actualSTfree andGenmu3spellignored. NEWnarrowBlindOwnHandCost1917/RevealedHandCost1917operationsONLYusedbynewcard, sharedexistingtargetfilter/reveal/serializedchoice APIs; allothercarddefinitionsunchanged. Bothseats/encryptedsave/tenactualencryptedservicepaidactions/UIDconservation/printedmana1monoUNTAPPED. Related117targetedcases acrossGyou,Sympathy,blindHand,revealedCost,Taptriggers plus5onlinepassed; check/audit/invariants passed. Fullnpmtestnotrun, allolderpendingretained.",
+    "resolvedAttempts": "Defaultofficialsearch Battle/Hammer exceededfirstpage50 (65results); reranuniqueofficialkeywords バトクロス・バトル and バトクロス・ハンマー, assertedalltotalresults andmergedwholeexactprints, noomission. Focused1917 initialfixturemistakes: mainCIPpendingeffect has effect entry ratherthantask.defs; nativeFightEnemy240 usesextendedtargetnotlegacyfight; printedAquaVehiclecost2not1 andactualJETTwinfacecost3not8. Final1actualGyoupreboarddidnotestablishentryRules flag: fixedactualpaid11Gyouentry; Guardman expectation corrected torespectexistingcannotBeAttacked ratherthanchangecommonrules. Final2enemyGenmu∞wrongfixtureignored3spell; replacedwithactualInfinitySirius∞ (noGenmuignore). Fullfinal3all73passed; no runtimefixforfixtures. New24lineoperationsverifiedbothseats/hiddenchoice/save/Twincost/infinity/ST/Genmu andrelatedregressions.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39777/",
+        "reproduced": true,
+        "tests": "tests/standard1917-effects.test.mjs",
+        "reproduction": "LiteralactualGyou dmex15-b009 legallyPAIDentered establishesnativeentryreplacement, opponentlegallypaidactualBattle dmd18-003. GyoucontrollerchoosesactualoriginalownerCoccoGS dmsd17-006 fororiginalownerBattletofight, Coccodies/BattleandGyoustay. Bothseats/save."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/43062/",
+        "reproduced": true,
+        "tests": "tests/standard1917-effects.test.mjs",
+        "reproduction": "LiteralactualBonKigo dm23rp1-013 seespaidHammereffectentry, HammerCIPkillsit7000vs4000, queuedentryattacklockstillresolvesandpaidHasteHammercannotattackthatturn. Bothseats/save."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/37204/",
+        "reproduced": true,
+        "tests": "tests/standard1917-effects.test.mjs",
+        "reproduction": "LiteralallManaArmament7Firegrantsmandatory: allprintedkeywordflagsandactualpowers/actualT3break/mandatoryblockerkill(noNULLchoice), 6negative, battle70000wactual9000victim; cannotdeclineorselectsubset. Bothseats/save."
+      }
+    ],
+    "held": [
+      {
+        "id": "dmr17-l01",
+        "name": "燃える革命 ドギラゴン",
+        "reason": "Officialall7prints/QA45448researched, imagesNOTreviewed. FullREV2/REV0knownnative; literal45448requiresunregistereddm24rp3-009情熱の逆転撃 withNature5Manaentry/forcedattack/deferredNature4payment beforeexactloss-expirytiming; no partialregistration or fakeexactQA claim."
+      },
+      {
+        "id": "dm23ex2-092",
+        "name": "一なる伝印 イワシモンズ",
+        "reason": "Officialoneprint/QA43925researched, imageNOTreviewed. NeedtrueDynamo chainBEFOREbattle anddeferredtaptriggerresolution acrossIwashi->Chouetsu->Rinpao; noexistingcompleteDynamo runtime/registeredpartners, notcounted."
+      },
+      {
+        "id": "dmrp15-019",
+        "name": "鬼槍の一撃",
+        "reason": "Officialoneprint/QA34212researched, imageNOTreviewed. NeedglobalTHISturnignoreLEAVE-STAYreplacement inclliteralRiriangEscape preventcostpayment, notjustdestructionbypass; existingSweep4000cannotpartiallyrepresentwholeeffect. Notregistered."
+      }
+    ],
+    "nextCandidates": [],
+    "next": "Target10000 reached. Stopnormalregistration; automationPAUSED. No push/Pages/Netlify. Preserveallolderpending/deferrals andfullSuite interrupted status. Futurecardsrequireuserinstruction."
+  }
+}
