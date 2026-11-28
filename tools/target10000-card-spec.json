@@ -35969,5 +35969,272 @@
         }
       ]
     }
+  },
+  "dmr17-s01": {
+    "phase": 1904,
+    "faces": [
+      {
+        "name": "革命天王 ミラクルスター",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "進化-自分の光のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、進化ではない光の、コスト６以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、バトルゾーンにある自分の光のコマンド１体につき、山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+        "race": "エンジェル・コマンド・ドラゴン/革命軍",
+        "powerText": "9500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "光"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 6
+          }
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "革命2：光のコマンド1体につきシールドを追加",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "CountOwn538",
+                  "filter": {
+                    "creature": true,
+                    "color": "光",
+                    "race": "コマンド"
+                  },
+                  "mode": "repeat",
+                  "def": {
+                    "op": "Offer",
+                    "defs": [
+                      {
+                        "op": "ShieldTop",
+                        "n": 1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmd27-008": {
+    "phase": 1904,
+    "faces": [
+      {
+        "name": "革命龍 アサルト",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中から火の革命軍の進化クリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\n革命２―自分のシールドが２つ以下なら、自分の革命軍の進化クリーチャーの召喚コストを最大３少なくする。ただし、コストは０以下にならない。",
+        "race": "メガ・コマンド・ドラゴン/革命軍",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "火"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "evolution": true,
+                "color": "火",
+                "race": "革命軍"
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true,
+            "race": "革命軍"
+          },
+          "condition": {
+            "g265ShieldsMax": 2
+          },
+          "amount": 3,
+          "g560Optional": true
+        }
+      ]
+    }
+  },
+  "promoy14-061": {
+    "phase": 1904,
+    "faces": [
+      {
+        "name": "革命龍 アサルト",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中から火の革命軍の進化クリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\n革命２―自分のシールドが２つ以下なら、自分の革命軍の進化クリーチャーの召喚コストを最大３少なくする。ただし、コストは０以下にならない。",
+        "race": "メガ・コマンド・ドラゴン/革命軍",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "火"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "evolution": true,
+                "color": "火",
+                "race": "革命軍"
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true,
+            "race": "革命軍"
+          },
+          "condition": {
+            "g265ShieldsMax": 2
+          },
+          "amount": 3,
+          "g560Optional": true
+        }
+      ]
+    }
+  },
+  "dmr18-s05": {
+    "phase": 1904,
+    "faces": [
+      {
+        "name": "革命龍 ドラッケン",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが火のドラゴンなら、バトルゾーンに出してもよい。\n革命２―このクリーチャーが攻撃する時、自分のシールドが２つ以下なら、自分の山札の上から２枚を表向きにする。その中から火のドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。",
+        "race": "メガ・コマンド・ドラゴン/革命軍",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "civilization": "火"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "limit": 1,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "top",
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "g1547ExtraAttacks": [
+        [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 2,
+                "limit": 1,
+                "public": true,
+                "g1660PublicReveal": true,
+                "rest": "bottom",
+                "filter": {
+                  "creature": true,
+                  "color": "火",
+                  "race": "ドラゴン"
+                }
+              }
+            ]
+          }
+        ]
+      ]
+    }
   }
 }

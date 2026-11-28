@@ -1,0 +1,594 @@
+{
+  "phase": 1904,
+  "checkedAt": "2026-11-28T06:16:34.528Z",
+  "baseline": "cf21f6dd22353b71429715cc3f74b04736eea348",
+  "baseCount": 9943,
+  "target": 10000,
+  "description": "ThreewholeRevolutionDragonEVOS/fourexactprints: MiracleStar independentDraw1/Light6nonEVOfromhand andREV2 oneoptionalshieldPERcurrentLightCommand literal37244; AssaultFireRevEVOprivatesearch/reveal/shuffle andREV2 optional0..3discountfloor1; DrakkenindependentpublicTOP1FireDragon optionaldeployorKEEPtop, REV2publicTOP2oneFireDragonandorderedrestbottom, legalEVOincluded.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37244/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-s01",
+      "name": "革命天王 ミラクルスター",
+      "canonicalId": "dmr17-s01",
+      "printId": "dmr17-s01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s01",
+      "faces": [
+        {
+          "name": "革命天王 ミラクルスター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分の光のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、進化ではない光の、コスト６以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、バトルゾーンにある自分の光のコマンド１体につき、山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "光"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "max": 6
+            }
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "革命2：光のコマンド1体につきシールドを追加",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g265ShieldsMax": 2
+                },
+                "defs": [
+                  {
+                    "op": "CountOwn538",
+                    "filter": {
+                      "creature": true,
+                      "color": "光",
+                      "race": "コマンド"
+                    },
+                    "mode": "repeat",
+                    "def": {
+                      "op": "Offer",
+                      "defs": [
+                        {
+                          "op": "ShieldTop",
+                          "n": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s01.jpg",
+      "imageSha256": "b6becf73c736a7be7b45ce19639db4d8ba7f92673c0cd520cd274ec5d22d07e2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr17-s01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr17-s01"
+        ],
+        "allSearchIds": [
+          "dmr21-s06",
+          "dmr23-s05",
+          "dmrp07-g04",
+          "dm26ex5-G012",
+          "dmd23-001",
+          "dmr17-s01"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:16:34.528Z",
+        "sha256": "0cab9b1cf5c413be4c61c98be716624509aa3d1f61c5811f8f8a91b0ac38d7ec",
+        "facesMatched": true,
+        "imageSha256": "b6becf73c736a7be7b45ce19639db4d8ba7f92673c0cd520cd274ec5d22d07e2"
+      }
+    },
+    {
+      "id": "dmd27-008",
+      "name": "革命龍 アサルト",
+      "canonicalId": "dmd27-008",
+      "printId": "dmd27-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-008",
+      "faces": [
+        {
+          "name": "革命龍 アサルト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中から火の革命軍の進化クリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\n革命２―自分のシールドが２つ以下なら、自分の革命軍の進化クリーチャーの召喚コストを最大３少なくする。ただし、コストは０以下にならない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true,
+                  "color": "火",
+                  "race": "革命軍"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true,
+              "race": "革命軍"
+            },
+            "condition": {
+              "g265ShieldsMax": 2
+            },
+            "amount": 3,
+            "g560Optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-008.jpg",
+      "imageSha256": "384883880a0a4afd80df8dbd41da142f07add4ca334ac87ae16b61da65e82da0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd27-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd27-008",
+          "promoy14-061"
+        ],
+        "allSearchIds": [
+          "dm23bd6-005",
+          "dm14-008",
+          "dm19-039",
+          "promoy23-019",
+          "dm24ex3-065",
+          "dm24rp1-041",
+          "promoy14-061",
+          "dmd27-008",
+          "dmr19-006",
+          "dmx20-004",
+          "dmr19-002",
+          "promoy14-013",
+          "dmr18-s05",
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:16:34.528Z",
+        "sha256": "8cf00bef63029fa20d869141a372cd6980f5a60f86192e9514b654b2f30eac01",
+        "facesMatched": true,
+        "imageSha256": "384883880a0a4afd80df8dbd41da142f07add4ca334ac87ae16b61da65e82da0"
+      }
+    },
+    {
+      "id": "dmr18-s05",
+      "name": "革命龍 ドラッケン",
+      "canonicalId": "dmr18-s05",
+      "printId": "dmr18-s05",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-s05",
+      "faces": [
+        {
+          "name": "革命龍 ドラッケン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが火のドラゴンなら、バトルゾーンに出してもよい。\n革命２―このクリーチャーが攻撃する時、自分のシールドが２つ以下なら、自分の山札の上から２枚を表向きにする。その中から火のドラゴンを１体、バトルゾーンに出してもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "limit": 1,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "top",
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "g1547ExtraAttacks": [
+          [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g265ShieldsMax": 2
+              },
+              "defs": [
+                {
+                  "op": "LookDeploy530",
+                  "n": 2,
+                  "limit": 1,
+                  "public": true,
+                  "g1660PublicReveal": true,
+                  "rest": "bottom",
+                  "filter": {
+                    "creature": true,
+                    "color": "火",
+                    "race": "ドラゴン"
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-s05.jpg",
+      "imageSha256": "9f94b6363e13b67bfbb45df4b8dfb0c54ac1885a81c94883228ba3d6b84bddcd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr18-s05-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr18-s05"
+        ],
+        "allSearchIds": [
+          "dmr20-s06",
+          "dm23bd6-004",
+          "dmd27-007",
+          "promoy14-061",
+          "dmd27-008",
+          "dmr19-006",
+          "dmx20-004",
+          "dmr19-002",
+          "promoy14-013",
+          "dmr18-s05",
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:16:34.528Z",
+        "sha256": "9cf381f4a9d4436b29007b579880cc97e25808a7b1bf8f7869e893d146b6d97e",
+        "facesMatched": true,
+        "imageSha256": "9f94b6363e13b67bfbb45df4b8dfb0c54ac1885a81c94883228ba3d6b84bddcd"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy14-061",
+      "name": "革命龍 アサルト",
+      "canonicalId": "dmd27-008",
+      "printId": "promoy14-061",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-061",
+      "faces": [
+        {
+          "name": "革命龍 アサルト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中から火の革命軍の進化クリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\n革命２―自分のシールドが２つ以下なら、自分の革命軍の進化クリーチャーの召喚コストを最大３少なくする。ただし、コストは０以下にならない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true,
+                  "color": "火",
+                  "race": "革命軍"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true,
+              "race": "革命軍"
+            },
+            "condition": {
+              "g265ShieldsMax": 2
+            },
+            "amount": 3,
+            "g560Optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-061.jpg",
+      "imageSha256": "4779aaede70ed88341e37cb406a4c771efb5504a2c2ece8907fd8dc2f62b197d",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy14-061-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd27-008",
+          "promoy14-061"
+        ],
+        "allSearchIds": [
+          "dm23bd6-005",
+          "dm14-008",
+          "dm19-039",
+          "promoy23-019",
+          "dm24ex3-065",
+          "dm24rp1-041",
+          "promoy14-061",
+          "dmd27-008",
+          "dmr19-006",
+          "dmx20-004",
+          "dmr19-002",
+          "promoy14-013",
+          "dmr18-s05",
+          "dm25ex2-Cho015",
+          "dmr17-003",
+          "dmex07-003",
+          "dmr19-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:16:34.528Z",
+        "sha256": "c906d8ddd69cd77ed0cebfbbada20bc91eb68486ae7ef8dfc7f2e85a86c169d3",
+        "facesMatched": true,
+        "imageSha256": "4779aaede70ed88341e37cb406a4c771efb5504a2c2ece8907fd8dc2f62b197d"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37244/",
+      "sha256": "79f14fa4faeb01431db8937f63ff1517e5290991c534556e05837d004ef2db16",
+      "checkedAt": "2026-11-28T06:16:34.528Z",
+      "reproduced": true,
+      "tests": "tests/standard1904-effects.test.mjs",
+      "reproduction": "ActualMiracleStar plus4ownShaunaLightCommands givesFIVE. REV2 resolveswith2shields; independentlyaccept0,2,5one-cardShieldoffers, allfaceDown; countfrozenoncebeforefirstoffer. Bothseats encryptedrestore.",
+      "result": "ActualMiracleStar plus4ownShaunaLightCommands givesFIVE. REV2 resolveswith2shields; independentlyaccept0,2,5one-cardShieldoffers, allfaceDown; countfrozenoncebeforefirstoffer. Bothseats encryptedrestore."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmr19-009",
+      "name": "革命目 ギョギョウ",
+      "reason": "Bothwholeprints/imagesandQA37790verified. Holduntilfullenemyentry-reference currentcost/lastknowncost manaDeploy andliteralCoccoRupia minimum2incombinationwithRevolution5reduction verified; no partialquantityregistration."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:16:34.528Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-s01": 4,
+      "dmd27-008": 4,
+      "dmr18-s05": 4,
+      "promoy14-061": 4
+    }
+  },
+  "existingRuntimeCorrections": [
+    {
+      "cardId": "dmr05-s04",
+      "introducedPhase": 1900,
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40501/",
+      "sha256": "37aee8e9816a358bbfa990105129a56c428bfa0efd1537ec7d597ada87af4ef3",
+      "kind": "general-Star-evolution-count-ruling-applied-to-Aegis",
+      "inference": "OfficialQA40501 explicitlycountsreturnedStarTOP asonecreatureevenwithsurvivingbase. Aegissame returnedcreaturecount wording thereforecountsONE, ordinaryEVObasesstillnotextra. Appliedasrelatedgeneralrule, NOTclaimedliteralGyujin/Yamatoreproduction (bothcurrentlyunregistered).",
+      "tests": "tests/standard1900-effects.test.mjs",
+      "previousExpectation": "Historicalphase1900 StarfixtureincorrectlyexpectedZERO. CorrectedtoONEinphase1904; historicallogsretained; noexistingcarddefinition/ID changed."
+    }
+  ],
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr17-s01",
+      "searchSha256": "e95d4baab9f2cb71f961b3a2c30d6fb6271be39848a92a5625d97d6729295e3f",
+      "totalResults": 6,
+      "allSearchIds": [
+        "dmr21-s06",
+        "dmr23-s05",
+        "dmrp07-g04",
+        "dm26ex5-G012",
+        "dmd23-001",
+        "dmr17-s01"
+      ],
+      "exactPrints": [
+        "dmr17-s01"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd27-008",
+      "searchSha256": "bb5e07dedd4680666aca9e6787c9a03d18b02258f340e947d9cd8122949fb2a5",
+      "totalResults": 17,
+      "allSearchIds": [
+        "dm23bd6-005",
+        "dm14-008",
+        "dm19-039",
+        "promoy23-019",
+        "dm24ex3-065",
+        "dm24rp1-041",
+        "promoy14-061",
+        "dmd27-008",
+        "dmr19-006",
+        "dmx20-004",
+        "dmr19-002",
+        "promoy14-013",
+        "dmr18-s05",
+        "dm25ex2-Cho015",
+        "dmr17-003",
+        "dmex07-003",
+        "dmr19-003"
+      ],
+      "exactPrints": [
+        "dmd27-008",
+        "promoy14-061"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr18-s05",
+      "searchSha256": "db4dbb0bec4e428edc4dbaab156a4cc909454151ad91c710cd34cef2b2d5ccb8",
+      "totalResults": 14,
+      "allSearchIds": [
+        "dmr20-s06",
+        "dm23bd6-004",
+        "dmd27-007",
+        "promoy14-061",
+        "dmd27-008",
+        "dmr19-006",
+        "dmx20-004",
+        "dmr19-002",
+        "promoy14-013",
+        "dmr18-s05",
+        "dm25ex2-Cho015",
+        "dmr17-003",
+        "dmex07-003",
+        "dmr19-003"
+      ],
+      "exactPrints": [
+        "dmr18-s05"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "ThreewholeRevolutionEVOS/fourexactprints allwholeofficialabilities/images/stats/currentlimits. MiracleStar independentlyorderedDraw1THENLight6nonEVOfromHAND andREV2 percurrentLightCommandoptionaloneShield: actual5Command testchooses0/2/5each (37244), mainfirstnewLightCommandcounts. AssaultprivatewholedeckFireRevEVOsearch/reveal/shuffleevenDecline, REV2optional0/1/3 reduction toRevolutionEVOS only, twosourcesfloor1, shield3/Genmu5negative. DrakkenindependentTWOattackabilities bothorders, ordinaryTOP1nonDragonorDeclineSTAYStop, REV2TOP2FireDragonselected+restbottom, actualFireEVOonattackingsource continuesattackforfree. Bothseats encryptedservices/UIDrestore. CorrectedAegisStarTOPcountusingrelatedofficialgeneralStar40501; ordinaryEVO/GR/QQQXshufflebeforeDrawregressionsrerun. PriorIDs/details/formats/pendingpreserved.",
+    "resolvedAttempts": "Fixtures initiallychoseoptionalreductionbeforeEVObaseselection (actualenginechoosesbaseFIRST); zeroamount mustnumeric0 whilefalseCANCELSsummon. Correctednativeorderingandvalue, explicitDrakkenattackeffectorder beforedeckchoice. Allfinalfocused/related gates recorded. RelatednewofficialQA40501 exposed earlierAegisStarZEROassumption; narrowStarbranchcountONEfix andupdatedpriorfixture, allmovementregressions pass.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/37244/",
+        "reproduced": true,
+        "tests": "tests/standard1904-effects.test.mjs",
+        "reproduction": "ActualMiracleStar plus4ownShaunaLightCommands givesFIVE. REV2 resolveswith2shields; independentlyaccept0,2,5one-cardShieldoffers, allfaceDown; countfrozenoncebeforefirstoffer. Bothseats encryptedrestore."
+      }
+    ],
+    "existingRuntimeCorrections": [
+      {
+        "cardId": "dmr05-s04",
+        "introducedPhase": 1900,
+        "source": "https://dm.takaratomy.co.jp/rule/qa/40501/",
+        "sha256": "37aee8e9816a358bbfa990105129a56c428bfa0efd1537ec7d597ada87af4ef3",
+        "kind": "general-Star-evolution-count-ruling-applied-to-Aegis",
+        "inference": "OfficialQA40501 explicitlycountsreturnedStarTOP asonecreatureevenwithsurvivingbase. Aegissame returnedcreaturecount wording thereforecountsONE, ordinaryEVObasesstillnotextra. Appliedasrelatedgeneralrule, NOTclaimedliteralGyujin/Yamatoreproduction (bothcurrentlyunregistered).",
+        "tests": "tests/standard1900-effects.test.mjs",
+        "previousExpectation": "Historicalphase1900 StarfixtureincorrectlyexpectedZERO. CorrectedtoONEinphase1904; historicallogsretained; noexistingcarddefinition/ID changed."
+      }
+    ],
+    "held": [
+      {
+        "id": "dmr19-009",
+        "name": "革命目 ギョギョウ",
+        "reason": "Bothwholeprints/imagesandQA37790verified. Holduntilfullenemyentry-reference currentcost/lastknowncost manaDeploy andliteralCoccoRupia minimum2incombinationwithRevolution5reduction verified; no partialquantityregistration."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmsd17-001",
+          "dmrp18-020",
+          "dmrp19-009",
+          "dmr07-010"
+        ],
+        "reason": "Groupedofficialresearchdone. Yamato40501literalneedsunregisteredGyujinMaru; others nativeManaReturnpower/hand-costbudget/twoindependentbreakerconditionalgrants."
+      }
+    ]
+  }
+}
