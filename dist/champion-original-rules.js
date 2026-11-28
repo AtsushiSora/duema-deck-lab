@@ -11,6 +11,7 @@ export function createOriginalChampionRules(api){
    if(!['creature','seed','field','gear'].includes(donor.type))return [];
    const amounts=String(c.race).includes('ディスペクター')&&donor.sasage?
     [...(donor.sasageAmounts??[donor.sasage])]:[];
+   if(String(c.race).includes('アビス')&&api.isCreature(s,x)&&donor.g1880AbyssSacrifice)amounts.push(donor.g1880AbyssSacrifice);
    if(String(c.race).includes('メカ')&&api.isCreature(s,x)&&donor.g1293Tankrio)amounts.push(donor.g1293Tankrio);
    return amounts.length?[{x,amounts:amounts.sort((a,b)=>b-a)}]:[];
   });
@@ -72,6 +73,11 @@ export function createOriginalChampionRules(api){
   const x=own[t.origin].find(x=>x.uid===t.target);
   if(!x)break;
   const c=faces(card(x))[t.face||0],payment={cost:t.amount,fixedPayment:true};
+  // QA46503: losing the chosen NEO base keeps the card in hand but still pays the declared cost.
+  if(t.base&&!api.evolutionBases(s,t.p,c).some(base=>base.uid===t.base)){
+   api.pay(s,t.p,{...c,...payment,summonOrigin:t.origin});
+   break;
+  }
   if(c.g31Evolution?.zones&&!api.phoenixHasChosenBases(s,t.p,c,t.base,{exclude:t.target})){
    // QA 43585: the declared cost is paid even if a chosen base was sacrificed.
    api.pay(s,t.p,{...c,...payment,summonOrigin:t.origin});
@@ -115,12 +121,12 @@ export function createOriginalChampionRules(api){
   if(c.g31Evolution?.zones)api.phoenixBeginSasage(s,p,payment);
   else put(s,payment);
  },
- mainActions(s,p){const own=s.players[p],out=[],hasDonor=own.battle.some(x=>card(x).g1293Tankrio||effective(x,s).sasage),locked=creatures(s,1-p).some(x=>effective(x,s).noCostReduction);for(const x of creatures(s,p)){const c=effective(x,s),spell=faces(card(x))[1];if(c.g39Rinne&&spell&&api.canCast(s,p,spell,'battle')&&api.canPay(s,p,spell))out.push({kind:'play',uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,face:1,origin:'battle',alternative:'rinne',cost:api.summonCost(s,p,spell),label:spell.name+'を輪廻∞で唱える'});}if(!hasDonor||locked)return out;
+ mainActions(s,p){const own=s.players[p],out=[],hasDonor=own.battle.some(x=>card(x).g1293Tankrio||effective(x,s).sasage||effective(x,s).g1880AbyssSacrifice),locked=creatures(s,1-p).some(x=>effective(x,s).noCostReduction);for(const x of creatures(s,p)){const c=effective(x,s),spell=faces(card(x))[1];if(c.g39Rinne&&spell&&api.canCast(s,p,spell,'battle')&&api.canPay(s,p,spell))out.push({kind:'play',uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,face:1,origin:'battle',alternative:'rinne',cost:api.summonCost(s,p,spell),label:spell.name+'を輪廻∞で唱える'});}if(!hasDonor||locked)return out;
  const subsetsByRace=new Map();
  for(const origin of['hand','mana','grave'])for(const x of own[origin])for(const[face,c]of faces(card(x.cardId)).entries()){
-  if(c.type!=='creature'||!/ディスペクター|メカ/.test(c.race)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
+  if(c.type!=='creature'||!/ディスペクター|メカ|アビス/.test(c.race)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
   const permits=origin==='hand'?[null]:origin==='mana'?api.manaPermits(s,p,x):[...(c.graveSummon||c.g38GraveSummon?[null]:[]),...(api.gravePermits?.(s,p,x,c)||[])];if(!permits.length)continue;
-  const mode=[String(c.race).includes('ディスペクター'),String(c.race).includes('メカ')].join(':');
+  const mode=[String(c.race).includes('ディスペクター'),String(c.race).includes('メカ'),String(c.race).includes('アビス')].join(':');
   if(!subsetsByRace.has(mode))subsetsByRace.set(mode,sasagers(s,p,c).reduce((all,{x,amounts})=>{
    const options=sasageOptions(amounts);
    return [...all,...all.flatMap(selected=>options.map(option=>[...selected,{x,...option}]))];
@@ -129,13 +135,13 @@ export function createOriginalChampionRules(api){
    // NEO may enter with no base or evolve on a surviving creature. A destroyed donor cannot remain underneath it.
    const multiZone=c.g31Evolution?.zones;
    if(multiZone&&!api.evolutionBases(s,p,c).length)continue;
-   const bases=multiZone?[null]:c.evolution||c.neoEvolution?api.evolutionBases(s,p,c).filter(base=>!selected.some(({x})=>x.uid===base.uid)||!api.canLeave(s,p,base)):[];
+   const bases=multiZone?[null]:c.evolution||c.neoEvolution?api.evolutionBases(s,p,c).filter(base=>!selected.some(({x})=>x.uid===base.uid&&!effective(x,s).g1880AbyssSacrifice)||!api.canLeave(s,p,base)):[];
    const reduction=selected.reduce((sum,option)=>sum+option.reduction,0);
    const differentReduction=selected.some(option=>option.reduction!==option.defaultReduction);
    const donors=selected.flatMap(({x,count})=>Array(count).fill(x.uid));
    const names=selected.map(({x,count,reduction})=>card(x).name+(count>1||differentReduction?' '+count+'回・'+reduction+'軽減':'')).join('・');
    const taps=c.g1293SummonTap&&!api.handAbilityIgnored(s,x)?api.summonTapDonors1293(s,p):[];
-   const reductionName=selected.some(({x})=>effective(x,s).g1293Tankrio)?'破壊による軽減':'ササゲール';
+   const reductionName=selected.some(({x})=>effective(x,s).g1293Tankrio||effective(x,s).g1880AbyssSacrifice)?'破壊による軽減':'ササゲール';
    for(const base of[...(!c.evolution?[null]:[]),...bases])for(const tap of[null,...taps]){
     const total=reduction+(tap?c.g1293SummonTap:0);
     const payment={...c,summonOrigin:origin,g39Reduction:total,executionUid:x.uid,

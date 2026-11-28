@@ -6903,6 +6903,7 @@ export function createSixPhotoRules(api){
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
   else{
    const moved=api.mill(s,p,n,{together:t.g1042Together});
+   if(t.g1880AbyssDiscard&&s.winner===null){const count=(moved||[]).filter(y=>s.players[p].grave.includes(y)&&matches(s,p,y,{race:'アビス'})).length;if(count)start(s,t,[{op:'Discard',n:count}]);}
    if(t.afterAllMoved&&s.winner===null&&moved?.length===n&&
       moved.every(y=>s.players[p].grave.includes(y)&&matches(s,p,y,t.movedFilter)))
     start(s,t,t.afterAllMoved);
@@ -11764,7 +11765,7 @@ export function createSixPhotoRules(api){
  }),g1672CreatureRefs:s.players.flatMap((own,p)=>own.battle
   .filter(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x))
   .flatMap(x=>[x,...(x.godLinks||[])].map(y=>({p,uid:y.uid,incarnation:y.incarnation||0})))),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),g1469Blocker:!!c.blocker,g1674GodParts:(x.godLinks||[]).map(y=>({uid:y.uid,incarnation:y.incarnation||0})),
-   ...(race(c,'ドリームメイト')?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves,...(c.g1676BounceLeaves?{g1676BounceLeaves:true}:{})}:{}),
+   ...(race(c,'ドリームメイト')||s.players.some(own=>own.battle.some(y=>card(y).g1880DeathNames&&!y.sealed&&!api.ignored(s,y)))?{deathNames960:battleNames676(s,x)}:{}),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves,...(c.g1676BounceLeaves?{g1676BounceLeaves:true}:{})}:{}),
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
    ...(g1256HandEvolutionWatch[p].length&&api.isEvolution(x)?{g1256Evolution:true}:{}),
    ...(c.g1248DragonLeaves?{g1248DragonLeaves:true}:{}),
