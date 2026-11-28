@@ -237,6 +237,7 @@ export function createSixPhotoRules(api){
  function countDiscountMax499(s,p,c){
   const t=c.g212CountDiscount;
   if(!t)return 0;
+  if(t.g1869ShieldDeficit!==undefined)return Math.max(0,t.g1869ShieldDeficit-s.players[p].shields.length);
   if(t.g1864ManaNotAhead&&s.players[p].mana.length>s.players[1-p].mana.length)return 0;
   if(t.g1838AllMultiMana&&!s.players[p].mana.every(x=>!x.faceDown&&api.manaColors(api.zoneCard(s,p,x,'mana'),s,p).length>1))return 0;
   if(t.fixed!==undefined)return t.fixed;
@@ -1121,7 +1122,7 @@ export function createSixPhotoRules(api){
  // recursively decorating other aura recipients; ignored recipients never reach this hook.
  function grantAuras(s,owner,x,c,racesOnly=false){
   if(c.type!=='creature')return c;
-  const fits=f=>(!f.g1686Victory||physicalVictory1686(x))&&(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
+  const fits=f=>(!f.g1705ExactBattleName||battleNames676(s,x).includes(exactName(f.g1705ExactBattleName)))&&(!f.g1686Victory||physicalVictory1686(x))&&(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.g819CreatureNameIncludes||battleNames676(s,x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.g724ExactRace||exactRaces(c).includes(f.g724ExactRace))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
   let out=c,slayers=c.g208SlayerCount||Number(!!c.slayer);
   for(const p of [0,1])for(const source of s.players[p].battle){
    const sourceCard=card(source),auras=sourceCard.g208Auras;
@@ -5285,6 +5286,7 @@ export function createSixPhotoRules(api){
   if(rows.length)choice(s,t,'ブレイクするシールドを選ぶ',rows);break;
  }
  case'g34_Break497':{
+  if(t.g1869OwnShieldKeep)t={...t,...(own.shields.length?{keep:own.shields.length}:{}),g1869OwnShieldKeep:false};
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields;
   let chooser=t.ownerChooses?owner:t.p;
   const candidate=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;

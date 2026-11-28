@@ -1,0 +1,420 @@
+{
+  "phase": 1869,
+  "checkedAt": "2026-11-28T01:52:33.487Z",
+  "baseline": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
+  "baseCount": 9812,
+  "target": 10000,
+  "description": "Full Bolrot privategear search and exactnamedShiden continuoushaste; LostChoice shieldUNITdeficit reduction/allhanddiscard or defender-selectedkeepers genuineSTbreak literal43940; WonderTurtle seedbase discount/Star evolution/W2/allRexshieldST and shield5absolute stay.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43940/"
+  ],
+  "cards": [
+    {
+      "id": "dm29-016",
+      "name": "ボルット・紫郎・バルット",
+      "canonicalId": "dm29-016",
+      "printId": "dm29-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-016",
+      "faces": [
+        {
+          "name": "ボルット・紫郎・バルット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からクロスギアを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\nバトルゾーンにある自分の、名前が《ボルバルザーク・紫電・ドラゴン》のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g201Gear": true
+                }
+              }
+            ]
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g1705ExactBattleName": "ボルバルザーク・紫電・ドラゴン"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-016.jpg",
+      "imageSha256": "b4ef9d559f6d701865dd99151f738a87d127e3fa786a18cfa9d82ad8c889bfeb",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm29-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-016",
+          "dmc56-025"
+        ],
+        "allSearchIds": [
+          "dm29-016",
+          "dmc56-025"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T01:52:33.487Z",
+        "sha256": "34bc42e6117efc2335e597328140ae8bb2719ad18ae1714b3959d2c276b1b331",
+        "facesMatched": true,
+        "imageSha256": "b4ef9d559f6d701865dd99151f738a87d127e3fa786a18cfa9d82ad8c889bfeb"
+      }
+    },
+    {
+      "id": "dm23ex2-051",
+      "name": "ロスト・チョイス",
+      "canonicalId": "dm23ex2-051",
+      "printId": "dm23ex2-051",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-051",
+      "faces": [
+        {
+          "name": "ロスト・チョイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "この呪文を唱えるコストは、自分のシールドの数が５より少ない分だけ少なくなる。\n次のうちいずれか１つを選ぶ。\n▶相手は自身の手札をすべて捨てる。\n▶自分のシールド１つにつき、相手は自身のシールドを１つ選ぶ。こうして選ばれなかった相手のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "g1869ShieldDeficit": 5
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "相手は手札をすべて捨てる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "g756All": true
+                  }
+                ]
+              },
+              {
+                "label": "自分のシールド数だけ相手が残すシールドを選び、残りをすべてブレイク",
+                "defs": [
+                  {
+                    "op": "Break497",
+                    "g1869OwnShieldKeep": true,
+                    "ownerChooses": true,
+                    "n": "all"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-051.jpg",
+      "imageSha256": "225cf45e61bd64fa18b89b7b0b1944d6f71b803288951a3eb77bb58999c82b85",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm23ex2-051-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm23ex2-051"
+        ],
+        "allSearchIds": [
+          "dm23ex2-051"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T01:52:33.487Z",
+        "sha256": "6627bfb102b493aecb61654978839dd857062574bdcb1e1553215d50c3141abc",
+        "facesMatched": true,
+        "imageSha256": "225cf45e61bd64fa18b89b7b0b1944d6f71b803288951a3eb77bb58999c82b85"
+      }
+    },
+    {
+      "id": "dmrp22-001",
+      "name": "ワンダー・タートル ＜ネバーエンド.Star＞",
+      "canonicalId": "dmrp22-001",
+      "printId": "dmrp22-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-001",
+      "faces": [
+        {
+          "name": "ワンダー・タートル ＜ネバーエンド.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "タマシードから進化するなら、このクリーチャーの召喚コストを２少なくする。\nスター進化：レクスターズまたは光のクリーチャー１体の上に置く。\nW・ブレイカー\n自分のシールドゾーンにあるレクスターズすべてに「S・トリガー」を与える。\n自分のシールドが５つ以上あれば、このクリーチャーは離れない。",
+          "race": "メタリカ/エンジェル・コマンド・ドラゴン/レクスターズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g1869SeedBaseReduction": 2,
+        "g1557ShieldTrigger": {
+          "race": "レクスターズ"
+        },
+        "g619Stay": {
+          "g1484ZoneCount": {
+            "zone": "shields",
+            "min": 5
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-001.jpg",
+      "imageSha256": "1c1de8d5ea4df88cd5a2c5a31e2bd1c7fdd2b95e9256181485343acf56f84870",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp22-001"
+        ],
+        "allSearchIds": [
+          "dmrp22-001",
+          "dmrp01-s02"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T01:52:33.487Z",
+        "sha256": "f63364d58ea312dd638d12dda7375ccb6caa38c7b7496c39696edbb760017491",
+        "facesMatched": true,
+        "imageSha256": "1c1de8d5ea4df88cd5a2c5a31e2bd1c7fdd2b95e9256181485343acf56f84870"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc56-025",
+      "name": "ボルット・紫郎・バルット",
+      "canonicalId": "dm29-016",
+      "printId": "dmc56-025",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc56-025",
+      "faces": [
+        {
+          "name": "ボルット・紫郎・バルット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からクロスギアを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\nバトルゾーンにある自分の、名前が《ボルバルザーク・紫電・ドラゴン》のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g201Gear": true
+                }
+              }
+            ]
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g1705ExactBattleName": "ボルバルザーク・紫電・ドラゴン"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc56-025.jpg",
+      "imageSha256": "4fe3617745cc56f7ce9bcf342241ee78c374ecc3085d56b106e7b8439f9a9e35",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc56-025-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm29-016",
+          "dmc56-025"
+        ],
+        "allSearchIds": [
+          "dm29-016",
+          "dmc56-025"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T01:52:33.487Z",
+        "sha256": "6012482534d09b3f0d2e168970982942eea19b6d0cf0c25434bea61b799c4e6a",
+        "facesMatched": true,
+        "imageSha256": "4fe3617745cc56f7ce9bcf342241ee78c374ecc3085d56b106e7b8439f9a9e35"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/43940/",
+      "sha256": "6084f5f930525c00d4f9f9a092ec07d053a1899d44b61b11e93c9e75ba4655cc",
+      "checkedAt": "2026-11-28T01:52:33.487Z",
+      "reproduced": true,
+      "tests": "tests/standard1869-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "RealLostChoice paidfromhand withfourshieldUNITS, oneconsisting oftwoactualcards (totalfivecards), costs7bothseats andsave. Actualcost0/1/4/5/6shieldcount0..5 reductions, secondmodecountusesunitsnotphysicalcards. tests/standard1869-effects.test.mjs",
+      "result": "RealLostChoice paidfromhand withfourshieldUNITS, oneconsisting oftwoactualcards (totalfivecards), costs7bothseats andsave. Actualcost0/1/4/5/6shieldcount0..5 reductions, secondmodecountusesunitsnotphysicalcards. tests/standard1869-effects.test.mjs"
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T01:52:33.487Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm29-016": 4,
+      "dm23ex2-051": 4,
+      "dmrp22-001": 4,
+      "dmc56-025": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm29-016",
+      "searchSha256": "ce6ffc0de8e7888d737be31e074819a75bed3a31215570af3d90eccd954babf8",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dm29-016",
+        "dmc56-025"
+      ],
+      "exactPrints": [
+        "dm29-016",
+        "dmc56-025"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm23ex2-051",
+      "searchSha256": "8748cdb9107e1dbfbba1826212ab482df2ca0ac2e46d603d88c1ccad7c50d0c6",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm23ex2-051"
+      ],
+      "exactPrints": [
+        "dm23ex2-051"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp22-001",
+      "searchSha256": "f8638dfec61c32d68708f4b1b2642bd5231fcfedb5350b983dfe3c00bedd95d8",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmrp22-001",
+        "dmrp01-s02"
+      ],
+      "exactPrints": [
+        "dmrp22-001"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Full4officialimages, 2/1/1 exactprints, completeability/stats/mana1/currentlimits and exact-name collisionsearch reviewed. Bolrot mandatoryprivatewholedeck optional gear1/reveal/shuffle, ownexactShiden externalgrant excludednearname/enemy; providerignore and recipientignore suppressgrantedability. LostChoice dynamicshieldUNITdeficit discount, allopponenthanddiscard, ordefender-selectedkeepers exactlyownshieldUNITcount withallother shields reallybroken inclST andcompositecards; zero ownshields breaksALL withnoDA. Literal43940 recreated actualfourshieldunits fivephysicalcards givescost7bothseats/actualpaidcast. WonderTurtle nativeStarLight-orRexbase/W2, target-basedseeddiscount7 versusnormal9, shieldRexSTgrantincludingitsownunprintedST evolution realtriggerEvolve, absolute5shieldstayvsdestroy/bounce priorStarreplacement, below5 nativeTOPonlyleave, ignoredsource/grant andordinaryLightshieldnegative. Sixreal encryptedservice paidentry/spell/evolution andsixmanacharges. Related580shorttests across evolvingbase discounts, shielding/breakmodifiers, grants/names, fullpreviousbatches, online5, npmcheck/audit9815/invariants. No oldpending/fullSuite cleared or longgroup/fullnpmtest restarted; no push/Pages/Netlify/automation.",
+    "resolvedAttempts": "Focusedtests exposed missingexactbattle-nameidentity filter insharedgrantAuras; addednonrecursive samebattleNames676 identity check, native exactname test now excludesnearname. AddedLostChoicekeeper wrapper mapszero to nativeallbreak path because legacykeep0finaln0guard otherwise suppressesall; no broadlegacybehaviorchange. FullDiscard corrected fromunsupported n=all toexistingnativeg756All flag. Otherfailureswerefixtures: grantedability itself isremoved by recipientignore; trigger evolution action istriggerEvolve; secondprintedSTdeclined explicitly (skipTrigger hasnoUIDargument) ratherthan lettingAIcastit. Rerunallrequiredaffectedtests afterruntimechange. Allresolved; no newcases excluded.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/43940/",
+        "kind": "literal-card-interaction",
+        "reproduction": "RealLostChoice paidfromhand withfourshieldUNITS, oneconsisting oftwoactualcards (totalfivecards), costs7bothseats andsave. Actualcost0/1/4/5/6shieldcount0..5 reductions, secondmodecountusesunitsnotphysicalcards. tests/standard1869-effects.test.mjs"
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "id": "dmrp02-009",
+        "reason": "Fulltwoofficialprintimages reviewed; publictop3costsum6/tappedcreaturedeployment andorderedrest implementation next."
+      },
+      {
+        "id": "dm36-020",
+        "reason": "Officialresearch next: optionalcastlehand orMSoulmana-count restrictedphysicalbattlecardhand."
+      },
+      {
+        "id": "dm22ex1-012",
+        "reason": "Officialbroadsearch478 exceededpage50; specifickeyword ボルベルグ research needed beforeallprintverification."
+      },
+      {
+        "id": "dmex18-031",
+        "reason": "Fullofficialresearch next: extrasummon permission andtwo-raceaddingauras."
+      }
+    ]
+  }
+}

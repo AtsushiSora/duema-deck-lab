@@ -317200,17 +317200,157 @@
       ],
       "supportBatch": "phase-1868",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-016",
+      "name": "ボルット・紫郎・バルット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からクロスギアを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\nバトルゾーンにある自分の、名前が《ボルバルザーク・紫電・ドラゴン》のクリーチャーはすべて「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g201Gear": true
+              }
+            }
+          ]
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1705ExactBattleName": "ボルバルザーク・紫電・ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1869",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-051",
+      "name": "ロスト・チョイス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を唱えるコストは、自分のシールドの数が５より少ない分だけ少なくなる。\n次のうちいずれか１つを選ぶ。\n▶相手は自身の手札をすべて捨てる。\n▶自分のシールド１つにつき、相手は自身のシールドを１つ選ぶ。こうして選ばれなかった相手のシールドをすべてブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-051",
+      "limit": 4,
+      "g212CountDiscount": {
+        "g1869ShieldDeficit": 5
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "相手は手札をすべて捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "g756All": true
+                }
+              ]
+            },
+            {
+              "label": "自分のシールド数だけ相手が残すシールドを選び、残りをすべてブレイク",
+              "defs": [
+                {
+                  "op": "Break497",
+                  "g1869OwnShieldKeep": true,
+                  "ownerChooses": true,
+                  "n": "all"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1869",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-001",
+      "name": "ワンダー・タートル ＜ネバーエンド.Star＞",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "メタリカ/エンジェル・コマンド・ドラゴン/レクスターズ",
+      "text": "タマシードから進化するなら、このクリーチャーの召喚コストを２少なくする。\nスター進化：レクスターズまたは光のクリーチャー１体の上に置く。\nW・ブレイカー\n自分のシールドゾーンにあるレクスターズすべてに「S・トリガー」を与える。\n自分のシールドが５つ以上あれば、このクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-001",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1869SeedBaseReduction": 2,
+      "g1557ShieldTrigger": {
+        "race": "レクスターズ"
+      },
+      "g619Stay": {
+        "g1484ZoneCount": {
+          "zone": "shields",
+          "min": 5
+        }
+      },
+      "supportBatch": "phase-1869",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1868,
-    "checkedAt": "2026-11-28T01:47:41.703Z",
-    "baseCount": 9809,
+    "phase": 1869,
+    "checkedAt": "2026-11-28T01:52:33.487Z",
+    "baseCount": 9812,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9812,
+    "totalCount": 9815,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/43940/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -347732,6 +347872,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35994/",
           "https://dm.takaratomy.co.jp/rule/qa/32457/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1868,
+        "checkedAt": "2026-11-28T01:47:41.703Z",
+        "baseCount": 9809,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9812,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

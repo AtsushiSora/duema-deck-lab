@@ -26720,5 +26720,206 @@
         }
       ]
     }
+  },
+  "dm29-016": {
+    "phase": 1869,
+    "faces": [
+      {
+        "name": "ボルット・紫郎・バルット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からクロスギアを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\nバトルゾーンにある自分の、名前が《ボルバルザーク・紫電・ドラゴン》のクリーチャーはすべて「スピードアタッカー」を得る。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g201Gear": true
+              }
+            }
+          ]
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1705ExactBattleName": "ボルバルザーク・紫電・ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
+  },
+  "dmc56-025": {
+    "phase": 1869,
+    "faces": [
+      {
+        "name": "ボルット・紫郎・バルット",
+        "typeText": "クリーチャー",
+        "civilizationText": "火",
+        "civilizations": [
+          "火"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からクロスギアを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。\nバトルゾーンにある自分の、名前が《ボルバルザーク・紫電・ドラゴン》のクリーチャーはすべて「スピードアタッカー」を得る。",
+        "race": "ファイアー・バード/サムライ",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g201Gear": true
+              }
+            }
+          ]
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g1705ExactBattleName": "ボルバルザーク・紫電・ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ]
+    }
+  },
+  "dm23ex2-051": {
+    "phase": 1869,
+    "faces": [
+      {
+        "name": "ロスト・チョイス",
+        "typeText": "呪文",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "この呪文を唱えるコストは、自分のシールドの数が５より少ない分だけ少なくなる。\n次のうちいずれか１つを選ぶ。\n▶相手は自身の手札をすべて捨てる。\n▶自分のシールド１つにつき、相手は自身のシールドを１つ選ぶ。こうして選ばれなかった相手のシールドをすべてブレイクする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g212CountDiscount": {
+        "g1869ShieldDeficit": 5
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "相手は手札をすべて捨てる",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "g756All": true
+                }
+              ]
+            },
+            {
+              "label": "自分のシールド数だけ相手が残すシールドを選び、残りをすべてブレイク",
+              "defs": [
+                {
+                  "op": "Break497",
+                  "g1869OwnShieldKeep": true,
+                  "ownerChooses": true,
+                  "n": "all"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp22-001": {
+    "phase": 1869,
+    "faces": [
+      {
+        "name": "ワンダー・タートル ＜ネバーエンド.Star＞",
+        "typeText": "スター進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "タマシードから進化するなら、このクリーチャーの召喚コストを２少なくする。\nスター進化：レクスターズまたは光のクリーチャー１体の上に置く。\nW・ブレイカー\n自分のシールドゾーンにあるレクスターズすべてに「S・トリガー」を与える。\n自分のシールドが５つ以上あれば、このクリーチャーは離れない。",
+        "race": "メタリカ/エンジェル・コマンド・ドラゴン/レクスターズ",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1869SeedBaseReduction": 2,
+      "g1557ShieldTrigger": {
+        "race": "レクスターズ"
+      },
+      "g619Stay": {
+        "g1484ZoneCount": {
+          "zone": "shields",
+          "min": 5
+        }
+      }
+    }
   }
 }

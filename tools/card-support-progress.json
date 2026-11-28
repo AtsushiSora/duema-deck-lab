@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9812,
-  "pendingNames": 2037,
-  "phase": 1868,
+  "supportedNames": 9815,
+  "pendingNames": 2034,
+  "phase": 1869,
   "added": 3,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,13 +156,13 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1193,
-    "呪文": 236,
+    "クリーチャー": 1192,
+    "呪文": 235,
     "G-NEOクリーチャー": 23,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
     "進化クリーチャー": 158,
-    "スター進化クリーチャー": 44,
+    "スター進化クリーチャー": 43,
     "NEOクリーチャー": 37,
     "オレガ・オーラ": 11,
     "デュエルメイト・クリーチャー": 4,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1527,
+    "未対応の能力文": 1524,
     "複数面・特殊カードタイプまたは情報不足": 423,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -582670,29 +582670,263 @@
           "reason": "Initial fixtures mislabeled actual DiaNork asSTcreature and CyberBrain asplainspell; corrected to actual AquaSurfer, AuraBlaster and added realGapudouSuperTrigger. Onehand Marshal automatically advances afterlastchoice, so removed nonexistent confirmation request. Restored-game object assertion now follows liveUID. No failed runtime behavior or excluded new test. Expand command initially refused missing --phase= argument without cards mutation, reapplied with proper argument; verification allpassed."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1"
+    },
+    {
+      "phase": 1869,
+      "checkedAt": "2026-11-28T01:57:53.859Z",
+      "baseline": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9812,
+      "currentNames": 9815,
+      "remainingNames": 185,
+      "added": [
+        {
+          "id": "dm29-016",
+          "name": "ボルット・紫郎・バルット"
+        },
+        {
+          "id": "dm23ex2-051",
+          "name": "ロスト・チョイス"
+        },
+        {
+          "id": "dmrp22-001",
+          "name": "ワンダー・タートル ＜ネバーエンド.Star＞"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1869,
+        "baseline": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
+        "originalDefinitionsUnchanged": 9812,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9815,
+        "uniqueIds": 9815,
+        "added": 3,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9812,
+        "existingImageReferenceRowsUnchanged": 12319,
+        "officialPrintsReviewed": 4,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1869": {
+          "name": "official-1869",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1869.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.497,
+          "log": "tmp/duema-target-10000/official-1869.log",
+          "passed": 0,
+          "logSha256": "ee551894cd0f3c62314dacf54ee3ff874bcb6fd22bb7f75b307cedad91304a68"
+        },
+        "focused-1869-final": {
+          "name": "focused-1869-final4",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1869-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.919,
+          "log": "tmp/duema-target-10000/focused-1869-final4.log",
+          "passed": 57,
+          "logSha256": "f6269d4c6e111831e42920786a091627fc979dbbc759b3789d83d09effa66ced"
+        },
+        "related-1869": {
+          "name": "related-1869",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1869.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 11.137,
+          "log": "tmp/duema-target-10000/related-1869.log",
+          "passed": 580,
+          "logSha256": "159cca682ee6cb9912f7ce652d91e06de946c587c09209cbba8d3b2c2c2c0b71"
+        },
+        "check-1869": {
+          "name": "check-1869",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 20.588,
+          "log": "tmp/duema-target-10000/check-1869.log",
+          "passed": 0,
+          "logSha256": "d02cd0dca51279ba8143e36bd6693877b58eea11a4cdd3b449710d137ac3c40d"
+        },
+        "audit-1869": {
+          "name": "audit-1869",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.853,
+          "log": "tmp/duema-target-10000/audit-1869.log",
+          "passed": 0,
+          "logSha256": "4c2df5fcdcf06629a0180253083a342801a77b8721d2de970fded9b11d086fda"
+        },
+        "invariants-1869": {
+          "name": "invariants-1869",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1869"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.82,
+          "log": "tmp/duema-target-10000/invariants-1869.log",
+          "passed": 0,
+          "logSha256": "3470bd3088e459902009be07becf2786c4d2338a047f3f169918258eeb8d1e5e"
+        },
+        "related-online-1869": {
+          "name": "related-online-1869",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.608,
+          "log": "tmp/duema-target-10000/related-online-1869.log",
+          "passed": 5,
+          "logSha256": "10cb82ff94df1fce9342cf99f037de47e261fc90097f52146b66b5f9159f04cf"
+        }
+      },
+      "totalTestsPassed": 642,
+      "manifest": "tools/support-phase-1869.json",
+      "supported": 9815,
+      "pending": 2034,
+      "engineVersion": "0.602.393",
+      "held": [],
+      "nextCandidates": [
+        {
+          "id": "dmrp02-009",
+          "reason": "Fulltwoofficialprintimages reviewed; publictop3costsum6/tappedcreaturedeployment andorderedrest implementation next."
+        },
+        {
+          "id": "dm36-020",
+          "reason": "Officialresearch next: optionalcastlehand orMSoulmana-count restrictedphysicalbattlecardhand."
+        },
+        {
+          "id": "dm22ex1-012",
+          "reason": "Officialbroadsearch478 exceededpage50; specifickeyword ボルベルグ research needed beforeallprintverification."
+        },
+        {
+          "id": "dmex18-031",
+          "reason": "Fullofficialresearch next: extrasummon permission andtwo-raceaddingauras."
+        }
+      ],
+      "verificationScope": "Full4officialimages, 2/1/1 exactprints, completeability/stats/mana1/currentlimits and exact-name collisionsearch reviewed. Bolrot mandatoryprivatewholedeck optional gear1/reveal/shuffle, ownexactShiden externalgrant excludednearname/enemy; providerignore and recipientignore suppressgrantedability. LostChoice dynamicshieldUNITdeficit discount, allopponenthanddiscard, ordefender-selectedkeepers exactlyownshieldUNITcount withallother shields reallybroken inclST andcompositecards; zero ownshields breaksALL withnoDA. Literal43940 recreated actualfourshieldunits fivephysicalcards givescost7bothseats/actualpaidcast. WonderTurtle nativeStarLight-orRexbase/W2, target-basedseeddiscount7 versusnormal9, shieldRexSTgrantincludingitsownunprintedST evolution realtriggerEvolve, absolute5shieldstayvsdestroy/bounce priorStarreplacement, below5 nativeTOPonlyleave, ignoredsource/grant andordinaryLightshieldnegative. Sixreal encryptedservice paidentry/spell/evolution andsixmanacharges. Related580shorttests across evolvingbase discounts, shielding/breakmodifiers, grants/names, fullpreviousbatches, online5, npmcheck/audit9815/invariants. No oldpending/fullSuite cleared or longgroup/fullnpmtest restarted; no push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1869",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1869-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.793,
+          "log": "tmp/duema-target-10000/focused-1869.log",
+          "reason": "Focusedtests exposed missingexactbattle-nameidentity filter insharedgrantAuras; addednonrecursive samebattleNames676 identity check, native exactname test now excludesnearname. AddedLostChoicekeeper wrapper mapszero to nativeallbreak path because legacykeep0finaln0guard otherwise suppressesall; no broadlegacybehaviorchange. FullDiscard corrected fromunsupported n=all toexistingnativeg756All flag. Otherfailureswerefixtures: grantedability itself isremoved by recipientignore; trigger evolution action istriggerEvolve; secondprintedSTdeclined explicitly (skipTrigger hasnoUIDargument) ratherthan lettingAIcastit. Rerunallrequiredaffectedtests afterruntimechange. Allresolved; no newcases excluded."
+        },
+        {
+          "name": "focused-1869-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1869-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 16.27,
+          "log": "tmp/duema-target-10000/focused-1869-final.log",
+          "reason": "Focusedtests exposed missingexactbattle-nameidentity filter insharedgrantAuras; addednonrecursive samebattleNames676 identity check, native exactname test now excludesnearname. AddedLostChoicekeeper wrapper mapszero to nativeallbreak path because legacykeep0finaln0guard otherwise suppressesall; no broadlegacybehaviorchange. FullDiscard corrected fromunsupported n=all toexistingnativeg756All flag. Otherfailureswerefixtures: grantedability itself isremoved by recipientignore; trigger evolution action istriggerEvolve; secondprintedSTdeclined explicitly (skipTrigger hasnoUIDargument) ratherthan lettingAIcastit. Rerunallrequiredaffectedtests afterruntimechange. Allresolved; no newcases excluded."
+        },
+        {
+          "name": "focused-1869-final2",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1869-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.917,
+          "log": "tmp/duema-target-10000/focused-1869-final2.log",
+          "reason": "Focusedtests exposed missingexactbattle-nameidentity filter insharedgrantAuras; addednonrecursive samebattleNames676 identity check, native exactname test now excludesnearname. AddedLostChoicekeeper wrapper mapszero to nativeallbreak path because legacykeep0finaln0guard otherwise suppressesall; no broadlegacybehaviorchange. FullDiscard corrected fromunsupported n=all toexistingnativeg756All flag. Otherfailureswerefixtures: grantedability itself isremoved by recipientignore; trigger evolution action istriggerEvolve; secondprintedSTdeclined explicitly (skipTrigger hasnoUIDargument) ratherthan lettingAIcastit. Rerunallrequiredaffectedtests afterruntimechange. Allresolved; no newcases excluded."
+        },
+        {
+          "name": "focused-1869-final3",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1869-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 1.866,
+          "log": "tmp/duema-target-10000/focused-1869-final3.log",
+          "reason": "Focusedtests exposed missingexactbattle-nameidentity filter insharedgrantAuras; addednonrecursive samebattleNames676 identity check, native exactname test now excludesnearname. AddedLostChoicekeeper wrapper mapszero to nativeallbreak path because legacykeep0finaln0guard otherwise suppressesall; no broadlegacybehaviorchange. FullDiscard corrected fromunsupported n=all toexistingnativeg756All flag. Otherfailureswerefixtures: grantedability itself isremoved by recipientignore; trigger evolution action istriggerEvolve; secondprintedSTdeclined explicitly (skipTrigger hasnoUIDargument) ratherthan lettingAIcastit. Rerunallrequiredaffectedtests afterruntimechange. Allresolved; no newcases excluded."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1868,
-    "nextPhase": 1869,
+    "lastVerifiedPhase": 1869,
+    "nextPhase": 1870,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm29-016",
-        "reason": "Grouped officialresearch next: exactnamed Shiden speed aura and gear search."
-      },
-      {
-        "id": "dm23ex2-051",
-        "reason": "Grouped officialresearch next: shield deficit discount/modal full discard or keeperbreak."
-      },
-      {
-        "id": "dmrp22-001",
-        "reason": "Grouped officialresearch next: Star evolution/seed-base discount/shieldtrigger granting/shield5stay."
-      },
-      {
         "id": "dmrp02-009",
-        "reason": "Grouped officialresearch alternative: publictop3 aggregatecost6 then allcreaturestapped orderedrest."
+        "reason": "Fulltwoofficialprintimages reviewed; publictop3costsum6/tappedcreaturedeployment andorderedrest implementation next."
+      },
+      {
+        "id": "dm36-020",
+        "reason": "Officialresearch next: optionalcastlehand orMSoulmana-count restrictedphysicalbattlecardhand."
+      },
+      {
+        "id": "dm22ex1-012",
+        "reason": "Officialbroadsearch478 exceededpage50; specifickeyword ボルベルグ research needed beforeallprintverification."
+      },
+      {
+        "id": "dmex18-031",
+        "reason": "Fullofficialresearch next: extrasummon permission andtwo-raceaddingauras."
       }
     ],
     "steps": [
@@ -583606,11 +583840,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1868,
-      "baseline": "e916391c7fd17407b03b739bfa5afcb2c8afdaec",
-      "supportedNames": 9812,
-      "artifact": "tools/target10000-registration-checkpoint-1868.json",
-      "checkedAt": "2026-11-28T01:51:26.858Z"
+      "phase": 1869,
+      "baseline": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
+      "supportedNames": 9815,
+      "artifact": "tools/target10000-registration-checkpoint-1869.json",
+      "checkedAt": "2026-11-28T01:57:53.859Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -586668,8 +586902,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9812,
-      "remaining": 188,
+      "currentNames": 9815,
+      "remaining": 185,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -586677,24 +586911,24 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1868,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1868.json",
+      "lastPhase": 1869,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1869.json",
       "nextCandidates": [
         {
-          "id": "dm29-016",
-          "reason": "Grouped officialresearch next: exactnamed Shiden speed aura and gear search."
-        },
-        {
-          "id": "dm23ex2-051",
-          "reason": "Grouped officialresearch next: shield deficit discount/modal full discard or keeperbreak."
-        },
-        {
-          "id": "dmrp22-001",
-          "reason": "Grouped officialresearch next: Star evolution/seed-base discount/shieldtrigger granting/shield5stay."
-        },
-        {
           "id": "dmrp02-009",
-          "reason": "Grouped officialresearch alternative: publictop3 aggregatecost6 then allcreaturestapped orderedrest."
+          "reason": "Fulltwoofficialprintimages reviewed; publictop3costsum6/tappedcreaturedeployment andorderedrest implementation next."
+        },
+        {
+          "id": "dm36-020",
+          "reason": "Officialresearch next: optionalcastlehand orMSoulmana-count restrictedphysicalbattlecardhand."
+        },
+        {
+          "id": "dm22ex1-012",
+          "reason": "Officialbroadsearch478 exceededpage50; specifickeyword ボルベルグ research needed beforeallprintverification."
+        },
+        {
+          "id": "dmex18-031",
+          "reason": "Fullofficialresearch next: extrasummon permission andtwo-raceaddingauras."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -586931,7 +587165,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "e916391c7fd17407b03b739bfa5afcb2c8afdaec",
+      "lastVerifiedCommit": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -586942,7 +587176,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "e916391c7fd17407b03b739bfa5afcb2c8afdaec",
+      "lastVerifiedCodeCommit": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -588116,8 +588350,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9812,
-      "remaining": 188,
+      "currentNames": 9815,
+      "remaining": 185,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -588125,24 +588359,24 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1868,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1868.json",
+      "lastPhase": 1869,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1869.json",
       "nextCandidates": [
         {
-          "id": "dm29-016",
-          "reason": "Grouped officialresearch next: exactnamed Shiden speed aura and gear search."
-        },
-        {
-          "id": "dm23ex2-051",
-          "reason": "Grouped officialresearch next: shield deficit discount/modal full discard or keeperbreak."
-        },
-        {
-          "id": "dmrp22-001",
-          "reason": "Grouped officialresearch next: Star evolution/seed-base discount/shieldtrigger granting/shield5stay."
-        },
-        {
           "id": "dmrp02-009",
-          "reason": "Grouped officialresearch alternative: publictop3 aggregatecost6 then allcreaturestapped orderedrest."
+          "reason": "Fulltwoofficialprintimages reviewed; publictop3costsum6/tappedcreaturedeployment andorderedrest implementation next."
+        },
+        {
+          "id": "dm36-020",
+          "reason": "Officialresearch next: optionalcastlehand orMSoulmana-count restrictedphysicalbattlecardhand."
+        },
+        {
+          "id": "dm22ex1-012",
+          "reason": "Officialbroadsearch478 exceededpage50; specifickeyword ボルベルグ research needed beforeallprintverification."
+        },
+        {
+          "id": "dmex18-031",
+          "reason": "Fullofficialresearch next: extrasummon permission andtwo-raceaddingauras."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -588379,7 +588613,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "e916391c7fd17407b03b739bfa5afcb2c8afdaec",
+      "lastVerifiedCommit": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -588390,7 +588624,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "e916391c7fd17407b03b739bfa5afcb2c8afdaec",
+      "lastVerifiedCodeCommit": "be4d27f4eccdb6c1c6c6b3aa4bcae76ec1f515b1",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -600593,6 +600827,62 @@
           }
         ],
         "completedManifest": "tools/support-phase-1868.json"
+      },
+      {
+        "phase": 1869,
+        "research": "tmp/duema-target-10000/research-dm29-016.json",
+        "status": "full-official-verified-local",
+        "allImagesReviewed": true,
+        "reviewedIds": [
+          "dm29-016",
+          "dm23ex2-051",
+          "dmrp22-001"
+        ],
+        "officialPrintSearchEvidence": [
+          {
+            "id": "dm29-016",
+            "searchSha256": "ce6ffc0de8e7888d737be31e074819a75bed3a31215570af3d90eccd954babf8",
+            "totalResults": 2,
+            "allSearchIds": [
+              "dm29-016",
+              "dmc56-025"
+            ],
+            "exactPrints": [
+              "dm29-016",
+              "dmc56-025"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dm23ex2-051",
+            "searchSha256": "8748cdb9107e1dbfbba1826212ab482df2ca0ac2e46d603d88c1ccad7c50d0c6",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dm23ex2-051"
+            ],
+            "exactPrints": [
+              "dm23ex2-051"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmrp22-001",
+            "searchSha256": "f8638dfec61c32d68708f4b1b2642bd5231fcfedb5350b983dfe3c00bedd95d8",
+            "totalResults": 2,
+            "allSearchIds": [
+              "dmrp22-001",
+              "dmrp01-s02"
+            ],
+            "exactPrints": [
+              "dmrp22-001"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          }
+        ],
+        "completedManifest": "tools/support-phase-1869.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -652512,10 +652802,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1868,
+    "phase": 1869,
     "threshold": 10000,
-    "supportedNames": 9812,
-    "pendingNames": 2037,
+    "supportedNames": 9815,
+    "pendingNames": 2034,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -652524,7 +652814,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1868.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1869.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,
