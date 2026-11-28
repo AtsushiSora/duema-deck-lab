@@ -316805,19 +316805,134 @@
       ],
       "supportBatch": "phase-1865",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-040",
+      "name": "魔光神レオパルドII世",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ナイト/ゴッド",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見てもよい。その中からナイトを１枚選び、相手に見せてから手札に加える。その後、山札をシャッフルする。\nG・リンク 《魔光神ルドヴィカII世》の右横。\nこのクリーチャーがリンクしていて、相手が自分のクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-040",
+      "limit": 4,
+      "g31God": "grid",
+      "g1859GodGrid": {
+        "position": [
+          1,
+          0
+        ],
+        "links": [
+          {
+            "name": "魔光神ルドヴィカII世",
+            "position": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "g1866LinkedUntargetable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札を見てナイトを1枚手札に加える？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": "all",
+              "g201Search": true,
+              "g841DeckPeek": true,
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "race": "ナイト"
+                  },
+                  "reveal": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1866",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-052",
+      "name": "魔光神ルドヴィカII世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ナイト/ゴッド",
+      "text": "このクリーチャーは、このターンに自分が唱えた呪文１枚につき、シールドをさらに１枚ブレイクする。\nG・リンク《魔光神レオパルドII世》の左横。\nこのクリーチャーは、リンクしている時「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-052",
+      "limit": 4,
+      "g31God": "grid",
+      "g1859GodGrid": {
+        "position": [
+          0,
+          0
+        ],
+        "links": [
+          {
+            "name": "魔光神レオパルドII世",
+            "position": [
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "g1079LinkedDoubleBreaker": true,
+      "g1866SpellExtraBreak": true,
+      "supportBatch": "phase-1866",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-085",
+      "name": "天空城 ジャスティス・グローリー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "castle",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\n自分の、クリーチャーではないカードの実行コストを１少なくする。ただしコストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-085",
+      "limit": 4,
+      "gCastle": true,
+      "g1866NonCreatureReduction": true,
+      "supportBatch": "phase-1866",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1865,
-    "checkedAt": "2026-11-28T01:17:10.557Z",
-    "baseCount": 9799,
-    "newEffectCards": 4,
+    "phase": 1866,
+    "checkedAt": "2026-11-28T01:24:35.307Z",
+    "baseCount": 9803,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9803,
+    "totalCount": 9806,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35026/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37784/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -347293,6 +347408,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/47677/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1865,
+        "checkedAt": "2026-11-28T01:17:10.557Z",
+        "baseCount": 9799,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9803,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35026/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37784/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

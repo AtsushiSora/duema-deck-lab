@@ -64,7 +64,7 @@ import {createOriginalChampionRules} from './champion-original-rules.js?v=0.722.
 import {createChampionRules} from './champion-rules.js?v=0.722.3';
 import {createEnvironmentRules} from './environment-rules.js?v=0.722.19';
 import {createRecommendedRules} from './recommended-rules.js?v=0.722.19';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.51';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.722.52';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.722.24';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.722.22';
@@ -219,7 +219,7 @@ export function createExtendedRules(api){
   summonTapDonors1293:(s,p)=>six.summonTapDonors1293(s,p),projectSummonTap1293:(s,p,uid)=>six.projectSummonTap1293(s,p,uid),gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const six=createSixPhotoRules({...api,discardAlternative1791:(s,p,ids,source)=>beginDiscardBatch(s,{p,source,causedBy:p,controller:p,selfDiscard:true,replacement:true,n:ids.length},ids),stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
+ const six=createSixPhotoRules({...api,shieldAbilitiesMuted:(s,p)=>shieldPhoto.shieldAbilitiesMuted(s,p),discardAlternative1791:(s,p,ids,source)=>beginDiscardBatch(s,{p,source,causedBy:p,controller:p,selfDiscard:true,replacement:true,n:ids.length},ids),stratoReplacements:seed.stratoReplacements,crossGearGroup:(...args)=>samurai.crossOnEntry(...args),shieldGoCount:(s,p)=>shieldPhoto.shieldGoCount(s,p),costAltPermits568:(...args)=>costAltPermits568(...args),snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,lock,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s,rows)}),handProtected:(s,t)=>handProtected(s,t),
   discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null,afterDiscard321=null,afterDiscardCount=null)=>
    beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{}),
     ...(afterDiscard321?{afterDiscard321}:{}),...(afterDiscardCount?{afterDiscardCount}:{})},ids)});

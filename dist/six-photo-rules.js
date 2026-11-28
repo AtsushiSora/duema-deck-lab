@@ -10416,7 +10416,7 @@ export function createSixPhotoRules(api){
  },
  conditionalDiscount261(s,p,c){return c.g261Discount&&ownCondition(s,p,c.g261Discount.filter)?c.g261Discount.amount:0;},
  sympathyDiscount211:(s,p,c)=>c.g211Sympathy?.minimum>=2?0:sympathyAmount500(s,p,c),
- discount(s,p,c){const next=nextReduction456(s,p,c);return {...next,amount:next.amount+(c.g34Role==='shinGod'?s.players[p].battle.filter(x=>!x.sealed&&mecha(effective(x,s))).length:0)+(c.type==='creature'&&colors(c).includes('自然')&&Number(c.power)>=12000?(s.g34Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.amount,0):0)};},
+ discount(s,p,c){const next=nextReduction456(s,p,c),castles=c.type==='creature'||api.shieldAbilitiesMuted(s,p)?0:s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&card(x).g1866NonCreatureReduction&&!api.ignored(s,x)).length;return {...next,amount:next.amount+castles+(c.g34Role==='shinGod'?s.players[p].battle.filter(x=>!x.sealed&&mecha(effective(x,s))).length:0)+(c.type==='creature'&&colors(c).includes('自然')&&Number(c.power)>=12000?(s.g34Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.amount,0):0)};},
  allowsNonLightSpells687(s,c,pendingBreak){
   if(c.type!=='spell'||colors(c).includes('光'))return true;
   return !s.players.some((_,p)=>{
@@ -10510,7 +10510,7 @@ export function createSixPhotoRules(api){
  },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,attackOnly:false,amount:1}):0),
  countBattleCivilizations,
  manaCivilizationCount,
- extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
+ extraBreak412:(s,p,x)=>(p>=0&&card(x).g1866SpellExtraBreak&&!api.ignored(s,x)?s.players[p].spellsThisTurn||0:0)+(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&(l.g969FollowControl||l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  winBattle(s,x){
   const c=effective(x,s);
   return !!c.g34AlwaysWin||!!c.g587AttackWins&&attacking587(s,x)||!!c.g587UntappedWins&&!x.tapped||
