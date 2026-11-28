@@ -319941,17 +319941,129 @@
       ],
       "supportBatch": "phase-1888",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-014",
+      "name": "コバンザ ＜ジャニット.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ムートピア/サイバーロード/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n相手のターン中に、相手が召喚以外の方法でクリーチャーを出した時、そのクリーチャーを手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-014",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "justDiver": true,
+      "g621NonSummon": "bounce",
+      "g1889OpponentTurnOnly": true,
+      "supportBatch": "phase-1889",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-060",
+      "name": "霊騎アスラン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーで攻撃するかわりに、このクリーチャーと自分のマナゾーンのタップされていないカードを８枚タップして、次の能力を使ってもよい。\n自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-060",
+      "limit": 4,
+      "g804ManaTapCost": 8,
+      "g439Tap": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ],
+          "g841DeckPeek": true
+        }
+      ],
+      "supportBatch": "phase-1889",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-010",
+      "name": "ソーナンデス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンを離れた時、自分の手札を１枚捨ててもよい。そうしたら、クリーチャーを１体、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-010",
+      "limit": 4,
+      "machFighter": true,
+      "g393Change": {
+        "mana": 8
+      },
+      "breaker": 2,
+      "g172Leave": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1889",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1888,
-    "checkedAt": "2026-11-28T04:10:16.129Z",
-    "baseCount": 9886,
-    "newEffectCards": 4,
+    "phase": 1889,
+    "checkedAt": "2026-11-28T04:16:42.342Z",
+    "baseCount": 9890,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9890,
+    "totalCount": 9893,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/31774/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -350773,6 +350885,20 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 9886,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1888,
+        "checkedAt": "2026-11-28T04:10:16.129Z",
+        "baseCount": 9886,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9890,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

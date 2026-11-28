@@ -11235,7 +11235,7 @@ export function createSixPhotoRules(api){
    const untappedManaDestroys=g624EntryResponse==='opponentTurnUntappedManaDestroy'&&s.active===p&&!options.paidMana&&!y.sealed;
    const offHand=options.origin!==undefined&&options.origin!=='hand';
    const offHandMana=g601OffHandMana&&offHand,offHandDestroy=g1161OffHandDestroy&&offHand;
-   const nonSummon=options.execution===false?g621NonSummon:null;
+   const nonSummon=options.execution===false&&(!effective(watcher,s).g1889OpponentTurnOnly||s.active===p)?g621NonSummon:null;
    const shieldWithoutMana=g624EntryResponse==='untappedManaShield'&&!options.paidMana&&!y.sealed;
    const unpaidBounce=g1112UnpaidBounce&&s.active===p&&!y.sealed&&!options.costPaid&&!options.paidMana;
    if(!y.sealed&&(g624EntryResponse==='opponentTurnNonSummonFight'&&s.active===p&&options.execution===false||
