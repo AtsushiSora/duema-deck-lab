@@ -320052,18 +320052,158 @@
       ],
       "supportBatch": "phase-1889",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-015",
+      "name": "ザンジ変怪",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "デモニオ/鬼札王国",
+      "text": "ストライク・バック S・バック：闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのクリーチャーを召喚する）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを －4000 する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-015",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColor": "闇",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1890",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-007",
+      "name": "スター・フラッシュ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選んでタップする。\nホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある相手のクリーチャーを１体のかわりに２体まで選んでタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-007",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "g193Select": true,
+              "g173Targets": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1890",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-052",
+      "name": "ジャスティ・ルミナリエ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-052",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1890",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1889,
-    "checkedAt": "2026-11-28T04:16:42.342Z",
-    "baseCount": 9890,
+    "phase": 1890,
+    "checkedAt": "2026-11-28T04:26:39.223Z",
+    "baseCount": 9893,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9893,
+    "totalCount": 9896,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31774/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36160/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -350901,6 +351041,21 @@
         "totalCount": 9890,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1889,
+        "checkedAt": "2026-11-28T04:16:42.342Z",
+        "baseCount": 9890,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9893,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31774/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

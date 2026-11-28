@@ -1,0 +1,751 @@
+{
+  "phase": 1890,
+  "checkedAt": "2026-11-28T04:26:39.223Z",
+  "baseline": "ceb3c27a92a05c7e356450d3d74ecd5bac355c34",
+  "baseCount": 9893,
+  "target": 10000,
+  "description": "Threefullcards/sevenprints: Zanji DarkStrikeBack/minus4000; StarFlash ST holyField>= shields optional0to2tap elsemandatory1; JustiLum ST optionalLightnonEVO<=5 THEN strictLabyrinth optionalMetallicanonEVO<=8tapped; KurtSP nativefourmanaattackreplacement conditionalabsenceofownFiveStarPSYCHIC thenactualFiveStarextra deployment.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36160/"
+  ],
+  "cards": [
+    {
+      "id": "dmex10-015",
+      "name": "ザンジ変怪",
+      "canonicalId": "dmex10-015",
+      "printId": "dmex10-015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-015",
+      "faces": [
+        {
+          "name": "ザンジ変怪",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ストライク・バック S・バック：闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのクリーチャーを召喚する）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを －4000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColor": "闇",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-015.jpg",
+      "imageSha256": "29420fa3e184dd530561256cd8f98fef46c2fd3b0c9c775ce09a64c44104c915",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex10-015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex10-015"
+        ],
+        "allSearchIds": [
+          "dmex10-015"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "311b7033daeb098ecaa00903d0a1c3cbc2bcc88cad8717018dfa0879c6266a47",
+        "facesMatched": true,
+        "imageSha256": "29420fa3e184dd530561256cd8f98fef46c2fd3b0c9c775ce09a64c44104c915"
+      }
+    },
+    {
+      "id": "dm38-007",
+      "name": "スター・フラッシュ",
+      "canonicalId": "dm38-007",
+      "printId": "dm38-007",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-007",
+      "faces": [
+        {
+          "name": "スター・フラッシュ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選んでタップする。\nホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある相手のクリーチャーを１体のかわりに２体まで選んでタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "atLeastOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 2,
+                "optional": true,
+                "g193Select": true,
+                "g173Targets": true,
+                "g193Tap": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-007.jpg",
+      "imageSha256": "2eae764b9efd446ef751c7e9a67b8558e6b26637e5a9117f735e5d5d75dfb3c2",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm38-007-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm38-007"
+        ],
+        "allSearchIds": [
+          "dm38-007"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "1ff80b29b7865f2814e6b36d2ac4350dbd2be8ae519e23522ec5c8abf1f0a09a",
+        "facesMatched": true,
+        "imageSha256": "2eae764b9efd446ef751c7e9a67b8558e6b26637e5a9117f735e5d5d75dfb3c2"
+      }
+    },
+    {
+      "id": "promoy16-052",
+      "name": "ジャスティ・ルミナリエ",
+      "canonicalId": "promoy16-052",
+      "printId": "promoy16-052",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-052",
+      "faces": [
+        {
+          "name": "ジャスティ・ルミナリエ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "tapped": true,
+                "filter": {
+                  "creature": true,
+                  "race": "メタリカ",
+                  "max": 8,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-052.jpg",
+      "imageSha256": "3e2687434bd9450cf5cb519cdfa421aee84922744d3c6d994d47e14a69cdf5cf",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy16-052-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allSearchIds": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "ac4333f50260b6ef414bcab14f2e7934f895ceccc6e6817e430dbe677e1ef1d8",
+        "facesMatched": true,
+        "imageSha256": "3e2687434bd9450cf5cb519cdfa421aee84922744d3c6d994d47e14a69cdf5cf"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy16-071",
+      "name": "ジャスティ・ルミナリエ",
+      "canonicalId": "promoy16-052",
+      "printId": "promoy16-071",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-071",
+      "faces": [
+        {
+          "name": "ジャスティ・ルミナリエ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "tapped": true,
+                "filter": {
+                  "creature": true,
+                  "race": "メタリカ",
+                  "max": 8,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-071.jpg",
+      "imageSha256": "9f07d67d83eb67e34c8e21adb6575aec610b9bdbd9f1d6059e9efcb853130385",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy16-071-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allSearchIds": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "f59133a38d1a29509e87d53c6be25f7f6cb0821f55a56e624a2c597e05bd1a90",
+        "facesMatched": true,
+        "imageSha256": "9f07d67d83eb67e34c8e21adb6575aec610b9bdbd9f1d6059e9efcb853130385"
+      }
+    },
+    {
+      "id": "dmrp03-013",
+      "name": "ジャスティ・ルミナリエ",
+      "canonicalId": "promoy16-052",
+      "printId": "dmrp03-013",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-013",
+      "faces": [
+        {
+          "name": "ジャスティ・ルミナリエ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "tapped": true,
+                "filter": {
+                  "creature": true,
+                  "race": "メタリカ",
+                  "max": 8,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-013.jpg",
+      "imageSha256": "43196548f83e65bf2cf7863bbed9727a09933d5714d1d9e2d050a1712f7031c7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-013-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allSearchIds": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "77acac3a4a6934ca731e6a99b7c451d8b2cb7aff8afd8d1cc1a2ca4fa23e8c6a",
+        "facesMatched": true,
+        "imageSha256": "43196548f83e65bf2cf7863bbed9727a09933d5714d1d9e2d050a1712f7031c7"
+      }
+    },
+    {
+      "id": "dmex02-027",
+      "name": "ジャスティ・ルミナリエ",
+      "canonicalId": "promoy16-052",
+      "printId": "dmex02-027",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-027",
+      "faces": [
+        {
+          "name": "ジャスティ・ルミナリエ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "tapped": true,
+                "filter": {
+                  "creature": true,
+                  "race": "メタリカ",
+                  "max": 8,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-027.jpg",
+      "imageSha256": "e9272277620b47be7b473f72f9f445c9159bfa02bdc3d636e4488e19a6179a44",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex02-027-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allSearchIds": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "662e819d558e800303922a70cffdaeae5a18a0af6de426da732c2604e62cb4bc",
+        "facesMatched": true,
+        "imageSha256": "e9272277620b47be7b473f72f9f445c9159bfa02bdc3d636e4488e19a6179a44"
+      }
+    },
+    {
+      "id": "dmbd04-012",
+      "name": "ジャスティ・ルミナリエ",
+      "canonicalId": "promoy16-052",
+      "printId": "dmbd04-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-012",
+      "faces": [
+        {
+          "name": "ジャスティ・ルミナリエ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "tapped": true,
+                "filter": {
+                  "creature": true,
+                  "race": "メタリカ",
+                  "max": 8,
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-012.jpg",
+      "imageSha256": "09207fa56433da0226304451e3130e1871ba933ff22fafe5aedc0bcac79e21c8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd04-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allSearchIds": [
+          "promoy16-052",
+          "promoy16-071",
+          "dmrp03-013",
+          "dmex02-027",
+          "dmbd04-012"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T04:26:39.223Z",
+        "sha256": "1a1492db3591bb6c3899603667967e2022d51693d89215f75b8ac1163b148a98",
+        "facesMatched": true,
+        "imageSha256": "09207fa56433da0226304451e3130e1871ba933ff22fafe5aedc0bcac79e21c8"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36160/",
+      "sha256": "33cbdf09c10eee6fa79c48c89e6dead678aaab06a0a9fd0efedd57ccd71a0a2f",
+      "checkedAt": "2026-11-28T04:26:39.223Z",
+      "reproduced": true,
+      "tests": "tests/standard1890-effects.test.mjs",
+      "reproduction": "Literal36160 actualStarFlash withEQUALshieldcounts optional0/1/2distinctcreaturestap, bothseats/encryptedrestore; lowercounts mandatoryone, compositetwoadditionalCARDsstillONEshield, actualSTusespostbreakcounts.",
+      "result": "Literal36160 actualStarFlash withEQUALshieldcounts optional0/1/2distinctcreaturestap, bothseats/encryptedrestore; lowercounts mandatoryone, compositetwoadditionalCARDsstillONEshield, actualSTusespostbreakcounts."
+    }
+  ],
+  "held": [
+    {
+      "id": "dm39-021",
+      "name": "クルトSP",
+      "reason": "Full2officialimagesreviewed, allstats/mana1 matched. StoredcompleteHTMLtextomitsH-Soul/TT/repeatedSTwherecurrentofficialHTMLandbothactualimagesincludeH-Soul. Existingdetailskeptunchanged; pincompilerrequiresbyteexactwholefaces. Needsnarrowevidencednormalizeddetailbridgeandsoulmetadata, no partialsupport/count."
+    },
+    {
+      "id": "promoy15-053",
+      "name": "スクランブル・チェンジ",
+      "reason": "All6exactprintimagesreviewed. Oldprintsstate最大5少なくしてもよい whilelatestdm26ex3-065states5少なくする; latesttextcostreductionoptionalityrequirescurrentofficialerrataclarificationbeforeonecanonicalspec. NativeNextReduction456/g1305Speedavailablebutdonotcountuntilwordingreconciled."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T04:26:39.223Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex10-015": 4,
+      "dm38-007": 4,
+      "promoy16-052": 4,
+      "promoy16-071": 4,
+      "dmrp03-013": 4,
+      "dmex02-027": 4,
+      "dmbd04-012": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmex10-015",
+      "searchSha256": "eecc3c15d8b88d05d9d33501d4a94370a6dab56e50960f51ba2a130ff0d6fcfb",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmex10-015"
+      ],
+      "exactPrints": [
+        "dmex10-015"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm38-007",
+      "searchSha256": "933915f5e745a991b48560b03be60cc389fa585e8c4fd53799fe662f3ea2d44d",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm38-007"
+      ],
+      "exactPrints": [
+        "dm38-007"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "promoy16-052",
+      "searchSha256": "a45bf0dd90aeb9bc56f9c2fe09a470475bcb247a1163b07313a15da531b42980",
+      "totalResults": 5,
+      "allSearchIds": [
+        "promoy16-052",
+        "promoy16-071",
+        "dmrp03-013",
+        "dmex02-027",
+        "dmbd04-012"
+      ],
+      "exactPrints": [
+        "promoy16-052",
+        "promoy16-071",
+        "dmrp03-013",
+        "dmex02-027",
+        "dmbd04-012"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Threefullcards/sevenofficialprintimages/allreprints/currentlimits. Zanji mandatoryminus4000 4000/5000boundary/currentturn; trueDarkSBackexactbrokenphysicalshieldoptionaldiscardwithZEROmana, oldhandnotpayment/wrongcolornegative; cost6 remainsactiveunderGenmu. Literal36160 StarFlash HolyFieldEQUAL0/1/2optional distincttargets vsbelowmandatoryONE, compositescountONEshield, realSTpostbreakstate andGenmu/noenemynegative. JustiLum independentlyoptionalLightnonEVO<=5 andstrictMOREshieldsMetallicanonevo<=8TAPPED; firstdecline/secondaccept valid, cost8/Fire/EVOexclusions, equalnegative, firstentryCIPwaitswholeSPELLresolution soeventuallatershieldadditioncannotretroenableLabyrinth; trueST/Genmu. Sixmana/sixencryptedservices preserveUIDs/IDs/formats andolderpending.",
+    "resolvedAttempts": "KurtSP prepareassert caughtstoredHTMLnormalizedtextwithoutH-SoulwhileofficialcurrenttextincludesH-Soul/TT/repeatedST. PreparefailedBEFOREwrites; excludedKurtandrecordedhold. FocusedinitialtwoCIPtimingfixturesincorrectlyexpectedfirstCIPbeforewholeSpellcontinuation; actualnativecorrectlywaitsCIPuntilwholeSpellfinished. Correctedexpectationwithoutproductchange; finalallfocusedpass.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36160/",
+        "reproduced": true,
+        "tests": "tests/standard1890-effects.test.mjs",
+        "reproduction": "Literal36160 actualStarFlash withEQUALshieldcounts optional0/1/2distinctcreaturestap, bothseats/encryptedrestore; lowercounts mandatoryone, compositetwoadditionalCARDsstillONEshield, actualSTusespostbreakcounts."
+      }
+    ],
+    "held": [
+      {
+        "id": "dm39-021",
+        "name": "クルトSP",
+        "reason": "Full2officialimagesreviewed, allstats/mana1 matched. StoredcompleteHTMLtextomitsH-Soul/TT/repeatedSTwherecurrentofficialHTMLandbothactualimagesincludeH-Soul. Existingdetailskeptunchanged; pincompilerrequiresbyteexactwholefaces. Needsnarrowevidencednormalizeddetailbridgeandsoulmetadata, no partialsupport/count."
+      },
+      {
+        "id": "promoy15-053",
+        "name": "スクランブル・チェンジ",
+        "reason": "All6exactprintimagesreviewed. Oldprintsstate最大5少なくしてもよい whilelatestdm26ex3-065states5少なくする; latesttextcostreductionoptionalityrequirescurrentofficialerrataclarificationbeforeonecanonicalspec. NativeNextReduction456/g1305Speedavailablebutdonotcountuntilwordingreconciled."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmrp13-091",
+          "dm14-088",
+          "promoy20-075",
+          "dmrp05-039",
+          "dm32-064"
+        ],
+        "reason": "Groupedfullresearchinprogress; nativegrantfight/privatehandfiltereddiscard/unpaidwatch/highcostusewatch/maxpowerpair."
+      }
+    ]
+  }
+}

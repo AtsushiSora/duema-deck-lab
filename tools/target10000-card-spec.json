@@ -31400,5 +31400,406 @@
         }
       ]
     }
+  },
+  "dmex10-015": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ザンジ変怪",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "ストライク・バック S・バック：闇（闇のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうしたら、コストを支払わずにこのクリーチャーを召喚する）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを －4000 する。（パワー０以下のクリーチャーは破壊される）",
+        "race": "デモニオ/鬼札王国",
+        "powerText": "4000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "strikeBack": true,
+      "strikeBackColor": "闇",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true
+        }
+      ]
+    }
+  },
+  "dm38-007": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "スター・フラッシュ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選んでタップする。\nホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある相手のクリーチャーを１体のかわりに２体まで選んでタップする。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "g193Select": true,
+              "g173Targets": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy16-052": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ジャスティ・ルミナリエ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy16-071": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ジャスティ・ルミナリエ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp03-013": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ジャスティ・ルミナリエ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmex02-027": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ジャスティ・ルミナリエ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmbd04-012": {
+    "phase": 1890,
+    "faces": [
+      {
+        "name": "ジャスティ・ルミナリエ",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nラビリンス：自分のシールドの数が相手より多ければ、コスト８以下の進化ではないメタリカを１体、自分の手札からバトルゾーンにタップして出してもよい。",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 5,
+            "nonEvolution": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "tapped": true,
+              "filter": {
+                "creature": true,
+                "race": "メタリカ",
+                "max": 8,
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }
