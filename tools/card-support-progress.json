@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9787,
-  "pendingNames": 2062,
-  "phase": 1860,
-  "added": 3,
+  "supportedNames": 9789,
+  "pendingNames": 2060,
+  "phase": 1861,
+  "added": 2,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -102,7 +102,7 @@
     },
     {
       "ability": "超魂",
-      "pendingNames": 22,
+      "pendingNames": 20,
       "examples": [
         {
           "id": "dm25rp1-002",
@@ -156,7 +156,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1207,
+    "クリーチャー": 1205,
     "呪文": 236,
     "G-NEOクリーチャー": 24,
     "デュエルメイト呪文": 8,
@@ -219,7 +219,7 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1545,
+    "未対応の能力文": 1543,
     "複数面・特殊カードタイプまたは情報不足": 427,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
@@ -580987,9 +580987,25 @@
           "log": "tmp/duema-target-10000/related-online-1860.log",
           "passed": 5,
           "logSha256": "0742eac9a43293d7f1f8dfc9e63140730a46c5db6cfd4a7200db921a88b34236"
+        },
+        "source-attribution-1860": {
+          "name": "focused-1860-source",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^Official oldQA35786",
+            "tests/standard1860-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 6.268,
+          "log": "tmp/duema-target-10000/focused-1860-source.log",
+          "passed": 10,
+          "logSha256": "fa2ab7a46e3761494898b9cf45af509b93499dc26e8937af0b6a57bdedb93504"
         }
       },
-      "totalTestsPassed": 202,
+      "totalTestsPassed": 212,
       "manifest": "tools/support-phase-1860.json",
       "supported": 9787,
       "pending": 2062,
@@ -581048,33 +581064,223 @@
           "reason": "Initial focused77pass4fixturefail: Vishu link alongsideAna schedules independent effects and first requires nativeeffectOrder, fixture erroneouslyassumedimmediateVishudiscard. Choose actualVishusourceeffect first thenresolveboth; correctedfull81pass. Added explicitblockdecline/ignoredunit cases. Review fixed abilitysource attribution by reading rawGodpart ratherthan rootcombinedcard carryingAju boolean, so sourcealwaysactualAju (10affectedattack/blockfollowups passed); prior81complete fullabilities stillcovered. No repeatedknownlonggroup/fullsuite. Existing God save format/IDs unchanged."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "64d2affa1d9fde1d3f82735b95bd972750b111d8"
+    },
+    {
+      "phase": 1861,
+      "checkedAt": "2026-11-28T00:42:18.681Z",
+      "baseline": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9787,
+      "currentNames": 9789,
+      "remainingNames": 211,
+      "added": [
+        {
+          "id": "dm25rp3-051",
+          "name": "黒哀剣 シンナグニル"
+        },
+        {
+          "id": "dm25rp3-013",
+          "name": "黒喜剣 エルナグニル"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1861,
+        "baseline": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
+        "originalDefinitionsUnchanged": 9787,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9789,
+        "uniqueIds": 9789,
+        "added": 2,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9787,
+        "existingImageReferenceRowsUnchanged": 12271,
+        "officialPrintsReviewed": 3,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1861": {
+          "name": "official-1861",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1861.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.305,
+          "log": "tmp/duema-target-10000/official-1861.log",
+          "passed": 0,
+          "logSha256": "ea51a4b21f31e2883393a136e355b03d796204a45456168d45685fd61a0f8f66"
+        },
+        "focused-1861-final": {
+          "name": "focused-1861-final",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1861-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 2.622,
+          "log": "tmp/duema-target-10000/focused-1861-final.log",
+          "passed": 69,
+          "logSha256": "1b9719df774d1e065e0b43e092eb1ca000f8f5df43835c73ddb00e8b353ee1bc"
+        },
+        "related-1861": {
+          "name": "related-1861",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1861.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.881,
+          "log": "tmp/duema-target-10000/related-1861.log",
+          "passed": 93,
+          "logSha256": "b8b6d74ebbd608abe579844c93a3706772e5ed4b7a53714c9b41b81c541d4805"
+        },
+        "check-1861": {
+          "name": "check-1861",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.32,
+          "log": "tmp/duema-target-10000/check-1861.log",
+          "passed": 0,
+          "logSha256": "63c4e37211bed44b70867a9e08e8726ff04ba4de9ef8c7fb071128a7ba512791"
+        },
+        "audit-1861": {
+          "name": "audit-1861",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.115,
+          "log": "tmp/duema-target-10000/audit-1861.log",
+          "passed": 0,
+          "logSha256": "d13a195b51316c087395bd08dec2545d19d3e34c465f815b16ab56646cc54901"
+        },
+        "invariants-1861": {
+          "name": "invariants-1861",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1861"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.878,
+          "log": "tmp/duema-target-10000/invariants-1861.log",
+          "passed": 0,
+          "logSha256": "6bf6156028de79350745a98783020261c3f5c0400bb2fe8b7d16822fa3b56b0b"
+        },
+        "related-online-1861": {
+          "name": "related-online-1861",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.602,
+          "log": "tmp/duema-target-10000/related-online-1861.log",
+          "passed": 5,
+          "logSha256": "0f0e615d936e2c94450e58e831a750be98fa203b503e6ba93ab16c966645216b"
+        }
+      },
+      "totalTestsPassed": 167,
+      "manifest": "tools/support-phase-1861.json",
+      "supported": 9789,
+      "pending": 2060,
+      "engineVersion": "0.602.385",
+      "held": [
+        {
+          "id": "dm26ex2-SPR003",
+          "name": "邪眼魔凰デス・フェニックス",
+          "reason": "Official3prints/QA49096 downloaded, image visual review pending. Literal AllDelete interaction requires full actual邪眼左神M・ロマノフ/邪眼破壊神R・R・R leftlink and physicalevolutionstack move, not substituteGods. Need full sharedGodcast/remove reproduction before count; no partial."
+        },
+        {
+          "id": "dm25rp4-003",
+          "name": "邪心タル悪魔神ノ禍魂",
+          "reason": "Official3prints/QAs47935/47934 downloaded, images pending. Full inheritedSoul icon and actualNightmare-seed-to-evolution then noattachment, and actualVrid/Shirogashira/SwordQA47934 needfulldependencies/repro. No partial implementation."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "id": "dm25rp1-022",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-OR1",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-041",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        }
+      ],
+      "verificationScope": "Two complete new canonical swords/one exactalias, all3fullofficialimages/completeabilities/basicstats/mana1/limits/allsearch verified; no linked QA on these two. Pureexistingnativeoperations, no sharedruntimechangeexceptversion. Shinnagnir optional any-owner element<=4 toactualOWNERmana (realcreature/seed/field/gear), canselectself/declaim, highcostexcluded, paid3mana. Ernagnir private top2 optionalrevealed spell OR actualNEOcreatureincludingtwincards withspellface, ordinaryevolution/vanilla rejected, allremainingorderedbottom, declines/noeligible/all4deckcards conserved, owner-onlyonlinechoice withJSONresume. Both own non-evolution bodies and inherited actualpaidNEO host getmandatoryallundergraveleave replacement, allphysicalrecursiveunderlayersonce, grave/hand/mana/deck/shields destinations, no optionalallowLeave, originalhostUID/incarnationretained, secondleaveafterunderremoved reallyleaves, ignoredhost/facedownsourceexcluded. Prefixentryeffectnotinherited. Focused69includes4actualencryptedtwoseatbodypaid/nativechoice andfullUIDconservation, related1773/556/791/200 93pass/online5/check/audit9789/invariants pass. Fullsuite/olderprotectedpending unchanged; no push/Pages/Netlify/automation.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1861",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1861-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 2.626,
+          "log": "tmp/duema-target-10000/focused-1861.log",
+          "reason": "New fixture corrections only: owner/opponent account projection ternary was accidentally reversed, correctedactualhost0/guest1 mapping. With zeroeligiblelookcards engine correctly skips hand-pick stage and immediately offers ordering ALLunpickedcards, so fixture mustnotinterpret reorderoptions aseligiblehandcandidates. Final69passed. Prior1860 checkpoint now explicitly includes successful10-case actual-Aju source-attributionfollowup alongside81full+116related+5online (212executions); finalizerextra-validation resultkey collision corrected in ignoredhelper so futurelogaggregation cannot overwrite samekey."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1860,
-    "nextPhase": 1861,
+    "lastVerifiedPhase": 1861,
+    "nextPhase": 1862,
     "workInProgress": null,
     "nextCandidates": [
       {
-        "id": "dm25rp3-051",
-        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-      },
-      {
-        "id": "dm25rp3-013",
-        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-      },
-      {
-        "id": "dm26ex2-SPR003",
-        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-      },
-      {
-        "id": "dm25rp4-003",
-        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-      },
-      {
         "id": "dm25rp1-022",
-        "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+        "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+      },
+      {
+        "id": "dm25rp1-OR1",
+        "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+      },
+      {
+        "id": "dm25rp1-041",
+        "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
       }
     ],
     "steps": [
@@ -581988,11 +582194,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1860,
-      "baseline": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
-      "supportedNames": 9787,
-      "artifact": "tools/target10000-registration-checkpoint-1860.json",
-      "checkedAt": "2026-11-28T00:37:03.973Z"
+      "phase": 1861,
+      "baseline": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
+      "supportedNames": 9789,
+      "artifact": "tools/target10000-registration-checkpoint-1861.json",
+      "checkedAt": "2026-11-28T00:42:18.681Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -585050,8 +585256,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9787,
-      "remaining": 213,
+      "currentNames": 9789,
+      "remaining": 211,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -585059,31 +585265,23 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1860,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1860.json",
+      "lastPhase": 1861,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1861.json",
       "nextCandidates": [
         {
-          "id": "dm25rp3-051",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm25rp3-013",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm26ex2-SPR003",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm25rp4-003",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
           "id": "dm25rp1-022",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-OR1",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-041",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
         }
       ],
-      "resumeProcedure": "Continue9787 remaining213; nextSuperSoulX5officialresearch downloadedimagespending. Sva heldnoimplementationphysical-departure-losspriority. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9789 remaining211. NextAkane/Supreme/Cocco groupedofficialresearch, fullimagesreview+fullinheritance/per-sourceonce/literalQA beforeadd. PreserveheldDeathPhoenix/seed/Sva/olderpending/fullsuite/baselineblocker. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -585317,7 +585515,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "lastVerifiedCommit": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -585328,7 +585526,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "lastVerifiedCodeCommit": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -586502,8 +586700,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9787,
-      "remaining": 213,
+      "currentNames": 9789,
+      "remaining": 211,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -586511,31 +586709,23 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1860,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1860.json",
+      "lastPhase": 1861,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1861.json",
       "nextCandidates": [
         {
-          "id": "dm25rp3-051",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm25rp3-013",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm26ex2-SPR003",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
-          "id": "dm25rp4-003",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
-        },
-        {
           "id": "dm25rp1-022",
-          "reason": "Next grouped SuperSoulX official allsearch/QA downloaded, images pending review. Fullnative reused first two all-under-grave; exact literal QA dependencies and inherited source-once permissions for remaining require verification before count."
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-OR1",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
+        },
+        {
+          "id": "dm25rp1-041",
+          "reason": "Next grouped SuperSoulX mana-once/evolution literalQA46528 and battle-first-win. Akane full2prints downloaded, Supreme/Cocco newofficialresearch in progress; all images needreview. No implementation yet."
         }
       ],
-      "resumeProcedure": "Continue9787 remaining213; nextSuperSoulX5officialresearch downloadedimagespending. Sva heldnoimplementationphysical-departure-losspriority. Preserveolderholds/registeredliteralQA pending/baselineblocker/fullsuite. No push/Pages/Netlify/automation.",
+      "resumeProcedure": "Continue9789 remaining211. NextAkane/Supreme/Cocco groupedofficialresearch, fullimagesreview+fullinheritance/per-sourceonce/literalQA beforeadd. PreserveheldDeathPhoenix/seed/Sva/olderpending/fullsuite/baselineblocker. No push/Pages/Netlify/automation.",
       "heldCandidates": [
         {
           "id": "promoy19-065",
@@ -586769,7 +586959,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "lastVerifiedCommit": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -586780,7 +586970,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "ef4c1537adabad1e064cadcd7a3f89291794c7cd",
+      "lastVerifiedCodeCommit": "64d2affa1d9fde1d3f82735b95bd972750b111d8",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -597137,6 +597327,596 @@
           "dmc55-005"
         ],
         "completedManifest": "tools/support-phase-1860.json"
+      },
+      {
+        "phase": 1861,
+        "research": "tmp/duema-target-10000/research-dm25rp3-051.json",
+        "status": "2nativeimplemented-verified-otherfullQAdependenciesresearch-only",
+        "cards": [
+          {
+            "id": "dm25rp3-051",
+            "name": "黒哀剣 シンナグニル",
+            "searchSha256": "7bf9566367487a40fbb1cc8fa7d7f2c54d9d85e1f36cc5ea56fb3af15a222eeb",
+            "searchIds": [
+              "dm25rp3-051"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm25rp3-051",
+                "name": "黒哀剣 シンナグニル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-051",
+                "faces": [
+                  {
+                    "name": "黒哀剣 シンナグニル",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 3,
+                    "costText": "3",
+                    "abilityText": "このクリーチャーが出た時、コスト４以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+                    "race": "マスターズ・レガシー/フュージョナー",
+                    "powerText": "3000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp3-051",
+                "printedManaValue": 1,
+                "htmlSha256": "654e909ff42fd2a58b88c70d3f770d6ca5a8b27b559a4fc275ef5fa7c6ffba5f",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-051.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp3-051-0.jpg",
+                    "sha256": "e556b3dc700f382582f35f661be97be7c29370d743ebaa469ffbdd64fb920175"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm25rp3-013",
+            "name": "黒喜剣 エルナグニル",
+            "searchSha256": "49509bb234f6bcb16ac22f1f84d913650281d1019faf752448272484e8ba8f23",
+            "searchIds": [
+              "dm25ex3-004",
+              "dm25rp3-013"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm25rp3-013",
+                "name": "黒喜剣 エルナグニル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-013",
+                "faces": [
+                  {
+                    "name": "黒喜剣 エルナグニル",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中から呪文またはNEOクリーチャーを１枚表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+                    "race": "マスターズ・レガシー/フュージョナー",
+                    "powerText": "2000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp3-013",
+                "printedManaValue": 1,
+                "htmlSha256": "41cee074995bcc904f0a8aafb4257f36483c8815c74282788a14b8ada1b2dcfe",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-013.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp3-013-0.jpg",
+                    "sha256": "86d660ea0e3d2c06af18280dd389a88ebc03aa2a586d5bf86701ef0a3b7c0ee0"
+                  }
+                ],
+                "qa": []
+              },
+              {
+                "id": "dm25ex3-004",
+                "name": "黒喜剣 エルナグニル",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-004",
+                "faces": [
+                  {
+                    "name": "黒喜剣 エルナグニル",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "光",
+                    "civilizations": [
+                      "光"
+                    ],
+                    "cost": 2,
+                    "costText": "2",
+                    "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中から呪文またはNEOクリーチャーを１枚表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+                    "race": "マスターズ・レガシー/フュージョナー",
+                    "powerText": "2000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp3-013",
+                "printedManaValue": 1,
+                "htmlSha256": "5f826eeb53af716c6ed062b8e25c08015e734e9cb76628a70c7c77c66eba8b09",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-004.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex3-004-0.jpg",
+                    "sha256": "c1aba5511349bd12835113cceebecfe7808f27673991e88764dfee0bff088089"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": []
+          },
+          {
+            "id": "dm26ex2-SPR003",
+            "name": "邪眼魔凰デス・フェニックス",
+            "searchSha256": "42b966c79a8391a73bd56b1307a8f94566dc2a800e0e684e204dfb8ba9aa8efc",
+            "searchIds": [
+              "dm26ex2-SPRSEC003",
+              "dm26ex2-SPRSEC003CHO",
+              "dm26ex2-SPR003"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm26ex2-SPR003",
+                "name": "邪眼魔凰デス・フェニックス",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-SPR003",
+                "faces": [
+                  {
+                    "name": "邪眼魔凰デス・フェニックス",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水/闇/火",
+                    "civilizations": [
+                      "水",
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーよりコストが小さい呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+                    "race": "ゴッド・ガルド/フェニックス/ドラゴン・ゾンビ/フュージョナー",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm26ex2-SPR003",
+                "printedManaValue": 1,
+                "htmlSha256": "c07bd3842fbfd8e9643cc43e02345ba3751932d1ea161a65c7e1c9636142ae07",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-SPR003.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26ex2-SPR003-0.jpg",
+                    "sha256": "9be48219e5a49030daf92b7a4bf5c4913a74031d3135c385b4983d7e2e116329"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/49096/"
+                ]
+              },
+              {
+                "id": "dm26ex2-SPRSEC003",
+                "name": "邪眼魔凰デス・フェニックス",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-SPRSEC003",
+                "faces": [
+                  {
+                    "name": "邪眼魔凰デス・フェニックス",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水/闇/火",
+                    "civilizations": [
+                      "水",
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーよりコストが小さい呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+                    "race": "ゴッド・ガルド/フェニックス/ドラゴン・ゾンビ/フュージョナー",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm26ex2-SPR003",
+                "printedManaValue": 1,
+                "htmlSha256": "87d73f347547d7f5259d735a04ee8b45bcdafcf6c41f9756fa7230d50ca95076",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-SPRSEC003.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26ex2-SPRSEC003-0.jpg",
+                    "sha256": "c68e287e2ec223a97a1c6d58b73df83400fbe08014ca3812137f398a080d0fba"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/49096/"
+                ]
+              },
+              {
+                "id": "dm26ex2-SPRSEC003CHO",
+                "name": "邪眼魔凰デス・フェニックス",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-SPRSEC003CHO",
+                "faces": [
+                  {
+                    "name": "邪眼魔凰デス・フェニックス",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "水/闇/火",
+                    "civilizations": [
+                      "水",
+                      "闇",
+                      "火"
+                    ],
+                    "cost": 7,
+                    "costText": "7",
+                    "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーよりコストが小さい呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+                    "race": "ゴッド・ガルド/フェニックス/ドラゴン・ゾンビ/フュージョナー",
+                    "powerText": "8000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm26ex2-SPR003",
+                "printedManaValue": 1,
+                "htmlSha256": "4c7a7569293675fe04797f14ad4324983db40cc078c3c2401c8472aa29107515",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-SPRSEC003CHO.jpg",
+                    "file": "tmp/duema-target-10000/research/dm26ex2-SPRSEC003CHO-0.jpg",
+                    "sha256": "6e2105896b4596c252367959885e95a67957f8ee74e4e65d520ce2c680c50236"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/49096/"
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/49096/",
+                "sha256": "52e237ee7dc63d8b9c9d5aa68a18db0d343b98b8231bfa23f0249954f5e17f3d",
+                "body": "よくある質問 Q２体でリンクしている自分の《邪眼左神M・ロマノフ》《邪眼破壊神R・R・R》がバトルゾーンにいる状況です。 《邪眼破壊神R・R・R》の下には進化元として《邪眼魔凰デス・フェニックス》が置かれています。 自分が《オールデリート》を唱えた際、処理はどうなりますか？ A《邪眼左神M・ロマノフ》か《邪眼破壊神R・R・R》、いずれか片方のみを選び、他のゾーンのカードと一緒に山札に加えてシャッフルします。選ばなかった方のゴッドはバトルゾーンに残ります。 《邪眼破壊神R・R・R》を山札に加える場合、その進化元である《邪眼魔凰デス・フェニックス》も一緒に山札に加えます。 リンクしているゴッドが離れる際、状況起因処理によってそのうちの１枚のみが離れます。(離れるゴッドの下に進化元などが置かれていたら、それも一緒に離れます) 《オールデリート》などの効果で、ゴッドの構成カード全体が離れる効果を受けている場合も同様です。 （総合ルール 804.7.） 一覧へ戻る 関連する質問 自分のリンクしている《邪眼左神M・ロマノフ》《邪眼破壊神R・R・R》と《極限龍神ヘヴィ》《極限龍神メタル》がバトルゾーンにいる状況です。 相手の《邪眼左神エンドレス》の「出た時」の能力で、《邪眼左神M・ロマノフ》《邪眼破壊神R・R・R》を《極限龍神ヘヴィ》《極限龍神メタル》の下に置く場合、処理はどうなりますか？ 2026.7.17 自分のリンクしている《邪眼左神M・ロマノフ》《邪眼破壊神R・R・R》《邪眼右神C・ロマノフ》がバトルゾーンにいる状況です。 《オールデリート》を唱えた際、処理はどうなりますか？ 2026.7.17 自分のリンクしている《邪眼左神M・ロマノフ》《邪眼神オール》《邪眼右神C・ロマノフ》がバトルゾーンにいる状況です。 自分が《邪眼破壊神R・R・R》を出す際、《邪眼左神M・ロマノフ》《邪眼神オール》《邪眼右神C・ロマノフ》のすべてのリンクを外して、《邪眼左神M・ロマノフ》《邪眼破壊神R・R・R》《邪眼右神C・ロマノフ》へとリンクしなおせますか？ 2026.7.17 自分の「EXライフ」シールドのない《頂上混成 BAKUONSOOO8th》がバトルゾーンにいる状況です。 相手は《オールデリート》を唱えて、相手のシールドが５つ離れました。 この時、《頂上混成 BAKUONSOOO8th》の「カードが相手のシールドゾーンを離れた時」の能力で、５回GR召喚できますか？ 2025.5.19 《ラッキー・ダーツ》を唱えて、自分はシールドから《オールデリート》を唱えました。この《ラッキー・ダーツ》は山札に加えてシャフルしますか？ 2021.5.21 自分の《Wave All ウェイボール》がバトルゾーンにいる状況です。自分は《オールデリート》を唱えました。この時、《Wave All ウェイボール》の「唱えた時」の能力はトリガーしますか？ 2021.2.5 カードの種類 文明 レアリティ パワー コスト マナ 種族 イラストレーター 特殊能力 フレーバー 商品情報 このカードのよくある質問 Twitter LINE share LINEポスト LINELINEで送る PAGE TOP &copy;ANYCOLOR, Inc. TM and &copy;2026 Wizards of the Coast/Shogakukan/WHC/ShoPro &copy;TOMY FOLLOW US ! タカラトミー公式YouTube タカラトミー公式X タカラトミー公式Instagram タカラトミー公式Facebook タカラトミー公式LINE タカラトミー公式LinkedIn タカラトミー公式SNS一覧 キミのだいすき、みつかる タカラトミーモール公式ショッピングサイト トップページ 商品情報 商品情報トップ 商品リリース 商品一覧 新商品一覧 シーズンサイト おもちゃショー2024 クリスマスのおもちゃ2024 ブランドからさがす ブランドからさがすトップ トミカ プラレール"
+              }
+            ]
+          },
+          {
+            "id": "dm25rp4-003",
+            "name": "邪心タル悪魔神ノ禍魂",
+            "searchSha256": "c744954b75cbc1fbad67e19089805487cfc7e7a26101428622be4e2540e16780",
+            "searchIds": [
+              "dm25rp4-ChoSec08",
+              "dm25ex3-rp4003",
+              "dm25rp4-003"
+            ],
+            "excluded": [],
+            "prints": [
+              {
+                "id": "dm25rp4-003",
+                "name": "邪心タル悪魔神ノ禍魂",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-003",
+                "faces": [
+                  {
+                    "name": "邪心タル悪魔神ノ禍魂",
+                    "typeText": "タマシード",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手の手札を見て１枚選び、捨てさせる。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n【魂・ソウル】\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+                    "race": "デーモン・コマンド/フュージョナー",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp4-003",
+                "printedManaValue": 1,
+                "htmlSha256": "5a059f107de6466b983f59aa1502d8960c061f1e55e32808cb6959dba3493583",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-003.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp4-003-0.jpg",
+                    "sha256": "95db8ceb4f07ac869dd1910a9d6a2ac7d9af16f1fb51944c1acc7979f16438a6"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/47935/"
+                ]
+              },
+              {
+                "id": "dm25rp4-ChoSec08",
+                "name": "邪心タル悪魔神ノ禍魂",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-ChoSec08",
+                "faces": [
+                  {
+                    "name": "邪心タル悪魔神ノ禍魂",
+                    "typeText": "タマシード",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "シンカライズ\nこのタマシードが出た時、相手の手札を見て１枚選び、捨てさせる。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n【魂・ソウル】\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+                    "race": "デーモン・コマンド/フュージョナー",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp4-003",
+                "printedManaValue": 1,
+                "htmlSha256": "775d2a35468539a9615249574b86693e145cdb7e9f0a47f5bb6d1cdabffca5d1",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-ChoSec08.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp4-ChoSec08-0.jpg",
+                    "sha256": "8395ae433bd6f14a47b0a949398179c0e781f54ea4716a4df99f7965d172f8cc"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/47934/"
+                ]
+              },
+              {
+                "id": "dm25ex3-rp4003",
+                "name": "邪心タル悪魔神ノ禍魂",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp4003",
+                "faces": [
+                  {
+                    "name": "邪心タル悪魔神ノ禍魂",
+                    "typeText": "タマシード",
+                    "civilizationText": "闇",
+                    "civilizations": [
+                      "闇"
+                    ],
+                    "cost": 4,
+                    "costText": "4",
+                    "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手の手札を見て１枚選び、捨てさせる。その後、このタマシードを自分のNEOクリーチャーまたは進化クリーチャー１体の下に置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n【魂・ソウル】\nこのクリーチャーが攻撃する時、カードを１枚、自分の墓地から手札に戻してもよい。",
+                    "race": "デーモン・コマンド/フュージョナー",
+                    "powerText": "",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp4-003",
+                "printedManaValue": 1,
+                "htmlSha256": "e380786320d302b91516953924d7cdf03bb5be001cec6f74c5adace76751836e",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp4003.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex3-rp4003-0.jpg",
+                    "sha256": "ef18a0dd6c141eb51b02381258793cfb364323b98a4ff7584c9ca642d216eea3"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47935/",
+                "sha256": "ad5f90487767bf52e12d9cd727f4033ee0858e4d7c8ab1a1c14c4120834de63f",
+                "body": "よくある質問 Q《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」の能力で山札の下から墓地に置いたのが《邪心タル悪魔神ノ禍魂》で、それを出した後上に《悪夢神バロム・ナイトメア》を進化しました。 その後、《邪心タル悪魔神ノ禍魂》の「出た時」の能力を解決した際、進化した《悪夢神バロム・ナイトメア》を自分の他のNEOクリーチャーや進化クリーチャーの下に置けますか？ 類似例：《凶乱タル月光ノ夜鏡》など Aいいえ、置けません。 進化してタマシードではなくなっているため効果を処理できません。 一覧へ戻る 関連する質問 《暗雲タル漆黒ノ魔剣》と《大地竜機シロガシラ・ジュカイ》が下に置かれている自分の《究極の虚 ジャシン＝ヴリドガルド》は、３つの異なるソウルを持っているものとして扱われますか？ 2025.12.19 《凶乱タル月光ノ夜鏡》の「自分のターン中、デーモン・コマンド・カードを１枚、自分のマナゾーンから実行してもよい」の効果で、自分はマナゾーンから《混沌の獅子デスライガー / カオス・チャージャー》の呪文側を唱えられますか？ 2025.12.19 自分の、封印が付いた《悪夢神バロム・ナイトメア》がバトルゾーンにいて、シールドが１つもないプレイヤーがいる状況です。 相手のクリーチャーが自分を攻撃する時、自分は手札から２体目の《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」を使い、山札の一番下のカードを墓地に置いたところ、それが《雷撃の冥将クーゼン / ダーク・ライフ》でした。 自分は墓地から≪雷撃の冥将クーゼン≫を出しましたが、バトルゾーンの《悪夢神バロム・ナイトメア》の封印を外す前に、手札から《悪夢神バロム・ナイトメア》を≪雷撃の冥将クーゼン≫の上に置けますか？ 2025.8.8 シールドが１つもないプレイヤーがいる状況です。 相手の《龍后凰翔クイーン・ルピア》が自分を攻撃した際、その「攻撃する時」の能力で、攻撃中の《龍后凰翔クイーン・ルピア》自身が破壊され、「ファイアー・バード・メクレイド８」によって《雷炎翔鎧バルピアレスク》が出ました。 この攻撃中に自分は《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」を使えますか？ 類似例：《裏斬隠 カタビラ》の「ニンジャ・ストライク ８」 類似例：《ボルシャック・ドギラゴン》の「革命０トリガー」 2025.6.20 自分のターン中、《貴布人 テブルカッケ＝エディ》の「自分のターンに一度、クリーチャーを１体、自分の墓地から召喚してもよい」で、その《貴布人 テブルカッケ＝エディ》の上に、墓地から《至高の魂 アビスベル＝ジャシン帝》を進化して召喚しました。 同じターン中に、《至高の魂 アビスベル＝ジャシン帝》が「超魂X」で得た《貴布人 テブルカッケ＝エディ》の能力をもう一度使い、さらに墓地からクリーチャーを１体召喚できますか？ 類似例：《ソウルスカーレット アカネ》の「超魂X」の能力、《凶乱タル月光ノ夜鏡》 2025.4.18 相手のシールドが１つもない状況です。相手のクリーチャーが自分を攻撃する時、自分は《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」の能力の使用宣言をしました。 テキストには「自分の山札の一番下のカードを墓地に置いてもよい」とありますが、一度使用を宣言した後、実際に解決する時にやっぱり使わないこともできますか？ 2024.10.18 進化ドリーム・クリーチャーを《進化設計図》や《エボリューション・エッグ》の効果で手札に加えられますか？ 参照：《神歌の悪夢 ナイトメア・キリコ》《悪夢神バロム・ナイトメア》 2024.10.18 自分の《神歌の悪夢 ナイトメア・キリコ》の「出た時」の能力で山札の上６枚を見たところ、その中に２枚目の《神歌の悪夢 ナイトメア・キリコ》と《エンペラー・キリコ》がありました。 《神歌の悪夢 ナイトメア・キリコ》と《エンペラー・キリコ》を山札から出すクリーチャーとして指定し、先に《エンペラー・キリコ》をバトルゾ"
+              },
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/47934/",
+                "sha256": "3803eee5fefdaf78662c2b88e7ce2832ce05584df8a0b066b24a34450d9318ef",
+                "body": "よくある質問 Q《暗雲タル漆黒ノ魔剣》と《大地竜機シロガシラ・ジュカイ》が下に置かれている自分の《究極の虚 ジャシン＝ヴリドガルド》は、３つの異なるソウルを持っているものとして扱われますか？ Aいいえ、この《究極の虚 ジャシン＝ヴリドガルド》が持っているのは【剣・ソウル】だけです。 通常、進化元のクリーチャーが持つソウルアイコンは進化クリーチャーに引き継がれません。 《暗雲タル漆黒ノ魔剣》や《邪心タル悪魔神ノ禍魂》、《凶乱タル月光ノ夜鏡》のように、超魂Xにソウルアイコンが書かれている場合のみ、進化クリーチャーはそのソウルアイコンを得ます。 （総合ルール 818.1c） 一覧へ戻る 関連する質問 自分の、下にカードが２枚置かれている《究極の虚 ジャシン＝ヴリドガルド》２体がバトルゾーンにいる状況です。 相手の《SSS級侵略 カリスマゾーン》の「出た時」の能力で、自分の《究極の虚 ジャシン＝ヴリドガルド》２体をシャッフルして山札の下に置く際、「G-NEO進化」の置換効果を適用して進化元のカード２枚ずつの合計４枚がかわりに山札の下に置かれますが、どういう風に山札の下に戻しますか？ 2026.7.17 《不明な不透明 メモッタ》の「召喚によって出た時」の能力で、バトルゾーンにいる《デンジャラス=トットロ》の上に、封印が付いた状態で《究極の虚 ジャシン＝ヴリドガルド》を重ねました。 この時、進化元になった《デンジャラス=トットロ》の「進化元になる時」の能力はトリガーしますか？ 類似例：《王来英雄 モモキングRX》の「シンカパワー」 2026.6.12 《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」の能力で山札の下から墓地に置いたのが《邪心タル悪魔神ノ禍魂》で、それを出した後上に《悪夢神バロム・ナイトメア》を進化しました。 その後、《邪心タル悪魔神ノ禍魂》の「出た時」の能力を解決した際、進化した《悪夢神バロム・ナイトメア》を自分の他のNEOクリーチャーや進化クリーチャーの下に置けますか？ 類似例：《凶乱タル月光ノ夜鏡》など 2025.12.19 《凶乱タル月光ノ夜鏡》の「自分のターン中、デーモン・コマンド・カードを１枚、自分のマナゾーンから実行してもよい」の効果で、自分はマナゾーンから《混沌の獅子デスライガー / カオス・チャージャー》の呪文側を唱えられますか？ 2025.12.19 自分の《究極の虚 ジャシン＝ヴリドガルド》と、進化クリーチャーがバトルゾーンにいる状況です。 自分の進化クリーチャーが破壊されて進化元ごと墓地に置かれた場合、《究極の虚 ジャシン＝ヴリドガルド》の「カードが自分のクリーチャーの下を離れた時」の能力は使えますか？ 2025.6.20 自分の《究極の虚 ジャシン＝ヴリドガルド》の下にカードが１枚ある状況です。 相手のカードの効果で、この《究極の虚 ジャシン＝ヴリドガルド》のパワーが０になって破壊されたのですが、この時「カードが自分のクリーチャーの下を離れた時」の能力は使えますか？ 2025.6.20 自分の《究極の虚 ジャシン＝ヴリドガルド》の下にカードが２枚ある状況です。 この《究極の虚 ジャシン＝ヴリドガルド》がバトルゾーンを離れる際、かわりに「G-NEO進化」の置換効果を適用して、その下のカード２枚が離れました。 この時「カードが自分のクリーチャーの下を離れた時」の能力は２回使えますか？ 2025.6.20 自分のターン中、《貴布人 テブルカッケ＝エディ》の「自分のターンに一度、クリーチャーを１体、自分の墓地から召喚してもよい」で、その《貴布人 テブルカッケ＝エディ》の上に、墓地から《至高の魂 アビスベル＝ジャシン帝》を進化して召喚しました。 同じターン中に、《至高の魂 アビスベル＝ジャシン帝》が「超魂X」で得た《貴布人 テブルカッケ＝エディ》の能力をもう一度使い、さらに墓地からクリーチャーを１体召喚できますか？ 類似例：《ソウルスカーレット アカネ》の「超魂X」の能力、《凶乱タル月光ノ夜鏡》 202"
+              }
+            ]
+          },
+          {
+            "id": "dm25rp1-022",
+            "name": "ソウルスカーレット アカネ",
+            "searchSha256": "286ffcfd9c6fc3640db049d5f67e404eff80e0d720cc94c1c289f42b8fbb3163",
+            "searchIds": [
+              "dm25ex3-024",
+              "dm25rp1-022",
+              "dm26ex1-SECN021",
+              "dm26ex1-N021",
+              "dm26rp1-SP002",
+              "dm23rp1-S8",
+              "dm23rp1-10B",
+              "dm23rp1-8A",
+              "dm26sd1-q002F",
+              "dm23rp3-007",
+              "dm23rp3-13B",
+              "dm23rp3-11A",
+              "dm26sd1-q008",
+              "promoy25-120",
+              "dm25ex3-057",
+              "dm25rp4-050",
+              "dm24rp2-Sec16",
+              "dm24rp2-024",
+              "dm24ex3-036",
+              "dm24rp4-021",
+              "dm26sd1-q010"
+            ],
+            "excluded": [
+              {
+                "id": "dm26ex1-SECN021",
+                "name": "チアスイート アカネ / 「ファーーー！甘い甘い!!」"
+              },
+              {
+                "id": "dm26ex1-N021",
+                "name": "チアスイート アカネ / 「ファーーー！甘い甘い!!」"
+              },
+              {
+                "id": "dm26rp1-SP002",
+                "name": "チアスカーレット アカネ"
+              },
+              {
+                "id": "dm23rp1-S8",
+                "name": "チアスカーレット アカネ"
+              },
+              {
+                "id": "dm23rp1-10B",
+                "name": "チアスカーレット アカネ"
+              },
+              {
+                "id": "dm23rp1-8A",
+                "name": "チアスカーレット アカネ"
+              },
+              {
+                "id": "dm26sd1-q002F",
+                "name": "チアスカーレット アカネ"
+              },
+              {
+                "id": "dm23rp3-007",
+                "name": "チアスペース アカネ"
+              },
+              {
+                "id": "dm23rp3-13B",
+                "name": "チアスペース アカネ"
+              },
+              {
+                "id": "dm23rp3-11A",
+                "name": "チアスペース アカネ"
+              },
+              {
+                "id": "dm26sd1-q008",
+                "name": "チアスペース アカネ"
+              },
+              {
+                "id": "promoy25-120",
+                "name": "大集合！アカネ&アサギ&コハク"
+              },
+              {
+                "id": "dm25ex3-057",
+                "name": "大集合！アカネ&アサギ&コハク"
+              },
+              {
+                "id": "dm25rp4-050",
+                "name": "大集合！アカネ&アサギ&コハク"
+              },
+              {
+                "id": "dm24rp2-Sec16",
+                "name": "森翠月 アカネ"
+              },
+              {
+                "id": "dm24rp2-024",
+                "name": "森翠月 アカネ"
+              },
+              {
+                "id": "dm24ex3-036",
+                "name": "爆翠月 アカネ"
+              },
+              {
+                "id": "dm24rp4-021",
+                "name": "爆翠月 アカネ"
+              },
+              {
+                "id": "dm26sd1-q010",
+                "name": "爆翠月 アカネ"
+              }
+            ],
+            "prints": [
+              {
+                "id": "dm25rp1-022",
+                "name": "ソウルスカーレット アカネ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-022",
+                "faces": [
+                  {
+                    "name": "ソウルスカーレット アカネ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主のマナゾーンに置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンに一度、クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+                    "race": "ジャイアント・スノーフェアリー/フュージョナー",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp1-022",
+                "printedManaValue": 1,
+                "htmlSha256": "8b0207351d8f89a3a4df24a196c6fb0376a5b4f4b1de7d29e8d5c3e6a3aa76ba",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-022.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25rp1-022-0.jpg",
+                    "sha256": "05b2fd388d384160a12ee8547f11c139bd13870fde9aac5fdcb8ef324423798c"
+                  }
+                ],
+                "qa": [
+                  "https://dm.takaratomy.co.jp/rule/qa/46528/"
+                ]
+              },
+              {
+                "id": "dm25ex3-024",
+                "name": "ソウルスカーレット アカネ",
+                "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-024",
+                "faces": [
+                  {
+                    "name": "ソウルスカーレット アカネ",
+                    "typeText": "クリーチャー",
+                    "civilizationText": "自然",
+                    "civilizations": [
+                      "自然"
+                    ],
+                    "cost": 5,
+                    "costText": "5",
+                    "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主のマナゾーンに置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンに１度、クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+                    "race": "ジャイアント・スノーフェアリー/フュージョナー",
+                    "powerText": "5000",
+                    "missingFields": []
+                  }
+                ],
+                "status": "complete",
+                "parserVersion": 2,
+                "canonicalId": "dm25rp1-022",
+                "printedManaValue": 1,
+                "htmlSha256": "e83987ed7a09dfd5952ad469ccfea78ad737129c8d081bd6b4fe5d4691d5a4fa",
+                "images": [
+                  {
+                    "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-024.jpg",
+                    "file": "tmp/duema-target-10000/research/dm25ex3-024-0.jpg",
+                    "sha256": "7f86102d7b647c09afc944b3e631b1da48e2d78a6f65c0a652b20a9777549135"
+                  }
+                ],
+                "qa": []
+              }
+            ],
+            "qa": [
+              {
+                "source": "https://dm.takaratomy.co.jp/rule/qa/46528/",
+                "sha256": "4d5966e0626fd6659c584b87af35d571d41e5b01a4e4765db49b2960b4945bd7",
+                "body": "よくある質問 Q自分のターン中、《貴布人 テブルカッケ＝エディ》の「自分のターンに一度、クリーチャーを１体、自分の墓地から召喚してもよい」で、その《貴布人 テブルカッケ＝エディ》の上に、墓地から《至高の魂 アビスベル＝ジャシン帝》を進化して召喚しました。 同じターン中に、《至高の魂 アビスベル＝ジャシン帝》が「超魂X」で得た《貴布人 テブルカッケ＝エディ》の能力をもう一度使い、さらに墓地からクリーチャーを１体召喚できますか？ 類似例：《ソウルスカーレット アカネ》の「超魂X」の能力、《凶乱タル月光ノ夜鏡》 Aはい、もう一度墓地からクリーチャーを１体召喚できます。 《貴布人 テブルカッケ＝エディ》自身の能力と、「超魂X」で《至高の魂 アビスベル＝ジャシン帝》が得た能力は別の能力として扱われるため、それぞれ一度ずつ能力を使えます。 同じターン中、《至高の魂 アビスベル＝ジャシン帝》が得た「超魂X」能力を使い、この《至高の魂 アビスベル＝ジャシン帝》がさらに別のクリーチャーに進化した場合、そのクリーチャーが得た「超魂X」も別の能力として扱われるため、さらにもう一度能力を使えます。 一覧へ戻る 関連する質問 《暗雲タル漆黒ノ魔剣》と《大地竜機シロガシラ・ジュカイ》が下に置かれている自分の《究極の虚 ジャシン＝ヴリドガルド》は、３つの異なるソウルを持っているものとして扱われますか？ 2025.12.19 《凶乱タル月光ノ夜鏡》の「自分のターン中、デーモン・コマンド・カードを１枚、自分のマナゾーンから実行してもよい」の効果で、自分はマナゾーンから《混沌の獅子デスライガー / カオス・チャージャー》の呪文側を唱えられますか？ 2025.12.19 《悪夢神バロム・ナイトメア》の「クリーチャーが自分を攻撃する時」の能力で山札の下から墓地に置いたのが《邪心タル悪魔神ノ禍魂》で、それを出した後上に《悪夢神バロム・ナイトメア》を進化しました。 その後、《邪心タル悪魔神ノ禍魂》の「出た時」の能力を解決した際、進化した《悪夢神バロム・ナイトメア》を自分の他のNEOクリーチャーや進化クリーチャーの下に置けますか？ 類似例：《凶乱タル月光ノ夜鏡》など 2025.12.19 自分は《漆黒の深淵 ジャシン帝》で攻撃し、その「攻撃する時」の能力で墓地から《至高の魂 アビスベル＝ジャシン帝》をNEO進化クリーチャーとして出しました。 次に、この《至高の魂 アビスベル＝ジャシン帝》で攻撃した際、その「各ターン、はじめて自分の、進化クリーチャーまたはアビス・クリーチャーをタップした時」の能力で、《至高の魂 アビスベル＝ジャシン帝》自身はアンタップしますか？ 2025.8.8 自分の《至高の魂 アビスベル＝ジャシン帝》の下に《～歴史ある王騎士～》がある状況です。 この《至高の魂 アビスベル＝ジャシン帝》が攻撃する時、《～歴史ある王騎士～》の「超魂X」の能力で、下に置かれた《～歴史ある王騎士～》自身の「出た時」の能力(「このクリーチャーが出た時、カードを１枚引いてもよい」)を使えますか？ 2025.4.18 G-NEOクリーチャーとは、どういうクリーチャーですか？ 参照：《至高の魂 アビスベル＝ジャシン帝》 2025.4.18 《シャワ＝アガール》を出した後、同じターン中にその上に《至高の魂 アビスベル＝ジャシン帝》を進化しました。 《シャワ＝アガール》の「ジャストダイバー」の効果で、進化した《至高の魂 アビスベル＝ジャシン帝》も相手に攻撃されず、選ばれなくなりますか？ 2025.4.18 自分の《回転の精霊ナイッショエル》がバトルゾーンにいる状況で、自分のG-NEO進化クリーチャーが破壊される際、G-NEO進化クリーチャーの下のカードだけをシールド化して、G-NEOクリーチャーはバトルゾーンに残せますか？ 類似能力：「スター進化」 参照：《死罪非HARUSA-863》《モンキッド ＜ライゾウ.Star＞》 2025.4.18 自分の《貴布人 テブルカッケ＝エディ》がバトルゾーンにあ"
+              }
+            ]
+          }
+        ],
+        "allImagesReviewed": false,
+        "reviewedIds": [
+          "dm25rp3-051",
+          "dm25rp3-013"
+        ],
+        "completedManifest": "tools/support-phase-1861.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -649056,10 +649836,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1860,
+    "phase": 1861,
     "threshold": 10000,
-    "supportedNames": 9787,
-    "pendingNames": 2062,
+    "supportedNames": 9789,
+    "pendingNames": 2060,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -649068,7 +649848,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1860.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1861.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

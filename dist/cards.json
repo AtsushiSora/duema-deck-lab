@@ -316045,18 +316045,104 @@
       ],
       "supportBatch": "phase-1860",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-051",
+      "name": "黒哀剣 シンナグニル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マスターズ・レガシー/フュージョナー",
+      "text": "このクリーチャーが出た時、コスト４以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-051",
+      "limit": 4,
+      "g1773AllUnderGrave": true,
+      "g404Soul": {
+        "g1773AllUnderGrave": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "anyOwner": true,
+          "optional": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1861",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-013",
+      "name": "黒喜剣 エルナグニル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マスターズ・レガシー/フュージョナー",
+      "text": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中から呪文またはNEOクリーチャーを１枚表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-013",
+      "limit": 4,
+      "g1773AllUnderGrave": true,
+      "g404Soul": {
+        "g1773AllUnderGrave": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "creature": true,
+                    "g556Neo": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1861",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1860,
-    "checkedAt": "2026-11-28T00:31:27.400Z",
-    "baseCount": 9784,
-    "newEffectCards": 3,
+    "phase": 1861,
+    "checkedAt": "2026-11-28T00:38:22.290Z",
+    "baseCount": 9787,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9787,
+    "totalCount": 9789,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35786/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -346457,6 +346543,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/40114/",
           "https://dm.takaratomy.co.jp/rule/qa/40114/",
           "https://dm.takaratomy.co.jp/rule/qa/40114/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1860,
+        "checkedAt": "2026-11-28T00:31:27.400Z",
+        "baseCount": 9784,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9787,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35786/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

@@ -24107,5 +24107,152 @@
         }
       ]
     }
+  },
+  "dm25rp3-051": {
+    "phase": 1861,
+    "faces": [
+      {
+        "name": "黒哀剣 シンナグニル",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "このクリーチャーが出た時、コスト４以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+        "race": "マスターズ・レガシー/フュージョナー",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1773AllUnderGrave": true,
+      "g404Soul": {
+        "g1773AllUnderGrave": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "anyOwner": true,
+          "optional": true,
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "max": 4
+          }
+        }
+      ]
+    }
+  },
+  "dm25rp3-013": {
+    "phase": 1861,
+    "faces": [
+      {
+        "name": "黒喜剣 エルナグニル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中から呪文またはNEOクリーチャーを１枚表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+        "race": "マスターズ・レガシー/フュージョナー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1773AllUnderGrave": true,
+      "g404Soul": {
+        "g1773AllUnderGrave": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "creature": true,
+                    "g556Neo": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm25ex3-004": {
+    "phase": 1861,
+    "faces": [
+      {
+        "name": "黒喜剣 エルナグニル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中から呪文またはNEOクリーチャーを１枚表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが離れる時、カードがこれの下にあれば、かわりに下にあるカードをすべて墓地に置く。",
+        "race": "マスターズ・レガシー/フュージョナー",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g1773AllUnderGrave": true,
+      "g404Soul": {
+        "g1773AllUnderGrave": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "g841DeckPeek": true,
+          "g791OrderRest": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "any": [
+                  {
+                    "spell": true
+                  },
+                  {
+                    "creature": true,
+                    "g556Neo": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 }
