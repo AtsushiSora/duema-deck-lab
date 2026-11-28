@@ -1,0 +1,656 @@
+{
+  "phase": 1916,
+  "checkedAt": "2026-11-28T07:28:45.104Z",
+  "baseline": "d07276dd5a1fffd5ca7cc86f48209160e436d411",
+  "baseCount": 9990,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36584/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-003",
+      "name": "電脳提督アクア・ジーニアス",
+      "canonicalId": "dmr05-003",
+      "printId": "dmr05-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-003",
+      "faces": [
+        {
+          "name": "電脳提督アクア・ジーニアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からリキッド・ピープルをすべて手札に加え、残りを好きな順序で自分の山札の上に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "top",
+            "g259OrderTop": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "race": "リキッド・ピープル"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-003.jpg",
+      "imageSha256": "8625e61e5fdfe411e523c789668ff49ba3b2e1510e0ebb327189a223041d84d1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr05-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr05-003"
+        ],
+        "allSearchIds": [
+          "dmr05-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "0d67f9649a0bee8bc4ccd803647cb53ec77f9f5626def009af4e404c6add759f",
+        "facesMatched": true,
+        "imageSha256": "8625e61e5fdfe411e523c789668ff49ba3b2e1510e0ebb327189a223041d84d1"
+      }
+    },
+    {
+      "id": "dmc63-006",
+      "name": "電脳妖魔メルゲイナー",
+      "canonicalId": "dmc63-006",
+      "printId": "dmc63-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc63-006",
+      "faces": [
+        {
+          "name": "電脳妖魔メルゲイナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンに自分のゴッドがあれば、このクリーチャーは「スレイヤー」を得る。（「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが攻撃する時、バトルゾーンに自分のゴッドがあれば、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル/ヘドリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ゴッド"
+              },
+              "min": 1
+            }
+          },
+          "grants": {
+            "slayer": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "g557Elements": true,
+                "filter": {
+                  "race": "ゴッド"
+                },
+                "min": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc63-006.jpg",
+      "imageSha256": "3a90ee4df8df93e6550ecb2b65e03228a4d2fa3bd072b2815437cffb86d5842a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc63-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc63-006"
+        ],
+        "allSearchIds": [
+          "dmc63-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "342485536d87a25b523780567d206cc3a3154b0858fe18fd6994d9695787c0a6",
+        "facesMatched": true,
+        "imageSha256": "3a90ee4df8df93e6550ecb2b65e03228a4d2fa3bd072b2815437cffb86d5842a"
+      }
+    },
+    {
+      "id": "dmrp01-091",
+      "name": "怒号するグリンド・ホーン",
+      "canonicalId": "dmrp01-091",
+      "printId": "dmrp01-091",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-091",
+      "faces": [
+        {
+          "name": "怒号するグリンド・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、他のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはパワーを+2000され、相手プレイヤーを攻撃できない。",
+          "race": "ホーン・ビースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g179Other": true,
+            "power": 2000,
+            "g419Boost": true,
+            "g567PlayerStop": "end"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-091.jpg",
+      "imageSha256": "c9d08c426418dc37d2472fff3ead6ff7fca878148d9f4851811e2f20c34b452a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp01-091-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp01-091"
+        ],
+        "allSearchIds": [
+          "dmrp01-091"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "c7278cdfd6ab05201c2c7bb23fee6c770dbf5588f4e44eed60b8230a61cc6b0b",
+        "facesMatched": true,
+        "imageSha256": "c9d08c426418dc37d2472fff3ead6ff7fca878148d9f4851811e2f20c34b452a"
+      }
+    },
+    {
+      "id": "dmbd02-002",
+      "name": "怒流牙 セイカイザ",
+      "canonicalId": "dmbd02-002",
+      "printId": "dmbd02-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd02-002",
+      "faces": [
+        {
+          "name": "怒流牙 セイカイザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のアースイーター１体につきカードを１枚引いてもよい。その後、バトルゾーンにある自分のジャイアント１体につき、自分の山札の上から１枚をタップしてマナゾーンに置いてもよい。",
+          "race": "ジャイアント/アースイーター/シノビ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "アースイーター"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "race": "ジャイアント"
+            },
+            "mode": "repeat",
+            "def": {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "tapped": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd02-002.jpg",
+      "imageSha256": "cb715b4616aef7511a9920422e3b5fd30b6f4637e909b6d036856466c5c2ca10",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd02-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-002",
+          "dmex04-018"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "530e4c085502a9eed66cae9fd5133ec9e506522645d2bb7f858596d1fe55771d",
+        "facesMatched": true,
+        "imageSha256": "cb715b4616aef7511a9920422e3b5fd30b6f4637e909b6d036856466c5c2ca10"
+      }
+    },
+    {
+      "id": "dmx23-019",
+      "name": "導師の精霊龍 マホズン",
+      "canonicalId": "dmx23-019",
+      "printId": "dmx23-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-019",
+      "faces": [
+        {
+          "name": "導師の精霊龍 マホズン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃またはブロックする時、カードを１枚引く。その後、コスト７以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 7,
+            "trigger": true,
+            "optional": true
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 7,
+            "trigger": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-019.jpg",
+      "imageSha256": "78e2f4988111f2097f198bbbd0154e16e81bfba1814b8f2035db6fbd77edf0de",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx23-019-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx23-019"
+        ],
+        "allSearchIds": [
+          "dmx23-019"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "f6c6baad8de2dd6fd16ccaf7cc01ca0cb422a3d07008b2fa3e1492dc8bc7576b",
+        "facesMatched": true,
+        "imageSha256": "78e2f4988111f2097f198bbbd0154e16e81bfba1814b8f2035db6fbd77edf0de"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-018",
+      "name": "怒流牙 セイカイザ",
+      "canonicalId": "dmbd02-002",
+      "printId": "dmex04-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-018",
+      "faces": [
+        {
+          "name": "怒流牙 セイカイザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のアースイーター１体につきカードを１枚引いてもよい。その後、バトルゾーンにある自分のジャイアント１体につき、自分の山札の上から１枚をタップしてマナゾーンに置いてもよい。",
+          "race": "ジャイアント/アースイーター/シノビ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "アースイーター"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "race": "ジャイアント"
+            },
+            "mode": "repeat",
+            "def": {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "tapped": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-018.jpg",
+      "imageSha256": "baa054dd176ea5179c8d096a4e9aa8119831950d5648da039f4e82e55a92dde3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex04-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmbd02-002",
+          "dmex04-018"
+        ],
+        "allSearchIds": [
+          "dm25ex4-038",
+          "dm25ex4-052",
+          "promoy20-017",
+          "dm24rp4-SP4",
+          "dm23ex1-029",
+          "dm24bd5-018",
+          "dmex12-019",
+          "dmbd18-se01",
+          "dmrp09-g07",
+          "dmbd09-014",
+          "dmbd02-010",
+          "dmex04-018",
+          "dmbd02-002",
+          "dm25ex4-022",
+          "dm25ex4-044",
+          "dm23rp3-TF07",
+          "dm23rp3-T07",
+          "dmex12-079",
+          "dmex06-050",
+          "dmbd02-008",
+          "dm22ex1-122",
+          "dmex18-016",
+          "dmex12-021",
+          "dm25ex4-003",
+          "dm23rp3-TR05",
+          "dmex12-s18",
+          "dm26sd1-q006",
+          "dmbd02-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:28:45.104Z",
+        "sha256": "2691871f62403cbd0b17e7a36ee273e43e0251db7df0ead334e1b1c019e3222b",
+        "facesMatched": true,
+        "imageSha256": "baa054dd176ea5179c8d096a4e9aa8119831950d5648da039f4e82e55a92dde3"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36584/",
+      "sha256": "cb7d17b2f56db6a9d05a34bae59913c4b001c4124138a84d95e6abbfcf8651d1",
+      "checkedAt": "2026-11-28T07:28:45.104Z",
+      "reproduced": true,
+      "tests": "tests/standard1916-effects.test.mjs",
+      "reproduction": "LiteralAquaGenius TOP3LiquidPeopleactualAquaVehicle movesmandatoryHAND, notavailableasTOPorderingchoice; nonLiquidNature/FireorderTOP eitherorder, bothseats/encryptedsave.",
+      "result": "LiteralAquaGenius TOP3LiquidPeopleactualAquaVehicle movesmandatoryHAND, notavailableasTOPorderingchoice; nonLiquidNature/FireorderTOP eitherorder, bothseats/encryptedsave."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T07:28:45.104Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-003": 4,
+      "dmc63-006": 4,
+      "dmrp01-091": 4,
+      "dmbd02-002": 4,
+      "dmx23-019": 4,
+      "dmex04-018": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr05-003",
+      "searchSha256": "23ad18ac14b993f90dfc02f21eea83a11f046a3f3644a30336c6bd7c5acccb4c",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr05-003"
+      ],
+      "exactPrints": [
+        "dmr05-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmc63-006",
+      "searchSha256": "1378c9245ef4c571f9461450fac637bdb40f1592295dea57e2f513ae337d1c03",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmc63-006"
+      ],
+      "exactPrints": [
+        "dmc63-006"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp01-091",
+      "searchSha256": "761fb306e559cf23553ba2d3ded3c921046ef3a7b4f8d951ec9834c5b0e36599",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp01-091"
+      ],
+      "exactPrints": [
+        "dmrp01-091"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmbd02-002",
+      "searchSha256": "32c8e03c1b99fa1c5accafda0d943e0cf6f6f2f9c9a0a7cf4a916ea0c4eef366",
+      "totalResults": 28,
+      "allSearchIds": [
+        "dm25ex4-038",
+        "dm25ex4-052",
+        "promoy20-017",
+        "dm24rp4-SP4",
+        "dm23ex1-029",
+        "dm24bd5-018",
+        "dmex12-019",
+        "dmbd18-se01",
+        "dmrp09-g07",
+        "dmbd09-014",
+        "dmbd02-010",
+        "dmex04-018",
+        "dmbd02-002",
+        "dm25ex4-022",
+        "dm25ex4-044",
+        "dm23rp3-TF07",
+        "dm23rp3-T07",
+        "dmex12-079",
+        "dmex06-050",
+        "dmbd02-008",
+        "dm22ex1-122",
+        "dmex18-016",
+        "dmex12-021",
+        "dm25ex4-003",
+        "dm23rp3-TR05",
+        "dmex12-s18",
+        "dm26sd1-q006",
+        "dmbd02-001"
+      ],
+      "exactPrints": [
+        "dmbd02-002",
+        "dmex04-018"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmx23-019",
+      "searchSha256": "99fdf2d4cb30d2ef6f4d7d84142bfd4a706759ebcc981d01f04a43c2404e42ec",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmx23-019"
+      ],
+      "exactPrints": [
+        "dmx23-019"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fivewholecards/sixexactofficialprints visuallyreviewed, rawfullabilities/basicstats/limits/allprintsearch. AquaGenius actualpaid7W2 publicTOP3 ALLLiquidPeoplemandatoryHAND andorderedNONLiquidsTOP, literal36584cannotleaveLiquids; optionalenemyspelldiscardMadnessaccepted/declined, self/seednegative. Melgeiner paid2multicolor/liveOWNBattleGodonlySLAYER andoptionalattackDraw, enemy/Mana/none negatives, actual9000battlebothdie, Genmu2ignored. GrindHorn actualpaid3 andshieldSTmandatoryOTHERANYplayercreature+2000/noPlayerTHISturn, sourceexcluded, creatureattackallowed, expiry/alone/Genmunegatives. Seikaiza actualpaid7W2 SELFcountsEarthEater/Giant, enemyandunderEVObasesnotcounted; independent0/1/3Drawthen0/1/3TAPPEDRamp, drawdeclinedstillRamp. Mahozun paid7blockerW2, actualATTACK/BLOCK mandatoryDrawTHENoptionalHANDspell<=7 freecast, newlydrawnDemonHandcanremoveattackerbeforebattle; decline/creaturenegative. Bothseats/encryptedsave/tenactualservices/UIDconservation/printedmana1 multicolorTAPPED.",
+    "resolvedAttempts": "Firstofficial-1916 networkDNSsandboxfailure only; authorizednetwork official-1916-final1 passed. Focused61casespassedfirstattempt. No runtimebehaviorchange.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36584/",
+        "reproduced": true,
+        "tests": "tests/standard1916-effects.test.mjs",
+        "reproduction": "LiteralAquaGenius TOP3LiquidPeopleactualAquaVehicle movesmandatoryHAND, notavailableasTOPorderingchoice; nonLiquidNature/FireorderTOP eitherorder, bothseats/encryptedsave."
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmd18-003",
+          "dmrp21-020",
+          "dmx19-s33",
+          "promoy20-001"
+        ],
+        "reason": "Officialfullresearchdone. Finalfifthcandidateunderresearch; Dogi45448needsunregisteredPassionReverse andisheldunlessfullliteralfixturecanbereproduced."
+      }
+    ]
+  }
+}

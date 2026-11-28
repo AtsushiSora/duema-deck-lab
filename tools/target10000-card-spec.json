@@ -39584,5 +39584,297 @@
         }
       ]
     }
+  },
+  "dmr05-003": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "電脳提督アクア・ジーニアス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中からリキッド・ピープルをすべて手札に加え、残りを好きな順序で自分の山札の上に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "リキッド・ピープル/ハンター",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "top",
+          "g259OrderTop": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "race": "リキッド・ピープル"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmc63-006": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "電脳妖魔メルゲイナー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンに自分のゴッドがあれば、このクリーチャーは「スレイヤー」を得る。（「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが攻撃する時、バトルゾーンに自分のゴッドがあれば、カードを１枚引いてもよい。",
+        "race": "リキッド・ピープル/ヘドリアン",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "g557Elements": true,
+            "filter": {
+              "race": "ゴッド"
+            },
+            "min": 1
+          }
+        },
+        "grants": {
+          "slayer": true
+        }
+      },
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "g557Elements": true,
+              "filter": {
+                "race": "ゴッド"
+              },
+              "min": 1
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmrp01-091": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "怒号するグリンド・ホーン",
+        "typeText": "クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、他のクリーチャーを１体選ぶ。そのターン、そのクリーチャーはパワーを+2000され、相手プレイヤーを攻撃できない。",
+        "race": "ホーン・ビースト",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g179Other": true,
+          "power": 2000,
+          "g419Boost": true,
+          "g567PlayerStop": "end"
+        }
+      ]
+    }
+  },
+  "dmbd02-002": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "怒流牙 セイカイザ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のアースイーター１体につきカードを１枚引いてもよい。その後、バトルゾーンにある自分のジャイアント１体につき、自分の山札の上から１枚をタップしてマナゾーンに置いてもよい。",
+        "race": "ジャイアント/アースイーター/シノビ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "アースイーター"
+          },
+          "optional": "each"
+        },
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "mode": "repeat",
+          "def": {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmex04-018": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "怒流牙 セイカイザ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/自然",
+        "civilizations": [
+          "水",
+          "自然"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のアースイーター１体につきカードを１枚引いてもよい。その後、バトルゾーンにある自分のジャイアント１体につき、自分の山札の上から１枚をタップしてマナゾーンに置いてもよい。",
+        "race": "ジャイアント/アースイーター/シノビ",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "アースイーター"
+          },
+          "optional": "each"
+        },
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "mode": "repeat",
+          "def": {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dmx23-019": {
+    "phase": 1916,
+    "faces": [
+      {
+        "name": "導師の精霊龍 マホズン",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが攻撃またはブロックする時、カードを１枚引く。その後、コスト７以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。",
+        "race": "エンジェル・コマンド・ドラゴン/革命軍",
+        "powerText": "7500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 7,
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 7,
+          "trigger": true,
+          "optional": true
+        }
+      ]
+    }
   }
 }
