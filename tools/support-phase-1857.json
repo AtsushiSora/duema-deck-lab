@@ -1,0 +1,241 @@
+{
+  "phase": 1857,
+  "checkedAt": "2026-11-28T00:11:50.387Z",
+  "baseline": "df50e0ecba4f2dc83c00f1704e6e16916c4c4ce3",
+  "baseCount": 9777,
+  "target": 10000,
+  "description": "Full seal Sympathy minimum2/all seal departures draw and selective own aura against enemy spells<=4; opponent creature Sympathy min2 and optional once own Command creature entry modal draw2 or opponent-chosen discard2. Maruhavan held until actual linked-God QA reproduction dependencies fully supported.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-018",
+      "name": "禁断の邪眼 ドキンダムR",
+      "canonicalId": "dm25ex4-018",
+      "printId": "dm25ex4-018",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-018",
+      "faces": [
+        {
+          "name": "禁断の邪眼 ドキンダムR",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "シンパシー：自分の封印（自分の封印１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nW・ブレイカー\n自分の封印が離れた時、カードを１枚引いてもよい。\n自分の、名前に《禁断》とあるクリーチャー、ソニック・コマンド・クリーチャー、イニシャルズ・クリーチャーは、コスト４以下の呪文によって相手に選ばれない。",
+          "race": "禁断",
+          "powerText": "9999",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g211Sympathy": {
+          "zone": "seals",
+          "amount": 1,
+          "minimum": 2
+        },
+        "g1857SealLeftDraw": true,
+        "g1857SmallSpellProtection": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-018.jpg",
+      "imageSha256": "096b8d5ff1b4dc042048a83f750d6aa5de23691d4440f896091d53627e83794c",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex4-018-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25ex4-018"
+        ],
+        "allSearchIds": [
+          "dm25ex4-018"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:11:50.387Z",
+        "sha256": "882e9e20621b0c353c690514297075cb4098c2eb3023ea4ab4966380b2e4bb56",
+        "facesMatched": true,
+        "imageSha256": "096b8d5ff1b4dc042048a83f750d6aa5de23691d4440f896091d53627e83794c"
+      }
+    },
+    {
+      "id": "dm25ex4-017",
+      "name": "偽りの名 スネーク・ザ・ガン",
+      "canonicalId": "dm25ex4-017",
+      "printId": "dm25ex4-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-017",
+      "faces": [
+        {
+          "name": "偽りの名 スネーク・ザ・ガン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：相手のクリーチャー（相手のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nジャストダイバー\nブロッカー ブロッカー\nW・ブレイカー\n各ターンに１度、自分のコマンドが出た時、次の中から１回選んでもよい。\n▶カードを２枚引く。\n▶相手は自身の手札を２枚選び、捨てる。",
+          "race": "メカスタシオン/デーモン・コマンド/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "blocker": true,
+        "breaker": 2,
+        "g211Sympathy": {
+          "opponent": true,
+          "amount": 1,
+          "minimum": 2,
+          "filter": {
+            "creature": true
+          }
+        },
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "コマンド"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "snake1857",
+              "g1645NoDeckRequirement": true,
+              "title": "このターン1度、コマンドが出た能力を使う？",
+              "defs": [
+                {
+                  "op": "Choose",
+                  "g184Modes": true,
+                  "modes": [
+                    {
+                      "label": "カードを2枚引く",
+                      "defs": [
+                        {
+                          "op": "Draw",
+                          "n": 2
+                        }
+                      ]
+                    },
+                    {
+                      "label": "相手が自身の手札を2枚選んで捨てる",
+                      "defs": [
+                        {
+                          "op": "Discard",
+                          "n": 2
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-017.jpg",
+      "imageSha256": "bb30ec7f91cccdcc8b024e1e2ecca51ed115c0544201f293efec428cd708c121",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm25ex4-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm25ex4-017"
+        ],
+        "allSearchIds": [
+          "dm25ex4-017"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T00:11:50.387Z",
+        "sha256": "db7227def4d4a774fa47510e2c930be043a5d62d4d3880baa5ec2e1d549418b0",
+        "facesMatched": true,
+        "imageSha256": "bb30ec7f91cccdcc8b024e1e2ecca51ed115c0544201f293efec428cd708c121"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [
+    {
+      "id": "dmrp03-s01",
+      "name": "赤攻銀 マルハヴァン",
+      "reason": "All12 search results/exact2prints/fullimages and official QA40114 checked. Literal linkedGod Mura+Mani cost7, AquaGuard and TorchPunish requires currently unsupported dm32-092/dm32-050 full GLink registration. No partial Maruhavan implementation or count; native saver aura/death LKI mechanism identified, full dependencies needed before complete verification.",
+      "source": "https://dm.takaratomy.co.jp/rule/qa/40114/"
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T00:11:50.387Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-018": 4,
+      "dm25ex4-017": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm25ex4-018",
+      "searchSha256": "739ccd5bdffad5bd08e85672831bb1e909fa4be70b94b0688a45ef8b729c82d6",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm25ex4-018"
+      ],
+      "exactPrints": [
+        "dm25ex4-018"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Complete single-result exact searches; Snake broad query replaced with unique term before preparation."
+    },
+    {
+      "id": "dm25ex4-017",
+      "searchSha256": "91e7a9797678db8fdfb18a6af017900974204b844ed6985a608e075f5bd5384a",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm25ex4-017"
+      ],
+      "exactPrints": [
+        "dm25ex4-017"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "Complete single-result exact searches; Snake broad query replaced with unique term before preparation."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Full2 canonical definitions, official one-print searches/fullimages/mana1/limits, no linked QA for either. DokindamR own physical seals Sympathy min2 and actual payment, W2/power9999; any seal departure draw both seats via actual Trooper grave/Airvo hand, native physical battlecard moves to grave/mana/deck/deckTop/hand/shields each independent optional draw per live source, ignored/sealed source absent/newly unsealed doesnotretroactivelytrigger. Old Decalpa remains grave-only. External own nameKindan/SonicCommand/Initials protection from opponent spell<=4 persists ignored recipient, respects ignored source, excludes own spells/cost6/creature abilities/unrelated creature. Snake opponent unsealedcreatures only Sympathy min2, JD/blocker/W2; self and otherown Command entry optionalonce perturn, declining retainsuse, independent copies, nextturnrefresh, opponent entries/nonCommand excluded, two real draw OR opponent chooses two own discard without random, saved continuation/physical conservation and four actual encrypted service body payments/choices. Related211/500/251/792/1140/1156/1674/1560 available files, online5/check/audit9779/invariants passed. Fullsuite and protectedoldpending unchanged; no push/Pages/Netlify/automation restart.",
+    "resolvedAttempts": "Initial official verification sandbox DNS ENOTFOUND; same official read succeeded with network escalation. New fixture failures corrected: sole Trooper seal auto-moves before draw, so do not issue nonexistent seal choice; opponent discard uses native extended discardSelect selecting own physical cards, not legacy discard action. Early spec review fixed native Discard owner default instead of unsupported literal opponent string, and external protection field scan so ignored recipient retains aura; final full71 focused tests green.",
+    "nextCandidates": [
+      {
+        "id": "promoy15-078",
+        "reason": "Next grouped full official print/QA research, images pending review."
+      },
+      {
+        "id": "dmsd07-003",
+        "reason": "Next grouped full official print/QA research, images pending review."
+      },
+      {
+        "id": "dm25rp4-035",
+        "reason": "Next grouped full official print/QA research, images pending review."
+      },
+      {
+        "id": "dm39-007",
+        "reason": "Next grouped full official print/QA research, images pending review."
+      },
+      {
+        "id": "dm14-014",
+        "reason": "Next grouped full official print/QA research, images pending review."
+      }
+    ]
+  }
+}

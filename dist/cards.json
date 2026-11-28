@@ -315572,22 +315572,117 @@
       },
       "supportBatch": "phase-1856",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-018",
+      "name": "禁断の邪眼 ドキンダムR",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 9999,
+      "race": "禁断",
+      "text": "シンパシー：自分の封印（自分の封印１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nW・ブレイカー\n自分の封印が離れた時、カードを１枚引いてもよい。\n自分の、名前に《禁断》とあるクリーチャー、ソニック・コマンド・クリーチャー、イニシャルズ・クリーチャーは、コスト４以下の呪文によって相手に選ばれない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-018",
+      "limit": 4,
+      "breaker": 2,
+      "g211Sympathy": {
+        "zone": "seals",
+        "amount": 1,
+        "minimum": 2
+      },
+      "g1857SealLeftDraw": true,
+      "g1857SmallSpellProtection": true,
+      "supportBatch": "phase-1857",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex4-017",
+      "name": "偽りの名 スネーク・ザ・ガン",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "メカスタシオン/デーモン・コマンド/アンノウン",
+      "text": "シンパシー：相手のクリーチャー（相手のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nジャストダイバー\nブロッカー ブロッカー\nW・ブレイカー\n各ターンに１度、自分のコマンドが出た時、次の中から１回選んでもよい。\n▶カードを２枚引く。\n▶相手は自身の手札を２枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-017",
+      "limit": 4,
+      "justDiver": true,
+      "blocker": true,
+      "breaker": 2,
+      "g211Sympathy": {
+        "opponent": true,
+        "amount": 1,
+        "minimum": 2,
+        "filter": {
+          "creature": true
+        }
+      },
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "コマンド"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "snake1857",
+            "g1645NoDeckRequirement": true,
+            "title": "このターン1度、コマンドが出た能力を使う？",
+            "defs": [
+              {
+                "op": "Choose",
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "カードを2枚引く",
+                    "defs": [
+                      {
+                        "op": "Draw",
+                        "n": 2
+                      }
+                    ]
+                  },
+                  {
+                    "label": "相手が自身の手札を2枚選んで捨てる",
+                    "defs": [
+                      {
+                        "op": "Discard",
+                        "n": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1857",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1856,
-    "checkedAt": "2026-11-27T23:55:41.530Z",
-    "baseCount": 9774,
-    "newEffectCards": 3,
+    "phase": 1857,
+    "checkedAt": "2026-11-28T00:11:50.387Z",
+    "baseCount": 9777,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 9777,
+    "totalCount": 9779,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45512/",
-      "https://dm.takaratomy.co.jp/rule/qa/47052/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
-      "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+      "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
     ],
     "history": [
       {
@@ -345924,6 +346019,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/49080/",
           "https://dm.takaratomy.co.jp/rule/qa/43070/",
           "https://dm.takaratomy.co.jp/rule/qa/49079/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1856,
+        "checkedAt": "2026-11-27T23:55:41.530Z",
+        "baseCount": 9774,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9777,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45512/",
+          "https://dm.takaratomy.co.jp/rule/qa/47052/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

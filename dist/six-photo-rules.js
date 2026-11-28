@@ -263,10 +263,11 @@ export function createSixPhotoRules(api){
  function sympathyAmount500(s,p,c){
   const r=c.g211Sympathy;
   if(!r)return 0;
+  if(r.zone==='seals')return (s.players[p].seals||[]).length*r.amount;
   if(r.zone==='shields')return s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp).length*r.amount;
   if(r.g1632SameRace)return creatures(s,p).filter(x=>!x.sealed&&!x.faceDown&&sharesRace(effective(x,s,true),c)).length*r.amount;
-  return s.players[p].battle.filter(x=>!x.sealed&&(r.filter.seed?(card(x).type==='seed'||card(x).natureAce4):
-   (r.elements?!x.faceDown:api.isCreature(s,x))&&matches(s,p,x,r.filter))).length*r.amount;
+  return s.players[r.opponent?1-p:p].battle.filter(x=>!x.sealed&&(r.filter.seed?(card(x).type==='seed'||card(x).natureAce4):
+   (r.elements?!x.faceDown:api.isCreature(s,x))&&matches(s,r.opponent?1-p:p,x,r.filter))).length*r.amount;
  }
  function floorOptions500(s,p,c){let sums=new Set([0]);if(c.type!=='creature'||c.crossing)return[0];for(const x of creatures(s,p)){const r=!x.sealed&&effective(x,s).g500SummonAura;if(!r||r.filter.race&&!race(c,r.filter.race)||r.filter.multi&&colors(c).length<2)continue;const amounts=r.exact?[0,r.amount]:Array.from({length:r.amount+1},(_,i)=>i);sums=new Set([...sums].flatMap(n=>amounts.map(m=>n+m)));}return[...sums].sort((a,b)=>b-a);}
  function payFloor500(s,t){const choices=[];for(const amount of floorOptions500(s,t.p,t.c)){const c={...t.c,g500Handled:true,g500Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'最低2マナの軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
@@ -11570,6 +11571,8 @@ export function createSixPhotoRules(api){
   return s.players[p].battle.filter(source=>!source.sealed&&!source.faceDown&&
    card(source).g1156SealDraw&&effective(source,s).g1156SealDraw&&api.isCreature(s,source));
  },
+ sealLeftWatchers1857(s,p){return s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).g1857SealLeftDraw);},
+ sealLeft1857(s,p,watchers){for(const x of watchers)send(s,p,x,'Draw',{n:1,optional:true});},
  sealGrave1140(s,p,x,drawWatchers){
   for(const source of drawWatchers)send(s,p,source,'Draw',{n:1,optional:true});
   for(const source of s.players[p].battle){
@@ -11962,6 +11965,11 @@ export function createSixPhotoRules(api){
   else if(defs)queue(s,p,x,defs);
   for(const {source,grants}of c.g404Inherited||[])
    if(grants.g397Shinka)queue(s,p,x,grants.g397Shinka,source);
+ },
+ spellChoiceProtected1857(s,controller,owner,x){
+  if(controller===owner||!api.isSpellChoice(s)||api.choosingEffectCost(s)>4||x.sealed||x.faceDown||!api.isCreature(s,x))return false;
+  const c=effective(x,s);
+  return (battleNames676(s,x).some(n=>n.includes('禁断'))||race(c,'ソニック・コマンド')||race(c,'イニシャルズ'))&&s.players[owner].battle.some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1857SmallSpellProtection);
  },
  spellChoiceProtected1674(s,chooser,owner,x){
   return chooser!==owner&&api.isSpellChoice(s)&&!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&

@@ -23192,5 +23192,108 @@
         ]
       }
     }
+  },
+  "dm25ex4-018": {
+    "phase": 1857,
+    "faces": [
+      {
+        "name": "禁断の邪眼 ドキンダムR",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/火",
+        "civilizations": [
+          "闇",
+          "火"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "シンパシー：自分の封印（自分の封印１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nW・ブレイカー\n自分の封印が離れた時、カードを１枚引いてもよい。\n自分の、名前に《禁断》とあるクリーチャー、ソニック・コマンド・クリーチャー、イニシャルズ・クリーチャーは、コスト４以下の呪文によって相手に選ばれない。",
+        "race": "禁断",
+        "powerText": "9999",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g211Sympathy": {
+        "zone": "seals",
+        "amount": 1,
+        "minimum": 2
+      },
+      "g1857SealLeftDraw": true,
+      "g1857SmallSpellProtection": true
+    }
+  },
+  "dm25ex4-017": {
+    "phase": 1857,
+    "faces": [
+      {
+        "name": "偽りの名 スネーク・ザ・ガン",
+        "typeText": "クリーチャー",
+        "civilizationText": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "シンパシー：相手のクリーチャー（相手のクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただしコストは１以下にならない）\nジャストダイバー\nブロッカー ブロッカー\nW・ブレイカー\n各ターンに１度、自分のコマンドが出た時、次の中から１回選んでもよい。\n▶カードを２枚引く。\n▶相手は自身の手札を２枚選び、捨てる。",
+        "race": "メカスタシオン/デーモン・コマンド/アンノウン",
+        "powerText": "8000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "justDiver": true,
+      "blocker": true,
+      "breaker": 2,
+      "g211Sympathy": {
+        "opponent": true,
+        "amount": 1,
+        "minimum": 2,
+        "filter": {
+          "creature": true
+        }
+      },
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "コマンド"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "snake1857",
+            "g1645NoDeckRequirement": true,
+            "title": "このターン1度、コマンドが出た能力を使う？",
+            "defs": [
+              {
+                "op": "Choose",
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "カードを2枚引く",
+                    "defs": [
+                      {
+                        "op": "Draw",
+                        "n": 2
+                      }
+                    ]
+                  },
+                  {
+                    "label": "相手が自身の手札を2枚選んで捨てる",
+                    "defs": [
+                      {
+                        "op": "Discard",
+                        "n": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
