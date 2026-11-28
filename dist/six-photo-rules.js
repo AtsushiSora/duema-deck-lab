@@ -10949,6 +10949,24 @@ export function createSixPhotoRules(api){
   }
  },
  twinFinish1088(s,p){return creatures(s,p).some(x=>card(x).g1088Twin&&!api.ignored(s,x));},
+ captureGodEntry1877(s,p,entrant){
+  const sources=s.players[p].battle.flatMap(host=>[host,...(host.godLinks||[])].flatMap(part=>{
+   const def=card({...part,godLinks:[]}),rule=def.g1877GodEntry;
+   return rule?[{uid:part.uid,incarnation:part.incarnation||0,cardId:def.id,rule}]:[];
+  }));
+  return sources.length?{entrant:entrant.uid,sources}:null;
+ },
+ completeGodEntry1877(s,p,entrant,frame,options){
+  if(!frame||options.ignoreEntry||options.allEntryMuted)return;
+  const subject=effective(entrant,s,true),normalizedRace=String(subject.race||'').replace(/\s/g,'');
+  for(const ref of frame.sources){
+   const self=ref.uid===frame.entrant;
+   if(self?(!ref.rule.self||options.selfMuted):!normalizedRace.includes(ref.rule.race.replace(/\s/g,'')))continue;
+   const host=s.players[p].battle.find(x=>[x,...(x.godLinks||[])].some(part=>part.uid===ref.uid&&(part.incarnation||0)===ref.incarnation));
+   if(!host||host.sealed||api.ignored(s,host)||!api.isCreature(s,host))continue;
+   queue(s,p,host,ref.rule.defs,ref.cardId);
+  }
+ },
  observedEntry(s,p,y,options){
   const c=card(y),eventType=c.type;
   // This is a separate entry trigger; retain the actual origin and captured body.

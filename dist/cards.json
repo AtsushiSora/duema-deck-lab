@@ -318108,15 +318108,169 @@
       ],
       "supportBatch": "phase-1876",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-021",
+      "name": "霊騎右神ワイアード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ゴッド・ノヴァ OMG/アーク・セラフィム",
+      "text": "自分の他のゴッドをバトルゾーンに出した時、自分の手札を１枚、裏向きにして、新しいシールドとして自分のシールドゾーンに置いてもよい。\n右G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-021",
+      "limit": 4,
+      "g31God": "right",
+      "g1877GodEntry": {
+        "race": "ゴッド",
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd14-001",
+      "name": "光器左神サマソニア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ゴッド・ノヴァ OMG/メカ・デル・ソル",
+      "text": "このクリーチャーまたは自分の他のゴッド・ノヴァ OMGをバトルゾーンに出した時、カードを１枚引いてもよい。\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-001",
+      "limit": 4,
+      "g31God": "left",
+      "g1877GodEntry": {
+        "self": true,
+        "race": "ゴッド・ノヴァ OMG",
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-011",
+      "name": "爆裂右神ストロークス",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ/フレイム・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがゴッドとリンクした時、バトルゾーンにある相手のパワー3000以下のクリーチャーを１体破壊する。\nW・ブレイカー\n右G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「左G・リンク」を持つゴッドの右側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-011",
+      "limit": 4,
+      "g31God": "right",
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        }
+      ],
+      "g1874GodLink": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000
+          }
+        }
+      ],
+      "supportBatch": "phase-1877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-084",
+      "name": "極限右神ダフトパンク・アライブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ゴッド・ノヴァ OMG/デーモン・コマンド",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚を墓地に置く。その後、コスト４以下のゴッド・ノヴァを１つ、自分の墓地から出してもよい。\n右G・リンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-084",
+      "limit": 4,
+      "g31God": "right",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "race": "ゴッド・ノヴァ",
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-s03",
+      "name": "紫電左神ヴィタリック",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゴッド・ノヴァ/アーマード・ドラゴン",
+      "text": "このクリーチャーが各ターンはじめてタップした時、アンタップする。\nW・ブレイカー\n左G・リンク（このクリーチャーをバトルゾーンに出す時、「中央G・リンク」または「右G・リンク」を持つゴッドの左側にリンクしてもよい。リンクしたゴッドは、各ゴッドの特性〔パワーや能力〕をすべて持つ１体のクリーチャーとなる。バトルゾーンを離れる時は、その中の１枚を選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s03",
+      "limit": 4,
+      "g31God": "left",
+      "breaker": 2,
+      "g191FirstTapUntap": true,
+      "supportBatch": "phase-1877",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1876,
-    "checkedAt": "2026-11-28T02:39:58.075Z",
-    "baseCount": 9832,
-    "newEffectCards": 4,
+    "phase": 1877,
+    "checkedAt": "2026-11-28T02:47:09.889Z",
+    "baseCount": 9836,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9836,
+    "totalCount": 9841,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -348759,6 +348913,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35506/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1876,
+        "checkedAt": "2026-11-28T02:39:58.075Z",
+        "baseCount": 9832,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9836,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
