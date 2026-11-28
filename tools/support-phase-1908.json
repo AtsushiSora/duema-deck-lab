@@ -1,0 +1,881 @@
+{
+  "phase": 1908,
+  "checkedAt": "2026-11-28T06:43:46.493Z",
+  "baseline": "8ac5f247aff442e969d37a4910156129444313d8",
+  "baseCount": 9957,
+  "target": 10000,
+  "description": "Four whole cards / ten prints, native shield-hand conditional removal, independent minus and optional battle, Spark spell-face search to new face-down shield, and live three-blocker attack threshold.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmx11-002",
+      "name": "極武者カイザー 「斬鬼」",
+      "canonicalId": "dmx11-002",
+      "printId": "dmx11-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-002",
+      "faces": [
+        {
+          "name": "極武者カイザー 「斬鬼」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "パワーアタッカー+2000\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。ただし、その「S・トリガー」は使えない。このようにしてシールドを手札に加えた場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/ハンター/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 2000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "defs": [
+              {
+                "op": "ShieldHandFollow1017",
+                "noST": true,
+                "requireHand": true,
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-002.jpg",
+      "imageSha256": "76bac16e0c472ca8df387005f404ad15f1c5f9e504a1ae66f6b94447d63444d9",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx11-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-002",
+          "dmx18-003"
+        ],
+        "allSearchIds": [
+          "dmx11-002",
+          "dmx18-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "9a4f9e1bba08e03fe0de8d75bdc1bd6ce793a20072295374f2f770704362f51e",
+        "facesMatched": true,
+        "imageSha256": "76bac16e0c472ca8df387005f404ad15f1c5f9e504a1ae66f6b94447d63444d9"
+      }
+    },
+    {
+      "id": "dmd31-004",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "dmd31-004",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-004",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを_2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd31-004.jpg",
+      "imageSha256": "f9f10a626a95d6f38adcad402d613b7677503df70e3dcdfe988ee91c907c7e4b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd31-004-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "c63b5327055c037bb35592fd2ae495ad350dcb018a6cb5d460e49c79ad95ae20",
+        "facesMatched": true,
+        "imageSha256": "f9f10a626a95d6f38adcad402d613b7677503df70e3dcdfe988ee91c907c7e4b"
+      }
+    },
+    {
+      "id": "dm36-002",
+      "name": "啓示の精霊サンスクリッド",
+      "canonicalId": "dm36-002",
+      "printId": "dm36-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-002",
+      "faces": [
+        {
+          "name": "啓示の精霊サンスクリッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、名前に《スパーク》とある呪文を１枚選び、相手に見せてから裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields",
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "spell",
+                    "nameAny": [
+                      "スパーク"
+                    ]
+                  }
+                },
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-002.jpg",
+      "imageSha256": "4623ad0dcc389b1b4b6c75ba9b55f8b0670e9b46ed6bc0f32e7b1f36ad4b483a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm36-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm36-002"
+        ],
+        "allSearchIds": [
+          "dm36-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "58bdce42d51ee6b68ab1eca5853c003654cdefcddd75bd2c688b0ebf630df59c",
+        "facesMatched": true,
+        "imageSha256": "4623ad0dcc389b1b4b6c75ba9b55f8b0670e9b46ed6bc0f32e7b1f36ad4b483a"
+      }
+    },
+    {
+      "id": "dmd06-002",
+      "name": "光線の精霊カチャマシグ",
+      "canonicalId": "dmd06-002",
+      "printId": "dmd06-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-002",
+      "faces": [
+        {
+          "name": "光線の精霊カチャマシグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の「ブロッカー」を持つクリーチャーが３体以上なければ、このクリーチャーは攻撃できない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g225AttackRequires": {
+          "kind": "battleElements",
+          "min": 3,
+          "filter": {
+            "creature": true,
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-002.jpg",
+      "imageSha256": "ba5f1e83e99eb67175bf728b0d2e1e431f4bca9e6cf4db2157a32864cab2e8d3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd06-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd06-002"
+        ],
+        "allSearchIds": [
+          "dmd06-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "f177b7b2303517e697bd3d71595c741379120f3ff713547300c1d6edf218976a",
+        "facesMatched": true,
+        "imageSha256": "ba5f1e83e99eb67175bf728b0d2e1e431f4bca9e6cf4db2157a32864cab2e8d3"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx18-003",
+      "name": "極武者カイザー 「斬鬼」",
+      "canonicalId": "dmx11-002",
+      "printId": "dmx18-003",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-003",
+      "faces": [
+        {
+          "name": "極武者カイザー 「斬鬼」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "パワーアタッカー+2000\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。ただし、その「S・トリガー」は使えない。このようにしてシールドを手札に加えた場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン/ハンター/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 2000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "defs": [
+              {
+                "op": "ShieldHandFollow1017",
+                "noST": true,
+                "requireHand": true,
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-003.jpg",
+      "imageSha256": "769c5d60efd057105b55ff6425f25ec9d524f5ed2503dd6529086ca6d5432aac",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx18-003-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx11-002",
+          "dmx18-003"
+        ],
+        "allSearchIds": [
+          "dmx11-002",
+          "dmx18-003"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "f5fac266d9f4764e220213b4008f23b97063f9986a701b916b8c53c5966ae5d1",
+        "facesMatched": true,
+        "imageSha256": "769c5d60efd057105b55ff6425f25ec9d524f5ed2503dd6529086ca6d5432aac"
+      }
+    },
+    {
+      "id": "promoy15-071",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "promoy15-071",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-071",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー Ｓ ・トリガー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000 する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニックコマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-071.jpg",
+      "imageSha256": "715d4a9d063498bcf85d8f1972f839754220f6860fbf48849f097db39f193239",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy15-071-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "3e86156de1096ef9ed4b213d6d6287e6d79d53ddcbc85cf764562313f9831ddc",
+        "facesMatched": true,
+        "imageSha256": "715d4a9d063498bcf85d8f1972f839754220f6860fbf48849f097db39f193239"
+      }
+    },
+    {
+      "id": "dmex07-015",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "dmex07-015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-015",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-015.jpg",
+      "imageSha256": "70e01717809329e886de108c181ac80e9dfd853d4b176fd41ff875a7313dff9a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex07-015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "e96f02c33b3141295fd3b07b872d93d091e8a5b707e0260f2fdfa76829d5bf0b",
+        "facesMatched": true,
+        "imageSha256": "70e01717809329e886de108c181ac80e9dfd853d4b176fd41ff875a7313dff9a"
+      }
+    },
+    {
+      "id": "dmex10-011",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "dmex10-011",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-011",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-011.jpg",
+      "imageSha256": "242e89d930073d7729b31400b7661425473a5942c5c89fd0224f7c57bc115fca",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex10-011-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "5a96ddda192531b64d4b698e1f5c2ddd9b7c15ac57ef9c8f0fb26c34635903b6",
+        "facesMatched": true,
+        "imageSha256": "242e89d930073d7729b31400b7661425473a5942c5c89fd0224f7c57bc115fca"
+      }
+    },
+    {
+      "id": "dmbd21-023",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "dmbd21-023",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-023",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd21-023.jpg",
+      "imageSha256": "2c6c9eb15eccda7eeedc39a78a1a99f60c20361d64aa5e515d7425ee174d08d4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd21-023-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "aac0575bc1151679aca22b1163d8ab8021ed5a3d13b6db27d29033b9116b6731",
+        "facesMatched": true,
+        "imageSha256": "2c6c9eb15eccda7eeedc39a78a1a99f60c20361d64aa5e515d7425ee174d08d4"
+      }
+    },
+    {
+      "id": "dmex16-030",
+      "name": "禁断V キザム",
+      "canonicalId": "dmd31-004",
+      "printId": "dmex16-030",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-030",
+      "faces": [
+        {
+          "name": "禁断V キザム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "race": "ソニック・コマンド/イニシャルズ",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "相手とバトルする（任意）",
+            "defs": [
+              {
+                "op": "FightEnemy240",
+                "optional": true,
+                "g998EntryFight": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-030.jpg",
+      "imageSha256": "8b65e5c8b7ab491cf2b5ab29d5eb9dee6297b070f6e3e3f7c2abf8eb55a4da71",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex16-030-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd31-004",
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030"
+        ],
+        "allSearchIds": [
+          "promoy15-071",
+          "dmex07-015",
+          "dmex10-011",
+          "dmbd21-023",
+          "dmex16-030",
+          "dmd31-004",
+          "dmx23-044",
+          "dmx23-039",
+          "dmd31-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:43:46.493Z",
+        "sha256": "85ab388a775f460bbde6704acde1b015e2c416e7e8d12fac03e3244081a2c4a7",
+        "facesMatched": true,
+        "imageSha256": "8b65e5c8b7ab491cf2b5ab29d5eb9dee6297b070f6e3e3f7c2abf8eb55a4da71"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:43:46.493Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx11-002": 4,
+      "dmd31-004": 4,
+      "dm36-002": 4,
+      "dmd06-002": 4,
+      "dmx18-003": 4,
+      "promoy15-071": 4,
+      "dmex07-015": 4,
+      "dmex10-011": 4,
+      "dmbd21-023": 4,
+      "dmex16-030": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmx11-002",
+      "searchSha256": "5d382a87b5b94527183d091df392323c36a68f497635c43693580c692c3bda42",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmx11-002",
+        "dmx18-003"
+      ],
+      "exactPrints": [
+        "dmx11-002",
+        "dmx18-003"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd31-004",
+      "searchSha256": "3906510c9620ea99209128c80048b79f713dc453d33a0331acf74ac2a3cce5a4",
+      "totalResults": 9,
+      "allSearchIds": [
+        "promoy15-071",
+        "dmex07-015",
+        "dmex10-011",
+        "dmbd21-023",
+        "dmex16-030",
+        "dmd31-004",
+        "dmx23-044",
+        "dmx23-039",
+        "dmd31-002"
+      ],
+      "exactPrints": [
+        "dmd31-004",
+        "promoy15-071",
+        "dmex07-015",
+        "dmex10-011",
+        "dmbd21-023",
+        "dmex16-030"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm36-002",
+      "searchSha256": "d98f648accd6415b50aec4c52aa7747661a6215f267afc2a6a9dd8114dfd0c3d",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm36-002"
+      ],
+      "exactPrints": [
+        "dm36-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd06-002",
+      "searchSha256": "a75b9f93da0c2c267c19927757880deb82b7f90e1a732183a9aaf05d0e474d12",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmd06-002"
+      ],
+      "exactPrints": [
+        "dmd06-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Four whole cards / ten print images matched. Zanki paid5 PA2000/W2, optional whole shield toHAND without ST then mandatory enemy <=6000 destruction only if returned; composite group all3 physical cards and sourceGenmu5 negative. Kizam paid7/ST unpaid, two independent CIP orders affect battle outcome, minus2000 expires and zero dies, optional fight, cost7 works underGenmu. Sanskrit private wholeDeck Spark SPELL-ownface search including Twin, excludes creature-name Spark/nonSpark, optional reveal then one new faceDown shield/shuffle; paid7W2. Kachamashig blocker/W2, live >=3 OWNblockers includingSELF attack threshold, enemy/seed excluded, own Genmu5 abilityignored. Both seats, saved restore, eight actual encrypted services, mana1 and mono/multi tap. No linked QA.",
+    "resolvedAttempts": "Corrected new spec before final: native PA is attackBonus; g527ExtraEntry requires labeled defs objects. Kizam canonical Sonic Command race preserved explicitly because promo HTML drops middle-dot while full official image/current five prints retain it; no old definition changed. Fixed fixtures: shieldStack notstack, actualinst array notgive(ids), read restored body, explicitly choose optional fight, native ST entryOrder uses orderEntry. Whole focused 45? actual count from log, all passed final3.",
+    "rulings": [],
+    "held": [],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dm37-005",
+          "dmrp17-051",
+          "dmrp03-050",
+          "dm34-013"
+        ],
+        "reason": "Four native search, Sasage and sacrifice-followup candidates; all official research/images prepared."
+      }
+    ]
+  }
+}

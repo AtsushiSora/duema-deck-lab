@@ -322918,15 +322918,171 @@
       ],
       "supportBatch": "phase-1907",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-002",
+      "name": "極武者カイザー 「斬鬼」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマード・ドラゴン/ハンター/エイリアン",
+      "text": "パワーアタッカー+2000\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。ただし、その「S・トリガー」は使えない。このようにしてシールドを手札に加えた場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-002",
+      "limit": 4,
+      "attackBonus": 2000,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g299ShieldHand": true,
+          "defs": [
+            {
+              "op": "ShieldHandFollow1017",
+              "noST": true,
+              "requireHand": true,
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1908",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd31-004",
+      "name": "禁断V キザム",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "ソニック・コマンド/イニシャルズ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを_2000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd31-004",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -2000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "相手とバトルする（任意）",
+          "defs": [
+            {
+              "op": "FightEnemy240",
+              "optional": true,
+              "g998EntryFight": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1908",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-002",
+      "name": "啓示の精霊サンスクリッド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6500,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、名前に《スパーク》とある呪文を１枚選び、相手に見せてから裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-002",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g200Search": true,
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields",
+              "optional": true,
+              "filter": {
+                "g228Face": {
+                  "type": "spell",
+                  "nameAny": [
+                    "スパーク"
+                  ]
+                }
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1908",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd06-002",
+      "name": "光線の精霊カチャマシグ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アンノイズ",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の「ブロッカー」を持つクリーチャーが３体以上なければ、このクリーチャーは攻撃できない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-002",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g225AttackRequires": {
+        "kind": "battleElements",
+        "min": 3,
+        "filter": {
+          "creature": true,
+          "blocker": true
+        }
+      },
+      "supportBatch": "phase-1908",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1907,
-    "checkedAt": "2026-11-28T06:35:26.841Z",
-    "baseCount": 9953,
+    "phase": 1908,
+    "checkedAt": "2026-11-28T06:43:46.493Z",
+    "baseCount": 9957,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9957,
+    "totalCount": 9961,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -354038,6 +354194,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36580/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1907,
+        "checkedAt": "2026-11-28T06:35:26.841Z",
+        "baseCount": 9953,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9957,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
