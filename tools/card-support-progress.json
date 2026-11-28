@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9862,
-  "pendingNames": 1987,
-  "phase": 1882,
+  "supportedNames": 9867,
+  "pendingNames": 1982,
+  "phase": 1883,
   "added": 5,
   "readyForOfficialVerification": [
     "dmex18-067"
@@ -156,8 +156,8 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1156,
-    "呪文": 231,
+    "クリーチャー": 1154,
+    "呪文": 230,
     "G-NEOクリーチャー": 23,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
@@ -190,7 +190,7 @@
     "キング・セル": 2,
     "NEO GRクリーチャー": 1,
     "進化クリーチャー(墓地進化V)": 1,
-    "進化クリーチャー(デッキ進化)": 5,
+    "進化クリーチャー(デッキ進化)": 3,
     "G城": 9,
     "ヒストリック・フィールド": 3,
     "禁断の鼓動": 2,
@@ -219,8 +219,8 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1478,
-    "複数面・特殊カードタイプまたは情報不足": 423,
+    "未対応の能力文": 1475,
+    "複数面・特殊カードタイプまたは情報不足": 421,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
@@ -585796,23 +585796,241 @@
           "reason": "FirstSTboundaryfixture treatedWaterW as2000 butactualpower1000; correctedmodifier4001 toactual5001, retainedbothcases. AdditionalHeisanpowerZERO positivefreshstatecheck added. 57finalpass. Positivepatternselection alsoincludedtwoCPUcases inrelated383 (9.8s/38.3s), bothpassed; doNOTrepeatthese orfullsuite."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "a1e7c4519393a71afe0f55fac5052a8017c38b89"
+    },
+    {
+      "phase": 1883,
+      "checkedAt": "2026-11-28T03:51:25.226Z",
+      "baseline": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9862,
+      "currentNames": 9867,
+      "remainingNames": 133,
+      "added": [
+        {
+          "id": "dm22rp2-038",
+          "name": "ソー＝ゾー"
+        },
+        {
+          "id": "dm23ex1-069",
+          "name": "神化設計図"
+        },
+        {
+          "id": "dm33-031",
+          "name": "超巨岩獣メガロクラウザー"
+        },
+        {
+          "id": "dm32-061",
+          "name": "機真装甲ヴァルドリル"
+        },
+        {
+          "id": "promoy21-051",
+          "name": "深淵からの復活 ジャシン帝"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1883,
+        "baseline": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
+        "originalDefinitionsUnchanged": 9862,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9867,
+        "uniqueIds": 9867,
+        "added": 5,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9862,
+        "existingImageReferenceRowsUnchanged": 12394,
+        "officialPrintsReviewed": 8,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1883": {
+          "name": "official-1883",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1883.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.857,
+          "log": "tmp/duema-target-10000/official-1883.log",
+          "passed": 0,
+          "logSha256": "2551af2faaa6bb8e9e169c87344d9e3ec3ebdbddf5e6dfa844f986807f0b746a"
+        },
+        "focused-1883-final": {
+          "name": "focused-1883",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1883-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 4.065,
+          "log": "tmp/duema-target-10000/focused-1883.log",
+          "passed": 71,
+          "logSha256": "ac879c20d16849ad6ccd2976cd74211516ee2d9a90e5b158a78c7a78004adf2f"
+        },
+        "related-1883": {
+          "name": "related-1883",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1883.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 36.068,
+          "log": "tmp/duema-target-10000/related-1883.log",
+          "passed": 114,
+          "logSha256": "e6d275b45bdbbd6827077b143c45c683530cf6fbfb900a7adc4e1653253738a9"
+        },
+        "check-1883": {
+          "name": "check-1883",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 21.31,
+          "log": "tmp/duema-target-10000/check-1883.log",
+          "passed": 0,
+          "logSha256": "d75df548876769eeabb9d1076bc4ea9a33b4afed2ff53af30286229267b8d3a0"
+        },
+        "audit-1883": {
+          "name": "audit-1883",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.899,
+          "log": "tmp/duema-target-10000/audit-1883.log",
+          "passed": 0,
+          "logSha256": "f5caa9e35428d7913592f1466f4f812a53f2a3a8c273da7b60a12243b3da4ce5"
+        },
+        "invariants-1883": {
+          "name": "invariants-1883",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1883"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.861,
+          "log": "tmp/duema-target-10000/invariants-1883.log",
+          "passed": 0,
+          "logSha256": "a7d82e8984ef85432652fb1fb07308a3d3eb4bf7ae57dd153e120c98dbaccc87"
+        },
+        "related-online-1883": {
+          "name": "related-online-1883",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 0.675,
+          "log": "tmp/duema-target-10000/related-online-1883.log",
+          "passed": 5,
+          "logSha256": "57f514b579e075f23a3f251307b2010cfea2e9a04ec9d1007991a3d53ea4687a"
+        }
+      },
+      "totalTestsPassed": 190,
+      "manifest": "tools/support-phase-1883.json",
+      "supported": 9867,
+      "pending": 1982,
+      "engineVersion": "0.602.407",
+      "held": [
+        {
+          "id": "dmr09-041",
+          "name": "戦攻右神マッシヴ・アタック",
+          "reason": "Fullresearchtwoofficialprints available, imagesunreviewed. QA43749 actualProjectGod/twoGIzumo centraldetach/relink notyetimplemented; keepunregistered anddoNOTcountsimplerentryDrawpartial. SameholdasPearlJam."
+        }
+      ],
+      "nextCandidates": [
+        {
+          "ids": [
+            "dmrp02-034",
+            "dm22ex1-060",
+            "dmrp16-022",
+            "dm22-009",
+            "dm36-015"
+          ],
+          "reason": "Nativeuntilstartblockerdeployment andattack/blockmanaRecovery/endspellRecovery researchgroup."
+        }
+      ],
+      "verificationScope": "Fivecompletecards/eightofficialprints fullimagesstats/limits/exactreprints. SoZo normal5 vsONEcreatureorSeed destroy discount4floor1, cancel/noally/lock/protectedreplacementpaid1, BlockerW2. BlueprintGS, privateLook3 mandatoryoneGodORspell/publicchosenreveal/orderbottom inclnoeligible; trueGSfutureattackstop notspellcast. Megalo/Valdrill nativeONEtopdeckEvolution acceptsEVO/Twin; noncreaturereturnhandkeeppaidcost/noentry, actualT3 vsonebreak/freshattack, Valdrill entryturnonlyuntappedattack. Literal39646 actualMomokingNEX revealsregisteredFreedomPaper thenNEXTcarddeterminesdeckEVOorhand bothseats. Jashin countsownunsealedAbyssELEMENTS includingSELF/Seed/ignoredally notenemy, requires3, realAbyssRush3 vsnormalhandsickness/W2/endbottom. Bothseats restores/tenmana/tenencryptedservices/physicalUID. Sharednative1148 optinSeeds andnew225battleElements oldmechanicsrelated. IDs/saveformats/protectedpendingunchanged; no publication.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1883",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1883-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 3.862,
+          "log": "tmp/duema-target-10000/focused-1883-previous-1795837811049280000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1883.log",
+          "reason": "InitialfixturesusedunregisteredseedIDs, correctedactualdm22ex1-086 anddm22rp2-040. UIDbaseline capturedbeforeaddingcastcard correctedsetup; GSusesnativeextendedtrue. Valdrill initialspecg1182FreshTappedAttack waswrongTAPPEDtarget mechanic, fixedbeforefinalgates toexistingg1248EntryAttackUntapped andallpins/runtime. Laterturnfixturemustre-tapenemy afteritsnormalstartuntap. Allcasesretained/finalpassed."
+        },
+        {
+          "name": "focused-1883",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1883-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 4.927,
+          "log": "tmp/duema-target-10000/focused-1883-previous-1795837841799281000.log",
+          "originalLog": "tmp/duema-target-10000/focused-1883.log",
+          "reason": "InitialfixturesusedunregisteredseedIDs, correctedactualdm22ex1-086 anddm22rp2-040. UIDbaseline capturedbeforeaddingcastcard correctedsetup; GSusesnativeextendedtrue. Valdrill initialspecg1182FreshTappedAttack waswrongTAPPEDtarget mechanic, fixedbeforefinalgates toexistingg1248EntryAttackUntapped andallpins/runtime. Laterturnfixturemustre-tapenemy afteritsnormalstartuntap. Allcasesretained/finalpassed."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1882,
-    "nextPhase": 1883,
+    "lastVerifiedPhase": 1883,
+    "nextPhase": 1884,
     "workInProgress": null,
     "nextCandidates": [
       {
         "ids": [
-          "dm22rp2-038",
-          "dmr09-041",
-          "dm23ex1-069",
-          "dm33-031",
-          "dm32-061"
+          "dmrp02-034",
+          "dm22ex1-060",
+          "dmrp16-022",
+          "dm22-009",
+          "dm36-015"
         ],
-        "reason": "Comparewholeabilities withnative sacrifice/God-entry-link/privateLook/deckEvolution andcompleteofficialsearch beforeimplementation."
+        "reason": "Nativeuntilstartblockerdeployment andattack/blockmanaRecovery/endspellRecovery researchgroup."
       }
     ],
     "steps": [
@@ -586726,11 +586944,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1882,
-      "baseline": "697b91079ebbf781a2b1e6b2f762dececf3a7d9b",
-      "supportedNames": 9862,
-      "artifact": "tools/target10000-registration-checkpoint-1882.json",
-      "checkedAt": "2026-11-28T03:46:41.418Z"
+      "phase": 1883,
+      "baseline": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
+      "supportedNames": 9867,
+      "artifact": "tools/target10000-registration-checkpoint-1883.json",
+      "checkedAt": "2026-11-28T03:51:25.226Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -589788,8 +590006,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9862,
-      "remaining": 138,
+      "currentNames": 9867,
+      "remaining": 133,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -589797,18 +590015,18 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1882,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1882.json",
+      "lastPhase": 1883,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1883.json",
       "nextCandidates": [
         {
           "ids": [
-            "dm22rp2-038",
-            "dmr09-041",
-            "dm23ex1-069",
-            "dm33-031",
-            "dm32-061"
+            "dmrp02-034",
+            "dm22ex1-060",
+            "dmrp16-022",
+            "dm22-009",
+            "dm36-015"
           ],
-          "reason": "Comparewholeabilities withnative sacrifice/God-entry-link/privateLook/deckEvolution andcompleteofficialsearch beforeimplementation."
+          "reason": "Nativeuntilstartblockerdeployment andattack/blockmanaRecovery/endspellRecovery researchgroup."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -590045,7 +590263,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "697b91079ebbf781a2b1e6b2f762dececf3a7d9b",
+      "lastVerifiedCommit": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -590056,7 +590274,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "697b91079ebbf781a2b1e6b2f762dececf3a7d9b",
+      "lastVerifiedCodeCommit": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -591230,8 +591448,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9862,
-      "remaining": 138,
+      "currentNames": 9867,
+      "remaining": 133,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -591239,18 +591457,18 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1882,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1882.json",
+      "lastPhase": 1883,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1883.json",
       "nextCandidates": [
         {
           "ids": [
-            "dm22rp2-038",
-            "dmr09-041",
-            "dm23ex1-069",
-            "dm33-031",
-            "dm32-061"
+            "dmrp02-034",
+            "dm22ex1-060",
+            "dmrp16-022",
+            "dm22-009",
+            "dm36-015"
           ],
-          "reason": "Comparewholeabilities withnative sacrifice/God-entry-link/privateLook/deckEvolution andcompleteofficialsearch beforeimplementation."
+          "reason": "Nativeuntilstartblockerdeployment andattack/blockmanaRecovery/endspellRecovery researchgroup."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -591487,7 +591705,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "697b91079ebbf781a2b1e6b2f762dececf3a7d9b",
+      "lastVerifiedCommit": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -591498,7 +591716,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "697b91079ebbf781a2b1e6b2f762dececf3a7d9b",
+      "lastVerifiedCodeCommit": "a1e7c4519393a71afe0f55fac5052a8017c38b89",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -604697,6 +604915,133 @@
           }
         ],
         "completedManifest": "tools/support-phase-1882.json"
+      },
+      {
+        "phase": 1883,
+        "research": "tmp/duema-target-10000/research-combined1883.json",
+        "status": "full-official-verified-local",
+        "allImagesReviewed": true,
+        "reviewedIds": [
+          "dm22rp2-038",
+          "dm23ex1-069",
+          "dm33-031",
+          "dm32-061",
+          "promoy21-051"
+        ],
+        "officialPrintSearchEvidence": [
+          {
+            "id": "dm22rp2-038",
+            "searchSha256": "91b1ece7ffcdf811a8684e2d04f975b287808903bc480d70b66fca95f84725f5",
+            "totalResults": 4,
+            "allSearchIds": [
+              "dm22rp2-038",
+              "dm22rp2x-038",
+              "dm22rp2-15A",
+              "dm22rp2x-15A"
+            ],
+            "exactPrints": [
+              "dm22rp2-038",
+              "dm22rp2x-038",
+              "dm22rp2-15A",
+              "dm22rp2x-15A"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dm23ex1-069",
+            "searchSha256": "936c3c83a8ee27e31e39a67907a01f07269fa01c7ac18e22160097b077beda33",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dm23ex1-069"
+            ],
+            "exactPrints": [
+              "dm23ex1-069"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dm33-031",
+            "searchSha256": "beee420c12f06fa892d44bd327d1ee1af6eaf780b122bce6cd5369b1468a9720",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dm33-031"
+            ],
+            "exactPrints": [
+              "dm33-031"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dm32-061",
+            "searchSha256": "b6ea4d56c5de421825abb38e6d30a5d59073a2ad58ed07e10ef722d40ceca197",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dm32-061"
+            ],
+            "exactPrints": [
+              "dm32-061"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "promoy21-051",
+            "searchSha256": "73eabcee74d7efef0515d2a58532a10d092d6275ae8fa51b68314deb05564c7b",
+            "totalResults": 41,
+            "allSearchIds": [
+              "promoy25-020",
+              "promoy22-062",
+              "promoy21-winjashin1",
+              "dm22rp1-OR1",
+              "dm23sp1-002",
+              "dm26sd1-m004",
+              "dm25sd1-002",
+              "dm22rp1-1B",
+              "dm23ex3-OR2",
+              "dm23ex3-ORsec2",
+              "dm25rp4-ChoSec01",
+              "dm25rp4-Sec01",
+              "promoy24-118",
+              "promoy24-119",
+              "promoy24-120",
+              "dm25ex3-OR2",
+              "dm25rp4-OR1",
+              "promoy23-spd1101",
+              "promoy24-113",
+              "promoy21-051",
+              "dm25ex2-024",
+              "promoy24-001",
+              "dm24ex3-rp1TR04",
+              "dm24rp1-TR04",
+              "dm22ex2-S04",
+              "dm22ex2-2A",
+              "dm22ex2-2B",
+              "dm25sd1-001",
+              "dm25rp1-Sec01",
+              "promoy24-088",
+              "dm25ex3-OR3",
+              "dm25rp1-OR1",
+              "promoy23-083",
+              "promoy23-Sec083",
+              "promoy23-000",
+              "promoy22-spd1001",
+              "dm24ex3-rp1Sec02",
+              "dm24rp1-Sec02",
+              "dm24ex3-OR3",
+              "dm24ex3-rp1OR2",
+              "dm24rp1-OR2"
+            ],
+            "exactPrints": [
+              "promoy21-051"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          }
+        ],
+        "completedManifest": "tools/support-phase-1883.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -656616,10 +656961,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1882,
+    "phase": 1883,
     "threshold": 10000,
-    "supportedNames": 9862,
-    "pendingNames": 1987,
+    "supportedNames": 9867,
+    "pendingNames": 1982,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -656628,7 +656973,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1882.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1883.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

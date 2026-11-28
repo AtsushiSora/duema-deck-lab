@@ -1402,6 +1402,7 @@ export function createSixPhotoRules(api){
  function attackCondition225(s,p,rule,x){
   const own=s.players[p],bodies=()=>own.battle.filter(y=>!y.sealed&&api.isCreature(s,y));
   switch(rule.kind){
+   case'battleElements':return own.battle.filter(y=>!y.sealed&&!y.faceDown&&['creature','seed','gear','field','duelist','aura'].includes(api.zoneCard(s,p,y,'battle').type)&&matches(s,p,y,rule.filter)).length>=rule.min;
    case'distinctCosts':return ownCondition(s,p,{g466DistinctCosts:rule.min},x?.uid);
    case'noOtherUntapped':return![0,1].some(who=>creatures(s,who).some(y=>!y.sealed&&y.uid!==x?.uid&&!y.tapped));
    case'entries':return(own.enteredThisTurn||0)>=rule.min;
@@ -12323,7 +12324,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
    !api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))return null;
   const permits=rule.origin===origin?[null]:[...new Set(api.costAltPermits568(s,p,x,c,origin))];
   if(!permits.length||rule.reduction&&creatures(s,1-p).some(y=>!y.sealed&&effective(y,s).noCostReduction))return null;
-  const rows=creatures(s,p).filter(y=>!y.sealed&&(rule.reduction||
+  const rows=(rule.g1883Seeds?own.battle.filter(y=>api.isCreature(s,y)||api.zoneCard(s,p,y,'battle').type==='seed'||api.zoneCard(s,p,y,'battle').seedCreature||api.zoneCard(s,p,y,'battle').natureAce4):creatures(s,p)).filter(y=>!y.sealed&&!y.faceDown&&(rule.reduction||
    api.canLeave(s,p,y,{destroy:true})&&!hooks.destroySafe409(s,y)&&!hooks.zeroSafe(s,y)&&
    !(effective(y,s).caddy&&api.manaMoveForbidden(s,p))));
   if(rows.length<rule.count)return null;
