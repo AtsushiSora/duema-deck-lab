@@ -323399,17 +323399,165 @@
       ],
       "supportBatch": "phase-1910",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25sp1-009",
+      "name": "春咲栄久",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の他のドラゴン・クリーチャーを１体アンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25sp1-009",
+      "limit": 4,
+      "gStrike": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "g179Other": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-1911",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-032",
+      "name": "循環の補い 利取",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。\nこのクリーチャーが破壊される時、墓地に置くかわりに、表向きのまま新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-032",
+      "limit": 4,
+      "trigger": true,
+      "noAttack": true,
+      "g842DestroyShield": true,
+      "g1911FaceUpDestroyShield": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-1911",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-009",
+      "name": "新星！ベルナーレ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nW・ブレイカー\nマナ武装 ５―自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーに「S・トリガー」を与える。\nマナ武装 ３―このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに水のカードが３枚以上あれば、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "光"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 3,
+              "color": "水"
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g190Freeze": "self",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1911",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-072",
+      "name": "森夢のイザナイ メイ様",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "オラクル/ドリームメイト",
+      "text": "革命チェンジ：ドリームメイト（自分のドリームメイトが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\n光臨：自分のターンの終わりに、このクリーチャーがタップしていれば、自分の山札を見る。その中からコスト５以下のドリームメイトを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-072",
+      "limit": 4,
+      "rev": {
+        "race": "ドリームメイト",
+        "min": 0
+      },
+      "g405Kourin": {
+        "origin": "deck",
+        "filter": {
+          "creature": true,
+          "race": "ドリームメイト",
+          "max": 5
+        }
+      },
+      "supportBatch": "phase-1911",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1910,
-    "checkedAt": "2026-11-28T06:52:30.553Z",
-    "baseCount": 9965,
+    "phase": 1911,
+    "checkedAt": "2026-11-28T06:57:27.079Z",
+    "baseCount": 9969,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9969,
+    "totalCount": 9973,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/"
+      "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/45561/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -354562,6 +354710,20 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36147/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1910,
+        "checkedAt": "2026-11-28T06:52:30.553Z",
+        "baseCount": 9965,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9969,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
