@@ -321661,19 +321661,215 @@
       ],
       "supportBatch": "phase-1900",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-003",
+      "name": "ペリルドッター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "メタリカ/スペシャルズ",
+      "text": "進化：自分のメタリカ１体の上に置く。\n侵略：メタリカ（自分のメタリカが攻撃する時、自分の手札にあるこのクリーチャーをその上に重ねてもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置いてもよい。\nラビリンス：相手のターン中、自分のシールドの数が相手より多ければ、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-003",
+      "limit": 4,
+      "evolution": {
+        "race": "メタリカ"
+      },
+      "invasion": {
+        "categories": [
+          "メタリカ"
+        ],
+        "anyColor": true,
+        "colors": [],
+        "origins": [
+          "hand"
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "all": [
+            {
+              "g1114OpponentTurn": true
+            },
+            {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            }
+          ]
+        },
+        "grants": {
+          "power": 2000
+        }
+      },
+      "supportBatch": "phase-1901",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd02-001",
+      "name": "陰陽の果て 白夜",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "メタリカ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置いてもよい。\nラビリンス：このクリーチャーがバトルゾーンに出た時、自分のシールドの数が相手より多ければ、次の自分のターンのはじめまで、自分のメタリカはすべてのバトルに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "ラビリンス：メタリカはすべてのバトルに勝つ",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g334ZoneCount": {
+                  "zone": "shields",
+                  "moreThanOpponent": true
+                }
+              },
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true,
+                    "race": "メタリカ"
+                  },
+                  "g521UntilStart": true,
+                  "grant": {
+                    "g34AlwaysWin": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1901",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp01-017",
+      "name": "メリー“KEN”バンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ビートジョッキー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n相手のターン中にこのクリーチャーをバトルゾーンに出していれば、そのターンの終わりにこのクリーチャーを自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-017",
+      "limit": 4,
+      "trigger": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FightEnemy240",
+          "optional": true,
+          "g998EntryFight": true
+        }
+      ],
+      "g565OpponentEnd": [
+        {
+          "op": "IfSource541",
+          "g1901EnteredThisTurn": true,
+          "defs": [
+            {
+              "op": "SelfBottom734"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1901",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-011",
+      "name": "モモダチ ケントナーク",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn02]支払って召喚してもよい）\nマッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、シールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-011",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "machFighter": true,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "BreakEither1612",
+              "g1645CreatureBreak": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1901",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1900,
-    "checkedAt": "2026-11-28T05:49:16.873Z",
-    "baseCount": 9929,
-    "newEffectCards": 3,
+    "phase": 1901,
+    "checkedAt": "2026-11-28T06:00:28.364Z",
+    "baseCount": 9932,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9932,
+    "totalCount": 9936,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39096/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36577/"
+      "https://dm.takaratomy.co.jp/rule/qa/39515/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -352678,6 +352874,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36051/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1900,
+        "checkedAt": "2026-11-28T05:49:16.873Z",
+        "baseCount": 9929,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9932,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39096/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36577/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

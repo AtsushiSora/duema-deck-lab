@@ -3300,6 +3300,8 @@ export function createSixPhotoRules(api){
   }else if(t.g1059NonEvolution||t.g1071Evolution){
    const evolved=host&&!host.x.sealed?api.isEvolution(host.x):t.g1059LastEvolution;
    if(evolved===!!t.g1071Evolution)start(s,t,t.defs);
+  }else if(t.g1901EnteredThisTurn){
+   if(host&&!host.x.sealed&&(host.x.originalEntryTurn??host.x.entered)===s.turn)start(s,t,t.defs);
   }else if(t.g1064Tapped){
    const tapped=host&&!host.x.sealed?host.x.tapped:t.g1064LastTapped;
    if(tapped)start(s,t,t.defs);
