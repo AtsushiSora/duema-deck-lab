@@ -14,7 +14,7 @@ export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
  const raid764=createChampionRaid(api,'g34_');
  const attackConditionReading481=new WeakSet(),playerStopReading567=new WeakSet();
- const yagyuConditionReading1899=new WeakSet();
+ const yagyuConditionReading1899=new WeakSet(),battleColorReading1905=new WeakSet();
  const shieldAdds918=new WeakMap();
  const shieldAdds1737=new WeakMap();
  const secondManaAdds1205=new WeakMap();
@@ -811,6 +811,8 @@ export function createSixPhotoRules(api){
   if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
   if(f.g1050OpponentDestroyed!==undefined)return s.g393DDestroyed?.turn===s.turn&&
    (s.g393DDestroyed.byPlayer?.[1-p]||0)>=f.g1050OpponentDestroyed;
+  if(f.g1905MoreBattleColors){if(battleColorReading1905.has(s))return false;battleColorReading1905.add(s);try{return countBattleCivilizations(s,s.players[p].battle)>countBattleCivilizations(s,s.players[1-p].battle);}finally{battleColorReading1905.delete(s);}}
+  if(f.g1905AnyBreaker)return [p,1-p].some(owner=>creatures(s,owner).some(y=>{if(y.sealed||y.faceDown)return false;const c=effective(y,s);return c.breaker===f.g1905AnyBreaker||f.g1905AnyBreaker===2&&!!c.g633DoubleBreaker;}));
   if(f.g1902MoreCreaturesThanShields)return creatures(s,p).filter(y=>!y.sealed&&!y.faceDown).length>s.players[p].shields.length;
   if(f.g1114OpponentTurn)return s.active!==p;
   if(f.g687CreatureCountAtLeastShields){
@@ -1871,6 +1873,7 @@ export function createSixPhotoRules(api){
    }else if(rows.length)start(s,t,[{op:'SplitMove1136',target:rows[0],to:'mana'}]);
    return;
   }
+  if(t.g1905ManaPower){const moved=moveZoneSelection583(s,t,t.rows);if(moved.length)start(s,t,[{op:'SelfBoost313',power:t.g1905ManaPower*moved.length,g536Source:true}]);return;}
   if(t.g1120Romano){
    const moved=moveZoneSelection583(s,t,t.rows);
    if(!moved.length)return;

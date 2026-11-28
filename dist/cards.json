@@ -322413,18 +322413,214 @@
       ],
       "supportBatch": "phase-1904",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-020",
+      "name": "マッチョ ＜鎖風車.Star＞",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/ビーストフォーク/レクスターズ",
+      "text": "スター進化：レクスターズまたは自然のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーが攻撃する時、カードを好きな枚数、自分のマナゾーンから手札に戻してもよい。こうして戻したカード１枚につき、このターン、このクリーチャーのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-020",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "poweredBreaker": true,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "g1905ManaPower": 3000
+        }
+      ],
+      "supportBatch": "phase-1905",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-010",
+      "name": "マネコン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "サイバーロード/アンノイズ",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンに「W・ブレイカー」を持つクリーチャーがあれば、そのターン、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。\nこのクリーチャーが攻撃する時、バトルゾーンに「T・ブレイカー」を持つクリーチャーがあれば、そのターン、このクリーチャーのパワーは+11000され、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-010",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g1905AnyBreaker": 2
+          },
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 5000,
+              "breaker": 2,
+              "g633DoubleBreaker": true,
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "g1547ExtraAttacks": [
+        [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1905AnyBreaker": 3
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 11000,
+                "breaker": 3,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      ],
+      "supportBatch": "phase-1905",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd34-002",
+      "name": "リュウセイ・ジ・アース",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "レッド・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、自分の山札の上から１枚目を見る。そのカードを自分の手札またはマナゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd34-002",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "mana",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "g1897DiscardCreatureSpell": true,
+      "g1864EnemyDiscardTasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "rest": "mana",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1905",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-036",
+      "name": "鎧亜の冷鉄アガート",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ロスト・クルセイダー",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム(このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)\nバトルゾーンに自分のほうが多くの文明のカードを持っている時、このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-036",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g359RevealAll": true,
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "public": true,
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "g223Multicolor": true
+                  }
+                }
+              ],
+              "rest": "top"
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g1905MoreBattleColors": true
+        },
+        "grants": {
+          "power": 3000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-1905",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1904,
-    "checkedAt": "2026-11-28T06:16:34.528Z",
-    "baseCount": 9943,
-    "newEffectCards": 3,
+    "phase": 1905,
+    "checkedAt": "2026-11-28T06:23:59.070Z",
+    "baseCount": 9946,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9946,
+    "totalCount": 9950,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37244/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36714/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -353489,6 +353685,21 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37250/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1904,
+        "checkedAt": "2026-11-28T06:16:34.528Z",
+        "baseCount": 9943,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9946,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37244/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

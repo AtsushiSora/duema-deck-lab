@@ -1,0 +1,713 @@
+{
+  "phase": 1905,
+  "checkedAt": "2026-11-28T06:23:59.070Z",
+  "baseline": "19610ded743d04340b5f04d52132f319ac1cd0a1",
+  "baseCount": 9946,
+  "target": 10000,
+  "description": "Fourwholecards/sevenprints: MachoStarNature/RexPB optionalANYmana->hand simultaneousactualreturnedcount*3000thisturn; Manekon independentW/Tpresenceanyboard andcurrentturnPA5000/11000 plusbothbreakerabilities literal36714; RyuseiEarthHasteW2 CIPorenemycreature/spelldiscard privateTOP1 mandatoryHANDorMANA; AgartLostPrism anddynamicstrictmorebattlecolors self+3000/W2.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36714/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-020",
+      "name": "マッチョ ＜鎖風車.Star＞",
+      "canonicalId": "dmrp18-020",
+      "printId": "dmrp18-020",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-020",
+      "faces": [
+        {
+          "name": "マッチョ ＜鎖風車.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズまたは自然のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーが攻撃する時、カードを好きな枚数、自分のマナゾーンから手札に戻してもよい。こうして戻したカード１枚につき、このターン、このクリーチャーのパワーを+3000する。",
+          "race": "ジョーカーズ/ビーストフォーク/レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "poweredBreaker": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "g1905ManaPower": 3000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-020.jpg",
+      "imageSha256": "7ef4f8024bcccde23888813fc00c6f17e6438bd4591a0e147d224c6882db9b93",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp18-020-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp18-020",
+          "dmrp18-coro01"
+        ],
+        "allSearchIds": [
+          "dmsd08-003",
+          "promoy16-032",
+          "dmrp02-001",
+          "dmrp18-coro01",
+          "dmrp18-020",
+          "dm11-030",
+          "dmr03-023",
+          "dmx18-041"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "36fa76f02ff376139c5e280af9bbfc99c39838b881cb9959b6637b89972a3074",
+        "facesMatched": true,
+        "imageSha256": "7ef4f8024bcccde23888813fc00c6f17e6438bd4591a0e147d224c6882db9b93"
+      }
+    },
+    {
+      "id": "dmr07-010",
+      "name": "マネコン",
+      "canonicalId": "dmr07-010",
+      "printId": "dmr07-010",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-010",
+      "faces": [
+        {
+          "name": "マネコン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンに「W・ブレイカー」を持つクリーチャーがあれば、そのターン、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。\nこのクリーチャーが攻撃する時、バトルゾーンに「T・ブレイカー」を持つクリーチャーがあれば、そのターン、このクリーチャーのパワーは+11000され、「T・ブレイカー」を得る。",
+          "race": "サイバーロード/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g1905AnyBreaker": 2
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 5000,
+                "breaker": 2,
+                "g633DoubleBreaker": true,
+                "g536Source": true
+              }
+            ]
+          }
+        ],
+        "g1547ExtraAttacks": [
+          [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g1905AnyBreaker": 3
+              },
+              "defs": [
+                {
+                  "op": "SelfBoost313",
+                  "power": 11000,
+                  "breaker": 3,
+                  "g536Source": true
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-010.jpg",
+      "imageSha256": "4a8c4410e4beb72fb083e4cfb601358a1e05d97bdb4f69fdfe55aa41f73a72af",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr07-010-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr07-010"
+        ],
+        "allSearchIds": [
+          "dmr07-010"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "c31aa99340b1af15b9fc0494d2e8d5f50c88614690294079b57d9b668b6d6756",
+        "facesMatched": true,
+        "imageSha256": "4a8c4410e4beb72fb083e4cfb601358a1e05d97bdb4f69fdfe55aa41f73a72af"
+      }
+    },
+    {
+      "id": "dmd34-002",
+      "name": "リュウセイ・ジ・アース",
+      "canonicalId": "dmd34-002",
+      "printId": "dmd34-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd34-002",
+      "faces": [
+        {
+          "name": "リュウセイ・ジ・アース",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、自分の山札の上から１枚目を見る。そのカードを自分の手札またはマナゾーンに加える。",
+          "race": "レッド・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "g1897DiscardCreatureSpell": true,
+        "g1864EnemyDiscardTasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd34-002.jpg",
+      "imageSha256": "b644c29e7aba55dbf58e22b2f68a417d4914e599c5fef38ec7fde6fda34c9fdd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd34-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd34-002",
+          "promoy16-109",
+          "dmex06-023"
+        ],
+        "allSearchIds": [
+          "promoy16-109",
+          "dmex06-023",
+          "dmd34-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "0f8f8787779110844a924604229e422a52949056c38203a1bf6562eafdca963e",
+        "facesMatched": true,
+        "imageSha256": "b644c29e7aba55dbf58e22b2f68a417d4914e599c5fef38ec7fde6fda34c9fdd"
+      }
+    },
+    {
+      "id": "dm24-036",
+      "name": "鎧亜の冷鉄アガート",
+      "canonicalId": "dm24-036",
+      "printId": "dm24-036",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-036",
+      "faces": [
+        {
+          "name": "鎧亜の冷鉄アガート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム(このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)\nバトルゾーンに自分のほうが多くの文明のカードを持っている時、このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "ロスト・クルセイダー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g1905MoreBattleColors": true
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-036.jpg",
+      "imageSha256": "24f07f6b0dc7c1d294bfcc3fde09eb2c19cf026757f36a0864e1bae04cb042b3",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24-036-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24-036"
+        ],
+        "allSearchIds": [
+          "dm24-036"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "053b1520abcd1ba69e27b4d3ac0082d07969f14226973e9852b6ef274efe1bd2",
+        "facesMatched": true,
+        "imageSha256": "24f07f6b0dc7c1d294bfcc3fde09eb2c19cf026757f36a0864e1bae04cb042b3"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp18-coro01",
+      "name": "マッチョ ＜鎖風車.Star＞",
+      "canonicalId": "dmrp18-020",
+      "printId": "dmrp18-coro01",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-coro01",
+      "faces": [
+        {
+          "name": "マッチョ ＜鎖風車.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズまたは自然のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーが攻撃する時、カードを好きな枚数、自分のマナゾーンから手札に戻してもよい。こうして戻したカード１枚につき、このターン、このクリーチャーのパワーを+3000する。",
+          "race": "ジョーカーズ/ビーストフォーク/レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "poweredBreaker": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "g1905ManaPower": 3000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-coro01.jpg",
+      "imageSha256": "959fc9a9205b6d1746fcd249f7409512e185093d61fd2130cff240b00e99d8e4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp18-coro01-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp18-020",
+          "dmrp18-coro01"
+        ],
+        "allSearchIds": [
+          "dmsd08-003",
+          "promoy16-032",
+          "dmrp02-001",
+          "dmrp18-coro01",
+          "dmrp18-020",
+          "dm11-030",
+          "dmr03-023",
+          "dmx18-041"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "e27b55830ebf9efe54462e2c1adfcfc52d3cf42fd3beb1f7a540f91e8df7134c",
+        "facesMatched": true,
+        "imageSha256": "959fc9a9205b6d1746fcd249f7409512e185093d61fd2130cff240b00e99d8e4"
+      }
+    },
+    {
+      "id": "promoy16-109",
+      "name": "リュウセイ・ジ・アース",
+      "canonicalId": "dmd34-002",
+      "printId": "promoy16-109",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-109",
+      "faces": [
+        {
+          "name": "リュウセイ・ジ・アース",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、自分の山札の上から１枚目を見る。そのカードを自分の手札またはマナゾーンに加える。",
+          "race": "レッド・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "g1897DiscardCreatureSpell": true,
+        "g1864EnemyDiscardTasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-109.jpg",
+      "imageSha256": "45d915881bb9191b5fc3f295f2e2b451f38dbb2ad3e612d16cf1f90807c1daac",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy16-109-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd34-002",
+          "promoy16-109",
+          "dmex06-023"
+        ],
+        "allSearchIds": [
+          "promoy16-109",
+          "dmex06-023",
+          "dmd34-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "c6f41150c7b62f35be8c5feefab6712c0b9c9a96102ea8c3472cdb8c03d7ec58",
+        "facesMatched": true,
+        "imageSha256": "45d915881bb9191b5fc3f295f2e2b451f38dbb2ad3e612d16cf1f90807c1daac"
+      }
+    },
+    {
+      "id": "dmex06-023",
+      "name": "リュウセイ・ジ・アース",
+      "canonicalId": "dmd34-002",
+      "printId": "dmex06-023",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-023",
+      "faces": [
+        {
+          "name": "リュウセイ・ジ・アース",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、あるいは、相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられた時、自分の山札の上から１枚目を見る。そのカードを自分の手札またはマナゾーンに加える。",
+          "race": "レッド・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "g1897DiscardCreatureSpell": true,
+        "g1864EnemyDiscardTasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "rest": "mana",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-023.jpg",
+      "imageSha256": "253a9fc749b3d8fcfb0dca171e5bff4591d7e068c0bf0e3c467d773db9d8e4c8",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex06-023-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmd34-002",
+          "promoy16-109",
+          "dmex06-023"
+        ],
+        "allSearchIds": [
+          "promoy16-109",
+          "dmex06-023",
+          "dmd34-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T06:23:59.070Z",
+        "sha256": "48ea502bdb7f8d3155ce8967a24273ec2c2247cceed0361fdf2e34173b9a9e20",
+        "facesMatched": true,
+        "imageSha256": "253a9fc749b3d8fcfb0dca171e5bff4591d7e068c0bf0e3c467d773db9d8e4c8"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36714/",
+      "sha256": "3ee4d3068a8b8ef024d11929ea526444f82910b20cac50e3eae34c5ceed05cc5",
+      "checkedAt": "2026-11-28T06:23:59.070Z",
+      "reproduced": true,
+      "tests": "tests/standard1905-effects.test.mjs",
+      "reproduction": "ActualManekon withactualShaunaW2 dm01-s01 andactualCaptainDrakkenT3 dmr20-s06 triggersbothabilities inbothorders: power1000+5000+11000=17000, nativebreakerchoices2and3; explicitlyselecteach, bothseats/save/restore.",
+      "result": "ActualManekon withactualShaunaW2 dm01-s01 andactualCaptainDrakkenT3 dmr20-s06 triggersbothabilities inbothorders: power1000+5000+11000=17000, nativebreakerchoices2and3; explicitlyselecteach, bothseats/save/restore."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmsd17-001",
+      "name": "ボルシャック・大和・モモキング",
+      "reason": "Fulltwoexactprints/QA40501researched, imagesnotreviewed. Literalrequirescurrentlyunregistered伝説の正体ギュウジン丸 plusentireStarcount/deploy/shuffle-win. ItsrelatedgeneralStarcountcorrectedAegisinphase1904 transparentlyasruleinference, NOTliteralYamato/Gyujinverification. DeferfullcompanionandremaininglinkedYamatoStar/mill-replacementcases."
+    },
+    {
+      "id": "dmrp19-009",
+      "name": "メテヲシャワァ ＜バジュラ.Star＞",
+      "reason": "Officialimageandh3/og:title showFULLnamewithバジュラ.Star, butlegacydetail-parserextractNamestripsunescaped<バジュラ.Star> (official<title>alsoomitsit) andstoredcatalogue/detailsnameisメテヲシャワァ. Officialwebconfirmedfullh3/alt/og:title. Holduntilscopedcanonicalnamemetadata/parsercorrection+invariantsapprovedbyimplementationevidence; nevercountpartialshortnameornewduplicateID. Imagefullreviewed, noabilityimplementationcounted."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T06:23:59.070Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-020": 4,
+      "dmr07-010": 4,
+      "dmd34-002": 4,
+      "dm24-036": 4,
+      "dmrp18-coro01": 4,
+      "promoy16-109": 4,
+      "dmex06-023": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp18-020",
+      "searchSha256": "3185a12b075f830c95a8b27a1a6f0cb88192a866ee7a62c318acaf5c030bc8c0",
+      "totalResults": 8,
+      "allSearchIds": [
+        "dmsd08-003",
+        "promoy16-032",
+        "dmrp02-001",
+        "dmrp18-coro01",
+        "dmrp18-020",
+        "dm11-030",
+        "dmr03-023",
+        "dmx18-041"
+      ],
+      "exactPrints": [
+        "dmrp18-020",
+        "dmrp18-coro01"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr07-010",
+      "searchSha256": "d9466361bd4d0c35c63fcbb725bc33a666e451cdbd26768744639c044eedc743",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr07-010"
+      ],
+      "exactPrints": [
+        "dmr07-010"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmd34-002",
+      "searchSha256": "ece22924b230f4460217a869caf2158587bb3d5c2befc928bd1fb8e6a74bfca1",
+      "totalResults": 3,
+      "allSearchIds": [
+        "promoy16-109",
+        "dmex06-023",
+        "dmd34-002"
+      ],
+      "exactPrints": [
+        "dmd34-002",
+        "promoy16-109",
+        "dmex06-023"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm24-036",
+      "searchSha256": "dc1ad4a098b8aef4edfe5e9c040980b2eb654dee7940fb6deb646619aa270fbc",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm24-036"
+      ],
+      "exactPrints": [
+        "dm24-036"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/sevenexactprints allwholeofficialabilities/basicstats/images/currentlimits. MachoNature/RexSTAR/PB ANYownMana0/1/2/4 actualsimultaneousreturn (tapped/faceDownincluded), actualn*3000THISturn/PBbreak2/2/3/4, realSpiralGateStarTOPonly/baseinheritsunitboostuntilEND. ManekonW/TpresenceBOTHboards twoindependenttriggers, none/W/T/both modes bothorders, +5000/+11000 stack17000 andboth2/3breakerchoice literal36714, grantsremainaftersourcesleave andexpireEND. Earthpaid6HasteW2 mandatoryPRIVATEtopHANDorMANA withmultiManaTAPPED; enemyGhostTouch/MaskedHorrordiscardtrigger butenemyJennySEED/ownTyphoonnegative, nofreebody. AgartoptionalLostPrismdecline/monoTOPretained/multitohand, strictbattlecolorcountlive/equal/greater, dualsourceAIreadonly/Genmu5ignore. Mana1mono/multistates; bothseats 8encryptedservices/UIDrestore. PriorIDs/details/saveformats/pendingpreserved.",
+    "resolvedAttempts": "Manekon testinitiallyexpectedbothbreakcountsinsidebreakShieldsactions; nativeg34_GrantedBreaker633 independentlychooses2or3BEFOREshieldgroupselection, correctedtesttoassertbothnativevaluesandselecteach. Noimplementationfailure remained. Agartusesidentity-onlyguardwhilecountingcolors soownpower/breakerboostcannotrecursivelyquerystat, othercolorchangespreserved.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36714/",
+        "reproduced": true,
+        "tests": "tests/standard1905-effects.test.mjs",
+        "reproduction": "ActualManekon withactualShaunaW2 dm01-s01 andactualCaptainDrakkenT3 dmr20-s06 triggersbothabilities inbothorders: power1000+5000+11000=17000, nativebreakerchoices2and3; explicitlyselecteach, bothseats/save/restore."
+      }
+    ],
+    "held": [
+      {
+        "id": "dmsd17-001",
+        "name": "ボルシャック・大和・モモキング",
+        "reason": "Fulltwoexactprints/QA40501researched, imagesnotreviewed. Literalrequirescurrentlyunregistered伝説の正体ギュウジン丸 plusentireStarcount/deploy/shuffle-win. ItsrelatedgeneralStarcountcorrectedAegisinphase1904 transparentlyasruleinference, NOTliteralYamato/Gyujinverification. DeferfullcompanionandremaininglinkedYamatoStar/mill-replacementcases."
+      },
+      {
+        "id": "dmrp19-009",
+        "name": "メテヲシャワァ ＜バジュラ.Star＞",
+        "reason": "Officialimageandh3/og:title showFULLnamewithバジュラ.Star, butlegacydetail-parserextractNamestripsunescaped<バジュラ.Star> (official<title>alsoomitsit) andstoredcatalogue/detailsnameisメテヲシャワァ. Officialwebconfirmedfullh3/alt/og:title. Holduntilscopedcanonicalnamemetadata/parsercorrection+invariantsapprovedbyimplementationevidence; nevercountpartialshortnameornewduplicateID. Imagefullreviewed, noabilityimplementationcounted."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmr05-s06",
+          "promoy24-spd1202",
+          "dmr03-s04",
+          "dm23-035"
+        ],
+        "reason": "Groupedresearchunderway; Yabasugiru67resultdefaultORsearchreplacedwithdistinctヤバスギルquery, othersDDDNEO, conditionalManaST/burn, L-gatebothRamp."
+      }
+    ]
+  }
+}
