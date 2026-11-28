@@ -38252,5 +38252,343 @@
         }
       }
     }
+  },
+  "dmr08-s03": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "真実の王 ワーグナー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から呪文をすべて自分の手札に加え、残りを好きな順序で山札の一番上に戻す。\nこのクリーチャーが攻撃する時、自分の手札から呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+        "race": "キング・コマンド・ドラゴン/アンノウン",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "top",
+          "g259OrderTop": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dmx19-s15": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "真実の王 ワーグナー",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 9,
+        "costText": "9",
+        "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から呪文をすべて自分の手札に加え、残りを好きな順序で山札の一番下に置く。\nこのクリーチャーが攻撃する時、自分の手札から呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー",
+        "race": "キング・コマンド・ドラゴン/アンノウン",
+        "powerText": "12000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "top",
+          "g259OrderTop": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "hand",
+              "allMatches": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "trigger": true,
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dmr07-s02": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "真実の名 ホワイト・オブ・ライオネル",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分の手札が相手より少ない場合、カードを１枚引いてもよい。自分のマナゾーンのカードが相手より少ない場合、自分の山札の上から１枚目をマナゾーンに置いてもよい。自分のシールドが相手より少ない場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "エンジェル・コマンド/アンノウン",
+        "powerText": "11500",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "lessThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "lessThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "lessThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dm32-002": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "真姫ヴィクトリア",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 7,
+        "costText": "7",
+        "abilityText": "ブロッカー\n進化-自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選びタップしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "メカ・デル・ソル",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "evolution": {
+        "blocker": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 1,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "dmc57-002": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "神炎の影グレイブ・ディール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。自分のマナゾーンにゴッドがあれば、そのターン、その選んだクリーチャーのパワーは-4000される。自分のマナゾーンにゴッドがない場合、そのターン、その選んだクリーチャーのパワーは-2000される。",
+        "race": "ゴースト",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 1,
+              "filter": {
+                "race": "ゴッド",
+                "faceUp": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "promoy12-012": {
+    "phase": 1912,
+    "faces": [
+      {
+        "name": "神炎の影グレイブ・ディール",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "S・トリガー S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。自分のマナゾーンにゴッドがあれば、そのターン、その選んだクリーチャーのパワーは-4000される。自分のマナゾーンにゴッドがない場合、そのターン、その選んだクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）",
+        "race": "ゴースト",
+        "powerText": "3000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 1,
+              "filter": {
+                "race": "ゴッド",
+                "faceUp": true
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ]
+    }
   }
 }

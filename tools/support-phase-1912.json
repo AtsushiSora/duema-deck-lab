@@ -1,0 +1,711 @@
+{
+  "phase": 1912,
+  "checkedAt": "2026-11-28T07:02:03.984Z",
+  "baseline": "8c9a4ee67d8295715e253d937474843c503da55c",
+  "baseCount": 9973,
+  "target": 10000,
+  "description": "Complete official full abilities implemented with existing common rules; original IDs preserved; exact reprints and all print images checked.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37208/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08-s03",
+      "name": "真実の王 ワーグナー",
+      "canonicalId": "dmr08-s03",
+      "printId": "dmr08-s03",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-s03",
+      "faces": [
+        {
+          "name": "真実の王 ワーグナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から呪文をすべて自分の手札に加え、残りを好きな順序で山札の一番上に戻す。\nこのクリーチャーが攻撃する時、自分の手札から呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "top",
+            "g259OrderTop": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-s03.jpg",
+      "imageSha256": "ec50b9ff8d8b7a6dcae9fb47a18819d98381832a35b365d579c9e71da250e4d0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr08-s03-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr08-s03",
+          "dmx19-s15"
+        ],
+        "allSearchIds": [
+          "dmx12a-001",
+          "dmx19-s02",
+          "dmr08-s02",
+          "dmex12-s02",
+          "dmx19-s15",
+          "dmr08-s03"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "075ec819dd82a5b4ce717e723e3c47e1bfa914e3e7e9728c0445fdd2d448b1ef",
+        "facesMatched": true,
+        "imageSha256": "ec50b9ff8d8b7a6dcae9fb47a18819d98381832a35b365d579c9e71da250e4d0"
+      }
+    },
+    {
+      "id": "dmr07-s02",
+      "name": "真実の名 ホワイト・オブ・ライオネル",
+      "canonicalId": "dmr07-s02",
+      "printId": "dmr07-s02",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-s02",
+      "faces": [
+        {
+          "name": "真実の名 ホワイト・オブ・ライオネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分の手札が相手より少ない場合、カードを１枚引いてもよい。自分のマナゾーンのカードが相手より少ない場合、自分の山札の上から１枚目をマナゾーンに置いてもよい。自分のシールドが相手より少ない場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-s02.jpg",
+      "imageSha256": "69ec6c4185a56f3c258547910df175649d1bb322ce6295906d56736aa103a81f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr07-s02-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr07-s02"
+        ],
+        "allSearchIds": [
+          "dmr07-002",
+          "dmx13-005",
+          "dmd12-007",
+          "dmx12a-s01",
+          "promoy11-061",
+          "dmx11-036",
+          "dmx13-001",
+          "dmr06-004",
+          "dmr07-003",
+          "dm22rp2-TR9",
+          "dm22rp2x-TR9",
+          "dmr08-002",
+          "dmr07-017",
+          "dmr08-017",
+          "dmx16-011",
+          "dmx20-007",
+          "dmx23-032",
+          "dmd08-002",
+          "dmbd06-013",
+          "dmx13-010",
+          "dmr07-024",
+          "dmr08-s04",
+          "dmx13-002",
+          "dmr07-s02",
+          "dmx13-003",
+          "dmr07-004",
+          "dmr06-s03",
+          "dmx13-007",
+          "dmd12-008",
+          "dmr07-001",
+          "dm23ex3-TF02",
+          "dmx14-009",
+          "dmx13-006",
+          "dmx13-004"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "b81e70821ffb4d12111dccc47bcaf4db905eefbcc340da64e89e7132f85addb8",
+        "facesMatched": true,
+        "imageSha256": "69ec6c4185a56f3c258547910df175649d1bb322ce6295906d56736aa103a81f"
+      }
+    },
+    {
+      "id": "dm32-002",
+      "name": "真姫ヴィクトリア",
+      "canonicalId": "dm32-002",
+      "printId": "dm32-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-002",
+      "faces": [
+        {
+          "name": "真姫ヴィクトリア",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\n進化-自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選びタップしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "メカ・デル・ソル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "evolution": {
+          "blocker": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 1,
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-002.jpg",
+      "imageSha256": "a9ec981e8b29deb570f83523e2063dd23ea86636cd99f399a1ce44920c7271f6",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm32-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-002"
+        ],
+        "allSearchIds": [
+          "dm32-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "0ffaadcbeb23dd297a526105bced3948f331d4a3057f9bb2165c803115d58fe4",
+        "facesMatched": true,
+        "imageSha256": "a9ec981e8b29deb570f83523e2063dd23ea86636cd99f399a1ce44920c7271f6"
+      }
+    },
+    {
+      "id": "dmc57-002",
+      "name": "神炎の影グレイブ・ディール",
+      "canonicalId": "dmc57-002",
+      "printId": "dmc57-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc57-002",
+      "faces": [
+        {
+          "name": "神炎の影グレイブ・ディール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。自分のマナゾーンにゴッドがあれば、そのターン、その選んだクリーチャーのパワーは-4000される。自分のマナゾーンにゴッドがない場合、そのターン、その選んだクリーチャーのパワーは-2000される。",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 1,
+                "filter": {
+                  "race": "ゴッド",
+                  "faceUp": true
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -4000,
+                "g242PowerMinus": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc57-002.jpg",
+      "imageSha256": "c4e78f97be0f713f0cc0b3a161cb8cc140519d584165030350ee7d4528b42c4a",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc57-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc57-002",
+          "promoy12-012"
+        ],
+        "allSearchIds": [
+          "promoy12-012",
+          "dmc57-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "edde273b5d5be586369a18d9b207e4aec3cf6927a11dd8de59ea44c5651827c2",
+        "facesMatched": true,
+        "imageSha256": "c4e78f97be0f713f0cc0b3a161cb8cc140519d584165030350ee7d4528b42c4a"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx19-s15",
+      "name": "真実の王 ワーグナー",
+      "canonicalId": "dmr08-s03",
+      "printId": "dmx19-s15",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s15",
+      "faces": [
+        {
+          "name": "真実の王 ワーグナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から呪文をすべて自分の手札に加え、残りを好きな順序で山札の一番下に置く。\nこのクリーチャーが攻撃する時、自分の手札から呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー",
+          "race": "キング・コマンド・ドラゴン/アンノウン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "top",
+            "g259OrderTop": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "allMatches": true,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "trigger": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s15.jpg",
+      "imageSha256": "35e391d8b703e9e60d1397e090d562dff8b0edad0b6df42d2cc7b987f97850a0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx19-s15-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr08-s03",
+          "dmx19-s15"
+        ],
+        "allSearchIds": [
+          "dmx12a-001",
+          "dmx19-s02",
+          "dmr08-s02",
+          "dmex12-s02",
+          "dmx19-s15",
+          "dmr08-s03"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "501c9834a14a055d6790ebe18b3bc823a50d4917bbb918b25882325cf05f9606",
+        "facesMatched": true,
+        "imageSha256": "35e391d8b703e9e60d1397e090d562dff8b0edad0b6df42d2cc7b987f97850a0"
+      }
+    },
+    {
+      "id": "promoy12-012",
+      "name": "神炎の影グレイブ・ディール",
+      "canonicalId": "dmc57-002",
+      "printId": "promoy12-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-012",
+      "faces": [
+        {
+          "name": "神炎の影グレイブ・ディール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。自分のマナゾーンにゴッドがあれば、そのターン、その選んだクリーチャーのパワーは-4000される。自分のマナゾーンにゴッドがない場合、そのターン、その選んだクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 1,
+                "filter": {
+                  "race": "ゴッド",
+                  "faceUp": true
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -4000,
+                "g242PowerMinus": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-012.jpg",
+      "imageSha256": "c9189069078ffe274f92bb76dbf750ead9ab720688a90176f4ab916c72d852cc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy12-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmc57-002",
+          "promoy12-012"
+        ],
+        "allSearchIds": [
+          "promoy12-012",
+          "dmc57-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T07:02:03.984Z",
+        "sha256": "00ac84ada4165784e24d004e6dbc9f675da8e719738e2333b51165b1cda17be8",
+        "facesMatched": true,
+        "imageSha256": "c9189069078ffe274f92bb76dbf750ead9ab720688a90176f4ab916c72d852cc"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
+      "sha256": "ce61f2ec1f4bffc3bb4dd5819543de12b4273d1545a7168349cec3edb13efead",
+      "checkedAt": "2026-11-28T07:02:03.984Z",
+      "reproduced": true,
+      "tests": "tests/standard1912-effects.test.mjs",
+      "reproduction": "Literal actualWagner deck1/2/3 variants, allspell goesHANDandloses; withoneNcreature stillTOPsurvives, no prematureloss duringpubliclook.",
+      "result": "Literal actualWagner deck1/2/3 variants, allspell goesHANDandloses; withoneNcreature stillTOPsurvives, no prematureloss duringpubliclook."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/37208/",
+      "sha256": "c59cae54bc52b9394e9d3ca2cef42df7d71b7e821f5068d14c468a981c929fcd",
+      "checkedAt": "2026-11-28T07:02:03.984Z",
+      "reproduced": true,
+      "tests": "tests/standard1912-effects.test.mjs",
+      "reproduction": "Officialrelatederratum explicitlyreplacesreprintBOTTOMmisprintwithoriginalTOP. Twofullprintimageschecked; rawprintsretained. NativeTOPpublic3allSpells inclTwinHAND andremainingF,N orderedTOP inselectedorder.",
+      "result": "Officialrelatederratum explicitlyreplacesreprintBOTTOMmisprintwithoriginalTOP. Twofullprintimageschecked; rawprintsretained. NativeTOPpublic3allSpells inclTwinHAND andremainingF,N orderedTOP inselectedorder."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T07:02:03.984Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-s03": 4,
+      "dmr07-s02": 4,
+      "dm32-002": 4,
+      "dmc57-002": 4,
+      "dmx19-s15": 4,
+      "promoy12-012": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr08-s03",
+      "searchSha256": "8dbef86968f1125e5f5209b4bb47fd3801d320cba0ce14c16b06c0fde513ade5",
+      "totalResults": 6,
+      "allSearchIds": [
+        "dmx12a-001",
+        "dmx19-s02",
+        "dmr08-s02",
+        "dmex12-s02",
+        "dmx19-s15",
+        "dmr08-s03"
+      ],
+      "exactPrints": [
+        "dmr08-s03",
+        "dmx19-s15"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr07-s02",
+      "searchSha256": "0583be30d3677222a6657ad35596ac31480ec5f56a13dfd3450254f9e885be7b",
+      "totalResults": 34,
+      "allSearchIds": [
+        "dmr07-002",
+        "dmx13-005",
+        "dmd12-007",
+        "dmx12a-s01",
+        "promoy11-061",
+        "dmx11-036",
+        "dmx13-001",
+        "dmr06-004",
+        "dmr07-003",
+        "dm22rp2-TR9",
+        "dm22rp2x-TR9",
+        "dmr08-002",
+        "dmr07-017",
+        "dmr08-017",
+        "dmx16-011",
+        "dmx20-007",
+        "dmx23-032",
+        "dmd08-002",
+        "dmbd06-013",
+        "dmx13-010",
+        "dmr07-024",
+        "dmr08-s04",
+        "dmx13-002",
+        "dmr07-s02",
+        "dmx13-003",
+        "dmr07-004",
+        "dmr06-s03",
+        "dmx13-007",
+        "dmd12-008",
+        "dmr07-001",
+        "dm23ex3-TF02",
+        "dmx14-009",
+        "dmx13-006",
+        "dmx13-004"
+      ],
+      "exactPrints": [
+        "dmr07-s02"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm32-002",
+      "searchSha256": "87d49727d32ed34d64c5c8ead45f76c49a3309ac5ac89d658448cbecf911ac67",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm32-002"
+      ],
+      "exactPrints": [
+        "dm32-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmc57-002",
+      "searchSha256": "5a80238ff365cc265d520cb31f0d216ff96d810af28b79a7688afadd9d9dc675",
+      "totalResults": 2,
+      "allSearchIds": [
+        "promoy12-012",
+        "dmc57-002"
+      ],
+      "exactPrints": [
+        "dmc57-002",
+        "promoy12-012"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Fourwholecards/sixexactprints. Wagner paid9/T3 mandatorypublicTOP3allSpellHAND includingTwin, orderedrestTOP, freeHANDspellattack noextraMana; literal36784 deck1/2/3 losesONLYifallspell; officialrelatederratum37208 dmx19-s15BOTTOMmisprint usesoriginalTOP. WhiteLion paid8blocker/W2 strictless hand/Mana/shield optionalindependentsequentialDraw/Ramp/Shield, equalitynegative, shieldfaceDown. Victoria paid7blockerEVObaseonly/W2,currentownblockercountincludesSELF notunderbase, upToNdistinctenemyTap actual0/1/2/4. GraveDeal paid6/ST enemyTarget−4000IFFownfaceupManaGod otherwise−2000, excludesenemyMana/ownBattle/faceDownGod, zerodies andexpiry, cost6notGenmuignored. Bothseats/save/eightencryptedservices/UIDconservation/mana1monoUntap.",
+    "resolvedAttempts": "NewVictoria Select tap flag correctedfromtaptrue (Target-only) tonativeg193Taptrue; allfullfocused/regressionspassedfinal. No existingruntimechanged inthisbatch.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
+        "reproduced": true,
+        "tests": "tests/standard1912-effects.test.mjs",
+        "reproduction": "Literal actualWagner deck1/2/3 variants, allspell goesHANDandloses; withoneNcreature stillTOPsurvives, no prematureloss duringpubliclook."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/37208/",
+        "reproduced": true,
+        "tests": "tests/standard1912-effects.test.mjs",
+        "reproduction": "Officialrelatederratum explicitlyreplacesreprintBOTTOMmisprintwithoriginalTOP. Twofullprintimageschecked; rawprintsretained. NativeTOPpublic3allSpells inclTwinHAND andremainingF,N orderedTOP inselectedorder."
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dm23ex2-083",
+          "dmrp03-032",
+          "dmd07-003",
+          "dm31-021"
+        ],
+        "reason": "Grouped official full-reprint research completed for spellsearch, last-shielddeath, HunterMADNESS andotherAngelentry."
+      }
+    ]
+  }
+}
