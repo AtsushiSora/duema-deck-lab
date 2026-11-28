@@ -27395,5 +27395,128 @@
       ],
       "g32EvoTrigger": true
     }
+  },
+  "dmr11-005": {
+    "phase": 1873,
+    "faces": [
+      {
+        "name": "炎龍王子カイザー・プリンス",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の光のドラゴンまたは名前に《プリン》とあるクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\n自分の火のドラゴンが攻撃する時、相手のシールドを１枚ブレイクする。",
+        "race": "レッド・コマンド・ドラゴン/ハンター",
+        "powerText": "5000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光",
+                "race": "ドラゴン"
+              },
+              {
+                "g819CreatureNameIncludes": "プリン"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmx22a-s06": {
+    "phase": 1873,
+    "faces": [
+      {
+        "name": "偽りの王 ハチャトゥリアン",
+        "typeText": "クリーチャー",
+        "civilizationText": "闇/自然",
+        "civilizations": [
+          "闇",
+          "自然"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。その後、そのクリーチャーとコストが同じクリーチャーを１体、自分のマナゾーンまたは墓地からバトルゾーンに出してもよい。",
+        "race": "キング・コマンド・ドラゴン",
+        "powerText": "11000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "g786ReviveAtCost": true,
+          "g1873ExactManaGrave": true
+        }
+      ]
+    }
+  },
+  "dmex14-002": {
+    "phase": 1873,
+    "faces": [
+      {
+        "name": "貴様の罪のジャッジメント",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 3,
+        "costText": "3",
+        "abilityText": "相手の呪文を唱えるコストは１多くなる。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\nレインボーナス：このクリーチャーが破壊される時、バトルゾーンに自分の多色クリーチャーがあれば、墓地に置くかわりにバトルゾーンにとどまる。",
+        "race": "オラクル/月光王国",
+        "powerText": "2000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 1
+      },
+      "g34Attack": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g1873RainbowDestroyStay": true
+    }
   }
 }

@@ -1,0 +1,386 @@
+{
+  "phase": 1873,
+  "checkedAt": "2026-11-28T02:21:42.964Z",
+  "baseline": "34dad55ca0bd92ceecd68df0891626db2299b98b",
+  "baseCount": 9823,
+  "target": 10000,
+  "description": "Complete Kaiser singleOR shieldwatch plus independentFireDragon break literal36986; Hachatulian mandatorydestruction thenoptionalexactcurrentcost mana/grave deployment; Judgement opposing spell tax/attackShieldTop/destructiononly conditionalmulticolor stay literal39441.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36986/",
+    "https://dm.takaratomy.co.jp/rule/qa/39441/"
+  ],
+  "cards": [
+    {
+      "id": "dmr11-005",
+      "name": "炎龍王子カイザー・プリンス",
+      "canonicalId": "dmr11-005",
+      "printId": "dmr11-005",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-005",
+      "faces": [
+        {
+          "name": "炎龍王子カイザー・プリンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の光のドラゴンまたは名前に《プリン》とあるクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\n自分の火のドラゴンが攻撃する時、相手のシールドを１枚ブレイクする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光",
+                  "race": "ドラゴン"
+                },
+                {
+                  "g819CreatureNameIncludes": "プリン"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "Break497",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-005.jpg",
+      "imageSha256": "4c70165821b86f89c946083c2bb293329d749cd345c03d635ac76ca0f2e0addd",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr11-005-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr11-005"
+        ],
+        "allSearchIds": [
+          "dmr11-005"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:21:42.964Z",
+        "sha256": "fabf2d05f0e88033a0234e1e467bfc68b358449f1240af68d0536e7cce274dfc",
+        "facesMatched": true,
+        "imageSha256": "4c70165821b86f89c946083c2bb293329d749cd345c03d635ac76ca0f2e0addd"
+      }
+    },
+    {
+      "id": "dmx22a-s06",
+      "name": "偽りの王 ハチャトゥリアン",
+      "canonicalId": "dmx22a-s06",
+      "printId": "dmx22a-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-s06",
+      "faces": [
+        {
+          "name": "偽りの王 ハチャトゥリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。その後、そのクリーチャーとコストが同じクリーチャーを１体、自分のマナゾーンまたは墓地からバトルゾーンに出してもよい。",
+          "race": "キング・コマンド・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "g786ReviveAtCost": true,
+            "g1873ExactManaGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-s06.jpg",
+      "imageSha256": "06f07a790a61070584903324df601b7e1207dfb18d99d3f910648fb879ccb182",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx22a-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmx22a-s06"
+        ],
+        "allSearchIds": [
+          "promoy11-046",
+          "promoy15-041",
+          "promoy15-044",
+          "dmx19-s55",
+          "dmr07-s05",
+          "dm22ex2-S14",
+          "dmrp08-g05",
+          "dmex12-dr5",
+          "dmrp17-a18",
+          "dmrp17-b18",
+          "dm24sp1-007",
+          "dmr06-003",
+          "dmd07-023",
+          "promoy12-003",
+          "dmbd17-teki003",
+          "dmx11-009",
+          "dmx16-010",
+          "dmx25-025",
+          "dmd28-017",
+          "dm24bd6-018",
+          "dm26ex1-032",
+          "dm22ex1-022",
+          "dmex04-007",
+          "dmx22a-s06",
+          "dmd07-022",
+          "promoy12-057",
+          "dmx19-s54",
+          "dmx25-s09",
+          "dmex01-053",
+          "dmd07-017",
+          "dmx19-v01",
+          "dmx11-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:21:42.964Z",
+        "sha256": "188346294fd89b797539000998460c3568b91f8f68c5a2004e4d2977a2a0015c",
+        "facesMatched": true,
+        "imageSha256": "06f07a790a61070584903324df601b7e1207dfb18d99d3f910648fb879ccb182"
+      }
+    },
+    {
+      "id": "dmex14-002",
+      "name": "貴様の罪のジャッジメント",
+      "canonicalId": "dmex14-002",
+      "printId": "dmex14-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-002",
+      "faces": [
+        {
+          "name": "貴様の罪のジャッジメント",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の呪文を唱えるコストは１多くなる。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\nレインボーナス：このクリーチャーが破壊される時、バトルゾーンに自分の多色クリーチャーがあれば、墓地に置くかわりにバトルゾーンにとどまる。",
+          "race": "オラクル/月光王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 1
+        },
+        "g34Attack": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g1873RainbowDestroyStay": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-002.jpg",
+      "imageSha256": "c1cfe2514ba2e64015ec137f168d535479de2058e5da306b8ff5efb8f707d084",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex14-002-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex14-002"
+        ],
+        "allSearchIds": [
+          "dmex14-002"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T02:21:42.964Z",
+        "sha256": "8216b3be6d729895faed96f93a7c5e9f1a9b0aaff0799ba7ec00edf064e8d8e9",
+        "facesMatched": true,
+        "imageSha256": "c1cfe2514ba2e64015ec137f168d535479de2058e5da306b8ff5efb8f707d084"
+      }
+    }
+  ],
+  "printAliases": [],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/36986/",
+      "sha256": "28970bd17eacdfc41f7d471feefdb334b6f67998cc466dff937e31549313558c",
+      "checkedAt": "2026-11-28T02:21:42.964Z",
+      "reproduced": true,
+      "tests": "tests/standard1873-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats realKaiser attacking actual tapped enemy creature adds exactlyone nottwo and independentlybreaksone; encryptedrestore and physicalUIDconservation.",
+      "result": "Both seats realKaiser attacking actual tapped enemy creature adds exactlyone nottwo and independentlybreaksone; encryptedrestore and physicalUIDconservation."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39441/",
+      "sha256": "19df70062edeae026ab8b50cfa696a5afce40925b17c275305022589dd78ca13",
+      "checkedAt": "2026-11-28T02:21:42.964Z",
+      "reproduced": true,
+      "tests": "tests/standard1873-effects.test.mjs",
+      "kind": "literal-card-interaction",
+      "reproduction": "Both seats actualApocalypseDay sixcreature simultaneousdestruction including realParadoxmulticolor andJudgement; onlyJudgementstays basedpredepartureboard. Encryptedrestore/ignoredsource/destructionwithoutmulticolor/bounce distinctions tested.",
+      "result": "Both seats actualApocalypseDay sixcreature simultaneousdestruction including realParadoxmulticolor andJudgement; onlyJudgementstays basedpredepartureboard. Encryptedrestore/ignoredsource/destructionwithoutmulticolor/bounce distinctions tested."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T02:21:42.964Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr11-005": 4,
+      "dmx22a-s06": 4,
+      "dmex14-002": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmr11-005",
+      "searchSha256": "fc6c4bbcda2329b73a5e10c7f42d369c1c336a076abd47f8ec7ff74c1f791522",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr11-005"
+      ],
+      "exactPrints": [
+        "dmr11-005"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmx22a-s06",
+      "searchSha256": "06e75c4f22a1439522748e326be355f4ac757f915c4faf9a02c1feb43ce80523",
+      "totalResults": 32,
+      "allSearchIds": [
+        "promoy11-046",
+        "promoy15-041",
+        "promoy15-044",
+        "dmx19-s55",
+        "dmr07-s05",
+        "dm22ex2-S14",
+        "dmrp08-g05",
+        "dmex12-dr5",
+        "dmrp17-a18",
+        "dmrp17-b18",
+        "dm24sp1-007",
+        "dmr06-003",
+        "dmd07-023",
+        "promoy12-003",
+        "dmbd17-teki003",
+        "dmx11-009",
+        "dmx16-010",
+        "dmx25-025",
+        "dmd28-017",
+        "dm24bd6-018",
+        "dm26ex1-032",
+        "dm22ex1-022",
+        "dmex04-007",
+        "dmx22a-s06",
+        "dmd07-022",
+        "promoy12-057",
+        "dmx19-s54",
+        "dmx25-s09",
+        "dmex01-053",
+        "dmd07-017",
+        "dmx19-v01",
+        "dmx11-008"
+      ],
+      "exactPrints": [
+        "dmx22a-s06"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmex14-002",
+      "searchSha256": "91dbe4195155b8d318c6d4d8907ad9d5de38790ea5c06014de9c698924ca35cc",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmex14-002"
+      ],
+      "exactPrints": [
+        "dmex14-002"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Three complete new types, three exact print images/all official searches/stats/mana/limits. Kaiser native single OR watcher adds one shield when self is both LightDragon and namedPurin; independentFireDragon true shield break incl actual enemy AquaSurfer ST and zero-shield noDA. Hachatulian mandatory legal enemy destroy, capture currentcost then optional exactcost creature manaORgrave native deployment (including legal evolution only), replacement does not lose chosen reference. Judgement opposing spell tax1 stacks, ownspells unchanged, attackmandatoryShieldTop, destruction-only mandatory RainbowStay calculated against whole predeparture board. Both seats, encrypted restore, six encrypted service runs, six real mana charges. Related existing destruction-revival, tax, simultaneous replacements and watchers regressed. Old IDs/formats/pending/fullSuite untouched. No push/Pages/Netlify/automation.",
+    "resolvedAttempts": "First bounce fixture used actual vanilla Loque instead of SpiralGate; corrected to actual dm01-086. First cost9 followup candidate was an evolution with no legal base and rightly not selectable; replaced with actual nonevolution Gaurezaal dm10-006 then explicitly deployed after target stayed. Synthetic direct grant fixture was not a valid engine grant shape; replaced with real printed untargetable Onikamasu dm rp01-041. All original expectations now tested with actual cards, no exclusions or product failure left.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa_old/36986/",
+        "kind": "literal-card-interaction",
+        "reproduction": "Both seats realKaiser attacking actual tapped enemy creature adds exactlyone nottwo and independentlybreaksone; encryptedrestore and physicalUIDconservation."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39441/",
+        "kind": "literal-card-interaction",
+        "reproduction": "Both seats actualApocalypseDay sixcreature simultaneousdestruction including realParadoxmulticolor andJudgement; onlyJudgementstays basedpredepartureboard. Encryptedrestore/ignoredsource/destructionwithoutmulticolor/bounce distinctions tested."
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "id": "dmr11-004",
+        "reason": "Full official research and exact print image review completed; next complete implementation and focused verification."
+      },
+      {
+        "id": "dmex16-031",
+        "reason": "Full official research and exact print image review completed; next complete implementation and focused verification."
+      },
+      {
+        "id": "dmrp01-044",
+        "reason": "Full official research and exact print image review completed; next complete implementation and focused verification."
+      },
+      {
+        "id": "dmrp22-012",
+        "reason": "Full official research and exact print image review completed; next complete implementation and focused verification."
+      }
+    ]
+  }
+}

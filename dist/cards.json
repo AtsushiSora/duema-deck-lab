@@ -317630,19 +317630,133 @@
       "g32EvoTrigger": true,
       "supportBatch": "phase-1872",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-005",
+      "name": "炎龍王子カイザー・プリンス",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の光のドラゴンまたは名前に《プリン》とあるクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\n自分の火のドラゴンが攻撃する時、相手のシールドを１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-005",
+      "limit": 4,
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光",
+                "race": "ドラゴン"
+              },
+              {
+                "g819CreatureNameIncludes": "プリン"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Break497",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1873",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22a-s06",
+      "name": "偽りの王 ハチャトゥリアン",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "キング・コマンド・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。その後、そのクリーチャーとコストが同じクリーチャーを１体、自分のマナゾーンまたは墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-s06",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "g786ReviveAtCost": true,
+          "g1873ExactManaGrave": true
+        }
+      ],
+      "supportBatch": "phase-1873",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-002",
+      "name": "貴様の罪のジャッジメント",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "オラクル/月光王国",
+      "text": "相手の呪文を唱えるコストは１多くなる。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\nレインボーナス：このクリーチャーが破壊される時、バトルゾーンに自分の多色クリーチャーがあれば、墓地に置くかわりにバトルゾーンにとどまる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-002",
+      "limit": 4,
+      "g222SpellTax": {
+        "opponent": true,
+        "amount": 1
+      },
+      "g34Attack": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g1873RainbowDestroyStay": true,
+      "supportBatch": "phase-1873",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1872,
-    "checkedAt": "2026-11-28T02:10:50.472Z",
-    "baseCount": 9820,
+    "phase": 1873,
+    "checkedAt": "2026-11-28T02:21:42.964Z",
+    "baseCount": 9823,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9823,
+    "totalCount": 9826,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
-      "https://dm.takaratomy.co.jp/rule/qa/45223/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36986/",
+      "https://dm.takaratomy.co.jp/rule/qa/39441/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -348222,6 +348336,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35196/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1872,
+        "checkedAt": "2026-11-28T02:10:50.472Z",
+        "baseCount": 9820,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9823,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35598/",
+          "https://dm.takaratomy.co.jp/rule/qa/45223/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

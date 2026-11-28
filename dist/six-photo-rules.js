@@ -9868,6 +9868,11 @@ export function createSixPhotoRules(api){
    if(!y)break;
    const max=cost(effective(y,s));
    move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
+   if(t.g1873ExactManaGrave){
+    start(s,t,[{op:'Select',zones:['mana','grave'],n:1,deploy:true,optional:true,
+     filter:{creature:true,exactCost:max===Infinity?'∞':max}}]);
+    break;
+   }
    const limit=max===Infinity?Infinity:max+(t.g1625HandUpgrade?1:0);
    const bound=t.g1325StrictlyLower?{belowCost:limit===Infinity?'∞':limit}:limit===Infinity?{}:{max:limit};
    start(s,t,[{op:'Select',origin:t.g1625HandUpgrade?'hand':'grave',n:1,deploy:true,
