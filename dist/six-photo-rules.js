@@ -1192,7 +1192,7 @@ export function createSixPhotoRules(api){
    s.players[ref.p].battle.some(y=>card(y).g1201ProtectBlockers&&!y.faceDown&&!y.sealed&&
     api.isCreature(s,y)&&!api.ignored(s,y));
  }
- function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||!!(c.g1697FireBattleSafe&&y&&colors(effective(y,s)).includes('火'))||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
+ function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||!!(c.g1697FireBattleSafe&&y&&colors(effective(y,s)).includes('火'))||!!(c.g1879BattleSafeColor&&y&&colors(effective(y,s)).includes(c.g1879BattleSafeColor))||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t,owner=t.p){
   if(!t.g1826PublicReveal&&api.deckLocked(s,t.p))return [];
@@ -5775,8 +5775,9 @@ export function createSixPhotoRules(api){
   const p=t.owner==='self'?t.p:1-t.p,hand=t.zone==='hand';
   const rows=hand?s.players[p].hand:creatures(s,p).filter(y=>!y.sealed);
   const eligible=t.to==='mana'?rows.filter(y=>api.targetable(s,p,p,y)):rows;
+  if(!eligible.length)break;
   choice(s,{...t,p,controller:t.controller??t.p},hand?'残す手札を1枚選ぶ':'残すクリーチャーを1体選ぶ',
-   eligible.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)));
+   [...eligible.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)),...(t.optional?[skip()]:[])]);
   break;
  }
  case'g34_ReleaseSelfHyper783':{
@@ -8251,9 +8252,10 @@ export function createSixPhotoRules(api){
   const hand=t.zone==='hand',to=t.to||'grave',rows=hand?own.hand:creatures(s,t.p).filter(y=>!y.sealed);
   if(!rows.some(y=>y.uid===v))break;
   const rest=rows.filter(y=>y.uid!==v);
-  if(!rest.length)break;
-  if(hand)api.discardSelected(s,t.p,rest.map(y=>y.uid),t.source,t.controller);
-  else move(s,rest.map(y=>({player:t.p,uid:y.uid,to,destroy:to==='grave',controller:t.controller})));
+  if(hand){
+   if(rest.length)api.discardSelected(s,t.p,rest.map(y=>y.uid),t.source,t.controller);
+   if(t.g1879EndDraw)scheduleUntap562(s,{...t,creatureSource:true},[{op:'Draw',n:t.g1879EndDraw}]);
+  }else if(rest.length)move(s,rest.map(y=>({player:t.p,uid:y.uid,to,destroy:to==='grave',controller:t.controller})));
   break;
  }
  case'g34_GraveDeckEnd837':{
