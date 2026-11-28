@@ -1,0 +1,783 @@
+{
+  "phase": 1898,
+  "checkedAt": "2026-11-28T05:24:06.910Z",
+  "baseline": "0b3f93af8731be672580accebdd5b948a5a6895a",
+  "baseCount": 9922,
+  "target": 10000,
+  "description": "Four whole cards/eight prints: Grape Mach/JChange6 optionaltwoRamp THENmandatoryownMana grave; KikiriT3 publictop3 ALL12000creatures hand/orderrest and enemycreature/spell discard deployreplacement; Drakken FireEVO T3 publictop5 ALLnonEVOFireBird deployment and Revolution2 otherFire+6000/extraBreak; Sanmad exact3Nature evolution/invasionhandORmana, own>=3T3 and totalbattle>=4mandatoryanycreatureMana. Literal39640 and49077 actualcards.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39640/",
+    "https://dm.takaratomy.co.jp/rule/qa/49077/"
+  ],
+  "cards": [
+    {
+      "id": "dmex03-040",
+      "name": "グレープ・ダール",
+      "canonicalId": "dmex03-040",
+      "printId": "dmex03-040",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-040",
+      "faces": [
+        {
+          "name": "グレープ・ダール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g393Change": {
+          "mana": 6
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-040.jpg",
+      "imageSha256": "0c6c741f3d2d73f7a800f7a014bd5176e7d10f77c28909031e6a92c414e383dc",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex03-040-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-040",
+          "dm26ex4-CHO026",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allSearchIds": [
+          "dm26ex4-CHO026",
+          "dmex03-040",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "de168265364654998bb85d9accfb6de5a807412972f34f963dcf4897ea6dca5f",
+        "facesMatched": true,
+        "imageSha256": "0c6c741f3d2d73f7a800f7a014bd5176e7d10f77c28909031e6a92c414e383dc"
+      }
+    },
+    {
+      "id": "dmsp01-019",
+      "name": "キキリカミ・パンツァー",
+      "canonicalId": "dmsp01-019",
+      "printId": "dmsp01-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-019",
+      "faces": [
+        {
+          "name": "キキリカミ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からパワー12000以上のクリーチャーをすべて、自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "minPower": 12000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-019.jpg",
+      "imageSha256": "473d7bcfb67ac3c72ae097ec5149a56959a410912ff6ae69280ad3524056d0e4",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmsp01-019-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsp01-019",
+          "dmex04-048"
+        ],
+        "allSearchIds": [
+          "dmex04-048",
+          "dmsp01-019"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "02ea1beab072c5196b9dde813dfae51b4000774d57d4036519858e0504fc67cf",
+        "facesMatched": true,
+        "imageSha256": "473d7bcfb67ac3c72ae097ec5149a56959a410912ff6ae69280ad3524056d0e4"
+      }
+    },
+    {
+      "id": "dmr20-s06",
+      "name": "キャプテン・ドラッケン",
+      "canonicalId": "dmr20-s06",
+      "printId": "dmr20-s06",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-s06",
+      "faces": [
+        {
+          "name": "キャプテン・ドラッケン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を表向きにする。その中から進化ではないファイアー・バードをすべてバトルゾーンに出し、残りを好きな順序で山札の一番下に置く。\n革命２―自分のシールドが２つ以下なら、自分の他の火のクリーチャーのパワーは+6000され、シールドをさらにひとつブレイクする。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 5,
+            "limit": "all",
+            "g749Required": true,
+            "public": true,
+            "g1660PublicReveal": true,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ファイアー・バード"
+            }
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "g205Aura": {
+              "other": true,
+              "filter": {
+                "color": "火"
+              },
+              "power": 6000
+            }
+          }
+        },
+        "g208Auras": [
+          {
+            "other": true,
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "g557Condition": {
+              "g265ShieldsMax": 2
+            },
+            "grants": {
+              "extraBreak": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-s06.jpg",
+      "imageSha256": "4de8b95a9e2c8078fd45238030cf18dd75782eafa3974a7a848364895a447f3f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr20-s06-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr20-s06"
+        ],
+        "allSearchIds": [
+          "dmr20-s06"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "95021998c26b38ed1132994b7b7fc995c3af7e4fd99033469fe5de67e6e17239",
+        "facesMatched": true,
+        "imageSha256": "4de8b95a9e2c8078fd45238030cf18dd75782eafa3974a7a848364895a447f3f"
+      }
+    },
+    {
+      "id": "dmr19-s09",
+      "name": "S級原始 サンマッド",
+      "canonicalId": "dmr19-s09",
+      "printId": "dmr19-s09",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s09",
+      "faces": [
+        {
+          "name": "S級原始 サンマッド",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化-自分の自然のコスト３のクリーチャー１体の上に置く。\nS級侵略 [原始]-自然のコスト３のクリーチャー（自分の自然のコスト３のクリーチャーが攻撃する時、自分の手札またはマナゾーンにあるこのクリーチャーをその上に重ねてもよい）\n自分のクリーチャーが３体以上あれば、このクリーチャーに「T・ブレイカー」を与える。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにクリーチャーが４体以上あれば、そのうちの１体を選び、持ち主のマナゾーンに置く。",
+          "race": "ゲリラ・コマンド/S級侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "all": [
+            {
+              "civilization": "自然"
+            },
+            {
+              "g1806CurrentCost": 3
+            }
+          ]
+        },
+        "invasion": {
+          "colors": [
+            "自然"
+          ],
+          "origins": [
+            "hand",
+            "mana"
+          ],
+          "anyCreature": true,
+          "exactCost": 3
+        },
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 3
+            }
+          },
+          "grants": {
+            "breaker": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "sumBoth": true,
+                "filter": {
+                  "creature": true
+                },
+                "min": 4
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "mana",
+                "toOwnerMana": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-s09.jpg",
+      "imageSha256": "e08d533233744f6874b1e819f7aa8170f31303d81725b94166f0e482646bc424",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmr19-s09-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmr19-s09"
+        ],
+        "allSearchIds": [
+          "dm26rp2-TR006",
+          "dmex06-012",
+          "dmr19-s09",
+          "dm26ex2-015"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "f7733b4a4a2ad82afee615282d8710ab09f8d1fc00851d4220a10bc00132ecd1",
+        "facesMatched": true,
+        "imageSha256": "e08d533233744f6874b1e819f7aa8170f31303d81725b94166f0e482646bc424"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex4-CHO026",
+      "name": "グレープ・ダール",
+      "canonicalId": "dmex03-040",
+      "printId": "dm26ex4-CHO026",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-CHO026",
+      "faces": [
+        {
+          "name": "グレープ・ダール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター\nJチェンジ６\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g393Change": {
+          "mana": 6
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-CHO026.jpg",
+      "imageSha256": "6bf6625128a031c4a15e74f16be7c84ffd65baa32acfae109b2d0c560ccf9f7f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm26ex4-CHO026-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-040",
+          "dm26ex4-CHO026",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allSearchIds": [
+          "dm26ex4-CHO026",
+          "dmex03-040",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "ff951ee4b32fd651098927b629c9bcd824ffd01b8800a26b3a080b6c7b566104",
+        "facesMatched": true,
+        "imageSha256": "6bf6625128a031c4a15e74f16be7c84ffd65baa32acfae109b2d0c560ccf9f7f"
+      }
+    },
+    {
+      "id": "dmex19-016",
+      "name": "グレープ・ダール",
+      "canonicalId": "dmex03-040",
+      "printId": "dmex19-016",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-016",
+      "faces": [
+        {
+          "name": "グレープ・ダール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g393Change": {
+          "mana": 6
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-016.jpg",
+      "imageSha256": "e8e149aca28c60f6cc4a58fce8984d97d5d8dc7f52387b886347ef854d7ef86f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex19-016-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-040",
+          "dm26ex4-CHO026",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allSearchIds": [
+          "dm26ex4-CHO026",
+          "dmex03-040",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "37943d65e4fcf7c7a3e613b5da238f594769dbec5dd517cb779c17b63d2b4c74",
+        "facesMatched": true,
+        "imageSha256": "e8e149aca28c60f6cc4a58fce8984d97d5d8dc7f52387b886347ef854d7ef86f"
+      }
+    },
+    {
+      "id": "dmex08-119",
+      "name": "グレープ・ダール",
+      "canonicalId": "dmex03-040",
+      "printId": "dmex08-119",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-119",
+      "faces": [
+        {
+          "name": "グレープ・ダール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g393Change": {
+          "mana": 6
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-119.jpg",
+      "imageSha256": "e240e47aead7c7ccdd82aef631928418ddbab470d9cd5fb0a3edef202c090e50",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex08-119-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmex03-040",
+          "dm26ex4-CHO026",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allSearchIds": [
+          "dm26ex4-CHO026",
+          "dmex03-040",
+          "dmex19-016",
+          "dmex08-119"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "16bf5b085412f345edeb3e8bb86e7e7af15d3542f6706f07dedbd895adbf6f02",
+        "facesMatched": true,
+        "imageSha256": "e240e47aead7c7ccdd82aef631928418ddbab470d9cd5fb0a3edef202c090e50"
+      }
+    },
+    {
+      "id": "dmex04-048",
+      "name": "キキリカミ・パンツァー",
+      "canonicalId": "dmsp01-019",
+      "printId": "dmex04-048",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-048",
+      "faces": [
+        {
+          "name": "キキリカミ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からパワー12000以上のクリーチャーをすべて、自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "minPower": 12000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-048.jpg",
+      "imageSha256": "39f8c5bcaa4ba0b7c22a71d148fbd09568560d560d8fdd7b3a8ef863ac2acb1e",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmex04-048-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmsp01-019",
+          "dmex04-048"
+        ],
+        "allSearchIds": [
+          "dmex04-048",
+          "dmsp01-019"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:24:06.910Z",
+        "sha256": "1c498e13a11ab6ff3d5e62554009dbc8dc46f9a49a4f84fba97ebdfa55c018a6",
+        "facesMatched": true,
+        "imageSha256": "39f8c5bcaa4ba0b7c22a71d148fbd09568560d560d8fdd7b3a8ef863ac2acb1e"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/39640/",
+      "sha256": "ae4e4299a96bdc2cba1b2e2b75604ab7add214583b7dbfb2099eadbf43260bd5",
+      "checkedAt": "2026-11-28T05:24:06.910Z",
+      "reproduced": true,
+      "tests": "tests/standard1898-effects.test.mjs",
+      "reproduction": "ActualGrape JChange6 to actualBolshackMomokingNEX dmrp17-km1 frommana withactualF Firebase. Chooseotherbase, actualincomingTAPPEDandattackcontinuesW2. Nootherlegalbasecannotexchange, originalGrapecontinuesonebreak. Bothseats/encryptedbasechoice.",
+      "result": "ActualGrape JChange6 to actualBolshackMomokingNEX dmrp17-km1 frommana withactualF Firebase. Chooseotherbase, actualincomingTAPPEDandattackcontinuesW2. Nootherlegalbasecannotexchange, originalGrapecontinuesonebreak. Bothseats/encryptedbasechoice."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/49077/",
+      "sha256": "77aa04520f3fe6d08b15dfa198c8ba4d19a404aadb742e5827fe3d032c39ae5b",
+      "checkedAt": "2026-11-28T05:24:06.910Z",
+      "reproduced": true,
+      "tests": "tests/standard1898-effects.test.mjs",
+      "reproduction": "Literal realSSSCharisma dm26ex2-SPR004 paidultimateevolution intoactualGachansky, opposingactualDedoA+B plusactualSanmad legallyevolvedoverLupiaTurn. Allfourphysicalcards shuffledtogetherasonebottomset; untouchedprefixunchanged, 10nativeRNGseeds perseat confirm formerunder/top canseparate. AdditionalactualStarMorohayashatoponlymoveswhilebaseSTAYS andnotshuffled.",
+      "result": "Literal realSSSCharisma dm26ex2-SPR004 paidultimateevolution intoactualGachansky, opposingactualDedoA+B plusactualSanmad legallyevolvedoverLupiaTurn. Allfourphysicalcards shuffledtogetherasonebottomset; untouchedprefixunchanged, 10nativeRNGseeds perseat confirm formerunder/top canseparate. AdditionalactualStarMorohayashatoponlymoveswhilebaseSTAYS andnotshuffled."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T05:24:06.910Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex03-040": 4,
+      "dmsp01-019": 4,
+      "dmr20-s06": 4,
+      "dmr19-s09": 1,
+      "dm26ex4-CHO026": 4,
+      "dmex19-016": 4,
+      "dmex08-119": 4,
+      "dmex04-048": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmex03-040",
+      "searchSha256": "8ca964d2b57defbabd85ec0fddc1d1b0c51be866a6fed8f6594e35dc2c975ab5",
+      "totalResults": 4,
+      "allSearchIds": [
+        "dm26ex4-CHO026",
+        "dmex03-040",
+        "dmex19-016",
+        "dmex08-119"
+      ],
+      "exactPrints": [
+        "dmex03-040",
+        "dm26ex4-CHO026",
+        "dmex19-016",
+        "dmex08-119"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmsp01-019",
+      "searchSha256": "8821ac71e7b1b38596c4b4fe787e34736e7ebd8b451ded07d8cd0ec229c3fbf1",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmex04-048",
+        "dmsp01-019"
+      ],
+      "exactPrints": [
+        "dmsp01-019",
+        "dmex04-048"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr20-s06",
+      "searchSha256": "11c5989d4c6f8e7521decc54c6af14db7bccc9390b7b5480e8445dee8492b5ba",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmr20-s06"
+      ],
+      "exactPrints": [
+        "dmr20-s06"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmr19-s09",
+      "searchSha256": "be8053fdf81a880252b2be720098a2fd8c63d85c3432a03117769cb5971338a6",
+      "totalResults": 4,
+      "allSearchIds": [
+        "dm26rp2-TR006",
+        "dmex06-012",
+        "dmr19-s09",
+        "dm26ex2-015"
+      ],
+      "exactPrints": [
+        "dmr19-s09"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Four whole cards/eight print images/all full official abilities/stats/current limits inclSanmadrestricted count. Grape Mach/JChange6 optional2ramp THENmandatorymana1grave; literal39640 actualMomoNEX legalotherFirebase evolvesTAPPED continuesattack, nolegalbase doesNOTswap. KikiriT3 publictop3 mandatoryALLprinted12000creatures tohand/restorderedbottom; enemyspell discard optionalreplacementdeploy+CIP and realownTyphoondiscardnegative. DrakkenFireEVOT3 publictop5ALLnonEVOFireBirds inclDARK; Revolution2 OTHERFirecreatures+6000/extraBreak1, sourcenotbuffed, Darkbirdnotbuffed, live0/2/3shields. Sanmad exact3NatureEVO/invasionhandORmanaANYrace noCommand, own>=3T3 and TOTAL>=4CIP mandatoryANYown/enemycreaturetoMana. Literal49077 realCharisma/TWODedo/SanmadonactualLupiaTurn fourPHYSICALcards shuffleWHOLEset inclbases, no untoucheddeckshuffle; tenengineRNGseeds show evolutionpartsnotkeptcontiguous, Starreconstructiononlyactualtopgoesdeck. Realencryptedservices forfour, two-seat saveUID andoldIDs unchanged.",
+    "resolvedAttempts": "Initial SanmadCIP used unsupported both:true on g370BattleCount; corrected to native sumBoth:true after focused failure. OriginalCharisma runtime only shuffled creatureTOP UID order leaving each evolutionbase adjacent. Scoped nativeCharisma fix captures all physical layers, moves full units with owner destinations, then blindshuffles ONLY actuallydeparted cards perowner as one set. No wholelibraryshuffle, no splittingbattleunits beforedeparture, no survivingStarbase erroneouslyincluded. New Q49077 literal passes20 actualgames/seeds plus Starnegative. Prior definitions and allolderpending unchanged.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/39640/",
+        "reproduced": true,
+        "tests": "tests/standard1898-effects.test.mjs",
+        "reproduction": "ActualGrape JChange6 to actualBolshackMomokingNEX dmrp17-km1 frommana withactualF Firebase. Chooseotherbase, actualincomingTAPPEDandattackcontinuesW2. Nootherlegalbasecannotexchange, originalGrapecontinuesonebreak. Bothseats/encryptedbasechoice."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/49077/",
+        "reproduced": true,
+        "tests": "tests/standard1898-effects.test.mjs",
+        "reproduction": "Literal realSSSCharisma dm26ex2-SPR004 paidultimateevolution intoactualGachansky, opposingactualDedoA+B plusactualSanmad legallyevolvedoverLupiaTurn. Allfourphysicalcards shuffledtogetherasonebottomset; untouchedprefixunchanged, 10nativeRNGseeds perseat confirm formerunder/top canseparate. AdditionalactualStarMorohayashatoponlymoveswhilebaseSTAYS andnotshuffled."
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dm36-061",
+          "promoy16-084",
+          "dmx18-037",
+          "promoy17-001",
+          "dmrp12-058"
+        ],
+        "reason": "Prepared officialresearch next six-printYagyuDragon, compositetop2shieldSavauk, graveStartDark5Shibakage, J&Jper-breakdestroygrant andSTScarabeya."
+      }
+    ]
+  }
+}

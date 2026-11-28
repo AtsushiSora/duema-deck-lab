@@ -2,7 +2,7 @@ import {beginElementEntryBatch,endElementEntryBatch,elementEntrySourceEstablishe
 import {hasKingMasterRarity1697} from './king-master-cards.js';
 import {hasVictoryRarity1686} from './victory-cards.js';
 import {overdrivePayment1439} from './overdrive1439-rules.js?v=0.722.3';
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.20';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.722.21';
 import {createChampionRaid} from './champion-raid-helpers.js';
 import {policyLook,policyTake} from './champion-zone-policy.js';
 import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';

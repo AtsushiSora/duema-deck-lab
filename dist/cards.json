@@ -321237,18 +321237,242 @@
       "supportBatch": "phase-1897",
       "supportKind": "effect",
       "g1897DiscardCreatureSpell": true
+    },
+    {
+      "id": "dmex03-040",
+      "name": "グレープ・ダール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ/スペシャルズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-040",
+      "limit": 4,
+      "machFighter": true,
+      "g393Change": {
+        "mana": 6
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1898",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp01-019",
+      "name": "キキリカミ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中からパワー12000以上のクリーチャーをすべて、自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-019",
+      "limit": 4,
+      "breaker": 3,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "allMatches": true,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "minPower": 12000
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1898",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-s06",
+      "name": "キャプテン・ドラッケン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 13000,
+      "race": "メガ・コマンド・ドラゴン/革命軍",
+      "text": "進化―自分の火のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を表向きにする。その中から進化ではないファイアー・バードをすべてバトルゾーンに出し、残りを好きな順序で山札の一番下に置く。\n革命２―自分のシールドが２つ以下なら、自分の他の火のクリーチャーのパワーは+6000され、シールドをさらにひとつブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-s06",
+      "limit": 4,
+      "evolution": {
+        "civilization": "火"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 5,
+          "limit": "all",
+          "g749Required": true,
+          "public": true,
+          "g1660PublicReveal": true,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ファイアー・バード"
+          }
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g265ShieldsMax": 2
+        },
+        "grants": {
+          "g205Aura": {
+            "other": true,
+            "filter": {
+              "color": "火"
+            },
+            "power": 6000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "g557Condition": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "extraBreak": 1
+          }
+        }
+      ],
+      "supportBatch": "phase-1898",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-s09",
+      "name": "S級原始 サンマッド",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ゲリラ・コマンド/S級侵略者",
+      "text": "進化-自分の自然のコスト３のクリーチャー１体の上に置く。\nS級侵略 [原始]-自然のコスト３のクリーチャー（自分の自然のコスト３のクリーチャーが攻撃する時、自分の手札またはマナゾーンにあるこのクリーチャーをその上に重ねてもよい）\n自分のクリーチャーが３体以上あれば、このクリーチャーに「T・ブレイカー」を与える。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにクリーチャーが４体以上あれば、そのうちの１体を選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s09",
+      "limit": 1,
+      "evolution": {
+        "all": [
+          {
+            "civilization": "自然"
+          },
+          {
+            "g1806CurrentCost": 3
+          }
+        ]
+      },
+      "invasion": {
+        "colors": [
+          "自然"
+        ],
+        "origins": [
+          "hand",
+          "mana"
+        ],
+        "anyCreature": true,
+        "exactCost": 3
+      },
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "breaker": 3
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "sumBoth": true,
+              "filter": {
+                "creature": true
+              },
+              "min": 4
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "to": "mana",
+              "toOwnerMana": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1898",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1897,
-    "checkedAt": "2026-11-28T05:16:41.886Z",
-    "baseCount": 9919,
-    "newEffectCards": 3,
+    "phase": 1898,
+    "checkedAt": "2026-11-28T05:24:06.910Z",
+    "baseCount": 9922,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9922,
+    "totalCount": 9926,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39641/"
+      "https://dm.takaratomy.co.jp/rule/qa/39640/",
+      "https://dm.takaratomy.co.jp/rule/qa/49077/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -352207,6 +352431,21 @@
         "totalCount": 9919,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1897,
+        "checkedAt": "2026-11-28T05:16:41.886Z",
+        "baseCount": 9919,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9922,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39641/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

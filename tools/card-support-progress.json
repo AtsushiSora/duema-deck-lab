@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-28",
   "catalogueNames": 11849,
-  "supportedNames": 9922,
-  "pendingNames": 1927,
-  "phase": 1897,
-  "added": 3,
+  "supportedNames": 9926,
+  "pendingNames": 1923,
+  "phase": 1898,
+  "added": 4,
   "readyForOfficialVerification": [
     "dmex18-067"
   ],
@@ -156,12 +156,12 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 1123,
+    "クリーチャー": 1121,
     "呪文": 214,
     "G-NEOクリーチャー": 23,
     "デュエルメイト呪文": 8,
     "S-MAX進化クリーチャー": 8,
-    "進化クリーチャー": 155,
+    "進化クリーチャー": 153,
     "スター進化クリーチャー": 35,
     "NEOクリーチャー": 33,
     "オレガ・オーラ": 11,
@@ -219,12 +219,12 @@
     "進化エグザイル・クリーチャー": 1
   },
   "reasons": {
-    "未対応の能力文": 1422,
+    "未対応の能力文": 1419,
     "複数面・特殊カードタイプまたは情報不足": 421,
     "未対応のG・ゼロ条件": 6,
     "未対応の召喚時能力": 12,
     "未対応のD2フィールド能力": 10,
-    "複雑な進化条件": 8,
+    "複雑な進化条件": 7,
     "未対応のスリリング・スリー効果": 2,
     "コスト・文明の個別処理が必要": 2,
     "未対応のスペース・チャージ条件": 4,
@@ -320,12 +320,12 @@
         "name": "S級原始 サンマックス"
       },
       {
-        "id": "dmr19-s09",
-        "name": "S級原始 サンマッド"
-      },
-      {
         "id": "promoy10-021",
         "name": "激竜ガイアール・Ｂ"
+      },
+      {
+        "id": "dm35-s03",
+        "name": "死神明王バロム・モナーク"
       }
     ],
     "未対応のスリリング・スリー効果": [
@@ -588877,22 +588877,216 @@
           "reason": "Initial guessed GhostTouch ID was actualGigantos; corrected to actualdm01-094 before final tests. JOE uses play alternative=joe ratherthan inventedfield/kind. Foundnativeg1864EnemyDiscardTasks deliberatelyincludesALLenemyELEMENTabilities; Varning printedonlycreature/spell, so added optin g1897DiscardCreatureSpell reusingnativeenemyDiscardEffect predicate. ActualJennyTamaseed doesNOTtrigger, actualMaskedHorror creature DOES. Generalized existing manaEvolution1701 origin parameter(defaultmana unchanged), LookDeploy530optin max/source reference and direct forcedbase reusesexact single-base legality including GV rejection/NEOmandatoryevolution. New implementation and related/online/check all rerun after flagchange."
         }
       ],
+      "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify.",
+      "verifiedCodeCommit": "0b3f93af8731be672580accebdd5b948a5a6895a"
+    },
+    {
+      "phase": 1898,
+      "checkedAt": "2026-11-28T05:30:29.080Z",
+      "baseline": "0b3f93af8731be672580accebdd5b948a5a6895a",
+      "status": "verified-local",
+      "kind": "manual-grouped-registration-toward-10000",
+      "target": 10000,
+      "before": 9922,
+      "currentNames": 9926,
+      "remainingNames": 74,
+      "added": [
+        {
+          "id": "dmex03-040",
+          "name": "グレープ・ダール"
+        },
+        {
+          "id": "dmsp01-019",
+          "name": "キキリカミ・パンツァー"
+        },
+        {
+          "id": "dmr20-s06",
+          "name": "キャプテン・ドラッケン"
+        },
+        {
+          "id": "dmr19-s09",
+          "name": "S級原始 サンマッド"
+        }
+      ],
+      "duplicateNames": 0,
+      "invariants": {
+        "phase": 1898,
+        "baseline": "0b3f93af8731be672580accebdd5b948a5a6895a",
+        "originalDefinitionsUnchanged": 9922,
+        "existingDefinitionsCorrected": 0,
+        "uniqueNames": 9926,
+        "uniqueIds": 9926,
+        "added": 4,
+        "duplicateNames": 0,
+        "detailsUnchanged": true,
+        "oldDetailsRowsUnchanged": 11853,
+        "newCatalogueNames": 0,
+        "oldSavedIdsAndFormatsPreserved": true,
+        "existingImageUrlsUnchanged": 9922,
+        "existingImageReferenceRowsUnchanged": 12493,
+        "officialPrintsReviewed": 8,
+        "olderPendingPreserved": true
+      },
+      "results": {
+        "official-1898": {
+          "name": "official-1898",
+          "command": [
+            "node",
+            "tools/verify-support-manifest.mjs",
+            "tools/support-phase-1898.json"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.924,
+          "log": "tmp/duema-target-10000/official-1898.log",
+          "passed": 0,
+          "logSha256": "a8371fbded2ab2f7245b8356e746ed950cf17a23b1735fedf65d1abcea182544"
+        },
+        "focused-1898-final": {
+          "name": "focused-1898-final2",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1898-effects.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.926,
+          "log": "tmp/duema-target-10000/focused-1898-final2.log",
+          "passed": 49,
+          "logSha256": "9561de1192bb61ad957d46f9a10ea1b7ce037408a9271599dc1422540cb31757"
+        },
+        "related-1898": {
+          "name": "related-1898",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/related-1898.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 9.914,
+          "log": "tmp/duema-target-10000/related-1898.log",
+          "passed": 335,
+          "logSha256": "413bd133826672345cbd10943792267f7d2770ec8a650b6ae8d4d799bc9e0aa6"
+        },
+        "check-1898": {
+          "name": "check-1898",
+          "command": [
+            "npm",
+            "run",
+            "check"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 22.705,
+          "log": "tmp/duema-target-10000/check-1898.log",
+          "passed": 0,
+          "logSha256": "b5fab06ef9b1c44ca63ef490930f935b19ea6a25ae25d153f1fdfa14a9904dce"
+        },
+        "audit-1898": {
+          "name": "audit-1898",
+          "command": [
+            "node",
+            "tools/audit-card-support.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 10.367,
+          "log": "tmp/duema-target-10000/audit-1898.log",
+          "passed": 0,
+          "logSha256": "7adb476d0e10c47cfb6efb75684a8f7315694a54eb783219f4f8712b0c3b0250"
+        },
+        "invariants-1898": {
+          "name": "invariants-1898",
+          "command": [
+            "node",
+            "tmp/duema-target-10000/invariants.mjs",
+            "1898"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.928,
+          "log": "tmp/duema-target-10000/invariants-1898.log",
+          "passed": 0,
+          "logSha256": "1368b6d2be6900d52e8b9da3b37d504edc112b232ec4ee1cbc685d52aa35485b"
+        },
+        "related-online-1898": {
+          "name": "related-online-1898",
+          "command": [
+            "node",
+            "--test",
+            "--test-name-pattern",
+            "^(room storage|creating, joining|the server validates|a repeated move request|HTTP server rejects mismatched)",
+            "tests/online-server.test.mjs"
+          ],
+          "code": 0,
+          "timedout": false,
+          "seconds": 1.229,
+          "log": "tmp/duema-target-10000/related-online-1898.log",
+          "passed": 5,
+          "logSha256": "809565e2602a88f8ec126f4b9fd3a74d633d6b7b7403cb5404a4c8b82ffd5181"
+        }
+      },
+      "totalTestsPassed": 389,
+      "manifest": "tools/support-phase-1898.json",
+      "supported": 9926,
+      "pending": 1923,
+      "engineVersion": "0.602.422",
+      "held": [],
+      "nextCandidates": [
+        {
+          "ids": [
+            "dm36-061",
+            "promoy16-084",
+            "dmx18-037",
+            "promoy17-001",
+            "dmrp12-058"
+          ],
+          "reason": "Prepared officialresearch next six-printYagyuDragon, compositetop2shieldSavauk, graveStartDark5Shibakage, J&Jper-breakdestroygrant andSTScarabeya."
+        }
+      ],
+      "verificationScope": "Four whole cards/eight print images/all full official abilities/stats/current limits inclSanmadrestricted count. Grape Mach/JChange6 optional2ramp THENmandatorymana1grave; literal39640 actualMomoNEX legalotherFirebase evolvesTAPPED continuesattack, nolegalbase doesNOTswap. KikiriT3 publictop3 mandatoryALLprinted12000creatures tohand/restorderedbottom; enemyspell discard optionalreplacementdeploy+CIP and realownTyphoondiscardnegative. DrakkenFireEVOT3 publictop5ALLnonEVOFireBirds inclDARK; Revolution2 OTHERFirecreatures+6000/extraBreak1, sourcenotbuffed, Darkbirdnotbuffed, live0/2/3shields. Sanmad exact3NatureEVO/invasionhandORmanaANYrace noCommand, own>=3T3 and TOTAL>=4CIP mandatoryANYown/enemycreaturetoMana. Literal49077 realCharisma/TWODedo/SanmadonactualLupiaTurn fourPHYSICALcards shuffleWHOLEset inclbases, no untoucheddeckshuffle; tenengineRNGseeds show evolutionpartsnotkeptcontiguous, Starreconstructiononlyactualtopgoesdeck. Realencryptedservices forfour, two-seat saveUID andoldIDs unchanged.",
+      "registeredCardVerificationPending": [],
+      "olderPendingPreserved": true,
+      "fullSuiteStatus": "中断・合否未確認",
+      "publication": {
+        "pushed": false,
+        "pages": false,
+        "netlifyUpdated": false
+      },
+      "incompleteVerification": [],
+      "resolvedAttempts": [
+        {
+          "name": "focused-1898",
+          "command": [
+            "node",
+            "--test",
+            "tests/standard1898-effects.test.mjs"
+          ],
+          "code": 1,
+          "timedout": false,
+          "seconds": 8.774,
+          "log": "tmp/duema-target-10000/focused-1898.log",
+          "reason": "Initial SanmadCIP used unsupported both:true on g370BattleCount; corrected to native sumBoth:true after focused failure. OriginalCharisma runtime only shuffled creatureTOP UID order leaving each evolutionbase adjacent. Scoped nativeCharisma fix captures all physical layers, moves full units with owner destinations, then blindshuffles ONLY actuallydeparted cards perowner as one set. No wholelibraryshuffle, no splittingbattleunits beforedeparture, no survivingStarbase erroneouslyincluded. New Q49077 literal passes20 actualgames/seeds plus Starnegative. Prior definitions and allolderpending unchanged."
+        }
+      ],
       "next": "Continue manually toward 10,000 in verified 3–5-type batches; timed automation remains PAUSED; no push/publication/Netlify."
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 1897,
-    "nextPhase": 1898,
+    "lastVerifiedPhase": 1898,
+    "nextPhase": 1899,
     "workInProgress": null,
     "nextCandidates": [
       {
         "ids": [
-          "dmex03-040",
-          "dmsp01-019",
-          "dmr20-s06",
-          "dmr19-s09"
+          "dm36-061",
+          "promoy16-084",
+          "dmx18-037",
+          "promoy17-001",
+          "dmrp12-058"
         ],
-        "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
+        "reason": "Prepared officialresearch next six-printYagyuDragon, compositetop2shieldSavauk, graveStartDark5Shibakage, J&Jper-breakdestroygrant andSTScarabeya."
       }
     ],
     "steps": [
@@ -589806,11 +590000,11 @@
       "partitions": 6
     },
     "registrationCheckpoint": {
-      "phase": 1897,
-      "baseline": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
-      "supportedNames": 9922,
-      "artifact": "tools/target10000-registration-checkpoint-1897.json",
-      "checkedAt": "2026-11-28T05:21:23.959Z"
+      "phase": 1898,
+      "baseline": "0b3f93af8731be672580accebdd5b948a5a6895a",
+      "supportedNames": 9926,
+      "artifact": "tools/target10000-registration-checkpoint-1898.json",
+      "checkedAt": "2026-11-28T05:30:29.080Z"
     },
     "registrationSession": {
       "phase": 1614,
@@ -592868,8 +593062,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9922,
-      "remaining": 78,
+      "currentNames": 9926,
+      "remaining": 74,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -592877,17 +593071,18 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1897,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1897.json",
+      "lastPhase": 1898,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1898.json",
       "nextCandidates": [
         {
           "ids": [
-            "dmex03-040",
-            "dmsp01-019",
-            "dmr20-s06",
-            "dmr19-s09"
+            "dm36-061",
+            "promoy16-084",
+            "dmx18-037",
+            "promoy17-001",
+            "dmrp12-058"
           ],
-          "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
+          "reason": "Prepared officialresearch next six-printYagyuDragon, compositetop2shieldSavauk, graveStartDark5Shibakage, J&Jper-breakdestroygrant andSTScarabeya."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -593124,7 +593319,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "lastVerifiedCommit": "0b3f93af8731be672580accebdd5b948a5a6895a",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -593135,7 +593330,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "lastVerifiedCodeCommit": "0b3f93af8731be672580accebdd5b948a5a6895a",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -594309,8 +594504,8 @@
       "status": "active",
       "startNames": 9506,
       "target": 10000,
-      "currentNames": 9922,
-      "remaining": 78,
+      "currentNames": 9926,
+      "remaining": 74,
       "startedAt": "2026-11-27T07:25:07.421Z",
       "userInstruction": "昨日の一気に追加で目標10000種類までお願い",
       "method": "Preselect groups, share official research and scaffolding, verify and commit 3–5 types per batch.",
@@ -594318,17 +594513,18 @@
       "push": false,
       "pages": false,
       "netlify": false,
-      "lastPhase": 1897,
-      "lastCheckpoint": "tools/target10000-registration-checkpoint-1897.json",
+      "lastPhase": 1898,
+      "lastCheckpoint": "tools/target10000-registration-checkpoint-1898.json",
       "nextCandidates": [
         {
           "ids": [
-            "dmex03-040",
-            "dmsp01-019",
-            "dmr20-s06",
-            "dmr19-s09"
+            "dm36-061",
+            "promoy16-084",
+            "dmx18-037",
+            "promoy17-001",
+            "dmrp12-058"
           ],
-          "reason": "Groupedresearch next JChange6optionalramp/Madness12000search/FireEVOFireBirdarmy/Revolution2/invasionmana3costNature."
+          "reason": "Prepared officialresearch next six-printYagyuDragon, compositetop2shieldSavauk, graveStartDark5Shibakage, J&Jper-breakdestroygrant andSTScarabeya."
         }
       ],
       "resumeProcedure": "Continue manually toward10000 in fully verified batches. Preserve all older pending and deferrals/fullsuite interrupted. AutomationPAUSED. No push/Pages/Netlify.",
@@ -594565,7 +594761,7 @@
           "checkedAt": "2026-11-27T22:22:34.893Z"
         }
       ],
-      "lastVerifiedCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "lastVerifiedCommit": "0b3f93af8731be672580accebdd5b948a5a6895a",
       "observedExistingInteractions": [
         {
           "id": "existing-genmu-synthetic-g35Ignored",
@@ -594576,7 +594772,7 @@
           "next": "Reproduce through a registered legal ability-ignore action, then classify expected Genmu behavior. Preserve separately from the fully passed new-card gates."
         }
       ],
-      "lastVerifiedCodeCommit": "7b1d67fa320685b789689a1a30ad35f71b3a8245",
+      "lastVerifiedCodeCommit": "0b3f93af8731be672580accebdd5b948a5a6895a",
       "researchedHolds": [
         {
           "id": "dm31-007",
@@ -608974,6 +609170,84 @@
           }
         ],
         "completedManifest": "tools/support-phase-1897.json"
+      },
+      {
+        "phase": 1898,
+        "research": "tmp/duema-target-10000/research-dmex03-040.json",
+        "status": "full-official-verified-local",
+        "allImagesReviewed": true,
+        "reviewedIds": [
+          "dmex03-040",
+          "dmsp01-019",
+          "dmr20-s06",
+          "dmr19-s09"
+        ],
+        "officialPrintSearchEvidence": [
+          {
+            "id": "dmex03-040",
+            "searchSha256": "8ca964d2b57defbabd85ec0fddc1d1b0c51be866a6fed8f6594e35dc2c975ab5",
+            "totalResults": 4,
+            "allSearchIds": [
+              "dm26ex4-CHO026",
+              "dmex03-040",
+              "dmex19-016",
+              "dmex08-119"
+            ],
+            "exactPrints": [
+              "dmex03-040",
+              "dm26ex4-CHO026",
+              "dmex19-016",
+              "dmex08-119"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmsp01-019",
+            "searchSha256": "8821ac71e7b1b38596c4b4fe787e34736e7ebd8b451ded07d8cd0ec229c3fbf1",
+            "totalResults": 2,
+            "allSearchIds": [
+              "dmex04-048",
+              "dmsp01-019"
+            ],
+            "exactPrints": [
+              "dmsp01-019",
+              "dmex04-048"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmr20-s06",
+            "searchSha256": "11c5989d4c6f8e7521decc54c6af14db7bccc9390b7b5480e8445dee8492b5ba",
+            "totalResults": 1,
+            "allSearchIds": [
+              "dmr20-s06"
+            ],
+            "exactPrints": [
+              "dmr20-s06"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          },
+          {
+            "id": "dmr19-s09",
+            "searchSha256": "be8053fdf81a880252b2be720098a2fd8c63d85c3432a03117769cb5971338a6",
+            "totalResults": 4,
+            "allSearchIds": [
+              "dm26rp2-TR006",
+              "dmex06-012",
+              "dmr19-s09",
+              "dm26ex2-015"
+            ],
+            "exactPrints": [
+              "dmr19-s09"
+            ],
+            "allImagesReviewed": true,
+            "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+          }
+        ],
+        "completedManifest": "tools/support-phase-1898.json"
       }
     ],
     "additionalLongRunningVerification": [
@@ -660893,10 +661167,10 @@
     }
   },
   "registrationStop": {
-    "phase": 1897,
+    "phase": 1898,
     "threshold": 10000,
-    "supportedNames": 9922,
-    "pendingNames": 1927,
+    "supportedNames": 9926,
+    "pendingNames": 1923,
     "checkedAt": "2026-11-24T01:04:03.812Z",
     "registrationStopped": false,
     "status": "manual-current-session",
@@ -660905,7 +661179,7 @@
     "automationStatusVerifiedAt": "2026-11-24T01:04:53.876291+00:00",
     "mode": "manual-bulk13-complete",
     "userInstruction": "この登録が終わったら一旦登録を止めて",
-    "checkpoint": "tools/target10000-registration-checkpoint-1897.json",
+    "checkpoint": "tools/target10000-registration-checkpoint-1898.json",
     "resume": "ユーザーの明示指示で手動登録を10,000種類まで再開。10分ごとの自動登録はPAUSEDのまま。push・公開・Netlify更新なし。",
     "previousStop": {
       "phase": 1660,

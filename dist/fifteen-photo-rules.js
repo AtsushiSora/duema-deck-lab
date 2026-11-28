@@ -153,7 +153,12 @@ export function createFifteenPhotoRules(api){
  case'mobiusWin':offer(s,t,'バトル勝利：シールドを1つブレイクする？');break;
  case'mobiusChosen':offer(s,t,'選ばれた時：相手のシールドを3つブレイクする？');break;
  case'barugaBurn':case'universeBurn':if(x&&x.under?.length)choice(s,t,'メテオバーンする下のカードを選ぶ',[...api.allLayers(x).slice(1).map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);break;
- case'charisma':{if(!x)break;const rows=creatures(s,1-t.p).filter(y=>api.power(y,false,s)<api.power(x,false,s));const ids=rows.map(y=>y.uid);if(ids.length){move(s,api.shuffled(ids,Math.floor(api.random(s)*4294967296)).map(uid=>({player:1-t.p,uid,to:'deck',destroy:false})));}break;}
+ case'charisma':{if(!x)break;const rows=creatures(s,1-t.p).filter(y=>api.power(y,false,s)<api.power(x,false,s));if(rows.length){const groups=[[],[]];for(const y of rows)for(const z of api.allLayers(y))groups[z.cardOwner??1-t.p].push(z.uid);move(s,rows.map(y=>({player:1-t.p,uid:y.uid,to:'deck',destroy:false,toOwnerDeck:true})));pending(s,t,'charismaBottom1898',{groups});}break;}
+ case'charismaBottom1898':{
+  // Shuffle the entire departing set, including every evolution base (Q&A 49077).
+  for(const p of[0,1]){const ids=new Set(t.groups[p]),own=s.players[p],moved=own.deck.filter(y=>ids.has(y.uid));if(!moved.length)continue;own.deck=own.deck.filter(y=>!ids.has(y.uid));own.deck.push(...api.shuffled(moved,Math.floor(api.random(s)*4294967296)));}
+  break;
+ }
  case'vv':{const ids=reveal(s,t,5);pending(s,t,'vvPick',{ids,selected:[]});break;}
  case'vvPick':{const left=t.ids.filter(uid=>own.deck.some(y=>y.uid===uid));if(t.selected.length>=Math.min(2,t.ids.length)){for(const uid of t.selected)zoneMove(s,t.p,'deck',uid,'hand',t);const rest=left.filter(uid=>!t.selected.includes(uid));own.g35Protected=(own.g35Protected||[]).filter(uid=>!t.ids.includes(uid));if(x&&!api.handOnly1275(s))for(const uid of rest){const y=remove(own.deck,uid);if(!y)continue;if(api.deckShuffleActive1365(s)){api.addDeckZone1365(s,t.p,'seals',y);continue;}clear(y,'seals');y.faceDown=true;y.sealOf=x.uid;(own.seals??=[]).push(y);x.sealed=true;}api.deckCheck(s,t.p);break;}choice(s,t,'公開した5枚から手札に加える2枚を選ぶ',own.deck.filter(y=>t.ids.includes(y.uid)&&!t.selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
  case'redmad':{const y=api.takeTop(s,t.p);if(y){const max=cost(card(y));clear(y,'mana');api.addZone(s,t.p,api.deckDestination1365(s,t.p,'mana',api.deckRedirect(s,t.p)?'grave':'mana'),y);if(!api.deckWasShuffled1365(s,y))give(s,t,[E('Target',{element:true,filter:{belowCost:max},to:'grave',optional:true})]);}api.deckCheck(s,t.p);break;}
