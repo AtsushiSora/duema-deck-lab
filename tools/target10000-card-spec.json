@@ -29849,5 +29849,362 @@
         }
       }
     }
+  },
+  "dmrp02-034": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "プロテスト・ミスト",
+        "typeText": "呪文",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引く。その後、光のコスト４以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 4,
+            "nonEvolution": true
+          },
+          "g791Grant": {
+            "blocker": true
+          }
+        }
+      ]
+    }
+  },
+  "dm22ex1-060": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "オリジナル・サイン",
+        "typeText": "呪文",
+        "civilizationText": "光/水",
+        "civilizations": [
+          "光",
+          "水"
+        ],
+        "cost": 5,
+        "costText": "5",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引く。その後、コスト７以下のオリジンを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "race": "オリジン",
+            "max": 7
+          },
+          "g791Grant": {
+            "blocker": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp16-022": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "影世界のシクミ",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から３枚を墓地に置く。\nコスト３以下のクリーチャーを１体、自分の墓地または手札からバトルゾーンに出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "月光王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "zones": [
+            "grave",
+            "hand"
+          ]
+        }
+      ]
+    }
+  },
+  "promoy25-054": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "影世界のシクミ",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から３枚を墓地に置く。\nコスト３以下のクリーチャーを１体、自分の手札または墓地から出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "月光王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "zones": [
+            "grave",
+            "hand"
+          ]
+        }
+      ]
+    }
+  },
+  "dm26rp3-T004": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "影世界のシクミ",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー\n自分の山札の上から３枚を墓地に置く。\nコスト３以下のクリーチャーを１体、自分の手札または墓地から出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。",
+        "race": "月光王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "zones": [
+            "grave",
+            "hand"
+          ]
+        }
+      ]
+    }
+  },
+  "dm23ex2-060": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "影世界のシクミ",
+        "typeText": "呪文",
+        "civilizationText": "光/闇",
+        "civilizations": [
+          "光",
+          "闇"
+        ],
+        "cost": 4,
+        "costText": "4",
+        "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から３枚を墓地に置く。\nコスト３以下のクリーチャーを１体、自分の墓地または手札から出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+        "race": "月光王国",
+        "powerText": "",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "zones": [
+            "grave",
+            "hand"
+          ]
+        }
+      ]
+    }
+  },
+  "dm22-009": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "蒼神龍メルローズガルブ",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが攻撃またはブロックする時、カードを１枚、自分のマナゾーンから手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ポセイディア・ドラゴン",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ]
+    }
+  },
+  "dm36-015": {
+    "phase": 1884,
+    "faces": [
+      {
+        "name": "天雷王機ジョバンニX世",
+        "typeText": "クリーチャー",
+        "civilizationText": "光",
+        "civilizations": [
+          "光"
+        ],
+        "cost": 2,
+        "costText": "2",
+        "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、自分の墓地にあるコスト１の呪文を好きな枚数、自分の手札に戻す。",
+        "race": "グレートメカオー/ナイト",
+        "powerText": "1000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell",
+              "min": 1,
+              "max": 1
+            }
+          }
+        }
+      ]
+    }
   }
 }

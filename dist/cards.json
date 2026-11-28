@@ -319129,18 +319129,218 @@
       },
       "supportBatch": "phase-1883",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-034",
+      "name": "プロテスト・ミスト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引く。その後、光のコスト４以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-034",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 4,
+            "nonEvolution": true
+          },
+          "g791Grant": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-060",
+      "name": "オリジナル・サイン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引く。その後、コスト７以下のオリジンを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-060",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "race": "オリジン",
+            "max": 7
+          },
+          "g791Grant": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-022",
+      "name": "影世界のシクミ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "月光王国",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から３枚を墓地に置く。\nコスト３以下のクリーチャーを１体、自分の墓地または手札からバトルゾーンに出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-022",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3
+          },
+          "g791Grant": {
+            "blocker": true
+          },
+          "zones": [
+            "grave",
+            "hand"
+          ]
+        }
+      ],
+      "supportBatch": "phase-1884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-009",
+      "name": "蒼神龍メルローズガルブ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "ポセイディア・ドラゴン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが攻撃またはブロックする時、カードを１枚、自分のマナゾーンから手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-009",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-015",
+      "name": "天雷王機ジョバンニX世",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グレートメカオー/ナイト",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、自分の墓地にあるコスト１の呪文を好きな枚数、自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-015",
+      "limit": 0,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell",
+              "min": 1,
+              "max": 1
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-1884",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1883,
-    "checkedAt": "2026-11-28T03:48:14.401Z",
-    "baseCount": 9862,
+    "phase": 1884,
+    "checkedAt": "2026-11-28T03:52:39.095Z",
+    "baseCount": 9867,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9867,
+    "totalCount": 9872,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39646/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -349891,6 +350091,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40261/",
           "https://dm.takaratomy.co.jp/rule/qa/39425/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1883,
+        "checkedAt": "2026-11-28T03:48:14.401Z",
+        "baseCount": 9862,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9867,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39646/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
