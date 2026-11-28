@@ -324749,20 +324749,67 @@
       ],
       "supportBatch": "phase-1917",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-s02",
+      "name": "光霊姫アレフティナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "メカ・デル・ソル/アーク・セラフィム",
+      "text": "このクリーチャーを召喚するコストは、自分のシールド１枚につき１多くなる。\n相手のクリーチャーが自分を攻撃する時、それがそのターンはじめての自分への攻撃で、自分のシールドが１枚もない場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\n自分のシールドが10枚以上あれば、自分はゲームに勝利する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g1918ShieldTax": true,
+      "g1918ShieldWin": true,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "g799FirstPlayer": true,
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 0
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-1918",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1917,
-    "checkedAt": "2026-11-28T07:34:48.118Z",
-    "baseCount": 9995,
-    "newEffectCards": 5,
+    "phase": 1918,
+    "checkedAt": "2026-11-28T07:46:14.336Z",
+    "baseCount": 10000,
+    "newEffectCards": 1,
     "newVanillaCards": 0,
-    "totalCount": 10000,
+    "totalCount": 10001,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39777/",
-      "https://dm.takaratomy.co.jp/rule/qa/43062/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37204/"
+      "https://dm.takaratomy.co.jp/rule/qa/45584/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36012/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36013/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36014/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36015/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36016/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36017/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36018/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36019/",
+      "https://dm.takaratomy.co.jp/rule/qa/42517/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -356020,6 +356067,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36584/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1917,
+        "checkedAt": "2026-11-28T07:34:48.118Z",
+        "baseCount": 9995,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 10000,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39777/",
+          "https://dm.takaratomy.co.jp/rule/qa/43062/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37204/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

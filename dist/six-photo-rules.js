@@ -10771,6 +10771,16 @@ export function createSixPhotoRules(api){
    return filter&&(!filter.g1631Other||source.uid!==x.uid)&&matches(s,p,x,filter);
   });
  },
+ // Held cards are outside their former zone; a shield stack still counts as one shield.
+ shieldCount1918(s,p){return s.players[p].shields.filter(root=>api.shieldCards(root).some(x=>!x.g37ShieldHeld)).length;},
+ stateCheck1918(s){
+  if(s.winner!==null||s.lossEvent)return;
+  for(const p of[s.active,1-s.active]){
+   if(hooks.shieldCount1918(s,p)<10)continue;
+   const source=creatures(s,p).find(x=>!x.sealed&&!x.faceDown&&effective(x,s).g1918ShieldWin);
+   if(source){api.finish(s,p,card(source).name+'：シールド10以上で勝利');return;}
+  }
+ },
  noLose(s,p){
   return creatures(s,p).some(x=>x.tapped&&!x.sealed&&effective(x,s).g1468TappedNoLose)||hasBouncer1294(s,p)||(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||
    active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9)||
