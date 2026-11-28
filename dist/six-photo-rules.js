@@ -10548,6 +10548,7 @@ export function createSixPhotoRules(api){
  namedCombatLocked1643:(s,p,x)=>creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&y.tapped&&card(y).g1822TappedCombatLock&&!api.ignored(s,y))||!!card(x).psychic&&creatures(s,1-p).some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1734PsychicCombatLock)||namedLock1643(s,p,battleNames676(s,x)),
  canLeave(s,p,x,context={}){
   const c=effective(x,s);
+  if(c.g1882FreshStay&&(x.originalEntryTurn??x.entered)===s.turn)return false;
   if(c.g1780ExceptBattleLoss&&!context.battleLoss)return false;
   if(context.to==='hand'&&!x.sealed&&api.isCreature(s,x)&&s.players[p].battle.some(y=>!y.sealed&&!y.faceDown&&effective(y,s).g1651BounceStopRace&&race(c,effective(y,s).g1651BounceStopRace)))return false;
   if(!x.sealed&&api.isCreature(s,x)&&nextOpponentStay1643(s,p))return false;

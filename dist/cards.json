@@ -318834,19 +318834,175 @@
       ],
       "supportBatch": "phase-1881",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-017",
+      "name": "松苔ラックス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-017",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "optional": true,
+          "g190Freeze": "self"
+        }
+      ],
+      "supportBatch": "phase-1882",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-064",
+      "name": "究極超絶司令 コード999",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体アンタップする。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "spell": true,
+          "g521UntilStart": true,
+          "g1058FollowUnit": true,
+          "grant": {
+            "blocker": true
+          }
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1882",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-013",
+      "name": "青守銀 ヘイサン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3500,
+      "race": "メタリカ/レクスターズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、出たターン、離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-013",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g1882FreshStay": true,
+      "supportBatch": "phase-1882",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-018",
+      "name": "「空が真っ赤に燃え尽きる！」",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "美孔麗王国",
+      "text": "ビビッドロー [ff06] （自分のターン中、攻撃の前にこの呪文をドローした時、表向きにしてもよい。そうしたら、このターンこの呪文を[ff06] 支払って唱えてもよい）\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー5000以下のクリーチャーを１体破壊する。\nこの呪文を「ビビッドロー」能力を使って唱えていれば、相手のパワー6000以下のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-018",
+      "limit": 4,
+      "g1335VividDraw": 6,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 5000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g1882VividTasks": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1882",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy21-082",
+      "name": "深淵の妖児 べべべべ＝ベベイビー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アビスベイビー/コロコロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが離れた時、相手のクリーチャーを１体選んでもよい。そのターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-082",
+      "limit": 4,
+      "abyssRush": true,
+      "breaker": 2,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "optional": true,
+          "power": -6000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-1882",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1881,
-    "checkedAt": "2026-11-28T03:30:40.850Z",
-    "baseCount": 9854,
-    "newEffectCards": 3,
+    "phase": 1882,
+    "checkedAt": "2026-11-28T03:40:05.530Z",
+    "baseCount": 9857,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 9857,
+    "totalCount": 9862,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31612/",
-      "https://dm.takaratomy.co.jp/rule/qa/32482/"
+      "https://dm.takaratomy.co.jp/rule/qa/40261/",
+      "https://dm.takaratomy.co.jp/rule/qa/39425/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -349565,6 +349721,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/46503/",
           "https://dm.takaratomy.co.jp/rule/qa/40591/",
           "https://dm.takaratomy.co.jp/rule/qa/46503/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1881,
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "baseCount": 9854,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9857,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31612/",
+          "https://dm.takaratomy.co.jp/rule/qa/32482/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
