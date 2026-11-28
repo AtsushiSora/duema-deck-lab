@@ -1,0 +1,1028 @@
+{
+  "phase": 1895,
+  "checkedAt": "2026-11-28T05:00:41.689Z",
+  "baseline": "7de114ec392858ec6bf010d0339462488ece1baf",
+  "baseCount": 9912,
+  "target": 10000,
+  "description": "Four whole cards/nine prints: Spear untapped attack and death choose mandatory Dragon search or ally +2000/untapped attack; Cheshire mandatory already-grave Dragon destruction revive including Gool; Trinats seed-base summon discount and mandatory two discard ELSE optional draw2 with no partial discard; Katsudon evolution discount and Shinka per-break draw inherited through Star reconstruction.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/41167/",
+    "https://dm.takaratomy.co.jp/rule/qa/41168/",
+    "https://dm.takaratomy.co.jp/rule/qa/41433/",
+    "https://dm.takaratomy.co.jp/rule/qa/41432/"
+  ],
+  "cards": [
+    {
+      "id": "dm32-062",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "dm32-062",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-062",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n自分の山札を見て、その中からドラゴンを１体選び、相手に見せてから自分の手札に加える。その後、山札をシャッフルする。\nバトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、ターンの終わりまでパワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-062.jpg",
+      "imageSha256": "8a19859d9e7d119f1e4c9bb95a09258f7d1ce0d0e1d6565938d77b08e0ce89f7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm32-062-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "a5f4ce2ca9d3f22b5aae4eeed870e5df9e4f04a4e5a0f174445d08896328880e",
+        "facesMatched": true,
+        "imageSha256": "8a19859d9e7d119f1e4c9bb95a09258f7d1ce0d0e1d6565938d77b08e0ce89f7"
+      }
+    },
+    {
+      "id": "dm24ex1-057",
+      "name": "チェシャ・ルピア",
+      "canonicalId": "dm24ex1-057",
+      "printId": "dm24ex1-057",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-057",
+      "faces": [
+        {
+          "name": "チェシャ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のドラゴンが破壊された時、このクリーチャーが自分の墓地にあれば出す。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "slayer": true,
+        "g1745GraveDragon": "allMandatory"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-057.jpg",
+      "imageSha256": "1a6c280ed025c97cf634333a536a00ac9e46e41973ccecbd5b384c164339a8ce",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm24ex1-057-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm24ex1-057"
+        ],
+        "allSearchIds": [
+          "dm24ex1-057"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "ff6fe462df66a3e722180c8a46e6543e3a7ea6aa9629a2d08202f20c7f3b3263",
+        "facesMatched": true,
+        "imageSha256": "1a6c280ed025c97cf634333a536a00ac9e46e41973ccecbd5b384c164339a8ce"
+      }
+    },
+    {
+      "id": "dmrp21-015",
+      "name": "トゥリナーツァッチ ＜エンパペ.Star＞",
+      "canonicalId": "dmrp21-015",
+      "printId": "dmrp21-015",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-015",
+      "faces": [
+        {
+          "name": "トゥリナーツァッチ ＜エンパペ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "タマシードから進化するなら、このクリーチャーの召喚コストを２少なくする。\nスター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手は自身の手札を２枚選んで捨てる。相手がそうしなければ、自分はカードを２枚引いてもよい。",
+          "race": "ゼロ・ドラゴン/デスパペット/レクスターズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g1869SeedBaseReduction": 2,
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "g1895Minimum": 2,
+            "g1308DiscardElse": [
+              {
+                "op": "Draw",
+                "n": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-015.jpg",
+      "imageSha256": "d10778923520af598dccdb2560626ed8faf74984245fa9f468db5ed34cda2e8c",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp21-015-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp21-015"
+        ],
+        "allSearchIds": [
+          "dmrp21-015",
+          "dmrp16-s08"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "121152574b9ea9444a036342ded52e3993f4367e3dba3e9bfe7617b6c20a708b",
+        "facesMatched": true,
+        "imageSha256": "d10778923520af598dccdb2560626ed8faf74984245fa9f468db5ed34cda2e8c"
+      }
+    },
+    {
+      "id": "dmrp22-019",
+      "name": "ダイナボルト ＜カツドン.Star＞",
+      "canonicalId": "dmrp22-019",
+      "printId": "dmrp22-019",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-019",
+      "faces": [
+        {
+          "name": "ダイナボルト ＜カツドン.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の進化クリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nスター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシンカパワー：このクリーチャーが進化する時、このターン、この進化したクリーチャーの各ブレイクの前に、カードを１枚引く。",
+          "race": "ダイナマイト・ドラゴン/アウトレイジMAX/レクスターズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "starEvolution": true,
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true
+            },
+            "amount": 2
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "g1136BeforeBreak": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-019.jpg",
+      "imageSha256": "20da6a15718bb233d0549c68ea5362634613ee6a0504d5600a7fa8ebd7abb1d0",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp22-019-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp22-019"
+        ],
+        "allSearchIds": [
+          "dmrp17-s04",
+          "dmrp22-S7",
+          "dmrp22-7A",
+          "dmrp22-9B",
+          "dmrp22-019",
+          "dmrp20-s05",
+          "dmrp14-044",
+          "dmrp17-005",
+          "dm22ex1-032",
+          "dm24ex4-027",
+          "promoy19-040",
+          "dmex19-m4",
+          "dmrp14-km1"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "d674311ce812092ac30ddee0f2d203525d312ae93f74a369b095f5373a662c9a",
+        "facesMatched": true,
+        "imageSha256": "20da6a15718bb233d0549c68ea5362634613ee6a0504d5600a7fa8ebd7abb1d0"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy13-013",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "promoy13-013",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-013",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n▼自分の山札を見る。その中からドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\n▼バトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、パワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-013.jpg",
+      "imageSha256": "85dc1702eaabd6ba8087f36338dc747f1c6c3d94537323acc894d7fc0a139ce1",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy13-013-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "cc9f55ed770b3cb9537f204835cadb2d2cb2808e06d690e9c1dd291ef0c560f7",
+        "facesMatched": true,
+        "imageSha256": "85dc1702eaabd6ba8087f36338dc747f1c6c3d94537323acc894d7fc0a139ce1"
+      }
+    },
+    {
+      "id": "dmx09-037",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "dmx09-037",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-037",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n▼自分の山札を見て、その中からドラゴンを１体選び、相手に見せてから自分の手札に加える。その後、山札をシャッフルする。\n▼バトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、ターンの終わりまでパワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-037.jpg",
+      "imageSha256": "228634044c196b653b60567e3784d09b0a5b27fb1b15ab963afe7e790629205b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmx09-037-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "8803d5cfcbdeda766370f3c5f5e0f1b696de077c76bc278bc16d9639acc08354",
+        "facesMatched": true,
+        "imageSha256": "228634044c196b653b60567e3784d09b0a5b27fb1b15ab963afe7e790629205b"
+      }
+    },
+    {
+      "id": "dmc62-017",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "dmc62-017",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-017",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n自分の山札を見て、その中からドラゴンを１体選び、相手に見せてから自分の手札に加える。その後、山札をシャッフルする。\nバトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、ターンの終わりまでパワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-017.jpg",
+      "imageSha256": "4e72667fada6d6299286647b037cdbdad86e9e7d46731bc04526ec1a2d3505f7",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmc62-017-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "1747bcd95017dbf75293abf71539427e08300284f6e1f1454d4eb8bc3af6b2b9",
+        "facesMatched": true,
+        "imageSha256": "4e72667fada6d6299286647b037cdbdad86e9e7d46731bc04526ec1a2d3505f7"
+      }
+    },
+    {
+      "id": "dmd15-012",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "dmd15-012",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd15-012",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。 　　▼自分の山札を見る。その中からドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。 　　▼バトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、パワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd15-012.jpg",
+      "imageSha256": "eca5065da9d3f564f575193ebcd525faae916620e9d7a2c3dd52ac82c02088b5",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmd15-012-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "9235e8657345d217e61e56a64d15054d4e846b813a4eb4b533c021d3d27d79fc",
+        "facesMatched": true,
+        "imageSha256": "eca5065da9d3f564f575193ebcd525faae916620e9d7a2c3dd52ac82c02088b5"
+      }
+    },
+    {
+      "id": "dm32-062HC",
+      "name": "スピア・ルピア",
+      "canonicalId": "dm32-062",
+      "printId": "dm32-062HC",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-062HC",
+      "faces": [
+        {
+          "name": "スピア・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。　　自分の山札を見て、その中からドラゴンを１体選び、相手に見せてから自分の手札に加える。その後、山札をシャッフルする。　　バトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、ターンの終わりまでパワーが+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "ドラゴンを山札から手札へ",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g201Search": true,
+                    "g200Search": true,
+                    "g841DeckPeek": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "race": "ドラゴン"
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "自分の1体を+2000しアンタップを攻撃可能",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "power": 2000,
+                    "grant": {
+                      "attackUntapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-062HC.jpg",
+      "imageSha256": "d35d40df68f0c6fc22e8319d07086834e92cccc6d0c6194fe7c93ffd9c5e0c93",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dm32-062HC-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dm32-062",
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062HC"
+        ],
+        "allSearchIds": [
+          "promoy13-013",
+          "dmx09-037",
+          "dmc62-017",
+          "dmd15-012",
+          "dm32-062",
+          "dm32-062HC"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T05:00:41.689Z",
+        "sha256": "a75d5f12a96a790218693e0d577d0b686ad0dd3ed759a410bb5f2b5170cde4c6",
+        "facesMatched": true,
+        "imageSha256": "d35d40df68f0c6fc22e8319d07086834e92cccc6d0c6194fe7c93ffd9c5e0c93"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41167/",
+      "sha256": "c7a9af3bf7fbeac3d20e79d2ff75a68925ade00d9ec34ca9ee2eebd21ed342a5",
+      "checkedAt": "2026-11-28T05:00:41.689Z",
+      "reproduced": true,
+      "tests": "tests/standard1895-effects.test.mjs",
+      "reproduction": "Actual enemy hand2 and3 must choose/discard exactly2; cannot skip. Both seats encrypted restore.",
+      "result": "Actual enemy hand2 and3 must choose/discard exactly2; cannot skip. Both seats encrypted restore."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41168/",
+      "sha256": "2a2ef5953b842eb4a0c490fca31dc008e99ea83a090cab4db596281ffb4acd50",
+      "checkedAt": "2026-11-28T05:00:41.689Z",
+      "reproduced": true,
+      "tests": "tests/standard1895-effects.test.mjs",
+      "reproduction": "Actual enemy hand1 discardsNONE; own may draw2 or decline; hand0 same, no partial discard. Both seats.",
+      "result": "Actual enemy hand1 discardsNONE; own may draw2 or decline; hand0 same, no partial discard. Both seats."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41433/",
+      "sha256": "16b73a7915232fc9d20f1fcbb66b7cb706633cd792c63bd2d09fc5656cc2aa26",
+      "checkedAt": "2026-11-28T05:00:41.689Z",
+      "reproduced": true,
+      "tests": "tests/standard1895-effects.test.mjs",
+      "reproduction": "Actual Katsudon evolves into actual Jari dmRP18-072, oneDraw BEFORE actual shield is broken and BEFORE real SolarRay ST decision. Multi break draws two for remaining Katsudon after top leaves.",
+      "result": "Actual Katsudon evolves into actual Jari dmRP18-072, oneDraw BEFORE actual shield is broken and BEFORE real SolarRay ST decision. Multi break draws two for remaining Katsudon after top leaves."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/41432/",
+      "sha256": "20ceb0829308dc7fd3151d16bca464d3123b6790f1a4ccb8fbbe731574156d17",
+      "checkedAt": "2026-11-28T05:00:41.689Z",
+      "reproduced": true,
+      "tests": "tests/standard1895-effects.test.mjs",
+      "reproduction": "Actual Jari dmRP18-072 evolves over actual Katsudon, Star top leaves by actual SpiralGate; Katsudon retains current-turn Shinka before-break draw2. Later turn grant expires, both seats.",
+      "result": "Actual Jari dmRP18-072 evolves over actual Katsudon, Star top leaves by actual SpiralGate; Katsudon retains current-turn Shinka before-break draw2. Later turn grant expires, both seats."
+    }
+  ],
+  "held": [
+    {
+      "id": "dmrp17-s04",
+      "name": "ダイナボルト ＜エタフェニ.Star＞",
+      "reason": "Full single-print official research/QA39948 available, image not reviewed; literal ruling needs unregistered 龍覇ザ=デッドマン alternative five-color summoning alongside registered PoppoJuvila. Hold full card, no partial implementation/count."
+    }
+  ],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T05:00:41.689Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-062": 4,
+      "dm24ex1-057": 4,
+      "dmrp21-015": 4,
+      "dmrp22-019": 4,
+      "promoy13-013": 4,
+      "dmx09-037": 4,
+      "dmc62-017": 4,
+      "dmd15-012": 4,
+      "dm32-062HC": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dm32-062",
+      "searchSha256": "fb4226d289425e51fcda8f27705cdb5c590fde84319f850c77a4af7f77925d28",
+      "totalResults": 6,
+      "allSearchIds": [
+        "promoy13-013",
+        "dmx09-037",
+        "dmc62-017",
+        "dmd15-012",
+        "dm32-062",
+        "dm32-062HC"
+      ],
+      "exactPrints": [
+        "dm32-062",
+        "promoy13-013",
+        "dmx09-037",
+        "dmc62-017",
+        "dmd15-012",
+        "dm32-062HC"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dm24ex1-057",
+      "searchSha256": "c27264cf7acee978a71c6e9fba2c207e438b523b710f8d8c99c561ca45913df6",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dm24ex1-057"
+      ],
+      "exactPrints": [
+        "dm24ex1-057"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp21-015",
+      "searchSha256": "b489f45f1d5854a6d66aebf19f1003fa5265fcb946ad192245bcdad56ef1441b",
+      "totalResults": 2,
+      "allSearchIds": [
+        "dmrp21-015",
+        "dmrp16-s08"
+      ],
+      "exactPrints": [
+        "dmrp21-015"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp22-019",
+      "searchSha256": "f06bd8502c0b202b98dc45384e76400a9cb81d34b60cf2299d47224f2275838b",
+      "totalResults": 13,
+      "allSearchIds": [
+        "dmrp17-s04",
+        "dmrp22-S7",
+        "dmrp22-7A",
+        "dmrp22-9B",
+        "dmrp22-019",
+        "dmrp20-s05",
+        "dmrp14-044",
+        "dmrp17-005",
+        "dm22ex1-032",
+        "dm24ex4-027",
+        "promoy19-040",
+        "dmex19-m4",
+        "dmrp14-km1"
+      ],
+      "exactPrints": [
+        "dmrp22-019"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "Four whole cards/nine exact print images, full official abilities/mana/current limits. Spear death modal mandatory Dragon search vs +2000/attackUntapped, noDragon/bounce/Genmu/turn expiry. Cheshire ST/blocker/slayer, mandatory ownDragon destruction revival from already-grave including Gool, multiple sources, no bounce/enemy/nonDragon/new-source and Apul grave lock. Trinats Star Dark/Rex, seed-base discount6/4 and mandatory enemy discard2 only if FULL two possible, otherwise no partial discard and optionalDraw2. Katsudon Star Fire/Rex, ownEVO cost-2/floor1, realJari cost1 not0, Shinka draw before each planned shieldbreak with actual ST timing and physical Star reconstruction inheritance/currentturn expiry. Both seats, real encrypted service for all four, original IDs/save formats unchanged.",
+    "resolvedAttempts": "All initial failures fixture-only: ST first requires noBlock; Dark seed must have shinkalize (actual JanouMagicCircle used); multi-break attacks choose shield group later, so action has no single shield UID. Wrong guessed fixture IDs replaced with actual DemonHand/Gool/Jari before tests. Runtime opt-ins only g1895Minimum on existing DiscardElse and mandatory Cheshire grave trigger without excluding Gool; prior Gool optional exclusion unchanged.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/41167/",
+        "reproduced": true,
+        "tests": "tests/standard1895-effects.test.mjs",
+        "reproduction": "Actual enemy hand2 and3 must choose/discard exactly2; cannot skip. Both seats encrypted restore."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/41168/",
+        "reproduced": true,
+        "tests": "tests/standard1895-effects.test.mjs",
+        "reproduction": "Actual enemy hand1 discardsNONE; own may draw2 or decline; hand0 same, no partial discard. Both seats."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/41433/",
+        "reproduced": true,
+        "tests": "tests/standard1895-effects.test.mjs",
+        "reproduction": "Actual Katsudon evolves into actual Jari dmRP18-072, oneDraw BEFORE actual shield is broken and BEFORE real SolarRay ST decision. Multi break draws two for remaining Katsudon after top leaves."
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/41432/",
+        "reproduced": true,
+        "tests": "tests/standard1895-effects.test.mjs",
+        "reproduction": "Actual Jari dmRP18-072 evolves over actual Katsudon, Star top leaves by actual SpiralGate; Katsudon retains current-turn Shinka before-break draw2. Later turn grant expires, both seats."
+      }
+    ],
+    "held": [
+      {
+        "id": "dmrp17-s04",
+        "name": "ダイナボルト ＜エタフェニ.Star＞",
+        "reason": "Full single-print official research/QA39948 available, image not reviewed; literal ruling needs unregistered 龍覇ザ=デッドマン alternative five-color summoning alongside registered PoppoJuvila. Hold full card, no partial implementation/count."
+      }
+    ],
+    "nextCandidates": [
+      {
+        "ids": [
+          "dmex18-067",
+          "dm19-103",
+          "dm36-013",
+          "dm19-020",
+          "dm20-055"
+        ],
+        "reason": "Grouped preparation of next native-compatible abilities; research first, defer unsupported clauses rather than partial counting."
+      }
+    ]
+  }
+}

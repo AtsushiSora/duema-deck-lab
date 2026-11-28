@@ -7295,7 +7295,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_Discard':{
   const owner=t.owner==='self'?t.p:t.owner??1-t.p;
-  if(t.g1308DiscardElse&&(!s.players[owner].hand.length||
+  if(t.g1308DiscardElse&&(s.players[owner].hand.length<(t.g1895Minimum??1)||
    api.handProtected(s,{p:owner,source:t.source,causedBy:t.p}))){
    start(s,t,t.g1308DiscardElse);
    break;
@@ -11873,9 +11873,9 @@ export function createSixPhotoRules(api){
   // Attached Auras move with an actually destroyed host (310.8a / 701.6a).
   const destroyedAura1745=!destroy&&card(x).type==='aura'&&x.auraTo1352&&s.leaving?.rows.some(row=>
    row.player===p&&row.uid===x.auraTo1352.uid&&row.to==='grave'&&row.destroy!==false&&row.plan.kind==='leave');
-  if(to==='grave'&&(destroy||destroyedAura1745)&&victim?.g1248DragonElement&&victim.name!=='黒神龍グールジェネレイド')for(const ref of snapshot?.g1745DragonGrave?.[p]||[]){
+  if(to==='grave'&&(destroy||destroyedAura1745)&&victim?.g1248DragonElement)for(const ref of snapshot?.g1745DragonGrave?.[p]||[]){
    const source=s.players[p].grave.find(y=>y.uid===ref.uid&&(y.zoneSerial||0)===ref.serial);
-   if(source)send(s,p,source,'GraveSummonWatch766',{serial:ref.serial});
+   if(source&&(card(source).g1745GraveDragon==='allMandatory'||victim.name!=='黒神龍グールジェネレイド'))send(s,p,source,card(source).g1745GraveDragon==='allMandatory'?'SelfGraveRevive644':'GraveSummonWatch766',{serial:ref.serial});
   }
   if(victim){
    // Battle-result destruction is finalized before victory effects and Slayer (Q&A 42495–42496).

@@ -320828,18 +320828,203 @@
       ],
       "supportBatch": "phase-1894",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-062",
+      "name": "スピア・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーは、アンタップされているクリーチャーを攻撃できる。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n自分の山札を見て、その中からドラゴンを１体選び、相手に見せてから自分の手札に加える。その後、山札をシャッフルする。\nバトルゾーンにある自分のクリーチャー１体は、このターン、アンタップされているクリーチャーを攻撃でき、ターンの終わりまでパワーが+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-062",
+      "limit": 4,
+      "attackUntapped": true,
+      "g172Death": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "ドラゴンを山札から手札へ",
+              "defs": [
+                {
+                  "op": "Look",
+                  "g201Search": true,
+                  "g200Search": true,
+                  "g841DeckPeek": true,
+                  "n": "all",
+                  "rest": "shuffle",
+                  "stages": [
+                    {
+                      "n": 1,
+                      "to": "hand",
+                      "filter": {
+                        "creature": true,
+                        "race": "ドラゴン"
+                      },
+                      "reveal": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "自分の1体を+2000しアンタップを攻撃可能",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "power": 2000,
+                  "grant": {
+                    "attackUntapped": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1895",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-057",
+      "name": "チェシャ・ルピア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のドラゴンが破壊された時、このクリーチャーが自分の墓地にあれば出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-057",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "slayer": true,
+      "g1745GraveDragon": "allMandatory",
+      "supportBatch": "phase-1895",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-015",
+      "name": "トゥリナーツァッチ ＜エンパペ.Star＞",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ゼロ・ドラゴン/デスパペット/レクスターズ",
+      "text": "タマシードから進化するなら、このクリーチャーの召喚コストを２少なくする。\nスター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手は自身の手札を２枚選んで捨てる。相手がそうしなければ、自分はカードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-015",
+      "limit": 4,
+      "g1869SeedBaseReduction": 2,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 2,
+          "g1895Minimum": 2,
+          "g1308DiscardElse": [
+            {
+              "op": "Draw",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1895",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-019",
+      "name": "ダイナボルト ＜カツドン.Star＞",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ダイナマイト・ドラゴン/アウトレイジMAX/レクスターズ",
+      "text": "自分の進化クリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nスター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシンカパワー：このクリーチャーが進化する時、このターン、この進化したクリーチャーの各ブレイクの前に、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-019",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true
+          },
+          "amount": 2
+        }
+      ],
+      "g397Shinka": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "g1136BeforeBreak": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1895",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1894,
-    "checkedAt": "2026-11-28T04:49:06.629Z",
-    "baseCount": 9909,
-    "newEffectCards": 3,
+    "phase": 1895,
+    "checkedAt": "2026-11-28T05:00:41.689Z",
+    "baseCount": 9912,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9912,
+    "totalCount": 9916,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39961/"
+      "https://dm.takaratomy.co.jp/rule/qa/41167/",
+      "https://dm.takaratomy.co.jp/rule/qa/41168/",
+      "https://dm.takaratomy.co.jp/rule/qa/41433/",
+      "https://dm.takaratomy.co.jp/rule/qa/41432/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -351751,6 +351936,21 @@
         "totalCount": 9909,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1894,
+        "checkedAt": "2026-11-28T04:49:06.629Z",
+        "baseCount": 9909,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9912,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39961/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
