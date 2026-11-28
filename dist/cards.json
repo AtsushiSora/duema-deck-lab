@@ -318719,20 +318719,134 @@
       ],
       "supportBatch": "phase-1880",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-006",
+      "name": "ジャババ・ハット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "マフィ・ギャング",
+      "text": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\nこのクリーチャーが墓地に置かれた時、それが墓地に置かれる直前に進化クリーチャーだったら、このカードをバトルゾーンに戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "AfterAttackDestroy"
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "SelfGraveRevive644",
+          "g1063Evolved": true,
+          "g1069AllowEvolution": true
+        }
+      ],
+      "supportBatch": "phase-1881",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-001",
+      "name": "ソー爺さん",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ジョーカーズ",
+      "text": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが攻撃する時、各プレイヤーは自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてそれぞれのシールドゾーンに置く。その後、自分は相手のシールドを１つ選び、持ち主の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-001",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "ジョーカーズ"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "ShieldTop",
+          "n": 1,
+          "opponent": true
+        },
+        {
+          "op": "ShieldCycle1737",
+          "owner": "opponent",
+          "g1881NoRefill": true
+        }
+      ],
+      "supportBatch": "phase-1881",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-024",
+      "name": "ジャンゴ・ニャーンズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ",
+      "text": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nJチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、そのターン、自分のクリーチャー１体のパワーは+5000され、シールドをさらに１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-024",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "race": "ジョーカーズ"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g393Change": {
+        "mana": 8
+      },
+      "g172Leave": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 5000,
+          "g1438ExtraBreak": 1
+        }
+      ],
+      "supportBatch": "phase-1881",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1880,
-    "checkedAt": "2026-11-28T03:22:09.874Z",
-    "baseCount": 9850,
-    "newEffectCards": 4,
+    "phase": 1881,
+    "checkedAt": "2026-11-28T03:30:40.850Z",
+    "baseCount": 9854,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9854,
+    "totalCount": 9857,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46503/",
-      "https://dm.takaratomy.co.jp/rule/qa/40591/",
-      "https://dm.takaratomy.co.jp/rule/qa/46503/"
+      "https://dm.takaratomy.co.jp/rule/qa/31612/",
+      "https://dm.takaratomy.co.jp/rule/qa/32482/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -349434,6 +349548,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37308/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1880,
+        "checkedAt": "2026-11-28T03:22:09.874Z",
+        "baseCount": 9850,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9854,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46503/",
+          "https://dm.takaratomy.co.jp/rule/qa/40591/",
+          "https://dm.takaratomy.co.jp/rule/qa/46503/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"

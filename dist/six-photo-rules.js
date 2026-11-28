@@ -999,7 +999,7 @@ export function createSixPhotoRules(api){
     rows:bottom.map((x,i)=>({uid:x.uid,label:known.get(x.uid)||'裏向きのカード '+(i+1),cardId:known.has(x.uid)?x.cardId:null})),
     ordered:[],newCards:true,controller:t.p})]:[];
    // The next instruction still happens when a shield movement is replaced.
-   put(s,...order,task('g34_ShieldTop',owner,t.source,{n:1}));
+   put(s,...order,...(t.g1881NoRefill?[]:[task('g34_ShieldTop',owner,t.source,{n:1})]));
   }else if(kind==='shuffle'){
    if(moved.length){
     const added=moved.map(y=>remove(own.deck,y.uid)).filter(Boolean);
@@ -5392,8 +5392,8 @@ export function createSixPhotoRules(api){
   const options=owners.flatMap(owner=>ownShieldGraveOptions(s,owner).map(o=>({
    ...o,label:(owner===t.p?'自分の':'相手の')+o.label,value:{owner,uid:o.value},score:owner===t.p?1:10
   })));
-  if(options.length)choice(s,t,'山札の一番下に置き、新しいシールドと入れ替える',[...options,...(t.optional?[skip()]:[])]);
-  else if(t.owner==='opponent'&&!t.optional)start(s,t,[{op:'ShieldTop',n:1,opponent:true}]);
+  if(options.length)choice(s,t,t.g1881NoRefill?'山札の一番下に置く相手のシールドを1つ選ぶ':'山札の一番下に置き、新しいシールドと入れ替える',[...options,...(t.optional?[skip()]:[])]);
+  else if(t.owner==='opponent'&&!t.optional&&!t.g1881NoRefill)start(s,t,[{op:'ShieldTop',n:1,opponent:true}]);
   break;
  }
  case'g34_ShieldGraveReplace1109':{

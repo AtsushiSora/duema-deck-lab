@@ -1,0 +1,487 @@
+{
+  "phase": 1881,
+  "checkedAt": "2026-11-28T03:30:40.850Z",
+  "baseline": "cb1f2959fcbfbbae598a3e6e4b481c0dbf9cbfd0",
+  "baseCount": 9854,
+  "target": 10000,
+  "description": "ThreecompleteNEOs: JabbahHat W2 attackscheduleafterdestroy andonlyformerlyevolveddeathmandatoryselfrevive includingnativeNEOchoice/literal31612 outsidebattlecannotbeEvolution; SoJisan T3 attackbothplayersblindshieldtop thenopponentshieldbottom withnativeprivatecompositebottomorder andNOrefill; Django JChange8/W2/nativeleaveown+5000and+1break, literal32482 actualGRbase Joragon/Yadok nativeblocked-swap.",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31612/",
+    "https://dm.takaratomy.co.jp/rule/qa/32482/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-006",
+      "name": "ジャババ・ハット",
+      "canonicalId": "dmrp03-006",
+      "printId": "dmrp03-006",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-006",
+      "faces": [
+        {
+          "name": "ジャババ・ハット",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\nこのクリーチャーが墓地に置かれた時、それが墓地に置かれる直前に進化クリーチャーだったら、このカードをバトルゾーンに戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "AfterAttackDestroy"
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "SelfGraveRevive644",
+            "g1063Evolved": true,
+            "g1069AllowEvolution": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-006.jpg",
+      "imageSha256": "244b8c8926570ef966338724273ff78ae303069aee0749446655733d438c1804",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-006-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-006"
+        ],
+        "allSearchIds": [
+          "dmrp03-006"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "sha256": "94615f58ca6401dcc0c66642649d55e90a2009a9adde2ef639b3b1e9edcd222e",
+        "facesMatched": true,
+        "imageSha256": "244b8c8926570ef966338724273ff78ae303069aee0749446655733d438c1804"
+      }
+    },
+    {
+      "id": "dmrp03-001",
+      "name": "ソー爺さん",
+      "canonicalId": "dmrp03-001",
+      "printId": "dmrp03-001",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-001",
+      "faces": [
+        {
+          "name": "ソー爺さん",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが攻撃する時、各プレイヤーは自身の山札の上から１枚目を裏向きのまま、新しいシールドとしてそれぞれのシールドゾーンに置く。その後、自分は相手のシールドを１つ選び、持ち主の山札の一番下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "opponent": true
+          },
+          {
+            "op": "ShieldCycle1737",
+            "owner": "opponent",
+            "g1881NoRefill": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-001.jpg",
+      "imageSha256": "2c44e5b610593e4e2dee4cf1abd74bf58bd6e837ec9c7a69ee44db46fe366e8f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp03-001-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp03-001"
+        ],
+        "allSearchIds": [
+          "dmrp03-001"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "sha256": "67f0b1ba49fbb3e016d33dc06780eebed032c1aff02fd932276604990444d416",
+        "facesMatched": true,
+        "imageSha256": "2c44e5b610593e4e2dee4cf1abd74bf58bd6e837ec9c7a69ee44db46fe366e8f"
+      }
+    },
+    {
+      "id": "dmrp07-024",
+      "name": "ジャンゴ・ニャーンズ",
+      "canonicalId": "dmrp07-024",
+      "printId": "dmrp07-024",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-024",
+      "faces": [
+        {
+          "name": "ジャンゴ・ニャーンズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nJチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、そのターン、自分のクリーチャー１体のパワーは+5000され、シールドをさらに１つブレイクする。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g393Change": {
+          "mana": 8
+        },
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000,
+            "g1438ExtraBreak": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-024.jpg",
+      "imageSha256": "0fddfc388a723cf605d02875e096e634ebf093da435850d6882255e47b8ae21f",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmrp07-024-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-024",
+          "promoy17-082",
+          "dmbd07-a-008"
+        ],
+        "allSearchIds": [
+          "promoy17-082",
+          "dmrp07-024",
+          "dmbd07-a-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "sha256": "76ab266f485ee96a4db97f7ffe87e5b188e5979b4d05119715f2b8ec3ed8a60a",
+        "facesMatched": true,
+        "imageSha256": "0fddfc388a723cf605d02875e096e634ebf093da435850d6882255e47b8ae21f"
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy17-082",
+      "name": "ジャンゴ・ニャーンズ",
+      "canonicalId": "dmrp07-024",
+      "printId": "promoy17-082",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-082",
+      "faces": [
+        {
+          "name": "ジャンゴ・ニャーンズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nJチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、そのターン、自分のクリーチャー１体のパワーは+5000され、シールドをさらに１つブレイクする。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g393Change": {
+          "mana": 8
+        },
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000,
+            "g1438ExtraBreak": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-082.jpg",
+      "imageSha256": "34c0ed36238caa87c75bbfc7175ec1b3cebfc8d56bcbd5cd80573a6e7b75de51",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/promoy17-082-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-024",
+          "promoy17-082",
+          "dmbd07-a-008"
+        ],
+        "allSearchIds": [
+          "promoy17-082",
+          "dmrp07-024",
+          "dmbd07-a-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "sha256": "8599d9426eae45b197f50d42862dc29ad7de2d2571a18dfc96dbd8a074276648",
+        "facesMatched": true,
+        "imageSha256": "34c0ed36238caa87c75bbfc7175ec1b3cebfc8d56bcbd5cd80573a6e7b75de51"
+      }
+    },
+    {
+      "id": "dmbd07-a-008",
+      "name": "ジャンゴ・ニャーンズ",
+      "canonicalId": "dmrp07-024",
+      "printId": "dmbd07-a-008",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-008",
+      "faces": [
+        {
+          "name": "ジャンゴ・ニャーンズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nJチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、そのターン、自分のクリーチャー１体のパワーは+5000され、シールドをさらに１つブレイクする。",
+          "race": "ジョーカーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g393Change": {
+          "mana": 8
+        },
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000,
+            "g1438ExtraBreak": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-a-008.jpg",
+      "imageSha256": "c874e1a31dc9f49c64ab58efd368ea7d66c6ff7ce749a2226da3e9366ed7463b",
+      "imageEvidenceFile": "tmp/duema-target-10000/research/dmbd07-a-008-0.jpg",
+      "imageReviewed": true,
+      "allAbilitiesAndBasicInformationMatched": true,
+      "reprintVerification": {
+        "allExactPrints": [
+          "dmrp07-024",
+          "promoy17-082",
+          "dmbd07-a-008"
+        ],
+        "allSearchIds": [
+          "promoy17-082",
+          "dmrp07-024",
+          "dmbd07-a-008"
+        ],
+        "allImagesReviewed": true
+      },
+      "verification": {
+        "checkedAt": "2026-11-28T03:30:40.850Z",
+        "sha256": "2a1ea14d7d2710a0014d4ac59da66bb6d88b0d143ffe80ed74b60f40cdfbadd7",
+        "facesMatched": true,
+        "imageSha256": "c874e1a31dc9f49c64ab58efd368ea7d66c6ff7ce749a2226da3e9366ed7463b"
+      }
+    }
+  ],
+  "existingCards": [],
+  "rulingVerification": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/31612/",
+      "sha256": "0b7c4642e4b920b9525905ed275c6ad918e99683f10f60d9c6f958d05f34f218",
+      "checkedAt": "2026-11-28T03:30:40.850Z",
+      "reproduced": true,
+      "tests": "tests/standard1881-effects.test.mjs",
+      "reproduction": "ActualJabba outsidebattle discardedGhostTouch, milledLoudPark, manaCrisisgravemove cannotbeEvolution andneverreturn. BattleEVOdestroypositivelyreturns, normalbodydoesnot, allbothseats.",
+      "result": "ActualJabba outsidebattle discardedGhostTouch, milledLoudPark, manaCrisisgravemove cannotbeEvolution andneverreturn. BattleEVOdestroypositivelyreturns, normalbodydoesnot, allbothseats."
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/32482/",
+      "sha256": "3c3fcf7e257726383b7351547f1a811a2c763d02e825cd21b9f7b18264006e72",
+      "checkedAt": "2026-11-28T03:30:40.850Z",
+      "reproduced": true,
+      "tests": "tests/standard1881-effects.test.mjs",
+      "reproduction": "RealGRJokersbase dmsd08-016 NEODjango, exactsixmana includingJoragondmrp05-m02, actualYadokdmr20-066. CannotselectreplacementblockedJoragon, nooutgoingGRmovement, physicalbasepreserved, originalW2attackcontinues. Bothseats encryptedUIDconservation.",
+      "result": "RealGRJokersbase dmsd08-016 NEODjango, exactsixmana includingJoragondmrp05-m02, actualYadokdmr20-066. CannotselectreplacementblockedJoragon, nooutgoingGRmovement, physicalbasepreserved, originalW2attackcontinues. Bothseats encryptedUIDconservation."
+    }
+  ],
+  "held": [],
+  "originalPrintingEvidence": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-28T03:30:40.850Z",
+    "sha256": "494f7c5cd8160449664d8e385e4f605efe5f9c1315b1f8cb75683f9ae975358f",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-006": 4,
+      "dmrp03-001": 4,
+      "dmrp07-024": 4,
+      "promoy17-082": 4,
+      "dmbd07-a-008": 4
+    }
+  },
+  "officialPrintSearchEvidence": [
+    {
+      "id": "dmrp03-006",
+      "searchSha256": "333e3f36e57cde630b0749d7784f8519a4fd671d7934d30631753c2991a702af",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp03-006"
+      ],
+      "exactPrints": [
+        "dmrp03-006"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp03-001",
+      "searchSha256": "07de792018ee3c379b9547d65a23b9a377ba0b00b4bf51cc4afcb0fdec079486",
+      "totalResults": 1,
+      "allSearchIds": [
+        "dmrp03-001"
+      ],
+      "exactPrints": [
+        "dmrp03-001"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    },
+    {
+      "id": "dmrp07-024",
+      "searchSha256": "2fb3a69e6e0817811b55bc44a09118db10f9aec6309af7cc4adb881c8181db60",
+      "totalResults": 3,
+      "allSearchIds": [
+        "promoy17-082",
+        "dmrp07-024",
+        "dmbd07-a-008"
+      ],
+      "exactPrints": [
+        "dmrp07-024",
+        "promoy17-082",
+        "dmbd07-a-008"
+      ],
+      "allImagesReviewed": true,
+      "pagination": "All search results enumerated and all exact print images visually reviewed; same-name aliases not counted as types."
+    }
+  ],
+  "validationNotes": {
+    "rulingScope": "ThreecompleteNEOs fiveofficialprintimages/allexactreprints/fullstats/mana/currentlimits. EachrealpaidbodyandNEOevolution withproperDark/Jokerbase, illegalNaturebaseexcluded; sixmanacharges/sixencryptedroomservices/UIDconservation. Jabba W2 attackschedulesmandatoryafterattackdestroy; formerlyEVO onlyselfgrave return mandatoryusingnativeg1063Evolved+g1069AllowEvolution, oldbasegrave normalbodyreturn canoptionallyNEOonanothercurrentDarkbase; trueGenmu stopsreturn/actualApulgravelock, nonEVOstaysgrave. Literal31612 actualhandGhostTouch/deckLoudParkmill/manaManaCrisis neverreturn asoutsidebattlecannotbeEVO. SoJisan T3 attackbothplayersblindshieldtop thenmandatoryONEopponentshieldbottom (includingnewone); noinspection, nativeprivatecompositebottomorderbyOWNER withnorefill optinshared1737. Current509.1 ifenemyzeroagainatdirectstep actualattackWINS; noextra-refill. Django nativeJChange8 actualswapJoragon thenphysicalleavebuff canchooseincomingunit+5000andONEextraBreak continuation actualthreebreak, expiresend; realenemybouncealsoleavebuff/ignoredsource none. Literal32482 actualGRbaseNEODjango, actualsixmana includingJoragon7 andactualYadok: pre-swapreplacementcheckpreventsJChange, GRbasepreserved andoriginalW2attackcontinues. Shared1737 oldrefillbehavior unaffected bynewoptin; existingNEOdeath/Jokerchanges/extraBreak/serialrestores relatedregressions. OldIDs/rawdata/saveformats/protectedpending preserved; no push/Pages/Netlify.",
+    "resolvedAttempts": "FirstspecsB/C usedinvalidNEOshape {race:Jokers}, fixedtoexisting{any:[{race:Jokers}]} beforeverification. Fixturecorrections onlythereafter: grave-revivalNEObase usesnativeextendedPutchoice notsummon-evolve; trueGhostTouchdm01-094/ManaCrisisdm02-035 ratherthanmisrememberedcreatureIDs018/054, manausesextendedSelect; actualJoragonbasepower11000, not9000; optionalGRzonefield defaults0. InitialSoJisanemptyshieldfixture expectednoDA; verifiedcurrentofficial509.1 correctlymakesDAwhenshieldsarezeroatthatstep, changedexpectationtowin. Allcasesretained, final51pass; no runtimeproduct failures/exclusions.",
+    "rulings": [
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/31612/",
+        "reproduced": true,
+        "reproduction": "ActualJabba outsidebattle discardedGhostTouch, milledLoudPark, manaCrisisgravemove cannotbeEvolution andneverreturn. BattleEVOdestroypositivelyreturns, normalbodydoesnot, allbothseats.",
+        "result": "passed",
+        "tests": "tests/standard1881-effects.test.mjs"
+      },
+      {
+        "source": "https://dm.takaratomy.co.jp/rule/qa/32482/",
+        "reproduced": true,
+        "reproduction": "RealGRJokersbase dmsd08-016 NEODjango, exactsixmana includingJoragondmrp05-m02, actualYadokdmr20-066. CannotselectreplacementblockedJoragon, nooutgoingGRmovement, physicalbasepreserved, originalW2attackcontinues. Bothseats encryptedUIDconservation.",
+        "result": "passed",
+        "tests": "tests/standard1881-effects.test.mjs"
+      }
+    ],
+    "held": [],
+    "nextCandidates": [
+      {
+        "reason": "Comparependingwholeabilities withregisterednativeeffects andbatchfullofficialsearch; preservealloldholds."
+      }
+    ]
+  },
+  "additionalValidation": [
+    {
+      "name": "related-change1881",
+      "command": [
+        "node",
+        "tmp/duema-target-10000/related-change1881.mjs"
+      ],
+      "code": 0,
+      "timedout": false,
+      "seconds": 2.498,
+      "log": "tmp/duema-target-10000/related-change1881.log",
+      "passed": 76,
+      "logSha256": "2462ac2d2dfa1d46a6c004a58c1f081db8106ce3f8e28d0c9b2db34d550bfa60"
+    }
+  ],
+  "additionalRuleVerification": {
+    "source": "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "sections": [
+      "509.1"
+    ],
+    "sha256": "5e48112937d947d3302603361920c18969c4a276b6d9701a0c41d294804d79b3",
+    "tests": "tests/standard1881-effects.test.mjs",
+    "result": "SoJisan shields0 atdirectattackstep ->attackerwins; printedabilitytopaddition/bottommovement bothhappen first."
+  }
+}
