@@ -2781,7 +2781,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_WeddingHands1603':{
   const n=t.n??creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s)).length===0).length;
-  if(n>0&&opp.hand.length)choice(s,{...t,n},'自身の手札からシールド化するカードを1枚選ぶ（残り'+n+'枚）',opp.hand.map(x=>opt(card(x).name,x.uid,0,x.cardId)),1-t.p);
+  if(n>0&&opp.hand.length)choice(s,{...t,n},'自身の手札からシールド化するカードを1枚選ぶ（残り'+n+'枚）',[...opp.hand.map(x=>opt(card(x).name,x.uid,0,x.cardId)),...(t.optional?[skip()]:[])],1-t.p);
   break;
  }
  case'g34_NoLoseTurn1602':
@@ -5269,8 +5269,11 @@ export function createSixPhotoRules(api){
   // The attempted count is retained even when placement is prohibited (QA45904).
   const attempted=selected.filter(r=>own.hand.some(y=>y.uid===r.uid&&(y.zoneSerial||0)===r.serial));
   for(const r of attempted)zoneMove(s,t.p,'hand',r.uid,'shields',t);
-  if(attempted.length)start(s,t,[{op:'Break497',owner:'self',n:attempted.length,
-   ...(t.creatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);
+  if(attempted.length){
+   if(t.g1868NoTriggerReturn)put(s,{...t,op:'g55_ShieldHand',g238ShieldHand:true,g535Count:attempted.length,optional:false});
+   else start(s,t,[{op:'Break497',owner:'self',n:attempted.length,
+    ...(t.creatureBreak?{g747CreatureBreak:true,g913DepartedBreaker:true}:{})}]);
+  }
   break;
  }
  case'g34_FirstDrawHandMana1648':

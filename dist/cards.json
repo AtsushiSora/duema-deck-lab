@@ -317097,19 +317097,120 @@
       ],
       "supportBatch": "phase-1867",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx22a-001",
+      "name": "犯罪紳士 カンゼンクライム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "デーモン・コマンド",
+      "text": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、「S・トリガー」を持つ呪文をすべて、自分の墓地から手札に戻す。\n相手が「S・トリガー」能力を使った時、自分の手札から「S・トリガー」を持つカードをコストを支払わずに使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-001",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": "all",
+          "filter": {
+            "g228Face": {
+              "type": "spell",
+              "shieldTrigger": true
+            }
+          }
+        }
+      ],
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "trigger": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1868",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-009",
+      "name": "キャバリア・シャーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分の手札から２枚まで選び、裏向きにして自分のシールドに加えてもよい。そうした場合、同じ枚数の自分のシールドを裏向きのまま選び、自分の手札に加える。ただし、その「S(シールド)・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MarshalExchange1648",
+          "max": 2,
+          "g1868NoTriggerReturn": true
+        }
+      ],
+      "supportBatch": "phase-1868",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-033",
+      "name": "裂光戦士イザノミヒート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヒューマノイド/オリジン",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手は自分自身のシールドを１枚選ぶ。このクリーチャーは、そのシールドをブレイクする。\nこのクリーチャーがバトルゾーンを離れた時、相手は自分自身の手札を１枚、裏向きにしてシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "ownerChooses": true,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "WeddingHands1603",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-1868",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1867,
-    "checkedAt": "2026-11-28T01:35:26.348Z",
-    "baseCount": 9806,
+    "phase": 1868,
+    "checkedAt": "2026-11-28T01:47:41.703Z",
+    "baseCount": 9809,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 9809,
+    "totalCount": 9812,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35994/",
-      "https://dm.takaratomy.co.jp/rule/qa/32457/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
@@ -347615,6 +347716,22 @@
         "totalCount": 9806,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1867,
+        "checkedAt": "2026-11-28T01:35:26.348Z",
+        "baseCount": 9806,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 9809,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35994/",
+          "https://dm.takaratomy.co.jp/rule/qa/32457/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
