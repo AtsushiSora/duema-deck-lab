@@ -1797,6 +1797,15 @@ export function createSixPhotoRules(api){
   });
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g1871Sword){
+   const host=sourceHost474(s,t),power=host&&!host.x.sealed?currentPower506(s,host.x):t.g692LastPower;
+   const limit=power==='∞'?Infinity:power==='-∞'?-Infinity:power;
+   const rows=(t.rows||[]).filter(r=>s.players[r.p].battle.some(x=>x.uid===r.uid));
+   const sum=rows.reduce((n,r)=>n+currentPower506(s,s.players[r.p].battle.find(x=>x.uid===r.uid)),0);
+   if(sum<limit)move(s,rows.map(r=>({player:r.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));
+   return;
+  }
+
   if(t.g1843DrawAfterReturn){
    let moved=0;
    for(const row of [...(t.rows||[])].reverse())
@@ -1911,6 +1920,13 @@ export function createSixPhotoRules(api){
    if(t.g671PlayerLockPower)(target.powerModifiers??=[]).push({amount:t.g671PlayerLockPower,expires:'end',who:s.active,
     spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
    stopPlayerAttack567(s,{...t,g567PlayerStop:t.g567PlayerStop??'end'},target);
+  }
+  if(t.g1871HydroCommune){
+   const rows=(t.rows||[]).flatMap(r=>{const x=creatures(s,t.p).find(x=>x.uid===r.uid&&!x.sealed);return x?[{uid:r.uid,cards:api.allLayers(x).map(y=>y.uid)}]:[];});
+   if(!rows.length)return;
+   put(s,task('g34_HydroAfter1871',t.p,t.source,{refs:rows,handBefore:s.players.flatMap(p=>p.hand.map(x=>x.uid))}));
+   move(s,rows.map(r=>({player:t.p,uid:r.uid,to:'hand',toOwnerHand:true,controller:t.p})));
+   return;
   }
   if(t.g961TrapCommune){
    const targets=(t.rows||[]).filter(r=>creatures(s,t.p).some(x=>x.uid===r.uid&&!x.sealed&&matches(s,t.p,x,t.filter)));
@@ -7098,11 +7114,27 @@ export function createSixPhotoRules(api){
   if(t.costs.length===1)start(s,t,[destroyBelowCost655(t.costs[0],t)]);
   else if(t.costs.length>1)choice(s,t,'捨てたカードの参照するコストを選ぶ',t.costs.map(n=>opt('コスト '+n,n,n==='∞'?100:n)));
   break;
+ case'g34_HydroAfter1871':{
+  const hand=new Set(s.players.flatMap(p=>p.hand.map(x=>x.uid)).filter(uid=>!t.handBefore.includes(uid)));
+  const n=t.refs.filter(r=>r.cards.some(uid=>hand.has(uid))).length;
+  if(n)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',to:'hand',toOwnerHand:true,n,optional:true,
+   filter:{creature:true},g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを'+n+'体まで選ぶ'}]);
+  break;
+ }
+ case'g34_PowerPuzzle1871':{
+  const options=targetOptions(s,t.p,creatures(s,t.p).filter(x=>!x.sealed));
+  if(options.length)choice(s,t,'タップする自分のクリーチャーを1体選ぶ',options);
+  break;
+ }
  case'g34_TargetBelowSource692':{
   const host=sourceHost474(s,t.g828CompareAttacker?t.g399Attacker:t);
   const current=host&&!host.x.sealed&&api.isCreature(s,host.x)?currentPower506(s,host.x):t.g692LastPower;
   if(current===undefined||current===-Infinity||current==='-∞')break;
-  if(t.g1144Total){
+  if(t.g1871Sword){
+   put(s,{...t,op:'g34_Select',origin:'battle',owner:'opponent',n:2,optional:true,
+    g692LastPower:current,g173Targets:true,g193Select:true,filter:{creature:true,tapped:true},
+    title:'破壊を試みるタップした相手を2体まで選ぶ（合計パワーが自身未満なら破壊）'});
+  }else if(t.g1144Total){
    const budget=current===Infinity?'∞':current;
    start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n:'all',to:t.to,optional:true,
     g173Targets:true,g193Select:true,filter:{creature:true},g506PowerBudget:budget,
@@ -9142,6 +9174,16 @@ export function createSixPhotoRules(api){
  case'g34_PokerOrder1659':put(s,{...t,ordered:[...t.ordered,v]});break;
  case'g34_DefenderBreak1659':put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_AlPlus1659':if(v){const root=api.findShield(own,t.group);if(root)showPeek585(s,t,[{x:root,p:t.p,seen:api.shieldCards(root),label:'シールド・プラスした自分のシールド'}]);}break;
+ case'g34_PowerPuzzle1871':{
+  const x=own.battle.find(x=>x.uid===v&&!x.sealed&&api.isCreature(s,x));
+  if(!x)break;
+  api.tap(s,t.p,x);
+  const power=currentPower506(s,x),budget=power===Infinity?'∞':power;
+  start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n:'all',optional:true,
+   g173Targets:true,g193Select:true,g193Tap:true,filter:{creature:true},g506PowerBudget:budget,
+   title:'合計パワーが'+budget+'以下になるよう相手を好きな数タップする'}]);
+  break;
+ }
  case'g34_ChooseRace724':{
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
@@ -9153,6 +9195,10 @@ export function createSixPhotoRules(api){
     stages:[{n:3,to:'deckTop',optional:!api.lookPublic(s,t.p),reveal:true,g1658DistinctNames:true,filter:chosen}]}]);
   else if(t.g1657Pokira)
    (s.extLimits??=[]).push({kind:'g1657RaceGraveHand',player:t.p,filter:chosen,expires:'end',who:s.active});
+  else if(t.g1871HydroCommune)
+   start(s,t,[{op:'Select',origin:'battle',to:'hand',toOwnerHand:true,n:'all',optional:true,
+    filter:chosen,g173Targets:true,g187OwnPick:true,g1871HydroCommune:true,
+    title:'手札に戻す自分の'+v+'を好きな数選ぶ'}]);
   else if(t.g961TrapCommune)
    start(s,t,[{op:'Select',origin:'battle',to:'grave',n:'all',optional:true,filter:chosen,g173Targets:true,
     g187OwnPick:true,g961TrapCommune:true,title:'破壊する自分の'+v+'を好きな数選ぶ'}]);
