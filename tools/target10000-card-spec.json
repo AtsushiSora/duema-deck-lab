@@ -38922,5 +38922,184 @@
         }
       ]
     }
+  },
+  "dmr01-s08": {
+    "phase": 1914,
+    "faces": [
+      {
+        "name": "大神砕シンリョク・ガリバー",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "進化ー自分の光または火のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、光または火のカードを１枚、自分のマナゾーンから選ぶ。そのカードを裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nパワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+        "race": "ガイア・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "attackBonus": 3000,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "shields",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "火"
+              }
+            ],
+            "faceUp": true
+          }
+        }
+      ]
+    }
+  },
+  "dmrp04m-046": {
+    "phase": 1914,
+    "faces": [
+      {
+        "name": "蓄積する者 アルコウス",
+        "typeText": "クリーチャー",
+        "civilizationText": "水",
+        "civilizations": [
+          "水"
+        ],
+        "cost": 8,
+        "costText": "8",
+        "abilityText": "このクリーチャーの召喚コストを、自分の墓地にある《蓄積された魔力》と名前にあるカード１枚につき１少なくしてもよい。ただし、コストは０以下にならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+        "race": "ムートピア",
+        "powerText": "6000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "blocker": true,
+      "breaker": 2,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {
+          "name": "蓄積された魔力"
+        },
+        "amount": 1,
+        "optional": true
+      }
+    }
+  },
+  "dmex01-037": {
+    "phase": 1914,
+    "faces": [
+      {
+        "name": "第七神帝サハスラーラ",
+        "typeText": "進化クリーチャー",
+        "civilizationText": "闇",
+        "civilizations": [
+          "闇"
+        ],
+        "cost": 10,
+        "costText": "10",
+        "abilityText": "進化：自分のゴッド１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札を２枚選び、捨てる。その後、クリーチャーを２体、自分の墓地から手札に戻してもよい。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを_8000する。\nこのクリーチャーの攻撃の終わりに、このクリーチャーをアンタップする。",
+        "race": "クリエイター/オリジン",
+        "powerText": "21000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "evolution": {
+        "race": "ゴッド"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -8000,
+          "g242PowerMinus": true
+        },
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dmc67-003": {
+    "phase": 1914,
+    "faces": [
+      {
+        "name": "聖霊龍騎スターダスト・NEX",
+        "typeText": "クリーチャー",
+        "civilizationText": "光/火",
+        "civilizations": [
+          "光",
+          "火"
+        ],
+        "cost": 6,
+        "costText": "6",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーまたは、自分の、名前に《ルピア》とあるクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+        "race": "アーマード・ドラゴン/エンジェル・コマンド",
+        "powerText": "7000",
+        "missingFields": []
+      }
+    ],
+    "spec": {
+      "breaker": 2,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ルピア"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      }
+    }
   }
 }

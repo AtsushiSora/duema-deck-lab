@@ -323946,15 +323946,182 @@
       ],
       "supportBatch": "phase-1913",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-s08",
+      "name": "大神砕シンリョク・ガリバー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ガイア・コマンド",
+      "text": "進化ー自分の光または火のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、光または火のカードを１枚、自分のマナゾーンから選ぶ。そのカードを裏向きにして、新しいシールドとして自分のシールドゾーンに加える。\nパワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s08",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "attackBonus": 3000,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "shields",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "火"
+              }
+            ],
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1914",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04m-046",
+      "name": "蓄積する者 アルコウス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "ムートピア",
+      "text": "このクリーチャーの召喚コストを、自分の墓地にある《蓄積された魔力》と名前にあるカード１枚につき１少なくしてもよい。ただし、コストは０以下にならない。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-046",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {
+          "name": "蓄積された魔力"
+        },
+        "amount": 1,
+        "optional": true
+      },
+      "supportBatch": "phase-1914",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex01-037",
+      "name": "第七神帝サハスラーラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 21000,
+      "race": "クリエイター/オリジン",
+      "text": "進化：自分のゴッド１体の上に置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札を２枚選び、捨てる。その後、クリーチャーを２体、自分の墓地から手札に戻してもよい。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを_8000する。\nこのクリーチャーの攻撃の終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-037",
+      "limit": 4,
+      "evolution": {
+        "race": "ゴッド"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -8000,
+          "g242PowerMinus": true
+        },
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1914",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc67-003",
+      "name": "聖霊龍騎スターダスト・NEX",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "アーマード・ドラゴン/エンジェル・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーまたは、自分の、名前に《ルピア》とあるクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-003",
+      "limit": 4,
+      "breaker": 2,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "g819CreatureNameIncludes": "ルピア"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1914",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1913,
-    "checkedAt": "2026-11-28T07:05:45.484Z",
-    "baseCount": 9977,
+    "phase": 1914,
+    "checkedAt": "2026-11-28T07:10:21.450Z",
+    "baseCount": 9981,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9981,
+    "totalCount": 9985,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -355154,6 +355321,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36784/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37208/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1913,
+        "checkedAt": "2026-11-28T07:05:45.484Z",
+        "baseCount": 9977,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 9981,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
