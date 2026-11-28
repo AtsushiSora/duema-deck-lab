@@ -319819,15 +319819,137 @@
       ],
       "supportBatch": "phase-1887",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm06-015",
+      "name": "宣凶師エルリオット",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グラディエーター",
+      "text": "ブロッカー(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出たとき、自分のシールドをすべて見てもよい。その後、それを元に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-015",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "自分のシールドをすべて見る？",
+          "defs": [
+            {
+              "op": "Peek585",
+              "who": "self",
+              "all": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1888",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22sd1-003",
+      "name": "テブル=ザザーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーを召喚する時、自分の手札を１枚捨ててもよい。そうしたら、このクリーチャーの召喚コストを３少なくする。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-003",
+      "limit": 4,
+      "abyssRush": true,
+      "breaker": 2,
+      "g1240DiscardReduction": 3,
+      "supportBatch": "phase-1888",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-031",
+      "name": "死を知らぬ月へのクモツ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ライトブリンガー/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、そのターン、このクリーチャーはすべてのバトルに勝ち、このクリーチャーが相手プレイヤーを攻撃できない能力を無視する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-031",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g536ShieldLeft": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "g34AlwaysWin": true,
+            "noPlayerAttack": false
+          }
+        }
+      ],
+      "supportBatch": "phase-1888",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-045",
+      "name": "翔天 ＜エメラルーダ.Star＞",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 7000,
+      "race": "メタリカ/エンジェル・コマンド・ドラゴン/レクスターズ",
+      "text": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、タマシードから進化していれば、自分の山札の上から１枚目をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-045",
+      "limit": 4,
+      "starEvolution": true,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "光"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g1052TamaseedEntry": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1888",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1887,
-    "checkedAt": "2026-11-28T04:05:29.106Z",
-    "baseCount": 9881,
-    "newEffectCards": 5,
+    "phase": 1888,
+    "checkedAt": "2026-11-28T04:10:16.129Z",
+    "baseCount": 9886,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 9886,
+    "totalCount": 9890,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -350637,6 +350759,20 @@
         "newEffectCards": 4,
         "newVanillaCards": 0,
         "totalCount": 9881,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "10,000種類まで検証済みバッチを手動登録。自動実行はPAUSED。push・公開・Netlify更新なし。"
+        ]
+      },
+      {
+        "phase": 1887,
+        "checkedAt": "2026-11-28T04:05:29.106Z",
+        "baseCount": 9881,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 9886,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
