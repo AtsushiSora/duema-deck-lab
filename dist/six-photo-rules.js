@@ -1048,7 +1048,7 @@ export function createSixPhotoRules(api){
     (!watch.g766Once||!used(s,'g766SpellUse',x))&&!watchUsed792(s,x,watch)?[{owner,x,watch}]:[];
   }));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
- function auraPower(s,x,c){
+ function auraPower(s,x,c,attacking=false){
   const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
   if(owner<0||x.sealed||c.type!=='creature')return 0;
   const fits=f=>(!f.g1503NonGR||!c.gr)&&(!f.g1490Exile||!!c.g1490Exile)&&(!f.speedAttacker||!!c.speedAttacker)&&(!f.g1428Gr||!!c.gr)&&(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&
@@ -1067,7 +1067,7 @@ export function createSixPhotoRules(api){
    const auras=effective(source,s,true).g205Aura;
    if(!auras)continue;
    for(const aura of Array.isArray(auras)?auras:[auras]){
-    if(aura.sourceTapped!==undefined&&aura.sourceTapped!==!!source.tapped||
+    if(aura.attackOnly&&!attacking||aura.sourceTapped!==undefined&&aura.sourceTapped!==!!source.tapped||
      !aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||
      aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||
      !fits(aura.filter))continue;
@@ -3742,6 +3742,10 @@ export function createSixPhotoRules(api){
    turn:s.turn,who:s.active,expires:'end',grant:t.grant});
   break;
  case'g34_OniClock1303':(s.g1303OniClock??=[null,null])[t.p]=s.turn;break;
+ case'g34_NightScream1865':
+  if(!creatures(s,1-t.p).some(x=>!x.sealed&&(race(effective(x,s),'ゴッド')||race(effective(x,s),'フェニックス'))))
+   start(s,t,[{op:'OpponentSelect',n:1,to:'grave',filter:{untapped:true}}]);
+  break;
  case'g34_IfOwn':if(ownCondition(s,t.p,t.filter,t.uid,t.incarnation??null,t.lastKnownCount))start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_Pradox1089':{
   const ids=look(s,{...t,n:5}),peek=deckPeek841(own,ids);
